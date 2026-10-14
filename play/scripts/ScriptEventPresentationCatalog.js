@@ -33,6 +33,13 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ["s1.drsa.xia-letter-translation.scene", {
+    kind:"native-cutscene",area:"DRSA",durableEffects:"forbidden",returnPlayerState:true,
+    // TOKI is the original cinematic resource, DRSA the normal shop area.
+    // This borrows its presentation, not its native room controller/state.
+    cutscene:{id:"story-s1-xia-letter-translation",packageId:"toki",worldId:"drsa",storyPresentation:true,
+      activity:{slot:0,binding:{primaryPointer:0x34f7,secondaryPointer:0x3504}}},
+  }],
   ["s1.jhd0.fuku-letter-gate.scene", {
     kind:"native-cutscene",area:"JHD0",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-fuku-letter-gate",packageId:"tgma",worldId:"exterior",storyPresentation:true,

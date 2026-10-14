@@ -22,7 +22,10 @@ possession checks. Gao Wen's rescue and grandmother referral now have connected
 rendered checks through real fight/QTE failure and success, original hostage,
 ball and kick presentation, resident talk, saved notebook and reload. Roadside
 placement and simplified combat/ball trajectory remain explicit adaptations.
-Xia's letter translation and the later storyline remain unimplemented.
+Xia's original letter-translation scene is connected through ordinary Russiya
+shop entry, with rendered cancellation/re-entry, natural completion, two saved
+notebook pages, restored arrival/camera/controls and reload verified. The
+telephone/password call and later storyline remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

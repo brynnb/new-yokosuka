@@ -22,6 +22,16 @@ test("a durable allowance flag adds one stable notebook page and survives a char
   setJournalCharacter({ ...character, playMode: "free_roam" });
   assert.equal(useJournalStore.getState().pages.length, 0);
 });
+
+test("one saved translation milestone unlocks letter contents and passwords without duplicating pages",()=>{
+  const character={...completedStory,storyFlags:{"notebook.s1.translated-letter":true}};
+  setJournalCharacter(character);
+  const pages=useJournalStore.getState().pages;
+  assert.equal(pages.length,7);assert.match(pages[5].text,/Zhu Yuan Da/);
+  assert.match(pages[6].text,/0468-61-5647/);assert.match(pages[6].text,/Mother's Earth.*Comrades/);
+  setJournalCharacter({...character});assert.equal(useJournalStore.getState().pages.length,7);
+  assert.equal(new Set(pages.map(p=>p.id)).size,pages.length);
+});
 let previousStorage;
 let storedPages;
 

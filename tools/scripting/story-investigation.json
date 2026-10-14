@@ -3,6 +3,16 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"xia-letter-translation","actor":"ASDA","area":"DRSA","trigger":"automatic","blockNativeTalk":true,"priority":210,
+      "title":"Xia Xiu Yu — translate the Chinese letter","hours":[8.5,21],
+      "requiredFlags":["story.s1.gao-rescue.completed"],"requiredItems":[{"key":"chinese_letter","quantity":1}],
+      "completedFlag":"story.s1.xia-letter-translation.completed","effects":["notebook.s1.translated-letter"],
+      "activities":["s1.drsa.xia-letter-translation.scene"],"voiceIds":[],
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/A0142B.AFS","sha256":"34c9e3d2cda7f4cad2b7348dd4c1c5adb65421707b5d574595a25703d0097104"},
+      "nativeSources":[{"role":"presentation","locator":"disc1/data/SCENE/01/TOKI/SEQDATA2.BIN","sha256":"507a20816d8a73a2a41700e90b4bc8e62e9a2b4dc4ad865cdfd9e555f459a38e"}],
+      "provenance":"Walkthrough-backed automatic Russiya entry after rescuing Gao Wen and receiving the letter. Reuse the original TOKI translation presentation in the ordinary DRSA shop: 5,355-frame AUTH, A0142B voices, M_0142 motion/camera, original hand/letter callback cues and BGM050. Gao's optional referral is not mandatory; players can find the shop directly. Xia's extracted schedule is 08:30 to 21:00; require her actual personal presence. Restore the arrival pose/camera; original scene gestures remain subject to shared runtime fidelity. Successful presentation or explicit cinematic skip atomically adds the letter contents/password/phone notebook pages. No reward, inventory consumption, date jump or guessed native flag."
+    },
+    {
       "id":"gao-rescue","actor":"KKBN","participants":["CHRL"],"presentActors":[],"area":"JD00","trigger":"automatic","priority":210,
       "title":"Gao Wen — Charlie's broken promise","hours":[8.5,23.5],
       "requiredFlags":["story.s1.fuku-letter-gate.completed"],"requiredItems":[{"key":"chinese_letter","quantity":1}],

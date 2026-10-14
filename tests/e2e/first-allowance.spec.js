@@ -105,6 +105,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_XIA_E2E === "true") {
+      await verifyXiaTranslation(page,testInfo,character);
+      expect(errors).toEqual([]);
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_GAO_E2E === "true") {
       await verifyGaoRescue(page,testInfo,character);
       expect(errors).toEqual([]);
@@ -617,12 +623,15 @@ async function verifyBarQte(page, testInfo, character) {
   expect(await page.evaluate(() => window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
 }
 
-async function enterInteriorDoor(page,{world,filename,position,yaw=0,fromWorld="dobuita"}) {
-    await page.evaluate(async ({filename,position,yaw,fromWorld}) => {
+async function enterInteriorDoor(page,{world,filename,doorSelector,position,yaw=0,fromWorld="dobuita"}) {
+    await page.evaluate(async ({filename,doorSelector,position,yaw,fromWorld}) => {
       const life = window.storyProbe.lifecycle;
       if(life.worldRuntime.activeWorld.id!==fromWorld)await life.travelToWorld(fromWorld);
       life.resetPlayer(life.vectorFromArray(position), yaw, { persist: false });
-      const door = life.doorInteractions.entries.find(entry => entry.root._filename === filename);
+      // Storefronts can share one original door model. A physical selector
+      // identifies its placement; a filename alone can pick another shop.
+      const door = life.doorInteractions.entries.find(entry => Number.isInteger(doorSelector)
+        ? entry.doorSelector===doorSelector : entry.root._filename === filename);
       if (!door) throw new Error(`Interior door ${filename} is missing`);
       const bounds = door.root.getHierarchyBoundingVectors(true), center = bounds.min.add(bounds.max).scale(.5);
       const controller = life.getController();
@@ -631,24 +640,29 @@ async function enterInteriorDoor(page,{world,filename,position,yaw=0,fromWorld="
       controller.cameraPitch = Math.atan2(position[1]+controller.options.firstPersonHeadHeight-center.y,
         Math.hypot(center.x-position[0],center.z-position[2]));
       controller.updateCamera(1);
-    },{filename,position,yaw,fromWorld});
+    },{filename,doorSelector,position,yaw,fromWorld});
     await page.waitForTimeout(800);
-    const point = await page.evaluate(filename => {
+    const point = await page.evaluate(({filename,doorSelector}) => {
       const life = window.storyProbe.lifecycle;
-      const door = life.doorInteractions.entries.find(entry => entry.root._filename === filename);
+      const door = life.doorInteractions.entries.find(entry => Number.isInteger(doorSelector)
+        ? entry.doorSelector===doorSelector : entry.root._filename === filename);
       if (!door) throw new Error(`Interior door ${filename} is missing`);
       const bounds = door.root.getHierarchyBoundingVectors(true);
       const center = bounds.min.add(bounds.max).scale(.5), canvas = life.engine.getRenderingCanvas(), rect = canvas.getBoundingClientRect();
       const viewProjection=life.scene.activeCamera.getViewMatrix(true).multiply(life.scene.activeCamera.getProjectionMatrix(true));
       const screen = center.constructor.Project(center, viewProjection.constructor.Identity(), viewProjection,
         life.scene.activeCamera.viewport.toGlobal(life.engine.getRenderWidth(), life.engine.getRenderHeight()));
+      const pick=life.scene.pick(screen.x,screen.y,mesh=>Object.keys(mesh.metadata||{}).some(key=>key.startsWith('interactive')),false,life.scene.activeCamera);
       return { x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(), y: rect.y + screen.y * rect.height / life.engine.getRenderHeight(),
         depth:screen.z,doorCenter:center.asArray(),playerPosition:life.getController().collider.position.asArray(),
-        filename:door.root._filename,selector:door.doorSelector,type:door.type,state:door.state };
-    },filename);
+        filename:door.root._filename,selector:door.doorSelector,type:door.type,state:door.state,
+        picked:pick?.pickedMesh?.name,pickedSelector:pick?.pickedMesh?.metadata?.interactiveDoor?.doorSelector,
+        transition:pick?.pickedMesh?.metadata?.interactiveMapTransition?.transition?.id };
+    },{filename,doorSelector});
     console.info("Door pick",point);
     expect(point.x).toBeGreaterThan(280);expect(point.x).toBeLessThan(1025);
     expect(point.y).toBeGreaterThan(0);expect(point.y).toBeLessThan(720);
+    if(Number.isInteger(doorSelector))expect(point.pickedSelector).toBe(doorSelector);
     await page.mouse.click(point.x, point.y);
     await page.waitForFunction(world => window.storyProbe.lifecycle.worldRuntime.activeWorld.id === world, world, { timeout: 30_000 });
     await page.waitForFunction(()=>{const life=window.storyProbe.lifecycle;return life.worldRuntime.ready&&!life.worldRuntime.switching&&!life.playerRuntime.characterSwitching;});
@@ -1307,5 +1321,76 @@ async function verifyGaoRescue(page,testInfo,character) {
   await page.locator('.account-entry-actions button').filter({hasText:'Quick Play'}).click();await page.locator('.character-slot-button:not(.empty)').first().click();
   await page.locator('button').filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});
   expect((await saved()).character.storyFlags['notebook.s1.russiya-translator']).toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+}
+
+async function verifyXiaTranslation(page,testInfo,character) {
+  expect(character.storyFlags['story.s1.gao-rescue.completed']).toBe(true);
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  if(!character.storyFlags['story.s1.xia-letter-translation.completed']){
+  const hour=new Date((await saved()).worldState.gameTimeMs).getUTCHours();
+  if(hour>=21||hour<9){
+    await page.locator('#story-wait-button').click();await page.getByRole('option',{name:'Wait until tomorrow morning',exact:true}).click();
+    await page.getByRole('button',{name:'Wait until tomorrow morning',exact:true}).click();
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  }
+  const enter=()=>enterInteriorDoor(page,{world:'drsa',filename:'S1_D000_DR15_011.MT5',doorSelector:1,position:[40.5,.0724,75.6]});
+  const scene=async()=>{
+    await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==='story-s1-xia-letter-translation'||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+    await noErrors();
+    await page.waitForFunction(()=>[...(window.storyProbe.director?.activeCutscene?.packageRuntime.audio.active?.elements||[])]
+      .some(r=>r.kind==='voice'&&r.command.audio.voiceId.startsWith('A0142B')&&r.audio.currentTime>0&&!r.audio.paused),null,{timeout:25_000});
+  };
+  // A restored pre-translation save may already be inside the shop. Let its
+  // automatic entry finish starting before cancelling/re-entering; don't
+  // force test travel concurrently with that legitimate startup event.
+  if(character.worldId!=='drsa')await enter();
+  await scene();await page.screenshot({path:testInfo.outputPath('xia-original-greeting.png')});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-xia'));
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe('idle');
+  expect((await saved()).character.storyFlags['notebook.s1.translated-letter']).not.toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  await enter();await scene();
+  await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime.presentation?.active?.currentFrame>1920||window.storyProbe.sceneErrors.length,null,{timeout:100_000});
+  await noErrors();await page.screenshot({path:testInfo.outputPath('xia-original-letter-presented.png')});
+  await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime.presentation?.active?.currentFrame>2100||window.storyProbe.sceneErrors.length,null,{timeout:100_000});
+  await noErrors();
+  const prop=await page.evaluate(()=>{
+    const runtime=window.storyProbe.director.activeCutscene.packageRuntime,root=runtime.attachedObjects.objects.get('TEGS').root;
+    return {enabled:root.isEnabled(),frame:runtime.attachedObjects.active.frame,
+      textured:root.getChildMeshes().filter(m=>m.getTotalVertices()>0).every(m=>!!m.material?.diffuseTexture)};
+  });
+  expect(prop.enabled).toBe(true);expect(prop.frame).toBeGreaterThan(2100);expect(prop.textured).toBe(true);
+  await page.screenshot({path:testInfo.outputPath('xia-original-letter-handover.png')});
+  await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime.presentation?.active?.currentFrame>3350||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+  await noErrors();await page.screenshot({path:testInfo.outputPath('xia-original-translation.png')});
+  await page.waitForFunction(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.['notebook.s1.translated-letter']||window.storyProbe.sceneErrors.length,null,{timeout:100_000});
+  await noErrors();const state=await saved();
+  expect(state.character.storyFlags['story.s1.xia-letter-translation.completed']).toBe(true);
+  expect(state.character.yen).toBe(character.yen);expect(state.character.currentHp).toBe(character.currentHp);
+  expect(state.inventory.filter(i=>i.key==='chinese_letter').map(i=>i.quantity)).toEqual([1]);
+  expect(state.character.worldId).toBe('drsa');expect(state.character.avatarId).toBe('ryo');
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().firstPerson)).toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  const position=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());
+  expect(Math.hypot(position[0]+3.2,position[2]+.75)).toBeLessThan(.1);
+  }
+  const committed=await saved();
+  expect(committed.character.storyFlags['notebook.s1.translated-letter']).toBe(true);
+  expect(committed.character.worldId).toBe('drsa');expect(committed.character.yen).toBe(character.yen);
+  expect(committed.inventory.filter(i=>i.key==='chinese_letter').map(i=>i.quantity)).toEqual([1]);
+  await page.locator('button').filter({hasText:/^Notebook$/}).click();
+  for(let i=0;i<60&&await page.locator('#journal-next').isEnabled();i++)await page.locator('#journal-next').click();
+  await expect(page.getByText(/Master Chen: 0468-61-5647/)).toBeVisible();await page.screenshot({path:testInfo.outputPath('xia-password-notebook.png')});
+  await page.locator('#journal-previous').click();await expect(page.getByText(/Signed: Zhu Yuan Da/)).toBeVisible();
+  await page.locator('#journal-close').click();await page.reload();await page.keyboard.press('Enter');
+  await page.locator('.account-entry-actions button').filter({hasText:'Quick Play'}).click();await page.locator('.character-slot-button:not(.empty)').first().click();
+  await page.locator('button').filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});
+  await page.waitForTimeout(1000);
+  expect(await page.evaluate(()=>window.storyProbe.starts.includes('story-s1-xia-letter-translation'))).toBe(false);
+  expect((await saved()).character.storyFlags['notebook.s1.translated-letter']).toBe(true);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
 }

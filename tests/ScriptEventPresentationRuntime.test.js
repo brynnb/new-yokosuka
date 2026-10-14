@@ -64,6 +64,13 @@ test("catalog exposes only exact reviewed presentation and activity records", ()
   });
 });
 
+test("letter translation borrows the exact TOKI presentation in the normal shop",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.drsa.xia-letter-translation.scene");
+  assert.equal(activity.area,"DRSA");assert.equal(activity.durableEffects,"forbidden");
+  assert.equal(activity.returnPlayerState,true);assert.equal(activity.cutscene.packageId,"toki");
+  assert.deepEqual(activity.cutscene.activity,{slot:0,binding:{primaryPointer:0x34f7,secondaryPointer:0x3504}});
+});
+
 test("the optional Nozomi encounter reuses the original YBHN presentation without native effects", () => {
   const activity = createScriptEventPresentationCatalog().activity("s1.d000.nozomi-after-parlor.scene");
   assert.equal(activity.area, "D000");

@@ -87,6 +87,8 @@ const STORY_PAGES = Object.freeze([
     text:"Ine-san gave me a mysterious letter addressed to my father.\n\nIt's written in Chinese. Find someone who can read it."}) },
   {flag:"notebook.s1.gao-wen",page:Object.freeze({id:"story-gao-wen",text:"Saved a Chinese boy named Gao Wen from Charlie's gang.\n\nCharlie's cartel meeting was a trap. The Chinese letter is my remaining lead. Find someone who can read it."})},
   {flag:"notebook.s1.russiya-translator",page:Object.freeze({id:"story-russiya-translator",text:"Gao Wen's grandmother, Xia Xiu Yu, can read Chinese.\n\nVisit her at Russiya China Shop in Dobuita, near the fortune teller."})},
+  {flag:"notebook.s1.translated-letter",page:Object.freeze({id:"story-translated-letter",text:"Xia-san read the reversed Chinese characters.\n\nBeware of those who pursue the mirror. If I need help, seek Master Chen.\n\nSigned: Zhu Yuan Da."})},
+  {flag:"notebook.s1.translated-letter",page:Object.freeze({id:"story-letter-passwords",text:"On the back of the letter:\nFather's Heaven · Nine Dragons\nMother's Earth · Comrades\n\nMaster Chen: 0468-61-5647\nCall from a telephone to find the next lead."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

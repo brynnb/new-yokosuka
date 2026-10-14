@@ -219,7 +219,7 @@ Do not describe the first conversation as fully animation-faithful.
 | Next-day dojo spar → Ine-san invitation → Chinese letter | Connected browser check verifies real timed practice, original Fuku/Ine scenes, visible envelope handoff, cancellation/re-entry, natural letter ending, notebook and saved reload. Server/compiler/database tests prove practice authority and atomic once-only possession. Meditation and forced wake-up travel are omitted adaptations. |
 | Fuku-san at the gate | Connected rendered walk-in, cancellation/re-entry, original voices/body/camera, natural ending and saved reload verified. Requires the saved Chinese letter and actual possession; no duplicate handoff. Shared prop-frame repair and presentation verification are described below. |
 | Gao Wen rescue / translator referral | Connected browser check verifies original-voiced cast, real three-opponent loss/retry/win, failed A-QTE attempt/retry, original kick/ball/hostage presentation, grandmother referral, notebook, restored controls and saved reload. Compiler/database gates, cancellation, stale input and personal isolation pass. Roadside staging/ball trajectory/basic AI are explicit adaptations. |
-| Xia Xiu Yu / Chinese-letter translation | Missing connected authored progression. |
+| Xia Xiu Yu / Chinese-letter translation | Connected real-door entry, original TOKI actors/voices/cameras, cancellation/re-entry, natural ending, two notebook pages, restored arrival/camera/controls and saved reload verified. Compiler/database possession/presence/hours, stale acknowledgement, repeat and personal-isolation checks pass. Letter attachment/fold data is reused; complete hand/finger fidelity is not claimed. |
 | Harbor warehouses / Master Chen / Phoenix Mirror | Missing connected authored progression. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
@@ -981,4 +981,64 @@ is a wrist and must not be described as a foot.
 
 The new asset catalogs reproduce byte-for-byte through the canonical producers.
 New model/voice assets are local and registered, not published to R2.
-Xia's translation and the subsequent harbor sequence remain unimplemented.
+The subsequent telephone/harbor sequence remains unimplemented.
+
+## Xia Xiu Yu translates the letter
+
+Official import: `story-s1-xia-letter-translation`.
+The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+(printed pages 28–29) establishes automatic entry, reversed writing, the letter's
+contents and the next telephone objective. The existing TOKI package already
+contains the complete original presentation; no new dialogue renderer, authored
+replacement movie or native room-controller reconstruction is necessary.
+
+| Field | Implementation |
+| --- | --- |
+| Location | Russiya China Shop, normal shared-world area `DRSA`. `TOKI` names the original cinematic resource, not another gameplay destination. |
+| Prerequisites | Story Ryo, opening and Gao rescue complete, actual `chinese_letter` quantity at least one, translation not already saved. Gao's optional grandmother referral is not mandatory; players can find the shop directly. |
+| Trigger | Automatic shop entry. Suppress alternative native ASDA story dialogue while the authored event is eligible; the server remains authoritative. |
+| Player setup | Existing cinematic ownership locks movement and borrows Ryo/ASDA. Return hooks capture the normal shop arrival position, facing and camera before the scene. |
+| Characters | Ryo and Xia Xiu Yu (`ASDA`, original `KAS_L`), using existing package/ambient actor ownership. The ordinary personal ASDA schedule begins at 08:30 and ends at 21:00; require the server's actual actor presence as well as that window. |
+| Props | Original folding `MALS509G` letter, original attachment handovers, fold-node changes and KAS hand meshes/HM pose table through the existing shared adapters. No item is consumed or granted. |
+| Action sequence | Original entry and greeting → Gao's grandmother thanks Ryo → present and decipher the letter → read its back/passwords and number → return the letter → restore ordinary gameplay. |
+| Dialogue | All 41 original A0142B AUTH voice cues. The source archive SHA-256 is `34c9e3d2cda7f4cad2b7348dd4c1c5adb65421707b5d574595a25703d0097104`. |
+| Timing | Original AUTH/body/camera/voice timeline, 5,355 frames (about 178.5 seconds). An explicit cinematic skip acknowledges presentation, not an interactive challenge result. |
+| Camera shots | Original `TOKI/SEQDATA2` camera track. No new camera offsets or guessed scene duration. |
+| Weather and lighting | Preserve the personal shop environment. Exact original incidental lighting is not required; no date, time or weather jump. |
+| Audio | Original A0142B voices, A1_TOURA effect commands and the existing BGM050 package cue. Canonical audio regeneration reproduces all 57 voice/effect output hashes; only the producer's reorganized path changed in metadata. |
+| Interactive challenge | None. The password phone call is the next event, not a QTE hidden in this movie. |
+| Completion effects | One atomic translation milestone and `notebook.s1.translated-letter`, which unlocks two stable pages: letter contents/signature, then passwords/phone number. No currency, HP/XP, inventory, calendar or guessed native-bank write. |
+| Exit behavior | Remain in `DRSA` at the ordinary arrival pose with previous camera and controls restored; release actor/prop ownership. |
+| Skip, failure and replay | Natural completion or explicit cinematic skip saves the same outcome once. Cancellation, failed loading or cleanup saves nothing and permits re-entry. Stale acknowledgements cannot complete a newer run. Reload reads committed progress without replay or duplicate pages. |
+
+The source manifest pins `SEQDATA2.BIN` to SHA-256
+`507a20816d8a73a2a41700e90b4bc8e62e9a2b4dc4ad865cdfd9e555f459a38e`
+and the normalized slot-zero install to pointers `0x34f7`/`0x3504`.
+Existing builders retain exact motion, letter, hand and callback provenance.
+The script activity forbids browser-owned durable effects and restores the
+entry player state before the server accepts the presentation acknowledgement.
+
+Real compiler/PostgreSQL tests extend the Chinese-letter chain through Gao's
+required milestone, actual possession, ASDA absence, closing time, cancellation,
+retry/stale acknowledgement, once-only notebook settlement, unchanged
+economy/inventory/native snapshot and character isolation.
+
+`NEW_YOKOSUKA_XIA_E2E=true` with the earned isolated Story checkpoint verifies
+automatic entry, original voice playback, cancellation without settlement,
+real door re-entry, the full natural ending, unchanged letter/yen/HP, both
+notebook pages, restored arrival/camera/controls and reload without replay.
+Inspected captures show Ryo, Xia and the original camera/subtitle sequence.
+The letter attachment is enabled during the handover, but the sampled camera
+views and subtitle panel obscure it; those captures do not establish the
+letter's visible handover or complete finger/fold fidelity. No exact incidental
+lighting claim is made. Travel is shortened near the shop's real doorway rather
+than proving the entire walk from the previous event. Audio/assets and the
+official import are verified locally, not published to production or R2.
+
+Door-entry testing exposed a registration gap, not a missing story bit. Ordinary
+animated doors were given their verified physical destinations only when marked
+`nativeStaticTransition`, a proxy-only flag. Known physical routes now attach
+to ordinary placements too, using the same authoritative transition catalog and
+access rules. This avoids sending a real shop entrance through unrelated legacy
+dispatcher-number closed checks. The repeated-door-model test helper also uses
+physical selectors rather than assuming filenames identify unique placements.
