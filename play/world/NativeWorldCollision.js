@@ -464,7 +464,15 @@ export function applyNativeDoorCollisionStates(meshes, doors = []) {
   const openDoors = doors.filter(({ state }) => state !== "closed");
   const maximumDistanceSquared = DOOR_SEGMENT_MATCH_DISTANCE ** 2;
   for (const door of openDoors) {
-    const position = door.root?.getAbsolutePosition?.();
+    // A sliding-door root can sit at the join between fixed and moving leaves.
+    // Matching there translated the stationary leaf's boundary too. Bind
+    // the moving leaf by its closed geometry center,
+    // which remains stable while the panel animates into the stacked position.
+    const sliding = door.type === "sliding" || door.type === "paired-sliding-panel";
+    const position = sliding ? door.collisionBindCenter : door.root?.getAbsolutePosition?.();
+    if (sliding && (!position || ![position.x, position.z].every(Number.isFinite))) {
+      throw new Error(`Sliding door has no closed collision center: ${door.model || door.root?.name}`);
+    }
     if (!position) continue;
     const point = [position.x, position.z];
     for (const mesh of meshes || []) {

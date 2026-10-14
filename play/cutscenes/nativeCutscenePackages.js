@@ -62,6 +62,8 @@ import bunkadoHandguardAudio from "../../public/audio/world/bunkado-handguard/ma
 import guiZhangManifest from "../assets/sakuragaoka/gui-zhang/manifest.json";
 import guiZhangIntroductionAudio from "../../public/audio/world/gui-zhang/introduction/manifest.json";
 import guiZhangBodyguardAudio from "../../public/audio/world/gui-zhang/bodyguard/manifest.json";
+import familyCrestManifest from "../assets/hazuki/family-crest/manifest.json";
+import familyCrestAudio from "../../public/audio/world/family-crest/manifest.json";
 import kkyaActivityManifest from "../assets/hazuki/kkya/manifest.json";
 import kkybActivityManifest from "../assets/hazuki/kkyb/manifest.json";
 import kkycActivityManifest from "../assets/hazuki/kkyc/manifest.json";
@@ -251,6 +253,16 @@ const nativeSilentActivityMusic = resource => Object.freeze({
 });
 
 const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
+  Object.freeze({id:"family-crest",worldId:"interior",actorDefinitions:[],actorTags:Object.freeze(familyCrestManifest.actorTags),
+    assets:Object.freeze({...runtimeAssetGroup("play/assets/hazuki/family-crest/*.{AUTH,MOTN}"),
+      ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,
+      "play/assets/INE_M.CHRM":runtimeAssetUrl("play/assets/INE_M.CHRM"),
+      "play/assets/INE_textures.bin":runtimeAssetUrl("play/assets/INE_textures.bin")}),
+    environment:Object.freeze({packageActors:familyCrestManifest.packageActors}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR,INE_:nativeFaceManifest.facialAssets.INE_})}),
+    playback:Object.freeze({manifest:familyCrestManifest,audioManifest:familyCrestAudio}),
+    music:Object.freeze({cues:Object.freeze([{startActivity:true,trackId:"bgm077",loop:true}]),gain:1}),
+  }),
   Object.freeze({id:"chinese-letter",worldId:"interior",actorDefinitions:[],actorTags:chineseLetterManifest.actorTags,
     assets:Object.freeze({...runtimeAssetGroup("play/assets/hazuki/chinese-letter/*.{AUTH,MOTN,MT5}"),
       ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,...op00HandAssets,

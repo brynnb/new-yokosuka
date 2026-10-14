@@ -20,6 +20,10 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"sequence","identifier":"s1.jomo.fuku-handguard-home.start","description":"Authored private foyer cast for the original handguard referral."},
+    {"kind":"sequence","identifier":"s1.jomo.fuku-handguard-home.finish","description":"Restore handguard referral presentation and player controls."},
+    {"kind":"bounds","identifier":"s1.jomo.ine-family-crest","description":"Accepted altar-room approach after Fuku's handguard referral."},
+    {"kind":"activity","identifier":"s1.jomo.ine-family-crest.scene","description":"Original family-crest presentation; Yarn alone settles the clue."},
     {"kind":"bounds","identifier":"s1.jd00.gui-zhang-street","description":"Accepted street approach after obtaining the sword handguard."},
     {"kind":"activity","identifier":"s1.jd00.gui-zhang.introduction","description":"Original KSBT introduction; cannot settle combat or a bodyguard milestone."},
     {"kind":"combat","identifier":"s1.jd00.gui-zhang-first","description":"Server-timed nonlethal Gui Zhang encounter; outcome practiced, not victory."},

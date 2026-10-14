@@ -2,6 +2,15 @@
   "schema":"new-yokosuka-authored-story-scenes-v1",
   "motionBanks":{"koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN","mgqb":"play/assets/harbor/goro-encounter/M_MGQB.MOTN","mbui":"play/assets/harbor/warehouse-eight/M_0153A.MOTN","oldDistrict":"play/assets/harbor/old-district-entry/M_0153.MOTN"},
   "scenes":[{
+    "id":"s1.jomo.fuku-handguard-home","area":"JOMO","worldId":"interior",
+    "actorDefinitions":[{"actorCode":"FUKU","label":"Masayuki Fukuhara","modelCode":"FUK_M","activityOnly":true}],
+    "provenance":"Original A0169 foyer poses at 35 seconds supply the referral tableau. An authored Fuku close-up remains on the foyer side of the closed bedroom door; held gestures and omitted handguard handling are adaptations.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":17.042717,"y":0.003119,"z":1.569937,"rotationX":0,"rotationY":80.832649,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"FUKU","pose":{"x":15.28388,"y":0.01873,"z":2.127268,"rotationX":0,"rotationY":-90,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+    ],
+    "camera":{"positionX":15.9,"positionY":1.6,"positionZ":2.6,"targetX":15.28388,"targetY":1.4,"targetZ":2.127268,"roll":0,"perspective":65}
+  },{
     "id":"s1.mksg.patrol-introduction","area":"MKSG","worldId":"mksg","actorDefinitions":[],
     "provenance":"Original E1006 warning; authored camera at original MKSG default start. Guards are prepared by the shared navigation cast, not duplicated scenery actors.",
     "actors":[{"tag":"AKIR","pose":{"x":-17,"y":0,"z":-15,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],

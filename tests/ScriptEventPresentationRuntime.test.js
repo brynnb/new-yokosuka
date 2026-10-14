@@ -71,6 +71,15 @@ test("letter translation borrows the exact TOKI presentation in the normal shop"
   assert.deepEqual(activity.cutscene.activity,{slot:0,binding:{primaryPointer:0x34f7,secondaryPointer:0x3504}});
 });
 
+test("family-crest presentation borrows the embedded scene without awarding a mirror",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  const activity=catalog.activity("s1.jomo.ine-family-crest.scene");
+  assert.equal(activity.area,"JOMO");assert.equal(activity.durableEffects,"forbidden");
+  assert.equal(activity.returnPlayerState,true);assert.equal(activity.cutscene.packageId,"family-crest");
+  assert.equal(activity.cutscene.activity.binding.activityId,"01136/CREST.AUTH");
+  assert.equal(catalog.sequence("s1.jomo.fuku-handguard-home.start").scene.actorDefinitions[0].modelCode,"FUK_M");
+});
+
 test("the optional Nozomi encounter reuses the original YBHN presentation without native effects", () => {
   const activity = createScriptEventPresentationCatalog().activity("s1.d000.nozomi-after-parlor.scene");
   assert.equal(activity.area, "D000");

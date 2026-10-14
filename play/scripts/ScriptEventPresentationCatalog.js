@@ -33,6 +33,11 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ["s1.jomo.ine-family-crest.scene",{
+    kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-ine-family-crest",packageId:"family-crest",worldId:"interior",storyPresentation:true,
+      activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"01136/CREST.AUTH"}}},
+  }],
   ...[["introduction",0],["bodyguard",1]].map(([part,slot])=>[`s1.jd00.gui-zhang.${part}`,{
     kind:"native-cutscene",area:"JD00",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-gui-zhang-${part}`,packageId:"gui-zhang-street",worldId:"sakuragaoka",storyPresentation:true,

@@ -231,7 +231,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Family lead to the antique shop | Connected optional original-voiced Ine-san hint and original SORA/INEK sequence. Compiler/database cancellation and atomic-clue checks pass. Rendered hint/approach, live cancellation/retry, natural completion, saved clue, restored movement and reload without replay pass. |
 | Bunkado sword handguard | Connected original TUBA handover with authoritative once-only possession and notebook settlement. Compiler/database cancellation/item checks and rendered real-door entry, live cancellation/re-entry, natural completion, owned inventory display, restored controls and reload without replay pass. Detailed hand poses remain rough. |
 | Gui Zhang's street encounter | Connected original introduction, server-timed nonlethal fight, bodyguard explanation and rooftop Chai shot. Rendered cancellation/re-entry, physical combat inputs, natural ending, notebook and reload pass. Approach bounds, AI/balance and music-start timing are authored. |
-| Phoenix Mirror search | Missing return-home investigation, dojo puzzle and mirror recovery. |
+| Return-home handguard / family crest | Connected original voiced Fuku referral, physical altar-room door/approach and embedded Ine-san presentation. Rendered cancellation/re-entry, natural scene ending, independent notebook settlement, restored controls and reload pass. Held Fuku gestures, close-up and handguard handling are adaptations. |
+| Phoenix Mirror search | Missing the room/key investigation, dojo puzzle and mirror recovery. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -1572,3 +1573,44 @@ saved clue. Inspected shots show Gui Zhang and rooftop Chai. Initial combat
 camera acquisition faces the nearest opponent without locking subsequent
 orbiting. Region occupancy remains latched while a presentation owns the
 avatar, so private staging poses cannot manufacture a new approach on cancel.
+
+## Return-home handguard and family crest
+
+Official imports: `story-s1-fuku-handguard-home` and
+`story-s1-ine-family-crest`. The
+[contemporary GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed page 37, places Fuku's referral on returning home and the crest
+explanation in the altar room. Original FUKU HUMANS dialogue and A01136
+corroborate both clues.
+
+| Field | Authored integration |
+| --- | --- |
+| Location / prerequisites | Fuku's automatic JOMO return-home conversation requires the earned Gui Zhang milestone and actual handguard. After its completion, entering the authored altar-room volume near original A01136 Ryo's position starts Ine-san's explanation. |
+| Actors / sequence | Private Fuku / Ryo foyer tableau with six original voiced lines, then original embedded JOMO AUTH at 0xb1d84 with AKIR / INE_. Fuku's staging borrows the original A0169 foyer poses at 35 seconds; held gestures and a close-up on the foyer side of the closed bedroom door are adaptations. Ine-san uses original body/camera tracks and M_01136.MOTN bank 17. |
+| Timing / environment | Ordinary dialogue advances through the shared controls. Original crest presentation lasts about 53 seconds. Preserve personal date/weather; BGM077 starts with the crest scene as an authored timing choice. No QTE or combat. |
+| Props / fidelity | Actual saved handguard possession gates both events. Detailed handguard hand binding and sliding-door state changes are not reconstructed. A1_BUTU contains tracks 0–5; the AUTH's two door sounds reference absent tracks 6/7 and remain explicitly unavailable rather than substituted. Eight original voices and six other sound identities are recovered. |
+| Effects / recovery | Each event independently commits one milestone and notebook page through Yarn. No item, currency, HP, calendar, destination or guessed native-state change. Cancellation/failed preparation grants nothing; cleanup restores the player's approach, avatar, camera and controls. Committed events do not replay on reload. |
+
+`build:handguard-family` pins JOMO MAPINFO, COMMON02.PKS / M_01136,
+A01136.AFS and A1_BUTU.SND. The existing activity/audio producers retain exact
+member and archive receipts; local runtime registration does not publish assets.
+Compiler/PostgreSQL checks continue the earned handguard fixture, reject
+unearned/out-of-bounds attempts, cancel dialogue and scene, reject stale
+acknowledgements, and prove once-only independent settlement with inventory,
+calendar and economy unchanged. The connected browser check continues the
+earned Gui Zhang save, cancels/re-enters the automatic referral, clicks the
+original altar-room door at static placement 4, walks through its opening,
+cancels/retries the original crest scene and finishes it naturally. It verifies
+saved independent notebook pages, the retained handguard, no mirror grant,
+restored controls and reload without replay. Inspected captures show Fuku-san,
+Ryo and Ine-san in the original room. Detailed prop/facial fidelity is not
+claimed.
+
+Sliding collision binds to the moving leaf's frozen closed geometry center,
+not the whole door origin at the join between two leaves. Only that leaf's
+native boundary moves; the stacked panel remains solid. The regression fixture
+places the root at the shared segment endpoint to exercise this distinction.
+Opening a door does not make its entire model width passable: the player must
+walk through the vacated strip, with clearance for the player cylinder.
+The fresh opening-to-allowance browser regression also passes after this shared
+collision change.

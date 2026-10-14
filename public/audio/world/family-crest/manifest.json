@@ -1,0 +1,904 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_handguard_family_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/A01136.AFS",
+      "sha256": "7eb7c06e78705993e4fadce761eea882abaea9e499ab9b966178f42b320431a0"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_BUTU.SND",
+      "sha256": "a68370f4926c98ebd5cbb65e209d98f2476026fe745a854580f3254dc191ec8c"
+    },
+    "authManifest": "play/assets/hazuki/family-crest/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#return-home-handguard-and-family-crest"
+  },
+  "voices": [
+    {
+      "voiceId": "A01136A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01136/SOUND/A01136A001.aiff",
+      "nativeMember": "A01136A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 10240,
+      "nativeSha256": "aee02b59005512a07bad0f5664238c2533d77baa554a4936a70367aa4434d8ea",
+      "speakerId": "AKIR",
+      "sourceText": "This was at the antique shop.",
+      "displayText": "This was at the antique shop.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 23
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-crest/voice/A01136A001.wav",
+      "byteLength": 40748,
+      "sha256": "043dad64622a197437df2d9adb417c872a20859e00535b7ab34257e84ab07ce9"
+    },
+    {
+      "voiceId": "A01136A002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01136/SOUND/A01136A002.aiff",
+      "nativeMember": "A01136A002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 16384,
+      "nativeSha256": "b79183d93385c8ceb07172f15be10ae06cae141c87be008ce680254ba334e66b",
+      "speakerId": "AKIR",
+      "sourceText": "Ine-san, do you know anything about this?",
+      "displayText": "Ine-san, do you know anything about this?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-crest/voice/A01136A002.wav",
+      "byteLength": 65324,
+      "sha256": "35be1c2d67b00eec5c56a3ef048258a316b4e4322f04a0c0e39e0a5dcf5f9635"
+    },
+    {
+      "voiceId": "A01136A003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01136/SOUND/A01136A003.aiff",
+      "nativeMember": "A01136A003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 22528,
+      "nativeSha256": "06554ca397333e10f436f1a66950db681f62eae9dd0186745e196368e6b00b50",
+      "speakerId": "AKIR",
+      "sourceText": "Snow ring, two stars, one sword.",
+      "displayText": "Snow ring, two stars, one sword.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 31
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 28
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-crest/voice/A01136A003.wav",
+      "byteLength": 89900,
+      "sha256": "1f9d227ae5436e18918841f1521e2c737aae1549b3a5195be9827ec66035ea96"
+    },
+    {
+      "voiceId": "A01136A004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01136/SOUND/A01136A004.aiff",
+      "nativeMember": "A01136A004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "d5f585ac9183908529464a7414e4fe89192b5c386ea190ba2162a98fa1d2a5f2",
+      "speakerId": "AKIR",
+      "sourceText": "Thanks.",
+      "displayText": "Thanks.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-crest/voice/A01136A004.wav",
+      "byteLength": 16172,
+      "sha256": "71a3d08314dab81c45138417cc32b3ed9370e73e406c933dc23d30424baabc5e"
+    },
+    {
+      "voiceId": "A01136B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01136/SOUND/A01136B001.aiff",
+      "nativeMember": "A01136B001.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 12288,
+      "nativeSha256": "05a5b76be18a940e3b44c824a068281a8ae89b5fa2d02dae6250b5308b6b65a4",
+      "speakerId": "INE_",
+      "sourceText": "A Sword Handguard=@",
+      "displayText": "A Sword Handguard...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-crest/voice/A01136B001.wav",
+      "byteLength": 48940,
+      "sha256": "862d0cd2827bc039145256e4bf9ccde0238a510224184c19c22b8285467d85fe"
+    },
+    {
+      "voiceId": "A01136B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01136/SOUND/A01136B002.aiff",
+      "nativeMember": "A01136B002.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 40960,
+      "nativeSha256": "df175bb048fb148368f369c3791615b067bbff109cacbab97ecbca0dd3ab01c2",
+      "speakerId": "INE_",
+      "sourceText": "The snow ring, the two stars and a sword.＆That's the Hazuki Family Crest.",
+      "displayText": "The snow ring, the two stars and a sword.\nThat's the Hazuki Family Crest.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 36
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-crest/voice/A01136B002.wav",
+      "byteLength": 163628,
+      "sha256": "89dd19f9a86196fb836300f80cb74ec7af598857a298623ef684e1973059136a"
+    },
+    {
+      "voiceId": "A01136B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01136/SOUND/A01136B003.aiff",
+      "nativeMember": "A01136B003.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 28672,
+      "nativeSha256": "bc94194289ec901d3aa02f75de2de265a48f1bcf70e338f7839cd2b85fc6327d",
+      "speakerId": "INE_",
+      "sourceText": "And that mirror you're looking for=@＆I wonder if there's a connection.",
+      "displayText": "And that mirror you're looking for...\nI wonder if there's a connection.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-crest/voice/A01136B003.wav",
+      "byteLength": 114476,
+      "sha256": "25ed84f38a36161d71c6c21778648bf464a0f1ecda13d0455912e0ed256a6d20"
+    },
+    {
+      "voiceId": "A01136B004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01136/SOUND/A01136B004.aiff",
+      "nativeMember": "A01136B004.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 18432,
+      "nativeSha256": "431747a4bea9cf73c43be0c4a2d470263b11edc00de5c0f53376622f71055909",
+      "speakerId": "INE_",
+      "sourceText": "Maybe your father left us a clue.",
+      "displayText": "Maybe your father left us a clue.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-crest/voice/A01136B004.wav",
+      "byteLength": 73516,
+      "sha256": "d7da27fe9823a028bcfd357bdd499a99df0775cfbe6bda99a302740ca0818715"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/body/akirahand.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-crest/sfx/a9040000.wav",
+      "byteLength": 15308,
+      "sha256": "18d1dab246c9a3499340f72a2f819c8a9ab565a23b33d9fddfa9b94237dc6fe2"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/cloths2/friction2.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-crest/sfx/a9040100.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01136/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 2,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-crest/sfx/a9040200.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/cloths2/tukami.aiff",
+      "playbackId": 3,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-crest/sfx/a9040300.wav",
+      "byteLength": 6324,
+      "sha256": "53661a375867c67feac785364f1a3f06cf1cd3cbd9abdc8b7fd712805073173c"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01136/SE/woodhit/woodhit10.aiff",
+      "playbackId": 4,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-crest/sfx/a9040400.wav",
+      "byteLength": 10740,
+      "sha256": "a294dd6cf9e35632ab6aefcddab5817a4401fee7d5da241c891d49c9803feed9"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01136/SE/cloths2/friction4.aiff",
+      "playbackId": 5,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-crest/sfx/a9040500.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01136/SE/door/fusumaclose.aiff",
+      "unavailable": true,
+      "unavailableReason": "Original AUTH door cue is absent from JOMO-requested A1_BUTU.SND, whose bank-4 tracks are 0 through 5; incidental sound omitted.",
+      "evidence": "disc2/SCENE/02/JOMO/MAPINFO.BIN#A01136/A1_BUTU; disc2/SCENE/02/SOUND/A1_BUTU.SND SHA256 a68370f4926c98ebd5cbb65e209d98f2476026fe745a854580f3254dc191ec8c"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01136/SE/door/fusumaopen.aiff",
+      "unavailable": true,
+      "unavailableReason": "Original AUTH door cue is absent from JOMO-requested A1_BUTU.SND, whose bank-4 tracks are 0 through 5; incidental sound omitted.",
+      "evidence": "disc2/SCENE/02/JOMO/MAPINFO.BIN#A01136/A1_BUTU; disc2/SCENE/02/SOUND/A1_BUTU.SND SHA256 a68370f4926c98ebd5cbb65e209d98f2476026fe745a854580f3254dc191ec8c"
+    }
+  ]
+}

@@ -1,5 +1,97 @@
 import {expect} from "@playwright/test";
 import nativeMapTransitions from "../../play/data/native-map-transitions.json" with {type:"json"};
+import jomoPlacements from "../../play/data/jomo-runtime-placements.json" with {type:"json"};
+
+export async function verifyHandguardFamily(page,testInfo,character){
+  expect(character.storyFlags["story.s1.gui-zhang-street.completed"]).toBe(true);
+  expect(character.storyFlags["story.s1.ine-family-crest.completed"]).not.toBe(true);
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
+  const enter=async()=>{
+    await page.evaluate(async()=>window.storyProbe.lifecycle.travelToWorld("interior"));
+    await expect(page.locator("#loading")).toBeHidden({timeout:90_000});
+    await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.jomo.fuku-handguard-home"||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await noErrors();
+  };
+  if(!character.storyFlags["story.s1.fuku-handguard-home.completed"]){
+  if(character.worldId!=="interior")await enter();
+  else await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.jomo.fuku-handguard-home"||window.storyProbe.sceneErrors.length,null,{timeout:45_000});
+  await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0,null,{timeout:20_000});
+  await page.screenshot({path:testInfo.outputPath("handguard-fuku-referral.png")});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-handguard-referral"));await idle();
+  expect((await saved()).character.storyFlags["notebook.s1.ine-handguard"]).not.toBe(true);
+  await page.evaluate(async()=>window.storyProbe.lifecycle.travelToWorld("exterior"));await expect(page.locator("#loading")).toBeHidden({timeout:90_000});
+  await enter();
+  for(let i=0;i<20;i++){
+    if((await saved()).character.storyFlags["notebook.s1.ine-handguard"])break;
+    await page.keyboard.press("Space");await page.waitForTimeout(300);
+  }
+  await expect.poll(async()=>(await saved()).character.storyFlags["notebook.s1.ine-handguard"]).toBe(true);await idle();await noErrors();
+  }
+  const altarDoor=jomoPlacements.placements.find(p=>p.runtime?.staticDoorIndex===4);
+  const approach=async()=>{
+    // Approach the original south altar-room door from the supported hallway,
+    // click its real picker, then enter with ordinary input/collision.
+    const opening=await page.evaluate(placement=>{
+      const l=window.storyProbe.lifecycle,d=l.doorInteractions.entries.find(e=>e.root._filename===placement.model&&e.root.position.equalsWithEpsilon(l.vectorFromArray(placement.position),.001));
+      if(!d)throw Error("Original south altar-room door is missing");
+      const n=d.nodes[0],b=n.getHierarchyBoundingVectors(true),p=b.min.add(b.max).scale(.5);
+      p.subtractInPlace(n.getAbsolutePosition().subtract(d.collisionBindPositions[0]));
+      return [p.x,0,p.z+1.3];
+    },altarDoor);
+    await page.evaluate(position=>{
+      const l=window.storyProbe.lifecycle;l.resetPlayer(l.vectorFromArray(position),Math.PI,{persist:false});
+      const c=l.getController();c.setFirstPerson(true);c.cameraYaw=0;c.cameraPitch=0;c.updateCamera(1);
+    },opening);
+    await page.waitForTimeout(400);
+    const doorPoint=await page.evaluate(placement=>{
+      const l=window.storyProbe.lifecycle,d=l.doorInteractions.entries.find(e=>e.root._filename===placement.model&&e.root.position.equalsWithEpsilon(l.vectorFromArray(placement.position),.001));
+      if(!d)throw Error("Original south altar-room door is missing");
+      const b=d.root.getHierarchyBoundingVectors(true),p=b.min.add(b.max).scale(.5),c=l.getController();
+      c.cameraYaw=Math.atan2(-(p.x-c.collider.position.x),-(p.z-c.collider.position.z));
+      c.cameraPitch=Math.atan2(c.collider.position.y+c.options.firstPersonHeadHeight-p.y,Math.hypot(p.x-c.collider.position.x,p.z-c.collider.position.z));c.updateCamera(1);
+      const rect=l.engine.getRenderingCanvas().getBoundingClientRect(),v=l.scene.activeCamera.getViewMatrix(true).multiply(l.scene.activeCamera.getProjectionMatrix(true));
+      const s=p.constructor.Project(p,v.constructor.Identity(),v,l.scene.activeCamera.viewport.toGlobal(l.engine.getRenderWidth(),l.engine.getRenderHeight()));
+      return {state:d.state,x:rect.x+s.x*rect.width/l.engine.getRenderWidth(),y:rect.y+s.y*rect.height/l.engine.getRenderHeight()};
+    },altarDoor);
+    if(doorPoint.state==="closed")await page.mouse.click(doorPoint.x,doorPoint.y);
+    await page.waitForFunction(placement=>{const l=window.storyProbe.lifecycle;return l.doorInteractions.entries.find(e=>e.root._filename===placement.model&&e.root.position.equalsWithEpsilon(l.vectorFromArray(placement.position),.001))?.state==="open";},altarDoor);
+    // Picking aims at the movable door panel, not the now-open doorway.
+    // Restore the hallway walking heading before continuing through it.
+    await page.evaluate(placement=>{
+      const l=window.storyProbe.lifecycle,d=l.doorInteractions.entries.find(e=>e.root._filename===placement.model&&e.root.position.equalsWithEpsilon(l.vectorFromArray(placement.position),.001));
+      const n=d.nodes[0],b=n.getHierarchyBoundingVectors(true),offset=n.getAbsolutePosition().subtract(d.collisionBindPositions[0]);
+      // Aim through the vacated strip, not the closed leaf's center: sliding
+      // leaves overlap when open, and the player cylinder needs both margins.
+      if(Math.abs(offset.x)<.1)throw Error("Altar door has no horizontal opening");
+      const oldMin=b.min.x-offset.x,oldMax=b.max.x-offset.x;
+      const x=offset.x>0?(oldMin+Math.min(oldMax,b.min.x))/2:(Math.max(oldMin,b.max.x)+oldMax)/2;
+      const z=(b.min.z+b.max.z)/2;
+      l.resetPlayer(l.vectorFromArray([x,0,z+1.3]),Math.PI,{persist:false});l.getController().setFirstPerson(false);
+    },altarDoor);
+    await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+    try{await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-ine-family-crest"||window.storyProbe.sceneErrors.length,null,{timeout:30_000});}
+    finally{await page.keyboard.up("KeyW");}await noErrors();
+  };
+  await approach();await page.waitForTimeout(4000);
+  await page.screenshot({path:testInfo.outputPath("handguard-original-crest-introduction.png")});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-family-crest"));await idle();
+  expect((await saved()).character.storyFlags["notebook.s1.hazuki-family-crest"]).not.toBe(true);
+  await approach();await page.waitForTimeout(18_000);
+  await page.screenshot({path:testInfo.outputPath("handguard-original-crest-explanation.png")});
+  await expect.poll(async()=>(await saved()).character.storyFlags["notebook.s1.hazuki-family-crest"],{timeout:65_000,intervals:[1000]}).toBe(true);
+  await idle();await noErrors();const after=await saved();
+  expect(after.character.worldId).toBe("interior");expect(after.character.avatarId).toBe("ryo");
+  expect(after.character.yen).toBe(character.yen);expect(after.character.currentHp).toBe(character.currentHp);
+  expect(after.inventory.filter(i=>i.key==="sword_handguard")).toMatchObject([{quantity:1}]);
+  expect(after.inventory.some(i=>i.key==="phoenix_mirror")).toBe(false);
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");await page.waitForTimeout(500);await page.keyboard.up("KeyW");
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:90_000});await idle();await noErrors();
+  expect((await saved()).character.storyFlags["story.s1.ine-family-crest.completed"]).toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.director?.activeCutscene||window.storyProbe.authoredScene?.active)).toBeFalsy();
+}
 
 export async function verifyGuiZhangEncounter(page,testInfo,character){
   expect(character.storyFlags["story.s1.bunkado-handguard.completed"]).toBe(true);

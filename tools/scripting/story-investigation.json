@@ -3,6 +3,22 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"fuku-handguard-home","actor":"FUKU","presentActors":[],"area":"JOMO","trigger":"automatic","priority":220,
+      "title":"Fuku-san — ask Ine-san about the handguard","requiredFlags":["story.s1.gui-zhang-street.completed"],"requiredItems":[{"key":"sword_handguard","quantity":1}],
+      "completedFlag":"story.s1.fuku-handguard-home.completed","effects":["notebook.s1.ine-handguard"],"staging":"s1.jomo.fuku-handguard-home",
+      "voiceIds":["F1004A107","F1004B114","F1004B115","F1004A108","F1004B116","F1004B117"],
+      "nativeSources":[{"role":"borrowed-foyer-staging","locator":"disc2/SCENE/02/JOMO/MAPINFO.BIN#TRCK@0x9d7dc/time35","sha256":"6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe"}],
+      "provenance":"Original FUKU HUMANS dialogue identifies the handguard and directs Ryo to Ine-san in the altar room. GameSpot guide printed p37: automatic Fuku conversation after returning home with the handguard. Original A0169 foyer poses at 35 seconds are borrowed; held standing gestures, a Fuku close-up avoiding the closed bedroom door and omitted prop gesture are adaptations. One personal clue, no item or calendar change."
+    },
+    {
+      "id":"ine-family-crest","disc":2,"actor":"AKIR","participants":["INE_"],"presentActors":[],"area":"JOMO","trigger":"enter","priority":230,
+      "title":"Ine-san — the Hazuki family crest","bounds":"s1.jomo.ine-family-crest",
+      "requiredFlags":["story.s1.fuku-handguard-home.completed"],"requiredItems":[{"key":"sword_handguard","quantity":1}],
+      "completedFlag":"story.s1.ine-family-crest.completed","effects":["notebook.s1.hazuki-family-crest"],"voiceIds":[],"activities":["s1.jomo.ine-family-crest.scene"],
+      "nativeSources":[{"role":"original-cinematic","locator":"disc2/SCENE/02/JOMO/MAPINFO.BIN#TRCK@0xb1d84","sha256":"6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe"}],
+      "provenance":"Original embedded JOMO AUTH and A01136 voices: snow ring, two stars, one sword is the Hazuki family crest; Iwao may have left a clue. Guide printed p37 places this after Fuku's handguard referral. Authored altar-room approach, borrowed presentation without native controller. Detailed prop handling is not reconstructed; no mirror, sword, key, currency or calendar grant."
+    },
+    {
       "id":"gui-zhang-street","disc":2,"actor":"AKIR","participants":["KISY","CHAI"],"presentActors":[],"area":"JD00","trigger":"enter","priority":230,
       "title":"Gui Zhang — the bodyguard","bounds":"s1.jd00.gui-zhang-street",
       "requiredFlags":["story.s1.bunkado-handguard.completed"],"requiredItems":[{"key":"sword_handguard","quantity":1}],

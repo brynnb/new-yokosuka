@@ -71,8 +71,14 @@ introduction, a real server-timed nonlethal fight and the original bodyguard /
 rooftop Chai explanation. Rendered cancellation/re-entry, physical combat
 inputs, natural ending, saved notebook and reload pass. Combat balance, entry
 volume and music-start timing are authored adaptations. The return-home
-investigation, dojo puzzle, Phoenix Mirror recovery and later storyline remain
-unimplemented.
+handguard referral and Ine-san's family-crest explanation are implemented
+through the same event system, with original voices and embedded presentation;
+rendered cancellation/re-entry, real altar-room door use and walking, natural
+scene completion, saved independent notebook pages, restored controls and
+reload pass. Fuku's held gestures/close-up and detailed handguard handling remain
+adaptations. Shared sliding collision now binds the moving leaf independently.
+The room/key investigation, dojo puzzle, Phoenix Mirror recovery and later
+storyline remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

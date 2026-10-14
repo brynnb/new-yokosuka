@@ -1,0 +1,141 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_handguard_family_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "CREST.AUTH",
+        "path": "disc2/SCENE/02/JOMO/MAPINFO.BIN",
+        "sourceOffset": 728452,
+        "sourceSha256": "6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe",
+        "byteLength": 6320,
+        "sha256": "5872c2ff4b204d7928f876a9986b9487f58ed2de7e82c39c5b286db0ce419413"
+      },
+      {
+        "name": "M_01136.MOTN",
+        "path": "disc2/SCENE/02/JOMO/COMMON02.PKS",
+        "sourceSha256": "916aab45137cf340516a1cdd2ee61540e7c6562a1e92c5f932e9055ae0db3b89",
+        "archiveMember": "M_01136.MOTN",
+        "byteLength": 66132,
+        "sha256": "d07f17592e4c56bf9e758f861b4ae90ba1360ec8350e0d4bcd3d1cda26b49983"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-event-template.md#return-home-handguard-and-family-crest",
+    "resourceName": "01136",
+    "variant": "",
+    "selectionRule": "Exact embedded JOMO AUTH; package slot 0 is not a reconstructed native selector."
+  },
+  "audioManifest": "public/audio/world/family-crest/manifest.json",
+  "packageActors": {
+    "INE_": {
+      "label": "Ine-san",
+      "modelCode": "INE_M",
+      "browserFilename": "INE_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/INE_M.CHRM",
+      "textureAssetPath": "play/assets/INE_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "INE_"
+  ],
+  "motionBanks": [
+    {
+      "bank": 17,
+      "path": "play/assets/hazuki/family-crest/M_01136.MOTN",
+      "byteLength": 66132,
+      "sha256": "d07f17592e4c56bf9e758f861b4ae90ba1360ec8350e0d4bcd3d1cda26b49983"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/family-crest/M_01136.MOTN",
+      "byteLength": 66132,
+      "sha256": "d07f17592e4c56bf9e758f861b4ae90ba1360ec8350e0d4bcd3d1cda26b49983"
+    },
+    {
+      "path": "play/assets/hazuki/family-crest/CREST.AUTH",
+      "byteLength": 6320,
+      "sha256": "5872c2ff4b204d7928f876a9986b9487f58ed2de7e82c39c5b286db0ce419413"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "01136/CREST.AUTH",
+      "archiveMember": "CREST.AUTH",
+      "byteLength": 6320,
+      "sha256": "5872c2ff4b204d7928f876a9986b9487f58ed2de7e82c39c5b286db0ce419413",
+      "durationFrames": 1600,
+      "durationSeconds": 53.349998474121094,
+      "frameCount": 28,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 5,
+        "sound": 16,
+        "voice": 8
+      },
+      "actors": [
+        "AKIR",
+        "INE_"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 17,
+          "sequenceIndex": 5,
+          "motionName": "AKI_SUWARU_YUKIWA_BUTUMA_0136",
+          "startFrame": 184,
+          "endFrame": 1438
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 1,
+          "motionBank": 17,
+          "sequenceIndex": 4,
+          "motionName": "JIJ_INE_AT1_YUKIWA_BUTUMA_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 60,
+          "motionBank": 17,
+          "sequenceIndex": 4,
+          "motionName": "JIJ_INE_AT1_YUKIWA_BUTUMA_0100",
+          "startFrame": 1,
+          "endFrame": 1039
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 1099,
+          "motionBank": 17,
+          "sequenceIndex": 1,
+          "motionName": "JIJ_INE_HADUKIKE_MONDOKORO_0136",
+          "startFrame": 599,
+          "endFrame": 1059
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1256,
+          "motionBank": 17,
+          "sequenceIndex": 5,
+          "motionName": "AKI_SUWARU_YUKIWA_BUTUMA_0136",
+          "startFrame": 1384,
+          "endFrame": 1649
+        }
+      ]
+    }
+  ]
+}

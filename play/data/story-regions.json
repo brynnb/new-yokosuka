@@ -1,6 +1,9 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.jomo.ine-family-crest","area":"JOMO","actor":"AKIR","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.fuku-handguard-home.completed"],"completedFlag":"story.s1.ine-family-crest.completed",
+      "min":[-6,-0.5,-3],"max":[-2.5,2,1],"provenance":"Authored altar-room approach around original A01136 Ryo [-4.025378,0.013748,-1.656779]. Original embedded family-crest presentation, not a recovered native trigger."},
     {"id":"s1.jd00.gui-zhang-street","area":"JD00","actor":"AKIR","playMode":"story","openingCompleted":true,
       "requiredFlags":["story.s1.bunkado-handguard.completed"],"completedFlag":"story.s1.gui-zhang-street.completed",
       "min":[6,-0.5,20],"max":[10,2,24],"provenance":"Authored Sakuragaoka street approach around original KSBT0 AKIR [7.759566,0,22.92654]. Original cinematic presentation surrounds server-timed combat, not a reconstructed native trigger."},
