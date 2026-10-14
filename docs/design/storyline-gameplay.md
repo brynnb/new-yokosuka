@@ -61,8 +61,13 @@ cancellation, natural completion, combined notebook/next-morning home return
 and reload pass. The following optional Ine-san hint and original courtyard
 Fuku/porch Ine-san conversations are connected through the same event system.
 Rendered hint/approach, cancellation/retry, natural completion, saved clue,
-restored movement and reload pass. The sword handguard, dojo puzzle,
-Phoenix Mirror recovery and later storyline remain unimplemented.
+restored movement and reload pass. Bunkado's original handguard presentation
+and atomic item/notebook settlement are connected and rendered: real-door
+entry, live cancellation/re-entry, natural completion, owned inventory display,
+restored controls and saved reload pass. Detailed hand poses remain rough.
+Inventory now reads actual saved possessions.
+Gui Zhang's street encounter, the dojo puzzle, Phoenix Mirror recovery and
+later storyline remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

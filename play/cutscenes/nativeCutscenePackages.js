@@ -57,6 +57,8 @@ import familyFukuManifest from "../assets/hazuki/family-fuku/manifest.json";
 import familyFukuAudio from "../../public/audio/world/family-fuku/manifest.json";
 import familyIneManifest from "../assets/hazuki/family-ine/manifest.json";
 import familyIneAudio from "../../public/audio/world/family-ine/manifest.json";
+import bunkadoHandguardManifest from "../assets/dobuita/bunkado-handguard/manifest.json";
+import bunkadoHandguardAudio from "../../public/audio/world/bunkado-handguard/manifest.json";
 import kkyaActivityManifest from "../assets/hazuki/kkya/manifest.json";
 import kkybActivityManifest from "../assets/hazuki/kkyb/manifest.json";
 import kkycActivityManifest from "../assets/hazuki/kkyc/manifest.json";
@@ -103,6 +105,7 @@ const bundledPhoneBookAssets = runtimeAssetGroup("play/assets/dobuita/phone-book
 const bundledMasterChenAssets = runtimeAssetGroup("play/assets/harbor/master-chen/*.{AUTH,MOTN,CHRM,bin}");
 const bundledFamilyFukuAssets = runtimeAssetGroup("play/assets/hazuki/family-fuku/*.{AUTH,MOTN}");
 const bundledFamilyIneAssets = runtimeAssetGroup("play/assets/hazuki/family-ine/*.{AUTH,MOTN}");
+const bundledBunkadoHandguardAssets = runtimeAssetGroup("play/assets/dobuita/bunkado-handguard/*.{AUTH,MOTN,CHRM,bin}");
 const bundledKkyaAssets = runtimeAssetGroup("play/assets/hazuki/kkya/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkybAssets = runtimeAssetGroup("play/assets/hazuki/kkyb/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkycAssets = runtimeAssetGroup("play/assets/hazuki/kkyc/*.{AUTH,MOTN,CHRM,MAPM}");
@@ -325,6 +328,17 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
     environment:Object.freeze({packageActors:masterChenManifest.packageActors,sceneObjects:masterChenManifest.sceneObjects,attachedObjects:masterChenManifest.attachedObjects}),
     playback:Object.freeze({manifest:masterChenManifest,audioManifest:masterChenAudio}),
+  }),
+  Object.freeze({
+    id:"bunkado-handguard",worldId:"dkty",actorDefinitions:Object.freeze([]),actorTags:Object.freeze(bunkadoHandguardManifest.actorTags),
+    assets:Object.freeze({...sourceAssetMap(bundledBunkadoHandguardAssets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
+    // TUBA's detailed hand controls are not reconstructed. The animated
+    // body's low-detail hands are an explicit approximation; importing the
+    // OP00 rig alone does not supply this scene's missing pose controls.
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
+    environment:Object.freeze({packageActors:bunkadoHandguardManifest.packageActors,sceneObjects:bunkadoHandguardManifest.sceneObjects}),
+    playback:Object.freeze({manifest:bunkadoHandguardManifest,audioManifest:bunkadoHandguardAudio}),
+    music:Object.freeze({cues:Object.freeze([Object.freeze({startActivity:true,trackId:"bgm052",loop:true})]),gain:1}),
   }),
   ...[
     ["family-fuku",familyFukuManifest,familyFukuAudio,bundledFamilyFukuAssets,"FUKU","bgm085"],

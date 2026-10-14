@@ -3,7 +3,7 @@ import { create } from "zustand";
 const callbacks = {
   onOpen: () => {},
   onClose: () => {},
-  loadCollection: async () => { throw new Error('Collection is unavailable.'); },
+  loadInventory: async () => { throw new Error('Inventory is unavailable.'); },
 };
 let request = null;
 let generation = 0;
@@ -21,16 +21,18 @@ export function configureInventoryUi(nextCallbacks) {
 }
 
 export function openInventory(view = 'inventory') {
+  if(!['inventory','collection'].includes(view))throw new Error('Unknown inventory view.');
   const wasOpen = useInventoryStore.getState().open;
   request?.abort();
   generation++;
   useInventoryStore.setState({ open: true, view, items: [], status: 'idle', error: null });
   if (!wasOpen) callbacks.onOpen();
-  if (view === 'collection') void refreshCollection();
+  void refreshInventory();
 }
 
-export async function refreshCollection() {
-  if (!useInventoryStore.getState().open || useInventoryStore.getState().view !== 'collection') return;
+export async function refreshInventory() {
+  const {open,view}=useInventoryStore.getState();
+  if (!open) return;
   request?.abort();
   const controller = new AbortController();
   request = controller;
@@ -40,20 +42,19 @@ export async function refreshCollection() {
   let onAbort;
   try {
     const inventory = await Promise.race([
-      callbacks.loadCollection(controller.signal),
+      callbacks.loadInventory(controller.signal),
       new Promise((_, reject) => {
         onAbort = () => reject(controller.signal.reason);
         controller.signal.addEventListener('abort', onAbort, {once: true});
       }),
     ]);
-    if (!Array.isArray(inventory)) throw new Error('Invalid collection response.');
-    const items = inventory.filter(item => item.category === 'capsule_toy');
-    if (items.some(item => !item.key || typeof item.name !== 'string'
-      || !Number.isSafeInteger(item.quantity) || item.quantity < 1)) throw new Error('Invalid collection item.');
+    if (!Array.isArray(inventory)) throw new Error('Invalid inventory response.');
+    if(inventory.some(item=>!item||typeof item.key!=='string'||!item.key||typeof item.name!=='string'||typeof item.category!=='string'||!Number.isSafeInteger(item.quantity)||item.quantity<1))throw new Error('Invalid inventory item.');
+    const items = inventory.filter(item => view === 'collection' ? item.category === 'capsule_toy' : item.category !== 'capsule_toy');
     if (current !== generation || controller.signal.aborted) return;
     useInventoryStore.setState({items: [...items].sort((a, b) => a.name.localeCompare(b.name)), status: 'ready'});
   } catch (error) {
-    if (current === generation) useInventoryStore.setState({status: 'error', error: error.message || 'Could not load collection.'});
+    if (current === generation) useInventoryStore.setState({status: 'error', error: error.message || 'Could not load inventory.'});
   } finally {
     clearTimeout(timer);
     controller.signal.removeEventListener('abort', onAbort);

@@ -253,11 +253,11 @@ export class PlayInterfaceAssembly {
       openInventory('collection');
     });
     configureInventoryUi({
-      loadCollection: async signal => {
+      loadInventory: async signal => {
         const characterId = accountSession.character?.id;
-        if (!characterId) throw new Error('Enter the world with a character to view Collection.');
+        if (!characterId) throw new Error('Enter the world with a character to view inventory.');
         const state = await accountSession.request(`/api/characters/${characterId}/state`, {signal, cache: 'no-store'});
-        if (accountSession.character?.id !== characterId) throw new Error('Character changed. Reopen Collection.');
+        if (accountSession.character?.id !== characterId) throw new Error('Character changed. Reopen inventory.');
         return state.inventory;
       },
       onOpen: () => {

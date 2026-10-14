@@ -1,0 +1,2894 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_bunkado_handguard_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/A0132.AFS",
+      "sha256": "23fa417da2f01fd55112b8dddb23f9563eb1e546c463cf0dcbf285f89771a0ee"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_KOTTO.SND",
+      "sha256": "4ceb7d1c37c29dca6b265e67e1ce44522ae9f9c482f1e308f710441872096e5c"
+    },
+    "authManifest": "play/assets/dobuita/bunkado-handguard/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#bunkado-sword-handguard"
+  },
+  "voices": [
+    {
+      "voiceId": "A0132A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132A001.aiff",
+      "nativeMember": "A0132A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 6144,
+      "nativeSha256": "a505cf3490a96d3d7fbaa653c69396f742654ed0c9ef0d5a9f76a17c56f8452c",
+      "speakerId": "AKIR",
+      "sourceText": "Excuse me=@",
+      "displayText": "Excuse me...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132A001.wav",
+      "byteLength": 24364,
+      "sha256": "ca9ece0cc9ce1660c56966fe4120d770642a4f848b60deb3145bad3b89fec47e"
+    },
+    {
+      "voiceId": "A0132A002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132A002.aiff",
+      "nativeMember": "A0132A002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 2048,
+      "nativeSha256": "ef5882d6e9a8e497f026f80e0c618b07d006194ca686c4666615348bee057fe0",
+      "speakerId": "AKIR",
+      "sourceText": "Oh!",
+      "displayText": "Oh!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132A002.wav",
+      "byteLength": 7980,
+      "sha256": "3866358a9b4812a5311921cf6108ba8350ecbe70c4b4a47b042eec90bb7ce797"
+    },
+    {
+      "voiceId": "A0132A003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132A003.aiff",
+      "nativeMember": "A0132A003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 6144,
+      "nativeSha256": "9324ef186485ca00594414751464d9037719af59d5d4fbf38c11b2017adaf1ec",
+      "speakerId": "AKIR",
+      "sourceText": "For my father?",
+      "displayText": "For my father?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132A003.wav",
+      "byteLength": 24364,
+      "sha256": "8fd5858132203f2c5782afea1f83a0eca68c1102dc0c65a566011996281375ad"
+    },
+    {
+      "voiceId": "A0132A004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132A004.aiff",
+      "nativeMember": "A0132A004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 6144,
+      "nativeSha256": "3bf134d4af59567c9062c70ab7fe26db7470f5985b4b863dd95a08a3a8905992",
+      "speakerId": "AKIR",
+      "sourceText": "Father=@",
+      "displayText": "Father...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132A004.wav",
+      "byteLength": 24364,
+      "sha256": "a13300c876be037649730566b1a10d6939111a651091aa859c258ae6985e6a8d"
+    },
+    {
+      "voiceId": "A0132A005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132A005.aiff",
+      "nativeMember": "A0132A005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 18432,
+      "nativeSha256": "e2554969ee1ff2c6861020a425b41b898eae7e2d93ade446718f1add5c1fdea5",
+      "speakerId": "AKIR",
+      "sourceText": "Was there anything else that＆he asked you to hold for him?",
+      "displayText": "Was there anything else that\nhe asked you to hold for him?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132A005.wav",
+      "byteLength": 73516,
+      "sha256": "1dda252fd970f9a38eec2265c85f7d80a388ba557cc6865e4ff9e65b2513f3df"
+    },
+    {
+      "voiceId": "A0132A006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132A006.aiff",
+      "nativeMember": "A0132A006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 16384,
+      "nativeSha256": "f594838320712aaa602fc0e717c584db10847cb4b817c5534874a518a91c27ff",
+      "speakerId": "AKIR",
+      "sourceText": "Like a mirror called the Phoenix Mirror?",
+      "displayText": "Like a mirror called the Phoenix Mirror?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132A006.wav",
+      "byteLength": 65324,
+      "sha256": "8a6789e3f7f60d6d39007dbdaf51c502ffdbdb15dc441810bc12774a48f3462b"
+    },
+    {
+      "voiceId": "A0132A007",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132A007.aiff",
+      "nativeMember": "A0132A007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 10240,
+      "nativeSha256": "4508050cd22848e40c4a4a102250d262792834521e689eae539a9448b9351639",
+      "speakerId": "AKIR",
+      "sourceText": "That's OK.",
+      "displayText": "That's OK.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132A007.wav",
+      "byteLength": 40748,
+      "sha256": "2c8fe5879f6ace602836438db4e6fb7e332ec72e1006ecbf6b005b3248c1f0e8"
+    },
+    {
+      "voiceId": "A0132A008",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132A008.aiff",
+      "nativeMember": "A0132A008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 6144,
+      "nativeSha256": "c787bb971bb2aefb1c2ffdbecd6dbbad99bc38ecdb30a8f466c997f54a449596",
+      "speakerId": "AKIR",
+      "sourceText": "Thank you very much.",
+      "displayText": "Thank you very much.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132A008.wav",
+      "byteLength": 24364,
+      "sha256": "1b41d620289d95bb28909dba7907548d05c473a7f0c2025c85cce5557a0a29c4"
+    },
+    {
+      "voiceId": "A0132B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B001.aiff",
+      "nativeMember": "A0132B001.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 22528,
+      "nativeSha256": "1242730473d2c5624dadb2b5da8d8af920a8af0e99ba6f03160244a7c9fa901a",
+      "speakerId": "OISI",
+      "sourceText": "That's a delightful sound,＆don't you agree?",
+      "displayText": "That's a delightful sound,\ndon't you agree?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 18
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B001.wav",
+      "byteLength": 89900,
+      "sha256": "ef28f532181170132867869c36d5a6848decc4633f7a41f47abb4d013f38681b"
+    },
+    {
+      "voiceId": "A0132B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B002.aiff",
+      "nativeMember": "A0132B002.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 57344,
+      "nativeSha256": "e6aaa10870e2cc592595cc051c35dbaa7d3753c0da7de5ea65e3b77c5ac14ae0",
+      "speakerId": "OISI",
+      "sourceText": "It was made especially for that butterfly＆woman=@you know Madame Butterfly, don't you?",
+      "displayText": "It was made especially for that butterfly\nwoman...you know Madame Butterfly, don't you?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 16
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 63
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B002.wav",
+      "byteLength": 229164,
+      "sha256": "9d6ab5f774fde8d80eb481328b6beb10e252f8551561cfc6a9b93d896a548c60"
+    },
+    {
+      "voiceId": "A0132B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B003.aiff",
+      "nativeMember": "A0132B003.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 22528,
+      "nativeSha256": "f1ca260075292e05e886ba8ba990001c648f91dc7bafba63d262a074420d7aa6",
+      "speakerId": "OISI",
+      "sourceText": "You=@ You're Hazuki-sensei's=@",
+      "displayText": "You... You're Hazuki-sensei's...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 30
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 29
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 26
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B003.wav",
+      "byteLength": 89900,
+      "sha256": "cc21cd227f4beae9073e91e7ae5085ba40ceb2260fb78c63f0f7f2014c4f88a4"
+    },
+    {
+      "voiceId": "A0132B004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B004.aiff",
+      "nativeMember": "A0132B004.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 36864,
+      "nativeSha256": "35093e209961d32066e973ce3068059e6750a2f3a81e1e081d1f30155c85b9fd",
+      "speakerId": "OISI",
+      "sourceText": "Oh my=@ That was a terrible＆thing=@your father=@",
+      "displayText": "Oh my... That was a terrible\nthing...your father...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 20
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 36
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 25
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B004.wav",
+      "byteLength": 147244,
+      "sha256": "ef3a658e12a631cbc9076cac2260e8e0c9398e7821d370191386ea1d46e85fc4"
+    },
+    {
+      "voiceId": "A0132B005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B005.aiff",
+      "nativeMember": "A0132B005.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 34816,
+      "nativeSha256": "3d62feb5c48a790ccebb1a3439aa18b63f24166524e70b24d1f82d823ef8f1eb",
+      "speakerId": "OISI",
+      "sourceText": "Ah! I was holding something＆at Sensei's request.",
+      "displayText": "Ah! I was holding something\nat Sensei's request.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 39
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B005.wav",
+      "byteLength": 139052,
+      "sha256": "ec909dd019cbf146ab6851a92aa33ec27af6a04dcc428d690e942da7bec24ac3"
+    },
+    {
+      "voiceId": "A0132B006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B006.aiff",
+      "nativeMember": "A0132B006.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 32768,
+      "nativeSha256": "682114601e6ba0c8033ad6b7ab88caa1af632a8204448544c9c2b7bb752b3ff1",
+      "speakerId": "OISI",
+      "sourceText": "Hmm=@just where did I put it=@uhhh?",
+      "displayText": "Hmm...just where did I put it...uhhh?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 34
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 38
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B006.wav",
+      "byteLength": 130860,
+      "sha256": "1c89fe04909f91efced4a1f4de75d0ed06ff943eaebc2846ae2041cbfaf98057"
+    },
+    {
+      "voiceId": "A0132B007",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B007.aiff",
+      "nativeMember": "A0132B007.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 40960,
+      "nativeSha256": "f111ce419308767ee2fe0f404ab04a6d4b0431abd1115c56d0ee2c5ac86029c4",
+      "speakerId": "OISI",
+      "sourceText": "Oh yes! It was very important=@＆so I put it here.",
+      "displayText": "Oh yes! It was very important...\nso I put it here.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 22
+          },
+          {
+            "shape": 2,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 36
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 30
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B007.wav",
+      "byteLength": 163628,
+      "sha256": "3f1d71cb42cb0864a31de997e2a5bf47156479c59e4f39361e2f12fac285c784"
+    },
+    {
+      "voiceId": "A0132B008",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B008.aiff",
+      "nativeMember": "A0132B008.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 28672,
+      "nativeSha256": "8d29df6d06f015ba76c08be4161f64ad9d39c178d309d26576a7dda5a2985e5a",
+      "speakerId": "OISI",
+      "sourceText": "He'd asked me to polish＆and look after it for him.",
+      "displayText": "He'd asked me to polish\nand look after it for him.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 28
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B008.wav",
+      "byteLength": 114476,
+      "sha256": "79b50ebdb9b1210f2de5f65de8d5847c529ca49d4beeb24c617bf9d0a8ff5321"
+    },
+    {
+      "voiceId": "A0132B009",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B009.aiff",
+      "nativeMember": "A0132B009.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 30720,
+      "nativeSha256": "e58515395d31999c07dcf56893da3f9c3cca59b99bc2338c9747e788d898020f",
+      "speakerId": "OISI",
+      "sourceText": "It's given to the Hazuki heirs＆once they turn 18=@",
+      "displayText": "It's given to the Hazuki heirs\nonce they turn 18...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 16
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B009.wav",
+      "byteLength": 122668,
+      "sha256": "3c7ed90fe6daccbe5bb59182e67e906d28029b7126528a00a6e64bcc8d1ebb91"
+    },
+    {
+      "voiceId": "A0132B010",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B010.aiff",
+      "nativeMember": "A0132B010.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 34816,
+      "nativeSha256": "1b6447ca30755c89b9ee45704911213fa6cb389134b85b9b73accbd254134d52",
+      "speakerId": "OISI",
+      "sourceText": "I gather this antique has been passed＆down from generation to generation.",
+      "displayText": "I gather this antique has been passed\ndown from generation to generation.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 16
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B010.wav",
+      "byteLength": 139052,
+      "sha256": "17759f2805608ff19f378b568c48d59d6c989a9c638240017a2008ee4e5928d4"
+    },
+    {
+      "voiceId": "A0132B011",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B011.aiff",
+      "nativeMember": "A0132B011.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 32768,
+      "nativeSha256": "ae35450dd15116bb596b48798eca383006c91ddbb392d7e76fb5289f9423d2a4",
+      "speakerId": "OISI",
+      "sourceText": "If there's anything I can do for you,＆please let me know.",
+      "displayText": "If there's anything I can do for you,\nplease let me know.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 28
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 16
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B011.wav",
+      "byteLength": 130860,
+      "sha256": "4af9af5bca3b5f1166d4bb315da0220b46abb38a290c1c2f4823e56ac194b2bb"
+    },
+    {
+      "voiceId": "A0132B012",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B012.aiff",
+      "nativeMember": "A0132B012.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 36864,
+      "nativeSha256": "a4d86c6a6b81a6e1b53e0ae9b5a1fa27240aff9d95ea33fceb946a67fda3f3dd",
+      "speakerId": "OISI",
+      "sourceText": "Hazuki-sensei was always there for＆me when I needed him.",
+      "displayText": "Hazuki-sensei was always there for\nme when I needed him.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 22
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 19
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B012.wav",
+      "byteLength": 147244,
+      "sha256": "9d8a70e9ffd9a8c174d9e1e33bff12ed586bbd0340fc8154521fcbf35e4e4c93"
+    },
+    {
+      "voiceId": "A0132B013",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B013.aiff",
+      "nativeMember": "A0132B013.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 10240,
+      "nativeSha256": "dd9c7f1e278da403bc197c8021dd9bd5fe4ad8bbc291df6153c7555bcc6f7807",
+      "speakerId": "OISI",
+      "sourceText": "Anything else?",
+      "displayText": "Anything else?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B013.wav",
+      "byteLength": 40748,
+      "sha256": "e7261cad9850e2e6a44a9081ce668b5e4e0942458d44b595484d6bfd37a167ce"
+    },
+    {
+      "voiceId": "A0132B014",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SOUND/A0132B014.aiff",
+      "nativeMember": "A0132B014.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 61440,
+      "nativeSha256": "d8fd66371ce35450fb650a2d83929e80b73cb0d2bcc3ef6bf7c096901af6578d",
+      "speakerId": "OISI",
+      "sourceText": "A Phoenix Mirror=@hmmm. Sorry,＆I don't know of any mirror.",
+      "displayText": "A Phoenix Mirror...hmmm. Sorry,\nI don't know of any mirror.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 4,
+            "durationTicks": 63
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 76
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 25
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 25
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bunkado-handguard/voice/A0132B014.wav",
+      "byteLength": 245548,
+      "sha256": "a9f7bfd1b1de3ceeb65b0945f909963a0edaea0cebff927bd125699167d41448"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/smallobject/clock2.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9040000.wav",
+      "byteLength": 53252,
+      "sha256": "201cf9b7cb64a322387d997b6baef4f8d19b0bebccffd7727ff7fb37f005644a"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 1,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/footroom/ryo1.aiff",
+      "playbackId": 5,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9040500.wav",
+      "byteLength": 5076,
+      "sha256": "1ffbc05a7c076950b41f8df8e6c292faec92bc490676e2fe2909bf6d6bc2daa3"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/footroom/ryo2.aiff",
+      "playbackId": 6,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9040600.wav",
+      "byteLength": 8692,
+      "sha256": "d8a32b777023f8d593da3c2c4271bb7b99976e232152a4af8c56ec1948ce7694"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/footroom/ryo3.aiff",
+      "playbackId": 7,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9040700.wav",
+      "byteLength": 4948,
+      "sha256": "a76ae727b80cdf79be5a30378bf9e6cf9a6bbbf81fff8692909ae85b947c2872"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/footroom/ryoashi001.aiff",
+      "playbackId": 8,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9040800.wav",
+      "byteLength": 3332,
+      "sha256": "028cdd144108c984a5b1a70db9dff13dbf6dc7ae4d37a26e2fa575bd253f261b"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/footroom/ryoashi002.aiff",
+      "playbackId": 9,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9040900.wav",
+      "byteLength": 7884,
+      "sha256": "47efe06772d529fd018fba5facb888bf92c049cbf20e7b86f2db7d41dfe04a61"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/foot2/RYOASHI1.aiff",
+      "playbackId": 10,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9040a00.wav",
+      "byteLength": 3332,
+      "sha256": "87ac56e067bc43475e4ab74c4c8e2810e10249b896cc469ed527c7e05740c093"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/foot2/RYOASHI2.aiff",
+      "playbackId": 11,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9040b00.wav",
+      "byteLength": 5980,
+      "sha256": "3c23f24d6ce62197529cdc34ff678afd1ed710a81878a28caff7066f905b74de"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/cloths2/R_saihu_nageru.aiff",
+      "playbackId": 12,
+      "sampleId": 15,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9040c00.wav",
+      "byteLength": 3316,
+      "sha256": "398e58b7e3134ae1f7dd70d45bc75881685d748288d5c4f295270c255c83e549"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/smallobject/scoop1.aiff",
+      "playbackId": 13,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9040d00.wav",
+      "byteLength": 17508,
+      "sha256": "d4e582f2f6d410d4a7da6e9892c59a5f971d7a80b90abbaed1aa6fa8ba106c0a"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/cloths2/friction2.aiff",
+      "playbackId": 15,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9040f00.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/cloths2/friction4.aiff",
+      "playbackId": 16,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9041000.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0132/SE/cloths2/furimuki_f01.aiff",
+      "playbackId": 17,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bunkado-handguard/sfx/a9041100.wav",
+      "byteLength": 9348,
+      "sha256": "2026b716ba3115748b89ec3ac3b6041824b6ddbba78ee708f62af1fb8dc3756a"
+    }
+  ]
+}

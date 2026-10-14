@@ -1,0 +1,350 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_bunkado_handguard_pack.mjs",
+  "source": {
+    "disc": 2,
+    "path": "disc2/SCENE/02/DKTY/TUBA.PKS",
+    "sha256": "37247850f0b39318caf534827f685166466933bb005ad2528238e04859293d1a",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "HMOT_SYG.BIN",
+        "byteLength": 24976,
+        "sha256": "ec2b5e281dc3a153eae98e5c01b927de7a1eeae1f8060c128d9dd3bc928b3a23"
+      },
+      {
+        "name": "HOHS502G.CHRM",
+        "byteLength": 8748,
+        "sha256": "c79d4f720f988133470ac9ff084cd8b9f622f8017488c90acadb351352f82d69"
+      },
+      {
+        "name": "HOHS503G.CHRM",
+        "byteLength": 1268,
+        "sha256": "9554cdfb11785bd3972961ac83e0ba6b711db5c8eaf6d53ffc848bddb02baeb3"
+      },
+      {
+        "name": "KOT_F.CHRM",
+        "byteLength": 11532,
+        "sha256": "a6ba1316d13901fc3a2a7d6718d29ce3915d4ddbf533cfb840d4d101dddaacec"
+      },
+      {
+        "name": "KOT_HM.BIN",
+        "byteLength": 9272,
+        "sha256": "fc612836437e464d08a29c3017a5af60f8dc26fcf41b01386c3b4eeed5e6e615"
+      },
+      {
+        "name": "KOT_L.CHRM",
+        "byteLength": 32908,
+        "sha256": "d66329c26e273813bae6b604d4b9e2660e9972348e5bb8a1b92d4e059762bbdd"
+      },
+      {
+        "name": "KOT_TL.CHRM",
+        "byteLength": 12932,
+        "sha256": "471eecb41ef7c9a0ef176888b313b2224f9de4b460a7ac6d2e397972f69598af"
+      },
+      {
+        "name": "KOT_TR.CHRM",
+        "byteLength": 12932,
+        "sha256": "a16270534938ad2e800d52bce561d6e05a2f3a57c824d527374e51ceff3447e1"
+      },
+      {
+        "name": "M_01321.MOTN",
+        "byteLength": 304884,
+        "sha256": "ede66102b0099329d18892cbbf42530daa9bc012421003eb5c7a178d27cd9325"
+      },
+      {
+        "name": "RABK201G.CHRM",
+        "byteLength": 1084,
+        "sha256": "4d34643ebb3c65778dc8f747f721950404cd603dfea53b07cc1570ef7788b412"
+      },
+      {
+        "name": "SEQDATA1.AUTH",
+        "byteLength": 47104,
+        "sha256": "ea02ddfbf4ca95b0bebbd3cce147c40b98792faa809a56ae03983d44ccc39624"
+      },
+      {
+        "name": "SEQDATA2.AUTH",
+        "byteLength": 7476,
+        "sha256": "acc6c2de9ebef5ff4dabb6f8740d9166ac0039ca5991825f209856167edf27ea"
+      },
+      {
+        "name": "SEQDATA4.AUTH",
+        "byteLength": 4352,
+        "sha256": "851559980086ef31eed17d7f96f28e1dc13c48f2fb2ecb0a445b31f57d55b153"
+      },
+      {
+        "name": "TUB0210G.CHRM",
+        "byteLength": 12752,
+        "sha256": "d0b91affaefb8c51f4fdebaaa11cecc0b8b3049fca2fb59526e51e9928ac15f4"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-event-template.md#bunkado-sword-handguard",
+    "resourceName": "TUBA",
+    "variant": "",
+    "selectionRule": "Borrow original AUTH-extension ordinals 1, 2, 4; no recovered native-owner branching. Childhood flashback is omitted."
+  },
+  "audioManifest": "public/audio/world/bunkado-handguard/manifest.json",
+  "sceneObjects": {
+    "HAKO": {
+      "model": "HOHS502G.CHRM",
+      "browserFilename": "HOHS502G.CHRM",
+      "assetPath": "play/assets/dobuita/bunkado-handguard/HOHS502G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/bunkado-handguard/textures.bin"
+    },
+    "TUBA": {
+      "model": "TUB0210G.CHRM",
+      "browserFilename": "TUB0210G.CHRM",
+      "assetPath": "play/assets/dobuita/bunkado-handguard/TUB0210G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/bunkado-handguard/textures.bin"
+    },
+    "TOKE": {
+      "model": "RABK201G.CHRM",
+      "browserFilename": "RABK201G.CHRM",
+      "assetPath": "play/assets/dobuita/bunkado-handguard/RABK201G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/bunkado-handguard/textures.bin"
+    }
+  },
+  "packageActors": {
+    "OISI": {
+      "label": "Keizo Oishi",
+      "modelCode": "KOT_L",
+      "browserFilename": "KOT_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/dobuita/bunkado-handguard/KOT_L.CHRM",
+      "textureAssetPath": "play/assets/dobuita/bunkado-handguard/textures.bin"
+    }
+  },
+  "actorTags": [
+    "HAKO",
+    "TUBA",
+    "TOKE",
+    "AKIR",
+    "OISI"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/dobuita/bunkado-handguard/M_01321.MOTN",
+      "byteLength": 304884,
+      "sha256": "ede66102b0099329d18892cbbf42530daa9bc012421003eb5c7a178d27cd9325"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/bunkado-handguard/M_01321.MOTN",
+      "byteLength": 304884,
+      "sha256": "ede66102b0099329d18892cbbf42530daa9bc012421003eb5c7a178d27cd9325"
+    },
+    {
+      "path": "play/assets/dobuita/bunkado-handguard/SEQDATA1.AUTH",
+      "byteLength": 47104,
+      "sha256": "ea02ddfbf4ca95b0bebbd3cce147c40b98792faa809a56ae03983d44ccc39624"
+    },
+    {
+      "path": "play/assets/dobuita/bunkado-handguard/SEQDATA2.AUTH",
+      "byteLength": 7476,
+      "sha256": "acc6c2de9ebef5ff4dabb6f8740d9166ac0039ca5991825f209856167edf27ea"
+    },
+    {
+      "path": "play/assets/dobuita/bunkado-handguard/SEQDATA4.AUTH",
+      "byteLength": 4352,
+      "sha256": "851559980086ef31eed17d7f96f28e1dc13c48f2fb2ecb0a445b31f57d55b153"
+    },
+    {
+      "path": "play/assets/dobuita/bunkado-handguard/KOT_L.CHRM",
+      "byteLength": 32908,
+      "sha256": "d66329c26e273813bae6b604d4b9e2660e9972348e5bb8a1b92d4e059762bbdd"
+    },
+    {
+      "path": "play/assets/dobuita/bunkado-handguard/HOHS502G.CHRM",
+      "byteLength": 8748,
+      "sha256": "c79d4f720f988133470ac9ff084cd8b9f622f8017488c90acadb351352f82d69"
+    },
+    {
+      "path": "play/assets/dobuita/bunkado-handguard/RABK201G.CHRM",
+      "byteLength": 1084,
+      "sha256": "4d34643ebb3c65778dc8f747f721950404cd603dfea53b07cc1570ef7788b412"
+    },
+    {
+      "path": "play/assets/dobuita/bunkado-handguard/TUB0210G.CHRM",
+      "byteLength": 12752,
+      "sha256": "d0b91affaefb8c51f4fdebaaa11cecc0b8b3049fca2fb59526e51e9928ac15f4"
+    },
+    {
+      "path": "play/assets/dobuita/bunkado-handguard/textures.bin",
+      "byteLength": 165248,
+      "sha256": "55ba605c4dd21bff2174d278f3b7ab9afa5da4d3be84778ba84abab82496ee28",
+      "source": {
+        "path": "disc2/SCENE/02/DKTY/TUBA.PKF",
+        "sha256": "94d437d1a4ee0ba62b985aece24f7e925edc4c2fc582e1630a787f8889572b2d"
+      }
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "primaryPointer": 0,
+      "secondaryPointer": 0,
+      "activityId": "TUBA/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 47104,
+      "sha256": "ea02ddfbf4ca95b0bebbd3cce147c40b98792faa809a56ae03983d44ccc39624",
+      "durationFrames": 2950,
+      "durationSeconds": 98.3499984741211,
+      "frameCount": 51,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5,
+        "motion": 4,
+        "sound": 36,
+        "voice": 13
+      },
+      "actors": [
+        "HAKO",
+        "TUBA",
+        "TOKE",
+        "AKIR",
+        "OISI"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_GOMENKUDASAI_0116",
+          "startFrame": 1,
+          "endFrame": 500
+        },
+        {
+          "actorTag": "OISI",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "JIJ_KOT_WATASU_TUBA_0116",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "OISI",
+          "frame": 471,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "JIJ_KOT_WATASU_TUBA_0116",
+          "startFrame": 40,
+          "endFrame": 2519
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 501,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_WATASU_TUBA_0116",
+          "startFrame": 700,
+          "endFrame": 3149
+        }
+      ]
+    },
+    {
+      "slot": 1,
+      "primaryPointer": 0,
+      "secondaryPointer": 0,
+      "activityId": "TUBA/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 7476,
+      "sha256": "acc6c2de9ebef5ff4dabb6f8740d9166ac0039ca5991825f209856167edf27ea",
+      "durationFrames": 590,
+      "durationSeconds": 19.683332443237305,
+      "frameCount": 5,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 3,
+        "voice": 3
+      },
+      "actors": [
+        "TOKE",
+        "TUBA",
+        "AKIR",
+        "OISI"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_NAMIDAGUMU_KOTTOYA_0116",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "OISI",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "JIJ_KOT_NAMIDAGUMU_KOTTOYA_0116",
+          "startFrame": 1,
+          "endFrame": 559
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 181,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_NAMIDAGUMU_KOTTOYA_0116",
+          "startFrame": 181,
+          "endFrame": 559
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "primaryPointer": 0,
+      "secondaryPointer": 0,
+      "activityId": "TUBA/SEQDATA4.AUTH",
+      "archiveMember": "SEQDATA4.AUTH",
+      "byteLength": 4352,
+      "sha256": "851559980086ef31eed17d7f96f28e1dc13c48f2fb2ecb0a445b31f57d55b153",
+      "durationFrames": 960,
+      "durationSeconds": 32.016666412353516,
+      "frameCount": 13,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 2,
+        "voice": 6,
+        "sound": 6
+      },
+      "actors": [
+        "TOKE",
+        "TUBA",
+        "AKIR",
+        "OISI"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "AKI_AT1_KIKU_HOUOUKYOU_KOTTOUYA_0100",
+          "startFrame": 270,
+          "endFrame": 1228
+        },
+        {
+          "actorTag": "OISI",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 13,
+          "motionName": "JIJ_OIS_AT1_KIKU_HOUOUKYOU_KOTTOUYA_0100",
+          "startFrame": 270,
+          "endFrame": 1253
+        }
+      ]
+    }
+  ]
+}

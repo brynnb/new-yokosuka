@@ -13,10 +13,10 @@ import { useRef } from "react";
 
 import {
   closeInventory,
-  refreshCollection,
+  refreshInventory,
   useInventoryStore,
 } from "./inventoryStore.js";
-import { INVENTORY_ITEMS } from "./inventoryItems.js";
+import { inventoryArtworkFor } from "./inventoryItems.js";
 import { CollectionPreviews } from './CollectionPreview.jsx';
 
 export function InventoryApp() {
@@ -63,47 +63,53 @@ export function InventoryApp() {
             </IconButton>
           </Dialog.Close>
         </Flex>
-        {collection && <>
-          <Dialog.Description mt="3" size="2" color="gray">Capsule toys collected by this character. Duplicate toys are counted together.</Dialog.Description>
+        <>
+          <Dialog.Description mt="3" size="2" color="gray">{collection ? 'Capsule toys collected by this character. Duplicate toys are counted together.' : 'Items owned by this character. Story possessions are saved by the server.'}</Dialog.Description>
           <Box role="status" aria-live="polite" mt="3">
-            {status === 'loading' && <Text color="gray">Loading collection…</Text>}
+            {status === 'loading' && <Text color="gray">Loading {collection ? 'collection' : 'inventory'}…</Text>}
             {status === 'error' && <Flex gap="3" align="center" wrap="wrap">
               <Text color="gray">{error}</Text>
-              <Button variant="soft" onClick={() => void refreshCollection()}>Retry</Button>
+              <Button variant="soft" onClick={() => void refreshInventory()}>Retry</Button>
             </Flex>}
-            {status === 'ready' && <Text color="gray" size="2">{items.length
+            {collection && status === 'ready' && <Text color="gray" size="2">{items.length
               ? `${items.length} unique toys · ${items.reduce((sum, item) => sum + item.quantity, 0)} collected`
               : 'No toys collected yet. Try a capsule machine outside You Arcade (¥100 each).'}</Text>}
+            {!collection && status === 'ready' && !items.length && <Text color="gray" size="2">No items yet.</Text>}
           </Box>
-        </>}
+        </>
         <ScrollArea type="auto" scrollbars="vertical" mt="4" style={{maxHeight: 'min(480px, 55dvh)'}}>
         {collection ? <Grid columns={{initial: '1', xs: '2', sm: '3'}} gap="2" aria-label="Collected capsule toys">
           {open && status === 'ready' && <CollectionPreviews items={items} />}
         </Grid> :
         <Grid
-          columns="repeat(8, minmax(0, 1fr))"
+          columns={{initial:"3",sm:"6",lg:"8"}}
           gap="2"
           aria-label="Inventory items"
         >
-          {INVENTORY_ITEMS.map((item) => (
+          {status === 'ready' && items.map((item) => {
+            const art=inventoryArtworkFor(item.key);
+            return (
+            <Box key={item.key}>
             <Card
               size="1"
               variant="surface"
-              key={item.id}
               className="inventory-slot"
-              title={item.name}
+              title={item.description || item.name}
             >
-              <img
+              {art && <img
                 className="inventory-slot-icon"
-                src={item.iconUrl}
+                src={art.iconUrl}
                 alt={item.name}
                 width="256"
                 height="256"
                 decoding="async"
                 draggable={false}
-              />
+              />}
             </Card>
-          ))}
+              <Text as="div" size="1" weight="bold" align="center" mt="1">{item.name}</Text>
+              {item.quantity > 1 && <Text as="div" size="1" color="gray" align="center">×{item.quantity}</Text>}
+            </Box>
+          );})}
         </Grid>
         }
         </ScrollArea>

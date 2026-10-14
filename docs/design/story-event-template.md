@@ -229,7 +229,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Old Warehouse District guard avoidance | Connected original-geometry movement, patrols, cover and actual door use; rendered cancellation/reload, capture/next-morning recovery, re-entry, success and saved MS08 arrival verified. Real compiler/database tests cover interrupted input, real detection, atomic recovery and character isolation. Routes, vision/balance and framing are authored, not recovered guard AI. |
 | Master Chen's first meeting | Connected four-segment original presentation, plate confirmation and atomic notebook/next-morning home return verified. Real compiler/database checks cover prerequisites, decline, cancellation at every segment and stale acknowledgements. Rendered approach, decline, live cancellation, natural completion, original Chen/Gui Zhang/body/camera presentation, saved home return and reload pass. |
 | Family lead to the antique shop | Connected optional original-voiced Ine-san hint and original SORA/INEK sequence. Compiler/database cancellation and atomic-clue checks pass. Rendered hint/approach, live cancellation/retry, natural completion, saved clue, restored movement and reload without replay pass. |
-| Phoenix Mirror search | Missing sword-handguard handover, return-home investigation, dojo puzzle and mirror recovery. |
+| Bunkado sword handguard | Connected original TUBA handover with authoritative once-only possession and notebook settlement. Compiler/database cancellation/item checks and rendered real-door entry, live cancellation/re-entry, natural completion, owned inventory display, restored controls and reload without replay pass. Detailed hand poses remain rough. |
+| Phoenix Mirror search | Missing Gui Zhang's street encounter, return-home investigation, dojo puzzle and mirror recovery. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -886,8 +887,8 @@ cancellation before/after practice, atomic invitation, cancelled handoff,
 one item/economy grant on completion, repeat refusal and character isolation.
 
 Migration `008_story_items.sql` adds the letter definition. Its possession is
-authoritative and server-saved; the existing general inventory artwork grid is
-still a display catalog, not a full possession-aware story inventory interface.
+authoritative and server-saved. Inventory now reads actual server possessions;
+artwork metadata no longer acts as a demo list of items the player appears to own.
 New handoff assets are registered locally but not published to R2. No production
 migration or deployment has occurred from this worktree.
 
@@ -1487,3 +1488,47 @@ the earned home checkpoint, clicks the actual Ine-san, crosses the courtyard
 approach, cancels/retries, completes all three scenes naturally, moves Ryo after
 cleanup and reloads without replay. That rendered check passes; inspected
 screenshots show Fuku by the tree and Ine-san on the porch.
+
+## Bunkado sword handguard
+
+Official import: `story-s1-bunkado-handguard`. The
+[contemporary GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed page 37, describes the automatic shop conversation, Oishi-san's
+handover and the family inheritance clue. Original A0132 dialogue corroborates
+the safekeeping, eighteenth-birthday inheritance and Phoenix Mirror question.
+
+| Field | Authored integration |
+| --- | --- |
+| Location / trigger | Enter DKTY through Bunkado's real Dobuita door. Physical door selector 35 is bound by the exact return to D000 Entry 7. The direct table's dispatchValue 25 is a different script-argument namespace and must not replace that physical association. |
+| Prerequisites | Personal Story Ryo, completed opening and earned family antique-shop lead. Use ordinary shop entry; no invented weather/date gate or public NPC mutation. |
+| Actors / props | Original AKIR and package-owned OISI/KOT_L. Original TUBA handguard, HAKO box and TOKE prop follow AUTH movements. Their package-model bindings are authored; box-lid callbacks and detailed hand manipulation are not reconstructed. The low-detail body hands remain rough in close-up; merely importing OP00's hand rig does not supply the missing TUBA pose controls. |
+| Sequence / timing | Original TUBA SEQDATA1 arrival/handover (~98 s), SEQDATA2 remembrance (~20 s), then SEQDATA4 Phoenix Mirror question (~32 s). The childhood flashback is omitted. Original camera/body tracks, A0132 voices and A1_KOTTO sounds; MAPINFO-associated BGM052 starts with the package as an authored timing approximation. |
+| Effects | Atomically grant one non-stackable, non-usable sword_handguard, save the handover milestone and add the notebook page. Presentation props alone are not inventory ownership. No money, time, destination, persistent HP or Phoenix Mirror reward. |
+| Exit / retry | Shared presentation cleanup restores the shop arrival, avatar/camera and controls. Explicit skip may advance a scene; cancelling or failed preparation grants nothing. Last scene acknowledgement commits item and flags together; there is no separately cancellable post-completion grant stage. Reconnect loads the saved possession without replay or duplication. |
+
+`build:bunkado-handguard` pins original TUBA.PKS, TUBA.PKF, DKTY MAPINFO,
+A0132.AFS and A1_KOTTO.SND. It uses the shared activity/audio/texture compilers
+and existing hash-pinned BGM052 viewer render. Twenty-two source voices and
+fourteen sound identities are available. Borrowed AUTH ordinals use explicit
+zero pointer bindings; this does not claim native-owner reconstruction.
+Generated receipts retain archive/member hashes. Assets are locally registered,
+not published to R2.
+
+Migration `009_story_mirror_items.sql` adds the handguard to the existing
+inventory/economy store. Inventory and Collection now share one cancellable
+server-inventory request, selecting ordinary items or capsule toys respectively.
+Unknown artwork displays the real item name rather than invented art; available
+icons use the existing transparent grey-slot presentation. The modal keeps its
+scrolling, focus and close behavior.
+
+Compiler/PostgreSQL checks continue the earned family character, reject an
+unearned character, cancel each live scene, reject stale acknowledgements,
+verify original scene order, atomic item/notebook settlement and repeat
+refusal without changing the calendar/economy. The connected browser check
+resumes the earned family clue, uses the real physical shop door from the
+original exterior return placement, cancels/re-enters, completes all three
+scenes naturally, checks actual inventory artwork/names and controls, then
+reloads without replay or duplication. This check passes. Inspected shots show
+Oishi-san, the handguard and the owned inventory; detailed finger fidelity is
+not claimed. A saved unfinished shop arrival is allowed to start its automatic
+event rather than being interrupted by artificial test travel.

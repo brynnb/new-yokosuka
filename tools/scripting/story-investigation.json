@@ -3,6 +3,14 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"bunkado-handguard","disc":2,"actor":"OISI","presentActors":[],"area":"DKTY","trigger":"automatic","blockNativeTalk":true,"priority":210,
+      "title":"Bunkado Antiques — the sword handguard","requiredFlags":["story.s1.family-mirror-lead.completed"],
+      "completedFlag":"story.s1.bunkado-handguard.completed","effects":["notebook.s1.sword-handguard"],"items":[{"key":"sword_handguard","quantity":1}],"voiceIds":[],
+      "activities":["s1.dkty.handguard.arrival","s1.dkty.handguard.remembrance","s1.dkty.handguard.phoenix-question"],
+      "nativeSources":[{"role":"original-cinematic","locator":"disc2/SCENE/02/DKTY/TUBA.PKS#SEQDATA1/2/4.AUTH","sha256":"37247850f0b39318caf534827f685166466933bb005ad2528238e04859293d1a"}],
+      "provenance":"Contemporary GameSpot guide printed p37: enter Bunkado, meet Keizo Oishi and receive the family sword handguard. Original TUBA body/camera/voice/sound/prop assets; ordinal selection, model bindings and music-start timing are authored. Childhood flashback and box-lid callbacks are omitted. One server-owned item/notebook/milestone settlement after all three presentations; cancellation grants nothing, and presentation-only props are not inventory ownership."
+    },
+    {
       "id":"ine-fuku-looking","actor":"INE_","area":"JOMO","title":"Ine-san — Fuku-san is looking for you",
       "requiredFlags":["story.s1.master-chen.completed"],"excludedFlags":["story.s1.family-mirror-lead.completed"],"completedFlag":"story.s1.ine-fuku-looking.completed","effects":["notebook.s1.fuku-looking"],
       "voiceIds":["F1005B062","F1005A054","F1005B067"],

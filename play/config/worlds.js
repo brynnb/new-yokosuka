@@ -214,7 +214,7 @@ const DOBUITA_INTERIOR_LABELS = Object.freeze({
   DGCT: Object.freeze(["YOU Arcade", "ゲームセンター"]),
   GMCT: Object.freeze(["YOU Arcade", "ゲームセンター"]),
   DKPA: Object.freeze(["Nana's Karaoke Bar", "カラオケパブ ナナ"]),
-  DKTY: Object.freeze(["Antique Shop", "骨董屋"]),
+  DKTY: Object.freeze(["Bunkado Antiques", "骨董屋"]),
   DMAJ: Object.freeze(["Daisangen Mahjong Parlor", "大三元"]),
   DSKI: Object.freeze(["Global Travel Agency", "世界旅行社"]),
   DTKY: Object.freeze(["Maeda Barber Shop", "理容マエダ"]),

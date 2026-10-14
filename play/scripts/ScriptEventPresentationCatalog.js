@@ -33,6 +33,11 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["arrival",0],["remembrance",1],["phoenix-question",2]].map(([part,slot])=>[`s1.dkty.handguard.${part}`,{
+    kind:"native-cutscene",area:"DKTY",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:`story-s1-bunkado-handguard-${part}`,packageId:"bunkado-handguard",worldId:"dkty",storyPresentation:true,
+      activity:{slot,binding:{primaryPointer:0,secondaryPointer:0}}},
+  }]),
   ...[["family-fuku","approach",0],["family-fuku","conversation",1],["family-ine","conversation",0]].map(([packageId,part,slot])=>[`s1.jhd0.${packageId}.${part}`,{
     kind:"native-cutscene",area:"JHD0",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-${packageId}-${part}`,packageId,worldId:"exterior",storyPresentation:true,

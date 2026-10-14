@@ -108,6 +108,16 @@ test("family mirror conversations share presentation ownership without durable e
   }
 });
 
+test("Bunkado handover owns original presentation, not inventory settlement",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  for(const [part,slot] of [["arrival",0],["remembrance",1],["phoenix-question",2]]){
+    const activity=catalog.activity(`s1.dkty.handguard.${part}`);
+    assert.equal(activity.area,"DKTY");assert.equal(activity.durableEffects,"forbidden");
+    assert.equal(activity.returnPlayerState,true);assert.equal(activity.cutscene.packageId,"bunkado-handguard");
+    assert.deepEqual(activity.cutscene.activity,{slot,binding:{primaryPointer:0,secondaryPointer:0}});
+  }
+});
+
 test("runtime dispatches Hato commands through an owned transaction", async () => {
   const { runtime, calls } = harness();
   runtime.begin({ area: "D000", actorCode: "HATO" });
