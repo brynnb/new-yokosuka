@@ -1755,6 +1755,7 @@ function createPlayRuntime() {
       scene,
       travelTransitions,
       worldMapLayerState,
+      storyObjects: nativeStoryRuntime.storyObjects,
     },
   });
   debugPanel.initialize(

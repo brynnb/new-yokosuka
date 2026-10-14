@@ -20,6 +20,18 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"sequence","identifier":"s1.ydb1.floor.start","description":"Authored basement start with original presentation and cancellable restoration."},
+    {"kind":"sequence","identifier":"s1.ydb1.floor.finish","description":"Authored basement finish with original presentation and cancellable restoration."},
+    {"kind":"sequence","identifier":"s1.ydb1.shelf.start","description":"Authored basement start with original presentation and cancellable restoration."},
+    {"kind":"sequence","identifier":"s1.ydb1.shelf.finish","description":"Authored basement finish with original presentation and cancellable restoration."},
+    {"kind":"sequence","identifier":"s1.ydb1.axe.start","description":"Authored basement start with original presentation and cancellable restoration."},
+    {"kind":"sequence","identifier":"s1.ydb1.axe.finish","description":"Authored basement finish with original presentation and cancellable restoration."},
+    {"kind":"sequence","identifier":"s1.ydb1.wall.start","description":"Authored basement start with original presentation and cancellable restoration."},
+    {"kind":"sequence","identifier":"s1.ydb1.wall.finish","description":"Authored basement finish with original presentation and cancellable restoration."},
+    {"kind":"sequence","identifier":"s1.ydb1.mirror.start","description":"Authored basement start with original presentation and cancellable restoration."},
+    {"kind":"sequence","identifier":"s1.ydb1.mirror.finish","description":"Authored basement finish with original presentation and cancellable restoration."},
+    {"kind":"bounds","identifier":"s1.ydb1.shelf-search","description":"Accepted use-only proximity to basement floor, shelf, hidden wall and mirror."},
+    {"kind":"bounds","identifier":"s1.ydb1.axe-search","description":"Accepted use-only proximity to the basement axe near the entrance."},
     {"kind":"bounds","identifier":"s1.jhd0.handguard-switch","description":"Accepted proximity to the original left dojo scroll; use-only."},
     {"kind":"bounds","identifier":"s1.jhd0.sword-switch","description":"Accepted proximity to the original right dojo scroll; use-only."},
     {"kind":"sequence","identifier":"s1.jhd0.handguard-switch.start","description":"Original scroll/recess inspection, authored unvoiced choice and temporary object visibility."},

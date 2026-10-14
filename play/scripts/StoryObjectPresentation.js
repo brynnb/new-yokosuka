@@ -43,9 +43,19 @@ export function applyStoryObjectTransforms(roots, transforms) {
 }
 
 export class StoryObjectPresentation {
-  constructor({getCharacter, rules = catalog.rules}) {
+  constructor({getCharacter, rules = catalog.rules, surfaces = catalog.surfaces}) {
     this.getCharacter = getCharacter;
     this.rules = rules;
+    this.surfaces = surfaces;
+    this.activeSurfaces = [];
+    for (const surface of surfaces) {
+      if (!/^[A-Z0-9]{4}$/.test(surface.area) || !/^[A-Z0-9_]{4}$/.test(surface.object)
+        || !Array.isArray(surface.models) || !surface.models.length || !surface.models.every(model => typeof model === "string" && model.length > 0)
+        || ![surface.requiredFlags, surface.excludedFlags].every(Array.isArray)
+        || ![...surface.requiredFlags, ...surface.excludedFlags].every(flag => typeof flag === "string" && flag.length > 0)
+        || ![surface.min, surface.max].every(v => Array.isArray(v) && v.length === 3 && v.every(Number.isFinite))
+        || surface.min.some((v, i) => v > surface.max[i])) throw Error(`Invalid Story surface ${surface.area}:${surface.object}`);
+    }
     this.area = null;
     this.roots = [];
     this.key = null;
@@ -64,6 +74,10 @@ export class StoryObjectPresentation {
     const rules = this.rules.filter(rule => rule.area === this.area);
     const active = character?.playMode === "story" && character.openingCompleted
       ? rules.filter(rule => character.storyFlags?.[rule.flag] === true) : [];
+    this.activeSurfaces = character?.playMode === "story" && character.openingCompleted
+      ? this.surfaces.filter(surface => surface.area === this.area
+        && surface.requiredFlags.every(flag => character.storyFlags?.[flag] === true)
+        && surface.excludedFlags.every(flag => character.storyFlags?.[flag] !== true)) : [];
     const key = `${character?.id}:${character?.modeRevision}:${active.map(rule => rule.flag).join(",")}`;
     if (key === this.key) return false;
     this.restore?.();
@@ -74,11 +88,35 @@ export class StoryObjectPresentation {
     return true;
   }
 
+  isSurfaceMesh(mesh) {
+    for (let node = mesh; node; node = node.parent) {
+      if (this.activeSurfaces.some(surface => surface.models.includes(node._filename))) return true;
+    }
+    return false;
+  }
+
+  pickSurface(pick) {
+    if (!pick?.hit || !pick.pickedPoint || !this.isSurfaceMesh(pick.pickedMesh)) return null;
+    const point = pick.pickedPoint, values = [point.x, point.y, point.z];
+    const matches = this.activeSurfaces.filter(surface => {
+      let sourceMatches = false;
+      for (let node = pick.pickedMesh; node; node = node.parent) if (surface.models.includes(node._filename)) sourceMatches = true;
+      return sourceMatches && values.every((v, i) => v >= surface.min[i] && v <= surface.max[i]);
+    });
+    if (matches.length > 1) throw Error("Ambiguous authored Story surface");
+    const surface = matches[0];
+    // A logical interaction on real rendered geometry, not a new scene mesh or
+    // save system. The server independently checks accepted player proximity.
+    return surface ? {objectTag: surface.object, root: pick.pickedMesh,
+      position: point} : null;
+  }
+
   clear() {
     this.restore?.();
     this.restore = null;
     this.key = null;
     this.area = null;
     this.roots = [];
+    this.activeSurfaces = [];
   }
 }

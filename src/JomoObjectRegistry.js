@@ -435,6 +435,11 @@ export function jomoObjectBehavior(model, objectTag, evidence = {}) {
   // than being silently baked into static scenery. Its Yarn route owns state.
   const sourceArea=/^S[1-3]_([A-Z0-9]{4})_/.exec(model)?.[1];
   const storyLabel=STORY_OBJECT_LABELS.get(`${sourceArea}:${objectTag}`);
+  if (evidence.authoredStoryProp === true) {
+    if (typeof evidence.initiallyEnabled !== "boolean") throw Error(`Missing authored Story visibility ${model}:${objectTag}`);
+    return {kind: storyLabel ? "inspect" : "passive-scenery", label: storyLabel,
+      initiallyEnabled: evidence.initiallyEnabled, evidence: "authored-story-objects.json"};
+  }
   if(storyLabel)return {kind:"inspect",label:storyLabel,evidence:"authored-story-talks.json"};
   // Every live JOMO TASK tag identifies an authored scene object even when
   // its exact story-state callback has not yet been decoded. Keep those

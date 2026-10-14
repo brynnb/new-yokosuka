@@ -1,6 +1,20 @@
 {
   "schema":"new-yokosuka-authored-story-objects-v1",
+  "placements": [
+    {"area":"YDB1","model":"S2_YDB1_TANR0B4G.MT5","position":[-7,0,2],"rotationDegrees":[0,90,0],"runtime":{"objectTag":"SHEF","authoredStoryProp":true,"initiallyEnabled":true},"provenance":"Original cabinet-sized TANR0B4G model; authored movable-shelf identity, west-wall position and angle. Not a recovered native shelf placement."},
+    {"area":"YDB1","model":"S2_YDB1_ONOS500G.MT5","position":[-2.8,0.11,4.8],"rotationDegrees":[0,0,0],"runtime":{"objectTag":"AXE_","authoredStoryProp":true,"initiallyEnabled":true},"provenance":"Original ONOS500G axe; authored accessible near-entrance position, on the room side of the original partition. Guide p40 supplies near-entrance location, not exact coordinates."},
+    {"area":"YDB1","model":"S2_YDB1_ANAR001G.MT5","position":[-7.995,0.8,2],"rotationDegrees":[0,90,0],"runtime":{"objectTag":"KABE","authoredStoryProp":true,"initiallyEnabled":false},"provenance":"Original KABE-to-ANAR001G binding; authored wall-hole overlay just inside the original west face at x=-8 (rendered geometry pick). Detailed debris and wall removal are condensed."},
+    {"area":"YDB1","model":"S2_YDB1_PNX02M1G.MT5","position":[-7.8,0.8,2],"rotationDegrees":[0,0,0],"runtime":{"objectTag":"HOKY","authoredStoryProp":true,"initiallyEnabled":false},"provenance":"Original HOKY-to-PNX02M1G mirror binding; authored discovery pose on the room side of original west wall x=-8. Exact box handling is omitted."}
+  ],
+  "surfaces": [
+    {"area":"YDB1","object":"FLOR","models":["S2_YDB1_MAP.MT5"],"min":[-6.8,-0.1,1.5],"max":[-5.5,0.25,2.6],"requiredFlags":["story.s1.basement-visited"],"excludedFlags":["story.s1.basement-floor.completed"],"provenance":"Authored floor-inspection area near the movable shelf. Guide p40 identifies scratches as a clue; exact scratch artwork and native trigger are not recovered."},
+    {"area":"YDB1","object":"WALL","models":["S2_YDB1_MAP.MT5"],"min":[-8.05,0.1,1.3],"max":[-7.95,1.65,2.7],"requiredFlags":["story.s1.basement-shelf.completed"],"excludedFlags":["story.s1.basement-wall.completed"],"provenance":"Authored usable patch of actual original west-wall face at x=-8, verified by a rendered geometry pick. Revealed after moving the shelf; server requires the owned axe. No invisible prop at origin or client-side reward."}
+  ],
   "rules":[
+    {"area":"YDB1","flag":"story.s1.basement-shelf.completed","transforms":[{"object":"SHEF","offset":[0,0,1.9]}]},
+    {"area":"YDB1","flag":"story.s1.basement-axe.completed","transforms":[{"object":"AXE_","visible":false}]},
+    {"area":"YDB1","flag":"story.s1.basement-wall.completed","transforms":[{"object":"KABE","visible":true},{"object":"HOKY","visible":true}]},
+    {"area":"YDB1","flag":"story.s1.phoenix-mirror.completed","transforms":[{"object":"HOKY","visible":false}]},
     {"area":"JHD0","flag":"story.s1.dojo-handguard-switch.completed","transforms":[{"object":"KAK2","visible":false}],
       "provenance":"Original KAK2 scroll at z=-21.937 lies on the viewer's left when facing the recess wall. Remove it after the explicit handguard placement. Rolling and hand choreography are condensed to visibility."},
     {"area":"JHD0","flag":"story.s1.dojo-sword-switch.completed","transforms":[{"object":"KAK1","visible":false},{"object":"SKAB","offset":[0,0,2.15]}],

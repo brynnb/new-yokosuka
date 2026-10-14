@@ -235,7 +235,7 @@ Do not describe the first conversation as fully animation-faithful.
 | Iwao's key / dojo sword case | Connected real drawer/case picking, explicit leave/pickup choices, live cancellation/retry, saved inventory/notebook and reload without duplicate grants pass in the browser. Compiler/database proximity, key prerequisite, stale acknowledgement and character isolation checks pass. Captions/cameras are authored; detailed lid/hand choreography remains omitted. |
 | Dojo scrolls / hidden-wall switches | Connected real-object clicks, explicit leave/fit choices, live cancellation/retry, independent server settlement, saved scroll/wall presentation and reload pass. Original recess/opened-wall geometry is visibly checked. Scroll rolling, handguard/sword placement and wall translation are authored approximations. |
 | Basement entry / return | Connected walking approach, explicit leave/descend choice, live cancellation/retry, saved YDB1 arrival, normal movement into the room, cancelled return/retry, exact dojo return, repeat descent and saved reload pass. Original room/furniture geometry is visible. Arrival/cameras/prompts are authored; climbing animation and lighting interactions remain omitted. |
-| Phoenix Mirror search | Missing basement investigation, light-source interactions and mirror recovery. |
+| Phoenix Mirror search | Connected floor clue, shelf movement, genuine axe pickup, wall opening and once-only mirror/notebook settlement. Compiled Yarn/PostgreSQL and rendered click/cancel/retry/natural ending/reload checks pass. Placement/camera/grips and mechanical reveals are authored; light-source interactions, optional discoveries and subsequent Fuku/Chen encounters remain incomplete. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -1688,7 +1688,8 @@ character isolation, mode restoration and non-accumulating offsets.
 
 Switch completion alone does not grant basement arrival or a mirror. The
 separate confirmation/travel events below now connect admission and return;
-basement investigation and mirror recovery remain independent work.
+the basement investigation below is independently gated and does not award a
+mirror from descent alone.
 
 ## Basement admission and return
 
@@ -1722,3 +1723,53 @@ cancels/leaves/retries, enters YDB1, walks from z=6 past z=3 with supported
 ground, cancels/retries return, revisits and reloads without replay. Inspected
 captures show the original room geometry, furniture and return presentation.
 This is not verification of every basement prop, illumination rule or secret.
+
+## Basement investigation and Phoenix Mirror recovery
+
+Official imports: `story-s1-basement-floor`, `story-s1-basement-shelf`,
+`story-s1-basement-axe`, `story-s1-basement-wall`, and
+`story-s1-phoenix-mirror`. The contemporary
+[GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+printed page 40 supplies the floor marks, shelf/discolored wall, near-entrance
+axe and hidden mirror order. Optional photograph, White Leaf and Stab Armor
+discoveries are not prerequisites for that mandatory path.
+
+| Field | Authored integration |
+| --- | --- |
+| Location / triggers | YDB1, admitted through the earned dojo puzzle. Real mouse use of the floor beside the shelf, movable shelf, entrance-side axe, original west-wall face and revealed mirror. Walking does not complete these use-only events. |
+| Eligibility | Personal Story Ryo, completed opening and saved basement visit. Floor clue unlocks shelf movement; the shelf and actual `basement_axe` possession unlock the wall. The committed wall reveal and owned axe gate mirror recovery. Axe pickup may happen before the shelf. The server independently checks accepted player proximity; clicked points are presentation, not save authority. |
+| Time / weather | No invented time, date or weather gate. No forced calendar jump, HP change or yen charge. Existing personal room/calendar remains in effect. Flashlight/candle/electrical-light interactions and original darkness are omitted adaptations, not claimed recovered behavior. |
+| Cast / props | Original Ryo and YDB1 room/furniture, ONOS500G axe, KABE/ANAR001G wall-hole and HOKY/PNX02M1G mirror. TANR0B4G is an original cabinet-sized model assigned the movable-shelf role here; its precise native identity/placement is unproven. No unplaced archive member is stacked at origin. The axe is on the accessible side of the entrance partition; wall interaction aligns with the original rendered face at x=-8. |
+| Action / timing | Each shared ordinary Yarn event shows an authored caption, explicit act-or-leave choice, bounded presentation and receipt. Original `M_0138.MOTN` selections provide shelf pull (400 frames), axe pickup (220), wall strike (120) and taking the mirror (644). The shared presenter waits for these non-looping motions at 30 fps. Floor inspection uses a held pose. Only acknowledging the receipt and successful cleanup settles the outcome; motion completion alone grants nothing. |
+| Audio / camera | Captions are newly authored and unvoiced, never mislabeled as original speech. Poses, fixed cameras and attachment grips are authored; source AUTH camera choreography is not required. No unsupported voice, music or sound cue is invented. |
+| Mechanical presentation | Shared cancellable object transforms move the shelf sideways, hide a collected axe and show the hole/mirror after the wall action. Mechanical translation, wall damage/debris, repeated strikes and safe/lid handling are condensed. The hole is a surface overlay, not a claim that the whole original collision wall was removed. The mirror is on its accessible room side. |
+| Durable effects | Existing server transaction saves independent clue/shelf/axe/wall flags, stable notebook pages and one each of `basement_axe` and `phoenix_mirror`. Both are nonusable, stack-one personal key items. Saved flags derive object visibility/position after reconnect and reload; there is no second writable browser story state. |
+| Exit / continuation | Restore the prior gameplay actor/camera/controls after every action. Use the existing repeatable basement return to reach the dojo. The original automatic return and Fuku-san mirror referral are not yet reproduced; Fuku/Chen follow-up is the next connected event, not silently completed by the receipt. |
+| Leave / skip / failure / replay | Leave, live cancellation, failed motion/prop preparation or stale acknowledgements settle nothing. Completed discoveries cannot award again. Temporary shelf/prop transforms restore on cancellation; character/mode/world changes restore the other personal view. Ordinary line advance is not an animation skip or a challenge answer. No QTE/combat outcome is hidden in this search. |
+
+The floor and wall use small authored point volumes on actual rendered MAP
+geometry through the existing object dispatcher. Their personal flags gate
+picking; Yarn, accepted-player bounds and genuine inventory gate settlement.
+This avoids fake clickable geometry, attaching a wall action to the moved
+shelf, or creating another quest engine. Surface matching is restricted to
+the reviewed model and area, and ambiguous/malformed definitions fail loudly.
+
+`tools/cutscenes/build_basement_story_assets.mjs` pins the original compressed
+MPK00 source and selected member hashes. It uses the canonical
+`tools/assets/sync_models.py` TEXN/IPAC extractor for browser texture records and
+checks every held prop's external texture ID. The source PKF is gzip-compressed;
+passing that archive directly to the runtime's flat texture reader produces
+white props and is not a supported substitute for extraction. Selected MOTN
+loading intentionally does not decode an unrelated unsupported clip in the
+same bank. All new motion/prop/texture output remains ignored local data with
+registered immutable runtime-asset metadata; publication is a separate,
+explicitly authorized release step.
+
+The real compiler/PostgreSQL connected-chain test covers wrong order, missing
+axe, accepted proximity, leave, cancellation after presentation, stale run
+acknowledgements, independent once-only discoveries and another character's
+ineligibility. The rendered earned-save continuation exercises actual scene
+clicks, leave/cancel/retry for every search action, natural selected motions,
+inventory/notebook settlement, control restoration and saved presentation on
+reload. It is not proof of exact hand grip, original scratch artwork, optional
+discoveries or every basement illumination rule.

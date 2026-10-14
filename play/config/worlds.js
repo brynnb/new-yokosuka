@@ -1,6 +1,7 @@
 import * as BABYLON from "@babylonjs/core";
 import shenmue2Exploration from '../data/shenmue2-exploration-worlds.json' with { type: 'json' };
 import storyDestinations from "../data/story-destinations.json" with {type: "json"};
+import authoredStoryObjects from "../data/authored-story-objects.json" with {type: "json"};
 import shenmue2BoundaryTransitions, {
   SHENMUE2_TRAVERSABLE_WORLD_DATA,
 } from "../../src/Shenmue2BoundaryTransitionData.js";
@@ -644,7 +645,7 @@ export const WORLDS = Object.freeze({
     // Original MPK00 supplies the room and its furniture layer. Do not load
     // each archive member at origin: most props need separate owner placement.
     includeFile: filename => /^S2_YDB1_MAP(?:01)?\.MT5$/i.test(filename),
-    placements: Object.freeze([]),
+    placements: Object.freeze(authoredStoryObjects.placements.filter(placement => placement.area === "YDB1")),
   }),
   interior: Object.freeze({
     id: "interior",

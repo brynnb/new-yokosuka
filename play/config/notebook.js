@@ -109,6 +109,9 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.dojo-handguard-switch",page:Object.freeze({id:"story-dojo-handguard-switch",text:"The family handguard fits the recess behind the left dojo scroll.\n\nThe right scroll may hide another part of the mechanism."})},
   {flag:"notebook.s1.dojo-hidden-door",page:Object.freeze({id:"story-dojo-hidden-door",text:"Inserted the dojo sword behind the right scroll.\n\nThe hidden wall opened. Could the Phoenix Mirror be behind it?"})},
   {flag:"notebook.s1.basement",page:Object.freeze({id:"story-basement",text:"Found a hidden basement beneath the dojo.\n\nCould Dad have hidden the Phoenix Mirror here? Search the room for clues."})},
+  {flag:"notebook.s1.basement-floor",page:Object.freeze({id:"story-basement-floor",text:"The floor beside the shelf is scuffed.\n\nIt looks like the shelf has been moved before. Try pulling it aside."})},
+  {flag:"notebook.s1.basement-wall",page:Object.freeze({id:"story-basement-wall",text:"Moving the shelf revealed a different-colored patch of wall.\n\nAn axe near the entrance might break it open."})},
+  {flag:"notebook.s1.phoenix-mirror",page:Object.freeze({id:"story-phoenix-mirror",text:"Found the Phoenix Mirror hidden behind the basement wall.\n\nReturn to the dojo and speak to Fuku-san. Master Chen may know more about this mirror."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

@@ -93,8 +93,15 @@ normal supported movement into the room, live cancellation/leave/retry, exact
 dojo return, repeat entry and saved reload are rendered/full-stack verified.
 The floor-supported basement arrival and cameras/prompts are authored; the
 return uses original JHD0 entry 6. Climbing and light-source interactions remain
-omitted. Basement investigation, Phoenix Mirror recovery and later storyline
-remain unimplemented.
+omitted. Basement floor investigation, shelf movement, genuine axe possession,
+wall opening and Phoenix Mirror recovery now connect through ordinary
+server-owned object-use events. Compiler/database and rendered real-click,
+leave/cancel/retry, natural presentation, once-only inventory/notebook and
+reload checks pass. Original selected motions/props are reused; exact grips,
+scratch artwork, shelf identity/placement and mechanical reveals are authored
+or condensed. Light-source interactions and optional basement discoveries
+remain omitted. The original automatic dojo return and subsequent Fuku/Chen
+mirror follow-up, and later storyline, remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

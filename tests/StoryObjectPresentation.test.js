@@ -55,3 +55,33 @@ test("inspection transforms restore cancellation and reject missing/ambiguous/in
     assert.ok(roots[2].position.equals(new Vector3(11, 2, -22)));
   } finally {engine.dispose();}
 });
+
+test("logical Story surfaces require the correct real mesh, picked point, personal mode and milestones", () => {
+  let character = {id:1,playMode:"story",openingCompleted:true,storyFlags:{"story.s1.basement-visited":true}};
+  const runtime = new StoryObjectPresentation({getCharacter:()=>character,rules:[]});
+  const mesh = {_filename:"S2_YDB1_MAP.MT5"};
+  runtime.load("YDB1",[]);
+  const pick = point => ({hit:true,pickedMesh:mesh,pickedPoint:new Vector3(...point)});
+  assert.equal(runtime.pickSurface(pick([-6,0,2])).objectTag,"FLOR");
+  assert.equal(runtime.pickSurface(pick([-4,0,2])),null);
+  assert.equal(runtime.pickSurface({...pick([-6,0,2]),pickedMesh:{_filename:"S2_YDB1_MAP01.MT5"}}),null);
+  assert.equal(runtime.pickSurface(pick([-8,1,2])),null);
+  character.storyFlags["story.s1.basement-floor.completed"] = true;
+  character.storyFlags["story.s1.basement-shelf.completed"] = true;
+  runtime.update();
+  assert.equal(runtime.pickSurface(pick([-6,0,2])),null);
+  assert.equal(runtime.pickSurface(pick([-8,1,2])).objectTag,"WALL");
+  character.playMode = "free_roam"; runtime.update(); assert.equal(runtime.isSurfaceMesh(mesh),false);
+  character = {id:2,playMode:"story",openingCompleted:true,storyFlags:{}};
+  runtime.update(); assert.equal(runtime.isSurfaceMesh(mesh),false);
+  runtime.clear(); assert.equal(runtime.isSurfaceMesh(mesh),false);
+});
+
+test("authored surfaces reject malformed data and ambiguous hits rather than guessing",()=>{
+  const surface={area:"ROOM",object:"WALL",models:["room"],min:[0,0,0],max:[1,1,1],requiredFlags:[],excludedFlags:[]};
+  assert.throws(()=>new StoryObjectPresentation({getCharacter:()=>null,surfaces:[{...surface,max:[NaN,1,1]}]}),/Invalid Story surface/);
+  for(const invalid of [{area:"unknown"},{models:[null]},{requiredFlags:[false]}])assert.throws(()=>new StoryObjectPresentation({getCharacter:()=>null,surfaces:[{...surface,...invalid}]}),/Invalid Story surface/);
+  const runtime=new StoryObjectPresentation({getCharacter:()=>({playMode:"story",openingCompleted:true}),rules:[],surfaces:[surface,surface]});
+  runtime.load("ROOM",[]);
+  assert.throws(()=>runtime.pickSurface({hit:true,pickedMesh:{_filename:"room"},pickedPoint:new Vector3(.5,.5,.5)}),/Ambiguous/);
+});

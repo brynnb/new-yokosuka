@@ -1,6 +1,8 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.ydb1.shelf-search","area":"YDB1","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,"requiredFlags":[],"completedFlag":"story.s1.phoenix-mirror.completed","min":[-7.8,-0.5,0.5],"max":[-4.7,2.5,5.2],"provenance":"Authored use-only proximity to shelf/floor/wall/mirror. Each Yarn route independently checks progression and possessions; walking grants nothing."},
+    {"id":"s1.ydb1.axe-search","area":"YDB1","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,"requiredFlags":[],"completedFlag":"story.s1.basement-axe.completed","min":[-4.5,-0.5,3.5],"max":[-1.8,2,6.4],"provenance":"Authored accessible axe proximity on the room side of the entrance partition (guide p40). Separate explicit server-owned pickup."},
     {"id":"s1.jhd0.basement-descent","area":"JHD0","actor":"AKIR","repeatable":true,"playMode":"story","openingCompleted":true,
       "requiredFlags":["story.s1.dojo-sword-switch.completed"],"completedFlag":"story.s1.basement-visited","min":[10.05,0.4,-23.4],"max":[11.5,3,-21.5],
       "provenance":"Authored accessible approach on the dojo side of the opened SKAB panel. A confirmation condenses the native script-owned perimeter/ladder; no automatic descent or switch award."},

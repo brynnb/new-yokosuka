@@ -33,6 +33,7 @@ export class WorldInteractionDispatcher {
     poolRuntime,
     scene,
     scriptedInteractions,
+    storyObjects = null,
     travelTransitions,
     worldMapLayerState,
   }) {
@@ -50,6 +51,7 @@ export class WorldInteractionDispatcher {
       poolRuntime,
       scene,
       scriptedInteractions,
+      storyObjects,
       travelTransitions,
       worldMapLayerState,
     });
@@ -186,6 +188,11 @@ export class WorldInteractionDispatcher {
       this.camera,
     );
     const metadata = interactionPick?.pickedMesh?.metadata || {};
+    const surface = this.storyObjects?.pickSurface(interactionPick);
+    if (surface) {
+      if (horizontalDistance(this.getActorPosition(), surface.position) <= INTERACTION_DISTANCE) this.activateInspectable(surface);
+      return;
+    }
     const door = metadata.interactiveDoor;
     if (this.doorIsBlocked(interactionPick, door)) return;
     if (!isDirectShenmue2DoorPick(door, pointerInfo.pickInfo)) return;
@@ -209,7 +216,8 @@ export class WorldInteractionDispatcher {
     const metadata = mesh.metadata;
     if(metadata?.interactiveInspectable && !containerInteractionAllowed(metadata.interactiveInspectable.root))return false;
     return Boolean(
-      metadata?.interactiveDrawer
+      this.storyObjects?.isSurfaceMesh(mesh)
+      || metadata?.interactiveDrawer
       || metadata?.interactiveDoor
       || metadata?.interactiveClock
       || metadata?.interactiveInspectable
