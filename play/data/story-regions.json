@@ -1,6 +1,9 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.jhd0.family-mirror-lead","area":"JHD0","actor":"AKIR","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.master-chen.completed"],"completedFlag":"story.s1.family-mirror-lead.completed",
+      "min":[-5,-0.5,-26],"max":[-1,2,-22],"provenance":"Authored courtyard approach around original SORA0 Ryo [-3.086535,0,-23.527935], leading toward Fuku by the tree. Original SORA/INEK presentation, not a reconstructed native trigger."},
     {"id":"s1.ms08.master-chen-plate","area":"MS08","actor":"AKIR","playMode":"story","openingCompleted":true,
       "requiredFlags":["story.s1.old-district-stealth.completed"],"completedFlag":"story.s1.master-chen.completed",
       "min":[17.5,-0.5,-13.5],"max":[21,2,-9.5],"provenance":"Authored plate-approach volume around original SEQDATA0 AKIR [19.327665,0,-11.409147]. Proximity shows an explicit inspect/leave choice, not an automatic plate action."},

@@ -3,6 +3,23 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"ine-fuku-looking","actor":"INE_","area":"JOMO","title":"Ine-san — Fuku-san is looking for you",
+      "requiredFlags":["story.s1.master-chen.completed"],"excludedFlags":["story.s1.family-mirror-lead.completed"],"completedFlag":"story.s1.ine-fuku-looking.completed","effects":["notebook.s1.fuku-looking"],
+      "voiceIds":["F1005B062","F1005A054","F1005B067"],
+      "provenance":"Original Ine-san HUMANS messages; contemporary GameSpot guide printed p36. Optional ordinary conversation in the house, not a prerequisite for the courtyard scene. Original dialogue is condensed to a coherent three-line hint."
+    },
+    {
+      "id":"family-mirror-lead","disc":2,"actor":"AKIR","participants":["FUKU","INE_"],"presentActors":[],"area":"JHD0","trigger":"enter","priority":230,
+      "title":"Fuku-san and Ine-san — the antique-shop lead","bounds":"s1.jhd0.family-mirror-lead",
+      "requiredFlags":["story.s1.master-chen.completed"],"completedFlag":"story.s1.family-mirror-lead.completed","effects":["notebook.s1.antique-shop-lead"],"voiceIds":[],
+      "activities":["s1.jhd0.family-fuku.approach","s1.jhd0.family-fuku.conversation","s1.jhd0.family-ine.conversation"],
+      "nativeSources":[
+        {"role":"original-cinematic","locator":"disc2/SCENE/02/JHD0/SORA.PKS#SEQDATS0/1.AUTH","sha256":"4612acfca36f4b303fcc928d710f42cee713cac15d80e087166d1feaf66cbb2b"},
+        {"role":"original-cinematic","locator":"disc2/SCENE/02/JHD0/INEK.PKS#SEQDATA1.AUTH","sha256":"2b94364ecf97a89eae19615f9efb701bb4f970ceee07244bb861a0c721d4f479"}
+      ],
+      "provenance":"GameSpot guide printed p36: approach Fuku-san near the courtyard tree, hear his confession, then automatically ask Ine-san about the mirror and learn about an antique shop. Original SORA/INEK bodies, cameras, voices and sounds; source INEK poses place her on the exterior porch. Approach volume and immediate original music start are adaptations. No room-controller reconstruction, native-flag guess, item grant or calendar change. One missing source voice retains its cue without substitute speech."
+    },
+    {
       "id":"master-chen-first-meeting","disc":2,"actor":"AKIR","participants":["TAIJ","KISY"],"presentActors":[],"area":"MS08","trigger":"enter","priority":210,
       "title":"Master Chen — the second mirror","bounds":"s1.ms08.master-chen-plate",
       "requiredItems":[{"key":"chinese_letter","quantity":1}],

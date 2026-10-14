@@ -98,6 +98,8 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.old-district-patrols",page:Object.freeze({id:"story-old-district-patrols",text:"I'm inside the Old Warehouse District.\n\nI need to find Warehouse No. 8 without being caught by the patrolling guards."})},
   {flag:"notebook.s1.master-chen",page:Object.freeze({id:"story-master-chen",text:"Met Master Chen and Gui Zhang at Old Warehouse No. 8.\n\nLan Di leads a Chinese organization called Chi You Men. His martial arts are deadly.\n\nZhu Yuan Da knew Dad. The letter came too late."})},
   {flag:"notebook.s1.phoenix-mirror-search",page:Object.freeze({id:"story-phoenix-mirror-search",text:"There may be a second mirror — the Phoenix Mirror.\n\nLook for it at home, then return to Master Chen. Telephone before visiting and remember the passwords."})},
+  {flag:"notebook.s1.fuku-looking",page:Object.freeze({id:"story-fuku-looking",text:"Ine-san says Fuku-san is looking for me.\n\nLook for him around the dojo."})},
+  {flag:"notebook.s1.antique-shop-lead",page:Object.freeze({id:"story-antique-shop-lead",text:"Fuku-san told Ine-san what happened. He doesn't know about the Phoenix Mirror.\n\nDad left something important at an antique shop in Dobuita. Could it be the mirror? Visit Bunkado Antiques."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

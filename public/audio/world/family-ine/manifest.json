@@ -1,0 +1,2050 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_hazuki_mirror_search_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01MIR.AFS",
+      "sha256": "6ad07cee430c53e6f952d246b7b7207d8873f12f8f687dbf521f5c32b48beca7"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_INEKO.SND",
+      "sha256": "1f924f204d704c6020b5cd43f42cc246991a819c5d44b491145d9f36fda49cd0"
+    },
+    "authManifest": "play/assets/hazuki/family-ine/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#family-lead-to-the-antique-shop"
+  },
+  "voices": [
+    {
+      "voiceId": "01MIRA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRA001.aiff",
+      "nativeMember": "01MIRA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 8192,
+      "nativeSha256": "5fd64fd071475019637b06f9d68f35e3b16fd7127a3b16b447f5e12363355f8e",
+      "speakerId": "AKIR",
+      "sourceText": "Ah, Ine-san=@",
+      "displayText": "Ah, Ine-san...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRA001.wav",
+      "byteLength": 32556,
+      "sha256": "5af7d437fd28c22e8ad7a97e3ca1820c944873f634bfa5f7bd57023d9fb30b71"
+    },
+    {
+      "voiceId": "01MIRA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRA002.aiff",
+      "nativeMember": "01MIRA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 4096,
+      "nativeSha256": "137ec75d75e6fbf6b9f3deeda3c2cd4e67fa6cdab8ee9e6cc92200e40385a604",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRA002.wav",
+      "byteLength": 16172,
+      "sha256": "35c21445593f7a22d25f47a9dc0bafb7fbc71fbe90f3ac3265352c036b220a67"
+    },
+    {
+      "voiceId": "01MIRA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRA003.aiff",
+      "nativeMember": "01MIRA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 6144,
+      "nativeSha256": "31e90d9c4f309e3bdc2495002509fd35b78f121c224d4fd3533f2c16c131b639",
+      "speakerId": "AKIR",
+      "sourceText": "We were talking=@?",
+      "displayText": "We were talking...?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRA003.wav",
+      "byteLength": 24364,
+      "sha256": "083cabd51ccd2fae5fc7f65c0611a5f3818431907a87f1718e4c5ad18935611e"
+    },
+    {
+      "voiceId": "01MIRA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRA004.aiff",
+      "nativeMember": "01MIRA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 12288,
+      "nativeSha256": "1d5814e4025ab0db6a0585e47d80eafa48600cff20510d61c37a7aa48e3be6d7",
+      "speakerId": "AKIR",
+      "sourceText": "It's OK.",
+      "displayText": "It's OK.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRA004.wav",
+      "byteLength": 48940,
+      "sha256": "cb746c16a9b604075547c223c42e2c61e11c51ef91ac7048f06cc76286f07461"
+    },
+    {
+      "voiceId": "01MIRA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRA005.aiff",
+      "nativeMember": "01MIRA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 22528,
+      "nativeSha256": "7ba5c2cfe4351bbb66069075d2d2a5029c87392ea2797b57c2dd66024e0fdd1c",
+      "speakerId": "AKIR",
+      "sourceText": "I=@ I'm sorry. For making＆you worry so much.",
+      "displayText": "I... I'm sorry. For making\nyou worry so much.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 28
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 26
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRA005.wav",
+      "byteLength": 89900,
+      "sha256": "62e468b7f909ffe0d945e8778258cdd85c80ec185dd2b0fa92d2b182ccc3e15f"
+    },
+    {
+      "voiceId": "01MIRA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRA006.aiff",
+      "nativeMember": "01MIRA006.str",
+      "speakerId": "AKIR",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "This exact AUTH-authored voice is absent from both the original 01MIR.AFS and its IDX directory; cue timing is retained without substitute speech.",
+      "evidence": "disc2/SCENE/02/STREAM/01MIR.AFS and 01MIR.IDX"
+    },
+    {
+      "voiceId": "01MIRA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRA007.aiff",
+      "nativeMember": "01MIRA007.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 8192,
+      "nativeSha256": "ad9f3e7fd166c6b3a442e48b615b53bfed4e5955518abb32cf0be80fde882085",
+      "speakerId": "AKIR",
+      "sourceText": "My father did what?",
+      "displayText": "My father did what?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRA007.wav",
+      "byteLength": 32556,
+      "sha256": "4cd52e6dae850b2a661f8d840b3d64536d93ee88d31f14e6d8064a52a83acaf0"
+    },
+    {
+      "voiceId": "01MIRA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRA008.aiff",
+      "nativeMember": "01MIRA008.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 8192,
+      "nativeSha256": "3528d7c2a1f04578fc88755f7ceef59e6707302dca47ffdc84061ea4d3142008",
+      "speakerId": "AKIR",
+      "sourceText": "Antique shop=@",
+      "displayText": "Antique shop...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRA008.wav",
+      "byteLength": 32556,
+      "sha256": "fd6b48e1a60bd01ff14c4c8cdf6fd589f2f0bf5b10febd79980f224d1055aac4"
+    },
+    {
+      "voiceId": "01MIRB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRB001.aiff",
+      "nativeMember": "01MIRB001.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 26624,
+      "nativeSha256": "1d2ed244bfadc7f74804eef4cf14676428301731f7f7f1abe0262d23baceb1f2",
+      "speakerId": "INE_",
+      "sourceText": "Fuku-san talks very loud,＆doesn't he?",
+      "displayText": "Fuku-san talks very loud,\ndoesn't he?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRB001.wav",
+      "byteLength": 106284,
+      "sha256": "9da5e30298b3dd39c1ea8e663e212d2615b94d1c81afb8741684ceae9447b45c"
+    },
+    {
+      "voiceId": "01MIRB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRB002.aiff",
+      "nativeMember": "01MIRB002.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 18432,
+      "nativeSha256": "267484487ec36c76aebe887d2363b7009d2bc2e66088b0218bd16c2d6145eebe",
+      "speakerId": "INE_",
+      "sourceText": "I just heard the two of you talking.",
+      "displayText": "I just heard the two of you talking.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRB002.wav",
+      "byteLength": 73516,
+      "sha256": "249455678db28be76993e26243d39029a5aac4a7c868c23f280c75f50e5a67c8"
+    },
+    {
+      "voiceId": "01MIRB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRB003.aiff",
+      "nativeMember": "01MIRB003.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 30720,
+      "nativeSha256": "2c2be97ca9de5e32880c52ffe1d0af06c8bd034ee95fabda9d7426eb5e1dece5",
+      "speakerId": "INE_",
+      "sourceText": "Yes. I'm sorry.＆It was rude of me to eavesdrop.",
+      "displayText": "Yes. I'm sorry.\nIt was rude of me to eavesdrop.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 41
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRB003.wav",
+      "byteLength": 122668,
+      "sha256": "df47c45da1d35065fcc4234ce149cfd8c203f3744b0b4b904f4c02da40b0cecd"
+    },
+    {
+      "voiceId": "01MIRB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRB004.aiff",
+      "nativeMember": "01MIRB004.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 10240,
+      "nativeSha256": "623176ac4dce84613c02b1c1013c94186bd45d5aaf431a94c9fc2c84a2a193c7",
+      "speakerId": "INE_",
+      "sourceText": "No it wasn't.",
+      "displayText": "No it wasn't.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRB004.wav",
+      "byteLength": 40748,
+      "sha256": "1805ae9f797d8c41dc8c1c8ee049a637027db2f7d76b3017c18c307ff0dd8cd7"
+    },
+    {
+      "voiceId": "01MIRB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRB005.aiff",
+      "nativeMember": "01MIRB005.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 28672,
+      "nativeSha256": "37459513aa8289ba6bc0899e354b71bb58e539fe9e02f0d3d3f9af52645744b0",
+      "speakerId": "INE_",
+      "sourceText": "But then, who could tell the son of＆Iwao Hazuki to stay out of trouble?",
+      "displayText": "But then, who could tell the son of\nIwao Hazuki to stay out of trouble?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRB005.wav",
+      "byteLength": 114476,
+      "sha256": "37823f1b4dcdef0002f824790a11288883065574ec4ebbf28cd7286be6feb4e4"
+    },
+    {
+      "voiceId": "01MIRB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRB006.aiff",
+      "nativeMember": "01MIRB006.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 10240,
+      "nativeSha256": "d5f807186e7ca97d39b9408260b8be09a5a25efdef6fabca847dc0c7a5a0e3d3",
+      "speakerId": "INE_",
+      "sourceText": "I hate to say it, but=@",
+      "displayText": "I hate to say it, but...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRB006.wav",
+      "byteLength": 40748,
+      "sha256": "e81ade2a422cd1f2cd7da3720b85b197dcf7b8e059ce81d9572bd40d423ef812"
+    },
+    {
+      "voiceId": "01MIRB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRB007.aiff",
+      "nativeMember": "01MIRB007.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 20480,
+      "nativeSha256": "5a717953788e5919f0b60461b41bc64e390c58e3b3eac6fcd5f12464d43198d1",
+      "speakerId": "INE_",
+      "sourceText": "I feel like I'm letting your father down!",
+      "displayText": "I feel like I'm letting your father down!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRB007.wav",
+      "byteLength": 81708,
+      "sha256": "7c5595540c9da4a837710ab343600e74b3037d07cb2ddc16f0fdeb695f6c9e91"
+    },
+    {
+      "voiceId": "01MIRB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRB008.aiff",
+      "nativeMember": "01MIRB008.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 4096,
+      "nativeSha256": "8cfec84a0ff5f9b0f8c024799219152560681f120c13bb72ad9e343003f68079",
+      "speakerId": "INE_",
+      "sourceText": "Ryo-san=@",
+      "displayText": "Ryo-san...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRB008.wav",
+      "byteLength": 16172,
+      "sha256": "94c551a47c04b77abc264f9b2a7db3b41cfa5e835c074bbf9839eab152b553a7"
+    },
+    {
+      "voiceId": "01MIRB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRB009.aiff",
+      "nativeMember": "01MIRB009.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 18432,
+      "nativeSha256": "77042aaaa9a51eafbe8ba84f208477e8e85b2acd0d5655bdc39a3cb0aba2fc1a",
+      "speakerId": "INE_",
+      "sourceText": "I don't know if this will help or not,",
+      "displayText": "I don't know if this will help or not,",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRB009.wav",
+      "byteLength": 73516,
+      "sha256": "cab6276adb92fad2006c605cb28fa530739778b55f213ec4abe78c1c1e36e672"
+    },
+    {
+      "voiceId": "01MIRB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRB010.aiff",
+      "nativeMember": "01MIRB010.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 14336,
+      "nativeSha256": "fd7bb35f736e6d91146225cb1d1f84144811a1672cc19a4d26084296faaec718",
+      "speakerId": "INE_",
+      "sourceText": "but there was one thing I recall=@",
+      "displayText": "but there was one thing I recall...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 25
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRB010.wav",
+      "byteLength": 57132,
+      "sha256": "6ab1668729409dfa82417da04ce1d3b3c6b750e7524f0206972cc9ad8d5b6084"
+    },
+    {
+      "voiceId": "01MIRB011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRB011.aiff",
+      "nativeMember": "01MIRB011.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 14336,
+      "nativeSha256": "9e2b2e8e05c720f25d28c412278c374ffeb5a001a6618d09637a001d0ad1f1f3",
+      "speakerId": "INE_",
+      "sourceText": "It wasn't that long ago, when=@",
+      "displayText": "It wasn't that long ago, when...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRB011.wav",
+      "byteLength": 57132,
+      "sha256": "4d4d604f1b408d83833d177a8c07e1cac96447bb3d099adeb6f4518b665c3df4"
+    },
+    {
+      "voiceId": "01MIRB012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRB012.aiff",
+      "nativeMember": "01MIRB012.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 30720,
+      "nativeSha256": "8124180aeb928dd94d5a4487956d01126130a526b6704389a21d34de659171a9",
+      "speakerId": "INE_",
+      "sourceText": "Hazuki-sensei went to an antique shop＆to have something stored for him.",
+      "displayText": "Hazuki-sensei went to an antique shop\nto have something stored for him.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRB012.wav",
+      "byteLength": 122668,
+      "sha256": "fcf831c0c164cb902f76e3883052e634e7d1940188a8a6648492891fd4884a4c"
+    },
+    {
+      "voiceId": "01MIRB013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRB013.aiff",
+      "nativeMember": "01MIRB013.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 30720,
+      "nativeSha256": "265a138261eb7eae033781bf766af6a69a47153cd48eab335fb348b5c936fb69",
+      "speakerId": "INE_",
+      "sourceText": "I don't know what it was=@＆But he said it was very important.",
+      "displayText": "I don't know what it was...\nBut he said it was very important.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-ine/voice/01MIRB013.wav",
+      "byteLength": 122668,
+      "sha256": "070943e546d275477963bbf7919dcbe80aa5a98d5b024a2b6b48601703c2232e"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SE/cloths2/friction4.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-ine/sfx/a9040000.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-ine/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SE/foot/sneaker1.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-ine/sfx/a9040200.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SE/foot/sneaker2.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-ine/sfx/a9040300.wav",
+      "byteLength": 9884,
+      "sha256": "342317970a8e9592dc512f800e330aa960c8a019c08ebcec1e370e4fcf3eeea6"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SE/foot/sneaker3.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-ine/sfx/a9040400.wav",
+      "byteLength": 11188,
+      "sha256": "4f08f0da0c9852ab8de0ef02f0758a9c39be3e73c0f38d3dd5b7a572389d1960"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SE/foot/sneaker5.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-ine/sfx/a9040500.wav",
+      "byteLength": 10804,
+      "sha256": "0334446f014be77a677e0e4e97f7e1604c7dc5b356bef53103d39acc9081f9e1"
+    }
+  ]
+}

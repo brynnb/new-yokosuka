@@ -86,7 +86,7 @@ for (const route of spec.routes) {
     if(!/^[a-z][a-z0-9_]*$/.test(key)||!Number.isSafeInteger(quantity)||quantity<1)throw new Error(`Invalid inventory prerequisite in ${route.id}`);
     return {key,quantity};
   });
-  const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...requiredItems.map(({key,quantity})=>`!has_item("${key}", ${quantity})`), `flag_set("${route.completedFlag}")`];
+  const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...(route.excludedFlags||[]).map(flag=>`flag_set("${flag}")`), ...requiredItems.map(({key,quantity})=>`!has_item("${key}", ${quantity})`), `flag_set("${route.completedFlag}")`];
   if (route.hours) gates.push(route.hours[0] < route.hours[1]
     ? `(game_hour() < ${route.hours[0]} || game_hour() >= ${route.hours[1]})`
     : `(game_hour() < ${route.hours[0]} && game_hour() >= ${route.hours[1]})`);

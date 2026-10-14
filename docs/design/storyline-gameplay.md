@@ -1,7 +1,7 @@
 # Storyline gameplay integration
 
 Status: authored Story prototype plus retained native-engine research
-Last reviewed: October 13, 2026
+Last reviewed: October 14, 2026
 
 The [implemented play modes](../implementation/play-modes.md) isolate Story
 and Free roam saves, calendars and NPC views. The current implementation uses
@@ -58,8 +58,11 @@ Guard AI, detection balance and camera framing are explicit adaptations.
 Master Chen's first meeting now continues that earned arrival through the
 original four-part plate/letter/mirror presentation. Rendered decline,
 cancellation, natural completion, combined notebook/next-morning home return
-and reload pass. The Phoenix Mirror search and later storyline remain
-unimplemented.
+and reload pass. The following optional Ine-san hint and original courtyard
+Fuku/porch Ine-san conversations are connected through the same event system.
+Rendered hint/approach, cancellation/retry, natural completion, saved clue,
+restored movement and reload pass. The sword handguard, dojo puzzle,
+Phoenix Mirror recovery and later storyline remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

@@ -91,6 +91,23 @@ test("Fuku's gate conversation borrows TGMA without granting another letter", ()
   assert.deepEqual(activity.cutscene.activity,{slot:0,binding:{primaryPointer:0x601b8,secondaryPointer:0x601bd}});
 });
 
+test("family mirror conversations share presentation ownership without durable effects",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  for(const [id,packageId,slot] of [
+    ["family-fuku.approach","family-fuku",0],
+    ["family-fuku.conversation","family-fuku",1],
+    ["family-ine.conversation","family-ine",0],
+  ]){
+    const activity=catalog.activity(`s1.jhd0.${id}`);
+    assert.equal(activity.area,"JHD0");
+    assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.durableEffects,"forbidden");
+    assert.equal(activity.cutscene.worldId,"exterior");
+    assert.equal(activity.cutscene.packageId,packageId);
+    assert.deepEqual(activity.cutscene.activity,{slot,binding:{primaryPointer:0,secondaryPointer:0}});
+  }
+});
+
 test("runtime dispatches Hato commands through an owned transaction", async () => {
   const { runtime, calls } = harness();
   runtime.begin({ area: "D000", actorCode: "HATO" });

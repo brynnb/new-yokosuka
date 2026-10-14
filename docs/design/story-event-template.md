@@ -228,7 +228,8 @@ Do not describe the first conversation as fully animation-faithful.
 | Old Warehouse District daytime gate / nighttime entry | Optional original voiced guard, cancellation/re-entry, waiting in the same area until 19:00, failed Right QTE/retry, original head-bump/catch motion, saved original inside-district arrival, ground support, restored control and reload verified. Compiler/database tests prove personal-hour boundaries, cancelled successful input without travel, exact atomic arrival and no fabricated stealth/Chen success. Shot, held prompt and flashlight binding are authored. |
 | Old Warehouse District guard avoidance | Connected original-geometry movement, patrols, cover and actual door use; rendered cancellation/reload, capture/next-morning recovery, re-entry, success and saved MS08 arrival verified. Real compiler/database tests cover interrupted input, real detection, atomic recovery and character isolation. Routes, vision/balance and framing are authored, not recovered guard AI. |
 | Master Chen's first meeting | Connected four-segment original presentation, plate confirmation and atomic notebook/next-morning home return verified. Real compiler/database checks cover prerequisites, decline, cancellation at every segment and stale acknowledgements. Rendered approach, decline, live cancellation, natural completion, original Chen/Gui Zhang/body/camera presentation, saved home return and reload pass. |
-| Phoenix Mirror search | Missing connected authored progression after the first Chen meeting. |
+| Family lead to the antique shop | Connected optional original-voiced Ine-san hint and original SORA/INEK sequence. Compiler/database cancellation and atomic-clue checks pass. Rendered hint/approach, live cancellation/retry, natural completion, saved clue, restored movement and reload without replay pass. |
+| Phoenix Mirror search | Missing sword-handguard handover, return-home investigation, dojo puzzle and mirror recovery. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -1447,3 +1448,42 @@ cancels a live presentation, completes the four segments naturally, and checks
 home return/reload. That connected rendered check passes; its screenshots show
 Chen and Gui Zhang in the original warehouse shots. Detailed hand/face fidelity
 and listening fidelity are not claimed.
+
+## Family lead to the antique shop
+
+Official imports: `story-s1-ine-fuku-looking` (optional ordinary talk) and
+`story-s1-family-mirror-lead` (courtyard approach). The
+[contemporary GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed page 36, places Ine-san's hint before Fuku's confession by the tree and
+the automatic conversation about the antique shop. The hint is not an invented
+mandatory gate.
+
+| Field | Authored integration |
+| --- | --- |
+| Location / trigger | Talk to the actual Ine-san in JOMO; then approach the courtyard tree in JHD0. The authored volume surrounds original SORA0 Ryo [-3.086535,0,-23.527935]. |
+| Prerequisites | Personal Story Ryo, completed opening and earned first Chen meeting. No forced minute, weather or public-world date. |
+| Actors / presentation | Original AKIR/FUKU SORA0 and SORA1, followed by AKIR/INE_ INEK. INEK's original positions place her on the exterior porch, not in the house. Shared cinematic ownership suppresses ambient duplicates. |
+| Sequence / audio | Original bodies, cameras, voice/subtitle timing and sounds: approximately 9, 54 and 82 seconds. Reuse the MAPINFO-associated BGM085/BGM077 tracks; starting the music with each package is an authored timing approximation. |
+| Optional hint | Original HUMANS F1005B062, F1005A054 and F1005B067, condensed without repeating equivalent lines. Saves a notebook hint only after ordinary conversation completion and stops being offered after the family scene. |
+| Outcome | Atomically save the family milestone and antique-shop notebook clue. No item, currency, mirror, guessed native flag or calendar change. |
+| Exit / retry | Restore the player's approach position and controls after the sequence. This adapts the original automatic porch relocation. Cancellation or failed preparation saves nothing and remains retryable; stale acknowledgements cannot finish a cancelled run. A completed scene does not replay. |
+
+`build:hazuki-mirror-search` uses the shared original activity/audio compilers.
+It pins Disc 2 JHD0 MAPINFO, SORA/INEK archives, 01SOR/01MIR streams and their
+A1_FUKAY/A1_INEKO soundbanks. The AUTH-extension ordinals are borrowed directly,
+with explicitly zero native pointer bindings; native-owner branching is not
+claimed. Generated source receipts record exact archive and member hashes.
+Forty original voices and fourteen SFX are available. The additional INEK cue
+`01MIRA006.str` is absent from both the source AFS and IDX; its timing is retained
+without substitute speech. BGM077 reuses the existing hash-pinned viewer render.
+Raw assets stay ignored and locally registered; no R2 publication is performed.
+
+The real compiler/database check continues the earned Chen character through
+this event, testing accepted bounds, cancellation at every segment, stale
+acknowledgements, exact scene order, once-only settlement and unchanged
+calendar/location/economy. Another character without the Chen milestone is
+rejected and does not receive the outcome. The connected browser check resumes
+the earned home checkpoint, clicks the actual Ine-san, crosses the courtyard
+approach, cancels/retries, completes all three scenes naturally, moves Ryo after
+cleanup and reloads without replay. That rendered check passes; inspected
+screenshots show Fuku by the tree and Ine-san on the porch.

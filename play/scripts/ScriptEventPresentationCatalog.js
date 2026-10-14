@@ -33,6 +33,13 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["family-fuku","approach",0],["family-fuku","conversation",1],["family-ine","conversation",0]].map(([packageId,part,slot])=>[`s1.jhd0.${packageId}.${part}`,{
+    kind:"native-cutscene",area:"JHD0",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:`story-s1-${packageId}-${part}`,packageId,worldId:"exterior",storyPresentation:true,
+      // Borrow ordinal AUTH members; zero bindings explicitly do not claim
+      // recovered native-owner selection.
+      activity:{slot,binding:{primaryPointer:0,secondaryPointer:0}}},
+  }]),
   ...[["plate",0,0x2ca34],["arrival",3,0x2ca6a],["lan-di",1,0x2ca46],["phoenix",2,0x2ca58]].map(([part,slot,primaryPointer])=>[`s1.ms08.master-chen.${part}`,{
     kind:"native-cutscene",area:"MS08",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-master-chen-${part}`,packageId:"master-chen",worldId:"ms08",storyPresentation:true,

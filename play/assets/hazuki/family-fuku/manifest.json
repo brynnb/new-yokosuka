@@ -1,0 +1,153 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_hazuki_mirror_search_pack.mjs",
+  "source": {
+    "disc": 2,
+    "path": "disc2/SCENE/02/JHD0/SORA.PKS",
+    "sha256": "4612acfca36f4b303fcc928d710f42cee713cac15d80e087166d1feaf66cbb2b",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "M_01SOR.MOTN",
+        "byteLength": 48232,
+        "sha256": "f825f421d17874b08f7954f070dbe34ba2d36dce97fe6bd2ef975f8c97baa646"
+      },
+      {
+        "name": "SEQDATS0.AUTH",
+        "byteLength": 4200,
+        "sha256": "ae5c71086c5b3fdae22d99eb303e033e4693f0b7e0be2253af904dd174d1c123"
+      },
+      {
+        "name": "SEQDATS1.AUTH",
+        "byteLength": 18132,
+        "sha256": "2cd563b9d601ff0e40c31204db203502a120c3cacce3d2b778f203f07b8c3cc7"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-event-template.md#family-lead-to-the-antique-shop",
+    "resourceName": "SORA",
+    "variant": "",
+    "selectionRule": "Borrow original AUTH-extension ordinals with zero pointer bindings; authored sequence, not recovered room-owner branching."
+  },
+  "audioManifest": "public/audio/world/family-fuku/manifest.json",
+  "actorTags": [
+    "AKIR",
+    "FUKU"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/hazuki/family-fuku/M_01SOR.MOTN",
+      "byteLength": 48232,
+      "sha256": "f825f421d17874b08f7954f070dbe34ba2d36dce97fe6bd2ef975f8c97baa646"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/family-fuku/M_01SOR.MOTN",
+      "byteLength": 48232,
+      "sha256": "f825f421d17874b08f7954f070dbe34ba2d36dce97fe6bd2ef975f8c97baa646"
+    },
+    {
+      "path": "play/assets/hazuki/family-fuku/SEQDATS0.AUTH",
+      "byteLength": 4200,
+      "sha256": "ae5c71086c5b3fdae22d99eb303e033e4693f0b7e0be2253af904dd174d1c123"
+    },
+    {
+      "path": "play/assets/hazuki/family-fuku/SEQDATS1.AUTH",
+      "byteLength": 18132,
+      "sha256": "2cd563b9d601ff0e40c31204db203502a120c3cacce3d2b778f203f07b8c3cc7"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "primaryPointer": 0,
+      "secondaryPointer": 0,
+      "activityId": "SORA/SEQDATS0.AUTH",
+      "archiveMember": "SEQDATS0.AUTH",
+      "byteLength": 4200,
+      "sha256": "ae5c71086c5b3fdae22d99eb303e033e4693f0b7e0be2253af904dd174d1c123",
+      "durationFrames": 280,
+      "durationSeconds": 9.350000381469727,
+      "frameCount": 18,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2,
+        "effect": 1,
+        "sound": 13,
+        "voice": 3
+      },
+      "actors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "motions": [
+        {
+          "actorTag": "FUKU",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "IWA_FUK_AT1_AWATERU_FUKAYAMARU0_0100",
+          "startFrame": 201,
+          "endFrame": 635
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 134,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_RANTEI_NAKAMADATTANOKA_0147",
+          "startFrame": 1,
+          "endFrame": 147
+        }
+      ]
+    },
+    {
+      "slot": 1,
+      "primaryPointer": 0,
+      "secondaryPointer": 0,
+      "activityId": "SORA/SEQDATS1.AUTH",
+      "archiveMember": "SEQDATS1.AUTH",
+      "byteLength": 18132,
+      "sha256": "2cd563b9d601ff0e40c31204db203502a120c3cacce3d2b778f203f07b8c3cc7",
+      "durationFrames": 1630,
+      "durationSeconds": 54.349998474121094,
+      "frameCount": 36,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2,
+        "effect": 15,
+        "voice": 17,
+        "sound": 4
+      },
+      "actors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT5_AYAMARU_SYABETTA_0100",
+          "startFrame": 1,
+          "endFrame": 1461
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "IWA_FUK_AT5_AYAMARU_SYABETTA0_0100",
+          "startFrame": 1,
+          "endFrame": 1483
+        }
+      ]
+    }
+  ]
+}

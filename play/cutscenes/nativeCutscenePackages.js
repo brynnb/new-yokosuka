@@ -53,6 +53,10 @@ import phoneBookManifest from "../assets/dobuita/phone-book/manifest.json";
 import phoneBookAudio from "../../public/audio/world/phone-book/manifest.json";
 import masterChenManifest from "../assets/harbor/master-chen/manifest.json";
 import masterChenAudio from "../../public/audio/world/master-chen/manifest.json";
+import familyFukuManifest from "../assets/hazuki/family-fuku/manifest.json";
+import familyFukuAudio from "../../public/audio/world/family-fuku/manifest.json";
+import familyIneManifest from "../assets/hazuki/family-ine/manifest.json";
+import familyIneAudio from "../../public/audio/world/family-ine/manifest.json";
 import kkyaActivityManifest from "../assets/hazuki/kkya/manifest.json";
 import kkybActivityManifest from "../assets/hazuki/kkyb/manifest.json";
 import kkycActivityManifest from "../assets/hazuki/kkyc/manifest.json";
@@ -97,6 +101,8 @@ const bundledHouoAssets = runtimeAssetGroup("play/assets/hazuki/houo/*.{AUTH,MOT
 const bundledTokiAssets = runtimeAssetGroup("play/assets/dobuita/toki/*.{AUTH,MOTN,MT5,BIN}");
 const bundledPhoneBookAssets = runtimeAssetGroup("play/assets/dobuita/phone-book/*.{AUTH,MOTN,CHRM,bin}");
 const bundledMasterChenAssets = runtimeAssetGroup("play/assets/harbor/master-chen/*.{AUTH,MOTN,CHRM,bin}");
+const bundledFamilyFukuAssets = runtimeAssetGroup("play/assets/hazuki/family-fuku/*.{AUTH,MOTN}");
+const bundledFamilyIneAssets = runtimeAssetGroup("play/assets/hazuki/family-ine/*.{AUTH,MOTN}");
 const bundledKkyaAssets = runtimeAssetGroup("play/assets/hazuki/kkya/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkybAssets = runtimeAssetGroup("play/assets/hazuki/kkyb/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkycAssets = runtimeAssetGroup("play/assets/hazuki/kkyc/*.{AUTH,MOTN,CHRM,MAPM}");
@@ -320,6 +326,19 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     environment:Object.freeze({packageActors:masterChenManifest.packageActors,sceneObjects:masterChenManifest.sceneObjects,attachedObjects:masterChenManifest.attachedObjects}),
     playback:Object.freeze({manifest:masterChenManifest,audioManifest:masterChenAudio}),
   }),
+  ...[
+    ["family-fuku",familyFukuManifest,familyFukuAudio,bundledFamilyFukuAssets,"FUKU","bgm085"],
+    ["family-ine",familyIneManifest,familyIneAudio,bundledFamilyIneAssets,"INE_","bgm077"],
+  ].map(([id,manifest,audioManifest,assets,actor,trackId])=>Object.freeze({
+    id,worldId:"exterior",actorDefinitions:nativeActors.forWorld("exterior"),actorTags:Object.freeze(manifest.actorTags),
+    assets:Object.freeze({...sourceAssetMap(assets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,...op00HandAssets}),
+    presentation:Object.freeze({
+      handAssets:Object.freeze({AKIR:op00AssetInventory.handAssets.AKIR,[actor]:op00AssetInventory.handAssets[actor]}),
+      facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR,[actor]:nativeFaceManifest.facialAssets[actor]}),
+    }),
+    playback:Object.freeze({manifest,audioManifest}),
+    music:Object.freeze({cues:Object.freeze([Object.freeze({startActivity:true,trackId,loop:true})]),gain:1}),
+  })),
   Object.freeze({
     id: "phone-book",
     worldId: "dobuita", actorDefinitions: Object.freeze([]), actorTags: Object.freeze(["AKIR"]),
