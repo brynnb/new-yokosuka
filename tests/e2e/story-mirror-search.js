@@ -1,6 +1,72 @@
 import {expect} from "@playwright/test";
 import nativeMapTransitions from "../../play/data/native-map-transitions.json" with {type:"json"};
 import jomoPlacements from "../../play/data/jomo-runtime-placements.json" with {type:"json"};
+import storyDestinations from "../../play/data/story-destinations.json" with {type:"json"};
+
+export async function verifyBasementTravel(page,testInfo,character){
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const before=await saved();expect(before.character.storyFlags["story.s1.dojo-sword-switch.completed"]).toBe(true);
+  expect(before.character.storyFlags["story.s1.basement-visited"]).not.toBe(true);
+  const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
+  const approach=async(which)=>{
+    await page.evaluate(which=>{
+      const l=window.storyProbe.lifecycle,c=l.getController();
+      // Shorten the walk, not its trigger or result: actual W/collision crosses
+      // the authored approach from outside, with accepted server presence.
+      const p=which==="descent"?[9.5,.96,-22.5]:[-.758,-.005110997706651688,6];
+      l.resetPlayer(l.vectorFromArray(p),which==="descent"?-Math.PI/2:0,{persist:false});
+      c.setFirstPerson(true);c.cameraYaw=which==="descent"?-Math.PI/2:Math.PI;c.cameraPitch=0;c.updateCamera(1);
+    },which);
+    await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+    try{await page.waitForFunction(id=>window.storyProbe.authoredScene?.active?.scene.id===id||window.storyProbe.sceneErrors.length,
+      which==="descent"?"s1.jhd0.basement-descent":"s1.ydb1.basement-return",{timeout:25_000});}
+    finally{await page.keyboard.up("KeyW");}await noErrors();
+  };
+  const confirm=async(label)=>{
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("line");
+    await page.waitForFunction(()=>window.storyProbe.dialogue?.active);
+    await page.keyboard.press("Space");await page.getByRole("button",{name:label,exact:true}).click();
+  };
+  const arrived=async world=>{
+    await page.waitForFunction(world=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id===world&&window.storyProbe.lifecycle.worldRuntime.ready,world,{timeout:90_000});
+    await expect(page.locator("#loading")).toBeHidden({timeout:90_000});await idle();await noErrors();
+  };
+  if(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)!=="exterior")await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld("exterior"));
+  await expect(page.locator("#loading")).toBeHidden({timeout:90_000});await idle();
+  await approach("descent");await page.waitForTimeout(600);
+  await page.screenshot({path:testInfo.outputPath("basement-descent-approach.png")});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-basement-descent"));await idle();
+  expect((await saved()).character.worldId).toBe("exterior");expect((await saved()).character.storyFlags["story.s1.basement-visited"]).not.toBe(true);
+  await approach("descent");await confirm("Leave it for now");await idle();
+  expect((await saved()).character.storyFlags["story.s1.basement-visited"]).not.toBe(true);
+  await approach("descent");await confirm("Descend into the basement");await arrived("ydb1");
+  await page.waitForTimeout(1500);await page.screenshot({path:testInfo.outputPath("basement-arrival.png")});
+  const initial=await saved();expect(initial.character.worldId).toBe("ydb1");expect(initial.character.storyFlags["notebook.s1.basement"]).toBe(true);
+  const arrival=storyDestinations.destinations.find(d=>d.id==="s1.home.basement-entry");
+  const position=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());
+  for(let axis=0;axis<3;axis++)expect(position[axis]).toBeCloseTo(arrival.position[axis],1);
+  await page.evaluate(()=>{const c=window.storyProbe.lifecycle.getController();c.setFirstPerson(true);c.cameraYaw=0;c.cameraPitch=0;c.updateCamera(1);});
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+  try{await page.waitForFunction(()=>window.storyProbe.lifecycle.getController().collider.position.z<3,null,{timeout:12_000});}
+  finally{await page.keyboard.up("KeyW");}
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.y)).toBeGreaterThan(-1);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.z)).toBeLessThan(position[2]-.5);
+  await page.screenshot({path:testInfo.outputPath("basement-main-room-movement.png")});
+  await approach("return");await page.waitForTimeout(500);await page.screenshot({path:testInfo.outputPath("basement-return-approach.png")});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-basement-return"));await idle();expect((await saved()).character.worldId).toBe("ydb1");
+  await approach("return");await confirm("Return to the dojo");await arrived("exterior");
+  expect((await saved()).character.storyFlags["story.s1.basement-returned"]).toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.x)).toBeCloseTo(9.5,1);
+  // The visited flag must not turn this entrance into a one-shot dead end.
+  await approach("descent");await confirm("Descend into the basement");await arrived("ydb1");
+  const after=await saved();expect(after.inventory).toEqual(before.inventory);expect(after.character.yen).toBe(character.yen);expect(after.character.currentHp).toBe(character.currentHp);
+  expect(after.character.storyFlags["story.s1.phoenix-mirror.completed"]).not.toBe(true);
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:90_000});await arrived("ydb1");
+  await page.screenshot({path:testInfo.outputPath("basement-saved-reload.png")});
+}
 
 export async function verifyDojoSwitches(page,testInfo,character){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());

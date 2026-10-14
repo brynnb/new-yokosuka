@@ -1,6 +1,12 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.jhd0.basement-descent","area":"JHD0","actor":"AKIR","repeatable":true,"playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.dojo-sword-switch.completed"],"completedFlag":"story.s1.basement-visited","min":[10.05,0.4,-23.4],"max":[11.5,3,-21.5],
+      "provenance":"Authored accessible approach on the dojo side of the opened SKAB panel. A confirmation condenses the native script-owned perimeter/ladder; no automatic descent or switch award."},
+    {"id":"s1.ydb1.basement-return","area":"YDB1","actor":"AKIR","repeatable":true,"playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.basement-visited"],"completedFlag":"story.s1.basement-returned","min":[-1.05,-0.6,7.25],"max":[-0.55,2,8.05],
+      "provenance":"Authored exit approach inside the original north corridor between collision boundaries x=-1.0687 and x=-0.44775. Separate from room arrival [-2,0,6]. Explicit, repeatable confirmation."},
     {"id":"s1.jhd0.handguard-switch","area":"JHD0","actor":"AKIR","trigger":"use","playMode":"story","openingCompleted":true,
       "requiredFlags":[],"completedFlag":"story.s1.dojo-handguard-switch.completed","min":[8.7,0,-23.4],"max":[12,3.5,-20.2],
       "provenance":"Use-only proximity to original KAK2 left scroll [11.242,2.9721,-21.937]. Actual handguard possession is independently required by Yarn."},

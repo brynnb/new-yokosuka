@@ -49,7 +49,7 @@ export class StoryRegionRuntime {
       }
       const inside = position.every((value, axis) => value >= region.min[axis] && value <= region.max[axis]);
       if (!inside) { this.inside.delete(region.id); continue; }
-      if (this.inside.has(region.id) || character.storyFlags?.[region.completedFlag]
+      if (this.inside.has(region.id) || (!region.repeatable && character.storyFlags?.[region.completedFlag])
         || (region.requiredFlags || []).some(flag => character.storyFlags?.[flag] !== true)) continue;
       this.inside.add(region.id);
       this.publishPresence();

@@ -87,8 +87,14 @@ handguard/sword switch events. Real clicks, leave/cancel/retry, unchanged owned
 items, server-saved switches, personal scroll/wall presentation and reload pass
 in the browser. Original recess/opened-wall geometry is visibly checked;
 scroll rolling, detailed object/hand placement and sideways wall movement are
-approximations. Basement admission/descent and investigation, Phoenix Mirror
-recovery and later storyline remain unimplemented.
+approximations. Walking to the solved passage now offers a confirmed basement
+descent through the existing server transaction. Original YDB1 room/furniture,
+normal supported movement into the room, live cancellation/leave/retry, exact
+dojo return, repeat entry and saved reload are rendered/full-stack verified.
+The floor-supported basement arrival and cameras/prompts are authored; the
+return uses original JHD0 entry 6. Climbing and light-source interactions remain
+omitted. Basement investigation, Phoenix Mirror recovery and later storyline
+remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

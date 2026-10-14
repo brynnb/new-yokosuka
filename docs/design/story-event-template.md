@@ -233,8 +233,9 @@ Do not describe the first conversation as fully animation-faithful.
 | Gui Zhang's street encounter | Connected original introduction, server-timed nonlethal fight, bodyguard explanation and rooftop Chai shot. Rendered cancellation/re-entry, physical combat inputs, natural ending, notebook and reload pass. Approach bounds, AI/balance and music-start timing are authored. |
 | Return-home handguard / family crest | Connected original voiced Fuku referral, physical altar-room door/approach and embedded Ine-san presentation. Rendered cancellation/re-entry, natural scene ending, independent notebook settlement, restored controls and reload pass. Held Fuku gestures, close-up and handguard handling are adaptations. |
 | Iwao's key / dojo sword case | Connected real drawer/case picking, explicit leave/pickup choices, live cancellation/retry, saved inventory/notebook and reload without duplicate grants pass in the browser. Compiler/database proximity, key prerequisite, stale acknowledgement and character isolation checks pass. Captions/cameras are authored; detailed lid/hand choreography remains omitted. |
-| Dojo scrolls / hidden-wall switches | Connected real-object clicks, explicit leave/fit choices, live cancellation/retry, independent server settlement, saved scroll/wall presentation and reload pass. Original recess/opened-wall geometry is visibly checked. Scroll rolling, handguard/sword placement and wall translation are authored approximations; basement travel is not yet connected. |
-| Phoenix Mirror search | Missing playable basement entrance/descent, basement investigation and mirror recovery. |
+| Dojo scrolls / hidden-wall switches | Connected real-object clicks, explicit leave/fit choices, live cancellation/retry, independent server settlement, saved scroll/wall presentation and reload pass. Original recess/opened-wall geometry is visibly checked. Scroll rolling, handguard/sword placement and wall translation are authored approximations. |
+| Basement entry / return | Connected walking approach, explicit leave/descend choice, live cancellation/retry, saved YDB1 arrival, normal movement into the room, cancelled return/retry, exact dojo return, repeat descent and saved reload pass. Original room/furniture geometry is visible. Arrival/cameras/prompts are authored; climbing animation and lighting interactions remain omitted. |
+| Phoenix Mirror search | Missing basement investigation, light-source interactions and mirror recovery. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -1685,7 +1686,39 @@ the revealed space behind the moved wall. Shared presentation tests cover
 failed preparation, malformed/missing/ambiguous targets, cancellation cleanup,
 character isolation, mode restoration and non-accumulating offsets.
 
-**Still missing:** physical entrance/descent into YDB1 and its investigation.
-The room view and saved switch flags do not prove walkable admission, safe
-basement arrival, flashlight/candle use, or Phoenix Mirror recovery. These remain
-separate connected event work, not silently credited by switch completion.
+Switch completion alone does not grant basement arrival or a mirror. The
+separate confirmation/travel events below now connect admission and return;
+basement investigation and mirror recovery remain independent work.
+
+## Basement admission and return
+
+Official imports: `story-s1-basement-descent` and `story-s1-basement-return`.
+The contemporary guide's printed page 39 establishes descending through the
+opened dojo passage. Room geometry and collision come from original Disc 2
+YDB1; no native room-controller execution is required.
+
+| Field | Authored integration |
+| --- | --- |
+| Location / trigger | Walk into the accessible dojo-side approach to the opened SKAB panel. A separate north-corridor approach inside YDB1 offers return. Neither immediately travels: both require an explicit confirmation. |
+| Prerequisites | Story Ryo and completed opening; descent requires the saved sword-switch completion, and return requires a saved basement visit. No global weather/calendar gate. |
+| Sequence / timing | Owned standing close-up and newly authored unvoiced caption, then descend/return or leave. The shared ordinary Yarn confirmation template finishes its temporary presentation before queuing one reviewed destination in the existing settlement transaction. No timed challenge or forced clock jump. |
+| Room / props | Load only original S2_YDB1_MAP and MAP01, retaining the furnished room. Do not stack every CHRM member at origin: separately controlled props need reviewed placements. No new asset binaries or publication are required for these existing catalogued maps. |
+| Arrival / return | Existing entry evidence has no typed/default AKIR arrival for YDB1. Its declared authored arrival is [-2,-0.005111,6], on original MAP01 support west of the partition; normal rendered movement confirms access toward the main room. Return uses original JHD0 entry 6 [9.5,0.96,-22.5], outside the descent volume. The client world spawn derives from the same authoritative destination export. |
+| Effects | Save destination and idempotent visit/notebook flags atomically. No inventory, yen, HP, time or Phoenix Mirror grant. Both reward-free routes are repeatable, so leaving cannot permanently lock exploration. |
+| Failure / recovery | Leave, cancelled caption, failed preparation and stale replies do not travel. Existing receipt/presence fences reject old-room and invented first-arrival coordinates; duplicate receipts do not restart travel. Reload reconstructs the saved world and controls. |
+| Fidelity limits | Accessible approach and confirmation condense the script-owned doorway/ladder. Cameras, captions and basement arrival are authored. Climbing, flashlight/candle/power interactions, exact original darkness and detailed prop inspection are not implemented. |
+
+Story routing now derives reviewed destination rooms alongside the NPC area's
+existing mapping. An empty room therefore does not need fabricated ambient NPC
+data to run events. Conflicting area mappings still disable dispatch rather
+than guessing an alias or trusting a browser-supplied area.
+
+Compiler/PostgreSQL checks cover proximity, leave/cancellation/stale replies,
+atomic exact destination, repeat visits and unchanged inventory/economy/calendar.
+Realtime checks cover both destinations' stale-room/first-arrival fences,
+duplicate receipts, rooms without ambient NPCs and mapping conflicts. The
+connected browser check walks to the approach with ordinary input/collision,
+cancels/leaves/retries, enters YDB1, walks from z=6 past z=3 with supported
+ground, cancels/retries return, revisits and reloads without replay. Inspected
+captures show the original room geometry, furniture and return presentation.
+This is not verification of every basement prop, illumination rule or secret.

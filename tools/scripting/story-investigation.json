@@ -3,6 +3,24 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"basement-descent","actor":"AKIR","presentActors":[],"area":"JHD0","trigger":"enter","priority":240,"repeatable":true,
+      "title":"Hazuki dojo — descend into the basement","bounds":"s1.jhd0.basement-descent","requiredFlags":["story.s1.dojo-sword-switch.completed"],
+      "completedFlag":"story.s1.basement-visited","effects":["notebook.s1.basement"],"destination":"s1.home.basement-entry",
+      "staging":"s1.jhd0.basement-descent","yarnTemplate":"story-confirm-travel.yarn","voiceIds":[],"optionSelections":[0],
+      "authoredText":{"prompt":"The hidden passage leads down beneath the dojo.","confirm":"Descend into the basement"},
+      "nativeSources":[{"role":"original-room","locator":"disc2/SCENE/02/YDB1/MAPINFO.BIN","sha256":"3c954c79cf22327bc736c0ef07f95126468880074c55247cf04085c51ebbf0f1"}],
+      "provenance":"GameSpot guide printed p39: approach the hole behind the opened dojo wall and descend. Authored approach/standing close-up and unvoiced confirmation condense walking past the source's script-owned perimeter and ladder animation. Server requires the solved switches, checks accepted proximity and atomically saves an authored floor-supported YDB1 arrival and notebook. Safe return and re-entry are repeatable, without item/economy/calendar rewards. Original YDB1 has no recovered typed/default player arrival; do not claim this is a native entry."
+    },
+    {
+      "id":"basement-return","actor":"AKIR","presentActors":[],"area":"YDB1","trigger":"enter","priority":240,"repeatable":true,
+      "title":"Hazuki basement — return to the dojo","bounds":"s1.ydb1.basement-return","requiredFlags":["story.s1.basement-visited"],
+      "completedFlag":"story.s1.basement-returned","effects":[],"destination":"s1.home.dojo-from-basement",
+      "staging":"s1.ydb1.basement-return","yarnTemplate":"story-confirm-travel.yarn","voiceIds":[],"optionSelections":[0],
+      "authoredText":{"prompt":"This passage leads back to the dojo.","confirm":"Return to the dojo"},
+      "nativeSources":[{"role":"original-arrival","locator":"disc2/SCENE/02/JHD0/MAPINFO.BIN#Entry6@0x645d8","sha256":"09bc11af0ea9d9bb8496fc8da74e15f3dfc2e667a4b0572726f24873c4d9c466"}],
+      "provenance":"Repeatable explicit return, using original JHD0 entry 6 outside the descent volume. Authored basement exit approach/camera and omitted climbing choreography. Reuse the existing atomic Story destination/arrival fence. No mirror, money, calendar or extra possession grant."
+    },
+    {
       "id":"dojo-handguard-switch","actor":"AKIR","presentActors":[],"area":"JHD0","trigger":"use","object":"KAK2","objectLabel":"Left dojo scroll","priority":220,
       "title":"Hazuki dojo — the handguard recess","bounds":"s1.jhd0.handguard-switch","requiredFlags":[],"requiredItems":[{"key":"sword_handguard","quantity":1}],
       "completedFlag":"story.s1.dojo-handguard-switch.completed","effects":["notebook.s1.dojo-handguard-switch"],

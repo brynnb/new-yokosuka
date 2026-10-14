@@ -1,5 +1,6 @@
 import * as BABYLON from "@babylonjs/core";
 import shenmue2Exploration from '../data/shenmue2-exploration-worlds.json' with { type: 'json' };
+import storyDestinations from "../data/story-destinations.json" with {type: "json"};
 import shenmue2BoundaryTransitions, {
   SHENMUE2_TRAVERSABLE_WORLD_DATA,
 } from "../../src/Shenmue2BoundaryTransitionData.js";
@@ -101,6 +102,9 @@ import {
   CINEMA_TRANSITION_INTERACTIONS,
   CINEMA_WORLD_SCALE,
 } from "./cinema.js";
+
+const basementArrival = storyDestinations.destinations.find(destination => destination.id === "s1.home.basement-entry");
+if (!basementArrival) throw Error("Missing reviewed Hazuki basement arrival");
 
 function hasRuntimePlacement(position) {
   return !(
@@ -626,6 +630,21 @@ export const WORLDS = Object.freeze({
     yaw: 0,
     includeFile: includeHazukiExteriorMapFile,
     placements: placements.exterior,
+  }),
+  ydb1: Object.freeze({
+    id: "ydb1",
+    label: "Hazuki Residence Basement",
+    japaneseLabel: "芭月家地下室",
+    interior: true,
+    nativeArea: "YDB1",
+    prefix: "S2_YDB1",
+    spawn: new BABYLON.Vector3(...basementArrival.position),
+    yaw: basementArrival.yaw,
+    terrainMaxHeight: 1.4,
+    // Original MPK00 supplies the room and its furniture layer. Do not load
+    // each archive member at origin: most props need separate owner placement.
+    includeFile: filename => /^S2_YDB1_MAP(?:01)?\.MT5$/i.test(filename),
+    placements: Object.freeze([]),
   }),
   interior: Object.freeze({
     id: "interior",

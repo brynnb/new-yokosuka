@@ -2,6 +2,16 @@
   "schema":"new-yokosuka-authored-story-scenes-v1",
   "motionBanks":{"koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN","mgqb":"play/assets/harbor/goro-encounter/M_MGQB.MOTN","mbui":"play/assets/harbor/warehouse-eight/M_0153A.MOTN","oldDistrict":"play/assets/harbor/old-district-entry/M_0153.MOTN"},
   "scenes":[{
+    "id":"s1.jhd0.basement-descent","area":"JHD0","worldId":"exterior","actorDefinitions":[],
+    "provenance":"Authored close-up on the accessible side of the solved passage. Original room geometry, no recovered ladder choreography.",
+    "actors":[{"tag":"AKIR","pose":{"x":-10.3,"y":0.96,"z":-22.5,"rotationX":0,"rotationY":90,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":-10.4,"positionY":2.4,"positionZ":-22.5,"targetX":-12.3,"targetY":1.7,"targetZ":-22.5,"roll":0,"perspective":65}
+  },{
+    "id":"s1.ydb1.basement-return","area":"YDB1","worldId":"ydb1","actorDefinitions":[],
+    "provenance":"Authored north-passage exit prompt/standing pose, not original camera or climb motion.",
+    "actors":[{"tag":"AKIR","pose":{"x":0.758,"y":-0.005110997706651688,"z":7.35,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":1.8,"positionY":1.2,"positionZ":6.9,"targetX":0.758,"targetY":1.1,"targetZ":7.7,"roll":0,"perspective":65}
+  },{
     "id":"s1.jhd0.handguard-switch","area":"JHD0","worldId":"exterior","actorDefinitions":[],
     "provenance":"Original KAK2/SKAB left-scroll/recess location; authored held Ryo and close-up. Visibility condenses scroll rolling and handguard handling; no recovered original voice or hand choreography.",
     "objectTransforms":[{"object":"KAK2","visible":false}],

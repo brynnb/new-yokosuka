@@ -86,7 +86,11 @@ for (const route of spec.routes) {
     if(!/^[a-z][a-z0-9_]*$/.test(key)||!Number.isSafeInteger(quantity)||quantity<1)throw new Error(`Invalid inventory prerequisite in ${route.id}`);
     return {key,quantity};
   });
-  const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...(route.excludedFlags||[]).map(flag=>`flag_set("${flag}")`), ...requiredItems.map(({key,quantity})=>`!has_item("${key}", ${quantity})`), `flag_set("${route.completedFlag}")`];
+  // Repeatability is for reviewed, reward-free room travel, not repeated quest
+  // payouts. One-way milestone gates would strand a player after returning.
+  if (route.repeatable && (!route.destination || route.items?.length || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length)) throw Error(`Unsafe repeatable route ${route.id}`);
+  if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw Error(`Invalid Story destination ${route.id}`);
+  const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...(route.excludedFlags||[]).map(flag=>`flag_set("${flag}")`), ...requiredItems.map(({key,quantity})=>`!has_item("${key}", ${quantity})`), ...(route.repeatable ? [] : [`flag_set("${route.completedFlag}")`])];
   if (route.hours) gates.push(route.hours[0] < route.hours[1]
     ? `(game_hour() < ${route.hours[0]} || game_hour() >= ${route.hours[1]})`
     : `(game_hour() < ${route.hours[0]} && game_hour() >= ${route.hours[1]})`);
@@ -116,6 +120,7 @@ for (const route of spec.routes) {
         return text;
       })
       .replaceAll("{{staging}}", route.staging)
+      .replaceAll("{{destination}}", route.destination || "{{destination}}")
       .replaceAll("{{effects}}", effects.join("\n"));
     if (body.includes("{{")) throw new Error(`Unresolved Yarn template reference ${route.id}`);
   } else if(route.combat) {
@@ -187,6 +192,7 @@ for (const route of spec.routes) {
       ...(route.activityResults?{activityResults:route.activityResults}:{}),
     } }],
   });
+  if (route.repeatable) imports.at(-1).Summary = "Repeatable, reward-free room travel with authored unvoiced confirmation. The existing server transaction saves one reviewed destination and idempotent notebook/milestones; leave or cancellation does not travel.";
 }
 fs.writeFileSync(path.join(server, "internal/officialscript/early_investigation.generated.json"), JSON.stringify(imports, null, 2) + "\n");
 // Runtime authority boundary: translated Story talks cannot silently select a

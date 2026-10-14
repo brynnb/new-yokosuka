@@ -7,6 +7,18 @@ test("malformed personal-hour metadata is an error, not an invisible missing eve
     assert.throws(()=>new StoryRegionRuntime({controller:{},getCharacter(){},publishPresence(){},regions:[{id:"broken",hours}]}),/Invalid story region hours: broken/);
 });
 
+test("reward-free room travel remains repeatable but latches until physical re-entry", async () => {
+  let starts=0;
+  const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{solved:true,visited:true}};
+  const runtime=new StoryRegionRuntime({controller:{status:"idle",start:async()=>starts++},getCharacter:()=>character,publishPresence(){},
+    regions:[{id:"descent",area:"JHD0",min:[10,0,-23],max:[11,3,-21],requiredFlags:["solved"],completedFlag:"visited",repeatable:true}]});
+  const frame={area:"JHD0",playerPosition:[10.3,1,-22.5],enabled:true};
+  assert.equal(runtime.update(frame),true);assert.equal(runtime.update(frame),false);
+  runtime.update({...frame,playerPosition:[9.5,1,-22.5]});assert.equal(runtime.update(frame),true);
+  assert.equal(starts,2);
+  character.playMode="free_roam";runtime.reset();assert.equal(runtime.update(frame),false);
+});
+
 test("personal time opens the night gate without requiring physical re-entry",()=>{
   let date=null;const calls=[];
   const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{}};

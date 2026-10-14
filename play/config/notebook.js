@@ -108,6 +108,7 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.dojo-sword",page:Object.freeze({id:"story-dojo-sword",text:"The mysterious key opened the long sword case in the dojo.\n\nA sword and the family handguard. Look behind the two hanging scrolls opposite the dojo entrance."})},
   {flag:"notebook.s1.dojo-handguard-switch",page:Object.freeze({id:"story-dojo-handguard-switch",text:"The family handguard fits the recess behind the left dojo scroll.\n\nThe right scroll may hide another part of the mechanism."})},
   {flag:"notebook.s1.dojo-hidden-door",page:Object.freeze({id:"story-dojo-hidden-door",text:"Inserted the dojo sword behind the right scroll.\n\nThe hidden wall opened. Could the Phoenix Mirror be behind it?"})},
+  {flag:"notebook.s1.basement",page:Object.freeze({id:"story-basement",text:"Found a hidden basement beneath the dojo.\n\nCould Dad have hidden the Phoenix Mirror here? Search the room for clues."})},
 ]);
 
 export function notebookPagesForCharacter(character) {
