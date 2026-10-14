@@ -227,7 +227,8 @@ Do not describe the first conversation as fully animation-faithful.
 | New Warehouse No. 8: refusal → rear window → overheard clue | Connected rendered approach, original voiced guard, cancellation/re-entry, climb decline/retry, correctly aligned original entering-window motion, exact office arrival, cancelled conversation/reload, saved Old Warehouse District notebook and restored controls verified. Real compiler/database tests cover bounds, stale acknowledgement, cancelled/declined climb without travel, atomic original arrival, once-only effects and personal isolation. Crate physics and walkway search are condensed. |
 | Old Warehouse District daytime gate / nighttime entry | Optional original voiced guard, cancellation/re-entry, waiting in the same area until 19:00, failed Right QTE/retry, original head-bump/catch motion, saved original inside-district arrival, ground support, restored control and reload verified. Compiler/database tests prove personal-hour boundaries, cancelled successful input without travel, exact atomic arrival and no fabricated stealth/Chen success. Shot, held prompt and flashlight binding are authored. |
 | Old Warehouse District guard avoidance | Connected original-geometry movement, patrols, cover and actual door use; rendered cancellation/reload, capture/next-morning recovery, re-entry, success and saved MS08 arrival verified. Real compiler/database tests cover interrupted input, real detection, atomic recovery and character isolation. Routes, vision/balance and framing are authored, not recovered guard AI. |
-| Master Chen / Phoenix Mirror | Missing connected authored progression beyond the earned MS08 arrival. |
+| Master Chen's first meeting | Connected four-segment original presentation, plate confirmation and atomic notebook/next-morning home return verified. Real compiler/database checks cover prerequisites, decline, cancellation at every segment and stale acknowledgements. Rendered approach, decline, live cancellation, natural completion, original Chen/Gui Zhang/body/camera presentation, saved home return and reload pass. |
+| Phoenix Mirror search | Missing connected authored progression after the first Chen meeting. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -1405,3 +1406,44 @@ listening fidelity is not claimed. Compiler/PostgreSQL checks also prove
 interruption/cancellation, actual capture, replay fencing and per-character
 isolation. Master Chen remains a separate subsequent event. No R2 publication
 or deployment is performed.
+
+## Master Chen's first meeting
+
+Official import: `story-s1-master-chen-first-meeting`. The
+[contemporary GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed page 35, describes the plate disturbance, meeting with Chen and Gui
+Zhang, the Phoenix Mirror lead, and next-day 08:30 home return. Original A0154
+dialogue corroborates the letter, Lan Di/Chi You Men and second-mirror beats.
+
+| Field | Authored integration |
+| --- | --- |
+| Location / trigger | MS08, Old Warehouse No.8. Approach the shelves near original AUTH Ryo position [19.327665,0,-11.409147]. A proximity volume offers Inspect the plate / Leave it for now. This confirmation adapts the original A-button plate interaction, not its native object controller. |
+| Prerequisites / setup | Personal Story Ryo, completed opening, earned patrol/door-use milestone and actual Chinese Letter possession. No exact weather/minute gate or externally shared story time. Borrow the cinematic camera/actors and lock ordinary interactions. |
+| Actors / props | Original AKIR, TAIJ and KISY body motions/models; suppress ambient duplicates through shared ownership. Original NSR02YKG small dish follows SARA's AUTH movement. That model binding is an explicit approximation. Original MALS507 letter uses authored right-hand presentation/handover cues, not recovered callback transforms. |
+| Sequence / timing | Play original SEQDATA0 (plate), 6 (arrival/letter), 1 (Lan Di), then 3 (Phoenix Mirror), each through the existing original activity runtime. Durations are approximately 4.68, 78.68, 44.02 and 61.02 seconds. Wait for each activity's real terminal cleanup before acknowledging it. The enclosing Yarn run owns the progression, not animation playback. |
+| Dialogue / audio | Original A0154 voices, subtitles and AUTH timing; no replacement dialogue or invented IDs. The package renders 46 distinct voices and twelve SFX. Four exact incidental references are explicitly unavailable in the MS08-requested A1_CHIDE bank (switch, cloth turn, footstep and letter-pocket); no substitute audio. Music and detailed native hand/face callbacks are not reconstructed here. |
+| Camera / weather | Original AUTH camera/movement tracks in the existing warehouse rendering, with personal season/weather preserved. No fabricated original camera IDs, new renderer, force-weather schedule or exact particle recreation. |
+| Challenge | None: investigation/cinematic presentation after successful stealth, not a movie-completion combat win or QTE. |
+| Effects / exit | Save `story.s1.master-chen.completed`, two stable notebook pages about Chen and the Phoenix Mirror search, next personal morning at 08:30 and the established Story bedside arrival together. No currency, mirror, letter duplication, guessed native flag or unrelated quest completion. |
+| Skip / failure / replay | Leave declines without effects. Explicit cinematic skip advances through the same presentation sequence; cancellation, failed preparation, disconnection and stale callbacks do not settle partial progress. Completed meeting does not replay; reconnect loads the committed calendar/location/notebook. |
+
+`build:harbor-meeting` uses the shared original activity/audio compilers. It pins
+the entire MS08.PKS, texture pack, MAPINFO bindings and A0154 stream, then
+validates the four AUTH structures and every resolved motion. Slots are
+AUTH-extension ordinals with original filename/resource literals; authored
+selection is not a claim of recovered room-owner branching. Generated manifests
+record the source bytes and explicit unavailable audio. Raw outputs remain
+ignored and registered through the runtime-asset publisher; no R2 upload is
+performed during local Story implementation. Set `VGMSTREAM_CLI`, `DTPK_DUMP`
+and a Python 3.12 `DTPK_PYTHON` for the existing audio toolchain, and use
+`TMPDIR=/var/tmp` for local generation.
+
+Compiler/PostgreSQL checks exercise missing prerequisites, outside bounds,
+decline, cancellation after each earlier segment, stale acknowledgements,
+ordered activity acknowledgements, combined calendar/home/notebook settlement
+and replay fencing. These do not prove visuals. The connected browser check
+resumes the actually earned MS08 checkpoint, approaches the plate, declines,
+cancels a live presentation, completes the four segments naturally, and checks
+home return/reload. That connected rendered check passes; its screenshots show
+Chen and Gui Zhang in the original warehouse shots. Detailed hand/face fidelity
+and listening fidelity are not claimed.

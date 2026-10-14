@@ -149,7 +149,8 @@ for (const route of spec.routes) {
     // Yarn transaction, not another writable/native progression authority.
     if (!route.activities.length || lines.length || route.staging) throw new Error(`Invalid presentation-only route ${route.id}`);
     if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw new Error(`Invalid Story destination ${route.id}`);
-    body = `${route.activities.map(id => `<<start_activity "${id}">>`).join("\n")}\n${route.destination ? `<<travel_story "${route.destination}">>\n` : ""}${effects.join("\n")}\n<<complete>>`;
+    if(route.timeTransition&&!/^s1\.[a-z0-9.-]+$/.test(route.timeTransition))throw Error(`Invalid Story time transition ${route.id}`);
+    body = `${route.activities.map(id => `<<start_activity "${id}">>`).join("\n")}\n${route.timeTransition?`<<advance_story_time "${route.timeTransition}">>\n`:""}${route.destination ? `<<travel_story "${route.destination}">>\n` : ""}${effects.join("\n")}\n<<complete>>`;
     if (route.confirmation) {
       const { accept, decline } = route.confirmation;
       if (![accept,decline].every(label=>typeof label==='string' && /^[A-Za-z0-9 .,!?'-]+$/.test(label))) throw new Error(`Invalid confirmation ${route.id}`);
@@ -172,7 +173,7 @@ for (const route of spec.routes) {
       flags: Object.fromEntries(route.requiredFlags.map(flag => [flag, true])),
       ...(requiredItems.length?{inventory:Object.fromEntries(requiredItems.map(({key,quantity})=>[key,quantity]))}:{}),
       actorPresence: Object.fromEntries((route.presentActors || participants).map(actor => [actor, true])),
-      ...((route.recordDays?.length||route.combat||route.dayAfter||route.sameDayAs)?{gameDate:"1986-12-04"}:{}),
+      ...((route.recordDays?.length||route.combat||route.dayAfter||route.sameDayAs||route.timeTransition)?{gameDate:"1986-12-04"}:{}),
       ...(route.dayAfter?{progress:{[route.dayAfter]:Date.UTC(1986,11,3)/86400000}}:{}),
       ...(route.sameDayAs?{progress:{[route.sameDayAs]:Date.UTC(1986,11,4)/86400000}}:{}),
       ...(route.bounds?{actorBounds:{AKIR:{[route.bounds]:true}}}:{}),

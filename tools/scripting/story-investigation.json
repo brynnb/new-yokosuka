@@ -3,6 +3,22 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"master-chen-first-meeting","disc":2,"actor":"AKIR","participants":["TAIJ","KISY"],"presentActors":[],"area":"MS08","trigger":"enter","priority":210,
+      "title":"Master Chen — the second mirror","bounds":"s1.ms08.master-chen-plate",
+      "requiredItems":[{"key":"chinese_letter","quantity":1}],
+      "requiredFlags":["story.s1.old-district-stealth.completed"],"completedFlag":"story.s1.master-chen.completed",
+      "effects":["notebook.s1.master-chen","notebook.s1.phoenix-mirror-search"],"voiceIds":[],
+      "confirmation":{"accept":"Inspect the plate","decline":"Leave it for now"},
+      "optionSelections":[0],
+      "activities":["s1.ms08.master-chen.plate","s1.ms08.master-chen.arrival","s1.ms08.master-chen.lan-di","s1.ms08.master-chen.phoenix"],
+      "timeTransition":"s1.wait.morning","destination":"s1.home.bedroom-morning",
+      "nativeSources":[
+        {"role":"original-cinematic","locator":"disc2/SCENE/02/MS08/MS08.PKS#SEQDATA0/6/1/3.AUTH","sha256":"248536436354c9cd22221140886f5583282f5879fc2a5ca240bc1c3b4f8da64f"},
+        {"role":"original-dialogue","locator":"disc2/SCENE/02/STREAM/A0154.AFS","sha256":"d45fb726e2c90f5bd0c4c64e97de1f326bd26e8920606f58317a2da1efdc91b6"}
+      ],
+      "provenance":"Original A0154 dialogue/voices, MS08 AUTH camera/body movement and M_0154 motion bank. GameSpot guide printed p35: inspect a plate, meet Chen and Gui Zhang, learn about Chi You Men and the Phoenix Mirror, return home next morning at 08:30. Proximity confirmation, original small-dish binding, letter handover cues and bedside return are declared adaptations; no native room-controller requirement, guessed native flag, mirror/item grant, or currency reward. Cancellation/decline settle nothing."
+    },
+    {
       "id":"old-district-stealth","disc":2,"actor":"AKIR","participants":["KEBB"],"presentActors":[],"area":"MKSG","trigger":"automatic","priority":210,"hours":[19,24],
       "title":"Old Warehouse District — evade patrols","requiredFlags":["story.s1.old-district-entry.completed"],"completedFlag":"story.s1.old-district-stealth.completed","effects":[],
       "staging":"s1.mksg.patrol-introduction","yarnTemplate":"story-old-district-stealth.yarn","challenge":"s1.mksg.patrols","navigation":true,"voiceIds":[],

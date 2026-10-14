@@ -1,5 +1,45 @@
 import {expect} from "@playwright/test";
 
+export async function verifyFirstChenMeeting(page,testInfo,character){
+  expect(character.worldId).toBe("ms08");expect(character.storyFlags["story.s1.old-district-stealth.completed"]).toBe(true);
+  expect(character.storyFlags["story.s1.master-chen.completed"]).not.toBe(true);
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
+  const approach=async()=>{
+    // Isolate a nearby approach from the earned warehouse arrival. Do not set
+    // milestones, item ownership or a movie/challenge outcome in the browser.
+    await page.evaluate(()=>{const l=window.storyProbe.lifecycle;l.resetPlayer(l.vectorFromArray([22,0,-11.4]),-Math.PI/2,{persist:false});l.getController().setFirstPerson(false);});
+    await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+    try{await expect(page.getByRole("button",{name:"Inspect the plate",exact:true})).toBeVisible({timeout:20_000});}finally{await page.keyboard.up("KeyW");}
+    await noErrors();
+  };
+  await approach();await page.screenshot({path:testInfo.outputPath("master-chen-plate-choice.png")});
+  await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();
+  expect((await saved()).character.storyFlags["story.s1.master-chen.completed"]).not.toBe(true);
+  await approach();await page.getByRole("button",{name:"Inspect the plate",exact:true}).click();
+  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-master-chen-plate"||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await noErrors();
+  await page.waitForTimeout(700);await page.screenshot({path:testInfo.outputPath("master-chen-original-plate.png")});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-Chen-presentation"));await idle();
+  expect((await saved()).character.worldId).toBe("ms08");expect((await saved()).character.storyFlags["notebook.s1.master-chen"]).not.toBe(true);
+  await approach();await page.getByRole("button",{name:"Inspect the plate",exact:true}).click();
+  for(const [part,delay]of [["plate",700],["arrival",65_000],["lan-di",5_000],["phoenix",5_000]]){
+    await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===id||window.storyProbe.sceneErrors.length,`story-s1-master-chen-${part}`,{timeout:100_000});await noErrors();
+    await page.waitForTimeout(delay);await page.screenshot({path:testInfo.outputPath(`master-chen-${part}.png`)});
+    expect((await saved()).character.storyFlags["story.s1.master-chen.completed"]).not.toBe(true);
+  }
+  await expect.poll(async()=>(await saved()).character.worldId,{timeout:100_000}).toBe("interior");
+  await expect(page.locator("#loading")).toBeHidden({timeout:90_000});await idle();await noErrors();
+  const result=await saved();expect(result.character.storyFlags["story.s1.master-chen.completed"]).toBe(true);
+  expect(result.character.storyFlags["notebook.s1.master-chen"]).toBe(true);expect(result.character.storyFlags["notebook.s1.phoenix-mirror-search"]).toBe(true);
+  expect(result.character.storyFlags["story.s1.phoenix-mirror.completed"]).not.toBe(true);expect(result.character.yen).toBe(character.yen);expect(result.character.currentHp).toBe(character.currentHp);
+  expect(new Date(result.worldState.gameTimeMs).getUTCHours()).toBe(8);expect(new Date(result.worldState.gameTimeMs).getUTCMinutes()).toBeGreaterThanOrEqual(30);
+  await page.screenshot({path:testInfo.outputPath("master-chen-earned-next-morning-home.png")});
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:90_000});await expect(page.locator("#loading")).toBeHidden({timeout:90_000});await noErrors();
+  expect((await saved()).character.worldId).toBe("interior");expect(await page.evaluate(()=>window.storyProbe.starts.some(id=>id.startsWith("story-s1-master-chen")))).toBe(false);await idle();
+}
+
 // Resume a genuinely earned district arrival. Navigate with ordinary keyboard
 // intents; no coordinate, detection or success writes are used to win.
 export async function verifyOldDistrictStealth(page,testInfo,character){

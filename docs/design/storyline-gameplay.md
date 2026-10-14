@@ -55,7 +55,11 @@ stationary cover and real door use. Rendered cancellation/reload, actual
 capture, next-morning recovery, waiting/re-entry and saved MS08 arrival pass;
 compiler/database checks prove interruption and per-character isolation too.
 Guard AI, detection balance and camera framing are explicit adaptations.
-Master Chen and the later storyline remain unimplemented.
+Master Chen's first meeting now continues that earned arrival through the
+original four-part plate/letter/mirror presentation. Rendered decline,
+cancellation, natural completion, combined notebook/next-morning home return
+and reload pass. The Phoenix Mirror search and later storyline remain
+unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

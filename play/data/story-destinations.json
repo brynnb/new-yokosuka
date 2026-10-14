@@ -1,6 +1,8 @@
 {
   "schema": "new-yokosuka-story-travel-v1",
   "destinations": [
+    {"id":"s1.home.bedroom-morning","worldId":"interior","scene":1,"area":"JOMO","entry":1,"position":[-17.600000381469727,0,4.099999904632568],"yaw":2.783643872003905,
+      "provenance":"Reuse the established, rendered Story opening bedside arrival from internal/store/play_modes.go InitialLocation. Authored overnight return after Chen's first meeting, not a recovered MS08 exit movie/controller."},
     {"id":"s1.harbor.old-eight-interior","worldId":"ms08","scene":2,"area":"MS08","entry":0,"position":[26.5,0,-2.299999952316284],"yaw":-5.410520681182422,
      "provenance":"Original MS08 CHRS AKIR default entry 0, MAPINFO offset 0x2f264, SHA256 693131be8e2106c08975b75959780006dec6a79a981c910819f614b324e73e90. Use only after genuine patrol/door-use success."},
     {"id":"s1.harbor.old-district-gate","worldId":"mfsy","scene":2,"area":"MFSY","entry":1,"position":[118,0,-12],"yaw":-4.71238898038469,

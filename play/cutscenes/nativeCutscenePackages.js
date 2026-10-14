@@ -51,6 +51,8 @@ import tokiActivityManifest from "../assets/dobuita/toki/manifest.json";
 import tokiAudioManifest from "../../public/audio/world/toki/manifest.json";
 import phoneBookManifest from "../assets/dobuita/phone-book/manifest.json";
 import phoneBookAudio from "../../public/audio/world/phone-book/manifest.json";
+import masterChenManifest from "../assets/harbor/master-chen/manifest.json";
+import masterChenAudio from "../../public/audio/world/master-chen/manifest.json";
 import kkyaActivityManifest from "../assets/hazuki/kkya/manifest.json";
 import kkybActivityManifest from "../assets/hazuki/kkyb/manifest.json";
 import kkycActivityManifest from "../assets/hazuki/kkyc/manifest.json";
@@ -94,6 +96,7 @@ const bundledSakrAssets = runtimeAssetGroup("play/assets/yd01/sakr/*.{AUTH,MOTN,
 const bundledHouoAssets = runtimeAssetGroup("play/assets/hazuki/houo/*.{AUTH,MOTN,CHRM,bin}");
 const bundledTokiAssets = runtimeAssetGroup("play/assets/dobuita/toki/*.{AUTH,MOTN,MT5,BIN}");
 const bundledPhoneBookAssets = runtimeAssetGroup("play/assets/dobuita/phone-book/*.{AUTH,MOTN,CHRM,bin}");
+const bundledMasterChenAssets = runtimeAssetGroup("play/assets/harbor/master-chen/*.{AUTH,MOTN,CHRM,bin}");
 const bundledKkyaAssets = runtimeAssetGroup("play/assets/hazuki/kkya/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkybAssets = runtimeAssetGroup("play/assets/hazuki/kkyb/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkycAssets = runtimeAssetGroup("play/assets/hazuki/kkyc/*.{AUTH,MOTN,CHRM,MAPM}");
@@ -309,6 +312,13 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
       audioManifest: houoAudioManifest,
     }),
     music: nativeSilentActivityMusic("HOUO"),
+  }),
+  Object.freeze({
+    id: "master-chen",worldId:"ms08",actorDefinitions:Object.freeze([]),actorTags:Object.freeze(masterChenManifest.actorTags),
+    assets:Object.freeze({...sourceAssetMap(bundledMasterChenAssets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
+    environment:Object.freeze({packageActors:masterChenManifest.packageActors,sceneObjects:masterChenManifest.sceneObjects,attachedObjects:masterChenManifest.attachedObjects}),
+    playback:Object.freeze({manifest:masterChenManifest,audioManifest:masterChenAudio}),
   }),
   Object.freeze({
     id: "phone-book",

@@ -1,6 +1,9 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.ms08.master-chen-plate","area":"MS08","actor":"AKIR","playMode":"story","openingCompleted":true,
+      "requiredFlags":["story.s1.old-district-stealth.completed"],"completedFlag":"story.s1.master-chen.completed",
+      "min":[17.5,-0.5,-13.5],"max":[21,2,-9.5],"provenance":"Authored plate-approach volume around original SEQDATA0 AKIR [19.327665,0,-11.409147]. Proximity shows an explicit inspect/leave choice, not an automatic plate action."},
     {"id":"s1.mfsy.old-district-day-gate","area":"MFSY","actor":"AKIR","playMode":"story","openingCompleted":true,"hours":[8.5,19],
       "requiredFlags":["story.s1.warehouse-eight-overheard.completed"],"completedFlag":"story.s1.old-district-day-gate.completed",
       "min":[114,-0.5,-18],"max":[122,2,-7],"provenance":"Authored approach around original MFSY entry 1 [118,0,-12]. Yarn owns the daytime gate; advice is optional for nighttime entry."},

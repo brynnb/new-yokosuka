@@ -33,6 +33,11 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["plate",0,0x2ca34],["arrival",3,0x2ca6a],["lan-di",1,0x2ca46],["phoenix",2,0x2ca58]].map(([part,slot,primaryPointer])=>[`s1.ms08.master-chen.${part}`,{
+    kind:"native-cutscene",area:"MS08",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:`story-s1-master-chen-${part}`,packageId:"master-chen",worldId:"ms08",storyPresentation:true,
+      activity:{slot,binding:{primaryPointer,secondaryPointer:primaryPointer+13}}},
+  }]),
   ["s1.d000.harbor-bus.boarding", {
     kind:"native-cutscene",area:"D000",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-harbor-bus",packageId:"buss",worldId:"dobuita",storyPresentation:true,
