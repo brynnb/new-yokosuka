@@ -33,6 +33,16 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["post-chen-home","A0160"],["bank-savings","01BNK"],["travel-family","01EAR"]].map(([part,resource])=>[`s1.jomo.${part}.scene`,{
+    kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:`story-s1-${part}`,packageId:part,worldId:"interior",storyPresentation:true,
+      activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:`${resource}/${resource}.AUTH`}}},
+  }]),
+  ["s1.jomo.mirror-dream.scene",{
+    kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-mirror-dream",packageId:"kkyb",worldId:"interior",storyPresentation:true,
+      activity:{slot:51,binding:{primaryPointer:614200,secondaryPointer:614213}}},
+  }],
   ...[["explanation",6],["theft-start",0],["pursuit",1],["scaffolding",2],["crane",3],["failure",4],["save-mirror",5],["hong-kong",7]].map(([part,slot])=>[`s1.ms08.mirror-meeting.${part}`,{
     kind:"native-cutscene",area:"MS08",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-mirror-meeting-${part}`,packageId:"mirror-meeting",worldId:"ms08",storyPresentation:true,

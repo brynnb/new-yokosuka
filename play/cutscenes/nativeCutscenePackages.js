@@ -55,6 +55,12 @@ import masterChenManifest from "../assets/harbor/master-chen/manifest.json";
 import masterChenAudio from "../../public/audio/world/master-chen/manifest.json";
 import mirrorMeetingManifest from "../assets/harbor/mirror-meeting/manifest.json";
 import mirrorMeetingAudio from "../../public/audio/world/mirror-meeting/manifest.json";
+import postChenHomeManifest from "../assets/hazuki/post-chen-home/manifest.json";
+import postChenHomeAudio from "../../public/audio/world/post-chen-home/manifest.json";
+import bankSavingsManifest from "../assets/hazuki/bank-savings/manifest.json";
+import bankSavingsAudio from "../../public/audio/world/bank-savings/manifest.json";
+import travelFamilyManifest from "../assets/hazuki/travel-family/manifest.json";
+import travelFamilyAudio from "../../public/audio/world/travel-family/manifest.json";
 import familyFukuManifest from "../assets/hazuki/family-fuku/manifest.json";
 import familyFukuAudio from "../../public/audio/world/family-fuku/manifest.json";
 import familyIneManifest from "../assets/hazuki/family-ine/manifest.json";
@@ -256,6 +262,15 @@ const nativeSilentActivityMusic = resource => Object.freeze({
 });
 
 const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
+  ...[["post-chen-home",postChenHomeManifest,postChenHomeAudio],["bank-savings",bankSavingsManifest,bankSavingsAudio],["travel-family",travelFamilyManifest,travelFamilyAudio]].map(([id,manifest,audioManifest])=>Object.freeze({
+    id,worldId:"interior",actorDefinitions:Object.freeze([]),actorTags:Object.freeze(manifest.actorTags),
+    assets:Object.freeze({...sourceAssetMap(runtimeAssetGroup(`play/assets/hazuki/${id}/*.{AUTH,MOTN,MT5,bin}`)),
+      ...Object.fromEntries(Object.values(manifest.packageActors||{}).flatMap(actor=>[actor.assetPath,actor.textureAssetPath].filter(Boolean)).map(path=>[path,runtimeAssetUrl(path)])),
+      ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
+    environment:Object.freeze({packageActors:manifest.packageActors,...(manifest.sceneObjects?{sceneObjects:manifest.sceneObjects}:{})}),
+    playback:Object.freeze({manifest,audioManifest}),
+  })),
   Object.freeze({id:"family-crest",worldId:"interior",actorDefinitions:[],actorTags:Object.freeze(familyCrestManifest.actorTags),
     assets:Object.freeze({...runtimeAssetGroup("play/assets/hazuki/family-crest/*.{AUTH,MOTN}"),
       ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,

@@ -31,6 +31,16 @@ test("first-visit gate advice is retired after Chen recognizes the player", () =
   assert.equal(starts,0);
 });
 
+test("Fuku's travel advice waits until the player crosses the real room threshold",()=>{
+  const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,
+    storyFlags:{"story.s1.hong-kong-savings.completed":true}};
+  let starts=0;
+  const runtime=new StoryRegionRuntime({controller:{status:"idle",start:async()=>starts++},getCharacter:()=>character,publishPresence(){}});
+  assert.equal(runtime.update({area:"JOMO",playerPosition:[-21.89,0,.31],enabled:true}),false); // door-opening alignment, still in hall
+  assert.equal(runtime.update({area:"JOMO",playerPosition:[-22.09458,0,-1.100586],enabled:true}),true);
+  assert.equal(starts,1);
+});
+
 test("personal time opens the night gate without requiring physical re-entry",()=>{
   let date=null;const calls=[];
   const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{}};

@@ -117,6 +117,9 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.mirrors-legend",page:Object.freeze({id:"story-mirrors-legend",text:"Master Chen recognized the Phoenix Mirror.\n\nThe Dragon and Phoenix Mirrors form a pair, connected to a Chinese legend. Lan Di must not get this mirror."})},
   {flag:"notebook.s1.mad-angels",page:Object.freeze({id:"story-mad-angels",text:"Chai tried to steal the Phoenix Mirror.\n\nThe Mad Angels may have helped Lan Di in Japan. I need to learn more about them."})},
   {flag:"notebook.s1.hong-kong",page:Object.freeze({id:"story-hong-kong",text:"Master Chen thinks Lan Di has gone to Hong Kong.\n\nI asked for his help, but he warned me not to waste my life on revenge. Return home and speak with Fuku-san about the journey."})},
+  {flag:"notebook.s1.hong-kong-morning",page:Object.freeze({id:"story-hong-kong-morning",text:"Told Fuku-san what Master Chen said about Lan Di and Hong Kong.\n\nRest in my bedroom, then check my savings in the morning."})},
+  {flag:"notebook.s1.bank-savings",page:Object.freeze({id:"story-bank-savings",text:"Withdrew my bank savings: ¥36,502.\n\nIt may not be enough for Hong Kong. Speak to Fuku-san in his room about travel agencies."})},
+  {flag:"notebook.s1.travel-agencies",page:Object.freeze({id:"story-travel-agencies",text:"Fuku-san suggested checking the travel agencies in Dobuita.\n\nIne-san won't help me pursue Lan Di. I don't want to worry her, so I'll arrange the journey myself. Ask Global Travel or Asia Travel about Hong Kong fares."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

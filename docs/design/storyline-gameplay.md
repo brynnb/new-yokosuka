@@ -107,7 +107,13 @@ Left challenge. Compiler/database, focused client and connected rendered
 checks pass through cancellation/retry, real password/gate/door use, wrong
 challenge input/retry/success, natural final presentation and saved reload.
 Hand grips, held QTE staging and detailed callbacks remain adaptations.
-Return-home Fuku, ticket acquisition and later storyline remain unimplemented.
+The [home continuation](story-ticket-journey.md#home-and-travel-funds) now
+connects original Fuku/dream/bank/kitchen presentations. Compiler/database and
+rendered earned-save continuations verify cancellation/retry, visible actors
+and bankbook, once-only savings, personal morning arrival, real bedroom-door
+entry, natural kitchen ending and saved reload. Held advice gestures and
+detailed callback/music fidelity remain limited. Ticket acquisition and later
+storyline remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

@@ -1,0 +1,162 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01BNK.AFS",
+      "sha256": "8c9326d2fc8bfa27d4599f9b42f6a38c8300cb25ef0402eb98ed52292656c0c0"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_TUMIR.SND",
+      "sha256": "8d3f347ce7aa7f870074cf0a09ffd3a94f83b012bead47aa63ab827d4b1c4c7c"
+    },
+    "authManifest": "play/assets/hazuki/bank-savings/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#home-and-travel-funds"
+  },
+  "voices": [
+    {
+      "voiceId": "01BNKA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BNK/SOUND/01BNKA001.aiff",
+      "nativeMember": "01BNKA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 8192,
+      "nativeSha256": "3de854936a96453f6087401e0bd6ea6a6203e28823c7ab6afec226a21cb90e93",
+      "speakerId": "AKIR",
+      "sourceText": "Guess Hong Kong's out!",
+      "displayText": "Guess Hong Kong's out!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/bank-savings/voice/01BNKA001.wav",
+      "byteLength": 32556,
+      "sha256": "a3f6bcd31fbae56053648240f843bf5e1aa1a825c58c07c503b6f3ddf179b4be"
+    },
+    {
+      "voiceId": "01BNKA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BNK/SOUND/01BNKA002.aiff",
+      "nativeMember": "01BNKA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "55458e09d993e7dbcaa049e09de0fa8c29ffab7c09ab6d796c935cd291d14c2c",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/bank-savings/voice/01BNKA002.wav",
+      "byteLength": 24364,
+      "sha256": "9cc469a8f8593b5346b6ce0363d1ded25b3cefe417d0a97eb6bf53921f594e6a"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BNK/SE/cloths2/furimuki_n02.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/bank-savings/sfx/a9040000.wav",
+      "byteLength": 25804,
+      "sha256": "b445f45589f7dca74cd10ffb930d08fe60f20e43722f8414eb191cb942211a83"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BNK/SE/smallobject/paper4eq.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/bank-savings/sfx/a9040100.wav",
+      "byteLength": 18300,
+      "sha256": "167a85449701b4c2912f04440a855168bd6fe5c68ccc389c278e198e6567bd26"
+    }
+  ]
+}

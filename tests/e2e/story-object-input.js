@@ -1,5 +1,46 @@
 import {expect} from "@playwright/test";
 
+export async function openStoryRoomDoor(page,{tag,position}) {
+  await page.evaluate(({tag,position})=>{
+    const l=window.storyProbe.lifecycle,d=l.doorInteractions.entries.find(d=>d.objectTag===tag);
+    if(!d)throw Error(`Missing physical room door ${tag}`);
+    l.resetPlayer(l.vectorFromArray(position),0,{persist:false});
+    const b=d.root.getHierarchyBoundingVectors(true),p=b.min.add(b.max).scale(.5),c=l.getController();
+    c.setFirstPerson(true);c.cameraYaw=Math.atan2(position[0]-p.x,position[2]-p.z);
+    c.cameraPitch=Math.atan2(position[1]+c.options.firstPersonHeadHeight-p.y,Math.hypot(p.x-position[0],p.z-position[2]));c.updateCamera(1);
+  },{tag,position});
+  await page.waitForTimeout(500);
+  const point=await page.evaluate(tag=>{
+    const l=window.storyProbe.lifecycle,d=l.doorInteractions.entries.find(d=>d.objectTag===tag),b=d.root.getHierarchyBoundingVectors(true),p=b.min.add(b.max).scale(.5);
+    const canvas=l.engine.getRenderingCanvas(),r=canvas.getBoundingClientRect(),camera=l.scene.activeCamera,vp=camera.getViewMatrix(true).multiply(camera.getProjectionMatrix(true));
+    const s=p.constructor.Project(p,vp.constructor.Identity(),vp,camera.viewport.toGlobal(l.engine.getRenderWidth(),l.engine.getRenderHeight()));
+    const x=s.x*r.width/l.engine.getRenderWidth(),y=s.y*r.height/l.engine.getRenderHeight();
+    const pick=l.scene.pick(x,y,m=>Object.keys(m.metadata||{}).some(k=>k.startsWith("interactive")),false,camera);
+    return{x:r.x+x,y:r.y+y,state:d.state,picked:pick?.pickedMesh?.metadata?.interactiveDoor?.objectTag,
+      threshold:d.collisionBindCenter?.asArray(),type:d.type};
+  },tag);
+  console.info("Room door pick",{tag,...point});
+  if(point.state==="closed"){expect(point.picked).toBe(tag);await page.mouse.click(point.x,point.y);}
+  await page.waitForFunction(tag=>window.storyProbe.lifecycle.doorInteractions.entries.find(d=>d.objectTag===tag)?.state==="open",tag);
+  const gapCenter=await page.evaluate(tag=>{
+    const l=window.storyProbe.lifecycle,d=l.doorInteractions.entries.find(d=>d.objectTag===tag),p=d.collisionBindCenter;
+    if(d.type!=="sliding"||!p)return null;
+    for(const m of l.scene.meshes){
+      if(!m.metadata?.nativeCollisionDoorMoved)continue;
+      for(const [a,b] of m.metadata.nativeCollisionSegments||[]){
+        const dx=b[0]-a[0],dz=b[1]-a[1],len2=dx*dx+dz*dz,t=((p.x-a[0])*dx+(p.z-a[1])*dz)/len2;
+        if(t<0||t>1||Math.hypot(p.x-a[0]-t*dx,p.z-a[1]-t*dz)>.12)continue;
+        // A translated leaf opens a gap at its trailing endpoint. Its closed
+        // center may still overlap the stacked leaf by more than Ryo's radius.
+        const v=m.position,tip=a[0]*v.x+a[1]*v.z<b[0]*v.x+b[1]*v.z?a:b;
+        return[tip[0]+v.x/2,0,tip[1]+v.z/2];
+      }
+    }
+    throw Error(`No moved native boundary for room door ${tag}`);
+  },tag);
+  return {...point,gapCenter};
+}
+
 export async function useStoryInspectable(page,{world,tag,position,expectedChoice='Call 0468-61-5647'}) {
   await page.evaluate(async({world,tag,position})=>{
     const life=window.storyProbe.lifecycle;
@@ -46,4 +87,3 @@ export async function useStoryInspectable(page,{world,tag,position,expectedChoic
   expect(point.tag).toBe(tag);await page.mouse.click(point.x,point.y);
   if(expectedChoice)await expect(page.getByRole('button',{name:expectedChoice,exact:true})).toBeVisible();
 }
-

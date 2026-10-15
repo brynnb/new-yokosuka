@@ -237,6 +237,7 @@ Do not describe the first conversation as fully animation-faithful.
 | Basement entry / return | Connected walking approach, explicit leave/descend choice, live cancellation/retry, saved YDB1 arrival, normal movement into the room, cancelled return/retry, exact dojo return, repeat descent and saved reload pass. Original room/furniture geometry is visible. Arrival/cameras/prompts are authored; climbing animation and lighting interactions remain omitted. |
 | Phoenix Mirror search | Connected floor clue, shelf movement, genuine axe pickup, wall opening and once-only mirror/notebook settlement. Compiled Yarn/PostgreSQL and rendered click/cancel/retry/natural ending/reload checks pass. Placement/camera/grips and mechanical reveals are authored; light-source interactions and optional discoveries remain incomplete. |
 | Return to Master Chen / recover mirror from Chai | Connected rendered Fuku referral, repeat bus, real password call/gate/door, original MS8A cast/body/cameras, wrong Left-QTE input/retry/success, natural ending and saved reload pass. Compiler/PostgreSQL checks cover cancellation, stale receipts and isolation. Grips, held prompt staging and detailed callbacks remain adaptations. |
+| Home update / mirror dream / Ryo's savings / family travel advice | Connected rendered continuations verify original Fuku update, dream/bank cancellation and natural completion, visible bankbook, once-only savings/next-morning arrival, real bedroom door entry, advice cancellation/retry, original kitchen ending and saved reload. Compiler/PostgreSQL and focused client checks pass. Held advice gestures, exact callback detail and home music remain adaptations/omissions. |
 | Hong Kong ticket / Chai / harbor job and Mad Angels | Missing connected authored progression and job/combat outcomes. |
 | Nozomi rescue / final battles / departure | Missing connected authored progression and challenge outcomes. |
 | Shenmue II reuse and missing-input audit | Pending the connected S1 foundation. |
@@ -1795,7 +1796,7 @@ does not depend on recreating the native warehouse controller.
 | Phone / travel | Reuse the existing password dialogue and validator, ordinary telephone motion and reviewed arrival destinations. Dobuita, home and harbor share one appointment milestone. Bus and recognized compound entry are repeatable reward-free travel; first discovery remains a separate one-time event. Receiver choreography and the guard recognition caption/tableau are authored. |
 | Challenge | A server-owned two-second Left prompt after the crane setup. Original scene completion cannot count as input success. Wrong/missing input plays original failure and offers retry/leave. Retry retains the player's earned mirror. The held prompt pose/camera is authored, not a recovered native QTE callback. |
 | Effects / notebook | Set independent referral and appointment flags/pages. Only the successful challenge followed by completed final presentation atomically settles the meeting, mirror legend, Mad Angels and Hong Kong notebook pages. No new mirror, yen, HP or date grant; no possession is consumed on failure. |
-| Exit / interruption | Restore the previous gameplay actor/camera/controls and remain in the warehouse. Leave, cancellation, failed preparation and stale acknowledgements do not settle the chapter. Completed referral/call/meeting cannot replay or award again; committed outcomes survive reload. Return-home Fuku, dream, bank/travel-agency and subsequent story events remain future work. |
+| Exit / interruption | Restore the previous gameplay actor/camera/controls and remain in the warehouse. Leave, cancellation, failed preparation and stale acknowledgements do not settle the chapter. Completed referral/call/meeting cannot replay or award again; committed outcomes survive reload. The separate home continuation below owns Fuku, sleep and bank effects; travel-agency and subsequent story events remain future work. |
 
 ### Source assets and declared limits
 
@@ -1831,3 +1832,10 @@ replay. Inventory, yen and HP remained unchanged. Captures visibly show Ryo,
 Fuku, Chen, Gui Zhang and Chai with the original scene cameras. This does not
 prove exact mirror grip/handovers, crane debris, every face callback or audio
 fidelity by listening.
+
+## Home and travel funds
+
+The [ticket journey guide](story-ticket-journey.md#home-and-travel-funds) specifies
+the next connected chapter, its exact original assets, once-only funds and
+declared timing/staging adaptations. Its verification state is recorded in the
+checklist above rather than inferred from successful asset generation.

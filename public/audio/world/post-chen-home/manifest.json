@@ -1,0 +1,344 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/A0160.AFS",
+      "sha256": "9895738da8b143f1ea3930a66beef9492fc82e9eb0856014878d7db1606c4a49"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_HUKHE.SND",
+      "sha256": "f05518358966ff53f5f6ebda47710ead4d0f11a7dc9605e336a0da2bc17f7b10"
+    },
+    "authManifest": "play/assets/hazuki/post-chen-home/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#home-and-travel-funds"
+  },
+  "voices": [
+    {
+      "voiceId": "A0160A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0160/SOUND/A0160A001.aiff",
+      "nativeMember": "A0160A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 12288,
+      "nativeSha256": "297eb6ec52fe3070f20f6be1dd7d6325a872a7e16a78040ee6b23d08f416653b",
+      "speakerId": "AKIR",
+      "sourceText": "Seems he left for Hong Kong.",
+      "displayText": "Seems he left for Hong Kong.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/post-chen-home/voice/A0160A001.wav",
+      "byteLength": 48940,
+      "sha256": "70a418564c96a80af3327b3797c0ac43448276aa17fc31f6a894744a6436ff53"
+    },
+    {
+      "voiceId": "A0160B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0160/SOUND/A0160B001.aiff",
+      "nativeMember": "A0160B001.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 22528,
+      "nativeSha256": "22d729e13a6c2c0a10b9af404fdd8ab1e95444c8524642867640887021866107",
+      "speakerId": "FUKU",
+      "sourceText": "So, the Chi You Men?",
+      "displayText": "So, the Chi You Men?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 36
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 33
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 27
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/post-chen-home/voice/A0160B001.wav",
+      "byteLength": 89900,
+      "sha256": "529a87a727609e9c04701ed443357f6da8e03566fa593613a17ee27fced60cab"
+    },
+    {
+      "voiceId": "A0160B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0160/SOUND/A0160B002.aiff",
+      "nativeMember": "A0160B002.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 10240,
+      "nativeSha256": "23eb1c9ad08aef30f4a4a15eaf1391f4dcde370f2485f5fda7b07b4cfde76b0c",
+      "speakerId": "FUKU",
+      "sourceText": "=@and, Lan Di?",
+      "displayText": "...and, Lan Di?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/post-chen-home/voice/A0160B002.wav",
+      "byteLength": 40748,
+      "sha256": "1fd01ba291536a860534f5ba54aee7d77f86e963c619e5fb9e380c1a205dd698"
+    },
+    {
+      "voiceId": "A0160B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0160/SOUND/A0160B003.aiff",
+      "nativeMember": "A0160B003.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 6144,
+      "nativeSha256": "20eb2a0b9c5d71e8653c24270527e11c7b0633379d6b7c7dd2179440989ce70e",
+      "speakerId": "FUKU",
+      "sourceText": "Hong Kong=@",
+      "displayText": "Hong Kong...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/post-chen-home/voice/A0160B003.wav",
+      "byteLength": 24364,
+      "sha256": "cebce01de18924d3835a6dfc0260cc8738c2eaf9ef2726ef6ddb5615dc82e42b"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JUCE/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/post-chen-home/sfx/a9040000.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JUCE/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/post-chen-home/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JUCE/SE/footroom/gansuriashi2.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/post-chen-home/sfx/a9040200.wav",
+      "byteLength": 10308,
+      "sha256": "8fbcc7724fd943366567dc86b42afc07c323e253043e5da317f933527b6d5e49"
+    }
+  ]
+}
