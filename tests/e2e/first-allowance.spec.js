@@ -17,7 +17,7 @@ import {verifyWorkdayNight,verifySecondWorkday,verifyMarkAfterWork} from "./stor
 import {verifyThirdWorkday} from "./story-workday-three.js";
 import {verifyHarborBikers} from "./story-harbor-bikers.js";
 import {verifyFourthMorning,verifyFourthLunch,verifyFourthAfternoon} from "./story-workday-four.js";
-import {verifyFifthMorning} from "./story-workday-five.js";
+import {verifyFifthMorning,verifyFifthSailorChase} from "./story-workday-five.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -25,7 +25,7 @@ test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated 
 const resumeId = Number(process.env.NEW_YOKOSUKA_STORY_RESUME_ID || 0);
 test.afterEach(async({page},info)=>{
   if(info.status===info.expectedStatus)return;
-  const state=await page.evaluate(()=>{const p=window.storyProbe,l=p?.lifecycle;return{notices:p?.notices,errors:p?.errors,sceneErrors:p?.sceneErrors,status:p?.regions?.controller.status,world:l?.worldRuntime.activeWorld.id,ready:l?.worldRuntime.ready,switching:l?.worldRuntime.switching,movementLocked:l?.getController()?.movementLocked};}).catch(()=>null);
+  const state=await page.evaluate(()=>{const p=window.storyProbe,l=p?.lifecycle;return{notices:p?.notices,errors:p?.errors,sceneErrors:p?.sceneErrors,status:p?.regions?.controller.status,world:l?.worldRuntime.activeWorld.id,ready:l?.worldRuntime.ready,switching:l?.worldRuntime.switching,movementLocked:l?.getController()?.movementLocked,rejected:p?.scriptRejections,presence:p?.presencePublishes?.slice(-5)};}).catch(()=>null);
   console.info("Story failure state:",JSON.stringify(state));
 });
 const variants = resumeId ? [["resume", false]] : [["complete", false], ["skip", false], ["complete", true]];
@@ -66,12 +66,16 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   // Instrument the actual served modules, including HMR timestamp variants.
   // Importing a bare second copy can observe a different prototype from /play.
   for (const [file, hook] of [
+    ["multiplayer/PlayMultiplayerRuntime", `const probePresence=PlayMultiplayerRuntime.prototype.publishPresence;
+      PlayMultiplayerRuntime.prototype.publishPresence=function(force){const result=probePresence.call(this,force);if(window.storyProbe){window.storyProbe.presencePublishes||=[];window.storyProbe.presencePublishes.push({at:performance.now(),force:!!force,sent:result,allowed:this.canPublishPresence(),connected:this.client?.connected,welcomed:this.client?.welcomed,presence:this.client?.latestPresence});if(window.storyProbe.presencePublishes.length>30)window.storyProbe.presencePublishes.shift();}return result;};`],
     ["ui/TransientNotice", `const probeNoticeShow = TransientNotice.prototype.show;
       TransientNotice.prototype.show = function(text,...args) { if(window.storyProbe) { (window.storyProbe.notices ||= []).push(text); console.info('Story notice:',text); } return probeNoticeShow.call(this,text,...args); };`],
     ["world/WorldClock", `const probeWorldState = WorldClock.prototype.setWorldState;
       WorldClock.prototype.setWorldState = function(...args) { window.storyProbe.clock=this; return probeWorldState.apply(this,args); };`],
     ["scripts/ScriptEventController", `const probeFailure = ScriptEventController.prototype.fail;
-      ScriptEventController.prototype.fail = function(error,...args) { window.storyProbe.sceneErrors.push(error.message); return probeFailure.call(this,error,...args); };`],
+      ScriptEventController.prototype.fail = function(error,...args) { window.storyProbe.sceneErrors.push(error.message); return probeFailure.call(this,error,...args); };
+      const probeRejected=ScriptEventController.prototype.handleRejected;
+      ScriptEventController.prototype.handleRejected=function(message,...args){if(window.storyProbe)(window.storyProbe.scriptRejections||=[]).push({at:performance.now(),message,frame:window.storyProbe.lastRegionFrame,presence:window.storyProbe.presencePublishes?.slice(-5)});return probeRejected.call(this,message,...args);};`],
     ["interactions/WorldInteractionDispatcher", `const probeDispatcherStart = WorldInteractionDispatcher.prototype.start;
       WorldInteractionDispatcher.prototype.start = function(...args) { window.storyProbe.interactions=this; return probeDispatcherStart.apply(this,args); };`],
     ["scripts/StoryCombatRuntime", `const probeCombatShow = StoryCombatRuntime.prototype.show;
@@ -151,6 +155,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_FIFTH_SAILORS_E2E === "true"){
+      test.setTimeout(900_000);await verifyFifthSailorChase(page,testInfo,character,{reconnectOnly:process.env.NEW_YOKOSUKA_FIFTH_SAILORS_RECONNECT_E2E==="true",arrivalOnly:process.env.NEW_YOKOSUKA_FIFTH_SAILORS_ARRIVAL_E2E==="true"});expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_FIFTH_MORNING_E2E === "true"){
       test.setTimeout(1_800_000);await verifyFifthMorning(page,testInfo,character);expect(errors).toEqual([]);return;
     }

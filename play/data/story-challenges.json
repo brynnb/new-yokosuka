@@ -2,6 +2,10 @@
   "schema":"new-yokosuka-story-challenges-v1",
   "buttonCodes":["A","B","Left","Right","Up","Down"],
   "challenges":[
+    {"id":"s1.mfsy.sailor-chase.left","label":"Follow the sailors — left","buttons":["Left"],"windowMs":2000},
+    {"id":"s1.mfsy.sailor-chase.right","label":"Follow the sailors — right","buttons":["Right"],"windowMs":2000},
+    {"id":"s1.mfsy.sailor-chase.a","label":"Clear the obstacle","buttons":["A"],"windowMs":2000},
+    {"id":"s1.mfsy.sailor-chase.b","label":"Avoid the obstruction","buttons":["B"],"windowMs":2000},
     {"id":"s1.mfsy.workday-five-morning","label":"Morning cargo — Warehouse No. 8 dispatch","kind":"delivery","delivery":{"worldId":"mfsy","vehicle":[-15.821,0,118.673,1.3021669961391247],"pickup":[-11.964,0.6,119.735],"dropMin":[-3.323,-0.2,120.889],"dropMax":[-1.323,2,123.889],"count":5,"durationSeconds":1800}},
     {"id":"s1.mfsy.goro-trap.b","label":"Escape the Mad Angels' trap","buttons":["B"],"windowMs":2000},
     {"id":"s1.mfsy.goro-trap.a","label":"Escape the Mad Angels' trap","buttons":["A"],"windowMs":2000},

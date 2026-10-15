@@ -7,6 +7,12 @@ import charlieHarborManifest from "../assets/harbor/charlie-harbor-interrogation
 import goroTrapManifest from "../assets/harbor/goro-trap-aftermath/manifest.json";
 import goroMaiManifest from "../assets/harbor/goro-mai-marriage/manifest.json";
 import goroMaiAudio from "../../public/audio/world/goro-mai-marriage/manifest.json";
+import sailorIntroManifest from "../assets/harbor/sailor-chase-intro/manifest.json";
+import sailorIntroAudio from "../../public/audio/world/sailor-chase-intro/manifest.json";
+import sailorTonyManifest from "../assets/harbor/sailor-chase-tony/manifest.json";
+import sailorTonyAudio from "../../public/audio/world/sailor-chase-tony/manifest.json";
+import sailorSmithManifest from "../assets/harbor/sailor-chase-smith/manifest.json";
+import sailorSmithAudio from "../../public/audio/world/sailor-chase-smith/manifest.json";
 import goroTrapAudio from "../../public/audio/world/goro-trap-aftermath/manifest.json";
 import markLongZhaManifest from "../assets/harbor/mark-long-zha/manifest.json";
 import markLongZhaAudio from "../../public/audio/world/mark-long-zha/manifest.json";
@@ -329,6 +335,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["charlie-harbor-interrogation",charlieHarborManifest,charlieHarborAudio,"mfsy"],
     ["goro-trap-aftermath",goroTrapManifest,goroTrapAudio,"mfsy"],["mark-long-zha",markLongZhaManifest,markLongZhaAudio,"mfsy"],
     ["goro-mai-marriage",goroMaiManifest,goroMaiAudio,"mfsy"],
+    ["sailor-chase-intro",sailorIntroManifest,sailorIntroAudio,"mfsy"],["sailor-chase-tony",sailorTonyManifest,sailorTonyAudio,"mfsy"],["sailor-chase-smith",sailorSmithManifest,sailorSmithAudio,"mfsy"],
     ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],
     ["mark-lunch-intro",markLunchIntroManifest,markLunchIntroAudio,"mfsy"],["mark-lunch-aftermath",markLunchAftermathManifest,markLunchAftermathAudio,"mfsy"],
     ["after-work-goro",afterWorkGoroManifest,afterWorkGoroAudio,"mfsy"],

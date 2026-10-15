@@ -1037,3 +1037,72 @@ Inspected captures show the physical pickup and the original meeting shot
 with Ryo and Goro; Mai is partly occluded behind Goro in the captured shot.
 This does not establish clear visibility in every shot, and automated playback
 was not assessed by listening for audio-mix fidelity. No assets were published.
+
+## Fifth-afternoon sailor chase
+
+The `sailor-chase` Yarn record continues the earned fifth-morning and Goro/Mai
+receipts. The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed p. 60, establishes the encounter before payday and the warning letter.
+[Shotgunnova's Runner's High section](https://www.neoseeker.com/shenmue/faqs/1593059-l.html)
+supplies the detailed forks and both pursuit routes. These are authored
+walkthrough-based conditions, not a recovered Dreamcast trigger controller.
+
+| Field | Implementation |
+| --- | --- |
+| Location / eligibility | Story Ryo, saved fifth morning and marriage meeting, lounge-side street approach in MFSY, 14:00–17:00 personal time. Free roam and completed characters decline. |
+| Entry / actors / props | Explicit question/leave choice. Original `PK_CTS/SEQDATA0.AUTH` introduction with Ryo, Tony, Smith and its original forklift model. |
+| Action / timing | Real timed Left, B, B, Left, A inputs; choose a road fork (left adds another Left); then choose Tony or Smith. Tony's six inputs are Left, Right, A, Right, Left, Right; Smith's are Right, A, Left, Right, Left, Right. Original branch interrogation follows only accepted inputs. |
+| Motion / cameras | Original introduction and interrogation motions/cameras. The intervening chase uses the original DJUN street corridor joined to original movie endpoints, generic biped running and an authored follow camera. |
+| Dialogue / audio | Original 01CTS introduction and 01CTSA/01CTSB endings, exact native voice identities and SND cues. Both sailors identify Terry as the boss; neither supplies an invented date for the deal. |
+| Weather / lighting | Preserve the personal environment; no forced weather or newly inferred original music. |
+| Completion | Acknowledged ending atomically saves the chase receipt, Terry notebook page and that sailor's original final Ryo arrival. No cargo credit, wages, clock jump, warning letter or completed workday. |
+| Failure / skip / replay | Wrong/timed-out input offers a fresh whole-chase retry or exit. Cancellation/preparation failure saves nothing. Ordinary cinematic skip can acknowledge a film, never a QTE input. A completed chase does not replay on entry/reload. Camera, avatar and controls use the existing transaction cleanup. |
+
+The broader afternoon window, on-foot approach instead of an exact loaded-forklift
+NW approach, untimed fork choices, two-second prompts and condensed roadway are
+declared adaptations. Source references describe the original trigger around
+15:30–16:30 with cargo on the forklift. They also differ on some alternate
+input/failure routes; this implementation follows Shotgunnova's explicit
+successful routes and retries the complete chase on failure rather than
+reconstructing every original recovery branch. Remaining cargo, wages, letter
+and Chen are separate progression; the chase cannot complete the shift.
+
+### Original assets and audio boundaries
+
+- `MA00/PK_CTS.PKS`: SHA256 `286c088071aaea7bb3764a410ab526e4db8243442b80d3e9024ec6ff05811ae0`, introduction declares 1,140 frames, AKIR/SMTH/TONY/FORK, `M_01CTS.MOTN`.
+- `MA00/PK_CTS2.PKS`: SHA256 `b9ffa3ac9287ace6094cb02bb05c855150ff33aa17826e0025b858182de94ed9`, both endings declare 1,500 frames, `M_01CTSA.MOTN`. SEQDATA1 is Tony; SEQDATA0 is Smith, confirmed by cast and original speech.
+- The pinned English introduction omits requested `01CTSA001.str` and `01CTSB003.str`. The Smith ending omits `01CTSBB001.str`. Preserve explicit unavailable records; no invented voice/subtitle.
+- The original endings share exact Ryo AA voice members across their two AFS archives; Tony also references a Smith-archive groan. The shared audio builder now resolves explicitly pinned additional archives, retaining each member's real source. Duplicate names with different bytes or presentation metadata are rejected; it never searches unrelated archives or substitutes an approximate filename.
+- A1_CTSA.SND lacks the requested Tony `a9041800:SUBERU4` and Smith `a9041900:SUBERU5` cloth effects. These exact incidental cues remain explicitly unavailable, not silently remapped.
+
+`tools/scripting/build_harbor_sailor_chase.mjs` generates ordinary scenes and
+Yarn through existing shared primitives. The real-compiler server test covers
+both road forks and both sailors, missing prerequisites, wrong hours/bounds,
+free roam, repeat protection, decline, stale input, wrong/late input and
+cancelled introduction/movement/ending.
+
+Rendered checks now cover original introduction cancellation, a wrong timed
+input/retry, the actual left-road/Tony route and cancelled Tony interrogation,
+then the actual right-road/Smith route and natural original ending. Captures
+show the pursued actors on the road and Ryo with each sailor in their original
+interrogation shots. The successful post-fix continuation used a clone of the
+genuinely earned morning, not injected challenge results or future flags.
+Reload preserves the Terry clue, notebook and Smith's original X/Z/facing
+(grounded at y=0); a subsequent physical re-entry does not replay. Currency
+remains ¥19,836, inventory is unchanged, and no afternoon/payday/day-complete
+flag is awarded. Twelve focused reload checks also pass. Audio-mix fidelity
+was not assessed by listening.
+
+The same-world settlement exposed a shared arrival race, independently
+reproduced by a failing server regression: old presence could consume the
+first arrival reservation and subsequent old poses could rewind it. The
+[arrival handoff](storyline-gameplay.md#committed-story-arrival-handoff) now
+requires the exact loaded-pose revision before accepting any reserved Story
+arrival. The post-fix browser continuation verifies the original ending
+position survives the handoff and reload. The full-page reload check is not
+proof of interrupted-socket recovery: same-world welcome ordering and
+character/flag snapshot consistency remain targeted audit items. An earlier
+intermittent `no_script` startup rejection was not reproduced by the twelve
+focused reload checks; retained diagnostics do not imply that its cause is
+resolved. Source assets remain local (113 verified records, 5,696,751 bytes);
+none were published.

@@ -150,8 +150,11 @@ deliveries, separate once-only wages and Mark's original Long Zha explanation,
 with saved chapter/notebook and reload. Ordinary sleep, the fifth morning's
 independently earned race, five physical deliveries, original lunch and
 Goro/Mai's announcement now also pass earned-save browser checks through
-cancellation/retry and saved reload. The fifth afternoon, warning-letter/Chen
-follow-up, Nozomi rescue, final battles and departure remain unimplemented;
+cancellation/retry and saved reload. The fifth-afternoon sailor chase now also
+has both timed pursuit routes and original interrogations, with a naturally
+earned Smith clue/arrival, saved reload and completed re-entry verified.
+Remaining fifth-afternoon cargo/payroll, warning-letter/Chen follow-up, Nozomi
+rescue, final battles and departure remain unimplemented;
 the checklist above distinguishes each verified sequence.
 
 For walkthrough-guided, authored progression, use the

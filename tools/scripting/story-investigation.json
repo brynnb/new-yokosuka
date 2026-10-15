@@ -3,6 +3,14 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"sailor-chase","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":830,
+      "title":"Tony and Smith — the Long Zha chase","hours":[14,17],"bounds":"s1.mfsy.sailor-chase",
+      "requiredFlags":["story.s1.workday-five-morning.completed","story.s1.goro-mai-marriage.completed"],"completedFlag":"story.s1.sailor-chase.completed","effects":["notebook.s1.terry-mad-angels"],
+      "voiceIds":[],"yarnTemplate":"story-harbor-sailor-chase.yarn",
+      "nativeSources":[{"role":"original-sailor-introduction","locator":"disc3/SCENE/03/MA00/PK_CTS.PKS#SEQDATA0.AUTH,M_01CTS.MOTN","sha256":"286c088071aaea7bb3764a410ab526e4db8243442b80d3e9024ec6ff05811ae0"},{"role":"original-sailor-interrogations","locator":"disc3/SCENE/03/MA00/PK_CTS2.PKS#SEQDATA0.AUTH,SEQDATA1.AUTH,M_01CTSA.MOTN","sha256":"b9ffa3ac9287ace6094cb02bb05c855150ff33aa17826e0025b858182de94ed9"}],
+      "provenance":"GameSpot p60 and Shotgunnova Runner's High: fifth afternoon, Left B B Left A, road fork and Tony/Smith choice. Shotgunnova supplies both six-input ending routes. Original introduction and branch interrogation; DJUN road corridor, generic running, camera, untimed fork selection and held two-second prompts are authored. Foot approach 14:00–17:00 condenses original loaded-forklift NW approach around15:30–16:30; no native trigger reconstruction. All accepted branch inputs and acknowledged original ending are required for clue and original ending arrival together. No cargo, wages, clock jump or whole-day completion."
+    },
+    {
       "id":"workday-four-night","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":780,
       "title":"After Long Zha — rest for the final working day","hours":[20,24],"bounds":"s1.jomo.workday-four-night",
       "requiredFlags":["story.s1.workday-four.completed","story.s1.mark-long-zha.completed"],"excludedFlags":["story.s1.workday-five-race.completed"],

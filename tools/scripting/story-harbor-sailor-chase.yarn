@@ -1,0 +1,314 @@
+Ryo Hazuki: Tony and Smith are near Tomato. Ask them about the Long Zha. #speaker:AKIR
+-> Question the sailors
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+===
+title: Intro
+---
+<<start_activity "s1.mfsy.sailor-chase-intro.scene">>
+<<jump Common1>>
+===
+title: Common1
+---
+<<play_sequence "s1.mfsy.sailor-chase.common-1.start">>
+<<start_challenge "s1.mfsy.sailor-chase.left">>
+<<if challenge_result("s1.mfsy.sailor-chase.left") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.common-1.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Common2>>
+<<endif>>
+===
+title: Common2
+---
+<<play_sequence "s1.mfsy.sailor-chase.common-2.start">>
+<<start_challenge "s1.mfsy.sailor-chase.b">>
+<<if challenge_result("s1.mfsy.sailor-chase.b") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.common-2.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Common3>>
+<<endif>>
+===
+title: Common3
+---
+<<play_sequence "s1.mfsy.sailor-chase.common-3.start">>
+<<start_challenge "s1.mfsy.sailor-chase.b">>
+<<if challenge_result("s1.mfsy.sailor-chase.b") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.common-3.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Common4>>
+<<endif>>
+===
+title: Common4
+---
+<<play_sequence "s1.mfsy.sailor-chase.common-4.start">>
+<<start_challenge "s1.mfsy.sailor-chase.left">>
+<<if challenge_result("s1.mfsy.sailor-chase.left") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.common-4.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Common5>>
+<<endif>>
+===
+title: Common5
+---
+<<play_sequence "s1.mfsy.sailor-chase.common-5.start">>
+<<start_challenge "s1.mfsy.sailor-chase.a">>
+<<if challenge_result("s1.mfsy.sailor-chase.a") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.common-5.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump FirstFork>>
+<<endif>>
+===
+title: FirstFork
+---
+-> Take the left path
+    <<jump ForkLeft>>
+-> Take the right path
+    <<jump SailorFork>>
+===
+title: ForkLeft
+---
+<<play_sequence "s1.mfsy.sailor-chase.fork-left.start">>
+<<start_challenge "s1.mfsy.sailor-chase.left">>
+<<if challenge_result("s1.mfsy.sailor-chase.left") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.fork-left.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump SailorFork>>
+<<endif>>
+===
+title: SailorFork
+---
+-> Follow Tony (left)
+    <<jump tony1>>
+-> Follow Smith (right)
+    <<jump smith1>>
+===
+title: tony1
+---
+<<play_sequence "s1.mfsy.sailor-chase.tony-1.start">>
+<<start_challenge "s1.mfsy.sailor-chase.left">>
+<<if challenge_result("s1.mfsy.sailor-chase.left") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.tony-1.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump tony2>>
+<<endif>>
+===
+title: tony2
+---
+<<play_sequence "s1.mfsy.sailor-chase.tony-2.start">>
+<<start_challenge "s1.mfsy.sailor-chase.right">>
+<<if challenge_result("s1.mfsy.sailor-chase.right") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.tony-2.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump tony3>>
+<<endif>>
+===
+title: tony3
+---
+<<play_sequence "s1.mfsy.sailor-chase.tony-3.start">>
+<<start_challenge "s1.mfsy.sailor-chase.a">>
+<<if challenge_result("s1.mfsy.sailor-chase.a") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.tony-3.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump tony4>>
+<<endif>>
+===
+title: tony4
+---
+<<play_sequence "s1.mfsy.sailor-chase.tony-4.start">>
+<<start_challenge "s1.mfsy.sailor-chase.right">>
+<<if challenge_result("s1.mfsy.sailor-chase.right") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.tony-4.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump tony5>>
+<<endif>>
+===
+title: tony5
+---
+<<play_sequence "s1.mfsy.sailor-chase.tony-5.start">>
+<<start_challenge "s1.mfsy.sailor-chase.left">>
+<<if challenge_result("s1.mfsy.sailor-chase.left") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.tony-5.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump tony6>>
+<<endif>>
+===
+title: tony6
+---
+<<play_sequence "s1.mfsy.sailor-chase.tony-6.start">>
+<<start_challenge "s1.mfsy.sailor-chase.right">>
+<<if challenge_result("s1.mfsy.sailor-chase.right") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.tony-6.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump tonyEnding>>
+<<endif>>
+===
+title: tonyEnding
+---
+<<play_sequence "s1.mfsy.sailor-chase.tony-6.finish">>
+<<start_activity "s1.mfsy.sailor-chase-tony.scene">>
+<<travel_story "s1.work.sailor-tony-alley">>
+{{effects}}
+<<jump Done>>
+===
+title: smith1
+---
+<<play_sequence "s1.mfsy.sailor-chase.smith-1.start">>
+<<start_challenge "s1.mfsy.sailor-chase.right">>
+<<if challenge_result("s1.mfsy.sailor-chase.right") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.smith-1.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump smith2>>
+<<endif>>
+===
+title: smith2
+---
+<<play_sequence "s1.mfsy.sailor-chase.smith-2.start">>
+<<start_challenge "s1.mfsy.sailor-chase.a">>
+<<if challenge_result("s1.mfsy.sailor-chase.a") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.smith-2.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump smith3>>
+<<endif>>
+===
+title: smith3
+---
+<<play_sequence "s1.mfsy.sailor-chase.smith-3.start">>
+<<start_challenge "s1.mfsy.sailor-chase.left">>
+<<if challenge_result("s1.mfsy.sailor-chase.left") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.smith-3.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump smith4>>
+<<endif>>
+===
+title: smith4
+---
+<<play_sequence "s1.mfsy.sailor-chase.smith-4.start">>
+<<start_challenge "s1.mfsy.sailor-chase.right">>
+<<if challenge_result("s1.mfsy.sailor-chase.right") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.smith-4.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump smith5>>
+<<endif>>
+===
+title: smith5
+---
+<<play_sequence "s1.mfsy.sailor-chase.smith-5.start">>
+<<start_challenge "s1.mfsy.sailor-chase.left">>
+<<if challenge_result("s1.mfsy.sailor-chase.left") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.smith-5.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump smith6>>
+<<endif>>
+===
+title: smith6
+---
+<<play_sequence "s1.mfsy.sailor-chase.smith-6.start">>
+<<start_challenge "s1.mfsy.sailor-chase.right">>
+<<if challenge_result("s1.mfsy.sailor-chase.right") != "success">>
+<<play_sequence "s1.mfsy.sailor-chase.smith-6.finish">>
+Ryo Hazuki: I lost them. Try following the sailors again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump smithEnding>>
+<<endif>>
+===
+title: smithEnding
+---
+<<play_sequence "s1.mfsy.sailor-chase.smith-6.finish">>
+<<start_activity "s1.mfsy.sailor-chase-smith.scene">>
+<<travel_story "s1.work.sailor-smith-alley">>
+{{effects}}
+<<jump Done>>
+===
+title: Done
+---
+<<complete>>

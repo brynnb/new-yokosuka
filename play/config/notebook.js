@@ -169,6 +169,7 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.workday-five-race",page:Object.freeze({id:"story-workday-five-race",text:"Finished the final morning forklift race.\n\nToday's quota is ten deliveries: crates to Warehouse No. 8 and red-marked crates back to No. 18."})},
   {flag:"notebook.s1.workday-five-lunch",page:Object.freeze({id:"story-workday-five-lunch",text:"Finished five deliveries and had lunch with the other workers.\n\nGoro and Mai are near Alpha Trading.\nThere is still work to finish this afternoon."})},
   {flag:"notebook.s1.goro-mai-marriage",page:Object.freeze({id:"story-goro-mai-marriage",text:"Goro and Mai plan to get married.\nGoro says he wants a proper job and an honest life.\n\nKeep asking about the Long Zha deal before returning to work."})},
+  {flag:"notebook.s1.terry-mad-angels",page:Object.freeze({id:"story-terry-mad-angels",text:"Caught one of the sailors.\n\nTerry is the boss of the Mad Angels.\nOnly he knows when the Long Zha will happen.\n\nFinish the day's deliveries and collect my wages."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

@@ -1,0 +1,116 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA1.AUTH",
+        "path": "disc3/SCENE/03/MA00/PK_CTS2.PKS",
+        "sourceSha256": "b9ffa3ac9287ace6094cb02bb05c855150ff33aa17826e0025b858182de94ed9",
+        "archiveMember": "SEQDATA1.AUTH",
+        "byteLength": 16416,
+        "sha256": "0d1de1780948eb14f8ccf444a684b1e62abdc11cd18cda8b014c519b81937f40"
+      },
+      {
+        "name": "M_01CTSA.MOTN",
+        "path": "disc3/SCENE/03/MA00/PK_CTS2.PKS",
+        "sourceSha256": "b9ffa3ac9287ace6094cb02bb05c855150ff33aa17826e0025b858182de94ed9",
+        "archiveMember": "M_01CTSA.MOTN",
+        "byteLength": 211868,
+        "sha256": "785d261f5976b6c81ffed8ec129aaa4e259cb1b01b440502d9a32e89ec75f058"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-harbor-work.md",
+    "resourceName": "PK_CTS2",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/sailor-chase-tony/manifest.json",
+  "sceneObjects": {},
+  "packageActors": {
+    "TONY": {
+      "label": "Tony Abrams",
+      "modelCode": "GIJ_M",
+      "browserFilename": "GIJ_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/GIJ_M.CHRM",
+      "textureAssetPath": "play/assets/characters/GIJ_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "TONY"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/sailor-chase-tony/M_01CTSA.MOTN",
+      "byteLength": 211868,
+      "sha256": "785d261f5976b6c81ffed8ec129aaa4e259cb1b01b440502d9a32e89ec75f058"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/sailor-chase-tony/M_01CTSA.MOTN",
+      "byteLength": 211868,
+      "sha256": "785d261f5976b6c81ffed8ec129aaa4e259cb1b01b440502d9a32e89ec75f058"
+    },
+    {
+      "path": "play/assets/harbor/sailor-chase-tony/SEQDATA1.AUTH",
+      "byteLength": 16416,
+      "sha256": "0d1de1780948eb14f8ccf444a684b1e62abdc11cd18cda8b014c519b81937f40"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "PK_CTS2/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 16416,
+      "sha256": "0d1de1780948eb14f8ccf444a684b1e62abdc11cd18cda8b014c519b81937f40",
+      "durationFrames": 1500,
+      "durationSeconds": 50.016666412353516,
+      "frameCount": 85,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2,
+        "effect": 13,
+        "sound": 55,
+        "voice": 18
+      },
+      "actors": [
+        "AKIR",
+        "TONY"
+      ],
+      "motions": [
+        {
+          "actorTag": "TONY",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "OTH_SMT_AT1_SIMEAGERU_UDE_SMTSIMEAGE_0100",
+          "startFrame": 1,
+          "endFrame": 1426
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 137,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_SIMEAGERU_UDE_SMTSIMEAGE_0100",
+          "startFrame": 1,
+          "endFrame": 1392
+        }
+      ]
+    }
+  ]
+}

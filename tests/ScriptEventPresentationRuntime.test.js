@@ -84,6 +84,17 @@ test("Goro and Mai's announcement retains the original cast, binding and declare
   assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
 });
 
+test("sailor chase films preserve original branch bindings and forbid presentation rewards",()=>{
+  for(const [part,file,actors,frames]of [["intro","SEQDATA0.AUTH",["FORK","AKIR","SMTH","TONY"],1140],["tony","SEQDATA1.AUTH",["AKIR","TONY"],1500],["smith","SEQDATA0.AUTH",["AKIR","SMTH"],1500]]){
+    const activity=createScriptEventPresentationCatalog().activity(`s1.mfsy.sailor-chase-${part}.scene`);
+    const manifest=JSON.parse(readFileSync(new URL(`../play/assets/harbor/sailor-chase-${part}/manifest.json`,import.meta.url)));
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.activity.binding.activityId,`${part==="intro"?"PK_CTS":"PK_CTS2"}/${file}`);
+    assert.deepEqual(manifest.actorTags,actors);assert.equal(manifest.activities[0].durationFrames,frames);
+    assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  }
+});
+
 test("coworker lunch borrows the original silent film without owning the batch result",()=>{
   const activity=createScriptEventPresentationCatalog().activity("s1.mfsy.workday-lunch.scene");
   const manifest=JSON.parse(readFileSync(new URL("../play/assets/harbor/workday-lunch/manifest.json",import.meta.url)));

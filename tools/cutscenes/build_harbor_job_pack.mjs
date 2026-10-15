@@ -15,6 +15,8 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const evidence="docs/design/story-harbor-work.md";
 const archives={
+  "MA00/PK_CTS":"286c088071aaea7bb3764a410ab526e4db8243442b80d3e9024ec6ff05811ae0",
+  "MA00/PK_CTS2":"b9ffa3ac9287ace6094cb02bb05c855150ff33aa17826e0025b858182de94ed9",
   GOROKEKN:"b46218e928a21665463da0a39bc956eb9799d89b81554fdd39f722c84cf89c71",
   "MB9Q/MPK00":"70a419eb5544dade0c62f3b2ca0a8d747eaf79e11e9df5c467b728d753b22f7c",
   RYUSATSU:"385fd95a064964da1723afade848a3673e5632d56c1536460df9be7acd03686c",
@@ -31,6 +33,19 @@ const archives={
   ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
 const profiles=[
+  {id:"sailor-chase-intro",archive:"MA00/PK_CTS",resourceName:"PK_CTS",auth:"SEQDATA0.AUTH",motion:"M_01CTS.MOTN",frames:1140,actors:["FORK","AKIR","SMTH","TONY"],extraMembers:["M_01_T_S.MOTN"],
+    unavailableVoices:Object.fromEntries(["01CTSA001.str","01CTSB003.str"].map(id=>[id,{reason:`Original introduction requests ${id}, absent from the pinned English 01CTS.AFS; no substituted voice or subtitle.`,evidence:"docs/design/story-harbor-work.md#fifth-afternoon-sailor-chase"}])),
+    props:{FORK:"FOKS502G"},propTextureHash:"a05a9329bb14d7f33b5004742976fa91e4725afe7b8790280fabd7766b8ef4dc",
+    stream:"01CTS",streamHash:"1ab83d84faf5fed5eb3db0dbf1aa5e229e957107a9da460a15b2115200c4effa",sound:"A1_CTS.SND",soundHash:"7a8a22298e29cd5648c9d9e007244b0e21e5a254d9b2e052f1511215bcebb374"},
+  {id:"sailor-chase-tony",archive:"MA00/PK_CTS2",resourceName:"PK_CTS2",auth:"SEQDATA1.AUTH",motion:"M_01CTSA.MOTN",frames:1500,actors:["AKIR","TONY"],
+    unavailableSounds:{"a9041800:/p16/prj16m5/AUTH01/01CTSA/SE/cloths/SUBERU4.aiff":{reason:"Original Tony ending requests a9041800, absent from the pinned A1_CTSA.SND; incidental cloth effect omitted, no substitute.",evidence:"docs/design/story-harbor-work.md#fifth-afternoon-sailor-chase"}},
+    additionalStreams:[{stream:"01CTSB",sha256:"eaacd33fdd71a7fa08578ddac5e5f4b4842dd27b94f4f7039f73118e6612470e"}],
+    stream:"01CTSA",streamHash:"27998887e7209f0b21a738a9b3e9141b11c8eb459c414c4cd586a8b8504506c1",sound:"A1_CTSA.SND",soundHash:"222284c2d1b2b94f5926607b62e9111a7b22e1edd87359eb429224d660b426d1"},
+  {id:"sailor-chase-smith",archive:"MA00/PK_CTS2",resourceName:"PK_CTS2",auth:"SEQDATA0.AUTH",motion:"M_01CTSA.MOTN",frames:1500,actors:["AKIR","SMTH"],
+    unavailableSounds:{"a9041900:/p16/prj16m5/AUTH01/01CTSA/SE/cloths/SUBERU5.aiff":{reason:"Original Smith ending requests a9041900, absent from the pinned A1_CTSA.SND; incidental cloth effect omitted, no substitute.",evidence:"docs/design/story-harbor-work.md#fifth-afternoon-sailor-chase"}},
+    additionalStreams:[{stream:"01CTSA",sha256:"27998887e7209f0b21a738a9b3e9141b11c8eb459c414c4cd586a8b8504506c1"}],
+    unavailableVoices:{"01CTSBB001.str":{reason:"Original Smith ending requests 01CTSBB001.str, absent from both pinned English ending archives; no substituted voice or subtitle.",evidence:"docs/design/story-harbor-work.md#fifth-afternoon-sailor-chase"}},
+    stream:"01CTSB",streamHash:"eaacd33fdd71a7fa08578ddac5e5f4b4842dd27b94f4f7039f73118e6612470e",sound:"A1_CTSA.SND",soundHash:"222284c2d1b2b94f5926607b62e9111a7b22e1edd87359eb429224d660b426d1"},
   {id:"goro-mai-marriage",archive:"GOROKEKN",auth:"SEQDATA0.AUTH",motion:"M_01GHO.MOTN",frames:1234,actors:["HINA","AKIR","GORO"],
     stream:"01GHO",streamHash:"c262947548666f943f1e07dccbe3042d168b27d48bd9bfbea4d8e12668fa2e70",sound:"A1_GKEKN.SND",soundHash:"e64d21ff00d541ee002566225a066ca8208780cf6f96c94eabb5a657bdd7345f"},
   {id:"goro-trap-aftermath",archive:"MB9Q/MPK00",resourceName:"MB9Q",auth:"SEQDATA1.AUTH",motion:"M_019RN.MOTN",frames:880,actors:["TONY","AKIR","JONZ","SMTH","RBRT"],
@@ -92,7 +107,7 @@ const profiles=[
   :p.archive==="MARU"?{...p,stream:"01MAK",streamHash:"991e51fcbe77d0e590fd5db522b6fee46fe11cf7b02fc9bcaa6b81917cfc075d",sound:"A1_MARK.SND",soundHash:"ef5b84e9994323af1b7dc315612030cd1b923e79aa8770dd0e8afc6cad394ba8"}
   :p.archive==="MIZUMARK"?{...p,stream:"01MAD",streamHash:"3295b7ef69bde0372cb212cc500adcababc86421d712ae860ecaead614a7714a",sound:"A1_MAD.SND",soundHash:"b76ce9d7ad7f386a45001adcbf12a855718b0254ca72475dfdec78c4bfb38890"}:p);
 const characters={CHRL:["Charlie Grant","BIK_L"],YOHI:["Yohei Kondo","YHI_L"],TYMK:["Tsuyoshi Murakami","RFA_L"],TAKE:["Hiroaki Takeuchi","ZZC_L"],HTSI:["Hitoshi Numakubo","SGH_L"],
-  GORO:["Goro Mihashi","KMB_L"],HINA:["Mai Sawano","MIB_L"],TMRA:["Ryozo Yada","KWD_L"],MARK:["Mark Kimberly","GIC_L"],
+  GORO:["Goro Mihashi","KMB_L"],HINA:["Mai Sawano","MIB_L"],TMRA:["Ryozo Yada","KWD_L"],MARK:["Mark Kimberly","GIC_L"],TONY:["Tony Abrams","GIJ_M"],SMTH:["Smith Bradley","GIB_M"],
   // HRSK reuses the reviewed full body from nativeActivityActors, not the
   // character-name CSV's unshipped NZM_M reference.
   MRSK:["Shingo Murasaki","PPL_L"],OKYS:["Minoru Okayasu","OKA_L"],TJMA:["Eri Tajima","RFD_L"],HRSK:["Nozomi Harasaki","NZM_L"]};
@@ -203,6 +218,7 @@ for(const p of selected){
   if(p.silent||!process.argv.includes("--audio"))continue;
   const audio=buildNativeAseqAudioPack({generatedBy,disc:3,authDirectory:path.join(root,prefix),authFiles:[p.auth],authManifest:`${prefix}/manifest.json`,resourceBindingEvidence:evidence,
     stream:{label:`${p.stream}.AFS`,path:path.join(source,`STREAM/${p.stream}.AFS`),manifestPath:`disc3/SCENE/03/STREAM/${p.stream}.AFS`,sha256:p.streamHash},
+    additionalStreams:p.additionalStreams?.map(s=>({label:`${s.stream}.AFS`,path:path.join(source,`STREAM/${s.stream}.AFS`),manifestPath:`disc3/SCENE/03/STREAM/${s.stream}.AFS`,sha256:s.sha256})),
     soundBank:{label:p.sound,path:path.join(source,`SOUND/${p.sound}`),manifestPath:`disc3/SCENE/03/SOUND/${p.sound}`,sha256:p.soundHash},
     unavailableSounds:p.unavailableSounds,unavailableVoices:p.unavailableVoices,
     outputDirectory:path.join(root,audioPrefix),outputAssetPrefix:audioPrefix,dtpkDump:process.env.DTPK_DUMP||path.join(root,".disc-work/pool-audio/dtpkdump/DTPKDump.py"),
