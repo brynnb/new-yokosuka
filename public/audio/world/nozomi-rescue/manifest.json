@@ -1,0 +1,4756 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_nozomi_rescue_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01TAP.AFS",
+      "sha256": "8824c0058137812470773274106abe8d7bf201957811e69fbe8a12d568d0f97a"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_TERRY.SND",
+      "sha256": "a9066c99966806378f34888d7a4239bde0eec7e33373a2ff0dfec5ab9e4906bd"
+    },
+    "authManifest": "play/assets/harbor/nozomi-rescue/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+  },
+  "voices": [
+    {
+      "voiceId": "01TAPA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA001.aiff",
+      "nativeMember": "01TAPA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 6144,
+      "nativeSha256": "892da8b5d3219e0d4ac9025cca36fd58c0f1dc9da8db3581d73ccbfbaa00a078",
+      "speakerId": "AKIR",
+      "sourceText": "Nozomi!",
+      "displayText": "Nozomi!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA001.wav",
+      "byteLength": 24364,
+      "sha256": "26177cb7f300930d53109d6660e0a1bef766890aaefcfd9b8fbf8df4b6d1dc8f"
+    },
+    {
+      "voiceId": "01TAPA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA002.aiff",
+      "nativeMember": "01TAPA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "5b669a2b3bf7297d7c424b734a578ee8915ff6531b52201618a655f4f93c3b11",
+      "speakerId": "AKIR",
+      "sourceText": "Are you all right?",
+      "displayText": "Are you all right?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA002.wav",
+      "byteLength": 24364,
+      "sha256": "a21017d5f7cabe75783583bd7ddc5843c80479e6cb1c20a8d1c89c2731838773"
+    },
+    {
+      "voiceId": "01TAPA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA003.aiff",
+      "nativeMember": "01TAPA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 12288,
+      "nativeSha256": "92cea5387ba567ee354f968ab060abb1351e5a5b9cefd45d47b44b7fed69e8c0",
+      "speakerId": "AKIR",
+      "sourceText": "It's OK. It's all my fault!",
+      "displayText": "It's OK. It's all my fault!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA003.wav",
+      "byteLength": 48940,
+      "sha256": "990811ddbc3c5910fa08fc8a2fa83e5a04e029fe68420a59f2d75fdc967639dc"
+    },
+    {
+      "voiceId": "01TAPA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA004.aiff",
+      "nativeMember": "01TAPA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 8192,
+      "nativeSha256": "a687989ae73f983fbd32a5b1dcc9548c664898cd9b07581ea9bfa44af9815f52",
+      "speakerId": "AKIR",
+      "sourceText": "So you're Terry!",
+      "displayText": "So you're Terry!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA004.wav",
+      "byteLength": 32556,
+      "sha256": "475e8ec3d20d6231cee5e0dc8d5d378b02a810a02e0a6a572dbd5a1b1ad3b76c"
+    },
+    {
+      "voiceId": "01TAPA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA005.aiff",
+      "nativeMember": "01TAPA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 10240,
+      "nativeSha256": "f6a463c0a964e6f6dca2ecb771c179e745f8654f0c6fbf612a4494d450960320",
+      "speakerId": "AKIR",
+      "sourceText": "I'm taking Nozomi home.",
+      "displayText": "I'm taking Nozomi home.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA005.wav",
+      "byteLength": 40748,
+      "sha256": "b1ac41d445cabf33d8ec6b30ca3da6c93fce3b1a18d45ec0a91f293858a8c2bd"
+    },
+    {
+      "voiceId": "01TAPA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA006.aiff",
+      "nativeMember": "01TAPA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 4096,
+      "nativeSha256": "08d522000b0c81eb721614e768c246fb5dc8f177ab29fda103ed827fc8a6469b",
+      "speakerId": "AKIR",
+      "sourceText": "What?",
+      "displayText": "What?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA006.wav",
+      "byteLength": 16172,
+      "sha256": "1a0d47d07851eb81d61e4e0ba814371d84ffabf624810a03fec14eaa133c04f6"
+    },
+    {
+      "voiceId": "01TAPA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA007.aiff",
+      "nativeMember": "01TAPA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 6144,
+      "nativeSha256": "b524606e7e934f3f353c54bc1185e208d511db53a8054ab63d547cce61ea9f0d",
+      "speakerId": "AKIR",
+      "sourceText": "Gui Zhang?!",
+      "displayText": "Gui Zhang?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA007.wav",
+      "byteLength": 24364,
+      "sha256": "4d3bb633a1a22b7a8a577256ec6b8af98a8494aac90b7dabf8d92143a96efd09"
+    },
+    {
+      "voiceId": "01TAPA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA008.aiff",
+      "nativeMember": "01TAPA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 6144,
+      "nativeSha256": "b80e2d70c5cf3e5565d18c03c16ad7b57f524224d13e028a0d051eba6fa78b2d",
+      "speakerId": "AKIR",
+      "sourceText": "Why him?",
+      "displayText": "Why him?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA008.wav",
+      "byteLength": 24364,
+      "sha256": "e3554de6fe2db2bdfdd13d584a6730db1c9b4adf982b62c04f6fe56ab9201427"
+    },
+    {
+      "voiceId": "01TAPA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA009.aiff",
+      "nativeMember": "01TAPA009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 4096,
+      "nativeSha256": "2822be218efbbbfec330dfa9528694858581ca41337fbdccde4a773d7ce3fbed",
+      "speakerId": "AKIR",
+      "sourceText": "Your way?",
+      "displayText": "Your way?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA009.wav",
+      "byteLength": 16172,
+      "sha256": "45e7638f25a0ad7d3638b6bae6d354d17167cfe81b3117a4769e951625434ec7"
+    },
+    {
+      "voiceId": "01TAPA010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA010.aiff",
+      "nativeMember": "01TAPA010.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 4096,
+      "nativeSha256": "a3eded083d29ad84378b9c7faa8c5be395f8d71a2b903143c431e2f323544710",
+      "speakerId": "AKIR",
+      "sourceText": "All right.",
+      "displayText": "All right.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA010.wav",
+      "byteLength": 16172,
+      "sha256": "1c407acaefcc46e3f2306c6a697ab898efbce2432210a6bd72f2235313ae4796"
+    },
+    {
+      "voiceId": "01TAPA011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA011.aiff",
+      "nativeMember": "01TAPA011.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 10240,
+      "nativeSha256": "d92f0d9c31f26fc87a8751a7c8e1c681813c6e7addecd9f93a1459d37cb4e203",
+      "speakerId": "AKIR",
+      "sourceText": "But, one more condition.",
+      "displayText": "But, one more condition.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA011.wav",
+      "byteLength": 40748,
+      "sha256": "82b1f0deaa34978ab3fceda47f30cf2549e91deb6fe3cc11b8af86be80468d52"
+    },
+    {
+      "voiceId": "01TAPA012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA012.aiff",
+      "nativeMember": "01TAPA012.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 14336,
+      "nativeSha256": "f3ac107cdc81f3e7e7cb3d764c49c587ccd4f0b408379ca6a55c061bbb135e55",
+      "speakerId": "AKIR",
+      "sourceText": "You take me to Lan Di.",
+      "displayText": "You take me to Lan Di.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 22
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA012.wav",
+      "byteLength": 57132,
+      "sha256": "5b306a598f169a3c8ff64e99cc7416794122006eaabfee0143e2781293e433b4"
+    },
+    {
+      "voiceId": "01TAPA013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA013.aiff",
+      "nativeMember": "01TAPA013.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 6144,
+      "nativeSha256": "044eab836cc484a0db88fd70dae1e82533a2f5cbf9389960f5230e60818eb861",
+      "speakerId": "AKIR",
+      "sourceText": "What do you say?",
+      "displayText": "What do you say?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA013.wav",
+      "byteLength": 24364,
+      "sha256": "bba94c0b03a065e18020d839bf9d371c5669499a48bb97fbafe4ea8f766bf9a3"
+    },
+    {
+      "voiceId": "01TAPA014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA014.aiff",
+      "nativeMember": "01TAPA014.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 14336,
+      "nativeSha256": "84d5d0d8a402a51646373668ef9cbcf2fb3d6f35f0a53c91865792689e60333a",
+      "speakerId": "AKIR",
+      "sourceText": "I know you're the one that＆guided Lan Di.",
+      "displayText": "I know you're the one that\nguided Lan Di.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA014.wav",
+      "byteLength": 57132,
+      "sha256": "8a069f3d81b393ab75b5fed7d4c5be0f8d1a3bdce8b8b865ab16c406f2713f25"
+    },
+    {
+      "voiceId": "01TAPA015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA015.aiff",
+      "nativeMember": "01TAPA015.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 18432,
+      "nativeSha256": "b7c190266636593a8dfdbf3249dc841d336991bc3e356519bd6ae1a5eb1ec577",
+      "speakerId": "AKIR",
+      "sourceText": "You take me to Lan Di!＆Then it's a deal.",
+      "displayText": "You take me to Lan Di!\nThen it's a deal.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA015.wav",
+      "byteLength": 73516,
+      "sha256": "31423ec1bce6162c72ed6215360a8aa6c4af00e9ac72f3a09b4fa5f4c00a12e1"
+    },
+    {
+      "voiceId": "01TAPA016",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA016.aiff",
+      "nativeMember": "01TAPA016.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 6144,
+      "nativeSha256": "a4ec4a5ff5e74513cffa269ae72eb3077b4f01b1a922bb041362fab52a58d95c",
+      "speakerId": "AKIR",
+      "sourceText": "Don't forget!",
+      "displayText": "Don't forget!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA016.wav",
+      "byteLength": 24364,
+      "sha256": "4956545672de9687b87139a5e9458fe195342bffea23962cadc1ceeb5c777ac6"
+    },
+    {
+      "voiceId": "01TAPA017",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA017.aiff",
+      "nativeMember": "01TAPA017.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 8192,
+      "nativeSha256": "40c8e1064975643df5e974fe4351c1273c46203481e98d92edba8c6aaf34a4a9",
+      "speakerId": "AKIR",
+      "sourceText": "I'm taking her home.",
+      "displayText": "I'm taking her home.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA017.wav",
+      "byteLength": 32556,
+      "sha256": "34307c038c5eada90eab9a3a4e5965811f3cafe2d65c020ec0fda3f728cb0632"
+    },
+    {
+      "voiceId": "01TAPA018",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPA018.aiff",
+      "nativeMember": "01TAPA018.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 4096,
+      "nativeSha256": "6a5e2f5fe494685b87c10dab2041f4f7b259a4182a16c0e5cd14863d005ff6cd",
+      "speakerId": "AKIR",
+      "sourceText": "Let's go.",
+      "displayText": "Let's go.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPA018.wav",
+      "byteLength": 16172,
+      "sha256": "9072d1f02ea3cb5304962ab482d44c74074d7dddd12430f158a1e0e6494d6b47"
+    },
+    {
+      "voiceId": "01TAPB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPB001.aiff",
+      "nativeMember": "01TAPB001.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 14336,
+      "nativeSha256": "3cd38c3544723e5391a94a2820d4a2ab6874acc20f3be3014ae20345c8f7237b",
+      "speakerId": "STSI",
+      "sourceText": "I gotcha now!",
+      "displayText": "I gotcha now!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 22
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPB001.wav",
+      "byteLength": 57132,
+      "sha256": "a2913ad69b495a2316c88fdf6fe1653ce7284cf70c0b1a318007fad7a9dac692"
+    },
+    {
+      "voiceId": "01TAPB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPB002.aiff",
+      "nativeMember": "01TAPB002.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 18432,
+      "nativeSha256": "58248c50222552e58cb21e84959dcf21940e9b836b797a78cac2fc08e5551b27",
+      "speakerId": "STSI",
+      "sourceText": "Aw Terry, let me have some fun?",
+      "displayText": "Aw Terry, let me have some fun?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPB002.wav",
+      "byteLength": 73516,
+      "sha256": "c5495898211b3462116c4707a041be4ad27417ffbcb1b929fb2e2a38354753d9"
+    },
+    {
+      "voiceId": "01TAPB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPB003.aiff",
+      "nativeMember": "01TAPB003.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 22528,
+      "nativeSha256": "240aa1cac5906a4cdec98675ce7d877a426f6674375d2fe590959390d1435a4f",
+      "speakerId": "STSI",
+      "sourceText": "Uh, that's OK=@I'm cool=@",
+      "displayText": "Uh, that's OK...I'm cool...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPB003.wav",
+      "byteLength": 89900,
+      "sha256": "fe6dc8c49c59f922dd5c439a8f288256c6a3a714b6f434f4511d454a4d5c0257"
+    },
+    {
+      "voiceId": "01TAPC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC001.aiff",
+      "nativeMember": "01TAPC001.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 8192,
+      "nativeSha256": "84eb4c018590f845b49de254cae63f1abdf03bf8803f8473a785060578111bc5",
+      "speakerId": "TERY",
+      "sourceText": "Enough!",
+      "displayText": "Enough!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC001.wav",
+      "byteLength": 32556,
+      "sha256": "a7a39cb9e3b2e95720d31d0df0ad6571af9bbdbf7ec0f4c72739d2b176d42c24"
+    },
+    {
+      "voiceId": "01TAPC002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC002.aiff",
+      "nativeMember": "01TAPC002.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 22528,
+      "nativeSha256": "5f9788ef20d13e1a553f84f85b3aba4a32ef57b5044bd64fa3e5a5bf1304ebc6",
+      "speakerId": "TERY",
+      "sourceText": "Haven't had enough fun yet?=@Hey!",
+      "displayText": "Haven't had enough fun yet?...Hey!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 40
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC002.wav",
+      "byteLength": 89900,
+      "sha256": "aad0cca836fbc36d47c755d49aea21efed8756cfcaadcc1274c76d2213726c88"
+    },
+    {
+      "voiceId": "01TAPC003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC003.aiff",
+      "nativeMember": "01TAPC003.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 10240,
+      "nativeSha256": "db7a37bb9373178b0600357ec54c7f4aeee8f3fcb595e0e4ce4e592ae3175985",
+      "speakerId": "TERY",
+      "sourceText": "You play with him.",
+      "displayText": "You play with him.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC003.wav",
+      "byteLength": 40748,
+      "sha256": "1b5ccb0ac1f1599e0d4877de1c586d7a224555559dd73124ab929573123ebd7c"
+    },
+    {
+      "voiceId": "01TAPC004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC004.aiff",
+      "nativeMember": "01TAPC004.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 22528,
+      "nativeSha256": "e3248b38f4603a449c47e36133bc742ba0c85659808f4e95c8f59a7f62b32d4d",
+      "speakerId": "TERY",
+      "sourceText": "Yeah, it's all your fault.",
+      "displayText": "Yeah, it's all your fault.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC004.wav",
+      "byteLength": 89900,
+      "sha256": "5813a0ca84bcf74e439b02fcc0d3f76af3482240eabdbdb929c38f130ba1062e"
+    },
+    {
+      "voiceId": "01TAPC005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC005.aiff",
+      "nativeMember": "01TAPC005.str",
+      "nativeIndex": 25,
+      "nativeByteLength": 14336,
+      "nativeSha256": "5691c8d1f4eb0f1b4269f71df9bd93800e96757616e120381624bb916cf90fe0",
+      "speakerId": "TERY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 29
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC005.wav",
+      "byteLength": 57132,
+      "sha256": "4dde4511e60969caf5cd121c548f8c1dded4e2094f886ca4793d79d815e38bb5"
+    },
+    {
+      "voiceId": "01TAPC006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC006.aiff",
+      "nativeMember": "01TAPC006.str",
+      "nativeIndex": 26,
+      "nativeByteLength": 32768,
+      "nativeSha256": "f3716eebd91285256dffa83ece04529d59a73aaceec684926d5d9c52758e7c67",
+      "speakerId": "TERY",
+      "sourceText": "Hear you messed up＆some of my boys pretty good.",
+      "displayText": "Hear you messed up\nsome of my boys pretty good.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 20
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC006.wav",
+      "byteLength": 130860,
+      "sha256": "8933f110758eaade7c65208a97a20d72649194e84b3f4978e43f5a5a6d057de0"
+    },
+    {
+      "voiceId": "01TAPC007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC007.aiff",
+      "nativeMember": "01TAPC007.str",
+      "nativeIndex": 27,
+      "nativeByteLength": 34816,
+      "nativeSha256": "fb01da705b86b7192404b2b59ef1867e7d713d58821eeadcf4cd4c0c08686108",
+      "speakerId": "TERY",
+      "sourceText": "If I let you go schoolboy,＆it sets a bad example=@",
+      "displayText": "If I let you go schoolboy,\nit sets a bad example...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 38
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC007.wav",
+      "byteLength": 139052,
+      "sha256": "cbc49fe033197eeb6120de4da5157dff616de1a8bcc3a012adb3e25f3d48e9fc"
+    },
+    {
+      "voiceId": "01TAPC008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC008.aiff",
+      "nativeMember": "01TAPC008.str",
+      "nativeIndex": 28,
+      "nativeByteLength": 26624,
+      "nativeSha256": "6461b860a83fdcd8a27b3e8ebdeae2c36f46d7961cd7093616075d6f0eca62be",
+      "speakerId": "TERY",
+      "sourceText": "You're the one trying to get information＆about the Long Zha?",
+      "displayText": "You're the one trying to get information\nabout the Long Zha?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 27
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC008.wav",
+      "byteLength": 106284,
+      "sha256": "c13705200ef49eea6746be36be8b75438d62b6dac962e0f026093f6e4de66707"
+    },
+    {
+      "voiceId": "01TAPC009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC009.aiff",
+      "nativeMember": "01TAPC009.str",
+      "nativeIndex": 29,
+      "nativeByteLength": 24576,
+      "nativeSha256": "1946ac172486b45128d2e38ce8a1bef87f3235b10d9f4abcdecfd47ba7dcaf21",
+      "speakerId": "TERY",
+      "sourceText": "You're either real brave or＆you're real stupid.",
+      "displayText": "You're either real brave or\nyou're real stupid.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 43
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC009.wav",
+      "byteLength": 98092,
+      "sha256": "65cd5ce377fb64f6f7a3ea63242cfd4f19eecfaf1d81e5bb7f997c72768b1bca"
+    },
+    {
+      "voiceId": "01TAPC010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC010.aiff",
+      "nativeMember": "01TAPC010.str",
+      "nativeIndex": 30,
+      "nativeByteLength": 24576,
+      "nativeSha256": "ea32471da46d5775e5ec429f1d3a6b502b48619161a1ae588fb5562cc7d8702d",
+      "speakerId": "TERY",
+      "sourceText": "Sure, you can. But=@",
+      "displayText": "Sure, you can. But...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 0,
+            "durationTicks": 63
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC010.wav",
+      "byteLength": 98092,
+      "sha256": "1a16eb084b35d24a752cd10eb333edd50b872530355357ef396a1f8dad6bc8e4"
+    },
+    {
+      "voiceId": "01TAPC011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC011.aiff",
+      "nativeMember": "01TAPC011.str",
+      "nativeIndex": 31,
+      "nativeByteLength": 12288,
+      "nativeSha256": "261c2aa63eb640f3fa75cf6fa37d637313b306725caae425cff20da20774183b",
+      "speakerId": "TERY",
+      "sourceText": "it's going to cost you.",
+      "displayText": "it's going to cost you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC011.wav",
+      "byteLength": 48940,
+      "sha256": "c040d1e6e919d57a2d5eb635d27e9e3c0e6a0472492bb3a41a7de9fbeab6df49"
+    },
+    {
+      "voiceId": "01TAPC012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC012.aiff",
+      "nativeMember": "01TAPC012.str",
+      "nativeIndex": 32,
+      "nativeByteLength": 34816,
+      "nativeSha256": "5c348581cdcddcfe7399e913f19cd36a5b0b584c46c2c51b59510c6265a93dc6",
+      "speakerId": "TERY",
+      "sourceText": "My deal is you gotta beat up＆Chen's son=@make it so he can't walk.",
+      "displayText": "My deal is you gotta beat up\nChen's son...make it so he can't walk.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 27
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 34
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC012.wav",
+      "byteLength": 139052,
+      "sha256": "a475ecdf60636a233c3dbc590e457343db13fdc4bf78c474a1c1481d67563633"
+    },
+    {
+      "voiceId": "01TAPC013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC013.aiff",
+      "nativeMember": "01TAPC013.str",
+      "nativeIndex": 33,
+      "nativeByteLength": 12288,
+      "nativeSha256": "03da73d0387b6cd1b5bac130b2dd736f7b2cd5040ec61a1181c18dc4b28a8f84",
+      "speakerId": "TERY",
+      "sourceText": "Ahh, so you know him, huh?",
+      "displayText": "Ahh, so you know him, huh?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 36
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC013.wav",
+      "byteLength": 48940,
+      "sha256": "a6bf8363f61758430af157be9e7fd7de69ad636ffde39133233302e7a5247a35"
+    },
+    {
+      "voiceId": "01TAPC014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC014.aiff",
+      "nativeMember": "01TAPC014.str",
+      "nativeIndex": 34,
+      "nativeByteLength": 12288,
+      "nativeSha256": "7726f3c0cdf4e92d53bc179b7a0b23285aaa8303edeaab564d7a0b21add6b40b",
+      "speakerId": "TERY",
+      "sourceText": "He's in my way!",
+      "displayText": "He's in my way!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC014.wav",
+      "byteLength": 48940,
+      "sha256": "959fa945c281a96c9ff0c3efd01a9f9c3f729eddd04c76540c7586f4d59ee898"
+    },
+    {
+      "voiceId": "01TAPC015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC015.aiff",
+      "nativeMember": "01TAPC015.str",
+      "nativeIndex": 35,
+      "nativeByteLength": 12288,
+      "nativeSha256": "c99e7bff98ee81082e9600178a3d893be3b925ab4a81270fc71e0b7426b37d52",
+      "speakerId": "TERY",
+      "sourceText": "As long as Chen's around",
+      "displayText": "As long as Chen's around",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC015.wav",
+      "byteLength": 48940,
+      "sha256": "49728960492c5942c8c906c67fec22c91af442fcc7a563032edf4ab6aab8fbe3"
+    },
+    {
+      "voiceId": "01TAPC016",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC016.aiff",
+      "nativeMember": "01TAPC016.str",
+      "nativeIndex": 36,
+      "nativeByteLength": 26624,
+      "nativeSha256": "ced0db69523232c6a02303febd97db1049b184c1da6e71164feeecb402cb900c",
+      "speakerId": "TERY",
+      "sourceText": "we won't be able to gain total control＆of the Hong Kong route.",
+      "displayText": "we won't be able to gain total control\nof the Hong Kong route.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC016.wav",
+      "byteLength": 106284,
+      "sha256": "8dc6b30953e4c2a5abbfc13b1be0f0fa3f33c54c46e994ed21d6833c3b1fecc6"
+    },
+    {
+      "voiceId": "01TAPC017",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC017.aiff",
+      "nativeMember": "01TAPC017.str",
+      "nativeIndex": 37,
+      "nativeByteLength": 36864,
+      "nativeSha256": "0ea77b0e6b5a47b765f2125114e470ad3a24688188b0398bb0c4343a47aa0192",
+      "speakerId": "TERY",
+      "sourceText": "Oh yeah? It ain't enough to＆get the girl back?",
+      "displayText": "Oh yeah? It ain't enough to\nget the girl back?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 67
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC017.wav",
+      "byteLength": 147244,
+      "sha256": "a8d38be0093646bbe45de8510d937d53ec499deedbd0f8e32fe318a39c288e41"
+    },
+    {
+      "voiceId": "01TAPC018",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC018.aiff",
+      "nativeMember": "01TAPC018.str",
+      "nativeIndex": 38,
+      "nativeByteLength": 40960,
+      "nativeSha256": "0f0273ab006bb9d896e0b99be931aafdffefaf9610a460909d5649eba3b45a95",
+      "speakerId": "TERY",
+      "sourceText": "Well=@ there's more to schoolboy＆than meets the eye.",
+      "displayText": "Well... there's more to schoolboy\nthan meets the eye.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 32
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC018.wav",
+      "byteLength": 163628,
+      "sha256": "3520d09af3c4d0df53d4f427d7ed36ae68b072e5930b18b91fb396093b607c77"
+    },
+    {
+      "voiceId": "01TAPC019",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC019.aiff",
+      "nativeMember": "01TAPC019.str",
+      "nativeIndex": 39,
+      "nativeByteLength": 40960,
+      "nativeSha256": "65069f64987a9dc8392e78da175d75fc9b48fd802ed2bedda6eb37890d463272",
+      "speakerId": "TERY",
+      "sourceText": "Fine by me=@ but only＆after you take out Gui Zhang.",
+      "displayText": "Fine by me... but only\nafter you take out Gui Zhang.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 26
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC019.wav",
+      "byteLength": 163628,
+      "sha256": "d77f44bbabde446c3c0972053683636530a0761f24d600c3fdd78a8fac584662"
+    },
+    {
+      "voiceId": "01TAPC020",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC020.aiff",
+      "nativeMember": "01TAPC020.str",
+      "nativeIndex": 40,
+      "nativeByteLength": 16384,
+      "nativeSha256": "8f299871d39b317422362c09b2b7d28b623f4724ece7bf89f8561293075819d2",
+      "speakerId": "TERY",
+      "sourceText": "Hey I ain't no＆street punk.",
+      "displayText": "Hey I ain't no\nstreet punk.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 20
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC020.wav",
+      "byteLength": 65324,
+      "sha256": "5cb2dfcb9f87b55e38ad863e88a8e71aa6b7f426fe49e83b01e85dddcd4c2ed5"
+    },
+    {
+      "voiceId": "01TAPC021",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC021.aiff",
+      "nativeMember": "01TAPC021.str",
+      "nativeIndex": 41,
+      "nativeByteLength": 30720,
+      "nativeSha256": "7200d0cbd33568e90a890c27fffc7ec6f8d1e63c70ca99d6865ff22b2a829a77",
+      "speakerId": "TERY",
+      "sourceText": "When Terry of Yokosuka speaks＆he means what he says.",
+      "displayText": "When Terry of Yokosuka speaks\nhe means what he says.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 25
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC021.wav",
+      "byteLength": 122668,
+      "sha256": "7105a298479c7b7c5b65cf04db5441cac0875a6c34381932309dc3782035a7e6"
+    },
+    {
+      "voiceId": "01TAPC022",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC022.aiff",
+      "nativeMember": "01TAPC022.str",
+      "nativeIndex": 42,
+      "nativeByteLength": 10240,
+      "nativeSha256": "7e370dfdf1948ed3bc045ea49ee40875d942f5e0fc92b741063cd7a43e49dcbe",
+      "speakerId": "TERY",
+      "sourceText": "Fine.",
+      "displayText": "Fine.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 33
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC022.wav",
+      "byteLength": 40748,
+      "sha256": "3d110956a9df34f3f8d7fc0c1aeabdc863a9a43f6a7fae394cb2ff56e87f514b"
+    },
+    {
+      "voiceId": "01TAPC023",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC023.aiff",
+      "nativeMember": "01TAPC023.str",
+      "nativeIndex": 43,
+      "nativeByteLength": 18432,
+      "nativeSha256": "4f17181cf955a58c399706affe83ab5f758b41fe099a930635563c66ef146d9a",
+      "speakerId": "TERY",
+      "sourceText": "You're the tough lil' schoolboy, heh?",
+      "displayText": "You're the tough lil' schoolboy, heh?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC023.wav",
+      "byteLength": 73516,
+      "sha256": "493e779afaa62efad8b9ccdeb83868f9f21e78e652a479578b72fc7b3de768c4"
+    },
+    {
+      "voiceId": "01TAPC024",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC024.aiff",
+      "nativeMember": "01TAPC024.str",
+      "nativeIndex": 44,
+      "nativeByteLength": 8192,
+      "nativeSha256": "519453ece0095e73b8f91c09fffef6880ee1ec71120cdd0ce2acbdb078f65514",
+      "speakerId": "TERY",
+      "sourceText": "Is it a deal?",
+      "displayText": "Is it a deal?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC024.wav",
+      "byteLength": 32556,
+      "sha256": "b560d59dcf15c0557fd0c623e49eaf08d192aa9f2b8545b542a6d5a730600134"
+    },
+    {
+      "voiceId": "01TAPC025",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC025.aiff",
+      "nativeMember": "01TAPC025.str",
+      "nativeIndex": 45,
+      "nativeByteLength": 8192,
+      "nativeSha256": "a2062a22f0279edb4e4807c1fb1d0581d252abdb16c51e5da3ebbc3dcce8087d",
+      "speakerId": "TERY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPC025.wav",
+      "byteLength": 32556,
+      "sha256": "369f34bbc75def74c9de497a4487cf8efb7e18868dd976c5d851067bc37c2b04"
+    },
+    {
+      "voiceId": "01TAPC026",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC026.aiff",
+      "nativeMember": "01TAPC026.str",
+      "speakerId": "TERY",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "Original TER2/SEQDATAD requests 01TAPC026, absent from the pinned English 01TAP archive, whose Terry lines end at C025. No substituted voice or invented subtitle.",
+      "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+    },
+    {
+      "voiceId": "01TAPD001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPD001.aiff",
+      "nativeMember": "01TAPD001.str",
+      "nativeIndex": 46,
+      "nativeByteLength": 10240,
+      "nativeSha256": "2547d6df909917411d0faf8480384f039467fdffef8bfc3d0620a4ccde4f5daf",
+      "speakerId": "HRSK",
+      "sourceText": "Oh-no, Ryo!",
+      "displayText": "Oh-no, Ryo!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPD001.wav",
+      "byteLength": 40748,
+      "sha256": "8f6521b048a8d51a1bd04913665b09b36f367b5766f84588b97ce90f01cb48fb"
+    },
+    {
+      "voiceId": "01TAPD002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPD002.aiff",
+      "nativeMember": "01TAPD002.str",
+      "nativeIndex": 47,
+      "nativeByteLength": 14336,
+      "nativeSha256": "82b75b24050814a8996df7ba940dfb708de360ec11c30b05431e9e1bbf48c941",
+      "speakerId": "HRSK",
+      "sourceText": "Yes. I'm sorry. I=@",
+      "displayText": "Yes. I'm sorry. I...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPD002.wav",
+      "byteLength": 57132,
+      "sha256": "35dfbb1f676a1cce3c7fe010991e80d731bbbd37496a4adf06bbc1ed6f592bc6"
+    },
+    {
+      "voiceId": "01TAPD003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPD003.aiff",
+      "nativeMember": "01TAPD003.str",
+      "nativeIndex": 48,
+      "nativeByteLength": 10240,
+      "nativeSha256": "a975be76aabbb6d62763d3581fdff24bdfc9fcc0bf4b7fbdf2058798b2ca1ad3",
+      "speakerId": "HRSK",
+      "sourceText": "Ryo! Don't!",
+      "displayText": "Ryo! Don't!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPD003.wav",
+      "byteLength": 40748,
+      "sha256": "ab344d67daf0caea289b7b7393f15917bcc66c9e7da170b58df2a4ac853ebdb3"
+    },
+    {
+      "voiceId": "01TAPD004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPD004.aiff",
+      "nativeMember": "01TAPD004.str",
+      "nativeIndex": 49,
+      "nativeByteLength": 4096,
+      "nativeSha256": "5299fddb6e0f728cf263041d30f69098e1d8c3d8082149a84fa36548167f148c",
+      "speakerId": "HRSK",
+      "sourceText": "Ryo=@",
+      "displayText": "Ryo...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPD004.wav",
+      "byteLength": 16172,
+      "sha256": "84d681809a5f3f516487549be429a620ba915cd484bef257cc3d368dad0ae095"
+    },
+    {
+      "voiceId": "01TAPF001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPF001.aiff",
+      "nativeMember": "01TAPF001.str",
+      "nativeIndex": 51,
+      "nativeByteLength": 24576,
+      "nativeSha256": "a0c918d0b706f876f47525fd8a3c395ccab0db82275c3eff1888ac7a76a4d1f8",
+      "speakerId": "",
+      "sourceText": "This kid's got a death wish!",
+      "displayText": "This kid's got a death wish!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPF001.wav",
+      "byteLength": 98092,
+      "sha256": "5ca4232965d0cb058f9524ab881521d5254e02e299e26a877957cbd71d3f819e"
+    },
+    {
+      "voiceId": "01TAPG001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPG001.aiff",
+      "nativeMember": "01TAPG001.str",
+      "nativeIndex": 52,
+      "nativeByteLength": 18432,
+      "nativeSha256": "94e894f8f2eb3839114ebe5ee38a3b06540affd235d7f53fbf214d97dd0b11d7",
+      "speakerId": "",
+      "sourceText": "He's got some screws loose.",
+      "displayText": "He's got some screws loose.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-rescue/voice/01TAPG001.wav",
+      "byteLength": 73516,
+      "sha256": "d3e604b8ecdacdc882e187702cdc482e9bdac8f42c699e6e2483558046be1c82"
+    },
+    {
+      "voiceId": "01TAPH001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPH001.aiff",
+      "nativeMember": "01TAPH001.str",
+      "speakerId": "CHAI",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "Original TER2/SEQDATAE requests Chai's 01TAPH001, absent from the pinned English 01TAP archive. Silent six-second original coda retained; no substituted laugh or subtitle.",
+      "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040000.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040100.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/cloths2/cl05.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040200.wav",
+      "byteLength": 73092,
+      "sha256": "3c23439039c6b2a12d7cb1d4b1a58ea508e4ce2efa253b486096479f227dda30"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/cloths2/cloths02.aiff",
+      "playbackId": 3,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040300.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/cloths2/friction4.aiff",
+      "playbackId": 4,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040400.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 5,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040500.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 6,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040600.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 7,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040700.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/foot/sneaker1.aiff",
+      "playbackId": 8,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040800.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/foot/sneaker3.aiff",
+      "playbackId": 9,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040900.wav",
+      "byteLength": 11188,
+      "sha256": "4f08f0da0c9852ab8de0ef02f0758a9c39be3e73c0f38d3dd5b7a572389d1960"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/foot/sneaker5.aiff",
+      "playbackId": 10,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040a00.wav",
+      "byteLength": 10804,
+      "sha256": "0334446f014be77a677e0e4e97f7e1604c7dc5b356bef53103d39acc9081f9e1"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/cloths/standup.aiff",
+      "playbackId": 11,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040b00.wav",
+      "byteLength": 20724,
+      "sha256": "0c526e49686b7dde719bfef6ea72ef52ca9c6ad3e866421005633d68ab714451"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/cloths2/cl07.aiff",
+      "playbackId": 12,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040c00.wav",
+      "byteLength": 33756,
+      "sha256": "06f751a377e9ede1e283b02a5516977c17fee805758958c6653e87ec3f1a3753"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/foot/Itawalk2.aiff",
+      "playbackId": 13,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040d00.wav",
+      "byteLength": 16980,
+      "sha256": "8c1355c8eee77063c212955fe2a81214390b163ada8360a388cd2a919f0cfdbe"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/foot2/KUROFUKUASHI2.aiff",
+      "playbackId": 14,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040e00.wav",
+      "byteLength": 12924,
+      "sha256": "e7d7abbd6ecf1f3043d08ef6c601b3e66c352cb4f0105e020185caaf244f3785"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/swing/swing03.aiff",
+      "playbackId": 15,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9040f00.wav",
+      "byteLength": 33644,
+      "sha256": "413a08d07fd75774be0f172cee9b9bb40069fee1712acf9d9581400894008ef2"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SE/foot2/GANASHI1.aiff",
+      "playbackId": 16,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-rescue/sfx/a9041000.wav",
+      "byteLength": 14628,
+      "sha256": "880c3259c2d92306a016cb4687cec85d9e7eeff59199e176afb8fb74a4babb2c"
+    }
+  ]
+}

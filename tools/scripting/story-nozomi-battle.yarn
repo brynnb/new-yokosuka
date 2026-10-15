@@ -1,0 +1,21 @@
+-> Face the attackers
+    <<jump Fight>>
+-> Leave it for now
+    <<jump Done>>
+===
+title: Fight
+---
+<<start_combat "{{firstCombat}}">>
+<<if combat_result("{{firstCombat}}") == "success">>
+{{effects}}
+<<jump Done>>
+<<else>>
+-> Try again
+    <<jump Fight>>
+-> Leave it for now
+    <<jump Done>>
+<<endif>>
+===
+title: Done
+---
+<<complete>>

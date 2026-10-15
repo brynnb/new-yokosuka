@@ -20,6 +20,7 @@ import {verifyFourthMorning,verifyFourthLunch,verifyFourthAfternoon} from "./sto
 import {verifyFifthMorning,verifyFifthSailorChase,verifyFifthAfternoon,verifyWarningLetter,verifyChenWarning} from "./story-workday-five.js";
 import {verifyNozomiNightCall,verifyNozomiTransport} from "./story-nozomi-rescue.js";
 import {verifyMotorcycleRide} from "./story-motorcycle-ride.js";
+import {verifyNozomiWarehouse} from "./story-nozomi-warehouse.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -35,7 +36,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   test.setTimeout(process.env.NEW_YOKOSUKA_MIRROR_RETURN_E2E === "true" ? 600_000 : process.env.NEW_YOKOSUKA_CHEN_E2E === "true" || process.env.NEW_YOKOSUKA_FAMILY_E2E === "true" || process.env.NEW_YOKOSUKA_HANDGUARD_E2E === "true" || process.env.NEW_YOKOSUKA_GUI_ZHANG_E2E === "true" ? 360_000 : process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
   const errors = [];
   const musicResponses = [];
-  page.on("response", response => { if(/bgm119|bgm063|bgm200/.test(response.url())) musicResponses.push({url:response.url(),status:response.status()}); });
+  page.on("response", response => { if(/bgm119|bgm063|bgm200|bgm084/.test(response.url())) musicResponses.push({url:response.url(),status:response.status()}); });
   page.on("pageerror", error => errors.push(error.message));
   if(process.env.NEW_YOKOSUKA_SECOND_MORNING_E2E==="true"||process.env.NEW_YOKOSUKA_THIRD_WORKDAY_E2E==="true")page.on("pageerror",error=>console.info("Working morning page error:",error.message));
   if(process.env.NEW_YOKOSUKA_FORKLIFT_TRAINING_E2E==="true"||process.env.NEW_YOKOSUKA_MORNING_CARGO_E2E==="true"||process.env.NEW_YOKOSUKA_MARK_LUNCH_E2E==="true"||process.env.NEW_YOKOSUKA_FIRST_AFTERNOON_E2E==="true"){
@@ -131,6 +132,8 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       StoryNavigationRuntime.prototype.show = function(...args) { window.storyProbe.navigation = this; return probeNavigationShow.apply(this,args); };`],
     ["scripts/StoryDrivingRuntime", `const probeDrivingShow = StoryDrivingRuntime.prototype.show;
       StoryDrivingRuntime.prototype.show = function(...args) { window.storyProbe.driving = this; return probeDrivingShow.apply(this,args); };`],
+    ["ui/MusicControls", `const probeMusicInitialize = MusicControls.prototype.initialize;
+      MusicControls.prototype.initialize = function(...args) { window.storyMusic = this; return probeMusicInitialize.apply(this,args); };`],
     ["scripts/StoryForkliftChallengeRuntime", `const probeDeliveryShow = StoryForkliftChallengeRuntime.prototype.show;
       StoryForkliftChallengeRuntime.prototype.show = function(...args) { window.storyProbe.delivery = this; return probeDeliveryShow.apply(this,args); };`],
     ["dialogue/NativeDialogueOverlayRuntime", `window.nativeDialogueHookInstalled = true;
@@ -192,6 +195,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_NOZOMI_WAREHOUSE_E2E === "true"){
+      test.setTimeout(900_000);await verifyNozomiWarehouse(page,testInfo,character,{musicResponses});expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_NOZOMI_RIDE_E2E === "true"){
       test.setTimeout(420_000);await verifyMotorcycleRide(page,testInfo,character);expect(errors).toEqual([]);return;
     }

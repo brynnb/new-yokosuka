@@ -33,6 +33,11 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["intro",0,"C"],["deal",1,"D"],["coda",2,"E"]].map(([part,slot,file])=>[`s1.tery.nozomi-rescue-${part}.scene`,{
+    kind:"native-cutscene",area:"TERY",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:`story-s1-nozomi-rescue-${part}`,packageId:"nozomi-rescue",worldId:"tery",storyPresentation:true,
+      activity:{slot,binding:{kind:"map-embedded-slot",activityId:`TER2/SEQDATA${file}.AUTH`}}},
+  }]),
   ["s1.mfsy.chicken-race-intro.scene",{kind:"native-cutscene",area:"MFSY",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-chicken-race-intro",packageId:"chicken-race",worldId:"mfsy",storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"RACE/SEQDATA1.AUTH"}}}}],

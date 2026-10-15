@@ -3,6 +3,37 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"nozomi-outside-guards","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":970,
+      "title":"Reach Nozomi — warehouse guards","bounds":"s1.mfsy.nozomi-outside-guards","requiredFlags":["story.s1.nozomi-ride.completed"],
+      "completedFlag":"story.s1.nozomi-outside-guards.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-nozomi-battle.yarn","firstCombat":"s1.mfsy.nozomi-guards",
+      "nativeSources":[{"role":"original-outside-fighter-bodies","locator":"disc3/SCENE/03/TERY/TERYB1.PKS","sha256":"7f33a31c293b76270c2752981bc356f18461387cd523243460ae812473476ec6"}],
+      "provenance":"GameSpot pp62-63: fight the harbor guards before entering the warehouse. Explicit choice, six original distinct TERYB1 bodies and tested alley formation are authored adaptations. Only actual combat success saves this independent victory; no warehouse, rescue, money, items or calendar effects. Failure/cancel remains retryable."
+    },
+    {
+      "id":"nozomi-warehouse-entry","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":960,
+      "title":"Enter the Mad Angels warehouse","bounds":"s1.mfsy.nozomi-warehouse-entry","requiredFlags":["story.s1.nozomi-outside-guards.completed"],"excludedFlags":["story.s1.nozomi-rescue.completed"],
+      "completedFlag":"story.s1.nozomi-warehouse-entry.completed","repeatable":true,"effects":[],"voiceIds":[],"activities":[],"destination":"s1.nozomi.warehouse-entry",
+      "confirmation":{"accept":"Enter the warehouse","decline":"Leave it for now"},
+      "nativeSources":[{"role":"original-warehouse-rescue","locator":"disc3/SCENE/03/TERY/TER2.PKS","sha256":"41ef8c4b096e251ad046e558d455d0972a986dc867bfcd44a4c40c3f6cbda256"}],
+      "provenance":"Reward-free, repeatable confirmed transfer from the tested harbor alley to the original TERY warehouse. Arrival and formation are authored, not an extracted Entry record or door animation. Admission requires the independently saved outside victory; transfer cannot award the inside battle or hostage deal."
+    },
+    {
+      "id":"nozomi-inside-guards","disc":3,"actor":"AKIR","presentActors":[],"area":"TERY","trigger":"enter","priority":970,
+      "title":"Reach Nozomi — inside the warehouse","bounds":"s1.tery.nozomi-inside-guards","requiredFlags":["story.s1.nozomi-ride.completed","story.s1.nozomi-outside-guards.completed"],
+      "completedFlag":"story.s1.nozomi-inside-guards.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-nozomi-battle.yarn","firstCombat":"s1.tery.nozomi-guards",
+      "nativeSources":[{"role":"original-inside-fighter-bodies","locator":"disc3/SCENE/03/TERY/TERYB2.PKS","sha256":"17937a5d4ca08568b06c19a02dbe055aad3db4b90c395b1010cfb49447576a54"}],
+      "provenance":"GameSpot pp62-63 second battle. Seven original distinct TERYB2 bodies, authored warehouse formation, shared combat/balance and fresh full-health attempt. Actual victory independently persists so a cancelled later film never requires repeating a won fight. No rescue, money, inventory or time change."
+    },
+    {
+      "id":"nozomi-rescue","disc":3,"actor":"AKIR","presentActors":[],"area":"TERY","trigger":"enter","priority":960,
+      "title":"Terry's deal — free Nozomi","bounds":"s1.tery.nozomi-rescue","requiredFlags":["story.s1.nozomi-ride.completed","story.s1.nozomi-outside-guards.completed","story.s1.nozomi-inside-guards.completed"],
+      "completedFlag":"story.s1.nozomi-rescue.completed","effects":["notebook.s1.terry-hostage-deal"],"recordMinutes":["story.s1.nozomi-rescue.minute"],"voiceIds":[],
+      "activities":["s1.tery.nozomi-rescue-intro.scene","s1.tery.nozomi-rescue-deal.scene","s1.tery.nozomi-rescue-coda.scene"],
+      "confirmation":{"accept":"Confront Terry","decline":"Leave it for now"},
+      "nativeSources":[{"role":"original-hostage-deal-films","locator":"disc3/SCENE/03/TERY/TER2.PKS#SEQDATAC.AUTH,SEQDATAD.AUTH,SEQDATAE.AUTH,M_01TAP.MOTN","sha256":"41ef8c4b096e251ad046e558d455d0972a986dc867bfcd44a4c40c3f6cbda256"}],
+      "provenance":"Original C/D/E motion, camera and available English voices. Model associations and BGM084 start are declared adaptations. Two missing original voices are explicitly unavailable, never substituted. Only acknowledged completion/explicit skip saves release/deal notebook and personal minute after both independently earned fights. No home ride, next-day, final battle, money or inventory result."
+    },
+    {
       "id":"nozomi-ride-entry","disc":3,"actor":"AKIR","presentActors":[],"area":"JD00","trigger":"enter","priority":940,
       "title":"Ride to the harbor","bounds":"s1.jd00.nozomi-ride-entry","requiredFlags":["story.s1.nozomi-motorcycle.completed"],"excludedFlags":["story.s1.nozomi-ride.completed"],
       "completedFlag":"story.s1.nozomi-ride-entry.completed","repeatable":true,"effects":[],"voiceIds":[],"yarnTemplate":"story-nozomi-ride-entry.yarn","destination":"s1.nozomi.motorcycle-road",

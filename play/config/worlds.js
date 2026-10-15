@@ -878,6 +878,14 @@ export const WORLDS = Object.freeze({
     timedMapLayers: timedMapLayersForSource("MFSY"),
     placements: placements.mfsy,
   }),
+  tery: Object.freeze({
+    id:"tery",label:"Mad Angels Warehouse",japaneseLabel:"倉庫",nativeArea:"TERY",interior:true,
+    prefix:"S3_TERY",spawn:new BABYLON.Vector3(-16,0,-24),yaw:0,
+    // Original warehouse structures and ground, not the broad harbor or its
+    // alternate ground layer. The entrance/formation is authored Story staging.
+    includeFile:filename=>/^S3_TERY_MAP(17|18|19)\.MT5$/.test(filename),
+    placements:Object.freeze([]),
+  }),
   nbik: Object.freeze({
     id:"nbik",label:"Motorcycle Route",japaneseLabel:"バイク",nativeArea:"NBIK",
     prefix:"S3_NBIK",spawn:new BABYLON.Vector3(18,0,-66),yaw:Math.PI,

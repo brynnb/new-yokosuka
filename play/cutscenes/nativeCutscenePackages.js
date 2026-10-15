@@ -124,6 +124,8 @@ import nozomiCallManifest from "../assets/hazuki/nozomi-night-call/manifest.json
 import nozomiCallAudio from "../../public/audio/world/nozomi-night-call/manifest.json";
 import nozomiMotorcycleManifest from "../assets/sakuragaoka/nozomi-motorcycle/manifest.json";
 import nozomiMotorcycleAudio from "../../public/audio/world/nozomi-motorcycle/manifest.json";
+import nozomiRescueManifest from "../assets/harbor/nozomi-rescue/manifest.json";
+import nozomiRescueAudio from "../../public/audio/world/nozomi-rescue/manifest.json";
 import chaiIntroManifest from "../assets/dobuita/chai-intro/manifest.json";
 import chaiIntroAudio from "../../public/audio/world/chai-intro/manifest.json";
 import chaiVictoryManifest from "../assets/dobuita/chai-victory/manifest.json";
@@ -345,6 +347,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["goro-mai-marriage",goroMaiManifest,goroMaiAudio,"mfsy"],
     ["warning-letter",warningLetterManifest,warningLetterAudio,"mfsy",Object.freeze({cues:[{startActivity:true,trackId:"bgm119",loop:true}],gain:1})],
     ["chen-warning",chenWarningManifest,chenWarningAudio,"ms08"],
+    ["nozomi-rescue",nozomiRescueManifest,nozomiRescueAudio,"tery",Object.freeze({cues:[{startActivity:true,trackId:"bgm084",loop:true}],gain:1})],
     ["sailor-chase-intro",sailorIntroManifest,sailorIntroAudio,"mfsy"],["sailor-chase-tony",sailorTonyManifest,sailorTonyAudio,"mfsy"],["sailor-chase-smith",sailorSmithManifest,sailorSmithAudio,"mfsy"],
     ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],
     ["mark-lunch-intro",markLunchIntroManifest,markLunchIntroAudio,"mfsy"],["mark-lunch-aftermath",markLunchAftermathManifest,markLunchAftermathAudio,"mfsy"],

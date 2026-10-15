@@ -1,6 +1,16 @@
 {
   "schema":"new-yokosuka-authored-story-combat-v1",
   "encounters":[{
+    "id":"s1.mfsy.nozomi-guards","label":"Get past the warehouse guards","area":"MFSY","worldId":"mfsy","sourceScene":"s1.mfsy.nozomi-guards",
+    "provenance":"GameSpot pp62-63 establishes the outside battle before the warehouse battle. Use six distinct original TERYB1 bodies in an authored open-alley formation, not a claim of recovered native roster/spawns. Shared combat and adapted health/AI, two active attackers; all six require actual defeat. Saves no rescue or deal.",
+    "health":{"AKIR":100,"NR01":28,"NR02":28,"NR03":28,"NR04":28,"NR05":28,"NR06":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5,
+    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+  },{
+    "id":"s1.tery.nozomi-guards","label":"Clear the warehouse","area":"TERY","worldId":"tery","sourceScene":"s1.tery.nozomi-guards",
+    "provenance":"Original TERYB2 contains these seven distinct low-detail bodies. Authored formation in the original warehouse, shared combat and adapted health/AI, two active attackers; not a recovered native roster/moveset. All seven require actual defeat. Independent saved victory cannot grant the later hostage deal.",
+    "health":{"AKIR":100,"NR11":28,"NR12":28,"NR13":28,"NR14":28,"NR15":28,"NR16":28,"NR17":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5,
+    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+  },{
     "id":"s1.mfsy.biker-thugs","label":"Get past the five bikers","area":"MFSY","worldId":"mfsy","sourceScene":"s1.mfsy.biker-thugs",
     "provenance":"GameSpot p57 five-thug battle after twelve-input chase. Original BAT_MBQC low-detail biker models plus two explicit reviewed thug donors. Authored open-alley formation near original interrogation, basic moves/AI and balance, two simultaneous attackers; all five must actually be defeated. No movie-completion victory or reward.",
     "health":{"AKIR":100,"BTK_":28,"BTH_":28,"BTA_":36,"MRSK":28,"OKYS":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5,

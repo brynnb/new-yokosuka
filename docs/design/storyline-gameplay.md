@@ -174,8 +174,14 @@ cancellation/road reload, return to Naoyuki/re-entry, all 13 server-owned gates,
 saved harbor arrival and completed reload. The two-minute deadline, interruption,
 fresh retry tokens and outcome isolation are covered through the actual Yarn
 compiler/engine. Start/end, simplified handling and held riding pose remain
-documented adaptations. Nozomi's rescue, final battles and departure remain unimplemented;
-the checklist above distinguishes each verified sequence.
+documented adaptations. The two Nozomi warehouse fights now save independent
+actual victories using original fighter packs and the existing combat system.
+Earned-save rendered checks verify both keyboard wins, original warehouse
+admission, cancelled hostage conversation/reload retaining victories and natural
+original C/D/E ending/notebook settlement. The final check resumes genuinely
+earned battles and also verifies actual BGM084 playback, restored controls and
+completed reload without replay. The ride home, final-day events, final battles
+and departure remain missing; the checklist above distinguishes each boundary.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

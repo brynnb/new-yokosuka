@@ -4,7 +4,9 @@ This chapter follows [Chen's post-letter warning](story-harbor-work.md#post-lett
 Progress uses ordinary server/Yarn events and personal saves, not the original
 room controller. Verified gameplay reaches the transport inquiry and motorcycle
 handoff after the late-night telephone call, then the controllable motorcycle
-ride and saved harbor arrival. Battles and the rescue remain missing.
+ride and saved harbor arrival. The warehouse battles and original hostage
+conversation are connected; their verification boundary is recorded below.
+The ride home and following final-day events remain missing.
 
 ## Rest and the call
 
@@ -80,9 +82,9 @@ does not become a fabricated prerequisite for borrowing.
 | Borrowing outcome | Acknowledged natural ending or explicit skip saves permission, notebook and personal minute only. No permanent inventory item, money, time jump, course/harbor arrival, driving victory or rescue result. |
 | Exit / retry | Shared presentation restores the gameplay approach, camera and controls, even though the original film includes Ryo riding away. Leaving/cancelling is retryable; reload must preserve completed outcomes without replay. Detailed keys/hand callbacks remain omitted. |
 
-The actual two-minute motorcycle challenge must be implemented separately.
-Watching this film does not stand in for controlling the bike or reaching the
-harbor. Its eventual result must use the existing authoritative event settlement.
+The separate [two-minute motorcycle challenge](#timed-motorcycle-ride) now
+supplies the actual riding outcome. Watching this film does not stand in for
+controlling the bike or reaching the harbor.
 
 ### Transport source identities
 
@@ -217,3 +219,76 @@ coordinates as existing movement challenges, while both presentation adapters
 receive matching, once-converted native poses. Neither issue is masked by a
 location offset or alternate model. The final check uses a fresh clone of the
 earned pre-ride save. No additional game-art/audio binaries were generated or uploaded.
+
+## Warehouse battles and Terry's deal
+
+The same GameSpot guide, printed pp.62–63, orders a harbor fight, another fight
+inside the warehouse, then Terry's hostage deal and the ride home. Separate
+ordinary Yarn events save the two victories before the conversation. No native
+room-controller reconstruction is required for these outcomes.
+
+| Field | Implementation |
+| --- | --- |
+| Prerequisites / trigger | Personal Story Ryo with a genuinely completed motorcycle ride. The tested Warehouse No.17 alley offers **Face the attackers** or **Leave it for now**. Server-side mode, opening, milestone and bounds gates are independent of client dispatch. |
+| Outside fight | Six distinct original `TERYB1` bodies, new chapter-local aliases `NR01`–`NR06`, in an authored alley formation. The archive identifies available models, not native spawn count/positions. Shared server combat requires all six actual defeats; only the outside-victory receipt settles. |
+| Admission / interior | After that saved victory, explicitly confirm **Enter the warehouse**. Repeatable reward-free Story travel loads original `S3_TERY_MAP17/18/19` structures/ground, starting at authored browser `[-16,0,-24]`. No extracted default Entry exists. Alternate ground/broad harbor layers are excluded. Normal world loading, ground support, private actors and recovery are reused; no second renderer. |
+| Inside fight | Seven distinct original `TERYB2` bodies, aliases `NR11`–`NR17`, in an authored warehouse formation. The same combat system saves only its independent victory. Both fights use 100 player health, 28 per opponent, at most two simultaneous attackers, existing basic moves and a fresh attempt after failure. Balance, roster size/formation and AI are explicit adaptations, not recovered native movesets. |
+| Hostage presentation | **Confront Terry** starts original `TER2` AUTH C/D/E: 1,985/3,870/180 frames, shared `M_01TAP.MOTN` bank 16, original cameras and actor movement. Original AKIR/MRSK/STSI/HRSK/PEDR/TERY tags are retained; the coda uses CHAI/AKIR/HRSK. Terry/other thug body associations are authored. Nozomi and Shingo reuse the existing reviewed full-body assets. |
+| Audio / environment | 52 available original English voices and 17 effects. `01TAPC026` and Chai's `01TAPH001` are absent from the pinned archive and remain explicitly unavailable, without substitute speech/subtitles. Reuse the viewer's BGM084 rendering: the original map resource cluster names this bank beside A1_TERRY and 01TAP; starting it at film entry is authored. Preserve the personal calendar/weather; the interior excludes precipitation. Detailed lighting, faces/grips and hand callbacks remain approximate. |
+| Outcome | Only acknowledged natural ending or supported explicit skip of the three films saves `story.s1.nozomi-rescue.completed`, `notebook.s1.terry-hostage-deal` and server-derived personal minute. No money, items, ride-home, calendar advance or final-battle success. The notebook records the actual bargain, not an invented recovered appointment date. |
+| Cancellation / recovery | Leave/cancel/preparation failure cannot win a battle or release Nozomi. Interruption/defeat retries with a new combat token. A cancelled hostage conversation retains both earned victories. Warehouse bounds allow recovery from transient combat poses after reconnect; completed events do not replay. The same authoritative transaction path owns all receipts and travel. |
+
+The shared AUTH compiler extracts one original-asset pack. Battle definitions
+refer to those same model/texture files, but battle-only actors are excluded
+from cinematic instantiation. Source-qualified model pairs and aliases prevent
+conflicts with the earlier MFSY biker actors. There is no new global NPC pool,
+quest engine, permanent inventory motorcycle or client-authored victory.
+
+### Warehouse source identities
+
+Original Disc3 `SCENE/03/TERY` resources:
+
+- `TERYB1.PKS`: `7f33a31c293b76270c2752981bc356f18461387cd523243460ae812473476ec6`;
+  six low-detail BTA/BTB/BTC/BTD/BTE/BTF bodies.
+- `TERYB2.PKS`: `17937a5d4ca08568b06c19a02dbe055aad3db4b90c395b1010cfb49447576a54`;
+  seven low-detail BTG/BTH/BTI/BTJ/BTK/BTM/OKA bodies.
+- `TER2.PKS`: `41ef8c4b096e251ad046e558d455d0972a986dc867bfcd44a4c40c3f6cbda256`.
+- `MAPINFO.BIN`: `6395d96f1542fd9d71be9bfa7b42132865031a45437dcfdd098b6b0220291bc6`;
+  original resource associations, not an embedded AUTH or recovered Entry.
+- `STREAM/01TAP.AFS`: `8824c0058137812470773274106abe8d7bf201957811e69fbe8a12d568d0f97a`.
+- `SOUND/A1_TERRY.SND`: `a9066c99966806378f34888d7a4239bde0eec7e33373a2ff0dfec5ab9e4906bd`.
+- `SOUND/BGM084.SND`: `b2f1eeab4d264b03ea48c16a50b0b69885e4b939f38268d648db10c19c158d36`;
+  viewer source ID `7e5bc0053824814ff10b0c7b78d3ddef0d0f0a769d47c53e35fdfe3851f7f3d0`.
+
+Regenerate with `node tools/cutscenes/build_nozomi_rescue_pack.mjs --audio`,
+then existing `build_story_combat.mjs`, `build_story_investigation.mjs` and
+`check-server-contract.mjs --sync-scripting`, pointing `NEW_YOKOSUKA_SERVER_DIR`
+at the authoritative server checkout. Hash-pinned texture archives and output
+identities are retained in the builder/generated manifests.
+
+### Warehouse verification
+
+Real Yarn compiler/engine checks pass both actual fights, decline/cancel,
+interrupted-input/fresh-token retry, prerequisite/mode/bounds/opening gates,
+already-completed exclusion and acknowledgement of all three original films.
+Each settlement contains only that event's own allowed effects. Focused client
+checks validate distinct source-qualified model pairs, cinematic loading scope,
+world selection and generated asset bytes, plus the existing actor/combat
+ownership tests. The first rendered check verifies both keyboard-earned wins,
+original warehouse/fighter/hostage rendering and cancelled-scene reload retaining
+the victories; its natural-ending wait was too short for the 129-second deal.
+The next run naturally completed all three films and saved the release, but
+its music assertion incorrectly required a full HTTP200 rather than legitimate
+media range responses. The corrected check resumes a copy of the genuinely
+earned battle checkpoint, not injected victories. It passes cancellation,
+reload, the original films' natural endings, actual BGM084 playback with an
+advancing playhead/nonzero volume, HTTP206 responses, notebook settlement,
+restored controls and completed reload without replay in 3.7 minutes.
+
+Reviewed captures show the original warehouse/fighters, Nozomi and Terry in the
+hostage conversation, and Chai's original jumping-away coda. Currency stays
+¥22,836 and inventory is unchanged. All 95 new local runtime records
+(6,475,529 bytes, including manifests) match their hashes/sizes; no assets were
+uploaded. No future home-ride, final-day, battle or departure result was inserted.
+Auditory mix comparison and exact native combat/presentation fidelity are not
+claimed. The earlier genuinely earned ride and battle checkpoints are retained.

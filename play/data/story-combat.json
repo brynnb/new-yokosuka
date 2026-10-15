@@ -2,6 +2,453 @@
   "schema": "new-yokosuka-authored-story-combat-v1",
   "encounters": [
     {
+      "id": "s1.mfsy.nozomi-guards",
+      "label": "Get past the warehouse guards",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "GameSpot pp62-63 establishes the outside battle before the warehouse battle. Use six distinct original TERYB1 bodies in an authored open-alley formation, not a claim of recovered native roster/spawns. Shared combat and adapted health/AI, two active attackers; all six require actual defeat. Saves no rescue or deal.",
+      "sourceScene": "s1.mfsy.nozomi-guards",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -92,
+          "y": 0,
+          "z": 25,
+          "health": 100
+        },
+        {
+          "tag": "NR01",
+          "x": -89,
+          "y": 0,
+          "z": 21,
+          "health": 28
+        },
+        {
+          "tag": "NR02",
+          "x": -94,
+          "y": 0,
+          "z": 20,
+          "health": 28
+        },
+        {
+          "tag": "NR03",
+          "x": -97,
+          "y": 0,
+          "z": 22,
+          "health": 28
+        },
+        {
+          "tag": "NR04",
+          "x": -90,
+          "y": 0,
+          "z": 18,
+          "health": 28
+        },
+        {
+          "tag": "NR05",
+          "x": -95,
+          "y": 0,
+          "z": 18,
+          "health": 28
+        },
+        {
+          "tag": "NR06",
+          "x": -92,
+          "y": 0,
+          "z": 16,
+          "health": 28
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "NR01",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTA_L",
+          "browserFilename": "BTA_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTA_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB1-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTA_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR02",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTB_L",
+          "browserFilename": "BTB_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTB_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB1-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTB_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR03",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTC_L",
+          "browserFilename": "BTC_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTC_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB1-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTC_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR04",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTD_L",
+          "browserFilename": "BTD_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTD_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB1-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTD_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR05",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTE_L",
+          "browserFilename": "BTE_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTE_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB1-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTE_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR06",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTF_L",
+          "browserFilename": "BTF_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTF_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB1-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTF_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -98.5,
+        "maxX": -87.5,
+        "minZ": 14.5,
+        "maxZ": 26.5
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000,
+      "inputBufferMs": 400
+    },
+    {
+      "id": "s1.tery.nozomi-guards",
+      "label": "Clear the warehouse",
+      "area": "TERY",
+      "worldId": "tery",
+      "provenance": "Original TERYB2 contains these seven distinct low-detail bodies. Authored formation in the original warehouse, shared combat and adapted health/AI, two active attackers; not a recovered native roster/moveset. All seven require actual defeat. Independent saved victory cannot grant the later hostage deal.",
+      "sourceScene": "s1.tery.nozomi-guards",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -16,
+          "y": 0,
+          "z": -24,
+          "health": 100
+        },
+        {
+          "tag": "NR11",
+          "x": -12,
+          "y": 0,
+          "z": -20,
+          "health": 28
+        },
+        {
+          "tag": "NR12",
+          "x": -16,
+          "y": 0,
+          "z": -19,
+          "health": 28
+        },
+        {
+          "tag": "NR13",
+          "x": -20,
+          "y": 0,
+          "z": -20,
+          "health": 28
+        },
+        {
+          "tag": "NR14",
+          "x": -22,
+          "y": 0,
+          "z": -16,
+          "health": 28
+        },
+        {
+          "tag": "NR15",
+          "x": -10,
+          "y": 0,
+          "z": -16,
+          "health": 28
+        },
+        {
+          "tag": "NR16",
+          "x": -14,
+          "y": 0,
+          "z": -13,
+          "health": 28
+        },
+        {
+          "tag": "NR17",
+          "x": -18,
+          "y": 0,
+          "z": -13,
+          "health": 28
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "NR11",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTG_L",
+          "browserFilename": "BTG_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTG_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTG_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR12",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTH_L",
+          "browserFilename": "BTH_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTH_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTH_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR13",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTI_L",
+          "browserFilename": "BTI_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTI_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTI_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR14",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTJ_L",
+          "browserFilename": "BTJ_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTJ_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTJ_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR15",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTK_L",
+          "browserFilename": "BTK_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTK_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTK_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR16",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTM_L",
+          "browserFilename": "BTM_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTM_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTM_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR17",
+          "label": "Mad Angels fighter",
+          "modelCode": "OKA_L",
+          "browserFilename": "OKA_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/OKA_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "OKA_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -23.5,
+        "maxX": -8.5,
+        "minZ": -25.5,
+        "maxZ": -11.5
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000,
+      "inputBufferMs": 400
+    },
+    {
       "id": "s1.mfsy.biker-thugs",
       "label": "Get past the five bikers",
       "area": "MFSY",
