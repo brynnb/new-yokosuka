@@ -5,6 +5,8 @@ import chickenRaceManifest from "../assets/harbor/chicken-race/manifest.json";
 import chickenRaceAudio from "../../public/audio/world/chicken-race/manifest.json";
 import charlieHarborManifest from "../assets/harbor/charlie-harbor-interrogation/manifest.json";
 import goroTrapManifest from "../assets/harbor/goro-trap-aftermath/manifest.json";
+import goroMaiManifest from "../assets/harbor/goro-mai-marriage/manifest.json";
+import goroMaiAudio from "../../public/audio/world/goro-mai-marriage/manifest.json";
 import goroTrapAudio from "../../public/audio/world/goro-trap-aftermath/manifest.json";
 import markLongZhaManifest from "../assets/harbor/mark-long-zha/manifest.json";
 import markLongZhaAudio from "../../public/audio/world/mark-long-zha/manifest.json";
@@ -326,6 +328,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
   ...[["chicken-race",chickenRaceManifest,chickenRaceAudio,"mfsy"],["goro-job-lead",goroJobLeadManifest,goroJobLeadAudio,"mfsy"],["goro-job-appointment",goroJobAppointmentManifest,goroJobAppointmentAudio,"mfsy"],
     ["charlie-harbor-interrogation",charlieHarborManifest,charlieHarborAudio,"mfsy"],
     ["goro-trap-aftermath",goroTrapManifest,goroTrapAudio,"mfsy"],["mark-long-zha",markLongZhaManifest,markLongZhaAudio,"mfsy"],
+    ["goro-mai-marriage",goroMaiManifest,goroMaiAudio,"mfsy"],
     ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],
     ["mark-lunch-intro",markLunchIntroManifest,markLunchIntroAudio,"mfsy"],["mark-lunch-aftermath",markLunchAftermathManifest,markLunchAftermathAudio,"mfsy"],
     ["after-work-goro",afterWorkGoroManifest,afterWorkGoroAudio,"mfsy"],

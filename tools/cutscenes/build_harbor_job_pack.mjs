@@ -15,6 +15,7 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const evidence="docs/design/story-harbor-work.md";
 const archives={
+  GOROKEKN:"b46218e928a21665463da0a39bc956eb9799d89b81554fdd39f722c84cf89c71",
   "MB9Q/MPK00":"70a419eb5544dade0c62f3b2ca0a8d747eaf79e11e9df5c467b728d753b22f7c",
   RYUSATSU:"385fd95a064964da1723afade848a3673e5632d56c1536460df9be7acd03686c",
   BAT_MBQC:"52867cbea1dd59044282ee476405026a769a909eab8bbcced955f94975d470e0",
@@ -30,6 +31,8 @@ const archives={
   ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
 const profiles=[
+  {id:"goro-mai-marriage",archive:"GOROKEKN",auth:"SEQDATA0.AUTH",motion:"M_01GHO.MOTN",frames:1234,actors:["HINA","AKIR","GORO"],
+    stream:"01GHO",streamHash:"c262947548666f943f1e07dccbe3042d168b27d48bd9bfbea4d8e12668fa2e70",sound:"A1_GKEKN.SND",soundHash:"e64d21ff00d541ee002566225a066ca8208780cf6f96c94eabb5a657bdd7345f"},
   {id:"goro-trap-aftermath",archive:"MB9Q/MPK00",resourceName:"MB9Q",auth:"SEQDATA1.AUTH",motion:"M_019RN.MOTN",frames:880,actors:["TONY","AKIR","JONZ","SMTH","RBRT"],
     // Retain YKB's original reference body for the cloth regression fixture;
     // it is Ryo, not an eighth fighter. GH borrows Tony/Smith's real bodies.

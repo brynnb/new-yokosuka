@@ -2,9 +2,9 @@ import {expect} from "@playwright/test";
 import {driveObservedDeliveries} from "./story-forklift-training.js";
 
 export async function verifyMorningCargo(page,testInfo,character,{day="one"}={}){
-  expect(["one","two","three","four"]).toContain(day);
-  const chapter=`workday-${day}`,count=day==="one"?5:4;
-  const success=day!=="one"?"Four crates are delivered. Time for lunch with the other workers.":"The morning batch is finished. It is lunch break.";
+  expect(["one","two","three","four","five"]).toContain(day);
+  const chapter=`workday-${day}`,count=day==="one"||day==="five"?5:4;
+  const success=day==="five"?"Five crates are delivered. Time for lunch with the other workers.":day!=="one"?"Four crates are delivered. Time for lunch with the other workers.":"The morning batch is finished. It is lunch break.";
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),done=`story.s1.${chapter}-morning.completed`;
   expect(initial.character.storyFlags[`story.s1.${chapter}-race.completed`]).toBe(true);

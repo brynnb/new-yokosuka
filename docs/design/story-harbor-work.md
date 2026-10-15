@@ -964,3 +964,76 @@ backups remain preserved. Related Go packages and 72 focused client checks pass,
 tests/browsers run sequentially. Voice/effect assets pass immutable local
 hash/size verification; the audio mix was not compared by listening. No push,
 deployment or R2 publication was performed.
+
+## Fifth working morning and Goro/Mai's announcement
+
+Five ordinary Yarn records continue the saved Long Zha chapter. The
+[GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed pp. 59–60, places the next morning race before the two-leg cargo job,
+noon lunch and Goro/Mai encounter. These records do not complete the fifth day
+or grant its later sailor, warning-letter or Master Chen outcomes.
+
+| Event | Eligibility / presentation | Saved outcome |
+| --- | --- | --- |
+| `workday-four-night` | Completed fourth day and acknowledged Long Zha explanation; existing bedside approach after 20:00. Ordinary unvoiced sleep/stay-awake choice and final acknowledgement, not a newly invented dream. | Next personal day at 08:30, tested harbor arrival and fifth-morning notebook together. Cancellation changes neither date nor location. Optional; ordinary calendar waiting can also reach the next day. |
+| `workday-five-race-entry` | Previous day complete and a later personal date than its saved finish; tested loading corridor 08:30–12:00. | Repeatable, reward-free transfer to the original race grid; no fifth result from an earlier race receipt. |
+| `workday-five-race` | Independent fifth-day boarding, actual `ma00race` course. | Three physically driven laps/39 ordered server-observed gates, then acknowledged fifth-day result/date/notebook, minimum 09:00 and harbor arrival. No salary or rank prize. |
+| `workday-five-morning` | Saved fifth race, dispatch approach 09:00–12:00. Five new physical deliveries followed by the original shared HIRUAUTH coworker lunch. | Morning receipt, notebook and noon together. No afternoon quota, red-cargo return credit, sailor chase, wages or complete-workday milestone. |
+| `goro-mai-marriage` | Saved fifth morning; separate lunch approach 12:00–14:00 around original Ryo [36.425,0,58.455]. Original GOROKEKN/01GHO actors, motion, camera, twelve voices and eight effects. | Only its acknowledged meeting and notebook. Remain at the approach, restoring camera/controls; cancellation is retryable and completed entry/reload does not replay. |
+
+### Provenance and approximations
+
+Original `GOROKEKN.PKS` SHA256:
+`b46218e928a21665463da0a39bc956eb9799d89b81554fdd39f722c84cf89c71`.
+Its `SEQDATA0.AUTH` declares 1,234 frames and the HINA/AKIR/GORO cast;
+M_01GHO supplies the original motion bank. The longer 42.4667-second movement
+extent is not a reason to extend the declared AUTH ending. The room's literal
+resource strings identify A1_GKEKN.SND and 01GHO; pinned original AFS speech
+confirms the marriage announcement and Goro's intent to work honestly. Reuse
+the existing Mai/MIB_L and Goro/KMB_L bindings rather than inventing identities.
+All 24 locally generated asset records pass immutable hash/size checks; no
+publication is implied by those local records.
+
+Original job descriptions distinguish outbound crates to Warehouse No.8 and
+red-marked return cargo to No.18, with a ten-delivery quota. The fixed five/five
+split, condensed outdoor dispatch pad, ordinary morning crates, shared first
+lunch film, forgiving boarding hours and 08:30 commute are adaptations. The
+afternoon return leg and red-cargo presentation remain unimplemented here; the
+morning must not masquerade as the complete two-leg job. Keep existing personal
+weather/lighting; no new music selection, exact patrol or native controller
+predicate is claimed. The meeting's approach/hour window is authored, while
+its actual scene presentation remains original.
+
+### Verification boundary
+
+Existing real-compiler tests now cover fourth-night decline/cancellation/final
+acknowledgement and missing Long Zha, next-day boarding with same-day/missing
+finish-date rejection, a separately observed fifth race, and five newly
+observed deliveries plus acknowledged lunch. A shared milestone-film check
+covers missing fifth morning, early hour, completed state, cancellation and
+only the two allowed announcement effects. The related Go packages pass
+sequentially. The existing browser drivers are extended to this day, not
+replaced by direct flag/date or race/cargo-result injection.
+
+`NEW_YOKOSUKA_FIFTH_MORNING_E2E=true` continues the genuinely earned fourth-day
+character. Connected local browser checks now pass across earned save
+checkpoints: ordinary sleep decline/cancellation/final acknowledgement,
+next-day harbor arrival/reload, a new actual three-lap/39-gate race, five
+physical deliveries, original coworker lunch, cancelled/retried Goro/Mai
+announcement, natural ending and saved reload without replay. The final save
+is personal day 6207, December 30 at noon, still ¥19,836 with unchanged
+inventory. All four new notebook pages are saved; fifth-afternoon, payday and
+whole-day milestones remain absent.
+
+The first cargo attempt exposed an X-only test-driver assumption: crate
+contacts changed the vehicle's yaw and lateral position, so pickup three
+missed the box. The shared driver now steers from observed two-dimensional
+positions, lowers the forks before backing out and retries through actual
+keyboard/physics input. No vehicle/cargo pose or delivery credit is injected,
+and gameplay physics/validation are unchanged. The saved race was retained;
+the successful continuation repeated only the unfinished cargo and meeting.
+
+Inspected captures show the physical pickup and the original meeting shot
+with Ryo and Goro; Mai is partly occluded behind Goro in the captured shot.
+This does not establish clear visibility in every shot, and automated playback
+was not assessed by listening for audio-mix fidelity. No assets were published.

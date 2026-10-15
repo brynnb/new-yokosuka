@@ -147,8 +147,11 @@ independent saved outcomes and reload. A separate lunch-hour Tsuyoshi warning
 now saves the spying notebook clue, with cancellation/retry and saved reload.
 The fourth afternoon now connects Goro's nine-input trap, four remaining cargo
 deliveries, separate once-only wages and Mark's original Long Zha explanation,
-with saved chapter/notebook and reload. The fifth workday, Nozomi rescue,
-final battles and departure remain unimplemented;
+with saved chapter/notebook and reload. Ordinary sleep, the fifth morning's
+independently earned race, five physical deliveries, original lunch and
+Goro/Mai's announcement now also pass earned-save browser checks through
+cancellation/retry and saved reload. The fifth afternoon, warning-letter/Chen
+follow-up, Nozomi rescue, final battles and departure remain unimplemented;
 the checklist above distinguishes each verified sequence.
 
 For walkthrough-guided, authored progression, use the

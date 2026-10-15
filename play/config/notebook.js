@@ -165,6 +165,10 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.workday-four-quota",page:Object.freeze({id:"story-workday-four-quota",text:"Finished the fourth day's eight-crate quota.\n\nCollect my wages from Yada-san at Alpha Trading."})},
   {flag:"notebook.s1.fourth-payday",page:Object.freeze({id:"story-fourth-payday",text:"Collected my fourth day's wages.\n\nSpeak with Mark beside the harbor about the Mad Angels' trade."})},
   {flag:"notebook.s1.long-zha",page:Object.freeze({id:"story-long-zha",text:"Mark overheard the words Long Zha.\n\nSome kind of Mad Angels black-market deal.\nThey have been on edge, and it sounds like the deal is soon.\nWhen will it happen?"})},
+  {flag:"notebook.s1.workday-five-morning",page:Object.freeze({id:"story-workday-five-morning",text:"Back to the harbor for the final working day.\n\nKeep investigating the Long Zha deal."})},
+  {flag:"notebook.s1.workday-five-race",page:Object.freeze({id:"story-workday-five-race",text:"Finished the final morning forklift race.\n\nToday's quota is ten deliveries: crates to Warehouse No. 8 and red-marked crates back to No. 18."})},
+  {flag:"notebook.s1.workday-five-lunch",page:Object.freeze({id:"story-workday-five-lunch",text:"Finished five deliveries and had lunch with the other workers.\n\nGoro and Mai are near Alpha Trading.\nThere is still work to finish this afternoon."})},
+  {flag:"notebook.s1.goro-mai-marriage",page:Object.freeze({id:"story-goro-mai-marriage",text:"Goro and Mai plan to get married.\nGoro says he wants a proper job and an honest life.\n\nKeep asking about the Long Zha deal before returning to work."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

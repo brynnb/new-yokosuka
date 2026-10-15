@@ -39,6 +39,7 @@ const ACTIVITIES = new Map([
   ...[["goro-job-lead","GOROCOOP/SEQDATA1.AUTH"],["goro-job-appointment","MGOR/SEQDATA0.AUTH"],
     ["charlie-harbor-interrogation","BAT_MBQC/SEQDATA0.AUTH"],
     ["goro-trap-aftermath","MB9Q/SEQDATA1.AUTH"],["mark-long-zha","RYUSATSU/SEQDATA1.AUTH"],
+    ["goro-mai-marriage","GOROKEKN/SEQDATA0.AUTH"],
     ["yada-job-interview","MARU/SEQDATA0.AUTH"],["mark-job-introduction","MARU/SEQDATA1.AUTH"],
     ["mark-lunch-intro","MIZUMARK/SEQDATA1.AUTH"],["mark-lunch-aftermath","MIZUMARK/SEQDATA2.AUTH"],
     ["mark-after-work-intro","BOKOMARK/SEQDATA2.AUTH"],["mark-after-work-aftermath","BOKOMARK/SEQDATA3.AUTH"],["mark-brother-explanation","BOKOMARK/SEQDATA4.AUTH"],

@@ -3,6 +3,51 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"workday-four-night","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":780,
+      "title":"After Long Zha — rest for the final working day","hours":[20,24],"bounds":"s1.jomo.workday-four-night",
+      "requiredFlags":["story.s1.workday-four.completed","story.s1.mark-long-zha.completed"],"excludedFlags":["story.s1.workday-five-race.completed"],
+      "completedFlag":"story.s1.workday-four-night.completed","effects":["notebook.s1.workday-five-morning"],"voiceIds":[],"yarnTemplate":"story-workday-sleep.yarn",
+      "timeTransition":"s1.wait.morning","destination":"s1.work.harbor-loading-start",
+      "authoredText":{"briefing":"Mark says the Long Zha deal is soon. Rest tonight, then keep investigating during the final working day.","success":"Time to sleep. Tomorrow starts with the final morning forklift race."},
+      "nativeSources":[{"role":"authored-harbor-arrival-contract","locator":"internal/scriptcontent/story_travel.v1.json#s1.work.harbor-loading-start","sha256":"3205a130bc1f2680f0499c13c37c270fd2d92557186600d498629042819de02b"}],
+      "provenance":"GameSpot pp59-60: return home after20:00 following LongZha explanation; fifth working morning. Ordinary unvoiced sleep/commute uses existing personal-clock and destination transaction, not an invented dream or original room controller. Final acknowledgement saves next day08:30, notebook and tested harbor arrival together. Decline/cancel leaves date/location unchanged. Optional sleep can be bypassed by ordinary calendar waiting."
+    },
+    {
+      "id":"workday-five-race-entry","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":790,
+      "title":"Fifth workday — final morning race","hours":[8.5,12],"bounds":"s1.mfsy.workday-five-race-entry",
+      "requiredFlags":["story.s1.workday-four.completed"],"excludedFlags":["story.s1.workday-five-race.completed"],"dayAfter":"story.s1.workday-four.finished",
+      "completedFlag":"story.s1.workday-five-race-entry.completed","effects":[],"repeatable":true,"voiceIds":[],"yarnTemplate":"story-workday-race-entry.yarn","destination":"s1.work.morning-race-grid",
+      "authoredText":{"briefing":"The fifth workday starts with Mark's forklift race. Today's quota is ten deliveries: take crates to Warehouse No. 8 and bring red-marked crates back to Warehouse No. 18."},
+      "nativeSources":[{"role":"original-shared-gameplay-course","locator":"tools/evidence/ma00-forklift-race-course.json","sha256":"fe02e239b35f180c29621a8440b6ed80afb6c25ce4300e42b048c5ecfbaf8e4a"}],
+      "provenance":"GameSpot p60 fifth morning, same race and two-leg work assignment. Reuse tested boarding approach and reward-free travel, requiring a later personal date than the acknowledged fourth-day finish. Optional home sleep is not a prerequisite. No race win, prize or wage from boarding."
+    },
+    {
+      "id":"workday-five-race","disc":3,"actor":"AKIR","presentActors":[],"area":"MA00","trigger":"enter","priority":800,
+      "title":"Fifth workday — forklift race","bounds":"s1.ma00.workday-five-race",
+      "requiredFlags":["story.s1.workday-five-race-entry.completed","story.s1.workday-four.completed"],"completedFlag":"story.s1.workday-five-race.completed","effects":["notebook.s1.workday-five-race"],"recordDays":["story.s1.workday-five.day"],
+      "voiceIds":[],"yarnTemplate":"story-workday-race.yarn","destination":"s1.work.harbor-loading-start",
+      "authoredText":{"success":"Finished the final morning race. Time to start the day's deliveries.","failure":"I did not finish the course. Try the morning race again?"},
+      "nativeSources":[{"role":"original-shared-gameplay-course","locator":"tools/evidence/ma00-forklift-race-course.json","sha256":"fe02e239b35f180c29621a8440b6ed80afb6c25ce4300e42b048c5ecfbaf8e4a"}],
+      "provenance":"Independently earn three actual laps/39 ordered observed gates on the existing original course, as earlier mornings. Final acknowledgement saves fifth-day result/date/notebook, minimum09:00 and harbor arrival. Earlier race receipts and movie completion cannot count. No wage, placement prize or whole-day flag."
+    },
+    {
+      "id":"workday-five-morning","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":810,
+      "title":"Fifth workday — morning cargo and lunch","hours":[9,12],"bounds":"s1.mfsy.workday-five-morning",
+      "requiredFlags":["story.s1.workday-five-race.completed"],"completedFlag":"story.s1.workday-five-morning.completed","effects":["notebook.s1.workday-five-lunch"],
+      "voiceIds":[],"yarnTemplate":"story-workday-delivery.yarn","challenge":"s1.mfsy.workday-five-morning","timeTransition":"s1.work.lunch","completionActivities":["s1.mfsy.workday-lunch.scene"],
+      "authoredText":{"briefing":"Today's work has two legs: crates to Warehouse No. 8, then red-marked crates back to No. 18. Move five crates through this dispatch area before lunch, then five more in the afternoon.","success":"Five crates are delivered. Time for lunch with the other workers."},
+      "nativeSources":[{"role":"original-coworker-lunch","locator":"disc3/SCENE/03/MFSY/HIRUAUTH.PKS#SEQDATA1.AUTH,M_01BEN.MOTN","sha256":"e740397e02958441010345d34d1369b20bbad9bc2ebdf397b413251b20a9a97e"}],
+      "provenance":"Guide p60: ten-delivery two-leg job, noon coworker lunch, then Goro/Mai. Five/five split and tested outdoor dispatch pad condense original routing; morning uses ordinary unmarked cargo, no implemented return leg or red-crate claim here. Five newly observed deliveries and acknowledged shared original HIRUAUTH lunch save morning/notebook/noon together. Marriage meeting, afternoon, sailor chase, wages and finished day remain separate."
+    },
+    {
+      "id":"goro-mai-marriage","disc":3,"actor":"GORO","presentActors":[],"area":"MFSY","trigger":"enter","priority":820,
+      "title":"Lunch break — Goro and Mai's announcement","hours":[12,14],"bounds":"s1.mfsy.goro-mai-marriage",
+      "requiredFlags":["story.s1.workday-five-morning.completed"],"completedFlag":"story.s1.goro-mai-marriage.completed","effects":["notebook.s1.goro-mai-marriage"],"voiceIds":[],
+      "activities":["s1.mfsy.goro-mai-marriage.scene"],
+      "nativeSources":[{"role":"original-goro-mai-announcement","locator":"disc3/SCENE/03/MFSY/GOROKEKN.PKS#SEQDATA0.AUTH,M_01GHO.MOTN","sha256":"b46218e928a21665463da0a39bc956eb9799d89b81554fdd39f722c84cf89c71"}],
+      "provenance":"GameSpot p60 fifth-day lunch encounter. Original GOROKEKN/01GHO film confirms Goro plans to work honestly and marry Mai, with original1234-frame motion/camera/voices/effects. Approach bounds and lunch-hour eligibility are authored around original grounded Ryo [36.425,0,58.455], not a recovered controller gate. Only acknowledged ending saves meeting/notebook; no time jump, wage, sailor clue or fifth-day completion. Cancellation leaves retryable, completed entry/reload does not replay."
+    },
+    {
       "id":"goro-trap","disc":3,"actor":"GORO","participants":["TONY","SMTH","JONZ","RBRT"],"presentActors":[],"area":"MFSY","trigger":"enter","priority":740,
       "title":"Warehouse No. 13 — Goro's trap","hours":[14,17],"bounds":"s1.mfsy.goro-trap",
       "requiredFlags":["story.s1.workday-four-morning.completed","story.s1.workday-four-spying.completed"],"completedFlag":"story.s1.goro-trap.completed","effects":["notebook.s1.goro-trap"],

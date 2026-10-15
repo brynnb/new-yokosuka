@@ -25,12 +25,12 @@ function originalDrivingLine(){
 }
 
 export async function verifyMorningRace(page,testInfo,character,{day="one"}={}){
-  expect(["one","two","three","four"]).toContain(day);
+  expect(["one","two","three","four","five"]).toContain(day);
   const chapter=`workday-${day}`;
   const drivingLine=originalDrivingLine();
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),done=`story.s1.${chapter}-race.completed`;
-  const required={one:"story.s1.chicken-race.completed",two:"story.s1.workday-one.completed",three:"story.s1.workday-two.completed",four:"story.s1.workday-three.completed"}[day];
+  const required={one:"story.s1.chicken-race.completed",two:"story.s1.workday-one.completed",three:"story.s1.workday-two.completed",four:"story.s1.workday-three.completed",five:"story.s1.workday-four.completed"}[day];
   expect(initial.character.storyFlags[required]).toBe(true);
   expect(initial.character.storyFlags[done]).not.toBe(true);
   const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
@@ -98,7 +98,7 @@ export async function verifyMorningRace(page,testInfo,character,{day="one"}={}){
     }
     if(await info())throw Error(`Race did not finish: ${JSON.stringify(last)}`);
   }finally{await keys(new Set());}
-  await page.getByText("Finished the morning race. Time to start the day's deliveries.",{exact:true}).waitFor();await unwon();await page.keyboard.press("Space");
+  await page.getByText(day==="five"?"Finished the final morning race. Time to start the day's deliveries.":"Finished the morning race. Time to start the day's deliveries.",{exact:true}).waitFor();await unwon();await page.keyboard.press("Space");
   await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="mfsy"&&!window.storyProbe.lifecycle.worldRuntime.switching,null,{timeout:120_000});
   // The committed arrival is deliberately inside the next cargo trigger. A
   // real, correctly ordered briefing may own the player before the first idle

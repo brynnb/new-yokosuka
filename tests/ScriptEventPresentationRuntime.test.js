@@ -76,6 +76,14 @@ test("Goro's trap borrows original films and fighters, not the archive's Ryo ref
   }
 });
 
+test("Goro and Mai's announcement retains the original cast, binding and declared AUTH ending",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.mfsy.goro-mai-marriage.scene"),manifest=JSON.parse(readFileSync(new URL("../play/assets/harbor/goro-mai-marriage/manifest.json",import.meta.url))),audio=JSON.parse(readFileSync(new URL("../public/audio/world/goro-mai-marriage/manifest.json",import.meta.url)));
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.cutscene.activity.binding.activityId,"GOROKEKN/SEQDATA0.AUTH");assert.equal(manifest.activities[0].durationFrames,1234);
+  assert.deepEqual(manifest.actorTags,["HINA","AKIR","GORO"]);assert.equal(audio.voices.length,12);assert.ok(audio.voices.every(v=>!v.unavailable));
+  assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+});
+
 test("coworker lunch borrows the original silent film without owning the batch result",()=>{
   const activity=createScriptEventPresentationCatalog().activity("s1.mfsy.workday-lunch.scene");
   const manifest=JSON.parse(readFileSync(new URL("../play/assets/harbor/workday-lunch/manifest.json",import.meta.url)));

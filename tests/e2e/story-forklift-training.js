@@ -35,38 +35,46 @@ export async function verifyForkliftTraining(page,testInfo,character){
 export async function driveObservedDeliveries(page,testInfo,count,prefix){
   const info=()=>page.evaluate(()=>{const r=window.storyProbe.delivery,a=r.getForklifts();if(!r.active||!a.mode.driving)return null;const v=r.active.prompt.delivery,c=a.cargo.physics.entries.get(v.cargoId),p=a.cargo.physics.dynamicForkliftPose(a.mode.activeId);if(!p)return null;return{view:v,position:a.mode.actorRoot.position.asArray(),yaw:a.mode.actorRoot.rotation.y,velocity:p.linearVelocity.asArray(),speed:a.mode.state.speed,lift:a.mode.state.lift,cargo:c?.node.position.asArray(),support:c?.forkSupportActive};});
   expect(await page.evaluate(()=>window.storyProbe.delivery.getForklifts().fleet.size)).toBe(1);
-  const original=(await info()).position;
+  const initialVehicle=await info(),original=initialVehicle.position,heading=initialVehicle.yaw,forward=[Math.sin(heading),Math.cos(heading)];
   // This exercise follows a clear straight corridor. Drive through the real
   // keyboard/physics boundary, without teleporting the vehicle or cargo.
-  const slowDrive=async(field,targetX)=>{
-    let held=null,last;const deadline=Date.now()+30_000;
+  const slowDrive=async(field,target)=>{
+    const held=new Set();let last;const deadline=Date.now()+30_000;
+    const keys=async next=>{for(const key of held)if(!next.has(key)){await page.keyboard.up(key);held.delete(key);}for(const key of next)if(!held.has(key)){await page.keyboard.down(key);held.add(key);}};
     try{while(Date.now()<deadline){
       last=await info();if(!last)return;const point=field==="cargo"?last.cargo:last.position,x=point?.[0];expect(x).toBeDefined();
       expect(last.position[1],`Forklift left the road: ${JSON.stringify(last)}`).toBeLessThan(2);
-      const dx=targetX-x,velocity=last.velocity[0];
+      const dx=target[0]-x,dz=target[1]-point[2],velocity=last.velocity[0]*Math.sin(last.yaw)+last.velocity[2]*Math.cos(last.yaw);
       if(field==="cargo"&&x>=last.view.dropMin[0]&&x<=last.view.dropMax[0]&&last.cargo[2]>=last.view.dropMin[2]&&last.cargo[2]<=last.view.dropMax[2]&&Math.abs(velocity)<.2)return;
-      if(Math.abs(dx)<.15&&Math.abs(velocity)<.2)return;
-      const desired=Math.sign(dx)*Math.min(1.1,Math.abs(dx)*1.3),change=desired-velocity;
-      const next=change>.15?"KeyW":change<-.15?"KeyS":null;
-      if(held!==next){if(held)await page.keyboard.up(held);if(next)await page.keyboard.down(next);held=next;}
+      if(Math.hypot(dx,dz)<.25&&Math.abs(velocity)<.2)return;
+      // Contacts can change both yaw and lateral position. X-only throttle
+      // control let repeated return trips drift over a metre from the crate.
+      // Follow the pickup/drop lane in 2D, reversing steering when backing up.
+      const remaining=dx*forward[0]+dz*forward[1],direction=Math.sign(remaining)||1;
+      const cross=-dx*forward[1]+dz*forward[0],desiredYaw=heading-direction*Math.atan2(cross,3);
+      const error=Math.atan2(Math.sin(desiredYaw-last.yaw),Math.cos(desiredYaw-last.yaw));
+      const desired=direction*Math.min(1.1,Math.abs(remaining)*1.3),change=desired-velocity,next=new Set();
+      if(change>.15)next.add("KeyW");else if(change<-.15)next.add("KeyS");
+      if(error*direction>.035)next.add("KeyD");else if(error*direction<-.035)next.add("KeyA");
+      await keys(next);
       await page.waitForTimeout(100);
-    }throw Error(`Physical drive did not reach ${field} X=${targetX}: ${JSON.stringify(last)}`);}
-    finally{if(held)await page.keyboard.up(held);}
+    }throw Error(`Physical drive did not reach ${field} XZ=${JSON.stringify(target)}: ${JSON.stringify(last)}`);}
+    finally{await keys(new Set());}
   };
   for(let crate=0;crate<count;crate++){
     await page.waitForFunction(()=>{const r=window.storyProbe.delivery;return r.active?.prompt.delivery.cargoId&&r.getForklifts().cargo.physics.entries.has(r.active.prompt.delivery.cargoId);});
-    const pickup=await info(),heading=1.3021669961391247;
-    await slowDrive("vehicle",pickup.cargo[0]-Math.sin(heading)*1.3);
+    const pickup=await info();
+    await slowDrive("vehicle",[pickup.cargo[0]-forward[0]*1.3,pickup.cargo[2]-forward[1]*1.3]);
     let lifted;
     for(let attempt=0;attempt<3;attempt++){
       await page.keyboard.down("KeyE");await page.waitForTimeout(500);await page.keyboard.up("KeyE");await page.waitForTimeout(400);
       lifted=await info();if(lifted.support)break;
       if(attempt<2){
-        // A crate may shift when the real forks touch it. Lower and creep
-        // toward its observed position like a player, rather than assuming
-        // the initial pickup coordinate still describes the physics body.
-        await page.keyboard.down("KeyF");await page.waitForTimeout(600);await page.keyboard.up("KeyF");
-        const current=await info();await slowDrive("vehicle",current.cargo[0]-Math.sin(current.yaw)*(1.15-attempt*.1));
+        // Lower fully and back out before reinserting the forks. Pushing at
+        // the raised box edge merely shoves the crate away from the tines.
+        await page.keyboard.down("KeyF");try{await page.waitForFunction(()=>window.storyProbe.delivery.getForklifts().mode.state.lift<.02,null,{timeout:5000});}finally{await page.keyboard.up("KeyF");}
+        const current=await info();await slowDrive("vehicle",[current.cargo[0]-forward[0]*3,current.cargo[2]-forward[1]*3]);
+        const observed=await info(),distance=1.15-attempt*.1;await slowDrive("vehicle",[observed.cargo[0]-forward[0]*distance,observed.cargo[2]-forward[1]*distance]);
       }
     }
     expect(lifted.support,JSON.stringify(lifted)).toBe(true);
@@ -75,12 +83,12 @@ export async function driveObservedDeliveries(page,testInfo,count,prefix){
       await page.screenshot({path:testInfo.outputPath(`${prefix}-real-pickup.png`)});
     }
     const view=(await info()).view;
-    await slowDrive("cargo",(view.dropMin[0]+view.dropMax[0])/2);
+    await slowDrive("cargo",[(view.dropMin[0]+view.dropMax[0])/2,(view.dropMin[2]+view.dropMax[2])/2]);
     const atGoal=await info();expect(atGoal.cargo[0]).toBeGreaterThanOrEqual(view.dropMin[0]);expect(atGoal.cargo[0]).toBeLessThanOrEqual(view.dropMax[0]);expect(atGoal.cargo[2]).toBeGreaterThan(view.dropMin[2]);expect(atGoal.cargo[2]).toBeLessThan(view.dropMax[2]);
     await page.keyboard.down("KeyF");
     try{await page.waitForFunction(()=>window.storyProbe.delivery.getForklifts().mode.state.lift<.02,null,{timeout:5000});}finally{await page.keyboard.up("KeyF");}
     const current=await info();
-    if(current)await slowDrive("vehicle",crate<count-1?original[0]:current.position[0]-2);
+    if(current)await slowDrive("vehicle",crate<count-1?[original[0],original[2]]:[current.position[0]-forward[0]*2,current.position[2]-forward[1]*2]);
     if(crate<count-1)await expect.poll(()=>page.evaluate(()=>window.storyProbe.delivery.active?.prompt.delivery.delivered),{timeout:15_000}).toBe(crate+1);
     console.log("Physical delivery finished",prefix,crate+1);
   }

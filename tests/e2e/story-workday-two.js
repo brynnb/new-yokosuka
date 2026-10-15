@@ -83,10 +83,11 @@ export async function verifySecondWorkday(page,testInfo,character){
 }
 
 export async function verifyWorkdayNight(page,testInfo,character,{day="one"}={}){
-  expect(["one","three"]).toContain(day);
-  const chapter=`workday-${day}`,next=day==="one"?"workday-two":"workday-four",dreamName=day==="one"?"phoenix-vision":"lan-di-dream",trackId=day==="one"?"bgm079":"bgm201";
+  expect(["one","three","four"]).toContain(day);
+  const chapter=`workday-${day}`,next=day==="one"?"workday-two":day==="three"?"workday-four":"workday-five",dreamName=day==="one"?"phoenix-vision":day==="three"?"lan-di-dream":null,trackId=day==="one"?"bgm079":"bgm201";
   const {default:routes}=await import("../../tools/scripting/story-investigation.json",{with:{type:"json"}});
   const briefing=routes.routes.find(r=>r.id===`${next}-race-entry`).authoredText.briefing;
+  const ordinarySleep=routes.routes.find(r=>r.id===`${chapter}-night`).authoredText;
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),done=`story.s1.${chapter}-night.completed`;
   expect(initial.character.storyFlags[`story.s1.${chapter}.completed`]).toBe(true);
@@ -103,18 +104,18 @@ export async function verifyWorkdayNight(page,testInfo,character,{day="one"}={})
     if(new Date((await saved()).character.storyTimeMs).getUTCHours()<20){await page.locator("#story-wait-button").click();await page.getByRole("option",{name:"Wait until 8 p.m.",exact:true}).click();await page.getByRole("button",{name:"Wait until 8 p.m.",exact:true}).click();await idle();}
     const approach=async()=>{
       await page.evaluate(()=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray([-17.6,0,3]),Math.PI,{persist:false});c.setFirstPerson(true);c.cameraYaw=Math.PI;c.cameraPitch=0;c.updateCamera(1);});
-      await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await page.getByRole("button",{name:"Sleep until tomorrow",exact:true}).waitFor();}finally{await page.keyboard.up("KeyW");}await noErrors();
+      await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{if(ordinarySleep)await page.getByText(ordinarySleep.briefing,{exact:true}).waitFor();else await page.getByRole("button",{name:"Sleep until tomorrow",exact:true}).waitFor();}finally{await page.keyboard.up("KeyW");}if(ordinarySleep)await page.keyboard.press("Space");await noErrors();
     };
-    const dream=async()=>{await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===id||window.storyProbe.sceneErrors.length,`story-s1-${dreamName}`,{timeout:75_000});await noErrors();await expect.poll(()=>page.evaluate(()=>window.storyProbe.director?.activeCutscene?.packageRuntime.music.trackId)).toBe(trackId);};
+    const dream=async()=>{if(ordinarySleep){await page.getByText(ordinarySleep.success,{exact:true}).waitFor();return;}await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===id||window.storyProbe.sceneErrors.length,`story-s1-${dreamName}`,{timeout:75_000});await noErrors();await expect.poll(()=>page.evaluate(()=>window.storyProbe.director?.activeCutscene?.packageRuntime.music.trackId)).toBe(trackId);};
     await approach();await page.getByRole("button",{name:"Stay awake",exact:true}).click();await idle();expect((await economy()).character.storyFlags[done]).not.toBe(true);
     await approach();const beforeCancel=await saved();await page.getByRole("button",{name:"Sleep until tomorrow",exact:true}).click();await dream();
     // KKYF is an eight-second AUTH. The old Phoenix-only nine-second delay
     // cancelled after this shorter scene had legitimately settled its morning.
-    await page.waitForTimeout(2000);expect(await page.evaluate(()=>window.storyProbe.director?.activeCutscene?.cutscene.id)).toBe(`story-s1-${dreamName}`);
-    await page.screenshot({path:testInfo.outputPath(`${chapter}-original-${dreamName}.png`)});
+    if(dreamName){await page.waitForTimeout(2000);expect(await page.evaluate(()=>window.storyProbe.director?.activeCutscene?.cutscene.id)).toBe(`story-s1-${dreamName}`);}
+    await page.screenshot({path:testInfo.outputPath(`${chapter}-${dreamName||"ordinary-sleep-acknowledgement"}.png`)});
     await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-workday-dream-cancel"));await idle();const cancelled=await economy();expect(cancelled.character.storyFlags[done]).not.toBe(true);expect(cancelled.character.worldId).toBe("interior");
     expect(new Date(cancelled.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(beforeCancel.character.storyTimeMs).toISOString().slice(0,10));
-    await approach();const before=await saved();await page.getByRole("button",{name:"Sleep until tomorrow",exact:true}).click();await dream();
+    await approach();const before=await saved();await page.getByRole("button",{name:"Sleep until tomorrow",exact:true}).click();await dream();if(ordinarySleep)await page.keyboard.press("Space");
     await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:75_000,intervals:[1000]}).toBe(true);
     await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="mfsy"&&window.storyProbe.lifecycle.worldRuntime.ready&&!window.storyProbe.lifecycle.worldRuntime.switching,null,{timeout:90_000});
     const after=await economy(),date=new Date(before.character.storyTimeMs),morningDate=new Date(after.character.storyTimeMs);
