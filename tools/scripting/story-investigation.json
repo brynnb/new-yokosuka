@@ -3,6 +3,33 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"warning-letter","disc":3,"actor":"TMRA","presentActors":[],"area":"MFSY","trigger":"enter","priority":860,
+      "title":"Alpha Trading — Gui Zhang's warning letter","hours":[17,24],"bounds":"s1.mfsy.warning-letter",
+      "requiredFlags":["story.s1.workday-five-payday.completed"],"completedFlag":"story.s1.warning-letter.completed","effects":["notebook.s1.gui-zhang-warning"],"voiceIds":[],"activities":["s1.mfsy.warning-letter.scene"],
+      "nativeSources":[{"role":"original-letter-handover","locator":"disc3/SCENE/03/MFSY/MARU_LET.PKS#SEQDATA3.AUTH,M_01CAU.MOTN","sha256":"49b859b07413108e9ed5726a28ad48ca91e723053602b1642e35e8a631287fa0"},{"role":"original-letter-audio-binding","locator":"disc3/SCENE/03/MFSY/MAPINFO.BIN#907937:01CAUA,bgm119.snd,a1_cav.snd,MARU_LET,seqdata3.bin","sha256":"adc993ac9fbca4b039a99d3d44f64840d428a7a5540651902c52d96076a98d88"}],
+      "provenance":"GameSpot p60 after fifth payday: Yada gives GuiZhang's warning, then Ryo goes to MasterChen. Original MAPINFO resource block explicitly names01CAUA/BGM119/A1_CAV/MARU_LET/seqdata3. Use original46.68s AUTH, bank18, Alpha room,13voices,21effects and music. Original paper meshes retained but detailed hand/paper callbacks not reconstructed. Region at tested Alpha entrance is authored; acknowledged natural ending or explicit skip saves letter milestone/notebook only. No new salary, inventory reward, clock jump, Chen outcome or completed fifth day."
+    },
+    {
+      "id":"workday-five-afternoon","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":840,
+      "title":"Fifth workday — finish afternoon cargo","hours":[14,17],"bounds":"s1.mfsy.workday-five-afternoon",
+      "summary":"Five newly observed physical forklift deliveries after the earned sailor chase. Final acknowledgement saves quota/notebook/minimum17:00 only; cancellation grants nothing, and the batch cannot pay wages or finish the day.",
+      "requiredFlags":["story.s1.workday-five-morning.completed","story.s1.sailor-chase.completed"],"completedFlag":"story.s1.workday-five-afternoon.completed","effects":["notebook.s1.workday-five-quota"],
+      "voiceIds":[],"yarnTemplate":"story-workday-delivery.yarn","challenge":"s1.mfsy.workday-five-afternoon","timeTransition":"s1.work.shift-end",
+      "authoredText":{"briefing":"Terry leads the Mad Angels. Finish the remaining five deliveries, then collect today's wages from Yada-san.","success":"All ten deliveries are finished. The shift is over; collect today's wages from Yada-san."},
+      "nativeSources":[{"role":"original-job-instruction-assets","locator":"disc3/SCENE/03/MFSY/MARU.PKS#SEQDATA1.AUTH","sha256":"a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b"}],
+      "provenance":"GameSpot p60: resume cargo after the sailor chase, then payday. Five/five split and tested outdoor dispatch area condense original Warehouse8 red-striped return cargo to Warehouse18; ordinary unmarked crates, not a claimed reconstruction of that route. Requires five NEW observed deliveries; morning cargo and chase cannot substitute. Final acknowledgement saves quota/notebook/minimum17:00 only, no wages or completed day."
+    },
+    {
+      "id":"workday-five-payday","disc":3,"actor":"TMRA","presentActors":[],"area":"MFSY","trigger":"enter","priority":850,
+      "title":"Fifth workday — collect wages","hours":[17,24],"bounds":"s1.mfsy.workday-five-payday",
+      "summary":"Original salary motions and voices after the independently earned morning, sailor chase and afternoon quota. Final acknowledgement atomically saves exactly3000yen, payday date and notebook once; letter and Chen follow-up remain separate.",
+      "requiredFlags":["story.s1.workday-five-morning.completed","story.s1.sailor-chase.completed","story.s1.workday-five-afternoon.completed"],"completedFlag":"story.s1.workday-five-payday.completed","effects":["notebook.s1.fifth-payday"],"recordDays":["story.s1.workday-five.payday"],
+      "grantYen":{"amount":3000,"reason":"story.s1.workday-five-wages"},"voiceIds":[],"yarnTemplate":"story-workday-payday.yarn","staging":"s1.mfsy.payday",
+      "authoredText":{"briefing":"Ten deliveries at 300 yen each: 3,000 yen. Yada-san has today's wages ready.","success":"Collected today's wages: 3,000 yen. Yada-san has something else to give me."},
+      "nativeSources":[{"role":"original-salary-handover-motion-bank","locator":"disc3/SCENE/03/MFSY/ALP_PAY.PKS#M_MO01.MOTN","sha256":"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709"}],
+      "provenance":"GameSpot p60 separate payday before warning letter and Chen visit. Reuse original salary motion/voices and existing base300-per-delivery adaptation, no overtime/raises. Final acknowledgement atomically saves exactly3000yen/day/notebook/receipt once. Cancelled handover grants nothing; warning letter, Chen and full-day completion stay separate."
+    },
+    {
       "id":"sailor-chase","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":830,
       "title":"Tony and Smith — the Long Zha chase","hours":[14,17],"bounds":"s1.mfsy.sailor-chase",
       "requiredFlags":["story.s1.workday-five-morning.completed","story.s1.goro-mai-marriage.completed"],"completedFlag":"story.s1.sailor-chase.completed","effects":["notebook.s1.terry-mad-angels"],

@@ -7,6 +7,8 @@ import charlieHarborManifest from "../assets/harbor/charlie-harbor-interrogation
 import goroTrapManifest from "../assets/harbor/goro-trap-aftermath/manifest.json";
 import goroMaiManifest from "../assets/harbor/goro-mai-marriage/manifest.json";
 import goroMaiAudio from "../../public/audio/world/goro-mai-marriage/manifest.json";
+import warningLetterManifest from "../assets/harbor/warning-letter/manifest.json";
+import warningLetterAudio from "../../public/audio/world/warning-letter/manifest.json";
 import sailorIntroManifest from "../assets/harbor/sailor-chase-intro/manifest.json";
 import sailorIntroAudio from "../../public/audio/world/sailor-chase-intro/manifest.json";
 import sailorTonyManifest from "../assets/harbor/sailor-chase-tony/manifest.json";
@@ -335,6 +337,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["charlie-harbor-interrogation",charlieHarborManifest,charlieHarborAudio,"mfsy"],
     ["goro-trap-aftermath",goroTrapManifest,goroTrapAudio,"mfsy"],["mark-long-zha",markLongZhaManifest,markLongZhaAudio,"mfsy"],
     ["goro-mai-marriage",goroMaiManifest,goroMaiAudio,"mfsy"],
+    ["warning-letter",warningLetterManifest,warningLetterAudio,"mfsy",Object.freeze({cues:[{startActivity:true,trackId:"bgm119",loop:true}],gain:1})],
     ["sailor-chase-intro",sailorIntroManifest,sailorIntroAudio,"mfsy"],["sailor-chase-tony",sailorTonyManifest,sailorTonyAudio,"mfsy"],["sailor-chase-smith",sailorSmithManifest,sailorSmithAudio,"mfsy"],
     ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],
     ["mark-lunch-intro",markLunchIntroManifest,markLunchIntroAudio,"mfsy"],["mark-lunch-aftermath",markLunchAftermathManifest,markLunchAftermathAudio,"mfsy"],
@@ -346,7 +349,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["chai-intro",chaiIntroManifest,chaiIntroAudio,"arcade"],["chai-victory",chaiVictoryManifest,chaiVictoryAudio,"arcade"],["chai-rescue",chaiRescueManifest,chaiRescueAudio,"arcade"],
     ["jimmy-morning-call",jimmyCallManifest,jimmyCallAudio,"interior"],["post-chen-home",postChenHomeManifest,postChenHomeAudio,"interior"],["bank-savings",bankSavingsManifest,bankSavingsAudio,"interior"],["travel-family",travelFamilyManifest,travelFamilyAudio,"interior"],
     ["fuku-travel-funds",fukuTravelFundsManifest,fukuTravelFundsAudio,"interior"],["global-airfare",globalAirfareManifest,globalAirfareAudio,"dski"],["asia-airfare",asiaAirfareManifest,asiaAirfareAudio,"daza"],
-    ["global-boat",globalBoatManifest,globalBoatAudio,"dski"],["boat-ticket-purchase",boatPurchaseManifest,boatPurchaseAudio,"daza"],["boat-ticket-collection",boatCollectionManifest,boatCollectionAudio,"daza"]].map(([id,manifest,audioManifest,worldId])=>Object.freeze({
+    ["global-boat",globalBoatManifest,globalBoatAudio,"dski"],["boat-ticket-purchase",boatPurchaseManifest,boatPurchaseAudio,"daza"],["boat-ticket-collection",boatCollectionManifest,boatCollectionAudio,"daza"]].map(([id,manifest,audioManifest,worldId,music])=>Object.freeze({
     id,worldId,actorDefinitions:Object.freeze([]),actorTags:Object.freeze(manifest.actorTags),
     // The compiler's explicit output list includes room maps and props too;
     // don't infer their directory or file extension from the gameplay world.
@@ -357,6 +360,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     environment:Object.freeze({packageActors:manifest.packageActors,...(manifest.sceneObjects?{sceneObjects:manifest.sceneObjects}:{}),
       ...(["boat-ticket-collection","jimmy-interrogation"].includes(id)?{suppressScheduledActors:["ETKO"]}:{})}),
     playback:Object.freeze({manifest,audioManifest}),
+    ...(music?{music}:{}),
   })),
   Object.freeze({id:"family-crest",worldId:"interior",actorDefinitions:[],actorTags:Object.freeze(familyCrestManifest.actorTags),
     assets:Object.freeze({...runtimeAssetGroup("play/assets/hazuki/family-crest/*.{AUTH,MOTN}"),

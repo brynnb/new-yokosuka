@@ -84,6 +84,23 @@ test("Goro and Mai's announcement retains the original cast, binding and declare
   assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
 });
 
+test("Gui Zhang's warning uses the original Alpha room, bank18, exact English voices and native music",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.mfsy.warning-letter.scene");
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/harbor/warning-letter/manifest.json",import.meta.url)));
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/warning-letter/manifest.json",import.meta.url)));
+  const music=JSON.parse(readFileSync(new URL("../public/music/manifest.json",import.meta.url))).tracks.bgm119;
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.cutscene.activity.binding.activityId,"MARU_LET/SEQDATA3.AUTH");
+  assert.equal(manifest.activities[0].durationFrames,1400);assert.deepEqual(manifest.actorTags,["AKIR","TMRA"]);
+  assert.equal(manifest.sceneObjects.ROOM.model,"MAPALP");
+  assert.equal(audio.voices.length,13);assert.equal(audio.sounds.length,21);assert.ok([...audio.voices,...audio.sounds].every(v=>!v.unavailable));
+  assert.equal(manifest.motionBanks[0].bank,18);
+  assert.equal(audio.sources.stream.path,"disc3/SCENE/03/STREAM/01CAUA.AFS");
+  assert.equal(audio.sources.soundBank.path,"disc3/SCENE/03/SOUND/A1_CAV.SND");
+  assert.equal(music.source.bankSha256,"48e854a5c8681536f015195da0630fa8e90307404a2e9b70a93b335fdbccebcf");
+  assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+});
+
 test("sailor chase films preserve original branch bindings and forbid presentation rewards",()=>{
   for(const [part,file,actors,frames]of [["intro","SEQDATA0.AUTH",["FORK","AKIR","SMTH","TONY"],1140],["tony","SEQDATA1.AUTH",["AKIR","TONY"],1500],["smith","SEQDATA0.AUTH",["AKIR","SMTH"],1500]]){
     const activity=createScriptEventPresentationCatalog().activity(`s1.mfsy.sailor-chase-${part}.scene`);

@@ -170,6 +170,9 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.workday-five-lunch",page:Object.freeze({id:"story-workday-five-lunch",text:"Finished five deliveries and had lunch with the other workers.\n\nGoro and Mai are near Alpha Trading.\nThere is still work to finish this afternoon."})},
   {flag:"notebook.s1.goro-mai-marriage",page:Object.freeze({id:"story-goro-mai-marriage",text:"Goro and Mai plan to get married.\nGoro says he wants a proper job and an honest life.\n\nKeep asking about the Long Zha deal before returning to work."})},
   {flag:"notebook.s1.terry-mad-angels",page:Object.freeze({id:"story-terry-mad-angels",text:"Caught one of the sailors.\n\nTerry is the boss of the Mad Angels.\nOnly he knows when the Long Zha will happen.\n\nFinish the day's deliveries and collect my wages."})},
+  {flag:"notebook.s1.workday-five-quota",page:Object.freeze({id:"story-workday-five-quota",text:"Finished the final five deliveries.\n\nToday's quota is complete.\nCollect my wages from Yada-san at Alpha Trading."})},
+  {flag:"notebook.s1.fifth-payday",page:Object.freeze({id:"story-fifth-payday",text:"Collected my fifth day's wages.\n\nYada-san has something else to give me."})},
+  {flag:"notebook.s1.gui-zhang-warning",page:Object.freeze({id:"story-gui-zhang-warning",text:"A man in a suit left a letter for me with Yada-san.\n\nGui Zhang warns that the Mad Angels are after me.\nBeware.\n\nAsk Master Chen about Terry and the Long Zha."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

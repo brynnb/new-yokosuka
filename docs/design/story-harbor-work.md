@@ -1110,3 +1110,87 @@ intermittent `no_script` startup rejection was not reproduced by the twelve
 focused reload checks; retained diagnostics do not imply that its cause is
 resolved. Source assets remain local (113 verified records, 5,696,751 bytes);
 none were published.
+
+## Fifth-afternoon cargo, payday and warning letter
+
+The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed p.60, places remaining cargo and wages after the sailor chase, followed
+by Gui Zhang's letter and Master Chen's visit. These are separate Yarn events;
+neither the chase nor a presentation clip can substitute for delivered cargo.
+
+| Event | Eligibility, presentation and outcome |
+| --- | --- |
+| `workday-five-afternoon` | Earned fifth morning and sailor chase; tested MFSY dispatch approach, 14:00–17:00 personal time. Ryo drives the existing forklift and physically picks up/delivers five new crates. The acknowledged final caption saves quota/notebook and minimum17:00, not wages. Earlier deliveries do not count. |
+| `workday-five-payday` | Earned morning, sailor chase and afternoon quota; tested Alpha entrance after17:00. Explicit collect/leave choice, original salary motions and two original Yada/Ryo voice lines. Final acknowledgement atomically saves ¥3,000, payday date, notebook and receipt once. No letter, Chen result or completed day. |
+| `warning-letter` | Earned fifth payday; same Alpha entrance after17:00. Original private Alpha room, Ryo/Yada bodies, camera/motion,13 English voices,21 effects and BGM119. Acknowledged natural ending or explicit skip saves only letter milestone and notebook. Chen's visit remains a separate unimplemented continuation. |
+
+All preserve the personal date and ordinary weather/environment. Delivery uses
+the existing observed-physics challenge, not a QTE or automatic victory. Scene
+and salary ownership lock unrelated input, then restore the approach, camera
+and controls. Cancelled preparation, driving or handover settles nothing and
+can retry; completed entry/reload cannot grant another quota or payment.
+
+The five/five split, outdoor dispatch pad and ordinary unmarked crates are an
+explicit adaptation of the original Warehouse8/red-striped return to18 job.
+The existing base ¥300-per-delivery rule is retained; optional overtime and
+historical pay raises are not implemented. The warning-letter archive also
+retains its original paper/envelope meshes, but detailed paper/hand callback
+choreography is not reconstructed. No extra inventory item is invented for it.
+
+### Original warning-letter resources
+
+Disc3 MFSY `MAPINFO.BIN`, SHA256
+`adc993ac9fbca4b039a99d3d44f64840d428a7a5540651902c52d96076a98d88`,
+has a contiguous resource block at decimal 907937:
+`01CAUA`, `bgm119.snd`, `a1_cav.snd`, `scene/03/MFSY`, `MARU_LET`,
+`seqdata3.bin`. This resolves the bank through original metadata; it is not a
+filename guess based on `01CAU`.
+
+- `MARU_LET.PKS`: `49b859b07413108e9ed5726a28ad48ca91e723053602b1642e35e8a631287fa0`;
+  `SEQDATA3.AUTH`, 1,400 frames, `M_01CAU.MOTN`, **bank 18**, AKIR/TMRA.
+- English `01CAUA.AFS`: `34612fd23f8462a9d8ad379536ad33e6394496dc6b5538818ff24d47cdf0598c`.
+  This is distinct from Chen's `01CAU.AFS` conversation.
+- `A1_CAV.SND`: `ddea01f48db1846c2d1e5f8f2cadf610e03fdfcae6c918c1ea03837267336c94`;
+  all21 requested effect identities resolve without aliases or omissions.
+- `BGM119.SND`: `48e854a5c8681536f015195da0630fa8e90307404a2e9b70a93b335fdbccebcf`;
+  reuse the viewer's existing exact group0/track0 rendering as `bgm119`.
+
+The shared harbor package builder uses the same original ALPHA room lease as
+the hiring interview. Exact camera/body timing comes from AUTH; detailed
+paper/hand handling remains limited. Presentation owns neither wages nor
+story completion.
+
+### Verification
+
+The earned sailor-save continuation physically delivers all five crates,
+acknowledges the quota, cancels and retries the original salary handover, then
+acknowledges exactly ¥3,000. Reload preserves both notebook pages and ¥22,836
+without replay or another payment; inventory remains unchanged. The real Yarn
+compiler checks partial count, cancelled driving/ending, missing morning or
+sailor result, hours and independent once-only wages.
+
+The warning-letter compiler checks earned payday, Story/opening/bounds/hours,
+cancellation and its two allowed flag effects. Package checks cover bank18,
+original bindings/cast/room,13 voices,21 effects and pinned music. A separate
+earned-save browser continuation verifies the original Alpha/Ryo/Yada scene,
+live cancellation and physical re-entry, natural ending, unchanged wages and
+inventory, saved notebook and reload without replay. Direct response capture
+confirms successful BGM119 loading; the default browser Resource Timing buffer
+fills during world loading and was not reliable evidence of later audio
+requests. The mix has not been assessed by listening.
+
+All 42 new local asset records (1,725,354 bytes) match their recorded hashes and
+sizes. BGM119 reuses an existing viewer asset. No assets were published and no
+deployment was performed. Chen's post-letter meeting remains the next
+unimplemented continuation.
+
+Rebuild the letter with the shared extractor (no asset upload):
+
+```sh
+TMPDIR=/var/tmp VGMSTREAM_CLI=/path/to/vgmstream-cli \
+  DTPK_PYTHON=/path/to/python3.12 \
+  node tools/cutscenes/build_harbor_job_pack.mjs --profile warning-letter --audio
+```
+
+The original DTPKDump dependency requires Python's `aifc` module; use its
+supported Python environment rather than patching or skipping its decoding.

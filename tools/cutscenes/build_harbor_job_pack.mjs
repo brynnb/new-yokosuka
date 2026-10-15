@@ -15,6 +15,7 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const evidence="docs/design/story-harbor-work.md";
 const archives={
+  MARU_LET:"49b859b07413108e9ed5726a28ad48ca91e723053602b1642e35e8a631287fa0",
   "MA00/PK_CTS":"286c088071aaea7bb3764a410ab526e4db8243442b80d3e9024ec6ff05811ae0",
   "MA00/PK_CTS2":"b9ffa3ac9287ace6094cb02bb05c855150ff33aa17826e0025b858182de94ed9",
   GOROKEKN:"b46218e928a21665463da0a39bc956eb9799d89b81554fdd39f722c84cf89c71",
@@ -33,6 +34,10 @@ const archives={
   ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
 const profiles=[
+  {id:"warning-letter",archive:"MARU_LET",auth:"SEQDATA3.AUTH",motion:"M_01CAU.MOTN",bank:18,frames:1400,actors:["AKIR","TMRA"],room:"ALPHA",
+    extraMembers:["FUTS5KBG.CHRM","KMMS500G.CHRM"],
+    music:{id:"bgm119",sourceId:"84af3eae1fc0efdcdaf7efb9a15479b28920513dbadcb2997445755e413e5c1e",bankHash:"48e854a5c8681536f015195da0630fa8e90307404a2e9b70a93b335fdbccebcf",label:"Gui Zhang's warning letter"},
+    stream:"01CAUA",streamHash:"34612fd23f8462a9d8ad379536ad33e6394496dc6b5538818ff24d47cdf0598c",sound:"A1_CAV.SND",soundHash:"ddea01f48db1846c2d1e5f8f2cadf610e03fdfcae6c918c1ea03837267336c94"},
   {id:"sailor-chase-intro",archive:"MA00/PK_CTS",resourceName:"PK_CTS",auth:"SEQDATA0.AUTH",motion:"M_01CTS.MOTN",frames:1140,actors:["FORK","AKIR","SMTH","TONY"],extraMembers:["M_01_T_S.MOTN"],
     unavailableVoices:Object.fromEntries(["01CTSA001.str","01CTSB003.str"].map(id=>[id,{reason:`Original introduction requests ${id}, absent from the pinned English 01CTS.AFS; no substituted voice or subtitle.`,evidence:"docs/design/story-harbor-work.md#fifth-afternoon-sailor-chase"}])),
     props:{FORK:"FOKS502G"},propTextureHash:"a05a9329bb14d7f33b5004742976fa91e4725afe7b8790280fabd7766b8ef4dc",
@@ -90,7 +95,7 @@ const profiles=[
     stream:"01GOHA",streamHash:"018d20a6b303b790e3dff9f1b872c776b974d3857e75f8b438e5742870e5721a",sound:"A1_GOH.SND",soundHash:"5537070981a30cb231cf7fd646735bda7cb8b201ef09ab023f9a4bd8b68a6908"},
   {id:"goro-job-appointment",archive:"MGOR",auth:"SEQDATA0.AUTH",motion:"M_01GOR.MOTN",frames:1960,actors:["AKIR","HINA","GORO","DOOR","HAKO"],
     stream:"01GORA",streamHash:"5ab0691cb71108cf8630d7395d67448989a5e40edbd250852d957eb7a855074a",sound:"A1_GOROU.SND",soundHash:"25a7de8fc75c0b9ea03d0015aef36fa8253230d6d965fad226af5ce3311f543e"},
-  {id:"yada-job-interview",archive:"MARU",auth:"SEQDATA0.AUTH",motion:"M_01MAK.MOTN",frames:830,actors:["AKIR","TMRA","DOOR"]},
+  {id:"yada-job-interview",archive:"MARU",auth:"SEQDATA0.AUTH",motion:"M_01MAK.MOTN",frames:830,actors:["AKIR","TMRA","DOOR"],room:"ALPHA"},
   {id:"mark-job-introduction",archive:"MARU",auth:"SEQDATA1.AUTH",motion:"M_01MAK.MOTN",frames:1934,actors:["FORK","AKIR","TMRA","ETC2","ETC1","MARK"],
     props:{FORK:"FOKS502G"},propTextureHash:"faadd8aecb7e224885eb12d3cbc731215eb64ffb4648649c61c7a9a9272bd280"},
   {id:"mark-lunch-intro",archive:"MIZUMARK",auth:"SEQDATA1.AUTH",motion:"M_01MAD.MOTN",frames:1120,actors:["BENB","AKIR","MRSK","MARK","OKYS"],
@@ -183,9 +188,9 @@ for(const p of selected){
     }
   }
   for(const tag of p.actors.filter(t=>["DOOR","HAKO"].includes(t)))sceneObjects[tag]={model:"unmapped-original-reference",browserFilename:`${p.archive}-${tag}-reference`,referenceOnly:true};
-  if(p.id==="yada-job-interview"){
+  if(p.room==="ALPHA"){
     // ALPHA is absent from the resident harbor map. Load its original HRCM
-    // map only for the interview and release it with the scene's object lease.
+    // map for Alpha scenes and release it with the scene's object lease.
     outputMembers.push(member("ALPHA","MAPALP.MAPD"));
     const textureAssetPath=texture("ALPHA","8c8f0a6b1ba88e96ebc453d12826aaea74a85dad57ade4893df7c3daaf530612","alpha-textures.bin");
     sceneObjects.ROOM={model:"MAPALP",browserFilename:"MAPALP.MAPD",assetPath:`${prefix}/MAPALP.MAPD`,textureAssetPath,
@@ -225,6 +230,16 @@ for(const p of selected){
     vgmstream:process.env.VGMSTREAM_CLI||path.join(root,".disc-work/tooling/vgmstream/vgmstream-cli"),python:process.env.DTPK_PYTHON||"python3",
   });
   runtimePaths.push(`${audioPrefix}/manifest.json`,...[...audio.voices,...audio.sounds].filter(a=>a.asset&&!a.unavailable).map(a=>a.asset));
+  if(p.music){
+    const filename=path.join(root,"public/music/manifest.json"),music=JSON.parse(fs.readFileSync(filename));
+    const viewer=JSON.parse(fs.readFileSync(path.join(root,"public/music/asset-viewer-manifest.json")));
+    const track=viewer.tracks[p.music.sourceId];
+    if(!track||track.source.bankSha256!==p.music.bankHash||track.source.file!==`${p.music.id.toUpperCase()}.SND`||track.source.group!==0||track.source.track!==0)throw Error(`Changed original music for ${p.id}`);
+    // Reuse the viewer's exact original rendering, not a second conversion.
+    fs.accessSync(path.join(root,"public",track.ogg_url));
+    music.tracks[p.music.id]={url:track.ogg_url,label:p.music.label,durationSeconds:track.durationSeconds,loop:true,source:track.source};
+    fs.writeFileSync(filename,JSON.stringify(music,null,2)+"\n");runtimePaths.push("public/music/manifest.json",`public${track.ogg_url}`);
+  }
   console.log(`Built ${p.id} audio: ${audio.voices.length} voices; ${audio.sounds.length} effects`);
 }
 execFileSync(process.execPath,["tools/runtime-assets.mjs","update",...new Set(runtimePaths)],{cwd:root,stdio:"inherit"});

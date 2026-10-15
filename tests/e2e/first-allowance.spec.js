@@ -17,7 +17,7 @@ import {verifyWorkdayNight,verifySecondWorkday,verifyMarkAfterWork} from "./stor
 import {verifyThirdWorkday} from "./story-workday-three.js";
 import {verifyHarborBikers} from "./story-harbor-bikers.js";
 import {verifyFourthMorning,verifyFourthLunch,verifyFourthAfternoon} from "./story-workday-four.js";
-import {verifyFifthMorning,verifyFifthSailorChase} from "./story-workday-five.js";
+import {verifyFifthMorning,verifyFifthSailorChase,verifyFifthAfternoon,verifyWarningLetter} from "./story-workday-five.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -32,6 +32,8 @@ const variants = resumeId ? [["resume", false]] : [["complete", false], ["skip",
 for (const [ending, freshOpening] of variants) test(resumeId ? "investigation continues from an earned saved checkpoint" : `first allowance renders and persists after ${ending}${freshOpening ? " from a fresh opening" : ""}`, async ({ page }, testInfo) => {
   test.setTimeout(process.env.NEW_YOKOSUKA_MIRROR_RETURN_E2E === "true" ? 600_000 : process.env.NEW_YOKOSUKA_CHEN_E2E === "true" || process.env.NEW_YOKOSUKA_FAMILY_E2E === "true" || process.env.NEW_YOKOSUKA_HANDGUARD_E2E === "true" || process.env.NEW_YOKOSUKA_GUI_ZHANG_E2E === "true" ? 360_000 : process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
   const errors = [];
+  const musicResponses = [];
+  page.on("response", response => { if(response.url().includes("bgm119")) musicResponses.push({url:response.url(),status:response.status()}); });
   page.on("pageerror", error => errors.push(error.message));
   if(process.env.NEW_YOKOSUKA_SECOND_MORNING_E2E==="true"||process.env.NEW_YOKOSUKA_THIRD_WORKDAY_E2E==="true")page.on("pageerror",error=>console.info("Working morning page error:",error.message));
   if(process.env.NEW_YOKOSUKA_FORKLIFT_TRAINING_E2E==="true"||process.env.NEW_YOKOSUKA_MORNING_CARGO_E2E==="true"||process.env.NEW_YOKOSUKA_MARK_LUNCH_E2E==="true"||process.env.NEW_YOKOSUKA_FIRST_AFTERNOON_E2E==="true"){
@@ -186,6 +188,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_WARNING_LETTER_E2E === "true"){
+      test.setTimeout(300_000);await verifyWarningLetter(page,testInfo,character,{musicResponses});expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_FIFTH_AFTERNOON_E2E === "true"){
+      test.setTimeout(900_000);await verifyFifthAfternoon(page,testInfo,character);expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_FIFTH_SAILORS_E2E === "true"){
       test.setTimeout(900_000);await verifyFifthSailorChase(page,testInfo,character,{reconnectOnly:process.env.NEW_YOKOSUKA_FIFTH_SAILORS_RECONNECT_E2E==="true",arrivalOnly:process.env.NEW_YOKOSUKA_FIFTH_SAILORS_ARRIVAL_E2E==="true",lostReceipt:process.env.NEW_YOKOSUKA_FIFTH_SAILORS_LOST_RECEIPT_E2E==="true"});expect(errors).toEqual([]);return;
     }

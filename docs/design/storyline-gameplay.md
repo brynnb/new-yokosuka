@@ -153,7 +153,11 @@ Goro/Mai's announcement now also pass earned-save browser checks through
 cancellation/retry and saved reload. The fifth-afternoon sailor chase now also
 has both timed pursuit routes and original interrogations, with a naturally
 earned Smith clue/arrival, saved reload and completed re-entry verified.
-Remaining fifth-afternoon cargo/payroll, warning-letter/Chen follow-up, Nozomi
+Five fresh afternoon deliveries, separate once-only wages and the original
+warning-letter scene now also pass connected earned-save checks through
+cancellation/retry, notebook and reload. The actual BGM119 response is checked;
+paper-in-hand callback detail and the original red-striped cargo route remain
+explicit limitations. Chen's post-letter visit, Nozomi
 rescue, final battles and departure remain unimplemented;
 the checklist above distinguishes each verified sequence.
 

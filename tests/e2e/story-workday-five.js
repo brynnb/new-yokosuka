@@ -1,4 +1,5 @@
 import {expect} from "@playwright/test";
+import {driveObservedDeliveries} from "./story-forklift-training.js";
 import {verifyWorkdayNight} from "./story-workday-two.js";
 import {verifyMorningRace} from "./story-morning-race.js";
 import {verifyMorningCargo} from "./story-workday-one.js";
@@ -31,6 +32,73 @@ export async function verifyFifthMorning(page,testInfo,character){
 
 // Keep the genuinely earned morning. Both fork choices use real timed inputs;
 // cancelling Tony's ending must leave Smith's complete retry available.
+export async function verifyWarningLetter(page,testInfo,character,{musicResponses=[]}={}){
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const initial=await saved(),done="story.s1.warning-letter.completed";
+  expect(initial.character.storyFlags["story.s1.workday-five-payday.completed"]).toBe(true);
+  const check=async()=>{const s=await saved();expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory).toEqual(initial.inventory);
+    expect(s.character.storyFlags["story.s1.workday-five.completed"]).not.toBe(true);expect(s.character.storyFlags["story.s1.chen-warning.completed"]).not.toBe(true);
+    expect(new Date(s.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;};
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await check();};
+  const movie=()=>page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-warning-letter"||window.storyProbe.sceneErrors.length,null,{timeout:65_000});
+  const begin=async()=>{await idle();await page.evaluate(()=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray([25,0,66]),Math.PI,{persist:false});c.setFirstPerson(true);c.cameraYaw=Math.PI;c.cameraPitch=0;c.updateCamera(1);});await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await movie();}finally{await page.keyboard.up("KeyW");}};
+  if(!initial.character.storyFlags[done]){
+    console.info("Warning letter: original Alpha scene, cancellation/re-entry and natural completion without another salary");
+    // A saved payday approach lies in the next event's volume. Let ordinary
+    // dispatch start it; otherwise use normal movement into that volume.
+    const {default:catalog}=await import("../../play/data/story-regions.json",{with:{type:"json"}});
+    const region=catalog.regions.find(r=>r.id==="s1.mfsy.warning-letter");
+    const entered=character.worldId===region.worldId&&[character.x,character.y,character.z].every((v,i)=>v>=region.min[i]&&v<=region.max[i]);
+    if(!entered)await begin();
+    await movie();await page.waitForTimeout(6000);await page.screenshot({path:testInfo.outputPath("warning-letter-original-alpha-scene.png")});
+    expect((await check()).character.storyFlags[done]).not.toBe(true);
+    await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-warning-letter-cancel"));await idle();
+    expect((await check()).character.storyFlags[done]).not.toBe(true);
+    await begin();await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:85_000,intervals:[1000]}).toBe(true);await idle();
+    // Record real responses from before navigation. Resource Timing's default
+    // 250-entry buffer fills during world loading and loses later audio loads.
+    expect(musicResponses.some(response=>[200,206].includes(response.status)),JSON.stringify(musicResponses)).toBe(true);
+  }
+  expect((await check()).character.storyFlags["notebook.s1.gui-zhang-warning"]).toBe(true);
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();await check();
+  expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-warning-letter"))).toBe(false);
+  await page.screenshot({path:testInfo.outputPath("warning-letter-earned-notebook-reload.png")});
+}
+
+export async function verifyFifthAfternoon(page,testInfo,character){
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const initial=await saved(),quota="story.s1.workday-five-afternoon.completed",pay="story.s1.workday-five-payday.completed";
+  expect(initial.character.storyFlags["story.s1.sailor-chase.completed"]).toBe(true);
+  const unpaid=initial.character.yen-(initial.character.storyFlags[pay]?3000:0);
+  const check=async()=>{const s=await saved();expect(s.character.yen).toBe(unpaid+(s.character.storyFlags[pay]?3000:0));expect(s.inventory).toEqual(initial.inventory);
+    expect(s.character.storyFlags["story.s1.workday-five.completed"]).not.toBe(true);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;};
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await check();};
+  const approach=async(position,yaw,text)=>{await idle();await page.evaluate(({position,yaw})=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray(position),yaw,{persist:false});c.setFirstPerson(true);c.cameraYaw=yaw;c.cameraPitch=0;c.updateCamera(1);},{position,yaw});await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await page.getByText(text,{exact:true}).waitFor();}finally{await page.keyboard.up("KeyW");}};
+  if(!initial.character.storyFlags[quota]){
+    console.info("Fifth afternoon: five new physical deliveries after the earned sailor chase");
+    const text="Terry leads the Mad Angels. Finish the remaining five deliveries, then collect today's wages from Yada-san.";
+    if(!await page.getByText(text,{exact:true}).isVisible())await approach([-20,0,117],-Math.PI/2,text);
+    await page.keyboard.press("Space");await page.getByRole("button",{name:"Start the deliveries",exact:true}).click();
+    await page.waitForFunction(()=>window.storyProbe.delivery?.active?.entered||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check();
+    await page.waitForTimeout(1800);await page.locator("#renderCanvas").focus();await driveObservedDeliveries(page,testInfo,5,"workday-five-afternoon");
+    await page.getByText("All ten deliveries are finished. The shift is over; collect today's wages from Yada-san.",{exact:true}).waitFor();
+    expect((await check()).character.storyFlags[quota]).not.toBe(true);await page.keyboard.press("Space");await idle();
+    expect((await check()).character.storyFlags[quota]).toBe(true);expect(new Date((await saved()).character.storyTimeMs).getUTCHours()).toBe(17);
+  }
+  if(!(await saved()).character.storyFlags[pay]){
+    console.info("Fifth afternoon: original salary handover, cancellation/retry and once-only 3000yen");
+    const collect=async()=>{await approach([25,0,66],Math.PI,"Ten deliveries at 300 yen each: 3,000 yen. Yada-san has today's wages ready.");await page.keyboard.press("Space");await page.getByRole("button",{name:"Collect today's wages",exact:true}).click();await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.mfsy.payday"||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check();};
+    await collect();await page.waitForTimeout(6000);await page.screenshot({path:testInfo.outputPath("fifth-payday-original-handover-cancel.png")});
+    await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-fifth-payday-cancel"));await idle();expect((await check()).character.storyFlags[pay]).not.toBe(true);
+    await collect();await page.getByText("Collected today's wages: 3,000 yen. Yada-san has something else to give me.",{exact:true}).waitFor({timeout:65_000});
+    expect((await check()).character.storyFlags[pay]).not.toBe(true);await page.keyboard.press("Space");await idle();expect((await check()).character.storyFlags[pay]).toBe(true);
+  }
+  const final=await check();for(const f of [quota,pay,"notebook.s1.workday-five-quota","notebook.s1.fifth-payday"])expect(final.character.storyFlags[f]).toBe(true);
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();await check();
+  await page.screenshot({path:testInfo.outputPath("fifth-payday-earned-reload.png")});
+}
+
 export async function verifyFifthSailorChase(page,testInfo,character,{reconnectOnly=false,arrivalOnly=false,lostReceipt=false}={}){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),done="story.s1.sailor-chase.completed";
