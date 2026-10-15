@@ -1,0 +1,1426 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01ETU.AFS",
+      "sha256": "f21b7837177788630c2f7e849e5627152a1e335628ae70e4ffe4062afa39db4c"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_ETUKO.SND",
+      "sha256": "6e960914c59edd80ddc282179ec6379c26a7c461a15d89954ab2af3bb9fd5485"
+    },
+    "authManifest": "play/assets/dobuita/boat-ticket-purchase/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01ETUA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA001.aiff",
+      "nativeMember": "01ETUA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "d3d5abc8cbe501ca9346381311e4e23a7f91e44412b9396a5b83fa31fd8dceff",
+      "speakerId": "AKIR",
+      "sourceText": "Excuse me=@",
+      "displayText": "Excuse me...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUA001.wav",
+      "byteLength": 16172,
+      "sha256": "d7f7c312c21d9df23dec3aead64a29d26ceaffd2e2b580ab6058b9f2808b3a6b"
+    },
+    {
+      "voiceId": "01ETUA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA002.aiff",
+      "nativeMember": "01ETUA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "d926cc9aee44b6debce777226c95d067c28fdd74ee11da28e69cef31afd63b7b",
+      "speakerId": "AKIR",
+      "sourceText": "Um, excuse me=@",
+      "displayText": "Um, excuse me...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUA002.wav",
+      "byteLength": 32556,
+      "sha256": "373f282ec081bbe56ca880264d601255fdf5bc61de327e9cde03865c2ea6f437"
+    },
+    {
+      "voiceId": "01ETUA010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA010.aiff",
+      "nativeMember": "01ETUA010.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 14336,
+      "nativeSha256": "2523667685ef54324b71fb15fbe9069a7f1ddf8506cc07759f47c85239459b4a",
+      "speakerId": "AKIR",
+      "sourceText": "Do you sell boat tickets＆to Hong Kong here?",
+      "displayText": "Do you sell boat tickets\nto Hong Kong here?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUA010.wav",
+      "byteLength": 57132,
+      "sha256": "b0f034847cc6f25f2d4fcd4cd19a0f3ef520616548bc06a56c1d8e082df25b82"
+    },
+    {
+      "voiceId": "01ETUA011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA011.aiff",
+      "nativeMember": "01ETUA011.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 6144,
+      "nativeSha256": "318f1834d06d1b84bafcc806fb1ed823a49443fe86232603064d1720daf7b9de",
+      "speakerId": "AKIR",
+      "sourceText": "How much are they?",
+      "displayText": "How much are they?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUA011.wav",
+      "byteLength": 24364,
+      "sha256": "fe2707811b3c20646863622330a16789964db41b68a5a1d99eac7a282b42ac4f"
+    },
+    {
+      "voiceId": "01ETUA013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA013.aiff",
+      "nativeMember": "01ETUA013.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 6144,
+      "nativeSha256": "2023139d72195213c1c4f9a16668135dacf4ef617b31239468229a7834245d82",
+      "speakerId": "AKIR",
+      "sourceText": "I'll take it!!",
+      "displayText": "I'll take it!!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUA013.wav",
+      "byteLength": 24364,
+      "sha256": "e59b8f0c62df3516fd9cd5076fa7c61fcffbd78adc2611b65a58bc7a5bc574c7"
+    },
+    {
+      "voiceId": "01ETUA014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA014.aiff",
+      "nativeMember": "01ETUA014.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 6144,
+      "nativeSha256": "de11097d539567b6383f179bcfe0f6bd5d56ea6bc386a33ecefb475a3bbad211",
+      "speakerId": "AKIR",
+      "sourceText": "The sooner the better!",
+      "displayText": "The sooner the better!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUA014.wav",
+      "byteLength": 24364,
+      "sha256": "0c623818b5f264a7cff187b82be0a393146a248620bc9453e83f2261efff3777"
+    },
+    {
+      "voiceId": "01ETUA015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA015.aiff",
+      "nativeMember": "01ETUA015.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 4096,
+      "nativeSha256": "ffc743a7cc3bb5d3fbc973ffae541d9b1b58c3985aa8de83518ca7c0828fceb3",
+      "speakerId": "AKIR",
+      "sourceText": "All right.",
+      "displayText": "All right.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUA015.wav",
+      "byteLength": 16172,
+      "sha256": "0ec2fdcaa8cf3260a8c58dedf0d439d61135772de410d6446d4292d4c0b980b5"
+    },
+    {
+      "voiceId": "01ETUA016",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA016.aiff",
+      "nativeMember": "01ETUA016.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 4096,
+      "nativeSha256": "92a997109ac8d9f1edbaed9f17af912142cb2d5f524a95a5aba4ebd181ed7f98",
+      "speakerId": "AKIR",
+      "sourceText": "=@ the ticket?",
+      "displayText": "... the ticket?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUA016.wav",
+      "byteLength": 16172,
+      "sha256": "2ffbf1bad65c63073dcc2e96a9b0dfe8e97520a09b103db50b2a0e0890efe2cc"
+    },
+    {
+      "voiceId": "01ETUA017",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA017.aiff",
+      "nativeMember": "01ETUA017.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 14336,
+      "nativeSha256": "b0e6a55c83e1414986b4a2e8434b2c8d3985395c12894313a1a8b07888ad0dca",
+      "speakerId": "AKIR",
+      "sourceText": "All right, I'll be back＆in 3 or 4 hours then.",
+      "displayText": "All right, I'll be back\nin 3 or 4 hours then.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUA017.wav",
+      "byteLength": 57132,
+      "sha256": "ac79346ce0a1e105ce798d1d372a5c38d620e456f5276b90ea6ee75c21c338fa"
+    },
+    {
+      "voiceId": "01ETUB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB001.aiff",
+      "nativeMember": "01ETUB001.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 8192,
+      "nativeSha256": "1d2994cc5429a0da240077ce581d717e6e76116060db714d1d8cc12ddd7530a1",
+      "speakerId": "ETKO",
+      "sourceText": "Be right there.",
+      "displayText": "Be right there.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 26
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUB001.wav",
+      "byteLength": 32556,
+      "sha256": "530382eb6e8ee235858efdcaf52c0809ae41a5e1b2fe5e8c62bb50d77008523f"
+    },
+    {
+      "voiceId": "01ETUB012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB012.aiff",
+      "nativeMember": "01ETUB012.str",
+      "nativeIndex": 30,
+      "nativeByteLength": 8192,
+      "nativeSha256": "6979c1a6837ffb53fa200d2bfe2aa6aed13f9c6d710d786480e34e04aab2543f",
+      "speakerId": "ETKO",
+      "sourceText": "What is it?",
+      "displayText": "What is it?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUB012.wav",
+      "byteLength": 32556,
+      "sha256": "2d83b9527e9a1e1218440e762050cb08f955875182a23961d032a6682ccd2508"
+    },
+    {
+      "voiceId": "01ETUB013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB013.aiff",
+      "nativeMember": "01ETUB013.str",
+      "nativeIndex": 31,
+      "nativeByteLength": 14336,
+      "nativeSha256": "7d7e14444d5a5004d55a5192d0bbd2bd93bf62bc6fde32a83079ec95388e9c08",
+      "speakerId": "ETKO",
+      "sourceText": "Boat tickets? Yeah, we do=@",
+      "displayText": "Boat tickets? Yeah, we do...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUB013.wav",
+      "byteLength": 57132,
+      "sha256": "59d38562302014e89fc7b4cb3d241f715220760493a1a7bef04015b60e9cc9fd"
+    },
+    {
+      "voiceId": "01ETUB014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB014.aiff",
+      "nativeMember": "01ETUB014.str",
+      "nativeIndex": 32,
+      "nativeByteLength": 12288,
+      "nativeSha256": "d462c56fe8d05827f44809c23cb073d299066f23229acb07d0432a388b75ffdf",
+      "speakerId": "ETKO",
+      "sourceText": "Boat=@boat=@",
+      "displayText": "Boat...boat...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUB014.wav",
+      "byteLength": 48940,
+      "sha256": "84bae30b9b5971d1c1a63bb7ff1eeaa83bd8b835c9739e961081a91d3998d955"
+    },
+    {
+      "voiceId": "01ETUB015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB015.aiff",
+      "nativeMember": "01ETUB015.str",
+      "nativeIndex": 33,
+      "nativeByteLength": 12288,
+      "nativeSha256": "ad927866692a4dea15b78ee56668717a6c90e1a8eb8e852e38177db36cf2a32c",
+      "speakerId": "ETKO",
+      "sourceText": "Ahh, here it is.",
+      "displayText": "Ahh, here it is.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 27
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 27
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUB015.wav",
+      "byteLength": 48940,
+      "sha256": "4c129de81c13c71292f550df3852fb306e94899e4bb61177ede98f33742a063f"
+    },
+    {
+      "voiceId": "01ETUB016",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB016.aiff",
+      "nativeMember": "01ETUB016.str",
+      "nativeIndex": 34,
+      "nativeByteLength": 18432,
+      "nativeSha256": "d4dd6fe0f679429ba7dbc1ef805b9ab73c0eab915766a097c400f1d8e30c5ea8",
+      "speakerId": "ETKO",
+      "sourceText": "You gotta pay up before I can arrange it.",
+      "displayText": "You gotta pay up before I can arrange it.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUB016.wav",
+      "byteLength": 73516,
+      "sha256": "1af0db5f8ae30e9d70a55801e57ead7c2e188eb7a031a0028777d35a0437a4ac"
+    },
+    {
+      "voiceId": "01ETUB017",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB017.aiff",
+      "nativeMember": "01ETUB017.str",
+      "nativeIndex": 35,
+      "nativeByteLength": 8192,
+      "nativeSha256": "6ce3388271bf180d84d1da440a00d4bc7cfd0b30559455d56f304d6b1b569973",
+      "speakerId": "ETKO",
+      "sourceText": "Thank you.",
+      "displayText": "Thank you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUB017.wav",
+      "byteLength": 32556,
+      "sha256": "a818eece18c7d42bbf8d444774a905c0792f69bf085f7fef0d1a86345cd3db27"
+    },
+    {
+      "voiceId": "01ETUB018",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB018.aiff",
+      "nativeMember": "01ETUB018.str",
+      "nativeIndex": 36,
+      "nativeByteLength": 16384,
+      "nativeSha256": "7bf75142c66e78cb98f49733f9843d2a9595c17ed2fc0e7434d7a4218c139749",
+      "speakerId": "ETKO",
+      "sourceText": "What=@!? I'll take care of it.",
+      "displayText": "What...!? I'll take care of it.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 27
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUB018.wav",
+      "byteLength": 65324,
+      "sha256": "3b195a69df6adac69e1b6b0906a619012aed10c61a59c3ac9217e724c7511c04"
+    },
+    {
+      "voiceId": "01ETUB019",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB019.aiff",
+      "nativeMember": "01ETUB019.str",
+      "nativeIndex": 37,
+      "nativeByteLength": 16384,
+      "nativeSha256": "43be370a9f28acb67f8d392b9028051e4ff66e973912bea9fb0b6bbc8b2ede02",
+      "speakerId": "ETKO",
+      "sourceText": "Come back in 3 or 4 hours.",
+      "displayText": "Come back in 3 or 4 hours.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/boat-ticket-purchase/voice/01ETUB019.wav",
+      "byteLength": 65324,
+      "sha256": "1eb361dbd56b0fb73877ece6b5a2ae7c271e73fe2cc9514bf6b21e487dc0b7bf"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/cloths2/chairkyu.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9040000.wav",
+      "byteLength": 16324,
+      "sha256": "3d43f948cee05351464ba5bff8bf67843b5b0b2eafabf6a0f56b9779b3f563db"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/cloths2/cloths02.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9040100.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/hit/Deskhit.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9040200.wav",
+      "byteLength": 5652,
+      "sha256": "c510fdb7312a958a72f8588e99a3d11b4811c5b337307a96f6f42f40718ae33d"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/cloths2/friction2.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9040300.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9040400.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/cloths2/furimuki_n02.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9040500.wav",
+      "byteLength": 25804,
+      "sha256": "b445f45589f7dca74cd10ffb930d08fe60f20e43722f8414eb191cb942211a83"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9040600.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/hit/Hit9.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9040700.wav",
+      "byteLength": 6972,
+      "sha256": "eb0e990021628e0923a9fca97280a52ce48848116d0602e2ef6360a55ab85eab"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/smallobject/latterpocket.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9040800.wav",
+      "byteLength": 17836,
+      "sha256": "6b9cf45817403d65a5175c5a95d8f05e0c6cf46c3eaa5d614b77b0937b424315"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/smallobject/paper01.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9040900.wav",
+      "byteLength": 15716,
+      "sha256": "5e975015a71bfe3ce84515823777a10ad35518b271214ed069e36201eff810b5"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/smallobject/paper02.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9040a00.wav",
+      "byteLength": 26580,
+      "sha256": "975de373332c935e17c22ca1bc38590a123d07400270b6d7310a7fb8e74681cb"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/smallobject/paper2eq.aiff",
+      "playbackId": 13,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9040d00.wav",
+      "byteLength": 17052,
+      "sha256": "5cd24e2df91f8c80e924904d2e1d4069c5f52710a37116cbedfc739c81e93477"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 17,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9041100.wav",
+      "byteLength": 4620,
+      "sha256": "b777d818c86e674e40a080c0aabb21e31a54b732828322cdb9b9288dd4184907"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 18,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9041200.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 19,
+      "sampleId": 19,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9041300.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9041400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/door/woodclose2.aiff",
+      "playbackId": 20,
+      "sampleId": 21,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9041400.wav",
+      "byteLength": 22244,
+      "sha256": "08b6668aad9b4025f421e129ba00b8b4a633e12b043634d70cb6c17ccc5a4f5d"
+    },
+    {
+      "commandHex": "a9041500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/door/woodopen2.aiff",
+      "playbackId": 21,
+      "sampleId": 22,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9041500.wav",
+      "byteLength": 56572,
+      "sha256": "6e8e65543827293ca1f7a5f58b151eed7b3ecb3378ffdeb7f8557f0287b4606f"
+    },
+    {
+      "commandHex": "a9041600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/cloths2/R_mouhu_nageru.aiff",
+      "playbackId": 22,
+      "sampleId": 20,
+      "sampleRate": 21000,
+      "asset": "public/audio/world/boat-ticket-purchase/sfx/a9041600.wav",
+      "byteLength": 21612,
+      "sha256": "b58d8f5e4c28c13c740dcaf29a05a6b88834c562e330502fd34cfb866d050c39"
+    }
+  ]
+}

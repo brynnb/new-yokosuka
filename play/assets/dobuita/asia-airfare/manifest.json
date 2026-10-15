@@ -20,10 +20,10 @@
         "sha256": "6e069dd760bff2dd8c8815865f2dfcef58ebe3898cc36e9c77205d27e329759d"
       },
       {
-        "name": "TIRS701G.MT5",
-        "path": "disc2/SCENE/02/ARAR/TIRS701G.MT5",
-        "byteLength": 68928,
-        "sha256": "354ea77706ecf007ee4a3f2d83545da9dde3e9d34ccbcfa680bc76057bf3fea4"
+        "name": "TIRT230G.MT5",
+        "path": "disc2/SCENE/02/ARAR/TIRT230G.MT5",
+        "byteLength": 19776,
+        "sha256": "25989de0432ac1014543fd70dcd40530c98fc02bd076962a5f700ec03fa0c35b"
       },
       {
         "name": "TIRS703G.MT5",
@@ -32,10 +32,10 @@
         "sha256": "d01d70fea30308739de0d21e5a771605fa78cc12765499d6e21aaa7cbdf034ae"
       },
       {
-        "name": "ARP3H01G.MT5",
-        "path": "disc2/SCENE/02/ARAR/ARP3H01G.MT5",
-        "byteLength": 7488,
-        "sha256": "e61709183d8858a2d9df8c8c34cd60dac6d682f1ab9ef9787ab13a1e37f9b3f1"
+        "name": "ZSR3H03G.MT5",
+        "path": "disc2/SCENE/02/ARAR/ZSR3H03G.MT5",
+        "byteLength": 15664,
+        "sha256": "8f69c5549a650b928a7748d75b665dedb0771b476ab8020842e465e0f3366499"
       }
     ]
   },
@@ -48,22 +48,37 @@
   "audioManifest": "public/audio/world/asia-airfare/manifest.json",
   "sceneObjects": {
     "INF1": {
-      "model": "TIRS701G.MT5",
-      "browserFilename": "TIRS701G.MT5",
-      "assetPath": "play/assets/dobuita/asia-airfare/TIRS701G.MT5",
-      "textureAssetPath": "play/assets/dobuita/asia-airfare/textures.bin"
+      "model": "TIRT230G.MT5",
+      "browserFilename": "TIRT230G.MT5",
+      "assetPath": "play/assets/dobuita/asia-airfare/TIRT230G.MT5",
+      "textureAssetPath": "play/assets/dobuita/asia-airfare/textures.bin",
+      "sourceBinding": {
+        "mapInfoChrsOffset": 198336,
+        "characterRecordOffset": 1268,
+        "defImageRecordOffset": 1228
+      }
     },
     "INF2": {
       "model": "TIRS703G.MT5",
       "browserFilename": "TIRS703G.MT5",
       "assetPath": "play/assets/dobuita/asia-airfare/TIRS703G.MT5",
-      "textureAssetPath": "play/assets/dobuita/asia-airfare/textures.bin"
+      "textureAssetPath": "play/assets/dobuita/asia-airfare/textures.bin",
+      "sourceBinding": {
+        "mapInfoChrsOffset": 198336,
+        "characterRecordOffset": 1356,
+        "defImageRecordOffset": 1316
+      }
     },
     "MAGA": {
-      "model": "ARP3H01G.MT5",
-      "browserFilename": "ARP3H01G.MT5",
-      "assetPath": "play/assets/dobuita/asia-airfare/ARP3H01G.MT5",
-      "textureAssetPath": "play/assets/dobuita/asia-airfare/textures.bin"
+      "model": "ZSR3H03G.MT5",
+      "browserFilename": "ZSR3H03G.MT5",
+      "assetPath": "play/assets/dobuita/asia-airfare/ZSR3H03G.MT5",
+      "textureAssetPath": "play/assets/dobuita/asia-airfare/textures.bin",
+      "sourceBinding": {
+        "mapInfoChrsOffset": 198336,
+        "characterRecordOffset": 1172,
+        "defImageRecordOffset": 1132
+      }
     }
   },
   "packageActors": {
@@ -105,9 +120,9 @@
       "sha256": "0d76d7b59730cd8116d9b67480a26eec02b285d3aeaa9c8a5242d3432e91b251"
     },
     {
-      "path": "play/assets/dobuita/asia-airfare/TIRS701G.MT5",
-      "byteLength": 68928,
-      "sha256": "354ea77706ecf007ee4a3f2d83545da9dde3e9d34ccbcfa680bc76057bf3fea4"
+      "path": "play/assets/dobuita/asia-airfare/TIRT230G.MT5",
+      "byteLength": 19776,
+      "sha256": "25989de0432ac1014543fd70dcd40530c98fc02bd076962a5f700ec03fa0c35b"
     },
     {
       "path": "play/assets/dobuita/asia-airfare/TIRS703G.MT5",
@@ -115,14 +130,14 @@
       "sha256": "d01d70fea30308739de0d21e5a771605fa78cc12765499d6e21aaa7cbdf034ae"
     },
     {
-      "path": "play/assets/dobuita/asia-airfare/ARP3H01G.MT5",
-      "byteLength": 7488,
-      "sha256": "e61709183d8858a2d9df8c8c34cd60dac6d682f1ab9ef9787ab13a1e37f9b3f1"
+      "path": "play/assets/dobuita/asia-airfare/ZSR3H03G.MT5",
+      "byteLength": 15664,
+      "sha256": "8f69c5549a650b928a7748d75b665dedb0771b476ab8020842e465e0f3366499"
     },
     {
       "path": "play/assets/dobuita/asia-airfare/textures.bin",
-      "byteLength": 141396,
-      "sha256": "76fbedfd1be1c8b77f55911ef49bcbbb22a7fcdb0a8d1d915e7b7d2d3a482146"
+      "byteLength": 95372,
+      "sha256": "d75029a06622f5277f54984f2effc7a9f59bef2dcef32089fd8cc0ec4ccd9ca1"
     }
   ],
   "activities": [

@@ -123,6 +123,10 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.global-airfare",page:Object.freeze({id:"story-global-airfare",text:"Global Travel Agency quoted ¥198,000 for a ticket to Hong Kong.\n\nI took their Hong Kong flyer. That's much more than my savings. Ask Fuku-san what to do."})},
   {flag:"notebook.s1.asia-airfare",page:Object.freeze({id:"story-asia-airfare",text:"Asia Travel Company quoted ¥158,000 for an air ticket to Hong Kong.\n\nI took their bargain flyer. Even this fare is too expensive. Ask Fuku-san for advice."})},
   {flag:"notebook.s1.fuku-travel-funds",page:Object.freeze({id:"story-fuku-travel-funds",text:"Fuku-san gave me his savings: ¥39,634.\n\nIt's still not enough for an air ticket. He suggested asking Nozomi at Aida Florist about overseas travel."})},
+  {flag:"notebook.s1.boat-fares",page:Object.freeze({id:"story-boat-fares",text:"Nozomi says a boat ticket should be cheaper than a plane ticket.\n\nAsk the travel agencies about boat fares to Hong Kong."})},
+  {flag:"notebook.s1.asia-boat-referral",page:Object.freeze({id:"story-asia-boat-referral",text:"Global Travel Agency doesn't sell boat tickets.\n\nFor boat fares, go to Asia Travel Company."})},
+  {flag:"notebook.s1.boat-ticket-purchase",page:Object.freeze({id:"story-boat-ticket-purchase",text:"Paid Asia Travel Company ¥69,000 for a boat ticket to Hong Kong.\n\nReturn to collect it after four hours. The shop closes at 8 p.m.; if it's too late, go back tomorrow."})},
+  {flag:"notebook.s1.jimmy-promise",page:Object.freeze({id:"story-jimmy-promise",text:"The clerk was gone when I returned for the ticket.\n\nJimmy at Asia Travel Company promised to call me at home tomorrow about it."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

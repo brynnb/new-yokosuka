@@ -93,7 +93,7 @@ for (const route of spec.routes) {
   });
   // Repeatability is for reviewed, reward-free room travel, not repeated quest
   // payouts. One-way milestone gates would strand a player after returning.
-  if (route.repeatable && (!route.destination || route.items?.length || route.grantYen || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length)) throw Error(`Unsafe repeatable route ${route.id}`);
+  if (route.repeatable && (!route.destination || route.items?.length || route.grantYen || route.spendYen || route.recordMinutes?.length || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length)) throw Error(`Unsafe repeatable route ${route.id}`);
   if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw Error(`Invalid Story destination ${route.id}`);
   const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...(route.excludedFlags||[]).map(flag=>`flag_set("${flag}")`), ...requiredItems.map(({key,quantity})=>`!has_item("${key}", ${quantity})`), ...(route.repeatable ? [] : [`flag_set("${route.completedFlag}")`])];
   if (route.hours) gates.push(route.hours[0] < route.hours[1]
@@ -102,17 +102,24 @@ for (const route of spec.routes) {
   if(route.bounds)gates.push(`!actor_in_bounds("AKIR", "${route.bounds}")`);
   if(route.sameDayAs)gates.push(`game_day() != progress_value("${route.sameDayAs}")`);
   if(route.dayAfter && !route.legacyDateNotice)gates.push(`progress_value("${route.dayAfter}") == 0 || game_day() <= progress_value("${route.dayAfter}")`);
+  if(route.minuteAfter){
+    const {key,minutes}=route.minuteAfter;
+    if(!/^story\.s1\.[a-z0-9.-]+$/.test(key)||!Number.isSafeInteger(minutes)||minutes<1||minutes>1440)throw Error(`Invalid elapsed-minute gate ${route.id}`);
+    gates.push(`progress_value("${key}") == 0 || game_minute() < progress_value("${key}") + ${minutes}`);
+  }
   const nativeEffects = (route.nativeEffects || []).map(effect => {
     if (!/^2:\d+$/.test(effect.address) || ![0, 1].includes(effect.value) || !route.nativeSources?.length) throw new Error(`Unreviewed native effect in ${route.id}`);
     return `<<set_native_value "${effect.address}" ${effect.value}>>`;
   });
   const yenEffects=[];
-  if(route.grantYen){
-    const {amount,reason}=route.grantYen;
+  if(route.grantYen && route.spendYen)throw Error(`Conflicting yen effects in ${route.id}`);
+  if(route.grantYen || route.spendYen){
+    const {amount,reason}=route.grantYen || route.spendYen;
     if(!Number.isSafeInteger(amount)||amount<1||amount>1_000_000||!/^story\.s1\.[a-z0-9.-]+$/.test(reason)||!route.nativeSources?.length)throw Error(`Invalid reviewed yen grant in ${route.id}`);
-    yenEffects.push(`<<grant_yen ${amount} "${reason}">>`);
+    yenEffects.push(`<<${route.spendYen?"spend_yen":"grant_yen"} ${amount} "${reason}">>`);
   }
   const effects=[...nativeEffects,...yenEffects,...(route.recordDays||[]).map(key=>`<<record_game_day "${key}">>`),
+    ...(route.recordMinutes||[]).map(key=>{if(!/^story\.s1\.[a-z0-9.-]+$/.test(key))throw Error(`Invalid minute record ${route.id}`);return `<<record_game_minute "${key}">>`;}),
     ...(route.items||[]).map(({key,quantity})=>{
       if(!/^[a-z][a-z0-9_]*$/.test(key)||!Number.isSafeInteger(quantity)||quantity<1)throw new Error(`Invalid inventory effect in ${route.id}`);
       return `<<give_item "${key}" ${quantity}>>`;
@@ -172,6 +179,7 @@ for (const route of spec.routes) {
     if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw new Error(`Invalid Story destination ${route.id}`);
     if(route.timeTransition&&!/^s1\.[a-z0-9.-]+$/.test(route.timeTransition))throw Error(`Invalid Story time transition ${route.id}`);
     body = `${route.activities.map(id => `<<start_activity "${id}">>`).join("\n")}\n${route.timeTransition?`<<advance_story_time "${route.timeTransition}">>\n`:""}${route.destination ? `<<travel_story "${route.destination}">>\n` : ""}${effects.join("\n")}\n<<complete>>`;
+    if(route.spendYen)body=`<<if yen() >= ${route.spendYen.amount}>>\n${body}\n<<else>>\nRyo Hazuki: I need ${route.spendYen.amount.toLocaleString("en-US")} yen before I can pay for this. #speaker:AKIR\n<<complete>>\n<<endif>>`;
     if (route.confirmation) {
       const { accept, decline } = route.confirmation;
       if (![accept,decline].every(label=>typeof label==='string' && /^[A-Za-z0-9 .,!?'-]+$/.test(label))) throw new Error(`Invalid confirmation ${route.id}`);
@@ -194,9 +202,11 @@ for (const route of spec.routes) {
       flags: Object.fromEntries(route.requiredFlags.map(flag => [flag, true])),
       ...(requiredItems.length?{inventory:Object.fromEntries(requiredItems.map(({key,quantity})=>[key,quantity]))}:{}),
       actorPresence: Object.fromEntries((route.presentActors || participants).map(actor => [actor, true])),
-      ...((route.recordDays?.length||route.combat||route.dayAfter||route.sameDayAs||route.timeTransition)?{gameDate:"1986-12-04"}:{}),
+      ...((route.recordDays?.length||route.recordMinutes?.length||route.minuteAfter||route.combat||route.dayAfter||route.sameDayAs||route.timeTransition)?{gameDate:"1986-12-04"}:{}),
+      ...(route.spendYen?{yen:route.spendYen.amount}:{}),
       ...(route.dayAfter?{progress:{[route.dayAfter]:Date.UTC(1986,11,3)/86400000}}:{}),
       ...(route.sameDayAs?{progress:{[route.sameDayAs]:Date.UTC(1986,11,4)/86400000}}:{}),
+      ...(route.minuteAfter?{progress:{[route.minuteAfter.key]:Date.UTC(1986,11,4,10)/60000-route.minuteAfter.minutes}}:{}),
       ...(route.bounds?{actorBounds:{AKIR:{[route.bounds]:true}}}:{}),
       ...(route.optionSelections?{optionSelections:route.optionSelections}:{}),
       ...(route.randomIntegers?{randomIntegers:route.randomIntegers}:{}),

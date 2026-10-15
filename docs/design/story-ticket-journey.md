@@ -98,7 +98,7 @@ the latter explicitly permits either agency visit before Fuku's help.
 | Cast / assets | Ryo and Satoshi Shinoda (`SIND`, SND_L) at Global; Ryo and Etsuko Sekine (`ETKO`, the existing DAZA JOJ_L model) at Asia; Ryo and Fuku (`FUK_M`) at home. Original AUTH body, camera, prop movement and speech tracks. |
 | Sequence / choices | Ask for fares or leave. Global quotes ¥198,000 for the ticket alone; Asia quotes ¥158,000. Each successful scene grants its own flyer and a shared airfare milestone. Either permits Fuku's original piggy-bank scene and his ¥39,634 contribution. No air ticket is purchased. |
 | Timing / audio | Global `01MIT` lasts about 50.43 s with 20 voices and 8 effects; Asia `01ETU` about 70.98 s with 19/10; home `01MON` about 89.33 s with 22/19. Durations include the original movement/camera tail. No challenge or movie-implied victory. |
-| Props / approximation | Ledger, pen and flyer roles at Global and the two pamphlets/magazine at Asia are reviewed role-based assignments, not recovered callback bindings. Original movement supplies their trajectories. Global's cinematic door actor is transform-only: exploration keeps the real doorway. The intact home piggy bank uses its original trajectory; breaking debris and exact finger callbacks are omitted. |
+| Props / approximation | Ledger, pen and flyer roles at Global are reviewed role-based assignments, not recovered callback bindings. Asia's props now use the original CHRS image table (see below), replacing earlier inferred assignments. Original movement supplies trajectories. Global's cinematic door actor is transform-only: exploration keeps the real doorway. The intact home piggy bank uses its original trajectory; breaking debris and exact finger callbacks are omitted. |
 | Personal environment | Preserve ordinary personal calendar, weather and lighting. Shop hours use personal time. Quotes and contribution do not advance the day or alter the public clock. |
 | Effects / notebook | Grant the Hong Kong Flyer and Bargain Flyer separately, each once. Fuku's milestone, notebook clue and ¥39,634 commit together. Quotes cannot grant money. New flyers currently have text-only inventory slots, not invented or misidentified artwork. |
 | Exit / recovery | Restore the prior exploration pose, camera and controls in the current room. Leave, preparation failure, timeout and cancellation grant nothing. Stale acknowledgements cannot settle a cancelled run. Explicit skip of a noninteractive movie uses the same one-time server settlement. Reload reads committed outcomes. |
@@ -156,10 +156,93 @@ collision or door rule was changed.
 
 ## Remaining ticket progression
 
-Next are the cheaper boat lead, payment/collection delay, Jimmy's call, the arcade Chai
-fight and the resulting Asia Travel confrontation. These are not completed by
-the home-preparation flag.
+Next are Jimmy's next-morning call, the arcade Chai fight and the resulting
+Asia Travel confrontation/chase. These are not completed by the ticket-payment
+or Jimmy-promise milestones.
 
 The `01MON` piggy-bank subtitle states ¥39,634; the same integer occurs in
 JOMO MAPINFO at `0x71a44`. That exact amount is used by the authored settlement,
 not a reconstruction of its full native controller.
+
+## Boat fare, payment and delayed inquiry
+
+Official imports: `nozomi-boat-lead`, `global-boat`, `boat-ticket-purchase`,
+`boat-ticket-collection`. The contemporary GameSpot guide, printed pp. 44–45,
+provides this causal order, the ¥69,000 fare, four-hour delay and next-day promise.
+Original HUMANS/01MIT/01ETU/A0165 dialogue independently supplies the exchanges.
+
+| Field | Authored integration |
+| --- | --- |
+| Locations / prerequisites | Talk to Nozomi at Aida Florist after Fuku's contribution. Enter Global or Asia during the established personal opening hours after that clue. Global's referral is optional; it must not block a player who goes straight to Asia. |
+| Trigger / choices | Actual Nozomi NPC talk; reviewed shop entrance regions with separate milestone lifecycles. Explicit leave/ask/payment choices. The payment choice states the full ¥69,000 before any debit. |
+| Cast / presentation | Original contiguous HRSK voices F1239A062 through A070 for Nozomi's cheaper-boat suggestion, using ordinary shared facing/camera. Original alternate 01MIT Global referral (~49.02 s), original 01ETU payment (~70.97 s), then A0165 Jimmy/thug confrontation (~69.42 s) in DAZA. Original body/camera/prop trajectories are reused; Nozomi's conversation gestures remain adapted. |
+| Payment / possession | Original source price: ¥69,000. Insufficient funds show a short authored unvoiced caption and settle nothing. Successful presentation stages one debit, paid milestone, notebook and payment-minute record in the ordinary server transaction. No ticket is granted: it has not been delivered. |
+| Personal time / weather | No public clock mutation, forced weather or automatic time jump. Record the authoritative whole personal calendar minute. Collection requires at least 240 calendar minutes, including across midnight, and the shop must be open. Existing personal waiting options can advance time; returning tomorrow is valid. |
+| Delayed inquiry | After the delay, original Jimmy (`JIM_M`), Koji Hase (`TPL_L`) and Kazumi Minowa (`MIR_L`) replace the conversation cast for A0165. Its success records Jimmy's promise/day and notebook, not a ticket, refund, second debit, fight victory or phone-call completion. |
+| Exit / failure / replay | Restore the prior gameplay pose/camera/controls in the current zone. Leave, preparation failure, cancellation and stale acknowledgements cannot take money or record the appointment. Paid progress survives reload; repeats cannot spend again. The noninteractive presentations support the existing explicit skip. |
+
+### Source bindings and deliberate limits
+
+Both Asia scenes use `parseChrtSceneObjectBindings` on original ARAR MAPINFO's
+CHRS/DefImage table. The prior inferred quote props were incorrect: `INF1`
+is `TIRT230G`, not `TIRS701G`; `MAGA` is `ZSR3H03G`, not `ARP3H01G`.
+`INF2` remains `TIRS703G`. The payment table maps `INF3` → `ARP3H01G`,
+`MONY` → `OSAS5LOG`, `PURS` → `SAFS500G`, and `TRAY` → `UKES500G`.
+The generator uses the same structured mapping for both scenes and stores
+source record offsets in their manifests. No inferred prop override remains
+in the quote package. Detailed finger/attachment callbacks remain unreconstructed.
+
+`A0165A008.str` and `A0165A009.str` are referenced by the original AUTH but
+absent from the original A0165.AFS member directory. Their manifest records
+explicitly mark them unavailable; no unrelated speech or invented subtitles
+stand in for them. Other speech and all requested effects are exported.
+The source-associated `A1_ASIAR.SND` contains the exact requested a904 commands;
+the similarly related `A1_HIJYM.SND` lacks four of them.
+
+The server's small `game_minute` / `record_game_minute` additions reuse the
+existing transactional progress store. Whole UTC minute ordinals in the original
+1986/1987 calendars are exactly representable by Yarn's float32 numbers; Unix
+milliseconds/seconds are not. This is minute-granularity waiting, not exact
+second-level original-controller timing. No new appointment database or quest
+engine was introduced.
+
+### Verification
+
+The actual compiler/PostgreSQL earned-chain test passes through Nozomi,
+Global's optional referral, payment and the delayed inquiry. It checks missing
+NPC presence, cancellation/retry, explicit decline, insufficient funds,
+unchanged inventory, stale payment acknowledgement, one debit, the saved minute,
+rejection at 239 minutes, acceptance at 240, and no second payment/ticket grant.
+Focused clock tests check exact minute storage, crossing midnight, invalid or
+missing clock facts and Free-roam rejection. Focused presentation tests compare
+the generated props against the original CHRS identities.
+
+The connected rendered continuation (`NEW_YOKOSUKA_BOAT_TICKET_E2E=true`)
+passes from the earned agency/funds save: actual Nozomi click/voiced start,
+cancellation/retry, original Global referral, real shop-door entry, explicit
+payment decline and movie cancellation, original cash/tray/flyer presentation,
+one debit, reload before the delay without early collection, personal waiting
+outside the shop, real return through the door, cancelled/retried/naturally
+completed Jimmy scene, saved notebook, restored controls and reload without
+another payment. The two browser checks (renderer preflight and continuation)
+passed in about 4.4 minutes. Captures were inspected; listening-level audio
+fidelity and every camera/hand pose are not claimed.
+
+That run revealed that package-owned bodies could remain beside scheduled
+copies: the Global close-up visibly contained two SIND heads. The shared
+scheduled-actor runtime now lends an owner-scoped suppression lease to the
+package actor runtime. Ambient updates cannot re-enable replaced models, and
+completion/cancellation/world cleanup restores their previous visibility.
+Jimmy's scene explicitly suppresses the absent clerk ETKO as well as replacing
+any scheduled copies of its own cast. This fixes the ownership boundary for
+all package bodies, not only these shops. It does not permanently phase the
+ambient clerk out after the scene; persistent population changes remain
+separate story content.
+
+Ninety focused actor/package/lifecycle tests pass. A separate rendered
+ownership check (`NEW_YOKOSUKA_BOAT_VISIBILITY_E2E=true`, about 52 seconds)
+visibly verifies the corrected Global and Asia presentations, hides the
+ambient copies through multiple rendered frames, restores their visibility and
+controls after cancellation, and confirms unchanged money/inventory/flags.
+These previews are renderer checks, not evidence of newly earned progression;
+the connected run above supplies that evidence.

@@ -82,7 +82,8 @@ test("mirror follow-up borrows original HOUO/MS8A without allowing cinematics to
 test("home cinematics cannot grant savings or advance the personal calendar themselves",()=>{
   const catalog=createScriptEventPresentationCatalog();
   for(const [part,resource,area] of [["post-chen-home","A0160","jomo"],["bank-savings","01BNK","jomo"],["travel-family","01EAR","jomo"],
-    ["fuku-travel-funds","01MON","jomo"],["global-airfare","01MIT","dski"],["asia-airfare","01ETU","daza"]]){
+    ["fuku-travel-funds","01MON","jomo"],["global-airfare","01MIT","dski"],["asia-airfare","01ETU","daza"],
+    ["global-boat","01MIT","dski"],["boat-ticket-purchase","01ETU","daza"],["boat-ticket-collection","A0165","daza"]]){
     const activity=catalog.activity(`s1.${area}.${part}.scene`);
     assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
     assert.equal(activity.cutscene.packageId,part);
@@ -93,6 +94,15 @@ test("home cinematics cannot grant savings or advance the personal calendar them
   assert.deepEqual(catalog.activity("s1.jomo.mirror-dream.scene").cutscene.activity,
     {slot:51,binding:{primaryPointer:614200,secondaryPointer:614213}});
   assert.equal(catalog.sequence("s1.jomo.fuku-travel-advice.start").scene.actors[1].tag,"FUKU");
+});
+
+test("Asia props use original CHRS model bindings instead of semantic filename guesses",()=>{
+  for(const [id,expected]of [["asia-airfare",{INF1:"TIRT230G.MT5",INF2:"TIRS703G.MT5",MAGA:"ZSR3H03G.MT5"}],
+    ["boat-ticket-purchase",{INF3:"ARP3H01G.MT5",MONY:"OSAS5LOG.MT5",PURS:"SAFS500G.MT5",TRAY:"UKES500G.MT5"}]]){
+    const m=JSON.parse(readFileSync(new URL(`../play/assets/dobuita/${id}/manifest.json`,import.meta.url)));
+    assert.deepEqual(Object.fromEntries(Object.entries(m.sceneObjects).map(([tag,value])=>[tag,value.browserFilename])),expected);
+    for(const value of Object.values(m.sceneObjects))assert.ok(Number.isInteger(value.sourceBinding.defImageRecordOffset));
+  }
 });
 
 test("letter translation borrows the exact TOKI presentation in the normal shop",()=>{

@@ -4,7 +4,7 @@ import {verifyOldDistrictEntry,verifyOldDistrictStealth,verifyFirstChenMeeting} 
 import {verifyFamilyMirrorLead,verifyBunkadoHandguard,verifyGuiZhangEncounter,verifyHandguardFamily,verifyDojoItems,verifyDojoSwitches,verifyBasementTravel} from "./story-mirror-search.js";
 import {verifyBasementMirrorSearch} from "./story-basement.js";
 import {verifyMirrorReturn} from "./story-mirror-return.js";
-import {verifyHomeTicketPreparation,verifyAgencyQuotesAndFunds} from "./story-home-ticket.js";
+import {verifyHomeTicketPreparation,verifyAgencyQuotesAndFunds,verifyBoatTicketJourney,verifyTicketActorReplacement} from "./story-home-ticket.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -121,6 +121,16 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_BOAT_VISIBILITY_E2E === "true"){
+      test.setTimeout(360_000);
+      await verifyTicketActorReplacement(page,testInfo,character);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_BOAT_TICKET_E2E === "true"){
+      test.setTimeout(720_000);
+      await verifyBoatTicketJourney(page,testInfo,character,enterInteriorDoor,residentClickPoint);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_AGENCY_E2E === "true"){
       test.setTimeout(600_000);
       await verifyAgencyQuotesAndFunds(page,testInfo,character,enterInteriorDoor);

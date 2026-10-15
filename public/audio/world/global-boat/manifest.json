@@ -1,0 +1,1460 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01MIT.AFS",
+      "sha256": "9f79b1cdf1254a76197b36597a20d88e93be9cdb55c8a7501a9833620348106c"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/S1_SEKAI.SND",
+      "sha256": "3219ebe4f8454af793d7a27bbcb72fe3ea1525b28d5e3edc4fa3180d0c676357"
+    },
+    "authManifest": "play/assets/dobuita/global-boat/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01MITA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA009.aiff",
+      "nativeMember": "01MITA009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 6144,
+      "nativeSha256": "3357725302aad9e3c76c47bf10bfbfb32ba788f82b4bcbacbd400189158666d0",
+      "speakerId": "AKIR",
+      "sourceText": "I have a question=@",
+      "displayText": "I have a question...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITA009.wav",
+      "byteLength": 24364,
+      "sha256": "9d8c366f04e30f70baa176d3ec6ca429ea20e29a27da32a2614f85c3dd6be72c"
+    },
+    {
+      "voiceId": "01MITA010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA010.aiff",
+      "nativeMember": "01MITA010.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 14336,
+      "nativeSha256": "03f1ee2c475ca5b34f9ebbc09bf0305b158bb34c3ec27a4c858233133103df54",
+      "speakerId": "AKIR",
+      "sourceText": "How much would a＆boat fare be to Hong Kong?",
+      "displayText": "How much would a\nboat fare be to Hong Kong?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITA010.wav",
+      "byteLength": 57132,
+      "sha256": "3027bbb99aaa462700676f4e66b1f8138f0b9e21922836fc68087a7f8e43d023"
+    },
+    {
+      "voiceId": "01MITA011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA011.aiff",
+      "nativeMember": "01MITA011.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 14336,
+      "nativeSha256": "9cee380a3ec2d0ea5c3934b2310ae559214d140e46f715884963dbe74af47726",
+      "speakerId": "AKIR",
+      "sourceText": "Do you know of＆a travel agency that does?",
+      "displayText": "Do you know of\na travel agency that does?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITA011.wav",
+      "byteLength": 57132,
+      "sha256": "4823ca944b0942ffa98bc844983fda4439a7c368ee4c40e624b5292e7a7f3d74"
+    },
+    {
+      "voiceId": "01MITA012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA012.aiff",
+      "nativeMember": "01MITA012.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 16384,
+      "nativeSha256": "1ddd6e05f0ff4d081f7d6bdcd2a9ce83dfdccdbd73e9b73e167b3d14bcfd91f5",
+      "speakerId": "AKIR",
+      "sourceText": "It's urgent.＆I must get to Hong Kong.",
+      "displayText": "It's urgent.\nI must get to Hong Kong.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITA012.wav",
+      "byteLength": 65324,
+      "sha256": "5a9a3b4e8077925b8adab4a562b1c1aaf35c3c3229c6bbcafecb6f261cd6a288"
+    },
+    {
+      "voiceId": "01MITA013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA013.aiff",
+      "nativeMember": "01MITA013.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 18432,
+      "nativeSha256": "95607541d1f976c49e09f373e34b6cb70d83d6ab80aa70a297cc1f799671f342",
+      "speakerId": "AKIR",
+      "sourceText": "Please. If you know＆tell me.",
+      "displayText": "Please. If you know\ntell me.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITA013.wav",
+      "byteLength": 73516,
+      "sha256": "7264e325c3a43ae53aee695e56b125c754a24a5b6cdcf65e08df931c5192e1c6"
+    },
+    {
+      "voiceId": "01MITA014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA014.aiff",
+      "nativeMember": "01MITA014.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 22528,
+      "nativeSha256": "7c7276db2bba5dd616744d8934f5241559d1e9fdc9ec3e7a28a125d153acc4a4",
+      "speakerId": "AKIR",
+      "sourceText": "OK, take a right＆Asia Travel Co=@",
+      "displayText": "OK, take a right\nAsia Travel Co...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITA014.wav",
+      "byteLength": 89900,
+      "sha256": "a77c8539ecc40733af70c98283ad9d6a33ac3f25d114abf7bf97845966c2b69e"
+    },
+    {
+      "voiceId": "01MITA015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA015.aiff",
+      "nativeMember": "01MITA015.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 14336,
+      "nativeSha256": "9ff9e97f41df8a80dda9a7f5a85706a6d160850659b9488673c2b9258f6b5f44",
+      "speakerId": "AKIR",
+      "sourceText": "I'll try it.＆Thank you very much.",
+      "displayText": "I'll try it.\nThank you very much.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 31
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITA015.wav",
+      "byteLength": 57132,
+      "sha256": "a3e030980b12f033b42d0d9d4695c14e89724ce86aba79e612c0c477682b6751"
+    },
+    {
+      "voiceId": "01MITB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB001.aiff",
+      "nativeMember": "01MITB001.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 12288,
+      "nativeSha256": "c38ddea8ba688720705e641ab21cb176c7a5071e509c1f357c1301569525a3b2",
+      "speakerId": "SIND",
+      "sourceText": "Ahh, please come in.",
+      "displayText": "Ahh, please come in.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITB001.wav",
+      "byteLength": 48940,
+      "sha256": "3331860bf12f2173bfaa1bb155b114e6af696a3fbf76bab3020a72695ddadd3e"
+    },
+    {
+      "voiceId": "01MITB012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB012.aiff",
+      "nativeMember": "01MITB012.str",
+      "nativeIndex": 26,
+      "nativeByteLength": 10240,
+      "nativeSha256": "24091fbfcafd3991f67c47139c0aa0e02c46b7fb715be5c19febf2f144b84c0d",
+      "speakerId": "SIND",
+      "sourceText": "Sure, what is it?",
+      "displayText": "Sure, what is it?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITB012.wav",
+      "byteLength": 40748,
+      "sha256": "76aadfdd86f4be80a9d24a9ae1e4b5234c269b8bea28db2abbf28c98cc61ba3f"
+    },
+    {
+      "voiceId": "01MITB013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB013.aiff",
+      "nativeMember": "01MITB013.str",
+      "nativeIndex": 27,
+      "nativeByteLength": 10240,
+      "nativeSha256": "e7a4cfab851eecb57f76384ba95624f5c5a2d8ab468e89c3d2d7023449ede6a7",
+      "speakerId": "SIND",
+      "sourceText": "I am sorry but=@",
+      "displayText": "I am sorry but...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITB013.wav",
+      "byteLength": 40748,
+      "sha256": "5e63085c958117e7456e89a398259fe0e61787cb07e3c150ad741cb57d07b6c2"
+    },
+    {
+      "voiceId": "01MITB014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB014.aiff",
+      "nativeMember": "01MITB014.str",
+      "nativeIndex": 28,
+      "nativeByteLength": 16384,
+      "nativeSha256": "f98f601f85d21aba3ef383c489de684a5794a3fe2a3526b15884f7070de46b71",
+      "speakerId": "SIND",
+      "sourceText": "we don't sell any boat tickets here.",
+      "displayText": "we don't sell any boat tickets here.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITB014.wav",
+      "byteLength": 65324,
+      "sha256": "a3a85526410b4fe3ce51dd5b2c5d720dbc9b4c46e6b9a5e4d6c1441fa68172dd"
+    },
+    {
+      "voiceId": "01MITB015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB015.aiff",
+      "nativeMember": "01MITB015.str",
+      "nativeIndex": 29,
+      "nativeByteLength": 10240,
+      "nativeSha256": "7a9d0987affd3e158f5b5aa17bc36a89a64f231a8f415b171012d8c2ba286f90",
+      "speakerId": "SIND",
+      "sourceText": "I know but=@",
+      "displayText": "I know but...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITB015.wav",
+      "byteLength": 40748,
+      "sha256": "adcfc4425f6358af93e397436f416722e25c9ff260714cabd8e223081685e5ea"
+    },
+    {
+      "voiceId": "01MITB016",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB016.aiff",
+      "nativeMember": "01MITB016.str",
+      "nativeIndex": 30,
+      "nativeByteLength": 12288,
+      "nativeSha256": "aad2b265776d1ed1ddaf2ff15776b75bd45f85bfd6e83656ebabbee205ba0b80",
+      "speakerId": "SIND",
+      "sourceText": "Well=@OK.",
+      "displayText": "Well...OK.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITB016.wav",
+      "byteLength": 48940,
+      "sha256": "02ef20b907c8de87951dcbc3cc615fe60ed398c13d5dc13d4abc5003a0a5e07f"
+    },
+    {
+      "voiceId": "01MITB017",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB017.aiff",
+      "nativeMember": "01MITB017.str",
+      "nativeIndex": 31,
+      "nativeByteLength": 32768,
+      "nativeSha256": "2e11ac78baede399110e74651afdeb85bc51e1fee8db5a81fc33f77f46ac6121",
+      "speakerId": "SIND",
+      "sourceText": "Go out of here and make a right.＆You'll find Asia Travel Co=@",
+      "displayText": "Go out of here and make a right.\nYou'll find Asia Travel Co...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 36
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 22
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITB017.wav",
+      "byteLength": 130860,
+      "sha256": "e3d0ae574e934d1eb8a1e0398079da04709ab02ee32e4738f445438c796f5b80"
+    },
+    {
+      "voiceId": "01MITB018",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB018.aiff",
+      "nativeMember": "01MITB018.str",
+      "nativeIndex": 32,
+      "nativeByteLength": 24576,
+      "nativeSha256": "bf75d1a8ef959540b363cca671a53d58eb95564a6dc493ea785a290dfeb9a633",
+      "speakerId": "SIND",
+      "sourceText": "But, from what I've heard＆it's not very good.",
+      "displayText": "But, from what I've heard\nit's not very good.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 18
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-boat/voice/01MITB018.wav",
+      "byteLength": 98092,
+      "sha256": "ee36e35ace3e94bb992443b2bb51764e92d201551faaa1addc29c41b6b89078a"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-boat/sfx/a9040000.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-boat/sfx/a9040100.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/cloths2/cloths02.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-boat/sfx/a9040200.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/cloths2/friction2.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-boat/sfx/a9040300.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-boat/sfx/a9040400.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-boat/sfx/a9040500.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/door/sekaidoor.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-boat/sfx/a9040800.wav",
+      "byteLength": 45164,
+      "sha256": "a8c6673ab1a8b728c1a8f7eb46768ba36954e5fdc2d23d07de7e093a021a5bbf"
+    }
+  ]
+}

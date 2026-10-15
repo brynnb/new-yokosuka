@@ -7,6 +7,7 @@ import {execFileSync} from "node:child_process";
 import {buildNativeAseqActivityPack,sha256} from "../lib/NativeAseqActivityPack.mjs";
 import {buildNativeAseqAudioPack} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
+import {parseChrtSceneObjectBindings} from "../lib/chrt_scene_object_bindings.js";
 
 const root=path.resolve(import.meta.dirname,"../..");
 const source=path.join(process.env.SHENMUE_DISC2_EXTRACTED_ROOT||path.join(root,"extracted_disc2_v2"),"data/SCENE/02");
@@ -43,6 +44,24 @@ const profiles=[
     motion:"M_01ETU.BIN",motionSize:80996,motionHash:"6e069dd760bff2dd8c8815865f2dfcef58ebe3898cc36e9c77205d27e329759d",bank:48,base:0,actors:["INF1","INF2","MAGA","AKIR","ETKO"],
     stream:"01ETU",streamHash:"f21b7837177788630c2f7e849e5627152a1e335628ae70e4ffe4062afa39db4c",sound:"A1_ETUKO.SND",soundHash:"6e960914c59edd80ddc282179ec6379c26a7c461a15d89954ab2af3bb9fd5485"},
 ];
+profiles.push(
+  {...profiles.find(p=>p.id==="global-airfare"),id:"global-boat",offset:0x280fc,size:7768,hash:"fb621852f1ba096115a1d46a23ac600f9d5b6479608a071e178785d9a965a00a",actors:["TYOB","DOOR","SIND","AKIR"]},
+  {...profiles.find(p=>p.id==="asia-airfare"),id:"boat-ticket-purchase",offset:0x23bfc,size:50212,hash:"676014994eafde1eedec3bd526d98989edae51c0ac13dc60ca462d31c8f8b7ea",frames:1998,actors:["INF3","MONY","PURS","TRAY","AKIR","ETKO"]},
+  {...profiles.find(p=>p.id==="asia-airfare"),id:"boat-ticket-collection",resource:"A0165",offset:0x5ff4,size:19064,hash:"1cb299fd3831f2501cd9742d0dd00c2ea59e32d9be393d5b21af5e1f0bd35853",frames:2082,
+    motion:"M_0165.BIN",motionSize:453880,motionHash:"2451ea8698e5e2ec6c7e2cf6097d78e0532cd874791bc5927cbcef202688f7ac",bank:16,actors:["AKIR","JIMY","KJHS","MNWA"],
+    stream:"A0165",streamHash:"1e0a9ba2ffae287af250282cbab817087dde6274acd044bcc9b5f3f3175e1863",sound:"A1_ASIAR.SND",soundHash:"6b228b029deca6aa58fe0a17d0118111640ed18bacb47305457c9ad612ec4cab"},
+);
+const characters={FUKU:["Masayuki Fukuhara","FUK_M"],INE_:["Ine-san","INE_M"],SIND:["Satoshi Shinoda","SND_L"],ETKO:["Etsuko Sekine","JOJ_L"],
+  JIMY:["Jimmy Yan","JIM_M"],KJHS:["Koji Hase","TPL_L"],MNWA:["Kazumi Minowa","MIR_L"]};
+const asiaModels={
+  TIRT230G:[19776,"25989de0432ac1014543fd70dcd40530c98fc02bd076962a5f700ec03fa0c35b"],
+  TIRS703G:[68928,"d01d70fea30308739de0d21e5a771605fa78cc12765499d6e21aaa7cbdf034ae"],
+  ZSR3H03G:[15664,"8f69c5549a650b928a7748d75b665dedb0771b476ab8020842e465e0f3366499"],
+  ARP3H01G:[7488,"e61709183d8858a2d9df8c8c34cd60dac6d682f1ab9ef9787ab13a1e37f9b3f1"],
+  UKES500G:[3936,"d9be08984129dcf4610de1ab09ccd772f6658c6fac2e104ec4bf76f18ae8a6d1"],
+  OSAS5LOG:[4080,"f65cb8e739c629e76dcf2d6c40b56761649399bf71925b77838973912d27df8a"],
+  SAFS500G:[7868,"7294b11ed28f87f045eeaf508cdfe1c2957abc3750d5b2a49ae9de47806aa493"],
+};
 const runtimePaths=[];
 for(const p of profiles){
   const area=p.area||"JOMO",mapSource=path.join(source,area,"MAPINFO.BIN");
@@ -77,19 +96,24 @@ for(const p of profiles){
     prop("COIN","OKAK301G.MT5",31056,"1a0b55b541b6a270ce4acc220e31fcf61cebc6774e36e2f4855d107992e828ef");
     prop("PANF","TIRS701G.MT5",68928,"ed04bb8b23c40878b276f960ca4033f3f6362224485b0cc6c6440eec97ad4459");
   }
-  if(p.id==="global-airfare"){
+  if(area==="DSKI"){
     props.DOOR={model:"door-transform-reference",browserFilename:"DOOR",referenceOnly:true};
     prop("TYOB","CLIK302G.CHRM",1716,"5e8a318cc8c226482dabd2b55c22778f197c88fd55a1f3e0ee96114bdbd99646","MPK00.PKS");
-    prop("TIRA","TIRT240G.CHRM",1316,"67ced3a3f254674e11eacccb34ae4a3032c309a2587117fcd741966b509b813c","MPK00.PKS");
-    prop("SPEN","PENK300G.CHRM",1532,"13d50de6c49805ef9930ff22931ccba6f3db94e72b909103a0bdf4f4a8b747f9","MPK00.PKS");
+    if(p.actors.includes("TIRA"))prop("TIRA","TIRT240G.CHRM",1316,"67ced3a3f254674e11eacccb34ae4a3032c309a2587117fcd741966b509b813c","MPK00.PKS");
+    if(p.actors.includes("SPEN"))prop("SPEN","PENK300G.CHRM",1532,"13d50de6c49805ef9930ff22931ccba6f3db94e72b909103a0bdf4f4a8b747f9","MPK00.PKS");
     const textureSource=path.join(source,area,"MPK00.PKF");
     if(sha256(fs.readFileSync(textureSource))!=="9b28a17766ee9d856ac0385b79f141d984232af7ed91419d6fb51e229fdb9871")throw Error("Changed Global Travel textures");
     textureSources.push(textureSource);
   }
-  if(p.id==="asia-airfare"){
-    prop("INF1","TIRS701G.MT5",68928,"354ea77706ecf007ee4a3f2d83545da9dde3e9d34ccbcfa680bc76057bf3fea4");
-    prop("INF2","TIRS703G.MT5",68928,"d01d70fea30308739de0d21e5a771605fa78cc12765499d6e21aaa7cbdf034ae");
-    prop("MAGA","ARP3H01G.MT5",7488,"e61709183d8858a2d9df8c8c34cd60dac6d682f1ab9ef9787ab13a1e37f9b3f1");
+  if(area==="ARAR"){
+    const bytes=fs.readFileSync(mapSource),chrs=bytes.indexOf("CHRS");
+    const bindings=parseChrtSceneObjectBindings(bytes.subarray(chrs));
+    for(const tag of p.actors.filter(tag=>tag!=="AKIR"&&!characters[tag])){
+      const binding=bindings.find(value=>value.actorTag===tag),definition=asiaModels[binding?.model];
+      if(!definition)throw Error(`Unresolved original ARAR prop ${tag}`);
+      prop(tag,`${binding.model}.MT5`,...definition);
+      props[tag].sourceBinding={mapInfoChrsOffset:chrs,characterRecordOffset:binding.characterRecordOffset,defImageRecordOffset:binding.defImageRecordOffset};
+    }
   }
   if(textureSources.length)generatedAssets.push({assetPath:`${prefix}/textures.bin`,bytes:Buffer.concat(textureSources.map(file=>extractNativeTexnPack(fs.readFileSync(file),file).bytes))});
   const manifest=buildNativeAseqActivityPack({generatedBy:"tools/cutscenes/build_home_ticket_pack.mjs",resourceName:p.resource,disc:2,
@@ -98,8 +122,7 @@ for(const p of profiles){
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),audioManifest:`${audioPrefix}/manifest.json`,
     motionBanks:[{bank:p.bank,member:p.motion,parseOptions:{sequenceIndexBase:p.base}}],
     activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:`${p.resource}.AUTH`,actors:p.actors,durationFrames:p.frames}],
-    packageActors:{...(p.actors.includes("FUKU")?{FUKU:actor("Masayuki Fukuhara","FUK_M")}:{}),...(p.actors.includes("INE_")?{INE_:actor("Ine-san","INE_M")}: {}),
-      ...Object.fromEntries([["SIND","Satoshi Shinoda","SND_L"],["ETKO","Etsuko Sekine","JOJ_L"]].filter(([tag])=>p.actors.includes(tag)).map(([tag,label,code])=>[tag,actor(label,code)]))},
+    packageActors:Object.fromEntries(Object.entries(characters).filter(([tag])=>p.actors.includes(tag)).map(([tag,[label,code]])=>[tag,actor(label,code)])),
     ...(Object.keys(props).length?{sceneObjects:props,outputMembers,generatedAssets}:{}),
   });
   runtimePaths.push(`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path));
@@ -109,6 +132,9 @@ for(const p of profiles){
     authDirectory:path.join(root,prefix),authFiles:[`${p.resource}.AUTH`],authManifest:`${prefix}/manifest.json`,resourceBindingEvidence:evidence,
     stream:{label:`${p.stream}.AFS`,path:path.join(source,`STREAM/${p.stream}.AFS`),manifestPath:`disc2/SCENE/02/STREAM/${p.stream}.AFS`,sha256:p.streamHash},
     soundBank:{label:p.sound,path:path.join(source,"SOUND",p.sound),manifestPath:`disc2/SCENE/02/SOUND/${p.sound}`,sha256:p.soundHash},
+    ...(p.id==="boat-ticket-collection"?{unavailableVoices:Object.fromEntries(["A0165A008.str","A0165A009.str"].map(name=>[name,{
+      reason:"This exact original AUTH reference is absent from A0165.AFS; retain its cue without substitute speech.",evidence:"disc2/SCENE/02/STREAM/A0165.AFS original member directory",
+    }]))}:{}),
     outputDirectory:path.join(root,audioPrefix),outputAssetPrefix:audioPrefix,
     dtpkDump:process.env.DTPK_DUMP||path.join(root,".disc-work/pool-audio/dtpkdump/DTPKDump.py"),vgmstream:process.env.VGMSTREAM_CLI||path.join(root,".disc-work/tooling/vgmstream/vgmstream-cli"),python:process.env.DTPK_PYTHON||"python3",
   });
