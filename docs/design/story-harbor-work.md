@@ -75,8 +75,9 @@ pass 56 checks, including failure/cancellation cleanup for the reused room lease
 
 Forklift training now passes the connected three-delivery browser check,
 including cancellation/retry, saved completion, controls and reload.
+The subsequent evening chicken race is also connected and browser-verified.
 Paid crate quotas, the workday calendar,
-morning races and subsequent Mad Angels encounters remain missing. Existing
+morning races and later Mad Angels encounters remain missing. Existing
 forklift driving, cargo and racing must be reused; neither film completion
 nor a client-reported win may grant a shift's salary or story outcome.
 
@@ -140,3 +141,51 @@ removed forklifts, including their colliders at the same spawn. The authoritativ
 fleet IDs now fence visibility and entry, and a finished removal fade disposes
 the retained model. This repair applies to ordinary forklifts as well as training.
 Desktop keyboard gameplay is verified; mobile controls have not been assessed.
+
+## Evening chicken race
+
+The GameSpot guide, printed pp. 51–52, places the riders' harassment of Shozo
+near Hokuhoku Lunches after 19:00 following forklift training. The winning
+inputs are A, Down, Left, Right. This encounter precedes the first paid workday
+in the guide; it is not a wage or an automatic success from watching a film.
+
+| Field | Authored event |
+| --- | --- |
+| ID / location | `chicken-race`, personal Story mode, `MFSY` harbor. |
+| Prerequisites / trigger | Completed forklift practice; 19:00–23:00 personal time; approach around original Ryo position `[1.7274,0,88.9241]`, then choose help or leave. The bounds and later-evening retry window are authored. |
+| Setup / actors / props | Borrow Ryo; privately stage Shozo, Takashi and Takahiro with original character models. Original RACE motorcycle models supply the bikes; their particular BIK1/BIK2 associations are authored choices. |
+| Sequence / audio / camera | Original `RACE/SEQDATA1.AUTH` introduction with original body motion, camera and 01CRA voices/effects. Then an authored side-by-side riding tableau and server-timed A/Down/Left/Right prompts. Captions describe the outcome without inventing voiced dialogue. |
+| Timing / challenge | Introduction may finish or be explicitly skipped. Only four timely server-accepted inputs win. Two-second windows, stationary riding staging and a fresh attempt after failure are declared adaptations. |
+| Weather / lighting | Preserve the personal evening environment; no additional date, season or weather gate. Separate lamp, headlight and reflection reference actors retain transforms but have no newly rendered geometry. |
+| Completion | Atomically save the race milestone, day and notebook entry after the acknowledged success caption and presentation cleanup. No pay, possession, move reward or calendar jump. |
+| Exit / cancellation / replay | Restore the prior avatar pose/camera and ordinary controls. Decline, failure, interrupted loading and cancellation (including after the last input but before the ending) grant nothing and remain retryable. Saved completion prevents automatic replay. |
+
+`tools/cutscenes/build_harbor_chicken_race.mjs --audio` pins the Disc 3 RACE
+archive, texture bank, 01CRA stream and A1_CRA sound bank. The existing activity
+and audio compilers validate the introduction. `M_MBQC.MOTN` supplies the
+original riding loops. Authored tableaus now borrow the same standalone
+scene-object runtime as native cinematics, rather than misusing the hand-prop
+attachment path. Their resource lease also owns failed/late-load cleanup.
+
+The moving native chicken-race course, opponent's fall into the sea and
+post-race combat-move teaching are not reconstructed here. Rider/handlebar contact
+is approximate. The outcome caption does not claim those effects are animated.
+Focused compiler/engine tests cover
+eligibility, real input order, stale tokens, timeout, retry and cancellation
+before final settlement. The connected hardware-rendered check resumes the
+training-earned save, verifies the early-hour gate, declines, cancels the original
+introduction, lets it finish naturally on retry, fails an input, retries, wins but
+cancels the unacknowledged ending, then earns the actual completion. Position,
+first-person camera and controls restore; PostgreSQL saves the milestone, note
+and day; money/inventory are unchanged and reload does not replay the event.
+The authoring compiler now rejects anonymous or untagged dialogue lines before
+generation, preventing an outcome caption from failing only after the QTE.
+
+The next connected sequence is the first paid workday. The guide, pp. 53–55,
+places the morning race before ten deliveries to Warehouse No. 18, a noon rescue
+of Mark, an afternoon attack, payday and Goro's warning. Quota completion alone
+must not mark that whole narrative day complete. Reuse existing racing,
+delivery, combat and transactional payment; do not infer story success from
+the exploration race's local best-time record. The client clock display appeared
+to keep extrapolating during this event although the saved personal time paused;
+verify that display boundary before relying on workday appointments.

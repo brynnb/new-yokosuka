@@ -1,6 +1,8 @@
 import { runtimeAssetGroup, runtimeAssetUrl } from "../../src/RuntimeAssets.js";
 import { INTRODUCTION_ENVIRONMENTS } from "./IntroductionEnvironments.js";
 import goroJobLeadManifest from "../assets/harbor/goro-job-lead/manifest.json";
+import chickenRaceManifest from "../assets/harbor/chicken-race/manifest.json";
+import chickenRaceAudio from "../../public/audio/world/chicken-race/manifest.json";
 import goroJobLeadAudio from "../../public/audio/world/goro-job-lead/manifest.json";
 import goroJobAppointmentManifest from "../assets/harbor/goro-job-appointment/manifest.json";
 import goroJobAppointmentAudio from "../../public/audio/world/goro-job-appointment/manifest.json";
@@ -298,7 +300,7 @@ const nativeSilentActivityMusic = resource => Object.freeze({
 });
 
 const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
-  ...[["goro-job-lead",goroJobLeadManifest,goroJobLeadAudio,"mfsy"],["goro-job-appointment",goroJobAppointmentManifest,goroJobAppointmentAudio,"mfsy"],
+  ...[["chicken-race",chickenRaceManifest,chickenRaceAudio,"mfsy"],["goro-job-lead",goroJobLeadManifest,goroJobLeadAudio,"mfsy"],["goro-job-appointment",goroJobAppointmentManifest,goroJobAppointmentAudio,"mfsy"],
     ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],
     ["jimmy-knock",jimmyKnockManifest,jimmyKnockAudio,"dobuita"],["jimmy-caught",jimmyCaughtManifest,jimmyCaughtAudio,"dobuita"],["jimmy-escaped",jimmyEscapedManifest,jimmyEscapedAudio,"dobuita"],["jimmy-interrogation",jimmyInterrogationManifest,jimmyInterrogationAudio,"daza"],
     ["chai-intro",chaiIntroManifest,chaiIntroAudio,"arcade"],["chai-victory",chaiVictoryManifest,chaiVictoryAudio,"arcade"],["chai-rescue",chaiRescueManifest,chaiRescueAudio,"arcade"],

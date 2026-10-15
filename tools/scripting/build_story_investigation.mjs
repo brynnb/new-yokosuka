@@ -192,6 +192,13 @@ for (const route of spec.routes) {
     const finish=route.staging?`<<play_sequence "${route.staging}.finish">>`:participants.map(actor=>`<<clear_actor_look "${actor}">>`).join("\n");
     body = `${begin}\n${lines.join("\n")}\n${finish}\n${effects.join("\n")}\n<<complete>>`;
   }
+  // Yarn accepts anonymous lines, but our shared presenter requires character
+  // syntax and a speaker. Reject malformed captions before gameplay starts.
+  for(const line of body.split("\n")){
+    const text=line.trim();
+    if(!text||/^(\/\/|<<|->|===|---|title:|tags:)/.test(text))continue;
+    if(!/^[^:]+:\s.+\s#speaker:[A-Z0-9_]{4}(?:\s|$)/.test(text))throw Error(`Unpresentable authored dialogue in ${route.id}: ${text}`);
+  }
   // complete requests durable settlement; it does not short-circuit Yarn.
   // Conditional early endings jump to an actual terminal node instead.
   const sourceText = `title: Start\ntags: adaptation story disc${disc} ${route.area} ${route.actor}\n---\n<<if ${gates.join(" || ")}>>\n    <<pass_trigger>>\n<<endif>>\n${body}\n===\n${route.combat?"title: Done\n---\n<<complete>>\n===\n":""}`;

@@ -134,6 +134,7 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.alpha-trading-appointment",page:Object.freeze({id:"story-alpha-trading-appointment",text:"Goro and Mai found a job for me.\n\nMeet Mr. Yada at Alpha Trading at 2 p.m. If I miss him, return between 2 and 5 p.m. on another day."})},
   {flag:"notebook.s1.harbor-job-training",page:Object.freeze({id:"story-harbor-job-training",text:"Mr. Yada hired me at Alpha Trading and introduced Mark.\n\nMark will teach me to drive a forklift. I still need to complete the training before my first working day."})},
   {flag:"notebook.s1.first-workday",page:Object.freeze({id:"story-first-workday",text:"Finished forklift practice with Mark.\n\nReturn to the harbor tomorrow morning for my first working day."})},
+  {flag:"notebook.s1.chicken-race",page:Object.freeze({id:"story-chicken-race",text:"Stopped the riders who were harassing the old man at the harbor.\n\nI won their chicken race. They must leave him alone."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

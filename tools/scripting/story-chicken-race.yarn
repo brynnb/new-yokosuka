@@ -1,0 +1,27 @@
+-> Help the old man
+    <<jump Attempt>>
+-> Leave it for now
+    <<jump Done>>
+===
+title: Attempt
+---
+<<start_activity "s1.mfsy.chicken-race-intro.scene">>
+<<play_sequence "s1.mfsy.chicken-race.start">>
+<<start_challenge "s1.mfsy.chicken-race">>
+<<if challenge_result("s1.mfsy.chicken-race") == "success">>
+Ryo Hazuki: {{text:success}} #speaker:AKIR
+<<play_sequence "s1.mfsy.chicken-race.finish">>
+{{effects}}
+<<jump Done>>
+<<else>>
+<<play_sequence "s1.mfsy.chicken-race.finish">>
+Ryo Hazuki: {{text:failure}} #speaker:AKIR
+-> Try again
+    <<jump Attempt>>
+-> Leave it for now
+    <<jump Done>>
+<<endif>>
+===
+title: Done
+---
+<<complete>>

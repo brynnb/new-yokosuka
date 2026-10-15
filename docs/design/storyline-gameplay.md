@@ -118,7 +118,10 @@ payment, Jimmy's call, Chai and Jimmy's chase/interrogation. The subsequent
 [harbor hiring](story-harbor-work.md) connects Goro's next-day promise, the
 Goro/Mai appointment, Yada's interview and Mark's introduction. The connected
 forklift lesson now verifies three physical deliveries, cancellation/retry,
-saved notebook/time and reload without pay or replay. Paid workdays, the
+saved notebook/time and reload without pay or replay. The evening chicken race
+now connects the original introduction and riding assets to a server-validated
+four-input challenge, saved notebook/day and reload; its course staging remains
+an approximation. Paid workdays, the
 remaining Mad Angels storyline and departure remain
 unimplemented; the checklist above distinguishes each verified sequence.
 
