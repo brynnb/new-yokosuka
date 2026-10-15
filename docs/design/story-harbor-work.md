@@ -82,7 +82,9 @@ once-only payday and Goro's warning. The return-home dream and second morning's
 race also pass their connected rendered continuation.
 The second day's cargo/ambush/payday also pass connected rendered checks;
 the subsequent Mark rescue and brother explanation also pass their connected
-rendered continuation. Later workdays remain missing. Existing
+rendered continuation. The third-day daytime continuation also passes connected
+rendered verification; its evening chase and later workdays remain
+missing. Existing
 forklift driving, cargo and racing must be reused; neither film completion
 nor a client-reported win may grant a shift's salary or story outcome.
 
@@ -614,4 +616,88 @@ This does not establish the speculative DEB1/DEB2 associations as native truth,
 exact scenery/prop staging, exhaustive gesture fidelity or missing intro audio.
 All 78 new local runtime records pass their hash/size check; no asset publication
 or deployment has been performed. The next missing story milestone is the third
-workday, followed by the remaining harbor days and finale.
+workday's evening chase, followed by the remaining harbor days and finale.
+
+## Third workday: sleep, cargo and Nozomi's photographs
+
+Implementation, focused actual-Yarn checks and connected rendered/full-stack
+verification pass. The earned Mark-rescue save is the starting point, not
+a new fixture with future progress filled in.
+
+The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed p. 57, places the daily race and eight-crate Warehouse 11-to-18 job before
+the lunch photograph encounter. Payroll precedes a separate evening biker/Charlie
+sequence. The following implementation preserves that order, using the existing
+server/Yarn, private calendar, race, cargo and presentation systems.
+
+| Event | Eligibility / interaction | Saved result |
+| --- | --- | --- |
+| `workday-two-night` | Completed Mark-rescue chapter, bedroom approach 20:00–24:00; stay awake or sleep, then acknowledge an unvoiced rest caption. | Next personal day 08:30, tested harbor arrival and morning notebook together. Decline/cancel changes neither date nor location. This uneventful sleep has no invented dream film; ordinary waiting can bypass it. |
+| `workday-three-race-entry` / `workday-three-race` | Completed second day, later personal date than its finished-day record, harbor boarding approach, then the shared real three-lap/39-gate course. | Independent third-day result/date/notebook, minimum 09:00 and harbor return. Earlier race wins do not count. No pay or rank prize. |
+| `workday-three-morning` | Its own saved race, 09:00–noon; explicit choice and four real lift/carry/drop deliveries, followed by the original HIRUAUTH lunch. | Acknowledged batch/notebook/noon. Cancellation during lunch grants nothing. |
+| `nozomi-photos` | Saved morning/lunch, 12:00–14:00; approach the original NZMPHOTO cast near Alpha Trading. | After the picture-taking film, a genuine apart/together choice and acknowledged original Canada/keepsake continuation save the choice, notebook and meeting together. No money, inventory grant or time jump. |
+| `workday-three-afternoon` | Saved morning and photograph event, 14:00–17:00; four more real deliveries. | Quota/notebook/minimum 17:00, not wages or the evening story. |
+| `workday-three-payday` | Both actual batches and photograph meeting, Alpha entrance after 17:00; shared original salary motions and final caption. | Exactly one ¥2,400 grant, payday date and notebook. No evening-chase win, Lan Di clue or whole-third-day flag. |
+
+Ordinary original assets supply Nozomi/Eri's cameras, body motion, voice and effect
+timing. `NZMPHOTO.PKS` hash is
+`c1b2ba44ca7111fb9e85237a775b253c0bcef99e7a4bbb3ed3c64e00bc46be1e`;
+`SEQDATA1.AUTH` and `SEQDATA2.AUTH` declare 1,220 and 1,940 frames, and their
+movement extents compile to approximately 40.68 and 64.68 seconds. Both use
+bank 16 / `M_01PHO.MOTN`. The original first film ends after Eri asks which
+photograph Ryo wants; the next opens with his choice response. Yarn owns the
+choice between those films. The 01PHO archive provides all seven/seventeen
+requested voices and A1_NZPHO provides the nine/seven requested effects.
+
+Eri uses registered `RFD_L`; Nozomi uses the existing reviewed `NZM_L` full body.
+The name CSV's `NZM_M` reference is not a registered/shipped full-body asset here.
+The first rendered attempt exposed that invalid reference before world entry;
+the package producer now validates every shared model/texture pair at generation
+time instead of breaking the account-menu module import.
+
+PHT1→SHAS503G, PHT2→SHAS506G and POLA→POCS500G are declared package-prop
+associations, not recovered native controller bindings. Their original models
+and NZMPHOTO texture bank are retained. BLC0/BLC1 flash planes remain explicit
+reference-only actors: their effect visibility is not reconstructed, so they
+are not rendered as permanent opaque planes. Both authored choice branches use
+the same original continuation; native photograph model-switching and a 2D
+inventory-photo display remain unimplemented. The selected identity is still
+saved per character and cannot settle before the ending acknowledgement.
+
+As on earlier days, the four/four delivery split and tested outdoor dispatch pad
+condense the original warehouse route. Exactly-quota work earns the unchanged
+base ¥300 per crate; no over-quota raise system is claimed. Preserve personal
+weather/lighting. Presentation restores the approach pose/camera and controls;
+failure/cancellation is retryable, and saved events do not automatically replay.
+The day-three evening chase/fights and subsequent dream are still missing.
+
+Focused checks extend the existing sleep, boarding, race, cargo and payday
+boundary tests rather than duplicating their runtime. Photo checks exercise
+both actual choices, ineligible hours/Free roam, cancellation during either film
+and no durable choice/notebook before the final acknowledgement. Run
+`NEW_YOKOSUKA_THIRD_WORKDAY_E2E=true` with the earned Mark-rescue save and the
+original recorded driving line; the optional `NEW_YOKOSUKA_THIRD_MORNING_ONLY`
+stops at an intermediate earned checkpoint, not a complete day.
+
+The connected checks use the same earned character through ordinary sleep
+decline/cancellation, saved next-morning arrival/reload, another real three-lap
+race, four/four physical deliveries, original lunch, both photo films and
+payroll. The race's saved arrival correctly starts the next cargo briefing;
+the shared browser driver now verifies that handoff instead of requiring an
+idle frame. An earlier interrupted assertion did not erase the earned race,
+and the continuation resumed it rather than replaying or injecting a win.
+
+The photo check cancels the introduction and a selected-together ending, then
+naturally completes the apart branch. Only the latter identity and notebook
+are saved; cancelled choices grant nothing. The original Eri camera, Nozomi,
+Ryo and photo-handling presentation are rendered. Payroll cancellation grants
+nothing, its acknowledged ending adds exactly ¥2,400, inventory is unchanged,
+controls restore and the final reload neither replays the photos nor pays again.
+PostgreSQL confirms race/payday on the same personal day (`6205`) and no
+`story.s1.workday-three.completed` flag; the evening story is not bypassed.
+
+These checks reset near approaches, not along a proven full walking route.
+The coworker lunch still has the documented exploration-fence occlusion. Exact
+photo grips/model selection, flash geometry and inventory-photo art are not
+claimed. All 57 new local asset records pass hash/size verification; publication
+and deployment have not been performed.

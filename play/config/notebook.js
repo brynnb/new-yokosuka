@@ -150,6 +150,12 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.second-payday",page:Object.freeze({id:"story-second-payday",text:"Collected ¥2,400 for today's eight crates.\n\nFind Mark behind Warehouse No. 17."})},
   {flag:"notebook.s1.mark-brother",page:Object.freeze({id:"story-mark-brother",text:"The Mad Angels attacked Mark again.\n\nHis brother went missing after leaking important information. Mark thinks they may have killed him."})},
   {flag:"notebook.s1.mad-angels-chi-you-men",page:Object.freeze({id:"story-mad-angels-chi-you-men",text:"The Mad Angels are making a deal with the Chi You Men.\n\nFollowing them could lead me to Lan Di. Keep looking while working at the harbor."})},
+  {flag:"notebook.s1.workday-three-morning",page:Object.freeze({id:"story-workday-three-morning",text:"Keep investigating the Mad Angels during my third workday.\n\nThe morning starts with Mark's forklift race."})},
+  {flag:"notebook.s1.workday-three-race",page:Object.freeze({id:"story-workday-three-race",text:"Finished the third morning's race.\n\nToday's job is eight crates from Warehouse No. 11 to Warehouse No. 18."})},
+  {flag:"notebook.s1.workday-three-lunch",page:Object.freeze({id:"story-workday-three-lunch",text:"Delivered the morning batch.\n\nLunch break: Nozomi and Eri are visiting near Alpha Trading."})},
+  {flag:"notebook.s1.nozomi-photos",page:Object.freeze({id:"story-nozomi-photos",text:"Eri took two pictures of Nozomi and me. We each kept one.\n\nNozomi is going to Canada. I promised to take care of our keepsake."})},
+  {flag:"notebook.s1.workday-three-quota",page:Object.freeze({id:"story-workday-three-quota",text:"Finished the third day's eight-crate quota.\n\nCollect my wages from Yada-san at Alpha Trading."})},
+  {flag:"notebook.s1.third-payday",page:Object.freeze({id:"story-third-payday",text:"Collected ¥2,400 for today's eight crates.\n\nInvestigate the Mad Angels near Tomato Convenience Store after 7 p.m."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

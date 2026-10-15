@@ -25,12 +25,12 @@ function originalDrivingLine(){
 }
 
 export async function verifyMorningRace(page,testInfo,character,{day="one"}={}){
-  expect(["one","two"]).toContain(day);
+  expect(["one","two","three"]).toContain(day);
   const chapter=`workday-${day}`;
   const drivingLine=originalDrivingLine();
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),done=`story.s1.${chapter}-race.completed`;
-  expect(initial.character.storyFlags[day==="one"?"story.s1.chicken-race.completed":"story.s1.workday-one.completed"]).toBe(true);
+  expect(initial.character.storyFlags[day==="one"?"story.s1.chicken-race.completed":day==="two"?"story.s1.workday-one.completed":"story.s1.workday-two.completed"]).toBe(true);
   expect(initial.character.storyFlags[done]).not.toBe(true);
   const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await noErrors();};
@@ -98,7 +98,17 @@ export async function verifyMorningRace(page,testInfo,character,{day="one"}={}){
     if(await info())throw Error(`Race did not finish: ${JSON.stringify(last)}`);
   }finally{await keys(new Set());}
   await page.getByText("Finished the morning race. Time to start the day's deliveries.",{exact:true}).waitFor();await unwon();await page.keyboard.press("Space");
-  await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="mfsy"&&!window.storyProbe.lifecycle.worldRuntime.switching,null,{timeout:120_000});await idle();
+  await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="mfsy"&&!window.storyProbe.lifecycle.worldRuntime.switching,null,{timeout:120_000});
+  // The committed arrival is deliberately inside the next cargo trigger. A
+  // real, correctly ordered briefing may own the player before the first idle
+  // observation; do not call that a race failure or suppress normal dispatch.
+  await page.waitForFunction(()=>["idle","line"].includes(window.storyProbe.regions.controller.status)||window.storyProbe.sceneErrors.length);
+  await noErrors();
+  if(await page.evaluate(()=>window.storyProbe.regions.controller.status==="line")){
+    const {default:routes}=await import("../../tools/scripting/story-investigation.json",{with:{type:"json"}});
+    const briefing=routes.routes.find(route=>route.id===`${chapter}-morning`).authoredText.briefing;
+    await page.getByText(briefing,{exact:true}).waitFor();
+  }else await idle();
   const final=await saved();expect(final.character.storyFlags[done]).toBe(true);expect(final.character.storyFlags[`notebook.s1.${chapter}-race`]).toBe(true);
   expect(final.character.yen).toBe(initial.character.yen);expect(final.inventory).toEqual(initial.inventory);expect(final.character.worldId).toBe("mfsy");
   await page.screenshot({path:testInfo.outputPath("morning-race-earned-harbor-return.png")});

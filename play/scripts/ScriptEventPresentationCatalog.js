@@ -40,6 +40,7 @@ const ACTIVITIES = new Map([
     ["yada-job-interview","MARU/SEQDATA0.AUTH"],["mark-job-introduction","MARU/SEQDATA1.AUTH"],
     ["mark-lunch-intro","MIZUMARK/SEQDATA1.AUTH"],["mark-lunch-aftermath","MIZUMARK/SEQDATA2.AUTH"],
     ["mark-after-work-intro","BOKOMARK/SEQDATA2.AUTH"],["mark-after-work-aftermath","BOKOMARK/SEQDATA3.AUTH"],["mark-brother-explanation","BOKOMARK/SEQDATA4.AUTH"],
+    ["nozomi-photo-intro","NZMPHOTO/SEQDATA1.AUTH"],["nozomi-photo-ending","NZMPHOTO/SEQDATA2.AUTH"],
     ["after-work-goro","GOROMA/SEQDATA2.AUTH"],["workday-lunch","HIRUAUTH/SEQDATA1.AUTH"]].map(([part,activityId])=>[`s1.mfsy.${part}.scene`,{
     kind:"native-cutscene",area:"MFSY",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-${part}`,packageId:part,worldId:"mfsy",storyPresentation:true,

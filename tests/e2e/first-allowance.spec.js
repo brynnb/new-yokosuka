@@ -14,17 +14,23 @@ import {verifyPersonalCalendar} from "./story-calendar.js";
 import {verifyMorningRace,verifyMorningRaceSaved} from "./story-morning-race.js";
 import {verifyMorningCargo,verifyMarkLunch,verifyFirstAfternoon} from "./story-workday-one.js";
 import {verifyWorkdayNight,verifySecondWorkday,verifyMarkAfterWork} from "./story-workday-two.js";
+import {verifyThirdWorkday} from "./story-workday-three.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
 const resumeId = Number(process.env.NEW_YOKOSUKA_STORY_RESUME_ID || 0);
+test.afterEach(async({page},info)=>{
+  if(info.status===info.expectedStatus)return;
+  const state=await page.evaluate(()=>{const p=window.storyProbe,l=p?.lifecycle;return{notices:p?.notices,errors:p?.errors,sceneErrors:p?.sceneErrors,status:p?.regions?.controller.status,world:l?.worldRuntime.activeWorld.id,ready:l?.worldRuntime.ready,switching:l?.worldRuntime.switching,movementLocked:l?.getController()?.movementLocked};}).catch(()=>null);
+  console.info("Story failure state:",JSON.stringify(state));
+});
 const variants = resumeId ? [["resume", false]] : [["complete", false], ["skip", false], ["complete", true]];
 for (const [ending, freshOpening] of variants) test(resumeId ? "investigation continues from an earned saved checkpoint" : `first allowance renders and persists after ${ending}${freshOpening ? " from a fresh opening" : ""}`, async ({ page }, testInfo) => {
   test.setTimeout(process.env.NEW_YOKOSUKA_MIRROR_RETURN_E2E === "true" ? 600_000 : process.env.NEW_YOKOSUKA_CHEN_E2E === "true" || process.env.NEW_YOKOSUKA_FAMILY_E2E === "true" || process.env.NEW_YOKOSUKA_HANDGUARD_E2E === "true" || process.env.NEW_YOKOSUKA_GUI_ZHANG_E2E === "true" ? 360_000 : process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
-  if(process.env.NEW_YOKOSUKA_SECOND_MORNING_E2E==="true")page.on("pageerror",error=>console.info("Second morning page error:",error.message));
+  if(process.env.NEW_YOKOSUKA_SECOND_MORNING_E2E==="true"||process.env.NEW_YOKOSUKA_THIRD_WORKDAY_E2E==="true")page.on("pageerror",error=>console.info("Working morning page error:",error.message));
   if(process.env.NEW_YOKOSUKA_FORKLIFT_TRAINING_E2E==="true"||process.env.NEW_YOKOSUKA_MORNING_CARGO_E2E==="true"||process.env.NEW_YOKOSUKA_MARK_LUNCH_E2E==="true"||process.env.NEW_YOKOSUKA_FIRST_AFTERNOON_E2E==="true"){
     page.on("pageerror",error=>console.info("Story page error:",error.message));
     page.on("console",message=>{if(message.type()==="error")console.info("Story console error:",message.text().slice(0,500));});
@@ -57,6 +63,8 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   // Instrument the actual served modules, including HMR timestamp variants.
   // Importing a bare second copy can observe a different prototype from /play.
   for (const [file, hook] of [
+    ["ui/TransientNotice", `const probeNoticeShow = TransientNotice.prototype.show;
+      TransientNotice.prototype.show = function(text,...args) { if(window.storyProbe) { (window.storyProbe.notices ||= []).push(text); console.info('Story notice:',text); } return probeNoticeShow.call(this,text,...args); };`],
     ["world/WorldClock", `const probeWorldState = WorldClock.prototype.setWorldState;
       WorldClock.prototype.setWorldState = function(...args) { window.storyProbe.clock=this; return probeWorldState.apply(this,args); };`],
     ["scripts/ScriptEventController", `const probeFailure = ScriptEventController.prototype.fail;
@@ -140,6 +148,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_THIRD_WORKDAY_E2E === "true"){
+      test.setTimeout(1_800_000);await verifyThirdWorkday(page,testInfo,character);expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_MARK_AFTER_WORK_E2E === "true"){
       test.setTimeout(660_000);await verifyMarkAfterWork(page,testInfo,character);expect(errors).toEqual([]);return;
     }

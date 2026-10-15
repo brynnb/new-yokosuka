@@ -8,12 +8,14 @@ import {buildNativeAseqActivityPack,parseIpacActivityArchive,sha256} from "../li
 import {buildNativeAseqAudioPack} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
 import {parseAuthSequence} from "../../src/AuthSequence.js";
+import {runtimeAssetUrl} from "../../src/RuntimeAssets.js";
 
 const root=path.resolve(import.meta.dirname,"../..");
 const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,"extracted_disc3_v2"),"data/SCENE/03");
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const evidence="docs/design/story-harbor-work.md";
 const archives={
+  NZMPHOTO:"c1b2ba44ca7111fb9e85237a775b253c0bcef99e7a4bbb3ed3c64e00bc46be1e",
   BOKOMARK:"f074ed751b0000c66357087fc8ed23c0a343080723bb511567b92c2d0ed96164",
   HIRUAUTH:"e740397e02958441010345d34d1369b20bbad9bc2ebdf397b413251b20a9a97e",
   GOROCOOP:"23073336078302cec958cdedb84443428f1e6f64ca2126e311fd5dd7ea9312a1",
@@ -25,6 +27,10 @@ const archives={
   ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
 const profiles=[
+  {id:"nozomi-photo-intro",archive:"NZMPHOTO",auth:"SEQDATA1.AUTH",motion:"M_01PHO.MOTN",frames:1220,actors:["PHT1","PHT2","BLC0","BLC1","AKIR","TJMA","HRSK","POLA"],
+    props:{PHT1:"SHAS503G",PHT2:"SHAS506G",BLC0:"BLAS500G",BLC1:"BLAS500G",POLA:"POCS500G"},referenceActors:["BLC0","BLC1"],authoredPropBindings:true},
+  {id:"nozomi-photo-ending",archive:"NZMPHOTO",auth:"SEQDATA2.AUTH",motion:"M_01PHO.MOTN",frames:1940,actors:["AKIR","TJMA","HRSK","PHT2","POLA","PHT1"],
+    props:{PHT1:"SHAS503G",PHT2:"SHAS506G",POLA:"POCS500G"},authoredPropBindings:true},
   {id:"mark-after-work-intro",archive:"BOKOMARK",auth:"SEQDATA2.AUTH",motion:"M_01MKB.MOTN",frames:520,actors:["AKIR","DEB1","DEB2","MARK","MRSK","OKYS","BTC_"],
     actorModels:{DEB1:["Mad Angels thug","BTH_L"],DEB2:["Mad Angels thug","BTN_L"],BTC_:["Mad Angels thug","BTC_L"]},
     actorTextureHash:"526ca5ef63b27b189ceeac0dcadbd5950334105132b27008fd77ec95ef1965df",
@@ -61,12 +67,15 @@ const profiles=[
       evidence:"docs/design/story-harbor-work.md#mark-at-lunch-presentation-assets",
     }}},
   {id:"mark-lunch-aftermath",archive:"MIZUMARK",auth:"SEQDATA2.AUTH",motion:"M_01MAD.MOTN",frames:1050,actors:["AKIR","OKYS","MRSK","MARK"]},
-].map(p=>p.archive==="BOKOMARK"?{...p,bank:21,stream:"01MKB",streamHash:"29dfd4ec9003c458ad53d6e1cabc621edd1a7fac8cff367b1e348de818e3e0fd",sound:"A1_MKB.SND",soundHash:"8286272d55f5011e16b49dc5cb7c0596a090e365ff409cbf96440a65ad02724e"}
+].map(p=>p.archive==="NZMPHOTO"?{...p,propTextureHash:"c689ecc4b3d11bcef397c5038c916e98fecf984662e60ea6be9fd994f0ff2060",stream:"01PHO",streamHash:"6c0170c065add4c5515ffec8ae68ca8ef223805f96fd654949274762dcb61edd",sound:"A1_NZPHO.SND",soundHash:"b00875e4a2dcf3db1af7eff22e55c3dc6b7ccf9a20490ecd0b374d0e06d54afc"}
+  :p.archive==="BOKOMARK"?{...p,bank:21,stream:"01MKB",streamHash:"29dfd4ec9003c458ad53d6e1cabc621edd1a7fac8cff367b1e348de818e3e0fd",sound:"A1_MKB.SND",soundHash:"8286272d55f5011e16b49dc5cb7c0596a090e365ff409cbf96440a65ad02724e"}
   :p.archive==="MARU"?{...p,stream:"01MAK",streamHash:"991e51fcbe77d0e590fd5db522b6fee46fe11cf7b02fc9bcaa6b81917cfc075d",sound:"A1_MARK.SND",soundHash:"ef5b84e9994323af1b7dc315612030cd1b923e79aa8770dd0e8afc6cad394ba8"}
   :p.archive==="MIZUMARK"?{...p,stream:"01MAD",streamHash:"3295b7ef69bde0372cb212cc500adcababc86421d712ae860ecaead614a7714a",sound:"A1_MAD.SND",soundHash:"b76ce9d7ad7f386a45001adcbf12a855718b0254ca72475dfdec78c4bfb38890"}:p);
 const characters={YOHI:["Yohei Kondo","YHI_L"],TYMK:["Tsuyoshi Murakami","RFA_L"],TAKE:["Hiroaki Takeuchi","ZZC_L"],HTSI:["Hitoshi Numakubo","SGH_L"],
   GORO:["Goro Mihashi","KMB_L"],HINA:["Mai Sawano","MIB_L"],TMRA:["Ryozo Yada","KWD_L"],MARK:["Mark Kimberly","GIC_L"],
-  MRSK:["Shingo Murasaki","PPL_L"],OKYS:["Minoru Okayasu","OKA_L"]};
+  // HRSK reuses the reviewed full body from nativeActivityActors, not the
+  // character-name CSV's unshipped NZM_M reference.
+  MRSK:["Shingo Murasaki","PPL_L"],OKYS:["Minoru Okayasu","OKA_L"],TJMA:["Eri Tajima","RFD_L"],HRSK:["Nozomi Harasaki","NZM_L"]};
 const runtimePaths=[];
 const profileArg=process.argv.indexOf("--profile");
 const selected=profileArg<0?profiles:profiles.filter(p=>p.id===process.argv[profileArg+1]);
@@ -118,6 +127,10 @@ for(const p of selected){
   for(const tag of p.actors){
     if(!characters[tag])continue;
     const [label,code]=characters[tag];
+    // A film is imported during application startup. Missing shared bodies
+    // must fail generation, not leave the account menu waiting indefinitely.
+    runtimeAssetUrl(`play/assets/characters/${code}.CHRM`);
+    runtimeAssetUrl(`play/assets/characters/${code.slice(0,3)}_textures.bin`);
     packageActors[tag]={label,modelCode:code,browserFilename:`${code}.CHRM`,assetFormat:"MT5",characterScale:1,assetPath:`play/assets/characters/${code}.CHRM`,textureAssetPath:`play/assets/characters/${code.slice(0,3)}_textures.bin`};
   }
   if(p.actorModels){
@@ -150,7 +163,9 @@ for(const p of selected){
   }
   for(const [tag,model]of Object.entries(p.props||{})){
     outputMembers.push(member(p.archive,`${model}.CHRM`));
-    sceneObjects[tag]={model,browserFilename:`${model}.CHRM`,assetPath:`${prefix}/${model}.CHRM`,textureAssetPath:propTextureAssetPath};
+    sceneObjects[tag]={model,browserFilename:`${model}.CHRM`,assetPath:`${prefix}/${model}.CHRM`,textureAssetPath:propTextureAssetPath,
+      ...(p.referenceActors?.includes(tag)?{referenceOnly:true}:{}),
+      ...(p.authoredPropBindings?{sourceBinding:{kind:"authored-package-prop-association",evidence}}:{})};
   }
   const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:p.archive,disc:3,sourceMembers:members,expectedMembers:members,
     bindingEvidence:evidence,selectionRule:"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",

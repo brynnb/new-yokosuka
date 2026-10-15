@@ -2,9 +2,9 @@ import {expect} from "@playwright/test";
 import {driveObservedDeliveries} from "./story-forklift-training.js";
 
 export async function verifyMorningCargo(page,testInfo,character,{day="one"}={}){
-  expect(["one","two"]).toContain(day);
-  const chapter=`workday-${day}`,count=day==="two"?4:5;
-  const success=day==="two"?"Four crates are delivered. Time for lunch with the other workers.":"The morning batch is finished. It is lunch break.";
+  expect(["one","two","three"]).toContain(day);
+  const chapter=`workday-${day}`,count=day==="one"?5:4;
+  const success=day!=="one"?"Four crates are delivered. Time for lunch with the other workers.":"The morning batch is finished. It is lunch break.";
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),done=`story.s1.${chapter}-morning.completed`;
   expect(initial.character.storyFlags[`story.s1.${chapter}-race.completed`]).toBe(true);
@@ -31,13 +31,13 @@ export async function verifyMorningCargo(page,testInfo,character,{day="one"}={})
   await driveObservedDeliveries(page,testInfo,count,`${chapter}-morning`);
   await page.getByText(success,{exact:true}).waitFor();await unchanged();
   await page.keyboard.press("Space");
-  if(day==="two"){
+  if(day!=="one"){
     await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-workday-lunch"||window.storyProbe.sceneErrors.length,null,{timeout:65_000});await noErrors();
-    await page.waitForTimeout(6000);await page.screenshot({path:testInfo.outputPath("second-workday-original-coworker-lunch.png")});await unchanged();
+    await page.waitForTimeout(6000);await page.screenshot({path:testInfo.outputPath(`${chapter}-original-coworker-lunch.png`)});await unchanged();
     await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:45_000,intervals:[1000]}).toBe(true);
   }
   await idle();
-  const final=await saved();expect(final.character.storyFlags[done]).toBe(true);expect(final.character.storyFlags[`notebook.s1.${day==="two"?"workday-two-lunch":"workday-one-morning"}`]).toBe(true);
+  const final=await saved();expect(final.character.storyFlags[done]).toBe(true);expect(final.character.storyFlags[`notebook.s1.${day!=="one"?`${chapter}-lunch`:"workday-one-morning"}`]).toBe(true);
   expect(final.character.yen).toBe(initial.character.yen);expect(final.inventory).toEqual(initial.inventory);expect(new Date(final.character.storyTimeMs).getUTCHours()).toBe(12);
   await page.screenshot({path:testInfo.outputPath(`${chapter}-morning-earned-lunch.png`)});
   await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();

@@ -3,6 +3,71 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"workday-two-night","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":600,
+      "title":"After the second workday — rest for tomorrow","hours":[20,24],"bounds":"s1.jomo.workday-two-night",
+      "summary":"Explicit authored ordinary sleep, final acknowledgement and atomic next-morning clock/harbor arrival. No original dream film or reward; ordinary calendar waiting can bypass this optional rest.",
+      "requiredFlags":["story.s1.workday-two.completed"],"excludedFlags":["story.s1.workday-three-race.completed"],
+      "completedFlag":"story.s1.workday-two-night.completed","effects":["notebook.s1.workday-three-morning"],"voiceIds":[],"yarnTemplate":"story-workday-sleep.yarn",
+      "timeTransition":"s1.wait.morning","destination":"s1.work.harbor-loading-start",
+      "authoredText":{"briefing":"Mark's brother may have been killed. I should get some rest and keep investigating during tomorrow's shift.","success":"Time to sleep. Tomorrow starts with the morning forklift race."},
+      "nativeSources":[{"role":"authored-harbor-arrival-contract","locator":"internal/scriptcontent/story_travel.v1.json#s1.work.harbor-loading-start","sha256":"a4108ac1f6936161bf5b5dbb64a87131bc132aa90fadf69fef913ade88605759"}],
+      "provenance":"GameSpot pp56-57: sleep after Mark's brother explanation, then third morning race. Uneventful sleep/commute is condensed into authored unvoiced confirmation and final acknowledgement, using the existing personal clock and tested harbor arrival; no invented native dream film. Decline/cancel leaves date/location unchanged. Ordinary next-day waiting may bypass this optional sleep."
+    },
+    {
+      "id":"workday-three-race-entry","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":610,
+      "title":"Third workday — morning race","hours":[8.5,12],"bounds":"s1.mfsy.workday-three-race-entry",
+      "requiredFlags":["story.s1.workday-two.completed"],"excludedFlags":["story.s1.workday-three-race.completed"],"dayAfter":"story.s1.workday-two.finished",
+      "completedFlag":"story.s1.workday-three-race-entry.completed","effects":[],"repeatable":true,"voiceIds":[],"yarnTemplate":"story-workday-race-entry.yarn","destination":"s1.work.morning-race-grid",
+      "authoredText":{"briefing":"The third workday starts with Mark's forklift race. Today's quota is eight crates from Warehouse No. 11 to Warehouse No. 18."},
+      "nativeSources":[{"role":"original-shared-gameplay-course","locator":"tools/evidence/ma00-forklift-race-course.json","sha256":"fe02e239b35f180c29621a8440b6ed80afb6c25ce4300e42b048c5ecfbaf8e4a"}],
+      "provenance":"GameSpot p57: third day begins with the same race, followed by eight crates from Warehouse11 to18. Same tested boarding approach/choice and real course; a later personal date than completed day two is required. No prior race result, salary or rank prize from boarding."
+    },
+    {
+      "id":"workday-three-race","disc":3,"actor":"AKIR","presentActors":[],"area":"MA00","trigger":"enter","priority":620,
+      "title":"Third workday — forklift race","bounds":"s1.ma00.workday-three-race",
+      "requiredFlags":["story.s1.workday-three-race-entry.completed","story.s1.workday-two.completed"],"completedFlag":"story.s1.workday-three-race.completed","effects":["notebook.s1.workday-three-race"],"recordDays":["story.s1.workday-three.day"],
+      "voiceIds":[],"yarnTemplate":"story-workday-race.yarn","destination":"s1.work.harbor-loading-start",
+      "authoredText":{"success":"Finished the morning race. Time to start the day's deliveries.","failure":"I did not finish the course. Try the morning race again?"},
+      "nativeSources":[{"role":"original-shared-gameplay-course","locator":"tools/evidence/ma00-forklift-race-course.json","sha256":"fe02e239b35f180c29621a8440b6ed80afb6c25ce4300e42b048c5ecfbaf8e4a"}],
+      "provenance":"Same observed three-lap/39-gate challenge and ordinary vehicle physics. Independent third-day settlement records its date, notebook, minimum09:00 and harbor arrival; earlier race wins do not count. No wages or complete-workday result."
+    },
+    {
+      "id":"workday-three-morning","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":630,
+      "title":"Third workday — morning cargo and lunch","hours":[9,12],"bounds":"s1.mfsy.workday-three-morning",
+      "requiredFlags":["story.s1.workday-three-race.completed"],"completedFlag":"story.s1.workday-three-morning.completed","effects":["notebook.s1.workday-three-lunch"],
+      "voiceIds":[],"yarnTemplate":"story-workday-delivery.yarn","challenge":"s1.mfsy.workday-three-morning","timeTransition":"s1.work.lunch","completionActivities":["s1.mfsy.workday-lunch.scene"],
+      "authoredText":{"briefing":"Today's job is eight crates from Warehouse No. 11 to Warehouse No. 18. Move four through this dispatch area before lunch, then four more in the afternoon.","success":"Four crates are delivered. Time for lunch with the other workers."},
+      "nativeSources":[{"role":"original-coworker-lunch","locator":"disc3/SCENE/03/MFSY/HIRUAUTH.PKS#SEQDATA1.AUTH,M_01BEN.MOTN","sha256":"e740397e02958441010345d34d1369b20bbad9bc2ebdf397b413251b20a9a97e"}],
+      "provenance":"GameSpot p57: eight-crate Warehouse11-to18 job, coworker lunch then Nozomi/Eri photographs. Four/four split and the tested outdoor dispatch pad condense the warehouse route. Four physical deliveries and acknowledged shared HIRUAUTH lunch save batch/noon/notebook together. Photo meeting is a separate lunch-break approach; no wages or photo choice from cargo."
+    },
+    {
+      "id":"nozomi-photos","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":640,
+      "title":"Lunch break — Nozomi and Eri's photographs","hours":[12,14],"bounds":"s1.mfsy.nozomi-photos",
+      "summary":"Original picture-taking and Canada/keepsake films with a real apart/together choice between them. Final acknowledgement saves only this character's choice/notebook/meeting. No inventory-photo art, money or calendar change.",
+      "requiredFlags":["story.s1.workday-three-morning.completed"],"completedFlag":"story.s1.nozomi-photos.completed","effects":["notebook.s1.nozomi-photos"],"voiceIds":[],"yarnTemplate":"story-harbor-photos.yarn",
+      "nativeSources":[{"role":"original-nozomi-eri-photo-films","locator":"disc3/SCENE/03/MFSY/NZMPHOTO.PKS#SEQDATA1.AUTH,SEQDATA2.AUTH,M_01PHO.MOTN","sha256":"c1b2ba44ca7111fb9e85237a775b253c0bcef99e7a4bbb3ed3c64e00bc46be1e"}],
+      "provenance":"GameSpot p57: Eri takes two photos during third-day lunch; player chooses one, then learns Nozomi is going to Canada. Original 01PHO films end/start at the choice. Both authored choice branches reuse the same original continuation; native prop/model branching is not recovered. Chosen identity saves as a private flag after acknowledgement, not an invented alternate voice. Inventory photo art is unimplemented. Approach/hours, prop-role pairing and omitted flash planes are declared adaptations. No money, items or time jump."
+    },
+    {
+      "id":"workday-three-afternoon","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":650,
+      "title":"Third workday — afternoon cargo","hours":[14,17],"bounds":"s1.mfsy.workday-three-afternoon",
+      "requiredFlags":["story.s1.workday-three-morning.completed","story.s1.nozomi-photos.completed"],"completedFlag":"story.s1.workday-three-afternoon.completed","effects":["notebook.s1.workday-three-quota"],
+      "voiceIds":[],"yarnTemplate":"story-workday-delivery.yarn","challenge":"s1.mfsy.workday-three-afternoon","timeTransition":"s1.work.shift-end",
+      "authoredText":{"briefing":"Four more crates complete today's eight-crate job. Finish the deliveries before collecting my wages at Alpha Trading.","success":"All eight crates are delivered. The shift is over; collect today's wages from Yada-san."},
+      "nativeSources":[{"role":"original-job-instruction-assets","locator":"disc3/SCENE/03/MFSY/MARU.PKS#SEQDATA1.AUTH","sha256":"a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b"}],
+      "provenance":"GameSpot p57: work resumes14:00, ends17:00, no afternoon attack before payroll. Existing four physical deliveries and acknowledged quota save batch/notebook/minimum17:00. Tested outdoor pad condenses the original Warehouse11-to18 route; no salary or whole-day completion."
+    },
+    {
+      "id":"workday-three-payday","disc":3,"actor":"TMRA","presentActors":[],"participants":[],"area":"MFSY","trigger":"enter","priority":660,
+      "title":"Third workday — collect wages","hours":[17,24],"bounds":"s1.mfsy.workday-three-payday",
+      "requiredFlags":["story.s1.workday-three-morning.completed","story.s1.nozomi-photos.completed","story.s1.workday-three-afternoon.completed"],
+      "completedFlag":"story.s1.workday-three-payday.completed","effects":["notebook.s1.third-payday"],"recordDays":["story.s1.workday-three.payday"],
+      "grantYen":{"amount":2400,"reason":"story.s1.workday-three-wages"},"voiceIds":[],"yarnTemplate":"story-workday-payday.yarn","staging":"s1.mfsy.payday",
+      "authoredText":{"briefing":"Eight crates at 300 yen each: 2,400 yen. Yada-san has today's wages ready.","success":"Collected today's wages: 2,400 yen. Look for the Mad Angels near Tomato Convenience Store after 7 p.m."},
+      "nativeSources":[{"role":"original-salary-handover-motion-bank","locator":"disc3/SCENE/03/MFSY/ALP_PAY.PKS#M_MO01.MOTN","sha256":"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709"}],
+      "provenance":"GameSpot p57: separate payday, then19:00 bikers/Charlie story. Reuse original salary motions and transactional exactly2400 base300-per-crate payout; no over-quota raises in this prototype. Real batches and acknowledged photograph event required. No evening chase, LanDi clue or whole-third-day result from wages."
+    },
+    {
       "id":"mark-after-work-rescue","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":590,
       "title":"Warehouse No. 17 — Mark's brother","hours":[17,24],"bounds":"s1.mfsy.mark-after-work",
       "requiredFlags":["story.s1.workday-two-payday.completed","story.s1.workday-two-attack.completed"],

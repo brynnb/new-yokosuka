@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {readFileSync} from "node:fs";
+import {runtimeAssetUrl} from "../src/RuntimeAssets.js";
 import {NativeAseqActivityCatalog} from "../play/events/NativeAseqActivityRuntime.js";
 import authoredScenes from "../play/scripts/AuthoredSceneCatalog.js";
 import {evaluateAuthActor} from "../src/AuthMovement.js";
@@ -23,6 +24,23 @@ function command(name, ...values) {
     })),
   };
 }
+
+test("Nozomi's photo films retain original timing/cast without owning choice or notebook settlement",()=>{
+  for(const [part,file,frames,voices]of [["intro","SEQDATA1.AUTH",1220,7],["ending","SEQDATA2.AUTH",1940,17]]){
+    const activity=createScriptEventPresentationCatalog().activity(`s1.mfsy.nozomi-photo-${part}.scene`);
+    const manifest=JSON.parse(readFileSync(new URL(`../play/assets/harbor/nozomi-photo-${part}/manifest.json`,import.meta.url)));
+    const audio=JSON.parse(readFileSync(new URL(`../public/audio/world/nozomi-photo-${part}/manifest.json`,import.meta.url)));
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.activity.binding.activityId,`NZMPHOTO/${file}`);
+    assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+    assert.equal(manifest.activities[0].durationFrames,frames);assert.equal(manifest.motionBanks[0].bank,16);
+    assert.equal(manifest.packageActors.TJMA.modelCode,"RFD_L");assert.equal(manifest.packageActors.HRSK.modelCode,"NZM_L");
+    for(const actor of Object.values(manifest.packageActors))for(const asset of [actor.assetPath,actor.textureAssetPath])assert.ok(runtimeAssetUrl(asset));
+    assert.equal(audio.voices.length,voices);assert.ok(audio.voices.every(v=>!v.unavailable));
+    assert.ok(audio.sounds.every(v=>!v.unavailable));
+    if(part==="intro")assert.ok(["BLC0","BLC1"].every(tag=>manifest.sceneObjects[tag].referenceOnly));
+  }
+});
 
 test("coworker lunch borrows the original silent film without owning the batch result",()=>{
   const activity=createScriptEventPresentationCatalog().activity("s1.mfsy.workday-lunch.scene");

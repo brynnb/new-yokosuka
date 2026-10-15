@@ -137,7 +137,9 @@ pass connected rendered continuations and saved reload. Lunch framing remains
 partly obscured by the resident fence. The Warehouse No. 17 Mark rescue and
 brother explanation also pass connected rendered checks, including cancellation,
 real victory, atomic notebook/chapter settlement and reload without replay.
-Subsequent Mad Angels workdays and departure remain unimplemented;
+The third daytime continuation through Nozomi/Eri photographs and payroll now
+passes connected rendered checks with saved choices, once-only wages and reload.
+Its evening chase, subsequent Mad Angels workdays and departure remain unimplemented;
 the checklist above distinguishes each verified sequence.
 
 For walkthrough-guided, authored progression, use the
