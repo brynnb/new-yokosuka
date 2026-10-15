@@ -13,6 +13,7 @@ import {verifyChickenRace} from "./story-chicken-race.js";
 import {verifyPersonalCalendar} from "./story-calendar.js";
 import {verifyMorningRace,verifyMorningRaceSaved} from "./story-morning-race.js";
 import {verifyMorningCargo,verifyMarkLunch,verifyFirstAfternoon} from "./story-workday-one.js";
+import {verifyWorkdayNight} from "./story-workday-two.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -23,6 +24,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   test.setTimeout(process.env.NEW_YOKOSUKA_MIRROR_RETURN_E2E === "true" ? 600_000 : process.env.NEW_YOKOSUKA_CHEN_E2E === "true" || process.env.NEW_YOKOSUKA_FAMILY_E2E === "true" || process.env.NEW_YOKOSUKA_HANDGUARD_E2E === "true" || process.env.NEW_YOKOSUKA_GUI_ZHANG_E2E === "true" ? 360_000 : process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
+  if(process.env.NEW_YOKOSUKA_SECOND_MORNING_E2E==="true")page.on("pageerror",error=>console.info("Second morning page error:",error.message));
   if(process.env.NEW_YOKOSUKA_FORKLIFT_TRAINING_E2E==="true"||process.env.NEW_YOKOSUKA_MORNING_CARGO_E2E==="true"||process.env.NEW_YOKOSUKA_MARK_LUNCH_E2E==="true"||process.env.NEW_YOKOSUKA_FIRST_AFTERNOON_E2E==="true"){
     page.on("pageerror",error=>console.info("Story page error:",error.message));
     page.on("console",message=>{if(message.type()==="error")console.info("Story console error:",message.text().slice(0,500));});
@@ -137,6 +139,14 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_SECOND_MORNING_E2E === "true"){
+      test.setTimeout(1_260_000);
+      await verifyWorkdayNight(page,testInfo,character);
+      const current=await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+      if(!current.character.storyFlags["story.s1.workday-two-race.completed"])await verifyMorningRace(page,testInfo,character,{day:"two"});
+      await verifyMorningRaceSaved(page,testInfo,character,{day:"two"});
+      expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_FIRST_AFTERNOON_E2E === "true"){
       test.setTimeout(660_000);
       await verifyFirstAfternoon(page,testInfo,character);

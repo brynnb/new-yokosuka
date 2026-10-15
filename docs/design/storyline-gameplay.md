@@ -1,7 +1,7 @@
 # Storyline gameplay integration
 
 Status: authored Story prototype plus retained native-engine research
-Last reviewed: October 14, 2026
+Last reviewed: October 15, 2026
 
 The [implemented play modes](../implementation/play-modes.md) isolate Story
 and Free roam saves, calendars and NPC views. The current implementation uses
@@ -129,8 +129,11 @@ original confrontation, real three-opponent rescue and original aftermath.
 The clue and reload are verified without money or inventory changes.
 Five afternoon deliveries, a genuine attack victory, once-only ¥3,000 payday,
 original Goro warning and saved reload are also connected and verified.
-The return-home dream, subsequent Mad Angels workdays and departure remain
-unimplemented; the checklist above distinguishes each verified sequence.
+The return-home Phoenix Mirror dream and second morning's race now pass a connected
+rendered continuation through cancellation/retry, saved next-day arrival, all
+three physical laps, separate day-two settlement and reload without replay.
+Second-day cargo, later Mad Angels workdays and departure remain unimplemented;
+the checklist above distinguishes each verified sequence.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

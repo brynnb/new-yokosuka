@@ -143,6 +143,10 @@ test("home cinematics cannot grant savings or advance the personal calendar them
   }
   assert.deepEqual(catalog.activity("s1.jomo.mirror-dream.scene").cutscene.activity,
     {slot:51,binding:{primaryPointer:614200,secondaryPointer:614213}});
+  const phoenix=catalog.activity("s1.jomo.phoenix-vision.scene");
+  assert.equal(phoenix.durableEffects,"forbidden");assert.equal(phoenix.returnPlayerState,true);
+  assert.deepEqual(phoenix.cutscene.activity,{slot:50,binding:{primaryPointer:614163,secondaryPointer:614176}});
+  assert.equal(new NativeAseqActivityCatalog(JSON.parse(readFileSync(new URL("../play/assets/hazuki/kkya/manifest.json",import.meta.url)))).has(phoenix.cutscene.activity),true);
   const snow=catalog.activity("s1.jomo.snow-dream.scene");
   assert.equal(snow.durableEffects,"forbidden");assert.equal(snow.returnPlayerState,true);
   assert.equal(new NativeAseqActivityCatalog(JSON.parse(readFileSync(new URL("../play/assets/hazuki/kkyc/manifest.json",import.meta.url)))).has(snow.cutscene.activity),true);

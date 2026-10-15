@@ -24,11 +24,13 @@ function originalDrivingLine(){
   return route;
 }
 
-export async function verifyMorningRace(page,testInfo,character){
+export async function verifyMorningRace(page,testInfo,character,{day="one"}={}){
+  expect(["one","two"]).toContain(day);
+  const chapter=`workday-${day}`;
   const drivingLine=originalDrivingLine();
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
-  const initial=await saved(),done="story.s1.workday-one-race.completed";
-  expect(initial.character.storyFlags["story.s1.chicken-race.completed"]).toBe(true);
+  const initial=await saved(),done=`story.s1.${chapter}-race.completed`;
+  expect(initial.character.storyFlags[day==="one"?"story.s1.chicken-race.completed":"story.s1.workday-one.completed"]).toBe(true);
   expect(initial.character.storyFlags[done]).not.toBe(true);
   const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await noErrors();};
@@ -97,16 +99,16 @@ export async function verifyMorningRace(page,testInfo,character){
   }finally{await keys(new Set());}
   await page.getByText("Finished the morning race. Time to start the day's deliveries.",{exact:true}).waitFor();await unwon();await page.keyboard.press("Space");
   await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="mfsy"&&!window.storyProbe.lifecycle.worldRuntime.switching,null,{timeout:120_000});await idle();
-  const final=await saved();expect(final.character.storyFlags[done]).toBe(true);expect(final.character.storyFlags["notebook.s1.workday-one-race"]).toBe(true);
+  const final=await saved();expect(final.character.storyFlags[done]).toBe(true);expect(final.character.storyFlags[`notebook.s1.${chapter}-race`]).toBe(true);
   expect(final.character.yen).toBe(initial.character.yen);expect(final.inventory).toEqual(initial.inventory);expect(final.character.worldId).toBe("mfsy");
   await page.screenshot({path:testInfo.outputPath("morning-race-earned-harbor-return.png")});
 }
 
-export async function verifyMorningRaceSaved(page,testInfo,character){
+export async function verifyMorningRaceSaved(page,testInfo,character,{day="one"}={}){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const before=await saved();
-  expect(before.character.storyFlags["story.s1.workday-one-race.completed"]).toBe(true);
-  expect(before.character.storyFlags["notebook.s1.workday-one-race"]).toBe(true);
+  expect(before.character.storyFlags[`story.s1.workday-${day}-race.completed`]).toBe(true);
+  expect(before.character.storyFlags[`notebook.s1.workday-${day}-race`]).toBe(true);
   expect(before.character.worldId).toBe("mfsy");
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
   await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();

@@ -3,6 +3,36 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"workday-one-night","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":520,
+      "title":"After work — the Phoenix Mirror dream","hours":[20,24],"bounds":"s1.jomo.workday-one-night",
+      "requiredFlags":["story.s1.workday-one.completed"],"requiredItems":[{"key":"phoenix_mirror","quantity":1}],"excludedFlags":["story.s1.workday-two-race.completed"],
+      "completedFlag":"story.s1.workday-one-night.completed","effects":["notebook.s1.workday-two-morning"],"voiceIds":[],
+      "confirmation":{"accept":"Sleep until tomorrow","decline":"Stay awake"},"optionSelections":[0],
+      "activities":["s1.jomo.phoenix-vision.scene"],"timeTransition":"s1.wait.morning","destination":"s1.work.harbor-loading-start",
+      "nativeSources":[{"role":"original-phoenix-mirror-only-vision","locator":"disc3/SCENE/03/JOMO/KKYA.PKS#SEQDATA0.AUTH","sha256":"c5f1253ccac0592eea434af73254a0a5e73db6a3a8e24c2ad511459990b4e8a9"}],
+      "provenance":"GameSpot printed p55: Phoenix Mirror dream after first working day. Existing original KKYA has HOMR Phoenix Mirror, original stage maps/camera and BGM079; unlike earlier two-mirror/hawk KKYB. This walkthrough association and explicit bedside 8pm sleep are authored, not a recovered native controller gate. Acknowledged dream atomically saves next-day 08:30 and the tested harbor arrival, condensing the automatic commute. Cancellation changes neither date, location nor money. Normal next-day waiting can bypass this optional dream without blocking workday two."
+    },
+    {
+      "id":"workday-two-race-entry","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":530,
+      "title":"Second workday — morning race","hours":[8.5,12],"bounds":"s1.mfsy.workday-two-race-entry",
+      "summary":"Second-day briefing and reward-free race-grid transfer through the existing boarding template, after a later personal date than the first payday.",
+      "requiredFlags":["story.s1.workday-one.completed"],"excludedFlags":["story.s1.workday-two-race.completed"],"dayAfter":"story.s1.workday-one.payday",
+      "completedFlag":"story.s1.workday-two-race-entry.completed","effects":[],"repeatable":true,"voiceIds":[],"yarnTemplate":"story-workday-race-entry.yarn","destination":"s1.work.morning-race-grid",
+      "authoredText":{"briefing":"Another morning at the harbor. Mark starts the day with the forklift race. Today's quota will be eight crates for Warehouse No. 3."},
+      "nativeSources":[{"role":"original-shared-gameplay-course","locator":"tools/evidence/ma00-forklift-race-course.json","sha256":"fe02e239b35f180c29621a8440b6ed80afb6c25ce4300e42b048c5ecfbaf8e4a"}],
+      "provenance":"GameSpot pp55-56: next working day begins with the same forklift race, then eight crates to Warehouse3. Reuse existing course and ordinary driving; explicit approach/choice, forgiving morning hours and no ranking prize remain adaptations. Boarding cannot award a race or wages."
+    },
+    {
+      "id":"workday-two-race","disc":3,"actor":"AKIR","presentActors":[],"area":"MA00","trigger":"enter","priority":540,
+      "title":"Second workday — forklift race","bounds":"s1.ma00.workday-two-race",
+      "summary":"Same authoritative three-lap race and existing Yarn template; a separate second-day result, notebook/date and harbor return. No rank prize or salary.",
+      "requiredFlags":["story.s1.workday-two-race-entry.completed","story.s1.workday-one.completed"],"completedFlag":"story.s1.workday-two-race.completed","effects":["notebook.s1.workday-two-race"],"recordDays":["story.s1.workday-two.day"],
+      "voiceIds":[],"yarnTemplate":"story-workday-race.yarn","destination":"s1.work.harbor-loading-start",
+      "authoredText":{"success":"Finished the morning race. Time to start the day's deliveries.","failure":"I did not finish the course. Try the morning race again?"},
+      "nativeSources":[{"role":"original-shared-gameplay-course","locator":"tools/evidence/ma00-forklift-race-course.json","sha256":"fe02e239b35f180c29621a8440b6ed80afb6c25ce4300e42b048c5ecfbaf8e4a"}],
+      "provenance":"Same original MA00 course and existing observed racing as day one. All three laps/39 ordered gates are required; prior day-one completion, walking, local best times and acknowledgement cannot win another race. Independent once-only second-day settlement; cancel/timeout/retry release the owned vehicle. No pay or whole-workday completion."
+    },
+    {
       "id":"workday-one-afternoon","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":480,
       "title":"First workday — afternoon cargo","hours":[14,17],"bounds":"s1.mfsy.workday-one-afternoon",
       "summary":"Five more observed deliveries complete the ten-crate quota, not the attack or payday. No wages or clock jump at cargo completion.",

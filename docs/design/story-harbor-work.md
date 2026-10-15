@@ -78,8 +78,9 @@ including cancellation/retry, saved completion, controls and reload.
 The subsequent evening chicken race is also connected and browser-verified.
 The following morning's three-lap race and five-crate first batch are connected
 and browser-verified, as are Mark's noon rescue, the afternoon batch/attack,
-once-only payday and Goro's warning. Subsequent workdays and later Mad Angels
-encounters remain missing. Existing
+once-only payday and Goro's warning. The return-home dream and second morning's
+race also pass their connected rendered continuation.
+Subsequent deliveries and later Mad Angels encounters remain missing. Existing
 forklift driving, cargo and racing must be reused; neither film completion
 nor a client-reported win may grant a shift's salary or story outcome.
 
@@ -405,5 +406,56 @@ caption cancellation, exact grant and already-paid rejection. The shared
 combat, cancellation, prop/room lease and presentation tests remain applicable.
 
 These are local development assets and checks, not production/R2 publication.
-The first workday is verified through Goro's warning; the return-home dream,
-second workday and later narrative are separate unfinished continuations.
+The first workday is verified through Goro's warning. The continuation below
+does not complete the second workday or later narrative.
+
+## Return-home dream and second working morning
+
+The GameSpot guide, printed pp. 55–56, places a Phoenix Mirror dream after the
+first working day and another morning forklift race before an eight-crate
+Warehouse No. 3 quota. These ordinary authored routes reuse the existing sleep,
+travel, original-activity and observed-race systems; no new room controller or
+parallel workday engine is involved.
+
+| Event | Eligibility / presentation | Saved outcome |
+| --- | --- | --- |
+| `workday-one-night` | Completed first workday, actual Phoenix Mirror possession, bedroom bedside approach after 20:00; choose sleep or stay awake. Play original `KKYA/SEQDATA0.AUTH`. | After the acknowledged dream, atomically save its milestone/notebook, next personal morning at 08:30 and the established harbor loading-area arrival. No money or items. |
+| `workday-two-race-entry` | Completed first workday, a personal day later than the recorded first payday, harbor approach from 08:30 to noon; choose race or leave. | Repeatable reward-free transfer to the race grid. The optional dream is not a prerequisite: ordinary waiting can also reach the next day. |
+| `workday-two-race` | Saved second-day boarding, approach inside `ma00race`. Use the same ordinary forklift, course, physics and three-lap/thirty-nine-gate server-observed challenge. | A separately acknowledged second-day race result/notebook/date, minimum 09:00 and harbor return. A first-day win cannot substitute. No wages, rank prize or completed paid shift. |
+
+KKYA's Disc 3 archive SHA256 is
+`c5f1253ccac0592eea434af73254a0a5e73db6a3a8e24c2ad511459990b4e8a9`.
+The already extracted package supplies the Phoenix Mirror actor, original
+stage maps, motion/camera timeline and BGM079. It differs from the earlier
+two-mirror/hawk KKYB dream. Associating KKYA with this walkthrough milestone is
+authored, not proof of the original native owner's selection rule. Explicit
+20:00 bedside sleep, the project's 08:30 waking hour and the condensed automatic
+commute are adaptations. These events impose no new weather condition.
+
+Declining or cancelling the dream changes neither calendar, destination nor
+economy. A saved dream cannot replay automatically. Race cancellation, loading
+failure and timeout release the owned vehicle and remain retryable; only a fresh
+actual course completion can settle the second-day result. The shared event
+transaction owns the flags, time and destination together.
+
+Focused real-Yarn tests cover dream prerequisites, missing mirror, early hour,
+decline, cancellation and exact next-day/arrival effects; boarding tests reject
+same-day and missing payday dates despite a prior race win. Both workdays run
+the same actual race test cases for ordered observations, cancellation, retry,
+stale tokens and atomic ending. Client checks verify KKYA's exact existing slot
+and binding and that presentation cannot write durable effects.
+
+`NEW_YOKOSUKA_SECOND_MORNING_E2E=true` continues the genuine first-workday save.
+The connected hardware-rendered check passes: stay awake, cancel the visible
+original Phoenix Mirror dream without saving time/travel, retry and let it end
+naturally, save next-day 08:30 harbor arrival, decline boarding and reload without
+replaying the dream. It then declines/retries boarding, cancels an entered race,
+retries and physically drives all three laps/thirty-nine gates through normal
+keyboard/Havok input. Only the acknowledged ending saves the separate race
+milestone/date, 09:00 and harbor return. Reload restores controls without another
+race prompt; the ¥12,636 balance and inventory are unchanged throughout. Captures
+show the original mirror/stage and saved harbor return; exact lighting and
+audible playback fidelity were not assessed. No future flags, checkpoint
+positions or wins were injected during the challenge.
+
+Second-day cargo, lunch and Mad Angels encounters remain unimplemented.

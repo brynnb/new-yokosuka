@@ -142,6 +142,8 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.workday-one-attack",page:Object.freeze({id:"story-workday-one-attack",text:"The Mad Angels tried to interrupt my work again.\n\nI got past them. Collect my wages from Yada-san at Alpha Trading."})},
   {flag:"notebook.s1.first-payday",page:Object.freeze({id:"story-first-payday",text:"Collected my first wages: ¥3,000 for ten crates at ¥300 each.\n\nThe harbor job gives me a chance to learn more about the Mad Angels."})},
   {flag:"notebook.s1.goro-work-warning",page:Object.freeze({id:"story-goro-work-warning",text:"Goro was frightened when I asked about the Mad Angels.\n\nHe says not to get involved. There must be more to this. Return to work after getting some rest."})},
+  {flag:"notebook.s1.workday-two-morning",page:Object.freeze({id:"story-workday-two-morning",text:"The Phoenix Mirror appeared in my dream.\n\nBack to the harbor for another working day."})},
+  {flag:"notebook.s1.workday-two-race",page:Object.freeze({id:"story-workday-two-race",text:"Finished the second morning's forklift race.\n\nToday's quota is eight crates for Warehouse No. 3. Keep looking for information about the Mad Angels."})},
 ]);
 
 export function notebookPagesForCharacter(character) {
