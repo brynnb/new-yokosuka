@@ -125,7 +125,12 @@ notebook page from durable receipts. It uses a small hallway volume, the
 original `01KOZ` presentation and server-owned one-time effects without booting
 the native room controller. Server/Yarn scenes pause the personal clock until
 their event lease ends; ordinary native conversations retain their previous
-clock behavior. See the [event specification](../design/story-event-template.md).
+clock behavior. The world-state `paused` field stops browser calendar
+extrapolation for the HUD, lighting and schedule predicates. `serverTimeMs`
+continues to report wall time, so challenge deadlines do not freeze or acquire
+a stale clock offset. Pause/resume snapshots are sent before the corresponding
+event yield, including cancellation and terminal failure; normal periodic
+snapshots continue during the pause. See the [event specification](../design/story-event-template.md).
 Mode isolation does not
 make arbitrary client-submitted native flags server-validated. Notebook entries
 beyond the opening, unimplemented quest triggers, original sleep/deadline behavior and

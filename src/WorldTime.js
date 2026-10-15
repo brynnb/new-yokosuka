@@ -44,7 +44,11 @@ export function gameDateFromWorldState(
   )
     ? worldState.dayLengthMs
     : fallbackDayLengthMs;
-  const elapsedMs = Math.max(0, nowMs - serverTimeMs);
+  // Paused personal Story snapshots hold their game instant, not server wall
+  // time. The same flag keeps the HUD, lighting and schedule predicates aligned.
+  const elapsedMs = worldState?.paused === true
+    ? 0
+    : Math.max(0, nowMs - serverTimeMs);
   const { startHour, endHour } = activeClockWindow(worldState);
   const activeWindowMs = (endHour - startHour) * 60 * 60 * 1000;
   const snapshot = new Date(gameTimeMs);

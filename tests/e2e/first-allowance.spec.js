@@ -10,6 +10,7 @@ import {verifyJimmyChase} from "./story-jimmy-chase.js";
 import {verifyHarborHiring} from "./story-harbor-hiring.js";
 import {verifyForkliftTraining} from "./story-forklift-training.js";
 import {verifyChickenRace} from "./story-chicken-race.js";
+import {verifyPersonalCalendar} from "./story-calendar.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -52,6 +53,8 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   // Instrument the actual served modules, including HMR timestamp variants.
   // Importing a bare second copy can observe a different prototype from /play.
   for (const [file, hook] of [
+    ["world/WorldClock", `const probeWorldState = WorldClock.prototype.setWorldState;
+      WorldClock.prototype.setWorldState = function(...args) { window.storyProbe.clock=this; return probeWorldState.apply(this,args); };`],
     ["scripts/ScriptEventController", `const probeFailure = ScriptEventController.prototype.fail;
       ScriptEventController.prototype.fail = function(error,...args) { window.storyProbe.sceneErrors.push(error.message); return probeFailure.call(this,error,...args); };`],
     ["interactions/WorldInteractionDispatcher", `const probeDispatcherStart = WorldInteractionDispatcher.prototype.start;
@@ -132,6 +135,10 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_CALENDAR_E2E === "true"){
+      await verifyPersonalCalendar(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_CHICKEN_RACE_E2E === "true"){
       test.setTimeout(360_000);
       await verifyChickenRace(page,testInfo,character);

@@ -21,6 +21,29 @@ test("offline world clock starts from the canonical fallback", () => {
   assert.equal(clock.gameDate().getTime(), FALLBACK_GAME_TIME_MS + 75000);
 });
 
+test("personal scene pause holds calendar and lighting but not wall-clock deadlines", () => {
+  let now = 1_000;
+  const clock = new WorldClock({ now: () => now });
+  const gameTimeMs = Date.UTC(1986, 11, 25, 19, 16);
+  clock.setWorldState({ gameTimeMs, serverTimeMs: now, paused: true });
+  const lighting = clock.lightingState({});
+  now += 30_000;
+  assert.equal(clock.gameDate().getTime(), gameTimeMs);
+  assert.deepEqual(clock.lightingState({}), lighting);
+  assert.equal(clock.serverWallTimeMs(), now);
+
+  // Periodic paused snapshots update the wall offset without moving the game.
+  clock.setWorldState({ gameTimeMs, serverTimeMs: now, paused: true });
+  now += 1_000;
+  assert.equal(clock.gameDate().getTime(), gameTimeMs);
+  assert.equal(clock.serverWallTimeMs(), now);
+
+  clock.setWorldState({ gameTimeMs, serverTimeMs: now, paused: false });
+  assert.equal(clock.gameDate().getTime(), gameTimeMs);
+  now += 1_000;
+  assert.equal(clock.gameDate().getTime(), gameTimeMs + 15_000);
+});
+
 test("debug hours preserve the current game date", () => {
   const date = new Date(Date.UTC(1986, 5, 9, 8, 30));
   const adjusted = dateAtDebugHour(date, 21.5);

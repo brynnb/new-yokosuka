@@ -186,6 +186,12 @@ places the morning race before ten deliveries to Warehouse No. 18, a noon rescue
 of Mark, an afternoon attack, payday and Goro's warning. Quota completion alone
 must not mark that whole narrative day complete. Reuse existing racing,
 delivery, combat and transactional payment; do not infer story success from
-the exploration race's local best-time record. The client clock display appeared
-to keep extrapolating during this event although the saved personal time paused;
-verify that display boundary before relying on workday appointments.
+the exploration race's local best-time record.
+
+The personal-clock display mismatch found during the chicken-race check is
+fixed through the shared world-state protocol. Paused snapshots freeze game
+time without freezing server wall time, and event entry/exit publishes the
+transition immediately. Focused clock/realtime tests and a connected rendered
+sidebar check verify a stationary HUD during a choice, cancellation/resume,
+normal next-morning advancement and unchanged money, inventory and story flags.
+Use `NEW_YOKOSUKA_CALENDAR_E2E=true` with the earned-save harness to repeat it.
