@@ -1,0 +1,213 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "A0172.AUTH",
+        "path": "disc2/SCENE/02/GMCT/MAPINFO.BIN",
+        "sourceOffset": 81120,
+        "sourceSha256": "1a63b5c07521fc8c9f3d8c734e1ec1336ef3d7f610fce6fc16c82eb1e4d1ce91",
+        "byteLength": 11708,
+        "sha256": "138da958d954994cfe9c16c4322d6309ec652edead845849fb2de9389ba5fdac"
+      },
+      {
+        "name": "M_0172.BIN",
+        "path": "disc2/SCENE/02/GMCT/M_0172.BIN",
+        "byteLength": 713600,
+        "sha256": "6b566f4d2bc6890145e3c7f2ba1fdf0d9a3b73655e1ff537d4ac03dfa145ed68"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "A0172",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/chai-victory/manifest.json",
+  "sceneObjects": {
+    "DOOR": {
+      "model": "DR17_001",
+      "browserFilename": "GMCT-DOOR-reference",
+      "referenceOnly": true,
+      "sourceBinding": {
+        "mapInfoChrsOffset": 98828,
+        "characterRecordOffset": 1160,
+        "defImageRecordOffset": 1120
+      }
+    },
+    "SLOT": {
+      "model": "GAMT101G",
+      "browserFilename": "GMCT-SLOT-reference",
+      "referenceOnly": true,
+      "sourceBinding": {
+        "mapInfoChrsOffset": 98828,
+        "characterRecordOffset": 780,
+        "defImageRecordOffset": 740
+      }
+    }
+  },
+  "packageActors": {
+    "CHAI": {
+      "label": "Chai",
+      "modelCode": "CHA_M",
+      "browserFilename": "CHA_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/CHA_M.CHRM",
+      "textureAssetPath": "play/assets/characters/CHA_textures.bin"
+    },
+    "NITO": {
+      "label": "Yuji Nito",
+      "modelCode": "GAT_L",
+      "browserFilename": "GAT_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/GAT_L.CHRM",
+      "textureAssetPath": "play/assets/characters/GAT_textures.bin"
+    }
+  },
+  "actorTags": [
+    "DOOR",
+    "SLOT",
+    "AKIR",
+    "CHAI",
+    "NITO"
+  ],
+  "motionBanks": [
+    {
+      "bank": 32,
+      "path": "play/assets/dobuita/chai-victory/M_0172.BIN",
+      "byteLength": 713600,
+      "sha256": "6b566f4d2bc6890145e3c7f2ba1fdf0d9a3b73655e1ff537d4ac03dfa145ed68",
+      "sequenceIndexBase": 0
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/chai-victory/M_0172.BIN",
+      "byteLength": 713600,
+      "sha256": "6b566f4d2bc6890145e3c7f2ba1fdf0d9a3b73655e1ff537d4ac03dfa145ed68"
+    },
+    {
+      "path": "play/assets/dobuita/chai-victory/A0172.AUTH",
+      "byteLength": 11708,
+      "sha256": "138da958d954994cfe9c16c4322d6309ec652edead845849fb2de9389ba5fdac"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "A0172/A0172.AUTH",
+      "archiveMember": "A0172.AUTH",
+      "byteLength": 11708,
+      "sha256": "138da958d954994cfe9c16c4322d6309ec652edead845849fb2de9389ba5fdac",
+      "durationFrames": 1150,
+      "durationSeconds": 38.349998474121094,
+      "frameCount": 44,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5,
+        "motion": 9,
+        "voice": 4,
+        "sound": 35
+      },
+      "actors": [
+        "DOOR",
+        "SLOT",
+        "AKIR",
+        "CHAI",
+        "NITO"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 32,
+          "sequenceIndex": 9,
+          "motionName": "AKI_TAOSU_CHA_0150",
+          "startFrame": 58,
+          "endFrame": 59
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 1,
+          "motionBank": 32,
+          "sequenceIndex": 28,
+          "motionName": "CHA_YARARE_GEKITOTU_GAME_0150",
+          "startFrame": 111,
+          "endFrame": 493
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 180,
+          "motionBank": 32,
+          "sequenceIndex": 9,
+          "motionName": "AKI_TAOSU_CHA_0150",
+          "startFrame": 60,
+          "endFrame": 279
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 390,
+          "motionBank": 32,
+          "sequenceIndex": 28,
+          "motionName": "CHA_YARARE_GEKITOTU_GAME_0150",
+          "startFrame": 464,
+          "endFrame": 738
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 515,
+          "motionBank": 32,
+          "sequenceIndex": 1,
+          "motionName": "AKI_HOUBI_MORAERU_0150",
+          "startFrame": 694,
+          "endFrame": 843
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 665,
+          "motionBank": 32,
+          "sequenceIndex": 9,
+          "motionName": "AKI_TAOSU_CHA_0150",
+          "startFrame": 260,
+          "endFrame": 270
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 665,
+          "motionBank": 32,
+          "sequenceIndex": 22,
+          "motionName": "CHA_NIGESARU_SHUTTER_0150",
+          "startFrame": 60,
+          "endFrame": 131
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 731,
+          "motionBank": 32,
+          "sequenceIndex": 2,
+          "motionName": "AKI_JIMMY_NAKAMA_0150",
+          "startFrame": 1,
+          "endFrame": 400
+        },
+        {
+          "actorTag": "NITO",
+          "frame": 731,
+          "motionBank": 32,
+          "sequenceIndex": 31,
+          "motionName": "OTH_GAT_JIMMY_NAKAMA_0150",
+          "startFrame": 1,
+          "endFrame": 473
+        }
+      ]
+    }
+  ]
+}

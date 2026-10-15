@@ -1,0 +1,177 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "A0172A.AUTH",
+        "path": "disc2/SCENE/02/GMCT/MAPINFO.BIN",
+        "sourceOffset": 92828,
+        "sourceSha256": "1a63b5c07521fc8c9f3d8c734e1ec1336ef3d7f610fce6fc16c82eb1e4d1ce91",
+        "byteLength": 5972,
+        "sha256": "d2d2949a22bc2e214224f0048465333e5cc8dc059c787f0cd18ded24793bc893"
+      },
+      {
+        "name": "M_0172.BIN",
+        "path": "disc2/SCENE/02/GMCT/M_0172.BIN",
+        "byteLength": 713600,
+        "sha256": "6b566f4d2bc6890145e3c7f2ba1fdf0d9a3b73655e1ff537d4ac03dfa145ed68"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "A0172A",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/chai-rescue/manifest.json",
+  "sceneObjects": {
+    "DOOR": {
+      "model": "DR17_001",
+      "browserFilename": "GMCT-DOOR-reference",
+      "referenceOnly": true,
+      "sourceBinding": {
+        "mapInfoChrsOffset": 98828,
+        "characterRecordOffset": 1160,
+        "defImageRecordOffset": 1120
+      }
+    },
+    "SLOT": {
+      "model": "GAMT101G",
+      "browserFilename": "GMCT-SLOT-reference",
+      "referenceOnly": true,
+      "sourceBinding": {
+        "mapInfoChrsOffset": 98828,
+        "characterRecordOffset": 780,
+        "defImageRecordOffset": 740
+      }
+    }
+  },
+  "packageActors": {
+    "FUKU": {
+      "label": "Masayuki Fukuhara",
+      "modelCode": "FUK_M",
+      "browserFilename": "FUK_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/FUK_M.CHRM",
+      "textureAssetPath": "play/assets/characters/FUK_textures.bin"
+    },
+    "CHAI": {
+      "label": "Chai",
+      "modelCode": "CHA_M",
+      "browserFilename": "CHA_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/CHA_M.CHRM",
+      "textureAssetPath": "play/assets/characters/CHA_textures.bin"
+    }
+  },
+  "actorTags": [
+    "DOOR",
+    "SLOT",
+    "AKIR",
+    "CHAI",
+    "FUKU"
+  ],
+  "motionBanks": [
+    {
+      "bank": 32,
+      "path": "play/assets/dobuita/chai-rescue/M_0172.BIN",
+      "byteLength": 713600,
+      "sha256": "6b566f4d2bc6890145e3c7f2ba1fdf0d9a3b73655e1ff537d4ac03dfa145ed68",
+      "sequenceIndexBase": 0
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/chai-rescue/M_0172.BIN",
+      "byteLength": 713600,
+      "sha256": "6b566f4d2bc6890145e3c7f2ba1fdf0d9a3b73655e1ff537d4ac03dfa145ed68"
+    },
+    {
+      "path": "play/assets/dobuita/chai-rescue/A0172A.AUTH",
+      "byteLength": 5972,
+      "sha256": "d2d2949a22bc2e214224f0048465333e5cc8dc059c787f0cd18ded24793bc893"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "A0172A/A0172A.AUTH",
+      "archiveMember": "A0172A.AUTH",
+      "byteLength": 5972,
+      "sha256": "d2d2949a22bc2e214224f0048465333e5cc8dc059c787f0cd18ded24793bc893",
+      "durationFrames": 437,
+      "durationSeconds": 27.933332443237305,
+      "frameCount": 20,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5,
+        "motion": 5,
+        "sound": 13,
+        "voice": 3
+      },
+      "actors": [
+        "DOOR",
+        "SLOT",
+        "AKIR",
+        "CHAI",
+        "FUKU"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 32,
+          "sequenceIndex": 32,
+          "motionName": "AKI_OHI_YARARE_0172",
+          "startFrame": 80,
+          "endFrame": 200
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 87,
+          "motionBank": 32,
+          "sequenceIndex": 36,
+          "motionName": "IWA_FUK_TOBIKOMU_CHAIBATTLE_0172",
+          "startFrame": 1,
+          "endFrame": 120
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 142,
+          "motionBank": 32,
+          "sequenceIndex": 34,
+          "motionName": "CHA_JAMAGAHAITTA_CHAIBATTLE_0172",
+          "startFrame": 84,
+          "endFrame": 346
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 280,
+          "motionBank": 32,
+          "sequenceIndex": 36,
+          "motionName": "IWA_FUK_TOBIKOMU_CHAIBATTLE_0172",
+          "startFrame": 140,
+          "endFrame": 304
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 350,
+          "motionBank": 32,
+          "sequenceIndex": 32,
+          "motionName": "AKI_OHI_YARARE_0172",
+          "startFrame": 120,
+          "endFrame": 200
+        }
+      ]
+    }
+  ]
+}

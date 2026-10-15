@@ -1,0 +1,478 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/A0172A.AFS",
+      "sha256": "cf360208aeca97a7d14e26647653449818510b5f36a003e5d3b1c2d457c682a1"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_BGAM.SND",
+      "sha256": "26c2a06889cf8128de66d34330732236a7d896685a751be38f152e697a29d1c7"
+    },
+    "authManifest": "play/assets/dobuita/chai-rescue/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md"
+  },
+  "voices": [
+    {
+      "voiceId": "A0172AA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0172/SOUND/A0172AA001.aiff",
+      "nativeMember": "A0172AA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 20480,
+      "nativeSha256": "879bb10b49235b99b89b16b1bfa26d11a1f8028ced46e38828d0ad53e938fdc6",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chai-rescue/voice/A0172AA001.wav",
+      "byteLength": 81708,
+      "sha256": "30e0e31092626f0787307d47a47100d0125a85e311775aebe7713241ece8838c"
+    },
+    {
+      "voiceId": "A0172AB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0172/SOUND/A0172AB002.aiff",
+      "nativeMember": "A0172AB002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 49152,
+      "nativeSha256": "7c1875ea20f519f857bda3a62c35b02d8eec1d9601e99393b1d9a27afa12db35",
+      "speakerId": "CHAI",
+      "sourceText": "Heeggh! Interrupted!＆I'll save the fun for later!",
+      "displayText": "Heeggh! Interrupted!\nI'll save the fun for later!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 36
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 29
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chai-rescue/voice/A0172AB002.wav",
+      "byteLength": 196396,
+      "sha256": "040bedced1b7d0084eb6bf80078174172a5630929f61fcc46333b48603363ce0"
+    },
+    {
+      "voiceId": "A0172AC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0172/SOUND/A0172AC001.aiff",
+      "nativeMember": "A0172AC001.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 10240,
+      "nativeSha256": "7ec722d67e68bb708fdf0ac3fcbae44e1256a5f3f304326a754761fb0d9b6ddc",
+      "speakerId": "FUKU",
+      "sourceText": "Ryo-san!",
+      "displayText": "Ryo-san!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chai-rescue/voice/A0172AC001.wav",
+      "byteLength": 40748,
+      "sha256": "8654e5dc83107bb62b057fd52da6ef186c7363925dc2dcd615281a5e315e1c65"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0172/SE/foot/Akirafoot1.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-rescue/sfx/a9040000.wav",
+      "byteLength": 1964,
+      "sha256": "87bc4e6e23a32d4022719350ef65305655aa6a8d334ffdf28cb45a40673b6d4a"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0172/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-rescue/sfx/a9040100.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0172/SE/cloths2/cl02.aiff",
+      "playbackId": 3,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-rescue/sfx/a9040300.wav",
+      "byteLength": 36916,
+      "sha256": "11b76e7843d092c6ff63058379b812ee5bbaa8b9475716e13ff3bb3dbc43e9dd"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0172/SE/cloths2/cl03.aiff",
+      "playbackId": 4,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-rescue/sfx/a9040400.wav",
+      "byteLength": 127604,
+      "sha256": "2c13979aaaf032ee706d0353819b385a7aca4f3d3d1a6b0e480c83e7a4162737"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0172/SE/cloths2/cloths02.aiff",
+      "playbackId": 5,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-rescue/sfx/a9040500.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/0172/SE/cloths2/friction2.aiff",
+      "playbackId": 8,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-rescue/sfx/a9040800.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0172/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 12,
+      "sampleId": 14,
+      "sampleRate": 44100,
+      "asset": "public/audio/world/chai-rescue/sfx/a9040c00.wav",
+      "byteLength": 49332,
+      "sha256": "50c5997bf9e465806487f32fc0ec37d7a61478e7021d07ade78183989451da1e"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0172/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 13,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-rescue/sfx/a9040d00.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9042000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0172/SE/swing/swing03.aiff",
+      "playbackId": 32,
+      "sampleId": 36,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-rescue/sfx/a9042000.wav",
+      "byteLength": 33644,
+      "sha256": "413a08d07fd75774be0f172cee9b9bb40069fee1712acf9d9581400894008ef2"
+    },
+    {
+      "commandHex": "a9042700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0172/SE/door2/AUTO_OP.aiff",
+      "playbackId": 39,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-rescue/sfx/a9042700.wav",
+      "byteLength": 48212,
+      "sha256": "c5f0ec3a3b9bbf4c2a9b073b1623bcbcc31632e82fcecb2ba9a7247afbc73410"
+    }
+  ]
+}

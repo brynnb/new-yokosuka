@@ -33,6 +33,11 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["chai-intro","A0172"],["chai-victory","A0172"],["chai-rescue","A0172A"]].map(([part,resource])=>[`s1.dgct.${part}.scene`,{
+    kind:"native-cutscene",area:"DGCT",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:`story-s1-${part}`,packageId:part,worldId:"arcade",storyPresentation:true,
+      activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:`${resource}/${resource}.AUTH`}}},
+  }]),
   ...[["jimmy-morning-call","A0169","JOMO","interior"],["post-chen-home","A0160","JOMO","interior"],["bank-savings","01BNK","JOMO","interior"],["travel-family","01EAR","JOMO","interior"],
     ["fuku-travel-funds","01MON","JOMO","interior"],["global-airfare","01MIT","DSKI","dski"],["asia-airfare","01ETU","DAZA","daza"],
     ["global-boat","01MIT","DSKI","dski"],["boat-ticket-purchase","01ETU","DAZA","daza"],["boat-ticket-collection","A0165","DAZA","daza"]].map(([part,resource,area,worldId])=>[`s1.${area.toLowerCase()}.${part}.scene`,{

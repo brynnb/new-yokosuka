@@ -48,14 +48,24 @@ const profiles=[
     stream:"01ETU",streamHash:"f21b7837177788630c2f7e849e5627152a1e335628ae70e4ffe4062afa39db4c",sound:"A1_ETUKO.SND",soundHash:"6e960914c59edd80ddc282179ec6379c26a7c461a15d89954ab2af3bb9fd5485"},
 ];
 profiles.push(
+  {id:"chai-intro",area:"GMCT",resource:"A0172",offset:0x5edc,size:56836,hash:"01e36d04c63cc52eb2399b17f652ed583308bcbbc873abddc85c9dc7b2865b00",frames:2200,
+    mapHash:"1a63b5c07521fc8c9f3d8c734e1ec1336ef3d7f610fce6fc16c82eb1e4d1ce91",
+    motion:"M_0172.BIN",motionSize:713600,motionHash:"6b566f4d2bc6890145e3c7f2ba1fdf0d9a3b73655e1ff537d4ac03dfa145ed68",bank:32,base:0,actors:["AKIR","CHAI"],
+    stream:"A0172",streamHash:"bd0254f300db784f63a8af44b6b3dd37133f0016b9eae74454567e2d1c6efd80",sound:"A1_BGAM.SND",soundHash:"26c2a06889cf8128de66d34330732236a7d896685a751be38f152e697a29d1c7"},
   {...profiles.find(p=>p.id==="global-airfare"),id:"global-boat",offset:0x280fc,size:7768,hash:"fb621852f1ba096115a1d46a23ac600f9d5b6479608a071e178785d9a965a00a",actors:["TYOB","DOOR","SIND","AKIR"]},
   {...profiles.find(p=>p.id==="asia-airfare"),id:"boat-ticket-purchase",offset:0x23bfc,size:50212,hash:"676014994eafde1eedec3bd526d98989edae51c0ac13dc60ca462d31c8f8b7ea",frames:1998,actors:["INF3","MONY","PURS","TRAY","AKIR","ETKO"]},
   {...profiles.find(p=>p.id==="asia-airfare"),id:"boat-ticket-collection",resource:"A0165",offset:0x5ff4,size:19064,hash:"1cb299fd3831f2501cd9742d0dd00c2ea59e32d9be393d5b21af5e1f0bd35853",frames:2082,
     motion:"M_0165.BIN",motionSize:453880,motionHash:"2451ea8698e5e2ec6c7e2cf6097d78e0532cd874791bc5927cbcef202688f7ac",bank:16,actors:["AKIR","JIMY","KJHS","MNWA"],
     stream:"A0165",streamHash:"1e0a9ba2ffae287af250282cbab817087dde6274acd044bcc9b5f3f3175e1863",sound:"A1_ASIAR.SND",soundHash:"6b228b029deca6aa58fe0a17d0118111640ed18bacb47305457c9ad612ec4cab"},
 );
+const chaiIntro=profiles.find(p=>p.id==="chai-intro");
+profiles.push(
+  {...chaiIntro,id:"chai-victory",offset:0x13ce0,size:11708,hash:"138da958d954994cfe9c16c4322d6309ec652edead845849fb2de9389ba5fdac",frames:1150,actors:["DOOR","SLOT","AKIR","CHAI","NITO"]},
+  {...chaiIntro,id:"chai-rescue",resource:"A0172A",offset:0x16a9c,size:5972,hash:"d2d2949a22bc2e214224f0048465333e5cc8dc059c787f0cd18ded24793bc893",frames:437,actors:["DOOR","SLOT","AKIR","CHAI","FUKU"],
+    stream:"A0172A",streamHash:"cf360208aeca97a7d14e26647653449818510b5f36a003e5d3b1c2d457c682a1"},
+);
 const characters={FUKU:["Masayuki Fukuhara","FUK_M"],INE_:["Ine-san","INE_M"],SIND:["Satoshi Shinoda","SND_L"],ETKO:["Etsuko Sekine","JOJ_L"],
-  JIMY:["Jimmy Yan","JIM_M"],KJHS:["Koji Hase","TPL_L"],MNWA:["Kazumi Minowa","MIR_L"]};
+  JIMY:["Jimmy Yan","JIM_M"],KJHS:["Koji Hase","TPL_L"],MNWA:["Kazumi Minowa","MIR_L"],CHAI:["Chai","CHA_M"],NITO:["Yuji Nito","GAT_L"]};
 const asiaModels={
   TIRT230G:[19776,"25989de0432ac1014543fd70dcd40530c98fc02bd076962a5f700ec03fa0c35b"],
   TIRS703G:[68928,"d01d70fea30308739de0d21e5a771605fa78cc12765499d6e21aaa7cbdf034ae"],
@@ -77,6 +87,16 @@ for(const p of selectedProfiles){
     {name:p.motion,sourcePath:p.area?path.join(source,area,p.motion):common,sourceManifestPath:`disc2/SCENE/02/${area}/${p.area?p.motion:"COMMON02.PKS"}`,...(p.area?{}:{archiveMember:p.motion,sourceSha256:commonHash}),byteLength:p.motionSize,sha256:p.motionHash},
   ];
   const props={},outputMembers=[],textureSources=[];let generatedAssets=[];
+  if(area==="GMCT"){
+    const bytes=fs.readFileSync(mapSource),chrs=bytes.indexOf("CHRS"),bindings=parseChrtSceneObjectBindings(bytes.subarray(chrs));
+    for(const tag of p.actors.filter(tag=>tag!=="AKIR"&&!characters[tag])){
+      const binding=bindings.find(value=>value.actorTag===tag);if(!binding)throw Error(`Unresolved original GMCT prop ${tag}`);
+      // DGCT retains its existing scenery. Keep these original reference
+      // actors without duplicate models; cabinet knock-over is omitted for now.
+      props[tag]={model:binding.model,browserFilename:`GMCT-${tag}-reference`,referenceOnly:true,
+        sourceBinding:{mapInfoChrsOffset:chrs,characterRecordOffset:binding.characterRecordOffset,defImageRecordOffset:binding.defImageRecordOffset}};
+    }
+  }
   if(p.id==="jimmy-morning-call"){
     // JOMO's existing TEL_ placement owns this phone. Borrow and restore it;
     // adding another model would put two phones at the same original pose.

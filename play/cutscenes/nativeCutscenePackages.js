@@ -75,6 +75,12 @@ import boatCollectionManifest from "../assets/dobuita/boat-ticket-collection/man
 import boatCollectionAudio from "../../public/audio/world/boat-ticket-collection/manifest.json";
 import jimmyCallManifest from "../assets/hazuki/jimmy-morning-call/manifest.json";
 import jimmyCallAudio from "../../public/audio/world/jimmy-morning-call/manifest.json";
+import chaiIntroManifest from "../assets/dobuita/chai-intro/manifest.json";
+import chaiIntroAudio from "../../public/audio/world/chai-intro/manifest.json";
+import chaiVictoryManifest from "../assets/dobuita/chai-victory/manifest.json";
+import chaiVictoryAudio from "../../public/audio/world/chai-victory/manifest.json";
+import chaiRescueManifest from "../assets/dobuita/chai-rescue/manifest.json";
+import chaiRescueAudio from "../../public/audio/world/chai-rescue/manifest.json";
 import familyFukuManifest from "../assets/hazuki/family-fuku/manifest.json";
 import familyFukuAudio from "../../public/audio/world/family-fuku/manifest.json";
 import familyIneManifest from "../assets/hazuki/family-ine/manifest.json";
@@ -276,7 +282,8 @@ const nativeSilentActivityMusic = resource => Object.freeze({
 });
 
 const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
-  ...[["jimmy-morning-call",jimmyCallManifest,jimmyCallAudio,"interior"],["post-chen-home",postChenHomeManifest,postChenHomeAudio,"interior"],["bank-savings",bankSavingsManifest,bankSavingsAudio,"interior"],["travel-family",travelFamilyManifest,travelFamilyAudio,"interior"],
+  ...[["chai-intro",chaiIntroManifest,chaiIntroAudio,"arcade"],["chai-victory",chaiVictoryManifest,chaiVictoryAudio,"arcade"],["chai-rescue",chaiRescueManifest,chaiRescueAudio,"arcade"],
+    ["jimmy-morning-call",jimmyCallManifest,jimmyCallAudio,"interior"],["post-chen-home",postChenHomeManifest,postChenHomeAudio,"interior"],["bank-savings",bankSavingsManifest,bankSavingsAudio,"interior"],["travel-family",travelFamilyManifest,travelFamilyAudio,"interior"],
     ["fuku-travel-funds",fukuTravelFundsManifest,fukuTravelFundsAudio,"interior"],["global-airfare",globalAirfareManifest,globalAirfareAudio,"dski"],["asia-airfare",asiaAirfareManifest,asiaAirfareAudio,"daza"],
     ["global-boat",globalBoatManifest,globalBoatAudio,"dski"],["boat-ticket-purchase",boatPurchaseManifest,boatPurchaseAudio,"daza"],["boat-ticket-collection",boatCollectionManifest,boatCollectionAudio,"daza"]].map(([id,manifest,audioManifest,worldId])=>Object.freeze({
     id,worldId,actorDefinitions:Object.freeze([]),actorTags:Object.freeze(manifest.actorTags),

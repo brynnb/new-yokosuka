@@ -2,6 +2,94 @@
   "schema": "new-yokosuka-authored-story-combat-v1",
   "encounters": [
     {
+      "id": "s1.dgct.chai-arcade",
+      "label": "Face Chai",
+      "area": "DGCT",
+      "worldId": "arcade",
+      "provenance": "Original GMCT introduction ending supplies Ryo/Chai poses. GameSpot pp46-47 confirms that actual win and defeat both progress, with next-day recovery only on defeat. Shared basic moves/AI, 100/120 health, speeds, compact rectangular floor bounds and generic reactions are authored adaptations, not Chai's original low-kick moveset or free-battle engine.",
+      "sourceActivity": "play/assets/dobuita/chai-intro/A0172.AUTH",
+      "sha256": "01e36d04c63cc52eb2399b17f652ed583308bcbbc873abddc85c9dc7b2865b00",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -3.164494037628174,
+          "y": 0,
+          "z": -4.150172233581543,
+          "health": 100
+        },
+        {
+          "tag": "CHAI",
+          "x": -3.951143980026245,
+          "y": -0.020400000736117363,
+          "z": -3.3221399784088135,
+          "health": 120
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "CHAI",
+          "label": "Chai",
+          "modelCode": "CHA_M",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -4.751143980026245,
+        "maxX": -2.364494037628174,
+        "minZ": -4.950172233581543,
+        "maxZ": -2.5221399784088137
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 2.6,
+      "maxAttackers": 1,
+      "timeoutMs": 180000,
+      "inputBufferMs": 400
+    },
+    {
       "id": "s1.jd00.gui-zhang-first",
       "label": "Face Gui Zhang",
       "area": "JD00",

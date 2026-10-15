@@ -128,6 +128,7 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.boat-ticket-purchase",page:Object.freeze({id:"story-boat-ticket-purchase",text:"Paid Asia Travel Company ¥69,000 for a boat ticket to Hong Kong.\n\nReturn to collect it after four hours. The shop closes at 8 p.m.; if it's too late, go back tomorrow."})},
   {flag:"notebook.s1.jimmy-promise",page:Object.freeze({id:"story-jimmy-promise",text:"The clerk was gone when I returned for the ticket.\n\nJimmy at Asia Travel Company promised to call me at home tomorrow about it."})},
   {flag:"notebook.s1.jimmy-arcade-appointment",page:Object.freeze({id:"story-jimmy-arcade-appointment",text:"Jimmy from Asia Travel Company called. He says he has my ticket.\n\nMeet him at You Arcade in Dobuita at noon."})},
+  {flag:"notebook.s1.chai-asia-travel",page:Object.freeze({id:"story-chai-asia-travel",text:"That skinhead, Chai, showed up at You Arcade and destroyed my Hong Kong ticket.\n\nCould Jimmy from Asia Travel Company be one of them? Go back to Asia Travel Company."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

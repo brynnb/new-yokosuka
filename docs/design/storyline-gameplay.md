@@ -445,6 +445,13 @@ is ephemeral within the Yarn run; only the final interrogation settles its clue.
 The [event definition](story-event-template.md#arcade-area-ambush-the-tattoo-parlour-lead)
 records the original assets and intentionally simplified mechanics.
 
+Combat results distinguish `success`, a real `defeated` knockout, nonlethal
+`practiced`, and `failure` from timeout/lost heartbeats. Chai's arcade chapter
+uses the distinction: only an actual knockout may select Fuku's rescue and
+next-day home recovery. A disconnected or timed-out fight cannot advance it.
+Health remains the existing temporary encounter state; its story settlement
+does not write shared currency, inventory or persistent HP.
+
 The native controller-state runtime can read the original-shaped controller
 fields, but ordinary gameplay input is not currently written into those
 records. The authored challenge is independent of native-controller recovery.

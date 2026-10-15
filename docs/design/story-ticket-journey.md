@@ -156,9 +156,9 @@ collision or door rule was changed.
 
 ## Remaining ticket progression
 
-The next-morning call is implemented below. The arcade Chai fight and resulting
-Asia Travel confrontation/chase remain missing connected content. A ticket
-payment, promise or phone-call milestone does not complete those challenges.
+The next-morning call and arcade Chai fight are implemented below. The resulting
+Asia Travel confrontation/chase remains missing connected content. A payment,
+promise, call or completed introduction is not a fight or chase success.
 
 The `01MON` piggy-bank subtitle states ¥39,634; the same integer occurs in
 JOMO MAPINFO at `0x71a44`. That exact amount is used by the authored settlement,
@@ -298,3 +298,48 @@ To regenerate only the new presentation, use
 `node tools/cutscenes/build_home_ticket_pack.mjs --profile jimmy-morning-call --audio`
 with the same original-disc and audio-tool prerequisites as the other ticket
 packs. Omitting `--profile` retains the full deterministic batch.
+
+## Chai at You Arcade
+
+Official import: `chai-arcade`. The GameSpot guide, printed pp. 46–47, establishes
+the noon meeting and both valid battle outcomes: victory allows a same-day
+continuation; defeat brings Fuku's rescue and a day of rest at home.
+
+| Field | Authored integration |
+| --- | --- |
+| Location / eligibility | Normal You Arcade (`DGCT`), entered through the existing physical Dobuita door 64. Story Ryo, completed opening and earned Jimmy call; personal noon or later. The entrance-side approach is authored, not a recovered event volume. Missing the exact appointment minute cannot strand the player. |
+| Original presentation | GMCT MAPINFO AUTH `0x5edc` introduction, `0x13ce0` victory and `0x16a9c` rescue; original M_0172 bank 32, complete sequence indexes, actors, cameras and A0172/A0172A speech. The three presentations last about 73.35, 38.35 and 27.93 seconds. A1_BGAM's 43 tracks cover the requested sound commands; this bank association follows source naming and exact command coverage, not reconstructed owner execution. |
+| Cast / props | Ryo and Chai (`CHA_M`); victory also uses Yuji Nito (`NITO`, GAT_L, corroborated by the existing scheduled actor and character inventory); rescue uses Fuku (`FUK_M`). Shared ownership suppresses overlapping ambient bodies. The original CHRS identifies DOOR → DR17_001 and SLOT → GAMT101G. Their timeline references are retained, but normal DGCT scenery remains fixed: cabinet knock-over and detailed ticket/finger callbacks are omitted. |
+| Fight / timing / cameras | Original introduction-ending positions feed the existing server-controlled fight. Physical movement, punch/kick/throw/guard inputs drive real health, hits, basic opponent AI and outcomes. Shared generic animations, 100/120 health, speeds and rectangular arena padding are adaptations; Chai's original low-kick moveset is not reconstructed. The normal orbit camera remains player-controlled. Environment/weather stays personal; no new battle music is asserted. |
+| Victory | Only server victory selects the original victory ending. Its acknowledgement atomically saves the won flag, chapter milestone and Asia Travel notebook clue; stay in the arcade that personal day with prior controls/camera restored. |
+| Defeat | Only a genuine zero-health knockout selects the original Fuku rescue. After its acknowledgement, atomically save the lost flag, same chapter/clue, next-day 08:30 and established bedside arrival. Offscreen travel and the remaining rest day are condensed; the separate A0173 home-recovery scene is not yet connected. |
+| Failure / cancellation / replay | Timeout or lost heartbeats offer retry/leave, never the rescue or progress. Continue/skip cannot win the fight. Noninteractive movies support ordinary explicit skip. Cancelling an introduction, fight or ending settles nothing and remains retryable. Reloading a completed chapter does not start another ambush. |
+
+Both endings preserve money, inventory and persistent HP. Story-fight health
+uses the existing temporary encounter model; this chapter grants no refund,
+ticket item or guessed native flag. The notebook is a lightly adapted lead to
+Asia Travel, not an implementation of the subsequent Jimmy chase.
+
+`TestChaiChapterRequiresRealOutcomeAndEndingAcknowledgement` compiles the actual
+generated chapter and runs original shared fight simulation under a controlled
+clock. It covers call/hour/bounds gates, victory, knockout, timeout, cancelled
+endings, no pre-ending settlement, the exact loss date/destination and stale
+inputs. Real browser/database validation uses `NEW_YOKOSUKA_CHAI_ARCADE_E2E=true`
+and `NEW_YOKOSUKA_CHAI_ENDING=win` or `defeat`, separately from the same earned
+pre-fight save. No future milestone or client-supplied outcome is injected.
+
+Both separate rendered/database continuations pass (about 1.9 minutes each
+including GPU preflight). They enter through the real arcade door, cancel/retry
+the introduction, verify unchanged state before the ending, let the original
+ending complete naturally, read the new notebook and reload without replay.
+Victory uses physical guard/kick/movement keys and preserves the same-day
+arcade location; the unguarded attempt is genuinely knocked out and saves
+next-morning home recovery. Money and inventory remain unchanged in both.
+Inspected captures show the original Chai/Ryo confrontation, shared live fight
+and distinct Chai aftermath shots. Detailed Nito/Fuku choreography and audio
+fidelity have not been exhaustively reviewed. The saved loss and win branches
+remain separate local backups; no assets or production data were published.
+The 142 focused client presentation, actor ownership, controller and combat
+checks pass, as do the Go scripting/content suites with the real Yarn compiler.
+Those Go commands do not claim unconfigured database integration coverage;
+the two connected browser runs supply the real PostgreSQL outcome checks here.

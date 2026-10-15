@@ -129,7 +129,9 @@ for (const route of spec.routes) {
   if (route.yarnTemplate) {
     // Yarn already owns branching/choices. Translate reviewed original voice
     // references inside its source instead of inventing a second node engine.
-    if (!/^story-[a-z0-9-]+\.yarn$/.test(route.yarnTemplate) || lines.length || !route.staging) throw new Error(`Invalid authored Yarn template ${route.id}`);
+    // Activity/combat-only templates do not need a dummy pose scene. Require
+    // staging only when the template actually references that presentation.
+    if (!/^story-[a-z0-9-]+\.yarn$/.test(route.yarnTemplate) || lines.length || (template.includes("{{staging}}")&&!route.staging)) throw new Error(`Invalid authored Yarn template ${route.id}`);
     body = template
       .replace(/\{\{voice:([A-Z0-9]+)\}\}/g, (_, id) => dialogueLines([id])[0])
       .replace(/\{\{text:([a-z]+)\}\}/g, (_, key) => {

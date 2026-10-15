@@ -99,6 +99,21 @@ test("home cinematics cannot grant savings or advance the personal calendar them
   assert.equal(catalog.sequence("s1.jomo.fuku-travel-advice.start").scene.actors[1].tag,"FUKU");
 });
 
+test("Chai cinematics retain exact source bindings and cannot decide the fight",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  for(const [id,resource,cast]of [["chai-intro","A0172",["AKIR","CHAI"]],["chai-victory","A0172",["DOOR","SLOT","AKIR","CHAI","NITO"]],["chai-rescue","A0172A",["DOOR","SLOT","AKIR","CHAI","FUKU"]]]){
+    const activity=catalog.activity(`s1.dgct.${id}.scene`),manifest=JSON.parse(readFileSync(new URL(`../play/assets/dobuita/${id}/manifest.json`,import.meta.url)));
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);assert.equal(activity.cutscene.worldId,"arcade");
+    assert.deepEqual(manifest.activities[0].actors,cast);assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+    assert.equal(manifest.packageActors.CHAI.modelCode,"CHA_M");
+    assert.equal(activity.cutscene.activity.binding.activityId,`${resource}/${resource}.AUTH`);
+    for(const [tag,prop]of Object.entries(manifest.sceneObjects||{})){
+      assert.equal(prop.model,tag==="DOOR"?"DR17_001":"GAMT101G");assert.equal(prop.referenceOnly,true);
+      assert.ok(Number.isInteger(prop.sourceBinding.defImageRecordOffset));
+    }
+  }
+});
+
 test("Asia props use original CHRS model bindings instead of semantic filename guesses",()=>{
   for(const [id,expected]of [["asia-airfare",{INF1:"TIRT230G.MT5",INF2:"TIRS703G.MT5",MAGA:"ZSR3H03G.MT5"}],
     ["boat-ticket-purchase",{INF3:"ARP3H01G.MT5",MONY:"OSAS5LOG.MT5",PURS:"SAFS500G.MT5",TRAY:"UKES500G.MT5"}]]){
