@@ -33,6 +33,12 @@ function createRuntime(overrides = {}) {
   });
 }
 
+test("server removal dismounts the local driver before fading the vehicle",()=>{
+  let driving=true;const entry={},entries=new Map([["forklift-job",entry]]),removed=[];
+  const runtime=createRuntime({fleetRuntime:{entries,removeServerId:id=>removed.push(id)},isLocallyDriving:()=>driving,getActiveId:()=>"forklift-job",exitLocalForklift:()=>{driving=false;return true;}});
+  runtime.removeServerForklift("forklift-job");assert.equal(driving,false);assert.deepEqual(removed,["forklift-job"]);assert.equal(entry.fadeRemaining,1);
+});
+
 test("forklift network runtime converts abandoned server poses safely", () => {
   const runtime = createRuntime();
   const target = runtime.targetFromServer({

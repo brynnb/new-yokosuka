@@ -69,6 +69,7 @@ export class PlayForkliftAssembly {
       getActiveId: () => this.mode.activeId,
       setParked: (entry, parked) => this.setParked(entry, parked),
       pickWorldWithRay,
+      orientationQuaternion: (...args) => this.orientationQuaternion(...args),
       modelOrientationQuaternion: (...args) => (
         this.modelOrientationQuaternion(...args)
       ),

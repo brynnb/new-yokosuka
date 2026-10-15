@@ -50,13 +50,24 @@ test("Babylon keyboard device events update only the keyboard source", () => {
   assert.equal(actions.value("keyboard", "KeyR"), 0);
   assert.equal(actions.value("gamepad", "liftRaise"), 1);
 
+  // Opening a choice moves focus away from the canvas before the user lets
+  // go of W. Release still has to reach the authoritative input action map.
+  source.onInputChangedObservable.notifyObservers({code:"KeyW",type:"keydown",target:{tagName:"CANVAS"}});
+  listeners.get("keyup")({code:"KeyW",type:"keyup",target:{tagName:"BUTTON"}});
+  assert.equal(actions.value("keyboard","KeyW"),0);
+  source.onInputChangedObservable.notifyObservers({code:"KeyW",type:"keydown",target:{tagName:"BUTTON"}});
+  assert.equal(actions.value("keyboard","KeyW"),0);
+  actions.setButton("keyboard","KeyW",true);
+  source.onInputChangedObservable.notifyObservers({code:"KeyW",type:"keyup",target:{tagName:"BUTTON"}});
+  assert.equal(actions.value("keyboard","KeyW"),0);
+
   source.onInputChangedObservable.notifyObservers({
     code: "KeyB",
     type: "keydown",
     target: {},
     isTrusted: false,
   });
-  assert.deepEqual(activeDevices, ["keyboard"]);
+  assert.deepEqual(activeDevices, ["keyboard","keyboard"]);
 
   actions.setButton("keyboard", "KeyR", true);
   listeners.get("blur")();

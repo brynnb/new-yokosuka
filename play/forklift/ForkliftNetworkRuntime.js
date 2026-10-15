@@ -263,6 +263,9 @@ export class ForkliftNetworkRuntime {
 
   removeServerForklift(id) {
     this.fleetRuntime.removeServerId(id);
+    // A removed server vehicle cannot retain a local driver. End the normal
+    // mount before fading its model, including a completed Story delivery.
+    if(this.isLocallyDriving()&&id===this.getActiveId())this.exitLocalForklift();
     const entry = this.fleet.get(id);
     if (
       !entry
