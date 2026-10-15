@@ -19,6 +19,7 @@ const NAMED_SPEAKERS = {
   HARY: "Harry Thompson",
   JONZ: "Jones Henders",
   DOOR: "Voice Behind Door",
+  DAMY: "Voice",
 };
 
 test("canonical dialogue participant codes resolve to display names", () => {

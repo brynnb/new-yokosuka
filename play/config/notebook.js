@@ -175,6 +175,8 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.gui-zhang-warning",page:Object.freeze({id:"story-gui-zhang-warning",text:"A man in a suit left a letter for me with Yada-san.\n\nGui Zhang warns that the Mad Angels are after me.\nBeware.\n\nAsk Master Chen about Terry and the Long Zha."})},
   {flag:"notebook.s1.chen-warning",page:Object.freeze({id:"story-chen-warning",text:"Master Chen says Lan Di is not part of the Long Zha.\n\nTerry arranged his passage to a ship to win favor with the Chi You Men.\nThe Mad Angels' next shipment is drugs.\n\nChen won't tell me when the deal is. He wants me to stay out of it.\n\nGo home and rest after 8 p.m."})},
   {flag:"notebook.s1.nozomi-kidnapped",page:Object.freeze({id:"story-nozomi-kidnapped",text:"Nozomi has been kidnapped!\n\nChai is holding her behind Warehouse No. 17.\nHe says Terry is waiting for me.\n\nNozomi warned me that it is a trap.\nI need to find a way to the harbor tonight."})},
+  {flag:"notebook.s1.naoyuki-motorcycle",page:Object.freeze({id:"story-naoyuki-motorcycle",text:"Saijo-san says Naoyuki has a motorcycle.\n\nAsk Naoyuki Ito at his home in Sakuragaoka."})},
+  {flag:"notebook.s1.borrowed-motorcycle",page:Object.freeze({id:"story-borrowed-motorcycle",text:"Naoyuki lent me his motorcycle.\n\nNow I need to ride to the harbor and reach Warehouse No. 17.\nNozomi is waiting."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

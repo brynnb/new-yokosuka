@@ -3,6 +3,21 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"saijo-nozomi-transport","disc":3,"actor":"SAJO","area":"DBYO","priority":910,
+      "title":"Saijo — a motorcycle for the harbor","hours":[23.75,3],"requiredFlags":["story.s1.nozomi-night-call.completed"],"excludedFlags":["story.s1.nozomi-motorcycle.completed"],
+      "completedFlag":"story.s1.saijo-nozomi-transport.completed","effects":["notebook.s1.naoyuki-motorcycle"],
+      "voiceIds":["F1131A085","F1131B136","F1131A086","F1131B137","F1131A087","F1131B138","F1131A088","F1131B139"],
+      "provenance":"GameSpot p61: the late-night bus is unavailable; Saijo at Yokosuka Bar suggests Naoyuki's motorcycle. Original HUMANS/Saijo English lines, authored eight-line ordering, existing resident/facing and gameplay camera. Optional inquiry after the earned hostage call; direct approach to Naoyuki is also valid. Final line acknowledgement saves only this referral/notebook, not motorcycle permission, travel, ride victory, rescue or money."
+    },
+    {
+      "id":"nozomi-motorcycle","disc":3,"actor":"ITOH","presentActors":[],"area":"JD00","trigger":"enter","priority":920,
+      "title":"Naoyuki — borrow the motorcycle","hours":[23.75,3],"bounds":"s1.jd00.nozomi-motorcycle","requiredFlags":["story.s1.nozomi-night-call.completed"],
+      "completedFlag":"story.s1.nozomi-motorcycle.completed","effects":["notebook.s1.borrowed-motorcycle"],"recordMinutes":["story.s1.nozomi-motorcycle.minute"],"voiceIds":[],
+      "confirmation":{"accept":"Ask to borrow the motorcycle","decline":"Leave it for now"},"optionSelections":[0],"activities":["s1.jd00.nozomi-motorcycle.scene"],
+      "nativeSources":[{"role":"original-motorcycle-handoff","locator":"disc3/SCENE/03/JD00/BIKE.PKS#SEQDATA1.AUTH,M_01BIKE.MOTN","sha256":"210e1da2234b945233003d61801d2fd6f12b0a48c4b05d3f8bfcb14bce8aa971"},{"role":"original-bike-resource-association","locator":"disc3/SCENE/03/JD00/MAPINFO.BIN#429477:01BIKE,bgm200.snd,a1_bikek.snd","sha256":"e4226a975c1ed35277eb3e6474928eeba0c10ecf4d8e293319c3f4aa76223e78"}],
+      "provenance":"GameSpot p61 and original01BIKE: Ryo rings the Ito house, an unidentified offscreen voice answers, Naoyuki lends the motorcycle and throws its keys. Original1640-frame AUTH/body/cameras/13English voices/effects, existing original RFB_L body. Authored walk-in area near original initial Ryo pose and accept/leave choice; optional Saijo inquiry is not a prerequisite. Bike/helmet model associations and music start are declared adaptations; light/speed references remain non-rendered and detailed keys/hand callbacks are omitted. Only acknowledged ending/explicit skip saves borrowing permission/notebook/minute. The shared player restores the gate approach; no course arrival, successful ride, rescue, permanent item or money."
+    },
+    {
       "id":"nozomi-night-rest","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":890,
       "title":"After Chen — rest at home","hours":[20,23.75],"bounds":"s1.jomo.nozomi-night-rest",
       "requiredFlags":["story.s1.workday-five.completed","story.s1.chen-warning.completed"],"excludedFlags":["story.s1.nozomi-night-call.completed"],

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Harbor employment films use the shared AUTH/audio pipeline. Ordinary Yarn
-// owns appointments, challenges and wages; presentation cannot award them.
+// Disc3 chapter films use the shared AUTH/audio pipeline. Ordinary Yarn owns
+// appointments, challenges and rewards; presentation cannot award them.
 import fs from "node:fs";
 import path from "node:path";
 import {execFileSync} from "node:child_process";
@@ -13,8 +13,9 @@ import {runtimeAssetUrl} from "../../src/RuntimeAssets.js";
 const root=path.resolve(import.meta.dirname,"../..");
 const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,"extracted_disc3_v2"),"data/SCENE/03");
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
-const evidence="docs/design/story-harbor-work.md";
+const defaultEvidence="docs/design/story-harbor-work.md";
 const archives={
+  "JD00/BIKE":"210e1da2234b945233003d61801d2fd6f12b0a48c4b05d3f8bfcb14bce8aa971",
   "MS08/MS08":"37dfa2edd029a819f8e25f75b27332bef5d4f416868aaab2cd9b8068e0d4010f",
   MARU_LET:"49b859b07413108e9ed5726a28ad48ca91e723053602b1642e35e8a631287fa0",
   "MA00/PK_CTS":"286c088071aaea7bb3764a410ab526e4db8243442b80d3e9024ec6ff05811ae0",
@@ -35,6 +36,13 @@ const archives={
   ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
 const profiles=[
+  {id:"nozomi-motorcycle",directory:"sakuragaoka",evidence:"docs/design/story-nozomi-rescue.md",archive:"JD00/BIKE",resourceName:"BIKE",auth:"SEQDATA1.AUTH",motion:"M_01BIKE.MOTN",frames:1640,
+    selectionRule:"Walkthrough-guided nighttime motorcycle handoff; normalized local slot, not a native owner selection or driving result.",
+    actors:["HIKA","BIKE","HELM","TAIL","AKIR","ITOH","SUJI"],
+    props:{BIKE:"BIKS520G",HELM:"HELM400G",HIKA:"RAYS5SPG",TAIL:"TALS500G",SUJI:"TIKHIA4G"},referenceActors:["HIKA","TAIL","SUJI"],
+    propTextureHash:"7543a068268fc6664eb8b2394a03ea2ae9001d79e8712108a328f526a665398c",authoredPropBindings:true,
+    music:{id:"bgm200",sourceId:"d613ad6c6de39f76be5166d29e5ceb8d3a028280998f913909597f6eaa958a29",bankHash:"33e03d8688b0714d16e3f987a054dcbafc52722fe69c69429531516bfa7fab9e",label:"Borrowing Naoyuki's motorcycle"},
+    stream:"01BIKE",streamHash:"e5dbf50ca72ea0ae81ac0d886556eb5fe7616d15f720dc5503df7c3e0aca03ad",sound:"A1_BIKEK.SND",soundHash:"dae8dded2c83d1e34f455f9327f9d445c3b3f4208d81dc6223353a4728d216cf"},
   {id:"chen-warning",archive:"MS08/MS08",resourceName:"MS08",auth:"SEQDATA5.AUTH",motion:"M_01CAU.MOTN",frames:4120,actors:["HAK0","AKIR","KISY","TAIJ"],
     sharedActorManifest:{path:"play/assets/harbor/master-chen/manifest.json",sha256:"a997ad1a777bc5e175e733245002de2245eec3550dc253e0e79057b73041de9b"},
     props:{HAK0:"HAKS5YKG"},propTextureHash:"9d959ba7d4754a6a23d1de5b6fb41d96281e03ac4c541f3ba5ee3c8fc38d1b0d",authoredPropBindings:true,
@@ -117,6 +125,7 @@ const profiles=[
   :p.archive==="MARU"?{...p,stream:"01MAK",streamHash:"991e51fcbe77d0e590fd5db522b6fee46fe11cf7b02fc9bcaa6b81917cfc075d",sound:"A1_MARK.SND",soundHash:"ef5b84e9994323af1b7dc315612030cd1b923e79aa8770dd0e8afc6cad394ba8"}
   :p.archive==="MIZUMARK"?{...p,stream:"01MAD",streamHash:"3295b7ef69bde0372cb212cc500adcababc86421d712ae860ecaead614a7714a",sound:"A1_MAD.SND",soundHash:"b76ce9d7ad7f386a45001adcbf12a855718b0254ca72475dfdec78c4bfb38890"}:p);
 const characters={CHRL:["Charlie Grant","BIK_L"],YOHI:["Yohei Kondo","YHI_L"],TYMK:["Tsuyoshi Murakami","RFA_L"],TAKE:["Hiroaki Takeuchi","ZZC_L"],HTSI:["Hitoshi Numakubo","SGH_L"],
+  ITOH:["Naoyuki Ito","RFB_L"],
   GORO:["Goro Mihashi","KMB_L"],HINA:["Mai Sawano","MIB_L"],TMRA:["Ryozo Yada","KWD_L"],MARK:["Mark Kimberly","GIC_L"],TONY:["Tony Abrams","GIJ_M"],SMTH:["Smith Bradley","GIB_M"],
   // HRSK reuses the reviewed full body from nativeActivityActors, not the
   // character-name CSV's unshipped NZM_M reference.
@@ -129,7 +138,7 @@ const profileArg=process.argv.indexOf("--profile");
 const selected=profileArg<0?profiles:profiles.filter(p=>p.id===process.argv[profileArg+1]);
 if(!selected.length)throw Error("Unknown harbor job profile");
 for(const p of selected){
-  const prefix=`play/assets/harbor/${p.id}`,audioPrefix=`public/audio/world/${p.id}`;
+  const prefix=`play/assets/${p.directory||"harbor"}/${p.id}`,audioPrefix=`public/audio/world/${p.id}`,evidence=p.evidence||defaultEvidence;
   const members=[],outputMembers=[],generatedAssets=[],sceneObjects={},packageActors={};
   const member=(archive,name)=>{
     // Multiple scene instances may share one archive model (six lunchboxes).
@@ -229,7 +238,7 @@ for(const p of selected){
       ...(p.authoredPropBindings?{sourceBinding:{kind:"authored-package-prop-association",evidence}}:{})};
   }
   const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:p.resourceName||p.archive,disc:3,sourceMembers:members,expectedMembers:members,
-    bindingEvidence:evidence,selectionRule:"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",
+    bindingEvidence:evidence,selectionRule:p.selectionRule||"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),...(p.silent?{}:{audioManifest:`${audioPrefix}/manifest.json`}),
     motionBanks:[{bank:p.bank??16,member:p.motion}],activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:p.auth,actors:p.actors,durationFrames:p.frames,
       ...(sceneObjects.ROOM?{nativeSceneObjectStates:[{actorTag:"ROOM",presented:true}]}:{})}],

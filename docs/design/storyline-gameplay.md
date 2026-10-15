@@ -165,7 +165,10 @@ now also passes connected earned-save checks through optional rest/decline,
 same-date 23:45 wake/reload, real bedroom exit, original presentation,
 cancellation/reload/retry, natural ending, BGM063 response, notebook and
 completed reload. Personal time now runs continuously through midnight while
-public Free roam keeps its waking-day skip. Transport, Nozomi's rescue,
+public Free roam keeps its waking-day skip. The subsequent real bar inquiry and
+Ito-house motorcycle handoff now also pass connected earned-save checks through
+cancellation/reload/retry, original presentation, independent notebook/permission
+and completed reload without extra rewards. Actual motorcycle driving, Nozomi's rescue,
 final battles and departure remain unimplemented;
 the checklist above distinguishes each verified sequence.
 

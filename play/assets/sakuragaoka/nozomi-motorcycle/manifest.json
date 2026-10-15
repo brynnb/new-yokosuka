@@ -1,0 +1,312 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA1.AUTH",
+        "path": "disc3/SCENE/03/JD00/BIKE.PKS",
+        "sourceSha256": "210e1da2234b945233003d61801d2fd6f12b0a48c4b05d3f8bfcb14bce8aa971",
+        "archiveMember": "SEQDATA1.AUTH",
+        "byteLength": 60724,
+        "sha256": "3696031327eb6a138705cec6af4f75884d741af8727b7467a38a436c24562a47"
+      },
+      {
+        "name": "M_01BIKE.MOTN",
+        "path": "disc3/SCENE/03/JD00/BIKE.PKS",
+        "sourceSha256": "210e1da2234b945233003d61801d2fd6f12b0a48c4b05d3f8bfcb14bce8aa971",
+        "archiveMember": "M_01BIKE.MOTN",
+        "byteLength": 242240,
+        "sha256": "00156cbf7b4bf80522147d444f7996e6658fcfb22198adc323b3a6e1b8d44089"
+      },
+      {
+        "name": "BIKS520G.CHRM",
+        "path": "disc3/SCENE/03/JD00/BIKE.PKS",
+        "sourceSha256": "210e1da2234b945233003d61801d2fd6f12b0a48c4b05d3f8bfcb14bce8aa971",
+        "archiveMember": "BIKS520G.CHRM",
+        "byteLength": 79076,
+        "sha256": "0bf54066659f6b35aba88a26aee77b89e2e0e5b839f69f2165af1d2c84b0a470"
+      },
+      {
+        "name": "HELM400G.CHRM",
+        "path": "disc3/SCENE/03/JD00/BIKE.PKS",
+        "sourceSha256": "210e1da2234b945233003d61801d2fd6f12b0a48c4b05d3f8bfcb14bce8aa971",
+        "archiveMember": "HELM400G.CHRM",
+        "byteLength": 13004,
+        "sha256": "894eb4cb1c9c5b9b63a67152021ef1aac4c88b19e002d534e8ad128ee06f4ddc"
+      },
+      {
+        "name": "RAYS5SPG.CHRM",
+        "path": "disc3/SCENE/03/JD00/BIKE.PKS",
+        "sourceSha256": "210e1da2234b945233003d61801d2fd6f12b0a48c4b05d3f8bfcb14bce8aa971",
+        "archiveMember": "RAYS5SPG.CHRM",
+        "byteLength": 5668,
+        "sha256": "9d9d71c1e0302a52e1a4035baada918345d345985d62a028edda82d1881dc5b8"
+      },
+      {
+        "name": "TALS500G.CHRM",
+        "path": "disc3/SCENE/03/JD00/BIKE.PKS",
+        "sourceSha256": "210e1da2234b945233003d61801d2fd6f12b0a48c4b05d3f8bfcb14bce8aa971",
+        "archiveMember": "TALS500G.CHRM",
+        "byteLength": 372,
+        "sha256": "b44b6145cd5ce3005b7a1bd2d870714ddd051c1fcf4eabf75a6dcbcdd95f28b4"
+      },
+      {
+        "name": "TIKHIA4G.CHRM",
+        "path": "disc3/SCENE/03/JD00/BIKE.PKS",
+        "sourceSha256": "210e1da2234b945233003d61801d2fd6f12b0a48c4b05d3f8bfcb14bce8aa971",
+        "archiveMember": "TIKHIA4G.CHRM",
+        "byteLength": 2180,
+        "sha256": "2aaa10b3befdff32330fa9f0c26d3c63a480b3c0407f6d6c5829e207a7983e2e"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-nozomi-rescue.md",
+    "resourceName": "BIKE",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided nighttime motorcycle handoff; normalized local slot, not a native owner selection or driving result."
+  },
+  "audioManifest": "public/audio/world/nozomi-motorcycle/manifest.json",
+  "sceneObjects": {
+    "BIKE": {
+      "model": "BIKS520G",
+      "browserFilename": "BIKS520G.CHRM",
+      "assetPath": "play/assets/sakuragaoka/nozomi-motorcycle/BIKS520G.CHRM",
+      "textureAssetPath": "play/assets/sakuragaoka/nozomi-motorcycle/textures.bin",
+      "sourceBinding": {
+        "kind": "authored-package-prop-association",
+        "evidence": "docs/design/story-nozomi-rescue.md"
+      }
+    },
+    "HELM": {
+      "model": "HELM400G",
+      "browserFilename": "HELM400G.CHRM",
+      "assetPath": "play/assets/sakuragaoka/nozomi-motorcycle/HELM400G.CHRM",
+      "textureAssetPath": "play/assets/sakuragaoka/nozomi-motorcycle/textures.bin",
+      "sourceBinding": {
+        "kind": "authored-package-prop-association",
+        "evidence": "docs/design/story-nozomi-rescue.md"
+      }
+    },
+    "HIKA": {
+      "model": "RAYS5SPG",
+      "browserFilename": "RAYS5SPG.CHRM",
+      "assetPath": "play/assets/sakuragaoka/nozomi-motorcycle/RAYS5SPG.CHRM",
+      "textureAssetPath": "play/assets/sakuragaoka/nozomi-motorcycle/textures.bin",
+      "referenceOnly": true,
+      "sourceBinding": {
+        "kind": "authored-package-prop-association",
+        "evidence": "docs/design/story-nozomi-rescue.md"
+      }
+    },
+    "TAIL": {
+      "model": "TALS500G",
+      "browserFilename": "TALS500G.CHRM",
+      "assetPath": "play/assets/sakuragaoka/nozomi-motorcycle/TALS500G.CHRM",
+      "textureAssetPath": "play/assets/sakuragaoka/nozomi-motorcycle/textures.bin",
+      "referenceOnly": true,
+      "sourceBinding": {
+        "kind": "authored-package-prop-association",
+        "evidence": "docs/design/story-nozomi-rescue.md"
+      }
+    },
+    "SUJI": {
+      "model": "TIKHIA4G",
+      "browserFilename": "TIKHIA4G.CHRM",
+      "assetPath": "play/assets/sakuragaoka/nozomi-motorcycle/TIKHIA4G.CHRM",
+      "textureAssetPath": "play/assets/sakuragaoka/nozomi-motorcycle/textures.bin",
+      "referenceOnly": true,
+      "sourceBinding": {
+        "kind": "authored-package-prop-association",
+        "evidence": "docs/design/story-nozomi-rescue.md"
+      }
+    }
+  },
+  "packageActors": {
+    "ITOH": {
+      "label": "Naoyuki Ito",
+      "modelCode": "RFB_L",
+      "browserFilename": "RFB_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/RFB_L.CHRM",
+      "textureAssetPath": "play/assets/characters/RFB_textures.bin"
+    }
+  },
+  "actorTags": [
+    "HIKA",
+    "BIKE",
+    "HELM",
+    "TAIL",
+    "AKIR",
+    "ITOH",
+    "SUJI"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/sakuragaoka/nozomi-motorcycle/M_01BIKE.MOTN",
+      "byteLength": 242240,
+      "sha256": "00156cbf7b4bf80522147d444f7996e6658fcfb22198adc323b3a6e1b8d44089"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/sakuragaoka/nozomi-motorcycle/M_01BIKE.MOTN",
+      "byteLength": 242240,
+      "sha256": "00156cbf7b4bf80522147d444f7996e6658fcfb22198adc323b3a6e1b8d44089"
+    },
+    {
+      "path": "play/assets/sakuragaoka/nozomi-motorcycle/SEQDATA1.AUTH",
+      "byteLength": 60724,
+      "sha256": "3696031327eb6a138705cec6af4f75884d741af8727b7467a38a436c24562a47"
+    },
+    {
+      "path": "play/assets/sakuragaoka/nozomi-motorcycle/BIKS520G.CHRM",
+      "byteLength": 79076,
+      "sha256": "0bf54066659f6b35aba88a26aee77b89e2e0e5b839f69f2165af1d2c84b0a470"
+    },
+    {
+      "path": "play/assets/sakuragaoka/nozomi-motorcycle/HELM400G.CHRM",
+      "byteLength": 13004,
+      "sha256": "894eb4cb1c9c5b9b63a67152021ef1aac4c88b19e002d534e8ad128ee06f4ddc"
+    },
+    {
+      "path": "play/assets/sakuragaoka/nozomi-motorcycle/RAYS5SPG.CHRM",
+      "byteLength": 5668,
+      "sha256": "9d9d71c1e0302a52e1a4035baada918345d345985d62a028edda82d1881dc5b8"
+    },
+    {
+      "path": "play/assets/sakuragaoka/nozomi-motorcycle/TALS500G.CHRM",
+      "byteLength": 372,
+      "sha256": "b44b6145cd5ce3005b7a1bd2d870714ddd051c1fcf4eabf75a6dcbcdd95f28b4"
+    },
+    {
+      "path": "play/assets/sakuragaoka/nozomi-motorcycle/TIKHIA4G.CHRM",
+      "byteLength": 2180,
+      "sha256": "2aaa10b3befdff32330fa9f0c26d3c63a480b3c0407f6d6c5829e207a7983e2e"
+    },
+    {
+      "path": "play/assets/sakuragaoka/nozomi-motorcycle/textures.bin",
+      "byteLength": 317808,
+      "sha256": "47bfa0b61002f5a654e57b90ebb7b7540af1944df1e62d4afb6996b01192aa2b"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "BIKE/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 60724,
+      "sha256": "3696031327eb6a138705cec6af4f75884d741af8727b7467a38a436c24562a47",
+      "durationFrames": 1640,
+      "durationSeconds": 54.68333435058594,
+      "frameCount": 59,
+      "commandCounts": {
+        "camera": 1,
+        "move": 7,
+        "motion": 9,
+        "sound": 38,
+        "voice": 13
+      },
+      "actors": [
+        "HIKA",
+        "BIKE",
+        "HELM",
+        "TAIL",
+        "AKIR",
+        "ITOH",
+        "SUJI"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "AKI_AT1_KARIRU_HOME_BIKEKARIRU_0100",
+          "startFrame": 271,
+          "endFrame": 840
+        },
+        {
+          "actorTag": "ITOH",
+          "frame": 430,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "YKI_NAY_AT1_KARIRU_HOME_BIKEKARIRU_0100",
+          "startFrame": 1,
+          "endFrame": 141
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 571,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "AKI_AT1_KARIRU_HOME_BIKEKARIRU_0100",
+          "startFrame": 890,
+          "endFrame": 969
+        },
+        {
+          "actorTag": "ITOH",
+          "frame": 620,
+          "motionBank": 16,
+          "sequenceIndex": 25,
+          "motionName": "AKI_AT1_SAGASU_SENMU_CHASEYUKAWA_A_0100",
+          "startFrame": 1001,
+          "endFrame": 1100
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 681,
+          "motionBank": 16,
+          "sequenceIndex": 26,
+          "motionName": "YKI_TALK_ACTION_MAAMAA_LP_F_A",
+          "startFrame": 21,
+          "endFrame": 90
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 751,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "AKI_AT1_KARIRU_HOME_BIKEKARIRU_0100",
+          "startFrame": 861,
+          "endFrame": 1335
+        },
+        {
+          "actorTag": "ITOH",
+          "frame": 751,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "YKI_NAY_AT1_KARIRU_HOME_BIKEKARIRU_0100",
+          "startFrame": 162,
+          "endFrame": 411
+        },
+        {
+          "actorTag": "ITOH",
+          "frame": 1001,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "YKI_NAY_AT2_KARIRU_HOME_BIKEKARIRU_0100",
+          "startFrame": 1,
+          "endFrame": 339
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1226,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "AKI_AT1_KARIRU_HOME_BIKEKARIRU_2_0100",
+          "startFrame": 1,
+          "endFrame": 322
+        }
+      ]
+    }
+  ]
+}

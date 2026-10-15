@@ -25,6 +25,23 @@ function command(name, ...values) {
   };
 }
 
+test("Naoyuki's borrowing film preserves original cast/props without claiming ride victory",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.jd00.nozomi-motorcycle.scene");
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/sakuragaoka/nozomi-motorcycle/manifest.json",import.meta.url)));
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/nozomi-motorcycle/manifest.json",import.meta.url)));
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.cutscene.activity.binding.activityId,"BIKE/SEQDATA1.AUTH");
+  assert.equal(activity.cutscene.worldId,"sakuragaoka");assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  assert.equal(manifest.activities[0].durationFrames,1640);assert.equal(manifest.motionBanks[0].bank,16);
+  assert.equal(manifest.packageActors.ITOH.modelCode,"RFB_L");assert.notEqual(manifest.packageActors.ITOH.modelCode,"YKG_M");
+  for(const tag of ["BIKE","HELM"])assert.ok(runtimeAssetUrl(manifest.sceneObjects[tag].assetPath));
+  for(const tag of ["HIKA","TAIL","SUJI"])assert.equal(manifest.sceneObjects[tag].referenceOnly,true);
+  assert.equal(audio.voices.length,13);assert.equal(audio.sounds.length,16);assert.ok([...audio.voices,...audio.sounds].every(v=>!v.unavailable));
+  assert.ok(audio.voices.some(v=>v.speakerId==="ITOH"&&v.displayText==="My motorcycle? Sure."));
+  const music=JSON.parse(readFileSync(new URL("../public/music/manifest.json",import.meta.url)));
+  assert.equal(music.tracks.bgm200.source.bankSha256,"33e03d8688b0714d16e3f987a054dcbafc52722fe69c69429531516bfa7fab9e");
+});
+
 test("Nozomi's call uses the complete original English alternate and existing telephone",()=>{
   const activity=createScriptEventPresentationCatalog().activity("s1.jomo.nozomi-night-call.scene");
   const manifest=JSON.parse(readFileSync(new URL("../play/assets/hazuki/nozomi-night-call/manifest.json",import.meta.url)));

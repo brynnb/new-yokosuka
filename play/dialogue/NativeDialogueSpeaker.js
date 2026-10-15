@@ -28,6 +28,9 @@ export const NATIVE_DIALOGUE_SPEAKER_LABELS = Object.freeze({
   JONZ: "Jones Henders",
   DOOR: "Voice Behind Door",
   PHON: "Voice on Telephone",
+  // Native SRF uses "damy" as an unidentified offscreen speaker. Do not
+  // invent a named person (for example, the Ito-house voice in 01BIKE).
+  DAMY: "Voice",
 });
 
 const GENERIC_JAPANESE_SPEAKER_LABELS = Object.freeze({

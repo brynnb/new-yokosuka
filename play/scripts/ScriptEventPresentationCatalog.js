@@ -42,6 +42,7 @@ const ACTIVITIES = new Map([
     ["goro-mai-marriage","GOROKEKN/SEQDATA0.AUTH"],
     ["warning-letter","MARU_LET/SEQDATA3.AUTH"],
     ["chen-warning","MS08/SEQDATA5.AUTH","MS08","ms08"],
+    ["nozomi-motorcycle","BIKE/SEQDATA1.AUTH","JD00","sakuragaoka"],
     ["sailor-chase-intro","PK_CTS/SEQDATA0.AUTH"],["sailor-chase-tony","PK_CTS2/SEQDATA1.AUTH"],["sailor-chase-smith","PK_CTS2/SEQDATA0.AUTH"],
     ["yada-job-interview","MARU/SEQDATA0.AUTH"],["mark-job-introduction","MARU/SEQDATA1.AUTH"],
     ["mark-lunch-intro","MIZUMARK/SEQDATA1.AUTH"],["mark-lunch-aftermath","MIZUMARK/SEQDATA2.AUTH"],

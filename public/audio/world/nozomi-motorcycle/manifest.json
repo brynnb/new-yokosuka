@@ -1,0 +1,970 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01BIKE.AFS",
+      "sha256": "e5dbf50ca72ea0ae81ac0d886556eb5fe7616d15f720dc5503df7c3e0aca03ad"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_BIKEK.SND",
+      "sha256": "dae8dded2c83d1e34f455f9327f9d445c3b3f4208d81dc6223353a4728d216cf"
+    },
+    "authManifest": "play/assets/sakuragaoka/nozomi-motorcycle/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-nozomi-rescue.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01BIKEA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEA001.aiff",
+      "nativeMember": "01BIKEA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "c03d59cc1b12def2ac15e703a0de1933e87e0eb60e0a2649bbfb7c228dc35dfa",
+      "speakerId": "AKIR",
+      "sourceText": "It's Ryo.",
+      "displayText": "It's Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-motorcycle/voice/01BIKEA001.wav",
+      "byteLength": 16172,
+      "sha256": "7c460ff76ae62f0190dacd34bebd8a051f97264dd6a2be0670c0c012624116ab"
+    },
+    {
+      "voiceId": "01BIKEA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEA002.aiff",
+      "nativeMember": "01BIKEA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "5453afc4ecf06856985fc5395557d4d4fcd734cd301376665539ac01f21c262f",
+      "speakerId": "AKIR",
+      "sourceText": "I need a favor=@",
+      "displayText": "I need a favor...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-motorcycle/voice/01BIKEA002.wav",
+      "byteLength": 24364,
+      "sha256": "094aeb26da170711521d13714b76733d8eba8d0ce066326858be6498a0191562"
+    },
+    {
+      "voiceId": "01BIKEA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEA003.aiff",
+      "nativeMember": "01BIKEA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 10240,
+      "nativeSha256": "66b129f74293cd55688204f0ac8188b8dc758c0dea1cd228f6d76e7dafa09732",
+      "speakerId": "AKIR",
+      "sourceText": "Can't. I'm in a hurry.",
+      "displayText": "Can't. I'm in a hurry.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-motorcycle/voice/01BIKEA003.wav",
+      "byteLength": 40748,
+      "sha256": "2d56b41404f6a67ff0f8a2641d7d509f21a4dab23a3504c84d6865fec814c753"
+    },
+    {
+      "voiceId": "01BIKEA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEA004.aiff",
+      "nativeMember": "01BIKEA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 8192,
+      "nativeSha256": "18759c055b10c4e7e33c9628e5e001722813b560c96059d4ff604a900a1c2f88",
+      "speakerId": "AKIR",
+      "sourceText": "Can I use your motorcycle?",
+      "displayText": "Can I use your motorcycle?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-motorcycle/voice/01BIKEA004.wav",
+      "byteLength": 32556,
+      "sha256": "dd5dbed2040eb2321d8ac216a817ce14231522d76861605401fc243a6e402cb1"
+    },
+    {
+      "voiceId": "01BIKEA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEA005.aiff",
+      "nativeMember": "01BIKEA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 4096,
+      "nativeSha256": "4d384c61db76808d9545e47daf6020c99528e36484fecefb51e8dc2d1d7b29d9",
+      "speakerId": "AKIR",
+      "sourceText": "Thanks.",
+      "displayText": "Thanks.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-motorcycle/voice/01BIKEA005.wav",
+      "byteLength": 16172,
+      "sha256": "7d4f64a60f45b37e4bdd9cce4937cb519230aabc7214d866d68f0296f4c7559e"
+    },
+    {
+      "voiceId": "01BIKEA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEA006.aiff",
+      "nativeMember": "01BIKEA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 8192,
+      "nativeSha256": "e16d310198d02bf43f3d89c91fc6af7a9a36605763a1f13672d08c051fa1e22e",
+      "speakerId": "AKIR",
+      "sourceText": "I won't! Later.",
+      "displayText": "I won't! Later.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-motorcycle/voice/01BIKEA006.wav",
+      "byteLength": 32556,
+      "sha256": "573aedfe840dddc82517982a94c5ff3c820fc692946fe2fdc2aacd354df64e59"
+    },
+    {
+      "voiceId": "01BIKEB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEB001.aiff",
+      "nativeMember": "01BIKEB001.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 10240,
+      "nativeSha256": "b3f964c1c98668beb60922c23cc39b101d775e4274347c779f4a37e1600360a6",
+      "speakerId": "damy",
+      "sourceText": "Yes. Who is it?",
+      "displayText": "Yes. Who is it?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-motorcycle/voice/01BIKEB001.wav",
+      "byteLength": 40748,
+      "sha256": "48e933b1058ca9fe48e393dc842f3fc9604ece9bcb91c03f17e77e0aa59f6699"
+    },
+    {
+      "voiceId": "01BIKEB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEB002.aiff",
+      "nativeMember": "01BIKEB002.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 16384,
+      "nativeSha256": "18531aa6bec61e535c4d02e27d0ac1267a7a3ee3d009a7fd31a6ccec72167b5f",
+      "speakerId": "damy",
+      "sourceText": "Ah, Ryo-chan.＆Just a moment.",
+      "displayText": "Ah, Ryo-chan.\nJust a moment.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 25
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-motorcycle/voice/01BIKEB002.wav",
+      "byteLength": 65324,
+      "sha256": "06502f441eac2ad37f1c66e732705485b946056b5a7bca103287b59bff5d8cf4"
+    },
+    {
+      "voiceId": "01BIKEC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEC001.aiff",
+      "nativeMember": "01BIKEC001.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 10240,
+      "nativeSha256": "e26c39bfeafe2f45e89c38a171a15af08265d21a61ba5fbad6a277de6f2715c8",
+      "speakerId": "ITOH",
+      "sourceText": "Hey, Ryo. What's up?",
+      "displayText": "Hey, Ryo. What's up?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-motorcycle/voice/01BIKEC001.wav",
+      "byteLength": 40748,
+      "sha256": "d7ff76f756197bb8e5a6e2548f2a535e5ffdbba9dd424d8bdb6431657772ec12"
+    },
+    {
+      "voiceId": "01BIKEC002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEC002.aiff",
+      "nativeMember": "01BIKEC002.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 10240,
+      "nativeSha256": "7ef31269975487fa6983a9d31aa547cdef7d2137976077ef1d03d48667c58a27",
+      "speakerId": "ITOH",
+      "sourceText": "Oh sure. Come on in.",
+      "displayText": "Oh sure. Come on in.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-motorcycle/voice/01BIKEC002.wav",
+      "byteLength": 40748,
+      "sha256": "e379cba25467a4c36ecdd50506f628aecdcfed52bd4351f81b471ff1148d659d"
+    },
+    {
+      "voiceId": "01BIKEC003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEC003.aiff",
+      "nativeMember": "01BIKEC003.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 10240,
+      "nativeSha256": "8a0297898329600c529ed602b8501b1b40a8f8b2e8f9e036aa5382fc8efe0aeb",
+      "speakerId": "ITOH",
+      "sourceText": "My motorcycle? Sure.",
+      "displayText": "My motorcycle? Sure.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-motorcycle/voice/01BIKEC003.wav",
+      "byteLength": 40748,
+      "sha256": "1703af7f61945322dd48eed880a60799d27cfc0b6fb2c369cee9af76b8e972f4"
+    },
+    {
+      "voiceId": "01BIKEC004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEC004.aiff",
+      "nativeMember": "01BIKEC004.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 4096,
+      "nativeSha256": "5afce945aac2aa4757836900f5dd178f9311276078a3d9fa04dbdd6c1420ba54",
+      "speakerId": "ITOH",
+      "sourceText": "Catch!",
+      "displayText": "Catch!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-motorcycle/voice/01BIKEC004.wav",
+      "byteLength": 16172,
+      "sha256": "70169d85153e4c8fdd9d41751729c9eef623cdfaa791ccde3a97ea399d7434d7"
+    },
+    {
+      "voiceId": "01BIKEC005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEC005.aiff",
+      "nativeMember": "01BIKEC005.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 8192,
+      "nativeSha256": "e12a25ed37ebe2841df1176b00c7436d1e44d891739d0323a581c037ca9d9c7c",
+      "speakerId": "ITOH",
+      "sourceText": "Don't drive too fast!",
+      "displayText": "Don't drive too fast!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-motorcycle/voice/01BIKEC005.wav",
+      "byteLength": 32556,
+      "sha256": "b2764c692e3e47df45dcd78504202ba328ee6a8c3384341e742cc457d0c5165e"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/smallobject/Chain2.aiff",
+      "playbackId": 0,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040000.wav",
+      "byteLength": 14780,
+      "sha256": "505b8c407480d46229b636961d5e84987b586fb8c066010b468da28c10cbd995"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/smallobject/Chain4.aiff",
+      "playbackId": 1,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040100.wav",
+      "byteLength": 16052,
+      "sha256": "38a5720b21f5f11ab3846f640a6628c0fdcdd4e52b9cc5067b7d1888881f461f"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/door/doorbell2.aiff",
+      "playbackId": 2,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040200.wav",
+      "byteLength": 72188,
+      "sha256": "d0c36feca3a4f77463fae49cc7e50c750797ba0757646cf5d3a6389655ee0514"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/cloths2/friction2.aiff",
+      "playbackId": 3,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040300.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/cloths2/furimuki_f01.aiff",
+      "playbackId": 4,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040400.wav",
+      "byteLength": 9348,
+      "sha256": "2026b716ba3115748b89ec3ac3b6041824b6ddbba78ee708f62af1fb8dc3756a"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 5,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040500.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/foot2/R_kon_s01.aiff",
+      "playbackId": 7,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040700.wav",
+      "byteLength": 7580,
+      "sha256": "9679071716b538031bf71306c937f25c54cdab0dfd1f11779a51bb6136a51ba8"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/foot2/R_kon_s02.aiff",
+      "playbackId": 8,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040800.wav",
+      "byteLength": 7324,
+      "sha256": "7520924ca1b8f28790b04b057de8201a3dd02a2d652f1e4302ba6993725b9f6b"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/foot2/R_kon_s03.aiff",
+      "playbackId": 9,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040900.wav",
+      "byteLength": 8364,
+      "sha256": "97a3129c652e66b054e727418e2d8509cc80f2cb5dd53ea1f1d6ab7619a19136"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/cloths2/R_mouhu_nageru.aiff",
+      "playbackId": 10,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040a00.wav",
+      "byteLength": 21612,
+      "sha256": "5c49cb5c012c4b62f58d0b81d8f68aa02b2734dd78710011d0c69a431d5a0988"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/door/woodopen7.aiff",
+      "playbackId": 11,
+      "sampleId": 21,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040b00.wav",
+      "byteLength": 19964,
+      "sha256": "ed01eb6b852a4176e80f8066adeed8ba7a0465494234b76391d6b7c460ec5ce3"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 12,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040c00.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/vehicle/B_KARIRU1.aiff",
+      "playbackId": 13,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040d00.wav",
+      "byteLength": 541740,
+      "sha256": "322071343b4ebb4fb8d534ab2a86469d94bb12351b07eb5b3522d282b02f2ca1",
+      "nativeSegments": [
+        {
+          "playbackId": 13,
+          "sampleId": 0,
+          "sampleRate": 16000,
+          "byteLength": 96196,
+          "sha256": "ba07d80153f5c94ab67913d832fc4051dab077dbf3c043867ef6b5abc27efd69"
+        },
+        {
+          "playbackId": 14,
+          "sampleId": 1,
+          "sampleRate": 16000,
+          "byteLength": 95588,
+          "sha256": "49e87b21cb001d29114364f3d8367ee7f400267d977e09b1153a197565d6f384"
+        },
+        {
+          "playbackId": 15,
+          "sampleId": 2,
+          "sampleRate": 16000,
+          "byteLength": 97036,
+          "sha256": "b99d6608b4e492902c5d463a8f79a5439efe022a2c298e948a12c0946a6aa4bc"
+        },
+        {
+          "playbackId": 16,
+          "sampleId": 3,
+          "sampleRate": 16000,
+          "byteLength": 95556,
+          "sha256": "0e79185c07473e7a0d84d117cdda80b6ef63eb5c40635a2817cd599f5687a628"
+        },
+        {
+          "playbackId": 17,
+          "sampleId": 4,
+          "sampleRate": 16000,
+          "byteLength": 96668,
+          "sha256": "0a28b2763c6a91ff31a9d1d2ea15a655f5a10921a4c8f3814fc8f24be693c228"
+        },
+        {
+          "playbackId": 18,
+          "sampleId": 5,
+          "sampleRate": 16000,
+          "byteLength": 60916,
+          "sha256": "32afacc56148b2cab6aebbd447ba5706213883be773b161d44f965b279d41c56"
+        }
+      ]
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/smallobject/KEY_CATCH.aiff",
+      "playbackId": 19,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040e00.wav",
+      "byteLength": 7988,
+      "sha256": "800442b7da6f000ea11b7422abf879f771d74cd70c52a80b580abb12a57f1b48"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/foot/sneaker1.aiff",
+      "playbackId": 20,
+      "sampleId": 19,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9040f00.wav",
+      "byteLength": 10964,
+      "sha256": "3db696efc3f22f883429c8558b9cd97102c30e9f4401b0d78a4cb82baaf2e2b7"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/foot/sneaker3.aiff",
+      "playbackId": 21,
+      "sampleId": 20,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-motorcycle/sfx/a9041000.wav",
+      "byteLength": 11188,
+      "sha256": "fef02cc6d21fef1cbee18ba5ee6e940b07c8b2a6f06b1d6655873f03702c6d6d"
+    }
+  ]
+}
