@@ -1,5 +1,13 @@
 import { runtimeAssetGroup, runtimeAssetUrl } from "../../src/RuntimeAssets.js";
 import { INTRODUCTION_ENVIRONMENTS } from "./IntroductionEnvironments.js";
+import goroJobLeadManifest from "../assets/harbor/goro-job-lead/manifest.json";
+import goroJobLeadAudio from "../../public/audio/world/goro-job-lead/manifest.json";
+import goroJobAppointmentManifest from "../assets/harbor/goro-job-appointment/manifest.json";
+import goroJobAppointmentAudio from "../../public/audio/world/goro-job-appointment/manifest.json";
+import yadaJobInterviewManifest from "../assets/harbor/yada-job-interview/manifest.json";
+import yadaJobInterviewAudio from "../../public/audio/world/yada-job-interview/manifest.json";
+import markJobIntroductionManifest from "../assets/harbor/mark-job-introduction/manifest.json";
+import markJobIntroductionAudio from "../../public/audio/world/mark-job-introduction/manifest.json";
 import nativeActivityActorManifest from "../data/events/nativeActivityActors.json";
 import allowanceManifest from "../assets/hazuki/first-allowance/manifest.json";
 import allowanceAudio from "../../public/audio/world/first-allowance/manifest.json";
@@ -290,13 +298,17 @@ const nativeSilentActivityMusic = resource => Object.freeze({
 });
 
 const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
-  ...[["jimmy-knock",jimmyKnockManifest,jimmyKnockAudio,"dobuita"],["jimmy-caught",jimmyCaughtManifest,jimmyCaughtAudio,"dobuita"],["jimmy-escaped",jimmyEscapedManifest,jimmyEscapedAudio,"dobuita"],["jimmy-interrogation",jimmyInterrogationManifest,jimmyInterrogationAudio,"daza"],
+  ...[["goro-job-lead",goroJobLeadManifest,goroJobLeadAudio,"mfsy"],["goro-job-appointment",goroJobAppointmentManifest,goroJobAppointmentAudio,"mfsy"],
+    ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],
+    ["jimmy-knock",jimmyKnockManifest,jimmyKnockAudio,"dobuita"],["jimmy-caught",jimmyCaughtManifest,jimmyCaughtAudio,"dobuita"],["jimmy-escaped",jimmyEscapedManifest,jimmyEscapedAudio,"dobuita"],["jimmy-interrogation",jimmyInterrogationManifest,jimmyInterrogationAudio,"daza"],
     ["chai-intro",chaiIntroManifest,chaiIntroAudio,"arcade"],["chai-victory",chaiVictoryManifest,chaiVictoryAudio,"arcade"],["chai-rescue",chaiRescueManifest,chaiRescueAudio,"arcade"],
     ["jimmy-morning-call",jimmyCallManifest,jimmyCallAudio,"interior"],["post-chen-home",postChenHomeManifest,postChenHomeAudio,"interior"],["bank-savings",bankSavingsManifest,bankSavingsAudio,"interior"],["travel-family",travelFamilyManifest,travelFamilyAudio,"interior"],
     ["fuku-travel-funds",fukuTravelFundsManifest,fukuTravelFundsAudio,"interior"],["global-airfare",globalAirfareManifest,globalAirfareAudio,"dski"],["asia-airfare",asiaAirfareManifest,asiaAirfareAudio,"daza"],
     ["global-boat",globalBoatManifest,globalBoatAudio,"dski"],["boat-ticket-purchase",boatPurchaseManifest,boatPurchaseAudio,"daza"],["boat-ticket-collection",boatCollectionManifest,boatCollectionAudio,"daza"]].map(([id,manifest,audioManifest,worldId])=>Object.freeze({
     id,worldId,actorDefinitions:Object.freeze([]),actorTags:Object.freeze(manifest.actorTags),
-    assets:Object.freeze({...sourceAssetMap(runtimeAssetGroup(`play/assets/${worldId==="interior"?"hazuki":"dobuita"}/${id}/*.{AUTH,MOTN,MT5,CHRM,BIN,bin}`)),
+    // The compiler's explicit output list includes room maps and props too;
+    // don't infer their directory or file extension from the gameplay world.
+    assets:Object.freeze({...Object.fromEntries(manifest.outputs.map(asset=>[asset.path,runtimeAssetUrl(asset.path)])),
       ...Object.fromEntries(Object.values(manifest.packageActors||{}).flatMap(actor=>[actor.assetPath,actor.textureAssetPath].filter(Boolean)).map(path=>[path,runtimeAssetUrl(path)])),
       ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
     presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),

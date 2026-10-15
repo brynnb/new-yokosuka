@@ -1,0 +1,291 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA1.AUTH",
+        "path": "disc3/SCENE/03/MFSY/MARU.PKS",
+        "sourceSha256": "a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
+        "archiveMember": "SEQDATA1.AUTH",
+        "byteLength": 16828,
+        "sha256": "c5f33773b5d82df59558f9e06bcf033c9ff6ef49214797de31338f836d2c8981"
+      },
+      {
+        "name": "M_01MAK.MOTN",
+        "path": "disc3/SCENE/03/MFSY/MARU.PKS",
+        "sourceSha256": "a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
+        "archiveMember": "M_01MAK.MOTN",
+        "byteLength": 172884,
+        "sha256": "44e0a87c697e69f427fd28bf93d58278a7176388b0392ccbb6673b0a91d22bfe"
+      },
+      {
+        "name": "SGG_L.CHRM",
+        "path": "disc3/SCENE/03/MFSY/MARU.PKS",
+        "sourceSha256": "a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
+        "archiveMember": "SGG_L.CHRM",
+        "byteLength": 32428,
+        "sha256": "5110c718ac7594e5f39ca7dd4cee4374d644914e8b2decc875e03f897fcf1e53"
+      },
+      {
+        "name": "SGJ_L.CHRM",
+        "path": "disc3/SCENE/03/MFSY/MARU.PKS",
+        "sourceSha256": "a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
+        "archiveMember": "SGJ_L.CHRM",
+        "byteLength": 45776,
+        "sha256": "a2b919018dcc6884c22b812d5a1845ab031010a24bfd2a060586c3bbd3d9bb93"
+      },
+      {
+        "name": "FOKS502G.CHRM",
+        "path": "disc3/SCENE/03/MFSY/MARU.PKS",
+        "sourceSha256": "a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
+        "archiveMember": "FOKS502G.CHRM",
+        "byteLength": 20996,
+        "sha256": "4deffb1dfbf744d99283803f1ee486ebea36b158ab681299902340791b5c0ca3"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-harbor-work.md",
+    "resourceName": "MARU",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided authored hiring order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/mark-job-introduction/manifest.json",
+  "sceneObjects": {
+    "FORK": {
+      "model": "FOKS502G",
+      "browserFilename": "FOKS502G.CHRM",
+      "assetPath": "play/assets/harbor/mark-job-introduction/FOKS502G.CHRM",
+      "textureAssetPath": "play/assets/harbor/mark-job-introduction/textures.bin"
+    }
+  },
+  "packageActors": {
+    "TMRA": {
+      "label": "Ryozo Yada",
+      "modelCode": "KWD_L",
+      "browserFilename": "KWD_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/KWD_L.CHRM",
+      "textureAssetPath": "play/assets/characters/KWD_textures.bin"
+    },
+    "MARK": {
+      "label": "Mark Kimberly",
+      "modelCode": "GIC_L",
+      "browserFilename": "GIC_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/GIC_L.CHRM",
+      "textureAssetPath": "play/assets/characters/GIC_textures.bin"
+    },
+    "ETC1": {
+      "label": "Harbor worker",
+      "modelCode": "SGG_L",
+      "browserFilename": "SGG_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/harbor/mark-job-introduction/SGG_L.CHRM",
+      "textureAssetPath": "play/assets/harbor/mark-job-introduction/textures.bin"
+    },
+    "ETC2": {
+      "label": "Harbor worker",
+      "modelCode": "SGJ_L",
+      "browserFilename": "SGJ_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/harbor/mark-job-introduction/SGJ_L.CHRM",
+      "textureAssetPath": "play/assets/harbor/mark-job-introduction/textures.bin"
+    }
+  },
+  "actorTags": [
+    "FORK",
+    "AKIR",
+    "TMRA",
+    "ETC2",
+    "ETC1",
+    "MARK"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/mark-job-introduction/M_01MAK.MOTN",
+      "byteLength": 172884,
+      "sha256": "44e0a87c697e69f427fd28bf93d58278a7176388b0392ccbb6673b0a91d22bfe"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/mark-job-introduction/M_01MAK.MOTN",
+      "byteLength": 172884,
+      "sha256": "44e0a87c697e69f427fd28bf93d58278a7176388b0392ccbb6673b0a91d22bfe"
+    },
+    {
+      "path": "play/assets/harbor/mark-job-introduction/SEQDATA1.AUTH",
+      "byteLength": 16828,
+      "sha256": "c5f33773b5d82df59558f9e06bcf033c9ff6ef49214797de31338f836d2c8981"
+    },
+    {
+      "path": "play/assets/harbor/mark-job-introduction/SGG_L.CHRM",
+      "byteLength": 32428,
+      "sha256": "5110c718ac7594e5f39ca7dd4cee4374d644914e8b2decc875e03f897fcf1e53"
+    },
+    {
+      "path": "play/assets/harbor/mark-job-introduction/SGJ_L.CHRM",
+      "byteLength": 45776,
+      "sha256": "a2b919018dcc6884c22b812d5a1845ab031010a24bfd2a060586c3bbd3d9bb93"
+    },
+    {
+      "path": "play/assets/harbor/mark-job-introduction/FOKS502G.CHRM",
+      "byteLength": 20996,
+      "sha256": "4deffb1dfbf744d99283803f1ee486ebea36b158ab681299902340791b5c0ca3"
+    },
+    {
+      "path": "play/assets/harbor/mark-job-introduction/textures.bin",
+      "byteLength": 281392,
+      "sha256": "369528f584f6c5a04adb3214f2e26b7a1930b823bbf4a5f6f62130838e6185b1"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "MARU/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 16828,
+      "sha256": "c5f33773b5d82df59558f9e06bcf033c9ff6ef49214797de31338f836d2c8981",
+      "durationFrames": 1934,
+      "durationSeconds": 64.48332977294922,
+      "frameCount": 57,
+      "commandCounts": {
+        "camera": 1,
+        "move": 6,
+        "motion": 12,
+        "sound": 38,
+        "voice": 16
+      },
+      "actors": [
+        "FORK",
+        "AKIR",
+        "TMRA",
+        "ETC2",
+        "ETC1",
+        "MARK"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT2_WALK_MARKTOUJOU0_0100",
+          "startFrame": 1,
+          "endFrame": 155
+        },
+        {
+          "actorTag": "TMRA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "YKI_YAD_AT2_WALK_MARKTOUJOU0_0100",
+          "startFrame": 1,
+          "endFrame": 155
+        },
+        {
+          "actorTag": "ETC2",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "YKI_YKI_SYOHIN_SEIRI_F",
+          "startFrame": 1,
+          "endFrame": 320
+        },
+        {
+          "actorTag": "ETC1",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT2_WALK_MARKTOUJOU0_0100",
+          "startFrame": 1,
+          "endFrame": 189
+        },
+        {
+          "actorTag": "MARK",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "OTH_MRK_AT4_OSIERARERU_FORKLIFT_MARKTOUJOU0_0100",
+          "startFrame": 1,
+          "endFrame": 1804
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 156,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AT3_SYOUKAISURU_MARKTOUJOU0_0100",
+          "startFrame": 1,
+          "endFrame": 1162
+        },
+        {
+          "actorTag": "TMRA",
+          "frame": 156,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "YKI_YAD_AT3_SYOUKAISURU_MARKTOUJOU0_0100",
+          "startFrame": 1,
+          "endFrame": 1075
+        },
+        {
+          "actorTag": "ETC2",
+          "frame": 361,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "YKI_YKI_SYOHIN_SEIRI_F",
+          "startFrame": 1,
+          "endFrame": 320
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1275,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AT4_OSIERARERU_FORKLIFT_MARKTOUJOU0_0100",
+          "startFrame": 1092,
+          "endFrame": 1804
+        },
+        {
+          "actorTag": "MARK",
+          "frame": 1275,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "OTH_MRK_AT4_OSIERARERU_FORKLIFT_MARKTOUJOU0_0100",
+          "startFrame": 1171,
+          "endFrame": 1515
+        },
+        {
+          "actorTag": "MARK",
+          "frame": 1670,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "OTH_MRK_AT4_OSIERARERU_FORKLIFT_MARKTOUJOU0_0100",
+          "startFrame": 1516,
+          "endFrame": 1804
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1671,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AT4_OSIERARERU_FORKLIFT_MARKTOUJOU0_0100",
+          "startFrame": 1552,
+          "endFrame": 1804
+        }
+      ]
+    }
+  ]
+}

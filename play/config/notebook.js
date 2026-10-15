@@ -130,6 +130,9 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.jimmy-arcade-appointment",page:Object.freeze({id:"story-jimmy-arcade-appointment",text:"Jimmy from Asia Travel Company called. He says he has my ticket.\n\nMeet him at You Arcade in Dobuita at noon."})},
   {flag:"notebook.s1.chai-asia-travel",page:Object.freeze({id:"story-chai-asia-travel",text:"That skinhead, Chai, showed up at You Arcade and destroyed my Hong Kong ticket.\n\nCould Jimmy from Asia Travel Company be one of them? Go back to Asia Travel Company."})},
   {flag:"notebook.s1.jimmy-mad-angels",page:Object.freeze({id:"story-jimmy-mad-angels",text:"Jimmy says the Mad Angels forced Asia Travel Company into bankruptcy.\n\nThey extort the harbor workers. To find out more, get a job at New Yokosuka Harbor."})},
+  {flag:"notebook.s1.harbor-job-promise",page:Object.freeze({id:"story-harbor-job-promise",text:"Goro will help me find a job at the harbor.\n\nMeet him tomorrow at noon in front of Warehouse No. 1, by the big blue door."})},
+  {flag:"notebook.s1.alpha-trading-appointment",page:Object.freeze({id:"story-alpha-trading-appointment",text:"Goro and Mai found a job for me.\n\nMeet Mr. Yada at Alpha Trading at 2 p.m. If I miss him, return between 2 and 5 p.m. on another day."})},
+  {flag:"notebook.s1.harbor-job-training",page:Object.freeze({id:"story-harbor-job-training",text:"Mr. Yada hired me at Alpha Trading and introduced Mark.\n\nMark will teach me to drive a forklift. I still need to complete the training before my first working day."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

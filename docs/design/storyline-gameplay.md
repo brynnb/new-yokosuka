@@ -112,8 +112,13 @@ connects original Fuku/dream/bank/kitchen presentations. Compiler/database and
 rendered earned-save continuations verify cancellation/retry, visible actors
 and bankbook, once-only savings, personal morning arrival, real bedroom-door
 entry, natural kitchen ending and saved reload. Held advice gestures and
-detailed callback/music fidelity remain limited. Ticket acquisition and later
-storyline remain unimplemented.
+detailed callback/music fidelity remain limited. The connected
+[ticket journey](story-ticket-journey.md) now continues through the agency
+payment, Jimmy's call, Chai and Jimmy's chase/interrogation. The subsequent
+[harbor hiring](story-harbor-work.md) connects Goro's next-day promise, the
+Goro/Mai appointment, Yada's interview and Mark's introduction. Forklift
+training, workdays, the remaining Mad Angels storyline and departure remain
+unimplemented; the checklist above distinguishes each verified sequence.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

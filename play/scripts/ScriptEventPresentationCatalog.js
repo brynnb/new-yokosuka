@@ -33,6 +33,12 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["goro-job-lead","GOROCOOP/SEQDATA1.AUTH"],["goro-job-appointment","MGOR/SEQDATA0.AUTH"],
+    ["yada-job-interview","MARU/SEQDATA0.AUTH"],["mark-job-introduction","MARU/SEQDATA1.AUTH"]].map(([part,activityId])=>[`s1.mfsy.${part}.scene`,{
+    kind:"native-cutscene",area:"MFSY",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:`story-s1-${part}`,packageId:part,worldId:"mfsy",storyPresentation:true,
+      activity:{slot:0,binding:{kind:"map-embedded-slot",activityId}}},
+  }]),
   ...[["jimmy-knock","CTERMO1/SEQDATA3.AUTH","D000","dobuita"],["jimmy-caught","CTERMO1/SEQDATA1.AUTH","D000","dobuita"],["jimmy-escaped","CTERMO1/SEQDATA2.AUTH","D000","dobuita"],["jimmy-interrogation","A0174/A0174.AUTH","DAZA","daza"]].map(([part,activityId,area,worldId])=>[`s1.${area.toLowerCase()}.${part}.scene`,{
     kind:"native-cutscene",area,durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-${part}`,packageId:part,worldId,storyPresentation:true,
