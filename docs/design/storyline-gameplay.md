@@ -121,7 +121,10 @@ forklift lesson now verifies three physical deliveries, cancellation/retry,
 saved notebook/time and reload without pay or replay. The evening chicken race
 now connects the original introduction and riding assets to a server-validated
 four-input challenge, saved notebook/day and reload; its course staging remains
-an approximation. Paid workdays, the
+an approximation. The first working morning now also connects real three-lap
+forklift driving to server-observed gates, saved notebook/date, harbor return
+and a separate reload check; it awards neither a rank prize nor wages.
+Paid workdays, the
 remaining Mad Angels storyline and departure remain
 unimplemented; the checklist above distinguishes each verified sequence.
 

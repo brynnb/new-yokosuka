@@ -88,7 +88,7 @@ export async function verifyMorningRace(page,testInfo,character){
       if(speed<desired-.2)next.add("KeyW");else if(speed>desired+.4)next.add("KeyS");
       if(error>.11)next.add("KeyD");else if(error<-.11)next.add("KeyA");
       await keys(next);
-      if(view.passed!==lastPassed){lastPassed=view.passed;lastProgress=Date.now();console.log("Observed morning race gate",view.passed,"lap",view.lap);}
+      if(view.passed!==lastPassed){lastPassed=view.passed;lastProgress=Date.now();recoveries=0;console.log("Observed morning race gate",view.passed,"lap",view.lap);}
       if(Date.now()-lastProgress>40_000)throw Error(`Race stopped progressing: ${JSON.stringify({...last,point,routeIndex,error})}`);
       expect(position[1],JSON.stringify(last)).toBeLessThan(3);
       await page.waitForTimeout(100);
@@ -100,4 +100,23 @@ export async function verifyMorningRace(page,testInfo,character){
   const final=await saved();expect(final.character.storyFlags[done]).toBe(true);expect(final.character.storyFlags["notebook.s1.workday-one-race"]).toBe(true);
   expect(final.character.yen).toBe(initial.character.yen);expect(final.inventory).toEqual(initial.inventory);expect(final.character.worldId).toBe("mfsy");
   await page.screenshot({path:testInfo.outputPath("morning-race-earned-harbor-return.png")});
+}
+
+export async function verifyMorningRaceSaved(page,testInfo,character){
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const before=await saved();
+  expect(before.character.storyFlags["story.s1.workday-one-race.completed"]).toBe(true);
+  expect(before.character.storyFlags["notebook.s1.workday-one-race"]).toBe(true);
+  expect(before.character.worldId).toBe("mfsy");
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)).toBe("mfsy");
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(await page.getByRole("button",{name:"Join the morning race",exact:true}).isVisible()).toBe(false);
+  const after=await saved();expect(after.character.yen).toBe(before.character.yen);expect(after.inventory).toEqual(before.inventory);expect(after.character.storyFlags).toEqual(before.character.storyFlags);
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath("morning-race-reloaded-harbor-checkpoint.png")});
 }

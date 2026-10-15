@@ -11,7 +11,7 @@ import {verifyHarborHiring} from "./story-harbor-hiring.js";
 import {verifyForkliftTraining} from "./story-forklift-training.js";
 import {verifyChickenRace} from "./story-chicken-race.js";
 import {verifyPersonalCalendar} from "./story-calendar.js";
-import {verifyMorningRace} from "./story-morning-race.js";
+import {verifyMorningRace,verifyMorningRaceSaved} from "./story-morning-race.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -136,6 +136,10 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_MORNING_RACE_RELOAD_E2E === "true"){
+      await verifyMorningRaceSaved(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_MORNING_RACE_E2E === "true"){
       test.setTimeout(1_200_000);
       await verifyMorningRace(page,testInfo,character);

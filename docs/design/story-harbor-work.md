@@ -76,8 +76,8 @@ pass 56 checks, including failure/cancellation cleanup for the reused room lease
 Forklift training now passes the connected three-delivery browser check,
 including cancellation/retry, saved completion, controls and reload.
 The subsequent evening chicken race is also connected and browser-verified.
-Paid crate quotas, the workday calendar,
-morning races and later Mad Angels encounters remain missing. Existing
+The following morning's three-lap race is also connected and browser-verified.
+Paid crate quotas and later Mad Angels encounters remain missing. Existing
 forklift driving, cargo and racing must be reused; neither film completion
 nor a client-reported win may grant a shift's salary or story outcome.
 
@@ -196,7 +196,7 @@ sidebar check verify a stationary HUD during a choice, cancellation/resume,
 normal next-morning advancement and unchanged money, inventory and story flags.
 Use `NEW_YOKOSUKA_CALENDAR_E2E=true` with the earned-save harness to repeat it.
 
-## First working morning: implementation under verification
+## First working morning: verified race and saved harbor return
 
 `workday-one-race-entry` offers a race-grid transfer near Mark's training
 corridor on a later personal day after the chicken race, from 08:30 to noon.
@@ -248,6 +248,18 @@ committed outcome without replay.
 Focused server/compiler checks cover the actual generated Yarn, full three-lap
 observations, identities, countdown/loading, incorrect ordering, cancellation,
 retry, expired sessions and atomic effects. Client checks cover the shared
-resource lease, authoritative HUD and world-scoped trigger. Full connected
-hardware-rendered course completion is still being verified; the current
-checklist must not count this as a completed paid workday.
+resource lease, authoritative HUD and world-scoped trigger. The connected
+hardware-rendered check resumes the genuinely earned chicken-race checkpoint,
+uses normal keyboard driving and Havok physics, cancels/retries and completes
+all thirty-nine gates over three laps. The driver follows the pinned original
+AI driving-line recording; it cannot inject vehicle positions or race results.
+The run verifies the ending acknowledgement, saved notebook/day/09:00 minimum,
+harbor arrival, restored controls and unchanged money/inventory. A separate
+short reload check verifies that completion persists without replay or another
+race prompt. This is a verified morning race, not a completed paid workday.
+
+Use `NEW_YOKOSUKA_MORNING_RACE_E2E=true` with the earned-save harness and
+`NEW_YOKOSUKA_RACE_ROUTE_CSV` pointing to the original recording identified in
+`tools/evidence/ma00-forklift-race-course.json`. Use
+`NEW_YOKOSUKA_MORNING_RACE_RELOAD_E2E=true` only with an already earned race
+checkpoint; it checks reconnect without repeating the eleven-minute drive.
