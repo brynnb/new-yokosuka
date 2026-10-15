@@ -3,6 +3,43 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"workday-three-night","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":690,
+      "title":"After Charlie — the Lan Di dream","hours":[20,24],"bounds":"s1.jomo.workday-three-night",
+      "requiredFlags":["story.s1.workday-three.completed","story.s1.charlie-harbor.completed"],"excludedFlags":["story.s1.workday-four-race.completed"],
+      "completedFlag":"story.s1.workday-three-night.completed","effects":["notebook.s1.workday-four-morning"],"voiceIds":[],
+      "confirmation":{"accept":"Sleep until tomorrow","decline":"Stay awake"},"optionSelections":[0],
+      "activities":["s1.jomo.lan-di-dream.scene"],"timeTransition":"s1.wait.morning","destination":"s1.work.harbor-loading-start",
+      "nativeSources":[{"role":"original-lan-di-dream","locator":"disc3/SCENE/03/JOMO/KKYF.PKS#SEQDATA5.AUTH","sha256":"cff01c6ed68be4f5055426e2e8840b74c3f456c0997c68b3bee6f8163b42f56a"}],
+      "provenance":"GameSpot printed pp57-58: after Charlie's LanDi clue, sleep at home, dream of LanDi and commute to the fourth workday. Existing KKYF has SORY/LanDi, DragonMirror, original motion/camera and BGM201. Associating it with this milestone and explicit20:00 bedside choice are authored, not a recovered native controller gate. Acknowledged dream atomically saves next personal day08:30, notebook and tested harbor arrival; no reward. Ordinary waiting can bypass the dream without blocking workday four."
+    },
+    {
+      "id":"workday-four-race-entry","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":700,
+      "title":"Fourth workday — morning race","hours":[8.5,12],"bounds":"s1.mfsy.workday-four-race-entry",
+      "requiredFlags":["story.s1.workday-three.completed"],"excludedFlags":["story.s1.workday-four-race.completed"],"dayAfter":"story.s1.workday-three.finished",
+      "completedFlag":"story.s1.workday-four-race-entry.completed","effects":[],"repeatable":true,"voiceIds":[],"yarnTemplate":"story-workday-race-entry.yarn","destination":"s1.work.morning-race-grid",
+      "authoredText":{"briefing":"The fourth workday starts with Mark's forklift race. Today's quota is eight crates from Warehouse No. 15 to Warehouse No. 18."},
+      "nativeSources":[{"role":"original-shared-gameplay-course","locator":"tools/evidence/ma00-forklift-race-course.json","sha256":"fe02e239b35f180c29621a8440b6ed80afb6c25ce4300e42b048c5ecfbaf8e4a"}],
+      "provenance":"GameSpot p58: next working morning, same forklift race then eight crates from Warehouse15 to18. Reuse existing tested boarding approach and ordinary driving, with a later personal day than the acknowledged Charlie chapter. Optional dream is not required. No race result, salary or prize from boarding."
+    },
+    {
+      "id":"workday-four-race","disc":3,"actor":"AKIR","presentActors":[],"area":"MA00","trigger":"enter","priority":710,
+      "title":"Fourth workday — forklift race","bounds":"s1.ma00.workday-four-race",
+      "requiredFlags":["story.s1.workday-four-race-entry.completed","story.s1.workday-three.completed"],"completedFlag":"story.s1.workday-four-race.completed","effects":["notebook.s1.workday-four-race"],"recordDays":["story.s1.workday-four.day"],
+      "voiceIds":[],"yarnTemplate":"story-workday-race.yarn","destination":"s1.work.harbor-loading-start",
+      "authoredText":{"success":"Finished the morning race. Time to start the day's deliveries.","failure":"I did not finish the course. Try the morning race again?"},
+      "nativeSources":[{"role":"original-shared-gameplay-course","locator":"tools/evidence/ma00-forklift-race-course.json","sha256":"fe02e239b35f180c29621a8440b6ed80afb6c25ce4300e42b048c5ecfbaf8e4a"}],
+      "provenance":"Same actual three-lap/39-gate observed course, physics, challenge and atomic ending as earlier mornings. Separately earned fourth-day result/date/notebook, minimum09:00 and saved harbor arrival. Earlier wins, simple acknowledgement and local best times cannot count. No pay or complete-shift flag."
+    },
+    {
+      "id":"workday-four-morning","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":720,
+      "title":"Fourth workday — morning cargo and lunch","hours":[9,12],"bounds":"s1.mfsy.workday-four-morning",
+      "requiredFlags":["story.s1.workday-four-race.completed"],"completedFlag":"story.s1.workday-four-morning.completed","effects":["notebook.s1.workday-four-lunch"],
+      "voiceIds":[],"yarnTemplate":"story-workday-delivery.yarn","challenge":"s1.mfsy.workday-four-morning","timeTransition":"s1.work.lunch","completionActivities":["s1.mfsy.workday-lunch.scene"],
+      "authoredText":{"briefing":"Today's job is eight crates from Warehouse No. 15 to Warehouse No. 18. Move four through this dispatch area before lunch, then four more in the afternoon.","success":"Four crates are delivered. Time for lunch with the other workers."},
+      "nativeSources":[{"role":"original-coworker-lunch","locator":"disc3/SCENE/03/MFSY/HIRUAUTH.PKS#SEQDATA1.AUTH,M_01BEN.MOTN","sha256":"e740397e02958441010345d34d1369b20bbad9bc2ebdf397b413251b20a9a97e"}],
+      "provenance":"GameSpot pp58-59: eight-crate Warehouse15-to18 shift, uninterrupted morning then coworker lunch. Four/four split and tested outdoor dispatch pad condense original warehouse work. Reuse the original HIRUAUTH coworker film without claiming recovered day-specific selection. Four real deliveries plus acknowledged lunch save batch/notebook/noon together. No coworker spying clue, Goro trap result, wages or whole-workday completion."
+    },
+    {
       "id":"biker-chase","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":670,
       "title":"Tomato — follow the bikers","hours":[19,24],"bounds":"s1.mfsy.biker-chase",
       "requiredFlags":["story.s1.workday-three-payday.completed"],"completedFlag":"story.s1.biker-chase.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-harbor-biker-chase.yarn","destination":"s1.work.biker-alley",

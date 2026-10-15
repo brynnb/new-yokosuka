@@ -141,7 +141,10 @@ The third daytime continuation through Nozomi/Eri photographs and payroll now
 passes connected rendered checks with saved choices, once-only wages and reload.
 The evening biker chase, both real fights and original Charlie interrogation now
 also pass connected rendered continuation, cancellation/retry and saved reload.
-The return-home dream, subsequent Mad Angels workdays and departure remain unimplemented;
+The return-home Lan Di dream, fourth-day race and morning cargo/lunch now pass
+connected rendered continuation through cancellation/retry, actual driving,
+independent saved outcomes and reload. The fourth afternoon, subsequent Mad
+Angels workday and departure remain unimplemented;
 the checklist above distinguishes each verified sequence.
 
 For walkthrough-guided, authored progression, use the

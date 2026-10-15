@@ -74,6 +74,11 @@ const ACTIVITIES = new Map([
     cutscene:{id:"story-s1-phoenix-vision",packageId:"kkya",worldId:"interior",storyPresentation:true,
       activity:{slot:50,binding:{primaryPointer:614163,secondaryPointer:614176}}},
   }],
+  ["s1.jomo.lan-di-dream.scene",{
+    kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-lan-di-dream",packageId:"kkyf",worldId:"interior",storyPresentation:true,
+      activity:{slot:55,binding:{primaryPointer:614348,secondaryPointer:614361}}},
+  }],
   ["s1.jomo.snow-dream.scene",{
     kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-snow-dream",packageId:"kkyc",worldId:"interior",storyPresentation:true,

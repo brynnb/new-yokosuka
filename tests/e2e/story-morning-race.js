@@ -25,12 +25,13 @@ function originalDrivingLine(){
 }
 
 export async function verifyMorningRace(page,testInfo,character,{day="one"}={}){
-  expect(["one","two","three"]).toContain(day);
+  expect(["one","two","three","four"]).toContain(day);
   const chapter=`workday-${day}`;
   const drivingLine=originalDrivingLine();
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),done=`story.s1.${chapter}-race.completed`;
-  expect(initial.character.storyFlags[day==="one"?"story.s1.chicken-race.completed":day==="two"?"story.s1.workday-one.completed":"story.s1.workday-two.completed"]).toBe(true);
+  const required={one:"story.s1.chicken-race.completed",two:"story.s1.workday-one.completed",three:"story.s1.workday-two.completed",four:"story.s1.workday-three.completed"}[day];
+  expect(initial.character.storyFlags[required]).toBe(true);
   expect(initial.character.storyFlags[done]).not.toBe(true);
   const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await noErrors();};

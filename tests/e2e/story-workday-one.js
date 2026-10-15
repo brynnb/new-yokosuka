@@ -2,7 +2,7 @@ import {expect} from "@playwright/test";
 import {driveObservedDeliveries} from "./story-forklift-training.js";
 
 export async function verifyMorningCargo(page,testInfo,character,{day="one"}={}){
-  expect(["one","two","three"]).toContain(day);
+  expect(["one","two","three","four"]).toContain(day);
   const chapter=`workday-${day}`,count=day==="one"?5:4;
   const success=day!=="one"?"Four crates are delivered. Time for lunch with the other workers.":"The morning batch is finished. It is lunch break.";
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());

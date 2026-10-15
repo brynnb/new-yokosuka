@@ -84,7 +84,8 @@ The second day's cargo/ambush/payday also pass connected rendered checks;
 the subsequent Mark rescue and brother explanation also pass their connected
 rendered continuation. The third-day daytime continuation and its evening biker
 chase, both fights and original interrogation also pass connected rendered
-verification. The subsequent dream and later workdays remain missing. Existing
+verification. The Lan Di dream and fourth morning through lunch also pass their
+connected continuation; the afternoon and later workdays remain missing. Existing
 forklift driving, cargo and racing must be reused; neither film completion
 nor a client-reported win may grant a shift's salary or story outcome.
 
@@ -670,7 +671,8 @@ base ¥300 per crate; no over-quota raise system is claimed. Preserve personal
 weather/lighting. Presentation restores the approach pose/camera and controls;
 failure/cancellation is retryable, and saved events do not automatically replay.
 The evening chase/fights are separate from this payday; see the connected
-continuation below. The subsequent dream remains missing.
+continuation below. The following section covers the return-home dream and
+fourth working morning.
 
 Focused checks extend the existing sleep, boarding, race, cargo and payday
 boundary tests rather than duplicating their runtime. Photo checks exercise
@@ -761,6 +763,68 @@ PostgreSQL confirms ¥17,436, unchanged inventory, personal 1986-12-28, and the
 race/payday/finished records on day 6205. The clue and whole-day flag are absent
 after cancelling the ending and present only after its acknowledged retry.
 All 38 new local asset records (2,143,412 bytes) pass size/hash verification.
-Nothing has been published or deployed. The next connected milestone is the
-return-home Lan Di dream and fourth working morning, followed by the remaining
-Mad Angels workdays, Nozomi rescue and departure.
+Nothing has been published or deployed. The following section continues through
+the Lan Di dream and fourth morning. The remaining Mad Angels workdays, Nozomi
+rescue and departure still need connected progression.
+
+## Third-night Lan Di dream and fourth working morning
+
+These ordinary Yarn events continue the acknowledged Charlie chapter. The
+GameSpot guide, printed pp. 58–59, places the Lan Di dream before the next
+morning's forklift race, eight-crate Warehouse No. 15-to-18 shift and lunch.
+The current implementation connects through that morning batch; the lunch
+inquiry, Goro trap and remaining fourth-day outcomes are separate work.
+
+| Event | Eligibility / presentation | Saved outcome |
+| --- | --- | --- |
+| `workday-three-night` | Saved third-day completion and Charlie clue, tested bedroom approach after 20:00; sleep/stay-awake choice. Reuse original KKYF/SEQDATA5.AUTH, Lan Di and Dragon Mirror, original motion/camera and the existing BGM201 package association. | Acknowledged ending atomically saves its milestone/notebook, next personal day at 08:30 and tested harbor arrival. No reward. Cancellation changes neither destination nor personal date. |
+| `workday-four-race-entry` | Previous chapter completed, a later personal date than its saved finish, loading-area approach 08:30–12:00. | Existing repeatable race-grid transfer, no win or salary. The dream is optional: ordinary personal waiting can also reach this date. |
+| `workday-four-race` | Saved fourth-day boarding, original `ma00race` grid. | Independently earn all three laps/39 ordered gates with ordinary forklift physics; acknowledged result saves its notebook/day, minimum 09:00 and harbor return. Earlier wins cannot count. |
+| `workday-four-morning` | Saved fourth-day race, loading-area approach 09:00–12:00. Four newly observed physical deliveries, then the shared original HIRUAUTH coworker lunch. | Acknowledged batch/lunch saves its own notebook and noon. No spying clue, trap victory, wages or whole-fourth-day flag. |
+
+KKYF's original Disc 3 archive hash is
+`cff01c6ed68be4f5055426e2e8840b74c3f456c0997c68b3bee6f8163b42f56a`.
+Its existing exact activity is slot 55, pointers 614348/614361, declaring 240
+frames. The clip's longer movement extent in the generated manifest is not an
+instruction to extend the eight-second AUTH ending. Associating this existing
+Lan Di vision with the walkthrough milestone is authored, not proof of a
+recovered native dream predicate. The explicit 20:00 sleep choice, project
+08:30 waking time and condensed commute remain adaptations. Preserve personal
+weather/lighting outside the isolated vision; no new seasonal gate is added.
+
+The four/four quota split and existing outdoor dispatch pad condense the
+original warehouse route. Reusing HIRUAUTH's first lunch film does not claim
+original day-specific film selection. Its previously documented resident-fence
+occlusion remains. The coworker-spying clue and afternoon Goro encounter must
+not be granted by this lunch presentation or by earlier workday receipts.
+
+Real compiler/engine checks extend the existing working-night, boarding, race
+and delivery cases. They cover decline, early hours, ineligible/completed
+states, cancelled presentation, no late replay after the following race,
+same-day/missing-date rejection, fresh observed challenges and acknowledged
+atomic effects. The shared browser drivers accept this later day rather than
+copying the sleep/race/cargo implementations.
+
+`NEW_YOKOSUKA_FOURTH_MORNING_E2E=true` continues the genuinely earned Charlie
+save through those shared drivers. Connected hardware-rendered checks pass
+staying awake, cancelling the visible Lan Di vision with BGM201 selected, retrying
+its natural ending, next-day 08:30 harbor arrival, all three real race laps/39
+gates, independent fourth-day race settlement, four fresh physical deliveries,
+original lunch, saved noon and reload. Currency remains ¥17,436 and inventory
+is unchanged. PostgreSQL confirms personal 1986-12-29, race day 6206, the three
+new notebook flags and no fourth-day wage or whole-day completion.
+
+The first attempt let the short vision finish naturally before an old
+nine-second cancellation delay; that earned morning is preserved. The corrected
+check cancels while the scene is still active, using the genuine pre-dream
+backup in a separate disposable database rather than rewinding the earned
+character. A test-only chapter/date variable collision then interrupted the
+notebook assertion after a valid morning settlement. The continuation kept that
+earned save and verified the notebook, race, cargo and reload; it neither
+replayed the dream nor injected a result. The browser checks BGM201 selection,
+not an auditory mix comparison; exact lighting, hand and facial fidelity remain
+unverified. No new asset export, push or deployment was performed.
+
+Next: the coworker's lunch-break spying clue, afternoon cargo/Goro trap,
+once-only payday and Mark's Long Zha explanation. These must remain separate
+from the morning receipt, followed by the fifth workday and finale.

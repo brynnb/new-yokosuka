@@ -212,6 +212,11 @@ test("home cinematics cannot grant savings or advance the personal calendar them
   const snow=catalog.activity("s1.jomo.snow-dream.scene");
   assert.equal(snow.durableEffects,"forbidden");assert.equal(snow.returnPlayerState,true);
   assert.equal(new NativeAseqActivityCatalog(JSON.parse(readFileSync(new URL("../play/assets/hazuki/kkyc/manifest.json",import.meta.url)))).has(snow.cutscene.activity),true);
+  const lanDi=catalog.activity("s1.jomo.lan-di-dream.scene"),lanDiManifest=JSON.parse(readFileSync(new URL("../play/assets/hazuki/kkyf/manifest.json",import.meta.url)));
+  assert.equal(lanDi.durableEffects,"forbidden");assert.equal(lanDi.returnPlayerState,true);
+  assert.deepEqual(lanDi.cutscene.activity,{slot:55,binding:{primaryPointer:614348,secondaryPointer:614361}});
+  assert.equal(new NativeAseqActivityCatalog(lanDiManifest).has(lanDi.cutscene.activity),true);
+  assert.equal(lanDiManifest.packageActors.SORY.modelCode,"KOK_M");assert.equal(lanDiManifest.sceneObjects.RYMR.model,"DRGS502G");
   assert.equal(catalog.sequence("s1.jomo.fuku-travel-advice.start").scene.actors[1].tag,"FUKU");
 });
 

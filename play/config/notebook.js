@@ -157,6 +157,9 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.workday-three-quota",page:Object.freeze({id:"story-workday-three-quota",text:"Finished the third day's eight-crate quota.\n\nCollect my wages from Yada-san at Alpha Trading."})},
   {flag:"notebook.s1.third-payday",page:Object.freeze({id:"story-third-payday",text:"Collected ¥2,400 for today's eight crates.\n\nInvestigate the Mad Angels near Tomato Convenience Store after 7 p.m."})},
   {flag:"notebook.s1.lan-di-harbor",page:Object.freeze({id:"story-lan-di-harbor",text:"Lan Di is still in the harbor!\n\nCharlie arranged a cruiser to take a Chinese man in a dragon robe to a ship offshore. Find out more about the trade."})},
+  {flag:"notebook.s1.workday-four-morning",page:Object.freeze({id:"story-workday-four-morning",text:"Lan Di appeared in my dream.\n\nBack to the harbor for the fourth working day. Keep looking into the Mad Angels' trade."})},
+  {flag:"notebook.s1.workday-four-race",page:Object.freeze({id:"story-workday-four-race",text:"Finished the fourth morning's forklift race.\n\nToday's job is eight crates from Warehouse No. 15 to Warehouse No. 18."})},
+  {flag:"notebook.s1.workday-four-lunch",page:Object.freeze({id:"story-workday-four-lunch",text:"Delivered the morning batch and had lunch with the other workers.\n\nAsk around about the Mad Angels before returning to the afternoon deliveries."})},
 ]);
 
 export function notebookPagesForCharacter(character) {
