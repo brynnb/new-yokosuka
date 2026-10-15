@@ -940,7 +940,7 @@ function createPlayRuntime() {
     storyRegions: new StoryRegionRuntime({ controller: scriptEventController,
       getCharacter: () => accountSession.character,
       getGameDate: currentServerGameDate,
-      publishPresence: () => { multiplayerRuntime.markPresenceDirty(); multiplayerRuntime.publishPresence(true); },
+      publishPresence: () => { multiplayerRuntime.markPresenceDirty(); return multiplayerRuntime.publishPresence(true); },
       onError: error => { console.warn("Story region did not start:", error); transientNotice.show("This story scene could not start. Leave the area and approach again to retry."); },
     }),
     isStartupPresentationActive: () => openingSequenceActive || Boolean(cutscenePreviewRuntime?.gameplayPreview),

@@ -206,14 +206,21 @@ export class PlayMultiplayerAdapter {
 
   onConnected(reconnected) {
     const character = this.accountSession.character;
-    if (reconnected && character?.playMode === "story" && this.worlds?.[character.worldId]
-      && character.worldId !== this.worldRuntime.activeWorld.id) {
-      // A receipt lost with the socket is recovered from the persisted welcome.
-      void this.loadStoryArrival({worldId:character.worldId,position:[character.x,character.y,character.z],yaw:character.yaw},false)
-        .catch(error=>console.error("Saved Story arrival could not be restored:",error));
+    let arrival;
+    if (reconnected && character?.playMode === "story") {
+      if (!this.worlds?.[character.worldId]) throw new Error(`Unknown saved Story world ${character.worldId}`);
+      const destination = {worldId:character.worldId,position:[character.x,character.y,character.z],yaw:character.yaw};
+      // A lost receipt can move Ryo within the same world. Restore its saved
+      // pose before welcome releases any cached presence; no reload is needed.
+      if (this.worldRuntime.ready && !this.worldRuntime.switching && character.worldId === this.worldRuntime.activeWorld.id) {
+        this.worldLifecycle.resetPlayer(this.vectorFromArray(destination.position),destination.yaw,{persist:false});
+        this.acknowledgeStoryArrival(character.scriptStateRevision || null);
+      } else {
+        arrival = this.loadStoryArrival(destination,false,character.scriptStateRevision || null);
+      }
     }
     if (!reconnected || this.worldRuntime.activeWorld.id !== this.arcadeWorldId) {
-      return;
+      return arrival;
     }
     void this.arcadeCoordinator.refreshLoadedHighScores({ force: true })
       .catch(() => {
@@ -221,6 +228,7 @@ export class PlayMultiplayerAdapter {
           "Arcade high scores could not be refreshed after reconnecting.",
         );
       });
+    return arrival;
   }
 
   resetAfterDisconnect() {
@@ -253,7 +261,12 @@ export class PlayMultiplayerAdapter {
   async loadStoryArrival(destination,serverDepartureCommitted,arrivalRevision=null) {
     const world = this.worlds[destination.worldId];
     if (!world) throw new Error(`Unknown Story arrival world ${destination.worldId}`);
-    this.playerRuntime.controller?.setMovementLocked(true);
+    const character = this.accountSession.character;
+    const identity = {id:character?.id,modeRevision:character?.modeRevision,playMode:character?.playMode};
+    const client = this.multiplayerRuntime.client, socket = client?.socket;
+    const owner = {};
+    this.storyArrivalOwner = owner;
+    const release = this.playerRuntime.controller?.acquireMovementLock();
     try {
       const loaded = await this.worldRuntime.select(world,{
         serverDepartureCommitted,persistLocation:false,
@@ -261,13 +274,24 @@ export class PlayMultiplayerAdapter {
           browserSpawn:{position:destination.position,yaw:destination.yaw}}},
       });
       if (!loaded) throw new Error("Story destination load was interrupted");
+      const current = this.accountSession.character;
+      if (this.storyArrivalOwner !== owner || client !== this.multiplayerRuntime.client || socket !== client?.socket
+        || identity.id !== current?.id || identity.modeRevision !== current?.modeRevision || identity.playMode !== current?.playMode) {
+        throw new Error("Story destination load was superseded");
+      }
       // Stamp only after the actual world/pose is loaded, never when the
       // receipt first arrives. Old same-world presence must not consume it.
-      if (arrivalRevision !== null && !this.multiplayerRuntime.client?.setAppliedStoryArrivalRevision(arrivalRevision)) {
-        throw new Error("Story arrival acknowledgement could not be prepared");
-      }
-      this.multiplayerRuntime.publishPresence(true);
+      this.acknowledgeStoryArrival(arrivalRevision);
       return true;
-    } finally { this.playerRuntime.controller?.setMovementLocked(false); }
+    } finally { release?.(); }
+  }
+
+  acknowledgeStoryArrival(revision) {
+    if (revision !== null && !this.multiplayerRuntime.client?.setAppliedStoryArrivalRevision(revision)) {
+      throw new Error("Story arrival acknowledgement could not be prepared");
+    }
+    // While welcome is pending this caches the restored pose; the transport
+    // sends it only after this restoration callback completes successfully.
+    this.multiplayerRuntime.publishPresence(true);
   }
 }

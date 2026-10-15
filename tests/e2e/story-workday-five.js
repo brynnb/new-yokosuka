@@ -31,7 +31,7 @@ export async function verifyFifthMorning(page,testInfo,character){
 
 // Keep the genuinely earned morning. Both fork choices use real timed inputs;
 // cancelling Tony's ending must leave Smith's complete retry available.
-export async function verifyFifthSailorChase(page,testInfo,character,{reconnectOnly=false,arrivalOnly=false}={}){
+export async function verifyFifthSailorChase(page,testInfo,character,{reconnectOnly=false,arrivalOnly=false,lostReceipt=false}={}){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),done="story.s1.sailor-chase.completed";
   expect(initial.character.storyFlags["story.s1.goro-mai-marriage.completed"]).toBe(true);
@@ -95,6 +95,23 @@ export async function verifyFifthSailorChase(page,testInfo,character,{reconnectO
   }
   console.info("Fifth afternoon sailors: right fork, actual Smith route, natural ending and saved arrival");await begin();await route("smith",false);
   await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:75_000,intervals:[1000]}).toBe(true);await idle();
+  if(lostReceipt){
+    await page.waitForFunction(()=>window.storyLostArrival?.dropped&&window.storyLostArrival.welcomes.length&&window.storyLostArrival.presence.length);
+    const probe=await page.evaluate(()=>window.storyLostArrival);
+    const welcome=probe.welcomes[0],presence=probe.presence[0],destination=probe.destination;
+    expect(probe.before[0]).not.toBeCloseTo(destination.position[0],1);
+    expect(welcome.storyFlags[done]).toBe(true);expect(welcome.scriptStateRevision).toBe(probe.revision);
+    for(const pose of [welcome,presence]){
+      expect(pose.worldId).toBe(destination.worldId);expect(pose.x).toBeCloseTo(destination.position[0],1);
+      expect(pose.z).toBeCloseTo(destination.position[2],1);expect(pose.yaw).toBeCloseTo(destination.yaw,3);
+    }
+    expect(presence.storyArrivalRevision).toBe(probe.revision);
+    const position=await page.evaluate(()=>window.storyProbe.lifecycle.getController().actorRoot.position.asArray());
+    expect(position[0]).toBeCloseTo(destination.position[0],1);expect(position[2]).toBeCloseTo(destination.position[2],1);
+    expect(await page.evaluate(()=>window.storyProbe.starts.filter(id=>id==="story-s1-sailor-chase-smith").length)).toBe(1);
+    console.info("Fifth afternoon sailors: lost completion reply recovered by actual same-world socket reconnect");
+    await page.screenshot({path:testInfo.outputPath("fifth-sailors-lost-reply-reconnected-arrival.png")});
+  }
   await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.ready&&!window.storyProbe.lifecycle.worldRuntime.switching);
   const final=await check(true);expect(final.character.worldId).toBe("mfsy");expect(final.character.x).toBeCloseTo(-35.093055725097656,1);expect(final.character.z).toBeCloseTo(88.52650451660156,1);
   await reload();await check(true);expect(await page.evaluate(()=>window.storyProbe.starts.some(id=>id.startsWith("story-s1-sailor-chase-")))).toBe(false);

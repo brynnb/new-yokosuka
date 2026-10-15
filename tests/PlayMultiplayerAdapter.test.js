@@ -59,7 +59,7 @@ test("Story destination waits for scene cleanup and ignores duplicate/stale rece
   const {adapter}=createAdapter({worlds:{mfsy:{id:'mfsy'}},
     accountSession:{character,applyWelcome:value=>Object.assign(character,value)},
     scriptEventController:{waitForRunEnd:()=>ended},
-    playerRuntime:{controller:{setMovementLocked(){}}},
+    playerRuntime:{controller:{acquireMovementLock(){return ()=>{};}}},
     worldRuntime:{select:async(world,options)=>{loaded.push([world,options]);return true;}}});
   const message={characterId:12,modeRevision:7,runId:99,state:{revision:4,destination:{id:'s1.harbor.bus-arrival',worldId:'mfsy',position:[130.5,0,140.6],yaw:Math.PI}}};
   const pending=adapter.applyStoryDestination(message);await Promise.resolve();assert.equal(loaded.length,0);
@@ -76,7 +76,7 @@ test("failed Story world loading keeps the committed destination for reload",asy
   const {adapter}=createAdapter({worlds:{mfsy:{id:'mfsy'}},
     accountSession:{character,applyWelcome:value=>Object.assign(character,value)},
     scriptEventController:{waitForRunEnd:async()=>{}},
-    playerRuntime:{controller:{setMovementLocked:value=>locks.push(value)}},
+    playerRuntime:{controller:{acquireMovementLock:()=>{locks.push(true);return ()=>locks.push(false);}}},
     worldRuntime:{select:async()=>false}});
   await assert.rejects(adapter.applyStoryDestination({characterId:12,modeRevision:7,runId:9,
     state:{revision:4,destination:{id:'s1.harbor.bus-arrival',worldId:'mfsy',position:[130.5,0,140.6],yaw:Math.PI}}}),/interrupted/);
@@ -86,10 +86,48 @@ test("failed Story world loading keeps the committed destination for reload",asy
 test("Story arrival is acknowledged only after world loading applies the pose",async()=>{
   let finish;const loaded=new Promise(resolve=>{finish=resolve;}),character={id:12,modeRevision:7,scriptStateRevision:4};
   const {adapter,calls}=createAdapter({worlds:{mfsy:{id:"mfsy"}},accountSession:{character,applyWelcome:value=>Object.assign(character,value)},
-    scriptEventController:{waitForRunEnd:async()=>{}},playerRuntime:{controller:{setMovementLocked(){}}},worldRuntime:{select:()=>loaded}});
+    scriptEventController:{waitForRunEnd:async()=>{}},playerRuntime:{controller:{acquireMovementLock(){return ()=>{};}}},worldRuntime:{select:()=>loaded}});
   const pending=adapter.applyStoryDestination({characterId:12,modeRevision:7,runId:9,state:{revision:4,destination:{id:"s1.work.biker-alley",worldId:"mfsy",position:[-92,0,25],yaw:0}}});
   await Promise.resolve();await Promise.resolve();assert.equal(calls.some(c=>c?.[0]==="arrival-applied"),false);
   finish(true);await pending;assert.deepEqual(calls.slice(-2),[["arrival-applied",4],["publish",true]]);
+});
+
+test("Story reconnect restores the saved same-world pose before publishing; Free roam keeps offline movement", () => {
+  const character = { id: 12, modeRevision: 7, scriptStateRevision: 4, playMode: "story", worldId: "dobuita", x: 70, y: 0, z: 20, yaw: 1.2 };
+  const { adapter, calls } = createAdapter({ worlds: { dobuita: { id: "dobuita" } }, accountSession: { character } });
+  adapter.onConnected(true);
+  assert.deepEqual(calls, [["reset", { values: [70, 0, 20] }, 1.2, { persist: false }], ["arrival-applied", 4], ["publish", true]]);
+  calls.length = 0; character.playMode = "free_roam"; adapter.onConnected(true);
+  assert.deepEqual(calls, []);
+});
+
+test("Story reconnect returns destination loading and cannot acknowledge a newer character's arrival", async () => {
+  let finish;
+  const character = { id: 12, modeRevision: 7, scriptStateRevision: 4, playMode: "story", worldId: "mfsy", x: 70, y: 0, z: 20, yaw: 1.2 };
+  const locks = [];
+  const { adapter, calls } = createAdapter({ worlds: { mfsy: { id: "mfsy" } }, accountSession: { character },
+    playerRuntime: { controller: { acquireMovementLock: () => { locks.push("acquire"); return () => locks.push("release"); } } },
+    worldRuntime: { activeWorld: { id: "dobuita" }, select: () => new Promise(resolve => { finish = resolve; }) } });
+  const pending = adapter.onConnected(true);
+  assert.equal(typeof pending?.then, "function"); assert.deepEqual(calls, []);
+  character.modeRevision++;
+  finish(true); await assert.rejects(pending, /superseded/);
+  assert.deepEqual(calls, []); assert.deepEqual(locks, ["acquire", "release"]);
+});
+
+test("overlapping Story loads release only their own movement lock and never stamp an obsolete arrival", async () => {
+  const pending = [], owners = new Set();
+  const { adapter, calls } = createAdapter({ worlds: { mfsy: { id: "mfsy" } },
+    playerRuntime: { controller: { acquireMovementLock: () => { const owner = {}; owners.add(owner); return () => owners.delete(owner); } } },
+    worldRuntime: { select: () => new Promise(resolve => pending.push(resolve)) } });
+  const destination = { worldId: "mfsy", position: [1, 0, 2], yaw: 0 };
+  const first = adapter.loadStoryArrival(destination, false, 4);
+  const second = adapter.loadStoryArrival(destination, false, 5);
+  assert.equal(owners.size, 2);
+  pending[0](true); await assert.rejects(first, /superseded/);
+  assert.equal(owners.size, 1); assert.deepEqual(calls, []);
+  pending[1](true); assert.equal(await second, true);
+  assert.equal(owners.size, 0); assert.deepEqual(calls, [["arrival-applied", 5], ["publish", true]]);
 });
 
 test("multiplayer adapter owns presence animation revision", () => {

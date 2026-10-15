@@ -623,12 +623,53 @@ test("saved-name validation completes before initial presence", async () => {
     }),
   });
   assert.equal(socket.sent.length, 0);
+  assert.equal(client.welcomed, false);
+  assert.equal(client.setLocalPresence(localState({ x: 70 }), { force: true }), false);
+  assert.equal(client.forcePresence(), false);
+  assert.equal(socket.sent.length, 0);
   finishWelcome();
   await welcomeReady;
   await Promise.resolve();
   assert.equal(socket.sent.length, 1);
   assert.equal(socket.sent[0].type, "presence");
+  assert.equal(socket.sent[0].x, 70);
   client.close();
+});
+
+test("failed or obsolete welcome restoration cannot publish cached poses or close a newer socket", async t => {
+  const errors = t.mock.method(console, "error", () => {});
+  const originalWindow = globalThis.window;
+  const scheduled = [];
+  globalThis.window = { setTimeout: callback => (scheduled.push(callback), scheduled.length), clearTimeout() {} };
+  try {
+    for (const obsoleteFailure of [false, true]) {
+      const pending = [];
+      const client = new MultiplayerClient({ url: "ws://test/ws", WebSocketClass: FakeWebSocket,
+        callbacks: { onWelcome: () => new Promise((resolve, reject) => pending.push({ resolve, reject })) } });
+      const welcome = () => FakeWebSocket.instances.at(-1).emit("message", { data: JSON.stringify({
+        v: MULTIPLAYER_PROTOCOL_VERSION, type: "welcome", self: { id: "one" }, worldState: {},
+      }) });
+      client.setLocalPresence(localState()); client.connect();
+      const first = client.socket; first.open(); welcome();
+      first.close(); scheduled.at(-1)();
+      const second = client.socket; second.open(); welcome();
+      if (obsoleteFailure) pending[0].reject(Error("old arrival failed")); else pending[0].resolve();
+      await Promise.resolve(); await Promise.resolve();
+      assert.equal(second.sent.length, 0); assert.equal(second.readyState, FakeWebSocket.OPEN);
+      assert.equal(client.welcomed, false);
+      pending[1].reject(Error("current arrival failed"));
+      await Promise.resolve(); await Promise.resolve();
+      assert.equal(second.sent.length, 0); assert.equal(second.readyState, FakeWebSocket.CLOSED);
+      assert.equal(client.welcomed, false); assert.equal(client.socket, null);
+      // Recovery uses the existing backoff, not stale presence or a fatal session ban.
+      scheduled.at(-1)(); const third = client.socket; third.open(); welcome();
+      client.setLocalPresence(localState({ x: 80 }), { force: true });
+      pending[2].resolve(); await Promise.resolve(); await Promise.resolve();
+      assert.equal(third.sent.length, 1); assert.equal(third.sent[0].x, 80);
+      client.close();
+    }
+    assert.equal(errors.mock.callCount(), 2); // Current failures only, never obsolete callbacks.
+  } finally { globalThis.window = originalWindow; }
 });
 
 test("a replaced session stops reconnecting and reports why it ended", () => {

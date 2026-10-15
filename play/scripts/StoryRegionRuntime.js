@@ -62,8 +62,10 @@ export class StoryRegionRuntime {
       if (this.inside.has(region.id) || (!region.repeatable && character.storyFlags?.[region.completedFlag])
         || (region.requiredFlags || []).some(flag => character.storyFlags?.[flag] !== true)
         || (region.excludedFlags || []).some(flag => character.storyFlags?.[flag] === true)) continue;
+      // Welcome restoration can still be pending. A request sent without its
+      // current position is rejected and must not consume this entry latch.
+      if (this.publishPresence() !== true) return false;
       this.inside.add(region.id);
-      this.publishPresence();
       const generation = this.generation;
       void this.controller.start({ kind: "enter" }, { area }).then(result => {
         if (generation === this.generation && result?.outcome === "rejected") this.onError(result.error);

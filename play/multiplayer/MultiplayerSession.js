@@ -154,8 +154,7 @@ export class MultiplayerSession {
         this.chat.setConnected(true);
         this.chat.beginWorldSession(chatHistory);
         game.onCharacterState?.(character, inventory, dialogueState);
-        game.onConnected?.(reconnected);
-        return undefined;
+        return game.onConnected?.(reconnected);
       },
       onClientCount: (count) => this.chat.setPlayerCount(count),
       onPlayerDirectory: (players) => this.chat.setPlayerDirectory(

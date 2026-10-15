@@ -181,13 +181,32 @@ monotonic acknowledgement, duplicate receipts and failed loading without an
 early acknowledgement. The connected sailor check exercises an actual
 same-world settlement and reload at the original ending position.
 
-This verifies the live pending-arrival boundary, not every reconnect race.
-Losing the socket before a same-world receipt is applied still needs a focused
-audit of welcome/presence ordering and same-world saved-pose restoration.
-`CharacterForAccount` also reads the character header and flags in separate
-queries; a targeted concurrent-completion test is still needed to establish
-snapshot consistency. These are explicit remaining verification items, not
-claims resolved by the arrival stamp.
+Reconnect now restores the server's saved Story pose even within the current
+world, before the transport permits any outgoing presence. Different-world
+restoration returns its loading promise through the session boundary. Failed
+restoration retries through the ordinary reconnect path without sending the
+old cached pose. Obsolete welcome/load completions cannot publish an arrival
+for a newer socket, character or play mode; scoped movement locks release only
+their own owner. Free roam retains its existing offline movement behavior.
+Region entry waits for successful presence publication without consuming its
+entry latch while welcome is pending.
+
+A real earned-save browser check completes the sailor chase, drops only the
+durable Smith-destination reply and closes that socket, then allows the normal
+reconnect without reloading the page. The new welcome, first outgoing presence,
+rendered actor and subsequent saved reload all agree with the original ending's
+X/Z/facing. Terry's clue remains earned, the interrogation does not replay,
+money stays ¥19,836 and inventory stays unchanged. No afternoon cargo, wages or
+complete-workday outcome is granted. This verifies that interruption; it does
+not claim every possible network failure has been rendered.
+
+Character header/revision, flags and inventory also share a read-only database
+snapshot. A deterministic PostgreSQL test forces a completion between the
+header and flag queries. Before the fix it returned the old position/balance
+and revision with the new completion flag. Both character-only and full-state
+readers now return a coherent pre-commit save, and a fresh read sees the whole
+new outcome. Progression's separately queried HTTP statistics are outside this
+snapshot contract.
 
 ## Purpose
 

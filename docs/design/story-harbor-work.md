@@ -1099,9 +1099,13 @@ first arrival reservation and subsequent old poses could rewind it. The
 [arrival handoff](storyline-gameplay.md#committed-story-arrival-handoff) now
 requires the exact loaded-pose revision before accepting any reserved Story
 arrival. The post-fix browser continuation verifies the original ending
-position survives the handoff and reload. The full-page reload check is not
-proof of interrupted-socket recovery: same-world welcome ordering and
-character/flag snapshot consistency remain targeted audit items. An earlier
+position survives the handoff and reload. A separate earned-save browser check
+now drops the actual Smith completion reply and closes its socket. Ordinary
+reconnect (without a page reload) restores the saved same-world pose before the
+first outgoing presence, preserves the clue/money/inventory and does not replay
+the interrogation; the subsequent full reload also matches. A deterministic
+concurrent PostgreSQL test reproduced mixed old-header/new-flag reads; shared
+read snapshots now keep character, flags and inventory coherent. An earlier
 intermittent `no_script` startup rejection was not reproduced by the twelve
 focused reload checks; retained diagnostics do not imply that its cause is
 resolved. Source assets remain local (113 verified records, 5,696,751 bytes);

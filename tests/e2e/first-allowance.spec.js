@@ -63,6 +63,37 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     localStorage.setItem("new-yokosuka.guest-token.v1", token);
     localStorage.setItem("new-yokosuka.quick-play-confirmations.v1", "3");
   }, guestToken);
+  if (process.env.NEW_YOKOSUKA_FIFTH_SAILORS_LOST_RECEIPT_E2E === "true") await page.addInitScript(() => {
+    const add = WebSocket.prototype.addEventListener, send = WebSocket.prototype.send;
+    const probe = window.storyLostArrival = { dropped: false, welcomes: [], presence: [] };
+    let droppedSocket;
+    WebSocket.prototype.addEventListener = function(type, listener, options) {
+      if (type !== "message") return add.call(this, type, listener, options);
+      return add.call(this, type, event => {
+        let message; try { message = JSON.parse(event.data); } catch { return listener.call(this, event); }
+        if (!probe.dropped && message.type === "script_event_committed"
+          && message.state?.destination?.id === "s1.work.sailor-smith-alley") {
+          probe.dropped = true; droppedSocket = this;
+          probe.destination = message.state.destination;
+          probe.revision = message.state.revision;
+          probe.before = window.storyProbe.lifecycle.getController().actorRoot.position.asArray();
+          // The server has committed, but the application never receives its
+          // reply. Exercise the real socket reconnect, not a page reload.
+          this.close(4001, "test lost Story completion reply");
+          return;
+        }
+        if (probe.dropped && this !== droppedSocket && message.type === "welcome") probe.welcomes.push(message.character);
+        return listener.call(this, event);
+      }, options);
+    };
+    WebSocket.prototype.send = function(data) {
+      if (probe.dropped && this !== droppedSocket) {
+        const message = JSON.parse(data);
+        if (message.type === "presence") probe.presence.push(message);
+      }
+      return send.call(this, data);
+    };
+  });
   // Instrument the actual served modules, including HMR timestamp variants.
   // Importing a bare second copy can observe a different prototype from /play.
   for (const [file, hook] of [
@@ -156,7 +187,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
     if(process.env.NEW_YOKOSUKA_FIFTH_SAILORS_E2E === "true"){
-      test.setTimeout(900_000);await verifyFifthSailorChase(page,testInfo,character,{reconnectOnly:process.env.NEW_YOKOSUKA_FIFTH_SAILORS_RECONNECT_E2E==="true",arrivalOnly:process.env.NEW_YOKOSUKA_FIFTH_SAILORS_ARRIVAL_E2E==="true"});expect(errors).toEqual([]);return;
+      test.setTimeout(900_000);await verifyFifthSailorChase(page,testInfo,character,{reconnectOnly:process.env.NEW_YOKOSUKA_FIFTH_SAILORS_RECONNECT_E2E==="true",arrivalOnly:process.env.NEW_YOKOSUKA_FIFTH_SAILORS_ARRIVAL_E2E==="true",lostReceipt:process.env.NEW_YOKOSUKA_FIFTH_SAILORS_LOST_RECEIPT_E2E==="true"});expect(errors).toEqual([]);return;
     }
     if(process.env.NEW_YOKOSUKA_FIFTH_MORNING_E2E === "true"){
       test.setTimeout(1_800_000);await verifyFifthMorning(page,testInfo,character);expect(errors).toEqual([]);return;

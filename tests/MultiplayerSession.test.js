@@ -52,4 +52,5 @@ test("multiplayer session forwards authoritative script event callbacks", async 
   assert.match(source, /onScriptEventYield: game\.onScriptEventYield/);
   assert.match(source, /onScriptEventCommitted: game\.onScriptEventCommitted/);
   assert.match(source, /onScriptEventRejected: game\.onScriptEventRejected/);
+  assert.match(source, /return game\.onConnected\?\.\(reconnected\)/);
 });
