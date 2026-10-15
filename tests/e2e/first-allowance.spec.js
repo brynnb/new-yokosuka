@@ -8,6 +8,7 @@ import {verifyHomeTicketPreparation,verifyAgencyQuotesAndFunds,verifyBoatTicketJ
 import {verifyJimmyMorningCall,verifyChaiArcade} from "./story-arcade-ticket.js";
 import {verifyJimmyChase} from "./story-jimmy-chase.js";
 import {verifyHarborHiring} from "./story-harbor-hiring.js";
+import {verifyForkliftTraining} from "./story-forklift-training.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -18,6 +19,10 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   test.setTimeout(process.env.NEW_YOKOSUKA_MIRROR_RETURN_E2E === "true" ? 600_000 : process.env.NEW_YOKOSUKA_CHEN_E2E === "true" || process.env.NEW_YOKOSUKA_FAMILY_E2E === "true" || process.env.NEW_YOKOSUKA_HANDGUARD_E2E === "true" || process.env.NEW_YOKOSUKA_GUI_ZHANG_E2E === "true" ? 360_000 : process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
+  if(process.env.NEW_YOKOSUKA_FORKLIFT_TRAINING_E2E==="true"){
+    page.on("pageerror",error=>console.info("Training page error:",error.message));
+    page.on("console",message=>{if(message.type()==="error")console.info("Training console error:",message.text().slice(0,500));});
+  }
   if(process.env.NEW_YOKOSUKA_BUS_E2E === "true")page.on("console",message=>{if(message.type()==="error")console.info("Story travel browser error:",message.text());});
   const guestToken = resumeId ? process.env.NEW_YOKOSUKA_STORY_RESUME_TOKEN : randomUUID();
   expect(guestToken).toBeTruthy();
@@ -65,6 +70,8 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       };`],
     ["scripts/StoryNavigationRuntime", `const probeNavigationShow = StoryNavigationRuntime.prototype.show;
       StoryNavigationRuntime.prototype.show = function(...args) { window.storyProbe.navigation = this; return probeNavigationShow.apply(this,args); };`],
+    ["scripts/StoryDeliveryRuntime", `const probeDeliveryShow = StoryDeliveryRuntime.prototype.show;
+      StoryDeliveryRuntime.prototype.show = function(...args) { window.storyProbe.delivery = this; return probeDeliveryShow.apply(this,args); };`],
     ["dialogue/NativeDialogueOverlayRuntime", `window.nativeDialogueHookInstalled = true;
       const probeNativeStart = NativeDialogueOverlayRuntime.prototype.start;
       NativeDialogueOverlayRuntime.prototype.start = function(options,...args) { window.storyProbe.nativeStarts.push(options.actorCode); return probeNativeStart.call(this,options,...args); };`],
@@ -124,6 +131,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_FORKLIFT_TRAINING_E2E === "true"){
+      test.setTimeout(540_000);
+      await verifyForkliftTraining(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_HARBOR_HIRING_E2E === "true"){
       test.setTimeout(540_000);
       await verifyHarborHiring(page,testInfo,character);

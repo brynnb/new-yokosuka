@@ -116,8 +116,10 @@ detailed callback/music fidelity remain limited. The connected
 [ticket journey](story-ticket-journey.md) now continues through the agency
 payment, Jimmy's call, Chai and Jimmy's chase/interrogation. The subsequent
 [harbor hiring](story-harbor-work.md) connects Goro's next-day promise, the
-Goro/Mai appointment, Yada's interview and Mark's introduction. Forklift
-training, workdays, the remaining Mad Angels storyline and departure remain
+Goro/Mai appointment, Yada's interview and Mark's introduction. The connected
+forklift lesson now verifies three physical deliveries, cancellation/retry,
+saved notebook/time and reload without pay or replay. Paid workdays, the
+remaining Mad Angels storyline and departure remain
 unimplemented; the checklist above distinguishes each verified sequence.
 
 For walkthrough-guided, authored progression, use the

@@ -22,6 +22,7 @@ export class ScriptEventBabylonAdapters {
     sceneStagingRuntime = null,
     combatRuntime = null,
     navigationRuntime = null,
+    deliveryRuntime = null,
   } = {}) {
     if (
       typeof cameraRuntime?.beginTransaction !== "function"
@@ -85,6 +86,7 @@ export class ScriptEventBabylonAdapters {
     this.sceneStagingRuntime = sceneStagingRuntime;
     this.combatRuntime=combatRuntime;
     this.navigationRuntime=navigationRuntime;
+    this.deliveryRuntime=deliveryRuntime;
   }
 
   adapter() {
@@ -116,6 +118,8 @@ export class ScriptEventBabylonAdapters {
       endCombat:transaction=>this.combatRuntime.finish(transaction),
       showNavigation:(prompt,transaction)=>this.navigationRuntime.show(prompt,transaction),
       endNavigation:transaction=>this.navigationRuntime.finish(transaction),
+      showDelivery:(prompt,transaction)=>this.deliveryRuntime.show(prompt,transaction),
+      endDelivery:transaction=>this.deliveryRuntime.finish(transaction),
       ownsPlayerPresentation: transaction => Boolean(transaction.cameraToken || this.combatRuntime?.active?.transaction===transaction
         || this.navigationRuntime?.active?.transaction===transaction
         || this.sceneStagingRuntime?.active?.transaction === transaction),
@@ -293,6 +297,7 @@ export class ScriptEventBabylonAdapters {
   update(transaction, deltaSeconds) {
     if(this.combatRuntime?.update(transaction,deltaSeconds)===false)return false;
     if(this.navigationRuntime?.update(transaction,deltaSeconds)===false)return false;
+    if(this.deliveryRuntime?.update(transaction,deltaSeconds)===false)return false;
     if (this.sceneStagingRuntime?.update(transaction, deltaSeconds) === false) return false;
     if (transaction.cameraToken) this.cameraRuntime.update(deltaSeconds);
     if (
@@ -319,6 +324,7 @@ export class ScriptEventBabylonAdapters {
   commit(transaction) {
     if(this.combatRuntime?.active?.transaction===transaction)throw new Error("Combat presentation has not released ownership");
     if(this.navigationRuntime?.active?.transaction===transaction)throw new Error("Navigation presentation has not released ownership");
+    if(this.deliveryRuntime?.active?.transaction===transaction)throw new Error("Delivery presentation has not released ownership");
     if (transaction.pendingMotion || transaction.pendingActivity) {
       throw new Error("script presentation committed during an unfinished operation");
     }
@@ -356,6 +362,8 @@ export class ScriptEventBabylonAdapters {
     try { this.combatRuntime?.finish(transaction); }
     catch (error) { sceneCleanupError = error; }
     try { this.navigationRuntime?.finish(transaction); }
+    catch (error) { sceneCleanupError ||= error; }
+    try { this.deliveryRuntime?.finish(transaction); }
     catch (error) { sceneCleanupError ||= error; }
     try { this.sceneStagingRuntime?.cancel(transaction); }
     catch (error) { sceneCleanupError ||= error; }

@@ -884,6 +884,7 @@ function createPlayRuntime() {
   });
   const scriptEvents = createScriptEventAssembly({
     scene,
+    getForklifts:()=>forkliftAssembly,
     getController:()=>controller,
     getBinding:action=>generalPreferences.binding(action),
     camera,

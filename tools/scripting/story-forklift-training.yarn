@@ -1,0 +1,22 @@
+-> Start forklift practice
+    <<jump Attempt>>
+-> Leave it for now
+    <<jump Done>>
+===
+title: Attempt
+---
+<<start_challenge "s1.mfsy.forklift-training">>
+<<if challenge_result("s1.mfsy.forklift-training") == "success">>
+<<advance_story_time "s1.work.training-end">>
+{{effects}}
+<<jump Done>>
+<<else>>
+-> Try again
+    <<jump Attempt>>
+-> Leave it for now
+    <<jump Done>>
+<<endif>>
+===
+title: Done
+---
+<<complete>>

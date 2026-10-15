@@ -232,6 +232,15 @@ export class ScriptEventDialoguePresenter {
     const use=document.createElement("button");use.type="button";use.className="dialogue-option";use.textContent="Enter door";use.disabled=!prompt.ready||!v.canUse;use.addEventListener("click",()=>{if(current()){this.onNavigationUse();focusWorld();}});this.dom.options.append(use);this.navigationUseButton=use;this.dom.options.hidden=false;return true;
   }
 
+  showDelivery(prompt){
+    this.releaseAudio();this.active=true;this.clearOptions();
+    this.dom.root.setAttribute("data-presentation","combat");this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");
+    this.dom.speaker.textContent=prompt.label;
+    const view=prompt.delivery;
+    this.dom.sourceText.textContent=prompt.ready?`${view.delivered} / ${view.required} crates delivered · ${Math.ceil(view.remainingMs/1000)}s\n${view.cargoId?'Lift a crate, carry it to the green area, then lower the forks and leave it upright.':'Return to the starting position for the next crate.'}`:"Preparing your forklift and crates…";
+    this.dom.japaneseText.hidden=true;this.dom.options.hidden=true;this.onActiveChanged(true);return true;
+  }
+
   showOptions(options) {
     if (!Array.isArray(options) || options.length === 0) {
       throw new Error("script event has no presented options");

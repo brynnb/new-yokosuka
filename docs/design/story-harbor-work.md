@@ -73,7 +73,70 @@ original forklift. Exhaustive gesture, prop and audio fidelity is not claimed.
 The shared presentation, package ownership/readiness and scene-object suites
 pass 56 checks, including failure/cancellation cleanup for the reused room lease.
 
-Forklift training, authoritative crate quotas/pay, the workday calendar,
+Forklift training now passes the connected three-delivery browser check,
+including cancellation/retry, saved completion, controls and reload.
+Paid crate quotas, the workday calendar,
 morning races and subsequent Mad Angels encounters remain missing. Existing
 forklift driving, cargo and racing must be reused; neither film completion
 nor a client-reported win may grant a shift's salary or story outcome.
+
+## Forklift practice
+
+Event: `forklift-training`, after the saved hiring chapter. An authored approach
+near the original Mark introduction offers practice or leaving, between 14:00
+and 17:00 on the personal clock. Missing the afternoon permits another day.
+The original hiring film already supplies Mark's instructions and introduction;
+the practice HUD adds unvoiced instructions rather than invented voice lines.
+
+The ordinary forklift assembly supplies the original vehicle, crate model,
+Havok movement, lift controls, driver animation, sounds and gameplay camera.
+The exercise leases one server-created vehicle and one crate at a time. Other
+players can see these ordinary world entities, but cannot drive or claim a
+different player's assigned equipment. Their progress and calendars are separate.
+No additional NPC is needed. Preserve the personal weather and scene lighting.
+
+Three lift/carry/drop deliveries complete the exercise. The server watches
+accepted vehicle/cargo updates: bounded movement, the assigned driver, lifted
+cargo, at least three seconds carrying, an upright stationary drop inside the
+destination and a one-second settled interval. Completed crate IDs are removed
+and cannot count again. The next crate appears only after returning to the
+starting position, so it cannot materialize in the reversing vehicle's path.
+A fixed jitter allowance cannot be farmed by sending
+extra position updates. This validates observations from the existing client
+physics; it is not a claim of fully server-simulated vehicle physics.
+
+Original MARU's forklift begins at browser `[-11.376,0,120.5845]` with a converted
+facing of approximately 74.61 degrees. The exercise uses the same street and
+facing with nearby authored spawn/pickup/drop coordinates. A raw geometry ray
+showed the first draft's north-facing position had a wall only 2.16 metres ahead;
+the current corridor follows the original facing. Its two-by-three-metre
+delivery pad leaves clearance before the wall. Exact cargo placement,
+three deliveries, the marked outdoor loading pad and a fifteen-minute real-time
+limit are adaptations. The original has work inside Warehouse No. 3 until 17:00;
+opening that warehouse's native work-room setup is not required for this
+condensed lesson. The destination marker uses the actual rendered terrain.
+
+The existing Story run pauses the personal clock. Only observed success lets
+Yarn atomically save training, its day, the next notebook page and a 17:00
+finish. This practice grants no salary or quota bonus. Paid shifts are separate.
+Expiry offers retry/leave; cancellation, failed loading and stale responses
+cannot settle progress. Every exit releases the attempt's entities, restores
+the prior player pose/camera and returns controls. Reload after a committed
+result preserves the note and avoids replay.
+
+Focused server tests cover the actual generated Yarn and its service boundary,
+movement limits, carry/drop evidence, duplicate delivery prevention, character
+and mode fencing, failure and cancellation. Client checks cover resource leases,
+late loading, missing terrain, keyboard releases after UI focus changes and
+vehicle removal. The connected hardware-rendered check resumes the actual
+hiring-earned save, declines once, cancels an entered vehicle, retries, then
+uses normal keyboard input and Havok cargo for all three deliveries. PostgreSQL
+saves the milestone, day, notebook page and 17:00 finish; yen and inventory stay
+unchanged. Controls, camera and location restore, and reload preserves completion
+without another prompt. No delivery evidence or future flags are injected.
+
+The check also exposed a shared fleet bug: mounting another vehicle re-enabled
+removed forklifts, including their colliders at the same spawn. The authoritative
+fleet IDs now fence visibility and entry, and a finished removal fade disposes
+the retained model. This repair applies to ordinary forklifts as well as training.
+Desktop keyboard gameplay is verified; mobile controls have not been assessed.

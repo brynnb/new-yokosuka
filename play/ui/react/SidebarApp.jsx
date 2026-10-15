@@ -197,7 +197,7 @@ export function SidebarApp() {
             {playMode === "story" && <Text size="1" color="gray">Ryo · Personal story and clock</Text>}
             {playMode === "story" && <SidebarSelect id="story-wait-button" placeholder="Wait until..." picker="wait" disabled={modeBusy}
               onValueChange={selectSidebarStoryWait}>
-              {storyTime.transitions.map(target => <Select.Item key={target.id} value={target.id}>{target.label}</Select.Item>)}
+              {storyTime.transitions.filter(target=>target.id.startsWith("s1.wait.")).map(target => <Select.Item key={target.id} value={target.id}>{target.label}</Select.Item>)}
             </SidebarSelect>}
             <SidebarSelect
               id="travel-button"
