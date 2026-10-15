@@ -20,6 +20,9 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.mfsy.workday-four-spying","description":"Lunch-hour coworker warning after the fourth morning cargo."},
+    {"kind":"sequence","identifier":"s1.mfsy.workday-four-spying.start","description":"Private original Tsuyoshi, authored held conversation; no durable effects."},
+    {"kind":"sequence","identifier":"s1.mfsy.workday-four-spying.finish","description":"Restore exploration before acknowledging the warning."},
     {"kind":"bounds","identifier":"s1.jomo.workday-three-night","description":"Bedside sleep after Charlie's acknowledged Lan Di clue."},
     {"kind":"bounds","identifier":"s1.mfsy.workday-four-race-entry","description":"Fourth morning boarding after saved completed third day."},
     {"kind":"bounds","identifier":"s1.ma00.workday-four-race","description":"Independently earned fourth morning race on the original course."},

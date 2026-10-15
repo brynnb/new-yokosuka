@@ -2,6 +2,13 @@
   "schema":"new-yokosuka-authored-story-scenes-v1",
   "motionBanks":{"harborPay":"play/assets/harbor/payday/M_MO01.MOTN","basement":"play/assets/basement/mirror-search/M_0138.MOTN","koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN","mgqb":"play/assets/harbor/goro-encounter/M_MGQB.MOTN","mbui":"play/assets/harbor/warehouse-eight/M_0153A.MOTN","oldDistrict":"play/assets/harbor/old-district-entry/M_0153.MOTN"},
   "scenes":[
+    {"id":"s1.mfsy.workday-four-spying","area":"MFSY","worldId":"mfsy",
+     "provenance":"Original TYMK/RFA_L coworker model and F1109 warning. Authored standing conversation on the previously rendered Alpha-side walkway, about nine metres from HIRUAUTH's seated Tsuyoshi. Condenses his post12:45 walk and repeated inquiries; no recovered patrol, gestures or camera. All coordinates are native (shared renderer mirrors X).",
+     "actorDefinitions":[{"actorCode":"TYMK","label":"Tsuyoshi Murakami","modelCode":"RFA_L","activityOnly":true}],
+     "actors":[
+       {"tag":"AKIR","pose":{"x":-45.7,"y":0,"z":48.2,"rotationX":0,"rotationY":225,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+       {"tag":"TYMK","pose":{"x":-44.4,"y":0,"z":49.5,"rotationX":0,"rotationY":45,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+     ],"camera":{"positionX":-48.5,"positionY":1.8,"positionZ":48.5,"targetX":-44.9,"targetY":1.1,"targetZ":48.9,"roll":0,"perspective":55}},
     {"id":"s1.mfsy.payday","area":"MFSY","worldId":"mfsy","waitForMotions":true,
      "provenance":"Original ALP_PAY M_MO01 paired salary handover clips; original ALPHA office scenery and existing TMRA/KWD_L binding. Nearby two-person office alignment, camera and borrowed encouragement lines are authored. No recovered native payroll/amount display or exact banknote/finger attachment. The enclosing Yarn transaction alone pays.",
      "actorDefinitions":[{"actorCode":"TMRA","label":"Ryozo Yada","modelCode":"KWD_L","activityOnly":true}],

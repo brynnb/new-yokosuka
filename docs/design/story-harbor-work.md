@@ -772,8 +772,9 @@ rescue and departure still need connected progression.
 These ordinary Yarn events continue the acknowledged Charlie chapter. The
 GameSpot guide, printed pp. 58–59, places the Lan Di dream before the next
 morning's forklift race, eight-crate Warehouse No. 15-to-18 shift and lunch.
-The current implementation connects through that morning batch; the lunch
-inquiry, Goro trap and remaining fourth-day outcomes are separate work.
+The current implementation connects through that morning batch and the
+separately saved lunch inquiry below. The Goro trap and remaining fourth-day
+outcomes are separate work.
 
 | Event | Eligibility / presentation | Saved outcome |
 | --- | --- | --- |
@@ -825,6 +826,44 @@ replayed the dream nor injected a result. The browser checks BGM201 selection,
 not an auditory mix comparison; exact lighting, hand and facial fidelity remain
 unverified. No new asset export, push or deployment was performed.
 
-Next: the coworker's lunch-break spying clue, afternoon cargo/Goro trap,
-once-only payday and Mark's Long Zha explanation. These must remain separate
-from the morning receipt, followed by the fifth workday and finale.
+Next: afternoon cargo/Goro trap, once-only payday and Mark's Long Zha
+explanation. These must remain separate from the morning and warning receipts,
+followed by the fifth workday and finale.
+
+## Fourth-day coworker warning
+
+`workday-four-spying` is another ordinary authored Yarn conversation, not a
+new event interpreter. The contemporary GameSpot guide, printed p. 59, describes
+speaking with the coworker who leaves lunch around 12:45 and learning that Ryo
+is being watched. Original Disc 3 `FREE03.AFS/F1109.SRF` identifies the speaker
+as `TYMK` (Tsuyoshi Murakami), with both the watched-workers and watched-Ryo
+lines. Archive SHA256:
+`97cd342a00004d39b14fa47731a69487d4fedf5663a0a5c5a9f94448a82912c4`.
+
+| Field | Implementation |
+| --- | --- |
+| Eligibility / trigger | Story-mode Ryo, completed fourth morning and Charlie clue; approach the tested Alpha-side walkway between 12:45 inclusive and 14:00 exclusive. Missing lunch allows returning during a later personal lunch break rather than permanently stranding the chapter. |
+| Actors / camera | Original `TYMK/RFA_L`, privately staged with Ryo. Standing near the original lunch location instead of reproducing the coworker's patrol and repeated inquiries. Positions, held original idle motions, inward-facing poses and two-person camera are authored approximations. |
+| Dialogue / audio | Six original English lines: F1109B087, A039, B095, B096, B099, A044. Condensed authored order; only one version of each warning, not every alternate wording in the archive. Original speech is exported through the shared voice pack; preserve normal environment/weather, no invented scene music or props. |
+| Outcome / exit | Acknowledged ending saves only its milestone and `notebook.s1.harbor-spying`. Remain at the approach, restoring camera and controls. No clock jump, payment, inventory, trap result, Long Zha clue or whole-day completion. |
+| Failure / replay | Cancellation at staging, dialogue or release saves nothing; physical re-entry retries. Once completed, re-entry/reload does not replay or add another note. |
+
+Real compiler/engine checks cover the precise lunch-hour boundary, missing
+prerequisites, wrong region, Free roam, incomplete opening, completed state,
+cancellation at four presentation stages and exactly the two allowed effects.
+The connected browser continuation uses the earned noon save and ordinary
+personal waiting, approaches on foot, cancels/retries, completes the voiced
+exchange and reloads. The first captured pass exposed outward-facing actors;
+their authored angles were corrected before visual acceptance. Its earned save
+is preserved, and revalidation starts from a separate copy of the genuine noon
+backup, not injected future flags or a replayed workday.
+
+Run that bounded continuation with `NEW_YOKOSUKA_FOURTH_LUNCH_E2E=true` through
+the existing isolated `first-allowance.spec.js` harness. This is not a new
+character bootstrap or production operation. The corrected captured pass shows
+Ryo and Tsuyoshi facing one another and passes saved reload, with ¥17,436 and
+unchanged inventory. PostgreSQL confirms only the warning/notebook were added;
+no fourth-day wage, Long Zha or whole-day completion. All six new voice files
+(68,135 bytes) pass immutable hash/size verification; audio was not compared by
+listening. Afternoon/Goro/payday/Long Zha remain the next unimplemented
+connected events. No push, deployment or asset publication was performed.

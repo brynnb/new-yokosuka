@@ -143,7 +143,9 @@ The evening biker chase, both real fights and original Charlie interrogation now
 also pass connected rendered continuation, cancellation/retry and saved reload.
 The return-home Lan Di dream, fourth-day race and morning cargo/lunch now pass
 connected rendered continuation through cancellation/retry, actual driving,
-independent saved outcomes and reload. The fourth afternoon, subsequent Mad
+independent saved outcomes and reload. A separate lunch-hour Tsuyoshi warning
+now saves the spying notebook clue, with cancellation/retry and saved reload.
+The fourth afternoon, subsequent Mad
 Angels workday and departure remain unimplemented;
 the checklist above distinguishes each verified sequence.
 

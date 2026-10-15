@@ -3,6 +3,14 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"workday-four-spying","disc":3,"actor":"TYMK","presentActors":[],"area":"MFSY","trigger":"enter","priority":730,
+      "title":"Lunch break — Tsuyoshi's warning","hours":[12.75,14],"bounds":"s1.mfsy.workday-four-spying",
+      "requiredFlags":["story.s1.workday-four-morning.completed","story.s1.charlie-harbor.completed"],"completedFlag":"story.s1.workday-four-spying.completed","effects":["notebook.s1.harbor-spying"],
+      "staging":"s1.mfsy.workday-four-spying","voiceIds":["F1109B087","F1109A039","F1109B095","F1109B096","F1109B099","F1109A044"],
+      "nativeSources":[{"role":"original-spying-dialogue-and-voices","locator":"disc3/SCENE/03/STREAM/FREE03.AFS#F1109.SRF,F1109B087.str,F1109A039.str,F1109B095.str,F1109B096.str,F1109B099.str,F1109A044.str","sha256":"97cd342a00004d39b14fa47731a69487d4fedf5663a0a5c5a9f94448a82912c4"}],
+      "provenance":"GameSpot printed p59: speak to the coworker who leaves lunch around12:45 and learn the Mad Angels are spying on the workers/Ryo. Original TYMK F1109 English SRF/voices confirm Tsuyoshi's warning. Six-line ordering, nearby standing encounter instead of repeated patrol conversations, held motions and camera are authored. Use one watched-workers line and one watched-Ryo line, not all alternate phrasings. Lunch-hour eligibility can recur on a later personal day if missed. Acknowledged dialogue saves only warning/notebook; no calendar jump, wage, Goro result or whole-day completion."
+    },
+    {
       "id":"workday-three-night","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":690,
       "title":"After Charlie — the Lan Di dream","hours":[20,24],"bounds":"s1.jomo.workday-three-night",
       "requiredFlags":["story.s1.workday-three.completed","story.s1.charlie-harbor.completed"],"excludedFlags":["story.s1.workday-four-race.completed"],

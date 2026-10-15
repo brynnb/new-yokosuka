@@ -160,6 +160,7 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.workday-four-morning",page:Object.freeze({id:"story-workday-four-morning",text:"Lan Di appeared in my dream.\n\nBack to the harbor for the fourth working day. Keep looking into the Mad Angels' trade."})},
   {flag:"notebook.s1.workday-four-race",page:Object.freeze({id:"story-workday-four-race",text:"Finished the fourth morning's forklift race.\n\nToday's job is eight crates from Warehouse No. 15 to Warehouse No. 18."})},
   {flag:"notebook.s1.workday-four-lunch",page:Object.freeze({id:"story-workday-four-lunch",text:"Delivered the morning batch and had lunch with the other workers.\n\nAsk around about the Mad Angels before returning to the afternoon deliveries."})},
+  {flag:"notebook.s1.harbor-spying",page:Object.freeze({id:"story-harbor-spying",text:"Tsuyoshi feels someone is watching the workers.\nHe saw someone spying on me, too.\n\nThat might make the Mad Angels easier to find.\nBack to work at 2 p.m."})},
 ]);
 
 export function notebookPagesForCharacter(character) {
