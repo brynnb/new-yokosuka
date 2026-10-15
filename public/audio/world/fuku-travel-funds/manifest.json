@@ -1,0 +1,1948 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01MON.AFS",
+      "sha256": "6b7044b821d0e34a90c0a6baaacac9cbc2df5bcd71cd2d91649337e3a6c81d06"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_CHOFK.SND",
+      "sha256": "d7717ae5387e0d1de4ca45ffc24764b77606979efddee97a911481983a327465"
+    },
+    "authManifest": "play/assets/hazuki/fuku-travel-funds/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01MONA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONA001.aiff",
+      "nativeMember": "01MONA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "27a1d67fbf5b7b854b812c73ad7c96a53e83dd4ad08128ea378ea03a912e95f7",
+      "speakerId": "AKIR",
+      "sourceText": "What's that?",
+      "displayText": "What's that?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONA001.wav",
+      "byteLength": 16172,
+      "sha256": "be15e6b79d70af5fb0b985034f2a6c70e6e0404fd26b9bfa6ec8edf7ebd1738b"
+    },
+    {
+      "voiceId": "01MONA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONA002.aiff",
+      "nativeMember": "01MONA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "79fc6e114856b588ad3edba9fa29e40ad46ca5bb9bee1152141761ac13499fe3",
+      "speakerId": "AKIR",
+      "sourceText": "Fuku-san.",
+      "displayText": "Fuku-san.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONA002.wav",
+      "byteLength": 24364,
+      "sha256": "175b5cf84db2d92221fac395db22e660fb04f5107b614c04e8ad9311e48b50a7"
+    },
+    {
+      "voiceId": "01MONA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONA003.aiff",
+      "nativeMember": "01MONA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 6144,
+      "nativeSha256": "f7b69f978726c5470b77f635fb0c912440a2972ba57704aed7a52341448ab586",
+      "speakerId": "AKIR",
+      "sourceText": "Are you sure?",
+      "displayText": "Are you sure?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONA003.wav",
+      "byteLength": 24364,
+      "sha256": "707fca1a713b38258f46eafeeae47c23eff23bc14e1bca71a6aefe7b26dbbc89"
+    },
+    {
+      "voiceId": "01MONA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONA004.aiff",
+      "nativeMember": "01MONA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 10240,
+      "nativeSha256": "4ebcd014fcf52d638ec5c08843720ea3f99afe8d507df8f0a55a6ab0d6fb026f",
+      "speakerId": "AKIR",
+      "sourceText": "Ahh, that's still not enough.",
+      "displayText": "Ahh, that's still not enough.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONA004.wav",
+      "byteLength": 40748,
+      "sha256": "681d9fed34061ab9955ee500f43a6725ecb0fa10241968c33de4facd53cc080e"
+    },
+    {
+      "voiceId": "01MONA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONA005.aiff",
+      "nativeMember": "01MONA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 16384,
+      "nativeSha256": "7f986db215343c781e1846aaa184abee45e78bfe3c6a23936b08b90e74e04870",
+      "speakerId": "AKIR",
+      "sourceText": "Aida Florist=@＆Nozomi's place?",
+      "displayText": "Aida Florist...\nNozomi's place?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 37
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONA005.wav",
+      "byteLength": 65324,
+      "sha256": "e3c65bc3c3a2c12838d12fe5c9c4e14368b8ad71daebd9cc0085ff20989bb7e9"
+    },
+    {
+      "voiceId": "01MONA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONA006.aiff",
+      "nativeMember": "01MONA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 14336,
+      "nativeSha256": "3208a1e552f92901a637507cbfe8bd2ca4bc48683b7b3019f6619858ac247f52",
+      "speakerId": "AKIR",
+      "sourceText": "Good idea!＆I'll go ask her.",
+      "displayText": "Good idea!\nI'll go ask her.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONA006.wav",
+      "byteLength": 57132,
+      "sha256": "967db71a1a82bfc76cc31f978e8f154ea6fb5ef41ff1671d6f5c5abe782452e6"
+    },
+    {
+      "voiceId": "01MONB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB001.aiff",
+      "nativeMember": "01MONB001.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 22528,
+      "nativeSha256": "cf804264d541c1f6742b7b6cbe5b9b4e92216dac91465e1e37dc95e241ff0988",
+      "speakerId": "FUKU",
+      "sourceText": "The Hong Kong fare=@＆pretty expensive eh?",
+      "displayText": "The Hong Kong fare...\npretty expensive eh?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 23
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 27
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB001.wav",
+      "byteLength": 89900,
+      "sha256": "822493b5408e45d727a791b04b4d9dafee5dfdcd871a22a364a3eb387e9ac144"
+    },
+    {
+      "voiceId": "01MONB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB002.aiff",
+      "nativeMember": "01MONB002.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 6144,
+      "nativeSha256": "4264279d714a57ba28de82fac578aebe7779e7e6ef2204559853d8095d91bc44",
+      "speakerId": "FUKU",
+      "sourceText": "Just a moment!",
+      "displayText": "Just a moment!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB002.wav",
+      "byteLength": 24364,
+      "sha256": "e13fde26fe8135009b5bac8741e0d8b29181ae7f8616f3693403e328492ec918"
+    },
+    {
+      "voiceId": "01MONB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB003.aiff",
+      "nativeMember": "01MONB003.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 4096,
+      "nativeSha256": "a76404a95a535e932a8c75ae2ac8d2ce10fb283c3b8d4467607db33385be765b",
+      "speakerId": "FUKU",
+      "sourceText": "Ryo-san!",
+      "displayText": "Ryo-san!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB003.wav",
+      "byteLength": 16172,
+      "sha256": "099497a3a3e75def5ce830121efc170008cba17ac345d9b7e23781782f641bbe"
+    },
+    {
+      "voiceId": "01MONB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB004.aiff",
+      "nativeMember": "01MONB004.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 22528,
+      "nativeSha256": "97b61f94c37f9f6e4f61132baff009837062dd63b0b3f293bccce862c0a32f3b",
+      "speakerId": "FUKU",
+      "sourceText": "This here is my savings.＆I want you to have it.",
+      "displayText": "This here is my savings.\nI want you to have it.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 31
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB004.wav",
+      "byteLength": 89900,
+      "sha256": "85c86a2d727915d73626e5e78f1cccb34159a56883ee6a17360a962f4c6c150a"
+    },
+    {
+      "voiceId": "01MONB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB005.aiff",
+      "nativeMember": "01MONB005.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 26624,
+      "nativeSha256": "26a14aec0b71284b4fab1e728caa8d88f0ffed5829d463f5350d0bb617bb0051",
+      "speakerId": "FUKU",
+      "sourceText": "Well I=@I really want to help you out=@＆It's not much but=@",
+      "displayText": "Well I...I really want to help you out...\nIt's not much but...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB005.wav",
+      "byteLength": 106284,
+      "sha256": "01259fb42f15457c2b42005a9f6194388a6176e466f6fd2b5c4cf2db8f3e8aea"
+    },
+    {
+      "voiceId": "01MONB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB006.aiff",
+      "nativeMember": "01MONB006.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 14336,
+      "nativeSha256": "288f1c3108dae8fd96e0f156035e404a77f990a8031c560916991e3607f4d4f6",
+      "speakerId": "FUKU",
+      "sourceText": "Don't hesitate=@＆Smash it open!",
+      "displayText": "Don't hesitate...\nSmash it open!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB006.wav",
+      "byteLength": 57132,
+      "sha256": "33c0e13913a5814d8f777b290b6a4fafeca88aa8606f073e8da919f90ea06061"
+    },
+    {
+      "voiceId": "01MONB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB007.aiff",
+      "nativeMember": "01MONB007.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 4096,
+      "nativeSha256": "98f6522136891ab2388b0d63a61e3cc4e035bd1e9b636b76e69445b7e4f29989",
+      "speakerId": "FUKU",
+      "sourceText": "Yeah.",
+      "displayText": "Yeah.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB007.wav",
+      "byteLength": 16172,
+      "sha256": "9079ab1af4ebab6952edb1369d0769a93ab5f88ce8ffc30be5c93ff82fd740d6"
+    },
+    {
+      "voiceId": "01MONB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB008.aiff",
+      "nativeMember": "01MONB008.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 14336,
+      "nativeSha256": "97a13ace7ae1779e41d88086816d6a305f63c99b8e19303ad4b86ce9235add55",
+      "speakerId": "FUKU",
+      "sourceText": "There should be a lot, but=@",
+      "displayText": "There should be a lot, but...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB008.wav",
+      "byteLength": 57132,
+      "sha256": "ac3dd5c8ae8dd06e3d9161ac8b2ded23890f524e17fcb4f66cbb4d868e5a4521"
+    },
+    {
+      "voiceId": "01MONB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB009.aiff",
+      "nativeMember": "01MONB009.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 24576,
+      "nativeSha256": "4a35dd8aad5408a53c91ead9975cfa3901f0aacac4bd8996eaf1861a5c168328",
+      "speakerId": "FUKU",
+      "sourceText": "39,634 Yen",
+      "displayText": "39,634 Yen",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB009.wav",
+      "byteLength": 98092,
+      "sha256": "6c322ca9eeba3bc2ceff4c5dc7bd4baf7b54de210504dbef039d43e86549171d"
+    },
+    {
+      "voiceId": "01MONB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB010.aiff",
+      "nativeMember": "01MONB010.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 8192,
+      "nativeSha256": "2f70ec4a21f14526653adbe9f7f7b6ab81af432a3a090f9623d124b9dd4ad2c4",
+      "speakerId": "FUKU",
+      "sourceText": "Yeah=@right.",
+      "displayText": "Yeah...right.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB010.wav",
+      "byteLength": 32556,
+      "sha256": "95353e0b34315f844e0c7adc7fbc3d9030233879d14e115714adf6119acc772c"
+    },
+    {
+      "voiceId": "01MONB011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB011.aiff",
+      "nativeMember": "01MONB011.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 20480,
+      "nativeSha256": "61d5e069a640242dc9606411cef8190b34ff02cebe2156c052f97a7b160a4438",
+      "speakerId": "FUKU",
+      "sourceText": "Ahh, I got an idea!＆Aida Florist!",
+      "displayText": "Ahh, I got an idea!\nAida Florist!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB011.wav",
+      "byteLength": 81708,
+      "sha256": "74a0811273a6724865f13520cd1c2d3c8732273300c5764d702880bbae309c80"
+    },
+    {
+      "voiceId": "01MONB012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB012.aiff",
+      "nativeMember": "01MONB012.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 18432,
+      "nativeSha256": "25ce66d50584edef5fd4a301380396ace014f2e43fd19c84385e9cba6aca461c",
+      "speakerId": "FUKU",
+      "sourceText": "Yeah she travels overseas a lot=@",
+      "displayText": "Yeah she travels overseas a lot...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB012.wav",
+      "byteLength": 73516,
+      "sha256": "228aa45709e42d2fb3801c878241ae4acd882de8803c8084e10d14079dcd2eaa"
+    },
+    {
+      "voiceId": "01MONB013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB013.aiff",
+      "nativeMember": "01MONB013.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 12288,
+      "nativeSha256": "581d5dd8b36d55d033775b9675603835b80f4e9ebd206fb4919b4414aaac521e",
+      "speakerId": "FUKU",
+      "sourceText": "Maybe she'll have a better idea=@",
+      "displayText": "Maybe she'll have a better idea...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB013.wav",
+      "byteLength": 48940,
+      "sha256": "d579e31ab08f4a7c1718e3e57abacc0b77b2c288a15ed01cbbab98688d562d39"
+    },
+    {
+      "voiceId": "01MONB014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB014.aiff",
+      "nativeMember": "01MONB014.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 2048,
+      "nativeSha256": "e2c3eabd89c332a984034a6c3f5a611234d0ee2bdbf3e18ab9305332db2666da",
+      "speakerId": "FUKU",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB014.wav",
+      "byteLength": 7980,
+      "sha256": "2746f00a717ecac8d45ee324c896dce46674f30937376b2d08c4490da1f76c1d"
+    },
+    {
+      "voiceId": "01MONB015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB015.aiff",
+      "nativeMember": "01MONB015.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 45056,
+      "nativeSha256": "6d5ee0268323a4e66f84b592f8ec7140aa3ab8e75a86e4a246a5de50e0a6cf10",
+      "speakerId": "FUKU",
+      "sourceText": "Well=@1=@2=@3=@",
+      "displayText": "Well...1...2...3...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 36
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 32
+          },
+          {
+            "shape": 0,
+            "durationTicks": 40
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 66
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB015.wav",
+      "byteLength": 180012,
+      "sha256": "fc61cf94c752b52e08733e472303b7e5bb97396c612b381c824ad12f3d07c168"
+    },
+    {
+      "voiceId": "01MONB016",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SOUND/01MONB016.aiff",
+      "nativeMember": "01MONB016.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 4096,
+      "nativeSha256": "afefe40358933f4dc58778957d046d2465a03ce2cdb42fdb3fd5f3718b76d2ff",
+      "speakerId": "FUKU",
+      "sourceText": "OK.",
+      "displayText": "OK.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/fuku-travel-funds/voice/01MONB016.wav",
+      "byteLength": 16172,
+      "sha256": "ea2c18c2dbdc8235d3c8dce4e029df622e6be02c7c99118cf0e7cc992e60b2e9"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/smallobject/chokincrash1.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040000.wav",
+      "byteLength": 79492,
+      "sha256": "8bcfebdef55558dd03adbfc542cc57bda50873240a6e96f6ce2640d960319ac3"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/hit/Deskhit.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040100.wav",
+      "byteLength": 5652,
+      "sha256": "c510fdb7312a958a72f8588e99a3d11b4811c5b337307a96f6f42f40718ae33d"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/cloths2/friction4.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040200.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/cloths2/furimuki_f01.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040300.wav",
+      "byteLength": 9348,
+      "sha256": "2026b716ba3115748b89ec3ac3b6041824b6ddbba78ee708f62af1fb8dc3756a"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040400.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040500.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/footroom/ganashi2.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040600.wav",
+      "byteLength": 8436,
+      "sha256": "33f47776093b9b711da79586f193da2a51a1c284d13ba37865558f4a07a94160"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/footroom/ganashi3.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040700.wav",
+      "byteLength": 4508,
+      "sha256": "24bd6dd3ac1c7bc2bd6e316878371b54b71d2c99661584880b53a1ba3024f229"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/footroom/gansuriashi1.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040800.wav",
+      "byteLength": 6644,
+      "sha256": "f6c225e5df81328ae53caf1db6ad3d7ad8c7599a49aa3fffba477d1c3af16c1f"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/footroom/gansuriashi2.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040900.wav",
+      "byteLength": 10308,
+      "sha256": "8fbcc7724fd943366567dc86b42afc07c323e253043e5da317f933527b6d5e49"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/footroom/gansuriashi3.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040a00.wav",
+      "byteLength": 8948,
+      "sha256": "4d840a86ae658873c0ec805bdf8da1cbcc55f7e7589ad3c2ac2d10a574f7371a"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/smallobject/money04.aiff",
+      "playbackId": 11,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040b00.wav",
+      "byteLength": 3202,
+      "sha256": "32658f9b4b1a5dba3f6cfd33bc04cb0921989d30a1a4dd5ed1bad3b40b4108bc"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/smallobject/money1.aiff",
+      "playbackId": 12,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040c00.wav",
+      "byteLength": 35062,
+      "sha256": "c8d30b0ac810d13093014d8c781d320a37939fe304e5be7cab4c3119b617a151"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/smallobject/money3.aiff",
+      "playbackId": 13,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040d00.wav",
+      "byteLength": 63950,
+      "sha256": "aa3d069bba80aa432116db76244027d695269497f8192450e5b90b08d6e0ade5"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/smallobject/money4.aiff",
+      "playbackId": 14,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040e00.wav",
+      "byteLength": 14162,
+      "sha256": "808dacd535d7e6914660288ae1038c4deb799040ccf51f5ee7d8186b7df3fa99"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/smallobject/money5.aiff",
+      "playbackId": 15,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9040f00.wav",
+      "byteLength": 37848,
+      "sha256": "99c80162264b7dbe98a0159792d7a98a61326f37999aa0e861b4dece07237652"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/smallobject/moneyf1.aiff",
+      "playbackId": 16,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9041000.wav",
+      "byteLength": 11744,
+      "sha256": "dbbd578bf0d239dab71565944ba21fe18c77f6c014b424f8c2b86d2e0ee7c451"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/smallobject/moneyf2.aiff",
+      "playbackId": 17,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9041100.wav",
+      "byteLength": 11744,
+      "sha256": "3aafe6f30b07b59fe352696e329b6bfa02eeb1c4cca989bc1935f1a7735ec272"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/cloths2/R_mouhu_nageru.aiff",
+      "playbackId": 18,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/fuku-travel-funds/sfx/a9041200.wav",
+      "byteLength": 21612,
+      "sha256": "5c49cb5c012c4b62f58d0b81d8f68aa02b2734dd78710011d0c69a431d5a0988"
+    }
+  ]
+}

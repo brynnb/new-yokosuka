@@ -41,6 +41,19 @@ test("Fuku's travel advice waits until the player crosses the real room threshol
   assert.equal(starts,1);
 });
 
+test("completed bedroom advice does not retire the later earned contribution",()=>{
+  const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{
+    "story.s1.hong-kong-savings.completed":true,"story.s1.fuku-travel-advice.completed":true}};
+  const calls=[];
+  const runtime=new StoryRegionRuntime({controller:{status:"idle",start:async event=>calls.push(event)},getCharacter:()=>character,publishPresence(){}});
+  const frame={area:"JOMO",playerPosition:[-22,0,-1.1],enabled:true};
+  assert.equal(runtime.update(frame),false);
+  character.storyFlags["story.s1.airfare-quoted"]=true;
+  assert.equal(runtime.update(frame),true);assert.equal(calls.length,1);
+  runtime.reset();character.storyFlags["story.s1.fuku-travel-funds.completed"]=true;
+  assert.equal(runtime.update(frame),false);
+});
+
 test("personal time opens the night gate without requiring physical re-entry",()=>{
   let date=null;const calls=[];
   const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{}};

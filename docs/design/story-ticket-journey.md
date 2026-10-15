@@ -84,14 +84,82 @@ partly stacked edge for Ryo's radius. The shared test helper now derives the
 vacated opening's center from the moved native boundary. No collision rule,
 player radius, physical door behavior or no-clip setting was changed to pass.
 
+## Agency quotes and Fuku's contribution
+
+Official imports: `global-airfare`, `asia-airfare`, `fuku-travel-funds`.
+The original dialogue supplies the prices and contribution. The GameSpot guide
+(printed pp. 43–44) and Shotgunnova's section 2.07 supply progression order;
+the latter explicitly permits either agency visit before Fuku's help.
+
+| Field | Authored integration |
+| --- | --- |
+| Location / trigger | Enter Global Travel (`DSKI`, 09:00–20:00) or Asia Travel (`DAZA`, 10:00–20:00), then return to Fuku's bedroom. Small authored approach volumes are validated independently by the server. |
+| Prerequisites | Saved family travel discussion for either quote. Saved bank withdrawal and either quote for Fuku's contribution. All are personal Story events, once per character. |
+| Cast / assets | Ryo and Satoshi Shinoda (`SIND`, SND_L) at Global; Ryo and Etsuko Sekine (`ETKO`, the existing DAZA JOJ_L model) at Asia; Ryo and Fuku (`FUK_M`) at home. Original AUTH body, camera, prop movement and speech tracks. |
+| Sequence / choices | Ask for fares or leave. Global quotes ¥198,000 for the ticket alone; Asia quotes ¥158,000. Each successful scene grants its own flyer and a shared airfare milestone. Either permits Fuku's original piggy-bank scene and his ¥39,634 contribution. No air ticket is purchased. |
+| Timing / audio | Global `01MIT` lasts about 50.43 s with 20 voices and 8 effects; Asia `01ETU` about 70.98 s with 19/10; home `01MON` about 89.33 s with 22/19. Durations include the original movement/camera tail. No challenge or movie-implied victory. |
+| Props / approximation | Ledger, pen and flyer roles at Global and the two pamphlets/magazine at Asia are reviewed role-based assignments, not recovered callback bindings. Original movement supplies their trajectories. Global's cinematic door actor is transform-only: exploration keeps the real doorway. The intact home piggy bank uses its original trajectory; breaking debris and exact finger callbacks are omitted. |
+| Personal environment | Preserve ordinary personal calendar, weather and lighting. Shop hours use personal time. Quotes and contribution do not advance the day or alter the public clock. |
+| Effects / notebook | Grant the Hong Kong Flyer and Bargain Flyer separately, each once. Fuku's milestone, notebook clue and ¥39,634 commit together. Quotes cannot grant money. New flyers currently have text-only inventory slots, not invented or misidentified artwork. |
+| Exit / recovery | Restore the prior exploration pose, camera and controls in the current room. Leave, preparation failure, timeout and cancellation grant nothing. Stale acknowledgements cannot settle a cancelled run. Explicit skip of a noninteractive movie uses the same one-time server settlement. Reload reads committed outcomes. |
+
+### Asset provenance and ownership
+
+`build:home-ticket` also exports these clips with the established shared compilers:
+
+| Clip | Original source | Motion |
+| --- | --- | --- |
+| Global quote | Disc 2 DSKI MAPINFO `AUTH 0x24e90` | `M_01MIT.BIN`, bank 16, complete sequence indexes |
+| Asia quote | Disc 2 ARAR MAPINFO `AUTH 0x12684` | `M_01ETU.BIN`, bank 48, complete sequence indexes |
+| Fuku savings | Disc 2 JOMO MAPINFO `AUTH 0xa9588` | COMMON02 `M_01MO.MOTN`, bank 25, sequence window 96–97 |
+
+Asia's original cinematic resource is ARAR, borrowed inside the existing DAZA
+exploration shop. This does not claim original ARAR room initialization. The
+generator pins source/model/motion hashes, including the actual released
+standalone prop models and embedded textures. No native story flags are guessed.
+
+Global's ordinary `F1SEKAIR.SND` location bank uses `a905` commands and cannot
+satisfy `01MIT`'s `a904` sound cues. The separately extracted `S1_SEKAI.SND`
+contains the exact nine playable `a904` commands; its selection is a
+name/command-correspondence inference, not a recovered room-controller call.
+Asia uses `A1_ETUKO.SND`, and Fuku uses `A1_CHOFK.SND`.
+
+Two original JOMO placements share `S1_JOMO_BTAS500G.MT5`. The shared scene
+object borrower now permits an explicit logical `objectTag` selector, so this
+scene moves only `PIG_`, not the unrelated `fbut` ornament. Explicit world
+placements restore their original transforms/visibility on cleanup. Legacy
+cinematic/composite roots retain their existing hidden-after-release behavior.
+
+### Verification
+
+Focused scene ownership/catalog/region tests pass (43 checks). The real
+Yarn/compiler/PostgreSQL earned-chain test passes through one quote, Fuku's
+contribution, and the other quote. It checks shop-hour boundaries, leave,
+cancellation, stale acknowledgements, independent flyer ownership, one
+contribution, unchanged calendar and another character's ineligibility.
+Connected rendered continuation (`NEW_YOKOSUKA_AGENCY_E2E=true`) passes across
+earned-save interruptions: real physical door 60 at Global and door 25 at Asia,
+leave/cancel/retry and natural quote endings, actual Fuku bedroom-door entry,
+contribution cancellation/retry and natural ending, one payment and independent
+flyers, restored controls, and saved reload without replay/payment. Captures
+visibly confirm the original Global cast, Fuku's flyer/piggy-bank presentation,
+and the Asia cast/camera in DAZA. They do not verify every shot, exact hand
+callbacks or audio fidelity by listening. Flyer artwork in the inventory itself
+has not been added or visually checked.
+
+The first rendered continuation exposed a dispatch error: reusing the earlier
+advice region also reused its completed-event gate, so the contribution never
+started. A distinct contribution region now shares the reviewed room bounds
+but has its own prerequisites and completed flag. A focused runtime regression
+test verifies that completed advice does not retire this later event. No
+collision or door rule was changed.
+
 ## Remaining ticket progression
 
-Next are original agency fare quotes and flyers, Fuku's piggy-bank contribution,
-the cheaper boat lead, payment/collection delay, Jimmy's call, the arcade Chai
+Next are the cheaper boat lead, payment/collection delay, Jimmy's call, the arcade Chai
 fight and the resulting Asia Travel confrontation. These are not completed by
 the home-preparation flag.
 
-The already identified original `01MON` piggy-bank scene at JOMO `0xa9588`
-states ¥39,634 in its subtitle archive; the same integer occurs in the source
-MAPINFO at `0x71a44`. This is a useful input for the later contribution, not a
-grant or a claim that its full native controller is implemented.
+The `01MON` piggy-bank subtitle states ¥39,634; the same integer occurs in
+JOMO MAPINFO at `0x71a44`. That exact amount is used by the authored settlement,
+not a reconstruction of its full native controller.

@@ -1,0 +1,187 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "01MIT.AUTH",
+        "path": "disc2/SCENE/02/DSKI/MAPINFO.BIN",
+        "sourceOffset": 151184,
+        "sourceSha256": "17d1f11dda00b6040dab2d3cd914bf05b0caa605d90ed751cbd445f278e80f1e",
+        "byteLength": 12908,
+        "sha256": "0d5c606b88fedfa2252d7bd1538c516cc053e43a152c3c3946789af727779733"
+      },
+      {
+        "name": "M_01MIT.BIN",
+        "path": "disc2/SCENE/02/DSKI/M_01MIT.BIN",
+        "byteLength": 76908,
+        "sha256": "fdc0e3df9d0664a748bfb3119d4ec1a37df8ed866ff0344be82f1d33819412b4"
+      },
+      {
+        "name": "CLIK302G.CHRM",
+        "path": "disc2/SCENE/02/DSKI/MPK00.PKS",
+        "archiveMember": "CLIK302G.CHRM",
+        "byteLength": 1716,
+        "sha256": "5e8a318cc8c226482dabd2b55c22778f197c88fd55a1f3e0ee96114bdbd99646"
+      },
+      {
+        "name": "TIRT240G.CHRM",
+        "path": "disc2/SCENE/02/DSKI/MPK00.PKS",
+        "archiveMember": "TIRT240G.CHRM",
+        "byteLength": 1316,
+        "sha256": "67ced3a3f254674e11eacccb34ae4a3032c309a2587117fcd741966b509b813c"
+      },
+      {
+        "name": "PENK300G.CHRM",
+        "path": "disc2/SCENE/02/DSKI/MPK00.PKS",
+        "archiveMember": "PENK300G.CHRM",
+        "byteLength": 1532,
+        "sha256": "13d50de6c49805ef9930ff22931ccba6f3db94e72b909103a0bdf4f4a8b747f9"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "01MIT",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/global-airfare/manifest.json",
+  "sceneObjects": {
+    "DOOR": {
+      "model": "door-transform-reference",
+      "browserFilename": "DOOR",
+      "referenceOnly": true
+    },
+    "TYOB": {
+      "model": "CLIK302G.CHRM",
+      "browserFilename": "CLIK302G.CHRM",
+      "assetPath": "play/assets/dobuita/global-airfare/CLIK302G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/global-airfare/textures.bin"
+    },
+    "TIRA": {
+      "model": "TIRT240G.CHRM",
+      "browserFilename": "TIRT240G.CHRM",
+      "assetPath": "play/assets/dobuita/global-airfare/TIRT240G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/global-airfare/textures.bin"
+    },
+    "SPEN": {
+      "model": "PENK300G.CHRM",
+      "browserFilename": "PENK300G.CHRM",
+      "assetPath": "play/assets/dobuita/global-airfare/PENK300G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/global-airfare/textures.bin"
+    }
+  },
+  "packageActors": {
+    "SIND": {
+      "label": "Satoshi Shinoda",
+      "modelCode": "SND_L",
+      "browserFilename": "SND_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/SND_L.CHRM",
+      "textureAssetPath": "play/assets/characters/SND_textures.bin"
+    }
+  },
+  "actorTags": [
+    "DOOR",
+    "TYOB",
+    "TIRA",
+    "SPEN",
+    "SIND",
+    "AKIR"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/dobuita/global-airfare/M_01MIT.BIN",
+      "byteLength": 76908,
+      "sha256": "fdc0e3df9d0664a748bfb3119d4ec1a37df8ed866ff0344be82f1d33819412b4",
+      "sequenceIndexBase": 0
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/global-airfare/M_01MIT.BIN",
+      "byteLength": 76908,
+      "sha256": "fdc0e3df9d0664a748bfb3119d4ec1a37df8ed866ff0344be82f1d33819412b4"
+    },
+    {
+      "path": "play/assets/dobuita/global-airfare/01MIT.AUTH",
+      "byteLength": 12908,
+      "sha256": "0d5c606b88fedfa2252d7bd1538c516cc053e43a152c3c3946789af727779733"
+    },
+    {
+      "path": "play/assets/dobuita/global-airfare/CLIK302G.CHRM",
+      "byteLength": 1716,
+      "sha256": "5e8a318cc8c226482dabd2b55c22778f197c88fd55a1f3e0ee96114bdbd99646"
+    },
+    {
+      "path": "play/assets/dobuita/global-airfare/TIRT240G.CHRM",
+      "byteLength": 1316,
+      "sha256": "67ced3a3f254674e11eacccb34ae4a3032c309a2587117fcd741966b509b813c"
+    },
+    {
+      "path": "play/assets/dobuita/global-airfare/PENK300G.CHRM",
+      "byteLength": 1532,
+      "sha256": "13d50de6c49805ef9930ff22931ccba6f3db94e72b909103a0bdf4f4a8b747f9"
+    },
+    {
+      "path": "play/assets/dobuita/global-airfare/textures.bin",
+      "byteLength": 407264,
+      "sha256": "ce8f0289f3a35f5131a608bc125bfb6e985a9202222401b97963175d0aecdba5"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "01MIT/01MIT.AUTH",
+      "archiveMember": "01MIT.AUTH",
+      "byteLength": 12908,
+      "sha256": "0d5c606b88fedfa2252d7bd1538c516cc053e43a152c3c3946789af727779733",
+      "durationFrames": 1470,
+      "durationSeconds": 50.43333435058594,
+      "frameCount": 39,
+      "commandCounts": {
+        "camera": 1,
+        "move": 6,
+        "motion": 2,
+        "sound": 17,
+        "voice": 20
+      },
+      "actors": [
+        "DOOR",
+        "TYOB",
+        "TIRA",
+        "SPEN",
+        "SIND",
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "SIND",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "YKI_SND_AT1_KIKU_RYOUKIN_WORLDTRAVELMITUMORI_0100",
+          "startFrame": 1,
+          "endFrame": 1470
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 101,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_KIKU_RYOUKIN_WORLDTRAVELMITUMORI_0100",
+          "startFrame": 1,
+          "endFrame": 1352
+        }
+      ]
+    }
+  ]
+}

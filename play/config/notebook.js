@@ -120,6 +120,9 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.hong-kong-morning",page:Object.freeze({id:"story-hong-kong-morning",text:"Told Fuku-san what Master Chen said about Lan Di and Hong Kong.\n\nRest in my bedroom, then check my savings in the morning."})},
   {flag:"notebook.s1.bank-savings",page:Object.freeze({id:"story-bank-savings",text:"Withdrew my bank savings: ¥36,502.\n\nIt may not be enough for Hong Kong. Speak to Fuku-san in his room about travel agencies."})},
   {flag:"notebook.s1.travel-agencies",page:Object.freeze({id:"story-travel-agencies",text:"Fuku-san suggested checking the travel agencies in Dobuita.\n\nIne-san won't help me pursue Lan Di. I don't want to worry her, so I'll arrange the journey myself. Ask Global Travel or Asia Travel about Hong Kong fares."})},
+  {flag:"notebook.s1.global-airfare",page:Object.freeze({id:"story-global-airfare",text:"Global Travel Agency quoted ¥198,000 for a ticket to Hong Kong.\n\nI took their Hong Kong flyer. That's much more than my savings. Ask Fuku-san what to do."})},
+  {flag:"notebook.s1.asia-airfare",page:Object.freeze({id:"story-asia-airfare",text:"Asia Travel Company quoted ¥158,000 for an air ticket to Hong Kong.\n\nI took their bargain flyer. Even this fare is too expensive. Ask Fuku-san for advice."})},
+  {flag:"notebook.s1.fuku-travel-funds",page:Object.freeze({id:"story-fuku-travel-funds",text:"Fuku-san gave me his savings: ¥39,634.\n\nIt's still not enough for an air ticket. He suggested asking Nozomi at Aida Florist about overseas travel."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

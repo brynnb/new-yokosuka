@@ -1,0 +1,195 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "01ETU.AUTH",
+        "path": "disc2/SCENE/02/ARAR/MAPINFO.BIN",
+        "sourceOffset": 75396,
+        "sourceSha256": "e5adb7020c8c0704316adc482881b77ce9660f59c97f946ab2735e8ac9612c98",
+        "byteLength": 71032,
+        "sha256": "0d76d7b59730cd8116d9b67480a26eec02b285d3aeaa9c8a5242d3432e91b251"
+      },
+      {
+        "name": "M_01ETU.BIN",
+        "path": "disc2/SCENE/02/ARAR/M_01ETU.BIN",
+        "byteLength": 80996,
+        "sha256": "6e069dd760bff2dd8c8815865f2dfcef58ebe3898cc36e9c77205d27e329759d"
+      },
+      {
+        "name": "TIRS701G.MT5",
+        "path": "disc2/SCENE/02/ARAR/TIRS701G.MT5",
+        "byteLength": 68928,
+        "sha256": "354ea77706ecf007ee4a3f2d83545da9dde3e9d34ccbcfa680bc76057bf3fea4"
+      },
+      {
+        "name": "TIRS703G.MT5",
+        "path": "disc2/SCENE/02/ARAR/TIRS703G.MT5",
+        "byteLength": 68928,
+        "sha256": "d01d70fea30308739de0d21e5a771605fa78cc12765499d6e21aaa7cbdf034ae"
+      },
+      {
+        "name": "ARP3H01G.MT5",
+        "path": "disc2/SCENE/02/ARAR/ARP3H01G.MT5",
+        "byteLength": 7488,
+        "sha256": "e61709183d8858a2d9df8c8c34cd60dac6d682f1ab9ef9787ab13a1e37f9b3f1"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "01ETU",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/asia-airfare/manifest.json",
+  "sceneObjects": {
+    "INF1": {
+      "model": "TIRS701G.MT5",
+      "browserFilename": "TIRS701G.MT5",
+      "assetPath": "play/assets/dobuita/asia-airfare/TIRS701G.MT5",
+      "textureAssetPath": "play/assets/dobuita/asia-airfare/textures.bin"
+    },
+    "INF2": {
+      "model": "TIRS703G.MT5",
+      "browserFilename": "TIRS703G.MT5",
+      "assetPath": "play/assets/dobuita/asia-airfare/TIRS703G.MT5",
+      "textureAssetPath": "play/assets/dobuita/asia-airfare/textures.bin"
+    },
+    "MAGA": {
+      "model": "ARP3H01G.MT5",
+      "browserFilename": "ARP3H01G.MT5",
+      "assetPath": "play/assets/dobuita/asia-airfare/ARP3H01G.MT5",
+      "textureAssetPath": "play/assets/dobuita/asia-airfare/textures.bin"
+    }
+  },
+  "packageActors": {
+    "ETKO": {
+      "label": "Etsuko Sekine",
+      "modelCode": "JOJ_L",
+      "browserFilename": "JOJ_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/JOJ_L.CHRM",
+      "textureAssetPath": "play/assets/characters/JOJ_textures.bin"
+    }
+  },
+  "actorTags": [
+    "INF1",
+    "INF2",
+    "MAGA",
+    "AKIR",
+    "ETKO"
+  ],
+  "motionBanks": [
+    {
+      "bank": 48,
+      "path": "play/assets/dobuita/asia-airfare/M_01ETU.BIN",
+      "byteLength": 80996,
+      "sha256": "6e069dd760bff2dd8c8815865f2dfcef58ebe3898cc36e9c77205d27e329759d",
+      "sequenceIndexBase": 0
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/asia-airfare/M_01ETU.BIN",
+      "byteLength": 80996,
+      "sha256": "6e069dd760bff2dd8c8815865f2dfcef58ebe3898cc36e9c77205d27e329759d"
+    },
+    {
+      "path": "play/assets/dobuita/asia-airfare/01ETU.AUTH",
+      "byteLength": 71032,
+      "sha256": "0d76d7b59730cd8116d9b67480a26eec02b285d3aeaa9c8a5242d3432e91b251"
+    },
+    {
+      "path": "play/assets/dobuita/asia-airfare/TIRS701G.MT5",
+      "byteLength": 68928,
+      "sha256": "354ea77706ecf007ee4a3f2d83545da9dde3e9d34ccbcfa680bc76057bf3fea4"
+    },
+    {
+      "path": "play/assets/dobuita/asia-airfare/TIRS703G.MT5",
+      "byteLength": 68928,
+      "sha256": "d01d70fea30308739de0d21e5a771605fa78cc12765499d6e21aaa7cbdf034ae"
+    },
+    {
+      "path": "play/assets/dobuita/asia-airfare/ARP3H01G.MT5",
+      "byteLength": 7488,
+      "sha256": "e61709183d8858a2d9df8c8c34cd60dac6d682f1ab9ef9787ab13a1e37f9b3f1"
+    },
+    {
+      "path": "play/assets/dobuita/asia-airfare/textures.bin",
+      "byteLength": 141396,
+      "sha256": "76fbedfd1be1c8b77f55911ef49bcbbb22a7fcdb0a8d1d915e7b7d2d3a482146"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "01ETU/01ETU.AUTH",
+      "archiveMember": "01ETU.AUTH",
+      "byteLength": 71032,
+      "sha256": "0d76d7b59730cd8116d9b67480a26eec02b285d3aeaa9c8a5242d3432e91b251",
+      "durationFrames": 2129,
+      "durationSeconds": 70.98332977294922,
+      "frameCount": 37,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5,
+        "motion": 4,
+        "sound": 14,
+        "voice": 19
+      },
+      "actors": [
+        "INF1",
+        "INF2",
+        "MAGA",
+        "AKIR",
+        "ETKO"
+      ],
+      "motions": [
+        {
+          "actorTag": "ETKO",
+          "frame": 1,
+          "motionBank": 48,
+          "sequenceIndex": 2,
+          "motionName": "SYP_ETU_AT1_TALK_ETUKO_ASIATRAVEL_0100",
+          "startFrame": 1,
+          "endFrame": 820
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 101,
+          "motionBank": 48,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_TALK_ETUKO_ASIATRAVEL_0100",
+          "startFrame": 1,
+          "endFrame": 720
+        },
+        {
+          "actorTag": "ETKO",
+          "frame": 910,
+          "motionBank": 48,
+          "sequenceIndex": 2,
+          "motionName": "SYP_ETU_AT1_TALK_ETUKO_ASIATRAVEL_0100",
+          "startFrame": 821,
+          "endFrame": 2040
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 970,
+          "motionBank": 48,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_TALK_ETUKO_ASIATRAVEL_0100",
+          "startFrame": 721,
+          "endFrame": 1787
+        }
+      ]
+    }
+  ]
+}

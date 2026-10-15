@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Three exact embedded presentations, translated with the existing shared
+// Ticket-journey presentations, translated with the existing shared
 // activity/audio compilers. Yarn, not the original room controller, saves progress.
 import fs from "node:fs";
 import path from "node:path";
@@ -10,12 +10,12 @@ import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
 
 const root=path.resolve(import.meta.dirname,"../..");
 const source=path.join(process.env.SHENMUE_DISC2_EXTRACTED_ROOT||path.join(root,"extracted_disc2_v2"),"data/SCENE/02");
-const map=path.join(source,"JOMO/MAPINFO.BIN"),common=path.join(source,"JOMO/COMMON02.PKS");
+const common=path.join(source,"JOMO/COMMON02.PKS");
 const mapHash="6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe";
 const commonHash="916aab45137cf340516a1cdd2ee61540e7c6562a1e92c5f932e9055ae0db3b89";
-const evidence="docs/design/story-event-template.md#home-and-travel-funds";
+const evidence="docs/design/story-ticket-journey.md";
 const actor=(label,code)=>{
-  const prefix=code==="FUK_M"?"play/assets/characters":"play/assets";
+  const prefix=code==="INE_M"?"play/assets":"play/assets/characters";
   return {label,modelCode:code,browserFilename:`${code}.CHRM`,assetFormat:"MT5",characterScale:1,
     assetPath:`${prefix}/${code}.CHRM`,textureAssetPath:`${prefix}/${code.slice(0,3)}_textures.bin`};
 };
@@ -29,15 +29,36 @@ const profiles=[
   {id:"travel-family",resource:"01EAR",offset:0xb4460,size:15244,hash:"f7196a33095b31f38643bb19b1c6aba99f683d714592a9c26012df9a3f105318",frames:2467,
     motion:"M_01EAR.MOTN",motionSize:63684,motionHash:"e5d9f9571a52363b2d338897b7062806fc43dd4ff8d62d53b06691c27d926649",bank:25,base:144,actors:["AKIR","INE_","FUKU"],
     stream:"01EAR",streamHash:"f29867ee43becb0b3d502df754bc03d5ea4882bdd7e073038115098e73e8a76e",sound:"A1_KIKUM.SND",soundHash:"1796869c37bc441211d7e2478f56af77883e9d97492838d115dc941c05ddbc32"},
+  {id:"fuku-travel-funds",resource:"01MON",offset:0xa9588,size:34804,hash:"bbcf4e63e836d54ceec791425a9bcea19a960e43e7d7aa4ce3a2d5d7c1940bac",frames:2660,
+    motion:"M_01MO.MOTN",motionSize:45496,motionHash:"e3c709dcb3be13f67f99a6e832b2c11eaa3a3471c0c08f885ce5ed3a8c4cc224",bank:25,base:96,actors:["AKIR","FUKU","PIG_","COIN","PANF"],
+    stream:"01MON",streamHash:"6b7044b821d0e34a90c0a6baaacac9cbc2df5bcd71cd2d91649337e3a6c81d06",sound:"A1_CHOFK.SND",soundHash:"d7717ae5387e0d1de4ca45ffc24764b77606979efddee97a911481983a327465"},
+  {id:"global-airfare",area:"DSKI",resource:"01MIT",offset:0x24e90,size:12908,hash:"0d5c606b88fedfa2252d7bd1538c516cc053e43a152c3c3946789af727779733",frames:1470,
+    mapHash:"17d1f11dda00b6040dab2d3cd914bf05b0caa605d90ed751cbd445f278e80f1e",
+    motion:"M_01MIT.BIN",motionSize:76908,motionHash:"fdc0e3df9d0664a748bfb3119d4ec1a37df8ed866ff0344be82f1d33819412b4",bank:16,base:0,actors:["DOOR","TYOB","TIRA","SPEN","SIND","AKIR"],
+    // F1SEKAIR is the room bank (a905); this AUTH requests the separate
+    // a904 cinematic bank. S1_SEKAI has exactly those nine playable commands.
+    stream:"01MIT",streamHash:"9f79b1cdf1254a76197b36597a20d88e93be9cdb55c8a7501a9833620348106c",sound:"S1_SEKAI.SND",soundHash:"3219ebe4f8454af793d7a27bbcb72fe3ea1525b28d5e3edc4fa3180d0c676357"},
+  {id:"asia-airfare",area:"ARAR",resource:"01ETU",offset:0x12684,size:71032,hash:"0d76d7b59730cd8116d9b67480a26eec02b285d3aeaa9c8a5242d3432e91b251",frames:2129,
+    mapHash:"e5adb7020c8c0704316adc482881b77ce9660f59c97f946ab2735e8ac9612c98",
+    motion:"M_01ETU.BIN",motionSize:80996,motionHash:"6e069dd760bff2dd8c8815865f2dfcef58ebe3898cc36e9c77205d27e329759d",bank:48,base:0,actors:["INF1","INF2","MAGA","AKIR","ETKO"],
+    stream:"01ETU",streamHash:"f21b7837177788630c2f7e849e5627152a1e335628ae70e4ffe4062afa39db4c",sound:"A1_ETUKO.SND",soundHash:"6e960914c59edd80ddc282179ec6379c26a7c461a15d89954ab2af3bb9fd5485"},
 ];
 const runtimePaths=[];
 for(const p of profiles){
-  const prefix=`play/assets/hazuki/${p.id}`,audioPrefix=`public/audio/world/${p.id}`;
+  const area=p.area||"JOMO",mapSource=path.join(source,area,"MAPINFO.BIN");
+  const prefix=`play/assets/${p.area?"dobuita":"hazuki"}/${p.id}`,audioPrefix=`public/audio/world/${p.id}`;
   const members=[
-    {name:`${p.resource}.AUTH`,sourcePath:map,sourceManifestPath:"disc2/SCENE/02/JOMO/MAPINFO.BIN",sourceOffset:p.offset,sourceSha256:mapHash,byteLength:p.size,sha256:p.hash},
-    {name:p.motion,sourcePath:common,sourceManifestPath:"disc2/SCENE/02/JOMO/COMMON02.PKS",archiveMember:p.motion,sourceSha256:commonHash,byteLength:p.motionSize,sha256:p.motionHash},
+    {name:`${p.resource}.AUTH`,sourcePath:mapSource,sourceManifestPath:`disc2/SCENE/02/${area}/MAPINFO.BIN`,sourceOffset:p.offset,sourceSha256:p.mapHash||mapHash,byteLength:p.size,sha256:p.hash},
+    {name:p.motion,sourcePath:p.area?path.join(source,area,p.motion):common,sourceManifestPath:`disc2/SCENE/02/${area}/${p.area?p.motion:"COMMON02.PKS"}`,...(p.area?{}:{archiveMember:p.motion,sourceSha256:commonHash}),byteLength:p.motionSize,sha256:p.motionHash},
   ];
-  const props={};let generatedAssets=[];
+  const props={},outputMembers=[],textureSources=[];let generatedAssets=[];
+  const prop=(tag,file,size,hash,archive=null)=>{
+    members.push({name:file,sourcePath:path.join(source,area,archive||file),sourceManifestPath:`disc2/SCENE/02/${area}/${archive||file}`,
+      ...(archive?{archiveMember:file}:{}),byteLength:size,sha256:hash});
+    outputMembers.push(file);
+    props[tag]={model:file,browserFilename:file,assetPath:`${prefix}/${file}`,textureAssetPath:`${prefix}/textures.bin`};
+    if(!archive)textureSources.push(path.join(source,area,file));
+  };
   if(p.id==="bank-savings"){
     // The original room's bank-scene resource cluster names $BNKT2DBG.MT5
     // immediately before 01BNK. Its AMOV already owns the full book trajectory.
@@ -45,17 +66,41 @@ for(const p of profiles){
     if(sha256(textureSource)!=="6dd037556b29ba3731f0c1e9a3013ad5e84ec67a07b04f2185f5fb3338588888")throw Error("Changed bankbook textures");
     members.push({name:file,sourcePath:path.join(source,"JOMO",file),sourceManifestPath:`disc2/SCENE/02/JOMO/${file}`,byteLength:57340,sha256:"1ba59f425eb7cd90f598a4571569c3eefd4fa530dab65c5876edc7f6283a72f5"});
     props.BANK={model:"BNKT2DBG",browserFilename:file,assetPath:`${prefix}/${file}`,textureAssetPath:`${prefix}/textures.bin`};
+    outputMembers.push(file);
     generatedAssets=[{assetPath:`${prefix}/textures.bin`,bytes:extractNativeTexnPack(textureSource,"JOMO/MPK00.PKF").bytes,
       source:{path:"disc2/SCENE/02/JOMO/MPK00.PKF",sha256:sha256(textureSource)}}];
   }
+  if(p.id==="fuku-travel-funds"){
+    // Two room placements share this model. Borrow the logical PIG_ only,
+    // preserving the unrelated desk ornament and avoiding a third copy.
+    props.PIG_={model:"BTAS500G",browserFilename:"S1_JOMO_BTAS500G.MT5",objectTag:"PIG_"};
+    prop("COIN","OKAK301G.MT5",31056,"1a0b55b541b6a270ce4acc220e31fcf61cebc6774e36e2f4855d107992e828ef");
+    prop("PANF","TIRS701G.MT5",68928,"ed04bb8b23c40878b276f960ca4033f3f6362224485b0cc6c6440eec97ad4459");
+  }
+  if(p.id==="global-airfare"){
+    props.DOOR={model:"door-transform-reference",browserFilename:"DOOR",referenceOnly:true};
+    prop("TYOB","CLIK302G.CHRM",1716,"5e8a318cc8c226482dabd2b55c22778f197c88fd55a1f3e0ee96114bdbd99646","MPK00.PKS");
+    prop("TIRA","TIRT240G.CHRM",1316,"67ced3a3f254674e11eacccb34ae4a3032c309a2587117fcd741966b509b813c","MPK00.PKS");
+    prop("SPEN","PENK300G.CHRM",1532,"13d50de6c49805ef9930ff22931ccba6f3db94e72b909103a0bdf4f4a8b747f9","MPK00.PKS");
+    const textureSource=path.join(source,area,"MPK00.PKF");
+    if(sha256(fs.readFileSync(textureSource))!=="9b28a17766ee9d856ac0385b79f141d984232af7ed91419d6fb51e229fdb9871")throw Error("Changed Global Travel textures");
+    textureSources.push(textureSource);
+  }
+  if(p.id==="asia-airfare"){
+    prop("INF1","TIRS701G.MT5",68928,"354ea77706ecf007ee4a3f2d83545da9dde3e9d34ccbcfa680bc76057bf3fea4");
+    prop("INF2","TIRS703G.MT5",68928,"d01d70fea30308739de0d21e5a771605fa78cc12765499d6e21aaa7cbdf034ae");
+    prop("MAGA","ARP3H01G.MT5",7488,"e61709183d8858a2d9df8c8c34cd60dac6d682f1ab9ef9787ab13a1e37f9b3f1");
+  }
+  if(textureSources.length)generatedAssets.push({assetPath:`${prefix}/textures.bin`,bytes:Buffer.concat(textureSources.map(file=>extractNativeTexnPack(fs.readFileSync(file),file).bytes))});
   const manifest=buildNativeAseqActivityPack({generatedBy:"tools/cutscenes/build_home_ticket_pack.mjs",resourceName:p.resource,disc:2,
     sourceMembers:members,expectedMembers:members,bindingEvidence:evidence,
     selectionRule:"Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector.",
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),audioManifest:`${audioPrefix}/manifest.json`,
     motionBanks:[{bank:p.bank,member:p.motion,parseOptions:{sequenceIndexBase:p.base}}],
     activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:`${p.resource}.AUTH`,actors:p.actors,durationFrames:p.frames}],
-    packageActors:{...(p.actors.includes("FUKU")?{FUKU:actor("Masayuki Fukuhara","FUK_M")}:{}),...(p.actors.includes("INE_")?{INE_:actor("Ine-san","INE_M")}: {})},
-    ...(Object.keys(props).length?{sceneObjects:props,outputMembers:["BNKT2DBG.MT5"],generatedAssets}:{}),
+    packageActors:{...(p.actors.includes("FUKU")?{FUKU:actor("Masayuki Fukuhara","FUK_M")}:{}),...(p.actors.includes("INE_")?{INE_:actor("Ine-san","INE_M")}: {}),
+      ...Object.fromEntries([["SIND","Satoshi Shinoda","SND_L"],["ETKO","Etsuko Sekine","JOJ_L"]].filter(([tag])=>p.actors.includes(tag)).map(([tag,label,code])=>[tag,actor(label,code)]))},
+    ...(Object.keys(props).length?{sceneObjects:props,outputMembers,generatedAssets}:{}),
   });
   runtimePaths.push(`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path));
   console.log(`Built ${p.id}: ${manifest.activities[0].durationSeconds.toFixed(2)} seconds`);

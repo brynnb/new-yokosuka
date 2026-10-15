@@ -81,12 +81,13 @@ test("mirror follow-up borrows original HOUO/MS8A without allowing cinematics to
 
 test("home cinematics cannot grant savings or advance the personal calendar themselves",()=>{
   const catalog=createScriptEventPresentationCatalog();
-  for(const [part,resource] of [["post-chen-home","A0160"],["bank-savings","01BNK"],["travel-family","01EAR"]]){
-    const activity=catalog.activity(`s1.jomo.${part}.scene`);
+  for(const [part,resource,area] of [["post-chen-home","A0160","jomo"],["bank-savings","01BNK","jomo"],["travel-family","01EAR","jomo"],
+    ["fuku-travel-funds","01MON","jomo"],["global-airfare","01MIT","dski"],["asia-airfare","01ETU","daza"]]){
+    const activity=catalog.activity(`s1.${area}.${part}.scene`);
     assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
     assert.equal(activity.cutscene.packageId,part);
     assert.deepEqual(activity.cutscene.activity,{slot:0,binding:{kind:"map-embedded-slot",activityId:`${resource}/${resource}.AUTH`}});
-    const manifest=JSON.parse(readFileSync(new URL(`../play/assets/hazuki/${part}/manifest.json`,import.meta.url)));
+    const manifest=JSON.parse(readFileSync(new URL(`../play/assets/${area==="jomo"?"hazuki":"dobuita"}/${part}/manifest.json`,import.meta.url)));
     assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
   }
   assert.deepEqual(catalog.activity("s1.jomo.mirror-dream.scene").cutscene.activity,

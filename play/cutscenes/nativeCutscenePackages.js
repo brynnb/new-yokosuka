@@ -61,6 +61,12 @@ import bankSavingsManifest from "../assets/hazuki/bank-savings/manifest.json";
 import bankSavingsAudio from "../../public/audio/world/bank-savings/manifest.json";
 import travelFamilyManifest from "../assets/hazuki/travel-family/manifest.json";
 import travelFamilyAudio from "../../public/audio/world/travel-family/manifest.json";
+import fukuTravelFundsManifest from "../assets/hazuki/fuku-travel-funds/manifest.json";
+import fukuTravelFundsAudio from "../../public/audio/world/fuku-travel-funds/manifest.json";
+import globalAirfareManifest from "../assets/dobuita/global-airfare/manifest.json";
+import globalAirfareAudio from "../../public/audio/world/global-airfare/manifest.json";
+import asiaAirfareManifest from "../assets/dobuita/asia-airfare/manifest.json";
+import asiaAirfareAudio from "../../public/audio/world/asia-airfare/manifest.json";
 import familyFukuManifest from "../assets/hazuki/family-fuku/manifest.json";
 import familyFukuAudio from "../../public/audio/world/family-fuku/manifest.json";
 import familyIneManifest from "../assets/hazuki/family-ine/manifest.json";
@@ -262,9 +268,10 @@ const nativeSilentActivityMusic = resource => Object.freeze({
 });
 
 const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
-  ...[["post-chen-home",postChenHomeManifest,postChenHomeAudio],["bank-savings",bankSavingsManifest,bankSavingsAudio],["travel-family",travelFamilyManifest,travelFamilyAudio]].map(([id,manifest,audioManifest])=>Object.freeze({
-    id,worldId:"interior",actorDefinitions:Object.freeze([]),actorTags:Object.freeze(manifest.actorTags),
-    assets:Object.freeze({...sourceAssetMap(runtimeAssetGroup(`play/assets/hazuki/${id}/*.{AUTH,MOTN,MT5,bin}`)),
+  ...[["post-chen-home",postChenHomeManifest,postChenHomeAudio,"interior"],["bank-savings",bankSavingsManifest,bankSavingsAudio,"interior"],["travel-family",travelFamilyManifest,travelFamilyAudio,"interior"],
+    ["fuku-travel-funds",fukuTravelFundsManifest,fukuTravelFundsAudio,"interior"],["global-airfare",globalAirfareManifest,globalAirfareAudio,"dski"],["asia-airfare",asiaAirfareManifest,asiaAirfareAudio,"daza"]].map(([id,manifest,audioManifest,worldId])=>Object.freeze({
+    id,worldId,actorDefinitions:Object.freeze([]),actorTags:Object.freeze(manifest.actorTags),
+    assets:Object.freeze({...sourceAssetMap(runtimeAssetGroup(`play/assets/${worldId==="interior"?"hazuki":"dobuita"}/${id}/*.{AUTH,MOTN,MT5,CHRM,BIN,bin}`)),
       ...Object.fromEntries(Object.values(manifest.packageActors||{}).flatMap(actor=>[actor.assetPath,actor.textureAssetPath].filter(Boolean)).map(path=>[path,runtimeAssetUrl(path)])),
       ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
     presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),

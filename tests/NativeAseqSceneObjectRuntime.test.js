@@ -6,6 +6,23 @@ import {
   NativeAseqSceneObjectRuntime,
 } from "../play/events/NativeAseqSceneObjectRuntime.js";
 
+test("logical world tags disambiguate shared models and restore noninteractive props", async t=>{
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  t.after(()=>{scene.dispose();engine.dispose();});
+  const roots=["PIG_","fbut"].map(tag=>{
+    const root=new BABYLON.TransformNode(tag,scene);root._filename="PIG.MT5";
+    root.metadata={runtimeObject:{objectTag:tag}};root.position.set(1,2,3);return root;
+  });
+  const runtime=new NativeAseqSceneObjectRuntime({definitions:{PIG_:{model:"PIG",browserFilename:"PIG.MT5",objectTag:"PIG_"}}});
+  for(const ending of ["complete","cancelled"]){
+    await runtime.load(roots);assert.equal(roots[0].isEnabled(),false);assert.equal(roots[1].isEnabled(),true);
+    const owner={};runtime.begin(owner,["PIG_"]);runtime.activate(owner,"PIG_");roots[0].position.set(4,5,6);
+    runtime.end(owner,ending);runtime.clear();
+    for(const root of roots){assert.equal(root.isEnabled(),true);assert.deepEqual(root.position.asArray(),[1,2,3]);assert.equal(root.metadata.nativeAseqSceneObject,undefined);}
+  }
+  await assert.rejects(()=>runtime.load([roots[1]]),/expected one/);
+});
+
 test("borrowed interactive props return their visibility, picking and frozen transforms",async t=>{
   const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
   t.after(()=>{scene.dispose();engine.dispose();});
