@@ -9,6 +9,7 @@ function createRuntime(overrides = {}) {
   const fleetRuntime = {
     entries: new Map(),
     snapshotWorldId: "harbor",
+    snapshotIds: new Set(["forklift-1"]),
     ...overrides.fleetRuntime,
   };
   return new ForkliftNetworkRuntime({
@@ -32,6 +33,23 @@ function createRuntime(overrides = {}) {
     onLocalOwnershipLost: overrides.onLocalOwnershipLost || (() => {}),
   });
 }
+
+test("removed forklifts cannot reappear or be entered when another vehicle mounts",()=>{
+  const states=new Map([["forklift-old",false],["forklift-1",false]]);
+  const entries=new Map([...states].map(([id])=>[id,{id,root:{setEnabled:value=>states.set(id,value)}}]));
+  const runtime=createRuntime({fleetRuntime:{entries}});
+  runtime.syncVisibility();
+  assert.equal(states.get("forklift-old"),false);
+  assert.equal(states.get("forklift-1"),true);
+  assert.equal(runtime.availableForLocalEntry(entries.get("forklift-old")),false);
+});
+
+test("a finished server-removal fade retires the retained fleet entry",()=>{
+  const entry={id:"forklift-old",fadeRemaining:1,root:{getDescendants:()=>[]}},removed=[];
+  const runtime=createRuntime({fleetRuntime:{entries:new Map([[entry.id,entry]]),removeEntry:value=>removed.push(value)}});
+  runtime.updatePresentation(1);
+  assert.deepEqual(removed,[entry]);
+});
 
 test("server removal dismounts the local driver before fading the vehicle",()=>{
   let driving=true;const entry={},entries=new Map([["forklift-job",entry]]),removed=[];

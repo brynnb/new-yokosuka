@@ -61,12 +61,16 @@ export class ForkliftNetworkRuntime {
     return Boolean(
       client?.connected
       && this.fleetRuntime.snapshotWorldId === this.getWorldId()
+      && this.fleetRuntime.snapshotIds.has(entry.id)
     );
   }
 
   syncVisibility() {
     const occupied = this.occupiedIds();
     for (const entry of this.fleet.values()) {
+      // Removed vehicles may still be fading. Mounting a replacement must
+      // not re-enable their old model/collider at the same spawn position.
+      if (!this.fleetRuntime.snapshotIds.has(entry.id)) continue;
       const locallyDriven = (
         this.isLocallyDriving() && entry.id === this.getActiveId()
       );
@@ -312,7 +316,7 @@ export class ForkliftNetworkRuntime {
       entry.fadeRemaining - Math.max(0, animationDeltaSeconds),
     );
     ForkliftNetworkRuntime.setVisibility(entry, entry.fadeRemaining);
-    if (entry.fadeRemaining === 0) entry.root.setEnabled(false);
+    if (entry.fadeRemaining === 0) this.fleetRuntime.removeEntry(entry);
     return true;
   }
 
