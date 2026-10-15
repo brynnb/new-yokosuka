@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import {vehicleSpawnManifest} from "../src/VehicleSpawns.js";
 import {
   MULTIPLAYER_PROTOCOL_VERSION,
   MultiplayerClient,
@@ -70,6 +71,17 @@ function localState(overrides = {}) {
     ...overrides,
   };
 }
+
+test("presence stamps only applied Story arrivals and never rolls the acknowledgement back",()=>{
+  const client=new MultiplayerClient({url:"ws://localhost/ws",WebSocketClass:FakeWebSocket});
+  client.setLocalPresence(localState());client.connect();const socket=FakeWebSocket.instances.at(-1);socket.open();
+  socket.emit("message",{data:JSON.stringify({v:MULTIPLAYER_PROTOCOL_VERSION,type:"welcome",self:{id:"one"},worldState:{}})});
+  assert.equal(socket.sent.at(-1).storyArrivalRevision,undefined);
+  assert.equal(client.setAppliedStoryArrivalRevision(4),true);client.forcePresence();assert.equal(socket.sent.at(-1).storyArrivalRevision,4);
+  for(const bad of [0,-1,3,NaN,4.5])assert.equal(client.setAppliedStoryArrivalRevision(bad),false);
+  assert.equal(client.setAppliedStoryArrivalRevision(4),true);assert.equal(client.setAppliedStoryArrivalRevision(5),true);client.forcePresence();assert.equal(socket.sent.at(-1).storyArrivalRevision,5);
+  client.close();
+});
 
 test("WebSocket delivers durable script receipts independently of presentation replies", () => {
   FakeWebSocket.instances.length = 0;
@@ -170,12 +182,8 @@ test("presence normalization and diffing cover visual state", () => {
     })).vehicleId,
     "forklift-abcdef123456",
   );
-  assert.equal(
-    normalizeLocalPresence(localState({
-      vehicleId: "forklift-15",
-    })).vehicleId,
-    "forklift-15",
-  );
+  const configuredId=Object.values(vehicleSpawnManifest.worlds).flatMap(w=>w.forklifts).at(-1).id;
+  assert.equal(normalizeLocalPresence(localState({vehicleId:configuredId})).vehicleId,configuredId);
 });
 
 test("presence normalization preserves backpedaling and directional turns", () => {

@@ -159,6 +159,33 @@ For walkthrough-guided, authored progression, use the
 behavior and explicit presentation approximations without requiring the
 original room controller to execute.
 
+## Committed Story arrival handoff
+
+A Story destination is saved with its event receipt. The live connection keeps
+that approved arrival reserved until presence carries the exact
+`storyArrivalRevision`. The client stamps it only after scene cleanup and world
+loading have actually applied the destination pose. The first acknowledged
+pose is clamped to the server's destination; subsequent ordinary movement is
+unblocked. The stamp cannot grant flags, rewards or an arbitrary destination.
+
+World ID alone was insufficient for a same-world warp: a queued old pose could
+consume the reservation and the following old pose could overwrite the new
+location. A new same-world regression failed against the previous code with
+`late source packet accepted`; it now covers repeated missing/wrong revision
+packets, exact acknowledgement, clamped first pose and resumed movement, in
+addition to different-world trips. Client tests cover delayed loading,
+monotonic acknowledgement, duplicate receipts and failed loading without an
+early acknowledgement. The connected sailor check exercises an actual
+same-world settlement and reload at the original ending position.
+
+This verifies the live pending-arrival boundary, not every reconnect race.
+Losing the socket before a same-world receipt is applied still needs a focused
+audit of welcome/presence ordering and same-world saved-pose restoration.
+`CharacterForAccount` also reads the character header and flags in separate
+queries; a targeted concurrent-completion test is still needed to establish
+snapshot consistency. These are explicit remaining verification items, not
+claims resolved by the arrival stamp.
+
 ## Purpose
 
 This guide covers player-facing Shenmue I storyline work: entering an area or

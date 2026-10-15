@@ -247,10 +247,10 @@ export class PlayMultiplayerAdapter {
     if (!character || character.id !== message.characterId || character.modeRevision !== message.modeRevision
       || character.scriptStateRevision !== message.state.revision) return false;
     this.accountSession.applyWelcome({worldId:destination.worldId,x:destination.position[0],y:destination.position[1],z:destination.position[2],yaw:destination.yaw});
-    return this.loadStoryArrival(destination,true);
+    return this.loadStoryArrival(destination,true,message.state.revision);
   }
 
-  async loadStoryArrival(destination,serverDepartureCommitted) {
+  async loadStoryArrival(destination,serverDepartureCommitted,arrivalRevision=null) {
     const world = this.worlds[destination.worldId];
     if (!world) throw new Error(`Unknown Story arrival world ${destination.worldId}`);
     this.playerRuntime.controller?.setMovementLocked(true);
@@ -261,6 +261,11 @@ export class PlayMultiplayerAdapter {
           browserSpawn:{position:destination.position,yaw:destination.yaw}}},
       });
       if (!loaded) throw new Error("Story destination load was interrupted");
+      // Stamp only after the actual world/pose is loaded, never when the
+      // receipt first arrives. Old same-world presence must not consume it.
+      if (arrivalRevision !== null && !this.multiplayerRuntime.client?.setAppliedStoryArrivalRevision(arrivalRevision)) {
+        throw new Error("Story arrival acknowledgement could not be prepared");
+      }
       this.multiplayerRuntime.publishPresence(true);
       return true;
     } finally { this.playerRuntime.controller?.setMovementLocked(false); }

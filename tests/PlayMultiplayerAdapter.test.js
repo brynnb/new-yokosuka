@@ -7,6 +7,7 @@ function createAdapter(overrides = {}) {
   const calls = [];
   const adapter = new PlayMultiplayerAdapter({
     multiplayerRuntime: {
+      client: {setAppliedStoryArrivalRevision: revision=>{calls.push(["arrival-applied",revision]);return true;}},
       markPresenceDirty: () => calls.push("dirty"),
       publishPresence: force => calls.push(["publish", force]),
     },
@@ -80,6 +81,15 @@ test("failed Story world loading keeps the committed destination for reload",asy
   await assert.rejects(adapter.applyStoryDestination({characterId:12,modeRevision:7,runId:9,
     state:{revision:4,destination:{id:'s1.harbor.bus-arrival',worldId:'mfsy',position:[130.5,0,140.6],yaw:Math.PI}}}),/interrupted/);
   assert.equal(character.worldId,'mfsy');assert.deepEqual(locks,[true,false]);
+});
+
+test("Story arrival is acknowledged only after world loading applies the pose",async()=>{
+  let finish;const loaded=new Promise(resolve=>{finish=resolve;}),character={id:12,modeRevision:7,scriptStateRevision:4};
+  const {adapter,calls}=createAdapter({worlds:{mfsy:{id:"mfsy"}},accountSession:{character,applyWelcome:value=>Object.assign(character,value)},
+    scriptEventController:{waitForRunEnd:async()=>{}},playerRuntime:{controller:{setMovementLocked(){}}},worldRuntime:{select:()=>loaded}});
+  const pending=adapter.applyStoryDestination({characterId:12,modeRevision:7,runId:9,state:{revision:4,destination:{id:"s1.work.biker-alley",worldId:"mfsy",position:[-92,0,25],yaw:0}}});
+  await Promise.resolve();await Promise.resolve();assert.equal(calls.some(c=>c?.[0]==="arrival-applied"),false);
+  finish(true);await pending;assert.deepEqual(calls.slice(-2),[["arrival-applied",4],["publish",true]]);
 });
 
 test("multiplayer adapter owns presence animation revision", () => {

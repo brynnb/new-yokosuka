@@ -162,6 +162,7 @@ export class MultiplayerClient {
     this.lastSentPresence = null;
     this.lastSentAt = -Infinity;
     this.sequence = 0;
+    this.appliedStoryArrivalRevision = 0;
     this.pendingPurchases = new Map();
     this.pendingTransitions = new Map();
     this.pendingTransitionCommits = new Map();
@@ -666,6 +667,12 @@ export class MultiplayerClient {
     );
   }
 
+  setAppliedStoryArrivalRevision(revision) {
+    if (!Number.isSafeInteger(revision) || revision <= 0 || revision < this.appliedStoryArrivalRevision) return false;
+    this.appliedStoryArrivalRevision = revision;
+    return true;
+  }
+
   sendPresence(now) {
     this.sequence += 1;
     const state = this.latestPresence;
@@ -674,6 +681,7 @@ export class MultiplayerClient {
       type: "presence",
       ...state,
       sequence: this.sequence,
+      ...(this.appliedStoryArrivalRevision > 0 ? {storyArrivalRevision:this.appliedStoryArrivalRevision} : {}),
     });
     if (sent) {
       this.lastSentPresence = { ...state };
