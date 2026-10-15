@@ -25,17 +25,25 @@ const encounters = spec.encounters.map(input => {
     const bytes = fs.readFileSync(path.join(root,input.sourceActivity));
     if(createHash("sha256").update(bytes).digest("hex")!==input.sha256)throw new Error(`Changed staging ${input.id}`);
     const track = parseAuthMovement(bytes);
-    poses=track.actors.map(actor=>({tag:actor.tag,...evaluateAuthActor(actor,input.sourceTime==="start"?0:actor.duration)}));
+    poses=track.actors.filter(actor=>Object.hasOwn(input.health,actor.tag)).map(actor=>({tag:actor.tag,...evaluateAuthActor(actor,input.sourceTime==="start"?0:actor.duration)}));
     // A new authored encounter can borrow an original activity's placement
     // while introducing a reviewed private cast not present in street schedules.
     // Keep those definitions on the encounter, not in a global shadow NPC list.
-    definitions=input.actorDefinitions||nativeActors[input.worldId];
+    definitions=input.actorDefinitions||nativeActors[input.actorWorldId||input.worldId];
   }
   if(poses.length!==Object.keys(input.health).length||poses[0]?.tag!=="AKIR")throw new Error(`Incomplete combat cast ${input.id}`);
   const actors = poses.map(pose => {
     if(!input.health[pose.tag]||![pose.x,pose.y,pose.z].every(Number.isFinite))throw new Error(`Invalid placement ${pose.tag}`);
     return {tag:pose.tag,x:-pose.x,y:pose.y,z:pose.z,health:input.health[pose.tag]};
   });
+  if(input.formation){
+    // Cinematic grab/end poses are not necessarily safe combat starts. An
+    // authored formation gives every fighter a reviewed local offset before
+    // the existing rigid world placement; never silently mix the two sources.
+    if(Object.keys(input.formation).length!==actors.length)throw Error(`Incomplete authored formation ${input.id}`);
+    for(const actor of actors){const p=input.formation[actor.tag];if(!Array.isArray(p)||p.length!==3||!p.every(Number.isFinite))throw Error(`Invalid formation ${input.id}/${actor.tag}`);[actor.x,actor.y,actor.z]=p;}
+    if(actors[0].x||actors[0].y||actors[0].z)throw Error(`Formation player origin must be zero ${input.id}`);
+  }
   if(input.placement){
     const {position,yaw}=input.placement;
     if(!Array.isArray(position)||position.length!==3||![...position,yaw].every(Number.isFinite))throw Error(`Invalid authored combat placement ${input.id}`);
@@ -53,7 +61,7 @@ const encounters = spec.encounters.map(input => {
       guardDamage:move.guardDamage,hitStunMs:Math.ceil(move.hitStun*1000/30)};
   });
   return {id:input.id,label:input.label,area:input.area,worldId:input.worldId,provenance:input.provenance,
-    ...(input.placement?{placement:input.placement}:{}),
+    ...(input.placement?{placement:input.placement}:{}),...(input.formation?{formation:input.formation}:{}),...(input.actorWorldId?{actorWorldId:input.actorWorldId}:{}),
     ...(input.sourceScene?{sourceScene:input.sourceScene}:{sourceActivity:input.sourceActivity,sha256:input.sha256}),actors,actions,
     actorDefinitions:actors.filter(a=>a.tag!=="AKIR").map(actor=>{
       const def=definitions?.find(def=>def.actorCode===actor.tag);

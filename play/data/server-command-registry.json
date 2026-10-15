@@ -20,6 +20,15 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.mfsy.workday-two-morning","description":"Second-day morning cargo after its own race."},
+    {"kind":"bounds","identifier":"s1.mfsy.workday-two-afternoon","description":"Second-day afternoon batch after the morning and original lunch."},
+    {"kind":"bounds","identifier":"s1.mfsy.workday-two-attack","description":"Two-wave second-day ambush after the quota."},
+    {"kind":"bounds","identifier":"s1.mfsy.workday-two-payday","description":"Separate once-only second-day wage collection."},
+    {"kind":"challenge","identifier":"s1.mfsy.workday-two-morning","description":"Four observed morning cargo deliveries."},
+    {"kind":"challenge","identifier":"s1.mfsy.workday-two-afternoon","description":"Four observed afternoon cargo deliveries."},
+    {"kind":"combat","identifier":"s1.mfsy.workday-two-wave-one","description":"Five server-simulated attackers, first wave."},
+    {"kind":"combat","identifier":"s1.mfsy.workday-two-wave-two","description":"Four server-simulated attackers, fresh second-wave health."},
+    {"kind":"activity","identifier":"s1.mfsy.workday-lunch.scene","description":"Original HIRUAUTH coworker lunch; presentation cannot save progress."},
     {"kind":"bounds","identifier":"s1.jomo.workday-one-night","description":"Optional Phoenix Mirror vision sleep after the first workday."},
     {"kind":"bounds","identifier":"s1.mfsy.workday-two-race-entry","description":"Second working morning approach, independently checked against the first payday date."},
     {"kind":"bounds","identifier":"s1.ma00.workday-two-race","description":"Second-day race on the shared MA00 course."},

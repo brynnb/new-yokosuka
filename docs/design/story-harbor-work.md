@@ -80,7 +80,8 @@ The following morning's three-lap race and five-crate first batch are connected
 and browser-verified, as are Mark's noon rescue, the afternoon batch/attack,
 once-only payday and Goro's warning. The return-home dream and second morning's
 race also pass their connected rendered continuation.
-Subsequent deliveries and later Mad Angels encounters remain missing. Existing
+The second day's cargo/ambush/payday also pass connected rendered checks;
+the subsequent Mark rescue and later workdays remain missing. Existing
 forklift driving, cargo and racing must be reused; neither film completion
 nor a client-reported win may grant a shift's salary or story outcome.
 
@@ -458,4 +459,81 @@ show the original mirror/stage and saved harbor return; exact lighting and
 audible playback fidelity were not assessed. No future flags, checkpoint
 positions or wins were injected during the challenge.
 
-Second-day cargo, lunch and Mad Angels encounters remain unimplemented.
+## Second workday: cargo, lunch, two-wave ambush and payday
+
+The connected rendered continuation is verified through wage collection.
+This does **not** complete the later Warehouse No. 17
+Mark rescue or the second workday's narrative milestone.
+
+| Event | Trigger / important conditions | Saved outcome |
+| --- | --- | --- |
+| `workday-two-morning` | Its own saved morning race, loading-area approach 09:00–noon; choose deliveries or leave; four real lift/carry/drop deliveries, then original coworker lunch. | After the acknowledged ending, batch/notebook and noon together. Cancelling the lunch does not save an unfinished batch. |
+| `workday-two-afternoon` | Saved morning batch, approach 14:00–17:00; four more actual deliveries. | Eight-crate quota/notebook, no pay or clock jump. |
+| `workday-two-attack` | Saved afternoon batch; approach and explicit fight choice. Win against five opponents, acknowledge the interval, then win against four; Ryo starts the new attempt with full health. | After the final acknowledged clue, Warehouse No. 17 notebook, cleared ambush and minimum 17:00. No wages. |
+| `workday-two-payday` | Both saved batches and cleared two-wave ambush; Alpha entrance and explicit collection; original shared salary motions. | Final caption atomically saves exactly ¥2,400, its own payday/day/notebook. No second payment on re-entry or reload. |
+
+The guide, printed pp. 55–56, establishes the eight-crate Warehouse No. 3
+assignment, coworker lunch, five/four ambush with health restoration, Warehouse
+No. 17 lead and subsequent Mark rescue. The four/four split and already tested
+outdoor dispatch pad condense the warehouse work. The attack occurs after the
+saved batch rather than interrupting carried cargo; the original closing-door
+trap and thug riding a crate are not reconstructed. Exact quota grants no
+over-quota raise, so the prototype's ¥300 rate remains: eight crates earn ¥2,400.
+Optional extra crates/raises and the optional lunch-time Shozo/Goro inquiries
+remain omitted, not invented mandatory prerequisites.
+
+The original `HIRUAUTH.PKS` SHA256 is
+`e740397e02958441010345d34d1369b20bbad9bc2ebdf397b413251b20a9a97e`.
+Its selected `SEQDATA1.AUTH` declares 450 frames, approximately 15 seconds,
+and has no original audio commands. The generator asserts that silence rather
+than hiding missing sound/voice data. `M_01BEN.MOTN`, original camera tracks,
+Ryo and the five correctly named coworker models are reused. BTF/BTS tags use
+the two original bento-piece models in an authored pairing; exact lid/hand
+choreography is not claimed. Repeated bento instances share unique archive
+members and texture output through the existing scene-object lease.
+The rendered lunch capture shows the coworkers, but the resident exploration
+fence partly crosses the original camera view. Native scene-specific scenery
+visibility/framing is not reproduced; this remains a presentation limitation,
+not a claim that the original lunch shot is visually matched.
+
+The ambush uses original donor thug models, not claimed original harbor attacker
+identities. Their parking-lot cinematic end poses placed two attackers within
+half a metre of Ryo and were not suitable combat starts. The combat authoring
+compiler now accepts an explicit complete local formation before ordinary rigid
+world placement. Both waves start in the proven open loading corridor.
+The shared combat AI now reserves close-engagement slots: waiting fighters stay
+beyond the longest strike range plus the existing body spacing rather than
+crowding Ryo and blocking targeting. Larger crowds (these waves and the earlier
+parking-lot fight) use two simultaneous attackers as an explicit balance choice
+for the simplified controls, with unchanged opponent counts, health and actual
+victory requirements. Delayed guard/jab inputs are checked across realistic
+100–150 ms network intervals, not just immediate ideal timing. These placements, captions and
+basic combat remain adaptations rather than original free-battle reconstruction.
+
+Whole-encounter cancellation grants nothing and restarts both waves; defeat or
+timeout offers retry of the current wave, with a fresh token/health. First-wave
+inputs cannot affect the second. A won wave or the interval caption cannot save
+the clue or grant pay by itself. Presentation restores the prior camera/pose and
+ordinary control through the same owned cleanup used elsewhere.
+
+Focused actual-Yarn tests cover both days' quotas, partial delivery, cancellation
+during driving/ending/lunch, prerequisites/hours, two actual combat victories,
+full second-wave health, stale tokens, timeout/retry, interval/ending cancellation
+and separate once-only salary. Client checks cover original lunch bindings,
+reviewed donor models, explicit formation and shared acquisition/cleanup.
+Use `NEW_YOKOSUKA_SECOND_WORKDAY_E2E=true` with the genuine second-race-earned save.
+
+Rendered/full-stack verification continues the same genuinely earned character
+across saved checkpoints, without injecting future flags, crate positions,
+damage or victories. It passes the four physical morning deliveries, visible
+original coworker lunch, saved noon/notebook and reload; normal waiting until
+14:00, four physical afternoon deliveries and a saved quota without wages;
+then both actual keyboard-driven fights, full health/fresh state for wave two,
+acknowledged Warehouse No. 17 clue/17:00, salary-motion cancellation/retry,
+one ¥2,400 credit (¥12,636 → ¥15,036), restored controls and saved reload without
+a second payday. A failed pickup and failed fights during verification saved
+neither the unfinished batch nor an unearned clue/payment. The shared keyboard
+driver now observes shifted pickup bodies and makes bounded real control
+adjustments rather than assuming its initial crate coordinate cannot change.
+The lunch-camera occlusion above remains; neither the later Mark rescue nor a
+completed second-day story flag is claimed.

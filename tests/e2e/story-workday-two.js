@@ -1,4 +1,50 @@
 import {expect} from "@playwright/test";
+import {driveObservedDeliveries} from "./story-forklift-training.js";
+import {winHarborFight} from "./story-workday-one.js";
+
+export async function verifySecondWorkday(page,testInfo,character){
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const initial=await saved(),flag=part=>`story.s1.workday-two-${part}.completed`;
+  expect(initial.character.storyFlags[flag("morning")]).toBe(true);
+  const paidInitially=!!initial.character.storyFlags[flag("payday")],unpaid=initial.character.yen-(paidInitially?2400:0);
+  const check=async(paid=false)=>{const s=await saved();expect(s.character.yen).toBe(unpaid+(paid?2400:0));expect(s.inventory).toEqual(initial.inventory);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;};
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
+  const approach=async(position,yaw)=>{
+    await idle();await page.evaluate(({position,yaw})=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray(position),yaw,{persist:false});c.setFirstPerson(true);c.cameraYaw=yaw;c.cameraPitch=0;c.updateCamera(1);},{position,yaw});
+    await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await page.waitForFunction(()=>["line","options"].includes(window.storyProbe.regions.controller.status)||window.storyProbe.sceneErrors.length,null,{timeout:15_000});}finally{await page.keyboard.up("KeyW");}
+  };
+  if(!initial.character.storyFlags[flag("afternoon")]){
+    if(new Date((await saved()).character.storyTimeMs).getUTCHours()<14){await idle();await page.locator("#story-wait-button").click();await page.getByRole("option",{name:"Wait until 2 p.m.",exact:true}).click();await page.getByRole("button",{name:"Wait until 2 p.m.",exact:true}).click();}
+    // The earned checkpoint is in the loading volume. Wait for its actual
+    // asynchronous dispatch instead of racing an initial idle snapshot.
+    await page.getByText("Four more crates for Warehouse No. 3 will finish today's quota of eight. Yada-san pays after the shift.",{exact:true}).waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();
+    await approach([-20,0,117],-Math.PI/2);
+    await page.getByText("Four more crates for Warehouse No. 3 will finish today's quota of eight. Yada-san pays after the shift.",{exact:true}).waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Start the deliveries",exact:true}).click();
+    await page.waitForFunction(()=>window.storyProbe.delivery?.active?.entered||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check(false);await page.waitForTimeout(1800);await page.locator("#renderCanvas").focus();
+    await driveObservedDeliveries(page,testInfo,4,"workday-two-afternoon");await page.getByText("All eight crates are delivered. The quota is finished.",{exact:true}).waitFor();await check(false);await page.keyboard.press("Space");await expect.poll(async()=>(await saved()).character.storyFlags[flag("afternoon")]).toBe(true);
+  }
+  if(!(await saved()).character.storyFlags[flag("attack")]){
+    // The saved quota returns inside the same trigger, including on reconnect.
+    // Await dispatch rather than racing its first idle networking snapshot.
+    await page.getByText("The Mad Angels are blocking my work again. Five of them are waiting for a fight.",{exact:true}).waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Face the attackers",exact:true}).click();
+    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check(false);
+    expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.length)).toBe(6);await page.screenshot({path:testInfo.outputPath("second-workday-five-attackers.png")});await winHarborFight(page,{attack:"KeyJ"});
+    await page.getByText("The first five have backed off, but four more are coming. Catch my breath and face them.",{exact:true}).waitFor();expect((await check(false)).character.storyFlags[flag("attack")]).not.toBe(true);await page.keyboard.press("Space");
+    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check(false);
+    const second=await page.evaluate(()=>window.storyProbe.combatRuntime.active.view);expect(second.actors.length).toBe(5);expect(second.actors[0].health).toBe(second.actors[0].maxHealth);
+    await page.screenshot({path:testInfo.outputPath("second-workday-four-attackers-fresh-health.png")});await winHarborFight(page,{attack:"KeyJ"});
+    await page.getByText("They said the Mad Angels meet behind Warehouse No. 17. The shift is over; collect my wages, then look for Mark there.",{exact:true}).waitFor();expect((await check(false)).character.storyFlags[flag("attack")]).not.toBe(true);await page.keyboard.press("Space");await idle();
+    const s=await check(false);expect(s.character.storyFlags["notebook.s1.warehouse-seventeen-hangout"]).toBe(true);expect(new Date(s.character.storyTimeMs).getUTCHours()).toBe(17);
+  }
+  if(!(await saved()).character.storyFlags[flag("payday")]){
+    const collect=async()=>{await approach([25,0,66],Math.PI);await page.keyboard.press("Space");await page.getByRole("button",{name:"Collect today's wages",exact:true}).click();await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.mfsy.payday"||window.storyProbe.sceneErrors.length,null,{timeout:45_000});};
+    await collect();await page.waitForTimeout(6000);await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-second-payday-cancel"));await idle();await check(false);
+    await collect();await page.getByText("Collected today's wages: 2,400 yen. Look behind Warehouse No. 17 for Mark.",{exact:true}).waitFor({timeout:65_000});await check(false);await page.keyboard.press("Space");await idle();await check(true);
+  }
+  const before=await check(true);expect(before.character.storyFlags[flag("payday")]).toBe(true);expect(before.character.storyFlags["notebook.s1.second-payday"]).toBe(true);expect(before.character.storyFlags["story.s1.workday-two.completed"]).not.toBe(true);
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();await check(true);
+  expect(await page.getByRole("button",{name:"Collect today's wages",exact:true}).isVisible()).toBe(false);await page.screenshot({path:testInfo.outputPath("second-workday-earned-payday-reload.png")});
+}
 
 export async function verifyWorkdayNight(page,testInfo,character){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());

@@ -57,8 +57,19 @@ export async function driveObservedDeliveries(page,testInfo,count,prefix){
     await page.waitForFunction(()=>{const r=window.storyProbe.delivery;return r.active?.prompt.delivery.cargoId&&r.getForklifts().cargo.physics.entries.has(r.active.prompt.delivery.cargoId);});
     const pickup=await info(),heading=1.3021669961391247;
     await slowDrive("vehicle",pickup.cargo[0]-Math.sin(heading)*1.3);
-    await page.keyboard.down("KeyE");await page.waitForTimeout(500);await page.keyboard.up("KeyE");await page.waitForTimeout(400);
-    const lifted=await info();expect(lifted.support,JSON.stringify(lifted)).toBe(true);
+    let lifted;
+    for(let attempt=0;attempt<3;attempt++){
+      await page.keyboard.down("KeyE");await page.waitForTimeout(500);await page.keyboard.up("KeyE");await page.waitForTimeout(400);
+      lifted=await info();if(lifted.support)break;
+      if(attempt<2){
+        // A crate may shift when the real forks touch it. Lower and creep
+        // toward its observed position like a player, rather than assuming
+        // the initial pickup coordinate still describes the physics body.
+        await page.keyboard.down("KeyF");await page.waitForTimeout(600);await page.keyboard.up("KeyF");
+        const current=await info();await slowDrive("vehicle",current.cargo[0]-Math.sin(current.yaw)*(1.15-attempt*.1));
+      }
+    }
+    expect(lifted.support,JSON.stringify(lifted)).toBe(true);
     if(crate===0){
       await page.evaluate(()=>{const r=window.storyProbe.delivery,a=r.getForklifts(),c=r.getController();a.vehicleController.cameraManuallyPositioned=true;c.cameraYaw=a.mode.actorRoot.rotation.y+Math.PI/2;c.cameraPitch=.3;c.cameraDistance=7;c.updateCamera(1);});
       await page.screenshot({path:testInfo.outputPath(`${prefix}-real-pickup.png`)});

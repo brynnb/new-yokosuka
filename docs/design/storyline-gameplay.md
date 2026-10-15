@@ -132,7 +132,10 @@ original Goro warning and saved reload are also connected and verified.
 The return-home Phoenix Mirror dream and second morning's race now pass a connected
 rendered continuation through cancellation/retry, saved next-day arrival, all
 three physical laps, separate day-two settlement and reload without replay.
-Second-day cargo, later Mad Angels workdays and departure remain unimplemented;
+Second-day cargo/lunch, both real ambush waves and separate once-only payday now
+pass connected rendered continuations and saved reload. Lunch framing remains
+partly obscured by the resident fence. The later Warehouse No. 17
+Mark rescue, subsequent Mad Angels workdays and departure remain unimplemented;
 the checklist above distinguishes each verified sequence.
 
 For walkthrough-guided, authored progression, use the

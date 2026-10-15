@@ -9,6 +9,7 @@ title: Attempt
 <<start_challenge "{{challenge}}">>
 <<if challenge_result("{{challenge}}") == "success">>
 Ryo Hazuki: {{text:success}} #speaker:AKIR
+{{completionActivities}}
 {{clockEffects}}
 {{effects}}
 <<jump Done>>

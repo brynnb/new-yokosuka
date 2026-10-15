@@ -3,6 +3,43 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"workday-two-morning","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":550,
+      "title":"Second workday — morning cargo and lunch","hours":[9,12],"bounds":"s1.mfsy.workday-two-morning",
+      "requiredFlags":["story.s1.workday-two-race.completed"],"completedFlag":"story.s1.workday-two-morning.completed","effects":["notebook.s1.workday-two-lunch"],
+      "voiceIds":[],"yarnTemplate":"story-workday-delivery.yarn","challenge":"s1.mfsy.workday-two-morning","timeTransition":"s1.work.lunch","completionActivities":["s1.mfsy.workday-lunch.scene"],
+      "authoredText":{"briefing":"Today's quota is eight crates for Warehouse No. 3. Move four through this loading area before lunch; four more follow in the afternoon.","success":"Four crates are delivered. Time for lunch with the other workers."},
+      "nativeSources":[{"role":"original-coworker-lunch","locator":"disc3/SCENE/03/MFSY/HIRUAUTH.PKS#SEQDATA1.AUTH,M_01BEN.MOTN","sha256":"e740397e02958441010345d34d1369b20bbad9bc2ebdf397b413251b20a9a97e"}],
+      "provenance":"GameSpot pp55-56: eight-crate Warehouse3 day, noon lunch with coworkers. Four/four split and the tested outdoor dispatch pad condense the original warehouse job. Original HIRUAUTH first lunch film, 450 declared frames (not last command), original cast/motions/camera and paired bento models; prop role pairing authored. Actual four deliveries and acknowledged film save the batch/notebook/noon together. No salary or complete-workday flag."
+    },
+    {
+      "id":"workday-two-afternoon","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":560,
+      "title":"Second workday — afternoon cargo","hours":[14,17],"bounds":"s1.mfsy.workday-two-afternoon",
+      "requiredFlags":["story.s1.workday-two-morning.completed"],"completedFlag":"story.s1.workday-two-afternoon.completed","effects":["notebook.s1.workday-two-quota"],
+      "voiceIds":[],"yarnTemplate":"story-workday-delivery.yarn","challenge":"s1.mfsy.workday-two-afternoon",
+      "authoredText":{"briefing":"Four more crates for Warehouse No. 3 will finish today's quota of eight. Yada-san pays after the shift.","success":"All eight crates are delivered. The quota is finished."},
+      "nativeSources":[{"role":"original-job-instruction-assets","locator":"disc3/SCENE/03/MFSY/MARU.PKS#SEQDATA1.AUTH","sha256":"a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b"}],
+      "provenance":"Guide p56: afternoon deliveries to Warehouse3. Reuse shared observed cargo and outdoor dispatch pad; four/four split, no extra-crate raise, and attack after the completed batch instead of mid-carry are authored condensations. No salary or time jump from cargo alone."
+    },
+    {
+      "id":"workday-two-attack","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":570,
+      "title":"Second workday — two-wave ambush","hours":[14,23],"bounds":"s1.mfsy.workday-two-attack",
+      "requiredFlags":["story.s1.workday-two-afternoon.completed"],"completedFlag":"story.s1.workday-two-attack.completed","effects":["notebook.s1.warehouse-seventeen-hangout"],
+      "voiceIds":[],"yarnTemplate":"story-workday-waves.yarn","firstCombat":"s1.mfsy.workday-two-wave-one","secondCombat":"s1.mfsy.workday-two-wave-two","timeTransition":"s1.work.shift-end",
+      "authoredText":{"briefing":"The Mad Angels are blocking my work again. Five of them are waiting for a fight.","between":"The first five have backed off, but four more are coming. Catch my breath and face them.","success":"They said the Mad Angels meet behind Warehouse No. 17. The shift is over; collect my wages, then look for Mark there."},
+      "nativeSources":[{"role":"original-donor-cast-reference-not-harbor-formation","locator":"play/assets/dobuita/drauth/SEQDATA2.AUTH","sha256":"a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da"}],
+      "provenance":"GameSpot p56: five then four opponents, restored health between waves, Warehouse17 clue. Actual two shared server combat attempts, fresh health/token per wave and retry of a failed wave. Whole encounter cancellation grants no clue and re-entry starts both waves. Original donor thug models, outdoor corridor placement, unvoiced captions and simple combat are adaptations, not original Warehouse3 trap film or recovered attacker identities. Only acknowledged two-wave victory saves clue/minimum17:00. No pay."
+    },
+    {
+      "id":"workday-two-payday","disc":3,"actor":"TMRA","presentActors":[],"participants":[],"area":"MFSY","trigger":"enter","priority":580,
+      "title":"Second workday — collect wages","bounds":"s1.mfsy.workday-two-payday",
+      "requiredFlags":["story.s1.workday-two-morning.completed","story.s1.workday-two-afternoon.completed","story.s1.workday-two-attack.completed"],
+      "completedFlag":"story.s1.workday-two-payday.completed","effects":["notebook.s1.second-payday"],"recordDays":["story.s1.workday-two.payday"],
+      "grantYen":{"amount":2400,"reason":"story.s1.workday-two-wages"},"voiceIds":[],"yarnTemplate":"story-workday-payday.yarn","staging":"s1.mfsy.payday",
+      "authoredText":{"briefing":"Eight crates at 300 yen each: 2,400 yen. Yada-san has today's wages ready.","success":"Collected today's wages: 2,400 yen. Look behind Warehouse No. 17 for Mark."},
+      "nativeSources":[{"role":"original-salary-handover-motion-bank","locator":"disc3/SCENE/03/MFSY/ALP_PAY.PKS#M_MO01.MOTN","sha256":"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709"}],
+      "provenance":"Same original salary motions/borrowed Yada lines and shared transactional payday as day one. Exactly quota, not over quota: retain base300 per crate (2400) since the prototype has no extra-crate/raise mechanic. Independent once-only grant requires both actual batches and both ambush victories. Mark's subsequent rescue, brother clue and whole-workday completion are separate."
+    },
+    {
       "id":"workday-one-night","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":520,
       "title":"After work — the Phoenix Mirror dream","hours":[20,24],"bounds":"s1.jomo.workday-one-night",
       "requiredFlags":["story.s1.workday-one.completed"],"requiredItems":[{"key":"phoenix_mirror","quantity":1}],"excludedFlags":["story.s1.workday-two-race.completed"],

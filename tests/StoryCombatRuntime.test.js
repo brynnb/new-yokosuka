@@ -15,6 +15,20 @@ test("afternoon authoring relocates the shared formation without mirroring or di
   }
 });
 
+test("warehouse waves retain donor models but use explicit safe combat formation instead of cinematic grab poses",()=>{
+  const source=catalog.encounters.find(e=>e.id==="s1.d000.parking-lot");
+  for(const [id,count]of [["one",6],["two",5]]){
+    const placed=catalog.encounters.find(e=>e.id===`s1.mfsy.workday-two-wave-${id}`);
+    assert.equal(placed.actors.length,count);assert.equal(placed.actors[0].health,100);
+    for(const actor of placed.actorDefinitions)assert.deepEqual(actor,source.actorDefinitions.find(a=>a.actorCode===actor.actorCode));
+    for(const a of placed.actors){
+      const p=placed.formation[a.tag];
+      assert.deepEqual([a.x,a.y,a.z],p.map((v,i)=>v+placed.placement.position[i]));
+      if(a.tag!=="AKIR")assert.ok(Math.hypot(...[0,2].map(i=>p[i]))>=2.5);
+    }
+  }
+});
+
 function harness() {
   const calls=[],target=new EventTarget();let now=1000,prepare=async()=>{};
   const controller={cameraYaw:0,cameraDistance:2,setFirstPerson(){},updateCamera(){}};

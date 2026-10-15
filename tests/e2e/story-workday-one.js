@@ -1,10 +1,13 @@
 import {expect} from "@playwright/test";
 import {driveObservedDeliveries} from "./story-forklift-training.js";
 
-export async function verifyMorningCargo(page,testInfo,character){
+export async function verifyMorningCargo(page,testInfo,character,{day="one"}={}){
+  expect(["one","two"]).toContain(day);
+  const chapter=`workday-${day}`,count=day==="two"?4:5;
+  const success=day==="two"?"Four crates are delivered. Time for lunch with the other workers.":"The morning batch is finished. It is lunch break.";
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
-  const initial=await saved(),done="story.s1.workday-one-morning.completed";
-  expect(initial.character.storyFlags["story.s1.workday-one-race.completed"]).toBe(true);
+  const initial=await saved(),done=`story.s1.${chapter}-morning.completed`;
+  expect(initial.character.storyFlags[`story.s1.${chapter}-race.completed`]).toBe(true);
   expect(initial.character.storyFlags[done]).not.toBe(true);
   const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await noErrors();};
@@ -25,12 +28,18 @@ export async function verifyMorningCargo(page,testInfo,character){
   const start=async()=>{await approach();await page.getByRole("button",{name:"Start the deliveries",exact:true}).click();await page.waitForFunction(()=>window.storyProbe.delivery?.active?.entered||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await noErrors();await page.waitForTimeout(1800);};
   await start();await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-morning-cargo-cancel"));await idle();await unchanged();
   await start();await page.locator("#renderCanvas").focus();
-  await driveObservedDeliveries(page,testInfo,5,"workday-one-morning");
-  await page.getByText("The morning batch is finished. It is lunch break.",{exact:true}).waitFor();await unchanged();
-  await page.keyboard.press("Space");await idle();
-  const final=await saved();expect(final.character.storyFlags[done]).toBe(true);expect(final.character.storyFlags["notebook.s1.workday-one-morning"]).toBe(true);
+  await driveObservedDeliveries(page,testInfo,count,`${chapter}-morning`);
+  await page.getByText(success,{exact:true}).waitFor();await unchanged();
+  await page.keyboard.press("Space");
+  if(day==="two"){
+    await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-workday-lunch"||window.storyProbe.sceneErrors.length,null,{timeout:65_000});await noErrors();
+    await page.waitForTimeout(6000);await page.screenshot({path:testInfo.outputPath("second-workday-original-coworker-lunch.png")});await unchanged();
+    await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:45_000,intervals:[1000]}).toBe(true);
+  }
+  await idle();
+  const final=await saved();expect(final.character.storyFlags[done]).toBe(true);expect(final.character.storyFlags[`notebook.s1.${day==="two"?"workday-two-lunch":"workday-one-morning"}`]).toBe(true);
   expect(final.character.yen).toBe(initial.character.yen);expect(final.inventory).toEqual(initial.inventory);expect(new Date(final.character.storyTimeMs).getUTCHours()).toBe(12);
-  await page.screenshot({path:testInfo.outputPath("workday-one-morning-earned-lunch.png")});
+  await page.screenshot({path:testInfo.outputPath(`${chapter}-morning-earned-lunch.png`)});
   await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();
   expect((await saved()).character.storyFlags[done]).toBe(true);expect(await page.getByRole("button",{name:"Start the deliveries",exact:true}).isVisible()).toBe(false);
 }
@@ -63,7 +72,7 @@ export async function verifyMarkLunch(page,testInfo,character){
   expect((await saved()).character.storyFlags[done]).toBe(true);expect(await page.evaluate(()=>window.storyProbe.starts.some(id=>id.startsWith("story-s1-mark-lunch-")))).toBe(false);
 }
 
-async function winHarborFight(page){
+export async function winHarborFight(page,{attack="KeyK"}={}){
   await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyI");
   const held=new Set();
   const keys=async next=>{for(const key of held)if(!next.includes(key)){await page.keyboard.up(key);held.delete(key);}for(const key of next)if(!held.has(key)){await page.keyboard.down(key);held.add(key);}};
@@ -81,10 +90,12 @@ async function winHarborFight(page){
     // surrounded while continuously attacking is not a reliable win strategy.
     await keys([...(await movement(true)),"ShiftLeft"]);await page.waitForTimeout(1000);await keys([]);
     for(let i=0;i<1700&&await page.evaluate(()=>!!window.storyProbe.combatRuntime?.active);i++){
-      await keys(await movement(false));await page.keyboard.press("KeyK");await page.waitForTimeout(80);
+      await keys(await movement(false));await page.keyboard.press(attack);await page.waitForTimeout(80);
     }
   }finally{await page.keyboard.up("KeyI");await keys([]);}
-  expect(await page.getByRole("button",{name:"Try again",exact:true}).isVisible(),"Keyboard fight ended in defeat rather than success").toBe(false);
+  const failed=await page.getByRole("button",{name:"Try again",exact:true}).isVisible();
+  if(failed)console.info("Failed rendered fight",JSON.stringify(await page.evaluate(()=>{const inputs=window.storyProbe.combatIntents;return{view:window.storyProbe.lastCombatView,count:inputs.length,guarded:inputs.filter(i=>i.guard).length,actions:Object.fromEntries(["hand","leg","throw", ""].map(a=>[a,inputs.filter(i=>i.action===a).length])),last:inputs.slice(-3)};})));
+  expect(failed,"Keyboard fight ended in defeat rather than success").toBe(false);
 }
 
 export async function verifyFirstAfternoon(page,testInfo,character){

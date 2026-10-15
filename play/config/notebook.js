@@ -144,6 +144,10 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.goro-work-warning",page:Object.freeze({id:"story-goro-work-warning",text:"Goro was frightened when I asked about the Mad Angels.\n\nHe says not to get involved. There must be more to this. Return to work after getting some rest."})},
   {flag:"notebook.s1.workday-two-morning",page:Object.freeze({id:"story-workday-two-morning",text:"The Phoenix Mirror appeared in my dream.\n\nBack to the harbor for another working day."})},
   {flag:"notebook.s1.workday-two-race",page:Object.freeze({id:"story-workday-two-race",text:"Finished the second morning's forklift race.\n\nToday's quota is eight crates for Warehouse No. 3. Keep looking for information about the Mad Angels."})},
+  {flag:"notebook.s1.workday-two-lunch",page:Object.freeze({id:"story-workday-two-lunch",text:"Delivered the first four crates and had lunch with the other workers.\n\nFour more crates for Warehouse No. 3 this afternoon."})},
+  {flag:"notebook.s1.workday-two-quota",page:Object.freeze({id:"story-workday-two-quota",text:"Finished today's eight-crate quota for Warehouse No. 3.\n\nThe Mad Angels are trying to interfere with my work."})},
+  {flag:"notebook.s1.warehouse-seventeen-hangout",page:Object.freeze({id:"story-warehouse-seventeen-hangout",text:"Got past both groups of attackers.\n\nThe Mad Angels meet behind Warehouse No. 17. Look for Mark there after collecting my wages."})},
+  {flag:"notebook.s1.second-payday",page:Object.freeze({id:"story-second-payday",text:"Collected ¥2,400 for today's eight crates.\n\nFind Mark behind Warehouse No. 17."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

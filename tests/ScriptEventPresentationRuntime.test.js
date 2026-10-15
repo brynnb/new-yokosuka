@@ -24,6 +24,16 @@ function command(name, ...values) {
   };
 }
 
+test("coworker lunch borrows the original silent film without owning the batch result",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.mfsy.workday-lunch.scene");
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/harbor/workday-lunch/manifest.json",import.meta.url)));
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  assert.equal(manifest.activities[0].durationFrames,450);assert.equal(manifest.audioManifest,undefined);
+  assert.deepEqual(Object.keys(manifest.packageActors).sort(),["HTSI","MARK","TAKE","TYMK","YOHI"]);
+  assert.equal(Object.keys(manifest.sceneObjects).length,12);
+});
+
 test("Mark's lunch films retain original bindings and cannot settle the rescue themselves",()=>{
   const catalog=createScriptEventPresentationCatalog();
   for(const [part,resource] of [["intro","SEQDATA1.AUTH"],["aftermath","SEQDATA2.AUTH"]]){

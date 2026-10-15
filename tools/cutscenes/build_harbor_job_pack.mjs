@@ -7,12 +7,14 @@ import {execFileSync} from "node:child_process";
 import {buildNativeAseqActivityPack,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
 import {buildNativeAseqAudioPack} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
+import {parseAuthSequence} from "../../src/AuthSequence.js";
 
 const root=path.resolve(import.meta.dirname,"../..");
 const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,"extracted_disc3_v2"),"data/SCENE/03");
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const evidence="docs/design/story-harbor-work.md";
 const archives={
+  HIRUAUTH:"e740397e02958441010345d34d1369b20bbad9bc2ebdf397b413251b20a9a97e",
   GOROCOOP:"23073336078302cec958cdedb84443428f1e6f64ca2126e311fd5dd7ea9312a1",
   MGOR:"7feb53502a9325de4ffaa6539d38b9d2d7adb4d431285339035fa25057ca8ee6",
   MARU:"a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
@@ -22,6 +24,10 @@ const archives={
   ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
 const profiles=[
+  {id:"workday-lunch",archive:"HIRUAUTH",auth:"SEQDATA1.AUTH",motion:"M_01BEN.MOTN",frames:450,silent:true,
+    actors:[...Array.from({length:6},(_,i)=>[`BTF${i+1}`,`BTS${i+1}`]).flat(),"AKIR","YOHI","TYMK","TAKE","MARK","HTSI"],
+    props:Object.fromEntries(Array.from({length:6},(_,i)=>[[`BTF${i+1}`,"BNMS301G"],[`BTS${i+1}`,"BNMS302G"]]).flat()),
+    propTextureHash:"c6796091fbbb5a0ba8f3f50567fdf4b7419227ff984c38942d7bb0a08f635968"},
   {id:"after-work-goro",archive:"GOROMA",auth:"SEQDATA2.AUTH",motion:"M_01GOJ.MOTN",frames:2410,actors:["DOOR","AKIR","GORO"],
     stream:"01GOJ",streamHash:"06c5dd27705cf46350c3b59ebdefc89c14174499959526d9f253358b68f90bb8",sound:"A1_GOJ.SND",soundHash:"210668743582286b7b4bfa406ee36f766233f06fcb88b67021b522a5afe4adf3"},
   {id:"payday",archive:"ALP_PAY",motion:"M_MO01.MOTN",assetOnly:true},
@@ -43,7 +49,8 @@ const profiles=[
   {id:"mark-lunch-aftermath",archive:"MIZUMARK",auth:"SEQDATA2.AUTH",motion:"M_01MAD.MOTN",frames:1050,actors:["AKIR","OKYS","MRSK","MARK"]},
 ].map(p=>p.archive==="MARU"?{...p,stream:"01MAK",streamHash:"991e51fcbe77d0e590fd5db522b6fee46fe11cf7b02fc9bcaa6b81917cfc075d",sound:"A1_MARK.SND",soundHash:"ef5b84e9994323af1b7dc315612030cd1b923e79aa8770dd0e8afc6cad394ba8"}
   :p.archive==="MIZUMARK"?{...p,stream:"01MAD",streamHash:"3295b7ef69bde0372cb212cc500adcababc86421d712ae860ecaead614a7714a",sound:"A1_MAD.SND",soundHash:"b76ce9d7ad7f386a45001adcbf12a855718b0254ca72475dfdec78c4bfb38890"}:p);
-const characters={GORO:["Goro Mihashi","KMB_L"],HINA:["Mai Sawano","MIB_L"],TMRA:["Ryozo Yada","KWD_L"],MARK:["Mark Kimberly","GIC_L"],
+const characters={YOHI:["Yohei Kondo","YHI_L"],TYMK:["Tsuyoshi Murakami","RFA_L"],TAKE:["Hiroaki Takeuchi","ZZC_L"],HTSI:["Hitoshi Numakubo","SGH_L"],
+  GORO:["Goro Mihashi","KMB_L"],HINA:["Mai Sawano","MIB_L"],TMRA:["Ryozo Yada","KWD_L"],MARK:["Mark Kimberly","GIC_L"],
   MRSK:["Shingo Murasaki","PPL_L"],OKYS:["Minoru Okayasu","OKA_L"]};
 const runtimePaths=[];
 const profileArg=process.argv.indexOf("--profile");
@@ -53,6 +60,9 @@ for(const p of selected){
   const prefix=`play/assets/harbor/${p.id}`,audioPrefix=`public/audio/world/${p.id}`;
   const members=[],outputMembers=[],generatedAssets=[],sceneObjects={},packageActors={};
   const member=(archive,name)=>{
+    // Multiple scene instances may share one archive model (six lunchboxes).
+    // Provenance/output members describe unique source files, not instances.
+    if(members.some(m=>m.archiveMember===name&&m.sourceManifestPath===`disc3/SCENE/03/MFSY/${archive}.PKS`))return name;
     const sourcePath=path.join(source,`MFSY/${archive}.PKS`),bytes=fs.readFileSync(sourcePath);
     if(sha256(bytes)!==archives[archive])throw Error(`Changed original ${archive}.PKS`);
     const found=parseIpacActivityArchive(bytes).members.find(m=>m.name===name);
@@ -60,7 +70,15 @@ for(const p of selected){
     members.push({name,sourcePath,sourceManifestPath:`disc3/SCENE/03/MFSY/${archive}.PKS`,archiveMember:name,sourceSha256:archives[archive],byteLength:found.bytes.length,sha256:sha256(found.bytes)});
     return name;
   };
-  if(p.auth)member(p.archive,p.auth);
+  if(p.auth){
+    member(p.archive,p.auth);
+    if(p.silent){
+      const bytes=parseIpacActivityArchive(fs.readFileSync(path.join(source,`MFSY/${p.archive}.PKS`))).members.find(m=>m.name===p.auth).bytes;
+      // A silent profile must actually have no original audio commands; never
+      // use this to conceal a missing bank or an unimplemented voice request.
+      if(parseAuthSequence(bytes).sounds.length)throw Error(`Unexpected original audio in silent ${p.id}`);
+    }
+  }
   member(p.archive,p.motion);
   if(p.assetOnly){
     // ALP_PAY has salary motions, but no AUTH film. Preserve those originals
@@ -111,14 +129,14 @@ for(const p of selected){
   }
   const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:p.archive,disc:3,sourceMembers:members,expectedMembers:members,
     bindingEvidence:evidence,selectionRule:"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",
-    outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),audioManifest:`${audioPrefix}/manifest.json`,
+    outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),...(p.silent?{}:{audioManifest:`${audioPrefix}/manifest.json`}),
     motionBanks:[{bank:16,member:p.motion}],activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:p.auth,actors:p.actors,durationFrames:p.frames,
       ...(sceneObjects.ROOM?{nativeSceneObjectStates:[{actorTag:"ROOM",presented:true}]}:{})}],
-    packageActors,sceneObjects,outputMembers,generatedAssets,
+    packageActors,sceneObjects,outputMembers:[...new Set(outputMembers)],generatedAssets,
   });
   runtimePaths.push(`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path));
   console.log(`Built ${p.id}: ${manifest.activities[0].durationSeconds.toFixed(2)} seconds`);
-  if(!process.argv.includes("--audio"))continue;
+  if(p.silent||!process.argv.includes("--audio"))continue;
   const audio=buildNativeAseqAudioPack({generatedBy,disc:3,authDirectory:path.join(root,prefix),authFiles:[p.auth],authManifest:`${prefix}/manifest.json`,resourceBindingEvidence:evidence,
     stream:{label:`${p.stream}.AFS`,path:path.join(source,`STREAM/${p.stream}.AFS`),manifestPath:`disc3/SCENE/03/STREAM/${p.stream}.AFS`,sha256:p.streamHash},
     soundBank:{label:p.sound,path:path.join(source,`SOUND/${p.sound}`),manifestPath:`disc3/SCENE/03/SOUND/${p.sound}`,sha256:p.soundHash},

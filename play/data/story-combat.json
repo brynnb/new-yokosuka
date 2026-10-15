@@ -2,6 +2,350 @@
   "schema": "new-yokosuka-authored-story-combat-v1",
   "encounters": [
     {
+      "id": "s1.mfsy.workday-two-wave-one",
+      "label": "Warehouse ambush — first wave",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "GameSpot p56: five opponents, then four with replenished health. Authored outdoor dispatch encounter instead of original Warehouse3 room/door/crate trap. Original DRAUTH models are explicit donors, not recovered harbor attacker identities. Explicit corridor formation replaces cinematic grab poses. Two concurrent close attackers balance simplified controls across realistic input rates; all five must still be defeated. Shared original motions, no movie-completion victory.",
+      "placement": {
+        "position": [
+          -15.821,
+          0,
+          118.673
+        ],
+        "yaw": 0
+      },
+      "formation": {
+        "AKIR": [
+          0,
+          0,
+          0
+        ],
+        "SMTH": [
+          2.5,
+          0,
+          -1.5
+        ],
+        "HARY": [
+          3,
+          0,
+          1.5
+        ],
+        "TONY": [
+          5,
+          0,
+          -1
+        ],
+        "SERA": [
+          3.5,
+          0,
+          0
+        ],
+        "JONZ": [
+          5,
+          0,
+          1
+        ]
+      },
+      "actorWorldId": "dobuita",
+      "sourceActivity": "play/assets/dobuita/drauth/SEQDATA2.AUTH",
+      "sha256": "a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -15.821,
+          "y": 0,
+          "z": 118.673,
+          "health": 100
+        },
+        {
+          "tag": "SMTH",
+          "x": -13.321,
+          "y": 0,
+          "z": 117.173,
+          "health": 28
+        },
+        {
+          "tag": "HARY",
+          "x": -12.821,
+          "y": 0,
+          "z": 120.173,
+          "health": 18
+        },
+        {
+          "tag": "TONY",
+          "x": -10.821,
+          "y": 0,
+          "z": 117.673,
+          "health": 28
+        },
+        {
+          "tag": "SERA",
+          "x": -12.321,
+          "y": 0,
+          "z": 118.673,
+          "health": 36
+        },
+        {
+          "tag": "JONZ",
+          "x": -10.821,
+          "y": 0,
+          "z": 119.673,
+          "health": 18
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "SMTH",
+          "label": "Smith Bradley",
+          "modelCode": "GIB_M",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "HARY",
+          "label": "Harry Thompson",
+          "modelCode": "GIE_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "TONY",
+          "label": "Tony Abrams",
+          "modelCode": "GIJ_M",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "SERA",
+          "label": "Takeshi Sera",
+          "modelCode": "TUW_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "JONZ",
+          "label": "Jones Henders",
+          "modelCode": "GIF_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -17.320999999999998,
+        "maxX": -9.321,
+        "minZ": 115.673,
+        "maxZ": 121.673
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000,
+      "inputBufferMs": 400
+    },
+    {
+      "id": "s1.mfsy.workday-two-wave-two",
+      "label": "Warehouse ambush — second wave",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Four-opponent second wave after the actual first victory. A new ordinary combat attempt starts Ryo at full health as the guide specifies; original donor models, explicit open-corridor formation and basic moves/AI are adaptations. Cinematic grab poses are not combat starts. Both waves must be won before the clue can settle; cancellation or defeat never grants it.",
+      "placement": {
+        "position": [
+          -15.821,
+          0,
+          118.673
+        ],
+        "yaw": 0
+      },
+      "formation": {
+        "AKIR": [
+          0,
+          0,
+          0
+        ],
+        "SMTH": [
+          2.5,
+          0,
+          -1.5
+        ],
+        "HARY": [
+          3,
+          0,
+          1.5
+        ],
+        "TONY": [
+          5,
+          0,
+          -1
+        ],
+        "SERA": [
+          3.5,
+          0,
+          0
+        ]
+      },
+      "actorWorldId": "dobuita",
+      "sourceActivity": "play/assets/dobuita/drauth/SEQDATA2.AUTH",
+      "sha256": "a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -15.821,
+          "y": 0,
+          "z": 118.673,
+          "health": 100
+        },
+        {
+          "tag": "SMTH",
+          "x": -13.321,
+          "y": 0,
+          "z": 117.173,
+          "health": 28
+        },
+        {
+          "tag": "HARY",
+          "x": -12.821,
+          "y": 0,
+          "z": 120.173,
+          "health": 18
+        },
+        {
+          "tag": "TONY",
+          "x": -10.821,
+          "y": 0,
+          "z": 117.673,
+          "health": 28
+        },
+        {
+          "tag": "SERA",
+          "x": -12.321,
+          "y": 0,
+          "z": 118.673,
+          "health": 36
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "SMTH",
+          "label": "Smith Bradley",
+          "modelCode": "GIB_M",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "HARY",
+          "label": "Harry Thompson",
+          "modelCode": "GIE_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "TONY",
+          "label": "Tony Abrams",
+          "modelCode": "GIJ_M",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "SERA",
+          "label": "Takeshi Sera",
+          "modelCode": "TUW_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -17.320999999999998,
+        "maxX": -9.321,
+        "minZ": 115.673,
+        "maxZ": 121.673
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000,
+      "inputBufferMs": 400
+    },
+    {
       "id": "s1.mfsy.workday-one-attack",
       "label": "Get past the attackers",
       "area": "MFSY",
@@ -530,7 +874,7 @@
       "label": "Escape the ambush",
       "area": "D000",
       "worldId": "dobuita",
-      "provenance": "Original DRAUTH trap cast and AMOV positions; five opponents and at most three simultaneous attackers corroborated by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Shared practice move identities/timing supply presentation. Health, speed, circular hit/separation rules, rectangular arena padding, basic control set and strict restart are authored adaptations, not the original free-battle engine.",
+      "provenance": "Original DRAUTH trap cast and AMOV positions; five opponents and at most three simultaneous attackers corroborated by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Two simultaneous close attackers balance the simplified controls, consistently with other authored crowds; all five must be defeated. Shared practice moves, health/speed, spacing, arena padding and strict restart are adaptations, not the original free-battle engine.",
       "sourceActivity": "play/assets/dobuita/drauth/SEQDATA2.AUTH",
       "sha256": "a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
       "actors": [
@@ -661,7 +1005,7 @@
       },
       "playerSpeed": 3.2,
       "enemySpeed": 2.2,
-      "maxAttackers": 3,
+      "maxAttackers": 2,
       "timeoutMs": 180000,
       "inputBufferMs": 400
     },

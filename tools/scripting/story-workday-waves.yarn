@@ -1,0 +1,37 @@
+Ryo Hazuki: {{text:briefing}} #speaker:AKIR
+-> Face the attackers
+    <<jump FirstWave>>
+-> Leave it for now
+    <<jump Done>>
+===
+title: FirstWave
+---
+<<start_combat "{{firstCombat}}">>
+<<if combat_result("{{firstCombat}}") == "success">>
+Ryo Hazuki: {{text:between}} #speaker:AKIR
+<<jump SecondWave>>
+<<else>>
+-> Try again
+    <<jump FirstWave>>
+-> Leave it for now
+    <<jump Done>>
+<<endif>>
+===
+title: SecondWave
+---
+<<start_combat "{{secondCombat}}">>
+<<if combat_result("{{secondCombat}}") == "success">>
+Ryo Hazuki: {{text:success}} #speaker:AKIR
+{{clockEffects}}
+{{effects}}
+<<jump Done>>
+<<else>>
+-> Try again
+    <<jump SecondWave>>
+-> Leave it for now
+    <<jump Done>>
+<<endif>>
+===
+title: Done
+---
+<<complete>>
