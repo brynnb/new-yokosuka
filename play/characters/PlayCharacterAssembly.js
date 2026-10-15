@@ -28,7 +28,7 @@ import {
   ScheduledActorMotionRuntime,
 } from "./ScheduledActorMotionRuntime.js";
 import ma00RaceManifest from "../data/ma00-race-scheduled-actors.json";
-import authoredScenes from "../data/authored-story-scenes.json";
+import authoredScenes from "../scripts/AuthoredSceneCatalog.js";
 const scheduledMbasMotionUrl = runtimeAssetUrl("play/assets/scheduled-actors/M_MBAS.BIN");
 const scheduledMobjMotionUrl = runtimeAssetUrl("play/assets/scheduled-actors/M_MOBJ.BIN");
 const shenmue2NpcMotionUrl = runtimeAssetUrl("play/assets/shenmue2-motion/NPC.MOT");

@@ -1,0 +1,130 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_jimmy_chase_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA3.AUTH",
+        "path": "disc2/SCENE/02/D000/CTERMO1.PKS",
+        "sourceSha256": "af1eaba80d5e541628a7c857580da821cda22ccf6d7476e2876e83287c2bdc6f",
+        "archiveMember": "SEQDATA3.AUTH",
+        "byteLength": 8948,
+        "sha256": "0fcf0f89116fea159cf2617767112a1a13e909ac71f01f3879fb95700c54e43f"
+      },
+      {
+        "name": "M_01JIM.MOTN",
+        "path": "disc2/SCENE/02/D000/CTERMO2.PKS",
+        "sourceSha256": "66cb4e4f5aa934af906a9c82a60028c73b6ad0f7043ea38bd873516bbd77d3da",
+        "archiveMember": "M_01JIM.MOTN",
+        "byteLength": 109660,
+        "sha256": "0c8812bb1538dc4a06998b67d9de3acb3cdb5aa0cd7ddcb9d42d1ebf3b99b85a"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md#jimmy-chase-and-interrogation",
+    "resourceName": "CTERMO1",
+    "variant": "",
+    "selectionRule": "Reviewed authored chapter order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/jimmy-knock/manifest.json",
+  "sceneObjects": {
+    "DOR1": {
+      "model": "unmapped-original-door-reference",
+      "browserFilename": "CTERMO1-DOR1-reference",
+      "referenceOnly": true
+    },
+    "DOR2": {
+      "model": "unmapped-original-door-reference",
+      "browserFilename": "CTERMO1-DOR2-reference",
+      "referenceOnly": true
+    }
+  },
+  "packageActors": {
+    "JIMY": {
+      "label": "Jimmy Yan",
+      "modelCode": "JIM_M",
+      "browserFilename": "JIM_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/JIM_M.CHRM",
+      "textureAssetPath": "play/assets/characters/JIM_textures.bin"
+    }
+  },
+  "actorTags": [
+    "DOR1",
+    "JIMY",
+    "AKIR",
+    "DOR2"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/dobuita/jimmy-knock/M_01JIM.MOTN",
+      "byteLength": 109660,
+      "sha256": "0c8812bb1538dc4a06998b67d9de3acb3cdb5aa0cd7ddcb9d42d1ebf3b99b85a"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/jimmy-knock/M_01JIM.MOTN",
+      "byteLength": 109660,
+      "sha256": "0c8812bb1538dc4a06998b67d9de3acb3cdb5aa0cd7ddcb9d42d1ebf3b99b85a"
+    },
+    {
+      "path": "play/assets/dobuita/jimmy-knock/SEQDATA3.AUTH",
+      "byteLength": 8948,
+      "sha256": "0fcf0f89116fea159cf2617767112a1a13e909ac71f01f3879fb95700c54e43f"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "CTERMO1/SEQDATA3.AUTH",
+      "archiveMember": "SEQDATA3.AUTH",
+      "byteLength": 8948,
+      "sha256": "0fcf0f89116fea159cf2617767112a1a13e909ac71f01f3879fb95700c54e43f",
+      "durationFrames": 550,
+      "durationSeconds": 18.350000381469727,
+      "frameCount": 47,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 2,
+        "sound": 40,
+        "voice": 7
+      },
+      "actors": [
+        "DOR1",
+        "JIMY",
+        "AKIR",
+        "DOR2"
+      ],
+      "motions": [
+        {
+          "actorTag": "JIMY",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "YKI_JIM_AT1_TATAKU_DOOR_CHASEJIMMY_0100",
+          "startFrame": 41,
+          "endFrame": 555
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_TATAKU_DOOR_CHASEJIMMY_0100",
+          "startFrame": 41,
+          "endFrame": 590
+        }
+      ]
+    }
+  ]
+}

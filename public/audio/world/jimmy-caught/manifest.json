@@ -1,0 +1,700 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_jimmy_chase_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01JIM.AFS",
+      "sha256": "5c8b34e73fc7fd6551ede3e301ef4d80ec6b634f774d78d5b76572305f79b29e"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_JIMSE.SND",
+      "sha256": "02f51b8a9b3d01b92d1941f84ba354484f26d3462325c343012527df275e7915"
+    },
+    "authManifest": "play/assets/dobuita/jimmy-caught/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md#jimmy-chase-and-interrogation"
+  },
+  "voices": [
+    {
+      "voiceId": "01JIMA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMA001.aiff",
+      "nativeMember": "01JIMA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 8192,
+      "nativeSha256": "197a0fdd9323e6ae4eaddd6a3f8f911edc83c35d1833b9b35d0da597c277296d",
+      "speakerId": "AKIR",
+      "sourceText": "Gimme my ticket!",
+      "displayText": "Gimme my ticket!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-caught/voice/01JIMA001.wav",
+      "byteLength": 32556,
+      "sha256": "58cb46814e1f1a2f925534a03dae615e267714ffd09f7ce5060db4e679a0f304"
+    },
+    {
+      "voiceId": "01JIMA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMA002.aiff",
+      "nativeMember": "01JIMA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "652a4bd5f5e2bbc8b31ab8d092238b374eb3cd64dd0757f18cd0f60f4524ad86",
+      "speakerId": "AKIR",
+      "sourceText": "Cut the crap!!!",
+      "displayText": "Cut the crap!!!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-caught/voice/01JIMA002.wav",
+      "byteLength": 32556,
+      "sha256": "68704150f48588b53889c13b7c4d05215f21f0b11c36502eca1a07bbf4a0c261"
+    },
+    {
+      "voiceId": "01JIMB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMB001.aiff",
+      "nativeMember": "01JIMB001.str",
+      "speakerId": "JIMY",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "This exact AUTH voice reference is absent from the original archive directory; retain its cue without substitute speech.",
+      "evidence": "disc2/SCENE/02/STREAM/01JIM.AFS member directory"
+    },
+    {
+      "voiceId": "01JIMB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMB002.aiff",
+      "nativeMember": "01JIMB002.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 6144,
+      "nativeSha256": "ad56f24344266f90b51a962ba706d1560ecc87f02967b3046af3c08c19ae92c0",
+      "speakerId": "JIMY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 27
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-caught/voice/01JIMB002.wav",
+      "byteLength": 24364,
+      "sha256": "016f4dfa602281c4a1b43003187b74356967c23a9e9bf44e9132e4d0c893d4d5"
+    },
+    {
+      "voiceId": "01JIMB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMB003.aiff",
+      "nativeMember": "01JIMB003.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 14336,
+      "nativeSha256": "e310f9ec91d6d47b66d7d1102af5d38ac90570cb39cad678093563f7b72e2458",
+      "speakerId": "JIMY",
+      "sourceText": "I'm sorry! Forgive me.",
+      "displayText": "I'm sorry! Forgive me.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 40
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-caught/voice/01JIMB003.wav",
+      "byteLength": 57132,
+      "sha256": "ab943908de576eadabef8d616dbf462184df1bc15e4d750021188727759f8c4f"
+    },
+    {
+      "voiceId": "01JIMB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMB004.aiff",
+      "nativeMember": "01JIMB004.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 14336,
+      "nativeSha256": "612eb30ad8a710464cf98148e49f76330bed3b8eeda8c4b3aef0a74720f2627e",
+      "speakerId": "JIMY",
+      "sourceText": "I don't have it anymore.",
+      "displayText": "I don't have it anymore.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 25
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 27
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-caught/voice/01JIMB004.wav",
+      "byteLength": 57132,
+      "sha256": "55c49591b635ec6d82b48b2e5d869bc16a850767d19bf972003ef32800478875"
+    },
+    {
+      "voiceId": "01JIMB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMB005.aiff",
+      "nativeMember": "01JIMB005.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 65536,
+      "nativeSha256": "b2a7e4c0cb3a8b38dcd6c45141d19f5003fb8ca660086c06db116c2708480ba7",
+      "speakerId": "JIMY",
+      "sourceText": "Ugh, I'm sorry!",
+      "displayText": "Ugh, I'm sorry!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 55
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 21
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 48
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 60
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-caught/voice/01JIMB005.wav",
+      "byteLength": 261932,
+      "sha256": "a941e39e8ce5209d4087985e81348976fff70d1471243a4d884dad7a2ec9f81f"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YUK/SE/foot/Akirafoot.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040000.wav",
+      "byteLength": 5412,
+      "sha256": "90593d8f1223c44d75949368d0a068bb7743ec58b2152e5f63dc81d6345e3603"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YUK/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040100.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YUK/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040200.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YUK/SE/cloths2/cl03.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040300.wav",
+      "byteLength": 127604,
+      "sha256": "2c13979aaaf032ee706d0353819b385a7aca4f3d3d1a6b0e480c83e7a4162737"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YUK/SE/cloths2/cl04.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040400.wav",
+      "byteLength": 37108,
+      "sha256": "dfcfeb5de29e48c458f7a8b1a17749416ab3cd1a976190555100e9ca1dea3bef"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YUK/SE/cloths2/cl05.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040500.wav",
+      "byteLength": 73092,
+      "sha256": "3c23439039c6b2a12d7cb1d4b1a58ea508e4ce2efa253b486096479f227dda30"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YUK/SE/cloths2/cl06.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040600.wav",
+      "byteLength": 62916,
+      "sha256": "5703d450986e9acb352cdaa832e51acc60482d8cdfa9d14811f6c3868ed8fd94"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YUK/SE/cloths2/cloths03.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040700.wav",
+      "byteLength": 14788,
+      "sha256": "dbaff45be9665ae74498ddbefe505f671f30307c6a358f47e711422e9c6f9d11"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YUK/SE/body/Down1b.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040800.wav",
+      "byteLength": 35212,
+      "sha256": "6028c9a34f819acdf0cd5802868a79c747f2430671e2380b1020562754ebc538"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YUK/SE/kick/kick01.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040900.wav",
+      "byteLength": 8076,
+      "sha256": "7e39276e57ec28e1187288ec5fc6d699e721e04e0c0b7caaf667fc207845e552"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JUCE/SE/body/simeru.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040a00.wav",
+      "byteLength": 15988,
+      "sha256": "3d2e9ee8ef9e07e2cbd00990b4dae7e90ad8959f4b1184d3c6f423b31c6dacaa"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/vehicle/van01.aiff",
+      "playbackId": 11,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040b00.wav",
+      "byteLength": 128212,
+      "sha256": "37d84a4554df6f8f5f40d50a8341c7b17c367f9a16162c3919dcbb56e3b01a46"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YUK/SE/footconcrete/woncon1.aiff",
+      "playbackId": 12,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040c00.wav",
+      "byteLength": 6636,
+      "sha256": "5f6b3d856350b3fe69859aaad310ba74c4d19e7da30c42bd93c0899d9a12bb87"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YUK/SE/footconcrete/woncon2.aiff",
+      "playbackId": 13,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040d00.wav",
+      "byteLength": 6748,
+      "sha256": "46705b7fb88189f76d40b10018920f971e00fcabdfd28ced15d034fe81fb06cb"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01YUK/SE/footconcrete/woncon3.aiff",
+      "playbackId": 14,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-caught/sfx/a9040e00.wav",
+      "byteLength": 17988,
+      "sha256": "c3a089b855a95f82a3d2bcc58fc050e48a5ef0507a558b50f99f53cb6da67c83"
+    }
+  ]
+}

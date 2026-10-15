@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {readFileSync} from "node:fs";
 import {NativeAseqActivityCatalog} from "../play/events/NativeAseqActivityRuntime.js";
+import authoredScenes from "../play/scripts/AuthoredSceneCatalog.js";
+import {evaluateAuthActor} from "../src/AuthMovement.js";
 
 import {
   createScriptEventPresentationCatalog,
@@ -21,6 +23,28 @@ function command(name, ...values) {
     })),
   };
 }
+
+test("Jimmy films retain exact source bindings and running beats form one continuous owned route",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  for(const [part,area,resource]of [["jimmy-knock","d000","CTERMO1/SEQDATA3.AUTH"],["jimmy-caught","d000","CTERMO1/SEQDATA1.AUTH"],["jimmy-escaped","d000","CTERMO1/SEQDATA2.AUTH"],["jimmy-interrogation","daza","A0174/A0174.AUTH"]]){
+    const activity=catalog.activity(`s1.${area}.${part}.scene`);
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.activity.binding.activityId,resource);
+    const manifest=JSON.parse(readFileSync(new URL(`../play/assets/dobuita/${part}/manifest.json`,import.meta.url)));
+    assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  }
+  const beats=authoredScenes.scenes.filter(s=>s.continuationGroup==="s1.d000.jimmy-chase");
+  assert.equal(beats.length,13);
+  for(let i=0;i<beats.length;i++){
+    const scene=beats[i];assert.equal(catalog.sequence(`${scene.id}.start`).kind,i?"scene-staging-transition":"scene-staging-start");
+    assert.deepEqual(scene.actors.map(a=>a.tag),["AKIR","JIMY"]);
+    for(const actor of scene.actors){
+      const end=evaluateAuthActor(actor.movement,scene.durationSeconds);
+      if(i<beats.length-1)for(const key of ["x","y","z"])assert.ok(Math.abs(end[key]-beats[i+1].actors.find(a=>a.tag===actor.tag).pose[key])<1e-8,`${scene.id}/${actor.tag}/${key}`);
+      assert.equal(actor.endMotion.name,"AKI_AKI_STAND_LP");
+    }
+  }
+});
 
 function harness() {
   const calls = [];

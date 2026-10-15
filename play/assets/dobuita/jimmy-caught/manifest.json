@@ -1,0 +1,151 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_jimmy_chase_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA1.AUTH",
+        "path": "disc2/SCENE/02/D000/CTERMO1.PKS",
+        "sourceSha256": "af1eaba80d5e541628a7c857580da821cda22ccf6d7476e2876e83287c2bdc6f",
+        "archiveMember": "SEQDATA1.AUTH",
+        "byteLength": 8760,
+        "sha256": "9d7f3031ca8a4af6b63450db3e056f537a18a9d6e883a5a0edb6737974dc1f68"
+      },
+      {
+        "name": "M_01JIM.MOTN",
+        "path": "disc2/SCENE/02/D000/CTERMO3.PKS",
+        "sourceSha256": "715a5ee482da7b4b6ef93e61e42eb3ce1006e69d8d958dd7e508c8daacc789aa",
+        "archiveMember": "M_01JIM.MOTN",
+        "byteLength": 109636,
+        "sha256": "4dbcbb542acb25fc897a82581ec2203bb3ea6caa611d7392c2bc657f2545583c"
+      },
+      {
+        "name": "C85N305G.CHRM",
+        "path": "disc2/SCENE/02/D000/CTERBASE.PKS",
+        "sourceSha256": "786c76f3846f2faf179afeb55c8ff0143e3214d7d6d05dfefb396fac794e6257",
+        "archiveMember": "C85N305G.CHRM",
+        "byteLength": 23332,
+        "sha256": "980c521aa023467867024ecdc5411b7780e25ed5ce794d4f180f2ba7b1403c46"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md#jimmy-chase-and-interrogation",
+    "resourceName": "CTERMO1",
+    "variant": "",
+    "selectionRule": "Reviewed authored chapter order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/jimmy-caught/manifest.json",
+  "sceneObjects": {
+    "CAR_": {
+      "model": "C85N305G",
+      "browserFilename": "C85N305G.CHRM",
+      "assetPath": "play/assets/dobuita/jimmy-caught/C85N305G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/jimmy-caught/textures.bin"
+    }
+  },
+  "packageActors": {
+    "JIMY": {
+      "label": "Jimmy Yan",
+      "modelCode": "JIM_M",
+      "browserFilename": "JIM_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/JIM_M.CHRM",
+      "textureAssetPath": "play/assets/characters/JIM_textures.bin"
+    }
+  },
+  "actorTags": [
+    "CAR_",
+    "JIMY",
+    "AKIR"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/dobuita/jimmy-caught/M_01JIM.MOTN",
+      "byteLength": 109636,
+      "sha256": "4dbcbb542acb25fc897a82581ec2203bb3ea6caa611d7392c2bc657f2545583c"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/jimmy-caught/M_01JIM.MOTN",
+      "byteLength": 109636,
+      "sha256": "4dbcbb542acb25fc897a82581ec2203bb3ea6caa611d7392c2bc657f2545583c"
+    },
+    {
+      "path": "play/assets/dobuita/jimmy-caught/SEQDATA1.AUTH",
+      "byteLength": 8760,
+      "sha256": "9d7f3031ca8a4af6b63450db3e056f537a18a9d6e883a5a0edb6737974dc1f68"
+    },
+    {
+      "path": "play/assets/dobuita/jimmy-caught/C85N305G.CHRM",
+      "byteLength": 23332,
+      "sha256": "980c521aa023467867024ecdc5411b7780e25ed5ce794d4f180f2ba7b1403c46"
+    },
+    {
+      "path": "play/assets/dobuita/jimmy-caught/textures.bin",
+      "byteLength": 400208,
+      "sha256": "f16149b0b50931e77bc8af5944f3891b2a2cd565b1824f00bd0dfa1cb05de378"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "CTERMO1/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 8760,
+      "sha256": "9d7f3031ca8a4af6b63450db3e056f537a18a9d6e883a5a0edb6737974dc1f68",
+      "durationFrames": 650,
+      "durationSeconds": 23.33333396911621,
+      "frameCount": 30,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 3,
+        "voice": 8,
+        "sound": 23
+      },
+      "actors": [
+        "CAR_",
+        "JIMY",
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "JIMY",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "YKI_JIM_AT_QOK_TICKET_YOKOSE_CHASEJIMMY_QTE_0100",
+          "startFrame": 1,
+          "endFrame": 683
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT_QOK_TICKET_YOKOSE_CHASEJIMMY_QTE_0100",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 121,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT_QOK_TICKET_YOKOSE_CHASEJIMMY_QTE_0100",
+          "startFrame": 1,
+          "endFrame": 567
+        }
+      ]
+    }
+  ]
+}

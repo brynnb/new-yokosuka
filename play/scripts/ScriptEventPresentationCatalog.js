@@ -1,7 +1,7 @@
 import commandRegistry from "../data/server-command-registry.json" with {
   type: "json",
 };
-import authoredScenes from "../data/authored-story-scenes.json" with { type: "json" };
+import authoredScenes from "./AuthoredSceneCatalog.js";
 
 const CAMERAS = new Map([
   ["d000.hato.camera.2950", { area: "D000", cameraNumber: 2950 }],
@@ -33,6 +33,11 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["jimmy-knock","CTERMO1/SEQDATA3.AUTH","D000","dobuita"],["jimmy-caught","CTERMO1/SEQDATA1.AUTH","D000","dobuita"],["jimmy-escaped","CTERMO1/SEQDATA2.AUTH","D000","dobuita"],["jimmy-interrogation","A0174/A0174.AUTH","DAZA","daza"]].map(([part,activityId,area,worldId])=>[`s1.${area.toLowerCase()}.${part}.scene`,{
+    kind:"native-cutscene",area,durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:`story-s1-${part}`,packageId:part,worldId,storyPresentation:true,
+      activity:{slot:0,binding:{kind:"map-embedded-slot",activityId}}},
+  }]),
   ...[["chai-intro","A0172"],["chai-victory","A0172"],["chai-rescue","A0172A"]].map(([part,resource])=>[`s1.dgct.${part}.scene`,{
     kind:"native-cutscene",area:"DGCT",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-${part}`,packageId:part,worldId:"arcade",storyPresentation:true,
@@ -253,7 +258,7 @@ function closedDoorMotionCueSequences({ selector, target, requestWord, sourceOff
 // operation has a proven Babylon adapter.
 const SEQUENCES = new Map([
   ...authoredScenes.scenes.flatMap(scene => [
-    [`${scene.id}.start`, { kind: "scene-staging-start", area: scene.area, scene, executable: true }],
+    [`${scene.id}.start`, { kind: scene.continuesPrevious?"scene-staging-transition":"scene-staging-start", area: scene.area, scene, executable: true }],
     [`${scene.id}.finish`, { kind: "scene-staging-finish", area: scene.area, scene, executable: true }],
   ]),
   ["d000.door.1.closed-check.start", {

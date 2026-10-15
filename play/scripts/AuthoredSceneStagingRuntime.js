@@ -3,6 +3,22 @@
 // interprets a challenge. This is intentionally authored, not decoded AUTH.
 import { updateNativeCharacterSecondaryMotion } from "../characters/NativeCharacterSecondaryMotion.js";
 import {applyStoryObjectTransforms} from "./StoryObjectPresentation.js";
+import {evaluateAuthActor} from "../../src/AuthMovement.js";
+import {evaluateAuthCamera} from "../../src/AuthCamera.js";
+
+const POSE_FIELDS=["x","y","z","rotationX","rotationY","rotationZ"];
+const CAMERA_FIELDS=["positionX","positionY","positionZ","targetX","targetY","targetZ","roll","perspective"];
+function validateTrack(track,fields,duration,label){
+  if(!track)return;
+  if(!Number.isFinite(duration)||!track.channels||Object.keys(track.channels).length!==fields.length)throw Error(`Invalid staged track ${label}`);
+  for(const key of fields){
+    const c=track.channels[key];
+    if(!c||!Array.isArray(c.times)||c.times.length<2||!Array.isArray(c.values)||!Array.isArray(c.tangents)
+      ||c.times.length!==c.values.length||c.times.length!==c.tangents.length
+      ||[...c.times,...c.values,...c.tangents].some(v=>!Number.isFinite(v))
+      ||c.times[0]!==0||c.times.at(-1)!==duration||c.times.some((t,i)=>i>0&&t<=c.times[i-1]))throw Error(`Invalid staged track ${label}.${key}`);
+  }
+}
 
 export class AuthoredSceneStagingRuntime {
   constructor({ actors, camera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, currentMeshes }) {
@@ -21,7 +37,8 @@ export class AuthoredSceneStagingRuntime {
       if (this.active?.transaction !== transaction || this.active.scene.id !== sequence.scene.id) return false;
       return this.release(transaction);
     }
-    if (sequence.kind !== "scene-staging-start" || this.active) return false;
+    const continuing=sequence.kind==="scene-staging-transition";
+    if ((!continuing&&sequence.kind!=="scene-staging-start")||(!continuing&&this.active)) return false;
     const scene = sequence.scene;
     if (scene.area !== transaction.area) return false;
     if(scene.durationSeconds!=null&&(!Number.isFinite(scene.durationSeconds)||scene.durationSeconds<=0||scene.durationSeconds>120))throw new Error(`Invalid staged duration ${scene.id}`);
@@ -40,15 +57,26 @@ export class AuthoredSceneStagingRuntime {
     if (scene.waitForMotions && (scene.durationSeconds != null || scene.actors.some(actor => actor.motion.loop !== false))) {
       throw new Error(`Timed scene requires non-looping motions: ${scene.id}`);
     }
-    const owner = { transaction, scene, controller: new AbortController(), elapsed: 0,
+    for(const actor of scene.actors){
+      validateTrack(actor.movement,POSE_FIELDS,scene.durationSeconds,`${scene.id}/${actor.tag}`);
+      if(actor.endMotion&&(!Number.isFinite(scene.durationSeconds)||!actor.endMotion.bank||!actor.endMotion.name))throw Error(`Invalid staged end motion ${scene.id}/${actor.tag}`);
+    }
+    validateTrack(scene.cameraTrack,CAMERA_FIELDS,scene.durationSeconds,`${scene.id}/camera`);
+    if(continuing&&(!this.active||this.active.transaction!==transaction||!scene.continuationGroup
+      ||scene.continuationGroup!==this.active.scene.continuationGroup
+      ||JSON.stringify(scene.actors.map(a=>a.tag))!==JSON.stringify(this.active.scene.actors.map(a=>a.tag))
+      ||scene.attachedObjects||scene.objectTransforms||this.active.objects||this.active.restoreObjects))return false;
+    const owner = continuing?this.active:{ transaction, scene, controller: new AbortController(), elapsed: 0,
       actorsBegun: false, cameraBegun: false, snapshot: this.capturePlayerState() };
     this.active = owner;
     const { signal } = owner.controller;
     try {
-      await this.actors.prepare(scene.actors.map(actor => actor.tag), { signal });
+      if(!continuing)await this.actors.prepare(scene.actors.map(actor => actor.tag), { signal });
       signal.throwIfAborted();
-      await this.motionRuntime.loadNamedSelections(scene.actors.map(actor => actor.motion));
+      await this.motionRuntime.loadNamedSelections(scene.actors.flatMap(actor => [actor.motion,...(actor.endMotion?[actor.endMotion]:[])]));
       signal.throwIfAborted();
+      if(this.active!==owner)return false;
+      owner.scene=scene;owner.elapsed=0;
       owner.durationSeconds = scene.waitForMotions
         ? Math.max(...scene.actors.map(actor => this.motionRuntime.namedDurationSeconds(actor.motion)))
         : scene.durationSeconds;
@@ -67,10 +95,12 @@ export class AuthoredSceneStagingRuntime {
         if (!this.currentMeshes) throw Error(`No world object provider for ${scene.id}`);
         owner.restoreObjects = applyStoryObjectTransforms(this.currentMeshes(), scene.objectTransforms);
       }
-      this.actors.begin(owner, scene.actors.map(actor => actor.tag));
-      owner.actorsBegun = true;
-      this.camera.begin(owner);
-      owner.cameraBegun = true;
+      if(!continuing){
+        this.actors.begin(owner, scene.actors.map(actor => actor.tag));
+        owner.actorsBegun = true;
+        this.camera.begin(owner);
+        owner.cameraBegun = true;
+      }
       for (const actor of scene.actors) {
         if (actor.pose && !this.actors.applyTransform(owner, actor.tag, actor.pose)) throw new Error(`Cannot stage actor ${actor.tag}`);
         // Borrow out-of-shot residents too: hiding an owned root suppresses
@@ -94,13 +124,15 @@ export class AuthoredSceneStagingRuntime {
     owner.elapsed += Math.max(0, deltaSeconds);
     for (const actor of owner.scene.actors) {
       const model = this.actors.activeActor(actor.tag)?.model;
-      if (!this.motionRuntime.applyNamed(model, actor.motion, owner.elapsed)) return false;
+      if(actor.movement&&!this.actors.applyTransform(owner,actor.tag,evaluateAuthActor(actor.movement,owner.elapsed)))return false;
+      const ended=actor.endMotion&&owner.elapsed>=owner.durationSeconds;
+      if (!this.motionRuntime.applyNamed(model, ended?actor.endMotion:actor.motion, ended?owner.elapsed-owner.durationSeconds:owner.elapsed)) return false;
       // Gameplay skips its post-pose pass while a story presentation owns the
       // actor. Reuse that pass here, or acquired cloth stays at the old pose.
       updateNativeCharacterSecondaryMotion(model, deltaSeconds);
     }
     if(owner.objects?.update(Math.floor(owner.elapsed*30))===false)return false;
-    if(!this.camera.apply(owner, owner.scene.camera))return false;
+    if(!this.camera.apply(owner, owner.scene.cameraTrack?evaluateAuthCamera(owner.scene.cameraTrack,owner.elapsed):owner.scene.camera))return false;
     if(owner.resolve&&owner.elapsed>=owner.durationSeconds){owner.resolve(true);owner.resolve=null;}
     return true;
   }

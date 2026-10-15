@@ -81,6 +81,14 @@ import chaiVictoryManifest from "../assets/dobuita/chai-victory/manifest.json";
 import chaiVictoryAudio from "../../public/audio/world/chai-victory/manifest.json";
 import chaiRescueManifest from "../assets/dobuita/chai-rescue/manifest.json";
 import chaiRescueAudio from "../../public/audio/world/chai-rescue/manifest.json";
+import jimmyKnockManifest from "../assets/dobuita/jimmy-knock/manifest.json";
+import jimmyKnockAudio from "../../public/audio/world/jimmy-knock/manifest.json";
+import jimmyCaughtManifest from "../assets/dobuita/jimmy-caught/manifest.json";
+import jimmyCaughtAudio from "../../public/audio/world/jimmy-caught/manifest.json";
+import jimmyEscapedManifest from "../assets/dobuita/jimmy-escaped/manifest.json";
+import jimmyEscapedAudio from "../../public/audio/world/jimmy-escaped/manifest.json";
+import jimmyInterrogationManifest from "../assets/dobuita/jimmy-interrogation/manifest.json";
+import jimmyInterrogationAudio from "../../public/audio/world/jimmy-interrogation/manifest.json";
 import familyFukuManifest from "../assets/hazuki/family-fuku/manifest.json";
 import familyFukuAudio from "../../public/audio/world/family-fuku/manifest.json";
 import familyIneManifest from "../assets/hazuki/family-ine/manifest.json";
@@ -282,7 +290,8 @@ const nativeSilentActivityMusic = resource => Object.freeze({
 });
 
 const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
-  ...[["chai-intro",chaiIntroManifest,chaiIntroAudio,"arcade"],["chai-victory",chaiVictoryManifest,chaiVictoryAudio,"arcade"],["chai-rescue",chaiRescueManifest,chaiRescueAudio,"arcade"],
+  ...[["jimmy-knock",jimmyKnockManifest,jimmyKnockAudio,"dobuita"],["jimmy-caught",jimmyCaughtManifest,jimmyCaughtAudio,"dobuita"],["jimmy-escaped",jimmyEscapedManifest,jimmyEscapedAudio,"dobuita"],["jimmy-interrogation",jimmyInterrogationManifest,jimmyInterrogationAudio,"daza"],
+    ["chai-intro",chaiIntroManifest,chaiIntroAudio,"arcade"],["chai-victory",chaiVictoryManifest,chaiVictoryAudio,"arcade"],["chai-rescue",chaiRescueManifest,chaiRescueAudio,"arcade"],
     ["jimmy-morning-call",jimmyCallManifest,jimmyCallAudio,"interior"],["post-chen-home",postChenHomeManifest,postChenHomeAudio,"interior"],["bank-savings",bankSavingsManifest,bankSavingsAudio,"interior"],["travel-family",travelFamilyManifest,travelFamilyAudio,"interior"],
     ["fuku-travel-funds",fukuTravelFundsManifest,fukuTravelFundsAudio,"interior"],["global-airfare",globalAirfareManifest,globalAirfareAudio,"dski"],["asia-airfare",asiaAirfareManifest,asiaAirfareAudio,"daza"],
     ["global-boat",globalBoatManifest,globalBoatAudio,"dski"],["boat-ticket-purchase",boatPurchaseManifest,boatPurchaseAudio,"daza"],["boat-ticket-collection",boatCollectionManifest,boatCollectionAudio,"daza"]].map(([id,manifest,audioManifest,worldId])=>Object.freeze({
@@ -292,7 +301,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
       ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
     presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
     environment:Object.freeze({packageActors:manifest.packageActors,...(manifest.sceneObjects?{sceneObjects:manifest.sceneObjects}:{}),
-      ...(id==="boat-ticket-collection"?{suppressScheduledActors:["ETKO"]}:{})}),
+      ...(["boat-ticket-collection","jimmy-interrogation"].includes(id)?{suppressScheduledActors:["ETKO"]}:{})}),
     playback:Object.freeze({manifest,audioManifest}),
   })),
   Object.freeze({id:"family-crest",worldId:"interior",actorDefinitions:[],actorTags:Object.freeze(familyCrestManifest.actorTags),

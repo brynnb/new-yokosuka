@@ -318,7 +318,7 @@ continuation; defeat brings Fuku's rescue and a day of rest at home.
 Both endings preserve money, inventory and persistent HP. Story-fight health
 uses the existing temporary encounter model; this chapter grants no refund,
 ticket item or guessed native flag. The notebook is a lightly adapted lead to
-Asia Travel, not an implementation of the subsequent Jimmy chase.
+Asia Travel. The subsequent connected chase is documented below.
 
 `TestChaiChapterRequiresRealOutcomeAndEndingAcknowledgement` compiles the actual
 generated chapter and runs original shared fight simulation under a controlled
@@ -343,3 +343,64 @@ The 142 focused client presentation, actor ownership, controller and combat
 checks pass, as do the Go scripting/content suites with the real Yarn compiler.
 Those Go commands do not claim unconfigured database integration coverage;
 the two connected browser runs supply the real PostgreSQL outcome checks here.
+
+## Jimmy chase and interrogation
+
+Official imports: `jimmy-chase`, `jimmy-interrogation`.
+The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed pp. 47–48, supplies the order: knock at closed Asia Travel, catch
+Jimmy, question him inside, then seek harbor work to investigate the Mad Angels.
+The original winning inputs are Left, Right, Left, Right, Left, Right, A,
+Left, Left, Right, Left, Right, A.
+
+The outside approach asks for an explicit knock; it does not override normal
+shop-door hours. The original `CTERMO1.PKS/SEQDATA3.AUTH` opening uses the
+`CTERMO2.PKS` motion ordering. Capture (`SEQDATA1.AUTH`) and escape
+(`SEQDATA2.AUTH`) use the differently ordered `CTERMO3.PKS` bank. Their ordered
+casts come from AUTH, not the alphabetically sorted research inventory.
+The generator pins every source hash and retains exact camera, body and voice
+cues. Two referenced voice members absent from the original AFS directories
+are explicitly unavailable, never replaced with plausible speech.
+
+The running section is deliberately authored, not reconstructed DYNAMICS:
+thirteen moving beats follow a reviewed original civilian street corridor
+(`MTRI:e18c81dc1131:59400:0x4af60`, selected road-point SHA256
+`ed8fd50b876e089584c436bfecead4df7f0ad836ef155b43c9a66d2b85cb2b83`).
+Shared native-curve evaluation moves the actors and follow camera. One
+actor/camera lease continues between beats, with ordinary running followed by
+standing at each two-second input window. The corridor, follow camera,
+held input beats and generic biped motion are adaptations; exact original
+obstacles and stunt animations are not claimed. Door references DOR1/DOR2
+remain virtual rather than guessing a moving-world-door binding. CAR_ uses
+the original C85N305G covered delivery truck as an explicit authored choice,
+not a recovered native actor/model association.
+
+Only all thirteen real server-timed inputs and the acknowledged capture film
+settle `story.s1.jimmy-chase.completed` and the office destination together.
+Wrong inputs/timeouts show the escape film and permit a fresh attempt. Stale
+prompt tokens, leaving and cancellation grant no progress. The original
+A0174 first-frame Ryo pose is the saved DAZA arrival. A separate office event
+plays the original interrogation and grants the Mad Angels/harbor-work
+notebook clue. Cancellation or reload after capture retries that conversation,
+not the whole chase. There is no refund or Philippines-ticket grant.
+
+Interrogation presentation comes from Disc 2 ARAR AUTH at `0xaa6c`
+(member SHA256 `be90144b021082280a7fba68f69870fafd332e6df3c4061603d5119dc873cb1f`);
+the byte-identical scene also occurs on Disc 3. Its English A0174 voice archive
+is on Disc 3. This reuse does not depend on a guessed native story flag.
+
+Reproduce the data with `tools/cutscenes/build_jimmy_chase_pack.mjs --audio`,
+`tools/scripting/build_jimmy_chase.mjs`, then the existing investigation
+generator and server-contract sync. The latter tools require
+`NEW_YOKOSUKA_SERVER_DIR`. Native audio extraction uses the existing documented
+DTPK/vgmstream toolchain; generated raw assets remain ignored.
+
+Verification: the real Yarn/compiler/server test checks all thirteen inputs,
+wrong-input/timeout retry, stale tokens, prerequisites, cancellation and atomic
+capture effects. The connected `NEW_YOKOSUKA_JIMMY_CHASE_E2E` continuation
+passed against the isolated PostgreSQL server: decline, opening cancellation,
+escape/retry, both complete road attempts, capture cancellation, saved DAZA
+return, interrogation cancellation/reload, original actor/dialogue captures,
+saved notebook and no replay after reload. Money and inventory were unchanged.
+Rendered road captures show Ryo and Jimmy; truck and interrogation scenes were
+inspected. Exhaustive audio/stunt/door fidelity is not claimed.

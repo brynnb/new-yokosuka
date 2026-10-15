@@ -6,6 +6,7 @@ import {verifyBasementMirrorSearch} from "./story-basement.js";
 import {verifyMirrorReturn} from "./story-mirror-return.js";
 import {verifyHomeTicketPreparation,verifyAgencyQuotesAndFunds,verifyBoatTicketJourney,verifyTicketActorReplacement} from "./story-home-ticket.js";
 import {verifyJimmyMorningCall,verifyChaiArcade} from "./story-arcade-ticket.js";
+import {verifyJimmyChase} from "./story-jimmy-chase.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -122,6 +123,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_JIMMY_CHASE_E2E === "true"){
+      test.setTimeout(540_000);
+      await verifyJimmyChase(page,testInfo,character);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_CHAI_ARCADE_E2E === "true"){
       test.setTimeout(480_000);
       await verifyChaiArcade(page,testInfo,character,enterInteriorDoor);

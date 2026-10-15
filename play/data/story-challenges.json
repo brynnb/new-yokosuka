@@ -2,6 +2,9 @@
   "schema":"new-yokosuka-story-challenges-v1",
   "buttonCodes":["A","B","Left","Right","Up","Down"],
   "challenges":[
+    {"id":"s1.d000.jimmy-chase.left","label":"Catch Jimmy — turn left","buttons":["Left"],"windowMs":2000},
+    {"id":"s1.d000.jimmy-chase.right","label":"Catch Jimmy — turn right","buttons":["Right"],"windowMs":2000},
+    {"id":"s1.d000.jimmy-chase.a","label":"Catch Jimmy — clear the obstacle","buttons":["A"],"windowMs":2000},
     {"id":"s1.ms08.save-mirror","label":"Save the Phoenix Mirror","buttons":["Left"],"windowMs":2000},
     {"id":"s1.mksg.patrols","label":"Reach Old Warehouse No. 8 unseen","kind":"navigation"},
     {"id":"s1.mfsy.old-district-flashlight","label":"Catch the flashlight quietly","buttons":["Right"],"windowMs":2000},

@@ -218,7 +218,7 @@ export class ScriptEventBabylonAdapters {
   }
 
   playSequence(sequence, transaction) {
-    if (sequence.kind === "scene-staging-start" || sequence.kind === "scene-staging-finish") {
+    if (sequence.kind === "scene-staging-start" || sequence.kind === "scene-staging-transition" || sequence.kind === "scene-staging-finish") {
       return this.sceneStagingRuntime?.play(sequence, transaction) ?? false;
     }
     if (

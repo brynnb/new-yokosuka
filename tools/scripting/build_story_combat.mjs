@@ -5,12 +5,13 @@ import path from "node:path";
 import { createHash } from "node:crypto";
 import { MARTIAL_ARTS_MOVES, COMMAND_BUFFER_TICKS, COMBAT_TICKS_PER_SECOND } from "../../src/MartialArtsCombat.js";
 import { parseAuthMovement, evaluateAuthActor } from "../../src/AuthMovement.js";
+import authoredScenes from "../../play/scripts/AuthoredSceneCatalog.js";
 const root = path.resolve(import.meta.dirname, "../..");
 const server = process.env.NEW_YOKOSUKA_SERVER_DIR;
 if (!server) throw new Error("NEW_YOKOSUKA_SERVER_DIR is required");
 const spec = JSON.parse(fs.readFileSync(path.join(import.meta.dirname,"story-combat.json")));
 const nativeActors = JSON.parse(fs.readFileSync(path.join(root,"play/data/events/nativeActivityActors.json"))).worlds;
-const scenes=JSON.parse(fs.readFileSync(path.join(root,"play/data/authored-story-scenes.json"))).scenes;
+const scenes=authoredScenes.scenes;
 const encounters = spec.encounters.map(input => {
   if(input.sourceTime && !["start","end"].includes(input.sourceTime))throw new Error(`Invalid staging time ${input.id}`);
   let poses,definitions;

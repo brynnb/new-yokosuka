@@ -1,0 +1,212 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_jimmy_chase_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01JIM.AFS",
+      "sha256": "5c8b34e73fc7fd6551ede3e301ef4d80ec6b634f774d78d5b76572305f79b29e"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_JIMSI.SND",
+      "sha256": "82df4cbd5136739209d92b8eec2b63f3a49fce50c659ee599acd3cfb6347271e"
+    },
+    "authManifest": "play/assets/dobuita/jimmy-escaped/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md#jimmy-chase-and-interrogation"
+  },
+  "voices": [
+    {
+      "voiceId": "01JIMA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMA004.aiff",
+      "nativeMember": "01JIMA004.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "073d2bea6041a542a7a6cfb009d8eea299d82f2a0a6372ef016c3a269d715ced",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-escaped/voice/01JIMA004.wav",
+      "byteLength": 16172,
+      "sha256": "7fb639609dfd84c9bcf72406ca960aa60311d8031a733078cd6d9aa5021f00dc"
+    },
+    {
+      "voiceId": "01JIMA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMA005.aiff",
+      "nativeMember": "01JIMA005.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 12288,
+      "nativeSha256": "e1d3d4eb1c606842495eda493eb2452ecf91459c13001dd25bf4a7119567c064",
+      "speakerId": "AKIR",
+      "sourceText": "Damn, he got away.",
+      "displayText": "Damn, he got away.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 33
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-escaped/voice/01JIMA005.wav",
+      "byteLength": 48940,
+      "sha256": "347a8d257628d548304c17ad91e2cdc20504f1a962f3daabb5ded6a0a910b931"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/foot/Akirafoot.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-escaped/sfx/a9040000.wav",
+      "byteLength": 5412,
+      "sha256": "90593d8f1223c44d75949368d0a068bb7743ec58b2152e5f63dc81d6345e3603"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-escaped/sfx/a9040100.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-escaped/sfx/a9040200.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/cloths2/cloths03.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-escaped/sfx/a9040300.wav",
+      "byteLength": 14788,
+      "sha256": "dbaff45be9665ae74498ddbefe505f671f30307c6a358f47e711422e9c6f9d11"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/vehicle/kyubrake02.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-escaped/sfx/a9040400.wav",
+      "byteLength": 95652,
+      "sha256": "d2b56a39dba2136e9ecf324b358da92c352478cb3104cbe24e1a83212bc3d681"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/footconcrete/otokoashisuniika1ho.aiff",
+      "playbackId": 5,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-escaped/sfx/a9040500.wav",
+      "byteLength": 19972,
+      "sha256": "5835afc5110e1db8ceb4981fd428a629903a1f6e2c8fc93ecf4ece60b0ded66d"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/footconcrete/otokocon1.aiff",
+      "playbackId": 6,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-escaped/sfx/a9040600.wav",
+      "byteLength": 10052,
+      "sha256": "6528d735bfa0ecb76694dbd1df67e3615252f8872d722e65b041b3c9bbd9b531"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/vehicle/van01.aiff",
+      "playbackId": 7,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-escaped/sfx/a9040700.wav",
+      "byteLength": 128212,
+      "sha256": "7ae02edc6ddd461bb0bf72ce25bf799c0fca10a8b819bdbac2597bc537e29ebc"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/footconcrete/lenashi01.aiff",
+      "playbackId": 8,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-escaped/sfx/a9040800.wav",
+      "byteLength": 8292,
+      "sha256": "f2d1fdce461ee5a7de59c1750aea2a767b50a9f7592b2320fe70374f3f5e5998"
+    }
+  ]
+}

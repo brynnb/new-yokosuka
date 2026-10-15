@@ -29,6 +29,54 @@ function harness() {
   return { runtime, transaction, scene, calls,root, deferPrepare: fn => { prepare = fn; } };
 }
 
+function movingScene(scene,id="moving"){
+  const track=(values,delta)=>({channels:Object.fromEntries(Object.entries(values).map(([key,value])=>[key,{times:[0,1],values:[value,value+(delta[key]||0)],tangents:[delta[key]||0,delta[key]||0]}]))});
+  const pose={x:0,y:0,z:0,rotationX:0,rotationY:0,rotationZ:0};
+  return{...scene,id,continuationGroup:"chase",durationSeconds:1,
+    actors:[{...scene.actors[0],pose,movement:track(pose,{x:4}),endMotion:{bank:"free",name:"stand",loop:true}}],
+    cameraTrack:track(scene.camera,{positionX:4,targetX:4})};
+}
+
+test("moving tableaux reuse native curve evaluation and stop at their endpoint",async()=>{
+  const h=harness(),poses=[],cameras=[],motions=[];h.scene=movingScene(h.scene);
+  h.runtime.actors.applyTransform=(_owner,_tag,pose)=>(poses.push(pose),true);
+  h.runtime.camera.apply=(_owner,camera)=>(cameras.push(camera),true);
+  h.runtime.motionRuntime.applyNamed=(_model,motion)=>(motions.push(motion.name),true);
+  const pending=h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);await new Promise(r=>setImmediate(r));
+  h.runtime.update(h.transaction,.5);assert.equal(poses.at(-1).x,2);assert.equal(cameras.at(-1).positionX,2);
+  h.runtime.update(h.transaction,.5);await pending;assert.equal(poses.at(-1).x,4);assert.equal(motions.at(-1),"stand");
+  h.runtime.update(h.transaction,2);assert.equal(poses.at(-1).x,4);h.runtime.cancel(h.transaction);
+});
+
+test("scene beats retain one actor/camera lease and restore only after the final beat",async()=>{
+  const h=harness();const first=movingScene(h.scene),next={...movingScene(h.scene,"next"),continuesPrevious:true};
+  let pending=h.runtime.play({kind:"scene-staging-start",scene:first},h.transaction);await new Promise(r=>setImmediate(r));h.runtime.update(h.transaction,1);await pending;
+  const owner=h.runtime.active;
+  pending=h.runtime.play({kind:"scene-staging-transition",scene:next},h.transaction);await new Promise(r=>setImmediate(r));
+  assert.equal(h.runtime.active,owner);assert.equal(h.calls.filter(c=>c==="actors-begin").length,1);assert.equal(h.calls.includes("camera-end"),false);
+  h.runtime.update(h.transaction,1);await pending;
+  assert.equal(await h.runtime.play({kind:"scene-staging-finish",scene:first},h.transaction),false);
+  assert.equal(await h.runtime.play({kind:"scene-staging-finish",scene:next},h.transaction),true);
+  assert.equal(h.calls.filter(c=>c==="camera-end").length,1);assert.equal(h.calls.filter(c=>c==="actors-end").length,1);
+});
+
+test("malformed movement and incompatible scene transitions fail instead of inventing a pose",async()=>{
+  const h=harness(),scene=movingScene(h.scene);scene.actors[0].movement.channels.x.values[1]=NaN;
+  await assert.rejects(h.runtime.play({kind:"scene-staging-start",scene},h.transaction),/Invalid staged track/);assert.equal(h.runtime.active,null);
+  const first=movingScene(h.scene);const pending=h.runtime.play({kind:"scene-staging-start",scene:first},h.transaction);await new Promise(r=>setImmediate(r));h.runtime.update(h.transaction,1);await pending;
+  assert.equal(await h.runtime.play({kind:"scene-staging-transition",scene:{...first,id:"other",continuationGroup:"other"}},h.transaction),false);
+  assert.equal(h.runtime.active.scene,first);h.runtime.cancel(h.transaction);
+});
+
+test("cancelled transition preparation cannot restore over a newer scene",async()=>{
+  const h=harness(),first=movingScene(h.scene);let pending=h.runtime.play({kind:"scene-staging-start",scene:first},h.transaction);await new Promise(r=>setImmediate(r));h.runtime.update(h.transaction,1);await pending;
+  let resolve;h.runtime.motionRuntime.loadNamedSelections=()=>new Promise(r=>resolve=r);
+  pending=h.runtime.play({kind:"scene-staging-transition",scene:movingScene(h.scene,"next")},h.transaction);
+  h.runtime.cancel(h.transaction);h.runtime.motionRuntime.loadNamedSelections=async()=>{};
+  const tx={area:"DBHB"};await h.runtime.play({kind:"scene-staging-start",scene:h.scene},tx);const before=[...h.calls];
+  resolve();await assert.rejects(pending,{name:"AbortError"});assert.deepEqual(h.calls,before);assert.equal(h.runtime.active.transaction,tx);h.runtime.cancel(tx);
+});
+
 test("a tableau restores temporary world objects after cancellation and failed presentation", async () => {
   const h = harness();
   const root = {position: {clone: () => ({x: 1}), copyFrom: () => {}},

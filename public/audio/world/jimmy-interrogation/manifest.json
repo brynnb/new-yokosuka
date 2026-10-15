@@ -1,0 +1,2202 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_jimmy_chase_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/A0174.AFS",
+      "sha256": "ea45785153858b21fc78df9aee666252aadb6cabb8682bc2e7e8c862576307c2"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_HIJYM.SND",
+      "sha256": "dc1c85c3f7624583337678486932959d28409f32127abe30d40649c55b01fa10"
+    },
+    "authManifest": "play/assets/dobuita/jimmy-interrogation/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md#jimmy-chase-and-interrogation"
+  },
+  "voices": [
+    {
+      "voiceId": "A0174A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174A001.aiff",
+      "nativeMember": "A0174A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 22528,
+      "nativeSha256": "e1eea33d148b7b3ae6c7f43fd7a25c9335c18e333ba1d31a4c89b597943f252f",
+      "speakerId": "AKIR",
+      "sourceText": "That's your problem! I still don't＆have the ticket I paid for!",
+      "displayText": "That's your problem! I still don't\nhave the ticket I paid for!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174A001.wav",
+      "byteLength": 89900,
+      "sha256": "6f604a48ca5b993ce0d67f948a893555b226d5f87ade37e9c47e793508a6faab"
+    },
+    {
+      "voiceId": "A0174A002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174A002.aiff",
+      "nativeMember": "A0174A002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "0dda4f1109ab4695d51e7a873ded5b1c3d79faebcf9fb07c8fedcedce76046d7",
+      "speakerId": "AKIR",
+      "sourceText": "I don't need this!!",
+      "displayText": "I don't need this!!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174A002.wav",
+      "byteLength": 32556,
+      "sha256": "245278b4da0fc5ff0b027b27b1bba3d18e8f855b4627f38519d7af6f3f8ed3d5"
+    },
+    {
+      "voiceId": "A0174A003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174A003.aiff",
+      "nativeMember": "A0174A003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 8192,
+      "nativeSha256": "f17ddce7e3d1b0477088702e68aea9ecb725f68e1bd13a83b8ac24155881f6a1",
+      "speakerId": "AKIR",
+      "sourceText": "Quit lying!",
+      "displayText": "Quit lying!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174A003.wav",
+      "byteLength": 32556,
+      "sha256": "f7b9c1f98579f44f262aa03e87275f794485dd374af8f85f493e3b96c86574b8"
+    },
+    {
+      "voiceId": "A0174A004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174A004.aiff",
+      "nativeMember": "A0174A004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 10240,
+      "nativeSha256": "c4f132562eef38e74521e69774631f64daf9e56b0877ff89c501a52903c00dc8",
+      "speakerId": "AKIR",
+      "sourceText": "Who's that skinhead!?",
+      "displayText": "Who's that skinhead!?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 25
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174A004.wav",
+      "byteLength": 40748,
+      "sha256": "b8984a43f321be1285f02e7f176e9fd1565f8033da881cfd981129eda56f2b35"
+    },
+    {
+      "voiceId": "A0174A005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174A005.aiff",
+      "nativeMember": "A0174A005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 8192,
+      "nativeSha256": "3d73ffdb8a6cd6d87da11de12d6b95e988d1004a2eb13973879cd4b32df832d0",
+      "speakerId": "AKIR",
+      "sourceText": "Mad Angels?",
+      "displayText": "Mad Angels?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174A005.wav",
+      "byteLength": 32556,
+      "sha256": "f6527b423d21b0751d08cf7dc0af454ed3357bba5f1140c7c874d21b220aaec5"
+    },
+    {
+      "voiceId": "A0174A006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174A006.aiff",
+      "nativeMember": "A0174A006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 8192,
+      "nativeSha256": "972fccae5673063fee78625e59344ea54f15ad8b85308b121d991bb26343fbec",
+      "speakerId": "AKIR",
+      "sourceText": "Where are they?",
+      "displayText": "Where are they?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174A006.wav",
+      "byteLength": 32556,
+      "sha256": "8dd6a5cc67d08894b0e279bac1bfb0cb15b059edf63cedc5c8716a30ccd5bdc2"
+    },
+    {
+      "voiceId": "A0174A007",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174A007.aiff",
+      "nativeMember": "A0174A007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 6144,
+      "nativeSha256": "7b4b0d5e4b6ac6055b9c4a851a0b392b65812e24a7f2f690befd91e668de1eb8",
+      "speakerId": "AKIR",
+      "sourceText": "Tell me!!",
+      "displayText": "Tell me!!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174A007.wav",
+      "byteLength": 24364,
+      "sha256": "3d44b79a87a69b488867e779d8e86a0f20581146f6df2d8f820093c7816be6a6"
+    },
+    {
+      "voiceId": "A0174A008",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174A008.aiff",
+      "nativeMember": "A0174A008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 8192,
+      "nativeSha256": "87fc6c39653b5c20ac9cae341512b20714d7bc0f13876ed325d7dae82667c619",
+      "speakerId": "AKIR",
+      "sourceText": "Who's their boss!?",
+      "displayText": "Who's their boss!?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174A008.wav",
+      "byteLength": 32556,
+      "sha256": "94befdcddb64199f3eee109a2e4e563566cebc99b58116390cfd450c35d318e0"
+    },
+    {
+      "voiceId": "A0174A009",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174A009.aiff",
+      "nativeMember": "A0174A009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 10240,
+      "nativeSha256": "4367c59cd7fbcc2d519c1ba24728be0efa654307f5954c607624b67405bca753",
+      "speakerId": "AKIR",
+      "sourceText": "Why's that!?",
+      "displayText": "Why's that!?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 32
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174A009.wav",
+      "byteLength": 40748,
+      "sha256": "08ff6c0563098c9898878622f734c1e84db9d09c906832956e4e81799caa5026"
+    },
+    {
+      "voiceId": "A0174A010",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174A010.aiff",
+      "nativeMember": "A0174A010.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 6144,
+      "nativeSha256": "6f3bad48629627804e832483df070e74b144498c55737111db5a8d12b7a64380",
+      "speakerId": "AKIR",
+      "sourceText": "The harbor=@",
+      "displayText": "The harbor...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174A010.wav",
+      "byteLength": 24364,
+      "sha256": "62fb19309595099cce5449d13fd48f55c92d5416701a928123941b1e0bc68abf"
+    },
+    {
+      "voiceId": "A0174B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B001.aiff",
+      "nativeMember": "A0174B001.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 8192,
+      "nativeSha256": "7b965e9c15e2aca389b2cea39193bbe672f0408d149fdb4b57c7f7c7fb65e5a1",
+      "speakerId": "JIMY",
+      "sourceText": "I'm sorry!",
+      "displayText": "I'm sorry!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B001.wav",
+      "byteLength": 32556,
+      "sha256": "ca5a5438112c3e6487168742c258a02c974d351648dea5596504bd083689288a"
+    },
+    {
+      "voiceId": "A0174B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B002.aiff",
+      "nativeMember": "A0174B002.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 14336,
+      "nativeSha256": "eaf496a0024441c1cce945096c0812e78bc370ef90ce097bd211ac4daf025c23",
+      "speakerId": "JIMY",
+      "sourceText": "An employee ran off with the money.",
+      "displayText": "An employee ran off with the money.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B002.wav",
+      "byteLength": 57132,
+      "sha256": "5a32cfba24479575a90aa703a9bf7184f6257b052713d642105c4138e4507cfd"
+    },
+    {
+      "voiceId": "A0174B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B003.aiff",
+      "nativeMember": "A0174B003.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 22528,
+      "nativeSha256": "2a0ee69775b77441d9ebdf6fdbfea833af4766e12cc712ee04182004c6162e51",
+      "speakerId": "JIMY",
+      "sourceText": "Please don't hurt me=@＆I got a wife and kids.",
+      "displayText": "Please don't hurt me...\nI got a wife and kids.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B003.wav",
+      "byteLength": 89900,
+      "sha256": "2bb0679aa5277c300bb29aa407887f171d0ac89c9294edfff66d71383e19d4fb"
+    },
+    {
+      "voiceId": "A0174B004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B004.aiff",
+      "nativeMember": "A0174B004.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 20480,
+      "nativeSha256": "f23dcb8d3748fcaaadc08a5e753af86f7bbe1479d322c7e324f991d1b4795afb",
+      "speakerId": "JIMY",
+      "sourceText": "Here, take this ticket to＆the Philippines.",
+      "displayText": "Here, take this ticket to\nthe Philippines.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B004.wav",
+      "byteLength": 81708,
+      "sha256": "f52adc735326fe851d36ffc4271613b02a6bb15f0f00f90b9e1d067625a9c992"
+    },
+    {
+      "voiceId": "A0174B005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B005.aiff",
+      "nativeMember": "A0174B005.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 30720,
+      "nativeSha256": "eff5325dc69137ad55b1bdfd833394f974081a130f42cad05f715870616c831a",
+      "speakerId": "JIMY",
+      "sourceText": "I'm planning to skip town tonight=@＆See I'm broke=@bankrupt=@cleaned out.",
+      "displayText": "I'm planning to skip town tonight...\nSee I'm broke...bankrupt...cleaned out.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B005.wav",
+      "byteLength": 122668,
+      "sha256": "6a24c0ea93eefafcec10788f6d2f1e439f0d1eac4157c6f40ae88aa8d17c255a"
+    },
+    {
+      "voiceId": "A0174B006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B006.aiff",
+      "nativeMember": "A0174B006.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 14336,
+      "nativeSha256": "9bbb2e56e7e091215a5b56257d7cec155fcc61f1090003c8e007e5eb346f9c47",
+      "speakerId": "JIMY",
+      "sourceText": "I can't get no ticket anywhere.",
+      "displayText": "I can't get no ticket anywhere.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 27
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 23
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B006.wav",
+      "byteLength": 57132,
+      "sha256": "21f6380f513f35233ed7bf0ff8db45cc4e45804ca725f19758c3f653bd706929"
+    },
+    {
+      "voiceId": "A0174B007",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B007.aiff",
+      "nativeMember": "A0174B007.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 16384,
+      "nativeSha256": "d917caacbd6913e71de530ba9782236ab83d595ae3a3aa42b527f54757267ce8",
+      "speakerId": "JIMY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 71
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 33
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B007.wav",
+      "byteLength": 65324,
+      "sha256": "2ad40a0f6c10d2d9dd6bfe65b8924d70d5c93cea94d2c81332a816d06c0741cc"
+    },
+    {
+      "voiceId": "A0174B008",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B008.aiff",
+      "nativeMember": "A0174B008.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 8192,
+      "nativeSha256": "828b4342eb4ee8ea0fc7cb4b0b96813715750666a4fa21b94ad6d9fc154d444b",
+      "speakerId": "JIMY",
+      "sourceText": "=@I dunno for sure.",
+      "displayText": "...I dunno for sure.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B008.wav",
+      "byteLength": 32556,
+      "sha256": "91fab338c550bc0abadd3edac37815d39379be8efa0f4e8f92efae0389016e0b"
+    },
+    {
+      "voiceId": "A0174B009",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B009.aiff",
+      "nativeMember": "A0174B009.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 16384,
+      "nativeSha256": "e1d10b267b85aff38bddb99325e2b78d43dff5d587c035c00de5b82c4125eae5",
+      "speakerId": "JIMY",
+      "sourceText": "But I think he's connected to＆the Mad Angels.",
+      "displayText": "But I think he's connected to\nthe Mad Angels.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B009.wav",
+      "byteLength": 65324,
+      "sha256": "e02ff8afc030174e50d58f6aa188e77a07e3e0957ef911a5a5a138bf8d03be16"
+    },
+    {
+      "voiceId": "A0174B010",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B010.aiff",
+      "nativeMember": "A0174B010.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 10240,
+      "nativeSha256": "8d54549d47b8e78af0acaeb189a419c47f7dafdc5f128f855586a7599068ceda",
+      "speakerId": "JIMY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 68
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B010.wav",
+      "byteLength": 40748,
+      "sha256": "032a1778f596594502fb66b6176e20800b5a1c72cdb7f77eda188dce50253aa1"
+    },
+    {
+      "voiceId": "A0174B011",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B011.aiff",
+      "nativeMember": "A0174B011.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 18432,
+      "nativeSha256": "47419c6462fee6f9381aa6de7f0a07ecc38b4225aa43571a2ca8c165a2d32dd4",
+      "speakerId": "JIMY",
+      "sourceText": "I can't tell=@ They'll kill me.",
+      "displayText": "I can't tell... They'll kill me.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B011.wav",
+      "byteLength": 73516,
+      "sha256": "23f6e4c5580dd0a38e53657d0113081638475e6d2d1da35f5cfce71c2259fc9a"
+    },
+    {
+      "voiceId": "A0174B012",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B012.aiff",
+      "nativeMember": "A0174B012.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 12288,
+      "nativeSha256": "c8420b57f5ff8f0655b7fec9a281afee152597990e82d306b1819cc3e6a01399",
+      "speakerId": "JIMY",
+      "sourceText": "The=@the harbor.",
+      "displayText": "The...the harbor.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 33
+          },
+          {
+            "shape": 5,
+            "durationTicks": 22
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B012.wav",
+      "byteLength": 48940,
+      "sha256": "4d82f5374d175cd68d9bf794e03367cb2e9b5e824b9422d432868b4ab59e3261"
+    },
+    {
+      "voiceId": "A0174B013",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B013.aiff",
+      "nativeMember": "A0174B013.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 30720,
+      "nativeSha256": "4762f09f383d876b94c10b79b9ee5ff6d314d5c0fb5e3c88e2afcb0b8115efdc",
+      "speakerId": "JIMY",
+      "sourceText": "I, I don't know. But they extort from＆the harbor workers=@",
+      "displayText": "I, I don't know. But they extort from\nthe harbor workers...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 25
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 48
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B013.wav",
+      "byteLength": 122668,
+      "sha256": "6160e247d5c425f2ae636a90267b1c5574c1a4a92baee897aca0d073e0b1975f"
+    },
+    {
+      "voiceId": "A0174B014",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B014.aiff",
+      "nativeMember": "A0174B014.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 12288,
+      "nativeSha256": "51ea16b67162c3beb1ccd6e517e01e89f10fdd578b05ef18a27c48736a276857",
+      "speakerId": "JIMY",
+      "sourceText": "If you worked there, you'd meet them.",
+      "displayText": "If you worked there, you'd meet them.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B014.wav",
+      "byteLength": 48940,
+      "sha256": "8d787edf011910729ccef967aac00d4ec12df115dca3f102b320c63c61edefed"
+    },
+    {
+      "voiceId": "A0174B015",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SOUND/A0174B015.aiff",
+      "nativeMember": "A0174B015.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 40960,
+      "nativeSha256": "934f555a27c11c7cac0f3314c1430e7dcd3d5aaf24f56dad3961be4089a701f8",
+      "speakerId": "JIMY",
+      "sourceText": "'Cause they always harass＆the new guys.",
+      "displayText": "'Cause they always harass\nthe new guys.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 72
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 22
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 55
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-interrogation/voice/A0174B015.wav",
+      "byteLength": 163628,
+      "sha256": "ec3bc81c2885311f1183c61914c89de5cd65cc454ded7d55a3318005a48be712"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040000.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040100.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/cloths/bagthrow.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040200.wav",
+      "byteLength": 13868,
+      "sha256": "9418778b545d792dde00ef9dbb59b1ba73746b155a542fe412d4f715e5af4d5e"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/cloths2/cl03.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040300.wav",
+      "byteLength": 127604,
+      "sha256": "2c13979aaaf032ee706d0353819b385a7aca4f3d3d1a6b0e480c83e7a4162737"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/cloths2/cl05.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040400.wav",
+      "byteLength": 73092,
+      "sha256": "3c23439039c6b2a12d7cb1d4b1a58ea508e4ce2efa253b486096479f227dda30"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/cloths2/cloths02.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040500.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/creakse/Creak.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040600.wav",
+      "byteLength": 18708,
+      "sha256": "f4682a036304d581c800f048247030f51ce1e64ebf30c9a84800c04c4cfb846d"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/hit/Deskhit04.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 8000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040700.wav",
+      "byteLength": 6876,
+      "sha256": "25dfb404b7b0a14c37f34e88de41559828a3bb797ca09dded9dee9ec230308c4"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/door2/doorcloseloud.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040800.wav",
+      "byteLength": 39252,
+      "sha256": "d69359814feb8fa4dd73157345ac576348dcbe6117f9c4b14ae0e6997f35b0f8"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/cloths2/friction4.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040900.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/cloths2/furimuki_f01.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040a00.wav",
+      "byteLength": 9348,
+      "sha256": "2026b716ba3115748b89ec3ac3b6041824b6ddbba78ee708f62af1fb8dc3756a"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 11,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040b00.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 12,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040c00.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/hit/Hith.aiff",
+      "playbackId": 13,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040d00.wav",
+      "byteLength": 9156,
+      "sha256": "29481a8c19da762b02e14fac006aedf1ebdaa5910a2f51495d6b35a14a5e6bed"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/foot/Itawalk2.aiff",
+      "playbackId": 14,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040e00.wav",
+      "byteLength": 16980,
+      "sha256": "8c1355c8eee77063c212955fe2a81214390b163ada8360a388cd2a919f0cfdbe"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/foot/Itawalk3.aiff",
+      "playbackId": 15,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9040f00.wav",
+      "byteLength": 17188,
+      "sha256": "04cd234032a9fca2e034075f9d3c6429ee73681acff9e4712f391b42dfab7ced"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/kick/kick11.aiff",
+      "playbackId": 16,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9041000.wav",
+      "byteLength": 11148,
+      "sha256": "3803624390c100e5bbdc6ce312518ac4bdbe4fffc4c5302da99cbccac703607a"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/smallobject/latterpocket.aiff",
+      "playbackId": 17,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9041100.wav",
+      "byteLength": 17836,
+      "sha256": "6b9cf45817403d65a5175c5a95d8f05e0c6cf46c3eaa5d614b77b0937b424315"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/smallobject/paper01.aiff",
+      "playbackId": 18,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9041200.wav",
+      "byteLength": 15716,
+      "sha256": "5e975015a71bfe3ce84515823777a10ad35518b271214ed069e36201eff810b5"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 19,
+      "sampleId": 19,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9041300.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9041400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 20,
+      "sampleId": 20,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9041400.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9041500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/swing/swing03.aiff",
+      "playbackId": 21,
+      "sampleId": 21,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9041500.wav",
+      "byteLength": 33644,
+      "sha256": "413a08d07fd75774be0f172cee9b9bb40069fee1712acf9d9581400894008ef2"
+    },
+    {
+      "commandHex": "a9041600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/swing/swing11.aiff",
+      "playbackId": 22,
+      "sampleId": 22,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9041600.wav",
+      "byteLength": 19244,
+      "sha256": "591d73e215c2dd7cc39df356db47796c494139e24e3af81dbd50c153a0615164"
+    },
+    {
+      "commandHex": "a9041700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/swing/swing14.aiff",
+      "playbackId": 23,
+      "sampleId": 23,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9041700.wav",
+      "byteLength": 14676,
+      "sha256": "245fe55a5245d246872b43295a8ac81ebab9b466074a74d0599b7d8af6c6d7ee"
+    },
+    {
+      "commandHex": "a9041800",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/swing/swing18.aiff",
+      "playbackId": 24,
+      "sampleId": 24,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9041800.wav",
+      "byteLength": 15724,
+      "sha256": "449463c7ab031ff7ac012cc601faadbdf8a0e3af8eee51ef0d9e7d60cd1fbede"
+    },
+    {
+      "commandHex": "a9041900",
+      "sourcePath": "/p16/prj16m5/AUTH01/0174/SE/crash/woodcrash03.aiff",
+      "playbackId": 25,
+      "sampleId": 25,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-interrogation/sfx/a9041900.wav",
+      "byteLength": 35100,
+      "sha256": "e09800bd1440341b900d0eee28e5e4f709b9e307147ea48b957f5b18d46af0e0"
+    }
+  ]
+}
