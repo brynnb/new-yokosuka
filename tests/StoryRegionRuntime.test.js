@@ -19,6 +19,18 @@ test("reward-free room travel remains repeatable but latches until physical re-e
   character.playMode="free_roam";runtime.reset();assert.equal(runtime.update(frame),false);
 });
 
+test("first-visit gate advice is retired after Chen recognizes the player", () => {
+  let starts=0;
+  const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,
+    storyFlags:{"story.s1.warehouse-eight-overheard.completed":true,"story.s1.master-chen.completed":true}};
+  const runtime=new StoryRegionRuntime({controller:{status:"idle",start:async()=>starts++},getCharacter:()=>character,
+    getGameDate:()=>new Date("1986-12-22T12:00:00Z"),publishPresence(){},
+    regions:[{id:"first-gate",area:"MFSY",min:[114,-.5,-18],max:[122,2,-7],
+      requiredFlags:["story.s1.warehouse-eight-overheard.completed"],excludedFlags:["story.s1.master-chen.completed"]}]});
+  assert.equal(runtime.update({area:"MFSY",playerPosition:[118,0,-12],enabled:true}),false);
+  assert.equal(starts,0);
+});
+
 test("personal time opens the night gate without requiring physical re-entry",()=>{
   let date=null;const calls=[];
   const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{}};

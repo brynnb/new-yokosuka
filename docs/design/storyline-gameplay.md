@@ -100,8 +100,14 @@ leave/cancel/retry, natural presentation, once-only inventory/notebook and
 reload checks pass. Original selected motions/props are reused; exact grips,
 scratch artwork, shelf identity/placement and mechanical reveals are authored
 or condensed. Light-source interactions and optional basement discoveries
-remain omitted. The original automatic dojo return and subsequent Fuku/Chen
-mirror follow-up, and later storyline, remain unimplemented.
+remain omitted. The original automatic dojo return is condensed to an explicit
+return choice. The [Fuku/Chen mirror follow-up](story-event-template.md#return-to-master-chen)
+now connects original presentation assets, repeat travel and a server-owned
+Left challenge. Compiler/database, focused client and connected rendered
+checks pass through cancellation/retry, real password/gate/door use, wrong
+challenge input/retry/success, natural final presentation and saved reload.
+Hand grips, held QTE staging and detailed callbacks remain adaptations.
+Return-home Fuku, ticket acquisition and later storyline remain unimplemented.
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

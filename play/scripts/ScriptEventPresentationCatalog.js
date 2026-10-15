@@ -33,6 +33,16 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["explanation",6],["theft-start",0],["pursuit",1],["scaffolding",2],["crane",3],["failure",4],["save-mirror",5],["hong-kong",7]].map(([part,slot])=>[`s1.ms08.mirror-meeting.${part}`,{
+    kind:"native-cutscene",area:"MS08",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:`story-s1-mirror-meeting-${part}`,packageId:"mirror-meeting",worldId:"ms08",storyPresentation:true,
+      activity:{slot,binding:{primaryPointer:0,secondaryPointer:0}}},
+  }]),
+  ["s1.jhd0.fuku-phoenix-mirror.scene",{
+    kind:"native-cutscene",area:"JHD0",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-fuku-phoenix-mirror",packageId:"houo",worldId:"exterior",storyPresentation:true,
+      activity:{slot:9,binding:{primaryPointer:394211,secondaryPointer:394224}}},
+  }],
   ["s1.jomo.ine-family-crest.scene",{
     kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-ine-family-crest",packageId:"family-crest",worldId:"interior",storyPresentation:true,

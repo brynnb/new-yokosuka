@@ -64,6 +64,19 @@ test("catalog exposes only exact reviewed presentation and activity records", ()
   });
 });
 
+test("mirror follow-up borrows original HOUO/MS8A without allowing cinematics to save or win",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  const fuku=catalog.activity("s1.jhd0.fuku-phoenix-mirror.scene");
+  assert.equal(fuku.cutscene.packageId,"houo");
+  assert.deepEqual(fuku.cutscene.activity,{slot:9,binding:{primaryPointer:394211,secondaryPointer:394224}});
+  for(const [part,slot]of [["explanation",6],["theft-start",0],["pursuit",1],["scaffolding",2],["crane",3],["failure",4],["save-mirror",5],["hong-kong",7]]){
+    const activity=catalog.activity(`s1.ms08.mirror-meeting.${part}`);
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.packageId,"mirror-meeting");assert.equal(activity.cutscene.activity.slot,slot);
+  }
+  assert.equal(catalog.sequence("s1.ms08.save-mirror.start").scene.id,"s1.ms08.save-mirror");
+});
+
 test("letter translation borrows the exact TOKI presentation in the normal shop",()=>{
   const activity=createScriptEventPresentationCatalog().activity("s1.drsa.xia-letter-translation.scene");
   assert.equal(activity.area,"DRSA");assert.equal(activity.durableEffects,"forbidden");

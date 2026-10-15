@@ -3,13 +3,15 @@ import { randomUUID } from "node:crypto";
 import {verifyOldDistrictEntry,verifyOldDistrictStealth,verifyFirstChenMeeting} from "./story-harbor.js";
 import {verifyFamilyMirrorLead,verifyBunkadoHandguard,verifyGuiZhangEncounter,verifyHandguardFamily,verifyDojoItems,verifyDojoSwitches,verifyBasementTravel} from "./story-mirror-search.js";
 import {verifyBasementMirrorSearch} from "./story-basement.js";
+import {verifyMirrorReturn} from "./story-mirror-return.js";
+import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
 const resumeId = Number(process.env.NEW_YOKOSUKA_STORY_RESUME_ID || 0);
 const variants = resumeId ? [["resume", false]] : [["complete", false], ["skip", false], ["complete", true]];
 for (const [ending, freshOpening] of variants) test(resumeId ? "investigation continues from an earned saved checkpoint" : `first allowance renders and persists after ${ending}${freshOpening ? " from a fresh opening" : ""}`, async ({ page }, testInfo) => {
-  test.setTimeout(process.env.NEW_YOKOSUKA_CHEN_E2E === "true" || process.env.NEW_YOKOSUKA_FAMILY_E2E === "true" || process.env.NEW_YOKOSUKA_HANDGUARD_E2E === "true" || process.env.NEW_YOKOSUKA_GUI_ZHANG_E2E === "true" ? 360_000 : process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
+  test.setTimeout(process.env.NEW_YOKOSUKA_MIRROR_RETURN_E2E === "true" ? 600_000 : process.env.NEW_YOKOSUKA_CHEN_E2E === "true" || process.env.NEW_YOKOSUKA_FAMILY_E2E === "true" || process.env.NEW_YOKOSUKA_HANDGUARD_E2E === "true" || process.env.NEW_YOKOSUKA_GUI_ZHANG_E2E === "true" ? 360_000 : process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
   if(process.env.NEW_YOKOSUKA_BUS_E2E === "true")page.on("console",message=>{if(message.type()==="error")console.info("Story travel browser error:",message.text());});
@@ -118,6 +120,10 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_MIRROR_RETURN_E2E === "true"){
+      await verifyMirrorReturn(page,testInfo,character);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_BASEMENT_MIRROR_E2E === "true"){
       await verifyBasementMirrorSearch(page,testInfo,character);
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
@@ -1477,53 +1483,6 @@ async function verifyXiaTranslation(page,testInfo,character) {
   expect(await page.evaluate(()=>window.storyProbe.starts.includes('story-s1-xia-letter-translation'))).toBe(false);
   expect((await saved()).character.storyFlags['notebook.s1.translated-letter']).toBe(true);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
-}
-
-async function useStoryInspectable(page,{world,tag,position,expectedChoice='Call 0468-61-5647'}) {
-  await page.evaluate(async({world,tag,position})=>{
-    const life=window.storyProbe.lifecycle;
-    if(life.worldRuntime.activeWorld.id!==world)await life.travelToWorld(world);
-    life.resetPlayer(life.vectorFromArray(position),0,{persist:false});
-    const target=life.scene.meshes.map(mesh=>mesh.metadata?.interactiveInspectable || mesh.metadata?.interactiveMapTransition)
-      .find(value=>value?.objectTag===tag || value?.transition?.source.objectTag===tag);
-    if(!target)throw Error(`Missing physical story object ${world}/${tag}`);
-    const bounds=target.root.getHierarchyBoundingVectors(true),center=bounds.min.add(bounds.max).scale(.5),controller=life.getController();
-    controller.setFirstPerson(true);controller.cameraYaw=Math.atan2(position[0]-center.x,position[2]-center.z);
-    controller.cameraPitch=Math.atan2(position[1]+controller.options.firstPersonHeadHeight-center.y,Math.hypot(center.x-position[0],center.z-position[2]));
-    controller.updateCamera(1);
-  },{world,tag,position});
-  await page.waitForTimeout(500);
-  const point=await page.evaluate(tag=>{
-    const life=window.storyProbe.lifecycle,root=life.scene.meshes.map(mesh=>mesh.metadata?.interactiveInspectable || mesh.metadata?.interactiveMapTransition)
-      .find(value=>value?.objectTag===tag || value?.transition?.source.objectTag===tag).root;
-    const bounds=root.getHierarchyBoundingVectors(true),center=bounds.min.add(bounds.max).scale(.5),canvas=life.engine.getRenderingCanvas(),rect=canvas.getBoundingClientRect();
-    const camera=life.scene.activeCamera,viewProjection=camera.getViewMatrix(true).multiply(camera.getProjectionMatrix(true));
-    const candidates=[center],meshes=root.getChildMeshes().filter(m=>m.getTotalVertices()>0);
-    // Hollow props need a point on a real surface, not the empty center of
-    // their bounding box. Project actual triangle centers and validate the pick.
-    for(const mesh of meshes){
-      const positions=mesh.getVerticesData('position'),indices=mesh.getIndices();
-      if(!positions||!indices)continue;
-      for(let i=0;i<indices.length;i+=3){
-        const p=[0,0,0];for(let j=0;j<3;j++)for(let axis=0;axis<3;axis++)p[axis]+=positions[indices[i+j]*3+axis]/3;
-        candidates.push(center.constructor.TransformCoordinates(new center.constructor(...p),mesh.getWorldMatrix()));
-      }
-    }
-    for(const candidate of candidates){
-      const screen=center.constructor.Project(candidate,viewProjection.constructor.Identity(),viewProjection,camera.viewport.toGlobal(life.engine.getRenderWidth(),life.engine.getRenderHeight()));
-      const x=rect.x+screen.x*rect.width/life.engine.getRenderWidth(),y=rect.y+screen.y*rect.height/life.engine.getRenderHeight();
-      if(screen.z<0||screen.z>1||x<280||x>1025||y<0||y>720)continue;
-      // Babylon accepts canvas CSS coordinates, not internal render pixels.
-      // Adaptive resolution can change that ratio between two interactions.
-      const pick=life.scene.pick(x-rect.x,y-rect.y,mesh=>!!(mesh.metadata?.interactiveInspectable||mesh.metadata?.interactiveMapTransition),false,camera);
-      const selected=pick?.pickedMesh?.metadata;
-      if(selected?.interactiveInspectable?.objectTag===tag||selected?.interactiveMapTransition?.transition.source.objectTag===tag)return{x,y,tag};
-    }
-    return{tag:null,center:center.asArray(),camera:camera.position.asArray(),meshes:meshes.map(m=>({name:m.name,pickable:m.isPickable,enabled:m.isEnabled(),visible:m.isVisible}))};
-  },tag);
-  console.info('Story object pick',point);
-  expect(point.tag).toBe(tag);await page.mouse.click(point.x,point.y);
-  if(expectedChoice)await expect(page.getByRole('button',{name:expectedChoice,exact:true})).toBeVisible();
 }
 
 async function verifyWarehouseEight(page,testInfo,character) {

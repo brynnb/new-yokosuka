@@ -53,6 +53,8 @@ import phoneBookManifest from "../assets/dobuita/phone-book/manifest.json";
 import phoneBookAudio from "../../public/audio/world/phone-book/manifest.json";
 import masterChenManifest from "../assets/harbor/master-chen/manifest.json";
 import masterChenAudio from "../../public/audio/world/master-chen/manifest.json";
+import mirrorMeetingManifest from "../assets/harbor/mirror-meeting/manifest.json";
+import mirrorMeetingAudio from "../../public/audio/world/mirror-meeting/manifest.json";
 import familyFukuManifest from "../assets/hazuki/family-fuku/manifest.json";
 import familyFukuAudio from "../../public/audio/world/family-fuku/manifest.json";
 import familyIneManifest from "../assets/hazuki/family-ine/manifest.json";
@@ -108,6 +110,7 @@ const bundledHouoAssets = runtimeAssetGroup("play/assets/hazuki/houo/*.{AUTH,MOT
 const bundledTokiAssets = runtimeAssetGroup("play/assets/dobuita/toki/*.{AUTH,MOTN,MT5,BIN}");
 const bundledPhoneBookAssets = runtimeAssetGroup("play/assets/dobuita/phone-book/*.{AUTH,MOTN,CHRM,bin}");
 const bundledMasterChenAssets = runtimeAssetGroup("play/assets/harbor/master-chen/*.{AUTH,MOTN,CHRM,bin}");
+const bundledMirrorMeetingAssets = runtimeAssetGroup("play/assets/harbor/mirror-meeting/*.{AUTH,MOTN,CHRM,bin}");
 const bundledFamilyFukuAssets = runtimeAssetGroup("play/assets/hazuki/family-fuku/*.{AUTH,MOTN}");
 const bundledFamilyIneAssets = runtimeAssetGroup("play/assets/hazuki/family-ine/*.{AUTH,MOTN}");
 const bundledBunkadoHandguardAssets = runtimeAssetGroup("play/assets/dobuita/bunkado-handguard/*.{AUTH,MOTN,CHRM,bin}");
@@ -344,6 +347,13 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
     environment:Object.freeze({packageActors:masterChenManifest.packageActors,sceneObjects:masterChenManifest.sceneObjects,attachedObjects:masterChenManifest.attachedObjects}),
     playback:Object.freeze({manifest:masterChenManifest,audioManifest:masterChenAudio}),
+  }),
+  Object.freeze({
+    id:"mirror-meeting",worldId:"ms08",actorDefinitions:Object.freeze([]),actorTags:Object.freeze(mirrorMeetingManifest.actorTags),
+    assets:Object.freeze({...sourceAssetMap(bundledMirrorMeetingAssets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
+    environment:Object.freeze({packageActors:mirrorMeetingManifest.packageActors,sceneObjects:mirrorMeetingManifest.sceneObjects,attachedObjects:mirrorMeetingManifest.attachedObjects}),
+    playback:Object.freeze({manifest:mirrorMeetingManifest,audioManifest:mirrorMeetingAudio}),
   }),
   Object.freeze({
     id:"bunkado-handguard",worldId:"dkty",actorDefinitions:Object.freeze([]),actorTags:Object.freeze(bunkadoHandguardManifest.actorTags),

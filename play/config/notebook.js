@@ -112,6 +112,11 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.basement-floor",page:Object.freeze({id:"story-basement-floor",text:"The floor beside the shelf is scuffed.\n\nIt looks like the shelf has been moved before. Try pulling it aside."})},
   {flag:"notebook.s1.basement-wall",page:Object.freeze({id:"story-basement-wall",text:"Moving the shelf revealed a different-colored patch of wall.\n\nAn axe near the entrance might break it open."})},
   {flag:"notebook.s1.phoenix-mirror",page:Object.freeze({id:"story-phoenix-mirror",text:"Found the Phoenix Mirror hidden behind the basement wall.\n\nReturn to the dojo and speak to Fuku-san. Master Chen may know more about this mirror."})},
+  {flag:"notebook.s1.master-chen-return",page:Object.freeze({id:"story-master-chen-return",text:"Showed Fuku-san the Phoenix Mirror.\n\nTake it to Master Chen at Old Warehouse No. 8. Call 0468-61-5647 and use the passwords again to arrange a meeting."})},
+  {flag:"notebook.s1.master-chen-return-appointment",page:Object.freeze({id:"story-master-chen-return-appointment",text:"Master Chen will meet me at Old Warehouse No. 8.\n\nThe compound guard knows me now. I can return without sneaking past the patrols."})},
+  {flag:"notebook.s1.mirrors-legend",page:Object.freeze({id:"story-mirrors-legend",text:"Master Chen recognized the Phoenix Mirror.\n\nThe Dragon and Phoenix Mirrors form a pair, connected to a Chinese legend. Lan Di must not get this mirror."})},
+  {flag:"notebook.s1.mad-angels",page:Object.freeze({id:"story-mad-angels",text:"Chai tried to steal the Phoenix Mirror.\n\nThe Mad Angels may have helped Lan Di in Japan. I need to learn more about them."})},
+  {flag:"notebook.s1.hong-kong",page:Object.freeze({id:"story-hong-kong",text:"Master Chen thinks Lan Di has gone to Hong Kong.\n\nI asked for his help, but he warned me not to waste my life on revenge. Return home and speak with Fuku-san about the journey."})},
 ]);
 
 export function notebookPagesForCharacter(character) {
