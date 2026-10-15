@@ -156,9 +156,9 @@ collision or door rule was changed.
 
 ## Remaining ticket progression
 
-Next are Jimmy's next-morning call, the arcade Chai fight and the resulting
-Asia Travel confrontation/chase. These are not completed by the ticket-payment
-or Jimmy-promise milestones.
+The next-morning call is implemented below. The arcade Chai fight and resulting
+Asia Travel confrontation/chase remain missing connected content. A ticket
+payment, promise or phone-call milestone does not complete those challenges.
 
 The `01MON` piggy-bank subtitle states ¥39,634; the same integer occurs in
 JOMO MAPINFO at `0x71a44`. That exact amount is used by the authored settlement,
@@ -246,3 +246,55 @@ ambient copies through multiple rendered frames, restores their visibility and
 controls after cancellation, and confirms unchanged money/inventory/flags.
 These previews are renderer checks, not evidence of newly earned progression;
 the connected run above supplies that evidence.
+
+## The snow dream and Jimmy's morning call
+
+Official imports: `jimmy-night-dream`, `jimmy-morning-call`.
+The GameSpot guide, printed pp. 45–46, orders the snow-girl dream after Jimmy's
+promise, then his home call and the noon You Arcade appointment. The original
+`A0169` SRF independently names Jimmy, Asia Travel and the noon meeting.
+
+| Field | Authored integration |
+| --- | --- |
+| Locations / prerequisites | Story Ryo, completed opening and the earned Asia/Jimmy promise. Sleep uses the established bedside region after 20:00 on the recorded promise day. The call uses the supported foyer/hall approach on any later personal day. |
+| Sequence / cast | Optional, explicit sleep plays existing `KKYC/SEQDATA2.AUTH` with Shenhua in the isolated dream stage, then saves the next day at 08:30 and the established bedside arrival. Crossing the hall starts original A0169: Fuku answers, hands the conversation to Ryo, and Jimmy requests the arcade meeting. Jimmy is a remote voice, not a body in the home. |
+| Original presentation | Existing KKYC assets and source-associated BGM079. The phone pack uses Disc 2 JOMO MAPINFO AUTH `0x9d7dc` (7,456 bytes), COMMON02 `M_0169.MOTN`, bank 19 and complete sequence indexes, original cameras, twelve speech lines and thirteen A1_JYTEL effects. The AUTH movement lasts 1,600 frames; its camera track makes the complete presentation 60 seconds. Source and output hashes are pinned by the pack generator. |
+| Props / weather | Borrow and restore the existing `TEL_` / `S1_JOMO_TELS514G.MT5` phone; do not create a duplicate. Keep normal personal weather outside the isolated vision. Detailed receiver, finger and facial callback reconstruction is not claimed. |
+| Completion / exit | Sleep saves its milestone, calendar and bedroom destination in one transaction. The call saves its own milestone and one notebook page, preserving the approach position, personal date, inventory and money. It grants no ticket, refund or fight result. Both restore camera and controls. |
+| Skip / cancellation / missed timing | Existing explicit cinematic skip may complete these noninteractive scenes. Leave, cancellation, failed preparation and stale acknowledgements settle nothing and allow retry. Waiting elsewhere can bypass the optional dream; missing the exact next morning cannot strand the call. |
+
+The foyer/bedside triggers, optional sleep choice and forgiving late-call gate
+are declared adaptations, not recovered native room initialization. The shared
+region dispatcher re-arms date-sensitive appointments on a new personal day.
+Ordinary overnight opening-hour windows retain their entry latch across midnight;
+client rechecking never authorizes a saved appointment or writes progress.
+The existing waiting catalog now includes 20:00, with its ordinary server/Yarn
+confirmation rather than browser-selected timestamps.
+
+The focused real compiler/PostgreSQL test covers missing/same-day appointment
+records, the 20:00 boundary, decline, cancellation, stale receipts, atomic
+next-morning arrival, original inventory/money preservation and once-only call
+settlement. Focused client checks cover exact presentation bindings and the
+date-sensitive dispatch rule. Connected rendered validation uses
+`NEW_YOKOSUKA_JIMMY_CALL_E2E=true`; visual and audio fidelity are reported
+separately from those state checks.
+
+The uninterrupted earned-save browser continuation passes (about 2.4 minutes
+including GPU preflight): same-day call rejection, ordinary 20:00 waiting,
+sleep decline/cancel/retry, natural dream completion, saved next-morning bedside
+arrival, normal movement through the bedroom door, call cancellation/retry and
+natural completion, visible notebook page, restored controls and saved reload
+without another call. Funds and inventory remain unchanged throughout.
+The 125 focused client presentation/ownership/controller tests pass. No assets
+were uploaded and no production state was changed.
+
+Inspected captures show Shenhua in the isolated dream stage and the original
+Fuku/Ryo home-phone shots. The dream currently lacks rendered snow and is dark;
+the phone receiver is not yet attached to their hands. Those are visible
+presentation limitations, not missing eligibility, dialogue or save outcomes.
+Audio playback fidelity has not been assessed by listening.
+
+To regenerate only the new presentation, use
+`node tools/cutscenes/build_home_ticket_pack.mjs --profile jimmy-morning-call --audio`
+with the same original-disc and audio-tool prerequisites as the other ticket
+packs. Omitting `--profile` retains the full deterministic batch.

@@ -20,6 +20,10 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.jomo.jimmy-night-dream","description":"Bedside sleep choice after Jimmy's promise."},
+    {"kind":"bounds","identifier":"s1.jomo.jimmy-morning-call","description":"Home foyer approach for Jimmy's next-day call."},
+    {"kind":"activity","identifier":"s1.jomo.snow-dream.scene","description":"Original KKYC snow-girl dream; no calendar mutation by presentation."},
+    {"kind":"activity","identifier":"s1.jomo.jimmy-morning-call.scene","description":"Original A0169 home telephone scene; server owns the arcade appointment."},
     {"kind":"bounds","identifier":"s1.dski.global-boat","description":"Global boat-fare referral approach."},
     {"kind":"bounds","identifier":"s1.daza.boat-ticket-purchase","description":"Asia boat payment approach."},
     {"kind":"bounds","identifier":"s1.daza.boat-ticket-collection","description":"Asia delayed ticket inquiry approach."},
@@ -207,6 +211,7 @@
     {"kind":"challenge","identifier":"s1.heartbeats.alley","description":"Server-validated B,A defensive QTE; authored timing and strict retry."},
     {"kind":"challenge","identifier":"s1.heartbeats.bar","description":"Server-validated B,A,B,A bar QTE; authored timing and strict retry."},
     {"kind":"story-time","identifier":"s1.wait.evening","description":"Reviewed personal waiting target at 19:00 on the current Story date."},
+    {"kind":"story-time","identifier":"s1.wait.night","description":"Reviewed personal waiting target at 20:00, the original home sleep window."},
     {"kind":"story-time","identifier":"s1.wait.morning","description":"Reviewed personal waiting target at 08:30 on the following Story date."},
     {"kind":"bounds","identifier":"s1.jomo.first-allowance.hall","description":"Authored hall volume outside Ryo's bedroom; browser coordinates, not a native facing record."},
     {"kind":"bounds","identifier":"s1.jhd0.first-dojo.entrance","description":"Authored Hazuki dojo entrance volume in browser coordinates."},

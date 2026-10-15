@@ -81,7 +81,7 @@ test("mirror follow-up borrows original HOUO/MS8A without allowing cinematics to
 
 test("home cinematics cannot grant savings or advance the personal calendar themselves",()=>{
   const catalog=createScriptEventPresentationCatalog();
-  for(const [part,resource,area] of [["post-chen-home","A0160","jomo"],["bank-savings","01BNK","jomo"],["travel-family","01EAR","jomo"],
+  for(const [part,resource,area] of [["jimmy-morning-call","A0169","jomo"],["post-chen-home","A0160","jomo"],["bank-savings","01BNK","jomo"],["travel-family","01EAR","jomo"],
     ["fuku-travel-funds","01MON","jomo"],["global-airfare","01MIT","dski"],["asia-airfare","01ETU","daza"],
     ["global-boat","01MIT","dski"],["boat-ticket-purchase","01ETU","daza"],["boat-ticket-collection","A0165","daza"]]){
     const activity=catalog.activity(`s1.${area}.${part}.scene`);
@@ -93,6 +93,9 @@ test("home cinematics cannot grant savings or advance the personal calendar them
   }
   assert.deepEqual(catalog.activity("s1.jomo.mirror-dream.scene").cutscene.activity,
     {slot:51,binding:{primaryPointer:614200,secondaryPointer:614213}});
+  const snow=catalog.activity("s1.jomo.snow-dream.scene");
+  assert.equal(snow.durableEffects,"forbidden");assert.equal(snow.returnPlayerState,true);
+  assert.equal(new NativeAseqActivityCatalog(JSON.parse(readFileSync(new URL("../play/assets/hazuki/kkyc/manifest.json",import.meta.url)))).has(snow.cutscene.activity),true);
   assert.equal(catalog.sequence("s1.jomo.fuku-travel-advice.start").scene.actors[1].tag,"FUKU");
 });
 

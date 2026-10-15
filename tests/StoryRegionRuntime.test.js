@@ -2,6 +2,20 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { StoryRegionRuntime } from "../play/scripts/StoryRegionRuntime.js";
 
+test("a saved-day appointment re-arms after midnight without fabricating eligibility",()=>{
+  let date=new Date("1986-12-23T20:00:00Z");const calls=[];
+  const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{}};
+  const runtime=new StoryRegionRuntime({controller:{status:"idle",start:async()=>{calls.push(date.toISOString());return{outcome:"declined"};}},
+    getCharacter:()=>character,getGameDate:()=>date,publishPresence(){},
+    regions:[{id:"appointment",area:"JOMO",min:[0,0,0],max:[2,2,2],completedFlag:"called",recheckOnDayChange:true}]});
+  const frame={area:"JOMO",playerPosition:[1,1,1],enabled:true};
+  assert.equal(runtime.update(frame),true);assert.equal(runtime.update(frame),false);
+  date=new Date("1986-12-23T23:59:00Z");assert.equal(runtime.update(frame),false);
+  date=new Date("1986-12-24T08:30:00Z");assert.equal(runtime.update(frame),true);
+  assert.equal(calls.length,2);assert.deepEqual(character.storyFlags,{});
+  character.storyFlags.called=true;date=new Date("1986-12-25T08:30:00Z");assert.equal(runtime.update(frame),false);
+});
+
 test("malformed personal-hour metadata is an error, not an invisible missing event",()=>{
   for(const hours of [[19], [19,19], [24,6], [19,NaN], "night"])
     assert.throws(()=>new StoryRegionRuntime({controller:{},getCharacter(){},publishPresence(){},regions:[{id:"broken",hours}]}),/Invalid story region hours: broken/);

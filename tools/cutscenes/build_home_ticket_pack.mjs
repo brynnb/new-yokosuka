@@ -21,6 +21,9 @@ const actor=(label,code)=>{
     assetPath:`${prefix}/${code}.CHRM`,textureAssetPath:`${prefix}/${code.slice(0,3)}_textures.bin`};
 };
 const profiles=[
+  {id:"jimmy-morning-call",resource:"A0169",offset:0x9d7dc,size:7456,hash:"b113abdfdc1eb09823a1f80f17ea26e697afffe042b300ac656e4d9f53372a1d",frames:1600,
+    motion:"M_0169.MOTN",motionSize:181132,motionHash:"091fa20c78398a3e3756ee21ffc0a26425ea6e3ecffcc316122a31f41fae3d7f",bank:19,base:0,actors:["TEL_","FUKU","AKIR"],
+    stream:"A0169",streamHash:"f75f94816b8a8f011dbf372f57077596f45c21f382ed13816d80450672edb796",sound:"A1_JYTEL.SND",soundHash:"b36c631fd2911f0450652cbdddb1feaa608b01387f8b2b70a7abc69cddc9c2fe"},
   {id:"post-chen-home",resource:"A0160",offset:0xb7ff4,size:3276,hash:"5d559c6b948d565b4755ebdcaf04fc6d7d7276e8d5087a8c6b1a6b81e901e9e2",frames:650,
     motion:"M_0160.MOTN",motionSize:7456,motionHash:"f7b5e2410d8bf9bcb5e31372f1b69dceea706e1a26e975fc262ad73165040a62",bank:25,base:112,actors:["AKIR","FUKU"],
     stream:"A0160",streamHash:"9895738da8b143f1ea3930a66beef9492fc82e9eb0856014878d7db1606c4a49",sound:"A1_HUKHE.SND",soundHash:"f05518358966ff53f5f6ebda47710ead4d0f11a7dc9605e336a0da2bc17f7b10"},
@@ -63,7 +66,10 @@ const asiaModels={
   SAFS500G:[7868,"7294b11ed28f87f045eeaf508cdfe1c2957abc3750d5b2a49ae9de47806aa493"],
 };
 const runtimePaths=[];
-for(const p of profiles){
+const profileIndex=process.argv.indexOf("--profile");
+const selectedProfiles=profileIndex<0?profiles:profiles.filter(p=>p.id===process.argv[profileIndex+1]);
+if(!selectedProfiles.length)throw Error("--profile requires a known ticket-journey presentation ID");
+for(const p of selectedProfiles){
   const area=p.area||"JOMO",mapSource=path.join(source,area,"MAPINFO.BIN");
   const prefix=`play/assets/${p.area?"dobuita":"hazuki"}/${p.id}`,audioPrefix=`public/audio/world/${p.id}`;
   const members=[
@@ -71,6 +77,11 @@ for(const p of profiles){
     {name:p.motion,sourcePath:p.area?path.join(source,area,p.motion):common,sourceManifestPath:`disc2/SCENE/02/${area}/${p.area?p.motion:"COMMON02.PKS"}`,...(p.area?{}:{archiveMember:p.motion,sourceSha256:commonHash}),byteLength:p.motionSize,sha256:p.motionHash},
   ];
   const props={},outputMembers=[],textureSources=[];let generatedAssets=[];
+  if(p.id==="jimmy-morning-call"){
+    // JOMO's existing TEL_ placement owns this phone. Borrow and restore it;
+    // adding another model would put two phones at the same original pose.
+    props.TEL_={model:"TELS514G",browserFilename:"S1_JOMO_TELS514G.MT5",objectTag:"TEL_"};
+  }
   const prop=(tag,file,size,hash,archive=null)=>{
     members.push({name:file,sourcePath:path.join(source,area,archive||file),sourceManifestPath:`disc2/SCENE/02/${area}/${archive||file}`,
       ...(archive?{archiveMember:file}:{}),byteLength:size,sha256:hash});

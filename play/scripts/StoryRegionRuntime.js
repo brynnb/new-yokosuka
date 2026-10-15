@@ -15,13 +15,17 @@ export class StoryRegionRuntime {
       ||region.hours.some(hour=>!Number.isFinite(hour)||hour<0||hour>24)||region.hours[0]===24||region.hours[0]===region.hours[1]))throw new Error(`Invalid story region hours: ${region.id}`);
     this.inside = new Set();
     this.contextKey = null;
+    this.calendarDay = null;
     this.generation = 0;
   }
-  reset() { this.generation++; this.inside.clear(); this.contextKey = null; }
+  reset() { this.generation++; this.inside.clear(); this.contextKey = null; this.calendarDay = null; }
   update({ area, playerPosition, enabled }) {
     const position = Array.isArray(playerPosition) ? playerPosition
       : playerPosition ? [playerPosition.x, playerPosition.y, playerPosition.z] : null;
     const character = this.getCharacter();
+    const date = this.getGameDate();
+    const calendarDay = date instanceof Date && Number.isFinite(date.getTime())
+      ? Math.floor(date.getTime() / 86_400_000) : "unknown";
     const key = character ? `${character.id}:${character.modeRevision}:${area}` : null;
     if (key !== this.contextKey) { this.reset(); this.contextKey = key; }
     if (!character || character.playMode !== "story" || !character.openingCompleted || !enabled
@@ -32,13 +36,19 @@ export class StoryRegionRuntime {
     // the entry latch until gameplay ownership returns; context changes above
     // still reset it on world, character or mode changes.
     if(this.controller.status!=="idle")return false;
+    // Re-arm date-gated appointments, not every region: an ordinary overnight
+    // opening-hours window stays occupied across midnight. Yarn still decides
+    // whether a saved appointment is eligible on the new personal day.
+    if(calendarDay!==this.calendarDay){
+      for(const region of this.regions)if(region.recheckOnDayChange)this.inside.delete(region.id);
+      this.calendarDay=calendarDay;
+    }
     for (const region of this.regions) {
       // Use-only bounds authorize a selected world object on the server; merely
       // walking nearby must not start its interaction or consume entry dispatch.
       if (region.trigger === "use") continue;
       if (region.area !== area) continue;
       if (region.hours) {
-        const date=this.getGameDate();
         const hour=date instanceof Date ? date.getUTCHours()+date.getUTCMinutes()/60+date.getUTCSeconds()/3600 : NaN;
         const [start,end]=region.hours;
         const eligible=Number.isFinite(hour)&&(start<end ? hour>=start&&hour<end : hour>=start||hour<end);

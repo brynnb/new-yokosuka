@@ -33,7 +33,7 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
-  ...[["post-chen-home","A0160","JOMO","interior"],["bank-savings","01BNK","JOMO","interior"],["travel-family","01EAR","JOMO","interior"],
+  ...[["jimmy-morning-call","A0169","JOMO","interior"],["post-chen-home","A0160","JOMO","interior"],["bank-savings","01BNK","JOMO","interior"],["travel-family","01EAR","JOMO","interior"],
     ["fuku-travel-funds","01MON","JOMO","interior"],["global-airfare","01MIT","DSKI","dski"],["asia-airfare","01ETU","DAZA","daza"],
     ["global-boat","01MIT","DSKI","dski"],["boat-ticket-purchase","01ETU","DAZA","daza"],["boat-ticket-collection","A0165","DAZA","daza"]].map(([part,resource,area,worldId])=>[`s1.${area.toLowerCase()}.${part}.scene`,{
     kind:"native-cutscene",area,durableEffects:"forbidden",returnPlayerState:true,
@@ -44,6 +44,11 @@ const ACTIVITIES = new Map([
     kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-mirror-dream",packageId:"kkyb",worldId:"interior",storyPresentation:true,
       activity:{slot:51,binding:{primaryPointer:614200,secondaryPointer:614213}}},
+  }],
+  ["s1.jomo.snow-dream.scene",{
+    kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-snow-dream",packageId:"kkyc",worldId:"interior",storyPresentation:true,
+      activity:{slot:52,binding:{primaryPointer:614237,secondaryPointer:614250}}},
   }],
   ...[["explanation",6],["theft-start",0],["pursuit",1],["scaffolding",2],["crane",3],["failure",4],["save-mirror",5],["hong-kong",7]].map(([part,slot])=>[`s1.ms08.mirror-meeting.${part}`,{
     kind:"native-cutscene",area:"MS08",durableEffects:"forbidden",returnPlayerState:true,
