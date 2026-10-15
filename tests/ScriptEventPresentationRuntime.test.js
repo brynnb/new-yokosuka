@@ -101,6 +101,23 @@ test("Gui Zhang's warning uses the original Alpha room, bank18, exact English vo
   assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
 });
 
+test("Chen's post-letter scene keeps its distinct archive, original bank/cast and shared original bodies",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.ms08.chen-warning.scene");
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/harbor/chen-warning/manifest.json",import.meta.url)));
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/chen-warning/manifest.json",import.meta.url)));
+  assert.equal(activity.area,"MS08");assert.equal(activity.cutscene.worldId,"ms08");
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.cutscene.activity.binding.activityId,"MS08/SEQDATA5.AUTH");
+  assert.equal(manifest.activities[0].durationFrames,4120);assert.equal(manifest.motionBanks[0].bank,16);
+  assert.deepEqual(manifest.actorTags,["HAK0","AKIR","KISY","TAIJ"]);
+  assert.equal(manifest.packageActors.TAIJ.assetPath,"play/assets/harbor/master-chen/SYU_M.CHRM");
+  assert.equal(manifest.packageActors.KISY.assetPath,"play/assets/harbor/master-chen/KIS_M.CHRM");
+  assert.equal(audio.sources.stream.path,"disc3/SCENE/03/STREAM/01CAU.AFS");
+  assert.equal(audio.sources.soundBank.path,"disc3/SCENE/03/SOUND/A1_CHINA.SND");
+  assert.equal(audio.voices.length,28);assert.equal(audio.sounds.length,11);assert.ok([...audio.voices,...audio.sounds].every(v=>!v.unavailable));
+  assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+});
+
 test("sailor chase films preserve original branch bindings and forbid presentation rewards",()=>{
   for(const [part,file,actors,frames]of [["intro","SEQDATA0.AUTH",["FORK","AKIR","SMTH","TONY"],1140],["tony","SEQDATA1.AUTH",["AKIR","TONY"],1500],["smith","SEQDATA0.AUTH",["AKIR","SMTH"],1500]]){
     const activity=createScriptEventPresentationCatalog().activity(`s1.mfsy.sailor-chase-${part}.scene`);

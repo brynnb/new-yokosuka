@@ -1122,7 +1122,7 @@ neither the chase nor a presentation clip can substitute for delivered cargo.
 | --- | --- |
 | `workday-five-afternoon` | Earned fifth morning and sailor chase; tested MFSY dispatch approach, 14:00–17:00 personal time. Ryo drives the existing forklift and physically picks up/delivers five new crates. The acknowledged final caption saves quota/notebook and minimum17:00, not wages. Earlier deliveries do not count. |
 | `workday-five-payday` | Earned morning, sailor chase and afternoon quota; tested Alpha entrance after17:00. Explicit collect/leave choice, original salary motions and two original Yada/Ryo voice lines. Final acknowledgement atomically saves ¥3,000, payday date, notebook and receipt once. No letter, Chen result or completed day. |
-| `warning-letter` | Earned fifth payday; same Alpha entrance after17:00. Original private Alpha room, Ryo/Yada bodies, camera/motion,13 English voices,21 effects and BGM119. Acknowledged natural ending or explicit skip saves only letter milestone and notebook. Chen's visit remains a separate unimplemented continuation. |
+| `warning-letter` | Earned fifth payday; same Alpha entrance after17:00. Original private Alpha room, Ryo/Yada bodies, camera/motion,13 English voices,21 effects and BGM119. Acknowledged natural ending or explicit skip saves only letter milestone and notebook. Chen's visit is a separate continuation below. |
 
 All preserve the personal date and ordinary weather/environment. Delivery uses
 the existing observed-physics challenge, not a QTE or automatic victory. Scene
@@ -1181,8 +1181,7 @@ requests. The mix has not been assessed by listening.
 
 All 42 new local asset records (1,725,354 bytes) match their recorded hashes and
 sizes. BGM119 reuses an existing viewer asset. No assets were published and no
-deployment was performed. Chen's post-letter meeting remains the next
-unimplemented continuation.
+deployment was performed. Chen's post-letter meeting is connected below.
 
 Rebuild the letter with the shared extractor (no asset upload):
 
@@ -1194,3 +1193,62 @@ TMPDIR=/var/tmp VGMSTREAM_CLI=/path/to/vgmstream-cli \
 
 The original DTPKDump dependency requires Python's `aifc` module; use its
 supported Python environment rather than patching or skipping its decoding.
+
+## Post-letter Master Chen visit
+
+The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed p.60, puts the Chen/Gui Zhang discussion after the warning letter, then
+sends Ryo home to rest. Original `01CAU` dialogue confirms that Terry arranged
+Lan Di's passage, the Mad Angels are bringing in drugs, and Chen refuses to
+give Ryo the Long Zha date. This is a conversation, not a new fight or QTE.
+
+| Field | Connected implementation |
+| --- | --- |
+| Identity / prerequisites | Personal Story Ryo with the acknowledged warning-letter milestone. Free roam and incomplete openings decline. Visit and conversation have distinct receipts. |
+| Trigger / location | `chen-warning-visit`: existing Alpha entrance,17:00–24:00 personal time. Visit/leave choice uses ordinary Yarn and saved travel. `chen-warning`: entry volume around the existing supported Warehouse No.8 arrival, after the letter and before this meeting is completed. |
+| Arrival | Reuse `s1.harbor.old-eight-interior`, original MS08 entry0, `[26.5,0,-2.3]`. No renewed password or stealth requirement. Arrival is reward-free and repeatable until the conversation is completed, so leaving after cancellation cannot strand progression. |
+| Characters / props | Original AKIR, KISY and TAIJ AUTH cast; original crate retained as HAK0 through a documented authored model association. Reuse existing original Chen/Gui Zhang bodies rather than donor models or duplicate extraction. |
+| Action, dialogue and timing | Original `MS08/SEQDATA5.AUTH`, 4,120 frames (137.35 seconds), `M_01CAU.MOTN`, bank 16; 28 original English voice/subtitle records and 11 effects. Actual AUTH motion/voice cues advance the scene; no narrative outcome from a timeout. |
+| Cameras / environment / audio | Original camera sequence and body movement in the existing warehouse. Preserve ordinary environment/weather; no invented music cue. Original map metadata identifies `a1_china.snd`; ordinary warehouse ambience remains separate. |
+| Completion | Acknowledged natural ending or supported explicit skip saves meeting, notebook, fifth-day completion and its personal finish date together. No wages, item grant, time jump, forced home return or Nozomi-rescue result. |
+| Exit / retry | Remain at the saved warehouse approach with camera/controls restored. Cancelled preparation or scene saves no meeting outcome; the already committed travel survives cancellation/reload and permits a fresh attempt. Completed entry/reload does not replay. Notebook directs Ryo home after 20:00. |
+
+### Source identities and adaptations
+
+- Disc3 `MS08/MS08.PKS`:
+  `37dfa2edd029a819f8e25f75b27332bef5d4f416868aaab2cd9b8068e0d4010f`.
+  It directly contains `SEQDATA5.AUTH`, `M_01CAU.MOTN` and the original crate.
+- MS08 `MAPINFO.BIN`:
+  `fdcdeae0525fe2b596d8e67be322bde40ccb9b7c6ea13d2d673e14ba7ef39b07`.
+  It names `01CAU` around decimal 180444 and `a1_china.snd` at 192104.
+- `01CAU.AFS`:
+  `4e61b4621349727688c7dbd35b30d0f11920850084800a42d0073dca4423546f`;
+  distinct from the earlier letter's `01CAUA.AFS`.
+- `A1_CHINA.SND`:
+  `6862f133cb92a0f81672fbefee6f57c7d143fdd2c257f92aff51fb5829611c1f`;
+  all 11 requested effects resolve without aliases or omissions.
+
+The Disc2 warehouse already used in gameplay and Disc3's `MAP01.MAPM` and
+`MAP04.MAPM` are byte-identical. Disc3's Chen `SYU_M` body is also byte-identical
+to the existing first-meeting asset. Gui Zhang reuses the existing original
+`KIS_M` body/texture pack; a distinct Disc3 body was not found in this archive.
+The explicit Alpha commute choice, arrival walk-in volume and HAK0 association
+are authored adaptations, not recovered native controller predicates. Exact
+native facial/hand callbacks and the audio mix have not been newly verified.
+
+### Verification
+
+The real Yarn compiler checks missing letter, Story/opening/bounds, departure
+hours, leave/cancel, repeat departure and retirement after the completed visit.
+Travel permits only arrival plus its own receipt. The scene permits only its
+three flags and finish-day record; no money, items, unrelated progress or
+calendar movement.
+
+The connected browser check resumes the genuinely earned letter save, declines
+the ordinary visit offer, physically re-enters, accepts real saved travel,
+cancels the original scene, reloads the saved warehouse and watches its natural
+ending. Captures show Gui Zhang and Chen in their original shots. Saved reload
+preserves notebook, fifth-day completion and personal finish day 6207 without
+replay, extra pay or inventory changes. Currency remains ¥22,836. All 45 new
+local asset records (3,642,792 bytes) match their hashes/sizes; none were uploaded.
+Nozomi's late-night continuation remains unimplemented.

@@ -17,7 +17,7 @@ import {verifyWorkdayNight,verifySecondWorkday,verifyMarkAfterWork} from "./stor
 import {verifyThirdWorkday} from "./story-workday-three.js";
 import {verifyHarborBikers} from "./story-harbor-bikers.js";
 import {verifyFourthMorning,verifyFourthLunch,verifyFourthAfternoon} from "./story-workday-four.js";
-import {verifyFifthMorning,verifyFifthSailorChase,verifyFifthAfternoon,verifyWarningLetter} from "./story-workday-five.js";
+import {verifyFifthMorning,verifyFifthSailorChase,verifyFifthAfternoon,verifyWarningLetter,verifyChenWarning} from "./story-workday-five.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -188,11 +188,14 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_CHEN_WARNING_E2E === "true"){
+      test.setTimeout(480_000);await verifyChenWarning(page,testInfo,character);expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_WARNING_LETTER_E2E === "true"){
       test.setTimeout(300_000);await verifyWarningLetter(page,testInfo,character,{musicResponses});expect(errors).toEqual([]);return;
     }
     if(process.env.NEW_YOKOSUKA_FIFTH_AFTERNOON_E2E === "true"){
-      test.setTimeout(900_000);await verifyFifthAfternoon(page,testInfo,character);expect(errors).toEqual([]);return;
+      test.setTimeout(900_000);await verifyFifthAfternoon(page,testInfo,character,{musicResponses});expect(errors).toEqual([]);return;
     }
     if(process.env.NEW_YOKOSUKA_FIFTH_SAILORS_E2E === "true"){
       test.setTimeout(900_000);await verifyFifthSailorChase(page,testInfo,character,{reconnectOnly:process.env.NEW_YOKOSUKA_FIFTH_SAILORS_RECONNECT_E2E==="true",arrivalOnly:process.env.NEW_YOKOSUKA_FIFTH_SAILORS_ARRIVAL_E2E==="true",lostReceipt:process.env.NEW_YOKOSUKA_FIFTH_SAILORS_LOST_RECEIPT_E2E==="true"});expect(errors).toEqual([]);return;

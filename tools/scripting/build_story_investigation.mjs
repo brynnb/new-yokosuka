@@ -187,7 +187,9 @@ for (const route of spec.routes) {
   } else if (route.activities) {
     // A noninteractive original cinematic is presentation inside the same
     // Yarn transaction, not another writable/native progression authority.
-    if (!route.activities.length || lines.length || route.staging) throw new Error(`Invalid presentation-only route ${route.id}`);
+    // Confirmed travel may have no film. It still uses this same ordinary Yarn
+    // choice/settlement path; do not introduce a separate travel quest engine.
+    if ((!route.activities.length && !route.destination) || lines.length || route.staging) throw new Error(`Invalid presentation-only route ${route.id}`);
     if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw new Error(`Invalid Story destination ${route.id}`);
     if(route.timeTransition&&!/^s1\.[a-z0-9.-]+$/.test(route.timeTransition))throw Error(`Invalid Story time transition ${route.id}`);
     body = `${route.activities.map(id => `<<start_activity "${id}">>`).join("\n")}\n${route.timeTransition?`<<advance_story_time "${route.timeTransition}">>\n`:""}${route.destination ? `<<travel_story "${route.destination}">>\n` : ""}${effects.join("\n")}\n<<complete>>`;

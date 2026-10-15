@@ -157,7 +157,10 @@ Five fresh afternoon deliveries, separate once-only wages and the original
 warning-letter scene now also pass connected earned-save checks through
 cancellation/retry, notebook and reload. The actual BGM119 response is checked;
 paper-in-hand callback detail and the original red-striped cargo route remain
-explicit limitations. Chen's post-letter visit, Nozomi
+explicit limitations. Chen's post-letter visit now also passes connected
+earned-save checks through visit decline, real travel, original scene,
+cancellation/warehouse reload/retry, natural ending and saved fifth-day
+completion without further pay. Nozomi's
 rescue, final battles and departure remain unimplemented;
 the checklist above distinguishes each verified sequence.
 

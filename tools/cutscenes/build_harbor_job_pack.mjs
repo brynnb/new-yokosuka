@@ -15,6 +15,7 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const evidence="docs/design/story-harbor-work.md";
 const archives={
+  "MS08/MS08":"37dfa2edd029a819f8e25f75b27332bef5d4f416868aaab2cd9b8068e0d4010f",
   MARU_LET:"49b859b07413108e9ed5726a28ad48ca91e723053602b1642e35e8a631287fa0",
   "MA00/PK_CTS":"286c088071aaea7bb3764a410ab526e4db8243442b80d3e9024ec6ff05811ae0",
   "MA00/PK_CTS2":"b9ffa3ac9287ace6094cb02bb05c855150ff33aa17826e0025b858182de94ed9",
@@ -34,6 +35,10 @@ const archives={
   ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
 const profiles=[
+  {id:"chen-warning",archive:"MS08/MS08",resourceName:"MS08",auth:"SEQDATA5.AUTH",motion:"M_01CAU.MOTN",frames:4120,actors:["HAK0","AKIR","KISY","TAIJ"],
+    sharedActorManifest:{path:"play/assets/harbor/master-chen/manifest.json",sha256:"a997ad1a777bc5e175e733245002de2245eec3550dc253e0e79057b73041de9b"},
+    props:{HAK0:"HAKS5YKG"},propTextureHash:"9d959ba7d4754a6a23d1de5b6fb41d96281e03ac4c541f3ba5ee3c8fc38d1b0d",authoredPropBindings:true,
+    stream:"01CAU",streamHash:"4e61b4621349727688c7dbd35b30d0f11920850084800a42d0073dca4423546f",sound:"A1_CHINA.SND",soundHash:"6862f133cb92a0f81672fbefee6f57c7d143fdd2c257f92aff51fb5829611c1f"},
   {id:"warning-letter",archive:"MARU_LET",auth:"SEQDATA3.AUTH",motion:"M_01CAU.MOTN",bank:18,frames:1400,actors:["AKIR","TMRA"],room:"ALPHA",
     extraMembers:["FUTS5KBG.CHRM","KMMS500G.CHRM"],
     music:{id:"bgm119",sourceId:"84af3eae1fc0efdcdaf7efb9a15479b28920513dbadcb2997445755e413e5c1e",bankHash:"48e854a5c8681536f015195da0630fa8e90307404a2e9b70a93b335fdbccebcf",label:"Gui Zhang's warning letter"},
@@ -168,7 +173,19 @@ for(const p of selected){
     const assetPath=`${prefix}/${filename}`;
     generatedAssets.push({assetPath,bytes:extractNativeTexnPack(bytes,`${archive}.PKF`).bytes});return assetPath;
   };
+  let sharedActors={};
+  if(p.sharedActorManifest){
+    const bytes=fs.readFileSync(path.join(root,p.sharedActorManifest.path));
+    if(sha256(bytes)!==p.sharedActorManifest.sha256)throw Error(`Changed shared original actors for ${p.id}`);
+    sharedActors=JSON.parse(bytes).packageActors;
+  }
   for(const tag of p.actors){
+    if(sharedActors[tag]){
+      const actor=sharedActors[tag];
+      runtimeAssetUrl(actor.assetPath);runtimeAssetUrl(actor.textureAssetPath);
+      packageActors[tag]=actor;
+      continue;
+    }
     if(!characters[tag])continue;
     const [label,code]=characters[tag];
     // A film is imported during application startup. Missing shared bodies

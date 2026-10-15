@@ -9,6 +9,8 @@ import goroMaiManifest from "../assets/harbor/goro-mai-marriage/manifest.json";
 import goroMaiAudio from "../../public/audio/world/goro-mai-marriage/manifest.json";
 import warningLetterManifest from "../assets/harbor/warning-letter/manifest.json";
 import warningLetterAudio from "../../public/audio/world/warning-letter/manifest.json";
+import chenWarningManifest from "../assets/harbor/chen-warning/manifest.json";
+import chenWarningAudio from "../../public/audio/world/chen-warning/manifest.json";
 import sailorIntroManifest from "../assets/harbor/sailor-chase-intro/manifest.json";
 import sailorIntroAudio from "../../public/audio/world/sailor-chase-intro/manifest.json";
 import sailorTonyManifest from "../assets/harbor/sailor-chase-tony/manifest.json";
@@ -338,6 +340,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["goro-trap-aftermath",goroTrapManifest,goroTrapAudio,"mfsy"],["mark-long-zha",markLongZhaManifest,markLongZhaAudio,"mfsy"],
     ["goro-mai-marriage",goroMaiManifest,goroMaiAudio,"mfsy"],
     ["warning-letter",warningLetterManifest,warningLetterAudio,"mfsy",Object.freeze({cues:[{startActivity:true,trackId:"bgm119",loop:true}],gain:1})],
+    ["chen-warning",chenWarningManifest,chenWarningAudio,"ms08"],
     ["sailor-chase-intro",sailorIntroManifest,sailorIntroAudio,"mfsy"],["sailor-chase-tony",sailorTonyManifest,sailorTonyAudio,"mfsy"],["sailor-chase-smith",sailorSmithManifest,sailorSmithAudio,"mfsy"],
     ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],
     ["mark-lunch-intro",markLunchIntroManifest,markLunchIntroAudio,"mfsy"],["mark-lunch-aftermath",markLunchAftermathManifest,markLunchAftermathAudio,"mfsy"],

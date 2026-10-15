@@ -30,8 +30,61 @@ export async function verifyFifthMorning(page,testInfo,character){
   expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-goro-mai-marriage"))).toBe(false);await page.screenshot({path:testInfo.outputPath("fifth-morning-earned-lunch-reload.png")});
 }
 
-// Keep the genuinely earned morning. Both fork choices use real timed inputs;
-// cancelling Tony's ending must leave Smith's complete retry available.
+export async function verifyChenWarning(page,testInfo,character){
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const initial=await saved(),done="story.s1.chen-warning.completed";
+  expect(initial.character.storyFlags["story.s1.warning-letter.completed"]).toBe(true);
+  const allowed=new Set([done,"story.s1.chen-warning-visit.completed","notebook.s1.chen-warning","story.s1.workday-five.completed"]);
+  const check=async(complete=false)=>{const s=await saved();expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory).toEqual(initial.inventory);
+    for(const flag of [done,"story.s1.workday-five.completed","notebook.s1.chen-warning"])expect(s.character.storyFlags[flag]===true).toBe(complete);
+    for(const [key,value]of Object.entries(s.character.storyFlags))if(!allowed.has(key))expect(value).toBe(initial.character.storyFlags[key]);
+    expect(new Date(s.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;};
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
+  const movie=()=>page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-chen-warning"||window.storyProbe.sceneErrors.length,null,{timeout:75_000});
+  const approach=async(position,yaw,wait)=>{await idle();await page.evaluate(({position,yaw})=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray(position),yaw,{persist:false});c.setFirstPerson(true);c.cameraYaw=yaw;c.cameraPitch=0;c.updateCamera(1);},{position,yaw});await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await wait();}finally{await page.keyboard.up("KeyW");}};
+  if(!initial.character.storyFlags[done]){
+    if(initial.character.worldId==="mfsy"){
+      console.info("Post-letter Chen: decline the ordinary visit offer, then enter the saved warehouse through real travel");
+      const visit=page.getByRole("button",{name:"Visit Master Chen",exact:true});
+      const {default:catalog}=await import("../../play/data/story-regions.json",{with:{type:"json"}}),region=catalog.regions.find(r=>r.id==="s1.mfsy.chen-warning-visit");
+      const entered=[character.x,character.y,character.z].every((v,i)=>v>=region.min[i]&&v<=region.max[i]);
+      if(!entered)await approach([25,0,66],Math.PI,()=>visit.waitFor());else await visit.waitFor();
+      await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();
+      expect((await check()).character.storyFlags["story.s1.chen-warning-visit.completed"]).not.toBe(true);
+      await approach([25,0,66],Math.PI,()=>visit.waitFor());await visit.click();
+    }
+    await movie();await check();await page.waitForTimeout(8000);
+    await page.screenshot({path:testInfo.outputPath("chen-warning-original-entry-cancel.png")});
+    await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-chen-warning-cancel"));await idle();
+    const cancelled=await check();expect(cancelled.character.worldId).toBe("ms08");expect(cancelled.character.storyFlags["story.s1.chen-warning-visit.completed"]).toBe(true);
+    // Travel is durable, but the cancelled conversation is not. Reload the
+    // actual saved entry and allow its ordinary region to offer the film again.
+    await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
+    await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await movie();await check();
+    console.info("Post-letter Chen: original 137-second conversation, natural ending and atomic saved chapter");
+    await page.waitForTimeout(36000);await page.screenshot({path:testInfo.outputPath("chen-warning-original-conversation.png")});
+    await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:145_000,intervals:[1000]}).toBe(true);await idle();await check(true);
+  }
+  await check(true);
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();await check(true);
+  expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-chen-warning"))).toBe(false);
+  const position=await page.evaluate(()=>window.storyProbe.lifecycle.getController().actorRoot.position.asArray());
+  const final=await saved();expect(final.character.worldId).toBe("ms08");expect(position[0]).toBeCloseTo(final.character.x,1);expect(position[2]).toBeCloseTo(final.character.z,1);
+  await page.screenshot({path:testInfo.outputPath("chen-warning-earned-chapter-reload.png")});
+}
+
+async function leavePendingChenVisit(page,character){
+  if(!character.storyFlags["story.s1.warning-letter.completed"]||character.storyFlags["story.s1.chen-warning.completed"])return;
+  const {default:catalog}=await import("../../play/data/story-regions.json",{with:{type:"json"}}),region=catalog.regions.find(r=>r.id==="s1.mfsy.chen-warning-visit");
+  if(character.worldId!==region.worldId||![character.x,character.y,character.z].every((v,i)=>v>=region.min[i]&&v<=region.max[i]))return;
+  // The connected follow-up now offers travel at this same saved approach.
+  // End a narrower checkpoint through the normal Leave choice, not a fake flag
+  // or disabling the production trigger to manufacture an idle player.
+  await page.getByRole("button",{name:"Visit Master Chen",exact:true}).waitFor();
+  await page.getByRole("button",{name:"Leave it for now",exact:true}).click();
+}
+
 export async function verifyWarningLetter(page,testInfo,character,{musicResponses=[]}={}){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),done="story.s1.warning-letter.completed";
@@ -43,30 +96,31 @@ export async function verifyWarningLetter(page,testInfo,character,{musicResponse
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await check();};
   const movie=()=>page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-warning-letter"||window.storyProbe.sceneErrors.length,null,{timeout:65_000});
   const begin=async()=>{await idle();await page.evaluate(()=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray([25,0,66]),Math.PI,{persist:false});c.setFirstPerson(true);c.cameraYaw=Math.PI;c.cameraPitch=0;c.updateCamera(1);});await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await movie();}finally{await page.keyboard.up("KeyW");}};
+  if(initial.character.storyFlags[done])await leavePendingChenVisit(page,initial.character);
   if(!initial.character.storyFlags[done]){
     console.info("Warning letter: original Alpha scene, cancellation/re-entry and natural completion without another salary");
     // A saved payday approach lies in the next event's volume. Let ordinary
     // dispatch start it; otherwise use normal movement into that volume.
     const {default:catalog}=await import("../../play/data/story-regions.json",{with:{type:"json"}});
     const region=catalog.regions.find(r=>r.id==="s1.mfsy.warning-letter");
-    const entered=character.worldId===region.worldId&&[character.x,character.y,character.z].every((v,i)=>v>=region.min[i]&&v<=region.max[i]);
+    const entered=initial.character.worldId===region.worldId&&[initial.character.x,initial.character.y,initial.character.z].every((v,i)=>v>=region.min[i]&&v<=region.max[i]);
     if(!entered)await begin();
     await movie();await page.waitForTimeout(6000);await page.screenshot({path:testInfo.outputPath("warning-letter-original-alpha-scene.png")});
     expect((await check()).character.storyFlags[done]).not.toBe(true);
     await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-warning-letter-cancel"));await idle();
     expect((await check()).character.storyFlags[done]).not.toBe(true);
-    await begin();await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:85_000,intervals:[1000]}).toBe(true);await idle();
+    await begin();await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:85_000,intervals:[1000]}).toBe(true);await leavePendingChenVisit(page,(await saved()).character);await idle();
     // Record real responses from before navigation. Resource Timing's default
     // 250-entry buffer fills during world loading and loses later audio loads.
     expect(musicResponses.some(response=>[200,206].includes(response.status)),JSON.stringify(musicResponses)).toBe(true);
   }
   expect((await check()).character.storyFlags["notebook.s1.gui-zhang-warning"]).toBe(true);
-  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();await check();
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await leavePendingChenVisit(page,(await saved()).character);await idle();await check();
   expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-warning-letter"))).toBe(false);
   await page.screenshot({path:testInfo.outputPath("warning-letter-earned-notebook-reload.png")});
 }
 
-export async function verifyFifthAfternoon(page,testInfo,character){
+export async function verifyFifthAfternoon(page,testInfo,character,{musicResponses=[]}={}){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),quota="story.s1.workday-five-afternoon.completed",pay="story.s1.workday-five-payday.completed";
   expect(initial.character.storyFlags["story.s1.sailor-chase.completed"]).toBe(true);
@@ -92,10 +146,13 @@ export async function verifyFifthAfternoon(page,testInfo,character){
     await collect();await page.waitForTimeout(6000);await page.screenshot({path:testInfo.outputPath("fifth-payday-original-handover-cancel.png")});
     await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-fifth-payday-cancel"));await idle();expect((await check()).character.storyFlags[pay]).not.toBe(true);
     await collect();await page.getByText("Collected today's wages: 3,000 yen. Yada-san has something else to give me.",{exact:true}).waitFor({timeout:65_000});
-    expect((await check()).character.storyFlags[pay]).not.toBe(true);await page.keyboard.press("Space");await idle();expect((await check()).character.storyFlags[pay]).toBe(true);
+    expect((await check()).character.storyFlags[pay]).not.toBe(true);await page.keyboard.press("Space");await expect.poll(async()=>(await saved()).character.storyFlags[pay]).toBe(true);
   }
+  if(!(await saved()).character.storyFlags["story.s1.warning-letter.completed"])await verifyWarningLetter(page,testInfo,character,{musicResponses});
+  else await leavePendingChenVisit(page,(await saved()).character);
+  await idle();
   const final=await check();for(const f of [quota,pay,"notebook.s1.workday-five-quota","notebook.s1.fifth-payday"])expect(final.character.storyFlags[f]).toBe(true);
-  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();await check();
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await leavePendingChenVisit(page,(await saved()).character);await idle();await check();
   await page.screenshot({path:testInfo.outputPath("fifth-payday-earned-reload.png")});
 }
 

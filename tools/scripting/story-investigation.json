@@ -3,6 +3,22 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"chen-warning-visit","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":870,
+      "title":"Gui Zhang's letter — visit Master Chen","hours":[17,24],"bounds":"s1.mfsy.chen-warning-visit","repeatable":true,
+      "requiredFlags":["story.s1.warning-letter.completed"],"excludedFlags":["story.s1.chen-warning.completed"],"completedFlag":"story.s1.chen-warning-visit.completed","effects":[],"voiceIds":[],
+      "activities":[],"destination":"s1.harbor.old-eight-interior","confirmation":{"accept":"Visit Master Chen","decline":"Leave it for now"},"optionSelections":[0],
+      "summary":"Reward-free confirmed travel after the earned warning letter. Save the existing tested warehouse arrival, not the conversation outcome. Repeatable until Chen's follow-up is completed; leave/cancel changes nothing.",
+      "nativeSources":[{"role":"original-chen-scene","locator":"disc3/SCENE/03/MS08/MS08.PKS#SEQDATA5.AUTH,M_01CAU.MOTN","sha256":"37dfa2edd029a819f8e25f75b27332bef5d4f416868aaab2cd9b8068e0d4010f"}],
+      "provenance":"GameSpot p60: Ryo visits Chen after receiving GuiZhang's warning. Existing tested original MS08 entry0 is reused. Explicit visit/leave choice at Alpha and direct travel condense the original automatic commute; no second password/stealth challenge. Arrival receipt cannot complete the meeting, grant wages/items or advance the calendar. Repeatable if player leaves before completing Chen."
+    },
+    {
+      "id":"chen-warning","disc":3,"actor":"TAIJ","participants":["KISY"],"presentActors":[],"area":"MS08","trigger":"enter","priority":880,
+      "title":"Master Chen — Terry and the Long Zha","bounds":"s1.ms08.chen-warning","requiredFlags":["story.s1.warning-letter.completed"],
+      "completedFlag":"story.s1.chen-warning.completed","effects":["notebook.s1.chen-warning","story.s1.workday-five.completed"],"recordDays":["story.s1.workday-five.finished"],"voiceIds":[],"activities":["s1.ms08.chen-warning.scene"],
+      "nativeSources":[{"role":"original-chen-follow-up","locator":"disc3/SCENE/03/MS08/MS08.PKS#SEQDATA5.AUTH,M_01CAU.MOTN","sha256":"37dfa2edd029a819f8e25f75b27332bef5d4f416868aaab2cd9b8068e0d4010f"},{"role":"original-chen-resource-association","locator":"disc3/SCENE/03/MS08/MAPINFO.BIN#01CAU,a1_china.snd","sha256":"fdcdeae0525fe2b596d8e67be322bde40ccb9b7c6ea13d2d673e14ba7ef39b07"}],
+      "provenance":"GameSpot p60 post-letter Chen visit and original01CAU dialogue confirm Terry, LanDi transport, LongZha contraband and Chen's warning. Original137.34s AUTH/body/cameras/voices/effects; reuse exact original Chen body and existing GuiZhang body. HAK0 crate association and arrival walk-in volume are authored. Only acknowledged ending or explicit skip saves explanation/notebook/fifth-day completion/date together; no wage, item, time jump, forced home return or Nozomi outcome. Cancellation restores entry/controls and remains retryable."
+    },
+    {
       "id":"warning-letter","disc":3,"actor":"TMRA","presentActors":[],"area":"MFSY","trigger":"enter","priority":860,
       "title":"Alpha Trading — Gui Zhang's warning letter","hours":[17,24],"bounds":"s1.mfsy.warning-letter",
       "requiredFlags":["story.s1.workday-five-payday.completed"],"completedFlag":"story.s1.warning-letter.completed","effects":["notebook.s1.gui-zhang-warning"],"voiceIds":[],"activities":["s1.mfsy.warning-letter.scene"],
