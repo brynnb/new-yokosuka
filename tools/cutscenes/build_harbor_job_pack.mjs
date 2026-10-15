@@ -18,8 +18,13 @@ const archives={
   MARU:"a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
   ALPHA:"d05201b595601a36e2da5df6cc5e817bf1c72927e76ab82d3318ca3cd71f099a",
   MIZUMARK:"6a1cd83fe0df231e4faa6294a5436aa2175c309815fd864a0603ffc2a085c08f",
+  GOROMA:"906e93a9d55a9d60a5f1fd91ef8ded61ada192462e8e7fe3262753cf0bb77c1c",
+  ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
 const profiles=[
+  {id:"after-work-goro",archive:"GOROMA",auth:"SEQDATA2.AUTH",motion:"M_01GOJ.MOTN",frames:2410,actors:["DOOR","AKIR","GORO"],
+    stream:"01GOJ",streamHash:"06c5dd27705cf46350c3b59ebdefc89c14174499959526d9f253358b68f90bb8",sound:"A1_GOJ.SND",soundHash:"210668743582286b7b4bfa406ee36f766233f06fcb88b67021b522a5afe4adf3"},
+  {id:"payday",archive:"ALP_PAY",motion:"M_MO01.MOTN",assetOnly:true},
   {id:"goro-job-lead",archive:"GOROCOOP",auth:"SEQDATA1.AUTH",motion:"M_01GOH.MOTN",frames:2330,actors:["AKIR","GORO"],
     stream:"01GOHA",streamHash:"018d20a6b303b790e3dff9f1b872c776b974d3857e75f8b438e5742870e5721a",sound:"A1_GOH.SND",soundHash:"5537070981a30cb231cf7fd646735bda7cb8b201ef09ab023f9a4bd8b68a6908"},
   {id:"goro-job-appointment",archive:"MGOR",auth:"SEQDATA0.AUTH",motion:"M_01GOR.MOTN",frames:1960,actors:["AKIR","HINA","GORO","DOOR","HAKO"],
@@ -55,7 +60,22 @@ for(const p of selected){
     members.push({name,sourcePath,sourceManifestPath:`disc3/SCENE/03/MFSY/${archive}.PKS`,archiveMember:name,sourceSha256:archives[archive],byteLength:found.bytes.length,sha256:sha256(found.bytes)});
     return name;
   };
-  member(p.archive,p.auth);member(p.archive,p.motion);
+  if(p.auth)member(p.archive,p.auth);
+  member(p.archive,p.motion);
+  if(p.assetOnly){
+    // ALP_PAY has salary motions, but no AUTH film. Preserve those originals
+    // without fabricating a native activity; Yarn owns the authored handover.
+    const bytes=fs.readFileSync(path.join(source,`MFSY/${p.archive}.PKS`));
+    const payload=parseIpacActivityArchive(bytes).members.find(m=>m.name===p.motion).bytes;
+    fs.mkdirSync(path.join(root,prefix),{recursive:true});
+    fs.writeFileSync(path.join(root,prefix,p.motion),payload);
+    const assetPath=`${prefix}/${p.motion}`;
+    fs.writeFileSync(path.join(root,prefix,"manifest.json"),JSON.stringify({generatedBy,resourceName:p.archive,sourceMembers:members.map(({sourcePath,...record})=>record),
+      outputs:[{path:assetPath,byteLength:payload.length,sha256:sha256(payload)}],evidence},null,2)+"\n");
+    runtimePaths.push(`${prefix}/manifest.json`,assetPath);
+    console.log(`Built ${p.id}: original salary motion bank, no native AUTH`);
+    continue;
+  }
   const texture=(archive,hash,filename)=>{
     const bytes=fs.readFileSync(path.join(source,`MFSY/${archive}.PKF`));
     if(sha256(bytes)!==hash)throw Error(`Changed original ${archive}.PKF`);

@@ -3,6 +3,45 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"workday-one-afternoon","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":480,
+      "title":"First workday — afternoon cargo","hours":[14,17],"bounds":"s1.mfsy.workday-one-afternoon",
+      "summary":"Five more observed deliveries complete the ten-crate quota, not the attack or payday. No wages or clock jump at cargo completion.",
+      "requiredFlags":["story.s1.workday-one-morning.completed","story.s1.mark-lunch-rescue.completed"],"completedFlag":"story.s1.workday-one-afternoon.completed","effects":["notebook.s1.workday-one-quota"],
+      "voiceIds":[],"yarnTemplate":"story-workday-delivery.yarn","challenge":"s1.mfsy.workday-one-afternoon",
+      "authoredText":{"briefing":"Time for the afternoon batch: five more crates for Warehouse No. 18. That completes today's ten-crate quota. Wages still come from Yada-san after work.","success":"The afternoon batch is finished. All ten crates are delivered."},
+      "nativeSources":[{"role":"borrowed-forklift-instruction-assets","locator":"disc3/SCENE/03/MFSY/MARU.PKS#SEQDATA1.AUTH","sha256":"a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b"}],
+      "provenance":"GameSpot printed pp53-55: ten crates to Warehouse18 at 300 yen each, afternoon resumption at 2pm, attack before 5pm pay. Fixed five/five split and tested outdoor dispatch corridor condense the native warehouse job. No optional extra crates/raise. Attack follows the saved batch rather than interrupting carried cargo; cancel before acknowledgement leaves this batch retryable."
+    },
+    {
+      "id":"workday-one-attack","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":490,
+      "title":"First workday — afternoon attack","hours":[14,23],"bounds":"s1.mfsy.workday-one-attack",
+      "summary":"Server-controlled three-opponent afternoon attack; acknowledged victory saves the cleared shift and 5pm minimum, not wages. Defeat/timeout retry without a fabricated win.",
+      "requiredFlags":["story.s1.workday-one-afternoon.completed","story.s1.mark-lunch-rescue.completed"],"completedFlag":"story.s1.workday-one-attack.completed","effects":["notebook.s1.workday-one-attack"],
+      "voiceIds":[],"yarnTemplate":"story-workday-attack.yarn",
+      "authoredText":{"briefing":"Three thugs are trying to stop my work. I need to get past them before going to Yada-san.","success":"The attackers have backed off. The shift is over. I should collect my wages from Yada-san at Alpha Trading."},
+      "nativeSources":[{"role":"adapted-existing-three-opponent-cast-and-formation","locator":"disc3/SCENE/03/MFSY/MIZUMARK.PKS#SEQDATA2.AUTH","sha256":"6a1cd83fe0df231e4faa6294a5436aa2175c309815fd864a0603ffc2a085c08f"}],
+      "provenance":"GameSpot pp54-55: three-opponent afternoon attack before payday. This is an authored staging/caption using existing original thug models and shared combat, not the original attack film or cast identification. After the completed batch rather than mid-cargo; retry on defeat/timeout without the original money theft. An acknowledged actual victory establishes a minimum 5pm and unlocks separate once-only pay."
+    },
+    {
+      "id":"workday-one-payday","disc":3,"actor":"TMRA","presentActors":[],"participants":[],"area":"MFSY","trigger":"enter","priority":500,
+      "title":"First workday — collect wages","bounds":"s1.mfsy.workday-one-payday",
+      "summary":"Explicit collection, original salary motions and borrowed original Yada lines. Final acknowledgement atomically grants exactly 3000 yen and the saved payday; cancellation grants nothing.",
+      "requiredFlags":["story.s1.workday-one-morning.completed","story.s1.workday-one-afternoon.completed","story.s1.workday-one-attack.completed"],
+      "completedFlag":"story.s1.workday-one-payday.completed","effects":["notebook.s1.first-payday"],"recordDays":["story.s1.workday-one.payday"],
+      "grantYen":{"amount":3000,"reason":"story.s1.workday-one-wages"},"voiceIds":[],"yarnTemplate":"story-workday-payday.yarn","staging":"s1.mfsy.payday",
+      "authoredText":{"briefing":"Ten crates at 300 yen each: 3,000 yen. Yada-san has today's wages ready.","success":"My first wages: 3,000 yen. Time to head outside."},
+      "nativeSources":[{"role":"original-salary-handover-motion-bank","locator":"disc3/SCENE/03/MFSY/ALP_PAY.PKS#M_MO01.MOTN","sha256":"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709"}],
+      "provenance":"GameSpot pp53-55 and original ALP_PAY salary bank. Five/five observed batches earn ten at 300 yen; no extra-crate/raise system. Authored Alpha office alignment/camera, unvoiced amount, original salary motions and borrowed Yada encouragement lines; not a recovered native payroll controller or exact note/finger choreography. Explicit final acknowledgement saves the grant and flags once through the existing transaction."
+    },
+    {
+      "id":"after-work-goro","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":510,
+      "title":"First workday — Goro's warning","bounds":"s1.mfsy.after-work-goro",
+      "requiredFlags":["story.s1.workday-one-payday.completed"],"completedFlag":"story.s1.after-work-goro.completed","effects":["story.s1.workday-one.completed","notebook.s1.goro-work-warning"],
+      "voiceIds":[],"activities":["s1.mfsy.after-work-goro.scene"],
+      "nativeSources":[{"role":"original-after-work-warning","locator":"disc3/SCENE/03/MFSY/GOROMA.PKS#SEQDATA2.AUTH,M_01GOJ.MOTN","sha256":"906e93a9d55a9d60a5f1fd91ef8ded61ada192462e8e7fe3262753cf0bb77c1c"}],
+      "provenance":"GameSpot p55: Goro greets Ryo outside Alpha after first payday and is frightened by the Mad Angels questions. Original GOROMA film, 01GOJ voices/motion/camera. Authored approach requires real saved wages and is separate from the cash transaction. No item, second salary or forced travel/time jump; explicit skip completes presentation, cancellation remains retryable."
+    },
+    {
       "id":"mark-lunch-rescue","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":470,
       "title":"First workday — protect Mark","hours":[12,14],"bounds":"s1.mfsy.mark-lunch",
       "summary":"Original noon confrontation, actual server-controlled three-opponent fight and original aftermath. Only an acknowledged victory saves the clue; no wages or afternoon completion.",

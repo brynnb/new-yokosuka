@@ -127,7 +127,9 @@ and a separate reload check; it awards neither a rank prize nor wages.
 Five physical morning deliveries now lead to a saved noon break and Mark's
 original confrontation, real three-opponent rescue and original aftermath.
 The clue and reload are verified without money or inventory changes.
-The afternoon deliveries/attack/payday, remaining Mad Angels workdays and departure remain
+Five afternoon deliveries, a genuine attack victory, once-only ¥3,000 payday,
+original Goro warning and saved reload are also connected and verified.
+The return-home dream, subsequent Mad Angels workdays and departure remain
 unimplemented; the checklist above distinguishes each verified sequence.
 
 For walkthrough-guided, authored progression, use the

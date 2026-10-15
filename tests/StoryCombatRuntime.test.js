@@ -4,6 +4,17 @@ import { StoryCombatRuntime } from "../play/scripts/StoryCombatRuntime.js";
 import catalog from "../play/data/story-combat.json" with { type: "json" };
 import { PLAYER_COMBAT_CONFIG } from "../play/characters/PlayerMotionLibrary.js";
 
+test("afternoon authoring relocates the shared formation without mirroring or distorting it",()=>{
+  const source=catalog.encounters.find(e=>e.id==="s1.mfsy.mark-lunch"),placed=catalog.encounters.find(e=>e.id==="s1.mfsy.workday-one-attack");
+  assert.deepEqual(placed.actors.map(a=>[a.tag,a.health]),source.actors.map(a=>[a.tag,a.health]));
+  assert.deepEqual(placed.actorDefinitions,source.actorDefinitions);
+  assert.deepEqual([placed.actors[0].x,placed.actors[0].y,placed.actors[0].z],placed.placement.position);
+  for(let i=0;i<source.actors.length;i++)for(let j=i+1;j<source.actors.length;j++){
+    const distance=(actors)=>Math.hypot(actors[i].x-actors[j].x,actors[i].z-actors[j].z);
+    assert.ok(Math.abs(distance(source.actors)-distance(placed.actors))<1e-10);
+  }
+});
+
 function harness() {
   const calls=[],target=new EventTarget();let now=1000,prepare=async()=>{};
   const controller={cameraYaw:0,cameraDistance:2,setFirstPerson(){},updateCamera(){}};

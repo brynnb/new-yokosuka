@@ -1,0 +1,2192 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01GOJ.AFS",
+      "sha256": "06c5dd27705cf46350c3b59ebdefc89c14174499959526d9f253358b68f90bb8"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_GOJ.SND",
+      "sha256": "210668743582286b7b4bfa406ee36f766233f06fcb88b67021b522a5afe4adf3"
+    },
+    "authManifest": "play/assets/harbor/after-work-goro/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-harbor-work.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01GOJA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJA001.aiff",
+      "nativeMember": "01GOJA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 12288,
+      "nativeSha256": "4a715621e24b91d8f453fb675935483b4ebe13315c3bf804f10748a2632e8cde",
+      "speakerId": "AKIR",
+      "sourceText": "You said you knew a lot about the harbor?",
+      "displayText": "You said you knew a lot about the harbor?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJA001.wav",
+      "byteLength": 48940,
+      "sha256": "740993394d2a6f5494daced2e67b122f92782bc4a9fc4bc481f803ac27c780a2"
+    },
+    {
+      "voiceId": "01GOJA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJA002.aiff",
+      "nativeMember": "01GOJA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 14336,
+      "nativeSha256": "c30b705794d8b84d17ccc24533577c66a7f615df7b0150657c01a2d043efcfc0",
+      "speakerId": "AKIR",
+      "sourceText": "So you know about the Mad Angels?",
+      "displayText": "So you know about the Mad Angels?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJA002.wav",
+      "byteLength": 57132,
+      "sha256": "5bfc8eacdb3f9f20162906b2a601d216837f6c8db601d5dd9eb32c17b9dd10e7"
+    },
+    {
+      "voiceId": "01GOJA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJA003.aiff",
+      "nativeMember": "01GOJA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 8192,
+      "nativeSha256": "509fdf991a9cfffc28c15fc3569dcd88c8a8a420c2f31d2b97dacca778d023c0",
+      "speakerId": "AKIR",
+      "sourceText": "Not so fast.",
+      "displayText": "Not so fast.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJA003.wav",
+      "byteLength": 32556,
+      "sha256": "2bb1afcb1225a065c731b3f9f318c541fc58998448e20de69302cded163031d9"
+    },
+    {
+      "voiceId": "01GOJA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJA004.aiff",
+      "nativeMember": "01GOJA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 10240,
+      "nativeSha256": "c7d5045b1671a38ae133b92f546aa5d5257144e6bff09a67696ae2e65f6319ea",
+      "speakerId": "AKIR",
+      "sourceText": "So you know about them?",
+      "displayText": "So you know about them?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJA004.wav",
+      "byteLength": 40748,
+      "sha256": "efee7bdffc4040221ed56bc006142049e0595a3111991a1fd593cea2affc6d4f"
+    },
+    {
+      "voiceId": "01GOJA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJA005.aiff",
+      "nativeMember": "01GOJA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 4096,
+      "nativeSha256": "359017b3565690b8511e251c6d3455ba194cfe59d12f6e56ce7670e86a487cf5",
+      "speakerId": "AKIR",
+      "sourceText": "Why not?",
+      "displayText": "Why not?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJA005.wav",
+      "byteLength": 16172,
+      "sha256": "64c07ddad36dbdcbac7ee9287f9a4da8e961ba6915001e71994cc9a00ba5b732"
+    },
+    {
+      "voiceId": "01GOJA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJA006.aiff",
+      "nativeMember": "01GOJA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 6144,
+      "nativeSha256": "11c6403fccfd25c78747fba1dc84f76d240c7781b6edf2f9b25f43f0efdb194a",
+      "speakerId": "AKIR",
+      "sourceText": "No way!",
+      "displayText": "No way!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJA006.wav",
+      "byteLength": 24364,
+      "sha256": "24fd92fa5e579dc047e1f79da70f79990aa2365098e2dc98602049667e8c4822"
+    },
+    {
+      "voiceId": "01GOJA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJA007.aiff",
+      "nativeMember": "01GOJA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 8192,
+      "nativeSha256": "0c0a7722713e0facd48cb06172797c72159bfb869cf1fb21d1fa51af16c008d5",
+      "speakerId": "AKIR",
+      "sourceText": "Yeah, later.",
+      "displayText": "Yeah, later.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJA007.wav",
+      "byteLength": 32556,
+      "sha256": "e5224e50f92597efbba69923471ff8b82e811efc43d6971d12c789553a0006df"
+    },
+    {
+      "voiceId": "01GOJB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB001.aiff",
+      "nativeMember": "01GOJB001.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 10240,
+      "nativeSha256": "57292bbbaf586ae3adb271922050822f231973b5d1bb58055a7eeb507594a025",
+      "speakerId": "GORO",
+      "sourceText": "Yo Bro!",
+      "displayText": "Yo Bro!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB001.wav",
+      "byteLength": 40748,
+      "sha256": "9b1e5feacc00368467c007a88d7727e1abb25385a003825b9df8b1033045fb28"
+    },
+    {
+      "voiceId": "01GOJB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB002.aiff",
+      "nativeMember": "01GOJB002.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 12288,
+      "nativeSha256": "d40ce3c23964125895b7f79120834034a62cad53d229eb41ee43b388bf3aa91c",
+      "speakerId": "GORO",
+      "sourceText": "Right on my man!",
+      "displayText": "Right on my man!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB002.wav",
+      "byteLength": 48940,
+      "sha256": "60963a61430e5c6f60e38c1c2ae43ef190b7f13fcafc781a4543b0270f87bc85"
+    },
+    {
+      "voiceId": "01GOJB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB003.aiff",
+      "nativeMember": "01GOJB003.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 32768,
+      "nativeSha256": "e368b0e10896bba56deb853c5c7b6e583ec1cb4cf03fffc01bb65b4ee5de07c4",
+      "speakerId": "GORO",
+      "sourceText": "From the perfect mugging locale,＆to the best spot to take a leak.",
+      "displayText": "From the perfect mugging locale,\nto the best spot to take a leak.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 28
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB003.wav",
+      "byteLength": 130860,
+      "sha256": "c4b276d33fdf784dc0489dd3b5f0a5ddcf3fe096e46201d8278e3a16604bc6f6"
+    },
+    {
+      "voiceId": "01GOJB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB004.aiff",
+      "nativeMember": "01GOJB004.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 20480,
+      "nativeSha256": "7e009d4075a086f9c201bcc8a1cc76f2528eee63d51f84f8c609904a9bb8a8b0",
+      "speakerId": "GORO",
+      "sourceText": "This here harbor=@Goro knows it all!",
+      "displayText": "This here harbor...Goro knows it all!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 27
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB004.wav",
+      "byteLength": 81708,
+      "sha256": "431565bec7b5a9b2ecba129e874bb77651bf156927d72c668bbdb839dfde8b84"
+    },
+    {
+      "voiceId": "01GOJB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB005.aiff",
+      "nativeMember": "01GOJB005.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 26624,
+      "nativeSha256": "59a6564968fbc481cacaf9d9e16a1c78426ddaa3db3b4b7b961a0cc1d285ba88",
+      "speakerId": "GORO",
+      "sourceText": "Uh, I=@speaking of taking a leak=@",
+      "displayText": "Uh, I...speaking of taking a leak...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 48
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 25
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB005.wav",
+      "byteLength": 106284,
+      "sha256": "836c8433ebe3e2550ccbc332c0c921692f8c96f05656c783f33fe258584e0ec8"
+    },
+    {
+      "voiceId": "01GOJB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB006.aiff",
+      "nativeMember": "01GOJB006.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 8192,
+      "nativeSha256": "777f5fb139e5a3052c1fd42dfe6f4da782292249fcfab8c20bcd99c86850d5c1",
+      "speakerId": "GORO",
+      "sourceText": "Oh man=@",
+      "displayText": "Oh man...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB006.wav",
+      "byteLength": 32556,
+      "sha256": "17dda7a0658a85fd545a0adb7b54667d2cfccd7cfa9823822d0404a88c08b3ed"
+    },
+    {
+      "voiceId": "01GOJB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB007.aiff",
+      "nativeMember": "01GOJB007.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 30720,
+      "nativeSha256": "2c03a8e8e9b96466b6968466f031d00b9372fc69298333fd710aa434a1541438",
+      "speakerId": "GORO",
+      "sourceText": "Musta had me a bad egg this morning.＆Gotta hit the can, my man.",
+      "displayText": "Musta had me a bad egg this morning.\nGotta hit the can, my man.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 30
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB007.wav",
+      "byteLength": 122668,
+      "sha256": "6edd34e5fa456be90ccc3a093973fe68ae5c0f6b148f56b7317af1ec045d1ec4"
+    },
+    {
+      "voiceId": "01GOJB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB008.aiff",
+      "nativeMember": "01GOJB008.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 10240,
+      "nativeSha256": "f08816073313928cec546b35f2a17520cd4507c5e69e330fafae93bff007136c",
+      "speakerId": "GORO",
+      "sourceText": "Bro, that name=@",
+      "displayText": "Bro, that name...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB008.wav",
+      "byteLength": 40748,
+      "sha256": "12567aa9ddbc02a372d833dc1eb24035aae1a1bc8ab87ca33f028db518bebfbd"
+    },
+    {
+      "voiceId": "01GOJB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB009.aiff",
+      "nativeMember": "01GOJB009.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 14336,
+      "nativeSha256": "2235b323b8d6bd4cc61ac1c355cafb9cb8f738e03c02972d99295df8c214236e",
+      "speakerId": "GORO",
+      "sourceText": "Please don't say it so loud.",
+      "displayText": "Please don't say it so loud.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB009.wav",
+      "byteLength": 57132,
+      "sha256": "224010df30a19caeb4392d82d597d03a683da92f8874aabea35c408020a55b82"
+    },
+    {
+      "voiceId": "01GOJB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB010.aiff",
+      "nativeMember": "01GOJB010.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 22528,
+      "nativeSha256": "4cd0966839394aa1eaf979e0363da73879193de2fcddd0895b5b9881dbe59e4d",
+      "speakerId": "GORO",
+      "sourceText": "You'll get yourself fed to the fishes＆for talking about them man!",
+      "displayText": "You'll get yourself fed to the fishes\nfor talking about them man!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB010.wav",
+      "byteLength": 89900,
+      "sha256": "2729e4725674baaa50cf0856f5201261076cc6baaf83809be58df199deec34ea"
+    },
+    {
+      "voiceId": "01GOJB011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB011.aiff",
+      "nativeMember": "01GOJB011.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 12288,
+      "nativeSha256": "b55eb7d4763ac67cc94ebc208c8d194410f750a2435c92f8687c9564f11e7b81",
+      "speakerId": "GORO",
+      "sourceText": "It's taboo 'round here.",
+      "displayText": "It's taboo 'round here.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 24
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB011.wav",
+      "byteLength": 48940,
+      "sha256": "88cfb877305585a4b373fb458ba6f9546b97a4d6da8ff5d8e1d307284ee5d558"
+    },
+    {
+      "voiceId": "01GOJB012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB012.aiff",
+      "nativeMember": "01GOJB012.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 26624,
+      "nativeSha256": "fccde2eca0832ff9fde6b7def49ac8ad9979b5d5b4ad692278226d2c173a363e",
+      "speakerId": "GORO",
+      "sourceText": "There's a rumor, 'bout some＆loudmouth kid who got himself",
+      "displayText": "There's a rumor, 'bout some\nloudmouth kid who got himself",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB012.wav",
+      "byteLength": 106284,
+      "sha256": "3559a1628894554bd4ccd81d029bc16c133e5cbed95c1acca3b6dcadab0f9292"
+    },
+    {
+      "voiceId": "01GOJB013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB013.aiff",
+      "nativeMember": "01GOJB013.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 12288,
+      "nativeSha256": "28e3cbfe5d197ee90d133e8b0f5320b1931fef5c0f426d667c4b21be46ff604a",
+      "speakerId": "GORO",
+      "sourceText": "concrete boots for talking.",
+      "displayText": "concrete boots for talking.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB013.wav",
+      "byteLength": 48940,
+      "sha256": "b9fed93ff3ce4dfa06070f77673ba12754d33aee086341486980eb6195b96de6"
+    },
+    {
+      "voiceId": "01GOJB014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB014.aiff",
+      "nativeMember": "01GOJB014.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 14336,
+      "nativeSha256": "1de58c42c10123712cb41c52e724835ee77ae604f15d4cdd7fc16f77456e2073",
+      "speakerId": "GORO",
+      "sourceText": "Well Bro, I'm outta here.",
+      "displayText": "Well Bro, I'm outta here.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB014.wav",
+      "byteLength": 57132,
+      "sha256": "f77c9a552362433ffb2b51eecb2616f7120982c92a33bf55a459bd26e2223728"
+    },
+    {
+      "voiceId": "01GOJB015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB015.aiff",
+      "nativeMember": "01GOJB015.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 8192,
+      "nativeSha256": "da462acf5888f8747b7bb47601b470de7da2ae3bc11a4eba25ef13a4973b3d83",
+      "speakerId": "GORO",
+      "sourceText": "See you around.",
+      "displayText": "See you around.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB015.wav",
+      "byteLength": 32556,
+      "sha256": "ea0ccec3b596583492d5a69030a67c16e323682bfb7967c59e56fc1bd69fae30"
+    },
+    {
+      "voiceId": "01GOJB016",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB016.aiff",
+      "nativeMember": "01GOJB016.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 20480,
+      "nativeSha256": "2d3d77929a700be65f353ad1624186ccf52f3a7a75afb0f9cf4266e8fed7f0dd",
+      "speakerId": "GORO",
+      "sourceText": "Hats off to the hard-working man!",
+      "displayText": "Hats off to the hard-working man!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB016.wav",
+      "byteLength": 81708,
+      "sha256": "7d2fd8ac40f0a47db2f7ef4ac24c0b377632e1b00b65bd7c28d42fb050e6eb0a"
+    },
+    {
+      "voiceId": "01GOJB017",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SOUND/01GOJB017.aiff",
+      "nativeMember": "01GOJB017.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 20480,
+      "nativeSha256": "7f93bd6188a3b0b02a43c4682460eed40e6738c6e0052b6f2558d3fee0b4a610",
+      "speakerId": "GORO",
+      "sourceText": "Hope I can make it in time=@",
+      "displayText": "Hope I can make it in time...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 41
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/after-work-goro/voice/01GOJB017.wav",
+      "byteLength": 81708,
+      "sha256": "be725f04e29a03457e29eebbf0a776286a463fffa05bef1a5bf0227eb5fc7abe"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SE/cloths2/friction1.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/after-work-goro/sfx/a9040000.wav",
+      "byteLength": 9772,
+      "sha256": "cff63711c479248812e1deaa855a1f0ae173a1c770cfb02ea819732ba1ac85bc"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/after-work-goro/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SE/cloths2/furimuki_n02.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/after-work-goro/sfx/a9040200.wav",
+      "byteLength": 25804,
+      "sha256": "3b3aeed23907f3e1ecf3257f2b40ae6f8cadb6e98208a035c01a2e5a65c27a0f"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/after-work-goro/sfx/a9040300.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SE/cloths2/furimuki_s02.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/after-work-goro/sfx/a9040400.wav",
+      "byteLength": 9676,
+      "sha256": "32ccc18cfaf7088ef83c5bd45e3dca6e8dfdde70a2dfd43db42cd9e86e84fe9d"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SE/door/Irondoorclose.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/after-work-goro/sfx/a9040500.wav",
+      "byteLength": 24724,
+      "sha256": "a642a6af6a382e3ea712e4a57fd27cf81cfb930e99e8af36593388bfed189937"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/after-work-goro/sfx/a9040600.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/after-work-goro/sfx/a9040700.wav",
+      "byteLength": 6364,
+      "sha256": "a087e557bddc12e1ca7a20b8ad3ee5e15dfa88ad4531cbba9c0b85b9367c66af"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/after-work-goro/sfx/a9040800.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/after-work-goro/sfx/a9040900.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GOJ/SE/foot/sneaker1.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/after-work-goro/sfx/a9040a00.wav",
+      "byteLength": 10964,
+      "sha256": "3db696efc3f22f883429c8558b9cd97102c30e9f4401b0d78a4cb82baaf2e2b7"
+    }
+  ]
+}

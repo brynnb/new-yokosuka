@@ -20,6 +20,16 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.mfsy.workday-one-afternoon","description":"Afternoon dispatch after the morning batch and Mark rescue."},
+    {"kind":"bounds","identifier":"s1.mfsy.workday-one-attack","description":"Loading-area attack after the five-crate afternoon batch."},
+    {"kind":"bounds","identifier":"s1.mfsy.workday-one-payday","description":"Alpha Trading collection after ten crates and cleared attack."},
+    {"kind":"bounds","identifier":"s1.mfsy.after-work-goro","description":"Original warning after genuine saved wages."},
+    {"kind":"challenge","identifier":"s1.mfsy.workday-one-afternoon","description":"Five observed afternoon lift/carry/drop deliveries; no salary."},
+    {"kind":"combat","identifier":"s1.mfsy.workday-one-attack","description":"Three-opponent afternoon fight; no client-reported outcome."},
+    {"kind":"story-time","identifier":"s1.work.shift-end","description":"5pm minimum after the acknowledged attack outcome."},
+    {"kind":"sequence","identifier":"s1.mfsy.payday.start","description":"Original salary motions in the private Alpha office; presentation does not pay."},
+    {"kind":"sequence","identifier":"s1.mfsy.payday.finish","description":"Release salary presentation and restore exploration before settlement."},
+    {"kind":"activity","identifier":"s1.mfsy.after-work-goro.scene","description":"Original GOROMA warning; no additional pay."},
     {"kind":"bounds","identifier":"s1.mfsy.mark-lunch","description":"Noon Mark-rescue approach after a completed morning cargo batch."},
     {"kind":"combat","identifier":"s1.mfsy.mark-lunch","description":"Three-opponent server-controlled rescue fight; failure remains retryable."},
     {"kind":"sequence","identifier":"s1.mfsy.mark-lunch-combat.start","description":"Authored private combat staging; no durable effects."},

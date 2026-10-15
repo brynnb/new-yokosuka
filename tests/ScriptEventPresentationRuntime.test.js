@@ -40,6 +40,16 @@ test("Mark's lunch films retain original bindings and cannot settle the rescue t
   assert.equal(missing.length,1);assert.equal(missing[0].commandHex,"a9041500");assert.match(missing[0].sourcePath,/\/body\/ikepocha\.aiff$/);
 });
 
+test("payday borrows original salary motions and Goro's warning without presentation-side rewards",()=>{
+  const scene=authoredScenes.scenes.find(s=>s.id==="s1.mfsy.payday");
+  assert.equal(scene.waitForMotions,true);assert.deepEqual(scene.actors.map(a=>a.tag),["AKIR","TMRA"]);
+  assert.ok(scene.actors.every(a=>a.motion.bank==="harborPay"&&a.motion.loop===false));
+  assert.equal(scene.sceneObjects.ROOM.assetPath,"play/assets/harbor/yada-job-interview/MAPALP.MAPD");
+  const film=createScriptEventPresentationCatalog().activity("s1.mfsy.after-work-goro.scene");
+  assert.equal(film.durableEffects,"forbidden");assert.equal(film.returnPlayerState,true);
+  assert.equal(film.cutscene.activity.binding.activityId,"GOROMA/SEQDATA2.AUTH");
+});
+
 test("Jimmy films retain exact source bindings and running beats form one continuous owned route",()=>{
   const catalog=createScriptEventPresentationCatalog();
   for(const [part,area,resource]of [["jimmy-knock","d000","CTERMO1/SEQDATA3.AUTH"],["jimmy-caught","d000","CTERMO1/SEQDATA1.AUTH"],["jimmy-escaped","d000","CTERMO1/SEQDATA2.AUTH"],["jimmy-interrogation","daza","A0174/A0174.AUTH"]]){

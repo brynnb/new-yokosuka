@@ -2,6 +2,127 @@
   "schema": "new-yokosuka-authored-story-combat-v1",
   "encounters": [
     {
+      "id": "s1.mfsy.workday-one-attack",
+      "label": "Get past the attackers",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Authored first-afternoon three-opponent encounter, not recovered original staging or exact attacker identities. Reuse the existing original-asset three-fighter cast/formation, rigidly relocated along the rendered loading corridor. Same shared moves and basic AI; no wage or automatic victory from this definition.",
+      "placement": {
+        "position": [
+          -15.821,
+          0,
+          118.673
+        ],
+        "yaw": 1.3021669961391247
+      },
+      "sourceScene": "s1.mfsy.mark-lunch-combat",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -15.821,
+          "y": 0,
+          "z": 118.673,
+          "health": 100
+        },
+        {
+          "tag": "MRSK",
+          "x": -13.43952768520007,
+          "y": 0,
+          "z": 119.746896228035,
+          "health": 36
+        },
+        {
+          "tag": "OKYS",
+          "x": -14.895527491972599,
+          "y": 0,
+          "z": 121.1430999169689,
+          "health": 28
+        },
+        {
+          "tag": "THG3",
+          "x": -12.86496280168944,
+          "y": 0,
+          "z": 117.29078695764369,
+          "health": 28
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "MRSK",
+          "label": "Shingo Murasaki",
+          "modelCode": "PPL_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "OKYS",
+          "label": "Minoru Okayasu",
+          "modelCode": "OKA_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "THG3",
+          "label": "Harbor thug",
+          "modelCode": "KMD_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -17.320999999999998,
+        "maxX": -11.36496280168944,
+        "minZ": 115.79078695764369,
+        "maxZ": 122.6430999169689
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 3,
+      "timeoutMs": 180000,
+      "inputBufferMs": 400
+    },
+    {
       "id": "s1.mfsy.mark-lunch",
       "label": "Protect Mark",
       "area": "MFSY",

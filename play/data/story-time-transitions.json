@@ -1,6 +1,7 @@
 {
   "schema": "new-yokosuka-story-time-transitions-v1",
   "transitions": [
+    {"id":"s1.work.shift-end","label":"End the working shift","hour":17,"minute":0,"nextDay":false},
     {"id":"s1.work.lunch","label":"Lunch break","hour":12,"minute":0,"nextDay":false},
     {"id":"s1.work.race-end","label":"Start the working morning","hour":9,"minute":0,"nextDay":false},
     {"id":"s1.work.training-end","label":"End forklift practice","hour":17,"minute":0,"nextDay":false},

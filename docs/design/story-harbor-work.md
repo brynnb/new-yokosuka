@@ -77,8 +77,9 @@ Forklift training now passes the connected three-delivery browser check,
 including cancellation/retry, saved completion, controls and reload.
 The subsequent evening chicken race is also connected and browser-verified.
 The following morning's three-lap race and five-crate first batch are connected
-and browser-verified, as is Mark's noon rescue. The afternoon quota, payday and
-later Mad Angels encounters remain missing. Existing
+and browser-verified, as are Mark's noon rescue, the afternoon batch/attack,
+once-only payday and Goro's warning. Subsequent workdays and later Mad Angels
+encounters remain missing. Existing
 forklift driving, cargo and racing must be reused; neither film completion
 nor a client-reported win may grant a shift's salary or story outcome.
 
@@ -336,3 +337,73 @@ with the earned-save harness. Real compiler/simulation tests cover missing
 prerequisites, hours, actual victory/defeat, timeout/retry and cancellation before
 the final acknowledgement. No fight outcome or future flags are injected into
 the connected save.
+
+## First afternoon and payday: verified connected continuation
+
+The first-day continuation uses four ordinary Yarn events. It adds no payroll
+API, parallel quest state or database migration. The existing transactional
+yen grant, flags and progress store remain authoritative.
+
+| Event | Eligibility and presentation | Saved outcome |
+| --- | --- | --- |
+| `workday-one-afternoon` | Earned morning batch and Mark rescue; 14:00–17:00 approach to the tested loading corridor. Explicit choice, unvoiced instructions, five real lift/carry/drop deliveries through the shared vehicle/cargo systems. | Acknowledged quota/notebook only. No pay or calendar jump. |
+| `workday-one-attack` | Completed afternoon batch; 14:00–23:00 in the same corridor. Authored warning/choice and three original-model opponents through the shared server combat. | Acknowledged actual victory saves attack clearance/notebook and a minimum 17:00 finish; no currency. |
+| `workday-one-payday` | Both five-crate batches and attack clearance; approach outside Alpha Trading. Explicit collection choice, original paired salary motions, borrowed Yada encouragement voices, authored camera and final amount caption. | Atomically grant ¥3,000, save the payday/date and notebook. No pay before the final acknowledgement or again on replay. |
+| `after-work-goro` | Saved payday; approach outside Alpha. Original `GOROMA/SEQDATA2.AUTH`, `M_01GOJ.MOTN`, 01GOJ voices/effects and cameras. | Warning notebook and first-workday completion, without another salary, item, time jump or forced travel. |
+
+The guide's first quota is ten crates, paid at ¥300 each. Fixed five/five
+batches and the outdoor dispatch pad are authored condensations. Extra crates
+and quota-based pay raises are not implemented. The attack follows the saved
+afternoon batch instead of interrupting a crate in transit. Its cast/formation
+borrows the existing noon-rescue models and is rigidly relocated along the
+tested loading corridor; this does not identify the original afternoon cast.
+Combat balance is unchanged. Defeat/timeout permits retry without the original
+theft penalty; cancellation grants no attack result. This bounded adaptation
+does not invent an unverified theft amount.
+
+The salary resource is original `ALP_PAY.PKS`, SHA256
+`e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709`.
+It contains `M_MO01.MOTN` and a banknote model, but **no AUTH film**.
+The builder exports the motion bank without manufacturing a native activity.
+The authored handover waits for both original 764-frame salary clips and
+borrows the already tested, scene-owned Alpha office map. Placement, camera,
+amount caption and encouragement-line ordering are authored; physical
+banknote/finger choreography is omitted. Presentation never authorizes pay.
+
+`GOROMA.PKS` is SHA256
+`906e93a9d55a9d60a5f1fd91ef8ded61ada192462e8e7fe3262753cf0bb77c1c`.
+Its AUTH declares 2,410 frames; the last command at frame 2,323 is not the
+scene's duration. Keep the original declared duration and actor/camera tracks.
+Its animated door remains a reference-only object. Explicit cinematic skip
+completes only the warning, while cancellation leaves it retryable without
+undoing the independently committed payday.
+
+All phases preserve the personal weather/lighting and restore the prior player
+camera, pose and controls after their owned presentation. A failed or cancelled
+delivery batch remains retryable; a saved batch survives later fight or payday
+cancellation.
+
+The connected hardware-rendered check resumes the genuinely earned Mark-rescue
+save, uses the normal wait menu for 14:00 and physically delivers all five
+afternoon crates through keyboard/Havok cargo. The acknowledged batch remains
+unpaid. A real three-opponent victory unlocks 17:00 and the Alpha approach;
+the film or an acknowledgement cannot win the fight. The check cancels the
+original salary-motion handover, verifies no payment, retries, then acknowledges
+the final caption. The saved balance changes from ¥9,636 to ¥12,636 exactly.
+Inventory is unchanged. Rendered captures show the loading-area fight, original
+Alpha office/Yada/Ryo salary staging and original Goro warning; exact hand/note
+contact is not claimed.
+
+Cancelling Goro's scene does not roll back the independently committed salary.
+A reload retains the pay and offers no second collection. Reapproach and natural
+Goro completion save the chapter/notebook; another reload neither replays the
+warning nor pays again. Controls restore. Run
+`NEW_YOKOSUKA_FIRST_AFTERNOON_E2E=true` with the earned-save harness against an
+isolated Mark-rescue checkpoint. Compiler tests cover both five-crate batches,
+partial/cancelled delivery, payroll prerequisites, original-motion and final
+caption cancellation, exact grant and already-paid rejection. The shared
+combat, cancellation, prop/room lease and presentation tests remain applicable.
+
+These are local development assets and checks, not production/R2 publication.
+The first workday is verified through Goro's warning; the return-home dream,
+second workday and later narrative are separate unfinished continuations.

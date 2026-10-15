@@ -142,6 +142,7 @@ for (const route of spec.routes) {
       })
       .replaceAll("{{staging}}", route.staging)
       .replaceAll("{{challenge}}", route.challenge || "{{challenge}}")
+      .replaceAll("{{clockEffects}}",route.timeTransition?`<<advance_story_time "${route.timeTransition}">>`:"")
       .replaceAll("{{timeTransition}}", route.timeTransition || "{{timeTransition}}")
       .replaceAll("{{destination}}", route.destination || "{{destination}}")
       .replaceAll("{{effects}}", effects.join("\n"));

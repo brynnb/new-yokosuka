@@ -138,6 +138,10 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.workday-one-race",page:Object.freeze({id:"story-workday-one-race",text:"Finished Mark's morning forklift race.\n\nMy first working day starts now. The quota is ten crates for Warehouse No. 18."})},
   {flag:"notebook.s1.workday-one-morning",page:Object.freeze({id:"story-workday-one-morning",text:"Finished the first five crates for Warehouse No. 18.\n\nIt is lunch break. The afternoon batch and payday are still ahead."})},
   {flag:"notebook.s1.mark-chen-rivals",page:Object.freeze({id:"story-mark-chen-rivals",text:"Protected Mark from the Mad Angels.\n\nThey think he is working for somebody called Chen. Master Chen and the Mad Angels are rivals. Where are the Mad Angels?"})},
+  {flag:"notebook.s1.workday-one-quota",page:Object.freeze({id:"story-workday-one-quota",text:"Finished the afternoon batch: ten crates in all for Warehouse No. 18.\n\nThe quota is done, but payday is still ahead."})},
+  {flag:"notebook.s1.workday-one-attack",page:Object.freeze({id:"story-workday-one-attack",text:"The Mad Angels tried to interrupt my work again.\n\nI got past them. Collect my wages from Yada-san at Alpha Trading."})},
+  {flag:"notebook.s1.first-payday",page:Object.freeze({id:"story-first-payday",text:"Collected my first wages: ¥3,000 for ten crates at ¥300 each.\n\nThe harbor job gives me a chance to learn more about the Mad Angels."})},
+  {flag:"notebook.s1.goro-work-warning",page:Object.freeze({id:"story-goro-work-warning",text:"Goro was frightened when I asked about the Mad Angels.\n\nHe says not to get involved. There must be more to this. Return to work after getting some rest."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

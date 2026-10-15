@@ -1,6 +1,12 @@
 {
   "schema":"new-yokosuka-authored-story-combat-v1",
   "encounters":[{
+    "id":"s1.mfsy.workday-one-attack","label":"Get past the attackers","area":"MFSY","worldId":"mfsy","sourceScene":"s1.mfsy.mark-lunch-combat",
+    "placement":{"position":[-15.821,0,118.673],"yaw":1.3021669961391247},
+    "provenance":"Authored first-afternoon three-opponent encounter, not recovered original staging or exact attacker identities. Reuse the existing original-asset three-fighter cast/formation, rigidly relocated along the rendered loading corridor. Same shared moves and basic AI; no wage or automatic victory from this definition.",
+    "health":{"AKIR":100,"MRSK":36,"OKYS":28,"THG3":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":3,"timeoutMs":180000,"arenaPadding":1.5,
+    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+  },{
     "id":"s1.mfsy.mark-lunch","label":"Protect Mark","area":"MFSY","worldId":"mfsy",
     "sourceScene":"s1.mfsy.mark-lunch-combat",
     "provenance":"GameSpot printed p54: three-opponent noon rescue, retry until victorious, then Mark explains Chen/Mad Angels rivalry. Original MIZUMARK aftermath supplies Ryo/MRSK/OKYS placement; an anonymous third fighter borrows existing KMD_L rather than claiming an unrecovered identity. Shared moves/basic AI, health, speeds, arena bounds and third placement are adaptations. Film completion cannot win this fight.",

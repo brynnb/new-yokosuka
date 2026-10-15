@@ -36,6 +36,14 @@ const encounters = spec.encounters.map(input => {
     if(!input.health[pose.tag]||![pose.x,pose.y,pose.z].every(Number.isFinite))throw new Error(`Invalid placement ${pose.tag}`);
     return {tag:pose.tag,x:-pose.x,y:pose.y,z:pose.z,health:input.health[pose.tag]};
   });
+  if(input.placement){
+    const {position,yaw}=input.placement;
+    if(!Array.isArray(position)||position.length!==3||![...position,yaw].every(Number.isFinite))throw Error(`Invalid authored combat placement ${input.id}`);
+    const origin={...actors[0]},c=Math.cos(yaw),s=Math.sin(yaw);
+    // A rigid authoring-time relocation lets ordinary encounters share a cast
+    // and formation without a duplicate scene or a runtime teleport command.
+    for(const actor of actors){const x=actor.x-origin.x,z=actor.z-origin.z;actor.x=position[0]+x*c+z*s;actor.y=position[1]+actor.y-origin.y;actor.z=position[2]-x*s+z*c;}
+  }
   const actions = input.actions.map(({input:command,move:id,adaptedDamage})=> {
     const move = MARTIAL_ARTS_MOVES[id];
     if(!move?.animation || !move.enemyAnimation)throw new Error(`Incomplete move ${id}`);
@@ -45,6 +53,7 @@ const encounters = spec.encounters.map(input => {
       guardDamage:move.guardDamage,hitStunMs:Math.ceil(move.hitStun*1000/30)};
   });
   return {id:input.id,label:input.label,area:input.area,worldId:input.worldId,provenance:input.provenance,
+    ...(input.placement?{placement:input.placement}:{}),
     ...(input.sourceScene?{sourceScene:input.sourceScene}:{sourceActivity:input.sourceActivity,sha256:input.sha256}),actors,actions,
     actorDefinitions:actors.filter(a=>a.tag!=="AKIR").map(actor=>{
       const def=definitions?.find(def=>def.actorCode===actor.tag);
