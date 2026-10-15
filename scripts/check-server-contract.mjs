@@ -22,6 +22,7 @@ if (process.argv.includes("--sync-scripting")) {
     ["internal/scriptevent/challenges.json", "play/data/story-challenges.json"],
     ["internal/scriptevent/forklift_race_course.json", "src/data/forklift-race-course.json"],
     ["internal/scriptevent/navigation.json", "play/data/story-navigation.json"],
+    ["internal/scriptevent/driving.json", "play/data/story-driving.json"],
   ]) fs.writeFileSync(path.join(clientRoot, target), fs.readFileSync(path.join(serverRoot, source)));
 }
 
@@ -67,6 +68,7 @@ assert.deepEqual(readJSON(clientRoot,"play/data/story-challenges.json"),
 assert.deepEqual(readJSON(clientRoot,"src/data/forklift-race-course.json"),
   readJSON(serverRoot,"internal/scriptevent/forklift_race_course.json"),"Forklift race course contracts differ");
 assert.deepEqual(readJSON(clientRoot,"play/data/story-navigation.json"),readJSON(serverRoot,"internal/scriptevent/navigation.json"),"Story navigation catalogs differ");
+assert.deepEqual(readJSON(clientRoot,"play/data/story-driving.json"),readJSON(serverRoot,"internal/scriptevent/driving.json"),"Story driving catalogs differ");
 
 assert.deepEqual(
   withoutKeys(

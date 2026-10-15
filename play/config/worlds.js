@@ -878,6 +878,14 @@ export const WORLDS = Object.freeze({
     timedMapLayers: timedMapLayersForSource("MFSY"),
     placements: placements.mfsy,
   }),
+  nbik: Object.freeze({
+    id:"nbik",label:"Motorcycle Route",japaneseLabel:"バイク",nativeArea:"NBIK",
+    prefix:"S3_NBIK",spawn:new BABYLON.Vector3(18,0,-66),yaw:Math.PI,
+    // MAP17 contains the original main road, ramps and roadside scenery.
+    // Other NBIK layers include unrelated harbor/alternate surfaces.
+    includeFile:filename=>filename==="S3_NBIK_MAP17.MT5",
+    placements:Object.freeze([]),
+  }),
   ma00race: Object.freeze({
     id: "ma00race",
     label: "Forklift Races",

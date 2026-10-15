@@ -109,6 +109,7 @@ export class ScriptEventDialoguePresenter {
     onCombatAction = () => {},
     onCombatGuard = () => {},
     onNavigationUse=()=>{},onNavigationHide=()=>{},onNavigationDirection=()=>{},
+    onDrivingControl=()=>{},
     onActiveChanged = () => {},
   } = {}) {
     this.dom = { root, speaker, sourceText, japaneseText, options };
@@ -124,6 +125,7 @@ export class ScriptEventDialoguePresenter {
     this.onChallengeResponse = onChallengeResponse;
     this.onCombatAction=onCombatAction;this.onCombatGuard=onCombatGuard;
     Object.assign(this,{onNavigationUse,onNavigationHide,onNavigationDirection});
+    this.onDrivingControl=onDrivingControl;
     this.onActiveChanged = onActiveChanged;
     this.audio = null;
     this.active = false;
@@ -226,10 +228,31 @@ export class ScriptEventDialoguePresenter {
     this.clearOptions();this.navigationToken=prompt.token;
     const current=()=>this.active&&this.navigationToken===prompt.token,document=this.dom.options.ownerDocument;
     const focusWorld=()=>document.querySelector?.("#renderCanvas")?.focus();
-    const hold=(label,down,up)=>{const b=document.createElement("button");b.type="button";b.className="dialogue-option";b.textContent=label;b.addEventListener("pointerdown",e=>{if(current()){b.setPointerCapture?.(e.pointerId);down();}});for(const type of ["pointerup","pointercancel","lostpointercapture"])b.addEventListener(type,()=>{if(current()){up();focusWorld();}});this.dom.options.append(b);};
+    const hold=(label,down,up)=>this.appendHeldOption(label,current,down,up);
     for(const [label,x,z]of [["↑",0,1],["←",-1,0],["↓",0,-1],["→",1,0]])hold(label,()=>this.onNavigationDirection(x,z),()=>this.onNavigationDirection(0,0));
     hold("Hide (hold)",()=>this.onNavigationHide(true),()=>this.onNavigationHide(false));
     const use=document.createElement("button");use.type="button";use.className="dialogue-option";use.textContent="Enter door";use.disabled=!prompt.ready||!v.canUse;use.addEventListener("click",()=>{if(current()){this.onNavigationUse();focusWorld();}});this.dom.options.append(use);this.navigationUseButton=use;this.dom.options.hidden=false;return true;
+  }
+
+  showDriving(prompt){
+    this.releaseAudio();this.active=true;this.dom.root.setAttribute("data-presentation","combat");
+    this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");this.dom.speaker.textContent=prompt.label;
+    const v=prompt.driving;
+    this.dom.sourceText.textContent=prompt.ready?`${Math.ceil(v.remainingMs/1000)}s · ${Math.round(v.speed*3.6)} km/h · ${v.checkpoint} / ${v.count} checkpoints\nAccelerate with W, brake with S, steer with A / D. X cancels.${v.scraping?' Keep clear of the road edge.':''}`:"Preparing the motorcycle…";
+    this.dom.japaneseText.hidden=true;this.onActiveChanged(true);
+    if(this.drivingToken===prompt.token)return true;
+    this.clearOptions();this.drivingToken=prompt.token;
+    const current=()=>this.active&&this.drivingToken===prompt.token;
+    for(const [label,name]of [["Accelerate","throttle"],["Brake","brake"],["←","left"],["→","right"]])this.appendHeldOption(label,current,()=>this.onDrivingControl(name,true),()=>this.onDrivingControl(name,false));
+    this.dom.options.hidden=false;return true;
+  }
+
+  appendHeldOption(label,current,down,up){
+    const document=this.dom.options.ownerDocument,button=document.createElement("button");
+    button.type="button";button.className="dialogue-option";button.textContent=label;
+    button.addEventListener("pointerdown",event=>{if(current()){button.setPointerCapture?.(event.pointerId);down();}});
+    for(const name of ["pointerup","pointercancel","lostpointercapture"])button.addEventListener(name,()=>{if(current()){up();document.querySelector?.("#renderCanvas")?.focus();}});
+    this.dom.options.append(button);return button;
   }
 
   showDelivery(prompt){
@@ -329,6 +352,7 @@ export class ScriptEventDialoguePresenter {
   hide() {
     this.combatToken=null;this.onCombatGuard?.(false);
     this.navigationToken=null;this.onNavigationHide(false);this.onNavigationDirection(0,0);
+    this.drivingToken=null;for(const name of ["throttle","brake","left","right"])this.onDrivingControl(name,false);
     this.dom.root.setAttribute("data-presentation","dialogue");
     clearTimeout(this.challengeTimer);this.challengeTimer=null;
     if(this.challengeKeyHandler)this.challengeKeyTarget.removeEventListener("keydown",this.challengeKeyHandler,true);

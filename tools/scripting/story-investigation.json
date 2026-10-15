@@ -3,6 +3,20 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"nozomi-ride-entry","disc":3,"actor":"AKIR","presentActors":[],"area":"JD00","trigger":"enter","priority":940,
+      "title":"Ride to the harbor","bounds":"s1.jd00.nozomi-ride-entry","requiredFlags":["story.s1.nozomi-motorcycle.completed"],"excludedFlags":["story.s1.nozomi-ride.completed"],
+      "completedFlag":"story.s1.nozomi-ride-entry.completed","repeatable":true,"effects":[],"voiceIds":[],"yarnTemplate":"story-nozomi-ride-entry.yarn","destination":"s1.nozomi.motorcycle-road",
+      "nativeSources":[{"role":"original-road-geometry","locator":"disc3/SCENE/03/NBIK/MAP17.MT5","sha256":"4be58ff0bb5d2d7fd3a429847a53e542cd4a8509e2a9dbc654529e367cb014d5"}],
+      "provenance":"GameSpot pp61-62: borrowed motorcycle begins a real two-minute ride. Explicit choice and authored original-road start replace automatic departure. Repeatable transfer grants only an entry receipt, no ride, rescue, item or money. Personal calendar stays unchanged; hard03:00 lockout omitted so interruption never makes the storyline unwinnable."
+    },
+    {
+      "id":"nozomi-ride","disc":3,"actor":"AKIR","presentActors":[],"area":"NBIK","trigger":"enter","priority":940,
+      "title":"Motorcycle ride — reach the harbor","bounds":"s1.nbik.nozomi-ride","requiredFlags":["story.s1.nozomi-motorcycle.completed"],
+      "completedFlag":"story.s1.nozomi-ride.completed","effects":[],"recordMinutes":["story.s1.nozomi-ride.minute"],"voiceIds":[],"yarnTemplate":"story-nozomi-ride.yarn",
+      "nativeSources":[{"role":"original-road-geometry","locator":"disc3/SCENE/03/NBIK/MAP17.MT5","sha256":"4be58ff0bb5d2d7fd3a429847a53e542cd4a8509e2a9dbc654529e367cb014d5"}],
+      "provenance":"GameSpot pp61-62: throttle, brake, steering and two real minutes; failure retries. Source asphalt/ramps supply server collision and deterministic ordered gates. Authored spawn/finish, simplified physics and existing Warehouse17-alley arrival; original traffic and full native route controller omitted. Only actual server driving success saves ride/minute/harbor arrival. No rescue, fight, money, item or date outcome; preparation/cancel/failure/reconnect remain retryable."
+    },
+    {
       "id":"saijo-nozomi-transport","disc":3,"actor":"SAJO","area":"DBYO","priority":910,
       "title":"Saijo — a motorcycle for the harbor","hours":[23.75,3],"requiredFlags":["story.s1.nozomi-night-call.completed"],"excludedFlags":["story.s1.nozomi-motorcycle.completed"],
       "completedFlag":"story.s1.saijo-nozomi-transport.completed","effects":["notebook.s1.naoyuki-motorcycle"],

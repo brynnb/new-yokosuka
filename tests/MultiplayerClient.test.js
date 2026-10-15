@@ -83,6 +83,14 @@ test("presence stamps only applied Story arrivals and never rolls the acknowledg
   client.close();
 });
 
+test("WebSocket preserves driving controls across the actual script-event wire boundary",()=>{
+  FakeWebSocket.instances.length=0;
+  const client=new MultiplayerClient({url:"ws://test/ws",WebSocketClass:FakeWebSocket});client.connect();const socket=FakeWebSocket.instances[0];socket.open();client.welcomed=true;
+  const driving={sequence:2,throttle:1,brake:0,steering:-1};
+  assert.equal(client.advanceScriptEvent(91,"challenge_move",{requestId:"drive_1",challengeToken:"a".repeat(32),driving}),true);
+  assert.deepEqual(socket.sent.at(-1),{v:MULTIPLAYER_PROTOCOL_VERSION,type:"script_event_advance",requestId:"drive_1",runId:91,action:"challenge_move",challengeToken:"a".repeat(32),driving});client.close();
+});
+
 test("WebSocket delivers durable script receipts independently of presentation replies", () => {
   FakeWebSocket.instances.length = 0;
   const received = [];

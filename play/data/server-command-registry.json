@@ -20,6 +20,11 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.jd00.nozomi-ride-entry","description":"Reviewed Ito-house approach after borrowing; repeatable reward-free road entry."},
+    {"kind":"bounds","identifier":"s1.nbik.nozomi-ride","description":"Reviewed original road retry region, including interrupted driving poses."},
+    {"kind":"story-destination","identifier":"s1.nozomi.motorcycle-road","description":"Reviewed original-road start; no ride or rescue result."},
+    {"kind":"story-destination","identifier":"s1.nozomi.naoyuki-return","description":"Return to the tested Ito-house gate after declining or failing the ride."},
+    {"kind":"challenge","identifier":"s1.nbik.nozomi-ride","description":"Server-owned throttle/brake/steering, original asphalt support, ordered gates and two real minutes. Only actual driving can succeed."},
     {"kind":"sequence","identifier":"s1.mfsy.sailor-chase.common-1.start","description":"Private authored sailor chase beat; actual input required, no presentation reward."},
     {"kind":"sequence","identifier":"s1.mfsy.sailor-chase.common-1.finish","description":"Private authored sailor chase beat; actual input required, no presentation reward."},
     {"kind":"sequence","identifier":"s1.mfsy.sailor-chase.common-2.start","description":"Private authored sailor chase beat; actual input required, no presentation reward."},

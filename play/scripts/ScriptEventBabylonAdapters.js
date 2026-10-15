@@ -22,6 +22,7 @@ export class ScriptEventBabylonAdapters {
     sceneStagingRuntime = null,
     combatRuntime = null,
     navigationRuntime = null,
+    drivingRuntime = null,
     vehicleChallengeRuntime = null,
   } = {}) {
     if (
@@ -86,6 +87,7 @@ export class ScriptEventBabylonAdapters {
     this.sceneStagingRuntime = sceneStagingRuntime;
     this.combatRuntime=combatRuntime;
     this.navigationRuntime=navigationRuntime;
+    this.drivingRuntime=drivingRuntime;
     this.vehicleChallengeRuntime=vehicleChallengeRuntime;
   }
 
@@ -118,10 +120,13 @@ export class ScriptEventBabylonAdapters {
       endCombat:transaction=>this.combatRuntime.finish(transaction),
       showNavigation:(prompt,transaction)=>this.navigationRuntime.show(prompt,transaction),
       endNavigation:transaction=>this.navigationRuntime.finish(transaction),
+      showDriving:(prompt,transaction)=>this.drivingRuntime.show(prompt,transaction),
+      endDriving:transaction=>this.drivingRuntime.finish(transaction),
       showForkliftChallenge:(prompt,transaction)=>this.vehicleChallengeRuntime.show(prompt,transaction),
       endForkliftChallenge:transaction=>this.vehicleChallengeRuntime.finish(transaction),
       ownsPlayerPresentation: transaction => Boolean(transaction.cameraToken || this.combatRuntime?.active?.transaction===transaction
         || this.navigationRuntime?.active?.transaction===transaction
+        || this.drivingRuntime?.active?.transaction===transaction
         || this.sceneStagingRuntime?.active?.transaction === transaction),
       commit: transaction => this.commit(transaction),
       rollback: (transaction, reason) => this.rollback(transaction, reason),
@@ -297,6 +302,7 @@ export class ScriptEventBabylonAdapters {
   update(transaction, deltaSeconds) {
     if(this.combatRuntime?.update(transaction,deltaSeconds)===false)return false;
     if(this.navigationRuntime?.update(transaction,deltaSeconds)===false)return false;
+    if(this.drivingRuntime?.update(transaction,deltaSeconds)===false)return false;
     if(this.vehicleChallengeRuntime?.update(transaction,deltaSeconds)===false)return false;
     if (this.sceneStagingRuntime?.update(transaction, deltaSeconds) === false) return false;
     if (transaction.cameraToken) this.cameraRuntime.update(deltaSeconds);
@@ -324,6 +330,7 @@ export class ScriptEventBabylonAdapters {
   commit(transaction) {
     if(this.combatRuntime?.active?.transaction===transaction)throw new Error("Combat presentation has not released ownership");
     if(this.navigationRuntime?.active?.transaction===transaction)throw new Error("Navigation presentation has not released ownership");
+    if(this.drivingRuntime?.active?.transaction===transaction)throw new Error("Driving presentation has not released ownership");
     if(this.vehicleChallengeRuntime?.active?.transaction===transaction)throw new Error("Forklift challenge has not released ownership");
     if (transaction.pendingMotion || transaction.pendingActivity) {
       throw new Error("script presentation committed during an unfinished operation");
@@ -362,6 +369,8 @@ export class ScriptEventBabylonAdapters {
     try { this.combatRuntime?.finish(transaction); }
     catch (error) { sceneCleanupError = error; }
     try { this.navigationRuntime?.finish(transaction); }
+    catch (error) { sceneCleanupError ||= error; }
+    try { this.drivingRuntime?.finish(transaction); }
     catch (error) { sceneCleanupError ||= error; }
     try { this.vehicleChallengeRuntime?.finish(transaction); }
     catch (error) { sceneCleanupError ||= error; }

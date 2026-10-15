@@ -168,8 +168,13 @@ completed reload. Personal time now runs continuously through midnight while
 public Free roam keeps its waking-day skip. The subsequent real bar inquiry and
 Ito-house motorcycle handoff now also pass connected earned-save checks through
 cancellation/reload/retry, original presentation, independent notebook/permission
-and completed reload without extra rewards. Actual motorcycle driving, Nozomi's rescue,
-final battles and departure remain unimplemented;
+and completed reload without extra rewards. Actual motorcycle driving now also
+passes a connected earned-save check through original road/rider/bike rendering,
+cancellation/road reload, return to Naoyuki/re-entry, all 13 server-owned gates,
+saved harbor arrival and completed reload. The two-minute deadline, interruption,
+fresh retry tokens and outcome isolation are covered through the actual Yarn
+compiler/engine. Start/end, simplified handling and held riding pose remain
+documented adaptations. Nozomi's rescue, final battles and departure remain unimplemented;
 the checklist above distinguishes each verified sequence.
 
 For walkthrough-guided, authored progression, use the

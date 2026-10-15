@@ -29,6 +29,7 @@ import {
 import { AuthoredSceneStagingRuntime } from "./AuthoredSceneStagingRuntime.js";
 import { StoryCombatRuntime } from "./StoryCombatRuntime.js";
 import {StoryNavigationRuntime} from "./StoryNavigationRuntime.js";
+import {StoryDrivingRuntime} from "./StoryDrivingRuntime.js";
 import {StoryForkliftChallengeRuntime} from "./StoryForkliftChallengeRuntime.js";
 import {NativeAseqSceneObjectRuntime} from "../events/NativeAseqSceneObjectRuntime.js";
 import { createNativeAseqBabylonActors, createNativeAseqBabylonCamera } from "../events/NativeAseqBabylonPresentation.js";
@@ -148,11 +149,19 @@ export function createScriptEventAssembly({
   });
   const vehicleChallengeRuntime=new StoryForkliftChallengeRuntime({scene,getForklifts,getController,capturePlayerState,restorePlayerState,acquireMovementLock,
     onIntent:(action,token)=>controller?.challengeResponse(action,token)});
+  const createSceneObjects=(definitions,signal)=>new NativeAseqSceneObjectRuntime({definitions,
+    instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})})});
+  const drivingRuntime=new StoryDrivingRuntime({
+    actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
+    motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,createSceneObjects,
+    onIntent:(action,token,intent)=>controller?.drivingResponse(action,token,intent),
+  });
   const presentation = createScriptEventPresentationRuntime({
     adapters: createScriptEventBabylonAdapters({
       cameraRuntime,
       combatRuntime,
       navigationRuntime,
+      drivingRuntime,
       vehicleChallengeRuntime,
       sceneStagingRuntime: new AuthoredSceneStagingRuntime({
         actors: createNativeAseqBabylonActors({ getPlayerModel, syncPlayerTransform,
@@ -160,8 +169,7 @@ export function createScriptEventAssembly({
         camera: createNativeAseqBabylonCamera(camera), motionRuntime,
         capturePlayerState, restorePlayerState,
         createAttachedObjects,
-        createSceneObjects:(definitions,signal)=>new NativeAseqSceneObjectRuntime({definitions,
-          instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})})}),
+        createSceneObjects,
         currentMeshes,
       }),
       playerMotionRuntime,
@@ -195,6 +203,7 @@ export function createScriptEventAssembly({
     onNavigationUse:()=>navigationRuntime.use(),
     onNavigationHide:hide=>navigationRuntime.hide(hide),
     onNavigationDirection:(x,z)=>navigationRuntime.direction(x,z),
+    onDrivingControl:(name,value)=>drivingRuntime.control(name,value),
     onActiveChanged: setDialogueControlsActive,
   });
   controller = createScriptEventController({

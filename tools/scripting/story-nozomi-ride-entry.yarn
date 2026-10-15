@@ -1,0 +1,14 @@
+-> Ride to the harbor
+    <<jump Travel>>
+-> Leave it for now
+    <<jump Done>>
+===
+title: Travel
+---
+<<travel_story "{{destination}}">>
+{{effects}}
+<<jump Done>>
+===
+title: Done
+---
+<<complete>>

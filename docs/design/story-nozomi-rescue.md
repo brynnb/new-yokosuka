@@ -3,8 +3,8 @@
 This chapter follows [Chen's post-letter warning](story-harbor-work.md#post-letter-master-chen-visit).
 Progress uses ordinary server/Yarn events and personal saves, not the original
 room controller. Verified gameplay reaches the transport inquiry and motorcycle
-handoff after the late-night telephone call. The actual ride, battles and rescue
-remain missing.
+handoff after the late-night telephone call, then the controllable motorcycle
+ride and saved harbor arrival. Battles and the rescue remain missing.
 
 ## Rest and the call
 
@@ -145,10 +145,75 @@ Naoyuki, Ryo, the original motorcycle and helmet. Currency remains ¥22,836 and
 inventory is unchanged; no ride/rescue outcome is awarded. All 47 new local
 asset records (2,081,431 bytes) match their hashes/sizes; none were published.
 
-The next real challenge uses the original `SCENE/03/NBIK` road assets, not this
-handoff film or a fake success caption. That source directory is present locally
-and identified as the motorcycle sequence in the
-[format guide](../research/shenmue1/file-formats.md). Course loading,
-drivable controls, authoritative timed/checkpoint success and failure/retry are
-still required. Do not require original-controller reconstruction merely because
-no typed map-transition record was recovered.
+## Timed motorcycle ride
+
+The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed pp.61–62, describes acceleration, braking and steering, two real minutes
+to reach the harbor, road-edge scrapes and retry after failure. The original
+`SCENE/03/NBIK` is also identified in the
+[format guide](../research/shenmue1/file-formats.md). No typed Entry or default
+AKIR placement was extracted for this area; the start and finish below are
+explicit authored choices, not a recovered native route-controller result.
+
+| Field | Implementation |
+| --- | --- |
+| Prerequisite / entry | Saved borrowing permission and personal Story Ryo. The already tested Ito-house approach offers **Ride to the harbor** / **Leave it for now**. Repeatable travel saves the road start and only an entry receipt. Neither a movie nor boarding counts as a completed ride. |
+| World / cast | Normal world loader, original `S3_NBIK_MAP17.MT5`, Ryo, original BIKS520G motorcycle and `AKI_AKI_MOTORBIKE_1` riding pose from the existing original M_01BIKE bank. No alternate renderer or permanent inventory vehicle. |
+| Route / support | Start at browser `[18,0,-66]`; 13 ordered gates lead along the original main road to `[18.038,7.2,-846]`. Compile the asphalt triangles and their actual bends, dips and elevated decks. Surface lookup follows the connected height, rather than snapping to a bridge above an underpass. |
+| Controls / camera | Forward accelerates, backward brakes, left/right steer; existing movement bindings and held touch buttons. Chase camera follows the bike. The shared actor presenter and prop adapter each receive the same once-converted native pose. |
+| Timer / authority | 120 real seconds start only after models, motion, input and presentation are prepared. The server accepts bounded, increasing-sequence control intents under the current event/token. It owns speed, road-edge contact, height, gate order and deadline. Client position, animation or a supplied result cannot win. |
+| Failure / retry | Timeout and lost input yield no ride receipt. Choose another attempt or return to the tested Naoyuki approach. Retry gets a fresh token, start, deadline and zero gates. Cancelled/failed preparation releases the model, camera and input owners. The whole reviewed road is eligible after reconnect, so a transient mid-ride saved pose cannot strand the player outside a tiny start trigger. |
+| Completion | Only actual driving success atomically saves the ride flag, server-derived personal minute and existing tested Warehouse No.17 alley arrival. No currency, inventory, rescue, battle, next-day or finale outcome. |
+| Calendar / weather | Preserve the personal date/weather. Existing Story presentation pauses the calendar during the challenge. Do not force 03:00 or make retry permanently unavailable after that hour. This differs intentionally from the original fixed-time departure. |
+
+### Road source and declared adaptations
+
+`NBIK/MAP17.MT5` SHA-256:
+`4be58ff0bb5d2d7fd3a429847a53e542cd4a8509e2a9dbc654529e367cb014d5`.
+The extracted original and the viewer/game's existing public model are
+byte-identical. Decoded texture slots 77/86, IDs `d8a4d2926631425f` and
+`d8a4d2926531425f`, are the asphalt/marking resources. Slot 78 is pavement,
+not road. Flat normals or map bounds alone are not a safe surface classifier.
+The compiler retains 513 road triangles, welds sub-millimetre tile seams at
+1 mm, and deterministically samples 131 centre-line points and the gates.
+
+Regenerate through `node tools/worlds/build_motorcycle_course.mjs`, with
+`NEW_YOKOSUKA_SERVER_DIR` when the server is not the adjacent default checkout.
+Then mirror contracts with `node scripts/check-server-contract.mjs --sync-scripting`.
+Original extraction is required for compilation, not for server runtime.
+
+Starting/ending points, ordered gates and simplified handling are authored.
+Maximum speed is 16 m/s, acceleration 5 m/s², braking 12 m/s² and steering at
+most 1.2 rad/s. Road-edge contact slows the bike without persistent damage.
+This is a bounded playable reconstruction of the main road, not proof that
+the original complete route/controller was recovered. Traffic, original horn,
+helmet attachment, dynamic lean/wheel animation, detailed hand grips and exact
+headlight/audio mixing remain omitted. The original riding pose is held.
+
+### Ride verification
+
+Focused server tests drive the original geometry using controls only; validate
+malformed input, road edges, ordered gates, deadline, interrupted input and
+fresh retry state. Real Yarn compiler/engine tests exercise the actual content
+through success, timeout/retry, interruption/retry, cancellation, returning to
+Naoyuki, missing permission, wrong bounds/mode and completed re-entry. Only
+travel/minute/ride effects are permitted. Client tests cover asset preparation,
+late cancellation, failed loading, matching rider/prop coordinates, owned cleanup
+and preserving driving controls through the actual WebSocket serializer.
+
+The connected real-GPU browser check starts from the genuinely earned borrowing
+save: confirmed road transfer, original rider/bike/street rendering, real driving,
+X cancellation, saved road reload, return to Naoyuki, physical gate approach,
+another confirmed transfer, all 13 gates through keyboard controls, saved harbor
+arrival, released controls and completed reload without replay. It passes in
+1.9 minutes. Rendered captures show the aligned rider/bike and original bends.
+Currency stays ¥22,836, inventory is unchanged, and only the entry/ride receipts
+are new. No future rescue, battle or finale flag is inserted.
+
+The first rendered check exposed a missing WebSocket field; the serializer now
+has a regression for real driving-control payloads. A second check exposed a
+double-mirrored rider/prop placement. The compiled road now uses the same browser
+coordinates as existing movement challenges, while both presentation adapters
+receive matching, once-converted native poses. Neither issue is masked by a
+location offset or alternate model. The final check uses a fresh clone of the
+earned pre-ride save. No additional game-art/audio binaries were generated or uploaded.
