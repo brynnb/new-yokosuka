@@ -94,6 +94,36 @@ test("callback effect visibility survives movement and resets with its activity 
   } finally { scene.dispose(); engine.dispose(); }
 });
 
+test("authored object curves require ownership and preserve native rotation, scale and visibility", async t => {
+  const engine = new BABYLON.NullEngine(), scene = new BABYLON.Scene(engine);
+  t.after(() => {scene.dispose(); engine.dispose();});
+  const root = new BABYLON.TransformNode("bike", scene); root._filename = "BIKE.MT5";
+  root.metadata = {runtimeObject: {objectTag: "BIKE"}};
+  root.position.set(1, 2, 3); root.scaling.set(2, 3, 4);
+  const runtime = new NativeAseqSceneObjectRuntime({definitions: {BIKE: {model: "BIKE", browserFilename: root._filename, objectTag: "BIKE"}}});
+  await runtime.load([root]);
+  const owner = {}, pose = {x: 10, y: 20, z: 30, rotationX: 0, rotationY: 90, rotationZ: 0};
+  assert.equal(runtime.applyTransform(owner, "BIKE", pose), false);
+  runtime.begin(owner, ["BIKE"]);
+  assert.equal(runtime.applyTransform({}, "BIKE", pose), false);
+  assert.equal(runtime.applyTransform(owner, "NONE", pose), false);
+  assert.equal(runtime.applyTransform(owner, "BIKE", {...pose, x: NaN}), false);
+  assert.deepEqual(root.position.asArray(), [1, 2, 3]);
+  assert.equal(runtime.applyTransform(owner, "BIKE", pose), true);
+  assert.deepEqual(root.position.asArray(), [-10, 20, 30]);
+  const heading = BABYLON.Vector3.TransformNormal(BABYLON.Axis.Z, root.getWorldMatrix()).normalize();
+  assert.ok(Math.abs(heading.x + 1) < 1e-6);
+  assert.deepEqual(root.scaling.asArray(), [2, 3, 4]);
+  assert.equal(root.isEnabled(), true);
+  runtime.applyStateCue({actorTag: "BIKE", presented: false});
+  runtime.applyTransform(owner, "BIKE", {...pose, x: 11});
+  assert.equal(root.isEnabled(), false);
+  runtime.end(owner); runtime.clear();
+  assert.equal(root.isEnabled(), true);
+  assert.deepEqual(root.position.asArray(), [1, 2, 3]);
+  assert.deepEqual(root.scaling.asArray(), [2, 3, 4]);
+});
+
 test("AUTH entry transforms are leased and restored for completion, cancellation and replay", async () => {
   const engine = new BABYLON.NullEngine();
   const scene = new BABYLON.Scene(engine);

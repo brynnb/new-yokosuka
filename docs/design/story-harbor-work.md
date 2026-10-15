@@ -701,3 +701,23 @@ The coworker lunch still has the documented exploration-fence occlusion. Exact
 photo grips/model selection, flash geometry and inventory-photo art are not
 claimed. All 57 new local asset records pass hash/size verification; publication
 and deployment have not been performed.
+
+## Third evening: next connected milestone
+
+The GameSpot guide, printed p. 57, places the Tomato-store biker chase after
+19:00, followed by five thugs, Charlie and the Lan Di shipping clue. This remains
+unimplemented; the earned third-payday save does not bypass those challenges.
+
+Moving authored scenes now support `sceneObjectTracks`, keyed by the tags in
+their existing `sceneObjects` definitions. They use the same six native-coordinate
+pose channels and curve evaluation as actor movement. Consecutive beats retain
+one actor/camera/prop lease only when their cast, prop definitions and tracked
+tags match. A changed model is rejected rather than silently replacing an owned
+resource. The shared scene-object adapter preserves scale and explicit visibility;
+final release or cancellation clears the props and restores the player.
+
+Focused headless checks cover endpoint clamping, continuous resource ownership,
+malformed tracks, source-coordinate rotation, cancelled asynchronous preparation
+and isolation from a newer scene. This is infrastructure verification, not rendered
+chase coverage. Next, author the encounter using the existing QTE/combat/Yarn
+primitives and verify it from the genuinely earned third-payday checkpoint.

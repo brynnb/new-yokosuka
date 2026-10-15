@@ -63,10 +63,22 @@ export class AuthoredSceneStagingRuntime {
       if(actor.endMotion&&(!Number.isFinite(scene.durationSeconds)||!actor.endMotion.bank||!actor.endMotion.name))throw Error(`Invalid staged end motion ${scene.id}/${actor.tag}`);
     }
     validateTrack(scene.cameraTrack,CAMERA_FIELDS,scene.durationSeconds,`${scene.id}/camera`);
+    if(scene.sceneObjectTracks){
+      if(!scene.sceneObjects||Array.isArray(scene.sceneObjectTracks)||typeof scene.sceneObjectTracks!=="object"
+        ||Object.keys(scene.sceneObjectTracks).length===0)throw Error(`Invalid staged object tracks ${scene.id}`);
+      for(const [tag,track] of Object.entries(scene.sceneObjectTracks)){
+        if(!/^[A-Z0-9_]{4}$/.test(tag)||!Object.hasOwn(scene.sceneObjects,tag)||!track)throw Error(`Unknown staged object ${scene.id}/${tag}`);
+        validateTrack(track,POSE_FIELDS,scene.durationSeconds,`${scene.id}/${tag}`);
+      }
+    }
+    // A continuous scene may retain exactly the same props, never replace
+    // models under an existing lease. Only their native-coordinate curves vary.
     if(continuing&&(!this.active||this.active.transaction!==transaction||!scene.continuationGroup
       ||scene.continuationGroup!==this.active.scene.continuationGroup
       ||JSON.stringify(scene.actors.map(a=>a.tag))!==JSON.stringify(this.active.scene.actors.map(a=>a.tag))
-      ||scene.attachedObjects||scene.sceneObjects||scene.objectTransforms||this.active.objects||this.active.sceneObjects||this.active.restoreObjects))return false;
+      ||JSON.stringify(scene.sceneObjects)!==JSON.stringify(this.active.scene.sceneObjects)
+      ||JSON.stringify(Object.keys(scene.sceneObjectTracks||{}))!==JSON.stringify(Object.keys(this.active.scene.sceneObjectTracks||{}))
+      ||scene.attachedObjects||scene.objectTransforms||this.active.objects||this.active.restoreObjects))return false;
     const owner = continuing?this.active:{ transaction, scene, controller: new AbortController(), elapsed: 0,
       actorsBegun: false, cameraBegun: false, snapshot: this.capturePlayerState() };
     this.active = owner;
@@ -84,7 +96,7 @@ export class AuthoredSceneStagingRuntime {
       if (scene.waitForMotions && (!Number.isFinite(owner.durationSeconds) || owner.durationSeconds <= 0 || owner.durationSeconds > 120)) {
         throw new Error(`Invalid loaded scene duration ${scene.id}`);
       }
-      if(scene.sceneObjects){
+      if(scene.sceneObjects&&!continuing){
         if(!this.createSceneObjects)throw Error(`No scene-object loader for ${scene.id}`);
         owner.sceneObjects=this.createSceneObjects(scene.sceneObjects,signal);
         owner.loadingProps=true;
@@ -92,6 +104,7 @@ export class AuthoredSceneStagingRuntime {
         signal.throwIfAborted();
         if(this.active!==owner)return false;
         owner.sceneObjects.prepareActivity({activityId:scene.id,nativeSceneObjectStates:Object.keys(scene.sceneObjects).map(actorTag=>({actorTag,presented:true}))});
+        if(scene.sceneObjectTracks)owner.sceneObjects.begin(owner,Object.keys(scene.sceneObjectTracks));
       }
       if(scene.attachedObjects){
         if(!this.createAttachedObjects)throw new Error(`No authored prop loader for ${scene.id}`);
@@ -140,6 +153,9 @@ export class AuthoredSceneStagingRuntime {
       // Gameplay skips its post-pose pass while a story presentation owns the
       // actor. Reuse that pass here, or acquired cloth stays at the old pose.
       updateNativeCharacterSecondaryMotion(model, deltaSeconds);
+    }
+    for(const [tag,track] of Object.entries(owner.scene.sceneObjectTracks||{})){
+      if(!owner.sceneObjects?.applyTransform(owner,tag,evaluateAuthActor(track,owner.elapsed)))return false;
     }
     if(owner.objects?.update(Math.floor(owner.elapsed*30))===false)return false;
     if(!this.camera.apply(owner, owner.scene.cameraTrack?evaluateAuthCamera(owner.scene.cameraTrack,owner.elapsed):owner.scene.camera))return false;

@@ -359,6 +359,21 @@ export class NativeAseqSceneObjectRuntime {
     return true;
   }
 
+  applyTransform(owner, actorTag, pose) {
+    if (this.active?.owner !== owner || !this.active.snapshots.has(actorTag)
+      || ![pose?.x, pose?.y, pose?.z, pose?.rotationX, pose?.rotationY, pose?.rotationZ].every(Number.isFinite)) return false;
+    const root = this.objects.get(actorTag)?.root;
+    if (!root) return false;
+    // Authored movement uses the same native coordinates as AUTH. Preserve
+    // the leased entry scale; a movement curve does not contain scale channels.
+    applyGeneratedPresentation(root, {
+      position: [pose.x, pose.y, pose.z],
+      rotationDegrees: [pose.rotationX, pose.rotationY, pose.rotationZ],
+      scale: vectorSnapshot(root.scaling, "movement scale"),
+    });
+    return this.activate(owner, actorTag);
+  }
+
   applyStateCue(cue) {
     const record = this.objects.get(cue?.actorTag);
     if (!record || !this.active?.snapshots.has(cue.actorTag)) {

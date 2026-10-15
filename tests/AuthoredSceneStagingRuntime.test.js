@@ -82,6 +82,55 @@ test("scene beats retain one actor/camera lease and restore only after the final
   assert.equal(h.calls.filter(c=>c==="camera-end").length,1);assert.equal(h.calls.filter(c=>c==="actors-end").length,1);
 });
 
+test("moving props retain one resource lease across chase beats and stop at the curve endpoint",async()=>{
+  const h=harness(),calls=[],poses=[];
+  const first=movingScene(h.scene),next=movingScene(h.scene,"next");
+  for(const scene of [first,next]){
+    scene.sceneObjects={BIK1:{model:"bike"}};
+    scene.sceneObjectTracks={BIK1:structuredClone(scene.actors[0].movement)};
+  }
+  h.runtime.createSceneObjects=()=>{
+    calls.push("create");return{load:async()=>calls.push("load"),prepareActivity:()=>calls.push("prepare"),
+      begin:(_owner,tags)=>calls.push(tags),applyTransform:(owner,tag,pose)=>(assert.equal(owner,h.runtime.active),assert.equal(tag,"BIK1"),poses.push(pose),true),
+      clear:()=>calls.push("clear")};
+  };
+  let pending=h.runtime.play({kind:"scene-staging-start",scene:first},h.transaction);
+  await new Promise(r=>setImmediate(r));h.runtime.update(h.transaction,.5);assert.equal(poses.at(-1).x,2);
+  h.runtime.update(h.transaction,1);await pending;assert.equal(poses.at(-1).x,4);
+  const owner=h.runtime.active;
+  pending=h.runtime.play({kind:"scene-staging-transition",scene:next},h.transaction);
+  await new Promise(r=>setImmediate(r));assert.equal(h.runtime.active,owner);
+  h.runtime.update(h.transaction,1);await pending;
+  assert.deepEqual(calls,["create","load","prepare",["BIK1"]]);
+  assert.equal(await h.runtime.play({kind:"scene-staging-transition",scene:{...next,id:"swapped",sceneObjects:{BIK1:{model:"other-bike"}}}},h.transaction),false);
+  h.runtime.cancel(h.transaction);assert.equal(calls.at(-1),"clear");
+});
+
+test("unknown or malformed prop curves fail before resource acquisition",async()=>{
+  for(const broken of ["unknown","malformed"]){
+    const h=harness(),scene=movingScene(h.scene);scene.sceneObjects={BIK1:{model:"bike"}};
+    scene.sceneObjectTracks={[broken==="unknown"?"NONE":"BIK1"]:structuredClone(scene.actors[0].movement)};
+    if(broken==="malformed")scene.sceneObjectTracks.BIK1.channels.x.times[1]=Infinity;
+    h.runtime.createSceneObjects=()=>assert.fail("invalid props acquired");
+    await assert.rejects(h.runtime.play({kind:"scene-staging-start",scene},h.transaction),/staged (object|track)/);
+    assert.equal(h.runtime.active,null);
+  }
+});
+
+test("a cancelled moving-prop transition cannot reacquire or clear a newer scene",async()=>{
+  const h=harness(),first=movingScene(h.scene),clears=[];
+  first.sceneObjects={BIK1:{model:"bike"}};first.sceneObjectTracks={BIK1:first.actors[0].movement};
+  h.runtime.createSceneObjects=()=>({load:async()=>{},prepareActivity:()=>{},begin:()=>{},applyTransform:()=>true,clear:()=>clears.push("old")});
+  let pending=h.runtime.play({kind:"scene-staging-start",scene:first},h.transaction);
+  await new Promise(r=>setImmediate(r));h.runtime.update(h.transaction,1);await pending;
+  let resolve;h.runtime.motionRuntime.loadNamedSelections=()=>new Promise(r=>resolve=r);
+  pending=h.runtime.play({kind:"scene-staging-transition",scene:{...first,id:"next"}},h.transaction);
+  h.runtime.cancel(h.transaction);h.runtime.motionRuntime.loadNamedSelections=async()=>{};
+  const tx={area:h.transaction.area};await h.runtime.play({kind:"scene-staging-start",scene:h.scene},tx);
+  const owner=h.runtime.active;resolve();await assert.rejects(pending,{name:"AbortError"});
+  assert.equal(h.runtime.active,owner);assert.deepEqual(clears,["old"]);h.runtime.cancel(tx);
+});
+
 test("malformed movement and incompatible scene transitions fail instead of inventing a pose",async()=>{
   const h=harness(),scene=movingScene(h.scene);scene.actors[0].movement.channels.x.values[1]=NaN;
   await assert.rejects(h.runtime.play({kind:"scene-staging-start",scene},h.transaction),/Invalid staged track/);assert.equal(h.runtime.active,null);
