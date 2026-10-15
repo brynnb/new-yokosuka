@@ -187,6 +187,7 @@ export class NativeCutscenePackageRuntime {
     this.packageActors = hasDefinitions(environment.packageActors)
       ? createNativeAseqPackageActorRuntime({
           definitions: environment.packageActors,
+          acquireScheduledSuppression:(owner,tags)=>scheduledActors.acquireActivityActorSuppression(owner,[...tags,...(environment.suppressScheduledActors||[])]),
           instantiate: createNativeCutsceneCharacterLoader({
             scene,
             loadAsset: this.loadAsset,

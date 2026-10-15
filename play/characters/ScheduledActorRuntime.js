@@ -1175,6 +1175,7 @@ export class ScheduledActorRuntime {
     this.entries = [];
     this.dialogueFacingTargets = new Map();
     this.activityActorOwners = new Map();
+    this.activityActorSuppressions = new Map();
     this.localObjectOwners = new Map();
     this.localObjectTemplates = new Map();
     this.secondaryMotionModels = new Set();
@@ -1185,6 +1186,7 @@ export class ScheduledActorRuntime {
 
   clear() {
     this.loadController?.abort();
+    for(const lease of this.activityActorSuppressions.values())lease.release();
     for (const owner of new Set(this.activityActorOwners.values())) {
       this.endActivityActors(owner);
     }
@@ -1297,11 +1299,48 @@ export class ScheduledActorRuntime {
     return true;
   }
 
+  acquireActivityActorSuppression(owner, actorCodes) {
+    if (owner == null || this.activityActorSuppressions.has(owner)) {
+      throw new Error("Invalid scheduled actor suppression owner");
+    }
+    const codes = new Set(actorCodes.map(code => String(code).toUpperCase()));
+    if (codes.has("") || [...this.activityActorSuppressions.values()].some(
+      lease => [...codes].some(code => lease.codes.has(code)),
+    )) throw new Error("Scheduled actor suppression conflicts with an existing owner");
+    const entries = this.entries.filter(entry => codes.has(entry.definition.actorCode));
+    if (entries.some(entry => entry.activityPresentation)) {
+      throw new Error("Cannot suppress an activity-owned actor");
+    }
+    const snapshots = new Map();
+    const lease = { codes, release: () => {
+      if (this.activityActorSuppressions.get(owner) !== lease) return false;
+      this.activityActorSuppressions.delete(owner);
+      const errors = [];
+      for (const [root, enabled] of snapshots) {
+        try { if (!root.isDisposed?.()) root.setEnabled(enabled); }
+        catch (error) { errors.push(error); }
+      }
+      if (errors.length) throw new AggregateError(errors, "Scheduled suppression cleanup failed");
+      return true;
+    } };
+    this.activityActorSuppressions.set(owner, lease);
+    try {
+      for (const entry of entries) for (const root of new Set([
+        entry.root, ...entry.modelRoots.values(), entry.secondaryObject?.root,
+      ].filter(Boolean))) {
+        snapshots.set(root, root.isEnabled(false));
+        root.setEnabled(false);
+      }
+    } catch (error) { lease.release(); throw error; }
+    return lease.release;
+  }
+
   beginActivityActors(owner, actorCodes) {
     if (owner === null || owner === undefined) {
       throw new TypeError("scheduled activity actors require an owner");
     }
     const entries = this.activityEntries(actorCodes);
+    if(entries.some(entry=>[...this.activityActorSuppressions.values()].some(lease=>lease.codes.has(entry.definition.actorCode))))throw new Error("Scheduled actor is replaced by a cinematic body");
     if ([...this.activityActorOwners.values()].includes(owner)) {
       throw new Error("scheduled activity owner is already active");
     }
@@ -2270,6 +2309,17 @@ export class ScheduledActorRuntime {
     cameraPosition = null,
   ) {
     if (entry.activityPresentation) {
+      entry.presentationClock = null;
+      return;
+    }
+    // A package body replaces this resident; ambient updates must not turn
+    // its old body back on behind the cinematic copy each frame.
+    if (this.activityActorSuppressions.size && [...this.activityActorSuppressions.values()].some(
+      lease => lease.codes.has(entry.definition.actorCode),
+    )) {
+      for (const root of new Set([
+        entry.root, ...entry.modelRoots.values(), entry.secondaryObject?.root,
+      ].filter(Boolean))) root.setEnabled(false);
       entry.presentationClock = null;
       return;
     }

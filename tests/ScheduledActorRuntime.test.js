@@ -76,6 +76,22 @@ test("script preparation loads only its absent resident and preserves world visi
   assert.equal(built.length, 1, "replays reuse the resident cache");
 });
 
+test("cinematic replacements suppress every ambient variant until the lease releases",async t=>{
+  const {runtime}=await activityStreamingHarness(t);
+  await runtime.prepareActivityActors(["ONE","TWO"]);
+  const entry=runtime.entries.find(e=>e.definition.actorCode==="ONE"),other=runtime.entries.find(e=>e.definition.actorCode==="TWO");
+  entry.root.setEnabled(true);other.root.setEnabled(true);
+  for(const reason of ["complete","cancelled","world-clear"]){
+    const owner={},release=runtime.acquireActivityActorSuppression(owner,["ONE","ABSENT"]);
+    assert.equal(entry.root.isEnabled(),false);assert.equal(other.root.isEnabled(),true);
+    runtime.updateEntry(entry,0);assert.equal(entry.root.isEnabled(),false);
+    assert.throws(()=>runtime.beginActivityActors({},["ONE"]),/replaced/);
+    assert.throws(()=>runtime.acquireActivityActorSuppression({},["ONE"]),/conflicts/);
+    if(reason==="world-clear")runtime.clear();else assert.equal(release(),true);
+    assert.equal(release(),false);assert.equal(entry.root.isEnabled(),true);assert.equal(runtime.activityActorSuppressions.size,0);
+  }
+});
+
 test("script preparation preserves the resident's active authored variant", async t => {
   const network = new Map([["ONE", {
     worldId: "dobuita", x: 0, y: 0, z: 0, yaw: 0, modelOverrideCode: "ONE_L",

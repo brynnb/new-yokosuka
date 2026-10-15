@@ -6,6 +6,18 @@ import {
   NativeAseqPackageActorRuntime,
 } from "../play/events/NativeAseqPackageActorRuntime.js";
 
+test("package actor replacement visibility belongs to the activity or outer program",async t=>{
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);t.after(()=>{scene.dispose();engine.dispose();});
+  let leases=0,releases=0;
+  const runtime=new NativeAseqPackageActorRuntime({definitions:{TEST:{label:"Actor",modelCode:"TST_M",browserFilename:"TST_M.CHRM"}},
+    instantiate:async()=>{const root=new BABYLON.TransformNode("actor",scene);return{actorCode:"TEST",root,model:{root}};},
+    acquireScheduledSuppression:(_owner,tags)=>{assert.deepEqual(tags,["TEST"]);leases++;return()=>releases++;}});
+  await runtime.load();
+  const owner={};runtime.begin(owner,["TEST"]);runtime.end(owner,"cancelled");assert.equal(releases,1);
+  runtime.beginProgram(owner);runtime.begin({},["TEST"]);runtime.end(runtime.active.owner,"complete");assert.equal(releases,1);
+  runtime.endProgram(owner);assert.equal(leases,2);assert.equal(releases,2);
+});
+
 test("package actors load once and restore exact roots after AUTH ownership", async () => {
   const engine = new BABYLON.NullEngine();
   const scene = new BABYLON.Scene(engine);
