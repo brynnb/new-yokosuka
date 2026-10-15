@@ -29,7 +29,7 @@ import {
 import { AuthoredSceneStagingRuntime } from "./AuthoredSceneStagingRuntime.js";
 import { StoryCombatRuntime } from "./StoryCombatRuntime.js";
 import {StoryNavigationRuntime} from "./StoryNavigationRuntime.js";
-import {StoryDeliveryRuntime} from "./StoryDeliveryRuntime.js";
+import {StoryForkliftChallengeRuntime} from "./StoryForkliftChallengeRuntime.js";
 import {NativeAseqSceneObjectRuntime} from "../events/NativeAseqSceneObjectRuntime.js";
 import { createNativeAseqBabylonActors, createNativeAseqBabylonCamera } from "../events/NativeAseqBabylonPresentation.js";
 import { NativeAseqAttachedObjectRuntime } from "../events/NativeAseqAttachedObjectRuntime.js";
@@ -146,14 +146,14 @@ export function createScriptEventAssembly({
     motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,createAttachedObjects,
     onIntent:(action,token,intent)=>controller?.navigationResponse(action,token,intent),
   });
-  const deliveryRuntime=new StoryDeliveryRuntime({scene,getForklifts,getController,capturePlayerState,restorePlayerState,acquireMovementLock,
+  const vehicleChallengeRuntime=new StoryForkliftChallengeRuntime({scene,getForklifts,getController,capturePlayerState,restorePlayerState,acquireMovementLock,
     onIntent:(action,token)=>controller?.challengeResponse(action,token)});
   const presentation = createScriptEventPresentationRuntime({
     adapters: createScriptEventBabylonAdapters({
       cameraRuntime,
       combatRuntime,
       navigationRuntime,
-      deliveryRuntime,
+      vehicleChallengeRuntime,
       sceneStagingRuntime: new AuthoredSceneStagingRuntime({
         actors: createNativeAseqBabylonActors({ getPlayerModel, syncPlayerTransform,
           scheduledActors, motionRuntime, preservePlayerOnComplete: false, playerYawOffsetRadians: Math.PI }),

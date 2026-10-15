@@ -48,8 +48,8 @@ export class ScriptEventPresentationRuntime {
   endCombat() {return this.adapters.endCombat(this.transaction);}
   showNavigation(prompt){if(!this.transaction)throw Error("Navigation has no presentation transaction");return this.adapters.showNavigation(prompt,this.transaction);}
   endNavigation(){return this.adapters.endNavigation(this.transaction);}
-  showDelivery(prompt){if(!this.transaction)throw Error("Delivery has no presentation transaction");return this.adapters.showDelivery(prompt,this.transaction);}
-  endDelivery(){return this.adapters.endDelivery(this.transaction);}
+  showForkliftChallenge(prompt){if(!this.transaction)throw Error("Forklift challenge has no presentation transaction");return this.adapters.showForkliftChallenge(prompt,this.transaction);}
+  endForkliftChallenge(){return this.adapters.endForkliftChallenge(this.transaction);}
 
   async execute(event) {
     if (!this.transaction) {

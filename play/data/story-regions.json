@@ -1,6 +1,13 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.mfsy.workday-one-race-entry","area":"MFSY","worldId":"mfsy","actor":"AKIR","playMode":"story","openingCompleted":true,
+     "requiredFlags":["story.s1.forklift-training.completed","story.s1.chicken-race.completed"],"excludedFlags":["story.s1.workday-one-race.completed"],
+     "completedFlag":"story.s1.workday-one-race-entry.completed","repeatable":true,"recheckOnDayChange":true,"hours":[8.5,12],"min":[-19,-0.5,114],"max":[-12,2,122],
+     "provenance":"Authored morning approach around the already tested Mark/training corridor; next-day Yarn gate is authoritative. No claim of recovered native workday volume."},
+    {"id":"s1.ma00.workday-one-race","area":"MA00","worldId":"ma00race","actor":"AKIR","playMode":"story","openingCompleted":true,
+     "requiredFlags":["story.s1.workday-one-race-entry.completed","story.s1.chicken-race.completed"],"completedFlag":"story.s1.workday-one-race.completed",
+     "min":[58,-0.5,96],"max":[69,2,110],"provenance":"Authored race-grid approach beside the existing recovered MA00 grid. World scope keeps the separate MA00 practice world from starting this race."},
     {"id":"s1.mfsy.chicken-race","area":"MFSY","actor":"AKIR","playMode":"story","openingCompleted":true,"hours":[19,23],"requiredFlags":["story.s1.forklift-training.completed"],"completedFlag":"story.s1.chicken-race.completed","min":[-1,-0.5,86],"max":[5,2,92],"provenance":"Authored approach around original RACE introduction Ryo [1.7274,0,88.9241]. Evening hours and four winning inputs follow the GameSpot guide pp51-52; exact native trigger not reconstructed."},
     {"id":"s1.mfsy.forklift-training","area":"MFSY","actor":"AKIR","playMode":"story","openingCompleted":true,"hours":[14,17],"requiredFlags":["story.s1.harbor-job-hiring.completed"],"completedFlag":"story.s1.forklift-training.completed","min":[-17,-0.5,113],"max":[-9,2,122],"provenance":"Authored loading-area approach around the original Mark introduction. Explicit practice choice; three physical deliveries, no film/QTE completion substitute. Training is condensed into a bounded loading-pad exercise."},
     {"id":"s1.mfsy.goro-job-lead","area":"MFSY","actor":"AKIR","playMode":"story","openingCompleted":true,"hours":[8.5,20],"requiredFlags":["story.s1.jimmy-interrogation.completed"],"completedFlag":"story.s1.goro-job-lead.completed","min":[-31,-0.5,104],"max":[-25,2,110],"provenance":"Authored walkable approach around original GOROCOOP first Ryo pose [-28.2145,0,106.7918]; original native trigger not reconstructed."},

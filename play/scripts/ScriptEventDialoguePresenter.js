@@ -241,6 +241,15 @@ export class ScriptEventDialoguePresenter {
     this.dom.japaneseText.hidden=true;this.dom.options.hidden=true;this.onActiveChanged(true);return true;
   }
 
+  showRace(prompt){
+    this.releaseAudio();this.active=true;this.clearOptions();
+    this.dom.root.setAttribute("data-presentation","combat");this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");
+    this.dom.speaker.textContent=prompt.label;
+    const v=prompt.race;
+    this.dom.sourceText.textContent=prompt.ready?`Lap ${v.lap} / ${v.laps} · ${v.passed} checkpoints\nFollow the yellow arrows. Drive with your normal forklift controls. X cancels without completing the race.`:"Preparing your forklift…";
+    this.dom.japaneseText.hidden=true;this.dom.options.hidden=true;this.onActiveChanged(true);return true;
+  }
+
   showOptions(options) {
     if (!Array.isArray(options) || options.length === 0) {
       throw new Error("script event has no presented options");

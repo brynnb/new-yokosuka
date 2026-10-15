@@ -11,6 +11,7 @@ import {verifyHarborHiring} from "./story-harbor-hiring.js";
 import {verifyForkliftTraining} from "./story-forklift-training.js";
 import {verifyChickenRace} from "./story-chicken-race.js";
 import {verifyPersonalCalendar} from "./story-calendar.js";
+import {verifyMorningRace} from "./story-morning-race.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -74,8 +75,8 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       };`],
     ["scripts/StoryNavigationRuntime", `const probeNavigationShow = StoryNavigationRuntime.prototype.show;
       StoryNavigationRuntime.prototype.show = function(...args) { window.storyProbe.navigation = this; return probeNavigationShow.apply(this,args); };`],
-    ["scripts/StoryDeliveryRuntime", `const probeDeliveryShow = StoryDeliveryRuntime.prototype.show;
-      StoryDeliveryRuntime.prototype.show = function(...args) { window.storyProbe.delivery = this; return probeDeliveryShow.apply(this,args); };`],
+    ["scripts/StoryForkliftChallengeRuntime", `const probeDeliveryShow = StoryForkliftChallengeRuntime.prototype.show;
+      StoryForkliftChallengeRuntime.prototype.show = function(...args) { window.storyProbe.delivery = this; return probeDeliveryShow.apply(this,args); };`],
     ["dialogue/NativeDialogueOverlayRuntime", `window.nativeDialogueHookInstalled = true;
       const probeNativeStart = NativeDialogueOverlayRuntime.prototype.start;
       NativeDialogueOverlayRuntime.prototype.start = function(options,...args) { window.storyProbe.nativeStarts.push(options.actorCode); return probeNativeStart.call(this,options,...args); };`],
@@ -135,6 +136,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_MORNING_RACE_E2E === "true"){
+      test.setTimeout(1_200_000);
+      await verifyMorningRace(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_CALENDAR_E2E === "true"){
       await verifyPersonalCalendar(page,testInfo,character);
       expect(errors).toEqual([]);return;

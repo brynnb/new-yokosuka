@@ -19,14 +19,14 @@ export class StoryRegionRuntime {
     this.generation = 0;
   }
   reset() { this.generation++; this.inside.clear(); this.contextKey = null; this.calendarDay = null; }
-  update({ area, playerPosition, enabled }) {
+  update({ area, worldId, playerPosition, enabled }) {
     const position = Array.isArray(playerPosition) ? playerPosition
       : playerPosition ? [playerPosition.x, playerPosition.y, playerPosition.z] : null;
     const character = this.getCharacter();
     const date = this.getGameDate();
     const calendarDay = date instanceof Date && Number.isFinite(date.getTime())
       ? Math.floor(date.getTime() / 86_400_000) : "unknown";
-    const key = character ? `${character.id}:${character.modeRevision}:${area}` : null;
+    const key = character ? `${character.id}:${character.modeRevision}:${worldId || ""}:${area}` : null;
     if (key !== this.contextKey) { this.reset(); this.contextKey = key; }
     if (!character || character.playMode !== "story" || !character.openingCompleted || !enabled
       || !position || position.length !== 3 || !position.every(Number.isFinite)) return false;
@@ -47,7 +47,7 @@ export class StoryRegionRuntime {
       // Use-only bounds authorize a selected world object on the server; merely
       // walking nearby must not start its interaction or consume entry dispatch.
       if (region.trigger === "use") continue;
-      if (region.area !== area) continue;
+      if (region.area !== area || (region.worldId && region.worldId !== worldId)) continue;
       if (region.hours) {
         const hour=date instanceof Date ? date.getUTCHours()+date.getUTCMinutes()/60+date.getUTCSeconds()/3600 : NaN;
         const [start,end]=region.hours;

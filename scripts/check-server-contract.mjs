@@ -6,6 +6,10 @@ import { clientRoot, resolveServerRepo } from "./server-repo.mjs";
 
 const serverRoot = resolveServerRepo();
 
+if(process.argv.includes("--sync-vehicles")) {
+  fs.writeFileSync(path.join(clientRoot,"src/data/vehicle-spawns.json"),fs.readFileSync(path.join(serverRoot,"internal/realtime/vehicle_spawns.json")));
+}
+
 // Deterministic export from the authoritative server catalogs. This updates
 // only scripting contracts, never gameplay assets or unrelated configuration.
 if (process.argv.includes("--sync-scripting")) {
@@ -16,6 +20,7 @@ if (process.argv.includes("--sync-scripting")) {
     ["internal/scriptcontent/story_travel.v1.json", "play/data/story-destinations.json"],
     ["internal/scriptevent/combats.json", "play/data/story-combat.json"],
     ["internal/scriptevent/challenges.json", "play/data/story-challenges.json"],
+    ["internal/scriptevent/forklift_race_course.json", "src/data/forklift-race-course.json"],
     ["internal/scriptevent/navigation.json", "play/data/story-navigation.json"],
   ]) fs.writeFileSync(path.join(clientRoot, target), fs.readFileSync(path.join(serverRoot, source)));
 }
@@ -59,6 +64,8 @@ assert.deepEqual(readJSON(clientRoot,"play/data/story-combat.json"),
   readJSON(serverRoot,"internal/scriptevent/combats.json"),"Story combat catalogs differ");
 assert.deepEqual(readJSON(clientRoot,"play/data/story-challenges.json"),
   readJSON(serverRoot,"internal/scriptevent/challenges.json"),"Story challenge catalogs differ");
+assert.deepEqual(readJSON(clientRoot,"src/data/forklift-race-course.json"),
+  readJSON(serverRoot,"internal/scriptevent/forklift_race_course.json"),"Forklift race course contracts differ");
 assert.deepEqual(readJSON(clientRoot,"play/data/story-navigation.json"),readJSON(serverRoot,"internal/scriptevent/navigation.json"),"Story navigation catalogs differ");
 
 assert.deepEqual(

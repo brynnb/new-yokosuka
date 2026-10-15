@@ -111,7 +111,7 @@ export class NativeStoryRuntime {
     // An owned tableau may temporarily expose a recess. Reapply durable
     // presentation after cleanup, never over an in-flight preview.
     if (!this.presentationActive) this.storyObjects?.update();
-    this.storyRegions?.update({ area: world.nativeArea, enabled: enabled && !this.isStartupPresentationActive(), playerPosition });
+    this.storyRegions?.update({ area: world.nativeArea, worldId: world.id, enabled: enabled && !this.isStartupPresentationActive(), playerPosition });
     const gameplayState = this.getGameplayState();
     this.automaticEvents.update({
       area: world.nativeArea,

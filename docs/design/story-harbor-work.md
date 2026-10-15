@@ -195,3 +195,59 @@ transition immediately. Focused clock/realtime tests and a connected rendered
 sidebar check verify a stationary HUD during a choice, cancellation/resume,
 normal next-morning advancement and unchanged money, inventory and story flags.
 Use `NEW_YOKOSUKA_CALENDAR_E2E=true` with the earned-save harness to repeat it.
+
+## First working morning: implementation under verification
+
+`workday-one-race-entry` offers a race-grid transfer near Mark's training
+corridor on a later personal day after the chicken race, from 08:30 to noon.
+This explicit approach, the forgiving hours and the project's 08:30 waking-day
+start adapt the guide's automatic 07:30 wake/harbor arrival. The short briefing
+is an unvoiced authored caption, not an invented original recording. Boarding
+grants no race outcome, salary or prize and remains repeatable until a race is
+completed. Leaving the choice has no durable effect.
+
+The race-grid region is scoped to `ma00race`; the separate practice world also
+uses native area `MA00` and must not select this encounter. Both the browser and
+the server's accepted-position bounds apply the world fence.
+
+`workday-one-race` uses the existing original-asset MA00 course, forklift physics,
+arrows, timer, camera and controls. A temporary server-owned vehicle appears just
+ahead of the existing starting row at `[66,0,105]`. The earlier authored z102
+spawn was beside a course barrier; rays against the actual Havok terrain show
+the forward lane at z105 is clear. The approach is beside the captured MGDM
+position, not inside that NPC's collision cylinder. The resource adapter is now
+shared with deliveries rather than duplicating vehicle loading or input rules.
+
+The five grid positions are now `raceGrid` templates in the shared vehicle
+catalog, not permanent `forklifts` spawns. The connected check reached the next
+lap and exposed the unused vehicles blocking the finish straight. Ordinary
+exploration entry already supports requesting a vehicle when the grid is empty;
+it now uses those same original templates on demand. This fixes the shared
+course rather than hiding colliders only for Story mode. Practice-world
+forklifts are unchanged. Export vehicle catalog updates with
+`scripts/check-server-contract.mjs --sync-vehicles`.
+
+The same versioned course supplies the exploration HUD and the server: thirteen
+ordered gates per lap, three laps. Its centers come from the existing native AI
+TASK recording; gate radii remain authored tolerances. The three-second
+countdown starts only after the assigned driver enters, so loading cannot spend
+it. Accepted, bounded vehicle observations cross gates; walking, repeated polls,
+skipped gates, another driver, another mode or a stale lease cannot finish.
+The thirty-minute real-time limit is deliberately forgiving. Personal Story
+time pauses; the race and its lease use advancing wall time.
+
+An acknowledged course finish atomically saves a separate race milestone,
+notebook page and workday date, establishes a minimum 09:00 work start, and
+returns to the already tested harbor loading corridor. It does not complete the
+paid shift. Finishing rank and rank-based collectible prizes are not yet
+implemented; neither the local best-time record nor a film can grant them.
+Cancellation, failed preparation or timeout grants no completion, releases the
+vehicle, and restores the prior camera/pose/controls. Reload must preserve a
+committed outcome without replay.
+
+Focused server/compiler checks cover the actual generated Yarn, full three-lap
+observations, identities, countdown/loading, incorrect ordering, cancellation,
+retry, expired sessions and atomic effects. Client checks cover the shared
+resource lease, authoritative HUD and world-scoped trigger. Full connected
+hardware-rendered course completion is still being verified; the current
+checklist must not count this as a completed paid workday.

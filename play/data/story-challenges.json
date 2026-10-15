@@ -2,6 +2,7 @@
   "schema":"new-yokosuka-story-challenges-v1",
   "buttonCodes":["A","B","Left","Right","Up","Down"],
   "challenges":[
+    {"id":"s1.ma00.morning-race","label":"Morning forklift race","kind":"race","race":{"worldId":"ma00race","vehicle":[66,0,105,1.5707963267948966],"durationSeconds":1800}},
     {"id":"s1.mfsy.chicken-race","label":"Protect Shozo — chicken race","buttons":["A","Down","Left","Right"],"windowMs":2000},
     {"id":"s1.mfsy.forklift-training","label":"Forklift training — loading area","kind":"delivery","delivery":{"worldId":"mfsy","vehicle":[-15.821,0,118.673,1.3021669961391247],"pickup":[-11.964,0.6,119.735],"dropMin":[-3.323,-0.2,120.889],"dropMax":[-1.323,2,123.889],"count":3,"durationSeconds":900}},
     {"id":"s1.d000.jimmy-chase.left","label":"Catch Jimmy — turn left","buttons":["Left"],"windowMs":2000},

@@ -27,9 +27,11 @@ export class ForkliftRaceRuntime {
     this.session = new ForkliftRaceSession();
     this.best = readForkliftRaceBest();
     this.marker = null;
+    this.observedRace = null;
   }
 
   prepare() {
+    this.observedRace = null;
     this.session.abort();
     this.setMovementLocked(false);
     this.marker = null;
@@ -95,30 +97,39 @@ export class ForkliftRaceRuntime {
   }
 
   updateHud() {
+    const session = this.observedRace ? {
+      status: this.observedRace.countdownMs > 0 ? "countdown" : this.observedRace.result === "success" ? "finished" : "racing",
+      countdownRemaining: this.observedRace.countdownMs/1000,
+      elapsedMs: this.observedRace.elapsedMs,
+      lap: this.observedRace.lap,
+      laps: this.observedRace.laps,
+      checkpoint: this.observedRace.checkpoint,
+      nextCheckpoint: FORKLIFT_RACE_CHECKPOINTS[this.observedRace.checkpoint],
+    } : this.session;
     const inRaceWorld = this.getWorldId() === this.worldId;
     const countingDown = inRaceWorld
-      && this.session.status === "countdown";
-    const raceActive = inRaceWorld && this.session.status !== "inactive";
-    const finished = inRaceWorld && this.session.status === "finished";
+      && session.status === "countdown";
+    const raceActive = inRaceWorld && session.status !== "inactive";
+    const finished = inRaceWorld && session.status === "finished";
     this.dom.raceHud.hidden = !inRaceWorld;
     this.dom.raceStart.hidden = raceActive;
     this.dom.raceTiming.hidden = !raceActive;
-    this.dom.raceRestart.hidden = !finished;
-    this.dom.raceQuit.hidden = !raceActive;
+    this.dom.raceRestart.hidden = !finished || Boolean(this.observedRace);
+    this.dom.raceQuit.hidden = !raceActive || Boolean(this.observedRace);
     this.dom.raceCountdown.hidden = !countingDown;
     if (countingDown) {
       this.dom.raceCountdown.textContent = String(
-        Math.max(1, Math.ceil(this.session.countdownRemaining)),
+        Math.max(1, Math.ceil(session.countdownRemaining)),
       );
     }
-    if (!inRaceWorld || this.session.status === "inactive") {
+    if (!inRaceWorld || session.status === "inactive") {
       this.marker?.setEnabled(false);
       return;
     }
     this.dom.raceState.textContent = finished
       ? "Finish!"
-      : `Lap ${this.session.lap} / ${this.session.laps}`;
-    this.dom.raceTimer.textContent = formatRaceTime(this.session.elapsedMs);
+      : `Lap ${session.lap} / ${session.laps}`;
+    this.dom.raceTimer.textContent = formatRaceTime(session.elapsedMs);
     this.dom.raceBest.textContent = this.best === null
       ? "Best --:--.---"
       : `Best ${formatRaceTime(this.best)}`;
@@ -127,12 +138,12 @@ export class ForkliftRaceRuntime {
     ].entries()) {
       indicator.classList.toggle(
         "complete",
-        index < this.session.checkpoint,
+        index < session.checkpoint,
       );
     }
-    const checkpoint = this.session.nextCheckpoint;
+    const checkpoint = session.nextCheckpoint;
     const showMarker = Boolean(
-      checkpoint && this.session.status !== "finished",
+      checkpoint && session.status !== "finished",
     );
     this.marker?.setEnabled(showMarker);
     if (showMarker) {
@@ -141,6 +152,7 @@ export class ForkliftRaceRuntime {
   }
 
   start() {
+    if (this.observedRace) return;
     if (this.getWorldId() !== this.worldId) return;
     this.session.start();
     this.setMovementLocked(true);
@@ -148,6 +160,11 @@ export class ForkliftRaceRuntime {
   }
 
   holdVehicleUntilStart() {
+    if(this.observedRace){
+      const hold=this.observedRace.countdownMs>0;
+      this.setMovementLocked(hold);
+      return hold;
+    }
     if (
       this.getWorldId() === this.worldId
       && (
@@ -162,12 +179,14 @@ export class ForkliftRaceRuntime {
   }
 
   abort() {
+    if(this.observedRace)return;
     this.session.abort();
     this.setMovementLocked(false);
     this.updateHud();
   }
 
   vehicleExited() {
+    if(this.observedRace)return true;
     if (
       this.getWorldId() === this.worldId
       && this.session.status !== "inactive"
@@ -181,6 +200,7 @@ export class ForkliftRaceRuntime {
   }
 
   simulate(deltaSeconds) {
+    if(this.observedRace)return;
     if (
       this.getWorldId() !== this.worldId
       || this.session.status === "inactive"
@@ -199,5 +219,16 @@ export class ForkliftRaceRuntime {
   update(deltaSeconds) {
     this.simulate(deltaSeconds);
     this.updateHud();
+  }
+
+  setObservedRace(view) {
+    this.observedRace = view;
+    this.setMovementLocked(view.countdownMs > 0);
+    this.updateHud();
+  }
+
+  clearObservedRace() {
+    this.observedRace = null;
+    this.abort();
   }
 }

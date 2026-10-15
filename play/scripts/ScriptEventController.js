@@ -329,7 +329,7 @@ export class ScriptEventController {
     if (!event?.type) throw new Error("server yielded an invalid script event");
     if(active.combatView && event.type!=="combat") {this.presentation.endCombat();this.dialogue.hide();active.combatView=null;active.combatInputPending=false;}
     if(active.challengePrompt?.navigation&&event.type!=="challenge"){this.presentation.endNavigation();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
-    if(active.challengePrompt?.delivery&&event.type!=="challenge"){this.presentation.endDelivery();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
+    if((active.challengePrompt?.delivery||active.challengePrompt?.race)&&event.type!=="challenge"){this.presentation.endForkliftChallenge();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
     if (TERMINAL_EVENTS.has(event.type)) {
       active.controller.abort(new DOMException(event.type, "AbortError"));
       this.dialogue.hide();
@@ -357,9 +357,9 @@ export class ScriptEventController {
       const prompt=message.challenge;
       if(!prompt || !/^[0-9a-f]{32}$/.test(prompt.token))throw new Error("server challenge prompt is invalid");
       active.challengePrompt=prompt;active.challengeInputPending=false;
-      if(prompt.delivery){
-        if(!await this.present(active,()=>this.presentation.showDelivery(prompt)))return false;
-        this.dialogue.showDelivery(prompt);this.emitState();return true;
+      if(prompt.delivery||prompt.race){
+        if(!await this.present(active,()=>this.presentation.showForkliftChallenge(prompt)))return false;
+        if(prompt.race)this.dialogue.showRace(prompt);else this.dialogue.showDelivery(prompt);this.emitState();return true;
       }
       if(prompt.navigation){
         if(!await this.present(active,()=>this.presentation.showNavigation(prompt)))return false;

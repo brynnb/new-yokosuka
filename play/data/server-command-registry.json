@@ -20,6 +20,12 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.mfsy.workday-one-race-entry","description":"Morning approach after the evening chicken race, on a later personal day."},
+    {"kind":"bounds","identifier":"s1.ma00.workday-one-race","description":"Race-grid approach scoped to the MA00 race world, not the practice world."},
+    {"kind":"challenge","identifier":"s1.ma00.morning-race","description":"Three laps through the shared original-route gates in the server-leased forklift."},
+    {"kind":"story-destination","identifier":"s1.work.morning-race-grid","description":"Morning race grid, no race outcome or rewards."},
+    {"kind":"story-destination","identifier":"s1.work.harbor-loading-start","description":"Return to Mark's loading corridor after a completed race."},
+    {"kind":"story-time","identifier":"s1.work.race-end","description":"9am minimum start after a genuinely completed morning race."},
     {"kind":"bounds","identifier":"s1.mfsy.chicken-race","description":"Evening encounter by Hokuhoku Lunches after forklift training."},
     {"kind":"activity","identifier":"s1.mfsy.chicken-race-intro.scene","description":"Original RACE introduction, not a challenge result."},
     {"kind":"sequence","identifier":"s1.mfsy.chicken-race.start","description":"Authored original-asset riding tableau; no durable effects."},

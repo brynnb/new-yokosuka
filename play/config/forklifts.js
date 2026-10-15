@@ -6,10 +6,10 @@ import {
 
 export const FORKLIFT_MODEL = vehicleSpawnManifest.defaultForkliftModel;
 export const FORKLIFT_RACE_PLAYER_MODEL = (
-  vehicleSpawnManifest.worlds.ma00race.forklifts[0].model
+  vehicleSpawnManifest.worlds.ma00race.raceGrid[0].model
 );
 export const FORKLIFT_RACE_OPPONENT_MODEL = (
-  vehicleSpawnManifest.worlds.ma00race.forklifts[1].model
+  vehicleSpawnManifest.worlds.ma00race.raceGrid[1].model
 );
 export const FORKLIFT_CRATE_MODEL = "G_ITEM_GACO1KBG.MT5";
 export const FORKLIFT_CRATE_SCALE = 10;
@@ -27,9 +27,9 @@ export const FORKLIFT_ID_PATTERN = Object.freeze({
   test: validForkliftId,
 });
 
-function worldForkliftSpawns(worldId) {
+function worldForkliftSpawns(worldId, collection = "forklifts") {
   return Object.freeze(
-    vehicleSpawnManifest.worlds[worldId].forklifts.map((spawn) => (
+    vehicleSpawnManifest.worlds[worldId][collection].map((spawn) => (
       Object.freeze({
         ...spawn,
         position: new BABYLON.Vector3(
@@ -65,7 +65,7 @@ export const HARBOR_FORKLIFT_CONFIG = Object.freeze({
 export const FORKLIFT_PLAYGROUND_SPAWNS = worldForkliftSpawns("ma00");
 export const FORKLIFT_RACE_SPAWNS = worldForkliftSpawns("ma00race");
 export const FORKLIFT_RACE_GRID_SPAWNS = Object.freeze(
-  [...FORKLIFT_RACE_SPAWNS].sort(
+  [...worldForkliftSpawns("ma00race", "raceGrid")].sort(
     (left, right) => right.position.x - left.position.x,
   ),
 );

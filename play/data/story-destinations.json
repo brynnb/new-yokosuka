@@ -1,6 +1,10 @@
 {
   "schema": "new-yokosuka-story-travel-v1",
   "destinations": [
+    {"id":"s1.work.morning-race-grid","worldId":"ma00race","scene":3,"area":"MA00","entry":null,"position":[66,0,108],"yaw":1.5707963267948966,
+      "provenance":"Authored approach beside the original grid and captured MGDM position [66,0,109.5]. The leased forklift begins just ahead of the existing row at [66,0,105]. Actual Havok-terrain rays confirm a clear forward lane here; z102 was beside the course barrier and must not be reused. Ordinary course geometry/driving are reused, not the native travel controller."},
+    {"id":"s1.work.harbor-loading-start","worldId":"mfsy","scene":3,"area":"MFSY","entry":null,"position":[-15.821,0,118.673],"yaw":1.3021669961391247,
+      "provenance":"Reuse the already hardware-rendered Mark/training corridor and facing, after genuine morning race completion. First paid delivery challenges are separate; this arrival grants no wage."},
     {"id":"s1.dobuita.asia-interrogation","worldId":"daza","scene":1,"area":"DAZA","entry":null,"position":[-1.4118969440460205,0,0.14285899698734283],"yaw":3.141592653589793,
       "provenance":"Original A0174 first-frame AKIR position from Disc 2 ARAR MAPINFO AUTH 0xaa6c, SHA256 be90144b021082280a7fba68f69870fafd332e6df3c4061603d5119dc873cb1f. Native X mirrored into browser coordinates, native Y rotation zero becomes browser yaw PI. Atomic authored return after all chase inputs and capture film acknowledgement."},
     {"id":"s1.home.basement-entry","worldId":"ydb1","scene":2,"area":"YDB1","entry":null,"position":[-2,-0.005110997706651688,6],"yaw":3.141592653589793,

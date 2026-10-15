@@ -2,6 +2,16 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { StoryRegionRuntime } from "../play/scripts/StoryRegionRuntime.js";
 
+test("race-grid dispatch is scoped to its world even though practice shares MA00",()=>{
+  const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{"story.s1.workday-one-race-entry.completed":true,"story.s1.chicken-race.completed":true}};
+  const calls=[];
+  const runtime=new StoryRegionRuntime({controller:{status:"idle",start:async()=>calls.push("race")},getCharacter:()=>character,publishPresence(){}});
+  const frame={area:"MA00",worldId:"ma00",enabled:true,playerPosition:[63,0,99]};
+  assert.equal(runtime.update(frame),false);
+  assert.equal(runtime.update({...frame,worldId:"ma00race"}),true);
+  assert.equal(calls.length,1);
+});
+
 test("a saved-day appointment re-arms after midnight without fabricating eligibility",()=>{
   let date=new Date("1986-12-23T20:00:00Z");const calls=[];
   const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{}};
