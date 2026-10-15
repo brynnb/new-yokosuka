@@ -114,11 +114,14 @@ function pairedLatticeNormalSigns(loader, group, topology) {
         (sum, value, axis) => sum + value * renderNormal[axis],
         0,
       ) / (Math.hypot(...controlNormal) * Math.hypot(...renderNormal));
-      // The full Shenmue I inventory contains 2,931 paired vertices. Every
-      // authored lining normal opposes its exterior partner (worst dot
-      // product -0.9313); accepting a same-facing pair would expose a corrupt
-      // topology mapping as a lighting or culling artifact at runtime.
-      if (alignment > -0.9) {
+      // Lining normals must occupy the opposite hemisphere, not be almost
+      // exact negations. The HUMANS corpus's least-opposed pair was -0.9313,
+      // but original MB9Q YKB_M coat panels reach -0.8360: both
+      // authored normals tilt down along the hem while their horizontal
+      // components oppose. Their paired positions agree within 0.000004.
+      // A corpus minimum is not a format invariant. Still reject corrupt
+      // same-facing pairs and degenerate normals rather than hiding them.
+      if (!Number.isFinite(alignment) || alignment >= 0) {
         throw new Error(
           `native cloth ${group.controlType} lining normal is not opposed`,
         );

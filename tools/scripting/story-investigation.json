@@ -3,6 +3,41 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"goro-trap","disc":3,"actor":"GORO","participants":["TONY","SMTH","JONZ","RBRT"],"presentActors":[],"area":"MFSY","trigger":"enter","priority":740,
+      "title":"Warehouse No. 13 — Goro's trap","hours":[14,17],"bounds":"s1.mfsy.goro-trap",
+      "requiredFlags":["story.s1.workday-four-morning.completed","story.s1.workday-four-spying.completed"],"completedFlag":"story.s1.goro-trap.completed","effects":["notebook.s1.goro-trap"],
+      "voiceIds":[],"yarnTemplate":"story-harbor-goro-trap.yarn","summary":"Original Goro/Tony lead-in, nine actual timed inputs with original paired success/failure motions, then original threats film. Only acknowledged victory ending saves this milestone; no wages or completed shift.",
+      "dialogueArchive":{"path":"data/SCENE/03/STREAM/019RN.AFS","sha256":"a7b214337ce9c402f5bda977813e1cd8bd6a284a1ffbdc90c5f307cce1ea72d2"},
+      "nativeSources":[{"role":"original-nine-input-presentation","locator":"disc3/SCENE/03/MB9Q/MPK00.PKS#M_MB9Q2.MOTN,M_019RN.MOTN,SEQDATA1.AUTH","sha256":"70a419eb5544dade0c62f3b2ca0a8d747eaf79e11e9df5c467b728d753b22f7c"}],
+      "provenance":"GameSpot p59: afternoon near Warehouse13, injured Goro, Mad Angels trap, B A B A A B Left Down A; failure retries, then resume work. Original 019RN voices and paired motions; last three inputs share GH pair, followed by original29-second ending. Outdoor formation, model-to-fighter pairing including RBRT body, idle Goro instead of injury choreography, two-second prompts and cameras are authored adaptations, not DYNAMICS. Only acknowledged ending after all nine inputs saves trap/notebook; no time, money, inventory or completed day."
+    },
+    {
+      "id":"workday-four-afternoon","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":750,
+      "title":"Fourth workday — finish afternoon cargo","hours":[14,17],"bounds":"s1.mfsy.workday-four-afternoon",
+      "requiredFlags":["story.s1.workday-four-morning.completed","story.s1.goro-trap.completed"],"completedFlag":"story.s1.workday-four-afternoon.completed","effects":["notebook.s1.workday-four-quota"],
+      "voiceIds":[],"yarnTemplate":"story-workday-delivery.yarn","challenge":"s1.mfsy.workday-four-afternoon","timeTransition":"s1.work.shift-end",
+      "authoredText":{"briefing":"Goro is safe, but the Mad Angels threatened my family and friends. Finish the remaining four crates before collecting my wages.","success":"All eight crates are delivered. The shift is over; collect today's wages from Yada-san."},
+      "nativeSources":[{"role":"original-job-instruction-assets","locator":"disc3/SCENE/03/MFSY/MARU.PKS#SEQDATA1.AUTH","sha256":"a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b"}],
+      "provenance":"Guide p59: resume deliveries after Goro trap, shift ends17:00. Existing observed four-crate dispatch challenge completes four/four split of Warehouse15-to18 job. Acknowledged result saves quota/notebook/minimum17:00, not wages or whole day. No cargo outcome from QTE."
+    },
+    {
+      "id":"workday-four-payday","disc":3,"actor":"TMRA","presentActors":[],"area":"MFSY","trigger":"enter","priority":760,
+      "title":"Fourth workday — collect wages","hours":[17,24],"bounds":"s1.mfsy.workday-four-payday",
+      "requiredFlags":["story.s1.workday-four-morning.completed","story.s1.goro-trap.completed","story.s1.workday-four-afternoon.completed"],"completedFlag":"story.s1.workday-four-payday.completed","effects":["notebook.s1.fourth-payday"],"recordDays":["story.s1.workday-four.payday"],
+      "grantYen":{"amount":2400,"reason":"story.s1.workday-four-wages"},"voiceIds":[],"yarnTemplate":"story-workday-payday.yarn","staging":"s1.mfsy.payday",
+      "authoredText":{"briefing":"Eight crates at 300 yen each: 2,400 yen. Yada-san has today's wages ready.","success":"Collected today's wages: 2,400 yen. Speak with Mark beside the harbor about the Mad Angels' trade."},
+      "nativeSources":[{"role":"original-salary-handover-motion-bank","locator":"disc3/SCENE/03/MFSY/ALP_PAY.PKS#M_MO01.MOTN","sha256":"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709"}],
+      "provenance":"Guide p59 separate payday after completed shift; reuse original salary motions. Same base300-per-crate adaptation as earlier days, no optional overtime/raises. Final acknowledgement atomically saves exactly2400yen/day/notebook/receipt once; cancellation pays nothing. Mark's explanation remains separate."
+    },
+    {
+      "id":"mark-long-zha","disc":3,"actor":"MARK","presentActors":[],"area":"MFSY","trigger":"enter","priority":770,
+      "title":"Mark — Long Zha","hours":[17,24],"bounds":"s1.mfsy.mark-long-zha",
+      "requiredFlags":["story.s1.workday-four-payday.completed"],"completedFlag":"story.s1.mark-long-zha.completed","effects":["notebook.s1.long-zha","story.s1.workday-four.completed"],"recordDays":["story.s1.workday-four.finished"],
+      "voiceIds":[],"activities":["s1.mfsy.mark-long-zha.scene"],
+      "nativeSources":[{"role":"original-mark-long-zha-explanation","locator":"disc3/SCENE/03/MFSY/RYUSATSU.PKS#SEQDATA1.AUTH,M_01MKJ.MOTN","sha256":"385fd95a064964da1723afade848a3673e5632d56c1536460df9be7acd03686c"}],
+      "provenance":"Guide p59 after fourth payday, Mark explains LongZha. Original RYUSATSU/01MKJ actors, camera,33-second motion/voice/effects. Authored floor-level approach around original Ryo; preserve original Mark height. Acknowledged explanation saves notebook/completed-fourth-day/date only. Optional Tony/Smith and guards/cafeteria inquiries not included."
+    },
+    {
       "id":"workday-four-spying","disc":3,"actor":"TYMK","presentActors":[],"area":"MFSY","trigger":"enter","priority":730,
       "title":"Lunch break — Tsuyoshi's warning","hours":[12.75,14],"bounds":"s1.mfsy.workday-four-spying",
       "requiredFlags":["story.s1.workday-four-morning.completed","story.s1.charlie-harbor.completed"],"completedFlag":"story.s1.workday-four-spying.completed","effects":["notebook.s1.harbor-spying"],

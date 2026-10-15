@@ -59,6 +59,7 @@ export class AuthoredSceneStagingRuntime {
       throw new Error(`Timed scene requires non-looping motions: ${scene.id}`);
     }
     for(const actor of scene.actors){
+      if(actor.presented!=null&&typeof actor.presented!=="boolean")throw Error(`Invalid staged visibility ${scene.id}/${actor.tag}`);
       validateTrack(actor.movement,POSE_FIELDS,scene.durationSeconds,`${scene.id}/${actor.tag}`);
       if(actor.endMotion&&(!Number.isFinite(scene.durationSeconds)||!actor.endMotion.bank||!actor.endMotion.name))throw Error(`Invalid staged end motion ${scene.id}/${actor.tag}`);
     }
@@ -128,7 +129,9 @@ export class AuthoredSceneStagingRuntime {
         if (actor.pose && !this.actors.applyTransform(owner, actor.tag, actor.pose)) throw new Error(`Cannot stage actor ${actor.tag}`);
         // Borrow out-of-shot residents too: hiding an owned root suppresses
         // their ambient copy without moving it away or leaving a global flag.
-        if(actor.presented===false)this.actors.activeActor(actor.tag).root.setEnabled(false);
+        // A retained scene lease may bring the next attacker into view. Only
+        // explicit visibility cues override the actor's captured state.
+        if(actor.presented!=null)this.actors.activeActor(actor.tag).root.setEnabled(actor.presented);
       }
       owner.objects?.beginActivity({activityId:scene.id,actors:scene.actors.map(a=>a.tag)});
       if (!this.update(transaction, 0)) throw new Error(`Cannot present scene ${scene.id}`);

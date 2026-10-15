@@ -59,6 +59,15 @@ function movingScene(scene,id="moving"){
     cameraTrack:track(scene.camera,{positionX:4,targetX:4})};
 }
 
+test("retained tableaux can explicitly reveal a previously hidden actor",async()=>{
+  const h=harness(),first={...h.scene,continuationGroup:"fight",actors:[{...h.scene.actors[0],presented:false}]};
+  await h.runtime.play({kind:"scene-staging-start",scene:first},h.transaction);assert.equal(h.root.enabled,false);
+  const next={...first,id:"next",continuesPrevious:true,actors:[{...first.actors[0],presented:true}]};
+  await h.runtime.play({kind:"scene-staging-transition",scene:next},h.transaction);assert.equal(h.root.enabled,true);
+  assert.equal(h.calls.filter(c=>c==="actors-begin").length,1);h.runtime.cancel(h.transaction);
+  assert.equal(h.calls.filter(c=>c==="actors-end").length,1);
+});
+
 test("moving tableaux reuse native curve evaluation and stop at their endpoint",async()=>{
   const h=harness(),poses=[],cameras=[],motions=[];h.scene=movingScene(h.scene);
   h.runtime.actors.applyTransform=(_owner,_tag,pose)=>(poses.push(pose),true);

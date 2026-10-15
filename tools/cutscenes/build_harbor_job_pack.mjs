@@ -15,6 +15,8 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const evidence="docs/design/story-harbor-work.md";
 const archives={
+  "MB9Q/MPK00":"70a419eb5544dade0c62f3b2ca0a8d747eaf79e11e9df5c467b728d753b22f7c",
+  RYUSATSU:"385fd95a064964da1723afade848a3673e5632d56c1536460df9be7acd03686c",
   BAT_MBQC:"52867cbea1dd59044282ee476405026a769a909eab8bbcced955f94975d470e0",
   NZMPHOTO:"c1b2ba44ca7111fb9e85237a775b253c0bcef99e7a4bbb3ed3c64e00bc46be1e",
   BOKOMARK:"f074ed751b0000c66357087fc8ed23c0a343080723bb511567b92c2d0ed96164",
@@ -28,6 +30,16 @@ const archives={
   ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
 const profiles=[
+  {id:"goro-trap-aftermath",archive:"MB9Q/MPK00",resourceName:"MB9Q",auth:"SEQDATA1.AUTH",motion:"M_019RN.MOTN",frames:880,actors:["TONY","AKIR","JONZ","SMTH","RBRT"],
+    // Retain YKB's original reference body for the cloth regression fixture;
+    // it is Ryo, not an eighth fighter. GH borrows Tony/Smith's real bodies.
+    extraMembers:["M_MB9Q2.MOTN","YKB_M.CHRM"],stagingActors:["BKA_","BKB_","BKC_","BKD_","BKE_","BKF_","BKG_","BKH_"],
+    actorModels:{TONY:["Tony Abrams","GIJ_M"],SMTH:["Smith Bradley","GIB_M"],JONZ:["Jones Henders","GIF_L"],RBRT:["Mad Angels thug","GID_L"],
+      BKA_:["Mad Angels fighter","GIA_L"],BKB_:["Mad Angels fighter","GID_L"],BKC_:["Mad Angels fighter","GIE_L"],BKD_:["Mad Angels fighter","GIF_L"],BKE_:["Mad Angels fighter","GIJ_M"],BKF_:["Mad Angels fighter","GIB_M"],BKG_:["Mad Angels fighter","GIJ_M"],BKH_:["Mad Angels fighter","GIB_M"]},
+    actorTextureHash:"93b83942438429938cbbde61cbd5c0404792dadf1adac834c6e432e66d2d94cd",
+    stream:"019RN",streamHash:"a7b214337ce9c402f5bda977813e1cd8bd6a284a1ffbdc90c5f307cce1ea72d2",sound:"A1_QRENQ.SND",soundHash:"e45706b0f968996730938ba1d78de4ab4119655a2ca059ed93a3f4afbe62d534"},
+  {id:"mark-long-zha",archive:"RYUSATSU",auth:"SEQDATA1.AUTH",motion:"M_01MKJ.MOTN",frames:1000,actors:["AKIR","MARK"],
+    stream:"01MKJ",streamHash:"cb353da35315b081014c3a92fe4e0a2bb2cb0f6c2d5ae2986eefca6585d32772",sound:"A1_MKJ.SND",soundHash:"264c861f97044a430b1723fcce33393b77ffce22483534bed0fabc7bde5b0408"},
   {id:"charlie-harbor-interrogation",archive:"BAT_MBQC",auth:"SEQDATA0.AUTH",motion:"M_01CBK.MOTN",frames:1560,actors:["AKIR","BTK_","BTH_","CHRL","BTA_"],
     actorModels:{BTK_:["Mad Angels biker","BTK_S"],BTH_:["Mad Angels biker","BTH_S"],BTA_:["Mad Angels biker","BTA_S"]},
     actorTextureHash:"21659e72e8d07d6672f87185bef848ed61a61e659f63c924c51af73512f7793f",
@@ -82,6 +94,9 @@ const characters={CHRL:["Charlie Grant","BIK_L"],YOHI:["Yohei Kondo","YHI_L"],TY
   // character-name CSV's unshipped NZM_M reference.
   MRSK:["Shingo Murasaki","PPL_L"],OKYS:["Minoru Okayasu","OKA_L"],TJMA:["Eri Tajima","RFD_L"],HRSK:["Nozomi Harasaki","NZM_L"]};
 const runtimePaths=[];
+// Most employment archives are resident MFSY resources; the nine-input fight
+// owns its own MB9Q package. Preserve that original path in provenance.
+const archiveStem=archive=>archive.includes("/")?archive:`MFSY/${archive}`;
 const profileArg=process.argv.indexOf("--profile");
 const selected=profileArg<0?profiles:profiles.filter(p=>p.id===process.argv[profileArg+1]);
 if(!selected.length)throw Error("Unknown harbor job profile");
@@ -91,12 +106,12 @@ for(const p of selected){
   const member=(archive,name)=>{
     // Multiple scene instances may share one archive model (six lunchboxes).
     // Provenance/output members describe unique source files, not instances.
-    if(members.some(m=>m.archiveMember===name&&m.sourceManifestPath===`disc3/SCENE/03/MFSY/${archive}.PKS`))return name;
-    const sourcePath=path.join(source,`MFSY/${archive}.PKS`),bytes=fs.readFileSync(sourcePath);
+    if(members.some(m=>m.archiveMember===name&&m.sourceManifestPath===`disc3/SCENE/03/${archiveStem(archive)}.PKS`))return name;
+    const sourcePath=path.join(source,`${archiveStem(archive)}.PKS`),bytes=fs.readFileSync(sourcePath);
     if(sha256(bytes)!==archives[archive])throw Error(`Changed original ${archive}.PKS`);
     const found=parseIpacActivityArchive(bytes).members.find(m=>m.name===name);
     if(!found)throw Error(`Missing ${archive}/${name}`);
-    members.push({name,sourcePath,sourceManifestPath:`disc3/SCENE/03/MFSY/${archive}.PKS`,archiveMember:name,sourceSha256:archives[archive],byteLength:found.bytes.length,sha256:sha256(found.bytes)});
+    members.push({name,sourcePath,sourceManifestPath:`disc3/SCENE/03/${archiveStem(archive)}.PKS`,archiveMember:name,sourceSha256:archives[archive],byteLength:found.bytes.length,sha256:sha256(found.bytes)});
     return name;
   };
   if(p.auth){
@@ -109,6 +124,7 @@ for(const p of selected){
     }
   }
   member(p.archive,p.motion);
+  for(const name of p.extraMembers||[])outputMembers.push(member(p.archive,name));
   if(p.assetOnly){
     // ALP_PAY has salary motions, but no AUTH film. Preserve those originals
     // without fabricating a native activity; Yarn owns the authored handover.
@@ -124,7 +140,7 @@ for(const p of selected){
     continue;
   }
   const texture=(archive,hash,filename)=>{
-    const bytes=fs.readFileSync(path.join(source,`MFSY/${archive}.PKF`));
+    const bytes=fs.readFileSync(path.join(source,`${archiveStem(archive)}.PKF`));
     if(sha256(bytes)!==hash)throw Error(`Changed original ${archive}.PKF`);
     const assetPath=`${prefix}/${filename}`;
     generatedAssets.push({assetPath,bytes:extractNativeTexnPack(bytes,`${archive}.PKF`).bytes});return assetPath;
@@ -141,7 +157,7 @@ for(const p of selected){
   if(p.actorModels){
     const textureAssetPath=texture(p.archive,p.actorTextureHash,"character-textures.bin");
     for(const [tag,[label,code]]of Object.entries(p.actorModels)){
-      if(!p.actors.includes(tag))throw Error(`Unused package actor ${p.id}/${tag}`);
+      if(!p.actors.includes(tag)&&!p.stagingActors?.includes(tag))throw Error(`Unused package actor ${p.id}/${tag}`);
       outputMembers.push(member(p.archive,`${code}.CHRM`));
       packageActors[tag]={label,modelCode:code,browserFilename:`${code}.CHRM`,assetFormat:"MT5",characterScale:1,
         assetPath:`${prefix}/${code}.CHRM`,textureAssetPath,
@@ -172,7 +188,7 @@ for(const p of selected){
       ...(p.referenceActors?.includes(tag)?{referenceOnly:true}:{}),
       ...(p.authoredPropBindings?{sourceBinding:{kind:"authored-package-prop-association",evidence}}:{})};
   }
-  const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:p.archive,disc:3,sourceMembers:members,expectedMembers:members,
+  const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:p.resourceName||p.archive,disc:3,sourceMembers:members,expectedMembers:members,
     bindingEvidence:evidence,selectionRule:"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),...(p.silent?{}:{audioManifest:`${audioPrefix}/manifest.json`}),
     motionBanks:[{bank:p.bank??16,member:p.motion}],activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:p.auth,actors:p.actors,durationFrames:p.frames,

@@ -1,0 +1,728 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/019RN.AFS",
+      "sha256": "a7b214337ce9c402f5bda977813e1cd8bd6a284a1ffbdc90c5f307cce1ea72d2"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_QRENQ.SND",
+      "sha256": "e45706b0f968996730938ba1d78de4ab4119655a2ca059ed93a3f4afbe62d534"
+    },
+    "authManifest": "play/assets/harbor/goro-trap-aftermath/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-harbor-work.md"
+  },
+  "voices": [
+    {
+      "voiceId": "019RNA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SOUND/019RNA005.aiff",
+      "nativeMember": "019RNA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 14336,
+      "nativeSha256": "aceb917488de72e029e0ec102b2bfa6a7608f6bb5d3bc8c4a3d5b1892faab7fe",
+      "speakerId": "AKIR",
+      "sourceText": "You're gonna pay for beating up Goro!",
+      "displayText": "You're gonna pay for beating up Goro!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 30
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/goro-trap-aftermath/voice/019RNA005.wav",
+      "byteLength": 57132,
+      "sha256": "f28609d72b300e1cdd05d3ab80fdd8d2b3a80ddb536c6ea38130c351c8cd2038"
+    },
+    {
+      "voiceId": "019RNA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SOUND/019RNA006.aiff",
+      "nativeMember": "019RNA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 8192,
+      "nativeSha256": "271ee2d0607a4c5ab4fdcffb91251149481f1965ecc075a3a4ea9a78b29c8332",
+      "speakerId": "AKIR",
+      "sourceText": "What did you say?",
+      "displayText": "What did you say?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 25
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/goro-trap-aftermath/voice/019RNA006.wav",
+      "byteLength": 32556,
+      "sha256": "bdec89da2659503c99cdb41246600f239ef65740cd3bcdf394252f37e1389246"
+    },
+    {
+      "voiceId": "019RNA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SOUND/019RNA007.aiff",
+      "nativeMember": "019RNA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 4096,
+      "nativeSha256": "c09d2abfff45f16565e6fe623fa8317726b3c538f10bca7fdd6d9af8dc7d6cc1",
+      "speakerId": "AKIR",
+      "sourceText": "What?!",
+      "displayText": "What?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/goro-trap-aftermath/voice/019RNA007.wav",
+      "byteLength": 16172,
+      "sha256": "4d21485469f6a74f9b54bdc7a05646794775564f9143f55341a2677159226a4c"
+    },
+    {
+      "voiceId": "019RNA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SOUND/019RNA008.aiff",
+      "nativeMember": "019RNA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 6144,
+      "nativeSha256": "f8b3729d3f0cce1ab7f81f1c1ea94c3a056fc9684aee23b3ede58f8c76ec8ac3",
+      "speakerId": "AKIR",
+      "sourceText": "That's it!",
+      "displayText": "That's it!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/goro-trap-aftermath/voice/019RNA008.wav",
+      "byteLength": 24364,
+      "sha256": "4614139dd5ce16ae937b2f437bf150b4e1d0a8d0187a4f94534b2c55fb4f8560"
+    },
+    {
+      "voiceId": "019RNC005",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SOUND/019RNC005.aiff",
+      "nativeMember": "019RNC005.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 12288,
+      "nativeSha256": "b00c9cf1372e586906a59a5528e9418199537b872d7f0568898676c5b4864654",
+      "speakerId": "TONY",
+      "sourceText": "You his girlfriend?",
+      "displayText": "You his girlfriend?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/goro-trap-aftermath/voice/019RNC005.wav",
+      "byteLength": 48940,
+      "sha256": "bbd20b1d25d1080f8fe0237b0ee86f90f3d74372ca5e1b0ebcfbfdb8004d516b"
+    },
+    {
+      "voiceId": "019RNC006",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SOUND/019RNC006.aiff",
+      "nativeMember": "019RNC006.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 24576,
+      "nativeSha256": "9bb63244aa6c92833e1aeb5d84c3e06b4bfc41a66a7dbb77d965f88f83641e43",
+      "speakerId": "TONY",
+      "sourceText": "Best watch your back.＆Next time, it won't be just you!",
+      "displayText": "Best watch your back.\nNext time, it won't be just you!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/goro-trap-aftermath/voice/019RNC006.wav",
+      "byteLength": 98092,
+      "sha256": "2cfc6a21c683b355933e4cd8d67398bb1c82bc284c8f2a06088956abbc58f86b"
+    },
+    {
+      "voiceId": "019RNC007",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SOUND/019RNC007.aiff",
+      "nativeMember": "019RNC007.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 32768,
+      "nativeSha256": "2baba564b45e81759a63ccf6202d11130a12974a48f53cfdc77dd567e2ff12fb",
+      "speakerId": "TONY",
+      "sourceText": "We're gonna go after your family＆and friends. Gonna get 'em.",
+      "displayText": "We're gonna go after your family\nand friends. Gonna get 'em.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 25
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          }
+        ]
+      },
+      "asset": "public/audio/world/goro-trap-aftermath/voice/019RNC007.wav",
+      "byteLength": 130860,
+      "sha256": "92679b009ca4f610979e3741dd0eacbe7526d0cbdcc87893b2fa512537df4f68"
+    },
+    {
+      "voiceId": "019RNC008",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SOUND/019RNC008.aiff",
+      "nativeMember": "019RNC008.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 4096,
+      "nativeSha256": "b8dfa2ece974ca1d0b0909f2749fc87098fd91bc2be390e3a05197664ac5615d",
+      "speakerId": "TONY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/goro-trap-aftermath/voice/019RNC008.wav",
+      "byteLength": 16172,
+      "sha256": "8bc4f18c75bdcfd45c78de47b01d1ae185e2828a5b840d021483848b859cfbd8"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SE/cloths2/cloths02.aiff",
+      "playbackId": 0,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/goro-trap-aftermath/sfx/a9040000.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SE/creakse/Creak.aiff",
+      "playbackId": 1,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/goro-trap-aftermath/sfx/a9040100.wav",
+      "byteLength": 18708,
+      "sha256": "f4682a036304d581c800f048247030f51ce1e64ebf30c9a84800c04c4cfb846d"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SE/cloths2/friction4.aiff",
+      "playbackId": 2,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/goro-trap-aftermath/sfx/a9040200.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 4,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/goro-trap-aftermath/sfx/a9040400.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SE/body/gomi1.aiff",
+      "playbackId": 5,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/goro-trap-aftermath/sfx/a9040500.wav",
+      "byteLength": 13308,
+      "sha256": "b60797f12d0f0dcc6696c536848d0b7b3f1c114502d208f8919436c8d58fe812"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SE/swing/swing04.aiff",
+      "playbackId": 8,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/goro-trap-aftermath/sfx/a9040800.wav",
+      "byteLength": 18884,
+      "sha256": "f3ec04b6eca88d8d2f827b545042f3b7eee8ca35411dfb6fab8b7c13e4e1816c"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BEDA/SE/punch/punch5.aiff",
+      "playbackId": 17,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/goro-trap-aftermath/sfx/a9041200.wav",
+      "byteLength": 16124,
+      "sha256": "a4aa628f27dc444367018d06688bb369ef2fa907d2bd6f241e292ea98b3ac405"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SE/foot/sneaker1.aiff",
+      "playbackId": 18,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/goro-trap-aftermath/sfx/a9041300.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9041400",
+      "sourcePath": "/p16/prj16m5/AUTH01/019RN/SE/foot/sneaker5.aiff",
+      "playbackId": 19,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/goro-trap-aftermath/sfx/a9041400.wav",
+      "byteLength": 10804,
+      "sha256": "0334446f014be77a677e0e4e97f7e1604c7dc5b356bef53103d39acc9081f9e1"
+    }
+  ]
+}

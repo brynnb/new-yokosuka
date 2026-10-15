@@ -52,6 +52,17 @@ async function main() {
     manifest.assets = Object.fromEntries(Object.entries(manifest.assets).sort(([a], [b]) => a.localeCompare(b, "en")));
     fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
     console.log(`Updated ${selected.length} runtime asset records`);
+  } else if (command === "remove") {
+    // Explicit manifest cleanup after a producer retires an output. This
+    // never deletes local bytes or remotely published immutable objects.
+    if (!files.length) throw new Error("remove requires explicit source paths");
+    for (const file of files) {
+      validateSourcePath(file);
+      if (!manifest.assets[file]) throw new Error(`Unregistered runtime asset: ${file}`);
+    }
+    for (const file of files) delete manifest.assets[file];
+    fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+    console.log(`Removed ${files.length} runtime asset records; no files deleted`);
   } else if (command === "verify-local") {
     console.log(`Verified ${buildRuntimePlan().length} local runtime assets`);
   } else if (command === "restore") {
@@ -84,7 +95,7 @@ async function main() {
       }
     }));
     console.log(`Restored/verified ${entries.length} runtime assets`);
-  } else throw new Error("Usage: node tools/runtime-assets.mjs <update [source-path ...]|verify-local|restore>");
+  } else throw new Error("Usage: node tools/runtime-assets.mjs <update [source-path ...]|remove source-path ...|verify-local|restore>");
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

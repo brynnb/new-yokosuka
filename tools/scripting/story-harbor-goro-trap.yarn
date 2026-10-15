@@ -1,0 +1,141 @@
+-> Help Goro
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+===
+title: Intro
+---
+<<play_sequence "s1.mfsy.goro-trap.intro.start">>
+{{voice:019RNA001}}
+{{voice:019RNB002}}
+{{voice:019RNB003}}
+{{voice:019RNC001}}
+{{voice:019RNA002}}
+{{voice:019RNA004}}
+<<jump Beat1>>
+===
+title: Beat1
+---
+<<play_sequence "s1.mfsy.goro-trap.a.prompt.start">>
+<<start_challenge "s1.mfsy.goro-trap.b">>
+<<if challenge_result("s1.mfsy.goro-trap.b") != "success">>
+<<play_sequence "s1.mfsy.goro-trap.a.failure.start">>
+<<play_sequence "s1.mfsy.goro-trap.a.failure.finish">>
+Ryo Hazuki: I could not get through their trap. Try again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<play_sequence "s1.mfsy.goro-trap.a.success.start">>
+<<jump Beat2>>
+<<endif>>
+===
+title: Beat2
+---
+<<play_sequence "s1.mfsy.goro-trap.b.prompt.start">>
+<<start_challenge "s1.mfsy.goro-trap.a">>
+<<if challenge_result("s1.mfsy.goro-trap.a") != "success">>
+<<play_sequence "s1.mfsy.goro-trap.b.failure.start">>
+<<play_sequence "s1.mfsy.goro-trap.b.failure.finish">>
+Ryo Hazuki: I could not get through their trap. Try again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<play_sequence "s1.mfsy.goro-trap.b.success.start">>
+<<jump Beat3>>
+<<endif>>
+===
+title: Beat3
+---
+<<play_sequence "s1.mfsy.goro-trap.c.prompt.start">>
+<<start_challenge "s1.mfsy.goro-trap.b">>
+<<if challenge_result("s1.mfsy.goro-trap.b") != "success">>
+<<play_sequence "s1.mfsy.goro-trap.c.failure.start">>
+<<play_sequence "s1.mfsy.goro-trap.c.failure.finish">>
+Ryo Hazuki: I could not get through their trap. Try again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<play_sequence "s1.mfsy.goro-trap.c.success.start">>
+<<jump Beat4>>
+<<endif>>
+===
+title: Beat4
+---
+<<play_sequence "s1.mfsy.goro-trap.d.prompt.start">>
+<<start_challenge "s1.mfsy.goro-trap.a">>
+<<if challenge_result("s1.mfsy.goro-trap.a") != "success">>
+<<play_sequence "s1.mfsy.goro-trap.d.failure.start">>
+<<play_sequence "s1.mfsy.goro-trap.d.failure.finish">>
+Ryo Hazuki: I could not get through their trap. Try again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<play_sequence "s1.mfsy.goro-trap.d.success.start">>
+<<jump Beat5>>
+<<endif>>
+===
+title: Beat5
+---
+<<play_sequence "s1.mfsy.goro-trap.e.prompt.start">>
+<<start_challenge "s1.mfsy.goro-trap.a">>
+<<if challenge_result("s1.mfsy.goro-trap.a") != "success">>
+<<play_sequence "s1.mfsy.goro-trap.e.failure.start">>
+<<play_sequence "s1.mfsy.goro-trap.e.failure.finish">>
+Ryo Hazuki: I could not get through their trap. Try again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<play_sequence "s1.mfsy.goro-trap.e.success.start">>
+<<jump Beat6>>
+<<endif>>
+===
+title: Beat6
+---
+<<play_sequence "s1.mfsy.goro-trap.f.prompt.start">>
+<<start_challenge "s1.mfsy.goro-trap.b">>
+<<if challenge_result("s1.mfsy.goro-trap.b") != "success">>
+<<play_sequence "s1.mfsy.goro-trap.f.failure.start">>
+<<play_sequence "s1.mfsy.goro-trap.f.failure.finish">>
+Ryo Hazuki: I could not get through their trap. Try again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<play_sequence "s1.mfsy.goro-trap.f.success.start">>
+<<jump Beat7>>
+<<endif>>
+===
+title: Beat7
+---
+<<play_sequence "s1.mfsy.goro-trap.gh.prompt.start">>
+<<start_challenge "s1.mfsy.goro-trap.finisher">>
+<<if challenge_result("s1.mfsy.goro-trap.finisher") != "success">>
+<<play_sequence "s1.mfsy.goro-trap.gh.failure.start">>
+<<play_sequence "s1.mfsy.goro-trap.gh.failure.finish">>
+Ryo Hazuki: I could not get through their trap. Try again? #speaker:AKIR
+-> Try again
+    <<jump Intro>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<play_sequence "s1.mfsy.goro-trap.gh.success.start">>
+<<play_sequence "s1.mfsy.goro-trap.gh.success.finish">>
+<<start_activity "s1.mfsy.goro-trap-aftermath.scene">>
+{{effects}}
+<<jump Done>>
+<<endif>>
+===
+title: Done
+---
+<<complete>>

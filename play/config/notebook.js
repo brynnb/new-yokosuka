@@ -161,6 +161,10 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.workday-four-race",page:Object.freeze({id:"story-workday-four-race",text:"Finished the fourth morning's forklift race.\n\nToday's job is eight crates from Warehouse No. 15 to Warehouse No. 18."})},
   {flag:"notebook.s1.workday-four-lunch",page:Object.freeze({id:"story-workday-four-lunch",text:"Delivered the morning batch and had lunch with the other workers.\n\nAsk around about the Mad Angels before returning to the afternoon deliveries."})},
   {flag:"notebook.s1.harbor-spying",page:Object.freeze({id:"story-harbor-spying",text:"Tsuyoshi feels someone is watching the workers.\nHe saw someone spying on me, too.\n\nThat might make the Mad Angels easier to find.\nBack to work at 2 p.m."})},
+  {flag:"notebook.s1.goro-trap",page:Object.freeze({id:"story-goro-trap",text:"The Mad Angels attacked Goro and led me into a trap near Warehouse No. 13.\n\nThey threatened my family and friends.\nFinish today's deliveries, but keep my guard up."})},
+  {flag:"notebook.s1.workday-four-quota",page:Object.freeze({id:"story-workday-four-quota",text:"Finished the fourth day's eight-crate quota.\n\nCollect my wages from Yada-san at Alpha Trading."})},
+  {flag:"notebook.s1.fourth-payday",page:Object.freeze({id:"story-fourth-payday",text:"Collected my fourth day's wages.\n\nSpeak with Mark beside the harbor about the Mad Angels' trade."})},
+  {flag:"notebook.s1.long-zha",page:Object.freeze({id:"story-long-zha",text:"Mark overheard the words Long Zha.\n\nSome kind of Mad Angels black-market deal.\nThey have been on edge, and it sounds like the deal is soon.\nWhen will it happen?"})},
 ]);
 
 export function notebookPagesForCharacter(character) {

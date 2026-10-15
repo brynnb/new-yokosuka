@@ -25,13 +25,13 @@ const modelInventory = JSON.parse(fs.readFileSync(
   "utf8",
 ));
 
-async function loadGpuCharacter(scene, filename) {
+async function loadGpuCharacter(scene, filename, directory="play/assets/characters") {
   const loader = new Mt5Loader(scene, {
     characterRigMode: "gpu",
     mirrorCharacterX: true,
     backFaceCulling: false,
   });
-  const bytes = fs.readFileSync(`play/assets/characters/${filename}`);
+  const bytes = fs.readFileSync(`${directory}/${filename}`);
   const [renderRoot] = await loader.load(bytes.buffer.slice(
     bytes.byteOffset,
     bytes.byteOffset + bytes.byteLength,
@@ -191,6 +191,22 @@ function assertNestedValuesApproximatelyEqual(actual, expected, epsilon = 1e-6) 
     }
   }
 }
+
+test("archive-owned YKB lining keeps authored opposing hemispheres without a corpus-angle cutoff",async()=>{
+  const engine=new BABYLON.NullEngine({renderWidth:1,renderHeight:1}),scene=new BABYLON.Scene(engine);
+  try{
+    const {model}=await loadGpuCharacter(scene,"YKB_M.CHRM","play/assets/harbor/goro-trap-aftermath");
+    const state=new NativeClothModelState(model);assert.equal(state.groups.length,2);
+    const group=state.groups[0],node=group.group.controlNode,lining=group.group.renderNode;
+    const i=group.topology.sourceVertexOrder.indexOf(6),control=model.loader.globalVertices[node.model.vertexBase+6],render=model.loader.globalVertices[lining.model.vertexBase+group.topology.latticeToRenderVertexMap[i]];
+    const dot=control.sourceNorm.reduce((s,v,k)=>s+v*render.sourceNorm[k],0)/(Math.hypot(...control.sourceNorm)*Math.hypot(...render.sourceNorm));
+    assert.ok(dot>-.84&&dot<-.83);assert.ok(Math.hypot(...control.sourcePos.map((v,k)=>v-render.sourcePos[k]))<.000004);
+    const original=render.sourceNorm;
+    render.sourceNorm=[...control.sourceNorm];assert.throws(()=>new NativeClothModelState(model),/lining normal is not opposed/);
+    render.sourceNorm=[0,0,0];assert.throws(()=>new NativeClothModelState(model),/lining normal is not opposed/);
+    render.sourceNorm=original;
+  }finally{scene.dispose();engine.dispose();}
+});
 
 test("native cloth owns only paired outputs and restores their GPU state", async () => {
   const engine = new BABYLON.NullEngine({ renderWidth: 1, renderHeight: 1 });

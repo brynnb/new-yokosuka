@@ -773,8 +773,8 @@ These ordinary Yarn events continue the acknowledged Charlie chapter. The
 GameSpot guide, printed pp. 58–59, places the Lan Di dream before the next
 morning's forklift race, eight-crate Warehouse No. 15-to-18 shift and lunch.
 The current implementation connects through that morning batch and the
-separately saved lunch inquiry below. The Goro trap and remaining fourth-day
-outcomes are separate work.
+separately saved lunch inquiry, afternoon Goro trap, quota, wages and Mark
+explanation below. Each retains its own acknowledged outcome.
 
 | Event | Eligibility / presentation | Saved outcome |
 | --- | --- | --- |
@@ -826,9 +826,9 @@ replayed the dream nor injected a result. The browser checks BGM201 selection,
 not an auditory mix comparison; exact lighting, hand and facial fidelity remain
 unverified. No new asset export, push or deployment was performed.
 
-Next: afternoon cargo/Goro trap, once-only payday and Mark's Long Zha
-explanation. These must remain separate from the morning and warning receipts,
-followed by the fifth workday and finale.
+The continuation below connects afternoon cargo/Goro trap, once-only payday
+and Mark's Long Zha explanation, separately from the morning and warning
+receipts. The fifth workday and finale remain next.
 
 ## Fourth-day coworker warning
 
@@ -865,5 +865,102 @@ Ryo and Tsuyoshi facing one another and passes saved reload, with ¥17,436 and
 unchanged inventory. PostgreSQL confirms only the warning/notebook were added;
 no fourth-day wage, Long Zha or whole-day completion. All six new voice files
 (68,135 bytes) pass immutable hash/size verification; audio was not compared by
-listening. Afternoon/Goro/payday/Long Zha remain the next unimplemented
-connected events. No push, deployment or asset publication was performed.
+listening. The afternoon continuation is described below. No push, deployment
+or asset publication was performed.
+
+## Fourth afternoon: Goro's trap and Long Zha
+
+Four ordinary Yarn records continue the earned lunch warning. Contemporary
+GameSpot guide p. 59 establishes the Goro encounter near Warehouse No. 13,
+the nine inputs, continued deliveries, separate payday and Mark's explanation.
+No native controller, original patrol or new quest engine is required.
+
+| Event | Prerequisites / presentation | Atomic outcome |
+| --- | --- | --- |
+| `goro-trap` | Morning cargo and spying warning; Warehouse13-area approach 14:00–17:00, explicit help/leave choice. Original 019RN Goro/Tony dialogue, real B,A,B,A,A,B,Left,Down,A inputs, original paired success/failure motions, then the original MB9Q ending. | Only acknowledged victory ending saves trap/notebook. Failed input/timeout retries the whole trap with fresh tokens; cancelled presentation grants nothing. No wages, cargo credit or completed day. |
+| `workday-four-afternoon` | Saved morning and trap; loading approach 14:00–17:00. Four newly observed physical forklift deliveries. | Acknowledged quota saves its receipt/notebook and minimum17:00. The earlier morning deliveries and QTE cannot substitute for these crates. |
+| `workday-four-payday` | Morning, trap and afternoon complete; tested Alpha entrance after17:00. Reuse original salary motions and explicit collection. | Exactly ¥2,400 once, payroll day and notebook together. Base300-per-crate remains the adaptation used by preceding workdays; optional overtime/raises are not implemented. |
+| `mark-long-zha` | Saved fourth wages; harbor-side approach after17:00, around original Ryo [13.121,0,70.779]. Original RYUSATSU/01MKJ actors, motion, camera, seven voices and twelve effects. | Acknowledged explanation saves Long Zha notebook, fourth-day completion and finished date. It cannot pay wages again, award an item or start the fifth day. |
+
+### Original resources and authored choices
+
+`MB9Q/MPK00.PKS` SHA256:
+`70a419eb5544dade0c62f3b2ca0a8d747eaf79e11e9df5c467b728d753b22f7c`.
+Its M_MB9Q2 motion bank supplies six individual Ryo/attacker action pairs and
+the final two-attacker GH family. The final Left/Down/A prompts therefore lead
+to one GH action, not three repeats of the same clip. Original M_019RN and
+SEQDATA1 supply the 880-frame threats ending. Its 019RN stream explicitly
+mentions Goro's beating and threats against Ryo's family and friends. The
+original room's literal resource strings identify A1_QRENQ.SND; all eight
+ending voices and nine effects resolve from those pinned sources.
+
+The shared harbor asset builder exports those originals. A deterministic
+`build_harbor_goro_trap.mjs` translates seven motion families into ordinary
+tableaux and Yarn, retaining one actor/camera lease. The shared staging runtime
+now honors explicit `presented:true` as well as `false` on retained beats,
+allowing the next attacker to appear without reacquiring the cast. The two-second
+server input windows, outdoor formation, model-to-fighter assignments, held
+Goro introduction and camera are declared adaptations. Original paired-clip
+durations drive the action beats; animation completion never supplies an input.
+The last pair borrows the original Tony/Smith bodies. YKB_M is Ryo's reference
+body, not an attacker; exact native role-to-body assignment is not claimed.
+There is no newly recovered fight-music selection, forced weather, scene prop
+or exact injury/gesture choreography.
+
+`RYUSATSU.PKS` SHA256:
+`385fd95a064964da1723afade848a3673e5632d56c1536460df9be7acd03686c`.
+Its 1,000-frame film and 01MKJ speech confirm Mark's explanation. Preserve his
+original cinematic Y offset rather than assuming an off-ground pose is a bad
+arrival. The trigger uses grounded Ryo; presentation returns to the approach
+and restores the saved camera/controls. Existing personal weather and shared
+audio policy are retained, without claiming recovered original BGM selection.
+Optional waterfront Tony/Smith and guard/cafeteria follow-ups remain separate
+content, not facts silently unlocked by Mark's first explanation.
+
+### Verification boundary
+
+Real compiler/engine tests cover nine accepted inputs, wrong/late final input,
+stale tokens, explicit decline, cancelled introduction/motion/ending, and only
+the permitted trap effects. Existing observed-delivery and payday cases now
+include the fourth afternoon and reject missing trap/quota or cancelled
+acknowledgement. Mark's film cannot finish the day before saved wages and its
+own acknowledgement. Related Go packages pass sequentially.
+
+Rendered verification uses `NEW_YOKOSUKA_FOURTH_AFTERNOON_E2E=true` with the
+existing isolated earned-save harness. It resumes the lunch warning, not a
+replayed race/morning. The initial startup check caught a duplicate Tony
+definition; the generator now reuses his established identity, verified against
+the byte-identical original body, without weakening the conflict guard.
+Captures led to reframing Goro and correcting the last fighter pair instead of
+mistaking the archive's Ryo reference body for an enemy. State outcomes and
+corrected visual acceptance are recorded separately below.
+
+One original reference coat exposed a too-strict cloth invariant: MB9Q's
+YKB_M paired vertices coincide within 0.000004, but their authored normals reach
+dot -0.8360 rather than the previously scanned corpus's -0.9313. The shared
+guard now requires finite, opposite-hemisphere normals, not near-exact
+negation. An original-model regression test still rejects same-facing and
+zero-length normals. This fix is retained independently of which fighters
+are cast in the authored scene.
+
+The earned-save continuation reaches the saved fourth-day ending: all nine
+inputs and natural original threats film, four actual dispatch deliveries,
+salary cancellation/retry and final acknowledgement, Mark cancellation/retry
+and natural explanation, then reload without another wage or film. PostgreSQL
+confirms ¥19,836, unchanged inventory, personal 1986-12-29, the trap/quota/payday/
+Long Zha flags and fourth-day completion. A pickup attempt that did not acquire
+real fork support saved no cargo outcome; the next ordinary attempt completed
+all four crates without injected poses, credit or a changed assertion. Mark's
+first test approach was over water and invoked normal fall recovery to
+[53,0,36.53]; the corrected check walks along the quay from [18,0,70.8]. No
+application collision or recovery behavior was changed for the test.
+
+The original Mark capture shows both actors with the native close camera; the
+original threats capture and first/final paired motions were inspected. A
+separate copy of the genuine pre-trap save is used to revalidate the corrected
+Tony/Smith final pair: the full nine-input path and inspected final-pair capture
+pass, then ending cancellation saves nothing. The actual earned database and
+backups remain preserved. Related Go packages and 72 focused client checks pass, with
+tests/browsers run sequentially. Voice/effect assets pass immutable local
+hash/size verification; the audio mix was not compared by listening. No push,
+deployment or R2 publication was performed.

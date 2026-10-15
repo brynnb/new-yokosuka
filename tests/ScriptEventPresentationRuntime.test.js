@@ -63,6 +63,19 @@ test("Nozomi's photo films retain original timing/cast without owning choice or 
   }
 });
 
+test("Goro's trap borrows original films and fighters, not the archive's Ryo reference body",()=>{
+  const intro=authoredScenes.scenes.find(s=>s.id==="s1.mfsy.goro-trap.intro");
+  assert.equal(intro.actorDefinitions.find(d=>d.actorCode==="BKG_").modelCode,"GIJ_M");
+  assert.equal(intro.actorDefinitions.find(d=>d.actorCode==="BKH_").modelCode,"GIB_M");
+  assert.ok(intro.actorDefinitions.every(d=>d.modelCode!=="YKB_M"));
+  for(const [id,activityId,frames]of [["goro-trap-aftermath","MB9Q/SEQDATA1.AUTH",880],["mark-long-zha","RYUSATSU/SEQDATA1.AUTH",1000]]){
+    const activity=createScriptEventPresentationCatalog().activity(`s1.mfsy.${id}.scene`),manifest=JSON.parse(readFileSync(new URL(`../play/assets/harbor/${id}/manifest.json`,import.meta.url)));
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.activity.binding.activityId,activityId);assert.equal(manifest.activities[0].durationFrames,frames);
+    assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  }
+});
+
 test("coworker lunch borrows the original silent film without owning the batch result",()=>{
   const activity=createScriptEventPresentationCatalog().activity("s1.mfsy.workday-lunch.scene");
   const manifest=JSON.parse(readFileSync(new URL("../play/assets/harbor/workday-lunch/manifest.json",import.meta.url)));

@@ -1,0 +1,152 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA1.AUTH",
+        "path": "disc3/SCENE/03/MFSY/RYUSATSU.PKS",
+        "sourceSha256": "385fd95a064964da1723afade848a3673e5632d56c1536460df9be7acd03686c",
+        "archiveMember": "SEQDATA1.AUTH",
+        "byteLength": 6420,
+        "sha256": "3427528e60c11006037fb1b00e16b9550106e6425d13c4e9f3ee36929956c006"
+      },
+      {
+        "name": "M_01MKJ.MOTN",
+        "path": "disc3/SCENE/03/MFSY/RYUSATSU.PKS",
+        "sourceSha256": "385fd95a064964da1723afade848a3673e5632d56c1536460df9be7acd03686c",
+        "archiveMember": "M_01MKJ.MOTN",
+        "byteLength": 41452,
+        "sha256": "0ebccc6bb3ecd52acaa8ebd39878ef2c5f2ee00cf33cc0866e39c1459f3f91be"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-harbor-work.md",
+    "resourceName": "RYUSATSU",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/mark-long-zha/manifest.json",
+  "sceneObjects": {},
+  "packageActors": {
+    "MARK": {
+      "label": "Mark Kimberly",
+      "modelCode": "GIC_L",
+      "browserFilename": "GIC_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/GIC_L.CHRM",
+      "textureAssetPath": "play/assets/characters/GIC_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "MARK"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/mark-long-zha/M_01MKJ.MOTN",
+      "byteLength": 41452,
+      "sha256": "0ebccc6bb3ecd52acaa8ebd39878ef2c5f2ee00cf33cc0866e39c1459f3f91be"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/mark-long-zha/M_01MKJ.MOTN",
+      "byteLength": 41452,
+      "sha256": "0ebccc6bb3ecd52acaa8ebd39878ef2c5f2ee00cf33cc0866e39c1459f3f91be"
+    },
+    {
+      "path": "play/assets/harbor/mark-long-zha/SEQDATA1.AUTH",
+      "byteLength": 6420,
+      "sha256": "3427528e60c11006037fb1b00e16b9550106e6425d13c4e9f3ee36929956c006"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "RYUSATSU/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 6420,
+      "sha256": "3427528e60c11006037fb1b00e16b9550106e6425d13c4e9f3ee36929956c006",
+      "durationFrames": 1000,
+      "durationSeconds": 33.349998474121094,
+      "frameCount": 36,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 6,
+        "effect": 11,
+        "sound": 16,
+        "voice": 7
+      },
+      "actors": [
+        "AKIR",
+        "MARK"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT1_OSIE_RYUUSATU_JOUHOU_0100",
+          "startFrame": 1,
+          "endFrame": 270
+        },
+        {
+          "actorTag": "MARK",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "OTH_MRK_AT1_OSIE_RYUUSATU_JOUHOU_0100",
+          "startFrame": 50,
+          "endFrame": 149
+        },
+        {
+          "actorTag": "MARK",
+          "frame": 101,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "OTH_MRK_AT1_OSIE_RYUUSATU_JOUHOU_0100",
+          "startFrame": 175,
+          "endFrame": 588
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 271,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT1_OSIE_RYUUSATU_JOUHOU_0100",
+          "startFrame": 100,
+          "endFrame": 299
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 471,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT1_OSIE_RYUUSATU_JOUHOU_0100",
+          "startFrame": 337,
+          "endFrame": 817
+        },
+        {
+          "actorTag": "MARK",
+          "frame": 516,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "OTH_MRK_AT1_OSIE_RYUUSATU_JOUHOU_0100",
+          "startFrame": 445,
+          "endFrame": 930
+        }
+      ]
+    }
+  ]
+}
