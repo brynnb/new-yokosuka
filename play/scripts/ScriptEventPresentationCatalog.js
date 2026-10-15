@@ -37,7 +37,8 @@ const ACTIVITIES = new Map([
     cutscene:{id:"story-s1-chicken-race-intro",packageId:"chicken-race",worldId:"mfsy",storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"RACE/SEQDATA1.AUTH"}}}}],
   ...[["goro-job-lead","GOROCOOP/SEQDATA1.AUTH"],["goro-job-appointment","MGOR/SEQDATA0.AUTH"],
-    ["yada-job-interview","MARU/SEQDATA0.AUTH"],["mark-job-introduction","MARU/SEQDATA1.AUTH"]].map(([part,activityId])=>[`s1.mfsy.${part}.scene`,{
+    ["yada-job-interview","MARU/SEQDATA0.AUTH"],["mark-job-introduction","MARU/SEQDATA1.AUTH"],
+    ["mark-lunch-intro","MIZUMARK/SEQDATA1.AUTH"],["mark-lunch-aftermath","MIZUMARK/SEQDATA2.AUTH"]].map(([part,activityId])=>[`s1.mfsy.${part}.scene`,{
     kind:"native-cutscene",area:"MFSY",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-${part}`,packageId:part,worldId:"mfsy",storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId}}},

@@ -76,8 +76,9 @@ pass 56 checks, including failure/cancellation cleanup for the reused room lease
 Forklift training now passes the connected three-delivery browser check,
 including cancellation/retry, saved completion, controls and reload.
 The subsequent evening chicken race is also connected and browser-verified.
-The following morning's three-lap race is also connected and browser-verified.
-Paid crate quotas and later Mad Angels encounters remain missing. Existing
+The following morning's three-lap race and five-crate first batch are connected
+and browser-verified, as is Mark's noon rescue. The afternoon quota, payday and
+later Mad Angels encounters remain missing. Existing
 forklift driving, cargo and racing must be reused; neither film completion
 nor a client-reported win may grant a shift's salary or story outcome.
 
@@ -263,3 +264,75 @@ Use `NEW_YOKOSUKA_MORNING_RACE_E2E=true` with the earned-save harness and
 `tools/evidence/ma00-forklift-race-course.json`. Use
 `NEW_YOKOSUKA_MORNING_RACE_RELOAD_E2E=true` only with an already earned race
 checkpoint; it checks reconnect without repeating the eleven-minute drive.
+
+## First morning cargo batch
+
+`workday-one-morning` requires the earned race and a 09:00–12:00 approach to
+the same loading corridor. An unvoiced briefing explicitly explains that five
+crates are dispatched here before lunch, another five remain for the afternoon,
+and wages come later. This is a declared outdoor loading-pad adaptation of the
+original Warehouse No. 18 job, not a reconstructed warehouse interior.
+
+The existing observed delivery challenge requires five actual lift/carry/drop
+deliveries. The shared Yarn batch template presents a completion caption before
+atomically saving the morning milestone, notebook and noon personal clock.
+Cancellation before that acknowledgement settles nothing. No wages, quota bonus,
+fight result or full-workday completion is granted. A failed batch can be tried
+again in a later morning window rather than forcing the original workday controller.
+
+The connected hardware-rendered check resumes the genuine race-earned save,
+declines, cancels/retries and physically delivers all five crates using normal
+keyboard input and Havok cargo. It checks that the unacknowledged ending has no
+effects, then verifies noon, the saved note, unchanged inventory/yen, restored
+controls and reload without another batch. Run
+`NEW_YOKOSUKA_MORNING_CARGO_E2E=true` against the isolated earned checkpoint.
+Compiler tests cover the real generated Yarn, missing race, hours, partial
+delivery counts, driving/ending cancellation and the three atomic effects.
+
+## Mark at lunch: presentation assets
+
+The next workday encounter borrows Disc 3 `MFSY/MIZUMARK.PKS` (SHA256
+`6a1cd83fe0df231e4faa6294a5436aa2175c309815fd864a0603ffc2a085c08f`).
+`SEQDATA1.AUTH` contains the confrontation; `SEQDATA2.AUTH` supplies the
+aftermath. Both use the original `M_01MAD.MOTN`, `STREAM/01MAD.AFS` voices
+and `SOUND/A1_MAD.SND` effects. The existing original actor catalog binds
+Mark to `GIC_L`, Shingo Murasaki to `PPL_L` and Minoru Okayasu to `OKA_L`.
+The introduction's `BENB` prop is provisionally associated with the archive's
+`BNMS301G.CHRM`; its visible identity still needs a rendered check.
+
+The introduction requests sound command `a9041500`, path
+`/p16/prj16m5/AUTH01/01MAD/SE/body/ikepocha.aiff`. The pinned original
+`A1_MAD.SND` contains only `a9040000` through `a9041400` (SHA256
+`b76ce9d7ad7f386a45001adcbf12a855718b0254ca72475dfdec78c4bfb38890`).
+Keep this exact absent reference explicitly unavailable in the audio manifest;
+do not invent a substitute. Other available voices/effects use their exact
+source identities. These are asset-preparation facts, not proof of a playable
+paid shift or a won fight.
+
+### Connected noon rescue
+
+`mark-lunch-rescue` requires the saved morning batch and a 12:00–14:00
+approach around the original Mark/Ryo scene positions. Its original introduction
+leads to the existing server-controlled combat system. Only a genuine victory
+can play the original aftermath and atomically save the rescue and Chen/Mad
+Angels notebook clue. A defeated or timed-out fight offers retry/leave; cancelling
+the introduction, fight or aftermath grants nothing. No wages, afternoon outcome,
+item or calendar jump belongs to this encounter. Saved completion prevents replay.
+
+The guide specifies three opponents. MRSK and OKYS reuse their existing original
+model bindings and the aftermath's original positions. The third fighter is
+explicitly anonymous (`THG3`), borrowing the existing `KMD_L` thug model and an
+authored nearby position. This does not identify the original third fighter.
+Shared combat moves, basic AI, health/balance and arena bounds are adaptations.
+Uncontrolled ambient harbor bystanders can still appear in the original shots;
+their cinematic choreography and the precise bento prop identity remain unverified.
+
+The connected hardware-rendered check resumes the earned five-crate checkpoint,
+walks into the approach, cancels/retries the original film, lets it finish
+naturally, wins using normal keyboard movement/guard/kicks, and lets the
+aftermath finish naturally. It verifies the saved clue, unchanged yen/inventory,
+restored controls and reload without replay. Run `NEW_YOKOSUKA_MARK_LUNCH_E2E=true`
+with the earned-save harness. Real compiler/simulation tests cover missing
+prerequisites, hours, actual victory/defeat, timeout/retry and cancellation before
+the final acknowledgement. No fight outcome or future flags are injected into
+the connected save.

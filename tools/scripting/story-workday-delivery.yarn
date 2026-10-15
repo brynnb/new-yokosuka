@@ -1,0 +1,24 @@
+Ryo Hazuki: {{text:briefing}} #speaker:AKIR
+-> Start the deliveries
+    <<jump Attempt>>
+-> Leave it for now
+    <<jump Done>>
+===
+title: Attempt
+---
+<<start_challenge "{{challenge}}">>
+<<if challenge_result("{{challenge}}") == "success">>
+Ryo Hazuki: {{text:success}} #speaker:AKIR
+<<advance_story_time "{{timeTransition}}">>
+{{effects}}
+<<jump Done>>
+<<else>>
+-> Try again
+    <<jump Attempt>>
+-> Leave it for now
+    <<jump Done>>
+<<endif>>
+===
+title: Done
+---
+<<complete>>

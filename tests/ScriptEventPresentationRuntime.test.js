@@ -24,6 +24,22 @@ function command(name, ...values) {
   };
 }
 
+test("Mark's lunch films retain original bindings and cannot settle the rescue themselves",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  for(const [part,resource] of [["intro","SEQDATA1.AUTH"],["aftermath","SEQDATA2.AUTH"]]){
+    const activity=catalog.activity(`s1.mfsy.mark-lunch-${part}.scene`);
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.activity.binding.activityId,`MIZUMARK/${resource}`);
+    const manifest=JSON.parse(readFileSync(new URL(`../play/assets/harbor/mark-lunch-${part}/manifest.json`,import.meta.url)));
+    assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+    assert.equal(manifest.packageActors.MARK.modelCode,"GIC_L");
+    assert.equal(manifest.packageActors.MRSK.modelCode,"PPL_L");assert.equal(manifest.packageActors.OKYS.modelCode,"OKA_L");
+  }
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/mark-lunch-intro/manifest.json",import.meta.url)));
+  const missing=audio.sounds.filter(s=>s.unavailable);
+  assert.equal(missing.length,1);assert.equal(missing[0].commandHex,"a9041500");assert.match(missing[0].sourcePath,/\/body\/ikepocha\.aiff$/);
+});
+
 test("Jimmy films retain exact source bindings and running beats form one continuous owned route",()=>{
   const catalog=createScriptEventPresentationCatalog();
   for(const [part,area,resource]of [["jimmy-knock","d000","CTERMO1/SEQDATA3.AUTH"],["jimmy-caught","d000","CTERMO1/SEQDATA1.AUTH"],["jimmy-escaped","d000","CTERMO1/SEQDATA2.AUTH"],["jimmy-interrogation","daza","A0174/A0174.AUTH"]]){

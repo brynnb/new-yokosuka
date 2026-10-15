@@ -1,6 +1,12 @@
 {
   "schema":"new-yokosuka-authored-story-combat-v1",
   "encounters":[{
+    "id":"s1.mfsy.mark-lunch","label":"Protect Mark","area":"MFSY","worldId":"mfsy",
+    "sourceScene":"s1.mfsy.mark-lunch-combat",
+    "provenance":"GameSpot printed p54: three-opponent noon rescue, retry until victorious, then Mark explains Chen/Mad Angels rivalry. Original MIZUMARK aftermath supplies Ryo/MRSK/OKYS placement; an anonymous third fighter borrows existing KMD_L rather than claiming an unrecovered identity. Shared moves/basic AI, health, speeds, arena bounds and third placement are adaptations. Film completion cannot win this fight.",
+    "health":{"AKIR":100,"MRSK":36,"OKYS":28,"THG3":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":3,"timeoutMs":180000,"arenaPadding":1.5,
+    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+  },{
     "id":"s1.dgct.chai-arcade","label":"Face Chai","area":"DGCT","worldId":"arcade",
     "sourceActivity":"play/assets/dobuita/chai-intro/A0172.AUTH","sha256":"01e36d04c63cc52eb2399b17f652ed583308bcbbc873abddc85c9dc7b2865b00","sourceTime":"end",
     "actorDefinitions":[{"actorCode":"CHAI","label":"Chai","modelCode":"CHA_M","activityOnly":true}],

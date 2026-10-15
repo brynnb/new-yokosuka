@@ -65,7 +65,7 @@ for (const route of spec.routes) {
       }));
     }
     source={generatedFrom:archiveSources[0],archiveSources,messages};
-  } else if ((route.activities || route.yarnTemplate) && !route.voiceIds.length && !route.leadInVoiceIds?.length && !templateHasVoice && route.nativeSources?.length) {
+  } else if ((route.activities || route.completionActivities || route.yarnTemplate) && !route.voiceIds.length && !route.leadInVoiceIds?.length && !templateHasVoice && route.nativeSources?.length) {
     // Silent presentation and explicitly authored text carry their reviewed
     // source provenance directly. Do not invent an AKIR voice resource.
     source = {archiveSources:[],messages:[]};
@@ -141,6 +141,8 @@ for (const route of spec.routes) {
         return text;
       })
       .replaceAll("{{staging}}", route.staging)
+      .replaceAll("{{challenge}}", route.challenge || "{{challenge}}")
+      .replaceAll("{{timeTransition}}", route.timeTransition || "{{timeTransition}}")
       .replaceAll("{{destination}}", route.destination || "{{destination}}")
       .replaceAll("{{effects}}", effects.join("\n"));
     if (body.includes("{{")) throw new Error(`Unresolved Yarn template reference ${route.id}`);

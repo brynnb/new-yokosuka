@@ -136,6 +136,8 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.first-workday",page:Object.freeze({id:"story-first-workday",text:"Finished forklift practice with Mark.\n\nReturn to the harbor tomorrow morning for my first working day."})},
   {flag:"notebook.s1.chicken-race",page:Object.freeze({id:"story-chicken-race",text:"Stopped the riders who were harassing the old man at the harbor.\n\nI won their chicken race. They must leave him alone."})},
   {flag:"notebook.s1.workday-one-race",page:Object.freeze({id:"story-workday-one-race",text:"Finished Mark's morning forklift race.\n\nMy first working day starts now. The quota is ten crates for Warehouse No. 18."})},
+  {flag:"notebook.s1.workday-one-morning",page:Object.freeze({id:"story-workday-one-morning",text:"Finished the first five crates for Warehouse No. 18.\n\nIt is lunch break. The afternoon batch and payday are still ahead."})},
+  {flag:"notebook.s1.mark-chen-rivals",page:Object.freeze({id:"story-mark-chen-rivals",text:"Protected Mark from the Mad Angels.\n\nThey think he is working for somebody called Chen. Master Chen and the Mad Angels are rivals. Where are the Mad Angels?"})},
 ]);
 
 export function notebookPagesForCharacter(character) {

@@ -124,8 +124,10 @@ four-input challenge, saved notebook/day and reload; its course staging remains
 an approximation. The first working morning now also connects real three-lap
 forklift driving to server-observed gates, saved notebook/date, harbor return
 and a separate reload check; it awards neither a rank prize nor wages.
-Paid workdays, the
-remaining Mad Angels storyline and departure remain
+Five physical morning deliveries now lead to a saved noon break and Mark's
+original confrontation, real three-opponent rescue and original aftermath.
+The clue and reload are verified without money or inventory changes.
+The afternoon deliveries/attack/payday, remaining Mad Angels workdays and departure remain
 unimplemented; the checklist above distinguishes each verified sequence.
 
 For walkthrough-guided, authored progression, use the

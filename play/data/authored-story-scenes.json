@@ -280,5 +280,20 @@
       {"tag":"TONY","pose":{"x":35.64,"y":0.0954,"z":20.6,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
     ],
     "camera":{"positionX":33.6,"positionY":1.7,"positionZ":23.3,"targetX":35.64,"targetY":1.2,"targetZ":21.2,"roll":0,"perspective":60}
+  },{
+    "id":"s1.mfsy.mark-lunch-combat","area":"MFSY","worldId":"mfsy",
+    "provenance":"Original MIZUMARK/SEQDATA2.AUTH first-frame Ryo, MRSK and OKYS positions (native X retained here and mirrored by the shared combat compiler). Original MRSK/PPL_L and OKYS/OKA_L bindings are reused. The GameSpot guide printed p54 calls for three fighters: THG3 is an explicitly anonymous adapted opponent borrowing the existing KMD_L model, not an identification of the original third fighter. His nearby placement and the standing tableau/camera are authored.",
+    "actorDefinitions":[
+      {"actorCode":"MRSK","label":"Shingo Murasaki","modelCode":"PPL_L","activityOnly":true},
+      {"actorCode":"OKYS","label":"Minoru Okayasu","modelCode":"OKA_L","activityOnly":true},
+      {"actorCode":"THG3","label":"Harbor thug","modelCode":"KMD_L","activityOnly":true}
+    ],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-30.28279685974121,"y":0,"z":57.6168327331543,"rotationX":0,"rotationY":153.66729736328125,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"MRSK","pose":{"x":-29.87948226928711,"y":0,"z":60.19791793823242,"rotationX":0,"rotationY":-160.88653564453125,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"OKYS","pose":{"x":-28.146915435791016,"y":0,"z":59.164703369140625,"rotationX":0,"rotationY":-132.12405395507812,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"THG3","pose":{"x":-32.4,"y":0,"z":60.1,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+    ],
+    "camera":{"positionX":-30.3,"positionY":2.5,"positionZ":54.6,"targetX":-30.3,"targetY":1,"targetZ":59.1,"roll":0,"perspective":65}
   }]
 }

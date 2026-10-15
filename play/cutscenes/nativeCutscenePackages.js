@@ -10,6 +10,10 @@ import yadaJobInterviewManifest from "../assets/harbor/yada-job-interview/manife
 import yadaJobInterviewAudio from "../../public/audio/world/yada-job-interview/manifest.json";
 import markJobIntroductionManifest from "../assets/harbor/mark-job-introduction/manifest.json";
 import markJobIntroductionAudio from "../../public/audio/world/mark-job-introduction/manifest.json";
+import markLunchIntroManifest from "../assets/harbor/mark-lunch-intro/manifest.json";
+import markLunchIntroAudio from "../../public/audio/world/mark-lunch-intro/manifest.json";
+import markLunchAftermathManifest from "../assets/harbor/mark-lunch-aftermath/manifest.json";
+import markLunchAftermathAudio from "../../public/audio/world/mark-lunch-aftermath/manifest.json";
 import nativeActivityActorManifest from "../data/events/nativeActivityActors.json";
 import allowanceManifest from "../assets/hazuki/first-allowance/manifest.json";
 import allowanceAudio from "../../public/audio/world/first-allowance/manifest.json";
@@ -302,6 +306,7 @@ const nativeSilentActivityMusic = resource => Object.freeze({
 const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
   ...[["chicken-race",chickenRaceManifest,chickenRaceAudio,"mfsy"],["goro-job-lead",goroJobLeadManifest,goroJobLeadAudio,"mfsy"],["goro-job-appointment",goroJobAppointmentManifest,goroJobAppointmentAudio,"mfsy"],
     ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],
+    ["mark-lunch-intro",markLunchIntroManifest,markLunchIntroAudio,"mfsy"],["mark-lunch-aftermath",markLunchAftermathManifest,markLunchAftermathAudio,"mfsy"],
     ["jimmy-knock",jimmyKnockManifest,jimmyKnockAudio,"dobuita"],["jimmy-caught",jimmyCaughtManifest,jimmyCaughtAudio,"dobuita"],["jimmy-escaped",jimmyEscapedManifest,jimmyEscapedAudio,"dobuita"],["jimmy-interrogation",jimmyInterrogationManifest,jimmyInterrogationAudio,"daza"],
     ["chai-intro",chaiIntroManifest,chaiIntroAudio,"arcade"],["chai-victory",chaiVictoryManifest,chaiVictoryAudio,"arcade"],["chai-rescue",chaiRescueManifest,chaiRescueAudio,"arcade"],
     ["jimmy-morning-call",jimmyCallManifest,jimmyCallAudio,"interior"],["post-chen-home",postChenHomeManifest,postChenHomeAudio,"interior"],["bank-savings",bankSavingsManifest,bankSavingsAudio,"interior"],["travel-family",travelFamilyManifest,travelFamilyAudio,"interior"],

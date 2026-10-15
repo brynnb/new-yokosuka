@@ -1,0 +1,245 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA1.AUTH",
+        "path": "disc3/SCENE/03/MFSY/MIZUMARK.PKS",
+        "sourceSha256": "6a1cd83fe0df231e4faa6294a5436aa2175c309815fd864a0603ffc2a085c08f",
+        "archiveMember": "SEQDATA1.AUTH",
+        "byteLength": 18388,
+        "sha256": "9b3badf21700db4810700bc333724024b48e4acf7f50d8cc7b2b4bf2967bb45b"
+      },
+      {
+        "name": "M_01MAD.MOTN",
+        "path": "disc3/SCENE/03/MFSY/MIZUMARK.PKS",
+        "sourceSha256": "6a1cd83fe0df231e4faa6294a5436aa2175c309815fd864a0603ffc2a085c08f",
+        "archiveMember": "M_01MAD.MOTN",
+        "byteLength": 165604,
+        "sha256": "807ae55b77870c25cfed8ca77b643b9433a4953fcba080079aacc5c0d38c7c5d"
+      },
+      {
+        "name": "BNMS301G.CHRM",
+        "path": "disc3/SCENE/03/MFSY/MIZUMARK.PKS",
+        "sourceSha256": "6a1cd83fe0df231e4faa6294a5436aa2175c309815fd864a0603ffc2a085c08f",
+        "archiveMember": "BNMS301G.CHRM",
+        "byteLength": 724,
+        "sha256": "4e353ee88dd4308d094b2a9d7e3699e70f436484d0af4cfbd4aaefc7ec81cd2f"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-harbor-work.md",
+    "resourceName": "MIZUMARK",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/mark-lunch-intro/manifest.json",
+  "sceneObjects": {
+    "BENB": {
+      "model": "BNMS301G",
+      "browserFilename": "BNMS301G.CHRM",
+      "assetPath": "play/assets/harbor/mark-lunch-intro/BNMS301G.CHRM",
+      "textureAssetPath": "play/assets/harbor/mark-lunch-intro/textures.bin"
+    }
+  },
+  "packageActors": {
+    "MRSK": {
+      "label": "Shingo Murasaki",
+      "modelCode": "PPL_L",
+      "browserFilename": "PPL_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/PPL_L.CHRM",
+      "textureAssetPath": "play/assets/characters/PPL_textures.bin"
+    },
+    "MARK": {
+      "label": "Mark Kimberly",
+      "modelCode": "GIC_L",
+      "browserFilename": "GIC_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/GIC_L.CHRM",
+      "textureAssetPath": "play/assets/characters/GIC_textures.bin"
+    },
+    "OKYS": {
+      "label": "Minoru Okayasu",
+      "modelCode": "OKA_L",
+      "browserFilename": "OKA_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/OKA_L.CHRM",
+      "textureAssetPath": "play/assets/characters/OKA_textures.bin"
+    }
+  },
+  "actorTags": [
+    "BENB",
+    "AKIR",
+    "MRSK",
+    "MARK",
+    "OKYS"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/mark-lunch-intro/M_01MAD.MOTN",
+      "byteLength": 165604,
+      "sha256": "807ae55b77870c25cfed8ca77b643b9433a4953fcba080079aacc5c0d38c7c5d"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/mark-lunch-intro/M_01MAD.MOTN",
+      "byteLength": 165604,
+      "sha256": "807ae55b77870c25cfed8ca77b643b9433a4953fcba080079aacc5c0d38c7c5d"
+    },
+    {
+      "path": "play/assets/harbor/mark-lunch-intro/SEQDATA1.AUTH",
+      "byteLength": 18388,
+      "sha256": "9b3badf21700db4810700bc333724024b48e4acf7f50d8cc7b2b4bf2967bb45b"
+    },
+    {
+      "path": "play/assets/harbor/mark-lunch-intro/BNMS301G.CHRM",
+      "byteLength": 724,
+      "sha256": "4e353ee88dd4308d094b2a9d7e3699e70f436484d0af4cfbd4aaefc7ec81cd2f"
+    },
+    {
+      "path": "play/assets/harbor/mark-lunch-intro/textures.bin",
+      "byteLength": 156960,
+      "sha256": "3d1ec97318ae9a47a7184bde6abbea841bead39506a9d768d9222568aae68027"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "MIZUMARK/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 18388,
+      "sha256": "9b3badf21700db4810700bc333724024b48e4acf7f50d8cc7b2b4bf2967bb45b",
+      "durationFrames": 1120,
+      "durationSeconds": 39.60000228881836,
+      "frameCount": 67,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5,
+        "motion": 11,
+        "sound": 50,
+        "voice": 11
+      },
+      "actors": [
+        "BENB",
+        "AKIR",
+        "MRSK",
+        "MARK",
+        "OKYS"
+      ],
+      "motions": [
+        {
+          "actorTag": "MRSK",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "OTH_MUR_AT1_ODOSU_B_MADANGELS0_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "MARK",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "OTH_MRK_AT1_ODOSU_MADANGELS0_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "OKYS",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "OTH_OKY_AT1_ODOSU_MADANGELS0_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "MRSK",
+          "frame": 141,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "OTH_MUR_AT1_ODOSU_B_MADANGELS0_0100",
+          "startFrame": 51,
+          "endFrame": 160
+        },
+        {
+          "actorTag": "OKYS",
+          "frame": 141,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "OTH_OKY_AT1_ODOSU_MADANGELS0_0100",
+          "startFrame": 1,
+          "endFrame": 110
+        },
+        {
+          "actorTag": "MRSK",
+          "frame": 251,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "OTH_MUR_AT1_ODOSU_B_MADANGELS0_0100",
+          "startFrame": 272,
+          "endFrame": 318
+        },
+        {
+          "actorTag": "MARK",
+          "frame": 251,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "OTH_MRK_AT1_ODOSU_MADANGELS0_0100",
+          "startFrame": 165,
+          "endFrame": 1217
+        },
+        {
+          "actorTag": "OKYS",
+          "frame": 251,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "OTH_OKY_AT1_ODOSU_MADANGELS0_0100",
+          "startFrame": 163,
+          "endFrame": 1217
+        },
+        {
+          "actorTag": "MRSK",
+          "frame": 298,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "OTH_MUR_AT1_ODOSU_B_MADANGELS0_0100",
+          "startFrame": 60,
+          "endFrame": 636
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 526,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_TOMERU_BOUKOU_MADANGELS0_0100",
+          "startFrame": 1,
+          "endFrame": 652
+        },
+        {
+          "actorTag": "MRSK",
+          "frame": 875,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "OTH_MUR_AT1_ODOSU_B_MADANGELS0_0100",
+          "startFrame": 896,
+          "endFrame": 1200
+        }
+      ]
+    }
+  ]
+}

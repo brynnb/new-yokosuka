@@ -1,6 +1,12 @@
 {
   "schema": "new-yokosuka-story-regions-v1",
   "regions": [
+    {"id":"s1.mfsy.mark-lunch","area":"MFSY","worldId":"mfsy","actor":"AKIR","playMode":"story","openingCompleted":true,"hours":[12,14],
+     "requiredFlags":["story.s1.workday-one-morning.completed"],"completedFlag":"story.s1.mark-lunch-rescue.completed","min":[28,-0.5,54],"max":[34,2,61],
+     "provenance":"Authored approach around the original MIZUMARK Ryo/Mark aftermath position. Requires an earned morning batch; original presentation cannot replace a real three-opponent fight."},
+    {"id":"s1.mfsy.workday-one-morning","area":"MFSY","worldId":"mfsy","actor":"AKIR","playMode":"story","openingCompleted":true,"hours":[9,12],
+     "requiredFlags":["story.s1.workday-one-race.completed"],"completedFlag":"story.s1.workday-one-morning.completed","min":[-19,-0.5,114],"max":[-12,2,122],
+     "provenance":"Reuse the rendered loading corridor after the morning race. Five physical morning deliveries on an authored outdoor pad condense Warehouse No.18 dispatch. Paid afternoon, combat and wages remain separate."},
     {"id":"s1.mfsy.workday-one-race-entry","area":"MFSY","worldId":"mfsy","actor":"AKIR","playMode":"story","openingCompleted":true,
      "requiredFlags":["story.s1.forklift-training.completed","story.s1.chicken-race.completed"],"excludedFlags":["story.s1.workday-one-race.completed"],
      "completedFlag":"story.s1.workday-one-race-entry.completed","repeatable":true,"recheckOnDayChange":true,"hours":[8.5,12],"min":[-19,-0.5,114],"max":[-12,2,122],

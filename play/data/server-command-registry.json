@@ -20,6 +20,15 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.mfsy.mark-lunch","description":"Noon Mark-rescue approach after a completed morning cargo batch."},
+    {"kind":"combat","identifier":"s1.mfsy.mark-lunch","description":"Three-opponent server-controlled rescue fight; failure remains retryable."},
+    {"kind":"sequence","identifier":"s1.mfsy.mark-lunch-combat.start","description":"Authored private combat staging; no durable effects."},
+    {"kind":"sequence","identifier":"s1.mfsy.mark-lunch-combat.finish","description":"Release private staging and restore exploration."},
+    {"kind":"activity","identifier":"s1.mfsy.mark-lunch-intro.scene","description":"Original MIZUMARK confrontation; presentation cannot award a fight win."},
+    {"kind":"activity","identifier":"s1.mfsy.mark-lunch-aftermath.scene","description":"Original MIZUMARK aftermath; personal progress settles through Yarn."},
+    {"kind":"bounds","identifier":"s1.mfsy.workday-one-morning","description":"Morning cargo approach after the earned race."},
+    {"kind":"challenge","identifier":"s1.mfsy.workday-one-morning","description":"Five observed cargo deliveries; no wages or whole-day outcome."},
+    {"kind":"story-time","identifier":"s1.work.lunch","description":"Noon after the acknowledged morning delivery batch."},
     {"kind":"bounds","identifier":"s1.mfsy.workday-one-race-entry","description":"Morning approach after the evening chicken race, on a later personal day."},
     {"kind":"bounds","identifier":"s1.ma00.workday-one-race","description":"Race-grid approach scoped to the MA00 race world, not the practice world."},
     {"kind":"challenge","identifier":"s1.ma00.morning-race","description":"Three laps through the shared original-route gates in the server-leased forklift."},

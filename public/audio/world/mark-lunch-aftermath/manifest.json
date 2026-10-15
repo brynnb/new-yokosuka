@@ -1,0 +1,826 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01MAD.AFS",
+      "sha256": "3295b7ef69bde0372cb212cc500adcababc86421d712ae860ecaead614a7714a"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_MAD.SND",
+      "sha256": "b76ce9d7ad7f386a45001adcbf12a855718b0254ca72475dfdec78c4bfb38890"
+    },
+    "authManifest": "play/assets/harbor/mark-lunch-aftermath/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-harbor-work.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01MADA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SOUND/01MADA002.aiff",
+      "nativeMember": "01MADA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "bd2d284540ff5013c7deb7ea59c8780c7f543fc6ad2b222dd1fc4013d0713ef6",
+      "speakerId": "AKIR",
+      "sourceText": "Who were they?",
+      "displayText": "Who were they?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 19
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-lunch-aftermath/voice/01MADA002.wav",
+      "byteLength": 24364,
+      "sha256": "46a34c407c724d129b9ac1555853ce9300d80ddb962076de29f8b81eac476685"
+    },
+    {
+      "voiceId": "01MADA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SOUND/01MADA003.aiff",
+      "nativeMember": "01MADA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 12288,
+      "nativeSha256": "870c4218dcc713bf7e821fedb4abd8eaada76fb1235087695e6052279e0f3be7",
+      "speakerId": "AKIR",
+      "sourceText": "Why are the Mad Angels＆picking on you?",
+      "displayText": "Why are the Mad Angels\npicking on you?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-lunch-aftermath/voice/01MADA003.wav",
+      "byteLength": 48940,
+      "sha256": "c275e606931201490303dfe76267b5626f255259f121918dd90a5be5d18d72f6"
+    },
+    {
+      "voiceId": "01MADA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SOUND/01MADA005.aiff",
+      "nativeMember": "01MADA005.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 16384,
+      "nativeSha256": "b9ef494acc4ff0db7df0290e6e7255c48ca724b115a4ed8c28e16ec2a01029ed",
+      "speakerId": "AKIR",
+      "sourceText": "Master Chen, and the Mad Angels=@",
+      "displayText": "Master Chen, and the Mad Angels...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-lunch-aftermath/voice/01MADA005.wav",
+      "byteLength": 65324,
+      "sha256": "4a6d5853f4fb822a60c355c65bb42b7bf1d9862776cf809768a54eb65259bbe2"
+    },
+    {
+      "voiceId": "01MADB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SOUND/01MADB006.aiff",
+      "nativeMember": "01MADB006.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 8192,
+      "nativeSha256": "06aa11f4c6cd835814a4d60c1868e69e96842e592f7c24ff82f3a275b148ab3e",
+      "speakerId": "MARK",
+      "sourceText": "Thank you, Ryo.",
+      "displayText": "Thank you, Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-lunch-aftermath/voice/01MADB006.wav",
+      "byteLength": 32556,
+      "sha256": "f3130c618ffdbcb586fed6a514e37a786d76f303b60b387f290e1bd8183bf344"
+    },
+    {
+      "voiceId": "01MADB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SOUND/01MADB007.aiff",
+      "nativeMember": "01MADB007.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 12288,
+      "nativeSha256": "c228914d439a97e4eeff2d1db127bbf4c666c2c3644a3685e18d814932b7f370",
+      "speakerId": "MARK",
+      "sourceText": "They were the Mad Angels.",
+      "displayText": "They were the Mad Angels.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-lunch-aftermath/voice/01MADB007.wav",
+      "byteLength": 48940,
+      "sha256": "032b29675f90def9385fe1c69e35a66f60ef659ccb869692cdab3a28e7da3176"
+    },
+    {
+      "voiceId": "01MADB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SOUND/01MADB008.aiff",
+      "nativeMember": "01MADB008.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 18432,
+      "nativeSha256": "0af87d8161d98d7c505f757a358fb11d00073dedd4b2969cd076de53265ca1ec",
+      "speakerId": "MARK",
+      "sourceText": "They seem to think I'm working with＆one of their enemies.",
+      "displayText": "They seem to think I'm working with\none of their enemies.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-lunch-aftermath/voice/01MADB008.wav",
+      "byteLength": 73516,
+      "sha256": "52368f3279242a122913f8955fa5da17e90254058b84b05af5851e6224a0da27"
+    },
+    {
+      "voiceId": "01MADB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SOUND/01MADB009.aiff",
+      "nativeMember": "01MADB009.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 12288,
+      "nativeSha256": "3dc84b6c68ca1b9cc85ce529ae7018434099827fa9d0b62b52be4ea0692d2df7",
+      "speakerId": "MARK",
+      "sourceText": "Somebody called Chen.",
+      "displayText": "Somebody called Chen.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-lunch-aftermath/voice/01MADB009.wav",
+      "byteLength": 48940,
+      "sha256": "401287f96d7ac7c384e80e422e5246b930af2814c37f74fe2acd623cc8d58c5a"
+    },
+    {
+      "voiceId": "01MADB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SOUND/01MADB010.aiff",
+      "nativeMember": "01MADB010.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 8192,
+      "nativeSha256": "b60fa4c931078a9106f3657a5dbfd6859f70330d135cd8f3d9eaab27c55bcf68",
+      "speakerId": "MARK",
+      "sourceText": "But I don't know him=@",
+      "displayText": "But I don't know him...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-lunch-aftermath/voice/01MADB010.wav",
+      "byteLength": 32556,
+      "sha256": "5fb29dbe985bf463f4df3afea4eacd1fb72fce5a6e0154c77ae140c8d135c789"
+    },
+    {
+      "voiceId": "01MADD003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SOUND/01MADD003.aiff",
+      "nativeMember": "01MADD003.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 16384,
+      "nativeSha256": "73b1294adc9a720a98f10aa7557c11b73525ca745311759715156e84b2915808",
+      "speakerId": "MRSK",
+      "sourceText": "I'll remember this!",
+      "displayText": "I'll remember this!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 35
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-lunch-aftermath/voice/01MADD003.wav",
+      "byteLength": 65324,
+      "sha256": "c43dabe96c2b3ea2c242524dcead268857e3c7bd9edf168d1840510a0719c21f"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-lunch-aftermath/sfx/a9040000.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-lunch-aftermath/sfx/a9040100.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SE/cloths2/cl02.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-lunch-aftermath/sfx/a9040200.wav",
+      "byteLength": 36916,
+      "sha256": "11b76e7843d092c6ff63058379b812ee5bbaa8b9475716e13ff3bb3dbc43e9dd"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SE/cloths2/cl03.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-lunch-aftermath/sfx/a9040300.wav",
+      "byteLength": 127604,
+      "sha256": "2c13979aaaf032ee706d0353819b385a7aca4f3d3d1a6b0e480c83e7a4162737"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SE/cloths2/cl06.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-lunch-aftermath/sfx/a9040400.wav",
+      "byteLength": 62916,
+      "sha256": "5703d450986e9acb352cdaa832e51acc60482d8cdfa9d14811f6c3868ed8fd94"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SE/cloths2/friction4.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-lunch-aftermath/sfx/a9040600.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-lunch-aftermath/sfx/a9040800.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-lunch-aftermath/sfx/a9040900.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 14,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-lunch-aftermath/sfx/a9040e00.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 15,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-lunch-aftermath/sfx/a9040f00.wav",
+      "byteLength": 4620,
+      "sha256": "b777d818c86e674e40a080c0aabb21e31a54b732828322cdb9b9288dd4184907"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 16,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-lunch-aftermath/sfx/a9041000.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAD/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 17,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-lunch-aftermath/sfx/a9041100.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    }
+  ]
+}

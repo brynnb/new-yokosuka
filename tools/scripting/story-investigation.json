@@ -3,6 +3,26 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"mark-lunch-rescue","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":470,
+      "title":"First workday — protect Mark","hours":[12,14],"bounds":"s1.mfsy.mark-lunch",
+      "summary":"Original noon confrontation, actual server-controlled three-opponent fight and original aftermath. Only an acknowledged victory saves the clue; no wages or afternoon completion.",
+      "requiredFlags":["story.s1.workday-one-morning.completed"],"completedFlag":"story.s1.mark-lunch-rescue.completed","effects":["notebook.s1.mark-chen-rivals"],
+      "voiceIds":[],"combat":"s1.mfsy.mark-lunch",
+      "introductionActivities":["s1.mfsy.mark-lunch-intro.scene"],"completionActivities":["s1.mfsy.mark-lunch-aftermath.scene"],
+      "nativeSources":[{"role":"original-noon-confrontation-and-aftermath","locator":"disc3/SCENE/03/MFSY/MIZUMARK.PKS#SEQDATA1.AUTH,SEQDATA2.AUTH,M_01MAD.MOTN","sha256":"6a1cd83fe0df231e4faa6294a5436aa2175c309815fd864a0603ffc2a085c08f"}],
+      "provenance":"GameSpot printed p54: lunch interrupted by Mark's attackers; win against three thugs, retry on loss, learn Chen and the Mad Angels are rivals. Original MIZUMARK films and original Mark/MRSK/OKYS bindings reused. Explicit approach/hours, shared basic combat and an anonymous third model donor are authored. This is a personal encounter; no original native controller, wage, calendar jump or afternoon outcome."
+    },
+    {
+      "id":"workday-one-morning","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":460,
+      "title":"First workday — morning cargo","hours":[9,12],"bounds":"s1.mfsy.workday-one-morning",
+      "summary":"Five real server-observed cargo deliveries. An acknowledged batch saves lunch time and the notebook, not wages or a completed workday.",
+      "requiredFlags":["story.s1.workday-one-race.completed"],"completedFlag":"story.s1.workday-one-morning.completed","effects":["notebook.s1.workday-one-morning"],
+      "voiceIds":[],"yarnTemplate":"story-workday-delivery.yarn","challenge":"s1.mfsy.workday-one-morning","timeTransition":"s1.work.lunch",
+      "authoredText":{"briefing":"My first quota is ten crates for Warehouse No. 18. Move five through this loading area before lunch; the second batch follows this afternoon. Wages are paid at the end of the day.","success":"The morning batch is finished. It is lunch break."},
+      "nativeSources":[{"role":"original-forklift-instruction-context","locator":"disc3/SCENE/03/MFSY/MARU.PKS#SEQDATA1.AUTH","sha256":"a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b"}],
+      "provenance":"GameSpot printed pp53-55: first quota ten crates to Warehouse No.18 at 300 yen each, interrupted by Mark's noon rescue. Five morning/five afternoon crates, the existing rendered outdoor dispatch pad, a forgiving thirty-minute real-time limit and unvoiced instructions are adaptations. This does not reproduce the warehouse interior or grant wages, a fight result or whole-day completion. Cancellation discards only the uncommitted batch; a saved morning batch cannot repeat."
+    },
+    {
       "id":"workday-one-race-entry","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":440,
       "title":"First workday — morning race","hours":[8.5,12],"bounds":"s1.mfsy.workday-one-race-entry",
       "summary":"Authored morning briefing and confirmed race-grid transfer. Boarding grants no race result, wage or prize.",

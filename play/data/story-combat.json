@@ -2,6 +2,119 @@
   "schema": "new-yokosuka-authored-story-combat-v1",
   "encounters": [
     {
+      "id": "s1.mfsy.mark-lunch",
+      "label": "Protect Mark",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "GameSpot printed p54: three-opponent noon rescue, retry until victorious, then Mark explains Chen/Mad Angels rivalry. Original MIZUMARK aftermath supplies Ryo/MRSK/OKYS placement; an anonymous third fighter borrows existing KMD_L rather than claiming an unrecovered identity. Shared moves/basic AI, health, speeds, arena bounds and third placement are adaptations. Film completion cannot win this fight.",
+      "sourceScene": "s1.mfsy.mark-lunch-combat",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 30.28279685974121,
+          "y": 0,
+          "z": 57.6168327331543,
+          "health": 100
+        },
+        {
+          "tag": "MRSK",
+          "x": 29.87948226928711,
+          "y": 0,
+          "z": 60.19791793823242,
+          "health": 36
+        },
+        {
+          "tag": "OKYS",
+          "x": 28.146915435791016,
+          "y": 0,
+          "z": 59.164703369140625,
+          "health": 28
+        },
+        {
+          "tag": "THG3",
+          "x": 32.4,
+          "y": 0,
+          "z": 60.1,
+          "health": 28
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "MRSK",
+          "label": "Shingo Murasaki",
+          "modelCode": "PPL_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "OKYS",
+          "label": "Minoru Okayasu",
+          "modelCode": "OKA_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "THG3",
+          "label": "Harbor thug",
+          "modelCode": "KMD_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 26.646915435791016,
+        "maxX": 33.9,
+        "minZ": 56.1168327331543,
+        "maxZ": 61.69791793823242
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 3,
+      "timeoutMs": 180000,
+      "inputBufferMs": 400
+    },
+    {
       "id": "s1.dgct.chai-arcade",
       "label": "Face Chai",
       "area": "DGCT",
