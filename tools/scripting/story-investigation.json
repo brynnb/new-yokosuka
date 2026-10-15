@@ -3,6 +3,22 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"biker-chase","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":670,
+      "title":"Tomato — follow the bikers","hours":[19,24],"bounds":"s1.mfsy.biker-chase",
+      "requiredFlags":["story.s1.workday-three-payday.completed"],"completedFlag":"story.s1.biker-chase.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-harbor-biker-chase.yarn","destination":"s1.work.biker-alley",
+      "summary":"Twelve real server-timed inputs across continuous original-asset moving scenes. Success atomically saves the chase and a retryable fight arrival, not the fights or Lan Di clue.",
+      "nativeSources":[{"role":"original-biker-models-and-motion-bank","locator":"disc3/SCENE/03/MFSY/MBQC.PKS#BIKK5DYG.CHRM,M_MBQC.MOTN","sha256":"39623d989642b19fbe99f7285e8a5a852410324e3bd39b6ccbc68ece7798bcc1"}],
+      "provenance":"GameSpot p57: 19:00 Tomato biker encounter; Left Right A Left Left A Right Right Right Left, then follow bike Left Right. Original road corridors, byte-identical MBQC/RACE motorcycle and riding loop, Charlie's BIK_L. Route/camera, run speed, two-second prompts, held endpoints, unvoiced introduction/failure and single visible rider are declared adaptations, not native DYNAMICS execution. Wrong/late input retries; all twelve accepted inputs save chase/arrival together, no reward or future clue."
+    },
+    {
+      "id":"charlie-harbor","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":680,
+      "title":"Corner Charlie at the harbor","bounds":"s1.mfsy.charlie-harbor",
+      "requiredFlags":["story.s1.biker-chase.completed"],"completedFlag":"story.s1.charlie-harbor.completed","effects":["story.s1.workday-three.completed","notebook.s1.lan-di-harbor"],"recordDays":["story.s1.workday-three.finished"],
+      "voiceIds":[],"yarnTemplate":"story-harbor-charlie.yarn","firstCombat":"s1.mfsy.biker-thugs","secondCombat":"s1.mfsy.charlie-harbor","completionActivities":["s1.mfsy.charlie-harbor-interrogation.scene"],
+      "nativeSources":[{"role":"original-charlie-interrogation","locator":"disc3/SCENE/03/MFSY/BAT_MBQC.PKS#SEQDATA0.AUTH,M_01CBK.MOTN","sha256":"52867cbea1dd59044282ee476405026a769a909eab8bbcced955f94975d470e0"}],
+      "provenance":"GameSpot pp57-58: five thugs, tougher Charlie, then learn Lan Di remains at the harbor and a cruiser will take him to an offshore ship. Shared actual combat, original BAT_MBQC interrogation/01CBK voices/cameras/motions. Three original low-detail biker bodies and two declared thug donors, open-alley formation, simple AI, health and new full-health Charlie attempt are adaptations. Chase is a separate saved receipt. Defeat/timeout retries current fight; event cancellation restarts both fights, never erases earned chase. Only acknowledged interrogation saves Lan Di notebook/third-day completion/date, no wages, items or time jump."
+    },
+    {
       "id":"workday-two-night","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":600,
       "title":"After the second workday — rest for tomorrow","hours":[20,24],"bounds":"s1.jomo.workday-two-night",
       "summary":"Explicit authored ordinary sleep, final acknowledgement and atomic next-morning clock/harbor arrival. No original dream film or reward; ordinary calendar waiting can bypass this optional rest.",

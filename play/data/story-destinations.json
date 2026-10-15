@@ -1,6 +1,8 @@
 {
   "schema": "new-yokosuka-story-travel-v1",
   "destinations": [
+    {"id":"s1.work.biker-alley","worldId":"mfsy","scene":3,"area":"MFSY","entry":null,"position":[-92,0,25],"yaw":0,
+      "provenance":"Authored grounded arrival beside original BAT_MBQC interrogation AKIR [-92.652245,0,24.689732], near Warehouse17. Only earned after all twelve server-accepted chase inputs; ordinary same-world Story travel saves arrival and chase together. Fight and clue remain separate."},
     {"id":"s1.work.morning-race-grid","worldId":"ma00race","scene":3,"area":"MA00","entry":null,"position":[66,0,108],"yaw":1.5707963267948966,
       "provenance":"Authored approach beside the original grid and captured MGDM position [66,0,109.5]. The leased forklift begins just ahead of the existing row at [66,0,105]. Actual Havok-terrain rays confirm a clear forward lane here; z102 was beside the course barrier and must not be reused. Ordinary course geometry/driving are reused, not the native travel controller."},
     {"id":"s1.work.harbor-loading-start","worldId":"mfsy","scene":3,"area":"MFSY","entry":null,"position":[-15.821,0,118.673],"yaw":1.3021669961391247,

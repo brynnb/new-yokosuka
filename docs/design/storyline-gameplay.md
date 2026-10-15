@@ -139,7 +139,9 @@ brother explanation also pass connected rendered checks, including cancellation,
 real victory, atomic notebook/chapter settlement and reload without replay.
 The third daytime continuation through Nozomi/Eri photographs and payroll now
 passes connected rendered checks with saved choices, once-only wages and reload.
-Its evening chase, subsequent Mad Angels workdays and departure remain unimplemented;
+The evening biker chase, both real fights and original Charlie interrogation now
+also pass connected rendered continuation, cancellation/retry and saved reload.
+The return-home dream, subsequent Mad Angels workdays and departure remain unimplemented;
 the checklist above distinguishes each verified sequence.
 
 For walkthrough-guided, authored progression, use the

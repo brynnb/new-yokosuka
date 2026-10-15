@@ -25,6 +25,27 @@ function command(name, ...values) {
   };
 }
 
+test("harbor biker beats move the original motorcycle with Charlie, and only borrow interrogation presentation",()=>{
+  const scenes=authoredScenes.scenes.filter(s=>s.id.startsWith("s1.mfsy.biker-chase.beat-"));
+  assert.equal(scenes.length,12);
+  for(const [i,s]of scenes.entries()){
+    assert.equal(s.continuesPrevious,i>0);assert.equal(s.continuationGroup,"s1.mfsy.biker-chase");
+    assert.deepEqual(s.sceneObjects,scenes[0].sceneObjects);
+    const rider=s.actors.find(a=>a.tag==="CHRL");assert.equal(rider.motion.name,"OTH_TKA_NORU_BIKE_LP_QTE");
+    for(const time of [0,s.durationSeconds/2,s.durationSeconds,s.durationSeconds+10]){
+      const r=evaluateAuthActor(rider.movement,time),bike=evaluateAuthActor(s.sceneObjectTracks.BIK1,time);
+      assert.equal(r.x,bike.x);assert.equal(r.z,bike.z);assert.equal(r.rotationY,bike.rotationY);assert.ok(Math.abs(r.y-bike.y-.286)<1e-6);
+    }
+  }
+  const activity=createScriptEventPresentationCatalog().activity("s1.mfsy.charlie-harbor-interrogation.scene");
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/harbor/charlie-harbor-interrogation/manifest.json",import.meta.url)));
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/charlie-harbor-interrogation/manifest.json",import.meta.url)));
+  assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  assert.equal(manifest.activities[0].durationFrames,1560);assert.equal(audio.voices.length,12);
+  assert.ok([...audio.voices,...audio.sounds].every(s=>!s.unavailable));
+});
+
 test("Nozomi's photo films retain original timing/cast without owning choice or notebook settlement",()=>{
   for(const [part,file,frames,voices]of [["intro","SEQDATA1.AUTH",1220,7],["ending","SEQDATA2.AUTH",1940,17]]){
     const activity=createScriptEventPresentationCatalog().activity(`s1.mfsy.nozomi-photo-${part}.scene`);

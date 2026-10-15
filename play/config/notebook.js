@@ -156,6 +156,7 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.nozomi-photos",page:Object.freeze({id:"story-nozomi-photos",text:"Eri took two pictures of Nozomi and me. We each kept one.\n\nNozomi is going to Canada. I promised to take care of our keepsake."})},
   {flag:"notebook.s1.workday-three-quota",page:Object.freeze({id:"story-workday-three-quota",text:"Finished the third day's eight-crate quota.\n\nCollect my wages from Yada-san at Alpha Trading."})},
   {flag:"notebook.s1.third-payday",page:Object.freeze({id:"story-third-payday",text:"Collected ¥2,400 for today's eight crates.\n\nInvestigate the Mad Angels near Tomato Convenience Store after 7 p.m."})},
+  {flag:"notebook.s1.lan-di-harbor",page:Object.freeze({id:"story-lan-di-harbor",text:"Lan Di is still in the harbor!\n\nCharlie arranged a cruiser to take a Chinese man in a dragon robe to a ship offshore. Find out more about the trade."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

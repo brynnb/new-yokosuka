@@ -82,9 +82,9 @@ once-only payday and Goro's warning. The return-home dream and second morning's
 race also pass their connected rendered continuation.
 The second day's cargo/ambush/payday also pass connected rendered checks;
 the subsequent Mark rescue and brother explanation also pass their connected
-rendered continuation. The third-day daytime continuation also passes connected
-rendered verification; its evening chase and later workdays remain
-missing. Existing
+rendered continuation. The third-day daytime continuation and its evening biker
+chase, both fights and original interrogation also pass connected rendered
+verification. The subsequent dream and later workdays remain missing. Existing
 forklift driving, cargo and racing must be reused; neither film completion
 nor a client-reported win may grant a shift's salary or story outcome.
 
@@ -615,8 +615,8 @@ near the trigger rather than proving a full walking route from Alpha Trading.
 This does not establish the speculative DEB1/DEB2 associations as native truth,
 exact scenery/prop staging, exhaustive gesture fidelity or missing intro audio.
 All 78 new local runtime records pass their hash/size check; no asset publication
-or deployment has been performed. The next missing story milestone is the third
-workday's evening chase, followed by the remaining harbor days and finale.
+or deployment has been performed. The following sections cover the connected
+third workday and its evening; the later harbor days and finale remain missing.
 
 ## Third workday: sleep, cargo and Nozomi's photographs
 
@@ -669,7 +669,8 @@ condense the original warehouse route. Exactly-quota work earns the unchanged
 base ¥300 per crate; no over-quota raise system is claimed. Preserve personal
 weather/lighting. Presentation restores the approach pose/camera and controls;
 failure/cancellation is retryable, and saved events do not automatically replay.
-The day-three evening chase/fights and subsequent dream are still missing.
+The evening chase/fights are separate from this payday; see the connected
+continuation below. The subsequent dream remains missing.
 
 Focused checks extend the existing sleep, boarding, race, cargo and payday
 boundary tests rather than duplicating their runtime. Photo checks exercise
@@ -702,11 +703,34 @@ photo grips/model selection, flash geometry and inventory-photo art are not
 claimed. All 57 new local asset records pass hash/size verification; publication
 and deployment have not been performed.
 
-## Third evening: next connected milestone
+## Third evening: bikers and Charlie
 
 The GameSpot guide, printed p. 57, places the Tomato-store biker chase after
-19:00, followed by five thugs, Charlie and the Lan Di shipping clue. This remains
-unimplemented; the earned third-payday save does not bypass those challenges.
+19:00, followed by five thugs, Charlie and the Lan Di shipping clue. These are
+connected through ordinary authored Yarn, timed inputs, server combat and the
+original interrogation. The chase and fights have separate receipts so a
+reconnect after the chase can continue at the fight instead of repeating it.
+
+| Field | Authored encounter |
+| --- | --- |
+| Location / trigger | `biker-chase`: approach outside Tomato/Harbor Lounge after the third payday, 19:00–24:00 personal time. Bounds surround original MFSY return entry 19 `[84.2,0,60.4]`; the guide backs the location/hour, not this activation volume. `charlie-harbor`: separate approach around the original BAT_MBQC interrogation near Warehouse No. 17, only after a saved chase. |
+| Player / actors / props | Story Ryo on foot; Charlie uses original BIK_L. Original BIKK5DYG motorcycle and M_MBQC riding bank are byte-identical in MBQC and the already loaded RACE pack. One privately staged rider represents the group; rider/handlebar contact is approximate. Five-fighter staging uses BAT_MBQC's BTK_S/BTH_S/BTA_S plus explicit MRSK/OKYS donors, not a recovered native roster. |
+| Action / camera / timing | Twelve continuous moving actor, prop and follow-camera beats along reviewed HANA/DJUN/HTSI harbor road corridors, at the existing run pace. Each stops at its endpoint for an actual two-second prompt. Route, framing, held beats and unvoiced introduction/failure captions are adaptations; original DYNAMICS/chase cameras and obstacle stunt choreography are not reconstructed. |
+| QTE / combat | Left, Right, A, Left, Left, A, Right, Right, Right, Left, then Left, Right. Every input needs the current server token and receipt-time window. After arrival, actually defeat five thugs, then Charlie. Shared combat/AI, explicit arena/health/speeds and a full-health new Charlie attempt are declared adaptations. Charlie is tougher than each ordinary thug. |
+| Dialogue / audio / weather | Original BAT_MBQC SEQDATA0.AUTH/M_01CBK supplies the 52.02-second interrogation, cameras, body motion, twelve 01CBK voices and eighteen distinct A1_CBK effects. Preserve personal weather/season/lighting; no new weather/date gate or invented music selection. Detailed hand/facial callback fidelity is not claimed. |
+| Saved effects / exit | All twelve accepted inputs plus scene cleanup atomically save `story.s1.biker-chase.completed` and `s1.work.biker-alley` arrival. Both actual victories and acknowledged original interrogation save the Lan Di notebook, `story.s1.charlie-harbor.completed`, `story.s1.workday-three.completed` and its day together. No money, items or time jump. Return to the saved alley approach with prior camera mode and controls. |
+| Failure / skip / replay | Wrong/late chase input offers a fresh chase or leaving; cancelled movement grants nothing. Saved chase survives reload. Fight defeat/timeout retries the current fight; cancelling the whole fight event restarts both fights but retains the chase. Ending cancellation grants no clue. Original film completion or explicit X-skip can acknowledge its presentation, never win a challenge. Completed events do not automatically replay. |
+
+The original MBQC archive hash is
+`39623d989642b19fbe99f7285e8a5a852410324e3bd39b6ccbc68ece7798bcc1`;
+BAT_MBQC is
+`52867cbea1dd59044282ee476405026a769a909eab8bbcced955f94975d470e0`.
+`build_harbor_job_pack.mjs --profile charlie-harbor-interrogation --audio` uses
+the shared asset/audio compiler. `build_harbor_biker_chase.mjs` pins the original
+road records and shared MBQC model/motion identities, then produces ordinary
+scene data, Yarn and closed presentation capabilities. Its authoring-time path/
+curve helper is shared with Jimmy's chase; the extraction leaves Jimmy's
+generated scenes and Yarn unchanged. No second chase engine is introduced.
 
 Moving authored scenes now support `sceneObjectTracks`, keyed by the tags in
 their existing `sceneObjects` definitions. They use the same six native-coordinate
@@ -718,6 +742,25 @@ final release or cancellation clears the props and restores the player.
 
 Focused headless checks cover endpoint clamping, continuous resource ownership,
 malformed tracks, source-coordinate rotation, cancelled asynchronous preparation
-and isolation from a newer scene. This is infrastructure verification, not rendered
-chase coverage. Next, author the encounter using the existing QTE/combat/Yarn
-primitives and verify it from the genuinely earned third-payday checkpoint.
+and isolation from a newer scene. Actual compiler/engine checks also cover the
+twelfth input failing, stale readiness/input, timeout/retry, ineligible players,
+fight defeat/timeout, cancelled final presentation and exact atomic outcomes.
+
+`NEW_YOKOSUKA_HARBOR_BIKERS_E2E=true` continues the genuine third-payday save.
+The connected hardware-rendered check passes decline, moving-scene cancellation,
+wrong-input retry, all twelve physical inputs, saved arrival/reload, both actual
+fights, original interrogation cancellation, retained chase/reload, repeated
+actual fights, natural film ending and final reload without replay. Captures
+show moving Ryo/Charlie/motorcycle, combat and the original interrogation.
+Combat framing does not show every opponent simultaneously; exact camera/stunt/
+grip fidelity is not claimed. The first test approach hit the lounge's north
+wall at z=66.51; the driver now approaches along the original street instead of
+changing application collision to accommodate an invalid test start.
+
+PostgreSQL confirms ¥17,436, unchanged inventory, personal 1986-12-28, and the
+race/payday/finished records on day 6205. The clue and whole-day flag are absent
+after cancelling the ending and present only after its acknowledged retry.
+All 38 new local asset records (2,143,412 bytes) pass size/hash verification.
+Nothing has been published or deployed. The next connected milestone is the
+return-home Lan Di dream and fourth working morning, followed by the remaining
+Mad Angels workdays, Nozomi rescue and departure.

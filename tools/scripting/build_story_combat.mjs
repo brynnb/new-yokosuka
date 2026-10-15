@@ -40,12 +40,13 @@ const encounters = spec.encounters.map(input => {
         const shared=scenes.filter(scene=>scene.worldId===input.worldId).flatMap(scene=>scene.actorDefinitions).find(d=>d.actorCode===actorCode);
         if(!shared)return actor;
         // Reuse an existing world actor only when the package explicitly uses
-        // that same ordinary model/texture pair. Redundant package metadata must
+        // that same source-qualified model/texture pair. Redundant metadata must
         // not create a second, conflicting MRSK/OKYS definition at world load.
-        // Archive-owned or otherwise different sources remain an explicit error.
+        // Identical archive-owned pairs can be shared too (the biker fight and
+        // interrogation). Different source pairs remain an explicit error.
         if(shared.modelCode!==definition.modelCode||shared.label!==definition.label||
-          definition.assetPath!==`play/assets/characters/${shared.modelCode}.CHRM`||
-          definition.textureAssetPath!==`play/assets/characters/${shared.modelCode.split("_")[0]}_textures.bin`||
+          definition.assetPath!==(shared.assetPath||`play/assets/characters/${shared.modelCode}.CHRM`)||
+          definition.textureAssetPath!==(shared.textureAssetPath||`play/assets/characters/${shared.modelCode.split("_")[0]}_textures.bin`)||
           definition.assetFormat!=="MT5"||definition.characterScale!==1)throw Error(`Conflicting package/shared combat actor ${input.id}/${actorCode}`);
         return shared;
       });

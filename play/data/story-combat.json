@@ -2,6 +2,289 @@
   "schema": "new-yokosuka-authored-story-combat-v1",
   "encounters": [
     {
+      "id": "s1.mfsy.biker-thugs",
+      "label": "Get past the five bikers",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "GameSpot p57 five-thug battle after twelve-input chase. Original BAT_MBQC low-detail biker models plus two explicit reviewed thug donors. Authored open-alley formation near original interrogation, basic moves/AI and balance, two simultaneous attackers; all five must actually be defeated. No movie-completion victory or reward.",
+      "sourceScene": "s1.mfsy.biker-thugs",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -92,
+          "y": 0,
+          "z": 25,
+          "health": 100
+        },
+        {
+          "tag": "BTK_",
+          "x": -89,
+          "y": 0,
+          "z": 21,
+          "health": 28
+        },
+        {
+          "tag": "BTH_",
+          "x": -94,
+          "y": 0,
+          "z": 20,
+          "health": 28
+        },
+        {
+          "tag": "BTA_",
+          "x": -97,
+          "y": 0,
+          "z": 22,
+          "health": 36
+        },
+        {
+          "tag": "MRSK",
+          "x": -90,
+          "y": 0,
+          "z": 18,
+          "health": 28
+        },
+        {
+          "tag": "OKYS",
+          "x": -95,
+          "y": 0,
+          "z": 18,
+          "health": 28
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "BTK_",
+          "label": "Mad Angels biker",
+          "modelCode": "BTK_S",
+          "browserFilename": "BTK_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/BTK_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTK_S.CHRM",
+            "evidence": "docs/design/story-harbor-work.md"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "BTH_",
+          "label": "Mad Angels biker",
+          "modelCode": "BTH_S",
+          "browserFilename": "BTH_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/BTH_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTH_S.CHRM",
+            "evidence": "docs/design/story-harbor-work.md"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "BTA_",
+          "label": "Mad Angels biker",
+          "modelCode": "BTA_S",
+          "browserFilename": "BTA_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/BTA_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTA_S.CHRM",
+            "evidence": "docs/design/story-harbor-work.md"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "MRSK",
+          "label": "Shingo Murasaki",
+          "modelCode": "PPL_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "OKYS",
+          "label": "Minoru Okayasu",
+          "modelCode": "OKA_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -98.5,
+        "maxX": -87.5,
+        "minZ": 16.5,
+        "maxZ": 26.5
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000,
+      "inputBufferMs": 400
+    },
+    {
+      "id": "s1.mfsy.charlie-harbor",
+      "label": "Face Charlie",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "GameSpot p57: fight Charlie after the five thugs. Original CHRL/BIK_L from the exact interrogation cast, explicit separated standing formation rather than cinematic intimidation poses. Shared basic combat, 160 health, full-health fresh player attempt and faster opponent are declared balance adaptations, not Charlie's original moveset. Winning alone cannot grant the clue; original interrogation must finish or be explicitly skipped.",
+      "placement": {
+        "position": [
+          -92,
+          0,
+          25
+        ],
+        "yaw": 0
+      },
+      "formation": {
+        "AKIR": [
+          0,
+          0,
+          0
+        ],
+        "CHRL": [
+          0,
+          0,
+          -3
+        ]
+      },
+      "sourceActivity": "play/assets/harbor/charlie-harbor-interrogation/SEQDATA0.AUTH",
+      "sha256": "67970ac5c77f5493da141b9ad73e120de57aa7f993c85dbd5d03165de1ea5382",
+      "sourcePackage": "play/assets/harbor/charlie-harbor-interrogation/manifest.json",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -92,
+          "y": 0,
+          "z": 25,
+          "health": 100
+        },
+        {
+          "tag": "CHRL",
+          "x": -92,
+          "y": 0,
+          "z": 22,
+          "health": 160
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "CHRL",
+          "label": "Charlie Grant",
+          "modelCode": "BIK_L",
+          "browserFilename": "BIK_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/characters/BIK_L.CHRM",
+          "textureAssetPath": "play/assets/characters/BIK_textures.bin",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -94,
+        "maxX": -90,
+        "minZ": 20,
+        "maxZ": 27
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.5,
+      "maxAttackers": 1,
+      "timeoutMs": 180000,
+      "inputBufferMs": 400
+    },
+    {
       "id": "s1.mfsy.mark-after-work",
       "label": "Protect Mark at Warehouse No. 17",
       "area": "MFSY",

@@ -15,6 +15,7 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const evidence="docs/design/story-harbor-work.md";
 const archives={
+  BAT_MBQC:"52867cbea1dd59044282ee476405026a769a909eab8bbcced955f94975d470e0",
   NZMPHOTO:"c1b2ba44ca7111fb9e85237a775b253c0bcef99e7a4bbb3ed3c64e00bc46be1e",
   BOKOMARK:"f074ed751b0000c66357087fc8ed23c0a343080723bb511567b92c2d0ed96164",
   HIRUAUTH:"e740397e02958441010345d34d1369b20bbad9bc2ebdf397b413251b20a9a97e",
@@ -27,6 +28,10 @@ const archives={
   ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
 const profiles=[
+  {id:"charlie-harbor-interrogation",archive:"BAT_MBQC",auth:"SEQDATA0.AUTH",motion:"M_01CBK.MOTN",frames:1560,actors:["AKIR","BTK_","BTH_","CHRL","BTA_"],
+    actorModels:{BTK_:["Mad Angels biker","BTK_S"],BTH_:["Mad Angels biker","BTH_S"],BTA_:["Mad Angels biker","BTA_S"]},
+    actorTextureHash:"21659e72e8d07d6672f87185bef848ed61a61e659f63c924c51af73512f7793f",
+    stream:"01CBK",streamHash:"ac592d84435e75dddc18d05e66f969bfb815ac2310f5a5396fc1cba64b3e0792",sound:"A1_CBK.SND",soundHash:"9c57255615360306201708cba0ded088d6a61c62e975a5a906a4c264e39e0758"},
   {id:"nozomi-photo-intro",archive:"NZMPHOTO",auth:"SEQDATA1.AUTH",motion:"M_01PHO.MOTN",frames:1220,actors:["PHT1","PHT2","BLC0","BLC1","AKIR","TJMA","HRSK","POLA"],
     props:{PHT1:"SHAS503G",PHT2:"SHAS506G",BLC0:"BLAS500G",BLC1:"BLAS500G",POLA:"POCS500G"},referenceActors:["BLC0","BLC1"],authoredPropBindings:true},
   {id:"nozomi-photo-ending",archive:"NZMPHOTO",auth:"SEQDATA2.AUTH",motion:"M_01PHO.MOTN",frames:1940,actors:["AKIR","TJMA","HRSK","PHT2","POLA","PHT1"],
@@ -71,7 +76,7 @@ const profiles=[
   :p.archive==="BOKOMARK"?{...p,bank:21,stream:"01MKB",streamHash:"29dfd4ec9003c458ad53d6e1cabc621edd1a7fac8cff367b1e348de818e3e0fd",sound:"A1_MKB.SND",soundHash:"8286272d55f5011e16b49dc5cb7c0596a090e365ff409cbf96440a65ad02724e"}
   :p.archive==="MARU"?{...p,stream:"01MAK",streamHash:"991e51fcbe77d0e590fd5db522b6fee46fe11cf7b02fc9bcaa6b81917cfc075d",sound:"A1_MARK.SND",soundHash:"ef5b84e9994323af1b7dc315612030cd1b923e79aa8770dd0e8afc6cad394ba8"}
   :p.archive==="MIZUMARK"?{...p,stream:"01MAD",streamHash:"3295b7ef69bde0372cb212cc500adcababc86421d712ae860ecaead614a7714a",sound:"A1_MAD.SND",soundHash:"b76ce9d7ad7f386a45001adcbf12a855718b0254ca72475dfdec78c4bfb38890"}:p);
-const characters={YOHI:["Yohei Kondo","YHI_L"],TYMK:["Tsuyoshi Murakami","RFA_L"],TAKE:["Hiroaki Takeuchi","ZZC_L"],HTSI:["Hitoshi Numakubo","SGH_L"],
+const characters={CHRL:["Charlie Grant","BIK_L"],YOHI:["Yohei Kondo","YHI_L"],TYMK:["Tsuyoshi Murakami","RFA_L"],TAKE:["Hiroaki Takeuchi","ZZC_L"],HTSI:["Hitoshi Numakubo","SGH_L"],
   GORO:["Goro Mihashi","KMB_L"],HINA:["Mai Sawano","MIB_L"],TMRA:["Ryozo Yada","KWD_L"],MARK:["Mark Kimberly","GIC_L"],
   // HRSK reuses the reviewed full body from nativeActivityActors, not the
   // character-name CSV's unshipped NZM_M reference.

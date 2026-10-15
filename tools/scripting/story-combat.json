@@ -1,6 +1,18 @@
 {
   "schema":"new-yokosuka-authored-story-combat-v1",
   "encounters":[{
+    "id":"s1.mfsy.biker-thugs","label":"Get past the five bikers","area":"MFSY","worldId":"mfsy","sourceScene":"s1.mfsy.biker-thugs",
+    "provenance":"GameSpot p57 five-thug battle after twelve-input chase. Original BAT_MBQC low-detail biker models plus two explicit reviewed thug donors. Authored open-alley formation near original interrogation, basic moves/AI and balance, two simultaneous attackers; all five must actually be defeated. No movie-completion victory or reward.",
+    "health":{"AKIR":100,"BTK_":28,"BTH_":28,"BTA_":36,"MRSK":28,"OKYS":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5,
+    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+  },{
+    "id":"s1.mfsy.charlie-harbor","label":"Face Charlie","area":"MFSY","worldId":"mfsy",
+    "sourceActivity":"play/assets/harbor/charlie-harbor-interrogation/SEQDATA0.AUTH","sha256":"67970ac5c77f5493da141b9ad73e120de57aa7f993c85dbd5d03165de1ea5382","sourceTime":"start","sourcePackage":"play/assets/harbor/charlie-harbor-interrogation/manifest.json",
+    "formation":{"AKIR":[0,0,0],"CHRL":[0,0,-3]},"placement":{"position":[-92,0,25],"yaw":0},
+    "provenance":"GameSpot p57: fight Charlie after the five thugs. Original CHRL/BIK_L from the exact interrogation cast, explicit separated standing formation rather than cinematic intimidation poses. Shared basic combat, 160 health, full-health fresh player attempt and faster opponent are declared balance adaptations, not Charlie's original moveset. Winning alone cannot grant the clue; original interrogation must finish or be explicitly skipped.",
+    "health":{"AKIR":100,"CHRL":160},"playerSpeed":3.2,"enemySpeed":2.5,"maxAttackers":1,"timeoutMs":180000,"arenaPadding":2,
+    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+  },{
     "id":"s1.mfsy.mark-after-work","label":"Protect Mark at Warehouse No. 17","area":"MFSY","worldId":"mfsy",
     "sourceActivity":"play/assets/harbor/mark-after-work-intro/SEQDATA2.AUTH","sha256":"5e0eb0f982f22c53a3028d73a4912d6cac3643156159c4564a7e8339ef058367",
     "sourcePackage":"play/assets/harbor/mark-after-work-intro/manifest.json",

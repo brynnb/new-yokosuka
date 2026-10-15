@@ -15,6 +15,7 @@ import {verifyMorningRace,verifyMorningRaceSaved} from "./story-morning-race.js"
 import {verifyMorningCargo,verifyMarkLunch,verifyFirstAfternoon} from "./story-workday-one.js";
 import {verifyWorkdayNight,verifySecondWorkday,verifyMarkAfterWork} from "./story-workday-two.js";
 import {verifyThirdWorkday} from "./story-workday-three.js";
+import {verifyHarborBikers} from "./story-harbor-bikers.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -148,6 +149,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_HARBOR_BIKERS_E2E === "true"){
+      test.setTimeout(900_000);await verifyHarborBikers(page,testInfo,character);expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_THIRD_WORKDAY_E2E === "true"){
       test.setTimeout(1_800_000);await verifyThirdWorkday(page,testInfo,character);expect(errors).toEqual([]);return;
     }
