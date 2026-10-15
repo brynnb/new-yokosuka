@@ -148,6 +148,8 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.workday-two-quota",page:Object.freeze({id:"story-workday-two-quota",text:"Finished today's eight-crate quota for Warehouse No. 3.\n\nThe Mad Angels are trying to interfere with my work."})},
   {flag:"notebook.s1.warehouse-seventeen-hangout",page:Object.freeze({id:"story-warehouse-seventeen-hangout",text:"Got past both groups of attackers.\n\nThe Mad Angels meet behind Warehouse No. 17. Look for Mark there after collecting my wages."})},
   {flag:"notebook.s1.second-payday",page:Object.freeze({id:"story-second-payday",text:"Collected ¥2,400 for today's eight crates.\n\nFind Mark behind Warehouse No. 17."})},
+  {flag:"notebook.s1.mark-brother",page:Object.freeze({id:"story-mark-brother",text:"The Mad Angels attacked Mark again.\n\nHis brother went missing after leaking important information. Mark thinks they may have killed him."})},
+  {flag:"notebook.s1.mad-angels-chi-you-men",page:Object.freeze({id:"story-mad-angels-chi-you-men",text:"The Mad Angels are making a deal with the Chi You Men.\n\nFollowing them could lead me to Lan Di. Keep looking while working at the harbor."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

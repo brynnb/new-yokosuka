@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import * as BABYLON from "@babylonjs/core";
+import {runtimeAssetUrl} from "../src/RuntimeAssets.js";
 import { clearWorldSceneAssets } from "../src/rendering/SceneResources.js";
 import {
   createScheduledActorOcclusionProxy,
@@ -29,6 +30,23 @@ import {
   setScheduledActorOcclusionCulled,
   updateScheduledActorDebugSelectionProxy,
 } from "../play/characters/ScheduledActorRuntime.js";
+
+test("archive-owned actor prefetch and assembly use the same registered model/texture pair",async()=>{
+  const runtime=Object.create(ScheduledActorRuntime.prototype),requests=[];
+  runtime.bundledCharacterAsset=()=>{throw Error("unexpected global character lookup");};
+  runtime.fetchArrayBuffer=async(url,options)=>{requests.push([url,options]);return new ArrayBuffer(0);};
+  const definition={actorCode:"DEB1",modelCode:"BTH_L",assetPath:"play/assets/harbor/mark-after-work-intro/BTH_L.CHRM",textureAssetPath:"play/assets/harbor/mark-after-work-intro/character-textures.bin"};
+  const expected={modelUrl:runtimeAssetUrl(definition.assetPath),texturePackUrl:runtimeAssetUrl(definition.textureAssetPath)};
+  // The default assembly record is deliberately compact; its source remains
+  // on the authoritative actor definition rather than getting guessed again.
+  assert.deepEqual(runtime.modelAssetUrls(definition,{modelCode:"BTH_L",isDefault:true}),expected);
+  const signal=new AbortController().signal;await runtime.prefetchModel(definition,"BTH_L",signal,1);
+  assert.deepEqual(requests,Object.values(expected).map(url=>[url,{signal,priority:1}]));
+  assert.throws(()=>runtime.modelAssetUrls({...definition,textureAssetPath:undefined},{modelCode:"BTH_L"}),/Incomplete actor/);
+  assert.throws(()=>runtime.modelAssetUrls({...definition,assetPath:"play/assets/not-registered.CHRM"},{modelCode:"BTH_L"}),/Unregistered runtime asset/);
+  runtime.bundledCharacterAsset=(_assets,name,directory="characters")=>`${directory}/${name}`;
+  assert.deepEqual(runtime.modelAssetUrls(definition,{modelCode:"OTHER_M",textureFile:"other.bin"}),{modelUrl:"characters/OTHER_M.CHRM",texturePackUrl:"characters/other.bin"});
+});
 
 async function activityStreamingHarness(t, { network = new Map(), beforeBuild = null } = {}) {
   const engine = new BABYLON.NullEngine();

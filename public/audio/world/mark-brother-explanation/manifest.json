@@ -1,0 +1,1544 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01MKB.AFS",
+      "sha256": "29dfd4ec9003c458ad53d6e1cabc621edd1a7fac8cff367b1e348de818e3e0fd"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_MKB.SND",
+      "sha256": "8286272d55f5011e16b49dc5cb7c0596a090e365ff409cbf96440a65ad02724e"
+    },
+    "authManifest": "play/assets/harbor/mark-brother-explanation/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-harbor-work.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01MKBA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBA004.aiff",
+      "nativeMember": "01MKBA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 14336,
+      "nativeSha256": "126fc527aadc07375358972b8e4b7b1418069d494fb2c7882f6e6a97463dab3d",
+      "speakerId": "AKIR",
+      "sourceText": "So, looking for your brother?",
+      "displayText": "So, looking for your brother?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 30
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBA004.wav",
+      "byteLength": 57132,
+      "sha256": "257f26604864f305c32919de9ed92663131355827c283f6af9c3084c3062782b"
+    },
+    {
+      "voiceId": "01MKBA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBA005.aiff",
+      "nativeMember": "01MKBA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 14336,
+      "nativeSha256": "fb1be757a2a7cec463bced9f8b89ae64ed8bfc0c94575227ff00dec3aae437f6",
+      "speakerId": "AKIR",
+      "sourceText": "Why would the Mad Angels kill your brother?",
+      "displayText": "Why would the Mad Angels kill your brother?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBA005.wav",
+      "byteLength": 57132,
+      "sha256": "e1e628b9e9b24d0700864c48f6b5daa061e5ce9e5d5cae74aa3a77ff66e6eca8"
+    },
+    {
+      "voiceId": "01MKBA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBA006.aiff",
+      "nativeMember": "01MKBA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 12288,
+      "nativeSha256": "0c951273a40317c9635624817ef5a41463c6429d594177fdaabb760ebf9cf8d1",
+      "speakerId": "AKIR",
+      "sourceText": "Is that why=@they=@?",
+      "displayText": "Is that why...they...?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBA006.wav",
+      "byteLength": 48940,
+      "sha256": "39f217620ccd77c03d21e7554e67d0b218870681902909e9b190702b22ed73b4"
+    },
+    {
+      "voiceId": "01MKBA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBA007.aiff",
+      "nativeMember": "01MKBA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 12288,
+      "nativeSha256": "5ec07bc063b8ce0e9f3af06ea0bc33415198ad80b5977e2ff6227b592144f725",
+      "speakerId": "AKIR",
+      "sourceText": "So you're not sure?",
+      "displayText": "So you're not sure?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBA007.wav",
+      "byteLength": 48940,
+      "sha256": "6f92b6ef2a1e9f5b1e72b95e4a1353a30ae0450f0c504880af2ff00c1c393dd1"
+    },
+    {
+      "voiceId": "01MKBA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBA008.aiff",
+      "nativeMember": "01MKBA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 10240,
+      "nativeSha256": "d99cdf0579c11bb26b014155d3a07563dce479889a56c00f4892b73a37b7dbb0",
+      "speakerId": "AKIR",
+      "sourceText": "A Chinese cartel?",
+      "displayText": "A Chinese cartel?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBA008.wav",
+      "byteLength": 40748,
+      "sha256": "2a60bdd61d7516e1117a091306bfbc4e3d8a1aff9fe598b91237609ad718c5e3"
+    },
+    {
+      "voiceId": "01MKBA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBA009.aiff",
+      "nativeMember": "01MKBA009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 8192,
+      "nativeSha256": "9e2f6cd6842b3dacb6b98b7720518071be45ecb54961a92325679d0c403d6cef",
+      "speakerId": "AKIR",
+      "sourceText": "The Chi You Men.",
+      "displayText": "The Chi You Men.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 19
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBA009.wav",
+      "byteLength": 32556,
+      "sha256": "e5ab84de76e3ef7e57de28a6483ba9901106be1d50cd3a1b3fd5aa98c8ef2fd9"
+    },
+    {
+      "voiceId": "01MKBD006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD006.aiff",
+      "nativeMember": "01MKBD006.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 28672,
+      "nativeSha256": "e3f473f121226aff84ac8d02b0365018544e4d7737088b6876f9567048ec84c4",
+      "speakerId": "MARK",
+      "sourceText": "Yeah, my only brother.＆He's about your age.",
+      "displayText": "Yeah, my only brother.\nHe's about your age.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 64
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBD006.wav",
+      "byteLength": 114476,
+      "sha256": "8af8cb15faa3b14b3723590d8d5a7044eb7917110949027dfb9000959de9366b"
+    },
+    {
+      "voiceId": "01MKBD007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD007.aiff",
+      "nativeMember": "01MKBD007.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 18432,
+      "nativeSha256": "c5f15d9922a1bb8bebbac6641a9d9d22898c4c7a4c5f8569b1dc49ec1f249db4",
+      "speakerId": "MARK",
+      "sourceText": "But now he's probably＆at the bottom of the sea.",
+      "displayText": "But now he's probably\nat the bottom of the sea.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBD007.wav",
+      "byteLength": 73516,
+      "sha256": "38fa6a556eba7402c7e2f98649e505ecc8bd27ef50d495a09f6b6ad2758a05a7"
+    },
+    {
+      "voiceId": "01MKBD008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD008.aiff",
+      "nativeMember": "01MKBD008.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 16384,
+      "nativeSha256": "b0cb8d17359fc3239d55f66dff79696ddbb751a444e9ddda9d020ec852200995",
+      "speakerId": "MARK",
+      "sourceText": "Killed by the Mad Angels.",
+      "displayText": "Killed by the Mad Angels.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBD008.wav",
+      "byteLength": 65324,
+      "sha256": "f2cad8a227db7336151d9d87e51fc2a15e4c4b737c4e9395f22b784620ec0244"
+    },
+    {
+      "voiceId": "01MKBD009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD009.aiff",
+      "nativeMember": "01MKBD009.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 20480,
+      "nativeSha256": "d3ac9d23ad26d93d02ada69fb3e32d10be70037956ebb5d5318c4db37ec98e14",
+      "speakerId": "MARK",
+      "sourceText": "It appears he may have leaked＆some important information.",
+      "displayText": "It appears he may have leaked\nsome important information.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBD009.wav",
+      "byteLength": 81708,
+      "sha256": "e9c905fd0a89d7d20dc42e132c5519faab37e36f72787eccb37d76d447433c32"
+    },
+    {
+      "voiceId": "01MKBD010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD010.aiff",
+      "nativeMember": "01MKBD010.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 4096,
+      "nativeSha256": "1c84666346439c721078ce534496b0d17617a55314eaa07f8d62e0055801b0a9",
+      "speakerId": "MARK",
+      "sourceText": "Probably.",
+      "displayText": "Probably.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBD010.wav",
+      "byteLength": 16172,
+      "sha256": "ea8a5256bcfedc8523d986e2536628fd1f66ce2adbb484349034e9f9b9cc6a5f"
+    },
+    {
+      "voiceId": "01MKBD011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD011.aiff",
+      "nativeMember": "01MKBD011.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 34816,
+      "nativeSha256": "66b70b4bf0ec4b65f23582be55a847f857511c361077075d1bf22063a20e766d",
+      "speakerId": "MARK",
+      "sourceText": "Was the guy who heard the information killed＆or my brother, the one who leaked it?",
+      "displayText": "Was the guy who heard the information killed\nor my brother, the one who leaked it?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 22
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 33
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBD011.wav",
+      "byteLength": 139052,
+      "sha256": "1d26b5b8e6112bdd69b4e4f7325fc55935749f42e9f538c03b9f7e6138bc1de2"
+    },
+    {
+      "voiceId": "01MKBD012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD012.aiff",
+      "nativeMember": "01MKBD012.str",
+      "nativeIndex": 25,
+      "nativeByteLength": 32768,
+      "nativeSha256": "e9b2ec780811c367dd3b47270a1ebdaeefada22387f011feac8e8e9caf8eee90",
+      "speakerId": "MARK",
+      "sourceText": "Oh yeah, Ryo. I heard the information＆was about a black market deal=@",
+      "displayText": "Oh yeah, Ryo. I heard the information\nwas about a black market deal...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 60
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBD012.wav",
+      "byteLength": 130860,
+      "sha256": "9a17fa6b4c1a8dd6797cc8751218a8a92937fb28e500ac318b92bc2c1c9fb4d9"
+    },
+    {
+      "voiceId": "01MKBD013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD013.aiff",
+      "nativeMember": "01MKBD013.str",
+      "nativeIndex": 26,
+      "nativeByteLength": 12288,
+      "nativeSha256": "fbfd23c7f95fc7d64ff045ebd4ba9748822c84760d9e140bd83d96c49ad88b89",
+      "speakerId": "MARK",
+      "sourceText": "with some Chinese cartel.",
+      "displayText": "with some Chinese cartel.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBD013.wav",
+      "byteLength": 48940,
+      "sha256": "58a75a429e020dbbd7ba21add201f96568fe751bb607b4fbfee7a9ee0f8f7de2"
+    },
+    {
+      "voiceId": "01MKBD014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD014.aiff",
+      "nativeMember": "01MKBD014.str",
+      "nativeIndex": 27,
+      "nativeByteLength": 26624,
+      "nativeSha256": "bb5ac91377752e7cc227771c74bf4f58fa51f948a1b8bee8c169c7ac0df56762",
+      "speakerId": "MARK",
+      "sourceText": "Least as far as I could tell,＆only one person was killed.",
+      "displayText": "Least as far as I could tell,\nonly one person was killed.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 26
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 47
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-brother-explanation/voice/01MKBD014.wav",
+      "byteLength": 106284,
+      "sha256": "8467b41f6980cdf57f6b9365c358aef485c7f11120dac7ab73d9849534097a0a"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 4,
+      "sampleId": 7,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/mark-brother-explanation/sfx/a9040400.wav",
+      "byteLength": 24676,
+      "sha256": "50341dcbbd03bf1b4181b1f2585dfadfb2f823051a2540d895a4080346440c9c"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 6,
+      "sampleId": 9,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/mark-brother-explanation/sfx/a9040600.wav",
+      "byteLength": 24580,
+      "sha256": "4bfaa111f05702ad09b6311b04a68095061b924a05a7d6b1b0c80e6955ab486b"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot/sneaker1.aiff",
+      "playbackId": 19,
+      "sampleId": 24,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-brother-explanation/sfx/a9041300.wav",
+      "byteLength": 10964,
+      "sha256": "3db696efc3f22f883429c8558b9cd97102c30e9f4401b0d78a4cb82baaf2e2b7"
+    },
+    {
+      "commandHex": "a9041400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot/sneaker3.aiff",
+      "playbackId": 20,
+      "sampleId": 25,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-brother-explanation/sfx/a9041400.wav",
+      "byteLength": 11188,
+      "sha256": "fef02cc6d21fef1cbee18ba5ee6e940b07c8b2a6f06b1d6655873f03702c6d6d"
+    },
+    {
+      "commandHex": "a9041500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot/sneaker5.aiff",
+      "playbackId": 21,
+      "sampleId": 26,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-brother-explanation/sfx/a9041500.wav",
+      "byteLength": 10804,
+      "sha256": "666406d82f6427ba7aa03663efd796fc9fc4dad74e69c139f58215e3d559b620"
+    }
+  ]
+}

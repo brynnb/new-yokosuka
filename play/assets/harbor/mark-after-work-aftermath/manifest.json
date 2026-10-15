@@ -1,0 +1,156 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA3.AUTH",
+        "path": "disc3/SCENE/03/MFSY/BOKOMARK.PKS",
+        "sourceSha256": "f074ed751b0000c66357087fc8ed23c0a343080723bb511567b92c2d0ed96164",
+        "archiveMember": "SEQDATA3.AUTH",
+        "byteLength": 7800,
+        "sha256": "b10940b4181431e5b82ebf4c2515f7514bc774557ee55a6259fb3e1e43f2b81f"
+      },
+      {
+        "name": "M_01MKB.MOTN",
+        "path": "disc3/SCENE/03/MFSY/BOKOMARK.PKS",
+        "sourceSha256": "f074ed751b0000c66357087fc8ed23c0a343080723bb511567b92c2d0ed96164",
+        "archiveMember": "M_01MKB.MOTN",
+        "byteLength": 333924,
+        "sha256": "4784996450a9c0456f2617396c268f130a63af369202fb0e68b862fdf9e438d9"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-harbor-work.md",
+    "resourceName": "BOKOMARK",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/mark-after-work-aftermath/manifest.json",
+  "sceneObjects": {},
+  "packageActors": {
+    "MARK": {
+      "label": "Mark Kimberly",
+      "modelCode": "GIC_L",
+      "browserFilename": "GIC_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/GIC_L.CHRM",
+      "textureAssetPath": "play/assets/characters/GIC_textures.bin"
+    },
+    "MRSK": {
+      "label": "Shingo Murasaki",
+      "modelCode": "PPL_L",
+      "browserFilename": "PPL_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/PPL_L.CHRM",
+      "textureAssetPath": "play/assets/characters/PPL_textures.bin"
+    },
+    "OKYS": {
+      "label": "Minoru Okayasu",
+      "modelCode": "OKA_L",
+      "browserFilename": "OKA_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/OKA_L.CHRM",
+      "textureAssetPath": "play/assets/characters/OKA_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "MARK",
+    "MRSK",
+    "OKYS"
+  ],
+  "motionBanks": [
+    {
+      "bank": 21,
+      "path": "play/assets/harbor/mark-after-work-aftermath/M_01MKB.MOTN",
+      "byteLength": 333924,
+      "sha256": "4784996450a9c0456f2617396c268f130a63af369202fb0e68b862fdf9e438d9"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/mark-after-work-aftermath/M_01MKB.MOTN",
+      "byteLength": 333924,
+      "sha256": "4784996450a9c0456f2617396c268f130a63af369202fb0e68b862fdf9e438d9"
+    },
+    {
+      "path": "play/assets/harbor/mark-after-work-aftermath/SEQDATA3.AUTH",
+      "byteLength": 7800,
+      "sha256": "b10940b4181431e5b82ebf4c2515f7514bc774557ee55a6259fb3e1e43f2b81f"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "BOKOMARK/SEQDATA3.AUTH",
+      "archiveMember": "SEQDATA3.AUTH",
+      "byteLength": 7800,
+      "sha256": "b10940b4181431e5b82ebf4c2515f7514bc774557ee55a6259fb3e1e43f2b81f",
+      "durationFrames": 700,
+      "durationSeconds": 23.350000381469727,
+      "frameCount": 41,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 4,
+        "effect": 9,
+        "sound": 30,
+        "voice": 4
+      },
+      "actors": [
+        "AKIR",
+        "MARK",
+        "MRSK",
+        "OKYS"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 21,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT2_TASUKERU_SASAERU_MARKBOKOBOKO0_0100",
+          "startFrame": 1,
+          "endFrame": 700
+        },
+        {
+          "actorTag": "MARK",
+          "frame": 1,
+          "motionBank": 21,
+          "sequenceIndex": 10,
+          "motionName": "OTH_MRK_AT2_TASUKERU_SASAERU_MARKBOKOBOKO0_0100",
+          "startFrame": 1,
+          "endFrame": 700
+        },
+        {
+          "actorTag": "MRSK",
+          "frame": 1,
+          "motionBank": 21,
+          "sequenceIndex": 13,
+          "motionName": "OTH_MUR_AT2_NIGERU_OBOETEROYO_MADANGELS0_0100",
+          "startFrame": 1,
+          "endFrame": 184
+        },
+        {
+          "actorTag": "OKYS",
+          "frame": 1,
+          "motionBank": 21,
+          "sequenceIndex": 15,
+          "motionName": "OTH_OKY_AT2_NIGERU_MADANGELS0_0100",
+          "startFrame": 91,
+          "endFrame": 302
+        }
+      ]
+    }
+  ]
+}

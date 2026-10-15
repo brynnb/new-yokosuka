@@ -1,6 +1,15 @@
 {
   "schema":"new-yokosuka-authored-story-combat-v1",
   "encounters":[{
+    "id":"s1.mfsy.mark-after-work","label":"Protect Mark at Warehouse No. 17","area":"MFSY","worldId":"mfsy",
+    "sourceActivity":"play/assets/harbor/mark-after-work-intro/SEQDATA2.AUTH","sha256":"5e0eb0f982f22c53a3028d73a4912d6cac3643156159c4564a7e8339ef058367",
+    "sourcePackage":"play/assets/harbor/mark-after-work-intro/manifest.json",
+    "formation":{"AKIR":[0,0,0],"DEB1":[3,0,-6],"DEB2":[-2,0,-6],"MRSK":[1.5,0,-4],"OKYS":[-1,0,-4],"BTC_":[0,0,-7]},
+    "placement":{"position":[-91,0,33],"yaw":0},
+    "provenance":"GameSpot p56 confirms the Warehouse17 rescue and Mark's brother/ChiYouMen clue. BOKOMARK introduction supplies five visible thugs; using all five as the fight roster is authored, not a recovered native free-battle roster. Reuse the exact cinematic package's original models; DEB1/BTH and DEB2/BTN associations are reviewed authored choices. Explicit floor-level formation near the original cast instead of Ryo's off-shot y=-2, two simultaneous attackers and shared basic moves/AI are adaptations. No reward or victory from the films.",
+    "health":{"AKIR":100,"DEB1":28,"DEB2":28,"MRSK":36,"OKYS":28,"BTC_":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5,
+    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+  },{
     "id":"s1.mfsy.workday-two-wave-one","label":"Warehouse ambush — first wave","area":"MFSY","worldId":"mfsy","actorWorldId":"dobuita",
     "sourceActivity":"play/assets/dobuita/drauth/SEQDATA2.AUTH","sha256":"a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
     "formation":{"AKIR":[0,0,0],"SMTH":[2.5,0,-1.5],"HARY":[3,0,1.5],"TONY":[5,0,-1],"SERA":[3.5,0,0],"JONZ":[5,0,1]},

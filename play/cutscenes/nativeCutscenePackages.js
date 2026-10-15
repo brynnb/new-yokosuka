@@ -17,6 +17,12 @@ import markLunchAftermathAudio from "../../public/audio/world/mark-lunch-afterma
 import afterWorkGoroManifest from "../assets/harbor/after-work-goro/manifest.json";
 import afterWorkGoroAudio from "../../public/audio/world/after-work-goro/manifest.json";
 import workdayLunchManifest from "../assets/harbor/workday-lunch/manifest.json";
+import markAfterWorkIntroManifest from "../assets/harbor/mark-after-work-intro/manifest.json";
+import markAfterWorkIntroAudio from "../../public/audio/world/mark-after-work-intro/manifest.json";
+import markAfterWorkAftermathManifest from "../assets/harbor/mark-after-work-aftermath/manifest.json";
+import markAfterWorkAftermathAudio from "../../public/audio/world/mark-after-work-aftermath/manifest.json";
+import markBrotherManifest from "../assets/harbor/mark-brother-explanation/manifest.json";
+import markBrotherAudio from "../../public/audio/world/mark-brother-explanation/manifest.json";
 import nativeActivityActorManifest from "../data/events/nativeActivityActors.json";
 import allowanceManifest from "../assets/hazuki/first-allowance/manifest.json";
 import allowanceAudio from "../../public/audio/world/first-allowance/manifest.json";
@@ -312,6 +318,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["mark-lunch-intro",markLunchIntroManifest,markLunchIntroAudio,"mfsy"],["mark-lunch-aftermath",markLunchAftermathManifest,markLunchAftermathAudio,"mfsy"],
     ["after-work-goro",afterWorkGoroManifest,afterWorkGoroAudio,"mfsy"],
     ["workday-lunch",workdayLunchManifest,null,"mfsy"],
+    ["mark-after-work-intro",markAfterWorkIntroManifest,markAfterWorkIntroAudio,"mfsy"],["mark-after-work-aftermath",markAfterWorkAftermathManifest,markAfterWorkAftermathAudio,"mfsy"],["mark-brother-explanation",markBrotherManifest,markBrotherAudio,"mfsy"],
     ["jimmy-knock",jimmyKnockManifest,jimmyKnockAudio,"dobuita"],["jimmy-caught",jimmyCaughtManifest,jimmyCaughtAudio,"dobuita"],["jimmy-escaped",jimmyEscapedManifest,jimmyEscapedAudio,"dobuita"],["jimmy-interrogation",jimmyInterrogationManifest,jimmyInterrogationAudio,"daza"],
     ["chai-intro",chaiIntroManifest,chaiIntroAudio,"arcade"],["chai-victory",chaiVictoryManifest,chaiVictoryAudio,"arcade"],["chai-rescue",chaiRescueManifest,chaiRescueAudio,"arcade"],
     ["jimmy-morning-call",jimmyCallManifest,jimmyCallAudio,"interior"],["post-chen-home",postChenHomeManifest,postChenHomeAudio,"interior"],["bank-savings",bankSavingsManifest,bankSavingsAudio,"interior"],["travel-family",travelFamilyManifest,travelFamilyAudio,"interior"],

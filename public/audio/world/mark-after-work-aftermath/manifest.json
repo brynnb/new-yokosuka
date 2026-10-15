@@ -1,0 +1,546 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01MKB.AFS",
+      "sha256": "29dfd4ec9003c458ad53d6e1cabc621edd1a7fac8cff367b1e348de818e3e0fd"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_MKB.SND",
+      "sha256": "8286272d55f5011e16b49dc5cb7c0596a090e365ff409cbf96440a65ad02724e"
+    },
+    "authManifest": "play/assets/harbor/mark-after-work-aftermath/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-harbor-work.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01MKBA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBA002.aiff",
+      "nativeMember": "01MKBA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "870d09cdc5c7028454981b430e2d2557beb45146381e2b65b097eefdea8993de",
+      "speakerId": "AKIR",
+      "sourceText": "Mark! You OK?",
+      "displayText": "Mark! You OK?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-after-work-aftermath/voice/01MKBA002.wav",
+      "byteLength": 32556,
+      "sha256": "c76a08d4862a949a4eca812259e7920d150cb1c9858fc6441a0593f4afc4aff3"
+    },
+    {
+      "voiceId": "01MKBA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBA003.aiff",
+      "nativeMember": "01MKBA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "dd9b2472a3fa2ba4b24d1ece6636c82ec3f4c3273419b582574eb0b1eed35941",
+      "speakerId": "AKIR",
+      "sourceText": "Careful.",
+      "displayText": "Careful.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-after-work-aftermath/voice/01MKBA003.wav",
+      "byteLength": 16172,
+      "sha256": "e8ea8a6beb8972fd75125c67f59b3cd6e682d3e644de37cda6f32451708d82aa"
+    },
+    {
+      "voiceId": "01MKBC005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBC005.aiff",
+      "nativeMember": "01MKBC005.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 32768,
+      "nativeSha256": "90aa0d79e6429979504c147b7aa6b589d95ad49eee2aed28e361f94549635079",
+      "speakerId": "MRSK",
+      "sourceText": "Umm=@We won't forget this!",
+      "displayText": "Umm...We won't forget this!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 20
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 27
+          },
+          {
+            "shape": 2,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 40
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-after-work-aftermath/voice/01MKBC005.wav",
+      "byteLength": 130860,
+      "sha256": "0b30129e463109f4f543dedbbc51d252975f110fd22f88ed14925f61712ee92c"
+    },
+    {
+      "voiceId": "01MKBD005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD005.aiff",
+      "nativeMember": "01MKBD005.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 57344,
+      "nativeSha256": "64d48b3adb592559826725f74b9b5176730bb63f2a18a579feae41b54c9775b9",
+      "speakerId": "MARK",
+      "sourceText": "Yeah. I'm all right=@＆No problem=@Oohh!",
+      "displayText": "Yeah. I'm all right...\nNo problem...Oohh!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 33
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 47
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 40
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 62
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 43
+          },
+          {
+            "shape": 3,
+            "durationTicks": 29
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-after-work-aftermath/voice/01MKBD005.wav",
+      "byteLength": 229164,
+      "sha256": "1d8ecf49edd60006fb6d3dd1cf20cd9224f177d37ba012a43a053ab41e477918"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths2/cl02.aiff",
+      "playbackId": 0,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9040000.wav",
+      "byteLength": 36916,
+      "sha256": "11b76e7843d092c6ff63058379b812ee5bbaa8b9475716e13ff3bb3dbc43e9dd"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths2/cl06.aiff",
+      "playbackId": 2,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9040200.wav",
+      "byteLength": 62916,
+      "sha256": "5703d450986e9acb352cdaa832e51acc60482d8cdfa9d14811f6c3868ed8fd94"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 4,
+      "sampleId": 7,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9040400.wav",
+      "byteLength": 24676,
+      "sha256": "50341dcbbd03bf1b4181b1f2585dfadfb2f823051a2540d895a4080346440c9c"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 6,
+      "sampleId": 9,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9040600.wav",
+      "byteLength": 24580,
+      "sha256": "4bfaa111f05702ad09b6311b04a68095061b924a05a7d6b1b0c80e6955ab486b"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 14,
+      "sampleId": 19,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9040e00.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 15,
+      "sampleId": 20,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9040f00.wav",
+      "byteLength": 5412,
+      "sha256": "64fa0eff3320191bd9befe41d84a45f91d48ae9a9c821c8aac766ce9b3fcf3f3"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 16,
+      "sampleId": 21,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9041000.wav",
+      "byteLength": 6364,
+      "sha256": "a087e557bddc12e1ca7a20b8ad3ee5e15dfa88ad4531cbba9c0b85b9367c66af"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 17,
+      "sampleId": 22,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9041100.wav",
+      "byteLength": 4620,
+      "sha256": "b777d818c86e674e40a080c0aabb21e31a54b732828322cdb9b9288dd4184907"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths2/R_mouhu_nageru.aiff",
+      "playbackId": 18,
+      "sampleId": 23,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9041200.wav",
+      "byteLength": 21612,
+      "sha256": "5c49cb5c012c4b62f58d0b81d8f68aa02b2734dd78710011d0c69a431d5a0988"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot/sneaker1.aiff",
+      "playbackId": 19,
+      "sampleId": 24,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9041300.wav",
+      "byteLength": 10964,
+      "sha256": "3db696efc3f22f883429c8558b9cd97102c30e9f4401b0d78a4cb82baaf2e2b7"
+    },
+    {
+      "commandHex": "a9041500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot/sneaker5.aiff",
+      "playbackId": 21,
+      "sampleId": 26,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9041500.wav",
+      "byteLength": 10804,
+      "sha256": "666406d82f6427ba7aa03663efd796fc9fc4dad74e69c139f58215e3d559b620"
+    },
+    {
+      "commandHex": "a9041600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths/bagdrop.aiff",
+      "playbackId": 22,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9041600.wav",
+      "byteLength": 16932,
+      "sha256": "2edefc7386f73a5bd3e5d0ee4c29430f708d20758a8c703caea399c4778c48ad"
+    },
+    {
+      "commandHex": "a9041700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths2/cloths02.aiff",
+      "playbackId": 23,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9041700.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9041800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths2/friction4.aiff",
+      "playbackId": 24,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-aftermath/sfx/a9041800.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    }
+  ]
+}

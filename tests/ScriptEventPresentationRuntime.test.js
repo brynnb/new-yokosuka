@@ -34,6 +34,19 @@ test("coworker lunch borrows the original silent film without owning the batch r
   assert.equal(Object.keys(manifest.sceneObjects).length,12);
 });
 
+test("Warehouse17 films retain bank21 and cannot save the brother clue themselves",()=>{
+  for(const [id,file,frames]of [["mark-after-work-intro","SEQDATA2.AUTH",520],["mark-after-work-aftermath","SEQDATA3.AUTH",700],["mark-brother-explanation","SEQDATA4.AUTH",1961]]){
+    const activity=createScriptEventPresentationCatalog().activity(`s1.mfsy.${id}.scene`),manifest=JSON.parse(readFileSync(new URL(`../play/assets/harbor/${id}/manifest.json`,import.meta.url)));
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.activity.binding.activityId,`BOKOMARK/${file}`);
+    assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+    assert.equal(manifest.activities[0].durationFrames,frames);assert.equal(manifest.motionBanks[0].bank,21);
+  }
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/mark-after-work-intro/manifest.json",import.meta.url)));
+  assert.deepEqual(audio.voices.filter(v=>v.unavailable).map(v=>v.nativeMember),["01MKBD003.str","01MKBD004.str"]);
+  assert.deepEqual(audio.sounds.filter(v=>v.unavailable).map(v=>v.commandHex),["a9041c00"]);
+});
+
 test("Mark's lunch films retain original bindings and cannot settle the rescue themselves",()=>{
   const catalog=createScriptEventPresentationCatalog();
   for(const [part,resource] of [["intro","SEQDATA1.AUTH"],["aftermath","SEQDATA2.AUTH"]]){

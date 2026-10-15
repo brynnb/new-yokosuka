@@ -29,7 +29,27 @@ const encounters = spec.encounters.map(input => {
     // A new authored encounter can borrow an original activity's placement
     // while introducing a reviewed private cast not present in street schedules.
     // Keep those definitions on the encounter, not in a global shadow NPC list.
-    definitions=input.actorDefinitions||nativeActors[input.actorWorldId||input.worldId];
+    if(input.sourcePackage){
+      const manifest=JSON.parse(fs.readFileSync(path.join(root,input.sourcePackage)));
+      if(!manifest.outputs.some(o=>o.path===input.sourceActivity&&o.sha256===input.sha256))throw Error(`Combat package does not own its source ${input.id}`);
+      // The native film and the subsequent fight borrow the same source-qualified
+      // actor models. Do not copy archive-only characters into a global pool or
+      // maintain a second hand-written cast/model association for combat.
+      definitions=Object.entries(manifest.packageActors).map(([actorCode,definition])=>{
+        const actor={actorCode,...definition,activityOnly:true};
+        const shared=scenes.filter(scene=>scene.worldId===input.worldId).flatMap(scene=>scene.actorDefinitions).find(d=>d.actorCode===actorCode);
+        if(!shared)return actor;
+        // Reuse an existing world actor only when the package explicitly uses
+        // that same ordinary model/texture pair. Redundant package metadata must
+        // not create a second, conflicting MRSK/OKYS definition at world load.
+        // Archive-owned or otherwise different sources remain an explicit error.
+        if(shared.modelCode!==definition.modelCode||shared.label!==definition.label||
+          definition.assetPath!==`play/assets/characters/${shared.modelCode}.CHRM`||
+          definition.textureAssetPath!==`play/assets/characters/${shared.modelCode.split("_")[0]}_textures.bin`||
+          definition.assetFormat!=="MT5"||definition.characterScale!==1)throw Error(`Conflicting package/shared combat actor ${input.id}/${actorCode}`);
+        return shared;
+      });
+    }else definitions=input.actorDefinitions||nativeActors[input.actorWorldId||input.worldId];
   }
   if(poses.length!==Object.keys(input.health).length||poses[0]?.tag!=="AKIR")throw new Error(`Incomplete combat cast ${input.id}`);
   const actors = poses.map(pose => {
@@ -62,7 +82,7 @@ const encounters = spec.encounters.map(input => {
   });
   return {id:input.id,label:input.label,area:input.area,worldId:input.worldId,provenance:input.provenance,
     ...(input.placement?{placement:input.placement}:{}),...(input.formation?{formation:input.formation}:{}),...(input.actorWorldId?{actorWorldId:input.actorWorldId}:{}),
-    ...(input.sourceScene?{sourceScene:input.sourceScene}:{sourceActivity:input.sourceActivity,sha256:input.sha256}),actors,actions,
+    ...(input.sourceScene?{sourceScene:input.sourceScene}:{sourceActivity:input.sourceActivity,sha256:input.sha256}),...(input.sourcePackage?{sourcePackage:input.sourcePackage}:{}),actors,actions,
     actorDefinitions:actors.filter(a=>a.tag!=="AKIR").map(actor=>{
       const def=definitions?.find(def=>def.actorCode===actor.tag);
       if(!def)throw new Error(`No reviewed actor model ${actor.tag}`);return def;

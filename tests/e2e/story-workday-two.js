@@ -2,6 +2,42 @@ import {expect} from "@playwright/test";
 import {driveObservedDeliveries} from "./story-forklift-training.js";
 import {winHarborFight} from "./story-workday-one.js";
 
+export async function verifyMarkAfterWork(page,testInfo,character){
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const initial=await saved(),done="story.s1.mark-after-work-rescue.completed";
+  expect(initial.character.storyFlags["story.s1.workday-two-payday.completed"]).toBe(true);
+  const check=async(complete=false)=>{const s=await saved();expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory).toEqual(initial.inventory);expect(s.character.storyFlags[done]===true).toBe(complete);expect(s.character.storyFlags["story.s1.workday-two.completed"]===true).toBe(complete);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;};
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
+  const scene=async part=>{await page.waitForFunction(part=>window.storyProbe.director?.activeCutscene?.cutscene.id===`story-s1-${part}`||window.storyProbe.sceneErrors.length,part,{timeout:75_000});expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);};
+  const approach=async()=>{
+    await idle();await page.evaluate(()=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray([-91,0,36]),0,{persist:false});c.setFirstPerson(true);c.cameraYaw=0;c.cameraPitch=0;c.updateCamera(1);});
+    await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await scene("mark-after-work-intro");}finally{await page.keyboard.up("KeyW");}
+  };
+  const fight=async()=>{
+    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:65_000});await check(false);
+    const view=await page.evaluate(()=>window.storyProbe.combatRuntime.active.view);expect(view.actors.length).toBe(6);expect(view.id).toBe("s1.mfsy.mark-after-work");
+    await page.screenshot({path:testInfo.outputPath("warehouse-seventeen-actual-five-thug-fight.png")});await winHarborFight(page,{attack:"KeyJ"});
+    await scene("mark-after-work-aftermath");await check(false);await scene("mark-brother-explanation");await check(false);
+  };
+  const reload=async(retry=false)=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);if(retry)await scene("mark-after-work-intro");else await idle();};
+  if(!initial.character.storyFlags[done]){
+    // A previous interrupted check may already have saved the approach inside
+    // the trigger. Accept the real automatic restart rather than teleporting
+    // beneath an acquiring scene or requiring an idle frame that cannot occur.
+    if(await page.evaluate(()=>window.storyProbe.regions.controller.status!=="idle"))await scene("mark-after-work-intro");else await approach();
+    await page.waitForTimeout(6000);await page.screenshot({path:testInfo.outputPath("warehouse-seventeen-original-confrontation.png")});await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-warehouse-seventeen-intro-cancel"));await idle();await check(false);
+    await approach();await fight();await page.waitForTimeout(6000);await page.screenshot({path:testInfo.outputPath("warehouse-seventeen-original-brother-explanation.png")});
+    await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-mark-brother-ending-cancel"));await idle();await check(false);
+    // Re-entering the saved activation area retries the uncommitted encounter.
+    await reload(true);await check(false);
+    await fight();await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:90_000,intervals:[1000]}).toBe(true);await idle();
+  }
+  const final=await check(true);expect(final.character.storyFlags["notebook.s1.mark-brother"]).toBe(true);expect(final.character.storyFlags["notebook.s1.mad-angels-chi-you-men"]).toBe(true);expect(final.character.worldId).toBe("mfsy");
+  expect(new Date(final.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
+  await reload();await check(true);expect(await page.evaluate(()=>window.storyProbe.starts.some(id=>id.startsWith("story-s1-mark-after-work")||id==="story-s1-mark-brother-explanation"))).toBe(false);
+  await page.screenshot({path:testInfo.outputPath("warehouse-seventeen-earned-chapter-reload.png")});
+}
+
 export async function verifySecondWorkday(page,testInfo,character){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),flag=part=>`story.s1.workday-two-${part}.completed`;

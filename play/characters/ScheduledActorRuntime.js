@@ -1,4 +1,5 @@
 import * as BABYLON from "@babylonjs/core";
+import {runtimeAssetUrl} from "../../src/RuntimeAssets.js";
 import { clearWorldSceneAssets } from "../../src/rendering/SceneResources.js";
 import { fetchAsset, getTexturePack } from "../../src/assetLoader.js";
 import { Mt5Loader } from "../../src/Mt5Loader.js";
@@ -1558,17 +1559,26 @@ export class ScheduledActorRuntime {
     return needed ? scheduledActorModelCode(definition, authoritative) : undefined;
   }
 
+  modelAssetUrls(definition, modelDefinition) {
+    if(!modelDefinition.modelCode)return {modelUrl:null,texturePackUrl:null};
+    const source=modelDefinition.modelCode===definition.modelCode?definition:modelDefinition;
+    if(Boolean(source.assetPath)!==Boolean(source.textureAssetPath))throw Error(`Incomplete actor model/texture source ${definition.actorCode}`);
+    if(source.assetPath){
+      // Archive-owned cinematic/fight actors must retain their exact registered
+      // model and texture pairing, not guess a global HUMANS filename.
+      return {modelUrl:runtimeAssetUrl(source.assetPath),texturePackUrl:runtimeAssetUrl(source.textureAssetPath)};
+    }
+    return {
+      modelUrl:this.bundledCharacterAsset(this.bundledCharacterModels,`${modelDefinition.modelCode}.CHRM`,definition.characterAssetDirectory),
+      texturePackUrl:this.bundledCharacterAsset(this.bundledCharacterTextures,modelDefinition.textureFile||`${modelDefinition.modelCode.replace(/_[ML]$/,"")}_textures.bin`,definition.characterAssetDirectory),
+    };
+  }
+
   async prefetchModel(definition, code, signal, priority = 0) {
     if (!code) return;
     const model = definition.modelOverrides?.find(row => row.modelCode === code)
       || definition;
-    await Promise.all([
-      this.bundledCharacterAsset(this.bundledCharacterModels,
-        `${code}.CHRM`, definition.characterAssetDirectory),
-      this.bundledCharacterAsset(this.bundledCharacterTextures,
-        model.textureFile || `${code.replace(/_[ML]$/, "")}_textures.bin`,
-        definition.characterAssetDirectory),
-    ].map(url => this.fetchArrayBuffer(url, {signal, priority})));
+    await Promise.all(Object.values(this.modelAssetUrls(definition,model)).map(url => this.fetchArrayBuffer(url, {signal, priority})));
   }
 
   async prefetch(definitions, worldId, signal) {
@@ -2108,24 +2118,7 @@ export class ScheduledActorRuntime {
   async loadModel(definition, modelDefinition, signal = null) {
     const isHumansActor = Boolean(modelDefinition.modelCode);
     const isMt7Character = definition.characterAssetFormat === "MT7";
-    const modelUrl = isHumansActor
-      ? this.bundledCharacterAsset(
-        this.bundledCharacterModels,
-        `${modelDefinition.modelCode}.CHRM`,
-        definition.characterAssetDirectory,
-      )
-      : null;
-    const texturePackUrl = isHumansActor
-      ? this.bundledCharacterAsset(
-        this.bundledCharacterTextures,
-        modelDefinition.textureFile
-          || (
-            `${modelDefinition.modelCode.replace(/_[ML]$/, "")}`
-            + "_textures.bin"
-          ),
-        definition.characterAssetDirectory,
-      )
-      : null;
+    const {modelUrl,texturePackUrl}=this.modelAssetUrls(definition,modelDefinition);
     const [modelBuffer, texturePack] = await Promise.all([
       modelUrl
         ? this.fetchArrayBuffer(modelUrl, {signal, priority: 1})

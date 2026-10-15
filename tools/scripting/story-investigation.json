@@ -3,6 +3,16 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"mark-after-work-rescue","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":590,
+      "title":"Warehouse No. 17 — Mark's brother","hours":[17,24],"bounds":"s1.mfsy.mark-after-work",
+      "requiredFlags":["story.s1.workday-two-payday.completed","story.s1.workday-two-attack.completed"],
+      "completedFlag":"story.s1.mark-after-work-rescue.completed","effects":["story.s1.workday-two.completed","notebook.s1.mark-brother","notebook.s1.mad-angels-chi-you-men"],"recordDays":["story.s1.workday-two.finished"],
+      "voiceIds":[],"combat":"s1.mfsy.mark-after-work",
+      "introductionActivities":["s1.mfsy.mark-after-work-intro.scene"],"completionActivities":["s1.mfsy.mark-after-work-aftermath.scene","s1.mfsy.mark-brother-explanation.scene"],
+      "nativeSources":[{"role":"original-mark-rescue-and-brother-explanation","locator":"disc3/SCENE/03/MFSY/BOKOMARK.PKS#SEQDATA2.AUTH,SEQDATA3.AUTH,SEQDATA4.AUTH,M_01MKB.MOTN","sha256":"f074ed751b0000c66357087fc8ed23c0a343080723bb511567b92c2d0ed96164"}],
+      "provenance":"GameSpot p56: after payday, find Mark attacked at Warehouse17, win the fight, learn about his missing brother and the MadAngels/ChiYouMen deal. Original BOKOMARK introduction, aftermath and explanation with 01MKB audio. Approach/hours and five-fighter roster from the visible cast are authored, not native controller gates/roster. Shared basic combat and explicit source-qualified model associations; original film completion cannot win. Acknowledged victory plus both endings atomically save the brother/deal notes, chapter completion and its day. Cancellation remains retryable, no second salary/item/time jump."
+    },
+    {
       "id":"workday-two-morning","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":550,
       "title":"Second workday — morning cargo and lunch","hours":[9,12],"bounds":"s1.mfsy.workday-two-morning",
       "requiredFlags":["story.s1.workday-two-race.completed"],"completedFlag":"story.s1.workday-two-morning.completed","effects":["notebook.s1.workday-two-lunch"],

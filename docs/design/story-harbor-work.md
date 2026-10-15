@@ -81,7 +81,8 @@ and browser-verified, as are Mark's noon rescue, the afternoon batch/attack,
 once-only payday and Goro's warning. The return-home dream and second morning's
 race also pass their connected rendered continuation.
 The second day's cargo/ambush/payday also pass connected rendered checks;
-the subsequent Mark rescue and later workdays remain missing. Existing
+the subsequent Mark rescue and brother explanation also pass their connected
+rendered continuation. Later workdays remain missing. Existing
 forklift driving, cargo and racing must be reused; neither film completion
 nor a client-reported win may grant a shift's salary or story outcome.
 
@@ -535,5 +536,82 @@ a second payday. A failed pickup and failed fights during verification saved
 neither the unfinished batch nor an unearned clue/payment. The shared keyboard
 driver now observes shifted pickup bodies and makes bounded real control
 adjustments rather than assuming its initial crate coordinate cannot change.
-The lunch-camera occlusion above remains; neither the later Mark rescue nor a
-completed second-day story flag is claimed.
+The lunch-camera occlusion above remains. This payday check does not itself
+complete Mark's later rescue or the second-day story flag.
+
+## Warehouse No. 17: Mark rescue
+
+`mark-after-work-rescue` continues the saved second payday and Warehouse No. 17
+lead. The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf),
+printed p. 56, establishes the after-work rescue, real fight and Mark's account
+of his missing brother and the Mad Angels' dealings with the Chi You Men.
+Implementation, focused checks and connected rendered/full-stack verification pass.
+
+| Field | Event contract |
+| --- | --- |
+| Location / eligibility | Personal Story Ryo in `MFSY`, completed second payday and ambush, 17:00–24:00; approach behind Warehouse No. 17 near the original cast. Bounds and forgiving evening retry window are authored, not recovered native EVNT/controller predicates. |
+| Original sequence | `BOKOMARK/SEQDATA2.AUTH` confrontation, actual shared combat, `SEQDATA3.AUTH` aftermath, then `SEQDATA4.AUTH` brother explanation. Original camera/body tracks and 01MKB voice/effect timing are reused. |
+| Characters / challenge | Ryo, Mark, MRSK, OKYS, DEB1, DEB2 and BTC_ appear in the introduction. The five visible thugs supply an authored fighting roster; this is not proof of the original free-battle roster. All five must actually be defeated, with two simultaneous close attackers and the established basic controls. No QTE. |
+| Props / weather / timing | No new pickup or handover. Preserve personal weather/lighting and time; no calendar jump. Native track extents determine presentation duration, not a guessed whole-event timer. |
+| Completion | After the real victory and both acknowledged ending films, atomically save the rescue, whole second-workday milestone, brother/deal notebook pages and personal finished-day record. No money, items or repeated salary. |
+| Exit / skip / failure | Restore the approach pose/camera and normal control in the same harbor. This return differs from adopting the last film's waterside pose. Explicit cinematic skip acknowledges only presentation; it cannot win combat. Defeat/timeout offers a fresh fight; whole-event cancellation or failed loading grants no clue and leaves the event retryable. Saved completion prevents automatic replay. |
+
+`build_harbor_job_pack.mjs` pins the original BOKOMARK archive hash
+`f074ed751b0000c66357087fc8ed23c0a343080723bb511567b92c2d0ed96164`,
+texture bank, 01MKB stream and A1_MKB sound bank. The three AUTH records declare
+520, 700 and 1,961 frames. AMOV/ACAM extents are also preserved; the compiled
+durations are approximately 18.90, 23.35 and 65.38 seconds. This package uses
+**motion bank 21**, not the bank 16 used by the earlier harbor profiles.
+
+MRSK/OKYS/Mark retain the established original character models. BTH_L, BTN_L
+and BTC_L come directly from BOKOMARK, with its own textures. DEB1→BTH_L and
+DEB2→BTN_L are explicit authored associations, not recovered native binding
+proof; BTC_→BTC_L has direct filename-prefix support. The original Ryo pose at
+`y=-2` is an off-shot cinematic placement, not a grounded arrival. The fight
+uses an explicit floor-level formation near the original cast instead.
+
+Native presentation and combat share those source-qualified model records from
+the same package manifest. The ordinary actor loader now resolves a registered
+model/texture pair consistently for prefetch and assembly; it rejects incomplete
+or unregistered pairs rather than guessing a global HUMANS filename. Existing
+global characters and model overrides retain their normal path. Archive-only
+characters are not copied into a second global model pool.
+For an already-declared world actor using the same ordinary model/texture pair,
+the combat producer reuses that reviewed definition. The first browser run
+exposed redundant package fields creating a competing MRSK definition and
+preventing harbor startup. The producer now rejects differing sources and a
+corpus-level scene/fight composition check covers every combat world; the shared
+collection's conflict rejection was not relaxed.
+
+The English 01MKB archive lacks the introduction's `01MKBD003.str` and
+`01MKBD004.str` references, and A1_MKB ends at `a9041b00` while the introduction
+requests footstep `a9041c00`. These exact missing calls remain explicit unavailable
+records, without invented subtitles, replacement speech or a guessed effect.
+The two ending films' voice/effect requests are available in the pinned banks.
+
+Focused actual-Yarn tests reuse the earlier Mark-rescue boundary checks for
+prerequisites/hours, completed-event rejection, cancelled introduction, actual
+victory/defeat, timeout/retry, cancellation during either ending, and atomic
+clue/chapter/day settlement without economy or calendar changes. Client checks
+cover exact bank/bindings, explicit audio holes, shared source models, paired
+asset validation and unchanged ordinary actor loading.
+Use `NEW_YOKOSUKA_MARK_AFTER_WORK_E2E=true` with the genuine second-payday save.
+The connected check passed from that earned save: physical entry into the
+authored approach area, cancellation during the introduction, actual five-thug
+victory, both original endings, cancellation during the brother explanation,
+reload into the still-uncommitted trigger and a fresh real fight, then natural
+ending and saved completion. Cancelled attempts saved no clue or chapter result.
+Reloading inside an eligible unfinished trigger correctly retries the encounter;
+the completed version does not replay. Controls restore, the personal date stays
+December 27, currency stays at ¥15,036 and inventory stays unchanged. PostgreSQL
+confirms both notebook flags, the rescue/second-workday flags and finished-day
+record `6204`, matching the already-earned payday.
+
+Rendered captures show the package-owned thugs on the supported harbor floor,
+the original confrontation and Mark/Ryo in the explanation. Test setup starts
+near the trigger rather than proving a full walking route from Alpha Trading.
+This does not establish the speculative DEB1/DEB2 associations as native truth,
+exact scenery/prop staging, exhaustive gesture fidelity or missing intro audio.
+All 78 new local runtime records pass their hash/size check; no asset publication
+or deployment has been performed. The next missing story milestone is the third
+workday, followed by the remaining harbor days and finale.

@@ -14,6 +14,7 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const evidence="docs/design/story-harbor-work.md";
 const archives={
+  BOKOMARK:"f074ed751b0000c66357087fc8ed23c0a343080723bb511567b92c2d0ed96164",
   HIRUAUTH:"e740397e02958441010345d34d1369b20bbad9bc2ebdf397b413251b20a9a97e",
   GOROCOOP:"23073336078302cec958cdedb84443428f1e6f64ca2126e311fd5dd7ea9312a1",
   MGOR:"7feb53502a9325de4ffaa6539d38b9d2d7adb4d431285339035fa25057ca8ee6",
@@ -24,6 +25,19 @@ const archives={
   ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
 const profiles=[
+  {id:"mark-after-work-intro",archive:"BOKOMARK",auth:"SEQDATA2.AUTH",motion:"M_01MKB.MOTN",frames:520,actors:["AKIR","DEB1","DEB2","MARK","MRSK","OKYS","BTC_"],
+    actorModels:{DEB1:["Mad Angels thug","BTH_L"],DEB2:["Mad Angels thug","BTN_L"],BTC_:["Mad Angels thug","BTC_L"]},
+    actorTextureHash:"526ca5ef63b27b189ceeac0dcadbd5950334105132b27008fd77ec95ef1965df",
+    unavailableVoices:Object.fromEntries(["01MKBD003.str","01MKBD004.str"].map(id=>[id,{
+      reason:`Original introduction requests ${id}, absent from the pinned English 01MKB.AFS; no substitute voice or invented subtitle.`,
+      evidence:"docs/design/story-harbor-work.md#warehouse-no-17-mark-rescue",
+    }])),
+    unavailableSounds:{"a9041c00:/p16/prj16m5/AUTH01/01MKB/SE/footconcrete/joseiconsneaker1.aiff":{
+      reason:"Original introduction requests a9041c00; the pinned A1_MKB.SND contains a9040000 through a9041b00 only. Incidental footstep omitted, no substitute.",
+      evidence:"docs/design/story-harbor-work.md#warehouse-no-17-mark-rescue",
+    }}},
+  {id:"mark-after-work-aftermath",archive:"BOKOMARK",auth:"SEQDATA3.AUTH",motion:"M_01MKB.MOTN",frames:700,actors:["AKIR","MARK","MRSK","OKYS"]},
+  {id:"mark-brother-explanation",archive:"BOKOMARK",auth:"SEQDATA4.AUTH",motion:"M_01MKB.MOTN",frames:1961,actors:["AKIR","MARK"]},
   {id:"workday-lunch",archive:"HIRUAUTH",auth:"SEQDATA1.AUTH",motion:"M_01BEN.MOTN",frames:450,silent:true,
     actors:[...Array.from({length:6},(_,i)=>[`BTF${i+1}`,`BTS${i+1}`]).flat(),"AKIR","YOHI","TYMK","TAKE","MARK","HTSI"],
     props:Object.fromEntries(Array.from({length:6},(_,i)=>[[`BTF${i+1}`,"BNMS301G"],[`BTS${i+1}`,"BNMS302G"]]).flat()),
@@ -47,7 +61,8 @@ const profiles=[
       evidence:"docs/design/story-harbor-work.md#mark-at-lunch-presentation-assets",
     }}},
   {id:"mark-lunch-aftermath",archive:"MIZUMARK",auth:"SEQDATA2.AUTH",motion:"M_01MAD.MOTN",frames:1050,actors:["AKIR","OKYS","MRSK","MARK"]},
-].map(p=>p.archive==="MARU"?{...p,stream:"01MAK",streamHash:"991e51fcbe77d0e590fd5db522b6fee46fe11cf7b02fc9bcaa6b81917cfc075d",sound:"A1_MARK.SND",soundHash:"ef5b84e9994323af1b7dc315612030cd1b923e79aa8770dd0e8afc6cad394ba8"}
+].map(p=>p.archive==="BOKOMARK"?{...p,bank:21,stream:"01MKB",streamHash:"29dfd4ec9003c458ad53d6e1cabc621edd1a7fac8cff367b1e348de818e3e0fd",sound:"A1_MKB.SND",soundHash:"8286272d55f5011e16b49dc5cb7c0596a090e365ff409cbf96440a65ad02724e"}
+  :p.archive==="MARU"?{...p,stream:"01MAK",streamHash:"991e51fcbe77d0e590fd5db522b6fee46fe11cf7b02fc9bcaa6b81917cfc075d",sound:"A1_MARK.SND",soundHash:"ef5b84e9994323af1b7dc315612030cd1b923e79aa8770dd0e8afc6cad394ba8"}
   :p.archive==="MIZUMARK"?{...p,stream:"01MAD",streamHash:"3295b7ef69bde0372cb212cc500adcababc86421d712ae860ecaead614a7714a",sound:"A1_MAD.SND",soundHash:"b76ce9d7ad7f386a45001adcbf12a855718b0254ca72475dfdec78c4bfb38890"}:p);
 const characters={YOHI:["Yohei Kondo","YHI_L"],TYMK:["Tsuyoshi Murakami","RFA_L"],TAKE:["Hiroaki Takeuchi","ZZC_L"],HTSI:["Hitoshi Numakubo","SGH_L"],
   GORO:["Goro Mihashi","KMB_L"],HINA:["Mai Sawano","MIB_L"],TMRA:["Ryozo Yada","KWD_L"],MARK:["Mark Kimberly","GIC_L"],
@@ -105,6 +120,16 @@ for(const p of selected){
     const [label,code]=characters[tag];
     packageActors[tag]={label,modelCode:code,browserFilename:`${code}.CHRM`,assetFormat:"MT5",characterScale:1,assetPath:`play/assets/characters/${code}.CHRM`,textureAssetPath:`play/assets/characters/${code.slice(0,3)}_textures.bin`};
   }
+  if(p.actorModels){
+    const textureAssetPath=texture(p.archive,p.actorTextureHash,"character-textures.bin");
+    for(const [tag,[label,code]]of Object.entries(p.actorModels)){
+      if(!p.actors.includes(tag))throw Error(`Unused package actor ${p.id}/${tag}`);
+      outputMembers.push(member(p.archive,`${code}.CHRM`));
+      packageActors[tag]={label,modelCode:code,browserFilename:`${code}.CHRM`,assetFormat:"MT5",characterScale:1,
+        assetPath:`${prefix}/${code}.CHRM`,textureAssetPath,
+        sourceBinding:{kind:"authored-package-model-association",archiveMember:`${code}.CHRM`,evidence}};
+    }
+  }
   for(const tag of p.actors.filter(t=>["DOOR","HAKO"].includes(t)))sceneObjects[tag]={model:"unmapped-original-reference",browserFilename:`${p.archive}-${tag}-reference`,referenceOnly:true};
   if(p.id==="yada-job-interview"){
     // ALPHA is absent from the resident harbor map. Load its original HRCM
@@ -130,7 +155,7 @@ for(const p of selected){
   const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:p.archive,disc:3,sourceMembers:members,expectedMembers:members,
     bindingEvidence:evidence,selectionRule:"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),...(p.silent?{}:{audioManifest:`${audioPrefix}/manifest.json`}),
-    motionBanks:[{bank:16,member:p.motion}],activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:p.auth,actors:p.actors,durationFrames:p.frames,
+    motionBanks:[{bank:p.bank??16,member:p.motion}],activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:p.auth,actors:p.actors,durationFrames:p.frames,
       ...(sceneObjects.ROOM?{nativeSceneObjectStates:[{actorTag:"ROOM",presented:true}]}:{})}],
     packageActors,sceneObjects,outputMembers:[...new Set(outputMembers)],generatedAssets,
   });
@@ -140,7 +165,7 @@ for(const p of selected){
   const audio=buildNativeAseqAudioPack({generatedBy,disc:3,authDirectory:path.join(root,prefix),authFiles:[p.auth],authManifest:`${prefix}/manifest.json`,resourceBindingEvidence:evidence,
     stream:{label:`${p.stream}.AFS`,path:path.join(source,`STREAM/${p.stream}.AFS`),manifestPath:`disc3/SCENE/03/STREAM/${p.stream}.AFS`,sha256:p.streamHash},
     soundBank:{label:p.sound,path:path.join(source,`SOUND/${p.sound}`),manifestPath:`disc3/SCENE/03/SOUND/${p.sound}`,sha256:p.soundHash},
-    unavailableSounds:p.unavailableSounds,
+    unavailableSounds:p.unavailableSounds,unavailableVoices:p.unavailableVoices,
     outputDirectory:path.join(root,audioPrefix),outputAssetPrefix:audioPrefix,dtpkDump:process.env.DTPK_DUMP||path.join(root,".disc-work/pool-audio/dtpkdump/DTPKDump.py"),
     vgmstream:process.env.VGMSTREAM_CLI||path.join(root,".disc-work/tooling/vgmstream/vgmstream-cli"),python:process.env.DTPK_PYTHON||"python3",
   });

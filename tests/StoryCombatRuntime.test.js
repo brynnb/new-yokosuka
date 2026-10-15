@@ -3,6 +3,30 @@ import test from "node:test";
 import { StoryCombatRuntime } from "../play/scripts/StoryCombatRuntime.js";
 import catalog from "../play/data/story-combat.json" with { type: "json" };
 import { PLAYER_COMBAT_CONFIG } from "../play/characters/PlayerMotionLibrary.js";
+import markRescue from "../play/assets/harbor/mark-after-work-intro/manifest.json" with {type:"json"};
+import authoredScenes from "../play/scripts/AuthoredSceneCatalog.js";
+import {composeScheduledActorDefinitions} from "../src/ScheduledActorDefinitionCollection.js";
+
+test("Mark's rescue fight shares the original film's source-qualified actor models",()=>{
+  const definition=catalog.encounters.find(e=>e.id==="s1.mfsy.mark-after-work");
+  assert.equal(definition.actors.length,6);
+  for(const actor of definition.actorDefinitions){
+    const {actorCode,activityOnly,...source}=actor;assert.equal(activityOnly,true);
+    const original=markRescue.packageActors[actorCode];
+    const shared=authoredScenes.scenes.filter(s=>s.worldId===definition.worldId).flatMap(s=>s.actorDefinitions).find(a=>a.actorCode===actorCode);
+    if(shared){assert.deepEqual(actor,shared);assert.equal(source.modelCode,original.modelCode);}
+    else assert.deepEqual(source,original);
+  }
+  assert.ok(definition.actors.every(a=>a.y===0));
+});
+
+test("each world's authored scenes and fights compose without competing supplemental actors",()=>{
+  for(const world of new Set(catalog.encounters.map(e=>e.worldId))){
+    const scenes=authoredScenes.scenes.filter(s=>s.worldId===world).flatMap(s=>s.actorDefinitions);
+    const fights=catalog.encounters.filter(e=>e.worldId===world).flatMap(e=>e.actorDefinitions);
+    assert.doesNotThrow(()=>composeScheduledActorDefinitions([scenes,fights]),world);
+  }
+});
 
 test("afternoon authoring relocates the shared formation without mirroring or distorting it",()=>{
   const source=catalog.encounters.find(e=>e.id==="s1.mfsy.mark-lunch"),placed=catalog.encounters.find(e=>e.id==="s1.mfsy.workday-one-attack");

@@ -134,8 +134,10 @@ rendered continuation through cancellation/retry, saved next-day arrival, all
 three physical laps, separate day-two settlement and reload without replay.
 Second-day cargo/lunch, both real ambush waves and separate once-only payday now
 pass connected rendered continuations and saved reload. Lunch framing remains
-partly obscured by the resident fence. The later Warehouse No. 17
-Mark rescue, subsequent Mad Angels workdays and departure remain unimplemented;
+partly obscured by the resident fence. The Warehouse No. 17 Mark rescue and
+brother explanation also pass connected rendered checks, including cancellation,
+real victory, atomic notebook/chapter settlement and reload without replay.
+Subsequent Mad Angels workdays and departure remain unimplemented;
 the checklist above distinguishes each verified sequence.
 
 For walkthrough-guided, authored progression, use the

@@ -2,6 +2,217 @@
   "schema": "new-yokosuka-authored-story-combat-v1",
   "encounters": [
     {
+      "id": "s1.mfsy.mark-after-work",
+      "label": "Protect Mark at Warehouse No. 17",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "GameSpot p56 confirms the Warehouse17 rescue and Mark's brother/ChiYouMen clue. BOKOMARK introduction supplies five visible thugs; using all five as the fight roster is authored, not a recovered native free-battle roster. Reuse the exact cinematic package's original models; DEB1/BTH and DEB2/BTN associations are reviewed authored choices. Explicit floor-level formation near the original cast instead of Ryo's off-shot y=-2, two simultaneous attackers and shared basic moves/AI are adaptations. No reward or victory from the films.",
+      "placement": {
+        "position": [
+          -91,
+          0,
+          33
+        ],
+        "yaw": 0
+      },
+      "formation": {
+        "AKIR": [
+          0,
+          0,
+          0
+        ],
+        "DEB1": [
+          3,
+          0,
+          -6
+        ],
+        "DEB2": [
+          -2,
+          0,
+          -6
+        ],
+        "MRSK": [
+          1.5,
+          0,
+          -4
+        ],
+        "OKYS": [
+          -1,
+          0,
+          -4
+        ],
+        "BTC_": [
+          0,
+          0,
+          -7
+        ]
+      },
+      "sourceActivity": "play/assets/harbor/mark-after-work-intro/SEQDATA2.AUTH",
+      "sha256": "5e0eb0f982f22c53a3028d73a4912d6cac3643156159c4564a7e8339ef058367",
+      "sourcePackage": "play/assets/harbor/mark-after-work-intro/manifest.json",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -91,
+          "y": 0,
+          "z": 33,
+          "health": 100
+        },
+        {
+          "tag": "DEB1",
+          "x": -88,
+          "y": 0,
+          "z": 27,
+          "health": 28
+        },
+        {
+          "tag": "DEB2",
+          "x": -93,
+          "y": 0,
+          "z": 27,
+          "health": 28
+        },
+        {
+          "tag": "MRSK",
+          "x": -89.5,
+          "y": 0,
+          "z": 29,
+          "health": 36
+        },
+        {
+          "tag": "OKYS",
+          "x": -92,
+          "y": 0,
+          "z": 29,
+          "health": 28
+        },
+        {
+          "tag": "BTC_",
+          "x": -91,
+          "y": 0,
+          "z": 26,
+          "health": 28
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "DEB1",
+          "label": "Mad Angels thug",
+          "modelCode": "BTH_L",
+          "browserFilename": "BTH_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/mark-after-work-intro/BTH_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/mark-after-work-intro/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTH_L.CHRM",
+            "evidence": "docs/design/story-harbor-work.md"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "DEB2",
+          "label": "Mad Angels thug",
+          "modelCode": "BTN_L",
+          "browserFilename": "BTN_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/mark-after-work-intro/BTN_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/mark-after-work-intro/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTN_L.CHRM",
+            "evidence": "docs/design/story-harbor-work.md"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "MRSK",
+          "label": "Shingo Murasaki",
+          "modelCode": "PPL_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "OKYS",
+          "label": "Minoru Okayasu",
+          "modelCode": "OKA_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "BTC_",
+          "label": "Mad Angels thug",
+          "modelCode": "BTC_L",
+          "browserFilename": "BTC_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/mark-after-work-intro/BTC_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/mark-after-work-intro/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTC_L.CHRM",
+            "evidence": "docs/design/story-harbor-work.md"
+          },
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -94.5,
+        "maxX": -86.5,
+        "minZ": 24.5,
+        "maxZ": 34.5
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000,
+      "inputBufferMs": 400
+    },
+    {
       "id": "s1.mfsy.workday-two-wave-one",
       "label": "Warehouse ambush — first wave",
       "area": "MFSY",

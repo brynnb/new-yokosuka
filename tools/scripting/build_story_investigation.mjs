@@ -23,6 +23,9 @@ const triggerPriorities = new Map();
 const storyRegions=JSON.parse(fs.readFileSync(path.join(server,"internal/scriptevent/story_regions.json"))).regions;
 for (const route of spec.routes) {
   const disc=route.disc ?? 1;
+  for(const source of route.nativeSources||[]){
+    if(!/^[a-z][a-z0-9_-]{0,63}$/.test(source.role)||typeof source.locator!=="string"||!source.locator.trim()||!/^([a-f0-9]{64})$/.test(source.sha256))throw Error(`Invalid native source provenance ${route.id}/${source.role}`);
+  }
   if(![1,2,3].includes(disc))throw Error(`Invalid Shenmue I source disc in ${route.id}`);
   const region=storyRegions.find(r=>r.id===route.bounds);
   if(region?.hours&&JSON.stringify(region.hours)!==JSON.stringify(route.hours))throw Error(`Client dispatch and authoritative Yarn hours disagree in ${route.id}`);
