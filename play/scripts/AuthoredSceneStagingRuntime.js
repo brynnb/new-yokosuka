@@ -21,13 +21,14 @@ function validateTrack(track,fields,duration,label){
 }
 
 export class AuthoredSceneStagingRuntime {
-  constructor({ actors, camera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, currentMeshes }) {
+  constructor({ actors, camera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, createSceneObjects, currentMeshes }) {
     this.actors = actors;
     this.camera = camera;
     this.motionRuntime = motionRuntime;
     this.capturePlayerState = capturePlayerState;
     this.restorePlayerState = restorePlayerState;
     this.createAttachedObjects = createAttachedObjects;
+    this.createSceneObjects = createSceneObjects;
     this.currentMeshes = currentMeshes;
     this.active = null;
   }
@@ -65,7 +66,7 @@ export class AuthoredSceneStagingRuntime {
     if(continuing&&(!this.active||this.active.transaction!==transaction||!scene.continuationGroup
       ||scene.continuationGroup!==this.active.scene.continuationGroup
       ||JSON.stringify(scene.actors.map(a=>a.tag))!==JSON.stringify(this.active.scene.actors.map(a=>a.tag))
-      ||scene.attachedObjects||scene.objectTransforms||this.active.objects||this.active.restoreObjects))return false;
+      ||scene.attachedObjects||scene.sceneObjects||scene.objectTransforms||this.active.objects||this.active.sceneObjects||this.active.restoreObjects))return false;
     const owner = continuing?this.active:{ transaction, scene, controller: new AbortController(), elapsed: 0,
       actorsBegun: false, cameraBegun: false, snapshot: this.capturePlayerState() };
     this.active = owner;
@@ -82,6 +83,15 @@ export class AuthoredSceneStagingRuntime {
         : scene.durationSeconds;
       if (scene.waitForMotions && (!Number.isFinite(owner.durationSeconds) || owner.durationSeconds <= 0 || owner.durationSeconds > 120)) {
         throw new Error(`Invalid loaded scene duration ${scene.id}`);
+      }
+      if(scene.sceneObjects){
+        if(!this.createSceneObjects)throw Error(`No scene-object loader for ${scene.id}`);
+        owner.sceneObjects=this.createSceneObjects(scene.sceneObjects,signal);
+        owner.loadingProps=true;
+        try{await owner.sceneObjects.load([]);}finally{owner.loadingProps=false;}
+        signal.throwIfAborted();
+        if(this.active!==owner)return false;
+        owner.sceneObjects.prepareActivity({activityId:scene.id,nativeSceneObjectStates:Object.keys(scene.sceneObjects).map(actorTag=>({actorTag,presented:true}))});
       }
       if(scene.attachedObjects){
         if(!this.createAttachedObjects)throw new Error(`No authored prop loader for ${scene.id}`);
@@ -113,7 +123,7 @@ export class AuthoredSceneStagingRuntime {
       return true;
     } catch (error) {
       if (this.active === owner) this.release(transaction);
-      else if(owner.clearLateProps)owner.objects?.clear(); // Release a late loader, never a newer scene.
+      else if(owner.clearLateProps){owner.objects?.clear();owner.sceneObjects?.clear();} // Release a late loader, never a newer scene.
       throw error;
     }
   }
@@ -150,6 +160,7 @@ export class AuthoredSceneStagingRuntime {
     for (const [enabled, cleanup] of [
       [!!owner.restoreObjects, () => owner.restoreObjects()],
       [!!owner.objects,()=>owner.objects.clear()],
+      [!!owner.sceneObjects,()=>owner.sceneObjects.clear()],
       [owner.cameraBegun, () => this.camera.end(owner)],
       [owner.actorsBegun, () => this.actors.end(owner, "stopped")],
       [true, () => this.restorePlayerState(owner.snapshot)],

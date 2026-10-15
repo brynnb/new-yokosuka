@@ -29,6 +29,28 @@ function harness() {
   return { runtime, transaction, scene, calls,root, deferPrepare: fn => { prepare = fn; } };
 }
 
+test("standalone tableau props reuse scene-object presentation and dispose on release",async()=>{
+  const h=harness(),calls=[];h.scene.sceneObjects={BIK1:{model:"bike"}};
+  h.runtime.createSceneObjects=definitions=>{
+    assert.equal(definitions,h.scene.sceneObjects);
+    return{load:async roots=>{assert.deepEqual(roots,[]);calls.push("load");},prepareActivity:value=>calls.push(value),clear:()=>calls.push("clear")};
+  };
+  await h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);
+  assert.deepEqual(calls,["load",{activityId:h.scene.id,nativeSceneObjectStates:[{actorTag:"BIK1",presented:true}]}]);
+  h.runtime.cancel(h.transaction);assert.equal(calls.at(-1),"clear");
+});
+
+test("cancelled standalone loading cannot acquire underneath another tableau",async()=>{
+  const h=harness();h.scene.sceneObjects={BIK1:{model:"bike"}};let resolve,clears=0;
+  h.runtime.createSceneObjects=()=>({load:()=>new Promise(r=>resolve=r),prepareActivity:()=>assert.fail("cancelled props acquired"),clear:()=>clears++});
+  const old=h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);
+  await new Promise(r=>setImmediate(r));h.runtime.cancel(h.transaction);
+  const scene={...h.scene,id:"new",sceneObjects:undefined},tx={area:h.transaction.area};
+  await h.runtime.play({kind:"scene-staging-start",scene},tx);const owner=h.runtime.active;
+  resolve();await assert.rejects(old,{name:"AbortError"});assert.equal(clears,2);assert.equal(h.runtime.active,owner);
+  h.runtime.cancel(tx);
+});
+
 function movingScene(scene,id="moving"){
   const track=(values,delta)=>({channels:Object.fromEntries(Object.entries(values).map(([key,value])=>[key,{times:[0,1],values:[value,value+(delta[key]||0)],tangents:[delta[key]||0,delta[key]||0]}]))});
   const pose={x:0,y:0,z:0,rotationX:0,rotationY:0,rotationZ:0};

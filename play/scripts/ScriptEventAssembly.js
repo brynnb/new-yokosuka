@@ -30,6 +30,7 @@ import { AuthoredSceneStagingRuntime } from "./AuthoredSceneStagingRuntime.js";
 import { StoryCombatRuntime } from "./StoryCombatRuntime.js";
 import {StoryNavigationRuntime} from "./StoryNavigationRuntime.js";
 import {StoryDeliveryRuntime} from "./StoryDeliveryRuntime.js";
+import {NativeAseqSceneObjectRuntime} from "../events/NativeAseqSceneObjectRuntime.js";
 import { createNativeAseqBabylonActors, createNativeAseqBabylonCamera } from "../events/NativeAseqBabylonPresentation.js";
 import { NativeAseqAttachedObjectRuntime } from "../events/NativeAseqAttachedObjectRuntime.js";
 import { createNativeCutsceneSceneObjectLoader } from "../cutscenes/NativeCutsceneSceneObjectLoader.js";
@@ -159,6 +160,8 @@ export function createScriptEventAssembly({
         camera: createNativeAseqBabylonCamera(camera), motionRuntime,
         capturePlayerState, restorePlayerState,
         createAttachedObjects,
+        createSceneObjects:(definitions,signal)=>new NativeAseqSceneObjectRuntime({definitions,
+          instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})})}),
         currentMeshes,
       }),
       playerMotionRuntime,
