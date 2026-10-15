@@ -44,6 +44,17 @@ test("personal scene pause holds calendar and lighting but not wall-clock deadli
   assert.equal(clock.gameDate().getTime(), gameTimeMs + 15_000);
 });
 
+test("personal full-day snapshots interpolate across bedtime and midnight without the public skip",()=>{
+  let now=1_000;const clock=new WorldClock({now:()=>now});
+  const saved=Date.UTC(1986,11,31,23,59,30);
+  clock.setWorldState({gameTimeMs:saved,serverTimeMs:now,dayLengthMs:96*60_000,dayStartHour:0,dayEndHour:24});
+  assert.equal(clock.gameDate().getTime(),saved);now+=4_000;
+  assert.equal(clock.gameDate().toISOString(),"1987-01-01T00:00:30.000Z");
+  const late=Date.UTC(1986,11,30,23,45);
+  clock.setWorldState({gameTimeMs:late,serverTimeMs:now,dayLengthMs:96*60_000,dayStartHour:0,dayEndHour:24,paused:true});
+  now+=90_000;assert.equal(clock.gameDate().getTime(),late);
+});
+
 test("debug hours preserve the current game date", () => {
   const date = new Date(Date.UTC(1986, 5, 9, 8, 30));
   const adjusted = dateAtDebugHour(date, 21.5);

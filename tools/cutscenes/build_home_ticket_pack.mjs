@@ -1,17 +1,15 @@
 #!/usr/bin/env node
-// Ticket-journey presentations, translated with the existing shared
+// Home and ticket-journey presentations, translated with the existing shared
 // activity/audio compilers. Yarn, not the original room controller, saves progress.
 import fs from "node:fs";
 import path from "node:path";
 import {execFileSync} from "node:child_process";
 import {buildNativeAseqActivityPack,sha256} from "../lib/NativeAseqActivityPack.mjs";
-import {buildNativeAseqAudioPack} from "../lib/NativeAseqAudioPack.mjs";
+import {buildNativeAseqAudioPack,registerNativeAseqMusic} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
 import {parseChrtSceneObjectBindings} from "../lib/chrt_scene_object_bindings.js";
 
 const root=path.resolve(import.meta.dirname,"../..");
-const source=path.join(process.env.SHENMUE_DISC2_EXTRACTED_ROOT||path.join(root,"extracted_disc2_v2"),"data/SCENE/02");
-const common=path.join(source,"JOMO/COMMON02.PKS");
 const mapHash="6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe";
 const commonHash="916aab45137cf340516a1cdd2ee61540e7c6562a1e92c5f932e9055ae0db3b89";
 const evidence="docs/design/story-ticket-journey.md";
@@ -21,6 +19,14 @@ const actor=(label,code)=>{
     assetPath:`${prefix}/${code}.CHRM`,textureAssetPath:`${prefix}/${code.slice(0,3)}_textures.bin`};
 };
 const profiles=[
+  // The longer 0x9f1fc variant requests absent 01GETA001/B001 voices.
+  // This original alternate matches all nineteen English AFS entries; do not
+  // alias the missing names or silently cut commands out of the longer AUTH.
+  {id:"nozomi-night-call",disc:3,evidence:"docs/design/story-nozomi-rescue.md",resource:"01GET",offset:0xae990,size:9480,hash:"42959eb45297b6dfc93906cf1403b4a4a0d10f7a9d98399973094e650ba9f78f",frames:2265,
+    mapHash:"43c613a944cc021e26793193826cf6e7dde57cd5f55ce1bfa9c1e41ce33c9c89",commonHash:"4df506b3994e111f1bc105a4485a22b19abcdf9cb6a1a02b2e0fab3f049cf136",
+    motion:"M_01GT.MOTN",motionSize:33268,motionHash:"d5fa591c1fadad7e1a4391390d57452c51ec69d5badaa598f1af54d3b55b618a",bank:25,base:32,actors:["TEL_","INE_","AKIR"],
+    music:{id:"bgm063",sourceId:"9c6892be5fa729b65e082fca6ea936f53f9ddcd4b1e30a10fd75a688674758fc",bankHash:"10dd803ed6c835cfc54967205bcae9e9c7eed0ba9380a9d5e52c9d49f084c879",label:"Nozomi's late-night call"},
+    stream:"01GET",streamHash:"094744020cc5e287d1bcad7b4f2e76643e502dca1b7bc76c8a42506724d9862e",sound:"A1_FUKYU.SND",soundHash:"ef51ec306c847c654388677b89f6cf67698287b51f11252c6f546486266476f7"},
   {id:"jimmy-morning-call",resource:"A0169",offset:0x9d7dc,size:7456,hash:"b113abdfdc1eb09823a1f80f17ea26e697afffe042b300ac656e4d9f53372a1d",frames:1600,
     motion:"M_0169.MOTN",motionSize:181132,motionHash:"091fa20c78398a3e3756ee21ffc0a26425ea6e3ecffcc316122a31f41fae3d7f",bank:19,base:0,actors:["TEL_","FUKU","AKIR"],
     stream:"A0169",streamHash:"f75f94816b8a8f011dbf372f57077596f45c21f382ed13816d80450672edb796",sound:"A1_JYTEL.SND",soundHash:"b36c631fd2911f0450652cbdddb1feaa608b01387f8b2b70a7abc69cddc9c2fe"},
@@ -80,11 +86,14 @@ const profileIndex=process.argv.indexOf("--profile");
 const selectedProfiles=profileIndex<0?profiles:profiles.filter(p=>p.id===process.argv[profileIndex+1]);
 if(!selectedProfiles.length)throw Error("--profile requires a known ticket-journey presentation ID");
 for(const p of selectedProfiles){
+  const disc=p.disc??2,discPath=`disc${disc}/SCENE/0${disc}`;
+  const source=path.join(process.env[`SHENMUE_DISC${disc}_EXTRACTED_ROOT`]||path.join(root,`extracted_disc${disc}_v2`),`data/SCENE/0${disc}`);
+  const common=path.join(source,`JOMO/COMMON0${disc}.PKS`);
   const area=p.area||"JOMO",mapSource=path.join(source,area,"MAPINFO.BIN");
   const prefix=`play/assets/${p.area?"dobuita":"hazuki"}/${p.id}`,audioPrefix=`public/audio/world/${p.id}`;
   const members=[
-    {name:`${p.resource}.AUTH`,sourcePath:mapSource,sourceManifestPath:`disc2/SCENE/02/${area}/MAPINFO.BIN`,sourceOffset:p.offset,sourceSha256:p.mapHash||mapHash,byteLength:p.size,sha256:p.hash},
-    {name:p.motion,sourcePath:p.area?path.join(source,area,p.motion):common,sourceManifestPath:`disc2/SCENE/02/${area}/${p.area?p.motion:"COMMON02.PKS"}`,...(p.area?{}:{archiveMember:p.motion,sourceSha256:commonHash}),byteLength:p.motionSize,sha256:p.motionHash},
+    {name:`${p.resource}.AUTH`,sourcePath:mapSource,sourceManifestPath:`${discPath}/${area}/MAPINFO.BIN`,sourceOffset:p.offset,sourceSha256:p.mapHash||mapHash,byteLength:p.size,sha256:p.hash},
+    {name:p.motion,sourcePath:p.area?path.join(source,area,p.motion):common,sourceManifestPath:`${discPath}/${area}/${p.area?p.motion:`COMMON0${disc}.PKS`}`,...(p.area?{}:{archiveMember:p.motion,sourceSha256:p.commonHash||commonHash}),byteLength:p.motionSize,sha256:p.motionHash},
   ];
   const props={},outputMembers=[],textureSources=[];let generatedAssets=[];
   if(area==="GMCT"){
@@ -97,7 +106,7 @@ for(const p of selectedProfiles){
         sourceBinding:{mapInfoChrsOffset:chrs,characterRecordOffset:binding.characterRecordOffset,defImageRecordOffset:binding.defImageRecordOffset}};
     }
   }
-  if(p.id==="jimmy-morning-call"){
+  if(p.actors.includes("TEL_")){
     // JOMO's existing TEL_ placement owns this phone. Borrow and restore it;
     // adding another model would put two phones at the same original pose.
     props.TEL_={model:"TELS514G",browserFilename:"S1_JOMO_TELS514G.MT5",objectTag:"TEL_"};
@@ -147,8 +156,8 @@ for(const p of selectedProfiles){
     }
   }
   if(textureSources.length)generatedAssets.push({assetPath:`${prefix}/textures.bin`,bytes:Buffer.concat(textureSources.map(file=>extractNativeTexnPack(fs.readFileSync(file),file).bytes))});
-  const manifest=buildNativeAseqActivityPack({generatedBy:"tools/cutscenes/build_home_ticket_pack.mjs",resourceName:p.resource,disc:2,
-    sourceMembers:members,expectedMembers:members,bindingEvidence:evidence,
+  const manifest=buildNativeAseqActivityPack({generatedBy:"tools/cutscenes/build_home_ticket_pack.mjs",resourceName:p.resource,disc,
+    sourceMembers:members,expectedMembers:members,bindingEvidence:p.evidence||evidence,
     selectionRule:"Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector.",
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),audioManifest:`${audioPrefix}/manifest.json`,
     motionBanks:[{bank:p.bank,member:p.motion,parseOptions:{sequenceIndexBase:p.base}}],
@@ -159,10 +168,10 @@ for(const p of selectedProfiles){
   runtimePaths.push(`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path));
   console.log(`Built ${p.id}: ${manifest.activities[0].durationSeconds.toFixed(2)} seconds`);
   if(!process.argv.includes("--audio"))continue;
-  const audio=buildNativeAseqAudioPack({generatedBy:"tools/cutscenes/build_home_ticket_pack.mjs",disc:2,
-    authDirectory:path.join(root,prefix),authFiles:[`${p.resource}.AUTH`],authManifest:`${prefix}/manifest.json`,resourceBindingEvidence:evidence,
-    stream:{label:`${p.stream}.AFS`,path:path.join(source,`STREAM/${p.stream}.AFS`),manifestPath:`disc2/SCENE/02/STREAM/${p.stream}.AFS`,sha256:p.streamHash},
-    soundBank:{label:p.sound,path:path.join(source,"SOUND",p.sound),manifestPath:`disc2/SCENE/02/SOUND/${p.sound}`,sha256:p.soundHash},
+  const audio=buildNativeAseqAudioPack({generatedBy:"tools/cutscenes/build_home_ticket_pack.mjs",disc,
+    authDirectory:path.join(root,prefix),authFiles:[`${p.resource}.AUTH`],authManifest:`${prefix}/manifest.json`,resourceBindingEvidence:p.evidence||evidence,
+    stream:{label:`${p.stream}.AFS`,path:path.join(source,`STREAM/${p.stream}.AFS`),manifestPath:`${discPath}/STREAM/${p.stream}.AFS`,sha256:p.streamHash},
+    soundBank:{label:p.sound,path:path.join(source,"SOUND",p.sound),manifestPath:`${discPath}/SOUND/${p.sound}`,sha256:p.soundHash},
     ...(p.id==="boat-ticket-collection"?{unavailableVoices:Object.fromEntries(["A0165A008.str","A0165A009.str"].map(name=>[name,{
       reason:"This exact original AUTH reference is absent from A0165.AFS; retain its cue without substitute speech.",evidence:"disc2/SCENE/02/STREAM/A0165.AFS original member directory",
     }]))}:{}),
@@ -170,6 +179,7 @@ for(const p of selectedProfiles){
     dtpkDump:process.env.DTPK_DUMP||path.join(root,".disc-work/pool-audio/dtpkdump/DTPKDump.py"),vgmstream:process.env.VGMSTREAM_CLI||path.join(root,".disc-work/tooling/vgmstream/vgmstream-cli"),python:process.env.DTPK_PYTHON||"python3",
   });
   runtimePaths.push(`${audioPrefix}/manifest.json`,...[...audio.voices,...audio.sounds].filter(a=>a.asset&&!a.unavailable).map(a=>a.asset));
+  if(p.music)runtimePaths.push(...registerNativeAseqMusic(root,p.music));
   console.log(`Built ${p.id} audio: ${audio.voices.length} voices; ${audio.sounds.length} effects`);
 }
 execFileSync(process.execPath,["tools/runtime-assets.mjs","update",...new Set(runtimePaths)],{cwd:root,stdio:"inherit"});

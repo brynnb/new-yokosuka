@@ -51,11 +51,17 @@ schedules; timed entrances and script-event calendar/presence checks use the sam
 personal view. Public NPC updates cannot overwrite it. Player presence and chat
 still share the normal world room.
 
-The existing waking-day clock runs at 15 game seconds per real second and skips
-23:30–08:30. Story time advances while its WebSocket is connected, including
+Both clocks run at 15 game seconds per real second. Public Free roam retains
+its 23:30–08:30 skip. Story uses a continuous 24-hour calendar so late-night calls,
+travel and rescues can cross midnight. Personal snapshots advertise
+`dayStartHour: 0` and `dayEndHour: 24`; the existing browser interpolation uses
+those bounds rather than assuming the public waking day. Story time advances
+while its WebSocket is connected, including
 ordinary dialogue, and is checkpointed even when standing still. It pauses on
-disconnect or a mode switch. Original sleep routines and event-driven time jumps
-are not newly implemented here. Free roam uses the configured server weather
+disconnect or a mode switch. Reviewed sleep/wait events save their named target
+through the ordinary Yarn settlement, including the same-date 23:45 rest before
+[Nozomi's call](../design/story-nozomi-rescue.md). Original room-controller sleep
+routines are not executed. Free roam uses the configured server weather
 policy. In S1 Story mode, original room-script weather refresh/freeze controls
 can select the recovered cloud/rain/snow curves using the personal native clock.
 Until that owner is initialized, server weather remains in use. The browser

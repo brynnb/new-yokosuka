@@ -12,6 +12,8 @@ guide and focused tests for the current contract.
 - [Story event template](story-event-template.md): a reusable authored event
   specification, connected progression checklist and authored opening
   investigation, with explicit approximations.
+- [Nozomi's rescue](story-nozomi-rescue.md): implemented late-night rest/call,
+  original presentation sources, clock boundaries and remaining challenges.
 
 Keep temporary priorities, task checklists, and progress reports in ignored
 `internal-docs/`. Durable design decisions should explain the tradeoff and link

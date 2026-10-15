@@ -62,7 +62,7 @@ const ACTIVITIES = new Map([
     cutscene:{id:`story-s1-${part}`,packageId:part,worldId:"arcade",storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:`${resource}/${resource}.AUTH`}}},
   }]),
-  ...[["jimmy-morning-call","A0169","JOMO","interior"],["post-chen-home","A0160","JOMO","interior"],["bank-savings","01BNK","JOMO","interior"],["travel-family","01EAR","JOMO","interior"],
+  ...[["nozomi-night-call","01GET","JOMO","interior"],["jimmy-morning-call","A0169","JOMO","interior"],["post-chen-home","A0160","JOMO","interior"],["bank-savings","01BNK","JOMO","interior"],["travel-family","01EAR","JOMO","interior"],
     ["fuku-travel-funds","01MON","JOMO","interior"],["global-airfare","01MIT","DSKI","dski"],["asia-airfare","01ETU","DAZA","daza"],
     ["global-boat","01MIT","DSKI","dski"],["boat-ticket-purchase","01ETU","DAZA","daza"],["boat-ticket-collection","A0165","DAZA","daza"]].map(([part,resource,area,worldId])=>[`s1.${area.toLowerCase()}.${part}.scene`,{
     kind:"native-cutscene",area,durableEffects:"forbidden",returnPlayerState:true,

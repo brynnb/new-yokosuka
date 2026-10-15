@@ -5,7 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import {execFileSync} from "node:child_process";
 import {buildNativeAseqActivityPack,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
-import {buildNativeAseqAudioPack} from "../lib/NativeAseqAudioPack.mjs";
+import {buildNativeAseqAudioPack,registerNativeAseqMusic} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
 import {parseAuthSequence} from "../../src/AuthSequence.js";
 import {runtimeAssetUrl} from "../../src/RuntimeAssets.js";
@@ -247,16 +247,7 @@ for(const p of selected){
     vgmstream:process.env.VGMSTREAM_CLI||path.join(root,".disc-work/tooling/vgmstream/vgmstream-cli"),python:process.env.DTPK_PYTHON||"python3",
   });
   runtimePaths.push(`${audioPrefix}/manifest.json`,...[...audio.voices,...audio.sounds].filter(a=>a.asset&&!a.unavailable).map(a=>a.asset));
-  if(p.music){
-    const filename=path.join(root,"public/music/manifest.json"),music=JSON.parse(fs.readFileSync(filename));
-    const viewer=JSON.parse(fs.readFileSync(path.join(root,"public/music/asset-viewer-manifest.json")));
-    const track=viewer.tracks[p.music.sourceId];
-    if(!track||track.source.bankSha256!==p.music.bankHash||track.source.file!==`${p.music.id.toUpperCase()}.SND`||track.source.group!==0||track.source.track!==0)throw Error(`Changed original music for ${p.id}`);
-    // Reuse the viewer's exact original rendering, not a second conversion.
-    fs.accessSync(path.join(root,"public",track.ogg_url));
-    music.tracks[p.music.id]={url:track.ogg_url,label:p.music.label,durationSeconds:track.durationSeconds,loop:true,source:track.source};
-    fs.writeFileSync(filename,JSON.stringify(music,null,2)+"\n");runtimePaths.push("public/music/manifest.json",`public${track.ogg_url}`);
-  }
+  if(p.music)runtimePaths.push(...registerNativeAseqMusic(root,p.music));
   console.log(`Built ${p.id} audio: ${audio.voices.length} voices; ${audio.sounds.length} effects`);
 }
 execFileSync(process.execPath,["tools/runtime-assets.mjs","update",...new Set(runtimePaths)],{cwd:root,stdio:"inherit"});

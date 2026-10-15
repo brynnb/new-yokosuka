@@ -617,7 +617,8 @@ This does not establish the speculative DEB1/DEB2 associations as native truth,
 exact scenery/prop staging, exhaustive gesture fidelity or missing intro audio.
 All 78 new local runtime records pass their hash/size check; no asset publication
 or deployment has been performed. The following sections cover the connected
-third workday and its evening; the later harbor days and finale remain missing.
+third through fifth workdays and Chen's warning. The later rescue/finale is
+tracked in the connected progression checklist.
 
 ## Third workday: sleep, cargo and Nozomi's photographs
 
@@ -828,7 +829,8 @@ unverified. No new asset export, push or deployment was performed.
 
 The continuation below connects afternoon cargo/Goro trap, once-only payday
 and Mark's Long Zha explanation, separately from the morning and warning
-receipts. The fifth workday and finale remain next.
+receipts. The fifth workday is connected below; rescue and finale are tracked
+in the connected progression checklist.
 
 ## Fourth-day coworker warning
 
@@ -1251,4 +1253,5 @@ ending. Captures show Gui Zhang and Chen in their original shots. Saved reload
 preserves notebook, fifth-day completion and personal finish day 6207 without
 replay, extra pay or inventory changes. Currency remains ¥22,836. All 45 new
 local asset records (3,642,792 bytes) match their hashes/sizes; none were uploaded.
-Nozomi's late-night continuation remains unimplemented.
+The connected [late-night call](story-nozomi-rescue.md) follows; transport,
+rescue challenges and finale remain unimplemented.

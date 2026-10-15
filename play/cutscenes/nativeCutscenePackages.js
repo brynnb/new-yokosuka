@@ -120,6 +120,8 @@ import boatCollectionManifest from "../assets/dobuita/boat-ticket-collection/man
 import boatCollectionAudio from "../../public/audio/world/boat-ticket-collection/manifest.json";
 import jimmyCallManifest from "../assets/hazuki/jimmy-morning-call/manifest.json";
 import jimmyCallAudio from "../../public/audio/world/jimmy-morning-call/manifest.json";
+import nozomiCallManifest from "../assets/hazuki/nozomi-night-call/manifest.json";
+import nozomiCallAudio from "../../public/audio/world/nozomi-night-call/manifest.json";
 import chaiIntroManifest from "../assets/dobuita/chai-intro/manifest.json";
 import chaiIntroAudio from "../../public/audio/world/chai-intro/manifest.json";
 import chaiVictoryManifest from "../assets/dobuita/chai-victory/manifest.json";
@@ -351,6 +353,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["jimmy-knock",jimmyKnockManifest,jimmyKnockAudio,"dobuita"],["jimmy-caught",jimmyCaughtManifest,jimmyCaughtAudio,"dobuita"],["jimmy-escaped",jimmyEscapedManifest,jimmyEscapedAudio,"dobuita"],["jimmy-interrogation",jimmyInterrogationManifest,jimmyInterrogationAudio,"daza"],
     ["chai-intro",chaiIntroManifest,chaiIntroAudio,"arcade"],["chai-victory",chaiVictoryManifest,chaiVictoryAudio,"arcade"],["chai-rescue",chaiRescueManifest,chaiRescueAudio,"arcade"],
     ["jimmy-morning-call",jimmyCallManifest,jimmyCallAudio,"interior"],["post-chen-home",postChenHomeManifest,postChenHomeAudio,"interior"],["bank-savings",bankSavingsManifest,bankSavingsAudio,"interior"],["travel-family",travelFamilyManifest,travelFamilyAudio,"interior"],
+    ["nozomi-night-call",nozomiCallManifest,nozomiCallAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm063",loop:true}],gain:1})],
     ["fuku-travel-funds",fukuTravelFundsManifest,fukuTravelFundsAudio,"interior"],["global-airfare",globalAirfareManifest,globalAirfareAudio,"dski"],["asia-airfare",asiaAirfareManifest,asiaAirfareAudio,"daza"],
     ["global-boat",globalBoatManifest,globalBoatAudio,"dski"],["boat-ticket-purchase",boatPurchaseManifest,boatPurchaseAudio,"daza"],["boat-ticket-collection",boatCollectionManifest,boatCollectionAudio,"daza"]].map(([id,manifest,audioManifest,worldId,music])=>Object.freeze({
     id,worldId,actorDefinitions:Object.freeze([]),actorTags:Object.freeze(manifest.actorTags),

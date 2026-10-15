@@ -25,6 +25,27 @@ function command(name, ...values) {
   };
 }
 
+test("Nozomi's call uses the complete original English alternate and existing telephone",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.jomo.nozomi-night-call.scene");
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/hazuki/nozomi-night-call/manifest.json",import.meta.url)));
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/nozomi-night-call/manifest.json",import.meta.url)));
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.cutscene.activity.binding.activityId,"01GET/01GET.AUTH");
+  assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  assert.equal(manifest.source.disc,3);assert.equal(manifest.activities[0].durationFrames,2265);
+  assert.equal(manifest.motionBanks[0].bank,25);assert.equal(manifest.motionBanks[0].sequenceIndexBase,32);
+  assert.deepEqual(manifest.actorTags,["TEL_","INE_","AKIR"]);
+  assert.equal(manifest.sceneObjects.TEL_.objectTag,"TEL_");assert.equal(manifest.packageActors.INE_.modelCode,"INE_M");
+  assert.equal(audio.voices.length,19);assert.equal(audio.sounds.length,10);
+  assert.ok([...audio.voices,...audio.sounds].every(v=>!v.unavailable));
+  assert.ok(audio.voices.some(v=>v.speakerId==="CHAI"&&v.displayText.includes("Warehouse No. 17")));
+  assert.ok(audio.voices.some(v=>v.speakerId==="HRSK"&&v.displayText.includes("trap")));
+  assert.ok(audio.voices.every(v=>!/^01GET[AB]001$/i.test(v.voiceId)));
+  const music=JSON.parse(readFileSync(new URL("../public/music/manifest.json",import.meta.url)));
+  assert.equal(music.tracks.bgm063.source.bankSha256,"10dd803ed6c835cfc54967205bcae9e9c7eed0ba9380a9d5e52c9d49f084c879");
+  assert.match(music.tracks.bgm063.url,/bgm063-/);
+});
+
 test("harbor biker beats move the original motorcycle with Charlie, and only borrow interrogation presentation",()=>{
   const scenes=authoredScenes.scenes.filter(s=>s.id.startsWith("s1.mfsy.biker-chase.beat-"));
   assert.equal(scenes.length,12);

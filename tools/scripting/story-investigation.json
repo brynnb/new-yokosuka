@@ -3,6 +3,24 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"nozomi-night-rest","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":890,
+      "title":"After Chen — rest at home","hours":[20,23.75],"bounds":"s1.jomo.nozomi-night-rest",
+      "requiredFlags":["story.s1.workday-five.completed","story.s1.chen-warning.completed"],"excludedFlags":["story.s1.nozomi-night-call.completed"],
+      "completedFlag":"story.s1.nozomi-night-rest.completed","effects":[],"voiceIds":[],"activities":[],
+      "summary":"Optional authored rest/leave choice. Save same-date23:45, the tested bedside arrival and only a rest receipt; no sleeping film or call/rescue outcome.",
+      "confirmation":{"accept":"Rest for a while","decline":"Stay awake"},"optionSelections":[0],"timeTransition":"s1.wait.late-night","destination":"s1.home.bedroom-morning",
+      "nativeSources":[{"role":"original-night-call","locator":"disc3/SCENE/03/JOMO/MAPINFO.BIN#AUTH/0xae990/01GET","sha256":"43c613a944cc021e26793193826cf6e7dde57cd5f55ce1bfa9c1e41ce33c9c89"}],
+      "provenance":"GameSpot p60-61: home rest after20:00, wake23:45 before Ine-san's warning/Chai's call. Explicit bedside rest/leave saves23:45 on the same personal date and the existing tested bedside arrival. No invented sleeping film, next-day leap, call outcome or rescue reward. Ordinary waiting can bypass rest; walk into the foyer after23:45 for the separate original call."
+    },
+    {
+      "id":"nozomi-night-call","disc":3,"actor":"INE_","participants":["CHAI","HRSK"],"presentActors":[],"area":"JOMO","trigger":"enter","priority":900,
+      "title":"Late-night call — Nozomi is missing","hours":[23.75,6],"bounds":"s1.jomo.nozomi-night-call",
+      "requiredFlags":["story.s1.workday-five.completed","story.s1.chen-warning.completed"],"completedFlag":"story.s1.nozomi-night-call.completed",
+      "effects":["notebook.s1.nozomi-kidnapped"],"recordMinutes":["story.s1.nozomi-night-call.minute"],"voiceIds":[],"activities":["s1.jomo.nozomi-night-call.scene"],
+      "nativeSources":[{"role":"original-night-call","locator":"disc3/SCENE/03/JOMO/MAPINFO.BIN#AUTH/0xae990/01GET","sha256":"43c613a944cc021e26793193826cf6e7dde57cd5f55ce1bfa9c1e41ce33c9c89"},{"role":"original-call-motion","locator":"disc3/SCENE/03/JOMO/COMMON03.PKS#M_01GT.MOTN","sha256":"4df506b3994e111f1bc105a4485a22b19abcdf9cb6a1a02b2e0fab3f049cf136"}],
+      "provenance":"GameSpot p61 and original01GET: Ine-san reports Nozomi missing; Chai demands Ryo behind Warehouse17, Nozomi calls it a trap. Original alternate2265frame AUTH matches all19 English voices; the longer2420frame variant requests absentA001/B001, not aliased or fabricated. Bank25 sourceindices32/33, body/cameras/effects and existing telephone. Authored foyer activation23:45-06:00, independent of optional rest. Film/explicit skip saves only call, notebook and personal minute; cancellation/reload can retry. Preserve personal time/location rather than reproduce automatic00:03 departure. No rescue, bike, fight, item, money or subsequent deadline success."
+    },
+    {
       "id":"chen-warning-visit","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":870,
       "title":"Gui Zhang's letter — visit Master Chen","hours":[17,24],"bounds":"s1.mfsy.chen-warning-visit","repeatable":true,
       "requiredFlags":["story.s1.warning-letter.completed"],"excludedFlags":["story.s1.chen-warning.completed"],"completedFlag":"story.s1.chen-warning-visit.completed","effects":[],"voiceIds":[],

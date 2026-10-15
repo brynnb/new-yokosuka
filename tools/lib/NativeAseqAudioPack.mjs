@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import {
+  accessSync,
   copyFileSync,
   mkdirSync,
   mkdtempSync,
@@ -19,6 +20,22 @@ import { parseDTPK, translateDTPKRate } from "./dtpk.mjs";
 
 const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
 const align = value => (value + 0x7ff) & ~0x7ff;
+
+// A viewer rendering is not automatically available to /play. Register the
+// exact reviewed source in its runtime manifest; never render a second copy or
+// let a package cue silently reference a viewer-only track.
+export function registerNativeAseqMusic(root, definition) {
+  const {id,sourceId,bankHash,label}=definition;
+  const filename=path.join(root,"public/music/manifest.json");
+  const music=JSON.parse(readFileSync(filename));
+  const viewer=JSON.parse(readFileSync(path.join(root,"public/music/asset-viewer-manifest.json")));
+  const track=viewer.tracks[sourceId];
+  if(!track||track.source.bankSha256!==bankHash||track.source.file!==`${id.toUpperCase()}.SND`||track.source.group!==0||track.source.track!==0)throw Error(`Changed original music for ${id}`);
+  accessSync(path.join(root,"public",track.ogg_url));
+  music.tracks[id]={url:track.ogg_url,label,durationSeconds:track.durationSeconds,loop:true,source:track.source};
+  writeFileSync(filename,JSON.stringify(music,null,2)+"\n");
+  return ["public/music/manifest.json",`public${track.ogg_url}`];
+}
 
 export function afsMembers(bytes, label) {
   if (bytes.subarray(0, 4).toString("binary") !== "AFS\0") {
