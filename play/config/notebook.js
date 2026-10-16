@@ -185,6 +185,7 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.tom-farewell",page:Object.freeze({id:"story-tom-farewell",text:"Tom went home to the United States.\n\nTonight at 10 p.m., meet Terry at Warehouse No. 9."})},
   {flag:"notebook.s1.lan-di-hong-kong",page:Object.freeze({id:"story-lan-di-hong-kong",text:"Defeated the Mad Angels with Gui Zhang.\n\nTerry says Chai took Lan Di to the ship.\nLan Di has already left for Hong Kong.\n\nSpeak with Gui Zhang before going home."})},
   {flag:"notebook.s1.family-departure",page:Object.freeze({id:"story-family-departure",text:"Fuku-san brought a parting gift from Ine-san and himself.\n\nThey want me to come back safely.\n\nMeet Master Chen at the harbor before leaving for Hong Kong."})},
+  {flag:"notebook.s1.swallow-flip",page:Object.freeze({id:"story-swallow-flip",text:"Master Chen taught me the Swallow Flip.\n\nStep back to parry, unbalance the opponent, then kick.\nTiming the counter is important."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

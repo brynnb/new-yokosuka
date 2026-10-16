@@ -33,6 +33,10 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["intro",0,"0"],["demo",1,"1"],["flip",2,"5"],["praise",3,"6"],["exit",4,"8"]].map(([part,slot,file])=>[
+    `s1.mend.swallow-${part}.scene`,{kind:"native-cutscene",area:"MEND",durableEffects:"forbidden",returnPlayerState:true,
+      cutscene:{id:`story-s1-swallow-${part}`,packageId:"swallow-lesson",worldId:"mend",storyPresentation:true,
+        activity:{slot,binding:{kind:"map-embedded-slot",activityId:`M0W0/SEQDATA${file}.AUTH`}}}}]),
   ...[["offer",0,"0"],["decline",1,"1"],["accept",2,"2"],["demo",3,"7"],["success",4,"8"],["stop",5,"9"]].map(([part,slot,file])=>[
     `s1.mfsy.tom-lesson-${part}.scene`,{kind:"native-cutscene",area:"MFSY",durableEffects:"forbidden",returnPlayerState:true,
       cutscene:{id:`story-s1-tom-lesson-${part}`,packageId:"tom-lesson",worldId:"mfsy",storyPresentation:true,

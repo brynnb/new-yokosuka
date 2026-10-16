@@ -217,8 +217,13 @@ original Fuku-san/Ryo/Ine-san shots and scenery, cancellation restoring the
 bedroom, retry/natural ending, BGM107 playback, independently saved farewell,
 notebook/harbor arrival and completed reload. Date, money and inventory remain
 unchanged; gift contents are not invented and the commute is condensed.
-The final Chai encounter, Swallow Flip and ship departure remain missing;
-the checklist distinguishes each boundary.
+Separate confirmed departure-dock travel and the original Swallow Flip lesson
+now also pass a connected earned-save rendered continuation: original cast and
+form, cancellation/reload, wrong/expired input, actual Down/J/Enter practice,
+cancelled exit, independently saved mastery/notebook and completed reload.
+Sequential back/punch and condensed native spar timing are explicit adaptations.
+The final Chai encounter, its Down/A/A/B counter and ship departure remain
+missing; the checklist distinguishes each boundary.
 See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest)
 and the [final day](story-final-day.md).
 

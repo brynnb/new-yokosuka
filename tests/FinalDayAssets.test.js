@@ -172,3 +172,20 @@ test("YDMA MAP08 is non-visual source data, not missing required scenery",async 
   assert.deepEqual(await loader.load(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength)),[]);
   assert.equal(shapes,89);assert.equal(vertices,1424);assert.equal(scene.meshes.length,0);assert.equal(scene.transformNodes.length,0);
 });
+
+test("Swallow Flip keeps original alternatives and exact held samples without awarding mastery",()=>{
+  const catalog=new ScriptEventPresentationCatalog(),m=read("play/assets/harbor/swallow-lesson/manifest.json"),audio=read("public/audio/world/swallow-lesson/manifest.json");
+  for(const [part,slot,file]of [["intro",0,"0"],["demo",1,"1"],["flip",2,"5"],["praise",3,"6"],["exit",4,"8"]]){
+    const a=catalog.activity(`s1.mend.swallow-${part}.scene`);assert.equal(a.cutscene.worldId,"mend");assert.equal(a.returnPlayerState,true);assert.equal(a.durableEffects,"forbidden");
+    assert.equal(a.cutscene.activity.slot,slot);assert.equal(a.cutscene.activity.binding.activityId,`M0W0/SEQDATA${file}.AUTH`);assert.equal(m.activities[slot].activityId,a.cutscene.activity.binding.activityId);
+  }
+  assert.equal(m.packageActors.TAIJ.modelCode,"SYU_M");assert.equal(m.packageActors.KISY.modelCode,"KIS_M");
+  assert.equal(m.sceneObjects.BAG0.referenceOnly,true);assert.notEqual(m.sceneObjects.BAG_.referenceOnly,true);
+  assert.deepEqual(audio.voices.filter(a=>a.unavailable),[]);
+  assert.equal(audio.voices.find(a=>a.voiceId==="E1016C005").displayText,"");
+  assert.ok(audio.voices.find(a=>a.voiceId==="E1016C005").asset.endsWith("/E1016C005.wav"));
+  for(const a of [...m.outputs,...audio.voices,...audio.sounds].filter(a=>!a.unavailable)){const b=fs.readFileSync(new URL(`../${a.path||a.asset}`,import.meta.url));assert.equal(b.length,a.byteLength);assert.equal(createHash("sha256").update(b).digest("hex"),a.sha256);}
+  const scene=authoredScenes.scenes.find(s=>s.id==="s1.mend.swallow-ready"),bank=MotnLoader.parse(fs.readFileSync(new URL(`../${authoredScenes.motionBanks.swallowPractice}`,import.meta.url)));
+  for(const a of scene.actors){assert.equal(bank.getSequence(a.motion.name).valueData.complete,true);assert.ok(a.motion.elapsedSeconds>0);assert.equal(a.motion.loop,false);}
+  assert.doesNotThrow(()=>catalog.sequence("s1.mend.swallow-ready.start"));assert.doesNotThrow(()=>catalog.sequence("s1.mend.swallow-ready.finish"));
+});

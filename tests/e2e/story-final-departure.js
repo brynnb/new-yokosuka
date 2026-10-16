@@ -1,0 +1,72 @@
+import {expect} from "@playwright/test";
+
+export async function verifySwallowPresentation(page,testInfo,character){
+  await page.setViewportSize({width:1920,height:1080});
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const before=await saved();expect(before.character.worldId).toBe("mend");
+  // Renderer-only review after a legitimately completed lesson. It is not a
+  // second narrative outcome and cannot bypass server progress authority.
+  await page.evaluate(async()=>{
+    const p=window.storyProbe,{ScriptEventPresentationCatalog}=await import("/play/scripts/ScriptEventPresentationCatalog.js");
+    p.visualReturn=p.lifecycle.capturePlayerReturnState();
+    if(!await p.director.start(new ScriptEventPresentationCatalog().activity("s1.mend.swallow-intro.scene").cutscene))throw Error("Swallow Flip renderer review did not start");
+  });
+  try{await page.waitForTimeout(28000);await page.screenshot({path:testInfo.outputPath("swallow-original-cast-one-grounded-bag.png")});}
+  finally{await page.evaluate(async()=>{const p=window.storyProbe;await p.director.end("renderer-review-cancel");p.lifecycle.restorePlayerPose(p.visualReturn);delete p.visualReturn;});}
+  const after=await saved();expect(after.character.storyFlags).toEqual(before.character.storyFlags);expect(after.character.yen).toBe(before.character.yen);expect(after.inventory).toEqual(before.inventory);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath("swallow-render-review-restored-dock.png")});
+}
+
+// Continue only the genuinely earned family-farewell save. Never manufacture
+// arrival, mastery, date, inventory or final-battle outcomes for this check.
+export async function verifySwallowFlip(page,testInfo,character,{musicResponses}){
+  await page.setViewportSize({width:1920,height:1080});
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const initial=await saved(),arrival="story.s1.departure-harbor.completed",done="story.s1.swallow-flip.completed",learned="story.s1.swallow-flip.learned";
+  expect(initial.character.storyFlags["story.s1.family-departure.completed"]).toBe(true);
+  expect(initial.character.storyFlags[done]).not.toBe(true);
+  const check=async()=>{const s=await saved();expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory).toEqual(initial.inventory);
+    for(const flag of ["story.s1.final-chai.completed","story.s1.departure.completed"])expect(s.character.storyFlags[flag]).not.toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;};
+  const pending=async()=>{const s=await check();for(const flag of [done,learned,"notebook.s1.swallow-flip"])expect(s.character.storyFlags[flag]).not.toBe(true);};
+  const choose=name=>page.getByRole("button",{name,exact:true}).click({timeout:100_000});
+  const reload=async()=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);};
+  const scene=async part=>{await page.waitForFunction(part=>window.storyProbe.director?.activeCutscene?.cutscene.id===`story-s1-swallow-${part}`||window.storyProbe.sceneErrors.length,part,{timeout:120_000});await pending();};
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await check();};
+  const cancel=async()=>{await page.evaluate(()=>window.storyProbe.regions.controller.cancel("swallow-flip-check"));await idle();await pending();};
+  const ready=async()=>{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.mend.swallow-flip"&&window.storyProbe.regions.controller.active.challengePrompt.ready||window.storyProbe.sceneErrors.length,null,{timeout:160_000});await pending();};
+  const win=async()=>{for(const [index,key]of ["ArrowDown","j","Enter"].entries()){
+    await page.waitForFunction(index=>window.storyProbe.regions.controller.active?.challengePrompt?.ready&&window.storyProbe.regions.controller.active.challengePrompt.index===index,index);
+    await page.keyboard.press(key);
+  }};
+  console.info("Final departure: independent dock admission, original lesson, actual input and acknowledged mastery");
+  await choose("Explore the harbor first");expect((await check()).character.storyFlags[arrival]).not.toBe(true);
+  await reload();await choose("Meet Master Chen");
+  await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.ready&&window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="mend",null,{timeout:100_000});
+  expect((await check()).character.storyFlags[arrival]).toBe(true);
+  await choose("Not yet");await idle();await page.waitForTimeout(1200);
+  const dock=await check();expect(dock.character.worldId).toBe("mend");expect(Math.abs(dock.character.y)).toBeLessThan(.5);
+  await page.screenshot({path:testInfo.outputPath("departure-original-dock-arrival.png")});
+  await reload();await choose("Learn from Master Chen");await scene("intro");await page.waitForTimeout(28000);
+  await page.screenshot({path:testInfo.outputPath("swallow-original-chen-gui-and-ryo-cancel.png")});await cancel();
+  await reload();await choose("Learn from Master Chen");await scene("intro");
+  await expect.poll(()=>page.evaluate(()=>{const m=window.storyMusic?.director,a=m?.current?.audio;return m?.current?.trackId==="bgm064"&&!a.paused&&a.currentTime>1&&a.volume>0;}),{timeout:15000}).toBe(true);
+  await scene("demo");await page.waitForTimeout(16000);await page.screenshot({path:testInfo.outputPath("swallow-original-form-demonstration.png")});
+  await ready();await page.screenshot({path:testInfo.outputPath("swallow-original-held-cast-and-input.png")});
+  await page.keyboard.press("Shift");await choose("Try again");await ready();
+  // Deliberately expire this attempt; a fresh prompt must be earned by retry.
+  await choose("Try again");await ready();await win();await scene("flip");
+  await page.waitForTimeout(4000);await page.screenshot({path:testInfo.outputPath("swallow-original-successful-throw.png")});
+  await scene("praise");await choose("I'm ready to go");await scene("exit");await cancel();
+  await reload();await choose("Learn from Master Chen");await scene("intro");await page.keyboard.press("KeyX");
+  await scene("demo");await page.keyboard.press("KeyX");await ready();await win();
+  await scene("flip");await scene("praise");await choose("I'm ready to go");await scene("exit");
+  await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:60000}).toBe(true);
+  const final=await check();expect(final.character.storyFlags[learned]).toBe(true);expect(final.character.storyFlags["notebook.s1.swallow-flip"]).toBe(true);
+  expect(new Date(final.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
+  await idle();await reload();await page.waitForTimeout(1200);await idle();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath("swallow-earned-dock-reload-and-controls.png")});
+  expect(musicResponses.some(r=>r.url.includes("bgm064")&&[200,206].includes(r.status))).toBe(true);
+}

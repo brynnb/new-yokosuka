@@ -89,6 +89,22 @@ test("directional QTEs share keyboard/touch routing and reject mismatched prompt
   presenter.hide();
 });
 
+test("original X/punch shares J and touch without consuming physical X/cancel",()=>{
+  const calls=[],options=optionsElement();
+  const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options,
+    onChallengeResponse:(...args)=>calls.push(args)});
+  const prompt={id:"s1.mend.swallow-flip",label:"Swallow Flip",token:"c".repeat(32),index:1,count:3,ready:true,button:"X",deadlineMs:2000,serverTimeMs:0};
+  presenter.showChallenge(prompt);
+  assert.deepEqual(options.children.map(b=>b.dataset.challengeButton),["Down","X","A"]);
+  assert.match(presenter.dom.sourceText.textContent,/X \(J\)/);
+  const event=key=>({key,repeat:false,preventDefault(){},stopImmediatePropagation(){}});
+  presenter.challengeKeyHandler(event("x"));assert.equal(calls.length,0);
+  for(const key of ["j","J"])presenter.challengeKeyHandler(event(key));
+  options.children[1].listeners.click();
+  assert.deepEqual(calls,Array.from({length:3},()=>["challenge_input",prompt.token,"X"]));
+  const stale=presenter.challengeKeyHandler;presenter.hide();stale(event("j"));assert.equal(calls.length,3);
+});
+
 test("reinforcements show the authoritative defeat count, not ally health or model-pool size",()=>{
   const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options:optionsElement()});
   const actors=[{tag:"AKIR",health:63,maxHealth:100},{tag:"KISY",team:"ally",health:1},{tag:"R001",health:18},{tag:"STSI",inactive:true,health:110}];

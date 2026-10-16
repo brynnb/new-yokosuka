@@ -98,5 +98,27 @@ scenes.push(
   {...finisherCommon,id:"s1.mfbt.terry-finisher-failure",durationSeconds:220/30,attachedObjects:finisherPipe("s1.mfbt.terry-finisher-failure"),actors:[
     finisherActor("AKIR",named("AKI_QNG_TETUPIPE_KS_QTE")),finisherActor("KISY"),finisherActor("TERY",named("OTH_TLY_QNG_TETUPIPE_KT_QTE"))]},
 );
-fs.writeFileSync(path.join(root,"play/data/story-final-day.generated.json"),JSON.stringify({schema:"new-yokosuka-authored-story-scenes-v1",generatedBy:"tools/scripting/build_final_day.mjs",motionBanks:{tomPractice:`${prefix}/M_0001.MOTN`,finalCounter:`${confrontationPrefix}/M_01_H.MOTN`,finalTerry:`${finisherPrefix}/M_01TLY.MOTN`},scenes},null,2)+"\n");
+// Native free-spar timing is deliberately condensed to the shared challenge.
+// Hold the exact end-of-demonstration samples; never fake a successful throw
+// or use movie completion as input authority.
+const swallowPrefix="play/assets/harbor/swallow-lesson";
+const swallow=JSON.parse(fs.readFileSync(path.join(root,swallowPrefix,"manifest.json")));
+const swallowFile=swallow.outputs.find(o=>o.path.endsWith("/SEQDATA1.AUTH")),swallowBytes=fs.readFileSync(path.join(root,swallowFile.path));
+if(sha256(swallowBytes)!==swallowFile.sha256)throw Error("Changed original Swallow Flip demonstration");
+const swallowMovement=parseAuthMovement(swallowBytes),swallowSequence=parseAuthSequence(swallowBytes);
+const swallowBank=MotnLoader.parse(fs.readFileSync(path.join(root,swallowPrefix,"M_01CHY.MOTN")));
+const swallowFrame=swallowSequence.durationFrames-1;
+const swallowActors=["AKIR","KISY","TAIJ"].map(tag=>{
+  const pose=Object.fromEntries(Object.entries(evaluateAuthActor(swallowMovement.actors.find(a=>a.tag===tag),swallowFrame/30)).filter(([k])=>["x","y","z","rotationX","rotationY","rotationZ"].includes(k)));
+  const event=swallowSequence.motions.filter(m=>m.actorTag===tag&&m.frame<=swallowFrame).at(-1),clip=swallowBank.sequences[event?.sequenceIndex];
+  const sample=Math.min(event?.endFrame,event?.startFrame+swallowFrame-event?.frame)-1;
+  if(event?.motionBank!==16||!clip?.valueData.complete||!Number.isFinite(sample)||sample<0||sample>=clip.durationFrames)throw Error("Unresolved original Swallow Flip held sample "+tag);
+  return{tag,pose,motion:{bank:"swallowPractice",name:clip.name,loop:false,elapsedSeconds:sample/30}};
+});
+const swallowCenter=swallowActors.reduce((p,a)=>({x:p.x+a.pose.x/3,z:p.z+a.pose.z/3}),{x:0,z:0});
+scenes.push({id:"s1.mend.swallow-ready",area:"MEND",worldId:"mend",
+  actorDefinitions:["KISY","TAIJ"].map(actorCode=>({actorCode,...swallow.packageActors[actorCode],activityOnly:true})),actors:swallowActors,
+  camera:{positionX:swallowCenter.x+4,positionY:3,positionZ:swallowCenter.z+5,targetX:swallowCenter.x,targetY:1,targetZ:swallowCenter.z,roll:0,perspective:55},
+  provenance:"Exact original M0W0 demonstration-end roots and motion samples held during actual shared Down/X/A input. Wide camera, sequential back/punch and two-second windows are authored; original timing-based free-spar physics is not reconstructed."});
+fs.writeFileSync(path.join(root,"play/data/story-final-day.generated.json"),JSON.stringify({schema:"new-yokosuka-authored-story-scenes-v1",generatedBy:"tools/scripting/build_final_day.mjs",motionBanks:{tomPractice:`${prefix}/M_0001.MOTN`,finalCounter:`${confrontationPrefix}/M_01_H.MOTN`,finalTerry:`${finisherPrefix}/M_01TLY.MOTN`,swallowPractice:`${swallowPrefix}/M_01CHY.MOTN`},scenes},null,2)+"\n");
 console.log("Generated final-day practice/counter staging; no input or outcome authority.");

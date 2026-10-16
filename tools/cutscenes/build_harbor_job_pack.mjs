@@ -15,6 +15,8 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const defaultEvidence="docs/design/story-harbor-work.md";
 const archives={
+  "MEND/M0W0":"393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2",
+  "MEND/MODELS":"c12fe80d9cafa7679096dcfbab319082eac9d2ca501f1962ae490582c73fd80e",
   "MFSY/GBTM":"dbb33b890d20130e87079bf375b75da15de989f94bf4a6000f717802b62e9665",
   "MFBT/TLYA":"957366f53fa6ad4fdcc10f8423184b2a4e475e993551ff27f626b84183946de2",
   "MFBT/TLYB":"faee26bea43ec8ee1db00f5a5a71b97a0fd19b881bd6151f65f028117334d5ad",
@@ -55,6 +57,21 @@ const battleMusic={id:"bgm120",sourceId:"6f6feae07377adcf7a511b69ae27bb46bd4b93a
 const alphaRoom={archive:"ALPHA",member:"MAPALP.MAPD",model:"MAPALP",textureHash:"8c8f0a6b1ba88e96ebc453d12826aaea74a85dad57ade4893df7c3daaf530612",textureFilename:"alpha-textures.bin"};
 const aftermathSelection="Walkthrough-guided post-battle sequence. Yarn independently owns the A challenge, acknowledged interrogation, pier discussion and home return; these original films cannot award those outcomes themselves.";
 const profiles=[
+  {id:"swallow-lesson",archive:"MEND/M0W0",resourceName:"M0W0",evidence:"docs/design/story-final-day.md#swallow-flip",motion:"M_01CHY.MOTN",
+    actors:["AKIR","KISY","TAIJ","TETU","BAG_","BAG0"],activities:[
+      {file:"SEQDATA0.AUTH",durationFrames:3110,actors:["BAG0","BAG_","AKIR","KISY","TETU","TAIJ"]},
+      {file:"SEQDATA1.AUTH",durationFrames:1076,actors:["BAG_","AKIR","KISY","TETU","TAIJ"]},
+      {file:"SEQDATA5.AUTH",durationFrames:330,actors:["AKIR","KISY","TAIJ","TETU"]},
+      {file:"SEQDATA6.AUTH",durationFrames:820,actors:["AKIR","BAG_","KISY","TETU","TAIJ"]},
+      {file:"SEQDATA8.AUTH",durationFrames:570,actors:["AKIR","KISY","TETU","BAG_","TAIJ"]}],
+    sharedActorManifest:finalCast[0],
+    // Both native bag roots otherwise render complete bags simultaneously,
+    // one floating at hand height after release. Native hand/swap callbacks
+    // are not recovered: retain the grounded original bag, not a duplicate.
+    props:{TETU:"TEKS500G",BAG_:"RBGS5M1G",BAG0:"RBGS5M2G"},referenceActors:["BAG0"],propArchive:"MEND/MODELS",propTextureHash:"e109ad0455b02d68ebf8eb7853e294fab21769f17f906f2b8bf50ad08f7d55f1",authoredPropBindings:true,
+    stream:"E1016",streamHash:"734af7dd9d64f57387956256dc1512b1b2bb6f5893d02b67a469cbb5539caa9f",sound:"A1_CHINW.SND",soundHash:"ed9932de7f39e4eaeec289889ef30e6398f179fa0488dde53f9ce4742d619d8d",
+    music:{id:"bgm064",sourceId:"dc78fbf32b4247ad427c9930d6cc8b2fb4fd82b82c02956bb48015634283cc4e",bankHash:"76dcd6a239ab64c4674cafa07d5dbe9e5afafd6c61fb609e56ef2217f3f6795f",label:"Master Chen's Swallow Flip lesson"},
+    selectionRule:"Original introduction, form demonstration, successful flip, praise and learned exit alternatives. Yarn owns actual Down/X/A success, optional further practice and acknowledged mastery; these films cannot award it themselves. Native timing-based free spar is condensed to the existing timed challenge."},
   {id:"terry-final-intro",archive:"MFBT/TERY",resourceName:"TERY",evidence:"docs/design/story-final-day.md#terry-and-the-last-night",selectionRule:aftermathSelection,auth:"SEQDATA0.AUTH",motion:"M_01TLY.MOTN",bank:25,frames:575,actors:["PIPE","AKIR","KISY","TERY"],sharedActorManifests:finalCast,
     props:{PIPE:"PIPS501G"},propTextureHash:"57467acd5f8941f70e233d4f325ebaacdab355bd9632ac6a5b57cc1712988fcb",authoredPropBindings:true,
     music:battleMusic,stream:"01TLY",streamHash:"f9e731020b87e0329f48a064dc875e2fffe1ddea5f3cec65ab62a0b50c64e864",sound:"A1_PIPEQ.SND",soundHash:"82a86de527680626f47425bd1f7b9cddda69ed1d4294f3f8410a661b9b24edad"},

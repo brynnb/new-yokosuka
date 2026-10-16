@@ -12,6 +12,12 @@ import {
 import {
   clearWorldSceneBeforeLighting,
 } from "../src/rendering/SceneResources.js";
+import {sceneEnvironmentProfile,sceneWaterHeight} from "../src/rendering/SceneEnvironmentProfiles.js";
+
+test("the departure dock shares the harbor water policy in game and viewer",()=>{
+  assert.equal(sceneWaterHeight("MEND"),sceneWaterHeight("MFSY"));
+  assert.equal(sceneEnvironmentProfile({area:"MEND",prefix:"S3_MEND",game:"shenmue"}).waterHeight,-2);
+});
 
 test("world geometry is disposed before clustered lighting", () => {
   const calls = [];

@@ -4,7 +4,8 @@
   "motionBanks": {
     "tomPractice": "play/assets/harbor/tom-lesson/M_0001.MOTN",
     "finalCounter": "play/assets/harbor/final-confrontation/M_01_H.MOTN",
-    "finalTerry": "play/assets/harbor/terry-final-intro/M_01TLY.MOTN"
+    "finalTerry": "play/assets/harbor/terry-final-intro/M_01TLY.MOTN",
+    "swallowPractice": "play/assets/harbor/swallow-lesson/M_01CHY.MOTN"
   },
   "scenes": [
     {
@@ -896,6 +897,99 @@
           }
         }
       ]
+    },
+    {
+      "id": "s1.mend.swallow-ready",
+      "area": "MEND",
+      "worldId": "mend",
+      "actorDefinitions": [
+        {
+          "actorCode": "KISY",
+          "label": "Chen Gui Zhang",
+          "modelCode": "KIS_M",
+          "browserFilename": "KIS_M.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/master-chen/KIS_M.CHRM",
+          "textureAssetPath": "play/assets/harbor/master-chen/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "TAIJ",
+          "label": "Master Chen",
+          "modelCode": "SYU_M",
+          "browserFilename": "SYU_M.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/master-chen/SYU_M.CHRM",
+          "textureAssetPath": "play/assets/harbor/master-chen/textures.bin",
+          "activityOnly": true
+        }
+      ],
+      "actors": [
+        {
+          "tag": "AKIR",
+          "pose": {
+            "x": 66.8665771484375,
+            "y": 0,
+            "z": 30.502756118774414,
+            "rotationX": 0,
+            "rotationY": -208.21286010742188,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "swallowPractice",
+            "name": "AKI_AT2_KIKU_SETUMEI_WAZADENTAIJIN_0100",
+            "loop": false,
+            "elapsedSeconds": 35.53333333333333
+          }
+        },
+        {
+          "tag": "KISY",
+          "pose": {
+            "x": 64.84970092773438,
+            "y": 0,
+            "z": 31.348831176757812,
+            "rotationX": 0,
+            "rotationY": -168.10581970214844,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "swallowPractice",
+            "name": "OTH_KIS_AT2_SETUMEISURU_WAZADENTAIJIN_0100",
+            "loop": false,
+            "elapsedSeconds": 35.56666666666667
+          }
+        },
+        {
+          "tag": "TAIJ",
+          "pose": {
+            "x": 66.35543060302734,
+            "y": 0,
+            "z": 32.74467468261719,
+            "rotationX": 0,
+            "rotationY": 44.919883728027344,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "swallowPractice",
+            "name": "YKI_CIN_AT2_SETUMEISURU_WAZADENTAIJIN_0100",
+            "loop": false,
+            "elapsedSeconds": 35.56666666666667
+          }
+        }
+      ],
+      "camera": {
+        "positionX": 70.0239028930664,
+        "positionY": 3,
+        "positionZ": 36.532087326049805,
+        "targetX": 66.0239028930664,
+        "targetY": 1,
+        "targetZ": 31.532087326049805,
+        "roll": 0,
+        "perspective": 55
+      },
+      "provenance": "Exact original M0W0 demonstration-end roots and motion samples held during actual shared Down/X/A input. Wide camera, sequential back/punch and two-second windows are authored; original timing-based free-spar physics is not reconstructed."
     }
   ]
 }

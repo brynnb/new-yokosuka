@@ -3,6 +3,23 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"departure-harbor","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":993,
+      "title":"Meet Master Chen before departure","bounds":"s1.mfsy.departure-harbor","requiredFlags":["story.s1.family-departure.completed"],
+      "completedFlag":"story.s1.departure-harbor.completed","effects":[],"voiceIds":[],"activities":[],"destination":"s1.departure.chen-approach",
+      "confirmation":{"accept":"Meet Master Chen","decline":"Explore the harbor first"},
+      "summary":"Confirmed transfer from the earned family farewell to the original MEND lesson approach. Arrival is saved separately; no training, clock, reward or final battle result.",
+      "nativeSources":[{"role":"original-departure-lesson","locator":"disc3/SCENE/03/MEND/M0W0.PKS","sha256":"393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2"}],
+      "provenance":"GameSpot p65 connects family farewell and harbor lesson. Existing bus approach and ordinary confirmed Story travel lead to the original first M0W0 Ryo pose. This condenses the incidental walk, not the lesson or final fight. Save only arrival; no clock/economy/mastery change."
+    },
+    {
+      "id":"swallow-flip","disc":3,"actor":"AKIR","presentActors":[],"area":"MEND","trigger":"enter","priority":990,
+      "title":"Master Chen's Swallow Flip lesson","bounds":"s1.mend.swallow-flip","requiredFlags":["story.s1.departure-harbor.completed"],
+      "completedFlag":"story.s1.swallow-flip.completed","effects":["story.s1.swallow-flip.learned","notebook.s1.swallow-flip"],"voiceIds":[],"yarnTemplate":"story-swallow-flip.yarn",
+      "nativeSources":[{"role":"original-lesson-films-and-motion","locator":"disc3/SCENE/03/MEND/M0W0.PKS","sha256":"393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2"}],
+      "summary":"Original Chen/Gui Zhang introduction, form demonstration, acknowledged real Down/X/A practice and original flip/praise/exit branches. Shared timed-input adaptation, not native combat parry physics or final Chai victory.",
+      "provenance":"GameSpot p65 back+X,A and original E1016 confirm form and timing. Original M0W0 alternatives0/1/5/6/8 selected in Yarn, not a playlist of all alternatives. Shared sequential challenge condenses simultaneous back/punch and free spar; held source pose/camera and generic windows are authored. Only actual success and acknowledged praise/exit grant mastery, own milestone and notebook. Cancelling/failing saves none; retry remains available. Preserve date, weather, economy and other flags. E1016C005 is present with an empty subtitle; retain its original audio without inventing words."
+    },
+    {
       "id":"family-departure","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":992,
       "title":"Leave Yokosuka","bounds":"s1.jomo.family-departure","requiredFlags":["story.s1.departure-rest.completed"],
       "completedFlag":"story.s1.family-departure.completed","effects":["notebook.s1.family-departure"],"voiceIds":[],"yarnTemplate":"story-family-departure.yarn",

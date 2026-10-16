@@ -317,6 +317,63 @@ bag deformation, facial animation or native conditional snow/layer behavior.
 The earned family-departure database is backed up separately from the prior
 rest checkpoint. No source assets have been uploaded.
 
+## Swallow Flip
+
+Connected earned-save gameplay is rendered and verified. A separate short
+presentation review confirms the grounded bag and restored gameplay.
+
+| Field | Authored lesson |
+| --- | --- |
+| Location / admission | After the independently saved family farewell, confirm **Meet Master Chen** at the tested harbor bus approach. Ordinary Story travel saves arrival at the first original `M0W0/SEQDATA0` Ryo root in `MEND`. A separate confirmed lesson begins there. Incidental walking is condensed; admission grants no mastery. |
+| Prerequisites / time | Story Ryo, completed opening and saved harbor admission. No exact-hour or date lockout. Preserve personal weather, date and time rather than resetting the public world. |
+| Cast / props | Reuse original Master Chen and Gui Zhang bodies. Original `MEND/MODELS` bag and iron piece follow source scene-object tracks. The carried alternate bag root remains reference-only: without native hand/swap callbacks it otherwise draws a second floating full bag. Keeping the grounded original bag, associations and detailed contact are explicit staging adaptations. |
+| Films / audio | Original `M0W0/SEQDATA0` introduction, `1` form demonstration, `5` successful flip, `6` praise and `8` learned exit, with `M_01CHY.MOTN` bank16, `E1016` English speech and `A1_CHINW` effects. Original MAPINFO names BGM064; use the exact Disc3 viewer rendering, not the different same-numbered Disc2 bank. These are branches, not a playlist of every source alternative. |
+| Challenge | Original back+X then A is adapted to the existing sequential **Down, X, A** challenge, with two-second windows. Keyboard J represents the original X/punch and preserves physical X for cancellation. Touch buttons send the same server-owned codes. Native free-spar parry timing and simultaneous back/punch are deliberately condensed. Wrong/expired input offers retry or stopping without mastery. |
+| Presentation | Hold original demonstration-end actor poses in a wide authored camera during input. Actual accepted success plays the original flip and praise, then offers further practice or the original learned exit. Movie completion/skip alone cannot pass the challenge. |
+| Settlement / exit | Only successful input followed by acknowledged exit saves lesson/mastery and its notebook page. No money, inventory, future Chai/QTE/letter/ship outcome or clock change. Remain on the harbor departure map. |
+| Cancellation / reload | Cancelled preparation, films or prompts save no lesson outcome and restore prior gameplay/camera/controls. Cancelled entry travel remains at the bus approach. Already saved arrival survives lesson cancellation; completed mastery must not replay on reload. |
+
+Source archive `MEND/M0W0.PKS` is
+`393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2`.
+Its original speech confirms the introduction, form and timing explanation.
+The flip's `E1016C005.str` is present with an empty subtitle. A preliminary
+text-only lookup mistook the empty field for a missing resource; the canonical
+audio extraction and original archive entry prove otherwise. Retain its audio
+without inventing subtitle words. All 36 requested voices resolve.
+The ordinary MEND world uses existing extracted scenery through the shared
+world loader. Initial layer selection uses MAP.PKS/base scenery and one
+daytime ground alternative; native conditional scene initialization is not
+claimed. Original ship/alternate ending layers are excluded from this floor.
+The shared harbor water-plane policy now includes MEND for both game and viewer;
+this avoids an unrendered sea beyond the dock without inventing a separate
+departure-only water implementation.
+
+The 5.2-minute sequential hardware-rendered continuation starts from the
+genuinely earned family-farewell database. It verifies decline/reload, ordinary
+confirmed MEND admission, saved dock/reload and real ground support. Original
+introduction cancellation restores gameplay without mastery; retry plays the
+introduction and demonstration naturally with advancing BGM064 playback.
+Wrong and expired inputs require fresh retries. Real Down/J/Enter input plays
+the original successful flip and praise. Cancelling the exit still grants
+nothing; retry with explicitly skipped introduction/demonstration must pass
+the actual challenge again before the natural exit saves mastery and notebook.
+Final reload restores controls without replay. Date, ¥22,836 and eight inventory
+entries are unchanged, and no final Chai or ship outcome is inserted.
+
+Reviewed captures show the original Chen/Gui Zhang/Ryo cast, the form
+demonstration, all three actors in the held challenge shot and Ryo's successful
+throw. Original close camera/contact detail is not claimed to be pixel-exact.
+The ordinary dock arrival and earned-save database are preserved independently
+of the preceding family checkpoint. All 36 source voices and 34 effects resolve;
+no source assets have been uploaded.
+
+A separate 34.5-second renderer-only review after the earned lesson confirms
+one grounded original bag, all three actors and restored dock controls. It
+leaves saved flags, money and inventory unchanged; it is not another narrative
+win. Shared environment tests verify the MEND water-plane policy for both
+consumers; these captures do not establish the water's appearance from every
+camera angle.
+
 ## Verification and remaining work
 
 The real Yarn compiler/engine checks the three events independently: missing
@@ -367,10 +424,10 @@ are unchanged, controls are restored and completed reload neither replays the
 films nor restores ambient Tom. No finale outcome is inserted. The earned
 isolated database is backed up separately from the preceding morning save.
 
-The 70-man battle, Terry QTE/interrogation and post-battle home/rest chain are
-connected and rendered as described above. The final Chai encounter, departing
-Swallow Flip and departure remain separate missing outcomes. The family
-farewell and harbor arrival are connected and rendered as described above.
+The 70-man battle, Terry QTE/interrogation, post-battle home/rest chain, family
+farewell, harbor admission and Swallow Flip lesson are connected and rendered
+as described above. The final Chai encounter, its Down/A/A/B counter and ship
+departure remain separate missing outcomes.
 No future outcome should be inserted into an earned checkpoint. Plane mesh
 visibility, exact collapse staging and tighter hand/pipe choreography remain
 presentation review items, not proof of missing or completed battle outcomes.

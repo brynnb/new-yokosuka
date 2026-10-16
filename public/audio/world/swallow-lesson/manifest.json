@@ -1,0 +1,4334 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/E1016.AFS",
+      "sha256": "734af7dd9d64f57387956256dc1512b1b2bb6f5893d02b67a469cbb5539caa9f"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_CHINW.SND",
+      "sha256": "ed9932de7f39e4eaeec289889ef30e6398f179fa0488dde53f9ce4742d619d8d"
+    },
+    "authManifest": "play/assets/harbor/swallow-lesson/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#swallow-flip"
+  },
+  "voices": [
+    {
+      "voiceId": "E1016A010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016A010.aiff",
+      "nativeMember": "E1016A010.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 16384,
+      "nativeSha256": "4feecb3295aee3a164a5f02371f496b966772fb52870ed7f8df3b5c0653a2596",
+      "speakerId": "AKIR",
+      "sourceText": "No sir, you're a superior instructor.",
+      "displayText": "No sir, you're a superior instructor.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016A010.wav",
+      "byteLength": 65324,
+      "sha256": "ef63cab10d173730033c79fb2cd6c0ee5a3a0b4a0285f2298212c49e1fe6bb09"
+    },
+    {
+      "voiceId": "E1016A014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016A014.aiff",
+      "nativeMember": "E1016A014.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 4096,
+      "nativeSha256": "8b57ae7bb7d64c087b3e4158d770125589c88c92cd009d018abd27dfa9f9a968",
+      "speakerId": "AKIR",
+      "sourceText": "Yes.",
+      "displayText": "Yes.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016A014.wav",
+      "byteLength": 16172,
+      "sha256": "954b08b4ee1f5dad48cdb6d7e2d47ec15ed7ce54dc637e0d572f013410aad6e0"
+    },
+    {
+      "voiceId": "E1016A020",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016A020.aiff",
+      "nativeMember": "E1016A020.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 6144,
+      "nativeSha256": "c458af06991a213674963c5276be36fc35f31079534360bf09d9cbb636154b48",
+      "speakerId": "AKIR",
+      "sourceText": "Thank you very much.",
+      "displayText": "Thank you very much.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016A020.wav",
+      "byteLength": 24364,
+      "sha256": "ea20030bcb773f098e48560596e0e5cc70b61777223c7b102561dde4db2c77eb"
+    },
+    {
+      "voiceId": "E1016A022",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016A022.aiff",
+      "nativeMember": "E1016A022.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 6144,
+      "nativeSha256": "dd5c85c4ee05b72709c4d5fd4701f74c8556015ba3f52df954b71c4c0bee5917",
+      "speakerId": "AKIR",
+      "sourceText": "What do you mean?",
+      "displayText": "What do you mean?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016A022.wav",
+      "byteLength": 24364,
+      "sha256": "d95fc9c705ebaad35c82f23e0e081179f20877c487bedc37f6245c90e5058c24"
+    },
+    {
+      "voiceId": "E1016A023",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016A023.aiff",
+      "nativeMember": "E1016A023.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 2048,
+      "nativeSha256": "739f685156568d37da33bf234caf7e29fe4230eed710d0d92b6b22cedfe2f5b2",
+      "speakerId": "AKIR",
+      "sourceText": "What?",
+      "displayText": "What?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016A023.wav",
+      "byteLength": 7980,
+      "sha256": "b2b76b149d80e6e27800db93053c43f27fd5d69de31f9b58b970246f73b1e9d7"
+    },
+    {
+      "voiceId": "E1016A024",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016A024.aiff",
+      "nativeMember": "E1016A024.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 14336,
+      "nativeSha256": "1d44685e1c911cecc321dd00a962ae908094fe6b8ee7850f242436578a160522",
+      "speakerId": "AKIR",
+      "sourceText": "No thank you. I think＆I can manage now.",
+      "displayText": "No thank you. I think\nI can manage now.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016A024.wav",
+      "byteLength": 57132,
+      "sha256": "08e9fe070cd15c538f78212ac26d1e51a3b0fdf2785fc2d9c20402ccb512aea6"
+    },
+    {
+      "voiceId": "E1016A025",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016A025.aiff",
+      "nativeMember": "E1016A025.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 8192,
+      "nativeSha256": "2aa3910b55f582b12ca9ae414ebe81ab3d8cf0566abb957f05d87b499dc86100",
+      "speakerId": "AKIR",
+      "sourceText": "I am in your debt.",
+      "displayText": "I am in your debt.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016A025.wav",
+      "byteLength": 32556,
+      "sha256": "df2dd8881ca698fc664783ba316393373175417a3f3e44550d259e85e8efc811"
+    },
+    {
+      "voiceId": "E1016A026",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016A026.aiff",
+      "nativeMember": "E1016A026.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 14336,
+      "nativeSha256": "f5d36fb7a194ee14c9cc1ebfa8ce189e95d8522483f39043cd96370a8901fcf8",
+      "speakerId": "AKIR",
+      "sourceText": "Thank you for arranging＆my trip to Hong Kong.",
+      "displayText": "Thank you for arranging\nmy trip to Hong Kong.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016A026.wav",
+      "byteLength": 57132,
+      "sha256": "efb52fe0f039d853c0dae7b25319474c9b64484c67cf398a36a698c5832b5d20"
+    },
+    {
+      "voiceId": "E1016B012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B012.aiff",
+      "nativeMember": "E1016B012.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 30720,
+      "nativeSha256": "dba4db6bb078a057d84af169f013b28445b40b88cee457f7f0950475e55e2bbf",
+      "speakerId": "TAIJ",
+      "sourceText": "You take one step backwards＆to parry the opponent's attack.",
+      "displayText": "You take one step backwards\nto parry the opponent's attack.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B012.wav",
+      "byteLength": 122668,
+      "sha256": "83bb34b5d9fc9b24c2d7fcec5008974e2b5323c3ae4f99258f04cfc7d9eeeb4b"
+    },
+    {
+      "voiceId": "E1016B013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B013.aiff",
+      "nativeMember": "E1016B013.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 32768,
+      "nativeSha256": "cd9edef74c461dfa324d812ec1723bd0c0aed18734bbceadf9e53bc5d3c592dc",
+      "speakerId": "TAIJ",
+      "sourceText": "Then focus power in your arms＆to throw your opponent off balance.",
+      "displayText": "Then focus power in your arms\nto throw your opponent off balance.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B013.wav",
+      "byteLength": 130860,
+      "sha256": "230ed3146deb3cca66ea833e8017383befd14305b07bd67b87d2f43b88a4ca33"
+    },
+    {
+      "voiceId": "E1016B014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B014.aiff",
+      "nativeMember": "E1016B014.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 22528,
+      "nativeSha256": "7fe5e7ffa862c1977da7f5fad06f8e96484f81f3117e7ec3d120f59a4834ce54",
+      "speakerId": "TAIJ",
+      "sourceText": "Immediately kick their＆legs out and flip.",
+      "displayText": "Immediately kick their\nlegs out and flip.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B014.wav",
+      "byteLength": 89900,
+      "sha256": "cd48326a6230c32a23a547a7b529763ca912c6962aed7550002376b7af20f441"
+    },
+    {
+      "voiceId": "E1016B015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B015.aiff",
+      "nativeMember": "E1016B015.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 20480,
+      "nativeSha256": "5f3e592e44756700c550f9c0dcea90aaf2ca9af766bcb1f1412dd1c26a60ee4b",
+      "speakerId": "TAIJ",
+      "sourceText": "In actual combat, you'd strike here.",
+      "displayText": "In actual combat, you'd strike here.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B015.wav",
+      "byteLength": 81708,
+      "sha256": "4db6d2bab9600b49530a5759bbaa9dc33ba425d2290d146a0440eafcf9d1d551"
+    },
+    {
+      "voiceId": "E1016B016",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B016.aiff",
+      "nativeMember": "E1016B016.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 22528,
+      "nativeSha256": "c62362f185cc9a627e46727cdb1b04c6d8fb5db1a4239fc85bdd0544d9aef5cc",
+      "speakerId": "TAIJ",
+      "sourceText": "The throw alone won't＆incapacitate your opponent.",
+      "displayText": "The throw alone won't\nincapacitate your opponent.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B016.wav",
+      "byteLength": 89900,
+      "sha256": "894444295e722a3e4751aa5c8f230557507dabf50b90e261ce4e08de717fd52f"
+    },
+    {
+      "voiceId": "E1016B017",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B017.aiff",
+      "nativeMember": "E1016B017.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 20480,
+      "nativeSha256": "f0d09a78782e0251c19eb23f1cea095a201ec504271715c76691804ef1fbc828",
+      "speakerId": "TAIJ",
+      "sourceText": "First, try to execute the proper form.",
+      "displayText": "First, try to execute the proper form.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B017.wav",
+      "byteLength": 81708,
+      "sha256": "463d7254f43646d2d8c96627bdefe17c6cb711fbcbbaa2823e7e47bc70433e06"
+    },
+    {
+      "voiceId": "E1016B018",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B018.aiff",
+      "nativeMember": "E1016B018.str",
+      "nativeIndex": 25,
+      "nativeByteLength": 22528,
+      "nativeSha256": "dc2e8a1b420cf7c423ee83510b6a8b3d8340549a7e4a6c96777d157ebc4c0e2f",
+      "speakerId": "TAIJ",
+      "sourceText": "Shift your weight while＆taking one step back.",
+      "displayText": "Shift your weight while\ntaking one step back.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B018.wav",
+      "byteLength": 89900,
+      "sha256": "0ae4721eb419bc9d453549ec65506b282aaccf9d8b102c088084baa6df9f9b47"
+    },
+    {
+      "voiceId": "E1016B092",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B092.aiff",
+      "nativeMember": "E1016B092.str",
+      "nativeIndex": 92,
+      "nativeByteLength": 14336,
+      "nativeSha256": "616a4c6eead0d4eb9c20f6c71115bca4e2c5686437e146a695d22ec75e7d3050",
+      "speakerId": "TAIJ",
+      "sourceText": "Excellent. Well executed.",
+      "displayText": "Excellent. Well executed.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B092.wav",
+      "byteLength": 57132,
+      "sha256": "c5f04a838f51cdc579bcf5608310297edc533d140cd22aba00aad15445f61737"
+    },
+    {
+      "voiceId": "E1016B093",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B093.aiff",
+      "nativeMember": "E1016B093.str",
+      "nativeIndex": 93,
+      "nativeByteLength": 18432,
+      "nativeSha256": "93497c1955c33317c5a0baa2db6a66a4bf895c4cb4c94d9ce33efbbc35d1f075",
+      "speakerId": "TAIJ",
+      "sourceText": "You have more ability than I thought.",
+      "displayText": "You have more ability than I thought.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 24
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B093.wav",
+      "byteLength": 73516,
+      "sha256": "daca62ab5b694749f5cfc6ca4e06f0b384d987f51178ebfb9f222f925da17b35"
+    },
+    {
+      "voiceId": "E1016B094",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B094.aiff",
+      "nativeMember": "E1016B094.str",
+      "nativeIndex": 94,
+      "nativeByteLength": 36864,
+      "nativeSha256": "09b27f21b144a82643fd453fab1987bc1e750064e4e1200008d022d1a2d318cc",
+      "speakerId": "TAIJ",
+      "sourceText": "This technique works best when you＆can anticipate your opponent's attack.",
+      "displayText": "This technique works best when you\ncan anticipate your opponent's attack.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 1,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B094.wav",
+      "byteLength": 147244,
+      "sha256": "b7f6893aa3db0998a98525cb79f70db49fdb447852e826e0d2fa3b3556983e44"
+    },
+    {
+      "voiceId": "E1016B095",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B095.aiff",
+      "nativeMember": "E1016B095.str",
+      "nativeIndex": 95,
+      "nativeByteLength": 28672,
+      "nativeSha256": "b04d3369f984691b7a54195f89605b2524eefcb089f6a94912dd87f03c5c1db3",
+      "speakerId": "TAIJ",
+      "sourceText": "Do you wish to practice further＆to master the timing of the attack?",
+      "displayText": "Do you wish to practice further\nto master the timing of the attack?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B095.wav",
+      "byteLength": 114476,
+      "sha256": "bb8d083a323bb8960dd2312fd5f6951e8b328d7ab487561d60dfce560ee15902"
+    },
+    {
+      "voiceId": "E1016B107",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B107.aiff",
+      "nativeMember": "E1016B107.str",
+      "nativeIndex": 104,
+      "nativeByteLength": 18432,
+      "nativeSha256": "57f1c6094cfad5601332a568f907359bfe2d2e57cfe181e167b422ab93ba3020",
+      "speakerId": "TAIJ",
+      "sourceText": "I can not allow you to go alone.",
+      "displayText": "I can not allow you to go alone.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B107.wav",
+      "byteLength": 73516,
+      "sha256": "d9ba80b8294080ac86899008809fddd30285c98114bc79b00d702d441c6362e9"
+    },
+    {
+      "voiceId": "E1016B108",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B108.aiff",
+      "nativeMember": "E1016B108.str",
+      "nativeIndex": 105,
+      "nativeByteLength": 32768,
+      "nativeSha256": "41539148f960c62749b5bc0fc2bc8c08ab3940310fe14ba218fce2abcca941f9",
+      "speakerId": "TAIJ",
+      "sourceText": "Besides, we also need to know＆what Lan Di is doing.",
+      "displayText": "Besides, we also need to know\nwhat Lan Di is doing.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 23
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B108.wav",
+      "byteLength": 130860,
+      "sha256": "55fb5b990179285a1b00c64e85372bd23ddad691243cb77bdddf6269c1806002"
+    },
+    {
+      "voiceId": "E1016B112",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B112.aiff",
+      "nativeMember": "E1016B112.str",
+      "nativeIndex": 106,
+      "nativeByteLength": 6144,
+      "nativeSha256": "662b2280c5fabe9f03f95cbe416569125f51495958583a52d1a444945f5d5a13",
+      "speakerId": "TAIJ",
+      "sourceText": "Gui Zhang.",
+      "displayText": "Gui Zhang.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B112.wav",
+      "byteLength": 24364,
+      "sha256": "75cc5f18e23139d942d22ce5fff910da72735853650f02b2547e0254e051d688"
+    },
+    {
+      "voiceId": "E1016B113",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B113.aiff",
+      "nativeMember": "E1016B113.str",
+      "nativeIndex": 107,
+      "nativeByteLength": 26624,
+      "nativeSha256": "d1827c8d8c23f77d7b29f23a98b84a4c456a504382f1cbbf750678351fa192da",
+      "speakerId": "TAIJ",
+      "sourceText": "You utilize your opponent's＆attack to flip them.",
+      "displayText": "You utilize your opponent's\nattack to flip them.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B113.wav",
+      "byteLength": 106284,
+      "sha256": "5ebc394d2524f5bb353e794ffa5f6e8d0ba05c65ca3b6180708a8b5baac5b405"
+    },
+    {
+      "voiceId": "E1016B114",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B114.aiff",
+      "nativeMember": "E1016B114.str",
+      "nativeIndex": 108,
+      "nativeByteLength": 26624,
+      "nativeSha256": "25a79f93133c9c1641686a4d799ffa2c3fb8b7fea924d1d56d823ed052e852c2",
+      "speakerId": "TAIJ",
+      "sourceText": "First I will explain the basic form.＆Watch closely.",
+      "displayText": "First I will explain the basic form.\nWatch closely.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B114.wav",
+      "byteLength": 106284,
+      "sha256": "ea73a99806f4df0492b5c395a561dccb2f96169fb210f27bcf171a491df45b55"
+    },
+    {
+      "voiceId": "E1016B119",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B119.aiff",
+      "nativeMember": "E1016B119.str",
+      "nativeIndex": 112,
+      "nativeByteLength": 32768,
+      "nativeSha256": "3203c9dfb11def18a28db0c38225fb448bd23332477fc211f407b02b5b87efe9",
+      "speakerId": "TAIJ",
+      "sourceText": "Very well. Then, there is nothing＆more that I can do.",
+      "displayText": "Very well. Then, there is nothing\nmore that I can do.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 30
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B119.wav",
+      "byteLength": 130860,
+      "sha256": "c6b1e56de117b843024aa6d1cdb5c747c67901cec33e6ab1f4dca16f4c63e2e1"
+    },
+    {
+      "voiceId": "E1016B120",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B120.aiff",
+      "nativeMember": "E1016B120.str",
+      "nativeIndex": 113,
+      "nativeByteLength": 8192,
+      "nativeSha256": "090ebfa1a6658067e68158c19a69136d465863734593281ffb5af5bd45087890",
+      "speakerId": "TAIJ",
+      "sourceText": "You're going?",
+      "displayText": "You're going?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B120.wav",
+      "byteLength": 32556,
+      "sha256": "c57a5d494099be9983e8c7fe596f010f50d96123bbc268880b7ecacf50894058"
+    },
+    {
+      "voiceId": "E1016B122",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B122.aiff",
+      "nativeMember": "E1016B122.str",
+      "nativeIndex": 115,
+      "nativeByteLength": 36864,
+      "nativeSha256": "2f382a559c7320038f841d7214952c6dfc3b1f608a49393f1c5386b4fd87abbe",
+      "speakerId": "TAIJ",
+      "sourceText": "Thanks to you, the Long Zha was＆thwarted. It was the least I could do.",
+      "displayText": "Thanks to you, the Long Zha was\nthwarted. It was the least I could do.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 43
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B122.wav",
+      "byteLength": 147244,
+      "sha256": "1e9c8aece59c54fc0eb2926d6ee60ab08a7a1dd8c0e4f4e983e691c1c97dbd02"
+    },
+    {
+      "voiceId": "E1016B123",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B123.aiff",
+      "nativeMember": "E1016B123.str",
+      "nativeIndex": 116,
+      "nativeByteLength": 28672,
+      "nativeSha256": "a40ad9da04500bb00a66075dcd2503c8adb06e08fc1edcbb1762f0d2916be18e",
+      "speakerId": "TAIJ",
+      "sourceText": "The Diving Swallow Style should＆be useful on your journey.",
+      "displayText": "The Diving Swallow Style should\nbe useful on your journey.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B123.wav",
+      "byteLength": 114476,
+      "sha256": "8b6a9474698b860e9bcb716b7ee4b96bce7f23ef703c245b13fc96bc475e9987"
+    },
+    {
+      "voiceId": "E1016B124",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B124.aiff",
+      "nativeMember": "E1016B124.str",
+      "nativeIndex": 117,
+      "nativeByteLength": 34816,
+      "nativeSha256": "ae55233368a17089e377931e346a10056e0d5ab5a1d833050e4f74cd4ebdcd9d",
+      "speakerId": "TAIJ",
+      "sourceText": "A style from the He Bei Province＆in use since the Song Dynasty.",
+      "displayText": "A style from the He Bei Province\nin use since the Song Dynasty.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B124.wav",
+      "byteLength": 139052,
+      "sha256": "5aad206b8f2a4a1801b452145456aad4f174cd77d362c6951f36c609a9559227"
+    },
+    {
+      "voiceId": "E1016B125",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016B125.aiff",
+      "nativeMember": "E1016B125.str",
+      "nativeIndex": 118,
+      "nativeByteLength": 28672,
+      "nativeSha256": "deab9d0eabe3c858c472df630c284aa05e078f59ecbf03b296c9171a6b516987",
+      "speakerId": "TAIJ",
+      "sourceText": "I will teach you it's most sacred＆move, the Swallow Flip.",
+      "displayText": "I will teach you it's most sacred\nmove, the Swallow Flip.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 28
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016B125.wav",
+      "byteLength": 114476,
+      "sha256": "6596f3d7b966fe1eb6a31e71a3b4e732668fe0fffd31548b89b9b499c2044d51"
+    },
+    {
+      "voiceId": "E1016C002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016C002.aiff",
+      "nativeMember": "E1016C002.str",
+      "nativeIndex": 125,
+      "nativeByteLength": 4096,
+      "nativeSha256": "0d9f436515182782de9730cf935e98dfb35d6156db1cb8f9d8f269aa8b7f989a",
+      "speakerId": "KISY",
+      "sourceText": "Yes.",
+      "displayText": "Yes.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016C002.wav",
+      "byteLength": 16172,
+      "sha256": "674d022f0b26b7e4e80263b63b0393c6a686d2a1e4303d3dad1f565be1b173cf"
+    },
+    {
+      "voiceId": "E1016C005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016C005.aiff",
+      "nativeMember": "E1016C005.str",
+      "nativeIndex": 127,
+      "nativeByteLength": 8192,
+      "nativeSha256": "3c08a5a494e3c861949d2120bd3ed6d4e93fd98704c16b729c61af534d1ec0b3",
+      "speakerId": "KISY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016C005.wav",
+      "byteLength": 32556,
+      "sha256": "e9908760867d878c20c09b256a8fe129d4805cbf44a482ba5abcc4310607bdcb"
+    },
+    {
+      "voiceId": "E1016C008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016C008.aiff",
+      "nativeMember": "E1016C008.str",
+      "nativeIndex": 128,
+      "nativeByteLength": 18432,
+      "nativeSha256": "eb2d92b72f6782bd7f2659d5707d8fa1248f239654d76f7b0bdf4719d76a7929",
+      "speakerId": "KISY",
+      "sourceText": "Your foolishness knows no bounds, heh?",
+      "displayText": "Your foolishness knows no bounds, heh?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016C008.wav",
+      "byteLength": 73516,
+      "sha256": "3f6adc88ea22287b7045f4dd99ecd04015987b2752783662d1955dcbcade06fc"
+    },
+    {
+      "voiceId": "E1016C010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016C010.aiff",
+      "nativeMember": "E1016C010.str",
+      "nativeIndex": 129,
+      "nativeByteLength": 8192,
+      "nativeSha256": "17be1a4d752a979badd6e767cf90dfecd29fbfa1d2db315ebca4babf698bb8bd",
+      "speakerId": "KISY",
+      "sourceText": "I'm going with you.",
+      "displayText": "I'm going with you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016C010.wav",
+      "byteLength": 32556,
+      "sha256": "1fdd32fe996da7c7c82aae51fcce82cf03a198fae30bc296b16f035320517823"
+    },
+    {
+      "voiceId": "E1016C011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016C011.aiff",
+      "nativeMember": "E1016C011.str",
+      "nativeIndex": 130,
+      "nativeByteLength": 8192,
+      "nativeSha256": "ad572bb072b9709e951ee42b7adbb9754059de382f139d6b1891f8a07578910d",
+      "speakerId": "KISY",
+      "sourceText": "That's the gist of it.",
+      "displayText": "That's the gist of it.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016C011.wav",
+      "byteLength": 32556,
+      "sha256": "1fa1988ca0305dec6f05de7aa055275e68a8eb9735e5203eb1410e96c154f4d1"
+    },
+    {
+      "voiceId": "E1016C012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SOUND/E1016C012.aiff",
+      "nativeMember": "E1016C012.str",
+      "nativeIndex": 131,
+      "nativeByteLength": 22528,
+      "nativeSha256": "266941fc413dd48755a63fb8485fd0bbfda50c400a63300950c99c72f9a8fffc",
+      "speakerId": "KISY",
+      "sourceText": "You're too reckless.＆It worries me, so=@",
+      "displayText": "You're too reckless.\nIt worries me, so...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 43
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/swallow-lesson/voice/E1016C012.wav",
+      "byteLength": 89900,
+      "sha256": "d0fdc4d01e01a40de2660f3731241fa2aa909142cea54ad1aeffc944d7b9be58"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths2/cloths02.aiff",
+      "playbackId": 0,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040000.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths2/friction4.aiff",
+      "playbackId": 1,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040100.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 2,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040200.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 3,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040300.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 4,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040400.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 5,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040500.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths/bagcatch.aiff",
+      "playbackId": 6,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040600.wav",
+      "byteLength": 10860,
+      "sha256": "4cb1c00716b6d44507bfe8008f71f0e2044a9024350258795c399184adab87e0"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths/bagthrow.aiff",
+      "playbackId": 7,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040700.wav",
+      "byteLength": 13868,
+      "sha256": "9418778b545d792dde00ef9dbb59b1ba73746b155a542fe412d4f715e5af4d5e"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths2/cl03.aiff",
+      "playbackId": 8,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040800.wav",
+      "byteLength": 127604,
+      "sha256": "2c13979aaaf032ee706d0353819b385a7aca4f3d3d1a6b0e480c83e7a4162737"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths2/cloths01.aiff",
+      "playbackId": 9,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040900.wav",
+      "byteLength": 20916,
+      "sha256": "9ba29a5ab2fe22c69473ae00e7b3089de123d7ee9f0de866cee5cbdadd59f9f2"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/body/Down1a.aiff",
+      "playbackId": 10,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040a00.wav",
+      "byteLength": 27940,
+      "sha256": "d7891ca13f342dfa00d4d2012262fd48a866940cb24034d90511bf030b7adbe0"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/foot/forest2.aiff",
+      "playbackId": 11,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040b00.wav",
+      "byteLength": 12308,
+      "sha256": "e09e0d0f5a2aec94f5ada3c4a77300ad15c294e600853e96f6f1f06bac9125ac"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths2/friction1.aiff",
+      "playbackId": 12,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040c00.wav",
+      "byteLength": 9772,
+      "sha256": "cff63711c479248812e1deaa855a1f0ae173a1c770cfb02ea819732ba1ac85bc"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths2/furimuki_f01.aiff",
+      "playbackId": 13,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040d00.wav",
+      "byteLength": 9348,
+      "sha256": "2026b716ba3115748b89ec3ac3b6041824b6ddbba78ee708f62af1fb8dc3756a"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths2/furimuki_n02.aiff",
+      "playbackId": 14,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040e00.wav",
+      "byteLength": 25804,
+      "sha256": "b445f45589f7dca74cd10ffb930d08fe60f20e43722f8414eb191cb942211a83"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/body/gomi1.aiff",
+      "playbackId": 15,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9040f00.wav",
+      "byteLength": 13308,
+      "sha256": "b60797f12d0f0dcc6696c536848d0b7b3f1c114502d208f8919436c8d58fe812"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/body/jumpdown2.aiff",
+      "playbackId": 16,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041000.wav",
+      "byteLength": 9364,
+      "sha256": "a401ae4b68372927cbe940a7a63e99c42e2d1069869c77a001bd61347b2a4d11"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/punch/Punch3.aiff",
+      "playbackId": 17,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041100.wav",
+      "byteLength": 2436,
+      "sha256": "7da6c66f3d19a1079a08cd3e2b15a7441ea448c39217102a21d5859443959f10"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths/putupbag.aiff",
+      "playbackId": 18,
+      "sampleId": 19,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041200.wav",
+      "byteLength": 9596,
+      "sha256": "faa43e47670c18bf9d94998788223f8a58f8c78d2657323bdb2373fa1b6bbef7"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 19,
+      "sampleId": 20,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041300.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9041400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 20,
+      "sampleId": 21,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041400.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9041500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/body/shoulder2.aiff",
+      "playbackId": 21,
+      "sampleId": 22,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041500.wav",
+      "byteLength": 2084,
+      "sha256": "ab7daa803b5619e55f7b99c9c812538f75425f8f62aeb07eec5e5c2257012565"
+    },
+    {
+      "commandHex": "a9041600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/foot/sneaker1.aiff",
+      "playbackId": 22,
+      "sampleId": 23,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041600.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9041700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/foot/sneaker2.aiff",
+      "playbackId": 23,
+      "sampleId": 24,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041700.wav",
+      "byteLength": 9884,
+      "sha256": "342317970a8e9592dc512f800e330aa960c8a019c08ebcec1e370e4fcf3eeea6"
+    },
+    {
+      "commandHex": "a9041800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/foot/sneaker3.aiff",
+      "playbackId": 24,
+      "sampleId": 25,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041800.wav",
+      "byteLength": 11188,
+      "sha256": "4f08f0da0c9852ab8de0ef02f0758a9c39be3e73c0f38d3dd5b7a572389d1960"
+    },
+    {
+      "commandHex": "a9041900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/foot/sneaker5.aiff",
+      "playbackId": 25,
+      "sampleId": 26,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041900.wav",
+      "byteLength": 10804,
+      "sha256": "0334446f014be77a677e0e4e97f7e1604c7dc5b356bef53103d39acc9081f9e1"
+    },
+    {
+      "commandHex": "a9041a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths/standup.aiff",
+      "playbackId": 26,
+      "sampleId": 27,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041a00.wav",
+      "byteLength": 20724,
+      "sha256": "0c526e49686b7dde719bfef6ea72ef52ca9c6ad3e866421005633d68ab714451"
+    },
+    {
+      "commandHex": "a9041b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/swing/swing02.aiff",
+      "playbackId": 27,
+      "sampleId": 28,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041b00.wav",
+      "byteLength": 46340,
+      "sha256": "a08672655b8d3e985e4325de8900897b0cacd079eb9cec71371d788854481f53"
+    },
+    {
+      "commandHex": "a9041c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/swing/swing03.aiff",
+      "playbackId": 28,
+      "sampleId": 29,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041c00.wav",
+      "byteLength": 33644,
+      "sha256": "413a08d07fd75774be0f172cee9b9bb40069fee1712acf9d9581400894008ef2"
+    },
+    {
+      "commandHex": "a9041d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/swing/swing07.aiff",
+      "playbackId": 29,
+      "sampleId": 30,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041d00.wav",
+      "byteLength": 29684,
+      "sha256": "20c1e9ab202e9d68afe570525a3b17f5ca2c1e3c6bae4d71dcd718391ca23461"
+    },
+    {
+      "commandHex": "a9041e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/swing/swing17.aiff",
+      "playbackId": 30,
+      "sampleId": 31,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9041e00.wav",
+      "byteLength": 14372,
+      "sha256": "8a0b788d280de71c54b91ec2cb8b5749e5b4b217dd55576e44a1d6270af99194"
+    },
+    {
+      "commandHex": "a9042000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/foot2/syueisuriashi2.aiff",
+      "playbackId": 32,
+      "sampleId": 34,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9042000.wav",
+      "byteLength": 8004,
+      "sha256": "62213f308bd9d3b13024a28a7aa2630459aa217a599fb9c30a8a2a5853299e46"
+    },
+    {
+      "commandHex": "a9042100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/cloths2/friction2.aiff",
+      "playbackId": 33,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9042100.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9042200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CHY/SE/swing/swings02.aiff",
+      "playbackId": 34,
+      "sampleId": 33,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/swallow-lesson/sfx/a9042200.wav",
+      "byteLength": 52780,
+      "sha256": "1070e2a31a63afe01fd6cabb5c4acf509031d816f75800f74e3bd33309f12209"
+    }
+  ]
+}

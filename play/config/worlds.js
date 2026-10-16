@@ -886,6 +886,16 @@ export const WORLDS = Object.freeze({
     includeFile:filename=>/^S3_TERY_MAP(17|18|19)\.MT5$/.test(filename),
     placements:Object.freeze([]),
   }),
+  mend: Object.freeze({
+    id:"mend",label:"Harbor Departure",japaneseLabel:"出港",nativeArea:"MEND",
+    nativePointLightingArea:nativeLightingArea("MEND"),waterHeight:sceneWaterHeight("MEND"),
+    prefix:"S3_MEND",spawn:new BABYLON.Vector3(-67.06890869140625,0,30.146678924560547),yaw:6.775592607458659,
+    // Original MAP.PKS scenery plus the room's base MAP. MAP03/04 are
+    // alternate ground layers; use the daytime one for this authored chapter.
+    // TRAP/ENDMAP layers belong to later staging, not the ordinary lesson floor.
+    includeFile:filename=>/^S3_MEND_MAP(?:01|02|03|05|06|08|11|12)?\.MT5$/.test(filename),
+    placements:Object.freeze([]),
+  }),
   "nbik-home":Object.freeze({
     id:"nbik-home",label:"Nozomi's Ride Home",japaneseLabel:"帰り道",nativeArea:"NBIK",
     prefix:"S3_NBIK",spawn:new BABYLON.Vector3(-133.34780883789062,0,26.650836944580078),yaw:Math.PI,

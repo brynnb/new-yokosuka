@@ -1,7 +1,9 @@
 import { createGameAudio } from "../audio/MediaElementAudio.js";
 import storyChallenges from "../data/story-challenges.json" with { type: "json" };
 
-const CHALLENGE_KEYS = Object.freeze({A:"Enter",B:"Shift",Left:"ArrowLeft",Right:"ArrowRight",Up:"ArrowUp",Down:"ArrowDown"});
+// The original X is a punch, not our physical X-to-cancel shortcut. J matches
+// ordinary combat's punch control. Keep keyboard and touch on the same code.
+const CHALLENGE_KEYS = Object.freeze({A:"Enter",B:"Shift",X:"J",Left:"ArrowLeft",Right:"ArrowRight",Up:"ArrowUp",Down:"ArrowDown"});
 if(storyChallenges.buttonCodes.some(code=>!CHALLENGE_KEYS[code]))throw new Error("Unmapped story challenge button");
 import {
   createNativeDialogueVoiceManifest,
@@ -338,7 +340,7 @@ export class ScriptEventDialoguePresenter {
     }
     this.dom.options.hidden=false;
     this.challengeKeyHandler=event=>{
-      const code=storyChallenges.buttonCodes.find(code=>CHALLENGE_KEYS[code]===event.key);
+      const code=storyChallenges.buttonCodes.find(code=>CHALLENGE_KEYS[code].toLowerCase()===event.key?.toLowerCase());
       if(!code||event.repeat||!current())return;
       event.preventDefault();event.stopImmediatePropagation();this.onChallengeResponse("challenge_input",prompt.token,code);
     };

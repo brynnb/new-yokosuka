@@ -156,6 +156,8 @@ import guiAfterBattleManifest from "../assets/harbor/gui-after-battle/manifest.j
 import guiAfterBattleAudio from "../../public/audio/world/gui-after-battle/manifest.json";
 import familyDepartureManifest from "../assets/hazuki/family-departure/manifest.json";
 import familyDepartureAudio from "../../public/audio/world/family-departure/manifest.json";
+import swallowLessonManifest from "../assets/harbor/swallow-lesson/manifest.json";
+import swallowLessonAudio from "../../public/audio/world/swallow-lesson/manifest.json";
 import chaiIntroManifest from "../assets/dobuita/chai-intro/manifest.json";
 import chaiIntroAudio from "../../public/audio/world/chai-intro/manifest.json";
 import chaiVictoryManifest from "../assets/dobuita/chai-victory/manifest.json";
@@ -391,6 +393,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ...[["terry-final-intro",terryFinalIntroManifest,terryFinalIntroAudio],["terry-final-success",terryFinalSuccessManifest,terryFinalSuccessAudio],["terry-interrogation",terryInterrogationManifest,terryInterrogationAudio]].map(([id,manifest,audio])=>[id,manifest,audio,"mfbt",Object.freeze({cues:[{startActivity:true,trackId:"bgm120",loop:true}],gain:1})]),
     ["gui-after-battle",guiAfterBattleManifest,guiAfterBattleAudio,"mfbt",Object.freeze({cues:[{startActivity:true,trackId:"bgm106",loop:true}],gain:1})],
     ["family-departure",familyDepartureManifest,familyDepartureAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm107",loop:true}],gain:1})],
+    ["swallow-lesson",swallowLessonManifest,swallowLessonAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm064",loop:true}],gain:1})],
     ["sailor-chase-intro",sailorIntroManifest,sailorIntroAudio,"mfsy"],["sailor-chase-tony",sailorTonyManifest,sailorTonyAudio,"mfsy"],["sailor-chase-smith",sailorSmithManifest,sailorSmithAudio,"mfsy"],
     ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],
     ["mark-lunch-intro",markLunchIntroManifest,markLunchIntroAudio,"mfsy"],["mark-lunch-aftermath",markLunchAftermathManifest,markLunchAftermathAudio,"mfsy"],
