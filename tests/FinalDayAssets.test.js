@@ -53,13 +53,28 @@ test("night chapters retain original branch/bank identities and cannot award bat
   const ready=authoredScenes.scenes.find(s=>s.id==="s1.mfbt.pipe-ready"),counter=authoredScenes.scenes.find(s=>s.id==="s1.mfbt.pipe-counter");
   assert.equal(ready.waitForMotions,undefined);assert.equal(counter.waitForMotions,true);
   const bank=MotnLoader.parse(fs.readFileSync(new URL(`../${authoredScenes.motionBanks.finalCounter}`,import.meta.url)));
-  for(const s of authoredScenes.scenes.filter(s=>s.area==="MFBT")){
+  for(const s of authoredScenes.scenes.filter(s=>s.actors.some(a=>a.motion.bank==="finalCounter"))){
     assert.ok(Object.values(s.camera).every(Number.isFinite));
     for(const actor of s.actors)assert.equal(bank.getSequence(actor.motion.name).valueData.complete,true);
   }
   assert.equal(ready.attachedObjects.PIPE.referenceOnly,false);
   assert.equal(ready.attachedObjects.PIPE.attachments[0].parentActorTag,"TERY");
   assert.deepEqual(counter.camera,ready.camera);
+});
+
+test("seventy-man assets pin original pooled bodies and the corrected shared boss identities",()=>{
+  const catalog=new ScriptEventPresentationCatalog(),m=read("play/assets/harbor/seventy-man/manifest.json");
+  const rescue=read("play/assets/harbor/nozomi-rescue/manifest.json");
+  assert.equal(m.generatedBy,"tools/scripting/build_final_battle.mjs");
+  assert.equal(m.actorDefinitions.length,12);assert.equal(m.outputs.length,10);
+  for(const a of m.outputs){const bytes=fs.readFileSync(new URL(`../${a.path}`,import.meta.url));assert.equal(bytes.length,a.byteLength);assert.equal(createHash("sha256").update(bytes).digest("hex"),a.sha256);}
+  for(const [tag,model]of [["TERY","ACS_M"],["STSI","KMA_L"],["MRSK","PPL_L"],["PEDR","JNC_L"]])assert.equal(rescue.packageActors[tag].modelCode,model);
+  for(const id of ["seventy-man","seventy-man-victory"]){
+    const s=authoredScenes.scenes.find(s=>s.id===`s1.mfbt.${id}`);assert.ok(s);
+    assert.doesNotThrow(()=>catalog.sequence(`${s.id}.start`));assert.doesNotThrow(()=>catalog.sequence(`${s.id}.finish`));
+    assert.ok(Object.values(s.camera).every(Number.isFinite));
+    for(const a of s.actors){assert.ok(Object.values(a.pose).every(Number.isFinite));assert.equal(a.motion.bank,"free");assert.equal(a.motion.name,"AKI_AKI_STAND_LP");}
+  }
 });
 
 test("Tom's optional lesson keeps source branches, original motions and the independent farewell",()=>{

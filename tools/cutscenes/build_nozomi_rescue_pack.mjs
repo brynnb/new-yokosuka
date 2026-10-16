@@ -51,9 +51,12 @@ function actor(archive,tag,modelCode,label){
 }
 // Tags/AMOV/cameras are original. These body associations and the two battle
 // formations are reviewed adaptations, not a recovered native actor controller.
-actor("TER2","TERY","KMA_L","Terry");
+// public/data/chars.csv explicitly maps TERY/ACS_M and STSI/KMA_L. These
+// original TER2 bodies were previously swapped by an authored association;
+// fix the shared source pack rather than overriding later consumers.
+actor("TER2","TERY","ACS_M","Terry Ryan");
 actor("TER2","PEDR","JNC_L","Mad Angels fighter");
-actor("TER2","STSI","ACS_M","Mad Angels fighter");
+actor("TER2","STSI","KMA_L","Satoshi Nagata");
 actor("TER2","CHAI","CHA_M","Chai");
 for(const [tag,label,code]of [["MRSK","Shingo Murasaki","PPL_L"],["HRSK","Nozomi Harasaki","NZM_L"]]){
   const assetPath=`play/assets/characters/${code}.CHRM`,textureAssetPath=`play/assets/characters/${code.slice(0,3)}_textures.bin`;

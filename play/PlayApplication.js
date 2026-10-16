@@ -886,6 +886,7 @@ function createPlayRuntime() {
   });
   const scriptEvents = createScriptEventAssembly({
     scene,
+    musicControls,
     getForklifts:()=>forkliftAssembly,
     getController:()=>controller,
     getBinding:action=>generalPreferences.binding(action),

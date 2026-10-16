@@ -11,8 +11,10 @@ const server = process.env.NEW_YOKOSUKA_SERVER_DIR;
 if (!server) throw new Error("NEW_YOKOSUKA_SERVER_DIR is required");
 const spec = JSON.parse(fs.readFileSync(path.join(import.meta.dirname,"story-combat.json")));
 const nativeActors = JSON.parse(fs.readFileSync(path.join(root,"play/data/events/nativeActivityActors.json"))).worlds;
+const music=JSON.parse(fs.readFileSync(path.join(root,"public/music/manifest.json"))).tracks;
 const scenes=authoredScenes.scenes;
 const encounters = spec.encounters.map(input => {
+  if(input.musicTrack&&!music[input.musicTrack])throw Error(`Missing reviewed combat music ${input.id}/${input.musicTrack}`);
   if(input.sourceTime && !["start","end"].includes(input.sourceTime))throw new Error(`Invalid staging time ${input.id}`);
   let poses,definitions;
   if(input.sourceScene){
@@ -55,7 +57,8 @@ const encounters = spec.encounters.map(input => {
   if(poses.length!==Object.keys(input.health).length||poses[0]?.tag!=="AKIR")throw new Error(`Incomplete combat cast ${input.id}`);
   const actors = poses.map(pose => {
     if(!input.health[pose.tag]||![pose.x,pose.y,pose.z].every(Number.isFinite))throw new Error(`Invalid placement ${pose.tag}`);
-    return {tag:pose.tag,x:-pose.x,y:pose.y,z:pose.z,health:input.health[pose.tag]};
+    return {tag:pose.tag,x:-pose.x,y:pose.y,z:pose.z,health:input.health[pose.tag],
+      ...(input.teams?.[pose.tag]?{team:input.teams[pose.tag]}:{}),...(input.damageScales?.[pose.tag]?{damageScale:input.damageScales[pose.tag]}:{})};
   });
   if(input.formation){
     // Cinematic grab/end poses are not necessarily safe combat starts. An
@@ -81,6 +84,9 @@ const encounters = spec.encounters.map(input => {
       range:move.range,arcDegrees:move.arcDegrees,damage:adaptedDamage??move.damage,
       guardDamage:move.guardDamage,hitStunMs:Math.ceil(move.hitStun*1000/30)};
   });
+  const waves=input.waves?.map(wave=>({label:wave.label,...(wave.bossTag?{bossTag:wave.bossTag}:{}),introMs:wave.introMs||0,actors:wave.actors.map(tag=>{
+    const spawn=actors.find(a=>a.tag===tag);if(!spawn||tag==="AKIR"||spawn.team==="ally")throw Error(`Invalid wave opponent ${input.id}/${tag}`);return {...spawn};
+  })}));
   return {id:input.id,label:input.label,area:input.area,worldId:input.worldId,provenance:input.provenance,
     ...(input.placement?{placement:input.placement}:{}),...(input.formation?{formation:input.formation}:{}),...(input.actorWorldId?{actorWorldId:input.actorWorldId}:{}),
     ...(input.sourceScene?{sourceScene:input.sourceScene}:{sourceActivity:input.sourceActivity,sha256:input.sha256}),...(input.sourcePackage?{sourcePackage:input.sourcePackage}:{}),actors,actions,
@@ -92,6 +98,7 @@ const encounters = spec.encounters.map(input => {
       minZ:Math.min(...actors.map(a=>a.z))-input.arenaPadding,maxZ:Math.max(...actors.map(a=>a.z))+input.arenaPadding},
     playerSpeed:input.playerSpeed,enemySpeed:input.enemySpeed,maxAttackers:input.maxAttackers,timeoutMs:input.timeoutMs,
     ...(input.practiceDurationMs?{practiceDurationMs:input.practiceDurationMs}:{}),
+    ...(waves?{waves,waveDelayMs:input.waveDelayMs||0}:{}),...(input.musicTrack?{musicTrack:input.musicTrack}:{}),
     inputBufferMs:Math.ceil(COMMAND_BUFFER_TICKS*1000/COMBAT_TICKS_PER_SECOND)};
 });
 fs.writeFileSync(path.join(server,"internal/scriptevent/combats.json"),JSON.stringify({schema:spec.schema,encounters},null,2)+"\n");

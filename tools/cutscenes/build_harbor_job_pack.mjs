@@ -47,7 +47,7 @@ const archives={
 };
 const finalCast=[
   {path:"play/assets/harbor/master-chen/manifest.json",sha256:"a997ad1a777bc5e175e733245002de2245eec3550dc253e0e79057b73041de9b"},
-  {path:"play/assets/harbor/nozomi-rescue/manifest.json",sha256:"24211847234d7c2e5de9e7930b8036df56cc55ba983d35caae9a64a8c534b045"},
+  {path:"play/assets/harbor/nozomi-rescue/manifest.json",sha256:"e5ead3f29e62608ab03873c5c3d419ae10924b8d4122a029bd29c175f573d9e0"},
 ];
 const finalMusic={id:"bgm013",sourceId:"1e01b7d3dc308c6255896489d098cb59df125f959872de96f79000cb99c18b4e",bankHash:"0c5250def8570bef8982a1634d3eef79781960a4b8a2c745d56593a314d07cb0",label:"The final confrontation"};
 const profiles=[

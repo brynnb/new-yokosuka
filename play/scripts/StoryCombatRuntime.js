@@ -6,14 +6,17 @@ import {renderServerStoryActors} from "./ServerStoryActorPresentation.js";
 // Presentation/input only. Health, movement limits, hits and victory come from
 // server snapshots. Reuse the same cinematic actor and named-motion adapters.
 export class StoryCombatRuntime {
-  constructor({actors,motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,onIntent,target=window,now=()=>performance.now()}) {
-    Object.assign(this,{actors,motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,onIntent,target,now});
+  constructor({actors,motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,onIntent,musicControls=null,target=window,now=()=>performance.now()}) {
+    Object.assign(this,{actors,motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,onIntent,musicControls,target,now});
     this.active=null;
   }
   async show(view,transaction) {
     if(this.active) {
       if(this.active.transaction!==transaction || this.active.token!==view.token)throw new Error("Combat ownership changed without cleanup");
-      this.active.view=view;this.active.receivedAt=this.now();return true;
+      const nextWave=this.active.view.wave!==view.wave;
+      this.active.view=view;this.active.receivedAt=this.now();
+      if(nextWave&&view.intro)this.frameOpponents(view);
+      return true;
     }
     const definition=catalog.encounters.find(def=>def.id===view.id);
     if(!definition || definition.area!==transaction.area)throw new Error(`No combat presentation ${view.id} in ${transaction.area}`);
@@ -36,14 +39,11 @@ export class StoryCombatRuntime {
       if(this.active!==owner)return false;
       this.actors.begin(owner,definition.actors.map(actor=>actor.tag));owner.actorsBegun=true;
       const controller=this.getController();controller.setFirstPerson(false);
-      controller.cameraDistance=Math.max(4,controller.cameraDistance);controller.cameraPitch=.24;
+      controller.cameraDistance=Math.max(definition.waves?.length?6:4,controller.cameraDistance);controller.cameraPitch=.24;
       // The approach camera can put the opponent under a sidebar or behind
       // the player. Frame the nearest opponent at acquisition; subsequent
       // orbiting remains player-controlled, and finish restores the snapshot.
-      const player=view.actors.find(actor=>actor.tag==="AKIR");
-      const nearest=view.actors.filter(actor=>actor.tag!=="AKIR").reduce((best,actor)=>
-        !best||Math.hypot(actor.x-player.x,actor.z-player.z)<Math.hypot(best.x-player.x,best.z-player.z)?actor:best,null);
-      if(nearest)controller.cameraYaw=Math.atan2(player.x-nearest.x,player.z-nearest.z);
+      this.frameOpponents(view);
       owner.input=new CombatInput({target:this.target,enableToggle:false,getBindings:()=>({
         controls:this.getBinding("cancel"),hand:this.getBinding("combatHand"),leg:this.getBinding("combatLeg"),
         throw:this.getBinding("combatThrow"),guard:this.getBinding("combatGuard"),run:this.getBinding("run"),
@@ -51,8 +51,22 @@ export class StoryCombatRuntime {
       })});
       if(!this.update(transaction,0))throw new Error("Combat cast could not render");
       controller.updateCamera(1);
+      if(definition.musicTrack){
+        // Share the existing music owner and track catalog. Disabled/locked
+        // browser audio cannot turn an otherwise playable fight into failure.
+        if(this.musicControls?.playTemporaryTrack(definition.musicTrack,{gain:1,loop:true}))owner.musicTrack=definition.musicTrack;
+        else console.warn(`Combat music unavailable: ${definition.musicTrack}`);
+      }
       this.onIntent("combat_ready",owner.token,null);return true;
     } catch(error) {if(this.active===owner)this.finish(transaction);throw error;}
+  }
+  frameOpponents(view){
+    const player=view.actors.find(actor=>actor.tag==="AKIR"),controller=this.getController();
+    const enemies=view.actors.filter(actor=>actor.tag!=="AKIR"&&actor.team!=="ally"&&!actor.inactive&&actor.health>0);
+    const target=view.intro&&view.bossTag?enemies.find(a=>a.tag===view.bossTag):enemies.reduce((best,a)=>
+      !best||Math.hypot(a.x-player.x,a.z-player.z)<Math.hypot(best.x-player.x,best.z-player.z)?a:best,null);
+    if(target)controller.cameraYaw=Math.atan2(player.x-target.x,player.z-target.z);
+    controller.updateCamera(1);
   }
   action(command) {if(this.active?.view.ready)this.active.queuedAction=command;}
   setGuard(guard) {if(this.active)this.active.guard=guard;}
@@ -90,7 +104,7 @@ export class StoryCombatRuntime {
     const owner=this.active;if(!owner || owner.transaction!==transaction)return false;
     this.active=null;owner.controller.abort(new DOMException("Combat presentation released","AbortError"));owner.input?.dispose();
     try {if(owner.actorsBegun)this.actors.end(owner,"stopped");}
-    finally{this.restorePlayerState(owner.snapshot);}
+    finally{try{if(owner.musicTrack)this.musicControls.stopTemporaryTrack(owner.musicTrack);}finally{this.restorePlayerState(owner.snapshot);}}
     return true;
   }
 }

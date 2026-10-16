@@ -63,6 +63,7 @@ export function createScriptEventAssembly({
   getPlayerModel,
   syncPlayerTransform,
   motionRuntime,
+  musicControls,
   getController,
   getForklifts,
   getBinding,
@@ -139,7 +140,7 @@ export function createScriptEventAssembly({
   const combatRuntime=new StoryCombatRuntime({
     actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,
       preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
-    motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,
+    motionRuntime,musicControls,getController,getBinding,capturePlayerState,restorePlayerState,
     onIntent:(action,token,intent)=>controller?.combatResponse(action,token,intent),
   });
   const navigationRuntime=new StoryNavigationRuntime({

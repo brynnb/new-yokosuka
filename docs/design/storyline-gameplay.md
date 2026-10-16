@@ -203,8 +203,12 @@ wrong/expired retry, cancellation/reload, original retreat/encirclement and
 actual BGM013/BGM084 playback, with the local exploration practice mode kept
 out of Story. Wide counter framing is an explicit adaptation; aircraft
 visibility and exact collapse/prop choreography remain review items. The
-actual70-man battle, final battles and departure remain missing; the checklist
-distinguishes each boundary.
+actual70-man battle now also passes a connected earned-save check: cancellation,
+fresh retry, all ten groups/three bosses, keyboard combat and health recovery,
+original BGM120, independent acknowledged victory and saved reload without
+replay. Models are pooled; AI/balance, arrival shots and the unvoiced ending
+are explicit adaptations. Final battles and departure remain missing; the
+checklist distinguishes each boundary.
 See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest)
 and the [final day](story-final-day.md).
 

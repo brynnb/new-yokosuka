@@ -1,6 +1,25 @@
 {
   "schema":"new-yokosuka-authored-story-combat-v1",
   "encounters":[{
+    "id":"s1.mfbt.seventy-man","label":"Ryo and Gui Zhang against the Mad Angels","area":"MFBT","worldId":"mfbt","sourceScene":"s1.mfbt.seventy-man",
+    "provenance":"GameSpot pp64-65:70 actual opponents including3 stronger bosses, with Gui Zhang alongside Ryo. Original MFBT bodies and moves, named bosses per project character table. Authored10-cohort reinforcements reuse13 prepared model slots rather than rendering70 full rigs. Positions, health/balance, nonlethal ally, short boss arrival framing and basic shared AI are adaptations, not reconstructed original battle scripts. Each of67 ordinary opponents and3 bosses requires server-simulated knockout. Only the enclosing Yarn event can save victory; no counter, movie acknowledgement or cleared partial cohort grants it.",
+    "health":{"AKIR":100,"KISY":100,"R001":18,"R002":18,"R003":18,"R004":18,"R005":18,"R006":18,"R007":18,"R008":18,"MRSK":72,"PEDR":90,"STSI":110},
+    "teams":{"KISY":"ally"},"damageScales":{"MRSK":1.25,"PEDR":1.5,"STSI":1.75},"musicTrack":"bgm120",
+    "playerSpeed":3.2,"enemySpeed":2,"maxAttackers":2,"timeoutMs":900000,"arenaPadding":2,"waveDelayMs":1200,
+    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}],
+    "waves":[
+      {"label":"Mad Angels","actors":["R001","R002","R003","R004","R005","R006","R007","R008"]},
+      {"label":"Reinforcements","actors":["R001","R002","R003","R004","R005","R006","R007","R008"]},
+      {"label":"More Mad Angels","actors":["R001","R002","R003","R004","R005","R006","R007","R008"]},
+      {"label":"Shingo Murasaki arrives","bossTag":"MRSK","introMs":1800,"actors":["R001","R002","R003","R004","MRSK"]},
+      {"label":"The next group","actors":["R001","R002","R003","R004","R005","R006","R007","R008"]},
+      {"label":"Hold the line","actors":["R001","R002","R003","R004","R005","R006","R007","R008"]},
+      {"label":"Pedro Warren arrives","bossTag":"PEDR","introMs":1800,"actors":["R001","R002","R003","R004","R005","R006","PEDR"]},
+      {"label":"More reinforcements","actors":["R001","R002","R003","R004","R005","R006","R007","R008"]},
+      {"label":"The last group","actors":["R001","R002","R003","R004","R005","R006","R007","R008"]},
+      {"label":"Satoshi Nagata arrives","bossTag":"STSI","introMs":1800,"actors":["R001","STSI"]}
+    ]
+  },{
     "id":"s1.mfbt.final-spar","label":"Spar with Gui Zhang","area":"MFBT","worldId":"mfbt",
     "sourceActivity":"play/assets/harbor/final-confrontation/SEQDATA1.AUTH","sha256":"a288a7c666a0c07de748bc4fef6dca4395e0744822dc303d80200ecf6ce09bc9","sourceTime":"end",
     "sourcePackage":"play/assets/harbor/final-confrontation/manifest.json",

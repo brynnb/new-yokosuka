@@ -225,6 +225,11 @@ earned pre-ride save. No additional game-art/audio binaries were generated or up
 
 ## Warehouse battles and Terry's deal
 
+The shared cast associations were corrected against the project's extracted
+character table: Terry/TERY uses ACS_M and Satoshi/STSI uses KMA_L, not the
+reverse. Shingo/MRSK uses PPL_L and Pedro/PEDR uses JNC_L. These are shared
+canonical package bindings, not per-scene overrides or recovered native AI.
+
 The same GameSpot guide, printed pp.62–63, orders a harbor fight, another fight
 inside the warehouse, then Terry's hostage deal and the ride home. Separate
 ordinary Yarn events save the two victories before the conversation. No native

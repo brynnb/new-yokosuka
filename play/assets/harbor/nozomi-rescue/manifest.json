@@ -38,12 +38,12 @@
         "sha256": "ea6f1b25013c374c07ddd2b0694bcbeb0e699ffdd38c7bf3e07ca4421f6169a7"
       },
       {
-        "name": "KMA_L.CHRM",
+        "name": "ACS_M.CHRM",
         "path": "disc3/SCENE/03/TERY/TER2.PKS",
         "sourceSha256": "41ef8c4b096e251ad046e558d455d0972a986dc867bfcd44a4c40c3f6cbda256",
-        "archiveMember": "KMA_L.CHRM",
-        "byteLength": 35924,
-        "sha256": "7c85af4ab5764b3a16757ce8e49c809e89341cfe14681a49750ed0658fcd3cfe"
+        "archiveMember": "ACS_M.CHRM",
+        "byteLength": 61144,
+        "sha256": "10f20b7a914107336a08e4e57061b9baac6f66c3e1e64ab4e8e6966e5f6fab0e"
       },
       {
         "name": "JNC_L.CHRM",
@@ -54,12 +54,12 @@
         "sha256": "ffbae3582d4438e254459b69a5ced1b9513cd638433b997c4904fed4024bdae1"
       },
       {
-        "name": "ACS_M.CHRM",
+        "name": "KMA_L.CHRM",
         "path": "disc3/SCENE/03/TERY/TER2.PKS",
         "sourceSha256": "41ef8c4b096e251ad046e558d455d0972a986dc867bfcd44a4c40c3f6cbda256",
-        "archiveMember": "ACS_M.CHRM",
-        "byteLength": 61144,
-        "sha256": "10f20b7a914107336a08e4e57061b9baac6f66c3e1e64ab4e8e6966e5f6fab0e"
+        "archiveMember": "KMA_L.CHRM",
+        "byteLength": 35924,
+        "sha256": "7c85af4ab5764b3a16757ce8e49c809e89341cfe14681a49750ed0658fcd3cfe"
       },
       {
         "name": "CHA_M.CHRM",
@@ -184,16 +184,16 @@
   "audioManifest": "public/audio/world/nozomi-rescue/manifest.json",
   "packageActors": {
     "TERY": {
-      "label": "Terry",
-      "modelCode": "KMA_L",
-      "browserFilename": "KMA_L.CHRM",
+      "label": "Terry Ryan",
+      "modelCode": "ACS_M",
+      "browserFilename": "ACS_M.CHRM",
       "assetFormat": "MT5",
       "characterScale": 1,
-      "assetPath": "play/assets/harbor/nozomi-rescue/KMA_L.CHRM",
+      "assetPath": "play/assets/harbor/nozomi-rescue/ACS_M.CHRM",
       "textureAssetPath": "play/assets/harbor/nozomi-rescue/TER2-textures.bin",
       "sourceBinding": {
         "kind": "authored-package-model-association",
-        "archiveMember": "KMA_L.CHRM",
+        "archiveMember": "ACS_M.CHRM",
         "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
       }
     },
@@ -212,16 +212,16 @@
       }
     },
     "STSI": {
-      "label": "Mad Angels fighter",
-      "modelCode": "ACS_M",
-      "browserFilename": "ACS_M.CHRM",
+      "label": "Satoshi Nagata",
+      "modelCode": "KMA_L",
+      "browserFilename": "KMA_L.CHRM",
       "assetFormat": "MT5",
       "characterScale": 1,
-      "assetPath": "play/assets/harbor/nozomi-rescue/ACS_M.CHRM",
+      "assetPath": "play/assets/harbor/nozomi-rescue/KMA_L.CHRM",
       "textureAssetPath": "play/assets/harbor/nozomi-rescue/TER2-textures.bin",
       "sourceBinding": {
         "kind": "authored-package-model-association",
-        "archiveMember": "ACS_M.CHRM",
+        "archiveMember": "KMA_L.CHRM",
         "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
       }
     },
@@ -297,9 +297,9 @@
       "sha256": "7ef0ea4c70f6f49c38513f5023ae4d48e3cb38cf314a977e58844160afff3810"
     },
     {
-      "path": "play/assets/harbor/nozomi-rescue/KMA_L.CHRM",
-      "byteLength": 35924,
-      "sha256": "7c85af4ab5764b3a16757ce8e49c809e89341cfe14681a49750ed0658fcd3cfe"
+      "path": "play/assets/harbor/nozomi-rescue/ACS_M.CHRM",
+      "byteLength": 61144,
+      "sha256": "10f20b7a914107336a08e4e57061b9baac6f66c3e1e64ab4e8e6966e5f6fab0e"
     },
     {
       "path": "play/assets/harbor/nozomi-rescue/JNC_L.CHRM",
@@ -307,9 +307,9 @@
       "sha256": "ffbae3582d4438e254459b69a5ced1b9513cd638433b997c4904fed4024bdae1"
     },
     {
-      "path": "play/assets/harbor/nozomi-rescue/ACS_M.CHRM",
-      "byteLength": 61144,
-      "sha256": "10f20b7a914107336a08e4e57061b9baac6f66c3e1e64ab4e8e6966e5f6fab0e"
+      "path": "play/assets/harbor/nozomi-rescue/KMA_L.CHRM",
+      "byteLength": 35924,
+      "sha256": "7c85af4ab5764b3a16757ce8e49c809e89341cfe14681a49750ed0658fcd3cfe"
     },
     {
       "path": "play/assets/harbor/nozomi-rescue/CHA_M.CHRM",

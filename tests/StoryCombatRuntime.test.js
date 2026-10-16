@@ -53,22 +53,60 @@ test("warehouse waves retain donor models but use explicit safe combat formation
   }
 });
 
-function harness() {
+function harness(id="s1.d000.parking-lot") {
   const calls=[],target=new EventTarget();let now=1000,prepare=async()=>{};
+  const roots=new Map();
   const controller={cameraYaw:0,cameraDistance:2,setFirstPerson(){},updateCamera(){}};
   const bindings={cancel:"KeyX",combatHand:"KeyJ",combatLeg:"KeyK",combatThrow:"KeyL",combatGuard:"KeyI",run:"ShiftLeft",moveForward:"KeyW",moveBackward:"KeyS",moveLeft:"KeyA",moveRight:"KeyD"};
   const runtime=new StoryCombatRuntime({
     actors:{prepare:(...args)=>prepare(...args),begin:()=>calls.push("begin"),end:()=>calls.push("end"),
-      applyTransform:(_owner,tag,pose)=>(calls.push([tag,pose]),true),activeActor:tag=>({model:{tag}})},
+      applyTransform:(_owner,tag,pose)=>(calls.push([tag,pose]),true),activeActor:tag=>({model:{tag},root:{setEnabled:enabled=>roots.set(tag,enabled)}})},
+    musicControls:{playTemporaryTrack:(...args)=>(calls.push(["music-start",...args]),true),stopTemporaryTrack:track=>calls.push(["music-stop",track])},
     motionRuntime:{loadNamedSelections:async()=>{},applyNamed:()=>true},getController:()=>controller,getBinding:action=>bindings[action],
     capturePlayerState:()=>"snapshot",restorePlayerState:snapshot=>calls.push(snapshot),
     onIntent:(...args)=>(calls.push(args),true),target,now:()=>now,
   });
-  const definition=catalog.encounters.find(d=>d.id==="s1.d000.parking-lot");
+  const definition=catalog.encounters.find(d=>d.id===id);
   const view={id:definition.id,token:"a".repeat(32),ready:false,sequence:0,
     actors:definition.actors.map(actor=>({...actor,yaw:0,maxHealth:actor.health,pose:"stance",poseMs:0}))};
-  return {runtime,view,calls,controller,transaction:{area:"D000"},setPrepare:fn=>{prepare=fn;},advance:()=>{now+=100;}};
+  return {runtime,view,calls,controller,roots,transaction:{area:definition.area},setPrepare:fn=>{prepare=fn;},advance:()=>{now+=100;}};
 }
+
+test("seventy-opponent definition has67 ordinary fighters, three distinct original bosses and one friendly ally",()=>{
+  const d=catalog.encounters.find(e=>e.id==="s1.mfbt.seventy-man");
+  assert.equal(d.actors.length,13);assert.equal(d.waves.flatMap(w=>w.actors).length,70);
+  assert.equal(d.actors.find(a=>a.tag==="KISY").team,"ally");
+  assert.deepEqual(d.waves.map(w=>w.bossTag).filter(Boolean),["MRSK","PEDR","STSI"]);
+  assert.equal(d.waves.flatMap(w=>w.actors).filter(a=>/^R00/.test(a.tag)).length,67);
+  assert.deepEqual(d.actorDefinitions.filter(a=>["MRSK","PEDR","STSI"].includes(a.actorCode)).map(a=>a.modelCode),["PPL_L","JNC_L","KMA_L"]);
+});
+
+test("pooled reinforcements hide unused roots, snap new lifetimes and frame each boss only once",async()=>{
+  const h=harness("s1.mfbt.seventy-man"),[player,ally,enemy]=h.view.actors;
+  ally.x=player.x+.1;ally.z=player.z;
+  h.view.wave=1;h.view.actors=h.view.actors.map(a=>({...a,inactive:["MRSK","PEDR","STSI"].includes(a.tag),spawnRevision:1}));
+  await h.runtime.show(h.view,h.transaction);
+  assert.notEqual(h.controller.cameraYaw,Math.atan2(player.x-ally.x,player.z-ally.z));
+  assert.equal(h.roots.get("MRSK"),false);
+  const next={...h.view,wave:4,intro:true,bossTag:"MRSK",actors:h.view.actors.map(a=>({...a,inactive:false,spawnRevision:4,x:a.x+5}))};
+  await h.runtime.show(next,h.transaction);h.runtime.update(h.transaction,.016);
+  assert.equal(h.roots.get("MRSK"),true);
+  const pose=h.calls.filter(c=>Array.isArray(c)&&c[0]===enemy.tag).at(-1)[1];
+  assert.equal(pose.x,-(enemy.x+5)); // No lerp from its preceding corpse.
+  const p=next.actors[0],boss=next.actors.find(a=>a.tag==="MRSK");
+  assert.equal(h.controller.cameraYaw,Math.atan2(p.x-boss.x,p.z-boss.z));
+  h.controller.cameraYaw=.75;await h.runtime.show({...next,sequence:2},h.transaction);
+  assert.equal(h.controller.cameraYaw,.75); // Snapshots cannot lock the orbit.
+  h.runtime.finish(h.transaction);
+  assert.deepEqual(h.calls.filter(c=>Array.isArray(c)&&String(c[0]).startsWith("music-")),[["music-start","bgm120",{gain:1,loop:true}],["music-stop","bgm120"]]);
+});
+
+test("pooled combat preparation cancelled before acquisition cannot start or stop another owner's music",async()=>{
+  const h=harness("s1.mfbt.seventy-man");let resolve;
+  h.setPrepare(()=>new Promise(r=>{resolve=r;}));const pending=h.runtime.show(h.view,h.transaction);
+  h.runtime.finish(h.transaction);resolve();await assert.rejects(pending,{name:"AbortError"});
+  assert.equal(h.calls.some(c=>Array.isArray(c)&&String(c[0]).startsWith("music-")),false);
+});
 
 test("combat presentation sends only bounded intents and restores its owned pose",async()=>{
   const h=harness();await h.runtime.show(h.view,h.transaction);

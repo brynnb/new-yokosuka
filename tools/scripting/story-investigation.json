@@ -3,6 +3,15 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"seventy-man","disc":3,"actor":"AKIR","presentActors":[],"area":"MFBT","trigger":"enter","priority":972,
+      "title":"Ryo and Gui Zhang against the Mad Angels","bounds":"s1.mfbt.seventy-man","requiredFlags":["story.s1.final-pipe.completed"],
+      "completedFlag":"story.s1.seventy-man.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-seventy-man.yarn",
+      "authoredText":{"victory":"The Mad Angels are down. Terry is still here."},
+      "nativeSources":[{"role":"original-battle-bodies","locator":"disc3/SCENE/03/MFBT/BATTLE70.AFS","sha256":"419e1e2d0fd7c5405d716cb74e7f2ca22bc55a20d484b2281c474e4c4641c4d5"},{"role":"original-resident-battle-bodies","locator":"disc3/SCENE/03/MFBT/MPK00.PKS","sha256":"5fd31560b02db5f5c7a536962961f455747f6dcfd65dad3362834ccd31f508ec"}],
+      "summary":"Actual server-owned70-opponent battle with Gui Zhang as ally. Bounded original-model pool, ten authored reinforcements and three stronger bosses. Independent acknowledged victory; no Terry interrogation, departure or reward from a movie or partial cohort.",
+      "provenance":"GameSpot pp64-65 establishes70 opponents including3 bosses and Gui Zhang alongside Ryo. Original MFBT models and existing moves; authored clear-floor relocation, ten reinforcements, health/balance, ally survival and brief boss framing. Native roster, original boss entrance films and AI are not reconstructed. All70 require server-simulated knockouts before independent victory acknowledgement. Cancellation grants nothing and preserves the preceding alliance."
+    },
+    {
       "id":"tom-plane","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":996,"hours":[22,6],
       "title":"One last goodbye to Tom","bounds":"s1.mfsy.tom-plane","requiredFlags":["story.s1.tom-farewell.completed"],
       "completedFlag":"story.s1.tom-plane.completed","effects":[],"voiceIds":[],"activities":["s1.mfsy.tom-plane.scene"],"destination":"s1.final.confrontation-approach",

@@ -198,9 +198,12 @@ export class ScriptEventDialoguePresenter {
     this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");
     this.dom.japaneseText.hidden=true;this.onActiveChanged(true);
     const player=view.actors.find(actor=>actor.tag==="AKIR");
-    const remaining=view.actors.filter(actor=>actor.tag!=="AKIR"&&actor.health>0).length;
+    const remaining=view.actors.filter(actor=>actor.tag!=="AKIR"&&actor.team!=="ally"&&!actor.inactive&&actor.health>0).length;
+    const battle=view.totalOpponents
+      ? `Health: ${player.health}/${player.maxHealth} · Defeated: ${view.defeated||0}/${view.totalOpponents}\nGroup ${view.wave}/${view.waveCount} — ${view.waveLabel}${view.intro?" (arriving)":""}`
+      : `Health: ${player.health}/${player.maxHealth} · Opponents: ${remaining}`;
     this.dom.sourceText.textContent=view.ready
-      ? `${view.practice?`Practice · ${Math.ceil(view.remainingMs/1000)} seconds remaining`:`Health: ${player.health}/${player.maxHealth} · Opponents: ${remaining}`}\nUse your movement/combat controls or the buttons below. Cancel to leave.`
+      ? `${view.practice?`Practice · ${Math.ceil(view.remainingMs/1000)} seconds remaining`:battle}\nUse your movement/combat controls or the buttons below. Cancel to leave.`
       : view.practice?"Preparing practice...":"Preparing the fight...";
     if(this.combatToken===view.token)return true;
     this.clearOptions();this.combatToken=view.token;

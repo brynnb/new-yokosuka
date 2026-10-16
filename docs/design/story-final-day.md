@@ -151,6 +151,65 @@ running alongside server-owned fights. Unit checks preserve local practice
 when switching back to Free roam on the same map. No future outcome was
 inserted into either earned checkpoint; both isolated saves are backed up.
 
+## Seventy-man battle
+
+The contemporary guide (printed pp64–65) establishes **70 opponents including
+three bosses**, with Gui Zhang fighting beside Ryo. `story-s1-seventy-man`
+continues the separately saved pipe counter/alliance. It uses the existing
+Yarn event, server combat simulation, original-model actor adapter and music
+director; it is not another quest engine or a reconstruction of native AI.
+
+| Field | Integration |
+| --- | --- |
+| Admission | Story Ryo, completed opening and saved `story.s1.final-pipe.completed`. Approach/recovery bounds include the original encirclement arrival and the existing clear practice floor in MFBT. Explicit **Fight the Mad Angels** / **Leave it for now**. No additional weather or exact-minute gate. |
+| Arena / cast | Original MFBT geometry; declared relocation to the already rendered clear floor at browser `[-23.4,0,65.8]`. Original Ryo/Gui Zhang, eight ordinary model slots and the three named bosses. The model pool is prepared once, with no 70-rig load or per-wave asset fetch. |
+| Original assets | Disc3 `MPK00.PKS` supplies seven resident small bodies; `BATTLE70.AFS` supplies BTC_S and its texture pack. Source hashes and exact member/output identities are pinned in the generated manifest. Existing Chen/rescue model assets supply Gui Zhang and bosses. `MAPINFO.BIN` names BGM120; use its existing viewer rendering through the shared music director. Looping the finite three-minute rendering is an adaptation. |
+| Actual challenge | Ten cohorts contain67 ordinary opponents and three bosses, all requiring actual server-simulated knockouts. Enemy health/damage, cohort composition, two active attackers, basic AI and shared moves are authored balance. Ryo and Gui Zhang retain health between groups. Gui Zhang cannot be knocked out in this adaptation; Ryo can. The existing short recovery remains available. |
+| Reinforcements / bosses | Stable render tags carry a server spawn revision; new fighters reset position/health/action state, not the encounter token or friendly health. Unused roots are hidden, not moved underground. Shingo, Pedro and Satoshi arrive in cohorts4,7,10 with a brief held stance and camera framing. These are **not** their original entrance films or individualized movesets. |
+| Presentation | Original models, existing named original motions and player-controlled combat camera. The existing dialogue panel shows actual defeats out of70 and the current group. After all70 KOs, a two-person original-asset tableau and explicitly authored unvoiced caption acknowledge the result. Preserve personal weather/date. |
+| Settlement | Only acknowledged victory sets `story.s1.seventy-man.completed`. No yen, item, calendar jump, Terry interrogation, Hong Kong clue, parting gift or departure is awarded. The later Terry QTE is a separate event. |
+| Exit / failure / replay | Shared cleanup restores avatar/camera/controls and stops only this fight's temporary music. Defeat/timeout permits a fresh-token retry. Cancellation, lost preparation or a cancelled ending saves no battle win; preceding alliance remains earned. Completed wins do not replay automatically. Partial enemy counts are ephemeral, not a second save store. |
+
+`node tools/scripting/build_final_battle.mjs` extracts/pins bodies and builds
+ordinary scene data, followed by the existing combat and investigation
+generators and `scripts/check-server-contract.mjs --sync-scripting`. It does
+not infer spawns or AI from arbitrary archive order. Original MAPINFO's simple
+character-placement record contains Ryo, not a recovered70-man roster.
+The unused generic `M_EXBS.MOTN` bank is not required to implement the fight.
+
+The shared rescue-cast producer previously swapped Terry and Satoshi's bodies.
+The project's extracted character table explicitly maps Terry/TERY to ACS_M,
+Satoshi/STSI to KMA_L, Shingo/MRSK to PPL_L and Pedro/PEDR to JNC_L. The
+canonical producer now uses those associations for **all** its consumers;
+there is no battle-only model override. This is character-table provenance,
+not a claim of recovered native battle dispatch.
+
+Focused simulation/compiler tests verify all70 actual KOs and all three
+bosses, preserved friendly health/token, slot lifetime resets, no friendly
+fire, malformed-wave rejection, missing prerequisites, Free roam, decline,
+partial cancellation, timeout/retry, stale token, cancelled victory ending
+and exactly one independently acknowledged flag. Frontend tests verify
+pooled visibility, snap rather than corpse interpolation, boss framing without
+orbit lock, authoritative counters and owned music cleanup. Arrival animation
+clocks also reset at each new lifetime, rather than inheriting the fight's age.
+
+The4.4-minute connected hardware-rendered check resumes the genuinely earned
+alliance. It verifies declining, actual partial combat, cancellation/reload,
+fresh-token retry, all ten groups and all three bosses, real keyboard movement,
+guard/kicks, circling and natural health recovery, the victory acknowledgement,
+independent saved completion and reload without replay. Original BGM120 is
+actually fetched/playing; ¥22,836, eight inventory entries and the personal
+date remain unchanged. Captures show original battle bodies, Ryo/Gui Zhang,
+the victory tableau and restored gameplay. Crowded arrival shots can partially
+occlude a boss; these are not claims of exact original entrance choreography.
+A separate run exercised actual defeat without awarding victory. The earned
+database is backed up; no future flags or challenge outcomes were inserted.
+
+The corrected Terry/Satoshi package associations are asset/contract checked;
+earlier recorded rescue/night-film captures predate that correction. The new
+battle renders Satoshi's corrected model, but does not reverify every shot of
+the earlier films. No assets have been published or uploaded.
+
 ## Verification and remaining work
 
 The real Yarn compiler/engine checks the three events independently: missing
@@ -201,8 +260,10 @@ are unchanged, controls are restored and completed reload neither replays the
 films nor restores ambient Tom. No finale outcome is inserted. The earned
 isolated database is backed up separately from the preceding morning save.
 
-The70-man battle, its bosses, the later Terry QTE/interrogation, final Chai
-encounter, departing gifts and departure remain separate missing outcomes.
+The70-man battle and bosses are connected and rendered as described above.
+The later Terry
+QTE/interrogation, final Chai encounter, departing gifts and departure remain
+separate missing outcomes.
 No future outcome should be inserted into an earned checkpoint. Plane mesh
 visibility, exact collapse staging and tighter hand/pipe choreography remain
 presentation review items, not proof of missing or completed battle outcomes.

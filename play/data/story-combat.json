@@ -2,6 +2,870 @@
   "schema": "new-yokosuka-authored-story-combat-v1",
   "encounters": [
     {
+      "id": "s1.mfbt.seventy-man",
+      "label": "Ryo and Gui Zhang against the Mad Angels",
+      "area": "MFBT",
+      "worldId": "mfbt",
+      "provenance": "GameSpot pp64-65:70 actual opponents including3 stronger bosses, with Gui Zhang alongside Ryo. Original MFBT bodies and moves, named bosses per project character table. Authored10-cohort reinforcements reuse13 prepared model slots rather than rendering70 full rigs. Positions, health/balance, nonlethal ally, short boss arrival framing and basic shared AI are adaptations, not reconstructed original battle scripts. Each of67 ordinary opponents and3 bosses requires server-simulated knockout. Only the enclosing Yarn event can save victory; no counter, movie acknowledgement or cleared partial cohort grants it.",
+      "sourceScene": "s1.mfbt.seventy-man",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -23.4,
+          "y": 0,
+          "z": 65.8,
+          "health": 100
+        },
+        {
+          "tag": "KISY",
+          "x": -21.799999999999997,
+          "y": 0,
+          "z": 65.8,
+          "health": 100,
+          "team": "ally"
+        },
+        {
+          "tag": "R001",
+          "x": -23.4,
+          "y": 0,
+          "z": 61.8,
+          "health": 18
+        },
+        {
+          "tag": "R002",
+          "x": -20.4,
+          "y": 0,
+          "z": 62.8,
+          "health": 18
+        },
+        {
+          "tag": "R003",
+          "x": -26.4,
+          "y": 0,
+          "z": 62.8,
+          "health": 18
+        },
+        {
+          "tag": "R004",
+          "x": -19.4,
+          "y": 0,
+          "z": 66.8,
+          "health": 18
+        },
+        {
+          "tag": "R005",
+          "x": -27.4,
+          "y": 0,
+          "z": 66.8,
+          "health": 18
+        },
+        {
+          "tag": "R006",
+          "x": -20.4,
+          "y": 0,
+          "z": 69.8,
+          "health": 18
+        },
+        {
+          "tag": "R007",
+          "x": -26.4,
+          "y": 0,
+          "z": 69.8,
+          "health": 18
+        },
+        {
+          "tag": "R008",
+          "x": -23.4,
+          "y": 0,
+          "z": 70.8,
+          "health": 18
+        },
+        {
+          "tag": "MRSK",
+          "x": -23.4,
+          "y": 0,
+          "z": 60.8,
+          "health": 72,
+          "damageScale": 1.25
+        },
+        {
+          "tag": "PEDR",
+          "x": -21.4,
+          "y": 0,
+          "z": 60.8,
+          "health": 90,
+          "damageScale": 1.5
+        },
+        {
+          "tag": "STSI",
+          "x": -25.4,
+          "y": 0,
+          "z": 60.8,
+          "health": 110,
+          "damageScale": 1.75
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "KISY",
+          "label": "Chen Gui Zhang",
+          "modelCode": "KIS_M",
+          "browserFilename": "KIS_M.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/master-chen/KIS_M.CHRM",
+          "textureAssetPath": "play/assets/harbor/master-chen/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R001",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTA_S",
+          "browserFilename": "BTA_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTA_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R002",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTH_S",
+          "browserFilename": "BTH_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTH_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R003",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTK_S",
+          "browserFilename": "BTK_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTK_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R004",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTM_S",
+          "browserFilename": "BTM_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTM_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R005",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTN_S",
+          "browserFilename": "BTN_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTN_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R006",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTO_S",
+          "browserFilename": "BTO_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTO_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R007",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTP_S",
+          "browserFilename": "BTP_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTP_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R008",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTC_S",
+          "browserFilename": "BTC_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTC_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/BTC_S-textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "MRSK",
+          "label": "Shingo Murasaki",
+          "modelCode": "PPL_L",
+          "browserFilename": "PPL_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/characters/PPL_L.CHRM",
+          "textureAssetPath": "play/assets/characters/PPL_textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "PEDR",
+          "label": "Mad Angels fighter",
+          "modelCode": "JNC_L",
+          "browserFilename": "JNC_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/JNC_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TER2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "JNC_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "STSI",
+          "label": "Satoshi Nagata",
+          "modelCode": "KMA_L",
+          "browserFilename": "KMA_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/KMA_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TER2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "KMA_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -29.4,
+        "maxX": -17.4,
+        "minZ": 58.8,
+        "maxZ": 72.8
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2,
+      "maxAttackers": 2,
+      "timeoutMs": 900000,
+      "waves": [
+        {
+          "label": "Mad Angels",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "Reinforcements",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "More Mad Angels",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "Shingo Murasaki arrives",
+          "bossTag": "MRSK",
+          "introMs": 1800,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "MRSK",
+              "x": -23.4,
+              "y": 0,
+              "z": 60.8,
+              "health": 72,
+              "damageScale": 1.25
+            }
+          ]
+        },
+        {
+          "label": "The next group",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "Hold the line",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "Pedro Warren arrives",
+          "bossTag": "PEDR",
+          "introMs": 1800,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "PEDR",
+              "x": -21.4,
+              "y": 0,
+              "z": 60.8,
+              "health": 90,
+              "damageScale": 1.5
+            }
+          ]
+        },
+        {
+          "label": "More reinforcements",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "The last group",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "Satoshi Nagata arrives",
+          "bossTag": "STSI",
+          "introMs": 1800,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "STSI",
+              "x": -25.4,
+              "y": 0,
+              "z": 60.8,
+              "health": 110,
+              "damageScale": 1.75
+            }
+          ]
+        }
+      ],
+      "waveDelayMs": 1200,
+      "musicTrack": "bgm120",
+      "inputBufferMs": 400
+    },
+    {
       "id": "s1.mfbt.final-spar",
       "label": "Spar with Gui Zhang",
       "area": "MFBT",

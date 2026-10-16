@@ -89,6 +89,18 @@ test("directional QTEs share keyboard/touch routing and reject mismatched prompt
   presenter.hide();
 });
 
+test("reinforcements show the authoritative defeat count, not ally health or model-pool size",()=>{
+  const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options:optionsElement()});
+  const actors=[{tag:"AKIR",health:63,maxHealth:100},{tag:"KISY",team:"ally",health:1},{tag:"R001",health:18},{tag:"STSI",inactive:true,health:110}];
+  const view={label:"Mad Angels",token:"a".repeat(32),ready:true,actors,totalOpponents:70,defeated:24,wave:4,waveCount:10,waveLabel:"Shingo Murasaki arrives",intro:true};
+  presenter.showCombat(view);
+  assert.match(presenter.dom.sourceText.textContent,/Defeated: 24\/70/);
+  assert.match(presenter.dom.sourceText.textContent,/Group 4\/10 — Shingo Murasaki arrives \(arriving\)/);
+  assert.doesNotMatch(presenter.dom.sourceText.textContent,/Opponents/);
+  presenter.showCombat({...view,totalOpponents:undefined});
+  assert.match(presenter.dom.sourceText.textContent,/Opponents: 1/);presenter.hide();
+});
+
 test("line presentation requires an explicit known speaker and permits optional voice", () => {
   assert.deepEqual(scriptEventLinePresentation({
     text: "Hato: Ain't got time.[br/]Get out.",
