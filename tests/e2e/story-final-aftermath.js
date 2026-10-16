@@ -61,7 +61,11 @@ export async function verifyFinalAftermath(page,testInfo,character,{musicRespons
     await expect.poll(async()=>(await saved()).character.storyFlags[flag("departure-rest")]).toBe(true);
     const wake=await check(),date=new Date(wake.character.storyTimeMs);expect(wake.character.worldId).toBe("interior");expect(date.getUTCHours()).toBe(8);expect(date.getUTCMinutes()).toBeGreaterThanOrEqual(30);expect(date.getUTCMinutes()).toBeLessThan(32);
   }
-  await reload();await page.waitForTimeout(1500);await check();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);await idle();
+  await reload();await page.waitForTimeout(1500);await check();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+  // A newly published following chapter may now offer its normal choice.
+  // Declining that offer is not replaying a completed aftermath film.
+  const following=page.getByRole("button",{name:"Stay in Yokosuka for now",exact:true});if(await following.isVisible())await following.click();
+  await idle();
   await page.screenshot({path:testInfo.outputPath("departure-morning-earned-bedside-and-controls.png")});
   console.info("Aftermath music responses",JSON.stringify(musicResponses.filter(r=>/bgm120|bgm106/.test(r.url))));
 }

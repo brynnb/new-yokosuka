@@ -49,6 +49,7 @@ const ACTIVITIES = new Map([
     cutscene:{id:"story-s1-chicken-race-intro",packageId:"chicken-race",worldId:"mfsy",storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"RACE/SEQDATA1.AUTH"}}}}],
   ...[["final-meditation","MSOU/SEQDATA1.AUTH","JHD0","exterior"],
+    ["family-departure","A0180/A0180.AUTH","JOMO","interior"],
     ["tom-plane","GBTM/SEQDATA0.AUTH"],
     ["final-confrontation","TLYA/SEQDATA1.AUTH","MFBT","mfbt"],
     ["terry-retreat","TLYB/SEQDATA2.AUTH","MFBT","mfbt"],

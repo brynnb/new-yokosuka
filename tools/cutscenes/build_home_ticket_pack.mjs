@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import {execFileSync} from "node:child_process";
-import {buildNativeAseqActivityPack,sha256} from "../lib/NativeAseqActivityPack.mjs";
+import {buildNativeAseqActivityPack,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
 import {buildNativeAseqAudioPack,registerNativeAseqMusic} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
 import {parseChrtSceneObjectBindings} from "../lib/chrt_scene_object_bindings.js";
@@ -19,6 +19,17 @@ const actor=(label,code)=>{
     assetPath:`${prefix}/${code}.CHRM`,textureAssetPath:`${prefix}/${code.slice(0,3)}_textures.bin`};
 };
 const profiles=[
+  {id:"family-departure",disc:3,area:"YDMA",directory:"hazuki",evidence:"docs/design/story-final-day.md#family-departure",resource:"A0180",offset:0x56dc,size:39616,hash:"8c2cac4b9757ad79d905affbc679d14160a07cff9a8ac4a0bd1dd842eed6c855",frames:2328,
+    mapHash:"7dc07d2539f818589896f8a0642d8e9aa586c579e53e0088c6a8312d5d3aaf87",
+    motion:"M_0180.BIN",motionSize:782904,motionHash:"0d3483e4cf3fa8638d86e1f5812eb75e5fa41f2da62ff00054a2fd6ec0adbc83",bank:22,base:0,actors:["ABAG","AKIR","FUKU","INE_"],
+    stage:{archive:"YDMA.PKS",sha256:"ac19788f08f8f6df0c6fc967252660f389aa835dfa1da17e77cd5ed7e7ab72a8",textures:"YDMA.PKF",textureHash:"cb4f13f41c55bd91dca3f602e2a6147215dae70458f4df2afdb5e85a09bd865e",
+      maps:["MAP","MAP01","MAP02","MAP03","MAP04","MAP05","MAP06","MAP07","MAP08","MAP09","MAP10"],
+      // 89 untextured shapes, deliberately omitted by the shared MT5 visual
+      // loader. Collision/trigger roles are not inferred from their shape.
+      nonVisualMaps:{"MAP08.MAPM":"342bd5e842d2105dfe68ecedb862f7f1c8a107f5ea6e03d987e0a4330db7af4b"}},
+    propModels:{ABAG:{file:"RBGS503G.MT5",size:47100,sha256:"298e63794a5c091783828274d77818f8abfd2e74366a3a8a6e8b989eef928ecf"}},
+    music:{id:"bgm107",sourceId:"4da896949a69b4b3b57376150130bacd4bd5034dade910a07030961f10b79ada",bankHash:"f81dffcb63cf5f2f7fa04b94f462950f309b96e253e1f45a756e974b4d456a13",label:"Leaving Yokosuka"},
+    stream:"A0180",streamHash:"03ddc7938efbf2f207f138e7b6ca38c5f5b7296e9267e4b4ddc301fe30eff17d",sound:"A1_KSTAB.SND",soundHash:"a6084db822026733c6f89ac738b9d584d2aec2c624351fb6d5fb50620934799a"},
   // The longer 0x9f1fc variant requests absent 01GETA001/B001 voices.
   // This original alternate matches all nineteen English AFS entries; do not
   // alias the missing names or silently cut commands out of the longer AUTH.
@@ -90,7 +101,7 @@ for(const p of selectedProfiles){
   const source=path.join(process.env[`SHENMUE_DISC${disc}_EXTRACTED_ROOT`]||path.join(root,`extracted_disc${disc}_v2`),`data/SCENE/0${disc}`);
   const common=path.join(source,`JOMO/COMMON0${disc}.PKS`);
   const area=p.area||"JOMO",mapSource=path.join(source,area,"MAPINFO.BIN");
-  const prefix=`play/assets/${p.area?"dobuita":"hazuki"}/${p.id}`,audioPrefix=`public/audio/world/${p.id}`;
+  const prefix=`play/assets/${p.directory||(p.area?"dobuita":"hazuki")}/${p.id}`,audioPrefix=`public/audio/world/${p.id}`;
   const members=[
     {name:`${p.resource}.AUTH`,sourcePath:mapSource,sourceManifestPath:`${discPath}/${area}/MAPINFO.BIN`,sourceOffset:p.offset,sourceSha256:p.mapHash||mapHash,byteLength:p.size,sha256:p.hash},
     {name:p.motion,sourcePath:p.area?path.join(source,area,p.motion):common,sourceManifestPath:`${discPath}/${area}/${p.area?p.motion:`COMMON0${disc}.PKS`}`,...(p.area?{}:{archiveMember:p.motion,sourceSha256:p.commonHash||commonHash}),byteLength:p.motionSize,sha256:p.motionHash},
@@ -112,12 +123,32 @@ for(const p of selectedProfiles){
     props.TEL_={model:"TELS514G",browserFilename:"S1_JOMO_TELS514G.MT5",objectTag:"TEL_"};
   }
   const prop=(tag,file,size,hash,archive=null)=>{
-    members.push({name:file,sourcePath:path.join(source,area,archive||file),sourceManifestPath:`disc2/SCENE/02/${area}/${archive||file}`,
+    members.push({name:file,sourcePath:path.join(source,area,archive||file),sourceManifestPath:`${discPath}/${area}/${archive||file}`,
       ...(archive?{archiveMember:file}:{}),byteLength:size,sha256:hash});
     outputMembers.push(file);
     props[tag]={model:file,browserFilename:file,assetPath:`${prefix}/${file}`,textureAssetPath:`${prefix}/textures.bin`};
     if(!archive)textureSources.push(path.join(source,area,file));
   };
+  if(p.stage){
+    // Cinematic maps are package-owned fixtures, not a second world loader.
+    // The existing isolated-stage lease hides/restores resident gameplay roots.
+    const stage=p.stage,archivePath=path.join(source,area,stage.archive),archive=fs.readFileSync(archivePath),textures=fs.readFileSync(path.join(source,area,stage.textures));
+    if(sha256(archive)!==stage.sha256||sha256(textures)!==stage.textureHash)throw Error(`Changed original stage ${p.id}`);
+    const sourceMaps=parseIpacActivityArchive(archive).members.filter(m=>/^MAP\d*\.MAPM$/.test(m.name));
+    if(JSON.stringify(sourceMaps.map(m=>m.name))!==JSON.stringify(stage.maps.map(m=>`${m}.MAPM`)))throw Error(`Changed original stage maps ${p.id}`);
+    for(const [i,m]of sourceMaps.entries()){
+      members.push({name:m.name,sourcePath:archivePath,sourceManifestPath:`${discPath}/${area}/${stage.archive}`,sourceSha256:stage.sha256,archiveMember:m.name,byteLength:m.bytes.length,sha256:sha256(m.bytes)});
+      if(stage.nonVisualMaps?.[m.name]){
+        if(sha256(m.bytes)!==stage.nonVisualMaps[m.name])throw Error(`Changed non-visual stage resource ${p.id}/${m.name}`);
+        continue;
+      }
+      outputMembers.push(m.name);
+      props[`RM${String(i).padStart(2,"0")}`]={model:stage.maps[i],browserFilename:m.name,assetPath:`${prefix}/${m.name}`,textureAssetPath:`${prefix}/stage-textures.bin`,lifecycle:{kind:"room-script-persistent"},
+        initialPresentation:{position:[0,0,0],rotationDegrees:[0,0,0],scale:[1,1,1]}};
+    }
+    generatedAssets.push({assetPath:`${prefix}/stage-textures.bin`,bytes:extractNativeTexnPack(textures,stage.textures).bytes,source:{path:`${discPath}/${area}/${stage.textures}`,sha256:stage.textureHash}});
+  }
+  for(const [tag,model]of Object.entries(p.propModels||{}))prop(tag,model.file,model.size,model.sha256);
   if(p.id==="bank-savings"){
     // The original room's bank-scene resource cluster names $BNKT2DBG.MT5
     // immediately before 01BNK. Its AMOV already owns the full book trajectory.
@@ -161,7 +192,8 @@ for(const p of selectedProfiles){
     selectionRule:"Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector.",
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),audioManifest:`${audioPrefix}/manifest.json`,
     motionBanks:[{bank:p.bank,member:p.motion,parseOptions:{sequenceIndexBase:p.base}}],
-    activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:`${p.resource}.AUTH`,actors:p.actors,durationFrames:p.frames}],
+    activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:`${p.resource}.AUTH`,actors:p.actors,durationFrames:p.frames,
+      ...(p.stage?{browserMapVisibility:[],browserIsolatedStage:true,browserLightingPresetIndex:0,nativeSceneObjectStates:Object.entries(props).filter(([,v])=>v.lifecycle?.kind==="room-script-persistent").map(([actorTag])=>({actorTag,presented:true}))}:{})}],
     packageActors:Object.fromEntries(Object.entries(characters).filter(([tag])=>p.actors.includes(tag)).map(([tag,[label,code]])=>[tag,actor(label,code)])),
     ...(Object.keys(props).length?{sceneObjects:props,outputMembers,generatedAssets}:{}),
   });

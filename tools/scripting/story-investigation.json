@@ -3,6 +3,14 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"family-departure","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":992,
+      "title":"Leave Yokosuka","bounds":"s1.jomo.family-departure","requiredFlags":["story.s1.departure-rest.completed"],
+      "completedFlag":"story.s1.family-departure.completed","effects":["notebook.s1.family-departure"],"voiceIds":[],"yarnTemplate":"story-family-departure.yarn",
+      "nativeSources":[{"role":"original-family-farewell","locator":"disc3/SCENE/03/YDMA/MAPINFO.BIN TRCK0x56dc","sha256":"7dc07d2539f818589896f8a0642d8e9aa586c579e53e0088c6a8312d5d3aaf87"}],
+      "summary":"Original 2328-frame family farewell, gift from Ine-san and Fuku-san, original scenery/cast/motion/cameras/voices and BGM107. Independent acknowledged departure from home and ordinary harbor arrival, not learned Swallow Flip or final victory.",
+      "provenance":"GameSpot p65 places family farewell after08:30 rest. Original YDMA TRCK0x56dc and A0180 explicitly include Fuku delivering a gift from Ine-san and himself, with silent Ine-san shots. Existing isolated-stage and package-fixture ownership borrow ten renderable original maps without replacing the room or saving cinematic actor coordinates; hash-pinned MAP08 is non-visual source data. Bag association/grips, music cue and confirmed bedside trigger are authored. Gift contents are unidentified: no invented cash amount or named item. Following Dobuita walk/commute is condensed to the existing tested harbor bus arrival; calendar unchanged. Only acknowledged ending atomically saves own milestone/notebook/travel; cancellation remains at home. No later training, Chai or ship departure result."
+    },
+    {
       "id":"terry-interrogation","disc":3,"actor":"AKIR","presentActors":[],"area":"MFBT","trigger":"enter","priority":973,
       "title":"Terry's last attack","bounds":"s1.mfbt.terry-interrogation","requiredFlags":["story.s1.seventy-man.completed"],
       "completedFlag":"story.s1.terry-interrogation.completed","effects":["notebook.s1.lan-di-hong-kong"],"voiceIds":[],"yarnTemplate":"story-terry-interrogation.yarn",

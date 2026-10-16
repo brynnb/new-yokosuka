@@ -1,0 +1,11 @@
+-> Leave for the harbor
+    <<jump Farewell>>
+-> Stay in Yokosuka for now
+    <<complete>>
+===
+title: Farewell
+---
+<<start_activity "s1.jomo.family-departure.scene">>
+<<travel_story "s1.harbor.bus-arrival">>
+{{effects}}
+<<complete>>

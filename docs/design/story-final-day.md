@@ -274,6 +274,49 @@ QTE cast/pipe, original interrogation, pier conversation and restored bedroom.
 Held-root outcome fragments still approximate spacing, contact and detailed
 pipe hand transfers; the captures are not proof of exact original choreography.
 
+## Family departure
+
+| Field | Authored event |
+| --- | --- |
+| Prerequisites / trigger | Story Ryo, opening and independently saved departure rest. At the established bedroom bedside, confirm **Leave for the harbor** or **Stay in Yokosuka for now**. No exact-hour or calendar lockout. |
+| Original presentation | Disc3 `YDMA/MAPINFO.BIN`, embedded TRCK `0x56dc`, 39,616 bytes, 2,328 frames / 77.62 seconds. Original `M_0180.BIN` bank22, Ryo/Fuku/Ine camera and movement tracks, seven `A0180` English voice cues and ten `A1_KSTAB` effects. |
+| Actors / gift | Original Fuku and Ine bodies are byte-identical to the shared assets already used. Fuku delivers a gift from both of them; Ine's farewell is silent. `ABAG` uses the original `RBGS503G.MT5` bag with its original movement curve. Bag association, deformation and detailed grips are adaptations, not recovered native callbacks. |
+| Scenery / lighting | Ten renderable `YDMA.PKS` maps and original `YDMA.PKF` textures are temporary package fixtures. The eleventh resource, `MAP08`, contains 89 untextured shapes omitted by the shared visual loader; its collision/trigger purpose is not inferred. It is pinned as source evidence, not a required visible object. Existing isolated-stage ownership hides/restores bedroom scenery and borrows daytime preset 0. This is a cinematic stage, not a new saved world or second renderer. Native conditional layer/weather control is not reconstructed; the personal calendar/weather state is unchanged. |
+| Music / timing | YDMA MAPINFO names BGM107 and `A1_KSTAB`. Reuse the existing viewer rendering through the shared music director. Starting music at the film boundary and looping its finite rendering are authored cue choices. Original camera, motion and voice timing remains intact. |
+| Challenge / settlement | No challenge. Acknowledged natural completion or supported explicit skip atomically saves only `story.s1.family-departure.completed`, its notebook page and the established harbor bus arrival. The original source does not identify the gift's contents: no named possession or cash amount is invented. No Swallow Flip, Chai victory, letter or ship departure is awarded. |
+| Exit / cancellation / replay | Following Dobuita walking/commuting is condensed to existing saved travel. Cancellation or failed preparation restores bedroom scenery, Ryo and controls, with no farewell or harbor outcome. Retry reuses the shared asset cache safely. Completed reload does not replay or duplicate a gift/reward. |
+
+Original source pins: YDMA MAPINFO
+`7dc07d2539f818589896f8a0642d8e9aa586c579e53e0088c6a8312d5d3aaf87`,
+selected AUTH `8c2cac4b9757ad79d905affbc679d14160a07cff9a8ac4a0bd1dd842eed6c855`,
+motion `0d3483e4cf3fa8638d86e1f5812eb75e5fa41f2da62ff00054a2fd6ec0adbc83`,
+YDMA.PKS `ac19788f08f8f6df0c6fc967252660f389aa835dfa1da17e77cd5ed7e7ab72a8`.
+The canonical home/ticket chapter builder's `family-departure` profile pins
+textures, speech/effects and individual generated outputs too.
+The contemporary guide's broad description of two parting gifts does not
+override the original scene's single delivery on behalf of both people.
+No separate invented Ine-san speech is added.
+
+Compiler and asset checks cover admission, late saves, decline, cancellation,
+acknowledgement and the exact independent effects. Two sequential connected
+rendered continuations (2.9 and 2.7 minutes) resume the genuinely earned
+departure-rest save, without inserting later flags or dates. They verify
+decline/reload, ten enabled original scenery fixtures, live cancellation,
+restored bedroom/scenery/controls, retry and the film's natural ending.
+BGM107 actually advances with successful audio responses. Only then are the
+farewell, notebook page and harbor arrival saved; completed reload neither
+replays the film nor locks controls. The personal date, ¥22,836 and the same
+eight inventory entries remain unchanged, with no final Chai or ship result.
+
+Reviewed captures show Fuku-san and Ryo at the original gift exchange,
+Ine-san's silent final prayer, the restored bedroom after cancellation and
+Ryo's harbor arrival. The initial captures missed the relevant actor shots;
+the second continuation captures them at approximately 16 and 72 seconds.
+These establish visible actors and scenery, not exact gift-object contact,
+bag deformation, facial animation or native conditional snow/layer behavior.
+The earned family-departure database is backed up separately from the prior
+rest checkpoint. No source assets have been uploaded.
+
 ## Verification and remaining work
 
 The real Yarn compiler/engine checks the three events independently: missing
@@ -326,7 +369,8 @@ isolated database is backed up separately from the preceding morning save.
 
 The 70-man battle, Terry QTE/interrogation and post-battle home/rest chain are
 connected and rendered as described above. The final Chai encounter, departing
-gifts, Swallow Flip and departure remain separate missing outcomes.
+Swallow Flip and departure remain separate missing outcomes. The family
+farewell and harbor arrival are connected and rendered as described above.
 No future outcome should be inserted into an earned checkpoint. Plane mesh
 visibility, exact collapse staging and tighter hand/pipe choreography remain
 presentation review items, not proof of missing or completed battle outcomes.

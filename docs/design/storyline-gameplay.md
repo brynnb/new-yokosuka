@@ -212,9 +212,13 @@ scene and separate 05:21 home/08:30 rest now also pass an earned-save rendered
 continuation: wrong/expired input, retry, cancellation/geometry cleanup,
 natural endings, independent saves and reload without replay. Held-root
 spacing and detailed pipe choreography remain adaptations.
-The final Chai encounter, departing gifts,
-Swallow Flip and departure remain missing; the checklist distinguishes each
-boundary.
+The family farewell now also passes connected earned-save rendered checks:
+original Fuku-san/Ryo/Ine-san shots and scenery, cancellation restoring the
+bedroom, retry/natural ending, BGM107 playback, independently saved farewell,
+notebook/harbor arrival and completed reload. Date, money and inventory remain
+unchanged; gift contents are not invented and the commute is condensed.
+The final Chai encounter, Swallow Flip and ship departure remain missing;
+the checklist distinguishes each boundary.
 See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest)
 and the [final day](story-final-day.md).
 

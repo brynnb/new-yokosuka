@@ -9,8 +9,9 @@ conversation are connected; their verification boundary is recorded below.
 The ride home and separate dawn/rest saves are connected; their verification
 boundary is recorded below. The [final-day continuation](story-final-day.md)
 now connects the morning, Tom's lesson/farewell, the night confrontation,
-70-man battle, Terry interrogation and next-morning rest. See its current
-checklist for the remaining gifts, Swallow Flip, final Chai and departure.
+70-man battle, Terry interrogation, next-morning rest and original family
+farewell/harbor arrival. See its current checklist for the remaining Swallow
+Flip, final Chai and ship departure.
 
 ## Rest and the call
 

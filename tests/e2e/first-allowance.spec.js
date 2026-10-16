@@ -25,6 +25,7 @@ import {verifyNozomiHome} from "./story-nozomi-home.js";
 import {verifyFinalDayMorning,verifyTomLessonAndFarewell,verifyFinalNight} from "./story-final-day.js";
 import {verifySeventyManBattle} from "./story-seventy-man.js";
 import {verifyFinalAftermath} from "./story-final-aftermath.js";
+import {verifyFamilyDeparture} from "./story-family-departure.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -40,7 +41,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   test.setTimeout(process.env.NEW_YOKOSUKA_MIRROR_RETURN_E2E === "true" ? 600_000 : process.env.NEW_YOKOSUKA_CHEN_E2E === "true" || process.env.NEW_YOKOSUKA_FAMILY_E2E === "true" || process.env.NEW_YOKOSUKA_HANDGUARD_E2E === "true" || process.env.NEW_YOKOSUKA_GUI_ZHANG_E2E === "true" ? 360_000 : process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
   const errors = [];
   const musicResponses = [];
-  page.on("response", response => { if(/bgm119|bgm063|bgm200|bgm084|bgm013|bgm120|bgm106|nozomi-home-cdda05/.test(response.url())) musicResponses.push({url:response.url(),status:response.status()}); });
+  page.on("response", response => { if(/bgm119|bgm063|bgm200|bgm084|bgm013|bgm120|bgm106|bgm107|nozomi-home-cdda05/.test(response.url())) musicResponses.push({url:response.url(),status:response.status()}); });
   page.on("pageerror", error => {errors.push(error.message);console.info("Story page error:",error.message);});
   if(process.env.NEW_YOKOSUKA_SECOND_MORNING_E2E==="true"||process.env.NEW_YOKOSUKA_THIRD_WORKDAY_E2E==="true")page.on("pageerror",error=>console.info("Working morning page error:",error.message));
   if(process.env.NEW_YOKOSUKA_FORKLIFT_TRAINING_E2E==="true"||process.env.NEW_YOKOSUKA_MORNING_CARGO_E2E==="true"||process.env.NEW_YOKOSUKA_MARK_LUNCH_E2E==="true"||process.env.NEW_YOKOSUKA_FIRST_AFTERNOON_E2E==="true"){
@@ -207,6 +208,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_FAMILY_DEPARTURE_E2E === "true"){
+      test.setTimeout(360_000);await verifyFamilyDeparture(page,testInfo,character,{musicResponses});expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_FINAL_AFTERMATH_E2E === "true"){
       test.setTimeout(900_000);await verifyFinalAftermath(page,testInfo,character,{musicResponses});expect(errors).toEqual([]);return;
     }

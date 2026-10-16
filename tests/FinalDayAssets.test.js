@@ -5,6 +5,9 @@ import test from "node:test";
 import {ScriptEventPresentationCatalog} from "../play/scripts/ScriptEventPresentationCatalog.js";
 import authoredScenes from "../play/scripts/AuthoredSceneCatalog.js";
 import {MotnLoader} from "../src/MotnLoader.js";
+import {Mt5Loader} from "../src/Mt5Loader.js";
+import * as BABYLON from "@babylonjs/core";
+import {parseIpacActivityArchive} from "../tools/lib/NativeAseqActivityPack.mjs";
 import {parseAuthCamera,evaluateAuthCamera} from "../src/AuthCamera.js";
 const read=p=>JSON.parse(fs.readFileSync(new URL(`../${p}`,import.meta.url)));
 
@@ -144,4 +147,28 @@ test("post-battle films keep original banks, unavailable voices and the temporar
   assert.equal(ready.attachedObjects.PIPE.attachments[0].parentActorTag,"TERY");
   const source=evaluateAuthCamera(parseAuthCamera(fs.readFileSync(new URL("../play/assets/harbor/terry-final-intro/SEQDATA0.AUTH",import.meta.url))).cameras[0],0);
   for(const scene of [ready,win,lose])for(const field of ["positionX","positionY","positionZ","perspective"])assert.equal(scene.camera[field],source[field]);
+});
+
+test("family departure keeps its original film and leases the original scenery without inventing gifts",()=>{
+  const a=new ScriptEventPresentationCatalog().activity("s1.jomo.family-departure.scene"),m=read("play/assets/hazuki/family-departure/manifest.json"),audio=read("public/audio/world/family-departure/manifest.json");
+  assert.equal(a.durableEffects,"forbidden");assert.equal(a.returnPlayerState,true);assert.equal(a.cutscene.worldId,"interior");
+  assert.equal(a.cutscene.activity.binding.activityId,"A0180/A0180.AUTH");assert.equal(m.activities[0].durationFrames,2328);
+  assert.equal(m.activities[0].browserIsolatedStage,true);assert.equal(m.activities[0].browserLightingPresetIndex,0);
+  assert.deepEqual(m.activities[0].browserMapVisibility,[]);assert.equal(m.activities[0].nativeSceneObjectStates.length,10);
+  assert.deepEqual(m.motionBanks.map(b=>b.bank),[22]);assert.equal(m.packageActors.FUKU.modelCode,"FUK_M");assert.equal(m.packageActors.INE_.modelCode,"INE_M");
+  for(const state of m.activities[0].nativeSceneObjectStates){assert.equal(state.presented,true);assert.equal(m.sceneObjects[state.actorTag].lifecycle.kind,"room-script-persistent");}
+  assert.equal(audio.voices.length,7);assert.equal(audio.sounds.length,10);
+  for(const asset of [...m.outputs,...audio.voices,...audio.sounds]){assert.equal(asset.unavailable,undefined);const b=fs.readFileSync(new URL(`../${asset.path||asset.asset}`,import.meta.url));assert.equal(b.length,asset.byteLength);assert.equal(createHash("sha256").update(b).digest("hex"),asset.sha256);}
+});
+
+test("YDMA MAP08 is non-visual source data, not missing required scenery",async t=>{
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);t.after(()=>{scene.dispose();engine.dispose();});
+  const a=parseIpacActivityArchive(fs.readFileSync(new URL("../extracted_disc3_v2/data/SCENE/03/YDMA/YDMA.PKS",import.meta.url)));
+  const bytes=a.members.find(m=>m.name==="MAP08.MAPM").bytes;
+  assert.equal(createHash("sha256").update(bytes).digest("hex"),"342bd5e842d2105dfe68ecedb862f7f1c8a107f5ea6e03d987e0a4330db7af4b");
+  const loader=new Mt5Loader(scene);loader.readTextures=()=>{};
+  const original=loader.createMeshFromModel.bind(loader);let shapes=0,vertices=0;
+  loader.createMeshFromModel=(model,node)=>{shapes++;vertices+=model.nbVertex;assert.ok(model.polygons.length>0);assert.ok(model.polygons.every(p=>!p.hasUV));return original(model,node);};
+  assert.deepEqual(await loader.load(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength)),[]);
+  assert.equal(shapes,89);assert.equal(vertices,1424);assert.equal(scene.meshes.length,0);assert.equal(scene.transformNodes.length,0);
 });
