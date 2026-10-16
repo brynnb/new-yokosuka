@@ -229,8 +229,12 @@ expired counter retries, four actual inputs, cancelled ending, natural winning
 retry and reload preserving both independent outcomes and restored controls.
 Original cast, questioning, held counter and falling beyond the dock are
 rendered; detailed contact, splash and native AI remain explicit limits.
-The introduction letter and ship departure remain missing; the checklist
-distinguishes each boundary.
+Chen's original introduction conversation now also passes an earned-save
+rendered continuation: decline/cancel/reload/retry, natural ending, BGM067,
+one saved letter and notebook, visible inventory and completed reload with
+controls restored. Existing possessions, money and date are unchanged. Detailed
+envelope contact and a dedicated inventory icon are not claimed. Ship departure
+and the amulet memory remain missing; the checklist distinguishes each boundary.
 See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest)
 and the [final day](story-final-day.md).
 

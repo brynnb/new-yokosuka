@@ -164,6 +164,8 @@ import finalChaiInterrogationManifest from "../assets/harbor/final-chai-interrog
 import finalChaiInterrogationAudio from "../../public/audio/world/final-chai-interrogation/manifest.json";
 import finalChaiCounterManifest from "../assets/harbor/final-chai-counter/manifest.json";
 import finalChaiCounterAudio from "../../public/audio/world/final-chai-counter/manifest.json";
+import chenIntroductionLetterManifest from "../assets/harbor/chen-introduction-letter/manifest.json";
+import chenIntroductionLetterAudio from "../../public/audio/world/chen-introduction-letter/manifest.json";
 import chaiIntroManifest from "../assets/dobuita/chai-intro/manifest.json";
 import chaiIntroAudio from "../../public/audio/world/chai-intro/manifest.json";
 import chaiVictoryManifest from "../assets/dobuita/chai-victory/manifest.json";
@@ -400,6 +402,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["gui-after-battle",guiAfterBattleManifest,guiAfterBattleAudio,"mfbt",Object.freeze({cues:[{startActivity:true,trackId:"bgm106",loop:true}],gain:1})],
     ["family-departure",familyDepartureManifest,familyDepartureAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm107",loop:true}],gain:1})],
     ["swallow-lesson",swallowLessonManifest,swallowLessonAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm064",loop:true}],gain:1})],
+    ["chen-introduction-letter",chenIntroductionLetterManifest,chenIntroductionLetterAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm067",loop:true}],gain:1})],
     ...[["final-chai-intro",finalChaiIntroManifest,finalChaiIntroAudio],["final-chai-interrogation",finalChaiInterrogationManifest,finalChaiInterrogationAudio],["final-chai-counter",finalChaiCounterManifest,finalChaiCounterAudio]].map(([id,manifest,audio])=>[id,manifest,audio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm032",loop:true}],gain:1})]),
     ["sailor-chase-intro",sailorIntroManifest,sailorIntroAudio,"mfsy"],["sailor-chase-tony",sailorTonyManifest,sailorTonyAudio,"mfsy"],["sailor-chase-smith",sailorSmithManifest,sailorSmithAudio,"mfsy"],
     ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],

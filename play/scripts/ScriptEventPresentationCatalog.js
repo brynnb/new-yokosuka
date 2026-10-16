@@ -57,6 +57,7 @@ const ACTIVITIES = new Map([
     cutscene:{id:"story-s1-chicken-race-intro",packageId:"chicken-race",worldId:"mfsy",storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"RACE/SEQDATA1.AUTH"}}}}],
   ...[["final-meditation","MSOU/SEQDATA1.AUTH","JHD0","exterior"],
+    ["chen-introduction-letter","CHAIAUTH/SEQDATA4.AUTH","MEND","mend"],
     ["final-chai-intro","CHAIAUTH/SEQDATA3.AUTH","MEND","mend"],
     ["final-chai-interrogation","CHAIAUTH/SEQDATA0.AUTH","MEND","mend"],
     ["family-departure","A0180/A0180.AUTH","JOMO","interior"],

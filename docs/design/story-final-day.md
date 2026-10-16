@@ -428,6 +428,71 @@ cancelled preparation/fights/films, real defeat, timeout, fresh retries and
 stale challenge tokens. A repeated stale A cannot consume the second A.
 Exact settlement assertions exclude future story, economy or date changes.
 
+## Chen's introduction letter
+
+Connected earned-save gameplay is rendered and verified.
+
+| Field | Letter event |
+| --- | --- |
+| Location / prerequisites | Verified MEND waterfront approach, after the separately saved final Chai counter. Story Ryo, opening complete; no exact-hour/date lockout. Confirm **Speak with Master Chen** or **Not yet**. |
+| Original sequence | `CHAIAUTH/SEQDATA4.AUTH`, 2,638 frames, SHA256 `800404401da84f36fe6c1db6a71e635f49adfd433a9ac902d7b0fe00d316425c`; shared `M_0184.MOTN` bank16. Original Chen, injured Gui Zhang, Ryo, receding Chai and bag movement/cameras. The model association for BAG0 is authored; envelope hand callbacks are not reconstructed. |
+| Dialogue / audio | All eleven requested `A0184C` English records, including an empty-subtitle voice, and original `A1_MOMOR` effects. Dialogue names Tao Li Shao and an enclosed address; no address is invented. BGM067 appears in the original MEND resource cluster; its film-entry cue is authored. |
+| Time / environment / challenge | Preserve personal calendar, weather and the shared MEND scenery/water. No challenge: original conversation playback is not a battle or ship result. |
+| Settlement | Acknowledged natural completion or supported explicit skip atomically grants one `letter_of_introduction`, `story.s1.chen-introduction-letter.completed` and `notebook.s1.tao-li-shao`. Distinct from Iwao's earlier Chinese letter. No currency, time jump, destination or ship/S2 outcome. |
+| Exit / failure / replay | Restore the prior dock pose, camera and controls; the original end walk is condensed. Cancellation or failed preparation grants nothing and is retryable. Prior battles/counter remain saved. Completed re-entry/reload cannot replay or grant a second letter. No dedicated letter icon is claimed; the existing inventory shows the item's name and description. |
+
+Generate with `node tools/cutscenes/build_harbor_job_pack.mjs --profile chen-introduction-letter --audio`.
+Original `A0184C.AFS` is pinned by
+`857f3a7e3df67fbfcfcf464fcae753613cdb81c97fcfb8042568e5e66c89627d`;
+source/output identities are retained in the generated manifests. No original
+controller reconstruction, alternative quest state or asset upload is required.
+
+The 2.3-minute sequential hardware-rendered continuation begins from genuinely
+earned counter completion. Decline/reload, the original conversation,
+cancellation without a letter, retry, advancing BGM067 playback, the natural
+ending, visible inventory entry and completed reload all pass. Only one letter
+and its two flags are saved. The eight existing inventory entries, including
+Iwao's Chinese letter, and ¥22,836 remain unchanged; the personal date is not
+advanced. Database inspection independently finds exactly one letter-grant
+economy record. Controls return on the tested waterfront floor with no replay,
+ship or S2 outcome. The earned save is backed up independently.
+
+Reviewed captures show Chen and Ryo in the original Tao Li Shao shot, its
+original subtitle, the named inventory entry and restored dock gameplay.
+They do not establish an envelope mesh, exact finger contact or every injured
+Gui Zhang shot. The first browser run completed the narrative but failed on
+role-based Inventory discovery; a short completed-save check and the full
+rerun use the actual existing button ID. This is the documented persistent
+[Settings accessibility limitation](../implementation/README.md#settings-input-and-modal-lifetime-limitation),
+not a letter save or movement-lock failure. No global ARIA override or Settings
+input remount was added. Ten focused asset tests and the real compiler/engine
+checks cover original identities, all available speech, admission, decline,
+cancellation and the exact one-letter/two-flag acknowledgement.
+
+### Remaining departure sources
+
+These are original-source findings, not yet connected or rendered outcomes:
+
+- `MEND/NZOM.PKS` contains its own `MAP.MAPM`, the original Nozomi body and
+  `M_01JN.MOTN` bank21. `STREAM/01JIN.AFS` (not separate A/B archives) resolves
+  all 27 requested voices. Nozomi explicitly gives the amulet and discusses
+  Ryo's Hong Kong trip and her return to Canada. The MEND resource cluster
+  names BGM070 and A1_NOOMA. Use the existing temporary scenery lease rather
+  than presenting this memory against the ordinary dock.
+- `MEND/ENDAUTH.PKS` has the ship/departure shots but no embedded motion bank.
+  `MEND/M_01156.BIN` is the candidate for its Ryo13 and Chen8 bank16
+  references; the names fit, but selected clips still need playback
+  verification. Parsing the whole bank currently fails on an unused value
+  span; this does not prove that the original data is malformed. Do not weaken
+  the parser: prepare only the actual selected indices through its existing
+  options. Extras' bank2/201 is unresolved and must not be guessed from a
+  different bank.
+- `TRAPAUTH` contains a separate, larger `M_0180.MOTN` and a boarding clip.
+  It is not the same file as the resident `MEND/M_0180.BIN`. The ENDMAP
+  geometry and dynamic ship need isolated-stage review to avoid drawing a
+  second ship over the resident dock hull. File order alone is not proof that
+  every alternate ending shot belongs in one playlist.
+
 ## Verification and remaining work
 
 The real Yarn compiler/engine checks the three events independently: missing
@@ -481,7 +546,8 @@ isolated database is backed up separately from the preceding morning save.
 The 70-man battle, Terry QTE/interrogation, post-battle home/rest chain, family
 farewell, harbor admission, Swallow Flip lesson, actual final Chai fight and
 separate Down/A/A/B counter are connected and rendered as described above.
-The introduction letter and ship departure remain missing connected outcomes.
+Chen's introduction letter is also connected and rendered as described above.
+The ship departure and amulet memory remain missing connected outcomes.
 No future outcome should be inserted into an earned checkpoint. Plane mesh
 visibility, exact collapse staging and tighter hand/pipe choreography remain
 presentation review items, not proof of missing or completed battle outcomes.

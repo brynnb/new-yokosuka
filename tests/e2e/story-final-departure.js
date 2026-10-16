@@ -1,6 +1,63 @@
 import {expect} from "@playwright/test";
 import {fightWithKeyboard} from "./story-seventy-man.js";
 
+export async function verifyEarnedIntroductionLetter(page,testInfo,character){
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const initial=await saved();expect(initial.character.storyFlags["story.s1.chen-introduction-letter.completed"]).toBe(true);
+  expect(initial.inventory.filter(i=>i.key==="letter_of_introduction").map(i=>i.quantity)).toEqual([1]);
+  // Persistent Settings content currently hides the sidebar from the ARIA
+  // tree even while closed (docs/implementation/README.md). Use its real
+  // button as other inventory tests do; do not mutate accessibility state.
+  await page.locator("#inventory-button").click();
+  await expect(page.getByText("Letter of Introduction",{exact:true})).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath("chen-earned-introduction-letter-inventory.png")});
+  await page.getByRole("button",{name:"Close inventory",exact:true}).click();
+  expect((await saved()).inventory).toEqual(initial.inventory);
+  expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  await page.screenshot({path:testInfo.outputPath("chen-earned-letter-reload-and-controls.png")});
+}
+
+export async function verifyIntroductionLetter(page,testInfo,character,{musicResponses}){
+  await page.setViewportSize({width:1920,height:1080});
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const initial=await saved(),done="story.s1.chen-introduction-letter.completed";
+  expect(initial.character.storyFlags["story.s1.final-chai-counter.completed"]).toBe(true);
+  expect(initial.character.storyFlags[done]).not.toBe(true);expect(initial.inventory.some(i=>i.key==="letter_of_introduction")).toBe(false);
+  const check=async(earned=false)=>{const s=await saved();
+    expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory.filter(i=>i.key!=="letter_of_introduction")).toEqual(initial.inventory);
+    expect(s.inventory.filter(i=>i.key==="letter_of_introduction").map(i=>i.quantity)).toEqual(earned?[1]:[]);
+    expect(s.character.storyFlags["story.s1.departure.completed"]).not.toBe(true);
+    expect(new Date(s.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;
+  };
+  const choose=name=>page.getByRole("button",{name,exact:true}).click({timeout:100_000});
+  const reload=async()=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);};
+  const scene=()=>page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-chen-introduction-letter"||window.storyProbe.sceneErrors.length,null,{timeout:100_000});
+  console.info("Introduction letter: decline, original injury/farewell cancellation and independent inventory acknowledgement");
+  await choose("Not yet");await check();await reload();await choose("Speak with Master Chen");await scene();
+  await page.waitForTimeout(30000);await page.screenshot({path:testInfo.outputPath("chen-original-injured-gui-and-cancel.png")});await check();
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("letter-check"));
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await check();
+  await reload();await choose("Speak with Master Chen");await scene();
+  await expect.poll(()=>page.evaluate(()=>{const m=window.storyMusic?.director,a=m?.current?.audio;return m?.current?.trackId==="bgm067"&&!a.paused&&a.currentTime>1&&a.volume>0;}),{timeout:15000}).toBe(true);
+  await page.waitForTimeout(45000);await page.screenshot({path:testInfo.outputPath("chen-original-tao-li-shao-introduction.png")});await check();
+  await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:100_000}).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  const final=await check(true);expect(final.character.storyFlags["notebook.s1.tao-li-shao"]).toBe(true);
+  await page.locator("#inventory-button").click();
+  await expect(page.getByText("Letter of Introduction",{exact:true})).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath("chen-earned-introduction-letter-inventory.png")});
+  await page.getByRole("button",{name:"Close inventory",exact:true}).click();
+  await reload();await page.waitForTimeout(1200);await check(true);
+  expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(Math.abs((await saved()).character.y)).toBeLessThan(.5);
+  await page.screenshot({path:testInfo.outputPath("chen-earned-letter-reload-and-controls.png")});
+  expect(musicResponses.some(r=>r.url.includes("bgm067")&&[200,206].includes(r.status))).toBe(true);
+}
+
 export async function verifyFinalChaiPresentation(page,testInfo,character){
   await page.setViewportSize({width:1920,height:1080});
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());

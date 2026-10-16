@@ -11,6 +11,18 @@ import {parseIpacActivityArchive} from "../tools/lib/NativeAseqActivityPack.mjs"
 import {parseAuthCamera,evaluateAuthCamera} from "../src/AuthCamera.js";
 const read=p=>JSON.parse(fs.readFileSync(new URL(`../${p}`,import.meta.url)));
 
+test("Chen's introduction retains the original injury/farewell and all available speech",()=>{
+  const a=new ScriptEventPresentationCatalog().activity("s1.mend.chen-introduction-letter.scene");
+  const m=read("play/assets/harbor/chen-introduction-letter/manifest.json"),audio=read("public/audio/world/chen-introduction-letter/manifest.json");
+  assert.equal(a.durableEffects,"forbidden");assert.equal(a.returnPlayerState,true);assert.equal(a.cutscene.worldId,"mend");
+  assert.equal(a.cutscene.activity.binding.activityId,"CHAIAUTH/SEQDATA4.AUTH");assert.equal(m.activities[0].durationFrames,2638);
+  assert.equal(m.packageActors.KISY.modelCode,"KIS_M");assert.equal(m.packageActors.TAIJ.modelCode,"SYU_M");assert.equal(m.packageActors.CHAI.modelCode,"CHA_M");
+  assert.equal(audio.voices.length,11);assert.equal(audio.sounds.length,21);assert.deepEqual(audio.voices.filter(a=>a.unavailable),[]);
+  assert.equal(audio.voices.find(v=>v.voiceId==="A0184CC001").displayText,"");
+  assert.match(audio.voices.find(v=>v.voiceId==="A0184CD005").displayText,/Tao Li Shao/);
+  for(const asset of [...m.outputs,...audio.voices,...audio.sounds]){const b=fs.readFileSync(new URL(`../${asset.path||asset.asset}`,import.meta.url));assert.equal(b.length,asset.byteLength);assert.equal(createHash("sha256").update(b).digest("hex"),asset.sha256);}
+});
+
 test("final morning reuses three original films and distinct original actor bodies",()=>{
   const catalog=new ScriptEventPresentationCatalog();
   for(const [id,area,world,dir,frames,voices,effects] of [

@@ -63,6 +63,12 @@ const finalChaiSource={archive:"MEND/CHAIAUTH",resourceName:"CHAIAUTH",motion:"M
   sound:"A1_MOMOR.SND",soundHash:"ac1ff0499b2c24bc4439f78b17c09b6f5ee066f40ab4b2ba76acaa72eb567109",music:finalChaiMusic,
   selectionRule:"Walkthrough-guided final Chai encounter. Original films present the approach, post-battle questioning and second attack, not combat or QTE authority. Actual fight and Down/A/A/B counter settle independently; original short water-fall clip is selected as an authored winning ending, not a recovered native branch controller."};
 const profiles=[
+  {...finalChaiSource,id:"chen-introduction-letter",auth:"SEQDATA4.AUTH",frames:2638,actors:["BAG0","AKIR","CHAI","KISY","TAIJ"],
+    evidence:"docs/design/story-final-day.md#chens-introduction-letter",
+    props:{BAG0:"RBGS5M2G"},propArchive:"MEND/MODELS",propTextureHash:"e109ad0455b02d68ebf8eb7853e294fab21769f17f906f2b8bf50ad08f7d55f1",authoredPropBindings:true,
+    stream:"A0184C",streamHash:"857f3a7e3df67fbfcfcf464fcae753613cdb81c97fcfb8042568e5e66c89627d",
+    music:{id:"bgm067",sourceId:"768f96d18e58ac3d318f16346117d8bca582c1b3c69c23ac85673216d8be262f",bankHash:"9f33256035430de3810371027603ed95b03e8d3d373d8f25bf0667da098b1695",label:"Master Chen's introduction letter"},
+    selectionRule:"Original post-counter conversation confirms Gui Zhang's injury and Tao Li Shao introduction. Existing Yarn independently grants one letter and notebook only after acknowledgement. BGM067 belongs to the original resource cluster; its film-entry cue and bag-model association are authored. Detailed envelope hand callbacks are not reconstructed. No ship or S2 outcome."},
   {...finalChaiSource,id:"final-chai-intro",auth:"SEQDATA3.AUTH",frames:772,actors:["AKIR","CHAI","KISY","TAIJ","TKOT"],
     props:{TKOT:"TEKS500G"},propArchive:"MEND/MODELS",propTextureHash:"e109ad0455b02d68ebf8eb7853e294fab21769f17f906f2b8bf50ad08f7d55f1",authoredPropBindings:true,
     stream:"A0184",streamHash:"ad893719cdbca6689d7dbe1d9d82a6c98b37ffe5d90c44315bd2e0030c3bd229",additionalStreams:[{stream:"A0184B",sha256:"8d7cfa6fe566dc87816613c04f6e1d15c89d5f5bc3dc112510782a8884dcb644"}],

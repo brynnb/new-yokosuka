@@ -3,6 +3,15 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"chen-introduction-letter","disc":3,"actor":"AKIR","presentActors":[],"area":"MEND","trigger":"enter","priority":989,
+      "title":"Master Chen's letter of introduction","bounds":"s1.mend.chen-introduction-letter","requiredFlags":["story.s1.final-chai-counter.completed"],
+      "completedFlag":"story.s1.chen-introduction-letter.completed","effects":["notebook.s1.tao-li-shao"],"items":[{"key":"letter_of_introduction","quantity":1}],"voiceIds":[],
+      "activities":["s1.mend.chen-introduction-letter.scene"],"confirmation":{"accept":"Speak with Master Chen","decline":"Not yet"},
+      "nativeSources":[{"role":"original-introduction-letter","locator":"disc3/SCENE/03/MEND/CHAIAUTH.PKS#SEQDATA4.AUTH","sha256":"996524cfb8bdb5996b27b05e1de01af5df3c969824d888a18da639afbd32ce19"}],
+      "summary":"Original injury/farewell and Tao Li Shao introduction. Acknowledgement atomically grants one server-owned letter, milestone and notebook; no money, clock, ship or S2 outcome.",
+      "provenance":"GameSpot p65 orders Chen's introduction letter after actual final Chai victory and Down/A/A/B. Original CHAIAUTH4, M_0184 bank16, all11 A0184C English voices and A1_MOMOR effects. Source dialogue establishes Tao Li Shao and an enclosed address; no invented address. BGM067 is in the original MEND resource cluster, but cue placement, bag association and return to the prior dock approach are authored. Detailed envelope hand callbacks are not reconstructed. Natural completion or supported explicit skip acknowledges this noninteractive conversation; cancelled/failed presentation grants no letter. Existing atomic inventory/event settlement, not a separate quest bag. Ship departure remains independent."
+    },
+    {
       "id":"final-chai","disc":3,"actor":"AKIR","presentActors":[],"area":"MEND","trigger":"enter","priority":991,
       "title":"Chai's final ambush","bounds":"s1.mend.final-chai","requiredFlags":["story.s1.swallow-flip.completed"],
       "completedFlag":"story.s1.final-chai.completed","effects":["notebook.s1.final-chai"],"voiceIds":[],"yarnTemplate":"story-final-chai.yarn",

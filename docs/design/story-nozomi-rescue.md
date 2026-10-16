@@ -11,8 +11,8 @@ boundary is recorded below. The [final-day continuation](story-final-day.md)
 now connects the morning, Tom's lesson/farewell, the night confrontation,
 70-man battle, Terry interrogation, next-morning rest and original family
 farewell/harbor arrival, Swallow Flip lesson, actual final Chai fight and
-separate Down/A/A/B counter. See its current checklist for the remaining
-introduction letter and ship departure.
+separate Down/A/A/B counter and Chen's original introduction-letter conversation.
+See its current checklist for the remaining ship departure and amulet memory.
 
 ## Rest and the call
 
