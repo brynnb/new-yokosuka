@@ -420,11 +420,10 @@
       }
     },
     "bgm120": {
-      "label": "Music BGM120",
       "url": "/music/shenmue1/bgm120-6f6feae07377adcf-180s.ogg",
+      "label": "Music BGM120",
       "durationSeconds": 180,
-      "loop": false,
-      "sha256": "278c3400638139cb346d3ee2a3f7b21e081022eb75e732a12c6bf1a45af5ee8d",
+      "loop": true,
       "source": {
         "id": "6f6feae07377adcf7a511b69ae27bb46bd4b93a8a23f60eff32750d44cdd1264",
         "file": "BGM120.SND",
@@ -766,6 +765,30 @@
             "disc": 3,
             "path": "SCENE/03/SOUND/BGM013.SND",
             "sha256": "0c5250def8570bef8982a1634d3eef79781960a4b8a2c745d56593a314d07cb0"
+          }
+        ]
+      }
+    },
+    "bgm106": {
+      "url": "/music/shenmue1/bgm106-bf9cde87eead6453-180s.ogg",
+      "label": "After the confrontation",
+      "durationSeconds": 180,
+      "loop": true,
+      "source": {
+        "id": "bf9cde87eead6453c47ffde1645cb5471aa0e5ecac71a48c6f72141444b10cfe",
+        "file": "BGM106.SND",
+        "container": "DTPK",
+        "bankSha256": "f0c657c96c112ce6493cd516044363818b8788ee144d481c240ea2fbba3b87d1",
+        "offset": 0,
+        "group": 0,
+        "track": 0,
+        "groupCommand": "A83F0000",
+        "driverSha256": "3f88553a52a6d1af0b988ea3f41800178988350721bd7422a570dc3e4e369915",
+        "copies": [
+          {
+            "disc": 3,
+            "path": "SCENE/03/SOUND/BGM106.SND",
+            "sha256": "f0c657c96c112ce6493cd516044363818b8788ee144d481c240ea2fbba3b87d1"
           }
         ]
       }

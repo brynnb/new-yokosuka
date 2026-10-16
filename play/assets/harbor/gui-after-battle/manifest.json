@@ -1,0 +1,176 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA2.AUTH",
+        "path": "disc3/SCENE/03/MFBT/TLYE.PKS",
+        "sourceSha256": "470c9c4ef3ac227ed6ed3c9ffa9328816b948dec88dcefba8a88e3f58e2896fc",
+        "archiveMember": "SEQDATA2.AUTH",
+        "byteLength": 7344,
+        "sha256": "bd3767e8e0f12edb564efb707c66dbe0904b69715f880ca9e1be7055fa8e7c14"
+      },
+      {
+        "name": "M_01TLYE.MOTN",
+        "path": "disc3/SCENE/03/MFBT/TLYE.PKS",
+        "sourceSha256": "470c9c4ef3ac227ed6ed3c9ffa9328816b948dec88dcefba8a88e3f58e2896fc",
+        "archiveMember": "M_01TLYE.MOTN",
+        "byteLength": 79544,
+        "sha256": "1a7589cc33e167f9c51721405f6dc84be1674040a495dcbbef486c2b951bfd53"
+      },
+      {
+        "name": "MAP_TLYE.MAPM",
+        "path": "disc3/SCENE/03/MFBT/TLYE.PKS",
+        "sourceSha256": "470c9c4ef3ac227ed6ed3c9ffa9328816b948dec88dcefba8a88e3f58e2896fc",
+        "archiveMember": "MAP_TLYE.MAPM",
+        "byteLength": 113368,
+        "sha256": "6503789acaeba8164e81f72de02c3ab5bc77b2c72cdbf1f9a1803e8b129938df"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-final-day.md#terry-and-the-last-night",
+    "resourceName": "TLYE",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided post-battle sequence. Yarn independently owns the A challenge, acknowledged interrogation, pier discussion and home return; these original films cannot award those outcomes themselves."
+  },
+  "audioManifest": "public/audio/world/gui-after-battle/manifest.json",
+  "sceneObjects": {
+    "ROOM": {
+      "model": "MAP_TLYE",
+      "browserFilename": "MAP_TLYE.MAPM",
+      "assetPath": "play/assets/harbor/gui-after-battle/MAP_TLYE.MAPM",
+      "textureAssetPath": "play/assets/harbor/gui-after-battle/tlye-textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "packageActors": {
+    "KISY": {
+      "label": "Chen Gui Zhang",
+      "modelCode": "KIS_M",
+      "browserFilename": "KIS_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/harbor/master-chen/KIS_M.CHRM",
+      "textureAssetPath": "play/assets/harbor/master-chen/textures.bin"
+    }
+  },
+  "actorTags": [
+    "KISY",
+    "AKIR"
+  ],
+  "motionBanks": [
+    {
+      "bank": 32,
+      "path": "play/assets/harbor/gui-after-battle/M_01TLYE.MOTN",
+      "byteLength": 79544,
+      "sha256": "1a7589cc33e167f9c51721405f6dc84be1674040a495dcbbef486c2b951bfd53"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/gui-after-battle/M_01TLYE.MOTN",
+      "byteLength": 79544,
+      "sha256": "1a7589cc33e167f9c51721405f6dc84be1674040a495dcbbef486c2b951bfd53"
+    },
+    {
+      "path": "play/assets/harbor/gui-after-battle/SEQDATA2.AUTH",
+      "byteLength": 7344,
+      "sha256": "bd3767e8e0f12edb564efb707c66dbe0904b69715f880ca9e1be7055fa8e7c14"
+    },
+    {
+      "path": "play/assets/harbor/gui-after-battle/MAP_TLYE.MAPM",
+      "byteLength": 113368,
+      "sha256": "6503789acaeba8164e81f72de02c3ab5bc77b2c72cdbf1f9a1803e8b129938df"
+    },
+    {
+      "path": "play/assets/harbor/gui-after-battle/tlye-textures.bin",
+      "byteLength": 506928,
+      "sha256": "b634f570a3fa5047fa1769b78429298dc6ac9b17074e1ead2637eb47e4b1462c"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "TLYE/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 7344,
+      "sha256": "bd3767e8e0f12edb564efb707c66dbe0904b69715f880ca9e1be7055fa8e7c14",
+      "durationFrames": 1520,
+      "durationSeconds": 50.68333435058594,
+      "frameCount": 36,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 3,
+        "effect": 12,
+        "voice": 13,
+        "sound": 12
+      },
+      "actors": [
+        "KISY",
+        "AKIR"
+      ],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "ROOM",
+          "presented": true
+        }
+      ],
+      "motions": [
+        {
+          "actorTag": "KISY",
+          "frame": 1,
+          "motionBank": 32,
+          "sequenceIndex": 1,
+          "motionName": "OTH_KIS_AT1_AKIRAMENAI_KISYOUYARITORI_0100",
+          "startFrame": 200,
+          "endFrame": 1519
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 32,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_AKIRAMENAI_KISYOUYARITORI_0100",
+          "startFrame": 200,
+          "endFrame": 1566
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 1321,
+          "motionBank": 32,
+          "sequenceIndex": 2,
+          "motionName": "OTH_KIS_AT2_WALK_SARU_KISYOUYARITORI_0100",
+          "startFrame": 60,
+          "endFrame": 260
+        }
+      ]
+    }
+  ]
+}

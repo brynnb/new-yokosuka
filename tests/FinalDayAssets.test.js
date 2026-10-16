@@ -5,6 +5,7 @@ import test from "node:test";
 import {ScriptEventPresentationCatalog} from "../play/scripts/ScriptEventPresentationCatalog.js";
 import authoredScenes from "../play/scripts/AuthoredSceneCatalog.js";
 import {MotnLoader} from "../src/MotnLoader.js";
+import {parseAuthCamera,evaluateAuthCamera} from "../src/AuthCamera.js";
 const read=p=>JSON.parse(fs.readFileSync(new URL(`../${p}`,import.meta.url)));
 
 test("final morning reuses three original films and distinct original actor bodies",()=>{
@@ -114,4 +115,33 @@ test("Tom's optional lesson keeps source branches, original motions and the inde
     }
   }
   assert.equal(kick.actors[0].motion.name,"AKI_DEKIRU_TORNADO_KICK_B_0100");
+});
+
+test("post-battle films keep original banks, unavailable voices and the temporary pier geometry",()=>{
+  const catalog=new ScriptEventPresentationCatalog();
+  for(const [id,file,frames,bank,missing]of[
+    ["terry-final-intro","TERY/SEQDATA0.AUTH",575,25,[]],
+    ["terry-final-success","TERY/SEQDATA1.AUTH",997,25,["01TLYB007","01TLYB008"]],
+    ["terry-interrogation","TERY/SEQDATA2.AUTH",1200,16,[]],
+    ["gui-after-battle","TLYE/SEQDATA2.AUTH",1520,32,[]],
+  ]){
+    const m=read(`play/assets/harbor/${id}/manifest.json`),audio=read(`public/audio/world/${id}/manifest.json`),a=catalog.activity(`s1.mfbt.${id}.scene`);
+    assert.equal(a.durableEffects,"forbidden");assert.equal(a.returnPlayerState,true);assert.equal(a.cutscene.worldId,"mfbt");assert.equal(a.cutscene.activity.binding.activityId,file);
+    assert.equal(m.activities[0].durationFrames,frames);assert.ok(m.motionBanks.some(b=>b.bank===bank));
+    assert.deepEqual(audio.voices.filter(v=>v.unavailable).map(v=>v.voiceId),missing);
+    for(const asset of [...m.outputs,...audio.voices,...audio.sounds].filter(a=>!a.unavailable)){
+      const bytes=fs.readFileSync(new URL(`../${asset.path||asset.asset}`,import.meta.url));assert.equal(bytes.length,asset.byteLength);assert.equal(createHash("sha256").update(bytes).digest("hex"),asset.sha256);
+    }
+    if(id==="gui-after-battle"){
+      assert.equal(m.sceneObjects.ROOM.browserFilename,"MAP_TLYE.MAPM");assert.equal(m.sceneObjects.ROOM.lifecycle.kind,"room-script-persistent");
+      assert.deepEqual(m.activities[0].nativeSceneObjectStates,[{actorTag:"ROOM",presented:true}]);
+    }else assert.equal(m.packageActors.TERY.modelCode,"ACS_M");
+  }
+  const ready=authoredScenes.scenes.find(s=>s.id==="s1.mfbt.terry-finisher-ready"),bank=MotnLoader.parse(fs.readFileSync(new URL(`../${authoredScenes.motionBanks.finalTerry}`,import.meta.url)));
+  for(const a of ready.actors){assert.ok(Number.isFinite(a.motion.elapsedSeconds));assert.ok(a.motion.elapsedSeconds>0);assert.equal(a.motion.loop,false);assert.equal(bank.getSequence(a.motion.name).valueData.complete,true);}
+  const win=authoredScenes.scenes.find(s=>s.id==="s1.mfbt.terry-finisher-win"),lose=authoredScenes.scenes.find(s=>s.id==="s1.mfbt.terry-finisher-failure");
+  assert.equal(win.durationSeconds,272/30);assert.equal(lose.durationSeconds,220/30);
+  assert.equal(ready.attachedObjects.PIPE.attachments[0].parentActorTag,"TERY");
+  const source=evaluateAuthCamera(parseAuthCamera(fs.readFileSync(new URL("../play/assets/harbor/terry-final-intro/SEQDATA0.AUTH",import.meta.url))).cameras[0],0);
+  for(const scene of [ready,win,lose])for(const field of ["positionX","positionY","positionZ","perspective"])assert.equal(scene.camera[field],source[field]);
 });

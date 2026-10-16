@@ -1,6 +1,10 @@
 {
   "schema": "new-yokosuka-story-time-transitions-v1",
   "transitions": [
+    {"id":"s1.departure.dawn","label":"Return home at 5:21 a.m.","hour":5,"minute":21,"nextDay":false},
+    {"id":"s1.departure.next-dawn","label":"Return home at the next 5:21 a.m.","hour":5,"minute":21,"nextDay":true},
+    {"id":"s1.departure.morning","label":"Sleep until 8:30 a.m.","hour":8,"minute":30,"nextDay":false},
+    {"id":"s1.departure.next-morning","label":"Sleep until the next 8:30 a.m.","hour":8,"minute":30,"nextDay":true},
     {"id":"s1.wait.lunch","label":"Wait until 11:30 a.m.","hour":11,"minute":30,"nextDay":false},
     {"id":"s1.final.night","label":"Begin the final confrontation at 10 p.m.","hour":22,"minute":0,"nextDay":false},
     {"id":"s1.final.harbor-morning","label":"Head to the harbor at 10:15 a.m.","hour":10,"minute":15,"nextDay":false},

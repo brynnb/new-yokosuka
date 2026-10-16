@@ -3,6 +3,30 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"terry-interrogation","disc":3,"actor":"AKIR","presentActors":[],"area":"MFBT","trigger":"enter","priority":973,
+      "title":"Terry's last attack","bounds":"s1.mfbt.terry-interrogation","requiredFlags":["story.s1.seventy-man.completed"],
+      "completedFlag":"story.s1.terry-interrogation.completed","effects":["notebook.s1.lan-di-hong-kong"],"voiceIds":[],"yarnTemplate":"story-terry-interrogation.yarn",
+      "nativeSources":[{"role":"original-final-attack-and-interrogation","locator":"disc3/SCENE/03/MFBT/TERY.PKS","sha256":"108f7026e765552e93a8b3d6974d60a682aba59390cb9933b4bdfa313c9edc07"}],
+      "summary":"Original final approach, actual server-owned A input, original outcome motions and interrogation. Independent saved Hong Kong clue after the ending; no home, gifts, Chai or departure outcome.",
+      "provenance":"GameSpot p65: Terry challenges Gui Zhang after the independently won70-man battle; A QTE precedes interrogation. Original TERY0/1/2 films, motion, voices and effects; held input samples, wide shot, root/pipe choreography, two-second window and restart are authored adaptations. Two exact English voices are absent and explicitly unavailable. Cancelled or failed input saves nothing; acknowledged success alone saves the independent clue."
+    },
+    {
+      "id":"gui-after-battle","disc":3,"actor":"AKIR","presentActors":[],"area":"MFBT","trigger":"enter","priority":974,
+      "title":"Speak with Gui Zhang after the battle","bounds":"s1.mfbt.gui-after-battle","requiredFlags":["story.s1.terry-interrogation.completed"],
+      "completedFlag":"story.s1.gui-after-battle.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-gui-after-battle.yarn",
+      "nativeSources":[{"role":"original-pier-conversation-and-geometry","locator":"disc3/SCENE/03/MFBT/TLYE.PKS","sha256":"470c9c4ef3ac227ed6ed3c9ffa9328816b948dec88dcefba8a88e3f58e2896fc"}],
+      "summary":"Original TLYE cast, camera, motion, voices, BGM106 and temporarily leased pier geometry. Separate acknowledged next05:21 home return; no departure gifts or final Chai victory.",
+      "provenance":"GameSpot p65 orders the Gui Zhang discussion then05:21 home arrival. Original TLYE film and MAP_TLYE geometry; confirmed cinematic relocation and automatic home travel are authored transitions. After acknowledgement, choose the next05:21 without rewinding a late save. Own milestone, calendar and established bedside destination settle atomically. Cancelling preserves the earned battle and interrogation but grants no home/rest/departure outcome."
+    },
+    {
+      "id":"departure-rest","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":991,
+      "title":"Rest before leaving Yokosuka","bounds":"s1.jomo.departure-rest","requiredFlags":["story.s1.gui-after-battle.completed"],
+      "completedFlag":"story.s1.departure-rest.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-departure-rest.yarn",
+      "nativeSources":[{"role":"original-post-battle-continuation","locator":"disc3/SCENE/03/MFBT/TLYE.PKS","sha256":"470c9c4ef3ac227ed6ed3c9ffa9328816b948dec88dcefba8a88e3f58e2896fc"}],
+      "summary":"Explicit bedside rest after the separately saved home return. Existing personal clock/destination settlement advances to the next08:30. Sleep/wake is condensed, not a film, gift or departure result.",
+      "provenance":"Guide p65:05:21 home, sleep,08:30 departure morning. Reuse tested bedside bounds and ordinary authoritative clock/travel commands. Sleep/stay choice and condensed waking are authored; no unrelated dream or fabricated native initialization. Save only own rest receipt and next08:30 bedside arrival; no money, item, training or final battle grant."
+    },
+    {
       "id":"seventy-man","disc":3,"actor":"AKIR","presentActors":[],"area":"MFBT","trigger":"enter","priority":972,
       "title":"Ryo and Gui Zhang against the Mad Angels","bounds":"s1.mfbt.seventy-man","requiredFlags":["story.s1.final-pipe.completed"],
       "completedFlag":"story.s1.seventy-man.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-seventy-man.yarn",

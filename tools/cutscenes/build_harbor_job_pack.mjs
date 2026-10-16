@@ -21,6 +21,7 @@ const archives={
   "MFBT/TLYC":"6066c148e1c9bc7fded7e03b7c9e2477590ced425ad95837e179253313b2c20b",
   "MFBT/KISY":"19a4298fd9ba1701aa5dc9b8494948bd5ca28ed76db8f576342544eb57da96ee",
   "MFBT/TERY":"108f7026e765552e93a8b3d6974d60a682aba59390cb9933b4bdfa313c9edc07",
+  "MFBT/TLYE":"470c9c4ef3ac227ed6ed3c9ffa9328816b948dec88dcefba8a88e3f58e2896fc",
   M0W1:"339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1",
   "JHD0/MSOU":"92d841582c87eda667d2f377bbbc3cadbb2618fa4a414651bcee72182a8d14ec",
   TOMOGORI:"cce64a24b1d50d80efd0e008a7e714b6811e5c7db4063df0e043d2de840dcc09",
@@ -50,7 +51,24 @@ const finalCast=[
   {path:"play/assets/harbor/nozomi-rescue/manifest.json",sha256:"e5ead3f29e62608ab03873c5c3d419ae10924b8d4122a029bd29c175f573d9e0"},
 ];
 const finalMusic={id:"bgm013",sourceId:"1e01b7d3dc308c6255896489d098cb59df125f959872de96f79000cb99c18b4e",bankHash:"0c5250def8570bef8982a1634d3eef79781960a4b8a2c745d56593a314d07cb0",label:"The final confrontation"};
+const battleMusic={id:"bgm120",sourceId:"6f6feae07377adcf7a511b69ae27bb46bd4b93a8a23f60eff32750d44cdd1264",bankHash:"6930abc0fa5b1a90b97ca0c8491623decba6a7217d865e0660097047fef122bc",label:"The seventy-man battle"};
+const alphaRoom={archive:"ALPHA",member:"MAPALP.MAPD",model:"MAPALP",textureHash:"8c8f0a6b1ba88e96ebc453d12826aaea74a85dad57ade4893df7c3daaf530612",textureFilename:"alpha-textures.bin"};
+const aftermathSelection="Walkthrough-guided post-battle sequence. Yarn independently owns the A challenge, acknowledged interrogation, pier discussion and home return; these original films cannot award those outcomes themselves.";
 const profiles=[
+  {id:"terry-final-intro",archive:"MFBT/TERY",resourceName:"TERY",evidence:"docs/design/story-final-day.md#terry-and-the-last-night",selectionRule:aftermathSelection,auth:"SEQDATA0.AUTH",motion:"M_01TLY.MOTN",bank:25,frames:575,actors:["PIPE","AKIR","KISY","TERY"],sharedActorManifests:finalCast,
+    props:{PIPE:"PIPS501G"},propTextureHash:"57467acd5f8941f70e233d4f325ebaacdab355bd9632ac6a5b57cc1712988fcb",authoredPropBindings:true,
+    music:battleMusic,stream:"01TLY",streamHash:"f9e731020b87e0329f48a064dc875e2fffe1ddea5f3cec65ab62a0b50c64e864",sound:"A1_PIPEQ.SND",soundHash:"82a86de527680626f47425bd1f7b9cddda69ed1d4294f3f8410a661b9b24edad"},
+  {id:"terry-final-success",archive:"MFBT/TERY",resourceName:"TERY",evidence:"docs/design/story-final-day.md#terry-and-the-last-night",selectionRule:aftermathSelection,auth:"SEQDATA1.AUTH",motion:"M_01TLY.MOTN",bank:25,frames:997,actors:["PIPE","AKIR","KISY","TERY"],sharedActorManifests:finalCast,
+    unavailableVoices:Object.fromEntries(["01TLYB007.str","01TLYB008.str"].map(id=>[id,{reason:`Original successful Terry response requests ${id}, absent from all six checked English01TLY archives. No substitute voice or invented subtitle.`,evidence:"docs/design/story-final-day.md#terry-and-the-last-night"}])),
+    props:{PIPE:"PIPS501G"},propTextureHash:"57467acd5f8941f70e233d4f325ebaacdab355bd9632ac6a5b57cc1712988fcb",authoredPropBindings:true,
+    music:battleMusic,stream:"01TLY",streamHash:"f9e731020b87e0329f48a064dc875e2fffe1ddea5f3cec65ab62a0b50c64e864",sound:"A1_PIPEQ.SND",soundHash:"82a86de527680626f47425bd1f7b9cddda69ed1d4294f3f8410a661b9b24edad"},
+  {id:"terry-interrogation",archive:"MFBT/TERY",resourceName:"TERY",evidence:"docs/design/story-final-day.md#terry-and-the-last-night",selectionRule:aftermathSelection,auth:"SEQDATA2.AUTH",motion:"M_01TLYD.MOTN",frames:1200,actors:["PIPE","AKIR","KISY","TERY"],sharedActorManifests:finalCast,
+    props:{PIPE:"PIPS501G"},propTextureHash:"57467acd5f8941f70e233d4f325ebaacdab355bd9632ac6a5b57cc1712988fcb",authoredPropBindings:true,
+    music:battleMusic,stream:"01TLYD",streamHash:"d1fc504f86af01b675fad9c453d69a8658cf50a7bc7c67c576b1e424b008df43",sound:"A1_TLYD.SND",soundHash:"6982afc70869163b0e71fbe3eb8939dc5890741e67bad301404f4a90a3d746b3"},
+  {id:"gui-after-battle",archive:"MFBT/TLYE",resourceName:"TLYE",evidence:"docs/design/story-final-day.md#terry-and-the-last-night",selectionRule:aftermathSelection,auth:"SEQDATA2.AUTH",motion:"M_01TLYE.MOTN",bank:32,frames:1520,actors:["KISY","AKIR"],sharedActorManifests:finalCast,
+    room:{archive:"MFBT/TLYE",member:"MAP_TLYE.MAPM",model:"MAP_TLYE",textureHash:"089c11c5bb28f6e94d82b58620c8c18e4cd9d651783c4b563c73df9201267f88",textureFilename:"tlye-textures.bin"},
+    music:{id:"bgm106",sourceId:"bf9cde87eead6453c47ffde1645cb5471aa0e5ecac71a48c6f72141444b10cfe",bankHash:"f0c657c96c112ce6493cd516044363818b8788ee144d481c240ea2fbba3b87d1",label:"After the confrontation"},
+    stream:"01TLYE",streamHash:"f68c745b022290722a7b248b4a77154ca13adfad750143cdbd8bfd9bebaac921",sound:"A1_TLYE.SND",soundHash:"1be0c960d6959c15290669be499fa55f9ec73e921f4229e30767bfff46a142de"},
   {id:"tom-plane",archive:"MFSY/GBTM",resourceName:"GBTM",evidence:"docs/design/story-final-day.md#night-confrontation",auth:"SEQDATA0.AUTH",motion:"M_01TOM.MOTN",frames:932,actors:["JET_","AKIR"],
     extraMotionBanks:[{bank:0,sourcePath:path.join(root,".disc-work/runtime-motion/MOTION.BIN"),assetPath:"play/assets/dobuita/jimmy-escaped/MOTION.BIN",byteLength:1826804,sha256:"aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23",parseOptions:{sequenceIndices:[101]}}],
     props:{JET_:"HIKOUKI"},propTextureHash:"654fda5863b88f7f55f099630702a39f448c9da6d476db100955ac6a1eb7d307",authoredPropBindings:true,
@@ -95,7 +113,7 @@ const profiles=[
   {id:"tom-lunch-invitation",evidence:"docs/design/story-final-day.md",archive:"TOMOGORI",auth:"SEQDATA1.AUTH",motion:"M_01TOM.MOTN",frames:713,actors:["AKIR","TOM_"],
     actorModels:{TOM_:["Tom Johnson","AMG_L"]},actorTextureHash:"8d7e24d502b2e6cb17c043e6e8ddf0641bc948ca259ae1e657e3d24241b1fcd8",
     stream:"01TOMA",streamHash:"beee7fd3fe15645298fd1ea0c74dc6d8f7b30308209b16e15f2ff40c578f9d20",sound:"A1_TOMNA.SND",soundHash:"f05e0870a7def1a11cd1059e0e012bb5131071b533a3aed7b419d4620314c233"},
-  {id:"yada-dismissal",evidence:"docs/design/story-final-day.md",archive:"MARU_KUB",auth:"SEQDATA2.AUTH",motion:"M_01KUB.MOTN",bank:17,frames:1720,actors:["DOOR","AKIR","TMRA"],room:"ALPHA",
+  {id:"yada-dismissal",evidence:"docs/design/story-final-day.md",archive:"MARU_KUB",auth:"SEQDATA2.AUTH",motion:"M_01KUB.MOTN",bank:17,frames:1720,actors:["DOOR","AKIR","TMRA"],room:alphaRoom,
     stream:"01KUB",streamHash:"c7f5d9c7eba61af610ca0a599cca706a988d123594219ddafbce056ccd13ce06",sound:"A1_KUBI.SND",soundHash:"7573286f022f6eaf283b1e4f5e780a613a9b84fec71f2b2d8a6b4ec2e7c75495"},
   {id:"nozomi-motorcycle",directory:"sakuragaoka",evidence:"docs/design/story-nozomi-rescue.md",archive:"JD00/BIKE",resourceName:"BIKE",auth:"SEQDATA1.AUTH",motion:"M_01BIKE.MOTN",frames:1640,
     selectionRule:"Walkthrough-guided nighttime motorcycle handoff; normalized local slot, not a native owner selection or driving result.",
@@ -108,7 +126,7 @@ const profiles=[
     sharedActorManifest:{path:"play/assets/harbor/master-chen/manifest.json",sha256:"a997ad1a777bc5e175e733245002de2245eec3550dc253e0e79057b73041de9b"},
     props:{HAK0:"HAKS5YKG"},propTextureHash:"9d959ba7d4754a6a23d1de5b6fb41d96281e03ac4c541f3ba5ee3c8fc38d1b0d",authoredPropBindings:true,
     stream:"01CAU",streamHash:"4e61b4621349727688c7dbd35b30d0f11920850084800a42d0073dca4423546f",sound:"A1_CHINA.SND",soundHash:"6862f133cb92a0f81672fbefee6f57c7d143fdd2c257f92aff51fb5829611c1f"},
-  {id:"warning-letter",archive:"MARU_LET",auth:"SEQDATA3.AUTH",motion:"M_01CAU.MOTN",bank:18,frames:1400,actors:["AKIR","TMRA"],room:"ALPHA",
+  {id:"warning-letter",archive:"MARU_LET",auth:"SEQDATA3.AUTH",motion:"M_01CAU.MOTN",bank:18,frames:1400,actors:["AKIR","TMRA"],room:alphaRoom,
     extraMembers:["FUTS5KBG.CHRM","KMMS500G.CHRM"],
     music:{id:"bgm119",sourceId:"84af3eae1fc0efdcdaf7efb9a15479b28920513dbadcb2997445755e413e5c1e",bankHash:"48e854a5c8681536f015195da0630fa8e90307404a2e9b70a93b335fdbccebcf",label:"Gui Zhang's warning letter"},
     stream:"01CAUA",streamHash:"34612fd23f8462a9d8ad379536ad33e6394496dc6b5538818ff24d47cdf0598c",sound:"A1_CAV.SND",soundHash:"ddea01f48db1846c2d1e5f8f2cadf610e03fdfcae6c918c1ea03837267336c94"},
@@ -169,7 +187,7 @@ const profiles=[
     stream:"01GOHA",streamHash:"018d20a6b303b790e3dff9f1b872c776b974d3857e75f8b438e5742870e5721a",sound:"A1_GOH.SND",soundHash:"5537070981a30cb231cf7fd646735bda7cb8b201ef09ab023f9a4bd8b68a6908"},
   {id:"goro-job-appointment",archive:"MGOR",auth:"SEQDATA0.AUTH",motion:"M_01GOR.MOTN",frames:1960,actors:["AKIR","HINA","GORO","DOOR","HAKO"],
     stream:"01GORA",streamHash:"5ab0691cb71108cf8630d7395d67448989a5e40edbd250852d957eb7a855074a",sound:"A1_GOROU.SND",soundHash:"25a7de8fc75c0b9ea03d0015aef36fa8253230d6d965fad226af5ce3311f543e"},
-  {id:"yada-job-interview",archive:"MARU",auth:"SEQDATA0.AUTH",motion:"M_01MAK.MOTN",frames:830,actors:["AKIR","TMRA","DOOR"],room:"ALPHA"},
+  {id:"yada-job-interview",archive:"MARU",auth:"SEQDATA0.AUTH",motion:"M_01MAK.MOTN",frames:830,actors:["AKIR","TMRA","DOOR"],room:alphaRoom},
   {id:"mark-job-introduction",archive:"MARU",auth:"SEQDATA1.AUTH",motion:"M_01MAK.MOTN",frames:1934,actors:["FORK","AKIR","TMRA","ETC2","ETC1","MARK"],
     props:{FORK:"FOKS502G"},propTextureHash:"faadd8aecb7e224885eb12d3cbc731215eb64ffb4648649c61c7a9a9272bd280"},
   {id:"mark-lunch-intro",archive:"MIZUMARK",auth:"SEQDATA1.AUTH",motion:"M_01MAD.MOTN",frames:1120,actors:["BENB","AKIR","MRSK","MARK","OKYS"],
@@ -279,12 +297,14 @@ for(const p of selected){
     }
   }
   for(const tag of p.actors.filter(t=>["DOOR","HAKO"].includes(t)))sceneObjects[tag]={model:"unmapped-original-reference",browserFilename:`${p.archive}-${tag}-reference`,referenceOnly:true};
-  if(p.room==="ALPHA"){
-    // ALPHA is absent from the resident harbor map. Load its original HRCM
-    // map for Alpha scenes and release it with the scene's object lease.
-    outputMembers.push(member("ALPHA","MAPALP.MAPD"));
-    const textureAssetPath=texture("ALPHA","8c8f0a6b1ba88e96ebc453d12826aaea74a85dad57ade4893df7c3daaf530612","alpha-textures.bin");
-    sceneObjects.ROOM={model:"MAPALP",browserFilename:"MAPALP.MAPD",assetPath:`${prefix}/MAPALP.MAPD`,textureAssetPath,
+  if(p.room){
+    // Both Alpha and TLYE have original geometry absent from the resident
+    // gameplay layer. Borrow it with the existing scene-object lease.
+    const room=p.room;
+    if(!room.archive||!room.member||!room.model||!room.textureHash||!room.textureFilename)throw Error(`Incomplete original room ${p.id}`);
+    outputMembers.push(member(room.archive,room.member));
+    const textureAssetPath=texture(room.archive,room.textureHash,room.textureFilename);
+    sceneObjects.ROOM={model:room.model,browserFilename:room.member,assetPath:`${prefix}/${room.member}`,textureAssetPath,
       lifecycle:{kind:"room-script-persistent"},initialPresentation:{position:[0,0,0],rotationDegrees:[0,0,0],scale:[1,1,1]}};
   }
   const propTextureAssetPath=p.props?texture(p.propArchive||p.archive,p.propTextureHash,"textures.bin"):null;

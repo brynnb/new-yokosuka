@@ -1,0 +1,680 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01TLY.AFS",
+      "sha256": "f9e731020b87e0329f48a064dc875e2fffe1ddea5f3cec65ab62a0b50c64e864"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_PIPEQ.SND",
+      "sha256": "82a86de527680626f47425bd1f7b9cddda69ed1d4294f3f8410a661b9b24edad"
+    },
+    "authManifest": "play/assets/harbor/terry-final-success/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#terry-and-the-last-night"
+  },
+  "voices": [
+    {
+      "voiceId": "01TLYA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SOUND/01TLYA001.aiff",
+      "nativeMember": "01TLYA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 8192,
+      "nativeSha256": "efb8109bbbe292d42c66a8bdea80bd4aaee840f88914495bc50b81323f8ac48f",
+      "speakerId": "AKIR",
+      "sourceText": "I'll take this.",
+      "displayText": "I'll take this.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-final-success/voice/01TLYA001.wav",
+      "byteLength": 32556,
+      "sha256": "de558631e4be8807a086a15b162f36067d4731461014f02d28d1654c4c86795b"
+    },
+    {
+      "voiceId": "01TLYA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SOUND/01TLYA002.aiff",
+      "nativeMember": "01TLYA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 10240,
+      "nativeSha256": "7a668923c0897bf135765e9378fd7bc8a5f312640d71699b6903765acc18242c",
+      "speakerId": "AKIR",
+      "sourceText": "Gotta learn to fight fair!",
+      "displayText": "Gotta learn to fight fair!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-final-success/voice/01TLYA002.wav",
+      "byteLength": 40748,
+      "sha256": "c1a0ab1ccf72e3d8099fdac37f65912ceb3cfadf4cd23d980ce9c32e454eaae4"
+    },
+    {
+      "voiceId": "01TLYA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SOUND/01TLYA003.aiff",
+      "nativeMember": "01TLYA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 6144,
+      "nativeSha256": "0f83fa9f6a2b503ca1d0c03d20b274a7ef0da03191b82690cd5e6f8a11ac20d4",
+      "speakerId": "AKIR",
+      "sourceText": "Your left!",
+      "displayText": "Your left!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-final-success/voice/01TLYA003.wav",
+      "byteLength": 24364,
+      "sha256": "98ebc20fed9d33c1ff90307923ca8db49a9e8b8e2a5c51967b4310b454b99512"
+    },
+    {
+      "voiceId": "01TLYB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SOUND/01TLYB007.aiff",
+      "nativeMember": "01TLYB007.str",
+      "speakerId": "KISY",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "Original successful Terry response requests 01TLYB007.str, absent from all six checked English01TLY archives. No substitute voice or invented subtitle.",
+      "evidence": "docs/design/story-final-day.md#terry-and-the-last-night"
+    },
+    {
+      "voiceId": "01TLYB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SOUND/01TLYB008.aiff",
+      "nativeMember": "01TLYB008.str",
+      "speakerId": "KISY",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "Original successful Terry response requests 01TLYB008.str, absent from all six checked English01TLY archives. No substitute voice or invented subtitle.",
+      "evidence": "docs/design/story-final-day.md#terry-and-the-last-night"
+    },
+    {
+      "voiceId": "01TLYC003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SOUND/01TLYC003.aiff",
+      "nativeMember": "01TLYC003.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 98304,
+      "nativeSha256": "17bcf6544fddfe0480a536ba208617bd2659c25bdc7807e2fcc78bb1163b33e2",
+      "speakerId": "TERY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 31
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 40
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 23
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          },
+          {
+            "shape": 5,
+            "durationTicks": 46
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 136
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 28
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 65
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 51
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 92
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-final-success/voice/01TLYC003.wav",
+      "byteLength": 393004,
+      "sha256": "60f713ba4986399a2b21aea605b7d9ff4bc82d96fe705dcf5ec48425601c4280"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/cloths/bagopen3.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040000.wav",
+      "byteLength": 74764,
+      "sha256": "9dbb4875660154c04249811670d96be0a8afc3d408768e32c313fad49ac32c17"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/cloths2/cloths01.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040100.wav",
+      "byteLength": 20916,
+      "sha256": "9ba29a5ab2fe22c69473ae00e7b3089de123d7ee9f0de866cee5cbdadd59f9f2"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/cloths2/cloths02.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040200.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/creakse/Creak.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040300.wav",
+      "byteLength": 18708,
+      "sha256": "f4682a036304d581c800f048247030f51ce1e64ebf30c9a84800c04c4cfb846d"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/body/Down1a.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040400.wav",
+      "byteLength": 27940,
+      "sha256": "d7891ca13f342dfa00d4d2012262fd48a866940cb24034d90511bf030b7adbe0"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/cloths2/friction2.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040500.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040600.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/cloths2/furimuki_n02.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040700.wav",
+      "byteLength": 25804,
+      "sha256": "b445f45589f7dca74cd10ffb930d08fe60f20e43722f8414eb191cb942211a83"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040800.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/body/jumpdown1.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040900.wav",
+      "byteLength": 12316,
+      "sha256": "7f5ea8c91b8ce3add56bae7044c86146ba0d4f767ba493b9a8f87248099d58f3"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/kick/kick02.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040a00.wav",
+      "byteLength": 9748,
+      "sha256": "cba15f2cbf9809e8f00b51ec877d2e00c3b9d733e4679b01b75e225046d1a480"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/kick/kick06.aiff",
+      "playbackId": 11,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040b00.wav",
+      "byteLength": 12276,
+      "sha256": "29396d1312553470abfdaa7f0b4ac50f28eb63b728ed72281614ce0bd0c8869c"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/footconcrete/lenashi01.aiff",
+      "playbackId": 12,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040c00.wav",
+      "byteLength": 8292,
+      "sha256": "f2d1fdce461ee5a7de59c1750aea2a767b50a9f7592b2320fe70374f3f5e5998"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/footconcrete/lenashi04.aiff",
+      "playbackId": 13,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040d00.wav",
+      "byteLength": 11708,
+      "sha256": "0fbe44d6b4dc8fe9445053886abca947b91f0b06b396fd87d9b8c826da99ebbc"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/footconcrete/ryashi2.aiff",
+      "playbackId": 14,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040e00.wav",
+      "byteLength": 5948,
+      "sha256": "9061087e9ec3ccebf38278f58cfb8b24602fc17fb3f7d9731c6c87f68c278430"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/footconcrete/ryashi4.aiff",
+      "playbackId": 15,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9040f00.wav",
+      "byteLength": 6756,
+      "sha256": "5dfd5dc8b575813777f0d2db3faa9f3ef747de9837ea663d491bf8700935fc66"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/footconcrete/ryashi5.aiff",
+      "playbackId": 16,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9041000.wav",
+      "byteLength": 4116,
+      "sha256": "1d36107d462f3e8c1dede9415224828e8658ecb06a483654bc02e3998493d799"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 17,
+      "sampleId": 18,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/terry-final-success/sfx/a9041100.wav",
+      "byteLength": 7948,
+      "sha256": "4b8a1601cb8ab62c33b155c5b1db1f94d5826870310533644e52bb0acc7ad84a"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 19,
+      "sampleId": 20,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/terry-final-success/sfx/a9041300.wav",
+      "byteLength": 8884,
+      "sha256": "27aa134eef996134d098d0fcfa13980993588765970ac2f8b1ab6b87a03e6bcf"
+    },
+    {
+      "commandHex": "a9041400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 20,
+      "sampleId": 21,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/terry-final-success/sfx/a9041400.wav",
+      "byteLength": 8116,
+      "sha256": "55dfb6fd189f5fc6351ee5e21bcc4080e9ffb89caf23307b184fcdd68ac62273"
+    },
+    {
+      "commandHex": "a9041500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/cloths2/R_mouhu_nageru.aiff",
+      "playbackId": 21,
+      "sampleId": 22,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9041500.wav",
+      "byteLength": 21612,
+      "sha256": "5c49cb5c012c4b62f58d0b81d8f68aa02b2734dd78710011d0c69a431d5a0988"
+    },
+    {
+      "commandHex": "a9041600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/smallobject/sunanage2.aiff",
+      "playbackId": 22,
+      "sampleId": 23,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9041600.wav",
+      "byteLength": 50772,
+      "sha256": "4bd2f9bdc9c5198fb7da9093fc4f14f5e9b65e13dc76ad832b56a2cc0c9ae5d4"
+    },
+    {
+      "commandHex": "a9041700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/swing/swing01.aiff",
+      "playbackId": 23,
+      "sampleId": 24,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9041700.wav",
+      "byteLength": 18916,
+      "sha256": "c4113c752c7932da20c953432b74e5d2575f36f84dd79cdb11887887176c7e4c"
+    },
+    {
+      "commandHex": "a9041800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/swing/swing03.aiff",
+      "playbackId": 24,
+      "sampleId": 25,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9041800.wav",
+      "byteLength": 33644,
+      "sha256": "413a08d07fd75774be0f172cee9b9bb40069fee1712acf9d9581400894008ef2"
+    },
+    {
+      "commandHex": "a9041b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/smallobject/Swing2e.aiff",
+      "playbackId": 27,
+      "sampleId": 28,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9041b00.wav",
+      "byteLength": 7060,
+      "sha256": "c577c1965aaf78ba6af626ace244ca8c7b5d5c7d6c75545015510a059a0fb99d"
+    },
+    {
+      "commandHex": "a9041c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/foot2/syueisuriashi2.aiff",
+      "playbackId": 28,
+      "sampleId": 29,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9041c00.wav",
+      "byteLength": 8004,
+      "sha256": "62213f308bd9d3b13024a28a7aa2630459aa217a599fb9c30a8a2a5853299e46"
+    },
+    {
+      "commandHex": "a9041d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SE/kick/kick10.aiff",
+      "playbackId": 29,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-final-success/sfx/a9041d00.wav",
+      "byteLength": 11572,
+      "sha256": "9b6983f900c431c2c89ae50f9dc76249eaedfe2e5431c83babafd6ac5fd8f0ec"
+    }
+  ]
+}

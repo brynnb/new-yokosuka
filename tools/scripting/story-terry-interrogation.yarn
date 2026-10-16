@@ -1,0 +1,30 @@
+-> Confront Terry
+    <<jump Introduction>>
+-> Leave it for now
+    <<complete>>
+===
+title: Introduction
+---
+<<start_activity "s1.mfbt.terry-final-intro.scene">>
+<<jump Attempt>>
+===
+title: Attempt
+---
+<<play_sequence "s1.mfbt.terry-finisher-ready.start">>
+<<start_challenge "s1.mfbt.terry-finisher">>
+<<play_sequence "s1.mfbt.terry-finisher-ready.finish">>
+<<if challenge_result("s1.mfbt.terry-finisher") == "success">>
+<<play_sequence "s1.mfbt.terry-finisher-win.start">>
+<<play_sequence "s1.mfbt.terry-finisher-win.finish">>
+<<start_activity "s1.mfbt.terry-final-success.scene">>
+<<start_activity "s1.mfbt.terry-interrogation.scene">>
+{{effects}}
+<<complete>>
+<<else>>
+<<play_sequence "s1.mfbt.terry-finisher-failure.start">>
+<<play_sequence "s1.mfbt.terry-finisher-failure.finish">>
+-> Try again
+    <<jump Attempt>>
+-> Leave it for now
+    <<complete>>
+<<endif>>

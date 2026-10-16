@@ -1,0 +1,17 @@
+-> Speak with Gui Zhang
+    <<jump Conversation>>
+-> Leave it for now
+    <<complete>>
+===
+title: Conversation
+---
+<<start_activity "s1.mfbt.gui-after-battle.scene">>
+// Choose the next 05:21, preserving late saves rather than rewinding them.
+<<if game_hour() < 5.35>>
+<<advance_story_time "s1.departure.dawn">>
+<<else>>
+<<advance_story_time "s1.departure.next-dawn">>
+<<endif>>
+<<travel_story "s1.home.bedroom-morning">>
+{{effects}}
+<<complete>>

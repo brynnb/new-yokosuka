@@ -765,8 +765,9 @@ race/payday/finished records on day 6205. The clue and whole-day flag are absent
 after cancelling the ending and present only after its acknowledged retry.
 All 38 new local asset records (2,143,412 bytes) pass size/hash verification.
 Nothing has been published or deployed. The following section continues through
-the Lan Di dream and fourth morning. The remaining Mad Angels workdays, Nozomi
-rescue and departure still need connected progression.
+the Lan Di dream and fourth morning, then the remaining Mad Angels workdays.
+The connected [Nozomi rescue](story-nozomi-rescue.md) and
+[final-day continuation](story-final-day.md) document later progress and limits.
 
 ## Third-night Lan Di dream and fourth working morning
 

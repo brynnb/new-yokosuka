@@ -210,6 +210,70 @@ earlier recorded rescue/night-film captures predate that correction. The new
 battle renders Satoshi's corrected model, but does not reverify every shot of
 the earlier films. No assets have been published or uploaded.
 
+## Terry and the last night
+
+The contemporary guide's printed p65 places a final **A** response after the
+70-man victory, Terry's interrogation, a discussion with Gui Zhang, home at
+05:21 and sleep until08:30. Three separate authored Yarn events now implement
+those boundaries using the existing challenge, scene and atomic save systems.
+None grants gifts, Swallow Flip, the later Chai battle or departure.
+
+| Field | Terry's last attack / interrogation | Gui Zhang / home | Departure rest |
+| --- | --- | --- | --- |
+| Admission / trigger | Story Ryo, completed opening and independently saved70-man victory. Confirm **Confront Terry** within the tested MFBT battle/recovery floor. | Separately saved interrogation. Same recovery floor; confirm **Speak with Gui Zhang**. | Saved post-battle discussion/home return. Existing rendered bedroom bedside bounds; **Sleep until 8:30 a.m.** / **Stay awake**. |
+| Original presentation | `MFBT/TERY.PKS`: `SEQDATA0` approach (575frames), `SEQDATA1` success (997), `SEQDATA2` interrogation (1,200). Banks25/16, original Ryo/Gui Zhang/Terry bodies, pipe, movement and cameras. | `MFBT/TLYE.PKS`: 1,520-frame `SEQDATA2`, bank32, original `MAP_TLYE.MAPM` pier and its texture pack. Original actors/cameras/voices. | No film or invented dream. The original sleep/wake transition is condensed to a confirmed ordinary personal-clock save. |
+| Challenge / timing | Actual server-owned **A**, with the existing generic two-second window. Existing keyboard mapping is Enter for A and Shift for B. A completed film or continue acknowledgement cannot win it. Wrong/expired input plays the original losing motion fragment, then retry/leave. | No challenge. Natural completion or supported explicit skip must be acknowledged. | No challenge or animation-completion reward. The explicit sleep choice owns settlement. |
+| Source poses / props | Hold exact approach-end motion samples via the existing named-motion `elapsedSeconds`. The source success film begins Ryo/Terry's clip at frame272; a nine-second original winning fragment precedes it. Original failure clips last220/164frames. Held roots, wide camera, frozen Gui Zhang, hand/pipe binding and retry choreography are authored, not recovered QTE callbacks. Detailed pipe hand transfer is not claimed. | The gameplay MFBT layer excludes `MAP_TLYE`. Reuse the same package-owned scene-object loader and lifetime as the original Alpha room; no second renderer or permanent world mutation. Its original roots/camera are not invented gameplay spawns. | Preserve ordinary avatar/camera/room ownership; no bags, farewell gestures or next chapter are fabricated by the clock transition. |
+| Audio / environment | Original `01TLY` / `01TLYD` speech and `A1_PIPEQ` / `A1_TLYD` effects. MFBT MAPINFO explicitly names these resource clusters and BGM120. Preserve personal date/weather. | Original `01TLYE`, `A1_TLYE` and BGM106, explicitly grouped in MFBT MAPINFO. Preserve date/weather during presentation. The finite viewer music rendering loops as an adaptation. | No new audio or weather override. |
+| Durable result | Only acknowledged successful interrogation saves its independent milestone and the Hong Kong notebook page. No time, travel, money or item grant. | Only acknowledged ending atomically saves its own milestone, the next05:21 and the established bedside destination. Late saves never rewind; an already passed/exact target uses the following date. | Independently save the next08:30 and bedside destination with the rest milestone. Early05:21 saves wake on the same date; late/exact08:30 saves use the next date. |
+| Cleanup / replay | Failure, cancellation, failed preparation or a cancelled successful ending saves nothing from this event; earned70-man victory remains. Retry gets a fresh token and rejects stale input. Completed interrogation does not replay. | Cancellation restores the battle-floor context and hides/releases leased pier geometry. Saved interrogation remains; no home return occurs. Reconnect retries only an uncompleted event. | Stay/cancel before selection changes nothing. Completed rest does not replay or repeatedly advance the date. Earlier outcomes remain earned. |
+
+The canonical chapter pack builder pins the original TERY archive
+(`108f7026e765552e93a8b3d6974d60a682aba59390cb9933b4bdfa313c9edc07`)
+and TLYE archive
+(`470c9c4ef3ac227ed6ed3c9ffa9328816b948dec88dcefba8a88e3f58e2896fc`).
+Each generated manifest records exact source members, motions, textures,
+speech/effects and output hashes. The geometry descriptor generalizes the
+existing Alpha-room path without changing its generated assets.
+
+The successful Terry film requests `01TLYB007.str` and `01TLYB008.str`, absent
+from all six checked English01TLY archives. They remain explicitly unavailable,
+with no replacement voice or fabricated subtitle. Four approach voices,
+four available success voices, twelve interrogation voices and thirteen
+Gui Zhang voices are extracted normally. The QTE authority does not depend
+on reconstructing the original controller or recovering absent English audio.
+
+Focused real-compiler/engine tests cover admission, Free roam, incomplete
+opening, wrong bounds, completed events, decline/cancel, wrong/expired A,
+fresh retry/stale token, cancelled endings and exact independent effect sets.
+Clock checks include same-date targets, exact passed targets and year-boundary
+rollover without rewind. Asset checks pin original banks, unavailable voices,
+leased geometry, held source samples and selected outcome durations.
+The 5.4-minute sequential hardware-rendered continuation resumes the genuinely
+earned 70-man victory. It verifies decline/reload, original approach playback,
+live cancellation, the held A prompt, wrong B input, expiry, fresh retries,
+actual A input and the original outcome/interrogation films. Cancelling that
+ending grants no clue; the retry finishes naturally and saves only the
+interrogation and Hong Kong notebook page. Separate pier cancellation/reload
+and natural completion verify the original actors and geometry, advancing
+BGM106 playback and successful music responses. Only then does the character
+arrive home at the next 05:21. Stay-awake/reload and the separate sleep choice
+verify the 08:30 save. Final reload restores bedside gameplay without replay.
+Money remains ¥22,836, the same eight inventory entries remain, and no final
+Chai, gift, training or departure result is inserted. The earned database is
+backed up independently of the prior battle save.
+
+Rendered checks exposed two presentation defects. The original opening camera
+position/FOV now replaces an arbitrary QTE offset that placed the lens inside
+a container; its target is reframed toward the held cast. Standalone package
+cleanup now hides cached room fixtures after completion, cancellation and
+failed preparation while retaining outer-program ownership between shots.
+This is shared by the Alpha-room and pier paths; regenerating the three Alpha
+profiles leaves their original asset manifests unchanged. Captures verify the
+QTE cast/pipe, original interrogation, pier conversation and restored bedroom.
+Held-root outcome fragments still approximate spacing, contact and detailed
+pipe hand transfers; the captures are not proof of exact original choreography.
+
 ## Verification and remaining work
 
 The real Yarn compiler/engine checks the three events independently: missing
@@ -260,10 +324,9 @@ are unchanged, controls are restored and completed reload neither replays the
 films nor restores ambient Tom. No finale outcome is inserted. The earned
 isolated database is backed up separately from the preceding morning save.
 
-The70-man battle and bosses are connected and rendered as described above.
-The later Terry
-QTE/interrogation, final Chai encounter, departing gifts and departure remain
-separate missing outcomes.
+The 70-man battle, Terry QTE/interrogation and post-battle home/rest chain are
+connected and rendered as described above. The final Chai encounter, departing
+gifts, Swallow Flip and departure remain separate missing outcomes.
 No future outcome should be inserted into an earned checkpoint. Plane mesh
 visibility, exact collapse staging and tighter hand/pipe choreography remain
 presentation review items, not proof of missing or completed battle outcomes.

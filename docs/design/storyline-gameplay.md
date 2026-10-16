@@ -207,8 +207,14 @@ actual70-man battle now also passes a connected earned-save check: cancellation,
 fresh retry, all ten groups/three bosses, keyboard combat and health recovery,
 original BGM120, independent acknowledged victory and saved reload without
 replay. Models are pooled; AI/balance, arrival shots and the unvoiced ending
-are explicit adaptations. Final battles and departure remain missing; the
-checklist distinguishes each boundary.
+are explicit adaptations. Terry's A-QTE/interrogation, original Gui Zhang pier
+scene and separate 05:21 home/08:30 rest now also pass an earned-save rendered
+continuation: wrong/expired input, retry, cancellation/geometry cleanup,
+natural endings, independent saves and reload without replay. Held-root
+spacing and detailed pipe choreography remain adaptations.
+The final Chai encounter, departing gifts,
+Swallow Flip and departure remain missing; the checklist distinguishes each
+boundary.
 See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest)
 and the [final day](story-final-day.md).
 
