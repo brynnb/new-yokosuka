@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import * as BABYLON from "@babylonjs/core";
 import {runtimeAssetUrl} from "../src/RuntimeAssets.js";
+import {scheduledActorStoryVisible} from "../src/ScheduledActorPresentation.js";
 import { clearWorldSceneAssets } from "../src/rendering/SceneResources.js";
 import {
   createScheduledActorOcclusionProxy,
@@ -108,6 +109,21 @@ test("cinematic replacements suppress every ambient variant until the lease rele
     if(reason==="world-clear")runtime.clear();else assert.equal(release(),true);
     assert.equal(release(),false);assert.equal(entry.root.isEnabled(),true);assert.equal(runtime.activityActorSuppressions.size,0);
   }
+});
+
+test("saved personal actor absence is reversible, per viewer, and does not hide another NPC or an owned film",async t=>{
+  const a={playMode:"story",storyFlags:{"story.s1.tom-farewell.completed":true}},b={playMode:"story",storyFlags:{}};
+  assert.equal(scheduledActorStoryVisible({actorCode:"TOM_"},a),false);
+  for(const [definition,character] of [[{actorCode:"TOM_"},b],[{actorCode:"TOMH"},a],[{actorCode:"TOM_",activityOnly:true},a],[{actorCode:"TOM_"},{...a,playMode:"free_roam"}]])assert.equal(scheduledActorStoryVisible(definition,character),true);
+  const network=new Map([["ONE",{worldId:"dobuita",x:0,y:0,z:0,yaw:0}]]),{runtime}=await activityStreamingHarness(t,{network});
+  await runtime.prepareActivityActors(["ONE"]);const entry=runtime.entries.find(e=>e.definition.actorCode==="ONE");
+  entry.definition={...entry.definition,actorCode:"TOM_",instanceId:"ONE"};
+  let viewer=a;runtime.isActorPresent=definition=>scheduledActorStoryVisible(definition,viewer);
+  runtime.updateEntry(entry,0);assert.equal(entry.root.isEnabled(),false);
+  viewer=b;runtime.updateEntry(entry,0);assert.equal(entry.root.isEnabled(),true);
+  viewer=a;const owner={};runtime.beginActivityActors(owner,["TOM_"]);runtime.updateEntry(entry,0);
+  assert.equal(entry.root.isEnabled(),true);runtime.endActivityActors(owner);runtime.updateEntry(entry,0);
+  assert.equal(entry.root.isEnabled(),false);
 });
 
 test("script preparation preserves the resident's active authored variant", async t => {

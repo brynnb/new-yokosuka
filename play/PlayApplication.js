@@ -17,6 +17,7 @@ import {
 import { RYO_YK_RENDER_MATRIX_ROUTES } from "../src/RuntimeMatrixRecording.js";
 import { StuckMovementDetector } from "../src/StuckMovementDetector.js";
 import state from "../src/state.js";
+import {scheduledActorStoryVisible} from "../src/ScheduledActorPresentation.js";
 import {
   DEFAULT_THIRD_PERSON_CONTROLLER_OPTIONS,
 } from "../src/ThirdPersonController.js";
@@ -651,6 +652,7 @@ function createPlayRuntime() {
       || actorRoot.position.add(new BABYLON.Vector3(0, 1.4, 0))
     ),
     getCameraFadeEnabled: () => !nativeCutsceneDirector?.active,
+    isActorPresent: definition => scheduledActorStoryVisible(definition,accountSession.character),
     networkState: scheduledActorNetworkState,
     localDebug: LOCAL_DEBUG,
     remoteAvatar: {

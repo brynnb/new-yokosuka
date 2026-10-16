@@ -134,6 +134,10 @@ import tomLunchManifest from "../assets/harbor/tom-lunch-invitation/manifest.jso
 import tomLunchAudio from "../../public/audio/world/tom-lunch-invitation/manifest.json";
 import yadaDismissalManifest from "../assets/harbor/yada-dismissal/manifest.json";
 import yadaDismissalAudio from "../../public/audio/world/yada-dismissal/manifest.json";
+import tomLessonManifest from "../assets/harbor/tom-lesson/manifest.json";
+import tomLessonAudio from "../../public/audio/world/tom-lesson/manifest.json";
+import tomFarewellManifest from "../assets/harbor/tom-farewell/manifest.json";
+import tomFarewellAudio from "../../public/audio/world/tom-farewell/manifest.json";
 import chaiIntroManifest from "../assets/dobuita/chai-intro/manifest.json";
 import chaiIntroAudio from "../../public/audio/world/chai-intro/manifest.json";
 import chaiVictoryManifest from "../assets/dobuita/chai-victory/manifest.json";
@@ -360,6 +364,8 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["final-meditation",finalMeditationManifest,finalMeditationAudio,"exterior"],
     ["tom-lunch-invitation",tomLunchManifest,tomLunchAudio,"mfsy"],
     ["yada-dismissal",yadaDismissalManifest,yadaDismissalAudio,"mfsy"],
+    ["tom-lesson",tomLessonManifest,tomLessonAudio,"mfsy"],
+    ["tom-farewell",tomFarewellManifest,tomFarewellAudio,"mfsy"],
     ["sailor-chase-intro",sailorIntroManifest,sailorIntroAudio,"mfsy"],["sailor-chase-tony",sailorTonyManifest,sailorTonyAudio,"mfsy"],["sailor-chase-smith",sailorSmithManifest,sailorSmithAudio,"mfsy"],
     ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],
     ["mark-lunch-intro",markLunchIntroManifest,markLunchIntroAudio,"mfsy"],["mark-lunch-aftermath",markLunchAftermathManifest,markLunchAftermathAudio,"mfsy"],

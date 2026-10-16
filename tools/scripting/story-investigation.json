@@ -3,6 +3,20 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"tom-lesson","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":994,"hours":[11.5,24],
+      "title":"Tom's optional Tornado Kick lesson","bounds":"s1.mfsy.tom-lesson","requiredFlags":["story.s1.yada-dismissal.completed"],
+      "completedFlag":"story.s1.tom-lesson.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-tom-lesson.yarn",
+      "nativeSources":[{"role":"original-lesson-films-and-motion","locator":"disc3/SCENE/03/MFSY/M0W1.PKS","sha256":"339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1"}],
+      "provenance":"GameSpot p63 forward-forward-A-A. Original offer, acceptance, double-kick demonstration, success and refusal alternatives selected in Yarn, not a playlist. Actual server challenge and acknowledged original winning motion/conclusion grant mastery; explicitly declining/stopping saves only declined decision. Two-step sublesson condensed; held original end-of-demo tableau, two-second windows and four-second winning fragment are adaptations. No money, item, time, farewell or future fight result."
+    },
+    {
+      "id":"tom-farewell","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":995,
+      "title":"Goodbye to Tom","bounds":"s1.mfsy.tom-farewell","requiredFlags":["story.s1.tom-lesson.completed"],
+      "completedFlag":"story.s1.tom-farewell.completed","effects":["notebook.s1.tom-farewell"],"voiceIds":[],"yarnTemplate":"story-tom-farewell.yarn",
+      "nativeSources":[{"role":"original-standalone-farewell","locator":"disc3/SCENE/03/MFSY/M0W1.PKS#SEQDATAB.AUTH","sha256":"339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1"}],
+      "provenance":"Original standalone farewellB follows either independently learned or explicitly declined optional lesson; combined mastery/farewellA is not used. One original missing English voice remains unavailable. Acknowledgement independently saves farewell/notebook and advances early saves to22:00 without rewinding late ones. Personal ambient Tom is hidden from this character only. No invented mastery, money, inventory, plane or battle outcome."
+    },
+    {
       "id":"final-meditation","disc":3,"actor":"AKIR","presentActors":[],"area":"JHD0","trigger":"enter","priority":900,
       "title":"Meditate before the final day","bounds":"s1.jhd0.final-meditation","requiredFlags":["story.s1.final-morning.completed"],
       "completedFlag":"story.s1.final-meditation.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-final-meditation.yarn","completionActivities":["s1.jhd0.final-meditation.scene"],

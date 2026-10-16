@@ -1,0 +1,54 @@
+-> Have lunch with Tom
+    <<jump Offer>>
+-> Leave it for now
+    <<complete>>
+===
+title: Offer
+---
+<<start_activity "s1.mfsy.tom-lesson-offer.scene">>
+-> Learn the Tornado Kick
+    <<jump Learn>>
+-> No thanks
+    <<jump Decline>>
+===
+title: Learn
+---
+<<start_activity "s1.mfsy.tom-lesson-accept.scene">>
+<<start_activity "s1.mfsy.tom-lesson-demo.scene">>
+<<jump Practice>>
+===
+title: Practice
+---
+<<play_sequence "s1.mfsy.tom-practice.start">>
+<<start_challenge "s1.mfsy.tornado-kick">>
+<<play_sequence "s1.mfsy.tom-practice.finish">>
+<<if challenge_result("s1.mfsy.tornado-kick") == "success">>
+<<play_sequence "s1.mfsy.tom-practice-kick.start">>
+<<play_sequence "s1.mfsy.tom-practice-kick.finish">>
+<<start_activity "s1.mfsy.tom-lesson-success.scene">>
+<<set_flag "story.s1.tornado-kick.learned">>
+<<set_flag "notebook.s1.tornado-kick">>
+{{effects}}
+<<complete>>
+<<else>>
+-> Try again
+    <<jump Practice>>
+-> Stop practicing
+    <<jump Stop>>
+<<endif>>
+===
+title: Decline
+---
+<<start_activity "s1.mfsy.tom-lesson-decline.scene">>
+<<jump Declined>>
+===
+title: Stop
+---
+<<start_activity "s1.mfsy.tom-lesson-stop.scene">>
+<<jump Declined>>
+===
+title: Declined
+---
+<<set_flag "story.s1.tom-lesson.declined">>
+{{effects}}
+<<complete>>

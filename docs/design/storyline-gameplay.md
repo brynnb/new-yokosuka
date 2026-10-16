@@ -191,9 +191,14 @@ continuation with independent cancellation/reload/retry, natural endings,
 reviewed travel, notebook pages and restored controls. Only early meditation
 advances to10:15; late personal saves keep their date/time. Original Tom/Ryo/cart
 and the Alpha cast/room are rendered. Dark dojo lighting and incidental
-ghost/door detail remain explicit limits. Tom's actual training/farewell,
-final battles and departure remain missing; the checklist distinguishes each
-boundary. See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest)
+ghost/door detail remain explicit limits. Tom's optional lesson and separate
+farewell now also pass a connected earned-save check: original presentation,
+real input, wrong/expired retry, cancellation/reload, independently saved
+mastery and farewell, same-date22:00 and private removal of ambient Tom. One
+original farewell voice is explicitly unavailable; native training physics and
+detailed prop callbacks remain approximations. Final battles and departure
+remain missing; the checklist distinguishes each boundary.
+See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest)
 and the [final day](story-final-day.md).
 
 For walkthrough-guided, authored progression, use the

@@ -3,6 +3,8 @@ import fs from "node:fs";
 import {createHash} from "node:crypto";
 import test from "node:test";
 import {ScriptEventPresentationCatalog} from "../play/scripts/ScriptEventPresentationCatalog.js";
+import authoredScenes from "../play/scripts/AuthoredSceneCatalog.js";
+import {MotnLoader} from "../src/MotnLoader.js";
 const read=p=>JSON.parse(fs.readFileSync(new URL(`../${p}`,import.meta.url)));
 
 test("final morning reuses three original films and distinct original actor bodies",()=>{
@@ -26,4 +28,43 @@ test("final morning reuses three original films and distinct original actor bodi
       assert.equal(bytes.length,asset.byteLength);assert.equal(createHash("sha256").update(bytes).digest("hex"),asset.sha256);
     }
   }
+});
+
+test("Tom's optional lesson keeps source branches, original motions and the independent farewell",()=>{
+  const catalog=new ScriptEventPresentationCatalog(),lesson=read("play/assets/harbor/tom-lesson/manifest.json");
+  const farewell=read("play/assets/harbor/tom-farewell/manifest.json");
+  for(const [part,slot,source]of [["offer",0,"0"],["decline",1,"1"],["accept",2,"2"],["demo",3,"7"],["success",4,"8"],["stop",5,"9"]]){
+    const a=catalog.activity(`s1.mfsy.tom-lesson-${part}.scene`);
+    assert.equal(a.cutscene.activity.slot,slot);
+    assert.equal(a.cutscene.activity.binding.activityId,`M0W1/SEQDATA${source}.AUTH`);
+    assert.equal(a.cutscene.activity.binding.activityId,lesson.activities[slot].activityId);
+    assert.equal(a.durableEffects,"forbidden");assert.equal(a.returnPlayerState,true);
+  }
+  assert.equal(catalog.activity("s1.mfsy.tom-farewell.scene").cutscene.activity.binding.activityId,"M0W1/SEQDATAB.AUTH");
+  for(const m of [lesson,farewell]){
+    assert.equal(m.packageActors.TOM_.assetPath,"play/assets/harbor/tom-lunch-invitation/AMG_L.CHRM");
+    assert.equal(m.sceneObjects.RADI.referenceOnly,true);
+    const id=m===lesson?"tom-lesson":"tom-farewell",audio=read(`public/audio/world/${id}/manifest.json`);
+    const missing=audio.voices.filter(a=>a.unavailable);
+    assert.deepEqual(missing.map(a=>a.voiceId),m===lesson?[]:["01TOMBB013"]);
+    for(const a of [...m.outputs,...audio.voices,...audio.sounds].filter(a=>!a.unavailable)){
+      const bytes=fs.readFileSync(new URL(`../${a.path||a.asset}`,import.meta.url));
+      assert.equal(bytes.length,a.byteLength);assert.equal(createHash("sha256").update(bytes).digest("hex"),a.sha256);
+    }
+  }
+  const practice=authoredScenes.scenes.find(s=>s.id==="s1.mfsy.tom-practice");
+  const kick=authoredScenes.scenes.find(s=>s.id==="s1.mfsy.tom-practice-kick");
+  assert.equal(practice.durationSeconds,undefined);assert.equal(kick.durationSeconds,4);
+  assert.deepEqual(practice.camera,kick.camera);
+  const bank=MotnLoader.parse(fs.readFileSync(new URL(`../${authoredScenes.motionBanks.tomPractice}`,import.meta.url)));
+  for(const scene of [practice,kick]){
+    assert.equal(scene.actorDefinitions[0].actorCode,"TOM_");
+    assert.equal(scene.actorDefinitions[0].activityOnly,true);
+    assert.ok(Object.values(scene.camera).every(Number.isFinite));
+    for(const actor of scene.actors){
+      assert.ok(Object.values(actor.pose).every(Number.isFinite));
+      if(actor.motion.bank==="tomPractice")assert.equal(bank.getSequence(actor.motion.name).valueData.complete,true);
+    }
+  }
+  assert.equal(kick.actors[0].motion.name,"AKI_DEKIRU_TORNADO_KICK_B_0100");
 });

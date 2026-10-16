@@ -16,6 +16,7 @@ if (process.argv.includes("--sync-scripting")) {
   for (const [source, target] of [
     ["internal/scriptcontent/commands.v1.json", "play/data/server-command-registry.json"],
     ["internal/scriptevent/story_regions.json", "play/data/story-regions.json"],
+    ["internal/scriptevent/story_actor_presence.json", "play/data/story-actor-presence.json"],
     ["internal/scriptcontent/story_time.v1.json", "play/data/story-time-transitions.json"],
     ["internal/scriptcontent/story_travel.v1.json", "play/data/story-destinations.json"],
     ["internal/scriptevent/combats.json", "play/data/story-combat.json"],
@@ -56,6 +57,8 @@ assert.deepEqual(
 
 assert.deepEqual(readJSON(clientRoot, "play/data/story-regions.json"),
   readJSON(serverRoot, "internal/scriptevent/story_regions.json"), "story region contracts differ");
+assert.deepEqual(readJSON(clientRoot,"play/data/story-actor-presence.json"),
+  readJSON(serverRoot,"internal/scriptevent/story_actor_presence.json"),"personal actor presence contracts differ");
 
 assert.deepEqual(readJSON(clientRoot,"play/data/story-time-transitions.json"),
   readJSON(serverRoot,"internal/scriptcontent/story_time.v1.json"),"Story time transition catalogs differ");

@@ -1152,6 +1152,7 @@ export class ScheduledActorRuntime {
     getGameDate = null,
     getCameraOcclusionTarget = null,
     getCameraFadeEnabled = null,
+    isActorPresent = () => true,
     networkState = null,
     motionRuntime = null,
     debugPickable = false,
@@ -1169,6 +1170,7 @@ export class ScheduledActorRuntime {
     this.getGameDate = getGameDate;
     this.getCameraOcclusionTarget = getCameraOcclusionTarget;
     this.getCameraFadeEnabled = getCameraFadeEnabled;
+    this.isActorPresent = isActorPresent;
     this.networkState = networkState;
     this.motionRuntime = motionRuntime;
     this.debugPickable = debugPickable;
@@ -2307,7 +2309,7 @@ export class ScheduledActorRuntime {
     }
     // A package body replaces this resident; ambient updates must not turn
     // its old body back on behind the cinematic copy each frame.
-    if (this.activityActorSuppressions.size && [...this.activityActorSuppressions.values()].some(
+    if (this.isActorPresent(entry.definition) === false || this.activityActorSuppressions.size && [...this.activityActorSuppressions.values()].some(
       lease => lease.codes.has(entry.definition.actorCode),
     )) {
       for (const root of new Set([

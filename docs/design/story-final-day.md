@@ -45,6 +45,51 @@ native controller state, weather or unrelated NPC schedule is fabricated.
 Incidental ghost compositing, separate door callbacks and soundtrack selection
 are not reconstructed by this chapter.
 
+## Tom's lesson and farewell
+
+These are two independent authored events after the saved dismissal. The lesson
+is optional; accepting, refusing or stopping it all permit saying goodbye, but
+only successful player input followed by an acknowledged ending grants mastery.
+
+| Field | Optional Tornado Kick lesson | Farewell |
+| --- | --- | --- |
+| Prerequisites / trigger | Story Ryo, opening and Yada dismissal saved. Approach Tom in `MFSY` at personal11:30 or later; **Have lunch with Tom** / **Leave it for now**. | Lesson decision saved, whether learned or declined. Same Tom approach; **Say goodbye to Tom** / **Leave it for now**. |
+| Original presentation | `M0W1/SEQDATA0` offer, `1` refusal, `2` acceptance, `7` double-kick demonstration, `8` success or `9` stop. Each explicitly selects its original activity rather than playing all alternatives sequentially. | Standalone `M0W1/SEQDATAB`, 2,849 frames. The combined training/farewell alternative `SEQDATAA` is deliberately not used: it would conflate learning and departure. |
+| Actual gameplay | Existing server-owned challenge: **Up, Up, A, A** (forward, forward, kick, kick). Incorrect input or timeout offers retry or stopping. Waiting for or skipping a movie cannot win it. | No challenge or mastery award. The original farewell must finish or be explicitly skipped and acknowledged. |
+| Poses / camera / sound | Original `M_0001.MOTN` bank16; hold the last demonstration poses and camera while input is active. A win plays four seconds of `AKI_DEKIRU_TORNADO_KICK_B_0100` before the original success scene resumes at its frame120. Original lesson speech comes from `E1021.AFS`, effects from `E1_TOMWZ.SND`. | Original actor motions/cameras, English `01TOMB` speech and `E1TOMWZA.SND` effects. The film requests `01TOMBB013.str`, absent from all three checked English `01TOM` archives; the manifest declares it unavailable instead of substituting another line. |
+| Settlement | Success saves `story.s1.tornado-kick.learned`, its notebook page and the independent lesson-decision completion. Refusal/stopping saves only the declined decision. No money, item or later story grant. | Saves its own completion and notebook page, advances the personal clock to22:00 only if earlier on the same date, and removes ambient Tom from that player's Story view. It never rewinds a late save or awards training/battle outcomes. |
+| Cancellation / replay | Cancelled preparation, film or practice saves none of this event's effects. Retry gets a fresh input token. Completed lesson decisions do not replay automatically. | Cancelling keeps the saved lesson but saves no farewell, nightfall or disappearance. Reload retries the uncompleted farewell; acknowledged completion does not replay. |
+
+Source identity is pinned by `MFSY/M0W1.PKS`
+(`339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1`)
+and its PKF (`a06e7d5b5dd1ae6a3ce75d9bf9987a92eb0018fe4d1fd37d9473c2b6e026c4d9`).
+The chapter builder profiles are `tom-lesson` and `tom-farewell`, followed by
+`node tools/scripting/build_tom_practice.mjs` for the presentation-only challenge
+poses. Generated manifests pin each voice, sound, motion and output.
+
+The exact original `AMG_L` Tom body is reused from the lunch-invitation pack.
+The source radio actor remains reference-only because the resident hotdog truck
+already supplies the visible radio. Bottle assets are retained; detailed hand,
+radio and native training-controller callbacks are not reconstructed. The
+two-step sublesson is condensed into the existing challenge rather than a new
+training-physics system. Held roots, generic two-second input windows and idle
+between inputs are documented approximations. These packs do not claim a
+recovered farewell music selection.
+
+Personal disappearance is a read-only projection of existing saved server
+flags. The server-owned `story_actor_presence.json` is exported to the client;
+both event eligibility and scheduled-actor visibility use it. `TOM_` identifies
+Tom in Dobuita and the harbor; `TOMH` is Toshimichi Fukui and is not an alias.
+Owned cinematic actors, Free roam and other players' views remain unaffected.
+No shared NPC record or second progress store is mutated.
+
+Only `s1.wait.*` clock targets become standalone menu scripts. Private chapter
+transitions such as final-morning rest and final night remain effects of their
+own events, not independent waits. Catalogue tests guard this boundary and
+slug uniqueness; a real isolated-database test verifies11:30 settlement,
+cancellation, duplicate rejection, cross-character isolation and stale-save
+protection, including fractional-hour world facts.
+
 ## Verification and remaining work
 
 The real Yarn compiler/engine checks the three events independently: missing
@@ -75,8 +120,26 @@ ghost compositing. Detailed room-door callbacks and soundtrack selection are
 not claimed. No replacement speech or missing-voice alias was needed: all 21
 requested English voices and 35 effects resolve. No assets have been uploaded.
 
-Tom's actual lesson/farewell, evening battles, final Chai encounter,
-departing gifts and departure remain separate missing outcomes. The guide's
-training input is forward, forward, A, A. Watching a demonstration must not
-count as performing it. No future outcome should be inserted into a saved
+Compiler/engine tests cover lesson eligibility, refusal, cancellation at each
+boundary, wrong/expired input, retry tokens, stopping, successful input and
+cancelled success acknowledgement. Farewell tests cover learned and declined
+lessons, cancelled/declined farewell, exact allowed effects and late clocks.
+Asset checks verify original branch identities, generated output hashes,
+available audio, the one explicitly unavailable farewell voice and practice
+motion/camera data. Personal-visibility tests cover reversibility, independent
+player state, Free roam, the distinct `TOMH` actor and owned cinematics.
+The 4.5-minute connected hardware-rendered browser continuation resumes the
+earned dismissal. It verifies the real11:30 wait, decline/reload, natural offer,
+acceptance and demonstration, visible original Tom and practice prompt,
+cancelled practice/reload, wrong input, expired input, fresh retries, actual
+winning input and the natural success film before mastery settlement. A
+separate cancelled/retried farewell preserves mastery, then all original
+farewell shots finish naturally. Captures show Ryo, Tom and the hotdog truck;
+saved nightfall is the same date at22:00, the notebook is updated, money/items
+are unchanged, controls are restored and completed reload neither replays the
+films nor restores ambient Tom. No finale outcome is inserted. The earned
+isolated database is backed up separately from the preceding morning save.
+
+Evening battles, final Chai encounter, departing gifts and departure remain
+separate missing outcomes. No future outcome should be inserted into a saved
 morning checkpoint.

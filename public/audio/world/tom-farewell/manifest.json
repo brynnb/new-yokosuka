@@ -1,0 +1,1971 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "sha256": "23daed8e59dcd1d271fd07fb41ea37e1131917bc234b7d06def325fb2b2aef85"
+    },
+    "additionalStreams": [
+      {
+        "disc": 3,
+        "path": "disc3/SCENE/03/STREAM/01TOMA.AFS",
+        "sha256": "beee7fd3fe15645298fd1ea0c74dc6d8f7b30308209b16e15f2ff40c578f9d20"
+      },
+      {
+        "disc": 3,
+        "path": "disc3/SCENE/03/STREAM/01TOMC.AFS",
+        "sha256": "11b5327a43bf069e5cc7244089747897f73bf9120f724f1a3c52706a5f5536e7"
+      }
+    ],
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/E1TOMWZA.SND",
+      "sha256": "193dce839f758b9e6c5f72370496eca21977ea483e3e3233ead2b9b2993712f3"
+    },
+    "authManifest": "play/assets/harbor/tom-farewell/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#toms-lesson-and-farewell"
+  },
+  "voices": [
+    {
+      "voiceId": "01TOMBA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBA001.aiff",
+      "nativeMember": "01TOMBA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "ee11413baf8a91aedf34615fd3fa6bb83c3f72d4cb965cf5c58f15f898bf73c3",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "AKIR",
+      "sourceText": "What's wrong?",
+      "displayText": "What's wrong?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBA001.wav",
+      "byteLength": 16172,
+      "sha256": "097c861a397db974f98f0677d5d390ac72d32c535344da3c4fae913e388af969"
+    },
+    {
+      "voiceId": "01TOMBA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBA002.aiff",
+      "nativeMember": "01TOMBA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "851bfd5f2d522d5d7d0d09c40c1a263b41465fa1b5198ecb0ea7d9bfd8b7b820",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "AKIR",
+      "sourceText": "Tell me what?",
+      "displayText": "Tell me what?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBA002.wav",
+      "byteLength": 24364,
+      "sha256": "1fbd1ddb43c67e87c3016fe2a7567bf57d05cc1f0553c44786b4b99eae674b4e"
+    },
+    {
+      "voiceId": "01TOMBA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBA003.aiff",
+      "nativeMember": "01TOMBA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 8192,
+      "nativeSha256": "8215beb50e2a301bbd96e4c316fea28cc8a7f17df06bff0c8555cd4b624079ba",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "AKIR",
+      "sourceText": "What? All of a sudden=@?",
+      "displayText": "What? All of a sudden...?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBA003.wav",
+      "byteLength": 32556,
+      "sha256": "b1cae9522c542f880f3f6ecb32a543edb50f4c68a5c8266a12111f7d2c53b383"
+    },
+    {
+      "voiceId": "01TOMBA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBA004.aiff",
+      "nativeMember": "01TOMBA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 6144,
+      "nativeSha256": "ce87eaefef2469edc71514af225f827ac98584e0a14bb0696b5bd3c54da1b662",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "AKIR",
+      "sourceText": "Tom=@",
+      "displayText": "Tom...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBA004.wav",
+      "byteLength": 24364,
+      "sha256": "4d3dae4b9b82358834127336d14dd405fca643277f73e50ca58282fec9dcd59b"
+    },
+    {
+      "voiceId": "01TOMBA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBA005.aiff",
+      "nativeMember": "01TOMBA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 10240,
+      "nativeSha256": "b7f53de1d892e87663b26567fbecaa6efe27753f8eab13bfeeae525acee97a32",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "AKIR",
+      "sourceText": "Uh, I=@",
+      "displayText": "Uh, I...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBA005.wav",
+      "byteLength": 40748,
+      "sha256": "150017d8ad8ab88c59d89bed6779f50fbb9ff16f6bd048bee2fede1a9e4a5b51"
+    },
+    {
+      "voiceId": "01TOMBA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBA006.aiff",
+      "nativeMember": "01TOMBA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 4096,
+      "nativeSha256": "ea8eb1348de3a0345eef01e1732bb2f90a5e99e4920af219c8ed8faf0ab08c06",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "AKIR",
+      "sourceText": "Yeah.",
+      "displayText": "Yeah.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBA006.wav",
+      "byteLength": 16172,
+      "sha256": "92f69677e94cd6edd00513b41280c78a726ed97b8723180c31fe47c602ff0f9a"
+    },
+    {
+      "voiceId": "01TOMBA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBA007.aiff",
+      "nativeMember": "01TOMBA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 6144,
+      "nativeSha256": "9db42140a42f5f50953fa0977bd5ad4c7951d8e43dba059af8c9352cc7f25be0",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "AKIR",
+      "sourceText": "=@Tom.",
+      "displayText": "...Tom.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBA007.wav",
+      "byteLength": 24364,
+      "sha256": "7330357830a682ac2a0001d40d70c6cf85c0469e254acc0bdb5029e0b04d5377"
+    },
+    {
+      "voiceId": "01TOMBA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBA008.aiff",
+      "nativeMember": "01TOMBA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 6144,
+      "nativeSha256": "72a520b9e881ef7933f04a4b8c4b0bfbdeac45c90e36c2e26830539577ad995a",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "AKIR",
+      "sourceText": "You're mine too.",
+      "displayText": "You're mine too.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBA008.wav",
+      "byteLength": 24364,
+      "sha256": "2076211f1194c1d0aa415447d3e61279962ecd4782c691ae6f45fd37efaed837"
+    },
+    {
+      "voiceId": "01TOMBA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBA009.aiff",
+      "nativeMember": "01TOMBA009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 2048,
+      "nativeSha256": "340b7df8b1d83c74da5aa141feacf209be248c03a7cc59fdf35646a01206a3fe",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBA009.wav",
+      "byteLength": 7980,
+      "sha256": "65f2e9f5aa34131702c3c10d152242767a2c46c0807329fa4f7ade902ac311ee"
+    },
+    {
+      "voiceId": "01TOMBA010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBA010.aiff",
+      "nativeMember": "01TOMBA010.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 4096,
+      "nativeSha256": "07b537f24e64aa87e67519e85d981a346f238e9a8f7b8c97cfb17805014362db",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBA010.wav",
+      "byteLength": 16172,
+      "sha256": "475d98cd508b933f9680c694341afaa850981584f4c52d26a455ea3259d6f4ab"
+    },
+    {
+      "voiceId": "01TOMBA011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBA011.aiff",
+      "nativeMember": "01TOMBA011.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 12288,
+      "nativeSha256": "395ccf4425e66ac7f1a97f8b12fa7f0020f6daea582f1ed0c9e990fd7b89e209",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "AKIR",
+      "sourceText": "Yeah, I'll have one.",
+      "displayText": "Yeah, I'll have one.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBA011.wav",
+      "byteLength": 48940,
+      "sha256": "79f8ffdcade310e370638fc502308f26e29fa3900a0b31626497e16311408c35"
+    },
+    {
+      "voiceId": "01TOMBB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB001.aiff",
+      "nativeMember": "01TOMBB001.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 18432,
+      "nativeSha256": "de4bdfc543cada3ee202f55c045b982cd311e3ac41f5c8b893a5e70033dda77a",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "TOM_",
+      "sourceText": "I got something I need to tell you Ryo=@",
+      "displayText": "I got something I need to tell you Ryo...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBB001.wav",
+      "byteLength": 73516,
+      "sha256": "104f7ab5687aace5d9ce4604809328ab9d407587f502a2920c4585054cb1d4e8"
+    },
+    {
+      "voiceId": "01TOMBB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB002.aiff",
+      "nativeMember": "01TOMBB002.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 14336,
+      "nativeSha256": "bfce88190943d48a4b55338a1202625574c50ec12811b3bc63f87d0a89e8fbde",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "TOM_",
+      "sourceText": "Tomorrow, I go back to America.",
+      "displayText": "Tomorrow, I go back to America.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 24
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBB002.wav",
+      "byteLength": 57132,
+      "sha256": "f96862a349c44754571c9bd8a54756a99c6e200bc0f7dadd597b4a43def5e883"
+    },
+    {
+      "voiceId": "01TOMBB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB003.aiff",
+      "nativeMember": "01TOMBB003.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 22528,
+      "nativeSha256": "d55d5aff6581adfb150197857fe792e69b006d7c346a9083bf253a63f6ed4805",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "TOM_",
+      "sourceText": "Not suddenly.＆I've been planning to for a while.",
+      "displayText": "Not suddenly.\nI've been planning to for a while.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBB003.wav",
+      "byteLength": 89900,
+      "sha256": "ebc7b1eef9373ee5aec75c1c8f2ce40aea5474a80ce80d74dcc5a24283e33b53"
+    },
+    {
+      "voiceId": "01TOMBB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB004.aiff",
+      "nativeMember": "01TOMBB004.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 20480,
+      "nativeSha256": "378cbaa60880431d5e98f967ec5f25bde4b764b50d78a3932c7e7103dfb48f12",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "TOM_",
+      "sourceText": "Ryo, why are you going on your trip?",
+      "displayText": "Ryo, why are you going on your trip?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBB004.wav",
+      "byteLength": 81708,
+      "sha256": "a1ee3a997e62af574f6868e17ba0693a6073da38db69ffde135c0d2e36fed2c7"
+    },
+    {
+      "voiceId": "01TOMBB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB005.aiff",
+      "nativeMember": "01TOMBB005.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 22528,
+      "nativeSha256": "59272875979a058864b171a99fc6ef047340767402c6e82c0e1b8b4990327b8a",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "TOM_",
+      "sourceText": "I bet it has something to do＆with your father.",
+      "displayText": "I bet it has something to do\nwith your father.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBB005.wav",
+      "byteLength": 89900,
+      "sha256": "47ecc3ac88f1aa805870ab797f06d99f09eef38344b7642935b56cf0b74c10b0"
+    },
+    {
+      "voiceId": "01TOMBB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB006.aiff",
+      "nativeMember": "01TOMBB006.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 8192,
+      "nativeSha256": "9bb6206cbe5a9732840c0691e804d1dd9052a2090026168b26ecf28f4287ff1b",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "TOM_",
+      "sourceText": "I thought so.",
+      "displayText": "I thought so.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBB006.wav",
+      "byteLength": 32556,
+      "sha256": "c95f85d2c4c5165d765b27f9c139c3a353eb2b8f7db486582de6720bd03451c8"
+    },
+    {
+      "voiceId": "01TOMBB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB007.aiff",
+      "nativeMember": "01TOMBB007.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 32768,
+      "nativeSha256": "f0a9a3e7b2393543120bd02ac26ffaa4f8ef3a2844f3662689d62b580f02c704",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "TOM_",
+      "sourceText": "Me, I'm going back to my home=@＆and you'll be leaving soon too.",
+      "displayText": "Me, I'm going back to my home...\nand you'll be leaving soon too.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBB007.wav",
+      "byteLength": 130860,
+      "sha256": "93afedbf07e10f2033c31d489ebcbd197676bbdf0d28689108016fc4dac6b72f"
+    },
+    {
+      "voiceId": "01TOMBB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB008.aiff",
+      "nativeMember": "01TOMBB008.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 14336,
+      "nativeSha256": "06cb84d7819fb01c1d868c85d15d9d6d7d85f4fe19b6789168d123998260493c",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "TOM_",
+      "sourceText": "Nobody can stop you.",
+      "displayText": "Nobody can stop you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBB008.wav",
+      "byteLength": 57132,
+      "sha256": "a65c794b2872fe71beb63beba4c25687abe262a9d534b0d3fa2f53980dfa5a34"
+    },
+    {
+      "voiceId": "01TOMBB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB009.aiff",
+      "nativeMember": "01TOMBB009.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 40960,
+      "nativeSha256": "eb3100e4646f4ce0b93229fad1cf40b3be5e3ab025b4bb4eb407c391aa8522b1",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "TOM_",
+      "sourceText": "Even tho' we part ways=@you'll＆still be one of my best friends.",
+      "displayText": "Even tho' we part ways...you'll\nstill be one of my best friends.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 23
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 30
+          },
+          {
+            "shape": 0,
+            "durationTicks": 30
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 21
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBB009.wav",
+      "byteLength": 163628,
+      "sha256": "a96948e6ae7cb16b003ca1517ddf0dd76cd11a51cd5a7830ecd3155b0781dee3"
+    },
+    {
+      "voiceId": "01TOMBB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB010.aiff",
+      "nativeMember": "01TOMBB010.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 2048,
+      "nativeSha256": "b9913dd4a19602bb61c01cff195ddcf4316d7c110e018ce22926f87af3ac029a",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "TOM_",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBB010.wav",
+      "byteLength": 7980,
+      "sha256": "705f8219a77d0ff40a2a46ea4bd2c378229ff048fcf2ef68a2f149ba30d5c891"
+    },
+    {
+      "voiceId": "01TOMBB011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB011.aiff",
+      "nativeMember": "01TOMBB011.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 32768,
+      "nativeSha256": "c4c634d77e83e022406bdd7317036056367b6ab6cbf9edfa5eb6e4e3dd9e1eb4",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "TOM_",
+      "sourceText": "Today's the last day for Tom's Hot Dogs.＆Get 'em while you can!",
+      "displayText": "Today's the last day for Tom's Hot Dogs.\nGet 'em while you can!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 29
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 25
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBB011.wav",
+      "byteLength": 130860,
+      "sha256": "a0b186502e0d7c71cc6c64182e2a5a132c65ff96224e5288e3cf3031519e9d85"
+    },
+    {
+      "voiceId": "01TOMBB012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB012.aiff",
+      "nativeMember": "01TOMBB012.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 8192,
+      "nativeSha256": "577fdaea5c60d46e5082fb291d48dbfef3d52060621d560e25ef958b007c3182",
+      "nativeArchive": "disc3/SCENE/03/STREAM/01TOMB.AFS",
+      "speakerId": "TOM_",
+      "sourceText": "Uh=@",
+      "displayText": "Uh...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-farewell/voice/01TOMBB012.wav",
+      "byteLength": 32556,
+      "sha256": "0aa6921a24d1e042f1bd3346689ac74ad424da534278c7193d4bc30a82ac89f9"
+    },
+    {
+      "voiceId": "01TOMBB013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB013.aiff",
+      "nativeMember": "01TOMBB013.str",
+      "speakerId": "TOM_",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "Original farewell requests01TOMBB013.str, absent from all three pinned English01TOM archives. No substitute speech or invented subtitle.",
+      "evidence": "docs/design/story-final-day.md#toms-lesson-and-farewell"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 4,
+      "sampleId": 5,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-farewell/sfx/a9040400.wav",
+      "byteLength": 11268,
+      "sha256": "52e4da7a3e985e8db5a3627d373c22d6c4c6d58995225b4979fd5a9a1bf87721"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/punch/Punch3.aiff",
+      "playbackId": 7,
+      "sampleId": 12,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/tom-farewell/sfx/a9040700.wav",
+      "byteLength": 2140,
+      "sha256": "7fd82037bc1331dfe21735d0887e987597a1d03b59a9d3ebc638b4b15fcbc7c7"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/punch/Punch4.aiff",
+      "playbackId": 8,
+      "sampleId": 13,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/tom-farewell/sfx/a9040800.wav",
+      "byteLength": 3452,
+      "sha256": "de7777b173ed92765be3db7e16cd8f549d3296459e01fd25dda953e8477b59aa"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/RYOASHI3.aiff",
+      "playbackId": 9,
+      "sampleId": 17,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-farewell/sfx/a9040900.wav",
+      "byteLength": 2900,
+      "sha256": "88b76ba62e1592f6da9b0cbd7e80812687e184b0697ef168b3a38cfff5560a8d"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/RYOASHI4.aiff",
+      "playbackId": 10,
+      "sampleId": 18,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-farewell/sfx/a9040a00.wav",
+      "byteLength": 4844,
+      "sha256": "71c6bf8341bdf7ff5b1f4df7211427c3bc5673706492e9d4e2360e7dd470d120"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/RYOASHI8.aiff",
+      "playbackId": 11,
+      "sampleId": 19,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-farewell/sfx/a9040b00.wav",
+      "byteLength": 6148,
+      "sha256": "527aea43f6b21e79488736d95dca1dd892a6f36a3f09fd81204ee5c9e0a691d0"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/R_kon_s01.aiff",
+      "playbackId": 12,
+      "sampleId": 20,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-farewell/sfx/a9040c00.wav",
+      "byteLength": 4780,
+      "sha256": "76fc1e8795846249e50f4b6eca88b7018d8ae7f4c150c7dfb0e148bf424e850c"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/R_kon_s05.aiff",
+      "playbackId": 16,
+      "sampleId": 24,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-farewell/sfx/a9041000.wav",
+      "byteLength": 5060,
+      "sha256": "e9b1a822f6e042a8b4efba9cd4550c3b93ac35c061990267a24deb73fd24df57"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/R_kon_s07.aiff",
+      "playbackId": 18,
+      "sampleId": 26,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-farewell/sfx/a9041200.wav",
+      "byteLength": 5068,
+      "sha256": "ab7b5444109a03a4262f20073a18e932f4aa73c61853bf57bde70312f658aed7"
+    },
+    {
+      "commandHex": "a9042100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 33,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tom-farewell/sfx/a9042100.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9042200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/cloths2/furimuki_s02.aiff",
+      "playbackId": 34,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tom-farewell/sfx/a9042200.wav",
+      "byteLength": 9676,
+      "sha256": "815e2bb5cee0e948a27a89303d326c3335df6d865d510c09a2e635cb5a188d76"
+    },
+    {
+      "commandHex": "a9042500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/smallobject/Switchon.aiff",
+      "playbackId": 37,
+      "sampleId": 35,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tom-farewell/sfx/a9042500.wav",
+      "byteLength": 6444,
+      "sha256": "9dc52ce0100eccdab066f6fdeb5e524a2b2c78256dd4381ed511c4438785aac9"
+    },
+    {
+      "commandHex": "a9042600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/body/handclap1.aiff",
+      "playbackId": 38,
+      "sampleId": 8,
+      "sampleRate": 12500,
+      "asset": "public/audio/world/tom-farewell/sfx/a9042600.wav",
+      "byteLength": 10572,
+      "sha256": "ed975dab09452e068626c73ff25b8ac246dbcd70c9eeda24f922722ecc1650eb"
+    }
+  ]
+}

@@ -1,0 +1,544 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA0.AUTH",
+        "path": "disc3/SCENE/03/MFSY/M0W1.PKS",
+        "sourceSha256": "339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1",
+        "archiveMember": "SEQDATA0.AUTH",
+        "byteLength": 13104,
+        "sha256": "55f7bf93f6bd6e88823abf5641a35fae12114db7dd8051622387c7004e810467"
+      },
+      {
+        "name": "SEQDATA1.AUTH",
+        "path": "disc3/SCENE/03/MFSY/M0W1.PKS",
+        "sourceSha256": "339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1",
+        "archiveMember": "SEQDATA1.AUTH",
+        "byteLength": 4748,
+        "sha256": "f94e8a54bfb3c86b0ac324f302f81efcd39b5145a060d0027b0e029b2818ce1f"
+      },
+      {
+        "name": "SEQDATA2.AUTH",
+        "path": "disc3/SCENE/03/MFSY/M0W1.PKS",
+        "sourceSha256": "339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1",
+        "archiveMember": "SEQDATA2.AUTH",
+        "byteLength": 6356,
+        "sha256": "9912cbc3ad25e271c889c058e072e4231eb60677978bb06ba76ec0e21b14c1d2"
+      },
+      {
+        "name": "SEQDATA7.AUTH",
+        "path": "disc3/SCENE/03/MFSY/M0W1.PKS",
+        "sourceSha256": "339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1",
+        "archiveMember": "SEQDATA7.AUTH",
+        "byteLength": 5436,
+        "sha256": "6921a55634540629323efac03ae5aad1ec7c2fd118fede3e1860e22ac7664940"
+      },
+      {
+        "name": "SEQDATA8.AUTH",
+        "path": "disc3/SCENE/03/MFSY/M0W1.PKS",
+        "sourceSha256": "339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1",
+        "archiveMember": "SEQDATA8.AUTH",
+        "byteLength": 4996,
+        "sha256": "e1ff3ff0e5a5734470ff5017feff940be5ff783a6177f5243b471c75475ada18"
+      },
+      {
+        "name": "SEQDATA9.AUTH",
+        "path": "disc3/SCENE/03/MFSY/M0W1.PKS",
+        "sourceSha256": "339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1",
+        "archiveMember": "SEQDATA9.AUTH",
+        "byteLength": 4264,
+        "sha256": "fd6ec490dad298ede8772d5645d4887c395e6a64996d8f0e54c373c49da5428c"
+      },
+      {
+        "name": "M_0001.MOTN",
+        "path": "disc3/SCENE/03/MFSY/M0W1.PKS",
+        "sourceSha256": "339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1",
+        "archiveMember": "M_0001.MOTN",
+        "byteLength": 922384,
+        "sha256": "c69180ecc2de5e0d380668bbcc45df602a6a6cc7a5714e818b1df5456ecee5ce"
+      },
+      {
+        "name": "RADK400G.CHRM",
+        "path": "disc3/SCENE/03/MFSY/M0W1.PKS",
+        "sourceSha256": "339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1",
+        "archiveMember": "RADK400G.CHRM",
+        "byteLength": 1212,
+        "sha256": "6eab7d4965de1786125439c20d1f21fd6da2aa056a98d6eac595b454e92b7061"
+      },
+      {
+        "name": "BINS501G.CHRM",
+        "path": "disc3/SCENE/03/MFSY/M0W1.PKS",
+        "sourceSha256": "339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1",
+        "archiveMember": "BINS501G.CHRM",
+        "byteLength": 2132,
+        "sha256": "77bc11a2d715a76838a2df1f98a16f498a95c2319867515d1a88428ee50e8e4d"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-final-day.md#toms-lesson-and-farewell",
+    "resourceName": "M0W1",
+    "variant": "",
+    "selectionRule": "Original offer/refusal/acceptance/double-kick demonstration/success/stop alternatives. Yarn selects the branch; these six clips are not a sequential playlist or recovered native selector."
+  },
+  "audioManifest": "public/audio/world/tom-lesson/manifest.json",
+  "sceneObjects": {
+    "RADI": {
+      "model": "RADK400G",
+      "browserFilename": "RADK400G.CHRM",
+      "assetPath": "play/assets/harbor/tom-lesson/RADK400G.CHRM",
+      "textureAssetPath": "play/assets/harbor/tom-lesson/textures.bin",
+      "referenceOnly": true,
+      "sourceBinding": {
+        "kind": "authored-package-prop-association",
+        "evidence": "docs/design/story-final-day.md#toms-lesson-and-farewell"
+      }
+    },
+    "BTL1": {
+      "model": "BINS501G",
+      "browserFilename": "BINS501G.CHRM",
+      "assetPath": "play/assets/harbor/tom-lesson/BINS501G.CHRM",
+      "textureAssetPath": "play/assets/harbor/tom-lesson/textures.bin",
+      "sourceBinding": {
+        "kind": "authored-package-prop-association",
+        "evidence": "docs/design/story-final-day.md#toms-lesson-and-farewell"
+      }
+    },
+    "BTL2": {
+      "model": "BINS501G",
+      "browserFilename": "BINS501G.CHRM",
+      "assetPath": "play/assets/harbor/tom-lesson/BINS501G.CHRM",
+      "textureAssetPath": "play/assets/harbor/tom-lesson/textures.bin",
+      "sourceBinding": {
+        "kind": "authored-package-prop-association",
+        "evidence": "docs/design/story-final-day.md#toms-lesson-and-farewell"
+      }
+    }
+  },
+  "packageActors": {
+    "TOM_": {
+      "label": "Tom Johnson",
+      "modelCode": "AMG_L",
+      "browserFilename": "AMG_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/harbor/tom-lunch-invitation/AMG_L.CHRM",
+      "textureAssetPath": "play/assets/harbor/tom-lunch-invitation/character-textures.bin",
+      "sourceBinding": {
+        "kind": "authored-package-model-association",
+        "archiveMember": "AMG_L.CHRM",
+        "evidence": "docs/design/story-final-day.md"
+      }
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "RADI",
+    "TOM_",
+    "BTL1",
+    "BTL2"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/tom-lesson/M_0001.MOTN",
+      "byteLength": 922384,
+      "sha256": "c69180ecc2de5e0d380668bbcc45df602a6a6cc7a5714e818b1df5456ecee5ce"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/tom-lesson/M_0001.MOTN",
+      "byteLength": 922384,
+      "sha256": "c69180ecc2de5e0d380668bbcc45df602a6a6cc7a5714e818b1df5456ecee5ce"
+    },
+    {
+      "path": "play/assets/harbor/tom-lesson/SEQDATA0.AUTH",
+      "byteLength": 13104,
+      "sha256": "55f7bf93f6bd6e88823abf5641a35fae12114db7dd8051622387c7004e810467"
+    },
+    {
+      "path": "play/assets/harbor/tom-lesson/SEQDATA1.AUTH",
+      "byteLength": 4748,
+      "sha256": "f94e8a54bfb3c86b0ac324f302f81efcd39b5145a060d0027b0e029b2818ce1f"
+    },
+    {
+      "path": "play/assets/harbor/tom-lesson/SEQDATA2.AUTH",
+      "byteLength": 6356,
+      "sha256": "9912cbc3ad25e271c889c058e072e4231eb60677978bb06ba76ec0e21b14c1d2"
+    },
+    {
+      "path": "play/assets/harbor/tom-lesson/SEQDATA7.AUTH",
+      "byteLength": 5436,
+      "sha256": "6921a55634540629323efac03ae5aad1ec7c2fd118fede3e1860e22ac7664940"
+    },
+    {
+      "path": "play/assets/harbor/tom-lesson/SEQDATA8.AUTH",
+      "byteLength": 4996,
+      "sha256": "e1ff3ff0e5a5734470ff5017feff940be5ff783a6177f5243b471c75475ada18"
+    },
+    {
+      "path": "play/assets/harbor/tom-lesson/SEQDATA9.AUTH",
+      "byteLength": 4264,
+      "sha256": "fd6ec490dad298ede8772d5645d4887c395e6a64996d8f0e54c373c49da5428c"
+    },
+    {
+      "path": "play/assets/harbor/tom-lesson/RADK400G.CHRM",
+      "byteLength": 1212,
+      "sha256": "6eab7d4965de1786125439c20d1f21fd6da2aa056a98d6eac595b454e92b7061"
+    },
+    {
+      "path": "play/assets/harbor/tom-lesson/BINS501G.CHRM",
+      "byteLength": 2132,
+      "sha256": "77bc11a2d715a76838a2df1f98a16f498a95c2319867515d1a88428ee50e8e4d"
+    },
+    {
+      "path": "play/assets/harbor/tom-lesson/textures.bin",
+      "byteLength": 56512,
+      "sha256": "b643377808fb920a5368338dacead67f1246792d3b5bf6f9412ec26ee84d6e61"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "M0W1/SEQDATA0.AUTH",
+      "archiveMember": "SEQDATA0.AUTH",
+      "byteLength": 13104,
+      "sha256": "55f7bf93f6bd6e88823abf5641a35fae12114db7dd8051622387c7004e810467",
+      "durationFrames": 1099,
+      "durationSeconds": 36.650001525878906,
+      "frameCount": 68,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 7,
+        "voice": 9,
+        "sound": 54
+      },
+      "actors": [
+        "AKIR",
+        "RADI",
+        "TOM_",
+        "BTL1"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_MISERU_TORNADO_KICK_A_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "TOM_",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 15,
+          "motionName": "OTH_TOM_AUTO1_MISERU_TATUMAKI_0100",
+          "startFrame": 104,
+          "endFrame": 732
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 272,
+          "motionBank": 16,
+          "sequenceIndex": 30,
+          "motionName": "AKI_AKI_WALK_LP_01TOM",
+          "startFrame": 3,
+          "endFrame": 29
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 299,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_MISERU_TORNADO_KICK_A_0100",
+          "startFrame": 1,
+          "endFrame": 61
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 360,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_MISERU_TORNADO_KICK_A_0100",
+          "startFrame": 94,
+          "endFrame": 833
+        },
+        {
+          "actorTag": "TOM_",
+          "frame": 630,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "OTH_TOM_MISERU_TORNADO_KICK_A_0100",
+          "startFrame": 631,
+          "endFrame": 965
+        },
+        {
+          "actorTag": "TOM_",
+          "frame": 965,
+          "motionBank": 16,
+          "sequenceIndex": 15,
+          "motionName": "OTH_TOM_AUTO1_MISERU_TATUMAKI_0100",
+          "startFrame": 1173,
+          "endFrame": 1307
+        }
+      ]
+    },
+    {
+      "slot": 1,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "M0W1/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 4748,
+      "sha256": "f94e8a54bfb3c86b0ac324f302f81efcd39b5145a060d0027b0e029b2818ce1f",
+      "durationFrames": 432,
+      "durationSeconds": 14.416666984558105,
+      "frameCount": 10,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 2,
+        "voice": 4,
+        "sound": 5
+      },
+      "actors": [
+        "AKIR",
+        "TOM_",
+        "RADI",
+        "BTL1"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "AKI_KOTOWARU_TORNADO_KICK_A_0100",
+          "startFrame": 121,
+          "endFrame": 552
+        },
+        {
+          "actorTag": "TOM_",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "OTH_TOM_KOTOWARU_TORNADO_KICK_A_0100",
+          "startFrame": 187,
+          "endFrame": 618
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "M0W1/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 6356,
+      "sha256": "9912cbc3ad25e271c889c058e072e4231eb60677978bb06ba76ec0e21b14c1d2",
+      "durationFrames": 589,
+      "durationSeconds": 19.649999618530273,
+      "frameCount": 24,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 3,
+        "voice": 5,
+        "sound": 17
+      },
+      "actors": [
+        "TOM_",
+        "AKIR",
+        "BTL1",
+        "RADI"
+      ],
+      "motions": [
+        {
+          "actorTag": "TOM_",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "OTH_TOM_RENSYUUSURU_STEP_TORNADO_KICK_A_0100",
+          "startFrame": 201,
+          "endFrame": 380
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_RENSYUUSURU_STEP_TORNADO_KICK_A_0100",
+          "startFrame": 201,
+          "endFrame": 789
+        },
+        {
+          "actorTag": "TOM_",
+          "frame": 181,
+          "motionBank": 16,
+          "sequenceIndex": 17,
+          "motionName": "OTH_TOM_AUTO3_SETUMEI_TATUMAKI_0100",
+          "startFrame": 353,
+          "endFrame": 761
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "M0W1/SEQDATA7.AUTH",
+      "archiveMember": "SEQDATA7.AUTH",
+      "byteLength": 5436,
+      "sha256": "6921a55634540629323efac03ae5aad1ec7c2fd118fede3e1860e22ac7664940",
+      "durationFrames": 416,
+      "durationSeconds": 13.883333206176758,
+      "frameCount": 14,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 3,
+        "voice": 4,
+        "sound": 9
+      },
+      "actors": [
+        "AKIR",
+        "BTL2",
+        "TOM_",
+        "RADI"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "AKI_OSIERU_TORNADO_KICK_B_0100",
+          "startFrame": 751,
+          "endFrame": 1143
+        },
+        {
+          "actorTag": "TOM_",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "OTH_TOM_OSIERU_TORNADO_KICK_B_0100",
+          "startFrame": 764,
+          "endFrame": 1130
+        },
+        {
+          "actorTag": "TOM_",
+          "frame": 368,
+          "motionBank": 16,
+          "sequenceIndex": 14,
+          "motionName": "OTH_TOM_TALK_LP_B_0100",
+          "startFrame": 1,
+          "endFrame": 60
+        }
+      ]
+    },
+    {
+      "slot": 4,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "M0W1/SEQDATA8.AUTH",
+      "archiveMember": "SEQDATA8.AUTH",
+      "byteLength": 4996,
+      "sha256": "e1ff3ff0e5a5734470ff5017feff940be5ff783a6177f5243b471c75475ada18",
+      "durationFrames": 742,
+      "durationSeconds": 24.75,
+      "frameCount": 28,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 2,
+        "voice": 8,
+        "sound": 19
+      },
+      "actors": [
+        "RADI",
+        "AKIR",
+        "TOM_"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_DEKIRU_TORNADO_KICK_B_0100",
+          "startFrame": 120,
+          "endFrame": 731
+        },
+        {
+          "actorTag": "TOM_",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "OTH_TOM_DEKIRU_TORNADO_KICK_B_0100",
+          "startFrame": 231,
+          "endFrame": 972
+        }
+      ]
+    },
+    {
+      "slot": 5,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "M0W1/SEQDATA9.AUTH",
+      "archiveMember": "SEQDATA9.AUTH",
+      "byteLength": 4264,
+      "sha256": "fd6ec490dad298ede8772d5645d4887c395e6a64996d8f0e54c373c49da5428c",
+      "durationFrames": 432,
+      "durationSeconds": 14.416666984558105,
+      "frameCount": 10,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 2,
+        "voice": 4,
+        "sound": 5
+      },
+      "actors": [
+        "TOM_",
+        "AKIR",
+        "RADI"
+      ],
+      "motions": [
+        {
+          "actorTag": "TOM_",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "OTH_TOM_KOTOWARU_TORNADO_KICK_A_0100",
+          "startFrame": 187,
+          "endFrame": 617
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "AKI_KOTOWARU_TORNADO_KICK_A_0100",
+          "startFrame": 121,
+          "endFrame": 552
+        }
+      ]
+    }
+  ]
+}

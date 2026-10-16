@@ -33,6 +33,10 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["offer",0,"0"],["decline",1,"1"],["accept",2,"2"],["demo",3,"7"],["success",4,"8"],["stop",5,"9"]].map(([part,slot,file])=>[
+    `s1.mfsy.tom-lesson-${part}.scene`,{kind:"native-cutscene",area:"MFSY",durableEffects:"forbidden",returnPlayerState:true,
+      cutscene:{id:`story-s1-tom-lesson-${part}`,packageId:"tom-lesson",worldId:"mfsy",storyPresentation:true,
+        activity:{slot,binding:{kind:"map-embedded-slot",activityId:`M0W1/SEQDATA${file}.AUTH`}}}}]),
   ["s1.nbik.nozomi-home.scene",{kind:"native-cutscene",area:"NBIK",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-nozomi-home",packageId:"nozomi-home",worldId:"nbik-home",storyPresentation:true,
       program:{programId:"story-s1-nozomi-home",entryFunction:"$activity-sequence",area:"NBIK",worldId:"nbik-home"}}}],
@@ -45,6 +49,7 @@ const ACTIVITIES = new Map([
     cutscene:{id:"story-s1-chicken-race-intro",packageId:"chicken-race",worldId:"mfsy",storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"RACE/SEQDATA1.AUTH"}}}}],
   ...[["final-meditation","MSOU/SEQDATA1.AUTH","JHD0","exterior"],
+    ["tom-farewell","M0W1/SEQDATAB.AUTH"],
     ["tom-lunch-invitation","TOMOGORI/SEQDATA1.AUTH"],["yada-dismissal","MARU_KUB/SEQDATA2.AUTH"],
     ["goro-job-lead","GOROCOOP/SEQDATA1.AUTH"],["goro-job-appointment","MGOR/SEQDATA0.AUTH"],
     ["charlie-harbor-interrogation","BAT_MBQC/SEQDATA0.AUTH"],

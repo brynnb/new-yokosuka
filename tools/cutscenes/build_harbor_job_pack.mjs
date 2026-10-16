@@ -15,6 +15,7 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const defaultEvidence="docs/design/story-harbor-work.md";
 const archives={
+  M0W1:"339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1",
   "JHD0/MSOU":"92d841582c87eda667d2f377bbbc3cadbb2618fa4a414651bcee72182a8d14ec",
   TOMOGORI:"cce64a24b1d50d80efd0e008a7e714b6811e5c7db4063df0e043d2de840dcc09",
   MARU_KUB:"ffc7a9549dca0d9fe6f683f7884e8239a511bfc74f5d8cac7281962674552cb5",
@@ -39,6 +40,25 @@ const archives={
   ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
 const profiles=[
+  {id:"tom-lesson",archive:"M0W1",resourceName:"M0W1",evidence:"docs/design/story-final-day.md#toms-lesson-and-farewell",motion:"M_0001.MOTN",
+    actors:["AKIR","TOM_","RADI","BTL1","BTL2"],activities:[
+      {file:"SEQDATA0.AUTH",durationFrames:1099,actors:["AKIR","RADI","TOM_","BTL1"]},
+      {file:"SEQDATA1.AUTH",durationFrames:432,actors:["AKIR","TOM_","RADI","BTL1"]},
+      {file:"SEQDATA2.AUTH",durationFrames:589,actors:["TOM_","AKIR","BTL1","RADI"]},
+      {file:"SEQDATA7.AUTH",durationFrames:416,actors:["AKIR","BTL2","TOM_","RADI"]},
+      {file:"SEQDATA8.AUTH",durationFrames:742,actors:["RADI","AKIR","TOM_"]},
+      {file:"SEQDATA9.AUTH",durationFrames:432,actors:["TOM_","AKIR","RADI"]}],
+    sharedActorManifest:{path:"play/assets/harbor/tom-lunch-invitation/manifest.json",sha256:"384aa14999e496b67b9a3303283352fe61234cd574d4fa1767093deeac5f4436"},
+    props:{RADI:"RADK400G",BTL1:"BINS501G",BTL2:"BINS501G"},referenceActors:["RADI"],authoredPropBindings:true,propTextureHash:"a06e7d5b5dd1ae6a3ce75d9bf9987a92eb0018fe4d1fd37d9473c2b6e026c4d9",
+    stream:"E1021",streamHash:"2a2885b618151bb0c8226e44a9358b6fe338ac1886ef0a4b9e4fc835092a9167",sound:"E1_TOMWZ.SND",soundHash:"f157fc9a22209dd9c128062a2d0df623d787c66fb3652ef7ef4f3a542a6a59a1",
+    selectionRule:"Original offer/refusal/acceptance/double-kick demonstration/success/stop alternatives. Yarn selects the branch; these six clips are not a sequential playlist or recovered native selector."},
+  {id:"tom-farewell",archive:"M0W1",resourceName:"M0W1",evidence:"docs/design/story-final-day.md#toms-lesson-and-farewell",auth:"SEQDATAB.AUTH",motion:"M_0001.MOTN",frames:2849,actors:["AKIR","TOM_","RADI"],
+    sharedActorManifest:{path:"play/assets/harbor/tom-lunch-invitation/manifest.json",sha256:"384aa14999e496b67b9a3303283352fe61234cd574d4fa1767093deeac5f4436"},
+    props:{RADI:"RADK400G"},referenceActors:["RADI"],authoredPropBindings:true,propTextureHash:"a06e7d5b5dd1ae6a3ce75d9bf9987a92eb0018fe4d1fd37d9473c2b6e026c4d9",
+    stream:"01TOMB",streamHash:"23daed8e59dcd1d271fd07fb41ea37e1131917bc234b7d06def325fb2b2aef85",sound:"E1TOMWZA.SND",soundHash:"193dce839f758b9e6c5f72370496eca21977ea483e3e3233ead2b9b2993712f3",
+    additionalStreams:[{stream:"01TOMA",sha256:"beee7fd3fe15645298fd1ea0c74dc6d8f7b30308209b16e15f2ff40c578f9d20"},{stream:"01TOMC",sha256:"11b5327a43bf069e5cc7244089747897f73bf9120f724f1a3c52706a5f5536e7"}],
+    unavailableVoices:{"01TOMBB013.str":{reason:"Original farewell requests01TOMBB013.str, absent from all three pinned English01TOM archives. No substitute speech or invented subtitle.",evidence:"docs/design/story-final-day.md#toms-lesson-and-farewell"}},
+    selectionRule:"Original standalone farewell B, not combined mastery/farewell A. It follows either genuinely learned or explicitly declined optional practice; film completion cannot grant Tornado Kick."},
   {id:"final-meditation",directory:"hazuki",evidence:"docs/design/story-final-day.md",archive:"JHD0/MSOU",resourceName:"MSOU",auth:"SEQDATA1.AUTH",motion:"M_01MSO.MOTN",frames:1150,
     actors:["KATA","SAYA","IWAO","AKIR"],actorModels:{IWAO:["Iwao Hazuki","IWA_M"]},
     actorTextureHash:"5e90754604ccd7e8e8b2f3bdb78bbe1a71244c6d40ffa8323a93710bac22a689",
@@ -164,10 +184,11 @@ for(const p of selected){
     members.push({name,sourcePath,sourceManifestPath:`disc3/SCENE/03/${archiveStem(archive)}.PKS`,archiveMember:name,sourceSha256:archives[archive],byteLength:found.bytes.length,sha256:sha256(found.bytes)});
     return name;
   };
-  if(p.auth){
-    member(p.archive,p.auth);
+  const activities=p.activities||(p.auth?[{file:p.auth,durationFrames:p.frames,actors:p.actors}]:[]);
+  for(const activity of activities){
+    member(p.archive,activity.file);
     if(p.silent){
-      const bytes=parseIpacActivityArchive(fs.readFileSync(path.join(source,`MFSY/${p.archive}.PKS`))).members.find(m=>m.name===p.auth).bytes;
+      const bytes=parseIpacActivityArchive(fs.readFileSync(path.join(source,`${archiveStem(p.archive)}.PKS`))).members.find(m=>m.name===activity.file).bytes;
       // A silent profile must actually have no original audio commands; never
       // use this to conceal a missing bank or an unimplemented voice request.
       if(parseAuthSequence(bytes).sounds.length)throw Error(`Unexpected original audio in silent ${p.id}`);
@@ -253,14 +274,14 @@ for(const p of selected){
   const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:p.resourceName||p.archive,disc:3,sourceMembers:members,expectedMembers:members,
     bindingEvidence:evidence,selectionRule:p.selectionRule||"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),...(p.silent?{}:{audioManifest:`${audioPrefix}/manifest.json`}),
-    motionBanks:[{bank:p.bank??16,member:p.motion}],activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:p.auth,actors:p.actors,durationFrames:p.frames,
-      ...(sceneObjects.ROOM?{nativeSceneObjectStates:[{actorTag:"ROOM",presented:true}]}:{})}],
+    motionBanks:[{bank:p.bank??16,member:p.motion}],activities:activities.map((activity,slot)=>({...activity,slot,binding:{kind:"map-embedded-slot"},
+      ...(sceneObjects.ROOM?{nativeSceneObjectStates:[{actorTag:"ROOM",presented:true}]}:{})})),
     packageActors,sceneObjects,outputMembers:[...new Set(outputMembers)],generatedAssets,
   });
   runtimePaths.push(`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path));
   console.log(`Built ${p.id}: ${manifest.activities[0].durationSeconds.toFixed(2)} seconds`);
   if(p.silent||!process.argv.includes("--audio"))continue;
-  const audio=buildNativeAseqAudioPack({generatedBy,disc:3,authDirectory:path.join(root,prefix),authFiles:[p.auth],authManifest:`${prefix}/manifest.json`,resourceBindingEvidence:evidence,
+  const audio=buildNativeAseqAudioPack({generatedBy,disc:3,authDirectory:path.join(root,prefix),authFiles:activities.map(a=>a.file),authManifest:`${prefix}/manifest.json`,resourceBindingEvidence:evidence,
     stream:{label:`${p.stream}.AFS`,path:path.join(source,`STREAM/${p.stream}.AFS`),manifestPath:`disc3/SCENE/03/STREAM/${p.stream}.AFS`,sha256:p.streamHash},
     additionalStreams:p.additionalStreams?.map(s=>({label:`${s.stream}.AFS`,path:path.join(source,`STREAM/${s.stream}.AFS`),manifestPath:`disc3/SCENE/03/STREAM/${s.stream}.AFS`,sha256:s.sha256})),
     soundBank:{label:p.sound,path:path.join(source,`SOUND/${p.sound}`),manifestPath:`disc3/SCENE/03/SOUND/${p.sound}`,sha256:p.soundHash},

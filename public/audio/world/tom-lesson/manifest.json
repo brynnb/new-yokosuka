@@ -1,0 +1,2994 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/E1021.AFS",
+      "sha256": "2a2885b618151bb0c8226e44a9358b6fe338ac1886ef0a4b9e4fc835092a9167"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/E1_TOMWZ.SND",
+      "sha256": "f157fc9a22209dd9c128062a2d0df623d787c66fb3652ef7ef4f3a542a6a59a1"
+    },
+    "authManifest": "play/assets/harbor/tom-lesson/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#toms-lesson-and-farewell"
+  },
+  "voices": [
+    {
+      "voiceId": "E1021A002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021A002.aiff",
+      "nativeMember": "E1021A002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 12288,
+      "nativeSha256": "17b08c43b372004f16dd7662b60bdcaf85781990af454afdf806fcd3bfe355bb",
+      "speakerId": "AKIR",
+      "sourceText": "Tom, what was that Leg Move?",
+      "displayText": "Tom, what was that Leg Move?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021A002.wav",
+      "byteLength": 48940,
+      "sha256": "7531a0ce53aaebf927ae33d928d07b86e1cb377711a260f56a34f658ba68609c"
+    },
+    {
+      "voiceId": "E1021A004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021A004.aiff",
+      "nativeMember": "E1021A004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 14336,
+      "nativeSha256": "9544c4bf6d73853c4ba723365a8889779725c73ee3a8caced8b05ee76aa9c4d8",
+      "speakerId": "AKIR",
+      "sourceText": "No thanks, but I＆appreciate the offer.",
+      "displayText": "No thanks, but I\nappreciate the offer.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021A004.wav",
+      "byteLength": 57132,
+      "sha256": "6cf9902e9e11fc94d11f6b0f4cb747f2ae6f5602ca90be7e8a7a1c2e9e4f6250"
+    },
+    {
+      "voiceId": "E1021A005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021A005.aiff",
+      "nativeMember": "E1021A005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 6144,
+      "nativeSha256": "03c08619d73f347d60814dfcc1f3f449fab07019733c217ea88cd3f95c5ef51a",
+      "speakerId": "AKIR",
+      "sourceText": "Sorry, Tom.",
+      "displayText": "Sorry, Tom.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021A005.wav",
+      "byteLength": 24364,
+      "sha256": "eef3042248442c41817c227b0e0390b150107786d7da03862f67598cf5cee4bf"
+    },
+    {
+      "voiceId": "E1021A006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021A006.aiff",
+      "nativeMember": "E1021A006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 10240,
+      "nativeSha256": "5e78a051f1b5fcebe26bec1da28e2d32bccf9d0a274b4c94eab5e5e012b86e77",
+      "speakerId": "AKIR",
+      "sourceText": "Uh, yeah. Teach me OK?",
+      "displayText": "Uh, yeah. Teach me OK?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021A006.wav",
+      "byteLength": 40748,
+      "sha256": "0bdd5c225804ccfe70fab646c3d7c80cdc81bb804389cb878c2df3c0ef4240d6"
+    },
+    {
+      "voiceId": "E1021A010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021A010.aiff",
+      "nativeMember": "E1021A010.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 8192,
+      "nativeSha256": "12db999b6ee93a70a12f7cb99e4a12ff7ca3cc2b17b756d1ecf71e65c91ac576",
+      "speakerId": "AKIR",
+      "sourceText": "No, that's OK.",
+      "displayText": "No, that's OK.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021A010.wav",
+      "byteLength": 32556,
+      "sha256": "435b4002b954e62a6229c9ea2ca2e4e745a7663ba31b8ab587e5c1b91c6db53e"
+    },
+    {
+      "voiceId": "E1021A011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021A011.aiff",
+      "nativeMember": "E1021A011.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 12288,
+      "nativeSha256": "dcd208c6b1256cb5f5d0beb37c0dd0145652594ea57aa596871fd74e97db6f84",
+      "speakerId": "AKIR",
+      "sourceText": "You're a good teacher, Tom.＆Thanks.",
+      "displayText": "You're a good teacher, Tom.\nThanks.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021A011.wav",
+      "byteLength": 48940,
+      "sha256": "7b128792f3842f5f66e73521b30c3c220fcbcc5ab198b9d92964a6848b0c757d"
+    },
+    {
+      "voiceId": "E1021A012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021A012.aiff",
+      "nativeMember": "E1021A012.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 8192,
+      "nativeSha256": "c26f66d0bada024c8c9a3581e5aff21c72ac805154224b4d205930ff3a3bb66b",
+      "speakerId": "AKIR",
+      "sourceText": "Sure. It's a deal.",
+      "displayText": "Sure. It's a deal.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021A012.wav",
+      "byteLength": 32556,
+      "sha256": "1969f2087e68136b5eec79826f4850e39b1afd109accd30c622a3e5b6c3eb3a5"
+    },
+    {
+      "voiceId": "E1021A015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021A015.aiff",
+      "nativeMember": "E1021A015.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 14336,
+      "nativeSha256": "6dbb6ba742d1367102ca006164bb7fd6348611acfd8fd1370998435ef104b221",
+      "speakerId": "AKIR",
+      "sourceText": "Sorry. I can't practice anymore.",
+      "displayText": "Sorry. I can't practice anymore.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021A015.wav",
+      "byteLength": 57132,
+      "sha256": "b9acf9e87fa14e1285f3eb17d63410698a2095540e12f0e8da9c33a701a1571d"
+    },
+    {
+      "voiceId": "E1021A017",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021A017.aiff",
+      "nativeMember": "E1021A017.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 4096,
+      "nativeSha256": "53dbb81a837bfbdd82d9ede1176a91918fedf229922bfc7d406c2dc1608dc5a1",
+      "speakerId": "AKIR",
+      "sourceText": "Tom.",
+      "displayText": "Tom.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021A017.wav",
+      "byteLength": 16172,
+      "sha256": "1319f25e0df0c0d21e0c7ebbe50fd7865bf24a2b0267c78f71069e234d4f1c94"
+    },
+    {
+      "voiceId": "E1021A018",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021A018.aiff",
+      "nativeMember": "E1021A018.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 10240,
+      "nativeSha256": "49f052a668c86dce31a4f78eb43feedd11b1a5dd449113fa5eb6043476d25926",
+      "speakerId": "AKIR",
+      "sourceText": "I don't feel like coffee today.",
+      "displayText": "I don't feel like coffee today.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021A018.wav",
+      "byteLength": 40748,
+      "sha256": "aa57c9c992447f72d0d3aceec7e5f8ad50b96e39ebf7fed1e7d109eb1ecf2e90"
+    },
+    {
+      "voiceId": "E1021B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B001.aiff",
+      "nativeMember": "E1021B001.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 12288,
+      "nativeSha256": "07087e3b0d9486293a381bc883c1daa9c0c9e199a5eda000ce320020494c6c30",
+      "speakerId": "TOM_",
+      "sourceText": "Hey, Ryo.",
+      "displayText": "Hey, Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 29
+          },
+          {
+            "shape": 3,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B001.wav",
+      "byteLength": 48940,
+      "sha256": "687f5f73618af6b60a413cdfd01ca389c1fe104d72e458c0052a470b41f98a49"
+    },
+    {
+      "voiceId": "E1021B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B003.aiff",
+      "nativeMember": "E1021B003.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 30720,
+      "nativeSha256": "281ac24a1584ac56afa49c6692de83024f52707640bcb9c13bcc00c4df8149ac",
+      "speakerId": "TOM_",
+      "sourceText": "Hey, Ryo. Look!",
+      "displayText": "Hey, Ryo. Look!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 95
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B003.wav",
+      "byteLength": 122668,
+      "sha256": "625343016da3a11ee559eb2a8ee0e78e247cdd74b207b1e27e138711a9713ad4"
+    },
+    {
+      "voiceId": "E1021B004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B004.aiff",
+      "nativeMember": "E1021B004.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 24576,
+      "nativeSha256": "781f7d19d45b073be4a6043f160f9947cd666171e14f585f13418effc8dfdebd",
+      "speakerId": "TOM_",
+      "sourceText": "A friend taught me this,＆it's a Tornado Kick.",
+      "displayText": "A friend taught me this,\nit's a Tornado Kick.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B004.wav",
+      "byteLength": 98092,
+      "sha256": "e3a74b7db0c63bed3cc5e5f9ee35ff64e10e32f9169eee9e9b63ca7228df6278"
+    },
+    {
+      "voiceId": "E1021B005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B005.aiff",
+      "nativeMember": "E1021B005.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 20480,
+      "nativeSha256": "dddef90012de41d4415e90b56142892a52a5bd7220e3a2c7189ba96a95f56ebd",
+      "speakerId": "TOM_",
+      "sourceText": "You want me to teach you?",
+      "displayText": "You want me to teach you?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 16
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 30
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B005.wav",
+      "byteLength": 81708,
+      "sha256": "c51481420bed524471a086eb18b1c6af74f3a843da75d129ed0c29ef3646977f"
+    },
+    {
+      "voiceId": "E1021B006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B006.aiff",
+      "nativeMember": "E1021B006.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 28672,
+      "nativeSha256": "1cb2b249fc41f61a05ad3f21238b0f15158d4c1cad8e577e81ffac19ccce52de",
+      "speakerId": "TOM_",
+      "sourceText": "Oh, man. That's too bad.",
+      "displayText": "Oh, man. That's too bad.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 25
+          },
+          {
+            "shape": 5,
+            "durationTicks": 30
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 36
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B006.wav",
+      "byteLength": 114476,
+      "sha256": "04af972deef9d381553990be54ad8316ce4451910b7ce3751f5fcda67320d921"
+    },
+    {
+      "voiceId": "E1021B010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B010.aiff",
+      "nativeMember": "E1021B010.str",
+      "nativeIndex": 27,
+      "nativeByteLength": 26624,
+      "nativeSha256": "49bbd57a9377845d4456337c4846f0edac60604d34cf2c91f002dba17d54de8f",
+      "speakerId": "TOM_",
+      "sourceText": "I thought you'd be able＆to master this Leg Move.",
+      "displayText": "I thought you'd be able\nto master this Leg Move.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 39
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B010.wav",
+      "byteLength": 106284,
+      "sha256": "88d359af84a33cdee39e76acd86a4240661a6500eb139373c820986b7f83ab52"
+    },
+    {
+      "voiceId": "E1021B012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B012.aiff",
+      "nativeMember": "E1021B012.str",
+      "nativeIndex": 29,
+      "nativeByteLength": 12288,
+      "nativeSha256": "04234f699f6335b0bbcb84dea5e8c795fa8515b9816a6a1d62c364d8196d96a6",
+      "speakerId": "TOM_",
+      "sourceText": "OK.",
+      "displayText": "OK.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 36
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 26
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B012.wav",
+      "byteLength": 48940,
+      "sha256": "3f567a92f95dc9ce355b1bb7debee4040bf79bfe430cb9b1ee0bd43e7800af99"
+    },
+    {
+      "voiceId": "E1021B013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B013.aiff",
+      "nativeMember": "E1021B013.str",
+      "nativeIndex": 30,
+      "nativeByteLength": 14336,
+      "nativeSha256": "eb5bbab3f6ea7661a6be21d2c1e290b28319eb7f8379ac337fb7342f3d4e42ff",
+      "speakerId": "TOM_",
+      "sourceText": "It's your lucky day!",
+      "displayText": "It's your lucky day!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B013.wav",
+      "byteLength": 57132,
+      "sha256": "f5baee9ab18d146699e0311da9040c762823123fc238117653e03703cedf8036"
+    },
+    {
+      "voiceId": "E1021B014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B014.aiff",
+      "nativeMember": "E1021B014.str",
+      "nativeIndex": 31,
+      "nativeByteLength": 57344,
+      "nativeSha256": "74f1d96c30f6c406132563b8cd22e29ef17ed898a238c5a32651650562f8e395",
+      "speakerId": "TOM_",
+      "sourceText": "First, the music!",
+      "displayText": "First, the music!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 190
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 27
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B014.wav",
+      "byteLength": 229164,
+      "sha256": "11e6b2e417682fca57c9c6f426af76ee15ee329cf501d05259bc2d113a9b417a"
+    },
+    {
+      "voiceId": "E1021B015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B015.aiff",
+      "nativeMember": "E1021B015.str",
+      "nativeIndex": 32,
+      "nativeByteLength": 26624,
+      "nativeSha256": "05dda3a77a0bb20e7096f813060c2a4b6fc0b21da2aef61f973f8ff9c0902991",
+      "speakerId": "TOM_",
+      "sourceText": "First, I'll teach you the steps.＆You watch carefully, OK?",
+      "displayText": "First, I'll teach you the steps.\nYou watch carefully, OK?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B015.wav",
+      "byteLength": 106284,
+      "sha256": "6a9f7867fda7e7044d53f818b989ad4409c1144ad009cbba9c89d8196c4fe8b5"
+    },
+    {
+      "voiceId": "E1021B036",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B036.aiff",
+      "nativeMember": "E1021B036.str",
+      "nativeIndex": 52,
+      "nativeByteLength": 10240,
+      "nativeSha256": "c50717430508771f25e21723bdccf6778229d978b8cd5d00cae9865966c00277",
+      "speakerId": "TOM_",
+      "sourceText": "and second kick!",
+      "displayText": "and second kick!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 21
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B036.wav",
+      "byteLength": 40748,
+      "sha256": "1a449cd2e102af0a7a61ea17b188e6a50c2a52b24086e641a2c3967305a452b0"
+    },
+    {
+      "voiceId": "E1021B037",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B037.aiff",
+      "nativeMember": "E1021B037.str",
+      "nativeIndex": 53,
+      "nativeByteLength": 20480,
+      "nativeSha256": "5d8a181523ffd6dc89209b8cef3eac95e2a5096bc169ee2cb501ce6bf4f3ed2b",
+      "speakerId": "TOM_",
+      "sourceText": "This is the real Tornado Kick.",
+      "displayText": "This is the real Tornado Kick.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B037.wav",
+      "byteLength": 81708,
+      "sha256": "8f712041667ca6d939cae8e9aca916cf74e1282053f8146401b5bb052edc0bc7"
+    },
+    {
+      "voiceId": "E1021B038",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B038.aiff",
+      "nativeMember": "E1021B038.str",
+      "nativeIndex": 54,
+      "nativeByteLength": 20480,
+      "nativeSha256": "e4a83aa10b385199743705c64ef771394c733bad552e5534483039adf9b4e7f9",
+      "speakerId": "TOM_",
+      "sourceText": "Now, Ryo you try it, OK?",
+      "displayText": "Now, Ryo you try it, OK?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B038.wav",
+      "byteLength": 81708,
+      "sha256": "2fc913a0ef264817e6da5a6455768bb4bb968515a6d1f7ee039a3b93c8a17d9e"
+    },
+    {
+      "voiceId": "E1021B039",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B039.aiff",
+      "nativeMember": "E1021B039.str",
+      "nativeIndex": 55,
+      "nativeByteLength": 8192,
+      "nativeSha256": "3c20a06bc0439990c30780cf78a74b69f808fde95986789d383a3b5e957e4d98",
+      "speakerId": "TOM_",
+      "sourceText": "No, no.",
+      "displayText": "No, no.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B039.wav",
+      "byteLength": 32556,
+      "sha256": "eb04cd30daabf9fa16f9b8064337ace0568894c23fc4efabc38ef1982ebf22cf"
+    },
+    {
+      "voiceId": "E1021B078",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B078.aiff",
+      "nativeMember": "E1021B078.str",
+      "nativeIndex": 92,
+      "nativeByteLength": 14336,
+      "nativeSha256": "6fa34964bcc7e24031f1e309e23b1fadbb6757c4ac5e469c0ae714d82de54a0b",
+      "speakerId": "TOM_",
+      "sourceText": "You mastered the Leg Move great.",
+      "displayText": "You mastered the Leg Move great.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B078.wav",
+      "byteLength": 57132,
+      "sha256": "b1e5ed8be74638a84fc1f02dea19c788a4305aaddf2e8ec62a9a2a2e9bc0b225"
+    },
+    {
+      "voiceId": "E1021B079",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B079.aiff",
+      "nativeMember": "E1021B079.str",
+      "nativeIndex": 93,
+      "nativeByteLength": 22528,
+      "nativeSha256": "a5f74b914e2eb130b308482f6171cb196fbe7a29a477dfb53a395c7ffa2493f2",
+      "speakerId": "TOM_",
+      "sourceText": "If you want to thank me,＆you can buy me a coffee, OK?",
+      "displayText": "If you want to thank me,\nyou can buy me a coffee, OK?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 25
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B079.wav",
+      "byteLength": 89900,
+      "sha256": "fbfe2acac242dbde9fcd87a3d4e72a6bd28ca98f1ee3f9c4f58bc993adadc8c9"
+    },
+    {
+      "voiceId": "E1021B080",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B080.aiff",
+      "nativeMember": "E1021B080.str",
+      "nativeIndex": 94,
+      "nativeByteLength": 12288,
+      "nativeSha256": "f4efe2ab6b342f611d2d9b1790eb4a8824e9e4d23fa79100ce404c05caa7e218",
+      "speakerId": "TOM_",
+      "sourceText": "OK. Later Ryo.",
+      "displayText": "OK. Later Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B080.wav",
+      "byteLength": 48940,
+      "sha256": "fee1084bb5c9c23978c2c30e5c439cb2cd2b622c8c794ca3709398a3099fc147"
+    },
+    {
+      "voiceId": "E1021B089",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B089.aiff",
+      "nativeMember": "E1021B089.str",
+      "nativeIndex": 103,
+      "nativeByteLength": 20480,
+      "nativeSha256": "90f913e65501bc954088786bcfde9dcd5bb2883150c0a1760e3e21007ddbd3cb",
+      "speakerId": "TOM_",
+      "sourceText": "Two steps forward, then.＆first kick=@",
+      "displayText": "Two steps forward, then.\nfirst kick...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 28
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B089.wav",
+      "byteLength": 81708,
+      "sha256": "ff510b2694c462e72aac7eff58255f4d88ff597dfa2ccc5c8677348de1c6472d"
+    },
+    {
+      "voiceId": "E1021B107",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B107.aiff",
+      "nativeMember": "E1021B107.str",
+      "nativeIndex": 121,
+      "nativeByteLength": 59392,
+      "nativeSha256": "2b66f0820b86c8c5ed8816d4edd1a29d4214cd42ed1bc00a46a7ba255b4fcfeb",
+      "speakerId": "TOM_",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 31
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 32
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 32
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B107.wav",
+      "byteLength": 237356,
+      "sha256": "488f2c1887ba67785d639cfcd1ad1d2a39cf2314abde5527ccd2dfb5a5c0f854"
+    },
+    {
+      "voiceId": "E1021B125",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/E1021B125.aiff",
+      "nativeMember": "E1021B125.str",
+      "nativeIndex": 133,
+      "nativeByteLength": 28672,
+      "nativeSha256": "3e9a887af129ae17ccff0b8c5ce76a11c3537522e86d7a179c851914b3796f91",
+      "speakerId": "TOM_",
+      "sourceText": "It's cold. I'll get you some coffee, OK?",
+      "displayText": "It's cold. I'll get you some coffee, OK?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 33
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 32
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-lesson/voice/E1021B125.wav",
+      "byteLength": 114476,
+      "sha256": "76be5fe936de5065d3c4d7f084c002380e1423198cdaaa99fea67ce524c735c3"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 4,
+      "sampleId": 5,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-lesson/sfx/a9040400.wav",
+      "byteLength": 11268,
+      "sha256": "52e4da7a3e985e8db5a3627d373c22d6c4c6d58995225b4979fd5a9a1bf87721"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/smallobject/Handcuff1.aiff",
+      "playbackId": 5,
+      "sampleId": 8,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-lesson/sfx/a9040500.wav",
+      "byteLength": 2692,
+      "sha256": "09d91fa501f2edcda0b8a04b359442f60c707c0f44911648783abb1facd12a3d"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/punch/Punch3.aiff",
+      "playbackId": 7,
+      "sampleId": 10,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/tom-lesson/sfx/a9040700.wav",
+      "byteLength": 2140,
+      "sha256": "7fd82037bc1331dfe21735d0887e987597a1d03b59a9d3ebc638b4b15fcbc7c7"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/punch/Punch4.aiff",
+      "playbackId": 8,
+      "sampleId": 11,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/tom-lesson/sfx/a9040800.wav",
+      "byteLength": 3452,
+      "sha256": "de7777b173ed92765be3db7e16cd8f549d3296459e01fd25dda953e8477b59aa"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/RYOASHI3.aiff",
+      "playbackId": 9,
+      "sampleId": 15,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-lesson/sfx/a9040900.wav",
+      "byteLength": 2900,
+      "sha256": "88b76ba62e1592f6da9b0cbd7e80812687e184b0697ef168b3a38cfff5560a8d"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/RYOASHI4.aiff",
+      "playbackId": 10,
+      "sampleId": 16,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-lesson/sfx/a9040a00.wav",
+      "byteLength": 4844,
+      "sha256": "71c6bf8341bdf7ff5b1f4df7211427c3bc5673706492e9d4e2360e7dd470d120"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/RYOASHI8.aiff",
+      "playbackId": 11,
+      "sampleId": 17,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-lesson/sfx/a9040b00.wav",
+      "byteLength": 6148,
+      "sha256": "527aea43f6b21e79488736d95dca1dd892a6f36a3f09fd81204ee5c9e0a691d0"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/R_kon_s01.aiff",
+      "playbackId": 12,
+      "sampleId": 18,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-lesson/sfx/a9040c00.wav",
+      "byteLength": 4780,
+      "sha256": "76fc1e8795846249e50f4b6eca88b7018d8ae7f4c150c7dfb0e148bf424e850c"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/R_kon_s02.aiff",
+      "playbackId": 13,
+      "sampleId": 19,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-lesson/sfx/a9040d00.wav",
+      "byteLength": 4620,
+      "sha256": "d0de8ca9b431b46ebd1ea467d55fcf0a7626a0a3a8517a60912dec7c137aebc3"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/R_kon_s03.aiff",
+      "playbackId": 14,
+      "sampleId": 20,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-lesson/sfx/a9040e00.wav",
+      "byteLength": 5268,
+      "sha256": "2719f4054c2e820d4315df4fc29b2332c4176d4c9f0d15dbab896e9f1603391a"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/R_kon_s04.aiff",
+      "playbackId": 15,
+      "sampleId": 21,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-lesson/sfx/a9040f00.wav",
+      "byteLength": 5260,
+      "sha256": "fcd6c26989148a72678452339162c2a745a377a00d5880c1002eaa4f2a71699c"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/R_kon_s05.aiff",
+      "playbackId": 16,
+      "sampleId": 22,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-lesson/sfx/a9041000.wav",
+      "byteLength": 5060,
+      "sha256": "e9b1a822f6e042a8b4efba9cd4550c3b93ac35c061990267a24deb73fd24df57"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/R_kon_s06.aiff",
+      "playbackId": 17,
+      "sampleId": 23,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-lesson/sfx/a9041100.wav",
+      "byteLength": 5076,
+      "sha256": "326bedd921df5c99d5d2a516ccff9d5efd4cdd1df321a4faf855b67f281cef5c"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot2/R_kon_s07.aiff",
+      "playbackId": 18,
+      "sampleId": 24,
+      "sampleRate": 10500,
+      "asset": "public/audio/world/tom-lesson/sfx/a9041200.wav",
+      "byteLength": 5068,
+      "sha256": "ab7b5444109a03a4262f20073a18e932f4aa73c61853bf57bde70312f658aed7"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/body/shoulder2.aiff",
+      "playbackId": 19,
+      "sampleId": 26,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/tom-lesson/sfx/a9041300.wav",
+      "byteLength": 1836,
+      "sha256": "95175cd0df5fbf4c7e7b122821b043e45a2ece103d3e68245846efafa4e4031c"
+    },
+    {
+      "commandHex": "a9041400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/swing/swing01.aiff",
+      "playbackId": 20,
+      "sampleId": 27,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/tom-lesson/sfx/a9041400.wav",
+      "byteLength": 16564,
+      "sha256": "f1174d914ada5259cdd44893119c04155500a2eeb0832e2b6bcecb35199297cd"
+    },
+    {
+      "commandHex": "a9041500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/swing/swing04.aiff",
+      "playbackId": 21,
+      "sampleId": 28,
+      "sampleRate": 14000,
+      "asset": "public/audio/world/tom-lesson/sfx/a9041500.wav",
+      "byteLength": 16532,
+      "sha256": "17b3b18856bcd65550c98053eed6bd7065b6302bb8b30aebccdc6dcf5dc97109"
+    },
+    {
+      "commandHex": "a9042200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/cloths2/furimuki_s02.aiff",
+      "playbackId": 34,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tom-lesson/sfx/a9042200.wav",
+      "byteLength": 9676,
+      "sha256": "815e2bb5cee0e948a27a89303d326c3335df6d865d510c09a2e635cb5a188d76"
+    }
+  ]
+}
