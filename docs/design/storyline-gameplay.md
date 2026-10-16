@@ -180,8 +180,14 @@ Earned-save rendered checks verify both keyboard wins, original warehouse
 admission, cancelled hostage conversation/reload retaining victories and natural
 original C/D/E ending/notebook settlement. The final check resumes genuinely
 earned battles and also verifies actual BGM084 playback, restored controls and
-completed reload without replay. The ride home, final-day events, final battles
-and departure remain missing; the checklist above distinguishes each boundary.
+completed reload without replay. The original 23-shot ride home now also passes
+a connected natural-playback check, including cancellation/reload, actual CD
+audio, immediate 05:56 bedroom arrival and separate stay-awake/sleep/07:30 save.
+Completed reload retains the earned outcome and restores controls without extra
+rewards or later-story flags. Riding-skirt deformation remains an explicit
+presentation limitation. The following dojo meditation, final-day events,
+final battles and departure remain missing; the checklist distinguishes each
+boundary. See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest).
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

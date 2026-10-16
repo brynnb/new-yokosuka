@@ -33,6 +33,9 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ["s1.nbik.nozomi-home.scene",{kind:"native-cutscene",area:"NBIK",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-nozomi-home",packageId:"nozomi-home",worldId:"nbik-home",storyPresentation:true,
+      program:{programId:"story-s1-nozomi-home",entryFunction:"$activity-sequence",area:"NBIK",worldId:"nbik-home"}}}],
   ...[["intro",0,"C"],["deal",1,"D"],["coda",2,"E"]].map(([part,slot,file])=>[`s1.tery.nozomi-rescue-${part}.scene`,{
     kind:"native-cutscene",area:"TERY",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-nozomi-rescue-${part}`,packageId:"nozomi-rescue",worldId:"tery",storyPresentation:true,

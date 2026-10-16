@@ -886,6 +886,16 @@ export const WORLDS = Object.freeze({
     includeFile:filename=>/^S3_TERY_MAP(17|18|19)\.MT5$/.test(filename),
     placements:Object.freeze([]),
   }),
+  "nbik-home":Object.freeze({
+    id:"nbik-home",label:"Nozomi's Ride Home",japaneseLabel:"帰り道",nativeArea:"NBIK",
+    prefix:"S3_NBIK",spawn:new BABYLON.Vector3(-133.34780883789062,0,26.650836944580078),yaw:Math.PI,
+    // The film uses both original harbor scenery and the long road. Keep the
+    // driving challenge's MAP17-only world separate from this cinematic layout.
+    // Harbor-layer choices are authored; NBIK's native layer controller is not.
+    includeFile:filename=>/^S3_NBIK_MAP(?:0[1-8]|1[0-4]|17|18)?\.MT5$/.test(filename),
+    timedMapLayers:Object.freeze({modelPrefix:"S3_NBIK",dayEveningPairs:[[2,4],[8,6],[12,14]],nightOnlyLayers:[13]}),
+    placements:Object.freeze([]),
+  }),
   nbik: Object.freeze({
     id:"nbik",label:"Motorcycle Route",japaneseLabel:"バイク",nativeArea:"NBIK",
     prefix:"S3_NBIK",spawn:new BABYLON.Vector3(18,0,-66),yaw:Math.PI,

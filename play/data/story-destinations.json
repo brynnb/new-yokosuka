@@ -1,6 +1,7 @@
 {
   "schema": "new-yokosuka-story-travel-v1",
   "destinations": [
+    {"id":"s1.nozomi.ride-home-start","worldId":"nbik-home","scene":3,"area":"NBIK","entry":null,"position":[-133.34780883789062,0,26.650836944580078],"yaw":3.141592653589793,"provenance":"Original first embedded NBIK ride-home AKIR pose, native X mirrored once. Authored admission to cinematic layout; no extracted default Entry or native route-controller claim. Admission does not award home arrival."},
     {"id":"s1.nozomi.warehouse-entry","worldId":"tery","scene":3,"area":"TERY","entry":null,"position":[-16,0,-24],"yaw":0,"provenance":"Authored staging on the original TERY warehouse ground near the C/D rescue actors. No extracted default Entry exists. Original MAP17/18/19 geometry is reused; admission requires separately earned outside combat and grants no inside victory or rescue."},
     {"id":"s1.nozomi.motorcycle-road","worldId":"nbik","scene":3,"area":"NBIK","entry":null,"position":[18,0,-66],"yaw":3.141592653589793,"provenance":"Authored start on original NBIK MAP17 asphalt. Original transformed road/bridge geometry supplies support; no extracted Entry/AKIR exists. Entry grants no ride or rescue result."},
     {"id":"s1.nozomi.naoyuki-return","worldId":"sakuragaoka","scene":3,"area":"JD00","entry":null,"position":[-14,0,32.5],"yaw":-1.5707963267948966,"provenance":"Authored return to the already rendered/tested gate approach after cancelling or failing the ride. Borrowing remains earned; walk to the gate to retry without replaying the permission film."},

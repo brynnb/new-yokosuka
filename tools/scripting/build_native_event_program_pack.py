@@ -827,6 +827,9 @@ def build_pack(
         if not route_id or route_id in route_ids:
             raise ValueError(f"native event route is missing or duplicated: {route_id}")
         route_ids.add(route_id)
+        runtime_scope = route.get("runtimeScope", "runtime")
+        if runtime_scope not in {"runtime", "research"}:
+            raise ValueError(f"{route_id}: unsupported runtime publication scope")
         source_map = unique_map(event_ir, route)
         if (route.get("selector", {}).get("kind") == "room-initialization"
                 and route["entryFunction"] != source_map.get("entryFunction")):
@@ -880,6 +883,7 @@ def build_pack(
         operation_013e_bindings = operation_013e_static_bindings(functions)
         programs.append({
             "id": route_id,
+            **({"runtimeScope": runtime_scope} if runtime_scope == "research" else {}),
             "disc": route["disc"],
             "area": route["area"],
             "mapinfoSha256": source_map["mapinfoSha256"],
@@ -1071,6 +1075,13 @@ def build_runtime_index(
     descriptors = []
     camera_records_by_area: dict[str, dict[int, dict[str, Any]]] = {}
     for program in program_pack.get("programs", []):
+        scope = program.get("runtimeScope", "runtime")
+        if scope not in {"runtime", "research"}:
+            raise ValueError("unsupported runtime publication scope")
+        # Retain recovered controller research in the offline pack, never in
+        # production discovery metadata or fetchable executable closures.
+        if scope == "research":
+            continue
         program_id = program.get("id")
         area = program.get("area")
         if not isinstance(program_id, str) or not isinstance(area, str):

@@ -6,7 +6,8 @@ room controller. Verified gameplay reaches the transport inquiry and motorcycle
 handoff after the late-night telephone call, then the controllable motorcycle
 ride and saved harbor arrival. The warehouse battles and original hostage
 conversation are connected; their verification boundary is recorded below.
-The ride home and following final-day events remain missing.
+The ride home and separate dawn/rest saves are connected; their verification
+boundary is recorded below. The following dojo/final-day events remain missing.
 
 ## Rest and the call
 
@@ -292,3 +293,104 @@ hostage conversation, and Chai's original jumping-away coda. Currency stays
 uploaded. No future home-ride, final-day, battle or departure result was inserted.
 Auditory mix comparison and exact native combat/presentation fidelity are not
 claimed. The earlier genuinely earned ride and battle checkpoints are retained.
+
+## Ride home and rest
+
+The GameSpot guide, printed p.63, follows the hostage deal with a musical
+motorcycle ride, home arrival at 05:56, then a separate save/sleep and 07:30
+wake before the dojo meditation. These are ordinary events in the existing
+Story settlement path; the ride is a presentation, not another driving win.
+
+| Field | Implementation |
+| --- | --- |
+| Eligibility / entry | After the independently saved rescue, **Take Nozomi home** / **Leave it for now** confirms reward-free travel from the tested warehouse to `nbik-home`. Original first-film AKIR pose is native `[133.347809,0,26.650837]`, mirrored once into browser X. This is a cinematic arrival, not a recovered default Entry. |
+| World / cast / props | Original NBIK harbor and road geometry in a separate cinematic world; the controllable `nbik` world retains MAP17-only loading. Original CHRS binds the motorcycle, six moving cars and moon. Original speed/headlight reference planes remain references, not recreated glow effects. NBIK requests Nozomi's `NZM_M`; reuse that exact full body from TER2 and its existing textures, not a renamed donor. Ryo remains the owned Story avatar. |
+| Sequence / timing / camera | All 23 adjacent original TRCK clips, 4,661 frames / 155.37 seconds, original cameras/movement and M_01BIKE bank16. The existing exact-activity sequence compiler/player keeps one actor/camera/music owner across the shots. Adjacent-file playlist order is authored, not a recovered native controller branch/order. No new cutscene interpreter or story engine. |
+| Dialogue / effects | Both original English 01BIKEB voices/subtitles and both original A1_NBIKE engine-effect tracks resolve. The opening conversation is 31.1 seconds; the remaining paired riding/embrace shots total 124.27 seconds. No invented dialogue, alias or skipped unavailable voice. |
+| Music | Original Disc3 CDDA track5 is 124.79 seconds. Start it at the second clip and retain it through uncued shots with the existing music owner. Duration correspondence supports this pairing; exact CDDA control/cue execution is not recovered. The original PCM is decoded locally, not replaced with another recording. |
+| Time / weather | Preserve the personal weather/calendar during presentation. Harbor layer choices are an authored adaptation of the existing day/evening scheme; MAP17 road remains always loaded, not swapped out as a harbor night layer. After acknowledgement, choose the next 05:56 occurrence, avoiding both calendar rewind and permanent late-save lockout. |
+| Home outcome | Natural completion or supported explicit skip atomically saves only home milestone/notebook, 05:56 and the established Ryo bedroom arrival. Admission alone, cancellation or preparation failure cannot award this. No payment, inventory change, rest/wake, dojo, final-fight or departure result. |
+| Rest / wake | At the existing tested bedside approach, choose **Sleep until 7:30 a.m.** or **Stay awake**. Sleep independently saves the next 07:30, bedside arrival and rest receipt. The sleeping/waking film is condensed; no unrelated nightmare is substituted. A later personal save targets the following date instead of rewinding. The dojo meditation remains a subsequent event. |
+| Cancellation / reload / skip | The shared program releases original actors, camera, audio and inputs on abort/failure; cancelled presentation remains retryable at its saved cinematic start. Saved rescue is retained. Completed home/rest reload cannot replay the ride or grant future progression. Broad cinematic bounds cover transient shot poses without inventing a new recovery system. |
+
+### Ride-home source identities
+
+AUTH files contain `TRCK` headers; `AUTH` is their filename extension, not a
+required binary marker. A bounded read of the existing parser reveals the
+23 resources at offsets 10,572 through 308,488 in original NBIK `MAPINFO.BIN`.
+Each strict container/chunk boundary is validated. Looking for literal `AUTH`
+text alone would incorrectly report them absent.
+
+- `MAPINFO.BIN`: `9acf1bacb3ac4f5533d00b709482dfc8848d9c39fcdfa23ce45e1900f0d06e31`.
+- NBIK `M_01BIKE.BIN`, 243,256 bytes:
+  `b3795359d698c4128ade05ad47dd487c4cc6aba6c51a39a19242e75b06fe5dae`.
+  Includes original paired riding, mounting, turning and embrace motions.
+- `STREAM/01BIKEB.AFS`:
+  `7d018d2ecc4d85e5b680cdcb33f33947970d33b9959f16a51772e120243e7675`.
+- `SOUND/A1_NBIKE.SND`:
+  `d28ee580a7603f021de0adf0f492f1d802692c658451749d864e0eed2f89b034`.
+- Original Disc3 GDI track5: type0, LBA180906, 2,352-byte sectors,
+  byte offset352800. Track SHA256:
+  `bece1989acdbbd6c707cbf6a41ca95b133f4c123ec4520dc2db7e08054d6dcdb`.
+  The 22,012,368-byte, stereo44.1kHz16-bit little-endian PCM payload hashes to
+  `031d1b724985ca7737ccdcfae4a2d461e11c219e46425f2b7fecfe1729ea59bf`.
+  Adjacent-sample roughness validates little-endian decoding (0.071 versus
+  1.416 with the incorrect byte order). The cue/duration pairing remains an
+  explicitly inferred authoring choice, not proof of original controller recovery.
+
+Generate through `node tools/cutscenes/build_nozomi_home_pack.mjs --audio`.
+The original GDI/CDDA track is required in addition to extracted data;
+`SHENMUE_DISC3_GDI` overrides the existing local disc-work GDI. The generator
+resolves relative tracks against the real GDI directory, including worktree
+links, without putting local paths into generated metadata. Then run:
+
+```sh
+python3 -m tools.cutscenes.build_native_activity_preview_programs
+python3 -m tools.scripting.build_native_event_program_pack
+node tools/scripting/build_story_investigation.mjs
+node scripts/check-server-contract.mjs --sync-scripting
+```
+
+Set `NEW_YOKOSUKA_SERVER_DIR` for the authoritative server checkout. Native
+program regeneration retains JOMO initialization research in the offline pack,
+but its explicit `runtimeScope: research` excludes it from discovery metadata
+and fetchable production closures. Four older preview shards regenerate with
+changed provenance only, not different executable functions.
+
+### Ride-home verification
+
+The real Yarn compiler/engine checks prerequisites, opening/mode/bounds,
+decline/cancel, completed/repeatable entry and independent settlement. Normal,
+exact-target, late-save and December31/year-rollover cases prove that resolved
+clock effects move forward to the appropriate dawn/wake date. Focused client
+checks cover exact23-clip program coverage, source/output identities, both
+voices/effects, source-qualified Nozomi, original CD audio and research exclusion.
+The three relevant Go packages pass with the real Yarn compiler; 100 focused
+client checks and 18 program-pack compiler checks pass. These do not substitute
+for the rendered handoff check.
+
+The natural 23-shot browser run renders the original conversation and riding
+sequence, advances the actual CD audio playhead and saves the 05:56 bedroom
+arrival without currency/inventory changes. It exposed a shared dispatch bug:
+`NativeScriptedEventRuntime` releases `current` but retains diagnostic status
+`complete`; the presentation loop required status `idle` before enabling later
+entries. Explicit program skip used cancellation and therefore concealed the
+bug. Dispatch now checks actual `busy` ownership (execution, preparation or
+automatic poll), preserving terminal diagnostics. The final 3.8-minute connected
+browser check passes with that fix alone; the speculative extra networking
+barrier was removed before this run. Natural completion reaches the immediate
+bedside options, then **Stay awake**, saved reload, independent **Sleep until
+7:30 a.m.**, final-morning reload and unlocked controls. All 23 original shot
+starts, actual music playback, unchanged ¥22,836/eight inventory entries and no
+future final-battle flag are checked. A separate earlier run verifies the
+supported explicit program skip. Every check uses the isolated local database
+and a genuinely earned rescue checkpoint, not inserted home/finale outcomes.
+The earned final-morning database backup is retained. No assets were uploaded.
+
+Rendered fidelity is not complete: Nozomi's riding skirt forms conspicuous
+horizontal spikes in a close-up, despite the exact `NZM_M` body and original
+paired motions. Standing/dialogue framing is correct. No guessed cloth runtime
+mode, donor body or hand-edited source motion was introduced to hide it. The
+shared cloth presentation needs a separately bounded investigation; this is a
+visible limitation, not a missing story outcome or justification for native
+controller reconstruction.

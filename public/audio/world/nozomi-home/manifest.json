@@ -1,0 +1,340 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_nozomi_home_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01BIKEB.AFS",
+      "sha256": "7d018d2ecc4d85e5b680cdcb33f33947970d33b9959f16a51772e120243e7675"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_NBIKE.SND",
+      "sha256": "d28ee580a7603f021de0adf0f492f1d802692c658451749d864e0eed2f89b034"
+    },
+    "authManifest": "play/assets/harbor/nozomi-home/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-nozomi-rescue.md#ride-home-and-rest"
+  },
+  "voices": [
+    {
+      "voiceId": "01BIKEBA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEBA001.aiff",
+      "nativeMember": "01BIKEBA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 24576,
+      "nativeSha256": "a4ea6bd298dd009c7e991baa1ee20468963d3391c247081fc967a20b01907a4d",
+      "speakerId": "AKIR",
+      "sourceText": "Un, but I won't let this go.",
+      "displayText": "Un, but I won't let this go.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 72
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-home/voice/01BIKEBA001.wav",
+      "byteLength": 98092,
+      "sha256": "c1a62932d2ac0930fce36c8dc2fd85197ea192a0e025c3011fc60287c6a6104d"
+    },
+    {
+      "voiceId": "01BIKEBB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SOUND/01BIKEBB001.aiff",
+      "nativeMember": "01BIKEBB001.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 14336,
+      "nativeSha256": "342929a890f1aa8cabe46679dfc3ee0f2c87c153a0598f29a4dffc480cfda528",
+      "speakerId": "HRSK",
+      "sourceText": "Thanks, for saving me.",
+      "displayText": "Thanks, for saving me.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-home/voice/01BIKEBB001.wav",
+      "byteLength": 57132,
+      "sha256": "6ca33d764d340bfb9eafd2191cc1113e2ee34aee8b474094691cf4090907d4b9"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/vehicle/NOZOMI_BIKE_A.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-home/sfx/a9040000.wav",
+      "byteLength": 1069044,
+      "sha256": "f3acf9f0f5421b92f1d76b2ab2136a8acea2b6befa4e9957b6ea5dd846402355",
+      "nativeSegments": [
+        {
+          "playbackId": 0,
+          "sampleId": 0,
+          "sampleRate": 16000,
+          "byteLength": 96124,
+          "sha256": "a30e73c873ba87f67480d5cb501a2fcc6d7a3631c6b183a3c16eb2e5f9b7b365"
+        },
+        {
+          "playbackId": 1,
+          "sampleId": 3,
+          "sampleRate": 16000,
+          "byteLength": 97452,
+          "sha256": "7ff26e8d90942d0f7fdd268637c487e48beb5a71b1609c3f29ef9607eeca260b"
+        },
+        {
+          "playbackId": 2,
+          "sampleId": 4,
+          "sampleRate": 16000,
+          "byteLength": 94772,
+          "sha256": "be5b462c714187a57ac624502fe6ac32619fb61504e522d0e0e8eef2de4ea30c"
+        },
+        {
+          "playbackId": 3,
+          "sampleId": 5,
+          "sampleRate": 16000,
+          "byteLength": 96116,
+          "sha256": "3366a85c3a69c1fc0738e9fc79608cb870d8b266170c7b2177d4627a09458127"
+        },
+        {
+          "playbackId": 4,
+          "sampleId": 6,
+          "sampleRate": 16000,
+          "byteLength": 94836,
+          "sha256": "4f432853d64ec73a11ac9c5a4c30ad6511b1b7a53c5542346be95589a3415369"
+        },
+        {
+          "playbackId": 5,
+          "sampleId": 7,
+          "sampleRate": 16000,
+          "byteLength": 98684,
+          "sha256": "4bc0303152e97487ae6842cd5b9620f67ea8b35506fe33041a77cf413a441bf5"
+        },
+        {
+          "playbackId": 6,
+          "sampleId": 8,
+          "sampleRate": 16000,
+          "byteLength": 96140,
+          "sha256": "5d6c2ce18bdfda92fe10e98243ba99888b389dcac73fe9f4fbe18b06ef33d983"
+        },
+        {
+          "playbackId": 7,
+          "sampleId": 9,
+          "sampleRate": 16000,
+          "byteLength": 94820,
+          "sha256": "61878b605f5676e8d93f27c5687406a6330d52feecc226be68c7b7837741d866"
+        },
+        {
+          "playbackId": 8,
+          "sampleId": 10,
+          "sampleRate": 16000,
+          "byteLength": 96852,
+          "sha256": "72a321165cc5f8724a9b0e2973e8e88e7931a22b7a62d8bdde66399b9d53321f"
+        },
+        {
+          "playbackId": 9,
+          "sampleId": 1,
+          "sampleRate": 16000,
+          "byteLength": 95476,
+          "sha256": "60e1404e85b09a86609c54c340f7d7d288a1708e08de60adc564a434545ec7c6"
+        },
+        {
+          "playbackId": 10,
+          "sampleId": 2,
+          "sampleRate": 16000,
+          "byteLength": 108212,
+          "sha256": "fdd76be504040bbacaa76b1ef30ca72bbe146e7e51de617dfe6cdfaafb237e51"
+        }
+      ]
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BIKE/SE/vehicle/NOZOMI_BIKE_B.aiff",
+      "playbackId": 11,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-home/sfx/a9040100.wav",
+      "byteLength": 288252,
+      "sha256": "be85bef6bc1fe3053249b19d4000f474743d7b9e2e083cdb161b70be7122e802",
+      "nativeSegments": [
+        {
+          "playbackId": 11,
+          "sampleId": 11,
+          "sampleRate": 16000,
+          "byteLength": 95292,
+          "sha256": "9a49195caaed4c9d6d9b8ef58229d44ecb966893baf830a9b3b0eef25c73afcf"
+        },
+        {
+          "playbackId": 12,
+          "sampleId": 12,
+          "sampleRate": 16000,
+          "byteLength": 97292,
+          "sha256": "807b3bd149277b916b889b0150c4106ce1111e98e45910d1fdda1892aa759759"
+        },
+        {
+          "playbackId": 13,
+          "sampleId": 13,
+          "sampleRate": 16000,
+          "byteLength": 95756,
+          "sha256": "ec5e9a4ab15628f16e958e3eca672a1ba0b8988536d12588a4d9314e984da4c2"
+        }
+      ]
+    }
+  ]
+}

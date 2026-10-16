@@ -3,6 +3,28 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"nozomi-home-entry","disc":3,"actor":"AKIR","presentActors":[],"area":"TERY","trigger":"enter","priority":990,
+      "title":"Take Nozomi home","bounds":"s1.tery.nozomi-home-entry","requiredFlags":["story.s1.nozomi-rescue.completed"],"excludedFlags":["story.s1.nozomi-home.completed"],
+      "completedFlag":"story.s1.nozomi-home-entry.completed","repeatable":true,"effects":[],"voiceIds":[],"activities":[],"destination":"s1.nozomi.ride-home-start",
+      "confirmation":{"accept":"Take Nozomi home","decline":"Leave it for now"},
+      "nativeSources":[{"role":"original-ride-home-films","locator":"disc3/SCENE/03/NBIK/MAPINFO.BIN","sha256":"9acf1bacb3ac4f5533d00b709482dfc8848d9c39fcdfa23ce45e1900f0d06e31"}],
+      "provenance":"Reward-free confirmed transfer after the acknowledged hostage deal. Original first ride-home AKIR pose supplies the cinematic-world arrival. Repeatable admission does not itself take Nozomi home or advance time."
+    },
+    {
+      "id":"nozomi-home","disc":3,"actor":"AKIR","presentActors":[],"area":"NBIK","trigger":"enter","priority":990,
+      "title":"Nozomi's ride home","bounds":"s1.nbik.nozomi-home","requiredFlags":["story.s1.nozomi-ride.completed","story.s1.nozomi-rescue.completed"],
+      "completedFlag":"story.s1.nozomi-home.completed","effects":["notebook.s1.nozomi-home"],"voiceIds":[],"yarnTemplate":"story-nozomi-home.yarn","completionActivities":["s1.nbik.nozomi-home.scene"],
+      "nativeSources":[{"role":"original-ride-home-films","locator":"disc3/SCENE/03/NBIK/MAPINFO.BIN","sha256":"9acf1bacb3ac4f5533d00b709482dfc8848d9c39fcdfa23ce45e1900f0d06e31"}],
+      "provenance":"GameSpot p63 ride home,05:56 arrival,then sleep. Shared exact-activity player presents all23 original TRCKs in authored adjacent-file order, original paired motion/voices/vehicles and original CDDA track5. Playlist/music cue/layer choices are adaptations, not recovered controller. Only acknowledged natural ending or supported skip atomically saves next05:56, established bedside arrival and own notebook/receipt. No final morning, money, items or future victory. Cancel/preparation failure/reconnect retry without losing rescue."
+    },
+    {
+      "id":"final-morning","disc":3,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":990,
+      "title":"Rest before the final day","bounds":"s1.jomo.final-morning","requiredFlags":["story.s1.nozomi-home.completed"],
+      "completedFlag":"story.s1.final-morning.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-final-morning.yarn",
+      "nativeSources":[{"role":"original-ride-home-films","locator":"disc3/SCENE/03/NBIK/MAPINFO.BIN","sha256":"9acf1bacb3ac4f5533d00b709482dfc8848d9c39fcdfa23ce45e1900f0d06e31"}],
+      "provenance":"GameSpot p63: save at05:56,sleep,wake07:30 before dojo meditation. Explicit bedside sleep/stay choice condenses sleeping/waking; no invented nightmare. Next-occurrence07:30 prevents late personal saves rewinding or locking out. Atomic bedside/time/own receipt only; no dojo,Tom,final-battle,money or inventory result."
+    },
+    {
       "id":"nozomi-outside-guards","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":970,
       "title":"Reach Nozomi — warehouse guards","bounds":"s1.mfsy.nozomi-outside-guards","requiredFlags":["story.s1.nozomi-ride.completed"],
       "completedFlag":"story.s1.nozomi-outside-guards.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-nozomi-battle.yarn","firstCombat":"s1.mfsy.nozomi-guards",

@@ -34,6 +34,17 @@ def function(function_id, actions=()):
 
 
 class BuildNativeEventProgramPackTest(unittest.TestCase):
+    def test_research_programs_stay_in_offline_pack_not_runtime_assets(self):
+        record = {"id": "research-room-init", "area": "JOMO", "runtimeScope": "research",
+                  "functions": [function("0x100")]}
+        pack = {"schema": "new-yokosuka-native-event-program-pack-v1", "programs": [record]}
+        index, assets = build_runtime_index(pack)
+        self.assertEqual(index["programs"], [])
+        self.assertEqual(assets, {})
+        self.assertEqual(pack["programs"], [record])
+        with self.assertRaisesRegex(ValueError, "publication scope"):
+            build_runtime_index({**pack, "programs": [{**record, "runtimeScope": "typo"}]})
+
     def setUp(self):
         self.source_map = {
             "disc": 1,
