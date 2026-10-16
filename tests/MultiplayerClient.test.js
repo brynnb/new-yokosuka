@@ -50,7 +50,9 @@ class FakeWebSocket {
     this.sent.push(JSON.parse(payload));
   }
 
-  close() {
+  close(code, reason) {
+    if(code!==undefined&&code!==1000&&(code<3000||code>4999))throw new Error("Invalid browser WebSocket close code");
+    this.closeDetails={code,reason};
     if (this.readyState === FakeWebSocket.CLOSED) return;
     this.readyState = FakeWebSocket.CLOSED;
     this.emit("close");
@@ -708,6 +710,7 @@ test("a replaced session stops reconnecting and reports why it ended", () => {
   assert.equal(resets, 1);
   assert.equal(socket.readyState, FakeWebSocket.CLOSED);
   assert.equal(client.intentionalClose, true);
+  assert.deepEqual(socket.closeDetails,{code:1000,reason:"session replaced"});
   assert.equal(client.sessionReplaced, true);
   client.connect();
   assert.equal(FakeWebSocket.instances.length, 1);

@@ -773,7 +773,9 @@ export class MultiplayerClient {
           message.message
           || "This character was opened in another browser or tab.",
         );
-        this.socket?.close(1008, "session replaced");
+        // Browsers may send only 1000 or application codes (3000-4999).
+        // 1008 is valid from the server, but throws from WebSocket.close().
+        this.socket?.close(1000, "session replaced");
         break;
       case "client_count":
         this.callbacks.onClientCount?.(message.connectedClients);
