@@ -15,6 +15,7 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const defaultEvidence="docs/design/story-harbor-work.md";
 const archives={
+  "MEND/CHAIAUTH":"996524cfb8bdb5996b27b05e1de01af5df3c969824d888a18da639afbd32ce19",
   "MEND/M0W0":"393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2",
   "MEND/MODELS":"c12fe80d9cafa7679096dcfbab319082eac9d2ca501f1962ae490582c73fd80e",
   "MFSY/GBTM":"dbb33b890d20130e87079bf375b75da15de989f94bf4a6000f717802b62e9665",
@@ -56,7 +57,21 @@ const finalMusic={id:"bgm013",sourceId:"1e01b7d3dc308c6255896489d098cb59df125f95
 const battleMusic={id:"bgm120",sourceId:"6f6feae07377adcf7a511b69ae27bb46bd4b93a8a23f60eff32750d44cdd1264",bankHash:"6930abc0fa5b1a90b97ca0c8491623decba6a7217d865e0660097047fef122bc",label:"The seventy-man battle"};
 const alphaRoom={archive:"ALPHA",member:"MAPALP.MAPD",model:"MAPALP",textureHash:"8c8f0a6b1ba88e96ebc453d12826aaea74a85dad57ade4893df7c3daaf530612",textureFilename:"alpha-textures.bin"};
 const aftermathSelection="Walkthrough-guided post-battle sequence. Yarn independently owns the A challenge, acknowledged interrogation, pier discussion and home return; these original films cannot award those outcomes themselves.";
+const finalChaiMusic={id:"bgm032",sourceId:"49ca27343179e9c1a44e4c94f73ae245be375bff5104118f4479b99bfb8b38e7",bankHash:"3d9b68d62783125f66668619105522c127f35aed31d34ae8d0ca87830ef1e244",label:"Chai's final encounter"};
+const finalChaiSource={archive:"MEND/CHAIAUTH",resourceName:"CHAIAUTH",motion:"M_0184.MOTN",evidence:"docs/design/story-final-day.md#final-chai",
+  sharedActorManifest:finalCast[0],stream:"A0184D",streamHash:"54433e3e67e8fa5b3d726ce1c7ec162c19cd759ab6db78fd0c2f601c2e9c8fcb",
+  sound:"A1_MOMOR.SND",soundHash:"ac1ff0499b2c24bc4439f78b17c09b6f5ee066f40ab4b2ba76acaa72eb567109",music:finalChaiMusic,
+  selectionRule:"Walkthrough-guided final Chai encounter. Original films present the approach, post-battle questioning and second attack, not combat or QTE authority. Actual fight and Down/A/A/B counter settle independently; original short water-fall clip is selected as an authored winning ending, not a recovered native branch controller."};
 const profiles=[
+  {...finalChaiSource,id:"final-chai-intro",auth:"SEQDATA3.AUTH",frames:772,actors:["AKIR","CHAI","KISY","TAIJ","TKOT"],
+    props:{TKOT:"TEKS500G"},propArchive:"MEND/MODELS",propTextureHash:"e109ad0455b02d68ebf8eb7853e294fab21769f17f906f2b8bf50ad08f7d55f1",authoredPropBindings:true,
+    stream:"A0184",streamHash:"ad893719cdbca6689d7dbe1d9d82a6c98b37ffe5d90c44315bd2e0030c3bd229",additionalStreams:[{stream:"A0184B",sha256:"8d7cfa6fe566dc87816613c04f6e1d15c89d5f5bc3dc112510782a8884dcb644"}],
+    sound:"A1_SAIB.SND",soundHash:"b931e084250c0773a842b2ca91e5be27c11bef4b6c43537cb014d4c6967b4cc9",
+    unavailableVoices:{"01m046000038.str":{reason:"Original generic voice reference is absent from the pinned English A0184/A0184B archives and published dialogue catalog. Its common-voice source is unresolved; do not alias a different cry or invent words.",evidence:"docs/design/story-final-day.md#final-chai"}}},
+  {...finalChaiSource,id:"final-chai-interrogation",auth:"SEQDATA0.AUTH",frames:574,actors:["AKIR","CHAI"]},
+  {...finalChaiSource,id:"final-chai-counter",actors:["AKIR","CHAI"],activities:[
+    {file:"SEQDATA1.AUTH",durationFrames:158,actors:["AKIR","CHAI"]},
+    {file:"SEQDATA6.AUTH",durationFrames:148,actors:["AKIR","CHAI"]}]},
   {id:"swallow-lesson",archive:"MEND/M0W0",resourceName:"M0W0",evidence:"docs/design/story-final-day.md#swallow-flip",motion:"M_01CHY.MOTN",
     actors:["AKIR","KISY","TAIJ","TETU","BAG_","BAG0"],activities:[
       {file:"SEQDATA0.AUTH",durationFrames:3110,actors:["BAG0","BAG_","AKIR","KISY","TETU","TAIJ"]},
@@ -220,7 +235,7 @@ const profiles=[
   :p.archive==="BOKOMARK"?{...p,bank:21,stream:"01MKB",streamHash:"29dfd4ec9003c458ad53d6e1cabc621edd1a7fac8cff367b1e348de818e3e0fd",sound:"A1_MKB.SND",soundHash:"8286272d55f5011e16b49dc5cb7c0596a090e365ff409cbf96440a65ad02724e"}
   :p.archive==="MARU"?{...p,stream:"01MAK",streamHash:"991e51fcbe77d0e590fd5db522b6fee46fe11cf7b02fc9bcaa6b81917cfc075d",sound:"A1_MARK.SND",soundHash:"ef5b84e9994323af1b7dc315612030cd1b923e79aa8770dd0e8afc6cad394ba8"}
   :p.archive==="MIZUMARK"?{...p,stream:"01MAD",streamHash:"3295b7ef69bde0372cb212cc500adcababc86421d712ae860ecaead614a7714a",sound:"A1_MAD.SND",soundHash:"b76ce9d7ad7f386a45001adcbf12a855718b0254ca72475dfdec78c4bfb38890"}:p);
-const characters={CHRL:["Charlie Grant","BIK_L"],YOHI:["Yohei Kondo","YHI_L"],TYMK:["Tsuyoshi Murakami","RFA_L"],TAKE:["Hiroaki Takeuchi","ZZC_L"],HTSI:["Hitoshi Numakubo","SGH_L"],
+const characters={CHAI:["Chai","CHA_M"],CHRL:["Charlie Grant","BIK_L"],YOHI:["Yohei Kondo","YHI_L"],TYMK:["Tsuyoshi Murakami","RFA_L"],TAKE:["Hiroaki Takeuchi","ZZC_L"],HTSI:["Hitoshi Numakubo","SGH_L"],
   ITOH:["Naoyuki Ito","RFB_L"],
   GORO:["Goro Mihashi","KMB_L"],HINA:["Mai Sawano","MIB_L"],TMRA:["Ryozo Yada","KWD_L"],MARK:["Mark Kimberly","GIC_L"],TONY:["Tony Abrams","GIJ_M"],SMTH:["Smith Bradley","GIB_M"],
   // HRSK reuses the reviewed full body from nativeActivityActors, not the

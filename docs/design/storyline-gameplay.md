@@ -222,8 +222,15 @@ now also pass a connected earned-save rendered continuation: original cast and
 form, cancellation/reload, wrong/expired input, actual Down/J/Enter practice,
 cancelled exit, independently saved mastery/notebook and completed reload.
 Sequential back/punch and condensed native spar timing are explicit adaptations.
-The final Chai encounter, its Down/A/A/B counter and ship departure remain
-missing; the checklist distinguishes each boundary.
+The final Chai encounter and separate Down/A/A/B counter now also pass a
+connected earned-save browser continuation: actual keyboard knockout, cancelled
+questioning without victory, a fresh win and saved waterfront arrival, wrong/
+expired counter retries, four actual inputs, cancelled ending, natural winning
+retry and reload preserving both independent outcomes and restored controls.
+Original cast, questioning, held counter and falling beyond the dock are
+rendered; detailed contact, splash and native AI remain explicit limits.
+The introduction letter and ship departure remain missing; the checklist
+distinguishes each boundary.
 See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest)
 and the [final day](story-final-day.md).
 

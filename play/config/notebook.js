@@ -186,6 +186,8 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.lan-di-hong-kong",page:Object.freeze({id:"story-lan-di-hong-kong",text:"Defeated the Mad Angels with Gui Zhang.\n\nTerry says Chai took Lan Di to the ship.\nLan Di has already left for Hong Kong.\n\nSpeak with Gui Zhang before going home."})},
   {flag:"notebook.s1.family-departure",page:Object.freeze({id:"story-family-departure",text:"Fuku-san brought a parting gift from Ine-san and himself.\n\nThey want me to come back safely.\n\nMeet Master Chen at the harbor before leaving for Hong Kong."})},
   {flag:"notebook.s1.swallow-flip",page:Object.freeze({id:"story-swallow-flip",text:"Master Chen taught me the Swallow Flip.\n\nStep back to parry, unbalance the opponent, then kick.\nTiming the counter is important."})},
+  {flag:"notebook.s1.final-chai",page:Object.freeze({id:"story-final-chai",text:"Defeated Chai at the harbor.\nHe says Lan Di has sailed for Hong Kong.\n\nGui Zhang was injured protecting us."})},
+  {flag:"notebook.s1.chai-last-attack",page:Object.freeze({id:"story-chai-last-attack",text:"Chai attacked again.\nCountered him into the harbor.\n\nGui Zhang is still injured. Speak with Master Chen before leaving."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

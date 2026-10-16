@@ -5,7 +5,8 @@
     "tomPractice": "play/assets/harbor/tom-lesson/M_0001.MOTN",
     "finalCounter": "play/assets/harbor/final-confrontation/M_01_H.MOTN",
     "finalTerry": "play/assets/harbor/terry-final-intro/M_01TLY.MOTN",
-    "swallowPractice": "play/assets/harbor/swallow-lesson/M_01CHY.MOTN"
+    "swallowPractice": "play/assets/harbor/swallow-lesson/M_01CHY.MOTN",
+    "finalChaiCounter": "play/assets/harbor/final-chai-counter/M_0184.MOTN"
   },
   "scenes": [
     {
@@ -990,6 +991,71 @@
         "perspective": 55
       },
       "provenance": "Exact original M0W0 demonstration-end roots and motion samples held during actual shared Down/X/A input. Wide camera, sequential back/punch and two-second windows are authored; original timing-based free-spar physics is not reconstructed."
+    },
+    {
+      "id": "s1.mend.chai-counter-ready",
+      "area": "MEND",
+      "worldId": "mend",
+      "actorDefinitions": [
+        {
+          "actorCode": "CHAI",
+          "label": "Chai",
+          "modelCode": "CHA_M",
+          "browserFilename": "CHA_M.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/characters/CHA_M.CHRM",
+          "textureAssetPath": "play/assets/characters/CHA_textures.bin",
+          "activityOnly": true
+        }
+      ],
+      "actors": [
+        {
+          "tag": "AKIR",
+          "pose": {
+            "x": 71.01832580566406,
+            "y": 0,
+            "z": 21.550647735595703,
+            "rotationX": 0,
+            "rotationY": -179.99998474121094,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "finalChaiCounter",
+            "name": "AKI_AT1_TOITUMERU_TOITUMERUCHAI_0100",
+            "loop": false,
+            "elapsedSeconds": 26.7
+          }
+        },
+        {
+          "tag": "CHAI",
+          "pose": {
+            "x": 70.91093444824219,
+            "y": 0,
+            "z": 24.164146423339844,
+            "rotationX": 0,
+            "rotationY": -179.99998474121094,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "finalChaiCounter",
+            "name": "CHA_AT1_TOITUMERU_TOITUMERUCHAI_0100",
+            "loop": false,
+            "elapsedSeconds": 25.633333333333333
+          }
+        }
+      ],
+      "camera": {
+        "positionX": 75.96463012695312,
+        "positionY": 3,
+        "positionZ": 26.857397079467773,
+        "targetX": 70.96463012695312,
+        "targetY": 1,
+        "targetZ": 22.857397079467773,
+        "roll": 0,
+        "perspective": 55
+      },
+      "provenance": "Exact original CHAIAUTH1 ending roots and frozen motion samples during actual Down/A/A/B input. Wide framing, generic two-second windows and retry are authored staging, not native per-input dodge/QTE choreography."
     }
   ]
 }

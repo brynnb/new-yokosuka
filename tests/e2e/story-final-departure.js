@@ -1,4 +1,78 @@
 import {expect} from "@playwright/test";
+import {fightWithKeyboard} from "./story-seventy-man.js";
+
+export async function verifyFinalChaiPresentation(page,testInfo,character){
+  await page.setViewportSize({width:1920,height:1080});
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const before=await saved();expect(before.character.storyFlags["story.s1.final-chai-counter.completed"]).toBe(true);
+  // This is a renderer-only continuation of an earned win, not another
+  // narrative completion or a way to manufacture combat/QTE success.
+  await page.evaluate(async()=>{
+    const p=window.storyProbe,{ScriptEventPresentationCatalog}=await import("/play/scripts/ScriptEventPresentationCatalog.js");
+    p.visualReturn=p.lifecycle.capturePlayerReturnState();
+    if(!await p.director.start(new ScriptEventPresentationCatalog().activity("s1.mend.chai-counter-win.scene").cutscene))throw Error("Chai ending renderer review did not start");
+  });
+  try{
+    await page.waitForTimeout(4400);await page.screenshot({path:testInfo.outputPath("final-chai-original-falling-late.png")});
+    await page.waitForTimeout(200);await page.screenshot({path:testInfo.outputPath("final-chai-restored-dock-after-fall.png")});
+  }finally{await page.evaluate(async()=>{const p=window.storyProbe;await p.director.end("renderer-review-cancel");p.lifecycle.restorePlayerPose(p.visualReturn);delete p.visualReturn;});}
+  const after=await saved();expect(after.character.storyFlags).toEqual(before.character.storyFlags);expect(after.character.yen).toBe(before.character.yen);expect(after.inventory).toEqual(before.inventory);
+  expect(Math.hypot(after.character.x-before.character.x,after.character.z-before.character.z)).toBeLessThan(.2);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+}
+
+export async function verifyFinalChai(page,testInfo,character,{musicResponses}){
+  await page.setViewportSize({width:1920,height:1080});
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const initial=await saved(),battle="story.s1.final-chai.completed",counter="story.s1.final-chai-counter.completed";
+  expect(initial.character.storyFlags["story.s1.swallow-flip.completed"]).toBe(true);expect(initial.character.storyFlags[battle]).not.toBe(true);
+  const check=async()=>{const s=await saved();expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory).toEqual(initial.inventory);
+    expect(s.character.storyFlags["story.s1.departure.completed"]).not.toBe(true);expect(s.character.storyFlags["notebook.s1.tao-li-shao"]).not.toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;};
+  const choose=name=>page.getByRole("button",{name,exact:true}).click({timeout:100_000});
+  const reload=async()=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);};
+  const scene=async id=>{await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===`story-s1-${id}`||window.storyProbe.sceneErrors.length,id,{timeout:100_000});await check();};
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await check();};
+  const cancel=async()=>{await page.evaluate(()=>window.storyProbe.regions.controller.cancel("final-chai-check"));await idle();};
+  const combatReady=async()=>{await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.id==="s1.mend.final-chai"&&window.storyProbe.combatRuntime.active.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:100_000});await check();};
+  const fight=()=>fightWithKeyboard(page,()=>page.evaluate(()=>!window.storyProbe.combatRuntime?.active));
+  const ready=async()=>{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.mend.chai-last-attack"&&window.storyProbe.regions.controller.active.challengePrompt.ready||window.storyProbe.sceneErrors.length,null,{timeout:60000});await check();};
+  const winCounter=async()=>{for(const [index,key]of ["ArrowDown","Enter","Enter","Shift"].entries()){
+    await page.waitForFunction(index=>window.storyProbe.regions.controller.active?.challengePrompt?.ready&&window.storyProbe.regions.controller.active.challengePrompt.index===index,index);await page.keyboard.press(key);
+  }};
+  console.info("Final Chai: original ambush, actual battle, cancelled questioning and independent saved victory");
+  await choose("Not yet");await reload();await choose("Stop Chai");await scene("final-chai-intro");await page.waitForTimeout(9000);
+  await page.screenshot({path:testInfo.outputPath("final-chai-original-beam-ambush.png")});await cancel();
+  expect((await check()).character.storyFlags[battle]).not.toBe(true);
+  await reload();await choose("Stop Chai");await scene("final-chai-intro");await combatReady();
+  await fightWithKeyboard(page,()=>page.evaluate(()=>window.storyProbe.combatRuntime?.active?.view.actors.find(a=>a.tag==="CHAI")?.health<=142));
+  await page.screenshot({path:testInfo.outputPath("final-chai-original-fight-and-partial-damage.png")});await cancel();
+  await reload();await choose("Stop Chai");await scene("final-chai-intro");await page.keyboard.press("KeyX");await combatReady();
+  await expect.poll(()=>page.evaluate(()=>{const m=window.storyMusic?.director,a=m?.current?.audio;return m?.current?.trackId==="bgm032"&&!a.paused&&a.currentTime>1&&a.volume>0;}),{timeout:15000}).toBe(true);
+  await fight();await scene("final-chai-interrogation");await page.waitForTimeout(6500);
+  await page.screenshot({path:testInfo.outputPath("final-chai-original-questioning-cancel.png")});expect((await check()).character.storyFlags[battle]).not.toBe(true);await cancel();
+  await reload();await choose("Stop Chai");await scene("final-chai-intro");await page.keyboard.press("KeyX");await combatReady();await fight();await scene("final-chai-interrogation");
+  await expect.poll(async()=>(await saved()).character.storyFlags[battle],{timeout:60000}).toBe(true);
+  await choose("Not yet");await idle();const victory=await check();expect(victory.character.storyFlags[counter]).not.toBe(true);expect(victory.character.storyFlags["notebook.s1.final-chai"]).toBe(true);
+  expect(Math.hypot(victory.character.x+71.01832580566406,victory.character.z-21.592845916748047)).toBeLessThan(.2);expect(Math.abs(victory.character.y)).toBeLessThan(.5);
+  await page.screenshot({path:testInfo.outputPath("final-chai-earned-waterfront-arrival.png")});
+  console.info("Final Chai: independent counter, wrong/expired input, cancelled winning film and saved retry");
+  await reload();await choose("Face Chai's last attack");await scene("chai-counter-ready");await ready();
+  await page.screenshot({path:testInfo.outputPath("final-chai-original-held-counter-and-harbor.png")});await cancel();
+  expect((await check()).character.storyFlags[battle]).toBe(true);expect((await check()).character.storyFlags[counter]).not.toBe(true);
+  await reload();await choose("Face Chai's last attack");await scene("chai-counter-ready");await ready();await page.keyboard.press("ArrowLeft");
+  await choose("Try again");await ready();await choose("Try again");await ready();await winCounter();await scene("chai-counter-win");await page.waitForTimeout(1700);
+  await page.screenshot({path:testInfo.outputPath("final-chai-original-counter-ending-cancel.png")});await cancel();expect((await check()).character.storyFlags[counter]).not.toBe(true);
+  await reload();await choose("Face Chai's last attack");await scene("chai-counter-ready");await ready();await winCounter();await scene("chai-counter-win");
+  await page.waitForTimeout(3300);await page.screenshot({path:testInfo.outputPath("final-chai-original-water-fall.png")});
+  await expect.poll(async()=>(await saved()).character.storyFlags[counter],{timeout:30000}).toBe(true);
+  await idle();const final=await check();expect(final.character.storyFlags["notebook.s1.chai-last-attack"]).toBe(true);
+  expect(new Date(final.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
+  await reload();await page.waitForTimeout(1200);await idle();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath("final-chai-earned-counter-reload-and-controls.png")});
+  expect(musicResponses.some(r=>r.url.includes("bgm032")&&[200,206].includes(r.status))).toBe(true);
+}
 
 export async function verifySwallowPresentation(page,testInfo,character){
   await page.setViewportSize({width:1920,height:1080});
@@ -66,7 +140,11 @@ export async function verifySwallowFlip(page,testInfo,character,{musicResponses}
   await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:60000}).toBe(true);
   const final=await check();expect(final.character.storyFlags[learned]).toBe(true);expect(final.character.storyFlags["notebook.s1.swallow-flip"]).toBe(true);
   expect(new Date(final.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
-  await idle();await reload();await page.waitForTimeout(1200);await idle();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+  await idle();await reload();await page.waitForTimeout(1200);
+  // The newly published following ambush may offer its normal confirmation;
+  // declining it is not replaying the completed lesson or granting a fight.
+  const following=page.getByRole("button",{name:"Not yet",exact:true});if(await following.isVisible())await following.click();
+  await idle();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
   await page.screenshot({path:testInfo.outputPath("swallow-earned-dock-reload-and-controls.png")});
   expect(musicResponses.some(r=>r.url.includes("bgm064")&&[200,206].includes(r.status))).toBe(true);
 }

@@ -19,7 +19,7 @@ export async function verifySeventyManBattle(page,testInfo,character,{musicRespo
   await reload();await choose("Fight the Mad Angels");await ready();
   const oldToken=await page.evaluate(()=>window.storyProbe.combatRuntime.active.token);
   await page.screenshot({path:testInfo.outputPath("seventy-man-original-cast-and-gui-zhang.png")});
-  await fight(page,()=>page.evaluate(()=>window.storyProbe.combatRuntime?.active?.view.defeated>=2));
+  await fightWithKeyboard(page,()=>page.evaluate(()=>window.storyProbe.combatRuntime?.active?.view.defeated>=2));
   expect((await check()).character.storyFlags[done]).not.toBe(true);
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel("partial-seventy-man-check"));
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
@@ -29,7 +29,7 @@ export async function verifySeventyManBattle(page,testInfo,character,{musicRespo
   await expect.poll(()=>page.evaluate(()=>{const m=window.storyMusic?.director,a=m?.current?.audio;return m?.current?.trackId==="bgm120"&&!a.paused&&a.currentTime>1&&a.volume>0;}),{timeout:15000}).toBe(true);
   const waves=new Set(),bosses=new Set();let maximum=0;
   console.info("70-man battle: actual keyboard fight and all three boss reinforcements");
-  await fight(page,async()=>{
+  await fightWithKeyboard(page,async()=>{
     const v=await page.evaluate(()=>window.storyProbe.combatRuntime?.active?.view);if(!v)return true;
     maximum=Math.max(maximum,v.defeated||0);
     if(!waves.has(v.wave)){waves.add(v.wave);console.info(`Battle group ${v.wave}: ${v.defeated||0}/70 down, Ryo ${v.actors[0].health}`);}
@@ -61,7 +61,7 @@ export async function verifySeventyManBattle(page,testInfo,character,{musicRespo
   console.info("Battle original music responses",JSON.stringify(musicResponses.filter(r=>/bgm120/.test(r.url))));
 }
 
-async function fight(page,stop){
+export async function fightWithKeyboard(page,stop){
   await page.locator("#renderCanvas").focus();
   const bindings=await page.evaluate(()=>window.storyProbe.combatRuntime.active.input.getBindings()),held=new Set();
   const keys=async next=>{for(const key of held)if(!next.includes(key)){await page.keyboard.up(key);held.delete(key);}for(const key of next)if(!held.has(key)){await page.keyboard.down(key);held.add(key);}};

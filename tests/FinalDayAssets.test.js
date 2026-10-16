@@ -189,3 +189,23 @@ test("Swallow Flip keeps original alternatives and exact held samples without aw
   for(const a of scene.actors){assert.equal(bank.getSequence(a.motion.name).valueData.complete,true);assert.ok(a.motion.elapsedSeconds>0);assert.equal(a.motion.loop,false);}
   assert.doesNotThrow(()=>catalog.sequence("s1.mend.swallow-ready.start"));assert.doesNotThrow(()=>catalog.sequence("s1.mend.swallow-ready.finish"));
 });
+
+test("final Chai uses original cast and separate fight/interrogation/counter films",()=>{
+  const catalog=new ScriptEventPresentationCatalog();
+  for(const [id,activity,slot,file,frames,missing]of [
+    ["final-chai-intro","final-chai-intro",0,"3",772,["01m046000038"]],
+    ["final-chai-interrogation","final-chai-interrogation",0,"0",574,[]],
+    ["final-chai-counter","chai-counter-ready",0,"1",158,[]],
+    ["final-chai-counter","chai-counter-win",1,"6",148,[]],
+  ]){
+    const m=read(`play/assets/harbor/${id}/manifest.json`),audio=read(`public/audio/world/${id}/manifest.json`),a=catalog.activity(`s1.mend.${activity}.scene`);
+    assert.equal(a.durableEffects,"forbidden");assert.equal(a.returnPlayerState,true);assert.equal(a.cutscene.worldId,"mend");
+    assert.equal(a.cutscene.activity.slot,slot);assert.equal(a.cutscene.activity.binding.activityId,`CHAIAUTH/SEQDATA${file}.AUTH`);assert.equal(m.activities[slot].durationFrames,frames);
+    assert.equal(m.packageActors.CHAI.modelCode,"CHA_M");assert.equal(m.packageActors.CHAI.assetPath,"play/assets/characters/CHA_M.CHRM");
+    assert.deepEqual(audio.voices.filter(v=>v.unavailable).map(v=>v.voiceId),missing);
+    for(const asset of [...m.outputs,...audio.voices,...audio.sounds].filter(a=>!a.unavailable)){const b=fs.readFileSync(new URL(`../${asset.path||asset.asset}`,import.meta.url));assert.equal(b.length,asset.byteLength);assert.equal(createHash("sha256").update(b).digest("hex"),asset.sha256);}
+  }
+  const scene=authoredScenes.scenes.find(s=>s.id==="s1.mend.chai-counter-ready"),bank=MotnLoader.parse(fs.readFileSync(new URL(`../${authoredScenes.motionBanks.finalChaiCounter}`,import.meta.url)));
+  for(const actor of scene.actors){assert.ok(actor.motion.elapsedSeconds>0);assert.equal(actor.motion.loop,false);assert.equal(bank.getSequence(actor.motion.name).valueData.complete,true);}
+  assert.doesNotThrow(()=>catalog.sequence("s1.mend.chai-counter-ready.start"));assert.doesNotThrow(()=>catalog.sequence("s1.mend.chai-counter-ready.finish"));
+});

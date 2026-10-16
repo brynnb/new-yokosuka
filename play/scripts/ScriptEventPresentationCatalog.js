@@ -33,6 +33,10 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["ready",0,"1"],["win",1,"6"]].map(([part,slot,file])=>[
+    `s1.mend.chai-counter-${part}.scene`,{kind:"native-cutscene",area:"MEND",durableEffects:"forbidden",returnPlayerState:true,
+      cutscene:{id:`story-s1-chai-counter-${part}`,packageId:"final-chai-counter",worldId:"mend",storyPresentation:true,
+        activity:{slot,binding:{kind:"map-embedded-slot",activityId:`CHAIAUTH/SEQDATA${file}.AUTH`}}}}]),
   ...[["intro",0,"0"],["demo",1,"1"],["flip",2,"5"],["praise",3,"6"],["exit",4,"8"]].map(([part,slot,file])=>[
     `s1.mend.swallow-${part}.scene`,{kind:"native-cutscene",area:"MEND",durableEffects:"forbidden",returnPlayerState:true,
       cutscene:{id:`story-s1-swallow-${part}`,packageId:"swallow-lesson",worldId:"mend",storyPresentation:true,
@@ -53,6 +57,8 @@ const ACTIVITIES = new Map([
     cutscene:{id:"story-s1-chicken-race-intro",packageId:"chicken-race",worldId:"mfsy",storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"RACE/SEQDATA1.AUTH"}}}}],
   ...[["final-meditation","MSOU/SEQDATA1.AUTH","JHD0","exterior"],
+    ["final-chai-intro","CHAIAUTH/SEQDATA3.AUTH","MEND","mend"],
+    ["final-chai-interrogation","CHAIAUTH/SEQDATA0.AUTH","MEND","mend"],
     ["family-departure","A0180/A0180.AUTH","JOMO","interior"],
     ["tom-plane","GBTM/SEQDATA0.AUTH"],
     ["final-confrontation","TLYA/SEQDATA1.AUTH","MFBT","mfbt"],

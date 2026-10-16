@@ -120,5 +120,23 @@ scenes.push({id:"s1.mend.swallow-ready",area:"MEND",worldId:"mend",
   actorDefinitions:["KISY","TAIJ"].map(actorCode=>({actorCode,...swallow.packageActors[actorCode],activityOnly:true})),actors:swallowActors,
   camera:{positionX:swallowCenter.x+4,positionY:3,positionZ:swallowCenter.z+5,targetX:swallowCenter.x,targetY:1,targetZ:swallowCenter.z,roll:0,perspective:55},
   provenance:"Exact original M0W0 demonstration-end roots and motion samples held during actual shared Down/X/A input. Wide camera, sequential back/punch and two-second windows are authored; original timing-based free-spar physics is not reconstructed."});
-fs.writeFileSync(path.join(root,"play/data/story-final-day.generated.json"),JSON.stringify({schema:"new-yokosuka-authored-story-scenes-v1",generatedBy:"tools/scripting/build_final_day.mjs",motionBanks:{tomPractice:`${prefix}/M_0001.MOTN`,finalCounter:`${confrontationPrefix}/M_01_H.MOTN`,finalTerry:`${finisherPrefix}/M_01TLY.MOTN`,swallowPractice:`${swallowPrefix}/M_01CHY.MOTN`},scenes},null,2)+"\n");
+const chaiPrefix="play/assets/harbor/final-chai-counter";
+const chai=JSON.parse(fs.readFileSync(path.join(root,chaiPrefix,"manifest.json")));
+const chaiFile=chai.outputs.find(o=>o.path.endsWith("/SEQDATA1.AUTH")),chaiBytes=fs.readFileSync(path.join(root,chaiFile.path));
+if(sha256(chaiBytes)!==chaiFile.sha256)throw Error("Changed original Chai second attack");
+const chaiSequence=parseAuthSequence(chaiBytes),chaiMovement=parseAuthMovement(chaiBytes),chaiFrame=chaiSequence.durationFrames-1;
+const chaiBank=MotnLoader.parse(fs.readFileSync(path.join(root,chaiPrefix,"M_0184.MOTN")));
+const chaiActors=["AKIR","CHAI"].map(tag=>{
+  const pose=Object.fromEntries(Object.entries(evaluateAuthActor(chaiMovement.actors.find(a=>a.tag===tag),chaiFrame/30)).filter(([k])=>["x","y","z","rotationX","rotationY","rotationZ"].includes(k)));
+  const event=chaiSequence.motions.filter(m=>m.actorTag===tag&&m.frame<=chaiFrame).at(-1),clip=chaiBank.sequences[event?.sequenceIndex];
+  const sample=Math.min(event?.endFrame,event?.startFrame+chaiFrame-event?.frame)-1;
+  if(event?.motionBank!==16||!clip?.valueData.complete||!Number.isFinite(sample)||sample<0||sample>=clip.durationFrames)throw Error("Unresolved original final Chai held sample "+tag);
+  return{tag,pose,motion:{bank:"finalChaiCounter",name:clip.name,loop:false,elapsedSeconds:sample/30}};
+});
+const chaiCenter=chaiActors.reduce((p,a)=>({x:p.x+a.pose.x/2,z:p.z+a.pose.z/2}),{x:0,z:0});
+scenes.push({id:"s1.mend.chai-counter-ready",area:"MEND",worldId:"mend",
+  actorDefinitions:[{actorCode:"CHAI",...chai.packageActors.CHAI,activityOnly:true}],actors:chaiActors,
+  camera:{positionX:chaiCenter.x+5,positionY:3,positionZ:chaiCenter.z+4,targetX:chaiCenter.x,targetY:1,targetZ:chaiCenter.z,roll:0,perspective:55},
+  provenance:"Exact original CHAIAUTH1 ending roots and frozen motion samples during actual Down/A/A/B input. Wide framing, generic two-second windows and retry are authored staging, not native per-input dodge/QTE choreography."});
+fs.writeFileSync(path.join(root,"play/data/story-final-day.generated.json"),JSON.stringify({schema:"new-yokosuka-authored-story-scenes-v1",generatedBy:"tools/scripting/build_final_day.mjs",motionBanks:{tomPractice:`${prefix}/M_0001.MOTN`,finalCounter:`${confrontationPrefix}/M_01_H.MOTN`,finalTerry:`${finisherPrefix}/M_01TLY.MOTN`,swallowPractice:`${swallowPrefix}/M_01CHY.MOTN`,finalChaiCounter:`${chaiPrefix}/M_0184.MOTN`},scenes},null,2)+"\n");
 console.log("Generated final-day practice/counter staging; no input or outcome authority.");

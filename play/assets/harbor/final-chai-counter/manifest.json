@@ -1,0 +1,316 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA1.AUTH",
+        "path": "disc3/SCENE/03/MEND/CHAIAUTH.PKS",
+        "sourceSha256": "996524cfb8bdb5996b27b05e1de01af5df3c969824d888a18da639afbd32ce19",
+        "archiveMember": "SEQDATA1.AUTH",
+        "byteLength": 4508,
+        "sha256": "612254fb7718d79a22a23f52d81f563cf6bb5e922077385e7f982ec1e8947ae7"
+      },
+      {
+        "name": "SEQDATA6.AUTH",
+        "path": "disc3/SCENE/03/MEND/CHAIAUTH.PKS",
+        "sourceSha256": "996524cfb8bdb5996b27b05e1de01af5df3c969824d888a18da639afbd32ce19",
+        "archiveMember": "SEQDATA6.AUTH",
+        "byteLength": 6952,
+        "sha256": "20c16f5ca566132da5f1d3c496dae1eb2fe4fdbe7d1b755647a561bd561d6e62"
+      },
+      {
+        "name": "M_0184.MOTN",
+        "path": "disc3/SCENE/03/MEND/CHAIAUTH.PKS",
+        "sourceSha256": "996524cfb8bdb5996b27b05e1de01af5df3c969824d888a18da639afbd32ce19",
+        "archiveMember": "M_0184.MOTN",
+        "byteLength": 1032292,
+        "sha256": "ed2a8d3b8699476fd19669476ae4fc050abe0d0d37983ada0f3ea2b883452cfa"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-final-day.md#final-chai",
+    "resourceName": "CHAIAUTH",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided final Chai encounter. Original films present the approach, post-battle questioning and second attack, not combat or QTE authority. Actual fight and Down/A/A/B counter settle independently; original short water-fall clip is selected as an authored winning ending, not a recovered native branch controller."
+  },
+  "audioManifest": "public/audio/world/final-chai-counter/manifest.json",
+  "sceneObjects": {},
+  "packageActors": {
+    "CHAI": {
+      "label": "Chai",
+      "modelCode": "CHA_M",
+      "browserFilename": "CHA_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/CHA_M.CHRM",
+      "textureAssetPath": "play/assets/characters/CHA_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "CHAI"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/final-chai-counter/M_0184.MOTN",
+      "byteLength": 1032292,
+      "sha256": "ed2a8d3b8699476fd19669476ae4fc050abe0d0d37983ada0f3ea2b883452cfa"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/final-chai-counter/M_0184.MOTN",
+      "byteLength": 1032292,
+      "sha256": "ed2a8d3b8699476fd19669476ae4fc050abe0d0d37983ada0f3ea2b883452cfa"
+    },
+    {
+      "path": "play/assets/harbor/final-chai-counter/SEQDATA1.AUTH",
+      "byteLength": 4508,
+      "sha256": "612254fb7718d79a22a23f52d81f563cf6bb5e922077385e7f982ec1e8947ae7"
+    },
+    {
+      "path": "play/assets/harbor/final-chai-counter/SEQDATA6.AUTH",
+      "byteLength": 6952,
+      "sha256": "20c16f5ca566132da5f1d3c496dae1eb2fe4fdbe7d1b755647a561bd561d6e62"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "CHAIAUTH/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 4508,
+      "sha256": "612254fb7718d79a22a23f52d81f563cf6bb5e922077385e7f982ec1e8947ae7",
+      "durationFrames": 158,
+      "durationSeconds": 5.283332824707031,
+      "frameCount": 12,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 11,
+        "sound": 5,
+        "voice": 1
+      },
+      "actors": [
+        "AKIR",
+        "CHAI"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AT1_TOITUMERU_TOITUMERUCHAI_0100",
+          "startFrame": 706,
+          "endFrame": 750
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 30,
+          "motionName": "CHA_AT1_TOITUMERU_TOITUMERUCHAI_0100",
+          "startFrame": 672,
+          "endFrame": 716
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 46,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AT1_TOITUMERU_TOITUMERUCHAI_0100",
+          "startFrame": 710,
+          "endFrame": 726
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 46,
+          "motionBank": 16,
+          "sequenceIndex": 30,
+          "motionName": "CHA_AT1_TOITUMERU_TOITUMERUCHAI_0100",
+          "startFrame": 657,
+          "endFrame": 684
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 73,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AT1_TOITUMERU_TOITUMERUCHAI_0100",
+          "startFrame": 727,
+          "endFrame": 727
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 74,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AT1_TOITUMERU_TOITUMERUCHAI_0100",
+          "startFrame": 751,
+          "endFrame": 771
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 74,
+          "motionBank": 16,
+          "sequenceIndex": 30,
+          "motionName": "CHA_AT1_TOITUMERU_TOITUMERUCHAI_0100",
+          "startFrame": 705,
+          "endFrame": 725
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 95,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AT1_TOITUMERU_TOITUMERUCHAI_0100",
+          "startFrame": 739,
+          "endFrame": 763
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 95,
+          "motionBank": 16,
+          "sequenceIndex": 30,
+          "motionName": "CHA_AT1_TOITUMERU_TOITUMERUCHAI_0100",
+          "startFrame": 720,
+          "endFrame": 755
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 130,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AT1_TOITUMERU_TOITUMERUCHAI_0100",
+          "startFrame": 775,
+          "endFrame": 904
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 131,
+          "motionBank": 16,
+          "sequenceIndex": 30,
+          "motionName": "CHA_AT1_TOITUMERU_TOITUMERUCHAI_0100",
+          "startFrame": 744,
+          "endFrame": 904
+        }
+      ]
+    },
+    {
+      "slot": 1,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "CHAIAUTH/SEQDATA6.AUTH",
+      "archiveMember": "SEQDATA6.AUTH",
+      "byteLength": 6952,
+      "sha256": "20c16f5ca566132da5f1d3c496dae1eb2fe4fdbe7d1b755647a561bd561d6e62",
+      "durationFrames": 148,
+      "durationSeconds": 4.949999809265137,
+      "frameCount": 15,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 9,
+        "voice": 2,
+        "sound": 8
+      },
+      "actors": [
+        "AKIR",
+        "CHAI"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 65,
+          "motionName": "AKI_CHAIBATTLE_RIMON",
+          "startFrame": 1,
+          "endFrame": 45
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 66,
+          "motionName": "CHA_CHAIBATTLE_RIMON",
+          "startFrame": 15,
+          "endFrame": 48
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 35,
+          "motionBank": 16,
+          "sequenceIndex": 66,
+          "motionName": "CHA_CHAIBATTLE_RIMON",
+          "startFrame": 41,
+          "endFrame": 51
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 46,
+          "motionBank": 16,
+          "sequenceIndex": 65,
+          "motionName": "AKI_CHAIBATTLE_RIMON",
+          "startFrame": 33,
+          "endFrame": 65
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 46,
+          "motionBank": 16,
+          "sequenceIndex": 68,
+          "motionName": "CHA_CHAIBATTLE_RIMON_2",
+          "startFrame": 103,
+          "endFrame": 127
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 79,
+          "motionBank": 16,
+          "sequenceIndex": 65,
+          "motionName": "AKI_CHAIBATTLE_RIMON",
+          "startFrame": 65,
+          "endFrame": 75
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 90,
+          "motionBank": 16,
+          "sequenceIndex": 65,
+          "motionName": "AKI_CHAIBATTLE_RIMON",
+          "startFrame": 70,
+          "endFrame": 88
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 90,
+          "motionBank": 16,
+          "sequenceIndex": 66,
+          "motionName": "CHA_CHAIBATTLE_RIMON",
+          "startFrame": 70,
+          "endFrame": 87
+        },
+        {
+          "actorTag": "CHAI",
+          "frame": 108,
+          "motionBank": 16,
+          "sequenceIndex": 74,
+          "motionName": "CHA_OHI_OTIRU_UMI_0100",
+          "startFrame": 45,
+          "endFrame": 119
+        }
+      ]
+    }
+  ]
+}

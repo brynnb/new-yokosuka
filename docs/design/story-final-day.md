@@ -374,6 +374,60 @@ win. Shared environment tests verify the MEND water-plane policy for both
 consumers; these captures do not establish the water's appearance from every
 camera angle.
 
+## Final Chai
+
+Connected earned-save gameplay is rendered and verified, with independently
+saved battle and counter outcomes.
+
+| Field | Final fight | Last attack |
+| --- | --- | --- |
+| Location / prerequisites | Original MEND dock after independently saved Swallow Flip. Confirm **Stop Chai**; no exact-hour/date gate. | Original questioning-end waterfront pose, after independently saved final fight. Confirm **Face Chai's last attack**. |
+| Presentation / cast | Original `CHAIAUTH/SEQDATA3` beam ambush, shared original Chen/Gui Zhang and Chai bodies, source iron-piece movement, `M_0184.MOTN` bank16. Actual fight follows. Original `SEQDATA0` questioning plays only after actual knockout. | Original `SEQDATA1` second attack, held source end samples in a wide authored camera, actual **Down/A/A/B** and original short `SEQDATA6` water-fall ending. Selection of that short ending is authored, not a recovered native QTE branch controller. |
+| Gameplay | Existing server combat and moves; Chai must actually reach zero health. Player100/Chai160 health, basic AI, speeds and arena padding are explicit balance adaptations, not the original low-kick/leaping moveset. Defeat, timeout and cancellation grant no victory; retry starts a fresh attempt. | Existing server-owned four-input challenge; two-second windows and fresh retries. Wrong/expired input offers retry or leaving, not success. Finishing/skipping the lead-in cannot win it. |
+| Audio / weather | Exact English A0184/A0184B ambush and A0184D questioning, A1_SAIB/A1_MOMOR effects. MEND names BGM032 and BGM067; choosing BGM032 for this encounter and its film cues is authored, not recovered cue timing. Preserve personal calendar/weather. | Original A0184D speech and A1_MOMOR effects; same authored BGM032 cue policy. Preserve calendar/weather. |
+| Settlement | Only actual knockout plus acknowledged questioning saves `story.s1.final-chai.completed`, its notebook and original questioning-end waterfront arrival. No counter, money, item, date change, introduction letter or ship outcome. | Only all four accepted inputs plus acknowledged ending saves `story.s1.final-chai-counter.completed` and its notebook. Prior battle survives cancellation/reload. No letter or ship departure. |
+| Cleanup / recovery | Shared presentation, combat and travel ownership restore camera, actors and controls. Cancelled/failed preparation or ending remains retryable. Completed battle does not replay or require another knockout. | Same ownership; failed/cancelled attempts remain retryable without erasing the saved battle. Completed counter does not replay. |
+
+Source `MEND/CHAIAUTH.PKS` is
+`996524cfb8bdb5996b27b05e1de01af5df3c969824d888a18da639afbd32ce19`.
+Original `MEND/MODELS` Chai is byte-identical to the shared `CHA_M` body; no
+new character identity or donor model is needed. The ambush requests generic
+`01m046000038.str`, unresolved in the selected English archives and published
+dialogue catalog. It remains explicitly unavailable, without an aliased cry
+or invented subtitle. The shorter original archived ambush is selected rather
+than the longer raw SEQDATA3 variant requesting additional absent English IDs.
+Detailed beam/body contact, native QTE timing and combat AI are not reconstructed.
+
+The 2.9-minute sequential hardware-rendered continuation resumes genuinely
+earned Swallow Flip. It checks decline/reload, ambush cancellation, partial
+keyboard combat/cancellation/reload and a real knockout followed by cancelled
+questioning without a saved victory. A fresh real knockout and the natural
+original questioning then save only the battle, notebook and waterfront
+arrival. Counter decline and cancelled preparation retain that battle through
+reload. Wrong and expired input require fresh retries; actual Down/Enter/Enter/
+Shift input precedes both the cancelled winning film (no outcome) and the
+naturally completed winning retry. Reload preserves both separate outcomes,
+correct dock ground and released controls without replay. Date, ¥22,836 and
+eight inventory entries remain unchanged; no introduction letter or departure
+is inserted. Original BGM032 playback advances with a successful audio response.
+
+Reviewed captures show the beam ambush, Chai/Ryo in actual partial combat,
+original questioning and both actors in the held input shot with visible
+harbor water. A separate 10.5-second renderer-only check after the earned
+counter confirms the original late falling pose beyond the dock edge and
+restored gameplay without changing saved progress, money or inventory. The
+subsequent capture is already back in gameplay; it does not prove a splash or
+exact water-entry effects. Detailed contact, fingers and native facial/particle
+callbacks remain presentation limits, not substitutes for the actual fight
+and input. The earned save is backed up separately from the preceding lesson;
+no source assets have been uploaded.
+
+Real compiler/engine tests require actual simulated knockout and all four
+inputs, with separate acknowledged endings. They cover admission, decline,
+cancelled preparation/fights/films, real defeat, timeout, fresh retries and
+stale challenge tokens. A repeated stale A cannot consume the second A.
+Exact settlement assertions exclude future story, economy or date changes.
+
 ## Verification and remaining work
 
 The real Yarn compiler/engine checks the three events independently: missing
@@ -425,9 +479,9 @@ films nor restores ambient Tom. No finale outcome is inserted. The earned
 isolated database is backed up separately from the preceding morning save.
 
 The 70-man battle, Terry QTE/interrogation, post-battle home/rest chain, family
-farewell, harbor admission and Swallow Flip lesson are connected and rendered
-as described above. The final Chai encounter, its Down/A/A/B counter and ship
-departure remain separate missing outcomes.
+farewell, harbor admission, Swallow Flip lesson, actual final Chai fight and
+separate Down/A/A/B counter are connected and rendered as described above.
+The introduction letter and ship departure remain missing connected outcomes.
 No future outcome should be inserted into an earned checkpoint. Plane mesh
 visibility, exact collapse staging and tighter hand/pipe choreography remain
 presentation review items, not proof of missing or completed battle outcomes.

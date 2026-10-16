@@ -1,0 +1,697 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/A0184.AFS",
+      "sha256": "ad893719cdbca6689d7dbe1d9d82a6c98b37ffe5d90c44315bd2e0030c3bd229"
+    },
+    "additionalStreams": [
+      {
+        "disc": 3,
+        "path": "disc3/SCENE/03/STREAM/A0184B.AFS",
+        "sha256": "8d7cfa6fe566dc87816613c04f6e1d15c89d5f5bc3dc112510782a8884dcb644"
+      }
+    ],
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_SAIB.SND",
+      "sha256": "b931e084250c0773a842b2ca91e5be27c11bef4b6c43537cb014d4c6967b4cc9"
+    },
+    "authManifest": "play/assets/harbor/final-chai-intro/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#final-chai"
+  },
+  "voices": [
+    {
+      "voiceId": "01m046000038",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/01m046000038.aiff",
+      "nativeMember": "01m046000038.str",
+      "speakerId": "KISY",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "Original generic voice reference is absent from the pinned English A0184/A0184B archives and published dialogue catalog. Its common-voice source is unresolved; do not alias a different cry or invent words.",
+      "evidence": "docs/design/story-final-day.md#final-chai"
+    },
+    {
+      "voiceId": "A0184A003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184A003.aiff",
+      "nativeMember": "A0184A003.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 10240,
+      "nativeSha256": "38216b9cfe0098dc22a88c42c2be145cd0a74f7b0d5da47badd6cda48f23c9a0",
+      "nativeArchive": "disc3/SCENE/03/STREAM/A0184.AFS",
+      "speakerId": "AKIR",
+      "sourceText": "Gui Zhang!",
+      "displayText": "Gui Zhang!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-chai-intro/voice/A0184A003.wav",
+      "byteLength": 40748,
+      "sha256": "aeea184a2da62fc700660e07acc41ab298abb5b1939d1126419f74ec5f756f1d"
+    },
+    {
+      "voiceId": "A0184BD001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184BD001.aiff",
+      "nativeMember": "A0184BD001.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 18432,
+      "nativeSha256": "c923e953858953abbfff91fba10be006856d58fb3d71f7430307bd8d05205ec5",
+      "nativeArchive": "disc3/SCENE/03/STREAM/A0184B.AFS",
+      "speakerId": "CHAI",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 23
+          },
+          {
+            "shape": 5,
+            "durationTicks": 28
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 29
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 25
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-chai-intro/voice/A0184BD001.wav",
+      "byteLength": 73516,
+      "sha256": "4ca84cf95d786f0fc825d348372b28bbf80c5d640306b3bfba4efc2bba32abcd"
+    },
+    {
+      "voiceId": "A0184BD002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184BD002.aiff",
+      "nativeMember": "A0184BD002.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 63488,
+      "nativeSha256": "5e9f286b06172c30c3592cbdd3eabcfcb055ade4d226f25153e17b95f0e7a6cd",
+      "nativeArchive": "disc3/SCENE/03/STREAM/A0184B.AFS",
+      "speakerId": "CHAI",
+      "sourceText": "Heegh! You, you aren't going to Hong Kong.＆Because, The Great Chai will defeat you=@",
+      "displayText": "Heegh! You, you aren't going to Hong Kong.\nBecause, The Great Chai will defeat you...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 25
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 58
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 26
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-chai-intro/voice/A0184BD002.wav",
+      "byteLength": 253740,
+      "sha256": "72d640e891550025f90509d2a8ffcf1adb3fbbefa1e0c0399ef7d0a158a43e0c"
+    },
+    {
+      "voiceId": "A0184C002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184C002.aiff",
+      "nativeMember": "A0184C002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "9dd7049222a4ef4f0b999cd6c922d5bebfc2f2873cf78afca6d6ef7346a2f480",
+      "nativeArchive": "disc3/SCENE/03/STREAM/A0184.AFS",
+      "speakerId": "KISY",
+      "sourceText": "Look out!",
+      "displayText": "Look out!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-chai-intro/voice/A0184C002.wav",
+      "byteLength": 24364,
+      "sha256": "e5c25ebc4e314ca6dd493a1a340156980ab9f765bbe86ecbf632036a9b28429d"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/cloths/bagcatch.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9040000.wav",
+      "byteLength": 10860,
+      "sha256": "4cb1c00716b6d44507bfe8008f71f0e2044a9024350258795c399184adab87e0"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/hit/Hit6.aiff",
+      "playbackId": 1,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9040100.wav",
+      "byteLength": 25780,
+      "sha256": "777f33d33abf3949b50bcece5ccd6d66fa36be56e72d6a424493d741260f6a33"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/hit/Hitj.aiff",
+      "playbackId": 2,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9040200.wav",
+      "byteLength": 8404,
+      "sha256": "af0e16f63efbde98767f271a79144daf5f0086f231ff29e88dde739fffba0000"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/cloths/Mantle.aiff",
+      "playbackId": 3,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9040300.wav",
+      "byteLength": 23092,
+      "sha256": "9c0edc070183a5adc54c0c91df6cc11780272da9356b7a68a1ad7cea992c28db"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/body/shoulder2.aiff",
+      "playbackId": 4,
+      "sampleId": 13,
+      "sampleRate": 9000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9040400.wav",
+      "byteLength": 2084,
+      "sha256": "86976d2e7ce1e725bcc377622ae4f285992586b2090f8b3bd838ada65a99885a"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/smallobject/tecchu1.aiff",
+      "playbackId": 7,
+      "sampleId": 21,
+      "sampleRate": 18000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9040700.wav",
+      "byteLength": 33108,
+      "sha256": "c1274d445a8a9e92aaec6a635e8a66637d9b2c95086eafbb81370c3a365ade76"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/smallobject/tecchu3.aiff",
+      "playbackId": 8,
+      "sampleId": 22,
+      "sampleRate": 18000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9040800.wav",
+      "byteLength": 60940,
+      "sha256": "c35c35e2e817581348492ee02b0286ef6be91e7ef06600fc0e92d3826def319e"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/smallobject/tecchufall3.aiff",
+      "playbackId": 9,
+      "sampleId": 23,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9040900.wav",
+      "byteLength": 68676,
+      "sha256": "f920ca3d847110bfca425afebe28aa9cae6fbcfd0b081e6b39d23daf1df184a9"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/hit/Hit1.aiff",
+      "playbackId": 10,
+      "sampleId": 5,
+      "sampleRate": 6000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9040a00.wav",
+      "byteLength": 24020,
+      "sha256": "b02d4160ea289bad8d3195a5960a84354f8f5a30b3f552aae5d5247f3c1b6e70"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/cloths2/cloths02.aiff",
+      "playbackId": 12,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9040c00.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 14,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9040e00.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/body/gomi1.aiff",
+      "playbackId": 15,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9040f00.wav",
+      "byteLength": 13308,
+      "sha256": "b60797f12d0f0dcc6696c536848d0b7b3f1c114502d208f8919436c8d58fe812"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 16,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9041000.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 17,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9041100.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/foot2/R_kon_s04.aiff",
+      "playbackId": 18,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9041200.wav",
+      "byteLength": 8348,
+      "sha256": "3b3c04b71b5b253519c8c723723696fc3b52ca4e87bed8b3ea23abc16e586baa"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/foot2/R_kon_s05.aiff",
+      "playbackId": 19,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9041300.wav",
+      "byteLength": 8028,
+      "sha256": "80d1d9ebacefc3057b71ede086be9a436d12c9133ffb696887ccd37290c76cdb"
+    },
+    {
+      "commandHex": "a9041400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/foot/sneaker1.aiff",
+      "playbackId": 20,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9041400.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9041500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/foot/sneaker5.aiff",
+      "playbackId": 21,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9041500.wav",
+      "byteLength": 10804,
+      "sha256": "0334446f014be77a677e0e4e97f7e1604c7dc5b356bef53103d39acc9081f9e1"
+    },
+    {
+      "commandHex": "a9041600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/swing/swing01.aiff",
+      "playbackId": 22,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9041600.wav",
+      "byteLength": 18916,
+      "sha256": "c4113c752c7932da20c953432b74e5d2575f36f84dd79cdb11887887176c7e4c"
+    },
+    {
+      "commandHex": "a9041700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/swing/swing03.aiff",
+      "playbackId": 23,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-chai-intro/sfx/a9041700.wav",
+      "byteLength": 33644,
+      "sha256": "413a08d07fd75774be0f172cee9b9bb40069fee1712acf9d9581400894008ef2"
+    }
+  ]
+}

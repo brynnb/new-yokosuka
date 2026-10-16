@@ -2,6 +2,101 @@
   "schema": "new-yokosuka-authored-story-combat-v1",
   "encounters": [
     {
+      "id": "s1.mend.final-chai",
+      "label": "Defeat Chai at the harbor",
+      "area": "MEND",
+      "worldId": "mend",
+      "provenance": "GameSpot p65 requires actual one-on-one victory; defeat retries, unlike the earlier arcade encounter. Original CHAIAUTH3 ending positions and byte-identical original MEND/CHA_M body. Shared basic moves/AI, 100/160 health, speed and arena padding are authored balance, not Chai's native low-kick/leaping moveset. Actual knockout plus acknowledged interrogation alone save victory/arrival; no later counter, letter or ship outcome.",
+      "sourceActivity": "play/assets/harbor/final-chai-intro/SEQDATA3.AUTH",
+      "sha256": "c7f0ba65895b097996708dfd0f294d8fbf2f62c0dfa5196987e7d956dd4687b4",
+      "sourcePackage": "play/assets/harbor/final-chai-intro/manifest.json",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -69.84626007080078,
+          "y": 0,
+          "z": 29.35186767578125,
+          "health": 100
+        },
+        {
+          "tag": "CHAI",
+          "x": -67.24656677246094,
+          "y": 0,
+          "z": 28.831228256225586,
+          "health": 160
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "CHAI",
+          "label": "Chai",
+          "modelCode": "CHA_M",
+          "browserFilename": "CHA_M.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/characters/CHA_M.CHRM",
+          "textureAssetPath": "play/assets/characters/CHA_textures.bin",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -71.64626007080078,
+        "maxX": -65.44656677246094,
+        "minZ": 27.031228256225585,
+        "maxZ": 31.15186767578125
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.6,
+      "maxAttackers": 1,
+      "timeoutMs": 240000,
+      "musicTrack": "bgm032",
+      "inputBufferMs": 400
+    },
+    {
       "id": "s1.mfbt.seventy-man",
       "label": "Ryo and Gui Zhang against the Mad Angels",
       "area": "MFBT",

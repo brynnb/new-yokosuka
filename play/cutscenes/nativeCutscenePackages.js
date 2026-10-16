@@ -158,6 +158,12 @@ import familyDepartureManifest from "../assets/hazuki/family-departure/manifest.
 import familyDepartureAudio from "../../public/audio/world/family-departure/manifest.json";
 import swallowLessonManifest from "../assets/harbor/swallow-lesson/manifest.json";
 import swallowLessonAudio from "../../public/audio/world/swallow-lesson/manifest.json";
+import finalChaiIntroManifest from "../assets/harbor/final-chai-intro/manifest.json";
+import finalChaiIntroAudio from "../../public/audio/world/final-chai-intro/manifest.json";
+import finalChaiInterrogationManifest from "../assets/harbor/final-chai-interrogation/manifest.json";
+import finalChaiInterrogationAudio from "../../public/audio/world/final-chai-interrogation/manifest.json";
+import finalChaiCounterManifest from "../assets/harbor/final-chai-counter/manifest.json";
+import finalChaiCounterAudio from "../../public/audio/world/final-chai-counter/manifest.json";
 import chaiIntroManifest from "../assets/dobuita/chai-intro/manifest.json";
 import chaiIntroAudio from "../../public/audio/world/chai-intro/manifest.json";
 import chaiVictoryManifest from "../assets/dobuita/chai-victory/manifest.json";
@@ -394,6 +400,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["gui-after-battle",guiAfterBattleManifest,guiAfterBattleAudio,"mfbt",Object.freeze({cues:[{startActivity:true,trackId:"bgm106",loop:true}],gain:1})],
     ["family-departure",familyDepartureManifest,familyDepartureAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm107",loop:true}],gain:1})],
     ["swallow-lesson",swallowLessonManifest,swallowLessonAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm064",loop:true}],gain:1})],
+    ...[["final-chai-intro",finalChaiIntroManifest,finalChaiIntroAudio],["final-chai-interrogation",finalChaiInterrogationManifest,finalChaiInterrogationAudio],["final-chai-counter",finalChaiCounterManifest,finalChaiCounterAudio]].map(([id,manifest,audio])=>[id,manifest,audio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm032",loop:true}],gain:1})]),
     ["sailor-chase-intro",sailorIntroManifest,sailorIntroAudio,"mfsy"],["sailor-chase-tony",sailorTonyManifest,sailorTonyAudio,"mfsy"],["sailor-chase-smith",sailorSmithManifest,sailorSmithAudio,"mfsy"],
     ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],
     ["mark-lunch-intro",markLunchIntroManifest,markLunchIntroAudio,"mfsy"],["mark-lunch-aftermath",markLunchAftermathManifest,markLunchAftermathAudio,"mfsy"],

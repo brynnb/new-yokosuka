@@ -3,6 +3,23 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"final-chai","disc":3,"actor":"AKIR","presentActors":[],"area":"MEND","trigger":"enter","priority":991,
+      "title":"Chai's final ambush","bounds":"s1.mend.final-chai","requiredFlags":["story.s1.swallow-flip.completed"],
+      "completedFlag":"story.s1.final-chai.completed","effects":["notebook.s1.final-chai"],"voiceIds":[],"yarnTemplate":"story-final-chai.yarn",
+      "destination":"s1.departure.chai-waterfront",
+      "nativeSources":[{"role":"original-final-chai-cast-and-films","locator":"disc3/SCENE/03/MEND/CHAIAUTH.PKS","sha256":"996524cfb8bdb5996b27b05e1de01af5df3c969824d888a18da639afbd32ce19"}],
+      "summary":"Original Chai/beam ambush, actual server-owned one-on-one fight and acknowledged original questioning. Saves only battle/notebook/waterfront arrival; a movie, defeat or timeout cannot grant victory or the later counter/letter/departure.",
+      "provenance":"GameSpot p65 requires actual Chai victory and retry on defeat, then questioning before the separate Down/A/A/B counter. Original CHAIAUTH3 introduction and0 interrogation, M_0184 bank16, exact A0184/A0184B/A0184D English voices and source effects. Shared basic moves/AI, 100/160 health and arena padding are authored balance, not native Chai behavior. BGM032 is named in the original MEND cluster; exact film/combat cue placement is authored. Generic01m046000038 cry remains unresolved, not substituted. Only actual knockout plus acknowledged interrogation saves own result and source waterfront arrival; no time/economy/river/letter/ship outcome."
+    },
+    {
+      "id":"final-chai-counter","disc":3,"actor":"AKIR","presentActors":[],"area":"MEND","trigger":"enter","priority":992,
+      "title":"Chai's last attack","bounds":"s1.mend.final-chai-counter","requiredFlags":["story.s1.final-chai.completed"],
+      "completedFlag":"story.s1.final-chai-counter.completed","effects":["notebook.s1.chai-last-attack"],"voiceIds":[],"yarnTemplate":"story-final-chai-counter.yarn",
+      "nativeSources":[{"role":"original-second-attack-and-water-fall","locator":"disc3/SCENE/03/MEND/CHAIAUTH.PKS#SEQDATA1,SEQDATA6","sha256":"996524cfb8bdb5996b27b05e1de01af5df3c969824d888a18da639afbd32ce19"}],
+      "summary":"Actual server-owned Down/A/A/B counter after separately earned battle victory. Original second attack, held source poses and original short water-fall film; acknowledged own outcome only, no letter or ship departure.",
+      "provenance":"GameSpot p65 establishes Down,A,A,B after Chai rises again. Original CHAIAUTH1 precedes shared four-input challenge; original6 visibly moves Chai below sea level and is selected as an authored winning ending, not a reconstructed native branch controller. Held last-source poses/wide camera, generic two-second windows and retry are adaptations. Wrong/expired/cancelled input saves no river outcome. Only actual success plus acknowledged ending saves own milestone/notebook; preceding fight survives reload and no future letter/departure is inserted."
+    },
+    {
       "id":"departure-harbor","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":993,
       "title":"Meet Master Chen before departure","bounds":"s1.mfsy.departure-harbor","requiredFlags":["story.s1.family-departure.completed"],
       "completedFlag":"story.s1.departure-harbor.completed","effects":[],"voiceIds":[],"activities":[],"destination":"s1.departure.chen-approach",
