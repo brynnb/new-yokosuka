@@ -3,6 +3,14 @@ import fs from "node:fs";
 import test from "node:test";
 
 import { CUTSCENES } from "../play/config/cutscenes.js";
+import {ScriptEventPresentationCatalog} from "../play/scripts/ScriptEventPresentationCatalog.js";
+const presentationCatalog=new ScriptEventPresentationCatalog();
+const commandRegistry=JSON.parse(fs.readFileSync("play/data/server-command-registry.json","utf8"));
+// Story-only sequences intentionally are not public sidebar previews. Both
+// declared entry catalogs still require exact canonical program coverage.
+const declaredCutscenes=[...new Map([...CUTSCENES,...commandRegistry.capabilities
+  .filter(c=>c.kind==="activity").map(c=>presentationCatalog.activity(c.identifier)?.cutscene).filter(Boolean)]
+  .map(c=>[c.id,c])).values()];
 import {
   createNativeEventInterpreter,
 } from "../play/events/NativeEventInterpreter.js";
@@ -124,7 +132,7 @@ test("generated activity previews are ordinary canonical interpreter programs", 
   );
   assert.equal(
     previewPack.programs.length,
-    CUTSCENES.filter(item => item.program?.entryFunction?.startsWith("$activity"))
+    declaredCutscenes.filter(item => item.program?.entryFunction?.startsWith("$activity"))
       .length,
   );
   const program = previewPack.programs.find(
@@ -158,7 +166,7 @@ test("generated activity previews are ordinary canonical interpreter programs", 
   });
   assert.equal(cutscene.activity, undefined);
   for (const wrapper of previewPack.programs) {
-    const selection = CUTSCENES.find(
+    const selection = declaredCutscenes.find(
       item => item.id === wrapper.selector.cutsceneId,
     );
     assert.ok(selection, wrapper.selector.cutsceneId);

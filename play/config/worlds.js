@@ -106,6 +106,8 @@ import {
 
 const basementArrival = storyDestinations.destinations.find(destination => destination.id === "s1.home.basement-entry");
 if (!basementArrival) throw Error("Missing reviewed Hazuki basement arrival");
+const voyageArrival=storyDestinations.destinations.find(destination=>destination.id==="s1.departure.ship-deck");
+if(!voyageArrival)throw Error("Missing reviewed shipboard Story checkpoint");
 
 function hasRuntimePlacement(position) {
   return !(
@@ -895,6 +897,14 @@ export const WORLDS = Object.freeze({
     // TRAP/ENDMAP layers belong to later staging, not the ordinary lesson floor.
     includeFile:filename=>/^S3_MEND_MAP(?:01|02|03|05|06|08|11|12)?\.MT5$/.test(filename),
     placements:Object.freeze([]),
+  }),
+  "s1-voyage":Object.freeze({
+    id:"s1-voyage",label:"Voyage to Hong Kong",japaneseLabel:"香港への船旅",nativeArea:"MEND",
+    prefix:"S3_MEND",spawn:BABYLON.Vector3.FromArray(voyageArrival.position),yaw:voyageArrival.yaw,
+    // The original ship is the entire world, frozen in its own local frame.
+    // Native dock COLI is in a different frame and must not be reused here.
+    customWorldGeometry:true,waterHeight:-0.20000004768371582,
+    includeFile:filename=>filename==="S3_MEND_B05K206G.MT5",placements:Object.freeze([]),
   }),
   "nbik-home":Object.freeze({
     id:"nbik-home",label:"Nozomi's Ride Home",japaneseLabel:"帰り道",nativeArea:"NBIK",

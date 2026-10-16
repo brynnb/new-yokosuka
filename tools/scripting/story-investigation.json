@@ -3,6 +3,17 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"departure","disc":3,"actor":"AKIR","presentActors":[],"area":"MEND","trigger":"enter","priority":987,
+      "title":"Sail to Hong Kong","bounds":"s1.mend.departure","requiredFlags":["story.s1.nozomi-amulet.completed","story.s1.chen-introduction-letter.completed"],
+      "requiredItems":[{"key":"letter_of_introduction","quantity":1},{"key":"nozomi_amulet","quantity":1}],
+      "completedFlag":"story.s1.departure.completed","effects":["notebook.s1.departure"],"voiceIds":[],
+      "activities":["s1.mend.ship-boarding.scene","s1.mend.ship-sailing.scene"],
+      "destination":"s1.departure.ship-deck","confirmation":{"accept":"Sail to Hong Kong","decline":"Not yet"},
+      "nativeSources":[{"role":"original-boarding","locator":"disc3/SCENE/03/MEND/TRAPAUTH.PKS#SEQDATA1.AUTH","sha256":"7999c35b3d0caf136f56aba260beaa01c6c6d257e2e3a17ba4f857430f3c1373"},{"role":"original-sailing-shots","locator":"disc3/SCENE/03/MEND/ENDAUTH.PKS#SEQDATA1,7,8,9","sha256":"e2c64bb5800b4e1fcc383db5e93855a10f4086b41f2f7356f41528e366815cac"}],
+      "summary":"Confirmed original boarding and selected original sailing shots. Only acknowledged final completion saves the S1 ending, notebook and shipboard checkpoint together; no new item, economy, time jump or S2 progress.",
+      "provenance":"GameSpot p65 places boarding/sailing after independently earned final Chai, counter, letter and amulet. Original TRAPAUTH1 plus ENDAUTH1/7/8/9, original M_0180.MOTN and selected M_01156.BIN motions, ship/bird geometry, cameras and available effects. This is an authored selection, not all alternate films or a recovered native ending controller. BGM095 cue and fixed original ship-local epilogue checkpoint are adaptations. Cancellation/failure at any shot restores the earned dock save; only final acknowledgement atomically saves departure, notebook and ship-deck destination. No native bad-ending flags or S2 outcome."
+    },
+    {
       "id":"nozomi-amulet","disc":3,"actor":"AKIR","presentActors":[],"area":"MEND","trigger":"enter","priority":988,
       "title":"Nozomi's farewell amulet","bounds":"s1.mend.nozomi-amulet","requiredFlags":["story.s1.chen-introduction-letter.completed"],"requiredItems":[{"key":"letter_of_introduction","quantity":1}],
       "completedFlag":"story.s1.nozomi-amulet.completed","effects":["notebook.s1.nozomi-amulet"],"items":[{"key":"nozomi_amulet","quantity":1}],"voiceIds":[],

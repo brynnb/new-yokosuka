@@ -16,6 +16,8 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const defaultEvidence="docs/design/story-harbor-work.md";
 const archives={
+  "MEND/TRAPAUTH":"7999c35b3d0caf136f56aba260beaa01c6c6d257e2e3a17ba4f857430f3c1373",
+  "MEND/ENDAUTH":"e2c64bb5800b4e1fcc383db5e93855a10f4086b41f2f7356f41528e366815cac",
   "MEND/NZOM":"94bbe7abd363493e3789aab1af4f464ed396d5bf1cb6ebd81f70cc0d7e986cb1",
   "MEND/CHAIAUTH":"996524cfb8bdb5996b27b05e1de01af5df3c969824d888a18da639afbd32ce19",
   "MEND/M0W0":"393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2",
@@ -65,6 +67,21 @@ const finalChaiSource={archive:"MEND/CHAIAUTH",resourceName:"CHAIAUTH",motion:"M
   sound:"A1_MOMOR.SND",soundHash:"ac1ff0499b2c24bc4439f78b17c09b6f5ee066f40ab4b2ba76acaa72eb567109",music:finalChaiMusic,
   selectionRule:"Walkthrough-guided final Chai encounter. Original films present the approach, post-battle questioning and second attack, not combat or QTE authority. Actual fight and Down/A/A/B counter settle independently; original short water-fall clip is selected as an authored winning ending, not a recovered native branch controller."};
 const profiles=[
+  {id:"ship-boarding",archive:"MEND/TRAPAUTH",resourceName:"TRAPAUTH",evidence:"docs/design/story-final-day.md#boarding-and-sailing",auth:"SEQDATA1.AUTH",frames:464,motion:"M_0180.MOTN",actors:["AKIR"],
+    sound:"A1_SHUKO.SND",soundHash:"90a84dacf6b2d57654a727f5cf9a442393b6118cfcb496bd7376d9e3c1475224",
+    music:{id:"bgm095",sourceId:"d7e211ad794a3d388e296ba15fc89855a63f982ce28d01ab9b790b06c1595e00",bankHash:"5ddda742e9ad81265e192ff070d1bdeaa4e9b9468cbcf6c786aed3cb32ff2fb9",label:"Leaving Yokosuka"},
+    selectionRule:"Original boarding animation and camera on the resident departure dock. Shared Yarn confirmation owns boarding/sailing order and atomic final destination. BGM095 entry cue is authored from the original resource cluster. No invented English speech or native room-controller recovery."},
+  {id:"ship-sailing",sequenceProgram:{worldId:"mend",area:"MEND"},archive:"MEND/ENDAUTH",resourceName:"ENDAUTH",evidence:"docs/design/story-final-day.md#boarding-and-sailing",motion:"M_01156.BIN",
+    motionSource:{path:"MEND/M_01156.BIN",byteLength:37416,sha256:"600154cdb0e421f1335bcbc2acb4a06acfe930515c8e77e57d87438927ccd7d7"},motionParseOptions:{sequenceIndices:[8,13]},
+    actors:["SHIP","AKIR","KAM1","TAIJ"],activities:[
+      {file:"SEQDATA1.AUTH",durationFrames:200,actors:["SHIP","AKIR"]},
+      {file:"SEQDATA7.AUTH",durationFrames:690,actors:["KAM1","SHIP","AKIR"]},
+      {file:"SEQDATA8.AUTH",durationFrames:760,actors:["SHIP","AKIR","TAIJ"]},
+      {file:"SEQDATA9.AUTH",durationFrames:930,actors:["SHIP"]}],
+    sharedActorManifest:finalCast[0],props:{SHIP:"B05K206G",KAM1:"KMH02A3G"},propTextureHash:"c02a664047f6ea8aa96dd55a2273ba7abd6ab45d2e12441d5f2f2f3ee6ea0d79",authoredPropBindings:true,
+    stage:{archive:"ENDMAP.PKS",sha256:"a2471208d4295d930f75b5583555b4c09f41c84ea844ce78672a4eb4368a2da4",textures:"ENDMAP.PKF",textureHash:"44b74680517413341919e844f9d8c0426246e6f44582358377a2d71dbfd0dc08",maps:["MAP01","MAP02","MAP03","MAP04","MAP07","MAP09","MAP11","MAP12"],hiddenMaps:["MAP04"]},
+    sound:"A1_END.SND",soundHash:"a8a5aa0c742a92be74939a3b2fce1010cbf0220576950faf438cf2dd73d0fb75",
+    selectionRule:"Authored selection of original ENDAUTH1/7/8/9 departure shots, not every alternative in archive order. Original moving ship, Ryo and Chen use original camera/motion. Shared isolated stage replaces the resident dock hull, selecting MAP03 over alternate MAP04. KAM1 has original root movement but no decoded wing loop. Only acknowledged final shot permits ordinary Yarn to save the shipboard checkpoint; no S2 outcome."},
   {id:"nozomi-amulet",archive:"MEND/NZOM",resourceName:"NZOM",evidence:"docs/design/story-final-day.md#nozomis-amulet-memory",auth:"SEQDATA0.AUTH",frames:4187,motion:"M_01JN.MOTN",bank:21,actors:["AKIR","HRSK"],
     actorModels:{HRSK:["Nozomi Harasaki","NZM_M"]},actorTextureHash:"2be31a8cac926c808abfc7168326f9bb90cb04f81746fabfc74640e8cc3b8633",
     stage:{archive:"NZOM.PKS",sha256:"94bbe7abd363493e3789aab1af4f464ed396d5bf1cb6ebd81f70cc0d7e986cb1",textures:"NZOM.PKF",textureHash:"2be31a8cac926c808abfc7168326f9bb90cb04f81746fabfc74640e8cc3b8633",maps:["MAP"]},
@@ -286,7 +303,10 @@ for(const p of selected){
       if(parseAuthSequence(bytes).sounds.length)throw Error(`Unexpected original audio in silent ${p.id}`);
     }
   }
-  member(p.archive,p.motion);
+  if(p.motionSource){
+    const s=p.motionSource;
+    members.push({name:p.motion,sourcePath:path.join(source,s.path),sourceManifestPath:`disc3/SCENE/03/${s.path}`,byteLength:s.byteLength,sha256:s.sha256});
+  }else member(p.archive,p.motion);
   for(const extra of p.extraMembers||[])outputMembers.push(typeof extra==="string"?member(p.archive,extra):member(extra.archive,extra.name));
   if(p.assetOnly){
     // ALP_PAY has salary motions, but no AUTH film. Preserve those originals
@@ -354,7 +374,7 @@ for(const p of selected){
     sceneObjects.ROOM={model:room.model,browserFilename:room.member,assetPath:`${prefix}/${room.member}`,textureAssetPath,
       lifecycle:{kind:"room-script-persistent"},initialPresentation:{position:[0,0,0],rotationDegrees:[0,0,0],scale:[1,1,1]}};
   }
-  if(p.stage)addNativeAseqStageAssets({stage:p.stage,sourceDirectory:path.join(source,path.dirname(archiveStem(p.archive))),sourceManifestPrefix:`disc3/SCENE/03/${path.dirname(archiveStem(p.archive))}`,assetPrefix:prefix,members,outputMembers,sceneObjects,generatedAssets});
+  const stageStates=p.stage?addNativeAseqStageAssets({stage:p.stage,sourceDirectory:path.join(source,path.dirname(archiveStem(p.archive))),sourceManifestPrefix:`disc3/SCENE/03/${path.dirname(archiveStem(p.archive))}`,assetPrefix:prefix,members,outputMembers,sceneObjects,generatedAssets}):[];
   const propTextureAssetPath=p.props?texture(p.propArchive||p.archive,p.propTextureHash,"textures.bin"):null;
   if(p.id==="mark-job-introduction"){
     const textureAssetPath=propTextureAssetPath;
@@ -373,16 +393,23 @@ for(const p of selected){
   const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:p.resourceName||p.archive,disc:3,sourceMembers:members,expectedMembers:members,
     bindingEvidence:evidence,selectionRule:p.selectionRule||"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),...(p.silent?{}:{audioManifest:`${audioPrefix}/manifest.json`}),
-    motionBanks:[{bank:p.bank??16,member:p.motion},...(p.extraMotionBanks||[])],activities:activities.map((activity,slot)=>({...activity,slot,binding:{kind:"map-embedded-slot"},
+    motionBanks:[{bank:p.bank??16,member:p.motion,...(p.motionParseOptions?{parseOptions:p.motionParseOptions}:{})},...(p.extraMotionBanks||[])],activities:activities.map((activity,slot)=>({...activity,slot,binding:{kind:"map-embedded-slot"},
       ...(p.stage?{browserMapVisibility:[],browserIsolatedStage:true,browserLightingPresetIndex:0}:{}),
-      ...(Object.values(sceneObjects).some(o=>o.lifecycle?.kind==="room-script-persistent")?{nativeSceneObjectStates:Object.entries(sceneObjects).filter(([,o])=>o.lifecycle?.kind==="room-script-persistent").map(([actorTag])=>({actorTag,presented:true}))}:{})})),
+      ...(Object.values(sceneObjects).some(o=>o.lifecycle?.kind==="room-script-persistent")?{nativeSceneObjectStates:[...(p.room?[{actorTag:"ROOM",presented:true}]:[]),...stageStates]}:{})})),
     packageActors,sceneObjects,outputMembers:[...new Set(outputMembers)],generatedAssets,
   });
   runtimePaths.push(`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path));
+  if(p.sequenceProgram){
+    // Explicitly reviewed sequential shots, not the alternate activities in
+    // every multi-film archive. Reuse the same compiler as the ride home.
+    const routeFile=path.join(root,"tools/data/native-activity-preview-routes.json"),routes=JSON.parse(fs.readFileSync(routeFile));
+    const route={cutsceneId:`story-s1-${p.id}`,programId:`story-s1-${p.id}`,packageId:p.id,...p.sequenceProgram,manifest:`${prefix}/manifest.json`,activities:activities.map((_,slot)=>({slot}))};
+    routes.routes=routes.routes.filter(r=>r.programId!==route.programId);routes.routes.push(route);fs.writeFileSync(routeFile,JSON.stringify(routes,null,2)+"\n");
+  }
   console.log(`Built ${p.id}: ${manifest.activities[0].durationSeconds.toFixed(2)} seconds`);
   if(p.silent||!process.argv.includes("--audio"))continue;
   const audio=buildNativeAseqAudioPack({generatedBy,disc:3,authDirectory:path.join(root,prefix),authFiles:activities.map(a=>a.file),authManifest:`${prefix}/manifest.json`,resourceBindingEvidence:evidence,
-    stream:{label:`${p.stream}.AFS`,path:path.join(source,`STREAM/${p.stream}.AFS`),manifestPath:`disc3/SCENE/03/STREAM/${p.stream}.AFS`,sha256:p.streamHash},
+    ...(p.stream?{stream:{label:`${p.stream}.AFS`,path:path.join(source,`STREAM/${p.stream}.AFS`),manifestPath:`disc3/SCENE/03/STREAM/${p.stream}.AFS`,sha256:p.streamHash}}:{}),
     additionalStreams:p.additionalStreams?.map(s=>({label:`${s.stream}.AFS`,path:path.join(source,`STREAM/${s.stream}.AFS`),manifestPath:`disc3/SCENE/03/STREAM/${s.stream}.AFS`,sha256:s.sha256})),
     soundBank:{label:p.sound,path:path.join(source,`SOUND/${p.sound}`),manifestPath:`disc3/SCENE/03/SOUND/${p.sound}`,sha256:p.soundHash},
     unavailableSounds:p.unavailableSounds,unavailableVoices:p.unavailableVoices,

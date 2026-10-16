@@ -1,0 +1,93 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA1.AUTH",
+        "path": "disc3/SCENE/03/MEND/TRAPAUTH.PKS",
+        "sourceSha256": "7999c35b3d0caf136f56aba260beaa01c6c6d257e2e3a17ba4f857430f3c1373",
+        "archiveMember": "SEQDATA1.AUTH",
+        "byteLength": 2324,
+        "sha256": "a9aa8b26d96fa16a2159b4634f54859dd14f0ff237c93ef5cda1c89f6302b972"
+      },
+      {
+        "name": "M_0180.MOTN",
+        "path": "disc3/SCENE/03/MEND/TRAPAUTH.PKS",
+        "sourceSha256": "7999c35b3d0caf136f56aba260beaa01c6c6d257e2e3a17ba4f857430f3c1373",
+        "archiveMember": "M_0180.MOTN",
+        "byteLength": 547720,
+        "sha256": "592e124498325dd3b9891f1d6f4056a11087c423eabf1b0d52323be1533ee357"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-final-day.md#boarding-and-sailing",
+    "resourceName": "TRAPAUTH",
+    "variant": "",
+    "selectionRule": "Original boarding animation and camera on the resident departure dock. Shared Yarn confirmation owns boarding/sailing order and atomic final destination. BGM095 entry cue is authored from the original resource cluster. No invented English speech or native room-controller recovery."
+  },
+  "audioManifest": "public/audio/world/ship-boarding/manifest.json",
+  "sceneObjects": {},
+  "packageActors": {},
+  "actorTags": [
+    "AKIR"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/ship-boarding/M_0180.MOTN",
+      "byteLength": 547720,
+      "sha256": "592e124498325dd3b9891f1d6f4056a11087c423eabf1b0d52323be1533ee357"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/ship-boarding/M_0180.MOTN",
+      "byteLength": 547720,
+      "sha256": "592e124498325dd3b9891f1d6f4056a11087c423eabf1b0d52323be1533ee357"
+    },
+    {
+      "path": "play/assets/harbor/ship-boarding/SEQDATA1.AUTH",
+      "byteLength": 2324,
+      "sha256": "a9aa8b26d96fa16a2159b4634f54859dd14f0ff237c93ef5cda1c89f6302b972"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "TRAPAUTH/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 2324,
+      "sha256": "a9aa8b26d96fa16a2159b4634f54859dd14f0ff237c93ef5cda1c89f6302b972",
+      "durationFrames": 464,
+      "durationSeconds": 15.483333587646484,
+      "frameCount": 6,
+      "commandCounts": {
+        "camera": 1,
+        "move": 1,
+        "motion": 1,
+        "sound": 5
+      },
+      "actors": [
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_KAISOU_TARAP_FUNE_0156",
+          "startFrame": 145,
+          "endFrame": 608
+        }
+      ]
+    }
+  ]
+}

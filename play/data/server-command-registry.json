@@ -20,6 +20,10 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"story-destination","identifier":"s1.departure.ship-deck","description":"Reviewed original ship-local deck checkpoint; no S2 arrival."},
+    {"kind":"bounds","identifier":"s1.mend.departure","description":"Confirmed departure after independently saved letter and amulet; no date lockout."},
+    {"kind":"activity","identifier":"s1.mend.ship-boarding.scene","description":"Original TRAPAUTH boarding; Yarn alone owns final travel and completion."},
+    {"kind":"activity","identifier":"s1.mend.ship-sailing.scene","description":"Selected original ENDAUTH1/7/8/9 in one shared sequence lease; Yarn alone settles the ending."},
     {"kind":"bounds","identifier":"s1.mend.nozomi-amulet","description":"Remember Nozomi's original farewell after the saved introduction letter; not a ship result."},
     {"kind":"activity","identifier":"s1.mend.nozomi-amulet.scene","description":"Original NZOM film and leased scenery; enclosing Yarn alone owns the amulet."},
     {"kind":"bounds","identifier":"s1.mend.chen-introduction-letter","description":"Dock approach after independently saved final Chai counter; no hour/date lockout."},

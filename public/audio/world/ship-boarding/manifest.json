@@ -1,0 +1,67 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": null,
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_SHUKO.SND",
+      "sha256": "90a84dacf6b2d57654a727f5cf9a442393b6118cfcb496bd7376d9e3c1475224"
+    },
+    "authManifest": "play/assets/harbor/ship-boarding/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#boarding-and-sailing"
+  },
+  "voices": [],
+  "sounds": [
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/footiron/hashigoashi01.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ship-boarding/sfx/a9040100.wav",
+      "byteLength": 3812,
+      "sha256": "b05abace302648d831de5dc89f97754821164fc42a7f523a0cc3172ff8d900cd"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/footiron/hashigoashi02.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ship-boarding/sfx/a9040200.wav",
+      "byteLength": 4460,
+      "sha256": "b9b420ae878418428cd78acae4827d8b6d294ff25816d20cd189fe8732f34338"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/footiron/hashigoashi03.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ship-boarding/sfx/a9040300.wav",
+      "byteLength": 5500,
+      "sha256": "db208b579a342abf82e5c23016555079708eff29466d5e71d60707ec77fa1484"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/footiron/hashigoashi04.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ship-boarding/sfx/a9040400.wav",
+      "byteLength": 5356,
+      "sha256": "aecc81b3509913977912f3da96070452e1d37ed357b2295de2b5f217e4e54723"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/footiron/hashigoashi05.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/ship-boarding/sfx/a9040500.wav",
+      "byteLength": 8332,
+      "sha256": "05a45c85aec56607a31ee01873e76cf392389e15f2a227e0b7fdc8987985e555"
+    }
+  ]
+}

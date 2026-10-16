@@ -8,6 +8,7 @@ import {
   applyNativeDoorCollisionStates,
   createNativeWorldCollision,
   nativeCollisionDefinitionForWorld,
+  loadNativeCollisionDefinitionForWorld,
   nativeCollisionSegments,
 } from "../play/world/NativeWorldCollision.js";
 import {
@@ -16,6 +17,13 @@ import {
 import {
   parseShenmue2WorldCollisions,
 } from "../tools/lib/shenmue2-world-collisions.mjs";
+
+test("custom world geometry does not borrow source-area collision in a different frame",async()=>{
+  const world=WORLDS["s1-voyage"],area=JSON.parse(fs.readFileSync(new URL("../public/data/native-collisions/MEND.json",import.meta.url)));
+  assert.ok(nativeCollisionDefinitionForWorld(WORLDS.mend,area));
+  assert.equal(nativeCollisionDefinitionForWorld(world,area),null);
+  assert.equal(await loadNativeCollisionDefinitionForWorld(world),null);
+});
 
 function record(code, shapeType, payload) {
   const header = Buffer.alloc(8);

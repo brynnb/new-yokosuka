@@ -9,7 +9,48 @@ import {Mt5Loader} from "../src/Mt5Loader.js";
 import * as BABYLON from "@babylonjs/core";
 import {parseIpacActivityArchive} from "../tools/lib/NativeAseqActivityPack.mjs";
 import {parseAuthCamera,evaluateAuthCamera} from "../src/AuthCamera.js";
+import {parseAuthMovement,evaluateAuthActor} from "../src/AuthMovement.js";
+import {WORLDS} from "../play/config/worlds.js";
+import {prepareWorldCollision} from "../play/world/WorldCollision.js";
 const read=p=>JSON.parse(fs.readFileSync(new URL(`../${p}`,import.meta.url)));
+
+test("departure selects original boarding and sailing alternatives without inventing speech or progress",()=>{
+  const catalog=new ScriptEventPresentationCatalog();
+  for(const [id,parts,effects]of [
+    ["ship-boarding",[["boarding",0,"TRAPAUTH/SEQDATA1.AUTH",464]],5],
+    ["ship-sailing",[["deck",0,"ENDAUTH/SEQDATA1.AUTH",200],["leaving",1,"ENDAUTH/SEQDATA7.AUTH",690],["farewell",2,"ENDAUTH/SEQDATA8.AUTH",760],["horizon",3,"ENDAUTH/SEQDATA9.AUTH",930]],3],
+  ]){
+    const m=read(`play/assets/harbor/${id}/manifest.json`),audio=read(`public/audio/world/${id}/manifest.json`);
+    const a=catalog.activity(`s1.mend.${id}.scene`);assert.equal(a.durableEffects,"forbidden");assert.equal(a.returnPlayerState,true);assert.equal(a.cutscene.worldId,"mend");
+    if(id==="ship-sailing")assert.equal(a.cutscene.program.entryFunction,"$activity-sequence");
+    for(const [,slot,activityId,frames]of parts){assert.equal(m.activities[slot].activityId,activityId);assert.equal(m.activities[slot].durationFrames,frames);}
+    assert.deepEqual(audio.voices,[]);assert.equal(audio.sounds.length,effects);
+    for(const asset of [...m.outputs,...audio.sounds]){assert.equal(asset.unavailable,undefined);const b=fs.readFileSync(new URL(`../${asset.path||asset.asset}`,import.meta.url));assert.equal(b.length,asset.byteLength);assert.equal(createHash("sha256").update(b).digest("hex"),asset.sha256);}
+    if(id==="ship-sailing"){
+      assert.equal(m.packageActors.TAIJ.modelCode,"SYU_M");assert.equal(m.sceneObjects.SHIP.model,"B05K206G");
+      for(const a of m.activities){assert.equal(a.browserIsolatedStage,true);assert.deepEqual(a.browserMapVisibility,[]);assert.equal(a.nativeSceneObjectStates.find(s=>m.sceneObjects[s.actorTag].model==="MAP04").presented,false);assert.equal(a.nativeSceneObjectStates.find(s=>m.sceneObjects[s.actorTag].model==="MAP03").presented,true);}
+      const bank=MotnLoader.parse(fs.readFileSync(new URL(`../${m.motionBanks[0].path}`,import.meta.url)),{sequenceIndices:[8,13]});
+      for(const index of [8,13])assert.equal(bank.sequences.find(s=>s.index===index).valueData.complete,true);
+    }
+  }
+});
+
+test("shipboard checkpoint derives from original ship-relative pose and stands on real deck geometry",async t=>{
+  const world=WORLDS["s1-voyage"],engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);t.after(()=>{scene.dispose();engine.dispose();});
+  const movement=parseAuthMovement(fs.readFileSync(new URL("../play/assets/harbor/ship-sailing/SEQDATA8.AUTH",import.meta.url)));
+  const at=tag=>evaluateAuthActor(movement.actors.find(a=>a.tag===tag),movement.duration),ship=at("SHIP"),ryo=at("AKIR");
+  const transform=BABYLON.Matrix.Compose(BABYLON.Vector3.One(),Mt5Loader.sourceOrderQuaternion(0,-ship.rotationY*Math.PI/180,0),new BABYLON.Vector3(-ship.x,ship.y,ship.z));
+  const relative=BABYLON.Vector3.TransformCoordinates(new BABYLON.Vector3(-ryo.x,ryo.y,ryo.z),BABYLON.Matrix.Invert(transform));
+  assert.ok(Math.abs(relative.x-world.spawn.x)<1e-6);assert.ok(Math.abs(relative.z-world.spawn.z)<1e-6);
+  assert.equal(world.customWorldGeometry,true);assert.equal(world.includeFile("S3_MEND_B05K206G.MT5"),true);assert.equal(world.includeFile("S3_MEND_MAP08.MT5"),false);assert.deepEqual(world.placements,[]);
+  const loader=new Mt5Loader(scene);loader.readTextures=()=>{};
+  const bytes=fs.readFileSync(new URL("../play/assets/harbor/ship-sailing/B05K206G.CHRM",import.meta.url));
+  const roots=await loader.load(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength));
+  for(const root of roots){root.metadata={...root.metadata,customWorldGeometry:true};root.computeWorldMatrix(true);}
+  prepareWorldCollision(roots);
+  const hit=scene.pickWithRay(new BABYLON.Ray(new BABYLON.Vector3(world.spawn.x,20,world.spawn.z),BABYLON.Vector3.Down(),30),m=>m.metadata?.terrain);
+  assert.equal(hit.hit,true);assert.ok(Math.abs(hit.pickedPoint.y-world.spawn.y)<1e-5);
+});
 
 test("Nozomi's amulet memory leases its own original scenery and uses the archive body",()=>{
   const a=new ScriptEventPresentationCatalog().activity("s1.mend.nozomi-amulet.scene"),m=read("play/assets/harbor/nozomi-amulet/manifest.json"),audio=read("public/audio/world/nozomi-amulet/manifest.json");

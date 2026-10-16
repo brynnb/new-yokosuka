@@ -85,6 +85,9 @@ export function nativeCollisionDefinitionForWorld(
   world,
   areaDefinition,
 ) {
+  // Custom geometry may use a different coordinate frame from its source
+  // area. Native area metadata still identifies assets, not matching COLI.
+  if(world?.customWorldGeometry)return null;
   const area = String(
     world?.collisionArea || world?.nativeArea || "",
   ).toUpperCase();
@@ -143,6 +146,7 @@ async function loadCollisionArea(area) {
 }
 
 export async function loadNativeCollisionDefinitionForWorld(world) {
+  if(world?.customWorldGeometry)return null;
   const area = String(
     world?.collisionArea || world?.nativeArea || "",
   ).toUpperCase();

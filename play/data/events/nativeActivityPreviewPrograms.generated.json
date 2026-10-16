@@ -27220,6 +27220,636 @@
       "selector": {
         "cutsceneId": "story-s1-nozomi-home"
       }
+    },
+    {
+      "id": "story-s1-ship-sailing",
+      "disc": 3,
+      "area": "MEND",
+      "entryFunction": "$activity-sequence",
+      "functions": [
+        {
+          "id": "$activity-sequence",
+          "endFileOffsetExclusive": "$activity-sequence:return",
+          "entryBlock": "$activity-sequence:0:bind",
+          "dialogueRegion": null,
+          "frameArgumentBase": 8,
+          "returnValue": null,
+          "blocks": [
+            {
+              "id": "$activity-sequence:0:bind",
+              "endFileOffsetExclusive": "$activity-sequence:0:wait",
+              "actions": [
+                {
+                  "kind": "engineOperation",
+                  "callFileOffset": "$activity-sequence:0:0050-start",
+                  "operationId": 80,
+                  "operationHex": "0x0050",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 0,
+                      "hex": "0x00000000",
+                      "source": "$activity-sequence:0:slot"
+                    }
+                  ],
+                  "adapterStatus": "proven",
+                  "semanticId": "native-operation-0050-aseq-activity-control"
+                }
+              ],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": null,
+              "successors": [
+                "$activity-sequence:0:wait"
+              ]
+            },
+            {
+              "id": "$activity-sequence:0:wait",
+              "endFileOffsetExclusive": "$activity-sequence:0:poll",
+              "actions": [
+                {
+                  "kind": "runtimeInterfaceCall",
+                  "callFileOffset": "$activity-sequence:0:scheduler",
+                  "runtimeDispatch": {
+                    "selector": 0,
+                    "selectorHex": "0x0000",
+                    "argumentCount": 1,
+                    "arguments": [
+                      {
+                        "kind": "constant",
+                        "value": 1,
+                        "hex": "0x00000001",
+                        "source": "$activity-sequence:0:tick"
+                      }
+                    ]
+                  },
+                  "resultBitTest": {
+                    "kind": "runtimeResultBit",
+                    "mask": 65536,
+                    "maskHex": "0x00010000"
+                  },
+                  "runtimeCallKind": "resumable-scheduler-dispatch",
+                  "behaviorStatus": "proven",
+                  "abiStatus": "proven",
+                  "semanticId": "native-scheduler-countdown"
+                },
+                {
+                  "kind": "coroutineContinuationTransfer",
+                  "callFileOffset": "$activity-sequence:0:yield",
+                  "semanticId": "native-coroutine-continuation-transfer"
+                }
+              ],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": null,
+              "successors": [
+                "$activity-sequence:0:poll"
+              ]
+            },
+            {
+              "id": "$activity-sequence:0:poll",
+              "endFileOffsetExclusive": "$activity-sequence:0:branch",
+              "actions": [
+                {
+                  "kind": "engineOperation",
+                  "callFileOffset": "$activity-sequence:0:0050-poll",
+                  "operationId": 80,
+                  "operationHex": "0x0050",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 4294967295,
+                      "hex": "0xffffffff",
+                      "source": "$activity-sequence:0:poll-mode"
+                    }
+                  ],
+                  "resultComparison": {
+                    "kind": "operationResult",
+                    "comparison": "equal",
+                    "constant": 0,
+                    "compareFileOffset": "$activity-sequence:0:compare",
+                    "resolvedBranch": {
+                      "branchFileOffset": "$activity-sequence:0:conditional",
+                      "branchMnemonic": "bf",
+                      "branchTargetFileOffset": "$activity-sequence:0:wait",
+                      "branchFallthroughFileOffset": "$activity-sequence:1:bind",
+                      "comparisonTrueSuccessor": "$activity-sequence:1:bind",
+                      "comparisonFalseSuccessor": "$activity-sequence:0:wait"
+                    }
+                  },
+                  "adapterStatus": "proven",
+                  "semanticId": "native-operation-0050-aseq-activity-control"
+                }
+              ],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": null,
+              "successors": [
+                "$activity-sequence:0:branch"
+              ]
+            },
+            {
+              "id": "$activity-sequence:0:branch",
+              "endFileOffsetExclusive": "$activity-sequence:1:bind",
+              "actions": [],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": {
+                "fileOffset": "$activity-sequence:0:conditional",
+                "mnemonic": "bf",
+                "operands": "$activity-sequence:0:wait"
+              },
+              "successors": [
+                "$activity-sequence:0:wait",
+                "$activity-sequence:1:bind"
+              ]
+            },
+            {
+              "id": "$activity-sequence:1:bind",
+              "endFileOffsetExclusive": "$activity-sequence:1:wait",
+              "actions": [
+                {
+                  "kind": "engineOperation",
+                  "callFileOffset": "$activity-sequence:1:0050-start",
+                  "operationId": 80,
+                  "operationHex": "0x0050",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 1,
+                      "hex": "0x00000001",
+                      "source": "$activity-sequence:1:slot"
+                    }
+                  ],
+                  "adapterStatus": "proven",
+                  "semanticId": "native-operation-0050-aseq-activity-control"
+                }
+              ],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": null,
+              "successors": [
+                "$activity-sequence:1:wait"
+              ]
+            },
+            {
+              "id": "$activity-sequence:1:wait",
+              "endFileOffsetExclusive": "$activity-sequence:1:poll",
+              "actions": [
+                {
+                  "kind": "runtimeInterfaceCall",
+                  "callFileOffset": "$activity-sequence:1:scheduler",
+                  "runtimeDispatch": {
+                    "selector": 0,
+                    "selectorHex": "0x0000",
+                    "argumentCount": 1,
+                    "arguments": [
+                      {
+                        "kind": "constant",
+                        "value": 1,
+                        "hex": "0x00000001",
+                        "source": "$activity-sequence:1:tick"
+                      }
+                    ]
+                  },
+                  "resultBitTest": {
+                    "kind": "runtimeResultBit",
+                    "mask": 65536,
+                    "maskHex": "0x00010000"
+                  },
+                  "runtimeCallKind": "resumable-scheduler-dispatch",
+                  "behaviorStatus": "proven",
+                  "abiStatus": "proven",
+                  "semanticId": "native-scheduler-countdown"
+                },
+                {
+                  "kind": "coroutineContinuationTransfer",
+                  "callFileOffset": "$activity-sequence:1:yield",
+                  "semanticId": "native-coroutine-continuation-transfer"
+                }
+              ],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": null,
+              "successors": [
+                "$activity-sequence:1:poll"
+              ]
+            },
+            {
+              "id": "$activity-sequence:1:poll",
+              "endFileOffsetExclusive": "$activity-sequence:1:branch",
+              "actions": [
+                {
+                  "kind": "engineOperation",
+                  "callFileOffset": "$activity-sequence:1:0050-poll",
+                  "operationId": 80,
+                  "operationHex": "0x0050",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 4294967295,
+                      "hex": "0xffffffff",
+                      "source": "$activity-sequence:1:poll-mode"
+                    }
+                  ],
+                  "resultComparison": {
+                    "kind": "operationResult",
+                    "comparison": "equal",
+                    "constant": 0,
+                    "compareFileOffset": "$activity-sequence:1:compare",
+                    "resolvedBranch": {
+                      "branchFileOffset": "$activity-sequence:1:conditional",
+                      "branchMnemonic": "bf",
+                      "branchTargetFileOffset": "$activity-sequence:1:wait",
+                      "branchFallthroughFileOffset": "$activity-sequence:2:bind",
+                      "comparisonTrueSuccessor": "$activity-sequence:2:bind",
+                      "comparisonFalseSuccessor": "$activity-sequence:1:wait"
+                    }
+                  },
+                  "adapterStatus": "proven",
+                  "semanticId": "native-operation-0050-aseq-activity-control"
+                }
+              ],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": null,
+              "successors": [
+                "$activity-sequence:1:branch"
+              ]
+            },
+            {
+              "id": "$activity-sequence:1:branch",
+              "endFileOffsetExclusive": "$activity-sequence:2:bind",
+              "actions": [],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": {
+                "fileOffset": "$activity-sequence:1:conditional",
+                "mnemonic": "bf",
+                "operands": "$activity-sequence:1:wait"
+              },
+              "successors": [
+                "$activity-sequence:1:wait",
+                "$activity-sequence:2:bind"
+              ]
+            },
+            {
+              "id": "$activity-sequence:2:bind",
+              "endFileOffsetExclusive": "$activity-sequence:2:wait",
+              "actions": [
+                {
+                  "kind": "engineOperation",
+                  "callFileOffset": "$activity-sequence:2:0050-start",
+                  "operationId": 80,
+                  "operationHex": "0x0050",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 2,
+                      "hex": "0x00000002",
+                      "source": "$activity-sequence:2:slot"
+                    }
+                  ],
+                  "adapterStatus": "proven",
+                  "semanticId": "native-operation-0050-aseq-activity-control"
+                }
+              ],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": null,
+              "successors": [
+                "$activity-sequence:2:wait"
+              ]
+            },
+            {
+              "id": "$activity-sequence:2:wait",
+              "endFileOffsetExclusive": "$activity-sequence:2:poll",
+              "actions": [
+                {
+                  "kind": "runtimeInterfaceCall",
+                  "callFileOffset": "$activity-sequence:2:scheduler",
+                  "runtimeDispatch": {
+                    "selector": 0,
+                    "selectorHex": "0x0000",
+                    "argumentCount": 1,
+                    "arguments": [
+                      {
+                        "kind": "constant",
+                        "value": 1,
+                        "hex": "0x00000001",
+                        "source": "$activity-sequence:2:tick"
+                      }
+                    ]
+                  },
+                  "resultBitTest": {
+                    "kind": "runtimeResultBit",
+                    "mask": 65536,
+                    "maskHex": "0x00010000"
+                  },
+                  "runtimeCallKind": "resumable-scheduler-dispatch",
+                  "behaviorStatus": "proven",
+                  "abiStatus": "proven",
+                  "semanticId": "native-scheduler-countdown"
+                },
+                {
+                  "kind": "coroutineContinuationTransfer",
+                  "callFileOffset": "$activity-sequence:2:yield",
+                  "semanticId": "native-coroutine-continuation-transfer"
+                }
+              ],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": null,
+              "successors": [
+                "$activity-sequence:2:poll"
+              ]
+            },
+            {
+              "id": "$activity-sequence:2:poll",
+              "endFileOffsetExclusive": "$activity-sequence:2:branch",
+              "actions": [
+                {
+                  "kind": "engineOperation",
+                  "callFileOffset": "$activity-sequence:2:0050-poll",
+                  "operationId": 80,
+                  "operationHex": "0x0050",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 4294967295,
+                      "hex": "0xffffffff",
+                      "source": "$activity-sequence:2:poll-mode"
+                    }
+                  ],
+                  "resultComparison": {
+                    "kind": "operationResult",
+                    "comparison": "equal",
+                    "constant": 0,
+                    "compareFileOffset": "$activity-sequence:2:compare",
+                    "resolvedBranch": {
+                      "branchFileOffset": "$activity-sequence:2:conditional",
+                      "branchMnemonic": "bf",
+                      "branchTargetFileOffset": "$activity-sequence:2:wait",
+                      "branchFallthroughFileOffset": "$activity-sequence:3:bind",
+                      "comparisonTrueSuccessor": "$activity-sequence:3:bind",
+                      "comparisonFalseSuccessor": "$activity-sequence:2:wait"
+                    }
+                  },
+                  "adapterStatus": "proven",
+                  "semanticId": "native-operation-0050-aseq-activity-control"
+                }
+              ],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": null,
+              "successors": [
+                "$activity-sequence:2:branch"
+              ]
+            },
+            {
+              "id": "$activity-sequence:2:branch",
+              "endFileOffsetExclusive": "$activity-sequence:3:bind",
+              "actions": [],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": {
+                "fileOffset": "$activity-sequence:2:conditional",
+                "mnemonic": "bf",
+                "operands": "$activity-sequence:2:wait"
+              },
+              "successors": [
+                "$activity-sequence:2:wait",
+                "$activity-sequence:3:bind"
+              ]
+            },
+            {
+              "id": "$activity-sequence:3:bind",
+              "endFileOffsetExclusive": "$activity-sequence:3:wait",
+              "actions": [
+                {
+                  "kind": "engineOperation",
+                  "callFileOffset": "$activity-sequence:3:0050-start",
+                  "operationId": 80,
+                  "operationHex": "0x0050",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 3,
+                      "hex": "0x00000003",
+                      "source": "$activity-sequence:3:slot"
+                    }
+                  ],
+                  "adapterStatus": "proven",
+                  "semanticId": "native-operation-0050-aseq-activity-control"
+                }
+              ],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": null,
+              "successors": [
+                "$activity-sequence:3:wait"
+              ]
+            },
+            {
+              "id": "$activity-sequence:3:wait",
+              "endFileOffsetExclusive": "$activity-sequence:3:poll",
+              "actions": [
+                {
+                  "kind": "runtimeInterfaceCall",
+                  "callFileOffset": "$activity-sequence:3:scheduler",
+                  "runtimeDispatch": {
+                    "selector": 0,
+                    "selectorHex": "0x0000",
+                    "argumentCount": 1,
+                    "arguments": [
+                      {
+                        "kind": "constant",
+                        "value": 1,
+                        "hex": "0x00000001",
+                        "source": "$activity-sequence:3:tick"
+                      }
+                    ]
+                  },
+                  "resultBitTest": {
+                    "kind": "runtimeResultBit",
+                    "mask": 65536,
+                    "maskHex": "0x00010000"
+                  },
+                  "runtimeCallKind": "resumable-scheduler-dispatch",
+                  "behaviorStatus": "proven",
+                  "abiStatus": "proven",
+                  "semanticId": "native-scheduler-countdown"
+                },
+                {
+                  "kind": "coroutineContinuationTransfer",
+                  "callFileOffset": "$activity-sequence:3:yield",
+                  "semanticId": "native-coroutine-continuation-transfer"
+                }
+              ],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": null,
+              "successors": [
+                "$activity-sequence:3:poll"
+              ]
+            },
+            {
+              "id": "$activity-sequence:3:poll",
+              "endFileOffsetExclusive": "$activity-sequence:3:branch",
+              "actions": [
+                {
+                  "kind": "engineOperation",
+                  "callFileOffset": "$activity-sequence:3:0050-poll",
+                  "operationId": 80,
+                  "operationHex": "0x0050",
+                  "arguments": [
+                    {
+                      "kind": "constant",
+                      "value": 4294967295,
+                      "hex": "0xffffffff",
+                      "source": "$activity-sequence:3:poll-mode"
+                    }
+                  ],
+                  "resultComparison": {
+                    "kind": "operationResult",
+                    "comparison": "equal",
+                    "constant": 0,
+                    "compareFileOffset": "$activity-sequence:3:compare",
+                    "resolvedBranch": {
+                      "branchFileOffset": "$activity-sequence:3:conditional",
+                      "branchMnemonic": "bf",
+                      "branchTargetFileOffset": "$activity-sequence:3:wait",
+                      "branchFallthroughFileOffset": "$activity-sequence:return",
+                      "comparisonTrueSuccessor": "$activity-sequence:return",
+                      "comparisonFalseSuccessor": "$activity-sequence:3:wait"
+                    }
+                  },
+                  "adapterStatus": "proven",
+                  "semanticId": "native-operation-0050-aseq-activity-control"
+                }
+              ],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": null,
+              "successors": [
+                "$activity-sequence:3:branch"
+              ]
+            },
+            {
+              "id": "$activity-sequence:3:branch",
+              "endFileOffsetExclusive": "$activity-sequence:return",
+              "actions": [],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": {
+                "fileOffset": "$activity-sequence:3:conditional",
+                "mnemonic": "bf",
+                "operands": "$activity-sequence:3:wait"
+              },
+              "successors": [
+                "$activity-sequence:3:wait",
+                "$activity-sequence:return"
+              ]
+            },
+            {
+              "id": "$activity-sequence:return",
+              "endFileOffsetExclusive": "$activity-sequence:return",
+              "actions": [],
+              "sceneFieldComparisons": [],
+              "frameFieldComparisons": [],
+              "terminator": {
+                "fileOffset": "$activity-sequence:return",
+                "mnemonic": "rts"
+              },
+              "successors": []
+            }
+          ]
+        }
+      ],
+      "scriptedInteractions": [],
+      "operation013eStaticBindings": [],
+      "preview": {
+        "kind": "exact-auth-activity-sequence-v1",
+        "packageId": "ship-sailing",
+        "worldId": "mend",
+        "activities": [
+          {
+            "slot": 0,
+            "binding": {
+              "kind": "map-embedded-slot",
+              "activityId": "ENDAUTH/SEQDATA1.AUTH"
+            },
+            "activityId": "ENDAUTH/SEQDATA1.AUTH"
+          },
+          {
+            "slot": 1,
+            "binding": {
+              "kind": "map-embedded-slot",
+              "activityId": "ENDAUTH/SEQDATA7.AUTH"
+            },
+            "activityId": "ENDAUTH/SEQDATA7.AUTH"
+          },
+          {
+            "slot": 2,
+            "binding": {
+              "kind": "map-embedded-slot",
+              "activityId": "ENDAUTH/SEQDATA8.AUTH"
+            },
+            "activityId": "ENDAUTH/SEQDATA8.AUTH"
+          },
+          {
+            "slot": 3,
+            "binding": {
+              "kind": "map-embedded-slot",
+              "activityId": "ENDAUTH/SEQDATA9.AUTH"
+            },
+            "activityId": "ENDAUTH/SEQDATA9.AUTH"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "kind": "exact-activity-manifest",
+          "path": "play/assets/harbor/ship-sailing/manifest.json",
+          "sha256": "0a02c4bcaa81de8bc4c98913880e91bac60d15d4ef129d9222a8ca7bcacfedfd",
+          "archiveMember": "SEQDATA1.AUTH",
+          "activitySha256": "6c3cfa4932884547701fd52e316c679b24b6c07c76b30a369e92fb2dc4a34127"
+        },
+        {
+          "kind": "exact-activity-manifest",
+          "path": "play/assets/harbor/ship-sailing/manifest.json",
+          "sha256": "0a02c4bcaa81de8bc4c98913880e91bac60d15d4ef129d9222a8ca7bcacfedfd",
+          "archiveMember": "SEQDATA7.AUTH",
+          "activitySha256": "22de3d8bf802d9ae229c25951aa47624d1a13c03965ff2c638bc64fa530ac052"
+        },
+        {
+          "kind": "exact-activity-manifest",
+          "path": "play/assets/harbor/ship-sailing/manifest.json",
+          "sha256": "0a02c4bcaa81de8bc4c98913880e91bac60d15d4ef129d9222a8ca7bcacfedfd",
+          "archiveMember": "SEQDATA8.AUTH",
+          "activitySha256": "1b67b4cf5edac5fc60e8813e9e6528885310b4e16da5b46ebfeb93c1f393aa25"
+        },
+        {
+          "kind": "exact-activity-manifest",
+          "path": "play/assets/harbor/ship-sailing/manifest.json",
+          "sha256": "0a02c4bcaa81de8bc4c98913880e91bac60d15d4ef129d9222a8ca7bcacfedfd",
+          "archiveMember": "SEQDATA9.AUTH",
+          "activitySha256": "9fdd923ace46701d290867590dad4ed2c6c58df5384c265c77904de63960670f"
+        }
+      ],
+      "summary": {
+        "functionCount": 1,
+        "blockCount": 17,
+        "actionCount": 16,
+        "actionKinds": {
+          "engineOperation": 8,
+          "runtimeInterfaceCall": 4,
+          "coroutineContinuationTransfer": 4
+        }
+      },
+      "selector": {
+        "cutsceneId": "story-s1-ship-sailing"
+      }
     }
   ]
 }

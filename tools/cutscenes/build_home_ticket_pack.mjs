@@ -130,9 +130,7 @@ for(const p of selectedProfiles){
     props[tag]={model:file,browserFilename:file,assetPath:`${prefix}/${file}`,textureAssetPath:`${prefix}/textures.bin`};
     if(!archive)textureSources.push(path.join(source,area,file));
   };
-  if(p.stage){
-    addNativeAseqStageAssets({stage:p.stage,sourceDirectory:path.join(source,area),sourceManifestPrefix:`${discPath}/${area}`,assetPrefix:prefix,members,outputMembers,sceneObjects:props,generatedAssets});
-  }
+  const stageStates=p.stage?addNativeAseqStageAssets({stage:p.stage,sourceDirectory:path.join(source,area),sourceManifestPrefix:`${discPath}/${area}`,assetPrefix:prefix,members,outputMembers,sceneObjects:props,generatedAssets}):[];
   for(const [tag,model]of Object.entries(p.propModels||{}))prop(tag,model.file,model.size,model.sha256);
   if(p.id==="bank-savings"){
     // The original room's bank-scene resource cluster names $BNKT2DBG.MT5
@@ -178,7 +176,7 @@ for(const p of selectedProfiles){
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),audioManifest:`${audioPrefix}/manifest.json`,
     motionBanks:[{bank:p.bank,member:p.motion,parseOptions:{sequenceIndexBase:p.base}}],
     activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:`${p.resource}.AUTH`,actors:p.actors,durationFrames:p.frames,
-      ...(p.stage?{browserMapVisibility:[],browserIsolatedStage:true,browserLightingPresetIndex:0,nativeSceneObjectStates:Object.entries(props).filter(([,v])=>v.lifecycle?.kind==="room-script-persistent").map(([actorTag])=>({actorTag,presented:true}))}:{})}],
+      ...(p.stage?{browserMapVisibility:[],browserIsolatedStage:true,browserLightingPresetIndex:0,nativeSceneObjectStates:stageStates}:{})}],
     packageActors:Object.fromEntries(Object.entries(characters).filter(([tag])=>p.actors.includes(tag)).map(([tag,[label,code]])=>[tag,actor(label,code)])),
     ...(Object.keys(props).length?{sceneObjects:props,outputMembers,generatedAssets}:{}),
   });

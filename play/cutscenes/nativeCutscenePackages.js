@@ -168,6 +168,10 @@ import chenIntroductionLetterManifest from "../assets/harbor/chen-introduction-l
 import chenIntroductionLetterAudio from "../../public/audio/world/chen-introduction-letter/manifest.json";
 import nozomiAmuletManifest from "../assets/harbor/nozomi-amulet/manifest.json";
 import nozomiAmuletAudio from "../../public/audio/world/nozomi-amulet/manifest.json";
+import shipBoardingManifest from "../assets/harbor/ship-boarding/manifest.json";
+import shipBoardingAudio from "../../public/audio/world/ship-boarding/manifest.json";
+import shipSailingManifest from "../assets/harbor/ship-sailing/manifest.json";
+import shipSailingAudio from "../../public/audio/world/ship-sailing/manifest.json";
 import chaiIntroManifest from "../assets/dobuita/chai-intro/manifest.json";
 import chaiIntroAudio from "../../public/audio/world/chai-intro/manifest.json";
 import chaiVictoryManifest from "../assets/dobuita/chai-victory/manifest.json";
@@ -406,6 +410,8 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["swallow-lesson",swallowLessonManifest,swallowLessonAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm064",loop:true}],gain:1})],
     ["chen-introduction-letter",chenIntroductionLetterManifest,chenIntroductionLetterAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm067",loop:true}],gain:1})],
     ["nozomi-amulet",nozomiAmuletManifest,nozomiAmuletAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm070",loop:true}],gain:1})],
+    ["ship-boarding",shipBoardingManifest,shipBoardingAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm095",loop:true}],gain:1})],
+    ["ship-sailing",shipSailingManifest,shipSailingAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm095",loop:true}],gain:1})],
     ...[["final-chai-intro",finalChaiIntroManifest,finalChaiIntroAudio],["final-chai-interrogation",finalChaiInterrogationManifest,finalChaiInterrogationAudio],["final-chai-counter",finalChaiCounterManifest,finalChaiCounterAudio]].map(([id,manifest,audio])=>[id,manifest,audio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm032",loop:true}],gain:1})]),
     ["sailor-chase-intro",sailorIntroManifest,sailorIntroAudio,"mfsy"],["sailor-chase-tony",sailorTonyManifest,sailorTonyAudio,"mfsy"],["sailor-chase-smith",sailorSmithManifest,sailorSmithAudio,"mfsy"],
     ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],

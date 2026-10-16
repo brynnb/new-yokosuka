@@ -509,29 +509,92 @@ the independently earned letter flag and actual letter possession, then the
 exact one-item/two-flag acknowledgement. Cancellation grants nothing and keeps
 the letter. No new state store or native-controller reconstruction was added.
 
-### Remaining departure sources
+## Boarding and sailing
 
-These are original-source findings; ship shots still need connected playback:
+This is one confirmed ordinary Yarn event after the independently saved letter
+and amulet. Earlier training, battles or keepsakes cannot substitute for the
+ending. The generator translates the definition; no new quest engine or native
+ending controller is introduced.
 
-- `MEND/NZOM.PKS` contains its own `MAP.MAPM`, the original Nozomi body and
-  `M_01JN.MOTN` bank21. `STREAM/01JIN.AFS` (not separate A/B archives) resolves
-  all 27 requested voices. Nozomi explicitly gives the amulet and discusses
-  Ryo's Hong Kong trip and her return to Canada. The MEND resource cluster
-  names BGM070 and A1_NOOMA. Use the existing temporary scenery lease rather
-  than presenting this memory against the ordinary dock.
-- `MEND/ENDAUTH.PKS` has the ship/departure shots but no embedded motion bank.
-  `MEND/M_01156.BIN` is the candidate for its Ryo13 and Chen8 bank16
-  references; the names fit, but selected clips still need playback
-  verification. Parsing the whole bank currently fails on an unused value
-  span; this does not prove that the original data is malformed. Do not weaken
-  the parser: prepare only the actual selected indices through its existing
-  options. Extras' bank2/201 is unresolved and must not be guessed from a
-  different bank.
-- `TRAPAUTH` contains a separate, larger `M_0180.MOTN` and a boarding clip.
-  It is not the same file as the resident `MEND/M_0180.BIN`. The ENDMAP
-  geometry and dynamic ship need isolated-stage review to avoid drawing a
-  second ship over the resident dock hull. File order alone is not proof that
-  every alternate ending shot belongs in one playlist.
+| Field | Definition |
+| --- | --- |
+| Prerequisites / trigger | Personal Story Ryo, completed opening, saved Chen letter and Nozomi amulet milestones **and actual possession** of both items. Same verified waterfront approach, **Sail to Hong Kong** / **Not yet**. No exact-hour or late-date lockout. |
+| Sequence | Original `TRAPAUTH1` boarding, then a reviewed selection of `ENDAUTH1`, `7`, `8`, `9` in the same canonical multi-shot program used by the ride home. Music, cast and scenery retain one lease between sailing shots. File order is not proof that every extra/family/flashback alternative belongs in one playlist. No invented English dialogue. |
+| Actors / motions | Original Ryo boarding `M_0180.MOTN`, not the smaller resident `M_0180.BIN`; sailing uses external `M_01156.BIN`, bank16 indices13 (Ryo) and8 (Chen), the original ship `B05K206G` and bird `KMH02A3G`. Only selected motion values are parsed; an unrelated unused wing sequence still fails parsing and is not concealed by a fabricated replacement. |
+| Scenery / camera | Boarding uses the resident dock. Sailing borrows the original ENDMAP geometry through the shared isolated-stage/fixture lease, hiding the resident hull. `MAP03` is selected, with real alternate `MAP04` explicitly hidden rather than mislabelled non-visual. Original cameras/root movement are retained. The final ship-only shot uses the existing NPC-only actor lease to hide and restore the gameplay avatar. |
+| Sound / lighting | Original five boarding effects from `A1_SHUKO.SND`, three sailing effects from `A1_END.SND`; no speech is requested. Original resource-cluster BGM095 is reused, with authored film-entry cues. Broad daytime stage lighting is authored; personal date/weather are not rewritten. |
+| Completion | Acknowledged boarding and completed sailing program save `story.s1.departure.completed`, `notebook.s1.departure` and `s1.departure.ship-deck` together. No new item, money, personal date jump, S2 arrival or S2 story outcome. Supported explicit skip may finish the noninteractive sailing program; cancellation/preparation failure cannot. |
+| Exit / recovery | A saved, grounded epilogue aboard the original ship in its local frame, rather than a return to shore. Free roam retains its separate exploration context. Cancellation or preparation failure at any shot preserves the earned dock checkpoint and permits retry without duplicating prior keepsakes. |
+
+Source identity is pinned by the generator and generated manifest:
+
+- `MEND/TRAPAUTH.PKS`: `7999c35b3d0caf136f56aba260beaa01c6c6d257e2e3a17ba4f857430f3c1373`.
+- `MEND/ENDAUTH.PKS`: `e2c64bb5800b4e1fcc383db5e93855a10f4086b41f2f7356f41528e366815cac`.
+- `MEND/M_01156.BIN`: `600154cdb0e421f1335bcbc2acb4a06acfe930515c8e77e57d87438927ccd7d7`.
+- `MEND/ENDMAP.PKS`: `a2471208d4295d930f75b5583555b4c09f41c84ea844ce78672a4eb4368a2da4`.
+
+Generate profiles `ship-boarding` and `ship-sailing` with the existing chapter
+builder and `--audio`, then run the existing activity-preview compiler and
+`python3 -m tools.scripting.build_native_event_program_pack --refresh-activity-previews`.
+That narrow canonical refresh updates only authored AUTH programs and runtime
+shards, preserving the unrelated native closures and their source receipt; it
+does not reparse the 857-MiB research IR. Native route/IR changes still require
+the ordinary full compiler. The shared stage helper now returns explicit visibility
+states; home farewell and Nozomi continue to use that same path. A direct motion
+source is validated/copied with its exact provenance; voiceless films do not
+require a fictitious speech archive.
+
+The terminal `s1-voyage` world uses **only** original `S3_MEND_B05K206G.MT5`.
+Its X/Z derive from the last ENDAUTH8 Ryo root transformed into the last ship's
+local frame. The cinematic root is above the deck (`11.47348` local Y), so
+ordinary idle arrival is projected onto the actual deck (`6.277687`), not left
+floating. Water is also normalized from the source frame. This frozen local
+epilogue is an explicit adaptation, **not** an extracted arrival record. A
+declared custom-geometry world uses its visible terrain/collision, not the
+source harbor's unrelated dock COLI. The existing world loader, spatial index,
+collision and avatar controller are reused.
+
+Extra passengers' bank2/201, wing animation, exact original flashback
+interleaving, smoke/wake effects and native ending music callbacks remain
+unreconstructed. They do not become fabricated gameplay outcomes. S2
+continuation is outside this S1 ending; the later feasibility audit must say
+which S2 presentation and narrative inputs are actually available.
+
+### Boarding and sailing verification
+
+The real Yarn compiler/engine checks both keepsake flags and possessions,
+incomplete opening, Free roam, wrong bounds, completed events, decline,
+cancellation before boarding/ending acknowledgement and exact allowed effects.
+The new shipboard destination also participates in the existing real-time
+arrival-fencing test: stale dock packets cannot overwrite its first arrival.
+
+The 3.5-minute connected hardware-browser test
+(`NEW_YOKOSUKA_SHIP_DEPARTURE_E2E=true`) resumes the genuinely earned amulet save.
+It declines, cancels original boarding, reloads/retries, renders deck and moving
+ship shots, cancels during Chen's farewell, then reloads/retries and finishes
+all original selected shots naturally. It verifies actual BGM095 playback and
+that its playhead advances continuously between sailing shots. Reviewed
+captures show Ryo boarding, the original ship/harbor, Chen, Ryo on deck and the
+horizon shot. The final two flags and grounded `s1-voyage` arrival save together.
+¥22,836, all ten inventory entries and the personal date remain unchanged;
+ordinary movement, stable deck support, completed reload without replay and
+the actual sidebar Free roam/Story round trip pass. No future flags, dates or
+destinations were inserted into the earned QA character. That database is backed
+up separately from the pre-departure save. No assets have been published.
+
+A separate 56-second browser continuation with `NEW_YOKOSUKA_SHIP_SKIP_E2E=true`
+starts from another earned pre-departure clone, cancels/reloads the program,
+uses real X input to skip boarding and sailing, and repeats grounded save,
+reload and mode-switch checks. It runs without the temporary standalone
+player-ownership override: the ordinary multi-shot lease owns the complete
+cast and correctly hides Ryo in its ship-only child shot.
+
+Testing exposed two shared lifetime bugs, now covered by regressions. Native
+transactions must acquire/release the controller's existing movement token,
+not snapshot and restore another owner's derived locked boolean during late
+cancellation. Session replacement must use a browser-sendable close code:
+`1000`, not `1008`. The latter was observable during real mode switches;
+the completed continuation has no browser errors.
 
 ## Verification and remaining work
 
@@ -587,8 +650,9 @@ The 70-man battle, Terry QTE/interrogation, post-battle home/rest chain, family
 farewell, harbor admission, Swallow Flip lesson, actual final Chai fight and
 separate Down/A/A/B counter are connected and rendered as described above.
 Chen's introduction letter is also connected and rendered as described above.
-The amulet memory is also connected and rendered as described above. The ship
-departure remains a missing connected outcome.
+The amulet memory and independent ship departure are also connected and
+rendered as described above. The S2 feasibility audit and whole-route review
+remain goal work; this does not claim exhaustive optional-content coverage.
 No future outcome should be inserted into an earned checkpoint. Plane mesh
 visibility, exact collapse staging and tighter hand/pipe choreography remain
 presentation review items, not proof of missing or completed battle outcomes.

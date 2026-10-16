@@ -1,6 +1,61 @@
 import {expect} from "@playwright/test";
 import {fightWithKeyboard} from "./story-seventy-man.js";
 
+export async function verifyShipDeparture(page,testInfo,character,{musicResponses}){
+  await page.setViewportSize({width:1920,height:1080});
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const initial=await saved(),done="story.s1.departure.completed";
+  for(const flag of ["story.s1.chen-introduction-letter.completed","story.s1.nozomi-amulet.completed"])expect(initial.character.storyFlags[flag]).toBe(true);
+  expect(initial.character.storyFlags[done]).not.toBe(true);
+  const check=async()=>{const s=await saved();expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory).toEqual(initial.inventory);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;};
+  const pending=async()=>{const s=await check();expect(s.character.storyFlags).toEqual(initial.character.storyFlags);expect(s.character.worldId).toBe("mend");return s;};
+  const choose=name=>page.getByRole("button",{name,exact:true}).click({timeout:100_000});
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
+  const reload=async()=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);};
+  const scene=async part=>{await page.waitForFunction(part=>{const p=window.storyProbe,c=p.director?.activeCutscene;return (part==="boarding"?c?.cutscene.id==="story-s1-ship-boarding":c?.cutscene.id==="story-s1-ship-sailing"&&c.packageRuntime.activityRuntime.active?.record.activityId===`ENDAUTH/SEQDATA${({deck:"1",leaving:"7",farewell:"8",horizon:"9"})[part]}.AUTH`)||p.sceneErrors.length;},part,{timeout:100_000});await pending();};
+  const cancel=async()=>{await page.evaluate(()=>window.storyProbe.regions.controller.cancel("ship-departure-check"));await idle();await pending();};
+  const skip=process.env.NEW_YOKOSUKA_SHIP_SKIP_E2E==="true";
+  console.info("Ship departure: original boarding/sailing, cancellation at the dock and acknowledged shipboard save");
+  await choose("Not yet");await pending();await reload();await choose("Sail to Hong Kong");await scene("boarding");
+  await expect.poll(()=>page.evaluate(()=>{const m=window.storyMusic?.director,a=m?.current?.audio;return m?.current?.trackId==="bgm095"&&!a.paused&&a.currentTime>1&&a.volume>0;}),{timeout:15000}).toBe(true);
+  await page.waitForTimeout(8000);await page.screenshot({path:testInfo.outputPath("ship-original-boarding-cancel.png")});await cancel();
+  await page.screenshot({path:testInfo.outputPath("ship-cancel-restored-earned-dock.png")});
+  if(skip){
+    console.info("Ship departure: supported explicit program skip, after cancelled program and reload");
+    await reload();await choose("Sail to Hong Kong");await scene("boarding");await page.keyboard.press("KeyX");await scene("deck");await page.waitForTimeout(1200);await cancel();
+    await reload();await choose("Sail to Hong Kong");await scene("boarding");await page.keyboard.press("KeyX");await scene("deck");await page.waitForTimeout(1200);await page.keyboard.press("KeyX");
+  }else{
+  await reload();await choose("Sail to Hong Kong");await scene("boarding");await scene("deck");
+  await page.waitForTimeout(1800);await page.screenshot({path:testInfo.outputPath("ship-original-deck.png")});
+  const scoreTime=await page.evaluate(()=>window.storyMusic.director.current.audio.currentTime);await scene("leaving");
+  await page.waitForTimeout(9000);expect(await page.evaluate(()=>window.storyMusic.director.current.audio.currentTime)).toBeGreaterThan(scoreTime+8);
+  await page.screenshot({path:testInfo.outputPath("ship-original-leaving-and-scenery.png")});await scene("farewell");
+  await page.waitForTimeout(8000);await page.screenshot({path:testInfo.outputPath("ship-original-chen-farewell-cancel.png")});await cancel();
+  await reload();await choose("Sail to Hong Kong");await scene("boarding");await scene("deck");await scene("leaving");await scene("farewell");
+  await page.waitForTimeout(1100);await page.screenshot({path:testInfo.outputPath("ship-original-farewell-opening.png")});await scene("horizon");
+  await page.waitForTimeout(6000);await page.screenshot({path:testInfo.outputPath("ship-original-horizon-before-settlement.png")});await pending();
+  }
+  await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:60_000}).toBe(true);
+  await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.ready&&window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="s1-voyage",null,{timeout:100_000});await idle();
+  const earned=await check();expect(earned.character.storyFlags["notebook.s1.departure"]).toBe(true);expect(earned.character.worldId).toBe("s1-voyage");
+  expect(Math.abs(earned.character.y-6.277686675037195)).toBeLessThan(.15);
+  expect(new Date(earned.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
+  expect(Object.keys(earned.character.storyFlags).filter(k=>!Object.hasOwn(initial.character.storyFlags,k)).sort()).toEqual(["notebook.s1.departure",done].sort());
+  await page.waitForTimeout(3000);expect(Math.abs((await saved()).character.y-earned.character.y)).toBeLessThan(.15);
+  await page.screenshot({path:testInfo.outputPath("ship-earned-real-deck-and-controls.png")});
+  await page.keyboard.down("KeyW");await page.waitForTimeout(250);await page.keyboard.up("KeyW");await page.waitForTimeout(1500);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().actorRoot.position.y)).toBeGreaterThan(5);
+  await reload();await idle();await check();expect((await saved()).character.worldId).toBe("s1-voyage");expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath("ship-earned-reloaded-deck.png")});
+  // Use the actual sidebar switches and full teardown/reload. No future
+  // storyline flags, artificial dates or forced runtime destinations.
+  const switchMode=async(mode,label)=>{await page.locator('[role="radio"]').filter({hasText:label}).click();await page.waitForFunction(mode=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.playMode===mode,mode,{timeout:100_000});await idle();};
+  await switchMode("free_roam","Free roam");expect((await saved()).character.worldId).not.toBe("s1-voyage");
+  await switchMode("story","Story mode");expect((await check()).character.worldId).toBe("s1-voyage");expect((await saved()).character.storyFlags[done]).toBe(true);
+  expect(Math.abs((await saved()).character.y-earned.character.y)).toBeLessThan(.15);await page.screenshot({path:testInfo.outputPath("ship-after-free-roam-round-trip.png")});
+  expect(musicResponses.some(r=>r.url.includes("bgm095")&&[200,206].includes(r.status))).toBe(true);
+}
+
 export async function verifyNozomiAmulet(page,testInfo,character,{musicResponses}){
   await page.setViewportSize({width:1920,height:1080});
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());

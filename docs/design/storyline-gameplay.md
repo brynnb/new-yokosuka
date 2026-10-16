@@ -1,7 +1,7 @@
 # Storyline gameplay integration
 
 Status: authored Story prototype plus retained native-engine research
-Last reviewed: October 15, 2026
+Last reviewed: October 16, 2026
 
 The [implemented play modes](../implementation/play-modes.md) isolate Story
 and Free roam saves, calendars and NPC views. The current implementation uses
@@ -10,8 +10,9 @@ walkthrough-guided Yarn events with original presentation assets. The
 is the source of truth for playable coverage and verification. Connected browser
 coverage reaches the opening, allowance, early witnesses, Heartbeats and the
 Charlie inquiries, the parking-lot ambush, the same-night tattoo-parlour visit
-and Charlie's later confrontation/cartel appointment. The whole storyline is
-not implemented. Nozomi's optional post-parlor encounter is also connected
+and Charlie's later confrontation/cartel appointment. Coverage follows the core
+walkthrough route; optional branches and presentation gaps remain explicit in
+the checklist. Nozomi's optional post-parlor encounter is also connected
 through the original YBHN presentation, with rendered cancellation/re-entry,
 natural completion, notebook settlement and reload verified. The next-day dojo
 spar, Fuku-san/Ine-san follow-ups and original Chinese-letter handoff are now
@@ -238,8 +239,13 @@ original amulet recollection now also passes connected earned-save rendering,
 cancellation/scenery cleanup, full natural farewell, BGM070, independently saved
 amulet/notebook and completed reload with both earlier letters unchanged.
 Remembering at the quay is an explicit staging adaptation; the actual hand
-prop and dedicated icon remain absent. Ship departure remains missing; the
-checklist distinguishes this boundary.
+prop and dedicated icon remain absent. Original boarding and selected sailing
+shots now also pass a connected earned-save hardware-browser continuation:
+decline/cancel/reload/retry, continuous BGM095, natural ending, independent
+finale/notebook/grounded shipboard save, movement, reload without replay and
+Free roam/Story round trip. The fixed original ship-local epilogue is an explicit
+adaptation, not S2 arrival. Detailed wings/wake/native ending callbacks remain
+omitted. The S2 feasibility and final whole-route audits remain pending.
 See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest)
 and the [final day](story-final-day.md).
 

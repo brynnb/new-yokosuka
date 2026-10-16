@@ -33,6 +33,9 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ["s1.mend.ship-sailing.scene",{kind:"native-cutscene",area:"MEND",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-ship-sailing",packageId:"ship-sailing",worldId:"mend",storyPresentation:true,
+      program:{programId:"story-s1-ship-sailing",entryFunction:"$activity-sequence",area:"MEND",worldId:"mend"}}}],
   ...[["ready",0,"1"],["win",1,"6"]].map(([part,slot,file])=>[
     `s1.mend.chai-counter-${part}.scene`,{kind:"native-cutscene",area:"MEND",durableEffects:"forbidden",returnPlayerState:true,
       cutscene:{id:`story-s1-chai-counter-${part}`,packageId:"final-chai-counter",worldId:"mend",storyPresentation:true,
@@ -57,6 +60,7 @@ const ACTIVITIES = new Map([
     cutscene:{id:"story-s1-chicken-race-intro",packageId:"chicken-race",worldId:"mfsy",storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"RACE/SEQDATA1.AUTH"}}}}],
   ...[["final-meditation","MSOU/SEQDATA1.AUTH","JHD0","exterior"],
+    ["ship-boarding","TRAPAUTH/SEQDATA1.AUTH","MEND","mend"],
     ["chen-introduction-letter","CHAIAUTH/SEQDATA4.AUTH","MEND","mend"],
     ["nozomi-amulet","NZOM/SEQDATA0.AUTH","MEND","mend"],
     ["final-chai-intro","CHAIAUTH/SEQDATA3.AUTH","MEND","mend"],

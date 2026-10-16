@@ -230,6 +230,12 @@ export class WorldLoader {
       if (this.state.currentMeshes.length === 0) {
         throw new Error(`${world.label} geometry did not load.`);
       }
+      if(world.customWorldGeometry){
+        // Authored worlds can use a model as their complete terrain, just as
+        // imported GLB worlds already do. Decorative filenames do not define
+        // collision; the world's explicit role does.
+        for(const root of this.state.currentMeshes)root.metadata={...root.metadata,customWorldGeometry:true};
+      }
 
       await this.beforePlacements(world, this.state.currentMeshes);
       ensureActive(signal);
