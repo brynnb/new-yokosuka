@@ -113,6 +113,10 @@ export class CombatHud {
     dom.combatHud.hidden = !controlsActive;
     dom.combatPlayerGauge.hidden = !controlsActive;
     dom.combatEnemyGauge.hidden = !controlsActive;
+    const targetLabel = dom.combatEnemyGauge.querySelector("strong");
+    if (targetLabel) targetLabel.textContent = snapshot.targetName;
+    dom.combatEnemyGauge.setAttribute("aria-label", `${snapshot.targetName} health`);
+    dom.combatEnemyGauge.dataset.targetId = snapshot.targetId || "";
     if (dom.combatModeControlLabel) {
       dom.combatModeControlLabel.textContent = "Toggle Combat";
     }
@@ -121,12 +125,14 @@ export class CombatHud {
       controller.options.inputContext = controlsActive
         ? "combat"
         : "exploration";
-      controller.keys.clear();
+      // Health/target feedback updates must not release held movement keys.
+      if (this.controlsActive !== controlsActive) controller.keys.clear();
       controller.options.runEnabled = true;
       controller.options.toggleRun = !controlsActive;
       controller.options.toggleAutoRunKey = controlsActive ? null : "KeyQ";
       if (controlsActive) controller.autoRun = false;
     }
+    this.controlsActive = controlsActive;
     for (const button of dom.combatMoveList?.querySelectorAll(
       "button[data-position-condition]",
     ) || []) {

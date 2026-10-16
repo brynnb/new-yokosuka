@@ -224,7 +224,7 @@ export class PlayerRuntime {
     if (world.id === "mfbt") {
       // Prepare combat under the destination loading cover, not as a burst
       // on the first punch. Completed clips remain reusable across visits.
-      for (const animation of [this.animation, this.combat.enemyAnimation]) {
+      for (const animation of [this.animation, ...this.combat.enemies.map(entry => entry.animation)]) {
         await animation.prepareClips(Object.keys(animation.clips)
           .filter(state => state.startsWith("combat")), signal);
       }

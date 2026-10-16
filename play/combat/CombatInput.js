@@ -8,6 +8,8 @@ const DEFAULT_BINDINGS = Object.freeze({
   run: "ShiftLeft",
   up: "KeyW",
   down: "KeyS",
+  targetLeft: "KeyQ",
+  targetRight: "KeyE",
 });
 
 function isEditableTarget(target) {
@@ -22,6 +24,7 @@ export class CombatInput {
     bindings = DEFAULT_BINDINGS,
     getBindings = null,
     enableToggle = true,
+    targetingEnabled = () => false,
     now = () => performance.now(),
     chordWindowMs = 75,
     sequentialAttackWindowMs = 250,
@@ -30,6 +33,8 @@ export class CombatInput {
     this.bindings = bindings;
     this.getBindings = getBindings || (() => this.bindings);
     this.enableToggle = Boolean(enableToggle);
+    this.targetingEnabled = targetingEnabled;
+    this.targetChanges = [];
     this.now = now;
     this.chordWindowMs = chordWindowMs;
     this.sequentialAttackWindowMs = sequentialAttackWindowMs;
@@ -64,6 +69,14 @@ export class CombatInput {
       if (!Object.values(activeBindings).includes(event.code)) return;
       if (!event.repeat) this.held.add(event.code);
       if (event.repeat) return;
+      for (const direction of ["left", "right"]) {
+        const binding = direction === "left" ? "targetLeft" : "targetRight";
+        if (event.code === activeBindings[binding] && this.targetingEnabled()) {
+          this.targetChanges.push(direction);
+          event.preventDefault?.();
+          return;
+        }
+      }
       if (this.enableToggle && event.code === activeBindings.toggle) {
         this.toggleRequested = true;
       }
@@ -150,6 +163,7 @@ export class CombatInput {
   }
 
   discardCommands() {
+    this.targetChanges.length = 0;
     this.pressed.length = 0;
     this.pendingAttack = null;
     this.lastAttack = null;
@@ -159,6 +173,10 @@ export class CombatInput {
     const requested = this.toggleRequested;
     this.toggleRequested = false;
     return requested;
+  }
+
+  consumeTargetChanges() {
+    return this.targetChanges.splice(0);
   }
 
   consumeControlsToggle() {
@@ -171,6 +189,7 @@ export class CombatInput {
     this.target.removeEventListener("keydown", this.onKeyDown, true);
     this.target.removeEventListener("keyup", this.onKeyUp, true);
     this.held.clear();
+    this.targetChanges.length = 0;
     this.pressed.length = 0;
     this.pendingAttack = null;
     this.lastAttack = null;

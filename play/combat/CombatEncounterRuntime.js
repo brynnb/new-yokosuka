@@ -14,6 +14,7 @@ import {
 import {
   positionAuthoredCombatPair,
 } from "./CombatChoreography.js";
+import { adjacentCombatTarget } from "../../src/CombatTargetSelection.js";
 
 export const COMBAT_PRACTICE_PLAYER_MAX_HEALTH = 100;
 
@@ -57,6 +58,8 @@ export class CombatEncounterRuntime {
     input,
     playerActor,
     enemyActor,
+    enemies = null,
+    projectTargets = () => [],
     onStateChanged = () => {},
     moves = MARTIAL_ARTS_MOVES,
     enemyAI = new MartialArtsEnemyAI(),
@@ -65,10 +68,9 @@ export class CombatEncounterRuntime {
   }) {
     this.input = input;
     this.playerActor = playerActor;
-    this.enemyActor = enemyActor;
     this.onStateChanged = onStateChanged;
     this.moves = moves;
-    this.enemyAI = enemyAI;
+    this.projectTargets = projectTargets;
     this.sounds = sounds;
     this.reactionSequences = reactionSequences;
     this.combat = new MartialArtsCombat({ moves });
@@ -81,10 +83,16 @@ export class CombatEncounterRuntime {
       // proficiency threshold.
       proficiency: 100,
     }));
-    this.enemy = this.combat.add(createCombatant({
-      id: "enemy",
-      team: "enemy",
-    }));
+    this.enemies = (enemies || [{ id: "enemy", name: "Chai", actor: enemyActor, ai: enemyAI }])
+      .map(entry => ({ ...entry, combatant: this.combat.add(createCombatant({
+        id: entry.id, team: "enemy",
+      })) }));
+    if (!this.enemies.length) throw new Error("Combat encounter needs an opponent");
+    this.actors = new Map([
+      [this.player.id, playerActor],
+      ...this.enemies.map(entry => [entry.id, entry.actor]),
+    ]);
+    this.player.targetId = this.enemies[0].id;
     this.active = false;
     this.aiAccumulator = 0;
     this.enemyOffenseUnlocked = false;
@@ -93,7 +101,32 @@ export class CombatEncounterRuntime {
     this.commandResultSeconds = 0;
     this.controlsActive = false;
     this.controlsExitRequested = false;
-    this.enemyActor.setEnabled(false);
+    for (const entry of this.enemies) entry.actor.setEnabled(false);
+  }
+
+  get selectedEnemy() {
+    return this.enemies.find(entry => entry.id === this.player.targetId) || this.enemies[0];
+  }
+  get enemy() { return this.selectedEnemy.combatant; }
+  get enemyActor() { return this.selectedEnemy.actor; }
+  get enemiesDefeated() { return this.enemies.every(entry => entry.combatant.defeated); }
+  get enemiesBusy() { return this.enemies.some(({ combatant }) => combatant.action || combatant.reaction); }
+
+  acquireTarget() {
+    if (this.player.targetId && !this.enemy.defeated) return false;
+    const next = this.combat.nearestOpponent(this.player)?.id || null;
+    const changed = next !== this.player.targetId;
+    this.player.targetId = next;
+    return changed;
+  }
+
+  changeTarget(direction) {
+    if (!this.active || !this.controlsActive || this.player.defeated) return false;
+    const next = adjacentCombatTarget(this.projectTargets(this.enemies), this.player.targetId, direction);
+    if (next === this.player.targetId) return false;
+    this.player.targetId = next;
+    this.onStateChanged(this.snapshot());
+    return true;
   }
 
   resetCombatants() {
@@ -106,8 +139,10 @@ export class CombatEncounterRuntime {
     // AI starts ticking as soon as the arena finishes loading, so his hit
     // reaction can replace Ryo's first move animation before it is visible.
     this.enemyOffenseUnlocked = false;
-    this.enemyAI.cooldown = COMBAT_TICKS_PER_SECOND;
-    for (const combatant of [this.player, this.enemy]) {
+    for (const entry of this.enemies) {
+      if (entry.ai) entry.ai.cooldown = COMBAT_TICKS_PER_SECOND;
+    }
+    for (const combatant of this.combat.combatants.values()) {
       combatant.health = combatant.maxHealth;
       combatant.action = null;
       combatant.reaction = null;
@@ -127,28 +162,34 @@ export class CombatEncounterRuntime {
     // that render-side state as well as the simulation state so a fresh bout
     // cannot leave either fighter frozen in the previous round's pose.
     this.playerActor.releaseReaction?.();
-    this.enemyActor.releaseReaction?.();
-    if (this.enemyActor.placeBeside) {
-      this.enemyActor.placeBeside(this.playerActor, 2);
-    } else {
-      this.enemyActor.placeRelativeTo(this.playerActor, 2);
+    for (const entry of this.enemies) {
+      entry.actor.releaseReaction?.();
+      if (entry.placement) {
+        entry.actor.placeAtOffset(this.playerActor, entry.placement);
+      } else if (entry.actor.placeBeside) {
+        entry.actor.placeBeside(this.playerActor, 2);
+      } else {
+        entry.actor.placeRelativeTo(this.playerActor, 2);
+      }
+      syncCombatant(entry.combatant, entry.actor);
     }
     syncCombatant(this.player, this.playerActor);
-    syncCombatant(this.enemy, this.enemyActor);
+    this.player.targetId = this.combat.nearestOpponent(this.player)?.id || null;
   }
 
   setActive(active) {
     const next = Boolean(active);
     if (next === this.active) return false;
     this.input.consumeCommands();
+    this.input.consumeTargetChanges?.();
     this.active = next;
     this.controlsActive = next;
     this.controlsExitRequested = false;
-    this.enemyActor.setEnabled(next);
+    for (const entry of this.enemies) entry.actor.setEnabled(next);
     if (next) this.resetCombatants();
     else this.sounds?.reset();
     this.player.guardHeld = false;
-    this.enemy.guardHeld = false;
+    for (const entry of this.enemies) entry.combatant.guardHeld = false;
     this.onStateChanged(this.snapshot());
     return true;
   }
@@ -161,7 +202,7 @@ export class CombatEncounterRuntime {
     this.controlsActive = next;
     this.controlsExitRequested = false;
     this.player.guardHeld = false;
-    this.enemy.guardHeld = false;
+    for (const entry of this.enemies) entry.combatant.guardHeld = false;
     this.onStateChanged(this.snapshot());
     return true;
   }
@@ -175,6 +216,9 @@ export class CombatEncounterRuntime {
     return {
       active: this.active,
       controlsActive: this.controlsActive,
+      targetId: this.player.targetId,
+      targetName: this.player.targetId ? this.selectedEnemy.name : "All defeated",
+      opponentsRemaining: this.enemies.filter(entry => !entry.combatant.defeated).length,
       playerHealth: this.player.health,
       playerMaxHealth: this.player.maxHealth,
       enemyHealth: this.enemy.health,
@@ -309,8 +353,10 @@ export class CombatEncounterRuntime {
   }
 
   playerTargetYaw() {
+    if (!this.player.targetId) return null;
     const player = this.playerActor.position();
-    const enemy = this.enemyActor.position();
+    const actor = this.actors.get(this.player.action?.lockedTargetId) || this.enemyActor;
+    const enemy = actor.position();
     return Math.atan2(enemy.x - player.x, enemy.z - player.z);
   }
 
@@ -379,40 +425,41 @@ export class CombatEncounterRuntime {
     return true;
   }
 
-  executeEnemyDecision(decision) {
-    this.enemy.guardHeld = decision.kind === "guard";
+  executeEnemyDecision(decision, entry = this.selectedEnemy) {
+    const { combatant: enemy, actor: enemyActor } = entry;
+    enemy.guardHeld = decision.kind === "guard";
     if (Number.isFinite(decision.turnYaw)) {
-      this.enemyActor.setYaw(decision.turnYaw);
+      enemyActor.setYaw(decision.turnYaw);
     }
     if (decision.kind === "approach") {
-      this.enemyActor.moveFacing(decision.distance);
+      enemyActor.moveFacing(decision.distance);
     } else if (decision.kind === "retreat") {
-      this.enemyActor.moveFacing(-decision.distance);
+      enemyActor.moveFacing(-decision.distance);
     } else if (decision.kind === "move") {
       const move = this.moves[decision.moveId];
-      if (startCombatMove(this.enemy, move, {
+      if (startCombatMove(enemy, move, {
         lockedTargetId: this.player.id,
         defender: this.player,
       })) {
-        const pairAnchor = this.enemyActor.combatVisualPosition?.()
-          || this.enemyActor.position();
-        this.enemyActor.playMove(decision.moveId, {
+        const pairAnchor = enemyActor.combatVisualPosition?.()
+          || enemyActor.position();
+        enemyActor.playMove(decision.moveId, {
           holdLastFrame: Boolean(move?.synchronizedVictim),
         });
-        this.sounds?.start(this.enemy.id, {
+        this.sounds?.start(enemy.id, {
           bank: "battle",
           sequence: move?.enemyAnimation || move?.animation,
         });
         if (move?.synchronizedVictim) {
           // Establish the common authored yaw before a traveling receiver
           // captures its world-space root-motion origin.
-          this.playerActor.alignPairedTo?.(this.enemyActor);
+          this.playerActor.alignPairedTo?.(enemyActor);
           const playVictim = (
             this.playerActor.playOpponentMoveVictim
             || this.playerActor.playMoveVictim
           );
           playVictim?.call(this.playerActor, decision.moveId, {
-            highProficiency: this.enemy.action.highProficiency,
+            highProficiency: enemy.action.highProficiency,
             holdLastFrame: true,
           });
           this.sounds?.start(this.player.id, {
@@ -420,7 +467,7 @@ export class CombatEncounterRuntime {
             sequence: move?.enemyVictimAnimation || move?.victimAnimation,
           });
           alignSynchronizedPair(
-            this.enemyActor,
+            enemyActor,
             this.playerActor,
             decision.moveId,
             pairAnchor,
@@ -432,12 +479,8 @@ export class CombatEncounterRuntime {
 
   processEvent(event) {
     if (event.type === "followup-stage-started") {
-      const actor = event.combatantId === this.player.id
-        ? this.playerActor
-        : this.enemyActor;
-      const defender = event.defenderId === this.player.id
-        ? this.playerActor
-        : this.enemyActor;
+      const actor = this.actors.get(event.combatantId);
+      const defender = this.actors.get(event.defenderId);
       const stage = this.combat.followupStages[event.followupId];
       const pairAnchor = actor.combatVisualPosition?.() || actor.position();
       actor.playFollowupStage?.(event.followupId, {
@@ -468,9 +511,7 @@ export class CombatEncounterRuntime {
       return;
     }
     if (event.type === "throw-acquisition-started") {
-      const actor = event.combatantId === this.player.id
-        ? this.playerActor
-        : this.enemyActor;
+      const actor = this.actors.get(event.combatantId);
       actor.playFollowupStage?.(event.stageId, {
         blendSeconds: 2 / COMBAT_TICKS_PER_SECOND,
       });
@@ -482,9 +523,7 @@ export class CombatEncounterRuntime {
       return;
     }
     if (event.type === "string-stage-started") {
-      const actor = event.combatantId === this.player.id
-        ? this.playerActor
-        : this.enemyActor;
+      const actor = this.actors.get(event.combatantId);
       actor.playStringStage?.(event.stageId, {
         blendSeconds: 2 / COMBAT_TICKS_PER_SECOND,
       });
@@ -495,9 +534,7 @@ export class CombatEncounterRuntime {
       return;
     }
     if (event.type === "move-started") {
-      const actor = event.combatantId === this.player.id
-        ? this.playerActor
-        : this.enemyActor;
+      const actor = this.actors.get(event.combatantId);
       const move = this.combat.actionDefinition({ moveId: event.moveId });
       const pairAnchor = actor.combatVisualPosition?.() || actor.position();
       actor.playMove(event.moveId, {
@@ -519,9 +556,7 @@ export class CombatEncounterRuntime {
         move?.synchronizedVictim
         && event.defenderId
       ) {
-        const defender = event.defenderId === this.player.id
-          ? this.playerActor
-          : this.enemyActor;
+        const defender = this.actors.get(event.defenderId);
         // Actor and victim MOTN clips are authored in one shared orientation.
         // Leaving the victim facing the attacker reverses its extracted root
         // trajectory and makes a shoulder throw travel away from the actor.
@@ -548,9 +583,7 @@ export class CombatEncounterRuntime {
       return;
     }
     if (event.type === "repositioned") {
-      const attacker = event.attackerId === this.player.id
-        ? this.playerActor
-        : this.enemyActor;
+      const attacker = this.actors.get(event.attackerId);
       attacker.setCombatPosition?.(event.x, event.z, event.yaw);
       return;
     }
@@ -562,12 +595,8 @@ export class CombatEncounterRuntime {
         && event.defenderId
         && !event.continued
       ) {
-        const actor = event.combatantId === this.player.id
-          ? this.playerActor
-          : this.enemyActor;
-        const defender = event.defenderId === this.player.id
-          ? this.playerActor
-          : this.enemyActor;
+        const actor = this.actors.get(event.combatantId);
+        const defender = this.actors.get(event.defenderId);
         const sharedOrigin = (
           actor.activeOneShotRootMotionKind?.() === "pose"
           && defender.activeOneShotRootMotionKind?.() === "pose"
@@ -598,9 +627,7 @@ export class CombatEncounterRuntime {
       return;
     }
     if (event.type === "recovered") {
-      const actor = event.combatantId === this.player.id
-        ? this.playerActor
-        : this.enemyActor;
+      const actor = this.actors.get(event.combatantId);
       if (!actor.releasePaired?.()) actor.releaseReaction?.();
       this.sounds?.stop(event.combatantId);
       return;
@@ -621,9 +648,7 @@ export class CombatEncounterRuntime {
       return;
     }
     if (event.type !== "hit" && event.type !== "guarded") return;
-    const defender = event.defenderId === this.player.id
-      ? this.playerActor
-      : this.enemyActor;
+    const defender = this.actors.get(event.defenderId);
     const move = this.combat.actionDefinition({ moveId: event.moveId });
     // A synchronized follow-up starts its victim clip alongside Ryo's clip.
     // Its later damage frame must not restart that paired animation.
@@ -666,18 +691,18 @@ export class CombatEncounterRuntime {
     if (this.input.consumeToggle()) this.toggle();
     if (!this.active) {
       this.input.consumeCommands();
+      this.input.consumeTargetChanges?.();
       return [];
     }
     if (this.input.consumeControlsToggle?.()) {
       if (!this.controlsActive) {
         this.setControlsActive(true);
-      } else if (this.player.defeated || this.enemy.defeated) {
+      } else if (this.player.defeated || this.enemiesDefeated) {
         this.resetCombatants();
         this.setControlsActive(false);
       } else if (
         this.playerMovementLocked
-        || this.enemy.action
-        || this.enemy.reaction
+        || this.enemiesBusy
       ) {
         // Finish an authored attack/reaction pair before returning to normal
         // locomotion so neither actor is stranded in a one-shot pose.
@@ -696,10 +721,13 @@ export class CombatEncounterRuntime {
     const previousCommandFeedback = JSON.stringify(
       this.playerCommandFeedback(),
     );
-    const previousOpponentPosition = opponentPosition(
-      this.player,
-      this.enemy,
-    );
+    const previousOpponentPosition = opponentPosition(this.player, this.enemy);
+    for (const entry of this.enemies) syncCombatant(entry.combatant, entry.actor);
+    syncCombatant(this.player, this.playerActor);
+    let targetChanged = this.acquireTarget();
+    for (const direction of this.input.consumeTargetChanges?.() || []) {
+      targetChanged = this.changeTarget(direction) || targetChanged;
+    }
     const frameSeconds = Math.min(0.1, Math.max(0, deltaSeconds));
     this.sounds?.update(frameSeconds);
     if (this.commandResult) {
@@ -711,19 +739,12 @@ export class CombatEncounterRuntime {
     }
     const previousPlayerGuard = this.player.guardHeld;
     const previousEnemyGuard = this.enemy.guardHeld;
-    syncCombatant(this.player, this.playerActor);
-    syncCombatant(this.enemy, this.enemyActor);
-    if (
-      !this.player.action
-      && !this.player.reaction
-      && !this.enemy.action
-      && !this.enemy.reaction
-      && this.playerActor.keepDistanceFrom?.(
-        this.enemyActor,
-        this.player.radius + this.enemy.radius,
-      )
-    ) {
-      syncCombatant(this.player, this.playerActor);
+    for (const { combatant, actor } of this.enemies) {
+      if (!combatant.defeated && !this.player.action && !this.player.reaction
+        && !combatant.action && !combatant.reaction
+        && this.playerActor.keepDistanceFrom?.(actor, this.player.radius + combatant.radius)) {
+        syncCombatant(this.player, this.playerActor);
+      }
     }
     const playerFacing = distanceAndFacing(this.player, this.enemy);
     // A synchronized victim clip can outlive the attacker's action: Chai
@@ -750,7 +771,7 @@ export class CombatEncounterRuntime {
       this.player.action
       && activePlayerMove?.synchronizedVictim
     );
-    if (!pairedFacingLocked && !this.player.reaction) {
+    if (this.player.targetId && !pairedFacingLocked && !this.player.reaction) {
       this.playerActor.setYaw(playerFacing.targetYaw);
       this.player.yaw = playerFacing.targetYaw;
     }
@@ -760,7 +781,7 @@ export class CombatEncounterRuntime {
     // next attack as an explicit rematch and preserve that same input.
     if (
       containsAttackCommand(playerCommands)
-      && (this.player.defeated || this.enemy.defeated)
+      && (this.player.defeated || this.enemiesDefeated)
     ) {
       this.resetCombatants();
     }
@@ -779,8 +800,11 @@ export class CombatEncounterRuntime {
       this.aiAccumulator += frameSeconds * COMBAT_TICKS_PER_SECOND;
       while (this.aiAccumulator >= 1) {
         this.aiAccumulator -= 1;
-        syncCombatant(this.enemy, this.enemyActor);
-        this.executeEnemyDecision(this.enemyAI.decide(this.enemy, this.player));
+        for (const entry of this.enemies) {
+          if (!entry.ai || entry.combatant.defeated) continue;
+          syncCombatant(entry.combatant, entry.actor);
+          this.executeEnemyDecision(entry.ai.decide(entry.combatant, this.player), entry);
+        }
       }
     }
 
@@ -799,12 +823,12 @@ export class CombatEncounterRuntime {
       this.enemyOffenseUnlocked = true;
     }
     for (const event of events) this.processEvent(event);
+    targetChanged = this.acquireTarget() || targetChanged;
     this.lastEvents = events;
     if (
       this.controlsExitRequested
       && !this.playerMovementLocked
-      && !this.enemy.action
-      && !this.enemy.reaction
+      && !this.enemiesBusy
     ) {
       this.setControlsActive(false);
     }
@@ -820,6 +844,7 @@ export class CombatEncounterRuntime {
     );
     if (
       events.length > 0
+      || targetChanged
       || guardChanged
       || commandFeedbackChanged
       || opponentPositionChanged

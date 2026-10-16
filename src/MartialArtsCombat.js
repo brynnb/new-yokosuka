@@ -837,6 +837,7 @@ export function createCombatant(options = {}) {
   return {
     id: String(options.id || "combatant"),
     team: String(options.team || "neutral"),
+    targetId: options.targetId || null,
     x: Number(options.x) || 0,
     z: Number(options.z) || 0,
     yaw: Number(options.yaw) || 0,
@@ -1478,7 +1479,13 @@ export class MartialArtsCombat {
   }
 
   startQueuedMove(combatant) {
-    const opponent = this.nearestOpponent(combatant);
+    // Selection steers commands/throws, not strike collision: wide strikes
+    // still test every opponent. Once a paired move starts its recipient is
+    // locked by the action, independent of subsequent selection changes.
+    const selected = this.combatants.get(combatant.targetId);
+    const opponent = selected && selected.team !== combatant.team && !selected.defeated
+      ? selected
+      : this.nearestOpponent(combatant);
     const queued = selectQueuedMove(combatant, this.moves, {
       position: opponentPosition(combatant, opponent),
       opponent,

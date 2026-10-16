@@ -1,7 +1,10 @@
 import {
   MARTIAL_ARTS_FOLLOWUP_STAGES,
   MARTIAL_ARTS_MOVES,
+  MartialArtsEnemyAI,
 } from "../../src/MartialArtsCombat.js";
+import { TransformNode } from "@babylonjs/core/Meshes/transformNode.js";
+import { CombatTargetIndicator } from "../combat/CombatTargetIndicator.js";
 import { AnimationStateMachine } from "./AnimationStateMachine.js";
 import { CombatEncounterRuntime } from "../combat/CombatEncounterRuntime.js";
 import { CombatInput } from "../combat/CombatInput.js";
@@ -114,6 +117,16 @@ function createActorAdapter({
       animation.rebaseOneShotRootMotion();
     },
     setEnabled,
+    placeAtOffset(other, { right, forward }) {
+      const source = other.position();
+      const yaw = other.yaw();
+      root.position.set(
+        source.x + Math.cos(yaw) * right + Math.sin(yaw) * forward,
+        source.y,
+        source.z - Math.sin(yaw) * right + Math.cos(yaw) * forward,
+      );
+      root.rotation.y = Math.atan2(source.x - root.position.x, source.z - root.position.z);
+    },
     placeRelativeTo(other, distance) {
       const source = other.position();
       const yaw = other.yaw();
@@ -193,11 +206,61 @@ export class PlayerCombatRuntime {
     this.onStateChanged = onStateChanged;
     this.animationConfig = animationConfig;
     this.combatConfig = combatConfig;
-    this.enemyAnimation = null;
+    this.enemies = [];
     this.encounter = null;
   }
 
   async load({ motion, fightMotion, supplementalMotions }) {
+    try {
+      // One active sparring opponent and three stationary practice partners.
+      // All use the existing Chai rig and complete hit/throw reactions; no
+      // additional assets or substitute combat simulation are needed.
+      const roster = [
+        { id: "enemy", name: "Chai", placement: { right: 0, forward: 2 }, ai: new MartialArtsEnemyAI() },
+        { id: "partner-left", name: "Partner 1", placement: { right: -3, forward: 3 } },
+        { id: "partner-center", name: "Partner 2", placement: { right: 0, forward: 5 } },
+        { id: "partner-right", name: "Partner 3", placement: { right: 3, forward: 3 } },
+      ];
+      for (const definition of roster) {
+        await this.loadEnemy(definition, { motion, fightMotion, supplementalMotions });
+      }
+      const scene = this.playerRoot.getScene();
+      this.targetIndicator = new CombatTargetIndicator(scene, () => this.encounter);
+      const input = new CombatInput({
+        enableToggle: false,
+        targetingEnabled: () => this.controlsActive,
+        getBindings: () => ({
+          controls: this.getBinding("cancel"),
+          hand: this.getBinding("combatHand"),
+          leg: this.getBinding("combatLeg"),
+          throw: this.getBinding("combatThrow"),
+          guard: this.getBinding("combatGuard"),
+          run: this.getBinding("run"),
+          up: this.getBinding("moveForward"),
+          down: this.getBinding("moveBackward"),
+          targetLeft: this.getBinding("combatTargetLeft"),
+          targetRight: this.getBinding("combatTargetRight"),
+        }),
+      });
+      this.encounter = new CombatEncounterRuntime({
+        input,
+        playerActor: createActorAdapter({
+          root: this.playerRoot, animation: this.playerAnimation,
+          playerRoot: this.playerRoot, getController: this.getController,
+        }),
+        enemies: this.enemies,
+        projectTargets: entries => this.targetIndicator.projectTargets(entries),
+        sounds: this.sounds,
+        reactionSequences: this.combatConfig.reactions,
+        onStateChanged: this.onStateChanged,
+      });
+    } catch (error) {
+      this.disposeEnemies();
+      throw error;
+    }
+  }
+
+  async loadEnemy(definition, { motion, fightMotion, supplementalMotions }) {
     const enemyModel = await this.createCharacterModel(this.enemyCharacter);
     if (this.disposed) {
       enemyModel.root.dispose(false, true);
@@ -205,14 +268,22 @@ export class PlayerCombatRuntime {
     }
     const enemyLoader = enemyModel.loader;
     const enemyRoot = enemyModel.root;
-    this.enemyModelRoot = enemyRoot;
-    enemyRoot.parent = this.enemyModelOffset;
+    const scene = this.enemyRoot.getScene();
+    const first = this.enemies.length === 0;
+    const root = first ? this.enemyRoot : new TransformNode(`combat_${definition.id}`, scene);
+    const offset = first ? this.enemyModelOffset : new TransformNode(`combat_${definition.id}_offset`, scene);
+    offset.parent = root;
+    offset.rotation.y = Math.PI;
+    enemyRoot.parent = offset;
+    root.setEnabled(false);
+    const entry = { ...definition, root, offset, modelRoot: enemyRoot, ownsRoot: !first };
+    this.enemies.push(entry);
     const enemyRetarget = this.characterRuntime.buildRetargetMatrices(
       enemyLoader,
       enemyRoot,
     );
-    const applyRootMotion = createCombatRootMotionApplier(this.enemyRoot);
-    this.enemyAnimation = new AnimationStateMachine({
+    const applyRootMotion = createCombatRootMotionApplier(root);
+    const animation = entry.animation = new AnimationStateMachine({
       ...this.animationConfig,
       emotes: [],
       runtimeEmotes: [],
@@ -228,7 +299,7 @@ export class PlayerCombatRuntime {
       },
     });
     const { stance, guard, reactions } = this.combatConfig;
-    this.enemyAnimation.configure({
+    animation.configure({
       motion,
       supplementalMotions,
       sequences: this.animationConfig.sequences,
@@ -246,44 +317,16 @@ export class PlayerCombatRuntime {
       combatReactionMotionById: { defeatedIdle: motion },
       deferOptional: true,
     });
-    this.enemyAnimation.apply();
+    animation.apply();
     const minimumY = this.characterRuntime.minimumWorldY(enemyRoot);
     if (Number.isFinite(minimumY)) {
-      this.enemyModelOffset.position.y += -minimumY + 0.003;
-      this.enemyAnimation.apply();
+      offset.position.y += -minimumY + 0.003;
+      animation.apply();
     }
-    const input = new CombatInput({
-      enableToggle: false,
-      getBindings: () => ({
-        toggle: "KeyF",
-        controls: this.getBinding("cancel"),
-        hand: this.getBinding("combatHand"),
-        leg: this.getBinding("combatLeg"),
-        throw: this.getBinding("combatThrow"),
-        guard: this.getBinding("combatGuard"),
-        run: this.getBinding("run"),
-        up: this.getBinding("moveForward"),
-        down: this.getBinding("moveBackward"),
-      }),
-    });
-    this.encounter = new CombatEncounterRuntime({
-      input,
-      playerActor: createActorAdapter({
-        root: this.playerRoot,
-        animation: this.playerAnimation,
-        playerRoot: this.playerRoot,
-        getController: this.getController,
-      }),
-      enemyActor: createActorAdapter({
-        root: this.enemyRoot,
-        animation: this.enemyAnimation,
-        playerRoot: this.playerRoot,
-        getController: this.getController,
-        setEnabled: enabled => this.enemyRoot.setEnabled(enabled),
-      }),
-      sounds: this.sounds,
-      reactionSequences: reactions,
-      onStateChanged: this.onStateChanged,
+    entry.actor = createActorAdapter({
+      root, animation, playerRoot: this.playerRoot,
+      getController: this.getController,
+      setEnabled: enabled => root.setEnabled(enabled),
     });
   }
 
@@ -297,20 +340,32 @@ export class PlayerCombatRuntime {
   }
   setActive(active) { return this.encounter?.setActive(active); }
   update(deltaSeconds) { this.encounter?.update(deltaSeconds); }
-  reset() { this.enemyAnimation?.reset(); }
+  reset() { for (const entry of this.enemies) entry.animation.reset(); }
+  disposeEnemies() {
+    this.targetIndicator?.dispose();
+    this.targetIndicator = null;
+    for (const entry of this.enemies) {
+      entry.root.setEnabled(false);
+      entry.modelRoot.dispose(false, true);
+      if (entry.ownsRoot) entry.root.dispose();
+    }
+    this.enemies.length = 0;
+  }
   dispose() {
     this.disposed = true;
     this.encounter?.dispose();
+    this.disposeEnemies();
   }
 
   updateAnimation(deltaSeconds) {
-    if (!this.active || !this.enemyAnimation) return;
-    const state = this.enemyAnimation.activeOneShot
-      ? this.enemyAnimation.state
-      : this.encounter.enemy.guardHeld
-        ? "combatGuard"
-        : "combatStance";
-    this.enemyAnimation.update(deltaSeconds, state);
-    this.characterRuntime.updateSecondaryMotion(this.enemyModelRoot, deltaSeconds);
+    if (!this.active) return;
+    for (const entry of this.enemies) {
+      const state = entry.animation.activeOneShot
+        ? entry.animation.state
+        : this.encounter.combat.combatants.get(entry.id).guardHeld
+          ? "combatGuard" : "combatStance";
+      entry.animation.update(deltaSeconds, state);
+      this.characterRuntime.updateSecondaryMotion(entry.modelRoot, deltaSeconds);
+    }
   }
 }

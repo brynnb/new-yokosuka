@@ -31,6 +31,30 @@ class FakeTarget {
   }
 }
 
+test("target keys are contextual, rebound, ignore repeats/editors and clear at control boundaries", () => {
+  const target = new FakeTarget();
+  let enabled = false;
+  const bindings = { targetLeft: "KeyQ", targetRight: "KeyE" };
+  const input = new CombatInput({ target, getBindings: () => bindings, targetingEnabled: () => enabled });
+  target.dispatch("keydown", "KeyQ");
+  assert.deepEqual(input.consumeTargetChanges(), []);
+  enabled = true;
+  target.dispatch("keydown", "KeyQ");
+  target.dispatch("keydown", "KeyQ", true);
+  target.dispatch("keydown", "KeyE", false, { closest: () => ({}) });
+  target.dispatch("keydown", "KeyE");
+  assert.deepEqual(input.consumeTargetChanges(), ["left", "right"]);
+  assert.deepEqual(input.consumeCommands(), []);
+  bindings.targetRight = "BracketRight";
+  target.dispatch("keydown", "BracketRight");
+  assert.deepEqual(input.consumeTargetChanges(), ["right"]);
+  target.dispatch("keydown", "KeyQ");
+  input.discardCommands();
+  assert.deepEqual(input.consumeTargetChanges(), []);
+  input.dispose();
+  assert.equal(target.listeners.size, 0);
+});
+
 function timedInput(target, options = {}) {
   let time = 0;
   const input = new CombatInput({

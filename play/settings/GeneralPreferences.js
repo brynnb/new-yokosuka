@@ -22,6 +22,8 @@ export const DEFAULT_CONTROL_BINDINGS = Object.freeze({
   combatLeg: "KeyK",
   combatThrow: "KeyL",
   combatGuard: "KeyI",
+  combatTargetLeft: "KeyQ",
+  combatTargetRight: "KeyE",
 });
 
 export const CONTROL_BINDING_GROUPS = Object.freeze([
@@ -56,6 +58,8 @@ export const CONTROL_BINDING_GROUPS = Object.freeze([
       ["combatLeg", "Leg"],
       ["combatThrow", "Throw"],
       ["combatGuard", "Guard"],
+      ["combatTargetLeft", "Previous target (screen left)"],
+      ["combatTargetRight", "Next target (screen right)"],
     ],
   },
 ]);
