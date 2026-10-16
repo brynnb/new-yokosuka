@@ -10,6 +10,7 @@ from tools.scripting.build_native_event_program_pack import (  # noqa: E402
     automatic_events,
     build_pack,
     build_runtime_index,
+    refresh_activity_previews,
     event_cameras,
     room_controllers,
     scripted_interactions,
@@ -34,6 +35,21 @@ def function(function_id, actions=()):
 
 
 class BuildNativeEventProgramPackTest(unittest.TestCase):
+    def test_authored_refresh_preserves_native_programs_and_receipt(self):
+        native={"id":"native", "functions":[function("0x100")]}
+        preview={"id":"old", "entryFunction":"$activity-sequence", "functions":[{"id":"$activity-sequence"}],
+                 "preview":{"kind":"exact-auth-activity-sequence-v1", "packageId":"pack", "worldId":"mend", "activities":[{"slot":0,"activityId":"END/SEQDATA1.AUTH","binding":{"kind":"map-embedded-slot"}}]}}
+        pack={"schema":"new-yokosuka-native-event-program-pack-v1", "generatedFrom":{"nativeEventIrSha256":"unchanged"}, "programs":[native, preview]}
+        new={**preview,"id":"new"}
+        result=refresh_activity_previews(pack,[new])
+        self.assertEqual(result["generatedFrom"],pack["generatedFrom"])
+        self.assertIs(result["programs"][0],native)
+        self.assertEqual(result["programs"],[native,new])
+        self.assertEqual(pack["programs"],[native,preview])
+        for invalid in [{**new,"id":"native"}, {**new,"entryFunction":"0x100"}]:
+            with self.assertRaisesRegex(ValueError,"invalid or duplicated"):
+                refresh_activity_previews(pack,[invalid])
+
     def test_research_programs_stay_in_offline_pack_not_runtime_assets(self):
         record = {"id": "research-room-init", "area": "JOMO", "runtimeScope": "research",
                   "functions": [function("0x100")]}

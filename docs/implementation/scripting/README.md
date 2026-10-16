@@ -78,6 +78,15 @@ are fetched only when one starts. The combined pack remains available for
 offline audits without entering the production JavaScript graph. None implies
 that every represented route is player-complete.
 
+For edits only to authored AUTH sequences/preview routes, regenerate them with
+`python3 -m tools.cutscenes.build_native_activity_preview_programs`, then run
+`python3 -m tools.scripting.build_native_event_program_pack --refresh-activity-previews`.
+The latter uses shared validation to replace only those compiled selections in
+the existing pack and regenerate its content-addressed runtime index. Native
+closures and their source receipt remain unchanged; it avoids loading the large
+research IR for an unrelated authored-content edit. Changes to native routes,
+recovered IR or compiled native opening controllers require the full compiler.
+
 ## Current reviewed vertical slices
 
 The database-backed scripting path currently includes reviewed definitions for

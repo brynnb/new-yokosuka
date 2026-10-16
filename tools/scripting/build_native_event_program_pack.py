@@ -957,6 +957,35 @@ def build_pack(
             if key not in {"schema", "compile"}
         })
 
+    append_activity_previews(programs, activity_preview_programs)
+
+    return {
+        "schema": "new-yokosuka-native-event-program-pack-v1",
+        "generatedFrom": {
+            "nativeEventIrSha256": event_ir_sha256,
+            "sourceScope": event_ir.get("summary", {}).get("sourceScope"),
+        },
+        "evidenceBoundary": [
+            "Each program is an exact same-MAPINFO static closure from its declared entry.",
+            "Direct-call and child-coroutine targets are retained without inlining or reordering.",
+            "Runtime-interface calls, continuation transfers, unresolved operations, and unknown operands remain explicit stop or yield boundaries.",
+            "Interaction routes distinguish exact control entries from explicitly declared, statically reachable dialogue entries; no descendant is selected by inference.",
+            "Automatic event routes retain separate exact gate and control entries plus the required native gate return value.",
+            "Persistent room-controller declarations preserve exact launch, poll, and dispatch ownership without treating unresolved controller operations as executable.",
+            "Route declarations identify exact native entries; they do not assign inferred gameplay meaning.",
+        ],
+        "programs": programs,
+    }
+
+
+ACTIVITY_PREVIEW_KINDS = frozenset({
+    "single-auth-activity-v1", "exact-auth-activity-sequence-v1",
+})
+
+
+def append_activity_previews(programs, activity_preview_programs):
+    """Share validation between full compilation and authored-only refreshes."""
+    route_ids = {program["id"] for program in programs}
     for program in activity_preview_programs:
         program_id = program.get("id")
         preview = program.get("preview")
@@ -1012,23 +1041,19 @@ def build_pack(
         route_ids.add(program_id)
         programs.append(program)
 
-    return {
-        "schema": "new-yokosuka-native-event-program-pack-v1",
-        "generatedFrom": {
-            "nativeEventIrSha256": event_ir_sha256,
-            "sourceScope": event_ir.get("summary", {}).get("sourceScope"),
-        },
-        "evidenceBoundary": [
-            "Each program is an exact same-MAPINFO static closure from its declared entry.",
-            "Direct-call and child-coroutine targets are retained without inlining or reordering.",
-            "Runtime-interface calls, continuation transfers, unresolved operations, and unknown operands remain explicit stop or yield boundaries.",
-            "Interaction routes distinguish exact control entries from explicitly declared, statically reachable dialogue entries; no descendant is selected by inference.",
-            "Automatic event routes retain separate exact gate and control entries plus the required native gate return value.",
-            "Persistent room-controller declarations preserve exact launch, poll, and dispatch ownership without treating unresolved controller operations as executable.",
-            "Route declarations identify exact native entries; they do not assign inferred gameplay meaning.",
-        ],
-        "programs": programs,
-    }
+
+def refresh_activity_previews(report, activity_preview_programs):
+    """Replace only compiled AUTH selections; never recompile native research.
+
+    This explicitly leaves native routes/closures and their source receipt
+    untouched. Changes to those inputs still require ordinary full compilation.
+    """
+    if report.get("schema") != "new-yokosuka-native-event-program-pack-v1":
+        raise ValueError("unsupported existing native event program pack")
+    programs = [program for program in report["programs"]
+                if (program.get("preview") or {}).get("kind") not in ACTIVITY_PREVIEW_KINDS]
+    append_activity_previews(programs, activity_preview_programs)
+    return {**report, "programs": programs}
 
 
 RUNTIME_DESCRIPTOR_FIELDS = (
@@ -1161,6 +1186,8 @@ def main() -> None:
     parser.add_argument("--event-ir", type=Path, default=DEFAULT_IR)
     parser.add_argument("--routes", type=Path, default=DEFAULT_ROUTES)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--refresh-activity-previews", action="store_true",
+                        help="refresh only compiled AUTH selections in the existing output; native routes/IR remain unchanged")
     parser.add_argument(
         "--runtime-index",
         type=Path,
@@ -1191,7 +1218,8 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    report = build_pack(
+    previews = tuple(json.loads(args.activity_preview_programs.read_text())["programs"])
+    report = refresh_activity_previews(json.loads(args.output.read_text()), previews) if args.refresh_activity_previews else build_pack(
         json.loads(args.event_ir.read_text()),
         json.loads(args.routes.read_text()),
         event_ir_sha256=sha256(args.event_ir),
@@ -1202,9 +1230,7 @@ def main() -> None:
             json.loads(path.read_text())
             for path in args.compiled_program
         ),
-        activity_preview_programs=tuple(
-            json.loads(args.activity_preview_programs.read_text())["programs"]
-        ),
+        activity_preview_programs=previews,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
