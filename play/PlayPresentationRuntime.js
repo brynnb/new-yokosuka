@@ -125,7 +125,7 @@ export class PlayPresentationRuntime {
           // Geometry can be ready while the travel session still finalizes
           // arrival/avatar state. Don't consume a once-per-entry dispatch yet.
           && !world.runtime.switching && !player.runtime.characterSwitching
-          && story.scriptedEvents.status === "idle",
+          && !story.scriptedEvents.busy,
         playerPosition: player.actorRoot.position,
         playerYaw: player.actorRoot.rotation.y,
       });

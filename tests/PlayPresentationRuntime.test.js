@@ -228,6 +228,17 @@ test("render presentation preserves subsystem order and updates player HUD", () 
     assert.equal(calls.find(([name]) => name === "automatic-events")[1].enabled, !worldSwitching && !avatarSwitching,
       "ready geometry does not authorize a story event during travel/avatar finalization");
   }
+  for (const status of ["complete", "stopped", "idle"]) {
+    runtime.story.scriptedEvents.status = status;
+    for (const busy of [false, true]) {
+      runtime.story.scriptedEvents.busy = busy;
+      calls.length = 0;
+      runtime.update({ deltaSeconds: 0.02, wallDeltaSeconds: 0.03,
+        animationDeltaSeconds: 0.04, fixedStepAlpha: 0.5 });
+      assert.equal(calls.find(([name]) => name === "automatic-events")[1].enabled, !busy,
+        `terminal diagnostic status ${status} must not suppress later Story entries; active ownership must`);
+    }
+  }
 });
 
 test("render presentation skips world-owned work until the world is ready", () => {
