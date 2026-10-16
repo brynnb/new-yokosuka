@@ -7,7 +7,9 @@ handoff after the late-night telephone call, then the controllable motorcycle
 ride and saved harbor arrival. The warehouse battles and original hostage
 conversation are connected; their verification boundary is recorded below.
 The ride home and separate dawn/rest saves are connected; their verification
-boundary is recorded below. The following dojo/final-day events remain missing.
+boundary is recorded below. The [final-day continuation](story-final-day.md)
+now connects dojo meditation, Tom's invitation and Alpha dismissal; subsequent
+training/farewell, final battles and departure remain missing.
 
 ## Rest and the call
 

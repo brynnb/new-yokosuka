@@ -179,6 +179,8 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.borrowed-motorcycle",page:Object.freeze({id:"story-borrowed-motorcycle",text:"Naoyuki lent me his motorcycle.\n\nNow I need to ride to the harbor and reach Warehouse No. 17.\nNozomi is waiting."})},
   {flag:"notebook.s1.terry-hostage-deal",page:Object.freeze({id:"story-terry-hostage-deal",text:"Nozomi is safe.\n\nTerry wants me to defeat Gui Zhang.\nI made him promise to take me to Lan Di in exchange.\n\nFirst, get Nozomi home."})},
   {flag:"notebook.s1.nozomi-home",page:Object.freeze({id:"story-nozomi-home",text:"Nozomi is home safely.\n\nMeet Terry at Warehouse No. 9 at 10 p.m.\n\nGet some sleep before the day ahead."})},
+  {flag:"notebook.s1.tom-lunch-promise",page:Object.freeze({id:"story-tom-lunch-promise",text:"Promised to have lunch with Tom.\n\nMeet him at his hot-dog stand around 11:30 a.m."})},
+  {flag:"notebook.s1.yada-dismissal",page:Object.freeze({id:"story-yada-dismissal",text:"Yada-san fired me from Alpha Trading.\n\nMeet Tom for lunch before tonight's confrontation at Warehouse No. 9."})},
 ]);
 
 export function notebookPagesForCharacter(character) {

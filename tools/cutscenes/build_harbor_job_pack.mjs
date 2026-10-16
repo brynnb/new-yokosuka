@@ -15,6 +15,9 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const defaultEvidence="docs/design/story-harbor-work.md";
 const archives={
+  "JHD0/MSOU":"92d841582c87eda667d2f377bbbc3cadbb2618fa4a414651bcee72182a8d14ec",
+  TOMOGORI:"cce64a24b1d50d80efd0e008a7e714b6811e5c7db4063df0e043d2de840dcc09",
+  MARU_KUB:"ffc7a9549dca0d9fe6f683f7884e8239a511bfc74f5d8cac7281962674552cb5",
   "JD00/BIKE":"210e1da2234b945233003d61801d2fd6f12b0a48c4b05d3f8bfcb14bce8aa971",
   "MS08/MS08":"37dfa2edd029a819f8e25f75b27332bef5d4f416868aaab2cd9b8068e0d4010f",
   MARU_LET:"49b859b07413108e9ed5726a28ad48ca91e723053602b1642e35e8a631287fa0",
@@ -36,6 +39,16 @@ const archives={
   ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
 const profiles=[
+  {id:"final-meditation",directory:"hazuki",evidence:"docs/design/story-final-day.md",archive:"JHD0/MSOU",resourceName:"MSOU",auth:"SEQDATA1.AUTH",motion:"M_01MSO.MOTN",frames:1150,
+    actors:["KATA","SAYA","IWAO","AKIR"],actorModels:{IWAO:["Iwao Hazuki","IWA_M"]},
+    actorTextureHash:"5e90754604ccd7e8e8b2f3bdb78bbe1a71244c6d40ffa8323a93710bac22a689",
+    props:{KATA:"SINS501G",SAYA:"SAYS500G"},propTextureHash:"5e90754604ccd7e8e8b2f3bdb78bbe1a71244c6d40ffa8323a93710bac22a689",authoredPropBindings:true,
+    stream:"01MSO",streamHash:"b59e6b7d3deb775dbb7047cba38165823fa4607e704aaec734352b16c64dfea5",sound:"A1_MSO.SND",soundHash:"110edb5bff6026fd13f56c35f51dcfb11b36eedc06ce7889db26b520695bb782"},
+  {id:"tom-lunch-invitation",evidence:"docs/design/story-final-day.md",archive:"TOMOGORI",auth:"SEQDATA1.AUTH",motion:"M_01TOM.MOTN",frames:713,actors:["AKIR","TOM_"],
+    actorModels:{TOM_:["Tom Johnson","AMG_L"]},actorTextureHash:"8d7e24d502b2e6cb17c043e6e8ddf0641bc948ca259ae1e657e3d24241b1fcd8",
+    stream:"01TOMA",streamHash:"beee7fd3fe15645298fd1ea0c74dc6d8f7b30308209b16e15f2ff40c578f9d20",sound:"A1_TOMNA.SND",soundHash:"f05e0870a7def1a11cd1059e0e012bb5131071b533a3aed7b419d4620314c233"},
+  {id:"yada-dismissal",evidence:"docs/design/story-final-day.md",archive:"MARU_KUB",auth:"SEQDATA2.AUTH",motion:"M_01KUB.MOTN",bank:17,frames:1720,actors:["DOOR","AKIR","TMRA"],room:"ALPHA",
+    stream:"01KUB",streamHash:"c7f5d9c7eba61af610ca0a599cca706a988d123594219ddafbce056ccd13ce06",sound:"A1_KUBI.SND",soundHash:"7573286f022f6eaf283b1e4f5e780a613a9b84fec71f2b2d8a6b4ec2e7c75495"},
   {id:"nozomi-motorcycle",directory:"sakuragaoka",evidence:"docs/design/story-nozomi-rescue.md",archive:"JD00/BIKE",resourceName:"BIKE",auth:"SEQDATA1.AUTH",motion:"M_01BIKE.MOTN",frames:1640,
     selectionRule:"Walkthrough-guided nighttime motorcycle handoff; normalized local slot, not a native owner selection or driving result.",
     actors:["HIKA","BIKE","HELM","TAIL","AKIR","ITOH","SUJI"],

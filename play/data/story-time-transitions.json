@@ -1,6 +1,7 @@
 {
   "schema": "new-yokosuka-story-time-transitions-v1",
   "transitions": [
+    {"id":"s1.final.harbor-morning","label":"Head to the harbor at 10:15 a.m.","hour":10,"minute":15,"nextDay":false},
     {"id":"s1.nozomi.dawn","label":"Return home at dawn","hour":5,"minute":56,"nextDay":false},
     {"id":"s1.nozomi.next-dawn","label":"Return home at the next dawn","hour":5,"minute":56,"nextDay":true},
     {"id":"s1.final.morning","label":"Sleep until 7:30 a.m.","hour":7,"minute":30,"nextDay":false},

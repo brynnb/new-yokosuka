@@ -22,6 +22,7 @@ import {verifyNozomiNightCall,verifyNozomiTransport} from "./story-nozomi-rescue
 import {verifyMotorcycleRide} from "./story-motorcycle-ride.js";
 import {verifyNozomiWarehouse} from "./story-nozomi-warehouse.js";
 import {verifyNozomiHome} from "./story-nozomi-home.js";
+import {verifyFinalDayMorning} from "./story-final-day.js";
 import {useStoryInspectable} from "./story-object-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
@@ -204,6 +205,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+    if(process.env.NEW_YOKOSUKA_FINAL_DAY_MORNING_E2E === "true"){
+      test.setTimeout(660_000);await verifyFinalDayMorning(page,testInfo,character);expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_NOZOMI_HOME_E2E === "true"){
       test.setTimeout(600_000);await verifyNozomiHome(page,testInfo,character,{musicResponses});expect(errors).toEqual([]);return;
     }

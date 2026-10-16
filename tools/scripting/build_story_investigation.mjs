@@ -22,6 +22,7 @@ const exportedVoices = new Set();
 const triggerPriorities = new Map();
 const storyRegions=JSON.parse(fs.readFileSync(path.join(server,"internal/scriptevent/story_regions.json"))).regions;
 for (const route of spec.routes) {
+  if (!Number.isSafeInteger(route.priority ?? 200) || Math.abs(route.priority ?? 200) > 1000) throw Error(`Invalid server trigger priority in ${route.id}`);
   const disc=route.disc ?? 1;
   for(const source of route.nativeSources||[]){
     if(!/^[a-z][a-z0-9_-]{0,63}$/.test(source.role)||typeof source.locator!=="string"||!source.locator.trim()||!/^([a-f0-9]{64})$/.test(source.sha256))throw Error(`Invalid native source provenance ${route.id}/${source.role}`);

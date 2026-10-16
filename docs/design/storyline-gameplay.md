@@ -185,9 +185,16 @@ a connected natural-playback check, including cancellation/reload, actual CD
 audio, immediate 05:56 bedroom arrival and separate stay-awake/sleep/07:30 save.
 Completed reload retains the earned outcome and restores controls without extra
 rewards or later-story flags. Riding-skirt deformation remains an explicit
-presentation limitation. The following dojo meditation, final-day events,
+presentation limitation. The following original dojo meditation, Tom lunch
+invitation and Alpha dismissal now also pass a connected earned-save browser
+continuation with independent cancellation/reload/retry, natural endings,
+reviewed travel, notebook pages and restored controls. Only early meditation
+advances to10:15; late personal saves keep their date/time. Original Tom/Ryo/cart
+and the Alpha cast/room are rendered. Dark dojo lighting and incidental
+ghost/door detail remain explicit limits. Tom's actual training/farewell,
 final battles and departure remain missing; the checklist distinguishes each
-boundary. See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest).
+boundary. See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest)
+and the [final day](story-final-day.md).
 
 For walkthrough-guided, authored progression, use the
 [story event template](story-event-template.md). It defines important narrative

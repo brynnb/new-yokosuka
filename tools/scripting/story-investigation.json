@@ -3,6 +3,29 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"final-meditation","disc":3,"actor":"AKIR","presentActors":[],"area":"JHD0","trigger":"enter","priority":900,
+      "title":"Meditate before the final day","bounds":"s1.jhd0.final-meditation","requiredFlags":["story.s1.final-morning.completed"],
+      "completedFlag":"story.s1.final-meditation.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-final-meditation.yarn","completionActivities":["s1.jhd0.final-meditation.scene"],
+      "nativeSources":[{"role":"original-dojo-meditation","locator":"disc3/SCENE/03/JHD0/MSOU.PKS","sha256":"92d841582c87eda667d2f377bbbc3cadbb2618fa4a414651bcee72182a8d14ec"}],
+      "provenance":"GameSpot p63 morning dojo meditation and automatic10:15 harbor arrival. Original MSOU scene, Iwao, sword/scabbard and available effects. Authored entry choice and prop/model associations. Only acknowledged presentation saves meditation and Tom approach; clock advances to10:15 only if earlier, preserving late personal saves without rewind/day jump. No lunch, dismissal, training, combat, money or item result."
+    },
+    {
+      "id":"tom-lunch-invitation","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":980,
+      "title":"Tom's lunch invitation","bounds":"s1.mfsy.tom-lunch-invitation","requiredFlags":["story.s1.final-meditation.completed"],
+      "completedFlag":"story.s1.tom-lunch-invitation.completed","effects":["notebook.s1.tom-lunch-promise"],"voiceIds":[],"activities":["s1.mfsy.tom-lunch-invitation.scene"],"destination":"s1.final.alpha-entrance",
+      "confirmation":{"accept":"Talk with Tom","decline":"Leave it for now"},
+      "nativeSources":[{"role":"original-lunch-invitation","locator":"disc3/SCENE/03/MFSY/TOMOGORI.PKS","sha256":"cce64a24b1d50d80efd0e008a7e714b6811e5c7db4063df0e043d2de840dcc09"}],
+      "provenance":"Original713-frame Tom invitation with seven English voices. Guide p63 automatic walk to Alpha follows invitation. Independent notebook/milestone and tested exterior Alpha arrival, no clock jump, payment, dismissal or farewell result. Late personal saves remain eligible."
+    },
+    {
+      "id":"yada-dismissal","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":990,
+      "title":"Dismissed from Alpha Trading","bounds":"s1.mfsy.yada-dismissal","requiredFlags":["story.s1.tom-lunch-invitation.completed"],
+      "completedFlag":"story.s1.yada-dismissal.completed","effects":["notebook.s1.yada-dismissal"],"voiceIds":[],"activities":["s1.mfsy.yada-dismissal.scene"],
+      "confirmation":{"accept":"Speak with Yada","decline":"Leave it for now"},
+      "nativeSources":[{"role":"original-alpha-dismissal","locator":"disc3/SCENE/03/MFSY/MARU_KUB.PKS","sha256":"ffc7a9549dca0d9fe6f683f7884e8239a511bfc74f5d8cac7281962674552cb5"}],
+      "provenance":"Original1720-frame dismissal, fourteen English voices, existing Yada body and original temporary Alpha room. Guide p63. Acknowledgement saves only independent dismissal/notebook; no severance, wages, inventory, personal time change, lunch/training/farewell or future victory. Cancel/preparation failure remains retryable at the exterior approach."
+    },
+    {
       "id":"nozomi-home-entry","disc":3,"actor":"AKIR","presentActors":[],"area":"TERY","trigger":"enter","priority":990,
       "title":"Take Nozomi home","bounds":"s1.tery.nozomi-home-entry","requiredFlags":["story.s1.nozomi-rescue.completed"],"excludedFlags":["story.s1.nozomi-home.completed"],
       "completedFlag":"story.s1.nozomi-home-entry.completed","repeatable":true,"effects":[],"voiceIds":[],"activities":[],"destination":"s1.nozomi.ride-home-start",
