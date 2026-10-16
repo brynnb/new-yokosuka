@@ -414,12 +414,19 @@ export class NativeAseqSceneObjectRuntime {
     return true;
   }
 
-  restoreExplorationObjects() {
+  releaseStandaloneObjects() {
     // Continuous room programs retain their props across AUTH subleases.
     // Ordinary scenes release the borrow without discarding cached assets.
     if (this.active || this.program) return false;
     for (const record of this.objects.values()) {
       const snapshot = record.explorationSnapshot;
+      // prepareActivity enables room fixtures before AUTH takes its sublease.
+      // Its snapshot therefore still has them enabled at the end. Keep warm
+      // assets cached, but never leave a standalone film's room in gameplay.
+      // An outer native program deliberately retains them between activities.
+      if (!snapshot && this.persistentActorTags.has(record.actorCode)) {
+        record.root.setEnabled(false);
+      }
       if (!snapshot?.leased) continue;
       restoreRoot(record.root, snapshot);
       for (const state of snapshot.nodes) {
@@ -437,7 +444,7 @@ export class NativeAseqSceneObjectRuntime {
   clear() {
     if (this.active) this.end(this.active.owner);
     if (this.program) this.endProgram(this.program.owner);
-    this.restoreExplorationObjects();
+    this.releaseStandaloneObjects();
     for (const record of this.objects.values()) {
       if (!record.explorationSnapshot) record.root.setEnabled(false);
     }

@@ -41,10 +41,10 @@ test("borrowed interactive props return their visibility, picking and frozen tra
     assert.equal(page.metadata,metadata);assert.equal(page.metadata.nativeAseqSceneObject,undefined);
   }
   await runtime.load([book]);
-  assert.equal(runtime.restoreExplorationObjects(),true);assert.equal(book.isEnabled(),true);assert.equal(page.isPickable,true);
+  assert.equal(runtime.releaseStandaloneObjects(),true);assert.equal(book.isEnabled(),true);assert.equal(page.isPickable,true);
   book.position.set(4,5,6); // Exploration can change a warm package's target.
   runtime.prepareActivity({activityId:"again"});assert.equal(book.isEnabled(),false);assert.equal(page.isPickable,false);
-  book.position.set(9,9,9);runtime.restoreExplorationObjects();assert.deepEqual(book.position.asArray(),[4,5,6]);
+  book.position.set(9,9,9);runtime.releaseStandaloneObjects();assert.deepEqual(book.position.asArray(),[4,5,6]);
   assert.equal(page.isPickable,true);runtime.clear();assert.equal(book.isEnabled(),true);
 });
 
@@ -318,6 +318,29 @@ test("persistent AUTH fixtures restore generated presentation between activities
     scene.dispose();
     engine.dispose();
   }
+});
+
+test("standalone room fixtures return to the hidden cache, while outer programs retain them", async t => {
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  t.after(()=>{scene.dispose();engine.dispose();});
+  const room=new BABYLON.TransformNode("room",scene);room._filename="ROOM.MAPM";
+  const mesh=BABYLON.MeshBuilder.CreateBox("room-mesh",{},scene);mesh.parent=room;
+  const runtime=new NativeAseqSceneObjectRuntime({definitions:{ROOM:{model:"ROOM",browserFilename:room._filename,
+    lifecycle:{kind:"room-script-persistent"},initialPresentation:{position:[0,0,0],rotationDegrees:[0,0,0],scale:[1,1,1]}}}});
+  await runtime.load([room]);
+  for(const reason of ["complete","cancelled","preparation-failed"]){
+    runtime.prepareActivity({activityId:reason,nativeSceneObjectStates:[{actorTag:"ROOM",presented:true}]});
+    assert.equal(mesh.isEnabled(),true);
+    if(reason!=="preparation-failed"){
+      const owner={};runtime.begin(owner,["ROOM"]);runtime.end(owner,reason);
+    }
+    assert.equal(runtime.releaseStandaloneObjects(),true);
+    assert.equal(mesh.isEnabled(),false);assert.equal(room.isDisposed(),false);
+  }
+  const program={};runtime.beginProgram(program);
+  runtime.prepareActivity({activityId:"program",nativeSceneObjectStates:[{actorTag:"ROOM",presented:true}]});
+  assert.equal(runtime.releaseStandaloneObjects(),false);assert.equal(mesh.isEnabled(),true);
+  runtime.endProgram(program);assert.equal(mesh.isEnabled(),false);
 });
 
 test("composite scene objects support a program lease around AUTH subleases", async () => {

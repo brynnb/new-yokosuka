@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import * as BABYLON from "@babylonjs/core";
+import {NativeAseqSceneObjectRuntime} from "../play/events/NativeAseqSceneObjectRuntime.js";
 
 import {
   NativeCutscenePackageRuntime,
@@ -65,6 +67,20 @@ function runtimeWith(resources) {
   Object.assign(runtime, resources);
   return runtime;
 }
+
+test("standalone package stop and failed start release prepared room visibility", async t => {
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  t.after(()=>{scene.dispose();engine.dispose();});
+  const room=new BABYLON.TransformNode("room",scene);room._filename="ROOM.MAPM";
+  const sceneObjects=new NativeAseqSceneObjectRuntime({definitions:{ROOM:{model:"ROOM",browserFilename:room._filename,
+    lifecycle:{kind:"room-script-persistent"},initialPresentation:{position:[0,0,0],rotationDegrees:[0,0,0],scale:[1,1,1]}}}});
+  await sceneObjects.load([room]);
+  const runtime=programRuntimeWith({calls:[]});
+  Object.assign(runtime,{sceneObjects,playback:{stop:()=>true,start:async()=>{throw Error("prepare failed");}}});
+  const prepare=()=>sceneObjects.prepareActivity({activityId:"room",nativeSceneObjectStates:[{actorTag:"ROOM",presented:true}]});
+  prepare();assert.equal(room.isEnabled(),true);runtime.stop("cancelled");assert.equal(room.isEnabled(),false);
+  prepare();await assert.rejects(runtime.start({id:"retry",activity:{}}),/prepare failed/);assert.equal(room.isEnabled(),false);
+});
 
 test("standalone attached objects use the accepted AUTH frame and reject failed presentation", () => {
   const calls=[],activityRuntime={active:{currentFrame:0}};

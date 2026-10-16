@@ -954,7 +954,7 @@ export class NativeCutscenePackageRuntime {
       // Restoring the room between subleases produces a one-frame cut flash.
       () => completedActivity && this.programLease ? true : this.mapLayers?.end(),
       () => this.attachedObjects?.endTrack(),
-      () => this.sceneObjects?.restoreExplorationObjects(),
+      () => this.sceneObjects?.releaseStandaloneObjects(),
       () => completedActivity
         ? this.music.endActivity({ programActive: Boolean(this.programLease) })
         : this.music.reset(),
