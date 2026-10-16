@@ -21,8 +21,8 @@ export class CombatTargetIndicator {
     const viewport = camera.viewport.toGlobal(engine.getRenderWidth(), engine.getRenderHeight());
     const transform = camera.getViewMatrix().multiply(camera.getProjectionMatrix());
     return entries.map(({ id, name, actor, combatant }) => {
-      const position = actor.combatVisualPosition?.() || actor.position();
-      const point = new Vector3(position.x, position.y + 1.85, position.z);
+      const position = actor.targetPosition();
+      const point = new Vector3(position.x, position.y, position.z);
       const projected = Vector3.Project(point, Matrix.IdentityReadOnly, transform, viewport);
       return {
         id, name, defeated: combatant.defeated,

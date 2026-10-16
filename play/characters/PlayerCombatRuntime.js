@@ -27,6 +27,7 @@ function createActorAdapter({
   playerRoot,
   getController,
   setEnabled = () => {},
+  targetHeight = 0,
 }) {
   let sharedPair = false;
   const syncCollider = () => {
@@ -41,6 +42,10 @@ function createActorAdapter({
   );
   return {
     position: () => root.getAbsolutePosition(),
+    targetPosition() {
+      const position = root.getAbsolutePosition();
+      return { x: position.x, y: position.y + targetHeight, z: position.z };
+    },
     yaw: () => root.rotation.y,
     setYaw: (yaw) => { root.rotation.y = yaw; },
     keepDistanceFrom(other, minimumDistance) {
@@ -217,9 +222,9 @@ export class PlayerCombatRuntime {
       // additional assets or substitute combat simulation are needed.
       const roster = [
         { id: "enemy", name: "Chai", placement: { right: 0, forward: 2 }, ai: new MartialArtsEnemyAI() },
-        { id: "partner-left", name: "Partner 1", placement: { right: -3, forward: 3 } },
-        { id: "partner-center", name: "Partner 2", placement: { right: 0, forward: 5 } },
-        { id: "partner-right", name: "Partner 3", placement: { right: 3, forward: 3 } },
+        { id: "partner-left", name: "Partner 1", placement: { right: -2, forward: 4 } },
+        { id: "partner-center", name: "Partner 2", placement: { right: 0.8, forward: 6 } },
+        { id: "partner-right", name: "Partner 3", placement: { right: 2, forward: 4 } },
       ];
       for (const definition of roster) {
         await this.loadEnemy(definition, { motion, fightMotion, supplementalMotions });
@@ -317,14 +322,19 @@ export class PlayerCombatRuntime {
       combatReactionMotionById: { defeatedIdle: motion },
       deferOptional: true,
     });
+    // The grounding helper excludes disabled meshes. Enable only for this
+    // synchronous pose/bounds query, under the world loading cover.
+    root.setEnabled(true);
     animation.apply();
     const minimumY = this.characterRuntime.minimumWorldY(enemyRoot);
     if (Number.isFinite(minimumY)) {
       offset.position.y += -minimumY + 0.003;
       animation.apply();
     }
+    const targetHeight = enemyRoot.getHierarchyBoundingVectors(true).max.y - root.position.y + 0.12;
+    root.setEnabled(false);
     entry.actor = createActorAdapter({
-      root, animation, playerRoot: this.playerRoot,
+      root, animation, targetHeight, playerRoot: this.playerRoot,
       getController: this.getController,
       setEnabled: enabled => root.setEnabled(enabled),
     });

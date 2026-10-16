@@ -110,7 +110,11 @@ export class CombatEncounterRuntime {
   get enemy() { return this.selectedEnemy.combatant; }
   get enemyActor() { return this.selectedEnemy.actor; }
   get enemiesDefeated() { return this.enemies.every(entry => entry.combatant.defeated); }
-  get enemiesBusy() { return this.enemies.some(({ combatant }) => combatant.action || combatant.reaction); }
+  get enemiesBusy() {
+    // Defeat poses intentionally persist; a fallen partner must not prevent X
+    // from leaving combat while the remaining partners are still alive.
+    return this.enemies.some(({ combatant }) => !combatant.defeated && (combatant.action || combatant.reaction));
+  }
 
   acquireTarget() {
     if (this.player.targetId && !this.enemy.defeated) return false;
@@ -180,7 +184,9 @@ export class CombatEncounterRuntime {
   setActive(active) {
     const next = Boolean(active);
     if (next === this.active) return false;
+    this.input.discardCommands?.();
     this.input.consumeCommands();
+    this.input.consumeControlsToggle?.();
     this.input.consumeTargetChanges?.();
     this.active = next;
     this.controlsActive = next;
@@ -691,6 +697,7 @@ export class CombatEncounterRuntime {
     if (this.input.consumeToggle()) this.toggle();
     if (!this.active) {
       this.input.consumeCommands();
+      this.input.consumeControlsToggle?.();
       this.input.consumeTargetChanges?.();
       return [];
     }
@@ -746,7 +753,8 @@ export class CombatEncounterRuntime {
         syncCombatant(this.player, this.playerActor);
       }
     }
-    const playerFacing = distanceAndFacing(this.player, this.enemy);
+    const actionTarget = this.combat.combatants.get(this.player.action?.lockedTargetId);
+    const playerFacing = distanceAndFacing(this.player, actionTarget || this.enemy);
     // A synchronized victim clip can outlive the attacker's action: Chai
     // finishes his punches, Ryo kicks him away, then Ryo still has to get
     // back to his feet. Do not buffer commands anywhere in that complete

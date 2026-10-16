@@ -1076,8 +1076,11 @@ export class ThirdPersonController {
         }
         const movementLocked = this.movementLocked || Boolean(lockMovement);
         const targetRelative = (
-            !this.firstPerson && Number.isFinite(movementTargetYaw)
+            Number.isFinite(movementTargetYaw)
         );
+        if (targetRelative && this.firstPerson && !movementLocked) {
+            this.cameraYaw = movementTargetYaw + Math.PI;
+        }
         const keyboardTurn = movementLocked ? 0 : inputSnapshot
             ? inputSnapshot.value("turn")
             : firstPersonTurnInput(this.keys);
@@ -1117,7 +1120,7 @@ export class ThirdPersonController {
             )
         );
         // Keyboard A/D turns during exploration; analog sticks remain directional.
-        if (this.firstPerson || (!targetRelative && keyboardTurn !== 0)) {
+        if (!targetRelative && (this.firstPerson || keyboardTurn !== 0)) {
             const turnInput = Math.max(
                 -1,
                 Math.min(
@@ -1139,14 +1142,14 @@ export class ThirdPersonController {
                 movementKeys.delete(key);
             }
         }
-        let movement = this.firstPerson
-            ? firstPersonMovement(movementKeys, this.cameraYaw)
-            : targetRelative
-                ? targetRelativeMovement(movementKeys, movementTargetYaw)
+        let movement = targetRelative
+            ? targetRelativeMovement(movementKeys, movementTargetYaw)
+            : this.firstPerson
+                ? firstPersonMovement(movementKeys, this.cameraYaw)
                 : cameraRelativeMovement(movementKeys, this.cameraYaw);
         if (touchActive) {
             let touchMovement;
-            if (this.firstPerson) {
+            if (this.firstPerson && !targetRelative) {
                 const forwardAngle = this.cameraYaw + Math.PI;
                 touchMovement = new BABYLON.Vector3(
                     Math.sin(forwardAngle) * Math.sign(movementInput.y),
