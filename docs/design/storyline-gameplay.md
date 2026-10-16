@@ -245,7 +245,11 @@ decline/cancel/reload/retry, continuous BGM095, natural ending, independent
 finale/notebook/grounded shipboard save, movement, reload without replay and
 Free roam/Story round trip. The fixed original ship-local epilogue is an explicit
 adaptation, not S2 arrival. Detailed wings/wake/native ending callbacks remain
-omitted. The S2 feasibility and final whole-route audits remain pending.
+omitted. The [S2 feasibility audit](shenmue2-story-feasibility.md) now records
+available inputs, concrete format boundaries and missing Story integration;
+it does not implement S2. The [verification boundary](../implementation/play-modes.md#verification-boundary)
+distinguishes the connected S1 main-route prototype from unverified alternatives,
+retained native research and production readiness.
 See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest)
 and the [final day](story-final-day.md).
 

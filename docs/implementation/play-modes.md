@@ -109,8 +109,8 @@ and unfinished openings have an empty notebook. Changing characters/modes or
 logging out clears the previous view. The authored first-allowance event now
 unlocks a sixth page through the server-saved `notebook.s1.allowance` flag, with
 notes about daily money and visiting Fuku-san. Reconnect restores that flag in
-the private character profile. Further entries still need reviewed event/flag
-mappings; notebook display never grants progress itself.
+the private character profile. Later authored events unlock reviewed pages
+through the same saved flags; notebook display never grants progress itself.
 
 The last viewed page is a browser-only preference, stored as a stable page ID in
 `localStorage` under `new-yokosuka.notebook-page.v1:<characterId>:<playMode>`.
@@ -120,28 +120,70 @@ working. The bookmark never unlocks entries or changes server progress.
 
 ## Current limits
 
-This is the mode/persistence foundation, not complete playable story coverage.
-The native interpreter and the server/Yarn event engine still have distinct
-state representations. Server events can now query and settle original native
-banks atomically with rewards. The client applies committed native receipts
-after presentation cleanup, and the server refreshes only that player's NPC
-schedules. Existing named-flag routes still need to adopt the bridge;
-the authored first-allowance prototype now refreshes the balance and earned
-notebook page from durable receipts. It uses a small hallway volume, the
-original `01KOZ` presentation and server-owned one-time effects without booting
-the native room controller. Server/Yarn scenes pause the personal clock until
-their event lease ends; ordinary native conversations retain their previous
-clock behavior. The world-state `paused` field stops browser calendar
-extrapolation for the HUD, lighting and schedule predicates. `serverTimeMs`
-continues to report wall time, so challenge deadlines do not freeze or acquire
-a stale clock offset. Pause/resume snapshots are sent before the corresponding
-event yield, including cancellation and terminal failure; normal periodic
-snapshots continue during the pause. See the [event specification](../design/story-event-template.md).
-Mode isolation does not
-make arbitrary client-submitted native flags server-validated. Notebook entries
-beyond the opening, unimplemented quest triggers, original sleep/deadline behavior and
-event-driven calendar changes remain tracked in
-[storyline gameplay integration](../design/storyline-gameplay.md).
+The connected authored S1 main-route prototype reaches boarding and sailing.
+It is not an exact reconstruction of every original controller, optional event,
+animation callback or deadline. The [coverage checklist](../design/story-event-template.md#connected-progression-checklist)
+records unverified alternatives and presentation omissions separately from
+playable progression. The saved shipboard epilogue is an adaptation, not S2
+arrival; [S2 Story remains a feasibility audit](../design/shenmue2-story-feasibility.md).
+
+The native interpreter and server/Yarn events retain distinct representations.
+Reviewed events query and settle native compatibility writes atomically with
+their other effects where an established consumer needs them. Other authored
+milestones use named Story flags; there is no speculative one-to-one mapping
+of every original bit. The client applies committed receipts after presentation
+cleanup; the server refreshes only that player's NPC schedule. Mode isolation
+does not make arbitrary client-submitted native flags server-validated.
+
+Server/Yarn scenes pause the personal clock until their event lease ends;
+ordinary native conversations retain their previous clock behavior. The
+world-state `paused` field stops browser extrapolation for the HUD, lighting
+and schedule predicates. `serverTimeMs` remains wall time, so challenge
+deadlines do not freeze. Pause/resume snapshots precede event yields, including
+cancellation and terminal failure; normal periodic snapshots continue.
+
+## Verification boundary
+
+The checks below cover the authored model, not completion of retained native
+research. Paths beginning `internal/` refer to the separate server repository;
+other test paths refer to this client.
+
+| Requirement | Evidence and boundary |
+| --- | --- |
+| Ryo, opening and personal saved continuation | `tests/NewCharacterOpening.test.js`; server `internal/store/play_modes_integration_test.go` checks mode defaults, atomic 08:55/native-bit/location handoff, retries and ownership. The fresh-opening path in `tests/e2e/first-allowance.spec.js` renders the intro and continues to the allowance. |
+| Free roam keeps its avatar/context; Story uses Ryo | `tests/PlayModeSession.test.js`, PostgreSQL mode round trips, and `internal/realtime/play_modes_test.go`. The earned ship-ending browser check also switches through the real Free roam/Story sidebar and restores the ending save. |
+| Personal calendar/NPCs without separating other players | Realtime tests assert shared geographical room/presence, enforced Story Ryo, separate public/personal clocks and NPC streams, private settlement refresh and stationary clock persistence. `ServerStoryActorPresentation` applies personal authored visibility; this is not all original scheduling. |
+| One authoritative outcome | `internal/store/script_events_integration_test.go` and `internal/scriptevent/*_test.go` exercise staging, ownership/revisions, transaction rollback, acknowledged effects, once-only money/items/notebook and stale callbacks. Presentations cannot grant their own durable rewards. |
+| Opening → allowance → dojo | `internal/officialscript/first_allowance_integration_test.go` runs the real compiler/engine/database: cancellation pays nothing, acknowledgement saves exactly ¥500, bank-2 bit832 and notebook, and dojo eligibility follows the earned receipt. Rendered checks cover natural/skip completion and reload. |
+| Connected S1 investigation and finale | The [sequence checklist](../design/story-event-template.md#connected-progression-checklist), generated official Yarn content and `tests/e2e/first-allowance.spec.js` continuations cover investigation, mirror search, tickets, five workdays, rescue, final battles, keepsakes and departure. The terminal earned QA save has 180 S1 Story flags, 132 S1 notebook flags, both farewell keepsakes, no S2 flags and no active event run. Counts alone are not the proof; the connected challenges and receipts are checked at their sequence boundaries. |
+| Consequential challenges are real outcomes | Shared combat, QTE, observed forklift delivery/race, navigation and motorcycle checks use actual inputs/server simulation. Finishing a film cannot substitute for victory. Failure, timeout and cancellation remain retryable; independent encounters save independent milestones. |
+| Lost replies, reload, interruption and cleanup | `tests/ScriptEventController.test.js`, `tests/PlayModeSession.test.js`, native scene transaction/runtime tests, server travel/revision tests and the fifth-day sailor browser check cover late starts, failed preparation, stale responses, dropped committed replies, real socket reconnect and restored controls. Completed saves do not replay rewards. |
+| Notebook persistence | `tests/JournalStore.test.js` covers page bookmarks and character/mode scoping. Opening pages are unconditional display content; later pages require saved flags. Inventory and money remain the shared character's actual possessions/balance. |
+| Provenance and bounded adaptation | The [event template](../design/story-event-template.md) and chapter guides distinguish original files, walkthrough-backed order, authored staging and omitted detail. S2's [input audit](../design/shenmue2-story-feasibility.md) probes representative original formats and records missing integration rather than claiming playable S2 Story. |
+
+Rendered coverage was built from a fresh opening and sequential continuations
+of genuinely earned, backed-up local saves. It is **not one uninterrupted
+human playthrough**, nor proof of every alternative branch or long walk. Some
+browser checks place the player near the next entrance to bound test time;
+they do not award future story outcomes. Tofu presentation, incidental prop/
+hand detail, some battle/aircraft staging and optional discoveries remain
+explicitly unverified or simplified in the checklist. Exact native scheduling,
+weather and all room-controller opcodes are not prerequisites for this model.
+
+Run tests serially through `scripts/testing/run-tests.mjs`. Server integration
+checks need `NEW_YOKOSUKA_TEST_DATABASE_URL` pointing at a disposable database
+and `NEW_YOKOSUKA_YARN_COMPILER` pointing at the real compiler; missing inputs
+skip integration tests and are not equivalent to a full-stack pass. Browser
+continuations require their corresponding `NEW_YOKOSUKA_*_E2E` opt-in, original
+local assets and the matching Story server. Never seed a later result into the
+earned checkpoint merely to make its next event eligible.
+
+Local verification is not release clearance. The generated game assets have
+not been published as part of this work; production migrations, import/version
+alignment, R2 publication, stale-client behavior and live saves still require
+the deployment workflow and explicit deployment authorization. The next
+recommended acceptance step is an ordinary-player S1 playthrough against a
+matched isolated client/server before considering integration or release.
 
 Use a separate local database when testing both worktrees. Do not point the new
 client at an older server: the character state and opening APIs are required.

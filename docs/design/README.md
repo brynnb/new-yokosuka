@@ -12,6 +12,9 @@ guide and focused tests for the current contract.
 - [Story event template](story-event-template.md): a reusable authored event
   specification, connected progression checklist and authored opening
   investigation, with explicit approximations.
+- [Shenmue II Story feasibility](shenmue2-story-feasibility.md): available
+  original inputs, verified format boundaries and a bounded first-slice plan;
+  this is not implemented S2 Story coverage.
 - [Nozomi's rescue](story-nozomi-rescue.md): implemented late-night rest/call,
   original presentation sources, clock boundaries and remaining challenges.
 
