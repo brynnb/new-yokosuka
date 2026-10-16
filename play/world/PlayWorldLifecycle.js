@@ -315,7 +315,12 @@ export class PlayWorldLifecycle {
   }
 
   syncCombat() {
-    const active = this.worldRuntime.activeWorld === this.worlds.mfbt;
+    // The same original streets now host authored Story fights. Exploration's
+    // local practice encounter must not run beside the server-owned encounter
+    // or display its controls over a story film. Mode changes re-sync via the
+    // existing WorldRuntime selection boundary, even when the map is unchanged.
+    const active = this.worldRuntime.activeWorld === this.worlds.mfbt
+      && this.accountSession?.character?.playMode !== "story";
     this.dom.app.classList.toggle("combat-mode", active);
     this.playerRuntime.combat?.setActive(active);
   }

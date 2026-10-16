@@ -64,7 +64,7 @@ Source identity is pinned by `MFSY/M0W1.PKS`
 (`339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1`)
 and its PKF (`a06e7d5b5dd1ae6a3ce75d9bf9987a92eb0018fe4d1fd37d9473c2b6e026c4d9`).
 The chapter builder profiles are `tom-lesson` and `tom-farewell`, followed by
-`node tools/scripting/build_tom_practice.mjs` for the presentation-only challenge
+`node tools/scripting/build_final_day.mjs` for the presentation-only challenge
 poses. Generated manifests pin each voice, sound, motion and output.
 
 The exact original `AMG_L` Tom body is reused from the lunch-invitation pack.
@@ -89,6 +89,67 @@ own events, not independent waits. Catalogue tests guard this boundary and
 slug uniqueness; a real isolated-database test verifies11:30 settlement,
 cancellation, duplicate rejection, cross-character isolation and stale-save
 protection, including fractional-hour world facts.
+
+## Night confrontation
+
+GameSpot's contemporary guide, pp63–64, orders the plane farewell, Gui Zhang's
+nonlethal spar, a **Right** pipe-counter input, then their alliance before the
+70-man battle. These are distinct saved events; none awards that later battle.
+The existing MFBT map supplies the original battle streets.
+
+| Event | Sources / presentation | Outcome and adaptation |
+| --- | --- | --- |
+| Tom's plane | `MFSY/GBTM.PKS`, original932-frame `SEQDATA0.AUTH`, `HIKOUKI` model, `01TOMC` speech and `A1_TOMBY` effects. Original bank0 sequence101 reuses canonical raw `MOTION.BIN`; the last ASEQ command is not the duration. | Confirmed after personal22:00 and saved farewell. Acknowledgement saves only plane/arrival at the original first TLYA root in MFBT. Ordinary travel condenses the automatic native transition. |
+| Gui Zhang confrontation | `MFBT/TLYA.PKS`, original1,945-frame introduction, `M_TLYA.MOTN` bank16, `01TLYA`, `A1_KBTMM`. Thirty seconds of the existing server-timed nonlethal practice, then original `MFBT/KISY/M_01_H.MOTN` mutual-collapse motions. | Save only independent practice and counter approach after acknowledgement. No Gui Zhang defeat: the guide explicitly says there is no winning/losing outcome. Shared basic combat, practice duration, held collapse roots and camera are adaptations. |
+| Terry's pipe / alliance | Original KISY ready/rescue motions, then `TLYB/SEQDATA2` (410frames, bank17) and `TLYC/SEQDATA3` (1,020frames, bank18). `01TLYB`/`A1_TERYB` and `01TLYC`/`A1_KAKOM` audio; original pipe model `PIPS501G` from `MFBT/TERY`. | Server QTE **Right** must succeed before rescue/retreat/team-up. Wrong/expired input retries with a fresh token. Acknowledged ending saves only counter and original battle-floor arrival, not enemies defeated, Terry interrogation or departure. |
+
+All use the chapter pack builder. Its source pins record original archive,
+motion, texture and speech identities. MFBT's `KIS_M`, `KMA_L` and `ACS_M`
+bodies are byte-identical to the already reviewed Chen/rescue assets, so those
+assets are reused rather than copied into another character pool. TLYC's six
+original thug bodies remain package-owned. `01TLYCA004.str` and
+`01TLYCC001.str` are requested by the original scene but absent from its English
+archive; neither is replaced by a similarly named line.
+
+MFBT MAPINFO (SHA256 `c0c01fc2871a282504dcb07b41bebbed5f1d8cb6ffa7927fca8c6d2b635aef48`)
+explicitly groups `TLYA` with `a1_kbtmm.snd`, `TLYB` with
+`a1_teryb.snd`, and `TLYC` with `a1_kakom.snd`; sound-bank selection is not
+inferred from a matching number of samples. Its BGM013 and BGM084 references
+reuse the viewer's exact published audio renderings. The counter has original
+motions but no standalone AUTH: roots are borrowed from TLYB's initial shot,
+with authored held poses, a wide camera, a two-second input window and hand/pipe
+binding. TLYB's later chase close-up crops these earlier rescue motions, so it
+is not reused as their camera.
+Original gestures/callbacks, interleaved spar shots and exact native combat
+choreography are not claimed.
+
+Cancel, preparation failure or an unacknowledged ending saves no own result;
+previously saved steps remain earned. Completed steps do not replay on reload.
+The real compiler/engine verifies all three independent outcomes, missing
+prerequisites, Free roam, cancellation, cancelled endings, actual30-second
+practice, interruption/retry, fresh QTE tokens and wrong/expired Right input.
+Exact allowed effects exclude time changes, money/items and later victories.
+All three import through the official CLI in the isolated test database.
+
+The 4.7-minute connected hardware-rendered check resumes the earned farewell:
+cancel/reload/natural plane film and MFBT arrival, original introduction,
+cancelled spar/reload, actual guarded keyboard practice, separate spar save,
+cancelled counter/reload retaining that save, wrong/expired input and fresh
+retry, accepted Right, original retreat/encirclement, cancelled ending/reload,
+and natural final ending. Both BGM013 and BGM084 actually advance during their
+scenes. Reload preserves the same-date battle-floor arrival, releases controls
+and replays nothing; ¥22,836 and eight inventory entries are unchanged. The
+plane-farewell captures show Ryo and sky; aircraft visibility has not been
+separately established from those captures.
+
+A further3.8-minute connected continuation from the separately earned plane
+save verifies the corrected wide counter camera and Story/exploration boundary.
+Captures show all three counter actors and the attached pipe, their changed
+rescue poses, original encounter cast and crowd, and no local practice HUD.
+The map's old exploration encounter is now inactive in Story mode instead of
+running alongside server-owned fights. Unit checks preserve local practice
+when switching back to Free roam on the same map. No future outcome was
+inserted into either earned checkpoint; both isolated saves are backed up.
 
 ## Verification and remaining work
 
@@ -140,6 +201,8 @@ are unchanged, controls are restored and completed reload neither replays the
 films nor restores ambient Tom. No finale outcome is inserted. The earned
 isolated database is backed up separately from the preceding morning save.
 
-Evening battles, final Chai encounter, departing gifts and departure remain
-separate missing outcomes. No future outcome should be inserted into a saved
-morning checkpoint.
+The70-man battle, its bosses, the later Terry QTE/interrogation, final Chai
+encounter, departing gifts and departure remain separate missing outcomes.
+No future outcome should be inserted into an earned checkpoint. Plane mesh
+visibility, exact collapse staging and tighter hand/pipe choreography remain
+presentation review items, not proof of missing or completed battle outcomes.

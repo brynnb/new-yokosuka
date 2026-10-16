@@ -1,0 +1,25 @@
+-> Meet Gui Zhang
+    <<jump Introduction>>
+-> Leave it for now
+    <<complete>>
+===
+title: Introduction
+---
+<<start_activity "s1.mfbt.final-confrontation.scene">>
+<<jump Spar>>
+===
+title: Spar
+---
+<<start_combat "s1.mfbt.final-spar">>
+<<if combat_result("s1.mfbt.final-spar") == "practiced">>
+<<play_sequence "s1.mfbt.mutual-collapse.start">>
+<<play_sequence "s1.mfbt.mutual-collapse.finish">>
+<<travel_story "s1.final.counter-approach">>
+{{effects}}
+<<complete>>
+<<else>>
+-> Try again
+    <<jump Spar>>
+-> Leave it for now
+    <<complete>>
+<<endif>>

@@ -1,0 +1,193 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01TOMC.AFS",
+      "sha256": "11b5327a43bf069e5cc7244089747897f73bf9120f724f1a3c52706a5f5536e7"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_TOMBY.SND",
+      "sha256": "18140e9fe63ead409573ad6f90fc84d485698701f9b2060c98edd4cd302d9550"
+    },
+    "authManifest": "play/assets/harbor/tom-plane/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#night-confrontation"
+  },
+  "voices": [
+    {
+      "voiceId": "01TOMCA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMCA001.aiff",
+      "nativeMember": "01TOMCA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 30720,
+      "nativeSha256": "82e6056caed1c09768371a943c16a9bdcca2e61fbc023474a0bcb20e407f3709",
+      "speakerId": "AKIR",
+      "sourceText": "My friend=@Tom.",
+      "displayText": "My friend...Tom.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 171
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/tom-plane/voice/01TOMCA001.wav",
+      "byteLength": 122668,
+      "sha256": "8635ec6eaba08ca484043b8d1e5408d9cf5e2c0f9ca3bf73d1763c1a2365b349"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/vehicle/jetlong.aiff",
+      "playbackId": 0,
+      "sampleId": 8,
+      "sampleRate": 12000,
+      "asset": "public/audio/world/tom-plane/sfx/a9040000.wav",
+      "byteLength": 430612,
+      "sha256": "d44a5b0be2037ceb95fe6950e9c1430747aa44dee5460c4dabd560c38187a473",
+      "nativeSegments": [
+        {
+          "playbackId": 0,
+          "sampleId": 8,
+          "sampleRate": 12000,
+          "byteLength": 48236,
+          "sha256": "e800f6bf1059de9cdc3ec16b04cee9c9e78f7f0f880769db6fc9e13ef2f5e682"
+        },
+        {
+          "playbackId": 1,
+          "sampleId": 0,
+          "sampleRate": 12000,
+          "byteLength": 47980,
+          "sha256": "58693d4fe868ffda3ba7448c3a0a01ce15a819840b27ee47607ec2cd063e6099"
+        },
+        {
+          "playbackId": 2,
+          "sampleId": 1,
+          "sampleRate": 12000,
+          "byteLength": 48108,
+          "sha256": "62e4c37f7b1ab0910225e62d4b47a6653499c7bb3428539ab62e967f5affea77"
+        },
+        {
+          "playbackId": 3,
+          "sampleId": 2,
+          "sampleRate": 12000,
+          "byteLength": 48364,
+          "sha256": "49a38e806a35f1042318252d5e98bd456621eafbba7dd112c81950a924e0f9d8"
+        },
+        {
+          "playbackId": 4,
+          "sampleId": 3,
+          "sampleRate": 12000,
+          "byteLength": 48172,
+          "sha256": "c9d87cbc87c08402c8976edf0b1184dea1e5ab9ec30a2b31ac48ec81c244fc91"
+        },
+        {
+          "playbackId": 5,
+          "sampleId": 4,
+          "sampleRate": 12000,
+          "byteLength": 48364,
+          "sha256": "67dfe97396fab22ede37faad801e78a4941bc559fe8d8a4a95dce6b00c3d092e"
+        },
+        {
+          "playbackId": 6,
+          "sampleId": 5,
+          "sampleRate": 12000,
+          "byteLength": 48492,
+          "sha256": "40de627d52d6f1e7a9492ffb27c728f16b80e5be4d26aa742a030aa0461cd6a1"
+        },
+        {
+          "playbackId": 7,
+          "sampleId": 6,
+          "sampleRate": 12000,
+          "byteLength": 48236,
+          "sha256": "753c5c5a8fa776333e25685d7366cae66703735ac8b7a6992b1e8e1698a2c5cf"
+        },
+        {
+          "playbackId": 8,
+          "sampleId": 7,
+          "sampleRate": 12000,
+          "byteLength": 45012,
+          "sha256": "1def48f4b4cf007f0902ece20b349209c24183d3186daa0bc153cf704194fc0e"
+        }
+      ]
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot/sneaker1.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tom-plane/sfx/a9040100.wav",
+      "byteLength": 10964,
+      "sha256": "3db696efc3f22f883429c8558b9cd97102c30e9f4401b0d78a4cb82baaf2e2b7"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SE/foot/sneaker5.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tom-plane/sfx/a9040200.wav",
+      "byteLength": 10804,
+      "sha256": "666406d82f6427ba7aa03663efd796fc9fc4dad74e69c139f58215e3d559b620"
+    }
+  ]
+}

@@ -3,6 +3,28 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"tom-plane","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":996,"hours":[22,6],
+      "title":"One last goodbye to Tom","bounds":"s1.mfsy.tom-plane","requiredFlags":["story.s1.tom-farewell.completed"],
+      "completedFlag":"story.s1.tom-plane.completed","effects":[],"voiceIds":[],"activities":["s1.mfsy.tom-plane.scene"],"destination":"s1.final.confrontation-approach",
+      "confirmation":{"accept":"Watch Tom's plane","decline":"Leave it for now"},
+      "nativeSources":[{"role":"original-plane-farewell","locator":"disc3/SCENE/03/MFSY/GBTM.PKS#SEQDATA0.AUTH","sha256":"dbb33b890d20130e87079bf375b75da15de989f94bf4a6000f717802b62e9665"}],
+      "provenance":"GameSpot p63: Tom's plane before the22:00 confrontation. Original932-frame film, plane model, exact English voice/effects and bank0 walk. Authored confirmed travel into the existing MFBT map; no native transport controller, spar, QTE or battle victory. Cancellation preserves farewell without own save or travel."
+    },
+    {
+      "id":"final-spar","disc":3,"actor":"AKIR","presentActors":[],"area":"MFBT","trigger":"enter","priority":970,"hours":[22,6],
+      "title":"The confrontation with Gui Zhang","bounds":"s1.mfbt.final-spar","requiredFlags":["story.s1.tom-plane.completed"],
+      "completedFlag":"story.s1.final-spar.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-final-spar.yarn",
+      "nativeSources":[{"role":"original-approach-and-confrontation","locator":"disc3/SCENE/03/MFBT/TLYA.PKS#SEQDATA1.AUTH","sha256":"957366f53fa6ad4fdcc10f8423184b2a4e475e993551ff27f626b84183946de2"},{"role":"original-mutual-collapse-and-rescue-motions","locator":"disc3/SCENE/03/MFBT/KISY.PKS#M_01_H.MOTN","sha256":"19a4298fd9ba1701aa5dc9b8494948bd5ca28ed76db8f576342544eb57da96ee"}],
+      "provenance":"Guide p63 says this fight has no winning/losing outcome. Original introduction followed by30 seconds of actual shared nonlethal practice and original mutual-collapse motions. Held roots/camera and basic combat are authored. Save only independent spar/arrival after acknowledgement, never pipe success, Gui Zhang defeat,70-man victory or money/items."
+    },
+    {
+      "id":"final-pipe","disc":3,"actor":"AKIR","presentActors":[],"area":"MFBT","trigger":"enter","priority":971,
+      "title":"Stop Terry's pipe attack","bounds":"s1.mfbt.final-pipe","requiredFlags":["story.s1.final-spar.completed"],
+      "completedFlag":"story.s1.final-pipe.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-final-pipe.yarn",
+      "nativeSources":[{"role":"original-rescue-motions","locator":"disc3/SCENE/03/MFBT/KISY.PKS#M_01_H.MOTN","sha256":"19a4298fd9ba1701aa5dc9b8494948bd5ca28ed76db8f576342544eb57da96ee"},{"role":"original-terry-retreat","locator":"disc3/SCENE/03/MFBT/TLYB.PKS#SEQDATA2.AUTH","sha256":"faee26bea43ec8ee1db00f5a5a71b97a0fd19b881bd6151f65f028117334d5ad"},{"role":"original-encirclement","locator":"disc3/SCENE/03/MFBT/TLYC.PKS#SEQDATA3.AUTH","sha256":"6066c148e1c9bc7fded7e03b7c9e2477590ced425ad95837e179253313b2c20b"}],
+      "provenance":"Guide p64 requires Right before the70-man battle. Existing server QTE owns success; original rescue motions then retreat/team-up films. Roots held from TLYB, wide camera, generic input window and hand/pipe binding are authored approximations. Two original missing TLYC voices remain unavailable. Save only counter/arrival after acknowledgement; no later enemies defeated, Terry interrogation or departure."
+    },
+    {
       "id":"tom-lesson","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":994,"hours":[11.5,24],
       "title":"Tom's optional Tornado Kick lesson","bounds":"s1.mfsy.tom-lesson","requiredFlags":["story.s1.yada-dismissal.completed"],
       "completedFlag":"story.s1.tom-lesson.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-tom-lesson.yarn",

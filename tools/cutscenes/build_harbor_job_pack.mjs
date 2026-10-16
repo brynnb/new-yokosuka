@@ -15,6 +15,12 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const defaultEvidence="docs/design/story-harbor-work.md";
 const archives={
+  "MFSY/GBTM":"dbb33b890d20130e87079bf375b75da15de989f94bf4a6000f717802b62e9665",
+  "MFBT/TLYA":"957366f53fa6ad4fdcc10f8423184b2a4e475e993551ff27f626b84183946de2",
+  "MFBT/TLYB":"faee26bea43ec8ee1db00f5a5a71b97a0fd19b881bd6151f65f028117334d5ad",
+  "MFBT/TLYC":"6066c148e1c9bc7fded7e03b7c9e2477590ced425ad95837e179253313b2c20b",
+  "MFBT/KISY":"19a4298fd9ba1701aa5dc9b8494948bd5ca28ed76db8f576342544eb57da96ee",
+  "MFBT/TERY":"108f7026e765552e93a8b3d6974d60a682aba59390cb9933b4bdfa313c9edc07",
   M0W1:"339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1",
   "JHD0/MSOU":"92d841582c87eda667d2f377bbbc3cadbb2618fa4a414651bcee72182a8d14ec",
   TOMOGORI:"cce64a24b1d50d80efd0e008a7e714b6811e5c7db4063df0e043d2de840dcc09",
@@ -39,7 +45,29 @@ const archives={
   GOROMA:"906e93a9d55a9d60a5f1fd91ef8ded61ada192462e8e7fe3262753cf0bb77c1c",
   ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
 };
+const finalCast=[
+  {path:"play/assets/harbor/master-chen/manifest.json",sha256:"a997ad1a777bc5e175e733245002de2245eec3550dc253e0e79057b73041de9b"},
+  {path:"play/assets/harbor/nozomi-rescue/manifest.json",sha256:"24211847234d7c2e5de9e7930b8036df56cc55ba983d35caae9a64a8c534b045"},
+];
+const finalMusic={id:"bgm013",sourceId:"1e01b7d3dc308c6255896489d098cb59df125f959872de96f79000cb99c18b4e",bankHash:"0c5250def8570bef8982a1634d3eef79781960a4b8a2c745d56593a314d07cb0",label:"The final confrontation"};
 const profiles=[
+  {id:"tom-plane",archive:"MFSY/GBTM",resourceName:"GBTM",evidence:"docs/design/story-final-day.md#night-confrontation",auth:"SEQDATA0.AUTH",motion:"M_01TOM.MOTN",frames:932,actors:["JET_","AKIR"],
+    extraMotionBanks:[{bank:0,sourcePath:path.join(root,".disc-work/runtime-motion/MOTION.BIN"),assetPath:"play/assets/dobuita/jimmy-escaped/MOTION.BIN",byteLength:1826804,sha256:"aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23",parseOptions:{sequenceIndices:[101]}}],
+    props:{JET_:"HIKOUKI"},propTextureHash:"654fda5863b88f7f55f099630702a39f448c9da6d476db100955ac6a1eb7d307",authoredPropBindings:true,
+    stream:"01TOMC",streamHash:"11b5327a43bf069e5cc7244089747897f73bf9120f724f1a3c52706a5f5536e7",sound:"A1_TOMBY.SND",soundHash:"18140e9fe63ead409573ad6f90fc84d485698701f9b2060c98edd4cd302d9550"},
+  {id:"final-confrontation",archive:"MFBT/TLYA",resourceName:"TLYA",evidence:"docs/design/story-final-day.md#night-confrontation",auth:"SEQDATA1.AUTH",motion:"M_TLYA.MOTN",frames:1945,actors:["AKIR","KISY","STSI"],sharedActorManifests:finalCast,
+    extraMembers:[{archive:"MFBT/KISY",name:"M_01_H.MOTN"}],
+    props:{PIPE:"PIPS501G"},propArchive:"MFBT/TERY",propTextureHash:"57467acd5f8941f70e233d4f325ebaacdab355bd9632ac6a5b57cc1712988fcb",referenceActors:["PIPE"],authoredPropBindings:true,
+    music:finalMusic,
+    stream:"01TLYA",streamHash:"14506134c2267315e09eaee30a1de8bd0f365eb7535bafe323c342a43755765f",sound:"A1_KBTMM.SND",soundHash:"8fd00ade815b64fa4babad37b74cfe4b67f413d1c169592895e02185244173bd"},
+  {id:"terry-retreat",archive:"MFBT/TLYB",resourceName:"TLYB",evidence:"docs/design/story-final-day.md#night-confrontation",auth:"SEQDATA2.AUTH",motion:"M_TLYB.MOTN",bank:17,frames:410,actors:["AKIR","KISY","TERY"],sharedActorManifests:finalCast,
+    music:{id:"bgm084",sourceId:"7e5bc0053824814ff10b0c7b78d3ddef0d0f0a769d47c53e35fdfe3851f7f3d0",bankHash:"b2f1eeab4d264b03ea48c16a50b0b69885e4b939f38268d648db10c19c158d36",label:"Chasing Terry"},
+    stream:"01TLYB",streamHash:"e8e2237cbad017b553e1403f3de03bcfb7a422e437e2d93e2d25b89815e0bef9",sound:"A1_TERYB.SND",soundHash:"b958790c04e40b331e1614db329ea848ce75d60e61e27740a3b1c2cfbe5d642e"},
+  {id:"final-encirclement",archive:"MFBT/TLYC",resourceName:"TLYC",evidence:"docs/design/story-final-day.md#night-confrontation",auth:"SEQDATA3.AUTH",motion:"M_TLYC.MOTN",bank:18,frames:1020,actors:["KISY","BTA_","BTD_","BTB_","BTC_","BTE_","BTF_","AKIR"],sharedActorManifests:finalCast,
+    actorModels:Object.fromEntries(["BTA","BTB","BTC","BTD","BTE","BTF"].map(code=>[`${code}_`,["Mad Angels fighter",`${code}_L`]])),actorTextureHash:"f620a7375bd08db10de018b69fca57fc631f4b73eb80931ae9b7e0d3790089dc",
+    unavailableVoices:Object.fromEntries(["01TLYCA004.str","01TLYCC001.str"].map(id=>[id,{reason:`Original TLYC requests ${id}, absent from the pinned English01TLYC archive; no substitute speech.`,evidence:"docs/design/story-final-day.md#night-confrontation"}])),
+    music:finalMusic,
+    stream:"01TLYC",streamHash:"750aa6980c78cebe6a9ee77e92b47bd4fb6d48e0c2f73db36785c9daaaa9ffcf",sound:"A1_KAKOM.SND",soundHash:"071d3c459b07af41da602e9b685d45f1e7827dfa6e230451ef1563072a974a3d"},
   {id:"tom-lesson",archive:"M0W1",resourceName:"M0W1",evidence:"docs/design/story-final-day.md#toms-lesson-and-farewell",motion:"M_0001.MOTN",
     actors:["AKIR","TOM_","RADI","BTL1","BTL2"],activities:[
       {file:"SEQDATA0.AUTH",durationFrames:1099,actors:["AKIR","RADI","TOM_","BTL1"]},
@@ -195,7 +223,7 @@ for(const p of selected){
     }
   }
   member(p.archive,p.motion);
-  for(const name of p.extraMembers||[])outputMembers.push(member(p.archive,name));
+  for(const extra of p.extraMembers||[])outputMembers.push(typeof extra==="string"?member(p.archive,extra):member(extra.archive,extra.name));
   if(p.assetOnly){
     // ALP_PAY has salary motions, but no AUTH film. Preserve those originals
     // without fabricating a native activity; Yarn owns the authored handover.
@@ -217,10 +245,13 @@ for(const p of selected){
     generatedAssets.push({assetPath,bytes:extractNativeTexnPack(bytes,`${archive}.PKF`).bytes});return assetPath;
   };
   let sharedActors={};
-  if(p.sharedActorManifest){
-    const bytes=fs.readFileSync(path.join(root,p.sharedActorManifest.path));
-    if(sha256(bytes)!==p.sharedActorManifest.sha256)throw Error(`Changed shared original actors for ${p.id}`);
-    sharedActors=JSON.parse(bytes).packageActors;
+  for(const binding of p.sharedActorManifests||(p.sharedActorManifest?[p.sharedActorManifest]:[])){
+    const bytes=fs.readFileSync(path.join(root,binding.path));
+    if(sha256(bytes)!==binding.sha256)throw Error(`Changed shared original actors for ${p.id}`);
+    for(const [tag,actor]of Object.entries(JSON.parse(bytes).packageActors)){
+      if(sharedActors[tag]&&JSON.stringify(sharedActors[tag])!==JSON.stringify(actor))throw Error(`Conflicting shared actor ${p.id}/${tag}`);
+      sharedActors[tag]=actor;
+    }
   }
   for(const tag of p.actors){
     if(sharedActors[tag]){
@@ -256,7 +287,7 @@ for(const p of selected){
     sceneObjects.ROOM={model:"MAPALP",browserFilename:"MAPALP.MAPD",assetPath:`${prefix}/MAPALP.MAPD`,textureAssetPath,
       lifecycle:{kind:"room-script-persistent"},initialPresentation:{position:[0,0,0],rotationDegrees:[0,0,0],scale:[1,1,1]}};
   }
-  const propTextureAssetPath=p.props?texture(p.archive,p.propTextureHash,"textures.bin"):null;
+  const propTextureAssetPath=p.props?texture(p.propArchive||p.archive,p.propTextureHash,"textures.bin"):null;
   if(p.id==="mark-job-introduction"){
     const textureAssetPath=propTextureAssetPath;
     // Original MARU props/cast; the ETC1/ETC2 model association is authored.
@@ -266,7 +297,7 @@ for(const p of selected){
     }
   }
   for(const [tag,model]of Object.entries(p.props||{})){
-    outputMembers.push(member(p.archive,`${model}.CHRM`));
+    outputMembers.push(member(p.propArchive||p.archive,`${model}.CHRM`));
     sceneObjects[tag]={model,browserFilename:`${model}.CHRM`,assetPath:`${prefix}/${model}.CHRM`,textureAssetPath:propTextureAssetPath,
       ...(p.referenceActors?.includes(tag)?{referenceOnly:true}:{}),
       ...(p.authoredPropBindings?{sourceBinding:{kind:"authored-package-prop-association",evidence}}:{})};
@@ -274,7 +305,7 @@ for(const p of selected){
   const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:p.resourceName||p.archive,disc:3,sourceMembers:members,expectedMembers:members,
     bindingEvidence:evidence,selectionRule:p.selectionRule||"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),...(p.silent?{}:{audioManifest:`${audioPrefix}/manifest.json`}),
-    motionBanks:[{bank:p.bank??16,member:p.motion}],activities:activities.map((activity,slot)=>({...activity,slot,binding:{kind:"map-embedded-slot"},
+    motionBanks:[{bank:p.bank??16,member:p.motion},...(p.extraMotionBanks||[])],activities:activities.map((activity,slot)=>({...activity,slot,binding:{kind:"map-embedded-slot"},
       ...(sceneObjects.ROOM?{nativeSceneObjectStates:[{actorTag:"ROOM",presented:true}]}:{})})),
     packageActors,sceneObjects,outputMembers:[...new Set(outputMembers)],generatedAssets,
   });

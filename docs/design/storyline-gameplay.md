@@ -196,8 +196,15 @@ farewell now also pass a connected earned-save check: original presentation,
 real input, wrong/expired retry, cancellation/reload, independently saved
 mastery and farewell, same-date22:00 and private removal of ambient Tom. One
 original farewell voice is explicitly unavailable; native training physics and
-detailed prop callbacks remain approximations. Final battles and departure
-remain missing; the checklist distinguishes each boundary.
+detailed prop callbacks remain approximations. The original plane farewell,
+nonlethal night spar and actual Right pipe counter now also connect to saved
+MFBT arrival/alliance. Earned-save rendered checks verify independent outcomes,
+wrong/expired retry, cancellation/reload, original retreat/encirclement and
+actual BGM013/BGM084 playback, with the local exploration practice mode kept
+out of Story. Wide counter framing is an explicit adaptation; aircraft
+visibility and exact collapse/prop choreography remain review items. The
+actual70-man battle, final battles and departure remain missing; the checklist
+distinguishes each boundary.
 See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest)
 and the [final day](story-final-day.md).
 

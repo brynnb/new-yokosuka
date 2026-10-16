@@ -2,6 +2,101 @@
   "schema": "new-yokosuka-authored-story-combat-v1",
   "encounters": [
     {
+      "id": "s1.mfbt.final-spar",
+      "label": "Spar with Gui Zhang",
+      "area": "MFBT",
+      "worldId": "mfbt",
+      "provenance": "GameSpot p63 explicitly says no winning/losing outcome. Original TLYA ending positions and byte-identical original MFBT EVHUM/KIS_M body reused from the reviewed Chen pack. Thirty seconds of server-timed nonlethal fighting, shared moves/basic AI and arena padding are authored. Result is practiced, not Gui Zhang defeated, movie-completion victory or70-man victory.",
+      "sourceActivity": "play/assets/harbor/final-confrontation/SEQDATA1.AUTH",
+      "sha256": "a288a7c666a0c07de748bc4fef6dca4395e0744822dc303d80200ecf6ce09bc9",
+      "sourcePackage": "play/assets/harbor/final-confrontation/manifest.json",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 6.073915004730225,
+          "y": 0,
+          "z": 82.73536682128906,
+          "health": 100
+        },
+        {
+          "tag": "KISY",
+          "x": 3.121196985244751,
+          "y": 0,
+          "z": 83.36587524414062,
+          "health": 100
+        }
+      ],
+      "actions": [
+        {
+          "input": "hand",
+          "id": "tigerKnuckle",
+          "label": "Tiger Knuckle",
+          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
+          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
+          "durationMs": 634,
+          "startupMs": 134,
+          "range": 1.25,
+          "arcDegrees": 70,
+          "damage": 5,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "leg",
+          "id": "crescentKick",
+          "label": "Crescent Kick",
+          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
+          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
+          "durationMs": 800,
+          "startupMs": 234,
+          "range": 1.55,
+          "arcDegrees": 70,
+          "damage": 6,
+          "guardDamage": 0,
+          "hitStunMs": 367
+        },
+        {
+          "input": "throw",
+          "id": "overthrow",
+          "label": "Overthrow",
+          "playerAnimation": "AKI_AKI_NGS_SEOI",
+          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
+          "durationMs": 1667,
+          "startupMs": 367,
+          "range": 0.9,
+          "arcDegrees": 55,
+          "damage": 12,
+          "guardDamage": 0,
+          "hitStunMs": 1000
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "KISY",
+          "label": "Chen Gui Zhang",
+          "modelCode": "KIS_M",
+          "browserFilename": "KIS_M.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/master-chen/KIS_M.CHRM",
+          "textureAssetPath": "play/assets/harbor/master-chen/textures.bin",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 1.321196985244751,
+        "maxX": 7.873915004730224,
+        "minZ": 80.93536682128907,
+        "maxZ": 85.16587524414062
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 120000,
+      "practiceDurationMs": 30000,
+      "inputBufferMs": 400
+    },
+    {
       "id": "s1.mfsy.nozomi-guards",
       "label": "Get past the warehouse guards",
       "area": "MFSY",

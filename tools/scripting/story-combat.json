@@ -1,6 +1,13 @@
 {
   "schema":"new-yokosuka-authored-story-combat-v1",
   "encounters":[{
+    "id":"s1.mfbt.final-spar","label":"Spar with Gui Zhang","area":"MFBT","worldId":"mfbt",
+    "sourceActivity":"play/assets/harbor/final-confrontation/SEQDATA1.AUTH","sha256":"a288a7c666a0c07de748bc4fef6dca4395e0744822dc303d80200ecf6ce09bc9","sourceTime":"end",
+    "sourcePackage":"play/assets/harbor/final-confrontation/manifest.json",
+    "provenance":"GameSpot p63 explicitly says no winning/losing outcome. Original TLYA ending positions and byte-identical original MFBT EVHUM/KIS_M body reused from the reviewed Chen pack. Thirty seconds of server-timed nonlethal fighting, shared moves/basic AI and arena padding are authored. Result is practiced, not Gui Zhang defeated, movie-completion victory or70-man victory.",
+    "health":{"AKIR":100,"KISY":100},"playerSpeed":2.4,"enemySpeed":1.6,"maxAttackers":1,"timeoutMs":120000,"practiceDurationMs":30000,"arenaPadding":1.8,
+    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+  },{
     "id":"s1.mfsy.nozomi-guards","label":"Get past the warehouse guards","area":"MFSY","worldId":"mfsy","sourceScene":"s1.mfsy.nozomi-guards",
     "provenance":"GameSpot pp62-63 establishes the outside battle before the warehouse battle. Use six distinct original TERYB1 bodies in an authored open-alley formation, not a claim of recovered native roster/spawns. Shared combat and adapted health/AI, two active attackers; all six require actual defeat. Saves no rescue or deal.",
     "health":{"AKIR":100,"NR01":28,"NR02":28,"NR03":28,"NR04":28,"NR05":28,"NR06":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5,

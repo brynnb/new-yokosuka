@@ -138,6 +138,14 @@ import tomLessonManifest from "../assets/harbor/tom-lesson/manifest.json";
 import tomLessonAudio from "../../public/audio/world/tom-lesson/manifest.json";
 import tomFarewellManifest from "../assets/harbor/tom-farewell/manifest.json";
 import tomFarewellAudio from "../../public/audio/world/tom-farewell/manifest.json";
+import tomPlaneManifest from "../assets/harbor/tom-plane/manifest.json";
+import tomPlaneAudio from "../../public/audio/world/tom-plane/manifest.json";
+import finalConfrontationManifest from "../assets/harbor/final-confrontation/manifest.json";
+import finalConfrontationAudio from "../../public/audio/world/final-confrontation/manifest.json";
+import terryRetreatManifest from "../assets/harbor/terry-retreat/manifest.json";
+import terryRetreatAudio from "../../public/audio/world/terry-retreat/manifest.json";
+import finalEncirclementManifest from "../assets/harbor/final-encirclement/manifest.json";
+import finalEncirclementAudio from "../../public/audio/world/final-encirclement/manifest.json";
 import chaiIntroManifest from "../assets/dobuita/chai-intro/manifest.json";
 import chaiIntroAudio from "../../public/audio/world/chai-intro/manifest.json";
 import chaiVictoryManifest from "../assets/dobuita/chai-victory/manifest.json";
@@ -366,6 +374,10 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["yada-dismissal",yadaDismissalManifest,yadaDismissalAudio,"mfsy"],
     ["tom-lesson",tomLessonManifest,tomLessonAudio,"mfsy"],
     ["tom-farewell",tomFarewellManifest,tomFarewellAudio,"mfsy"],
+    ["tom-plane",tomPlaneManifest,tomPlaneAudio,"mfsy"],
+    ["final-confrontation",finalConfrontationManifest,finalConfrontationAudio,"mfbt",Object.freeze({cues:[{startActivity:true,trackId:"bgm013",loop:true}],gain:1})],
+    ["terry-retreat",terryRetreatManifest,terryRetreatAudio,"mfbt",Object.freeze({cues:[{startActivity:true,trackId:"bgm084",loop:true}],gain:1})],
+    ["final-encirclement",finalEncirclementManifest,finalEncirclementAudio,"mfbt",Object.freeze({cues:[{startActivity:true,trackId:"bgm013",loop:true}],gain:1})],
     ["sailor-chase-intro",sailorIntroManifest,sailorIntroAudio,"mfsy"],["sailor-chase-tony",sailorTonyManifest,sailorTonyAudio,"mfsy"],["sailor-chase-smith",sailorSmithManifest,sailorSmithAudio,"mfsy"],
     ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],
     ["mark-lunch-intro",markLunchIntroManifest,markLunchIntroAudio,"mfsy"],["mark-lunch-aftermath",markLunchAftermathManifest,markLunchAftermathAudio,"mfsy"],
@@ -383,7 +395,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     id,worldId,actorDefinitions:Object.freeze([]),actorTags:Object.freeze(manifest.actorTags),
     // The compiler's explicit output list includes room maps and props too;
     // don't infer their directory or file extension from the gameplay world.
-    assets:Object.freeze({...Object.fromEntries(manifest.outputs.map(asset=>[asset.path,runtimeAssetUrl(asset.path)])),
+    assets:Object.freeze({...Object.fromEntries([...manifest.outputs.map(asset=>asset.path),...(manifest.motionBanks||[]).map(bank=>bank.path)].map(path=>[path,runtimeAssetUrl(path)])),
       ...Object.fromEntries(Object.values(manifest.packageActors||{}).flatMap(actor=>[actor.assetPath,actor.textureAssetPath].filter(Boolean)).map(path=>[path,runtimeAssetUrl(path)])),
       ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
     presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),

@@ -4,6 +4,20 @@ import test from "node:test";
 import { PlayWorldLifecycle } from "../play/world/PlayWorldLifecycle.js";
 import { PlayerRuntime } from "../play/characters/PlayerRuntime.js";
 
+test("the shared battle streets enable local practice only in exploration, never alongside Story",()=>{
+  const mfbt={id:"mfbt"},other={id:"mfsy"},calls=[];
+  const lifecycle=Object.assign(Object.create(PlayWorldLifecycle.prototype),{
+    worlds:{mfbt},worldRuntime:{activeWorld:mfbt},accountSession:{character:{playMode:"free-roam"}},
+    dom:{app:{classList:{toggle:(name,active)=>calls.push([name,active])}}},
+    playerRuntime:{combat:{setActive:active=>calls.push(["practice",active])}},
+  });
+  lifecycle.syncCombat();lifecycle.accountSession.character.playMode="story";lifecycle.syncCombat();
+  lifecycle.accountSession.character.playMode="free-roam";lifecycle.syncCombat();
+  lifecycle.worldRuntime.activeWorld=other;lifecycle.syncCombat();
+  assert.deepEqual(calls,[["combat-mode",true],["practice",true],["combat-mode",false],["practice",false],
+    ["combat-mode",true],["practice",true],["combat-mode",false],["practice",false]]);
+});
+
 test("preview return restores the live avatar, exact position, heading and camera without persistence", async () => {
   const calls = [];
   const world = { id: "dobuita" };

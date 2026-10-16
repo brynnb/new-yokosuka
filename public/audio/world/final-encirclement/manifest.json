@@ -1,0 +1,556 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01TLYC.AFS",
+      "sha256": "750aa6980c78cebe6a9ee77e92b47bd4fb6d48e0c2f73db36785c9daaaa9ffcf"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_KAKOM.SND",
+      "sha256": "071d3c459b07af41da602e9b685d45f1e7827dfa6e230451ef1563072a974a3d"
+    },
+    "authManifest": "play/assets/harbor/final-encirclement/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#night-confrontation"
+  },
+  "voices": [
+    {
+      "voiceId": "01TLYCA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SOUND/01TLYCA001.aiff",
+      "nativeMember": "01TLYCA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 12288,
+      "nativeSha256": "910cd8f95c239b87c9f53f54ef58a18044614933cf2769d613485c1b695ebaf0",
+      "speakerId": "AKIR",
+      "sourceText": "Save your complaints for later.",
+      "displayText": "Save your complaints for later.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-encirclement/voice/01TLYCA001.wav",
+      "byteLength": 48940,
+      "sha256": "d3725d6c874421693719d2321d9f55df6aa4969feace707577ea27fa6f995fa2"
+    },
+    {
+      "voiceId": "01TLYCA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SOUND/01TLYCA002.aiff",
+      "nativeMember": "01TLYCA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 20480,
+      "nativeSha256": "76e78166b2c9a27ecb9edcbee4d3fb8338d29c9a6e2d4f55195f9ed6df788af8",
+      "speakerId": "AKIR",
+      "sourceText": "You too.",
+      "displayText": "You too.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 64
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-encirclement/voice/01TLYCA002.wav",
+      "byteLength": 81708,
+      "sha256": "c742760c367e7f983ec1e12a51cddc2832ba658f2453e3e7a584a57d2764da0a"
+    },
+    {
+      "voiceId": "01TLYCA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SOUND/01TLYCA003.aiff",
+      "nativeMember": "01TLYCA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 18432,
+      "nativeSha256": "535dff20d0fb418c09c9126a20e14c68aee082717cf11e0581fe6298e1d45484",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 49
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-encirclement/voice/01TLYCA003.wav",
+      "byteLength": 73516,
+      "sha256": "ef5c6354f15d81ad2376e40a275d6eabee0a2d3a4b5a3341a2c20d41201ed04a"
+    },
+    {
+      "voiceId": "01TLYCA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SOUND/01TLYCA004.aiff",
+      "nativeMember": "01TLYCA004.str",
+      "speakerId": "AKIR",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "Original TLYC requests 01TLYCA004.str, absent from the pinned English01TLYC archive; no substitute speech.",
+      "evidence": "docs/design/story-final-day.md#night-confrontation"
+    },
+    {
+      "voiceId": "01TLYCA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SOUND/01TLYCA005.aiff",
+      "nativeMember": "01TLYCA005.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "fd13b66b7e0b8746f6a44837adf2f9afef03be57cfc880877424afc9bdfa26c8",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-encirclement/voice/01TLYCA005.wav",
+      "byteLength": 16172,
+      "sha256": "db31fdb45e2627b53fb605b9c80eb20204abb09644606250f9253a516666ea34"
+    },
+    {
+      "voiceId": "01TLYCB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SOUND/01TLYCB001.aiff",
+      "nativeMember": "01TLYCB001.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 10240,
+      "nativeSha256": "295e745d8cf235d7f15b4a3a2ae7f4258eb32724d6401613cd92fa782c220c38",
+      "speakerId": "KISY",
+      "sourceText": "Is trouble your middle name?",
+      "displayText": "Is trouble your middle name?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-encirclement/voice/01TLYCB001.wav",
+      "byteLength": 40748,
+      "sha256": "7be69eb552648915e68e936bfd39f42f92ea94269670a8e4e5fb1693eb35cc2b"
+    },
+    {
+      "voiceId": "01TLYCB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SOUND/01TLYCB002.aiff",
+      "nativeMember": "01TLYCB002.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 14336,
+      "nativeSha256": "c6e15a81a0f72004e512b10f8cd5ca70f396a3e11298d1f04c4bb4da0a90f110",
+      "speakerId": "KISY",
+      "sourceText": "Fine=@watch yourself.",
+      "displayText": "Fine...watch yourself.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 39
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-encirclement/voice/01TLYCB002.wav",
+      "byteLength": 57132,
+      "sha256": "2ce6c865720f837f2afe7f293b044f6c4410f8eb0414618a42fe8462bef40012"
+    },
+    {
+      "voiceId": "01TLYCC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SOUND/01TLYCC001.aiff",
+      "nativeMember": "01TLYCC001.str",
+      "speakerId": "BTD_",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "Original TLYC requests 01TLYCC001.str, absent from the pinned English01TLYC archive; no substitute speech.",
+      "evidence": "docs/design/story-final-day.md#night-confrontation"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-encirclement/sfx/a9040000.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SE/cloths2/furimuki_s02.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-encirclement/sfx/a9040100.wav",
+      "byteLength": 9676,
+      "sha256": "32ccc18cfaf7088ef83c5bd45e3dca6e8dfdde70a2dfd43db42cd9e86e84fe9d"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SE/foot2/RENASHI1.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-encirclement/sfx/a9040200.wav",
+      "byteLength": 8492,
+      "sha256": "1ee47a0bf5d545b53b8ab965a997e306f3d27b03323373a9b0b1a7433cdf6f06"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SE/foot2/RENASHI3.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-encirclement/sfx/a9040300.wav",
+      "byteLength": 8308,
+      "sha256": "28cf9affb218ff0d6fe1d0f1af0a3a3aa71a1b5664a8a2e3c1f4a432304279d0"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SE/foot2/RENASHI4.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-encirclement/sfx/a9040400.wav",
+      "byteLength": 12596,
+      "sha256": "45eba21fd37b8848dacb9359ea1a6e810e47bad07a834db175bcc8a96791f5fa"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-encirclement/sfx/a9040500.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-encirclement/sfx/a9040600.wav",
+      "byteLength": 5412,
+      "sha256": "64fa0eff3320191bd9befe41d84a45f91d48ae9a9c821c8aac766ce9b3fcf3f3"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-encirclement/sfx/a9040700.wav",
+      "byteLength": 6364,
+      "sha256": "a087e557bddc12e1ca7a20b8ad3ee5e15dfa88ad4531cbba9c0b85b9367c66af"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-encirclement/sfx/a9040800.wav",
+      "byteLength": 4620,
+      "sha256": "b777d818c86e674e40a080c0aabb21e31a54b732828322cdb9b9288dd4184907"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-encirclement/sfx/a9040900.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-encirclement/sfx/a9040a00.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    }
+  ]
+}

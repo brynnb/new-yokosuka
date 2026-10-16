@@ -32,7 +32,11 @@ export function registerNativeAseqMusic(root, definition) {
   const track=viewer.tracks[sourceId];
   if(!track||track.source.bankSha256!==bankHash||track.source.file!==`${id.toUpperCase()}.SND`||track.source.group!==0||track.source.track!==0)throw Error(`Changed original music for ${id}`);
   accessSync(path.join(root,"public",track.ogg_url));
-  music.tracks[id]={url:track.ogg_url,label,durationSeconds:track.durationSeconds,loop:true,source:track.source};
+  const existing=music.tracks[id];
+  if(existing&&(existing.url!==track.ogg_url||existing.source?.id!==sourceId||existing.source.bankSha256!==bankHash))throw Error(`Conflicting shared music identity ${id}`);
+  // One original recording can score multiple scenes. Registering another
+  // consumer must not rename the already published shared track each time.
+  music.tracks[id]={url:track.ogg_url,label:existing?.label||label,durationSeconds:track.durationSeconds,loop:true,source:track.source};
   writeFileSync(filename,JSON.stringify(music,null,2)+"\n");
   return ["public/music/manifest.json",`public${track.ogg_url}`];
 }
