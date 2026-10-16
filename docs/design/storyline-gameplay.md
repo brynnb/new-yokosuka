@@ -233,8 +233,13 @@ Chen's original introduction conversation now also passes an earned-save
 rendered continuation: decline/cancel/reload/retry, natural ending, BGM067,
 one saved letter and notebook, visible inventory and completed reload with
 controls restored. Existing possessions, money and date are unchanged. Detailed
-envelope contact and a dedicated inventory icon are not claimed. Ship departure
-and the amulet memory remain missing; the checklist distinguishes each boundary.
+envelope contact and a dedicated inventory icon are not claimed. Nozomi's
+original amulet recollection now also passes connected earned-save rendering,
+cancellation/scenery cleanup, full natural farewell, BGM070, independently saved
+amulet/notebook and completed reload with both earlier letters unchanged.
+Remembering at the quay is an explicit staging adaptation; the actual hand
+prop and dedicated icon remain absent. Ship departure remains missing; the
+checklist distinguishes this boundary.
 See [ride home and rest](story-nozomi-rescue.md#ride-home-and-rest)
 and the [final day](story-final-day.md).
 

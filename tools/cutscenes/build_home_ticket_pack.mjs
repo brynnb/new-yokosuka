@@ -4,9 +4,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import {execFileSync} from "node:child_process";
-import {buildNativeAseqActivityPack,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
+import {buildNativeAseqActivityPack,sha256} from "../lib/NativeAseqActivityPack.mjs";
 import {buildNativeAseqAudioPack,registerNativeAseqMusic} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
+import {addNativeAseqStageAssets} from "../lib/NativeAseqStageAssets.mjs";
 import {parseChrtSceneObjectBindings} from "../lib/chrt_scene_object_bindings.js";
 
 const root=path.resolve(import.meta.dirname,"../..");
@@ -130,23 +131,7 @@ for(const p of selectedProfiles){
     if(!archive)textureSources.push(path.join(source,area,file));
   };
   if(p.stage){
-    // Cinematic maps are package-owned fixtures, not a second world loader.
-    // The existing isolated-stage lease hides/restores resident gameplay roots.
-    const stage=p.stage,archivePath=path.join(source,area,stage.archive),archive=fs.readFileSync(archivePath),textures=fs.readFileSync(path.join(source,area,stage.textures));
-    if(sha256(archive)!==stage.sha256||sha256(textures)!==stage.textureHash)throw Error(`Changed original stage ${p.id}`);
-    const sourceMaps=parseIpacActivityArchive(archive).members.filter(m=>/^MAP\d*\.MAPM$/.test(m.name));
-    if(JSON.stringify(sourceMaps.map(m=>m.name))!==JSON.stringify(stage.maps.map(m=>`${m}.MAPM`)))throw Error(`Changed original stage maps ${p.id}`);
-    for(const [i,m]of sourceMaps.entries()){
-      members.push({name:m.name,sourcePath:archivePath,sourceManifestPath:`${discPath}/${area}/${stage.archive}`,sourceSha256:stage.sha256,archiveMember:m.name,byteLength:m.bytes.length,sha256:sha256(m.bytes)});
-      if(stage.nonVisualMaps?.[m.name]){
-        if(sha256(m.bytes)!==stage.nonVisualMaps[m.name])throw Error(`Changed non-visual stage resource ${p.id}/${m.name}`);
-        continue;
-      }
-      outputMembers.push(m.name);
-      props[`RM${String(i).padStart(2,"0")}`]={model:stage.maps[i],browserFilename:m.name,assetPath:`${prefix}/${m.name}`,textureAssetPath:`${prefix}/stage-textures.bin`,lifecycle:{kind:"room-script-persistent"},
-        initialPresentation:{position:[0,0,0],rotationDegrees:[0,0,0],scale:[1,1,1]}};
-    }
-    generatedAssets.push({assetPath:`${prefix}/stage-textures.bin`,bytes:extractNativeTexnPack(textures,stage.textures).bytes,source:{path:`${discPath}/${area}/${stage.textures}`,sha256:stage.textureHash}});
+    addNativeAseqStageAssets({stage:p.stage,sourceDirectory:path.join(source,area),sourceManifestPrefix:`${discPath}/${area}`,assetPrefix:prefix,members,outputMembers,sceneObjects:props,generatedAssets});
   }
   for(const [tag,model]of Object.entries(p.propModels||{}))prop(tag,model.file,model.size,model.sha256);
   if(p.id==="bank-savings"){

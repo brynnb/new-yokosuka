@@ -1,10 +1,50 @@
 import {expect} from "@playwright/test";
 import {fightWithKeyboard} from "./story-seventy-man.js";
 
+export async function verifyNozomiAmulet(page,testInfo,character,{musicResponses}){
+  await page.setViewportSize({width:1920,height:1080});
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const initial=await saved(),done="story.s1.nozomi-amulet.completed";
+  expect(initial.character.storyFlags["story.s1.chen-introduction-letter.completed"]).toBe(true);
+  expect(initial.inventory.find(i=>i.key==="letter_of_introduction")?.quantity).toBe(1);
+  expect(initial.character.storyFlags[done]).not.toBe(true);expect(initial.inventory.some(i=>i.key==="nozomi_amulet")).toBe(false);
+  const check=async(earned=false)=>{const s=await saved();expect(s.character.yen).toBe(initial.character.yen);
+    expect(s.inventory.filter(i=>i.key!=="nozomi_amulet")).toEqual(initial.inventory);
+    expect(s.inventory.filter(i=>i.key==="nozomi_amulet").map(i=>i.quantity)).toEqual(earned?[1]:[]);
+    expect(s.character.storyFlags["story.s1.departure.completed"]).not.toBe(true);
+    expect(new Date(s.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;
+  };
+  const choose=name=>page.getByRole("button",{name,exact:true}).click({timeout:100_000});
+  const reload=async()=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);};
+  const scene=()=>page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-nozomi-amulet"||window.storyProbe.sceneErrors.length,null,{timeout:100_000});
+  console.info("Nozomi amulet: original temporary scenery, cancellation, natural farewell and separate saved keepsake");
+  await choose("Not yet");await check();await reload();await choose("Remember Nozomi's farewell");await scene();
+  await page.waitForTimeout(23000);await page.screenshot({path:testInfo.outputPath("nozomi-original-amulet-memory-and-scenery.png")});await check();
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("amulet-check"));
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await check();
+  expect(Math.abs((await saved()).character.y)).toBeLessThan(.5);await page.screenshot({path:testInfo.outputPath("nozomi-cancel-restored-dock.png")});
+  await reload();await choose("Remember Nozomi's farewell");await scene();
+  await expect.poll(()=>page.evaluate(()=>{const m=window.storyMusic?.director,a=m?.current?.audio;return m?.current?.trackId==="bgm070"&&!a.paused&&a.currentTime>1&&a.volume>0;}),{timeout:15000}).toBe(true);
+  await page.waitForTimeout(64000);await page.screenshot({path:testInfo.outputPath("nozomi-original-giving-the-amulet.png")});await check();
+  await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:120_000}).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect((await check(true)).character.storyFlags["notebook.s1.nozomi-amulet"]).toBe(true);
+  // See the documented Settings modal/accessibility limitation; use the real
+  // existing Inventory button without changing its ancestors' ARIA state.
+  await page.locator("#inventory-button").click();await expect(page.getByText("Nozomi's Amulet",{exact:true})).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath("nozomi-earned-amulet-inventory.png")});await page.getByRole("button",{name:"Close inventory",exact:true}).click();
+  await reload();await page.waitForTimeout(1200);await check(true);expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(Math.abs((await saved()).character.y)).toBeLessThan(.5);await page.screenshot({path:testInfo.outputPath("nozomi-earned-amulet-reload-and-controls.png")});
+  expect(musicResponses.some(r=>r.url.includes("bgm070")&&[200,206].includes(r.status))).toBe(true);
+}
+
 export async function verifyEarnedIntroductionLetter(page,testInfo,character){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved();expect(initial.character.storyFlags["story.s1.chen-introduction-letter.completed"]).toBe(true);
   expect(initial.inventory.filter(i=>i.key==="letter_of_introduction").map(i=>i.quantity)).toEqual([1]);
+  const following=page.getByRole("button",{name:"Not yet",exact:true});if(await following.isVisible())await following.click();
   // Persistent Settings content currently hides the sidebar from the ARIA
   // tree even while closed (docs/implementation/README.md). Use its real
   // button as other inventory tests do; do not mutate accessibility state.
@@ -44,6 +84,7 @@ export async function verifyIntroductionLetter(page,testInfo,character,{musicRes
   await expect.poll(()=>page.evaluate(()=>{const m=window.storyMusic?.director,a=m?.current?.audio;return m?.current?.trackId==="bgm067"&&!a.paused&&a.currentTime>1&&a.volume>0;}),{timeout:15000}).toBe(true);
   await page.waitForTimeout(45000);await page.screenshot({path:testInfo.outputPath("chen-original-tao-li-shao-introduction.png")});await check();
   await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:100_000}).toBe(true);
+  const following=page.getByRole("button",{name:"Not yet",exact:true});if(await following.isVisible())await following.click();
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   const final=await check(true);expect(final.character.storyFlags["notebook.s1.tao-li-shao"]).toBe(true);
   await page.locator("#inventory-button").click();
@@ -51,6 +92,7 @@ export async function verifyIntroductionLetter(page,testInfo,character,{musicRes
   await page.screenshot({path:testInfo.outputPath("chen-earned-introduction-letter-inventory.png")});
   await page.getByRole("button",{name:"Close inventory",exact:true}).click();
   await reload();await page.waitForTimeout(1200);await check(true);
+  if(await following.isVisible())await following.click();
   expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   expect(Math.abs((await saved()).character.y)).toBeLessThan(.5);
@@ -124,9 +166,10 @@ export async function verifyFinalChai(page,testInfo,character,{musicResponses}){
   await reload();await choose("Face Chai's last attack");await scene("chai-counter-ready");await ready();await winCounter();await scene("chai-counter-win");
   await page.waitForTimeout(3300);await page.screenshot({path:testInfo.outputPath("final-chai-original-water-fall.png")});
   await expect.poll(async()=>(await saved()).character.storyFlags[counter],{timeout:30000}).toBe(true);
+  const following=page.getByRole("button",{name:"Not yet",exact:true});if(await following.isVisible())await following.click();
   await idle();const final=await check();expect(final.character.storyFlags["notebook.s1.chai-last-attack"]).toBe(true);
   expect(new Date(final.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
-  await reload();await page.waitForTimeout(1200);await idle();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+  await reload();await page.waitForTimeout(1200);if(await following.isVisible())await following.click();await idle();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
   await page.screenshot({path:testInfo.outputPath("final-chai-earned-counter-reload-and-controls.png")});
   expect(musicResponses.some(r=>r.url.includes("bgm032")&&[200,206].includes(r.status))).toBe(true);
 }

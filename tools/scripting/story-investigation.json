@@ -3,6 +3,15 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"nozomi-amulet","disc":3,"actor":"AKIR","presentActors":[],"area":"MEND","trigger":"enter","priority":988,
+      "title":"Nozomi's farewell amulet","bounds":"s1.mend.nozomi-amulet","requiredFlags":["story.s1.chen-introduction-letter.completed"],"requiredItems":[{"key":"letter_of_introduction","quantity":1}],
+      "completedFlag":"story.s1.nozomi-amulet.completed","effects":["notebook.s1.nozomi-amulet"],"items":[{"key":"nozomi_amulet","quantity":1}],"voiceIds":[],
+      "activities":["s1.mend.nozomi-amulet.scene"],"confirmation":{"accept":"Remember Nozomi's farewell","decline":"Not yet"},
+      "nativeSources":[{"role":"original-amulet-farewell-memory","locator":"disc3/SCENE/03/MEND/NZOM.PKS#SEQDATA0.AUTH","sha256":"94bbe7abd363493e3789aab1af4f464ed396d5bf1cb6ebd81f70cc0d7e986cb1"}],
+      "summary":"Original amulet farewell with its own temporary scenery. Acknowledgement independently saves one amulet and notebook, not ship departure; cancellation retains the introduction letter.",
+      "provenance":"GameSpot p65 identifies the departure's Nozomi amulet recollection. Original MEND/NZOM film, MAP, NZM_M body, M_01JN bank21, all27 English01JIN voices and A1_NOOMA effects. Recollection at the quay before the separately acknowledged ship ending is an explicit narrative staging adaptation, not a recovered native flashback trigger or a calendar rewind. Original dialogue establishes amulet, Hong Kong and Canada; no new speech or past-date flags. BGM070 is in the original resource cluster; film-entry cue and daytime stage lighting are authored. Detailed amulet/envelope hand callbacks are not reconstructed. Natural ending or supported explicit skip saves one max-stack1 amulet and its own two flags through existing atomic settlement. No money, letter duplication, time, travel, ship or S2 result."
+    },
+    {
       "id":"chen-introduction-letter","disc":3,"actor":"AKIR","presentActors":[],"area":"MEND","trigger":"enter","priority":989,
       "title":"Master Chen's letter of introduction","bounds":"s1.mend.chen-introduction-letter","requiredFlags":["story.s1.final-chai-counter.completed"],
       "completedFlag":"story.s1.chen-introduction-letter.completed","effects":["notebook.s1.tao-li-shao"],"items":[{"key":"letter_of_introduction","quantity":1}],"voiceIds":[],

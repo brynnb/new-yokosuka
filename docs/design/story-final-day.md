@@ -469,9 +469,49 @@ input remount was added. Ten focused asset tests and the real compiler/engine
 checks cover original identities, all available speech, admission, decline,
 cancellation and the exact one-letter/two-flag acknowledgement.
 
+## Nozomi's amulet memory
+
+Connected earned-save gameplay is rendered and verified.
+
+| Field | Authored recollection |
+| --- | --- |
+| Location / prerequisites | The tested MEND waterfront approach after the independently saved introduction letter, with actual possession of that letter. Story Ryo and opening complete; no time/date lockout. Confirm **Remember Nozomi's farewell** or **Not yet**. |
+| Original presentation | `MEND/NZOM.PKS`, original `SEQDATA0.AUTH` (4,187 frames), `M_01JN.MOTN` bank21 and archive-local `NZM_M` Nozomi. Its original `MAP.MAPM` and textures are temporary room fixtures; the existing isolated-stage lease hides/restores the resident dock. No second world loader or substitute street is added. |
+| Dialogue / audio / camera | All 27 original English `01JIN` voice records, seven unique original A1_NOOMA effects and original motion/camera timing. Dialogue explicitly gives the amulet and discusses Hong Kong and Canada. The MEND resource cluster names BGM070; beginning it at film entry is authored cue timing. |
+| Time / environment / staging | Remember the farewell before the separate ship ending rather than at the original departure's flashback point. This is an explicit staging adaptation, not an earlier-calendar visit or a recovered trigger. Preserve personal date/weather/time; the temporary scene uses the established daytime light preset. Detailed amulet/envelope meshes, finger contact, facial callbacks and exact historical lighting are not reconstructed. |
+| Challenge / settlement | No challenge. Only acknowledged natural ending or supported explicit skip saves `story.s1.nozomi-amulet.completed`, `notebook.s1.nozomi-amulet` and one `nozomi_amulet` through existing atomic inventory settlement. Do not replace/duplicate the introduction letter or award money, time, travel, ship or S2 progress. |
+| Exit / cancellation / replay | Restore the prior dock, avatar pose/camera and controls. Cancelled/failed preparation or playback grants no amulet and permits retry. Already earned letter and battle/counter saves survive. Completed re-entry/reload cannot replay or grant another amulet. No dedicated inventory icon is claimed. |
+
+Generate with `node tools/cutscenes/build_harbor_job_pack.mjs --profile nozomi-amulet --audio`.
+The stage compiler is shared with the earlier family departure; its deterministic
+regeneration must leave that earlier manifest unchanged. Original resources and
+output identities are pinned in the manifests, with no source-asset upload.
+
+The three-minute sequential hardware-rendered continuation resumes the genuinely
+earned introduction-letter save. Decline/reload, original Nozomi/shrine playback,
+cancellation restoring the dock with no amulet, retry, advancing BGM070 playback,
+the full natural farewell, visible inventory entry and completed reload without
+replay pass. The nine existing possessions, including both earlier letters,
+¥22,836 and personal date remain unchanged. Only one new amulet and its two
+flags are saved; database inspection finds exactly one corresponding item-grant
+record, no departure flag and quantity one for both letters and the amulet.
+Controls return on the tested dock floor; temporary shrine scenery does not
+remain after cancellation or completion. The earned save is backed up separately.
+
+Reviewed captures show Nozomi's archive-local body at the original shrine,
+Ryo/Nozomi in the handover gesture, restored dock after cancellation, the named
+inventory possession and restored gameplay after reload. The actual amulet
+mesh is not present in the handover capture; hand-object/facial callbacks,
+historical lighting and a dedicated inventory icon remain explicit fidelity
+limits. Neither rendered gesture nor movie completion can count as ship
+departure. Compiler/engine tests share the earlier keepsake boundary and require
+the independently earned letter flag and actual letter possession, then the
+exact one-item/two-flag acknowledgement. Cancellation grants nothing and keeps
+the letter. No new state store or native-controller reconstruction was added.
+
 ### Remaining departure sources
 
-These are original-source findings, not yet connected or rendered outcomes:
+These are original-source findings; ship shots still need connected playback:
 
 - `MEND/NZOM.PKS` contains its own `MAP.MAPM`, the original Nozomi body and
   `M_01JN.MOTN` bank21. `STREAM/01JIN.AFS` (not separate A/B archives) resolves
@@ -547,7 +587,8 @@ The 70-man battle, Terry QTE/interrogation, post-battle home/rest chain, family
 farewell, harbor admission, Swallow Flip lesson, actual final Chai fight and
 separate Down/A/A/B counter are connected and rendered as described above.
 Chen's introduction letter is also connected and rendered as described above.
-The ship departure and amulet memory remain missing connected outcomes.
+The amulet memory is also connected and rendered as described above. The ship
+departure remains a missing connected outcome.
 No future outcome should be inserted into an earned checkpoint. Plane mesh
 visibility, exact collapse staging and tighter hand/pipe choreography remain
 presentation review items, not proof of missing or completed battle outcomes.

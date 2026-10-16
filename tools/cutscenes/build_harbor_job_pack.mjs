@@ -7,6 +7,7 @@ import {execFileSync} from "node:child_process";
 import {buildNativeAseqActivityPack,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
 import {buildNativeAseqAudioPack,registerNativeAseqMusic} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
+import {addNativeAseqStageAssets} from "../lib/NativeAseqStageAssets.mjs";
 import {parseAuthSequence} from "../../src/AuthSequence.js";
 import {runtimeAssetUrl} from "../../src/RuntimeAssets.js";
 
@@ -15,6 +16,7 @@ const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,
 const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
 const defaultEvidence="docs/design/story-harbor-work.md";
 const archives={
+  "MEND/NZOM":"94bbe7abd363493e3789aab1af4f464ed396d5bf1cb6ebd81f70cc0d7e986cb1",
   "MEND/CHAIAUTH":"996524cfb8bdb5996b27b05e1de01af5df3c969824d888a18da639afbd32ce19",
   "MEND/M0W0":"393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2",
   "MEND/MODELS":"c12fe80d9cafa7679096dcfbab319082eac9d2ca501f1962ae490582c73fd80e",
@@ -63,6 +65,12 @@ const finalChaiSource={archive:"MEND/CHAIAUTH",resourceName:"CHAIAUTH",motion:"M
   sound:"A1_MOMOR.SND",soundHash:"ac1ff0499b2c24bc4439f78b17c09b6f5ee066f40ab4b2ba76acaa72eb567109",music:finalChaiMusic,
   selectionRule:"Walkthrough-guided final Chai encounter. Original films present the approach, post-battle questioning and second attack, not combat or QTE authority. Actual fight and Down/A/A/B counter settle independently; original short water-fall clip is selected as an authored winning ending, not a recovered native branch controller."};
 const profiles=[
+  {id:"nozomi-amulet",archive:"MEND/NZOM",resourceName:"NZOM",evidence:"docs/design/story-final-day.md#nozomis-amulet-memory",auth:"SEQDATA0.AUTH",frames:4187,motion:"M_01JN.MOTN",bank:21,actors:["AKIR","HRSK"],
+    actorModels:{HRSK:["Nozomi Harasaki","NZM_M"]},actorTextureHash:"2be31a8cac926c808abfc7168326f9bb90cb04f81746fabfc74640e8cc3b8633",
+    stage:{archive:"NZOM.PKS",sha256:"94bbe7abd363493e3789aab1af4f464ed396d5bf1cb6ebd81f70cc0d7e986cb1",textures:"NZOM.PKF",textureHash:"2be31a8cac926c808abfc7168326f9bb90cb04f81746fabfc74640e8cc3b8633",maps:["MAP"]},
+    stream:"01JIN",streamHash:"afde2e66540afae38d1446da0d75fe631f0c8e9f45fd6c3d7617482b0507d12b",sound:"A1_NOOMA.SND",soundHash:"f3f201aad241ac76c252da929a9bbfffcb79d26bd6186f36abf06bc491bbc47f",
+    music:{id:"bgm070",sourceId:"0ab6fbfdb3ef1c1a08791ffecbe9620d2e6da882f6f7dad181722ee2f5e0b8f2",bankHash:"3bf2397f3f58b598d28e9b27bbed991aae6bb19b536a2ff160a56afd753a996f",label:"Nozomi's farewell amulet"},
+    selectionRule:"Original Nozomi amulet farewell remembered before the separately acknowledged ship departure. Shared isolated-stage lease borrows its own original scenery, body, motions, camera and speech. Recollection at the quay, daytime staging and BGM070 entry cue are authored; original envelope/amulet hand callbacks are not reconstructed. Yarn alone settles the amulet and notebook, not the ship or S2."},
   {...finalChaiSource,id:"chen-introduction-letter",auth:"SEQDATA4.AUTH",frames:2638,actors:["BAG0","AKIR","CHAI","KISY","TAIJ"],
     evidence:"docs/design/story-final-day.md#chens-introduction-letter",
     props:{BAG0:"RBGS5M2G"},propArchive:"MEND/MODELS",propTextureHash:"e109ad0455b02d68ebf8eb7853e294fab21769f17f906f2b8bf50ad08f7d55f1",authoredPropBindings:true,
@@ -310,6 +318,7 @@ for(const p of selected){
     }
   }
   for(const tag of p.actors){
+    if(p.actorModels?.[tag])continue;
     if(sharedActors[tag]){
       const actor=sharedActors[tag];
       runtimeAssetUrl(actor.assetPath);runtimeAssetUrl(actor.textureAssetPath);
@@ -345,6 +354,7 @@ for(const p of selected){
     sceneObjects.ROOM={model:room.model,browserFilename:room.member,assetPath:`${prefix}/${room.member}`,textureAssetPath,
       lifecycle:{kind:"room-script-persistent"},initialPresentation:{position:[0,0,0],rotationDegrees:[0,0,0],scale:[1,1,1]}};
   }
+  if(p.stage)addNativeAseqStageAssets({stage:p.stage,sourceDirectory:path.join(source,path.dirname(archiveStem(p.archive))),sourceManifestPrefix:`disc3/SCENE/03/${path.dirname(archiveStem(p.archive))}`,assetPrefix:prefix,members,outputMembers,sceneObjects,generatedAssets});
   const propTextureAssetPath=p.props?texture(p.propArchive||p.archive,p.propTextureHash,"textures.bin"):null;
   if(p.id==="mark-job-introduction"){
     const textureAssetPath=propTextureAssetPath;
@@ -364,7 +374,8 @@ for(const p of selected){
     bindingEvidence:evidence,selectionRule:p.selectionRule||"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),...(p.silent?{}:{audioManifest:`${audioPrefix}/manifest.json`}),
     motionBanks:[{bank:p.bank??16,member:p.motion},...(p.extraMotionBanks||[])],activities:activities.map((activity,slot)=>({...activity,slot,binding:{kind:"map-embedded-slot"},
-      ...(sceneObjects.ROOM?{nativeSceneObjectStates:[{actorTag:"ROOM",presented:true}]}:{})})),
+      ...(p.stage?{browserMapVisibility:[],browserIsolatedStage:true,browserLightingPresetIndex:0}:{}),
+      ...(Object.values(sceneObjects).some(o=>o.lifecycle?.kind==="room-script-persistent")?{nativeSceneObjectStates:Object.entries(sceneObjects).filter(([,o])=>o.lifecycle?.kind==="room-script-persistent").map(([actorTag])=>({actorTag,presented:true}))}:{})})),
     packageActors,sceneObjects,outputMembers:[...new Set(outputMembers)],generatedAssets,
   });
   runtimePaths.push(`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path));

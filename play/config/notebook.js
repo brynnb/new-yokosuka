@@ -189,6 +189,7 @@ const STORY_PAGES = Object.freeze([
   {flag:"notebook.s1.final-chai",page:Object.freeze({id:"story-final-chai",text:"Defeated Chai at the harbor.\nHe says Lan Di has sailed for Hong Kong.\n\nGui Zhang was injured protecting us."})},
   {flag:"notebook.s1.chai-last-attack",page:Object.freeze({id:"story-chai-last-attack",text:"Chai attacked again.\nCountered him into the harbor.\n\nGui Zhang is still injured. Speak with Master Chen before leaving."})},
   {flag:"notebook.s1.tao-li-shao",page:Object.freeze({id:"story-tao-li-shao",text:"Gui Zhang cannot travel until his injury heals.\n\nMaster Chen gave me a letter of introduction to Tao Li Shao, an elder master in Hong Kong.\nThe address is inside.\n\nGo on ahead to Hong Kong."})},
+  {flag:"notebook.s1.nozomi-amulet",page:Object.freeze({id:"story-nozomi-amulet",text:"Remembering Nozomi's farewell.\n\nShe gave me an amulet and wished for my safety.\nShe is leaving for Canada.\n\nI will keep her amulet with me on the journey to Hong Kong."})},
 ]);
 
 export function notebookPagesForCharacter(character) {
