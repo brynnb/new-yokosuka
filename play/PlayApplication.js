@@ -885,6 +885,7 @@ function createPlayRuntime() {
     localDebug: LOCAL_DEBUG,
   });
   const scriptEvents = createScriptEventAssembly({
+    getCharacter: () => accountSession.character,
     menuSounds,
     playerRuntime,
     onCombatStateChanged: snapshot => combatHud.update(snapshot),

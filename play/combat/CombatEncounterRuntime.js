@@ -5,6 +5,7 @@ import {
   MartialArtsCombat,
   MartialArtsEnemyAI,
   createCombatant,
+  combatMoveAvailable,
   distanceAndFacing,
   opponentPosition,
   queueCombatCommand,
@@ -85,12 +86,14 @@ export class CombatEncounterRuntime {
       id: "ryo",
       team: "player",
       maxHealth: COMBAT_PRACTICE_PLAYER_MAX_HEALTH,
-      // The recreation currently exposes Ryo's complete learned move scroll.
-      // Native expert variants are selected above the executable's >0x37
-      // proficiency threshold.
+      // Existing combat balance uses expert variants (>0x37). Move ownership
+      // is separate: Story supplies its earned repertoire via playerOptions.
       proficiency: 100,
       ...playerOptions,
     }));
+    this.playerMoves = this.player.allowedMoveIds === null ? moves : Object.freeze(
+      Object.fromEntries(Object.entries(moves).filter(([, move]) => combatMoveAvailable(this.player, move))),
+    );
     this.enemies = (enemies || [{ id: "enemy", name: "Chai", actor: enemyActor, ai: enemyAI }])
       .map(entry => ({ ...entry, combatant: this.combat.add(createCombatant({
         id: entry.id, team: entry.team || "enemy", ...entry.combatOptions,
@@ -396,7 +399,7 @@ export class CombatEncounterRuntime {
   performPlayerMove(moveId) {
     const move = this.moves[moveId];
     if (
-      !move
+      !combatMoveAvailable(this.player, move)
       || !this.active
       || !this.controlsActive
       || this.player.defeated

@@ -120,6 +120,12 @@ working. The bookmark never unlocks entries or changes server progress.
 
 ## Current limits
 
+Combat Test always exposes the full move list without changing Story saves.
+Story fights use the starting repertoire plus committed learned-move flags;
+lessons temporarily permit their own taught move. See
+[Story move availability](../research/shenmue1/martial-arts-combat.md#story-move-availability)
+for the connected lessons and remaining optional-learning/proficiency limits.
+
 The connected authored S1 main-route prototype reaches boarding and sailing.
 It is not an exact reconstruction of every original controller, optional event,
 animation callback or deadline. The [coverage checklist](../design/story-event-template.md#connected-progression-checklist)

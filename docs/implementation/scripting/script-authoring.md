@@ -132,8 +132,11 @@ nonlethal practice, waves, ally rules, recovery and final outcome. It composes
 `CombatEncounterRuntime`, `CombatInput`, `CombatTargetIndicator` and the existing
 animation adapter rather than maintaining another fighting engine. The shared
 targeting automatically faces the selected opponent; left/right target keys
-choose adjacent opponents in camera space. The full move list and health HUD
-work in both modes. NPC moves/AI and balance remain adaptations, not recovered
+choose adjacent opponents in camera space. Both modes use the shared move list
+and health HUD: Combat Test exposes all techniques, while Story lists starting
+and earned moves, plus the current lesson's temporary teaching permission. See
+[move availability](../../research/shenmue1/martial-arts-combat.md#story-move-availability).
+NPC moves/AI and balance remain adaptations, not recovered
 character-specific native movesets. AI animation roles are independent of team.
 
 The server still owns encounter authorization, attempt tokens, bounded leases,

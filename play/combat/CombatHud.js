@@ -108,6 +108,8 @@ export class CombatHud {
   update(snapshot) {
     const { dom } = this;
     if (!dom.combatHud) return;
+    const moves = this.getEncounter()?.playerMoves || MARTIAL_ARTS_MOVES;
+    if (moves !== this.moveListMoves) this.populateMoveList(moves);
     const controlsActive = Boolean(snapshot.active && snapshot.controlsActive);
     dom.app.classList.toggle("combat-controls-active", controlsActive);
     dom.combatHud.hidden = !controlsActive;
@@ -184,9 +186,10 @@ export class CombatHud {
     dom.combatCommandFeedback.hidden = !controlsActive;
   }
 
-  populateMoveList() {
+  populateMoveList(moves = this.getEncounter()?.playerMoves || MARTIAL_ARTS_MOVES) {
     const { dom } = this;
     if (!dom.combatMoveList) return;
+    this.moveListMoves = moves;
     dom.combatMoveList.replaceChildren();
     if (dom.combatMoveCount) dom.combatMoveCount.textContent = "Moves List";
     const commandWithFollowups = (move) => {
@@ -209,7 +212,7 @@ export class CombatHud {
       const heading = document.createElement("h3");
       heading.textContent = `${category} moves`;
       const list = document.createElement("ol");
-      for (const move of Object.values(MARTIAL_ARTS_MOVES)) {
+      for (const move of Object.values(moves)) {
         if (move.category !== category) continue;
         const item = document.createElement("li");
         const label = document.createElement("button");

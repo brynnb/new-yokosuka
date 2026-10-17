@@ -49,6 +49,7 @@ export function createScriptEventAssembly({
   renderMatrixByKey,
   animation,
   playerRuntime,
+  getCharacter,
   onCombatStateChanged,
   retargetCharacterMatrices,
   worldSounds,
@@ -141,6 +142,7 @@ export function createScriptEventAssembly({
     instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})}),
   });
   const combatRuntime=new StoryCombatRuntime({
+    getCharacter,
     scene, sounds: playerRuntime.combatSounds,
     createCombatActors: (records, signal) => playerRuntime.combat.prepareStoryActors(records, playerRuntime.motionLibrary, signal),
     onStateChanged: onCombatStateChanged,

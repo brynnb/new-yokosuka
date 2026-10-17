@@ -209,8 +209,9 @@ extension locks the panel green and holds its resolved move label through
 the action's complete simulation/animation lifetime. The panel returns to
 its normal empty input state when that action releases control.
 The always-open, internally scrolling **All Combinations** pane in the
-top-left HUD lists all 51 learned techniques plus the 10 extracted multi-hit
-strings. Four native command pairs are genuinely identical; click the desired
+top-left HUD lists all 51 techniques plus the 10 extracted multi-hit strings
+in Combat Test. Story lists only the currently available techniques (below).
+Four native command pairs are genuinely identical; click the desired
 technique name in that pane to choose which learned variant that command
 should play.
 
@@ -323,6 +324,37 @@ matrix RMS `0.000`) and contains essentially the same full travel distance.
 The command matcher therefore delays Shadow Step briefly for its immediate
 `J` extension, then plays only the complete Shadow Blade clip; playing both
 clips serially would duplicate the evasive step.
+
+## Story move availability
+
+Combat Test is an unrestricted sandbox, including when entered by a Story
+character. It neither teaches moves nor changes saved Story progress. Story
+encounters instead start with the 33 ordinary techniques recorded explicitly
+in `play/combat/StoryMoveProgression.js`. They match the zero-flag entries of
+the captured native move-definition table; that correspondence is tested, not
+used to guess the meaning of each nonzero native flag. The original starting,
+taught and scroll distinctions can also be checked against the firsthand
+[move guide](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404).
+
+The connected Tornado Kick and Swallow Flip lessons unlock their techniques
+through the existing saved `story.s1.tornado-kick.learned` and
+`story.s1.swallow-flip.learned` flags. Each lesson temporarily permits its own
+move before mastery; preparation, cancellation, declining and unacknowledged
+completion do not permanently teach it. Each new encounter reads the current
+character's saved flags, and all waves retain the encounter's repertoire.
+Keyboard recognition, move-list actions and direct move starts share the same
+per-combatant permission. Enemy/ally repertoires remain independent. The HUD
+uses that same available list and refreshes when returning to Combat Test.
+
+This is move-ownership progression, not a reconstruction of per-move proficiency
+growth: existing expert-variant balancing is unchanged. Optional lessons such
+as Pit Blow, Double Blow, Swallow Dive and Shozo's techniques, and collectible
+scroll-learning events, are not yet connected to this authored Story route.
+Those techniques stay locked rather than granting them at an unrelated chapter
+or inventing native save mappings. The unresolved `nothingSkill` catalog entry
+likewise remains sandbox-only. Future learning events should settle their own
+saved mastery and extend this shared policy; owning an unread scroll alone
+must not imply learning it.
 
 ## Canonical move catalogue
 

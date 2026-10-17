@@ -3,6 +3,7 @@ import { CombatInput } from "../combat/CombatInput.js";
 import { CombatEncounterRuntime } from "../combat/CombatEncounterRuntime.js";
 import { CombatTargetIndicator } from "../combat/CombatTargetIndicator.js";
 import { CombatTrainingCoach, completedTrainingMove, trainingInstructions } from "../combat/CombatTraining.js";
+import { storyCombatMoveIds } from "../combat/StoryMoveProgression.js";
 import { MartialArtsEnemyAI, setCombatCommandOverride } from "../../src/MartialArtsCombat.js";
 import { combatPlayerAnimationState } from "../characters/PlayerCombatRuntime.js";
 import { PLAYER_COMBAT_CONFIG } from "../characters/PlayerMotionLibrary.js";
@@ -12,12 +13,13 @@ import { targetRelativeMovement, targetRelativeMovementDirection } from "../../s
 // neither these models nor this input. Both use the same combat/animation core.
 export class StoryCombatRuntime {
   constructor({ actors, createCombatActors, scene, getController, getBinding,
+    getCharacter = () => null,
     capturePlayerState, restorePlayerState, onIntent, musicControls = null, sounds = null,
     onStateChanged = () => {}, onViewChanged = () => {}, target = window, now = () => performance.now(),
     createIndicator = getEncounter => new CombatTargetIndicator(scene, getEncounter),
   }) {
     Object.assign(this, { actors, createCombatActors, getController, getBinding, capturePlayerState,
-      restorePlayerState, onIntent, musicControls, sounds, onStateChanged, onViewChanged, target, now, createIndicator });
+      restorePlayerState, onIntent, musicControls, sounds, onStateChanged, onViewChanged, target, now, createIndicator, getCharacter });
     this.active = null;
   }
 
@@ -36,6 +38,7 @@ export class StoryCombatRuntime {
     if (!definition || definition.area !== transaction.area) throw new Error(`No combat presentation ${view.id} in ${transaction.area}`);
     if(Boolean(definition.training)!==(view.kind==="training"))throw new Error("Wrong combat/training protocol");
     const owner = { transaction, definition, serverView: view, token: view.token, controller: new AbortController(),
+      playerMoveIds: storyCombatMoveIds(this.getCharacter()?.storyFlags, definition.training?.moveId ?? null),
       snapshot: this.capturePlayerState(), actorsBegun: false, prepared: false, records: null,
       wave: 0, defeated: 0, elapsed: 0, waveDelay: null, intro: 0, outcome: null, sentResult: false,
       pollAt: this.now(), feedback: 0, guard: false, damagedAt: 0 };
@@ -101,7 +104,8 @@ export class StoryCombatRuntime {
       ai: def.training ? new CombatTrainingCoach(def.training) : new MartialArtsEnemyAI(), speedScale: def.enemySpeed / 3,
     }));
     owner.encounter = new CombatEncounterRuntime({ input: owner.input, playerActor: player.actor, enemies,
-      playerOptions: { id: "AKIR", maxHealth: def.actors[0].health, minimumHealth: def.training || def.practiceDurationMs ? 1 : 0 },
+      playerOptions: { id: "AKIR", maxHealth: def.actors[0].health, minimumHealth: def.training || def.practiceDurationMs ? 1 : 0,
+        allowedMoveIds: owner.playerMoveIds },
       preservePlacement: true, autoRematch: false, allowControlExit: false, waitForFirstAttack: false,
       maxAttackers: def.maxAttackers, sounds: this.sounds, reactionSequences: PLAYER_COMBAT_CONFIG.reactions,
       projectTargets: entries => owner.indicator.projectTargets(entries),

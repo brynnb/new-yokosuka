@@ -5,6 +5,11 @@ import path from "node:path";
 import { createHash } from "node:crypto";
 import { performTrainingMove } from "./story-training-input.js";
 
+// The existing dialogue overlay aria-hides sibling HUDs, including the
+// visually interactive move list. Check its actual buttons, not that tree.
+const moveButton = (page, name) => page.locator("#combat-move-list button")
+  .filter({ hasText: new RegExp(`^${name}$`) });
+
 export async function openCombatApp(page) {
   const errors = [];
   page.on("console", message => { if(message.type()==="error")console.error("Browser:",message.text()); });
@@ -94,6 +99,7 @@ export async function openCombatApp(page) {
 test("Story QTEs judge locally and move lessons use rendered regular combat", async ({page},testInfo)=>{
   test.setTimeout(360_000);
   const errors=await openCombatApp(page);
+  await expect(moveButton(page, "Tornado Kick")).toBeVisible();
   await page.evaluate(()=>{
     const p=window.combatProbe,c=p.scripts.controller;p.runtime.setActive(false);p.intents=[];c.prepareStart=null;
     let id,token,run=0,ready=false,kind;
@@ -123,6 +129,10 @@ test("Story QTEs judge locally and move lessons use rendered regular combat", as
     await expect(page.locator("#loading")).toHaveClass(/hidden/,{timeout:30_000});
     await start(id,area);
     await page.waitForFunction(()=>window.combatProbe.scripts.combatRuntime.active?.serverView.ready,null,{timeout:90_000});
+    const taught = world === "mfsy" ? "Tornado Kick" : "Swallow Flip";
+    const other = world === "mfsy" ? "Swallow Flip" : "Tornado Kick";
+    await expect(moveButton(page, taught)).toBeVisible();
+    await expect(moveButton(page, other)).toHaveCount(0);
     await expect(page.locator("#dialogue-source")).toContainText("No time limit");
     await performTrainingMove(page,world==="mfsy"?"tornadoKickFinish":"swallowFlipThrow",{probe:"combatProbe",
       onMove:()=>page.screenshot({path:testInfo.outputPath(`${world}-lesson-real-move.png`)})});
@@ -285,6 +295,8 @@ test("Story borrows its original cast and uses full client combat, then restores
   await page.waitForFunction(() => window.combatProbe.scripts.combatRuntime.active?.view?.ready || window.combatProbe.errors.length, null, { timeout: 90_000 });
   await expect(page.locator(".combat-target-indicator").filter({ visible: true })).toHaveCount(1);
   await expect(page.locator("#combat-enemy-gauge")).toHaveAttribute("data-target-id", "KISY");
+  await expect(moveButton(page, "Tornado Kick")).toHaveCount(0);
+  await expect(moveButton(page, "Swallow Flip")).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath("story-original-gui-zhang-client-combat.png") });
   await page.locator("#renderCanvas").focus();
   await page.keyboard.press("KeyK");
@@ -296,8 +308,13 @@ test("Story borrows its original cast and uses full client combat, then restores
   await expect.poll(() => page.evaluate(() => window.combatProbe.scripts.controller.status)).toBe("idle");
   expect(await page.evaluate(() => window.combatProbe.intents.filter(i => i.action === "combat_result"))).toEqual([]);
 
-  await page.evaluate(() => window.combatProbe.scripts.controller.start(
-    { kind: "activity", activity: "s1.mfbt.seventy-man" }, { area: "MFBT" }));
+  // Emulate a refreshed persisted character, not a temporary lesson loan.
+  await page.evaluate(async () => {
+    const { accountSession } = await import("/play/account/AccountSession.js");
+    accountSession.character.storyFlags = { "story.s1.tornado-kick.learned": true, "story.s1.swallow-flip.learned": true };
+    await window.combatProbe.scripts.controller.start(
+      { kind: "activity", activity: "s1.mfbt.seventy-man" }, { area: "MFBT" });
+  });
   await page.waitForFunction(() => window.combatProbe.scripts.combatRuntime.active?.view?.ready, null, { timeout: 90_000 });
   const cast = await page.evaluate(() => {
     const r = window.combatProbe.scripts.combatRuntime;
@@ -308,6 +325,9 @@ test("Story borrows its original cast and uses full client combat, then restores
   expect(cast.opponents).toBe(8);
   expect(cast.visible).toHaveLength(10);
   expect(cast.ally).toBe("player");
+  await expect(moveButton(page, "Tornado Kick")).toBeVisible();
+  await expect(moveButton(page, "Swallow Flip")).toBeVisible();
+  await expect(moveButton(page, "Shadow Step")).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath("story-seventy-original-cast-and-ally.png") });
   await page.locator("#renderCanvas").focus();
   const firstTarget=await page.locator("#combat-enemy-gauge").getAttribute("data-target-id");
@@ -338,5 +358,16 @@ test("Story borrows its original cast and uses full client combat, then restores
   await page.evaluate(() => window.combatProbe.scripts.controller.cancel("render-check"));
   await expect.poll(() => page.evaluate(() => window.combatProbe.scripts.controller.status)).toBe("idle");
   expect(await page.evaluate(() => window.combatProbe.intents.some(i => i.action === "combat_input"))).toBe(false);
+  // Returning to the sandbox restores the full scroll, without teaching
+  // its optional moves to the saved character.
+  await page.evaluate(() => window.combatProbe.runtime.setActive(true));
+  await expect(moveButton(page, "Shadow Step")).toBeVisible();
+  await expect(moveButton(page, "Pit Blow")).toBeVisible();
+  await moveButton(page, "Pit Blow").click();
+  await expect.poll(() => page.evaluate(() => window.combatProbe.runtime.encounter.playerCommandFeedback().moveLabel)).toBe("Pit Blow");
+  expect(await page.evaluate(async () => {
+    const { accountSession } = await import("/play/account/AccountSession.js");
+    return accountSession.character.storyFlags;
+  })).toEqual({ "story.s1.tornado-kick.learned": true, "story.s1.swallow-flip.learned": true });
   expect(errors).toEqual([]);
 });

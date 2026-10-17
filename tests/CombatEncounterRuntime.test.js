@@ -203,6 +203,19 @@ function actor(x = 0, z = 0, yaw = 0) {
   };
 }
 
+test("move-list actions use player ownership without restricting the practice catalog or enemy", () => {
+  for (const allowedMoveIds of [undefined, ["tigerKnuckle", "crescentKick", "overthrow"]]) {
+    const runtime = new CombatEncounterRuntime({ input: new Input(), playerActor: actor(), enemyActor: actor(0, 1),
+      playerOptions: { allowedMoveIds } });
+    runtime.setActive(true);
+    assert.equal(Boolean(runtime.playerMoves.tornadoKick), allowedMoveIds === undefined);
+    assert.equal(runtime.performPlayerMove("tornadoKick"), allowedMoveIds === undefined);
+    assert.equal(runtime.selectPlayerMove("swallowFlip"), allowedMoveIds === undefined);
+    assert.equal(runtime.enemy.allowedMoveIds, null);
+    runtime.setActive(false);
+  }
+});
+
 test("multi-opponent targeting faces the selection, routes reactions by id, and exits after a partial victory", () => {
   const input = new Input(), player = actor();
   const left = actor(), right = actor();

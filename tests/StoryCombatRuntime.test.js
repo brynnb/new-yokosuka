@@ -5,10 +5,12 @@ import { StoryCombatRuntime } from "../play/scripts/StoryCombatRuntime.js";
 import { createCombatActorAdapter } from "../play/combat/CombatActorAdapter.js";
 import { applyCombatHit, MARTIAL_ARTS_MOVES } from "../src/MartialArtsCombat.js";
 import catalog from "../play/data/story-combat.json" with { type: "json" };
+import { STORY_STARTING_MOVE_IDS } from "../play/combat/StoryMoveProgression.js";
 
-function harness(id = "s1.d000.parking-lot") {
+function harness(id = "s1.d000.parking-lot", flags = {}) {
   const definition = catalog.encounters.find(e => e.id === id), calls = [], records = new Map();
   let now = 1000, prepare = async () => {}, accept = true;
+  let character = { id: 1, playMode: "story", storyFlags: flags };
   const controller = { cameraYaw: 0, cameraDistance: 4, setFirstPerson() {}, updateCamera() {} };
   for (const spawn of definition.actors) {
     const root = { position: new Vector3(), rotation: { y: 0 }, enabled: true,
@@ -22,6 +24,7 @@ function harness(id = "s1.d000.parking-lot") {
   const runtime = new StoryCombatRuntime({
     actors: { prepare: (...args) => prepare(...args), begin: () => calls.push("begin"), end: () => calls.push("end"), activeActor: tag => records.get(tag) },
     createCombatActors: async () => records, getController: () => controller, getBinding: key => bindings[key],
+    getCharacter: () => character,
     capturePlayerState: () => "snapshot", restorePlayerState: s => calls.push(s),
     onIntent: (...args) => { calls.push(args); return accept; }, target: new EventTarget(), now: () => now,
     createIndicator: () => ({ dispose: () => calls.push("indicator-disposed"), projectTargets: entries => entries.map(e => ({ id:e.id, visible:true, defeated:e.combatant.defeated, screenX:e.actor.position().x })) }),
@@ -30,18 +33,57 @@ function harness(id = "s1.d000.parking-lot") {
   const step = (seconds = .1) => { now += seconds * 1000; return runtime.update(transaction, seconds); };
   const ready = async () => { await runtime.show(view, transaction); await runtime.show({...view,ready:true},transaction); };
   return { runtime, definition, records, calls, view, transaction, controller, step, ready,
+    character: next => { character = next; },
     accept: value => { accept = value; }, prepare: fn => { prepare = fn; } };
 }
 
-test("every Story fight uses the Practice engine, authored cast and full moves", async () => {
+test("every Story fight uses the shared engine and earned moves; lessons loan only their taught move", async () => {
   for (const def of catalog.encounters) {
     const h = harness(def.id); await h.ready(); const e = h.runtime.encounter;
     assert.equal(e.moves, MARTIAL_ARTS_MOVES); assert.equal(e.autoRematch, false);
+    assert.deepEqual(Object.keys(e.playerMoves).sort(), [...new Set([
+      ...STORY_STARTING_MOVE_IDS, ...(def.training ? [def.training.moveId] : []),
+    ])].sort());
+    assert.equal(e.enemy.allowedMoveIds, null, "player progress must not restrict the opponent");
     assert.ok(e.enemies.length); assert.equal(e.player.id, "AKIR");
     assert.equal(h.records.get("AKIR").root.position.x, def.actors[0].x);
     assert.equal(h.calls.filter(c => Array.isArray(c) && c[0] === (def.training?"challenge_ready":"combat_ready")).length, 1);
     h.runtime.finish(h.transaction); assert.equal(h.calls.at(-1), "snapshot");
   }
+});
+
+test("Story reads committed lesson flags on each encounter, including after save reload or character change", async () => {
+  const h = harness(undefined, { "story.s1.tom-lesson.completed": true, "story.s1.tom-lesson.declined": true });
+  await h.ready();
+  assert.equal(h.runtime.encounter.performPlayerMove("tornadoKick"), false);
+  h.runtime.finish(h.transaction);
+  const savedCharacter = JSON.parse(JSON.stringify({ id: 1, playMode: "story", storyFlags: {
+    "story.s1.tornado-kick.learned": true, "story.s1.swallow-flip.learned": true,
+  } }));
+  h.character(savedCharacter);
+  await h.ready();
+  assert.ok(h.runtime.encounter.playerMoves.tornadoKick);
+  assert.ok(h.runtime.encounter.playerMoves.swallowFlip);
+  assert.equal(h.runtime.encounter.playerMoves.shadowStep, undefined);
+  h.runtime.finish(h.transaction);
+  h.character({ id: 2, playMode: "story", storyFlags: {} });
+  await h.ready();
+  assert.equal(h.runtime.encounter.playerMoves.tornadoKick, undefined);
+  h.runtime.finish(h.transaction);
+});
+
+test("cancelled training never teaches a move or changes the saved flags", async () => {
+  const flags = Object.freeze({});
+  const lesson = harness("s1.mfsy.tornado-kick", flags);
+  await lesson.ready();
+  assert.ok(lesson.runtime.encounter.playerMoves.tornadoKick);
+  assert.equal(lesson.runtime.encounter.playerMoves.swallowFlip, undefined);
+  lesson.runtime.finish(lesson.transaction);
+  const fight = harness(undefined, flags);
+  await fight.ready();
+  assert.equal(fight.runtime.encounter.playerMoves.tornadoKick, undefined);
+  assert.deepEqual(flags, {});
+  fight.runtime.finish(fight.transaction);
 });
 
 test("Story runs locally between rare keepalives, with camera-relative selection and target-relative movement", async () => {

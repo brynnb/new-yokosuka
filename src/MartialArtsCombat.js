@@ -858,6 +858,7 @@ export function createCombatant(options = {}) {
     knockdown: 0,
     invulnerability: 0,
     proficiency: Math.max(0, Number(options.proficiency) || 0),
+    allowedMoveIds: options.allowedMoveIds == null ? null : new Set(options.allowedMoveIds),
     commandQueue: [],
     commandIdleTicks: 0,
     commandOverrides: { ...(options.commandOverrides || {}) },
@@ -1013,15 +1014,16 @@ export function selectQueuedMove(
   { position = "front", opponent = null } = {},
 ) {
   if (!canAct(combatant)) return null;
+  const availableMoves = Object.values(moves).filter(move => combatMoveAvailable(combatant, move));
   const batchedString = combatant.commandQueue.length > 1
     && matchingStrings(combatant.commandQueue).length > 0;
   const stringBase = batchedString
-    ? Object.values(moves).find((candidate) => (
+    ? availableMoves.find((candidate) => (
       candidate.input.length === 1
       && candidate.input[0] === combatant.commandQueue[0]
     ))
     : null;
-  const matches = Object.values(moves)
+  const matches = availableMoves
     .flatMap((move) => [
       move.input,
       ...(move.inputAliases || []),
@@ -1046,7 +1048,7 @@ export function selectQueuedMove(
   // command-buffer window. Do not collapse a temporarily ineligible full
   // counter command into its ordinary one-button suffix (for Swallow Flip,
   // that would incorrectly turn S J K into Crescent Kick).
-  const bufferedCounter = Object.values(moves).find((candidate) => (
+  const bufferedCounter = availableMoves.find((candidate) => (
     candidate.counterCondition
     && [candidate.input, ...(candidate.inputAliases || [])].some(
       (input) => commandEndsWith(combatant.commandQueue, input),
@@ -1061,7 +1063,7 @@ export function selectQueuedMove(
     ? { move: stringBase, matchedInput: stringBase.input }
     : matches[0] || null;
   const move = selected?.move || null;
-  const longerCandidate = move && Object.values(moves).some((candidate) => (
+  const longerCandidate = move && availableMoves.some((candidate) => (
     [candidate.input, ...(candidate.inputAliases || [])].some((input) => (
       input.length > combatant.commandQueue.length
       && commandIsPrefix(combatant.commandQueue, input)
@@ -1107,9 +1109,13 @@ export function setCombatCommandOverride(
   moves = MARTIAL_ARTS_MOVES,
 ) {
   const move = moves[moveId];
-  if (!combatant || !move) return false;
+  if (!combatMoveAvailable(combatant, move)) return false;
   combatant.commandOverrides[combatCommandKey(move.input)] = move.id;
   return true;
+}
+
+export function combatMoveAvailable(combatant, move) {
+  return Boolean(combatant && move && (combatant.allowedMoveIds === null || combatant.allowedMoveIds.has(move.id)));
 }
 
 export function startCombatMove(combatant, move, {
@@ -1117,7 +1123,7 @@ export function startCombatMove(combatant, move, {
   defender = null,
   enemyVariant = combatant.team === "enemy",
 } = {}) {
-  if (!canAct(combatant) || !move) return false;
+  if (!canAct(combatant) || !combatMoveAvailable(combatant, move)) return false;
   combatant.guardHeld = false;
   combatant.action = {
     moveId: move.id,
