@@ -331,7 +331,9 @@ export class ScriptEventController {
     this.clearRequestTimeout(active);
     const event = message?.event;
     if (!event?.type) throw new Error("server yielded an invalid script event");
-    if(active.combatView && event.type!=="combat") {this.presentation.endCombat();this.dialogue.hide();active.combatView=null;active.combatInputPending=false;}
+    // Consecutive fights can yield directly without a dialogue in between.
+    // A new attempt must release the old cast/input before acquiring its own.
+    if(active.combatView && (event.type!=="combat" || message.combat?.token!==active.combatView.token)) {this.presentation.endCombat();this.dialogue.hide();active.combatView=null;active.combatInputPending=false;}
     if(active.challengePrompt?.navigation&&event.type!=="challenge"){this.presentation.endNavigation();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
     if(active.challengePrompt?.driving&&event.type!=="challenge"){this.presentation.endDriving();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
     if((active.challengePrompt?.delivery||active.challengePrompt?.race)&&event.type!=="challenge"){this.presentation.endForkliftChallenge();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
@@ -356,7 +358,7 @@ export class ScriptEventController {
       if(!view || !/^[0-9a-f]{32}$/.test(view.token))throw new Error("Invalid combat snapshot");
       active.combatView=view;active.combatInputPending=false;
       if(!await this.present(active,()=>this.presentation.showCombat(view)))return false;
-      this.dialogue.showCombat(view);this.emitState();return true;
+      this.emitState();return true;
     }
     if(event.type==="challenge") {
       const prompt=message.challenge;

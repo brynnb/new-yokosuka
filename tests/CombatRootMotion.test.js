@@ -1,8 +1,22 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { NullEngine } from "@babylonjs/core/Engines/nullEngine.js";
+import { Scene } from "@babylonjs/core/scene.js";
+import { TransformNode } from "@babylonjs/core/Meshes/transformNode.js";
+import { createCombatActorAdapter } from "../play/combat/CombatActorAdapter.js";
 import {
   createCombatRootMotionApplier,
 } from "../play/combat/CombatRootMotion.js";
+
+test("combat positions refresh within one render frame, including Story model yaw offsets", () => {
+  const engine=new NullEngine(),scene=new Scene(engine),root=new TransformNode("fighter",scene);
+  const actor=createCombatActorAdapter({root,animation:{},getController:()=>null,yawOffset:Math.PI});
+  actor.position();root.position.set(3,0,80);actor.setYaw(Math.PI/2);
+  assert.deepEqual(actor.position().asArray(),[3,0,80]);
+  actor.moveFacing(2);assert.deepEqual(actor.position().asArray(),[5,0,80]);
+  assert.equal(actor.yaw(),Math.PI/2);
+  scene.dispose();engine.dispose();
+});
 
 test("combat root motion maps authored -Z travel into actor forward", () => {
   const root = {

@@ -320,7 +320,7 @@ paid shift or a won fight.
 
 `mark-lunch-rescue` requires the saved morning batch and a 12:00–14:00
 approach around the original Mark/Ryo scene positions. Its original introduction
-leads to the existing server-controlled combat system. Only a genuine victory
+leads to the existing shared client combat system. Only a genuine victory
 can play the original aftermath and atomically save the rescue and Chen/Mad
 Angels notebook clue. A defeated or timed-out fight offers retry/leave; cancelling
 the introduction, fight or aftermath grants nothing. No wages, afternoon outcome,
@@ -353,7 +353,7 @@ yen grant, flags and progress store remain authoritative.
 | Event | Eligibility and presentation | Saved outcome |
 | --- | --- | --- |
 | `workday-one-afternoon` | Earned morning batch and Mark rescue; 14:00–17:00 approach to the tested loading corridor. Explicit choice, unvoiced instructions, five real lift/carry/drop deliveries through the shared vehicle/cargo systems. | Acknowledged quota/notebook only. No pay or calendar jump. |
-| `workday-one-attack` | Completed afternoon batch; 14:00–23:00 in the same corridor. Authored warning/choice and three original-model opponents through the shared server combat. | Acknowledged actual victory saves attack clearance/notebook and a minimum 17:00 finish; no currency. |
+| `workday-one-attack` | Completed afternoon batch; 14:00–23:00 in the same corridor. Authored warning/choice and three original-model opponents through the shared client combat. | Acknowledged actual victory saves attack clearance/notebook and a minimum 17:00 finish; no currency. |
 | `workday-one-payday` | Both five-crate batches and attack clearance; approach outside Alpha Trading. Explicit collection choice, original paired salary motions, borrowed Yada encouragement voices, authored camera and final amount caption. | Atomically grant ¥3,000, save the payday/date and notebook. No pay before the final acknowledgement or again on replay. |
 | `after-work-goro` | Saved payday; approach outside Alpha. Original `GOROMA/SEQDATA2.AUTH`, `M_01GOJ.MOTN`, 01GOJ voices/effects and cameras. | Warning notebook and first-workday completion, without another salary, item, time jump or forced travel. |
 
@@ -710,7 +710,7 @@ and deployment have not been performed.
 
 The GameSpot guide, printed p. 57, places the Tomato-store biker chase after
 19:00, followed by five thugs, Charlie and the Lan Di shipping clue. These are
-connected through ordinary authored Yarn, timed inputs, server combat and the
+connected through ordinary authored Yarn, timed inputs, client combat and the
 original interrogation. The chase and fights have separate receipts so a
 reconnect after the chase can continue at the fight instead of repeating it.
 

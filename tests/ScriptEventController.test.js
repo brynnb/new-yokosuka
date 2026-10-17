@@ -51,6 +51,22 @@ function harness(overrides = {}) {
   };
 }
 
+test("client combat reports once per pending request and consecutive attempts release old presentation", async () => {
+  const h=harness(),calls=[],token="a".repeat(32),next="b".repeat(32);
+  h.presentation.showCombat=async view=>{calls.push(view.token);return true;};
+  h.presentation.endCombat=()=>calls.push("end");
+  const started=h.controller.start({kind:"activity",activity:"fight"});
+  await h.controller.handleYield(yieldMessage("request-1",{type:"combat"},{combat:{id:"first",token,ready:true}}));
+  await started;
+  assert.equal(h.controller.combatResponse("combat_result",token,{outcome:"success"}),true);
+  assert.equal(h.controller.combatResponse("combat_result",token,{outcome:"success"}),false);
+  await h.controller.handleYield(yieldMessage("request-2",{type:"combat"},{combat:{id:"second",token:next,ready:false}}));
+  assert.deepEqual(calls,[token,"end",next]);
+  assert.equal(h.controller.combatResponse("combat_result",token,{outcome:"success"}),false);
+  assert.deepEqual(h.errors,[]);
+  h.controller.reset();
+});
+
 test("server state ownership is prepared before dispatch and released after presentation cleanup", async () => {
   const order = [];
   let ready;

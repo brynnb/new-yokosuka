@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
+import { storyCombatContract } from "../src/StoryCombatContract.js";
 
 import { clientRoot, resolveServerRepo } from "./server-repo.mjs";
 
@@ -19,7 +20,6 @@ if (process.argv.includes("--sync-scripting")) {
     ["internal/scriptevent/story_actor_presence.json", "play/data/story-actor-presence.json"],
     ["internal/scriptcontent/story_time.v1.json", "play/data/story-time-transitions.json"],
     ["internal/scriptcontent/story_travel.v1.json", "play/data/story-destinations.json"],
-    ["internal/scriptevent/combats.json", "play/data/story-combat.json"],
     ["internal/scriptevent/challenges.json", "play/data/story-challenges.json"],
     ["internal/scriptevent/forklift_race_course.json", "src/data/forklift-race-course.json"],
     ["internal/scriptevent/navigation.json", "play/data/story-navigation.json"],
@@ -64,7 +64,7 @@ assert.deepEqual(readJSON(clientRoot,"play/data/story-time-transitions.json"),
   readJSON(serverRoot,"internal/scriptcontent/story_time.v1.json"),"Story time transition catalogs differ");
 assert.deepEqual(readJSON(clientRoot,"play/data/story-destinations.json"),
   readJSON(serverRoot,"internal/scriptcontent/story_travel.v1.json"),"Story destination catalogs differ");
-assert.deepEqual(readJSON(clientRoot,"play/data/story-combat.json"),
+assert.deepEqual(storyCombatContract(readJSON(clientRoot,"play/data/story-combat.json")),
   readJSON(serverRoot,"internal/scriptevent/combats.json"),"Story combat catalogs differ");
 assert.deepEqual(readJSON(clientRoot,"play/data/story-challenges.json"),
   readJSON(serverRoot,"internal/scriptevent/challenges.json"),"Story challenge catalogs differ");

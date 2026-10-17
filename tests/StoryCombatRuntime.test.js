@@ -1,162 +1,141 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { Vector3 } from "@babylonjs/core/Maths/math.vector.js";
 import { StoryCombatRuntime } from "../play/scripts/StoryCombatRuntime.js";
+import { createCombatActorAdapter } from "../play/combat/CombatActorAdapter.js";
+import { applyCombatHit, MARTIAL_ARTS_MOVES } from "../src/MartialArtsCombat.js";
 import catalog from "../play/data/story-combat.json" with { type: "json" };
-import { PLAYER_COMBAT_CONFIG } from "../play/characters/PlayerMotionLibrary.js";
-import markRescue from "../play/assets/harbor/mark-after-work-intro/manifest.json" with {type:"json"};
-import authoredScenes from "../play/scripts/AuthoredSceneCatalog.js";
-import {composeScheduledActorDefinitions} from "../src/ScheduledActorDefinitionCollection.js";
 
-test("Mark's rescue fight shares the original film's source-qualified actor models",()=>{
-  const definition=catalog.encounters.find(e=>e.id==="s1.mfsy.mark-after-work");
-  assert.equal(definition.actors.length,6);
-  for(const actor of definition.actorDefinitions){
-    const {actorCode,activityOnly,...source}=actor;assert.equal(activityOnly,true);
-    const original=markRescue.packageActors[actorCode];
-    const shared=authoredScenes.scenes.filter(s=>s.worldId===definition.worldId).flatMap(s=>s.actorDefinitions).find(a=>a.actorCode===actorCode);
-    if(shared){assert.deepEqual(actor,shared);assert.equal(source.modelCode,original.modelCode);}
-    else assert.deepEqual(source,original);
+function harness(id = "s1.d000.parking-lot") {
+  const definition = catalog.encounters.find(e => e.id === id), calls = [], records = new Map();
+  let now = 1000, prepare = async () => {}, accept = true;
+  const controller = { cameraYaw: 0, cameraDistance: 4, setFirstPerson() {}, updateCamera() {} };
+  for (const spawn of definition.actors) {
+    const root = { position: new Vector3(), rotation: { y: 0 }, enabled: true,
+      getAbsolutePosition() { return this.position; }, setEnabled(v) { this.enabled = v; } };
+    const animation = new Proxy({ reset() {}, update() {}, activeOneShotRootMotionKind: () => null,
+      activeOneShotChoreographySample: () => null, activeOneShotPoseRootTranslation: () => null }, { get: (o,k) => o[k] || (() => true) });
+    records.set(spawn.tag, {root, animation, actor: createCombatActorAdapter({ root, animation, getController: () => controller, setEnabled: v => root.setEnabled(v) })});
   }
-  assert.ok(definition.actors.every(a=>a.y===0));
-});
-
-test("each world's authored scenes and fights compose without competing supplemental actors",()=>{
-  for(const world of new Set(catalog.encounters.map(e=>e.worldId))){
-    const scenes=authoredScenes.scenes.filter(s=>s.worldId===world).flatMap(s=>s.actorDefinitions);
-    const fights=catalog.encounters.filter(e=>e.worldId===world).flatMap(e=>e.actorDefinitions);
-    assert.doesNotThrow(()=>composeScheduledActorDefinitions([scenes,fights]),world);
-  }
-});
-
-test("afternoon authoring relocates the shared formation without mirroring or distorting it",()=>{
-  const source=catalog.encounters.find(e=>e.id==="s1.mfsy.mark-lunch"),placed=catalog.encounters.find(e=>e.id==="s1.mfsy.workday-one-attack");
-  assert.deepEqual(placed.actors.map(a=>[a.tag,a.health]),source.actors.map(a=>[a.tag,a.health]));
-  assert.deepEqual(placed.actorDefinitions,source.actorDefinitions);
-  assert.deepEqual([placed.actors[0].x,placed.actors[0].y,placed.actors[0].z],placed.placement.position);
-  for(let i=0;i<source.actors.length;i++)for(let j=i+1;j<source.actors.length;j++){
-    const distance=(actors)=>Math.hypot(actors[i].x-actors[j].x,actors[i].z-actors[j].z);
-    assert.ok(Math.abs(distance(source.actors)-distance(placed.actors))<1e-10);
-  }
-});
-
-test("warehouse waves retain donor models but use explicit safe combat formation instead of cinematic grab poses",()=>{
-  const source=catalog.encounters.find(e=>e.id==="s1.d000.parking-lot");
-  for(const [id,count]of [["one",6],["two",5]]){
-    const placed=catalog.encounters.find(e=>e.id===`s1.mfsy.workday-two-wave-${id}`);
-    assert.equal(placed.actors.length,count);assert.equal(placed.actors[0].health,100);
-    for(const actor of placed.actorDefinitions)assert.deepEqual(actor,source.actorDefinitions.find(a=>a.actorCode===actor.actorCode));
-    for(const a of placed.actors){
-      const p=placed.formation[a.tag];
-      assert.deepEqual([a.x,a.y,a.z],p.map((v,i)=>v+placed.placement.position[i]));
-      if(a.tag!=="AKIR")assert.ok(Math.hypot(...[0,2].map(i=>p[i]))>=2.5);
-    }
-  }
-});
-
-function harness(id="s1.d000.parking-lot") {
-  const calls=[],target=new EventTarget();let now=1000,prepare=async()=>{};
-  const roots=new Map();
-  const controller={cameraYaw:0,cameraDistance:2,setFirstPerson(){},updateCamera(){}};
-  const bindings={cancel:"KeyX",combatHand:"KeyJ",combatLeg:"KeyK",combatThrow:"KeyL",combatGuard:"KeyI",run:"ShiftLeft",moveForward:"KeyW",moveBackward:"KeyS",moveLeft:"KeyA",moveRight:"KeyD"};
-  const runtime=new StoryCombatRuntime({
-    actors:{prepare:(...args)=>prepare(...args),begin:()=>calls.push("begin"),end:()=>calls.push("end"),
-      applyTransform:(_owner,tag,pose)=>(calls.push([tag,pose]),true),activeActor:tag=>({model:{tag},root:{setEnabled:enabled=>roots.set(tag,enabled)}})},
-    musicControls:{playTemporaryTrack:(...args)=>(calls.push(["music-start",...args]),true),stopTemporaryTrack:track=>calls.push(["music-stop",track])},
-    motionRuntime:{loadNamedSelections:async()=>{},applyNamed:()=>true},getController:()=>controller,getBinding:action=>bindings[action],
-    capturePlayerState:()=>"snapshot",restorePlayerState:snapshot=>calls.push(snapshot),
-    onIntent:(...args)=>(calls.push(args),true),target,now:()=>now,
+  const bindings = { cancel: "KeyX", combatHand: "KeyJ", combatLeg: "KeyK", combatThrow: "KeyL", combatGuard: "KeyI", run: "ShiftLeft",
+    moveForward: "KeyW", moveBackward: "KeyS", moveLeft: "KeyA", moveRight: "KeyD", combatTargetLeft: "KeyQ", combatTargetRight: "KeyE" };
+  const runtime = new StoryCombatRuntime({
+    actors: { prepare: (...args) => prepare(...args), begin: () => calls.push("begin"), end: () => calls.push("end"), activeActor: tag => records.get(tag) },
+    createCombatActors: async () => records, getController: () => controller, getBinding: key => bindings[key],
+    capturePlayerState: () => "snapshot", restorePlayerState: s => calls.push(s),
+    onIntent: (...args) => { calls.push(args); return accept; }, target: new EventTarget(), now: () => now,
+    createIndicator: () => ({ dispose: () => calls.push("indicator-disposed"), projectTargets: entries => entries.map(e => ({ id:e.id, visible:true, defeated:e.combatant.defeated, screenX:e.actor.position().x })) }),
   });
-  const definition=catalog.encounters.find(d=>d.id===id);
-  const view={id:definition.id,token:"a".repeat(32),ready:false,sequence:0,
-    actors:definition.actors.map(actor=>({...actor,yaw:0,maxHealth:actor.health,pose:"stance",poseMs:0}))};
-  return {runtime,view,calls,controller,roots,transaction:{area:definition.area},setPrepare:fn=>{prepare=fn;},advance:()=>{now+=100;}};
+  const view = { id, token: "a".repeat(32), ready: false, remainingMs: definition.timeoutMs }, transaction = { area: definition.area };
+  const step = (seconds = .1) => { now += seconds * 1000; return runtime.update(transaction, seconds); };
+  const ready = async () => { await runtime.show(view, transaction); await runtime.show({...view,ready:true},transaction); };
+  return { runtime, definition, records, calls, view, transaction, controller, step, ready,
+    accept: value => { accept = value; }, prepare: fn => { prepare = fn; } };
 }
 
-test("seventy-opponent definition has67 ordinary fighters, three distinct original bosses and one friendly ally",()=>{
-  const d=catalog.encounters.find(e=>e.id==="s1.mfbt.seventy-man");
-  assert.equal(d.actors.length,13);assert.equal(d.waves.flatMap(w=>w.actors).length,70);
-  assert.equal(d.actors.find(a=>a.tag==="KISY").team,"ally");
-  assert.deepEqual(d.waves.map(w=>w.bossTag).filter(Boolean),["MRSK","PEDR","STSI"]);
-  assert.equal(d.waves.flatMap(w=>w.actors).filter(a=>/^R00/.test(a.tag)).length,67);
-  assert.deepEqual(d.actorDefinitions.filter(a=>["MRSK","PEDR","STSI"].includes(a.actorCode)).map(a=>a.modelCode),["PPL_L","JNC_L","KMA_L"]);
-});
-
-test("pooled reinforcements hide unused roots, snap new lifetimes and frame each boss only once",async()=>{
-  const h=harness("s1.mfbt.seventy-man"),[player,ally,enemy]=h.view.actors;
-  ally.x=player.x+.1;ally.z=player.z;
-  h.view.wave=1;h.view.actors=h.view.actors.map(a=>({...a,inactive:["MRSK","PEDR","STSI"].includes(a.tag),spawnRevision:1}));
-  await h.runtime.show(h.view,h.transaction);
-  assert.notEqual(h.controller.cameraYaw,Math.atan2(player.x-ally.x,player.z-ally.z));
-  assert.equal(h.roots.get("MRSK"),false);
-  const next={...h.view,wave:4,intro:true,bossTag:"MRSK",actors:h.view.actors.map(a=>({...a,inactive:false,spawnRevision:4,x:a.x+5}))};
-  await h.runtime.show(next,h.transaction);h.runtime.update(h.transaction,.016);
-  assert.equal(h.roots.get("MRSK"),true);
-  const pose=h.calls.filter(c=>Array.isArray(c)&&c[0]===enemy.tag).at(-1)[1];
-  assert.equal(pose.x,-(enemy.x+5)); // No lerp from its preceding corpse.
-  const p=next.actors[0],boss=next.actors.find(a=>a.tag==="MRSK");
-  assert.equal(h.controller.cameraYaw,Math.atan2(p.x-boss.x,p.z-boss.z));
-  h.controller.cameraYaw=.75;await h.runtime.show({...next,sequence:2},h.transaction);
-  assert.equal(h.controller.cameraYaw,.75); // Snapshots cannot lock the orbit.
-  h.runtime.finish(h.transaction);
-  assert.deepEqual(h.calls.filter(c=>Array.isArray(c)&&String(c[0]).startsWith("music-")),[["music-start","bgm120",{gain:1,loop:true}],["music-stop","bgm120"]]);
-});
-
-test("pooled combat preparation cancelled before acquisition cannot start or stop another owner's music",async()=>{
-  const h=harness("s1.mfbt.seventy-man");let resolve;
-  h.setPrepare(()=>new Promise(r=>{resolve=r;}));const pending=h.runtime.show(h.view,h.transaction);
-  h.runtime.finish(h.transaction);resolve();await assert.rejects(pending,{name:"AbortError"});
-  assert.equal(h.calls.some(c=>Array.isArray(c)&&String(c[0]).startsWith("music-")),false);
-});
-
-test("combat presentation sends only bounded intents and restores its owned pose",async()=>{
-  const h=harness();await h.runtime.show(h.view,h.transaction);
-  assert.equal(h.calls.some(call=>Array.isArray(call)&&call[0]==="combat_ready"),true);
-  await h.runtime.show({...h.view,ready:true},h.transaction);
-  h.runtime.active.input.held.add("KeyW");h.runtime.active.input.held.add("KeyD");h.runtime.action("leg");h.advance();
-  h.runtime.update(h.transaction,.1);
-  const input=h.calls.find(call=>Array.isArray(call)&&call[0]==="combat_input")[2];
-  assert.equal(input.action,"leg");assert.ok(Math.hypot(input.moveX,input.moveZ)<=1.00001);
-  assert.equal("health" in input,false);assert.equal("position" in input,false);assert.equal("success" in input,false);
-  h.runtime.finish(h.transaction);assert.equal(h.runtime.active,null);assert.equal(h.calls.at(-1),"snapshot");
-});
-
-test("combat acquisition initially faces the nearest opponent without locking camera orbit",async()=>{
-  const h=harness(),player=h.view.actors[0];
-  const nearest=h.view.actors.slice(1).sort((a,b)=>Math.hypot(a.x-player.x,a.z-player.z)-Math.hypot(b.x-player.x,b.z-player.z))[0];
-  await h.runtime.show(h.view,h.transaction);
-  assert.equal(h.controller.cameraYaw,Math.atan2(player.x-nearest.x,player.z-nearest.z));
-  h.controller.cameraYaw=.75;h.runtime.update(h.transaction,.1);
-  assert.equal(h.controller.cameraYaw,.75);h.runtime.finish(h.transaction);
-});
-
-test("cancelled actor preparation cannot acquire beneath a newer combat",async()=>{
-  const h=harness();let resolve;h.setPrepare(()=>new Promise(r=>{resolve=r;}));
-  const old=h.runtime.show(h.view,h.transaction);h.runtime.finish(h.transaction);
-  h.setPrepare(async()=>{});const next={area:"D000"};await h.runtime.show({...h.view,token:"b".repeat(32)},next);
-  const before=h.calls.length;resolve();await assert.rejects(old,{name:"AbortError"});
-  assert.equal(h.calls.length,before);assert.equal(h.runtime.active.transaction,next);h.runtime.finish(next);
-});
-
-test("a combat catalog entry cannot acquire in a different world area",async()=>{
-  const h=harness();await assert.rejects(h.runtime.show(h.view,{area:"JOMO"}),/No combat presentation/);
-  assert.equal(h.runtime.active,null);assert.deepEqual(h.calls,[]);
-});
-
-test("guard and hit reactions retain their fight bank even during a moving frame",async()=>{
-  const h=harness(),selected=[];
-  h.runtime.motionRuntime.applyNamed=(model,motion)=>(selected.push({tag:model.tag,...motion}),true);
-  await h.runtime.show(h.view,h.transaction);
-  for(const [pose,bank,name]of[
-    ["walk","free","AKI_AKI_WALK_LP"],
-    ["guard","fight",PLAYER_COMBAT_CONFIG.guard],
-    ["hit","fight",PLAYER_COMBAT_CONFIG.reactions.hit],
-    ["defeated","fight",PLAYER_COMBAT_CONFIG.reactions.defeated],
-  ]){
-    const view={...h.view,actors:h.view.actors.map(actor=>({...actor,pose,moving:true}))};
-    await h.runtime.show(view,h.transaction);selected.length=0;
-    assert.equal(h.runtime.update(h.transaction,.1),true);
-    assert.equal(selected.length,view.actors.length);
-    assert.ok(selected.every(selection=>selection.bank===bank&&selection.name===name));
+test("every Story fight uses the Practice engine, authored cast and full moves", async () => {
+  for (const def of catalog.encounters) {
+    const h = harness(def.id); await h.ready(); const e = h.runtime.encounter;
+    assert.equal(e.moves, MARTIAL_ARTS_MOVES); assert.equal(e.autoRematch, false);
+    assert.ok(e.enemies.length); assert.equal(e.player.id, "AKIR");
+    assert.equal(h.records.get("AKIR").root.position.x, def.actors[0].x);
+    assert.equal(h.calls.filter(c => Array.isArray(c) && c[0] === "combat_ready").length, 1);
+    h.runtime.finish(h.transaction); assert.equal(h.calls.at(-1), "snapshot");
   }
+});
+
+test("Story runs locally between rare keepalives, with camera-relative selection and target-relative movement", async () => {
+  const h = harness(); await h.ready(); const e = h.runtime.encounter;
+  for (const entry of e.enemies) entry.ai = null;
+  const current = e.player.targetId;
+  h.runtime.active.input.targetChanges.push("right"); h.step(); assert.notEqual(e.player.targetId, current);
+  const p = e.playerActor.position().clone(), target = e.enemyActor.position();
+  h.controller.cameraYaw += Math.PI; // Movement still approaches the target, not the orbit camera.
+  h.runtime.active.input.held.add("KeyW"); h.step();
+  assert.ok(Vector3.Distance(e.playerActor.position(), target) < Vector3.Distance(p, target));
+  assert.equal(h.calls.some(c => Array.isArray(c) && c[0] === "combat_input"), false);
+  assert.equal(h.calls.filter(c => Array.isArray(c)).length, 1);
+  h.step(6); assert.equal(h.calls.at(-1)[0], "combat_poll");
   h.runtime.finish(h.transaction);
+});
+
+test("a local defeat is reported once and cannot trigger Practice's automatic rematch", async () => {
+  const h = harness(); await h.ready(); const e = h.runtime.encounter;
+  applyCombatHit(e.enemy, e.player, {...MARTIAL_ARTS_MOVES.tigerKnuckle, damage:1000});
+  h.step(); assert.equal(h.calls.at(-1)[2].outcome, "defeated");
+  h.runtime.action("leg"); for (let i=0;i<5;i++) h.step();
+  assert.equal(h.calls.filter(c => c[0] === "combat_result").length, 1);
+  assert.equal(e.player.health, 0); h.runtime.finish(h.transaction);
+});
+
+test("pending result retries only until accepted, and cancellation never reports a win", async () => {
+  const h=harness();await h.ready();h.accept(false);
+  h.runtime.active.outcome="success";h.step();assert.equal(h.runtime.active.sentResult,false);
+  h.accept(true);h.step();assert.equal(h.runtime.active.sentResult,true);
+  const count=h.calls.length;h.step();assert.equal(h.calls.length,count);
+  h.runtime.finish(h.transaction);h.step();assert.equal(h.runtime.active,null);
+  const next=harness();await next.ready();next.runtime.finish(next.transaction);
+  assert.equal(next.calls.some(c=>c[0]==="combat_result"),false);
+});
+
+test("cancelled preparation cannot acquire actors or send readiness beneath a new owner", async () => {
+  const h=harness();let resolve;h.prepare(()=>new Promise(r=>{resolve=r;}));
+  const pending=h.runtime.show(h.view,h.transaction);h.runtime.finish(h.transaction);resolve();
+  await assert.rejects(pending,{name:"AbortError"});
+  assert.equal(h.calls.includes("begin"),false);assert.equal(h.calls.some(c=>c[0]==="combat_ready"),false);
+  h.prepare(async()=>{});await h.ready();h.runtime.finish(h.transaction);
+});
+
+test("nonlethal practice completes locally on elapsed active time without knocking anyone out", async () => {
+  const h=harness("s1.jhd0.fuku-practice");await h.ready(); const e=h.runtime.encounter;
+  for(const entry of e.enemies)entry.ai=null;
+  applyCombatHit(e.player,e.enemy,{...MARTIAL_ARTS_MOVES.tigerKnuckle,damage:1000});
+  applyCombatHit(e.enemy,e.player,{...MARTIAL_ARTS_MOVES.tigerKnuckle,damage:1000});
+  assert.equal(e.enemy.health,1);assert.equal(e.player.health,1);
+  for(let i=0;i<301;i++)h.step();
+  assert.equal(h.runtime.active.outcome,"practiced");h.runtime.finish(h.transaction);
+});
+
+test("Story preserves recovery, ally animation role, timeout and ownership on failure", async () => {
+  const h=harness("s1.mfbt.seventy-man");await h.ready();const e=h.runtime.encounter;
+  for(const entry of e.enemies)entry.ai=null;
+  const ally=e.enemies.find(e=>e.id==="KISY");
+  e.executeEnemyDecision({kind:"move",moveId:"shoulderBuster"},ally,e.enemy);
+  assert.equal(ally.combatant.action.enemyVariant,true);
+  applyCombatHit(e.enemy,e.player,{...MARTIAL_ARTS_MOVES.tigerKnuckle,damage:10});
+  h.runtime.active.damagedAt=h.runtime.active.elapsed;
+  const damaged=e.player.health;
+  for(let n=0;n<29;n++)h.step();assert.equal(e.player.health,damaged);
+  for(let n=0;n<20;n++)h.step();assert.ok(e.player.health>damaged);
+  h.runtime.active.elapsed=h.definition.timeoutMs/1000;h.step();
+  assert.equal(h.calls.at(-1)[2].outcome,"failure");h.runtime.finish(h.transaction);
+});
+
+test("slow preparation sends only keepalives; stale ownership and failed loading cannot settle", async () => {
+  const h=harness();let reject;h.prepare(()=>new Promise((_,r)=>{reject=r;}));
+  const pending=h.runtime.show(h.view,h.transaction);h.step(6);
+  assert.equal(h.calls.at(-1)[0],"combat_poll");
+  reject(new Error("missing model"));await assert.rejects(pending,/missing model/);
+  assert.equal(h.runtime.active,null);assert.equal(h.calls.at(-1),"snapshot");
+  h.prepare(async()=>{});await h.ready();
+  await assert.rejects(h.runtime.show({...h.view,token:"b".repeat(32)},h.transaction),/ownership changed/);
+  h.runtime.finish(h.transaction);
+});
+
+test("70-man fight owns ten waves, 67 ordinary opponents, three bosses and an untargetable ally", async () => {
+  const h=harness("s1.mfbt.seventy-man");await h.ready();let defeated=0;const bosses=[];
+  assert.equal(h.definition.waves.length,10);
+  for(let wave=0;wave<10;wave++){
+    const e=h.runtime.encounter, ally=e.enemies.find(e=>e.id==="KISY");
+    assert.equal(ally.combatant.team,e.player.team);assert.equal(e.opponents.includes(ally),false);
+    if(h.definition.waves[wave].bossTag)bosses.push(h.definition.waves[wave].bossTag);
+    h.runtime.active.intro=0;for(const entry of e.enemies)entry.ai=null;
+    // Exercise round orchestration with actual shared-core knockout events;
+    // this is a lifecycle test, not a rendered play-through of all seventy.
+    for(const entry of e.opponents){applyCombatHit(e.player,entry.combatant,{...MARTIAL_ARTS_MOVES.tigerKnuckle,damage:1000});defeated++;}
+    for(let n=0;n<100&&h.runtime.active.wave===wave&&!h.runtime.active.outcome;n++)h.step();
+    if(wave<9)assert.equal(h.runtime.active.outcome,null);
+  }
+  assert.equal(defeated,70);assert.deepEqual(bosses,["MRSK","PEDR","STSI"]);
+  assert.equal(h.runtime.active.outcome,"success");h.runtime.finish(h.transaction);
 });

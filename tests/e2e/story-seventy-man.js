@@ -80,13 +80,13 @@ export async function fightWithKeyboard(page,stop){
         if(p.health<=30)recovering=true;else if(p.health>=85)recovering=false;
         if(recovering){
           // The guide recommends circling to recover. Use real movement/run
-          // bindings, not a health write or a pause of the server simulation.
+          // bindings, not a health write or a pause of the client simulation.
           const a=r.active.definition.bounds,cx=(a.minX+a.maxX)/2,cz=(a.minZ+a.maxZ)/2;
           const radius=Math.min(a.maxX-a.minX,a.maxZ-a.minZ)/2-1,angle=Math.atan2(p.z-cz,p.x-cx)+.55;
           x=cx+radius*Math.cos(angle)-p.x;z=cz+radius*Math.sin(angle)-p.z;
           const length=Math.hypot(x,z);x/=Math.max(.01,length);z/=Math.max(.01,length);
         }else if(e&&(d>1.45||d<.9)){const sign=d<.9?-1:1;x=sign*(e.x-p.x)/Math.max(.01,d);z=sign*(e.z-p.z)/Math.max(.01,d);}
-        const yaw=r.getController().cameraYaw,b=r.active.input.getBindings(),f=-Math.sin(yaw)*x-Math.cos(yaw)*z,s=Math.cos(yaw)*x-Math.sin(yaw)*z;
+        const yaw=r.encounter.playerTargetYaw()+Math.PI,b=r.active.input.getBindings(),f=-Math.sin(yaw)*x-Math.cos(yaw)*z,s=Math.cos(yaw)*x-Math.sin(yaw)*z;
         return{recovering,attack:!recovering&&d<=1.5,keys:[recovering?b.run:null,Math.abs(f)>.25?(f>0?b.up:b.down):null,Math.abs(s)>.25?(s>0?b.right:b.left):null].filter(Boolean)};
       },recovering);
       if(!intent)break;recovering=intent.recovering;await keys(intent.keys);if(intent.attack)await page.keyboard.press(bindings.leg);await page.waitForTimeout(80);

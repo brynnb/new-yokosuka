@@ -86,21 +86,50 @@ or combat protocol before scripts branch on success or award anything.
 
 `start_challenge "registered-id"` / `challenge_result("registered-id")` use
 server-timed prompts. `start_combat "registered-id"` /
-`combat_result("registered-id")` use a server-controlled ephemeral fight. IDs
-come from closed catalogs, not arbitrary client assets. The browser sends
-readiness and sequenced movement/attack/guard intentions; only the server computes
-hits, health and the result. Ordinary Continue, an introduction skip, stale input
-or a supplied win Boolean cannot authorize a success branch. Cancel/failure leaves
+`combat_result("registered-id")` use client-simulated personal fights. IDs
+come from closed catalogs, not arbitrary client assets. The browser owns movement,
+targeting, moves, hits, health, AI and the outcome through the same engine as
+Combat Practice. It sends readiness, sparse keepalives and a typed result, not
+attack packets. Ordinary Continue, an introduction skip or a stale token cannot
+authorize a success branch. A modified client can report an allowed outcome early;
+that is an accepted personal-Story policy. Cancel/failure leaves
 the enclosing story event retryable unless its reviewed script explicitly settles
 a different outcome.
 
 Authored combat definitions live in `tools/scripting/story-combat.json`.
 `build_story_combat.mjs` derives positions from a hash-pinned original AUTH or a
-reviewed authored scene (never both) and exports the shared
-practice move rules to the server's `internal/scriptevent/combats.json`.
-`check-server-contract.mjs --sync-scripting` projects that exact catalog back
-into the client. Content, simulation authority and Babylon presentation remain
-separate; do not implement one-off fights in Yarn command handlers.
+reviewed authored scene (never both) into `play/data/story-combat.json`. The full
+Practice move catalog stays in `src/MartialArtsCombat.js`; no three-move copy is
+generated. Only ID/label/deadline/allowed outcomes go into the server's
+`internal/scriptevent/combats.json`. `check-server-contract.mjs` checks that
+projection; `--sync-scripting` does not overwrite client combat content.
+Content, simulation and Babylon presentation remain separate; do not implement
+one-off fights in Yarn command handlers.
+
+`StoryCombatRuntime` owns the encounter lifetime, original borrowed models,
+nonlethal practice, waves, ally rules, recovery and final outcome. It composes
+`CombatEncounterRuntime`, `CombatInput`, `CombatTargetIndicator` and the existing
+animation adapter rather than maintaining another fighting engine. The shared
+targeting automatically faces the selected opponent; left/right target keys
+choose adjacent opponents in camera space. The full move list and health HUD
+work in both modes. NPC moves/AI and balance remain adaptations, not recovered
+character-specific native movesets. AI animation roles are independent of team.
+
+The server still owns encounter authorization, attempt tokens, bounded leases,
+character saves and once-only Yarn settlement. Neither winning nor reporting a
+result immediately commits a subsequent unfinished conversation's effects.
+Fight-local HP is separate from persistent HP. Client and server must deploy
+together for this protocol change; it needs no database migration. Future PvP
+must validate cross-player outcomes separately; personal Story results cannot
+mutate another player's combat state. No speculative PvP implementation is added.
+
+Migration verification: 199 focused client tests cover all 17 encounter
+definitions, wave progression, nonlethal practice, recovery, cancellation,
+timeouts and successive attempt ownership. Hardware-rendered checks exercise
+Practice, original Gui Zhang AI combat and the seventy-man fight's first cohort,
+selection, shared throw animation and cleanup (account/transport are fixtures).
+Separate real Yarn/PostgreSQL checks exercise result authorization and settlement.
+This is not a complete rendered replay of all chapters or a claim of final balance.
 
 `postCombatChallenge` on a reviewed investigation route links a fight, a separate
 challenge and its aftermath within that same Yarn transaction. Failed fights

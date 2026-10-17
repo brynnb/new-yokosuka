@@ -48,6 +48,8 @@ export function createScriptEventAssembly({
   currentMeshes,
   renderMatrixByKey,
   animation,
+  playerRuntime,
+  onCombatStateChanged,
   retargetCharacterMatrices,
   worldSounds,
   roomScripts,
@@ -138,9 +140,13 @@ export function createScriptEventAssembly({
     instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})}),
   });
   const combatRuntime=new StoryCombatRuntime({
+    scene, sounds: playerRuntime.combatSounds,
+    createCombatActors: (records, signal) => playerRuntime.combat.prepareStoryActors(records, playerRuntime.motionLibrary, signal),
+    onStateChanged: onCombatStateChanged,
+    onViewChanged: view => dialoguePresenter.showCombat(view),
     actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,
       preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
-    motionRuntime,musicControls,getController,getBinding,capturePlayerState,restorePlayerState,
+    musicControls,getController,getBinding,capturePlayerState,restorePlayerState,
     onIntent:(action,token,intent)=>controller?.combatResponse(action,token,intent),
   });
   const navigationRuntime=new StoryNavigationRuntime({
@@ -259,6 +265,7 @@ export function createScriptEventAssembly({
   });
 
   return {
+    combatRuntime,
     activityRunner,
     telephoneRuntime,
     motionCueRuntime,

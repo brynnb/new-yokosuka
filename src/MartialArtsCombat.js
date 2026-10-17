@@ -843,6 +843,8 @@ export function createCombatant(options = {}) {
     yaw: Number(options.yaw) || 0,
     radius: Math.max(0.05, Number(options.radius) || DEFAULT_COMBATANT.radius),
     maxHealth: maximum,
+    minimumHealth: Math.max(0, Math.min(maximum, Number(options.minimumHealth) || 0)),
+    damageScale: Number.isFinite(options.damageScale) ? Math.max(0, options.damageScale) : 1,
     health: clamp(
       Number.isFinite(options.health) ? options.health : maximum,
       0,
@@ -1113,6 +1115,7 @@ export function setCombatCommandOverride(
 export function startCombatMove(combatant, move, {
   lockedTargetId = null,
   defender = null,
+  enemyVariant = combatant.team === "enemy",
 } = {}) {
   if (!canAct(combatant) || !move) return false;
   combatant.guardHeld = false;
@@ -1123,7 +1126,9 @@ export function startCombatMove(combatant, move, {
       move.highProficiencyAnimation
       && combatant.proficiency >= move.highProficiencyThreshold
     ),
-    enemyVariant: combatant.team === "enemy",
+    // Animation roles are independent of allegiance: an AI ally uses the
+    // opponent motion bank too, including its paired-victim timings.
+    enemyVariant,
     connected: new Set(),
     nextFollowupId: combatant.pendingInitialFollowupId
       || move.initialFollowupId
@@ -1350,7 +1355,7 @@ export function strikeCanConnect(attacker, defender, move) {
 
 export function applyCombatHit(attacker, defender, move) {
   const guarded = move.kind !== "throw" && isGuarding(defender);
-  const damage = guarded ? move.guardDamage : move.damage;
+  const damage = Math.round((guarded ? move.guardDamage : move.damage) * (attacker.damageScale ?? 1));
   const victimDuration = attacker.action?.enemyVariant
     ? move.enemyVictimDuration || move.victimDuration
     : attacker.action?.highProficiency
@@ -1361,7 +1366,7 @@ export function applyCombatHit(attacker, defender, move) {
     : move.synchronizedVictim && victimDuration
       ? Math.max(1, victimDuration - (attacker.action?.tick || 0))
       : victimDuration || move.hitStun;
-  defender.health = clamp(defender.health - damage, 0, defender.maxHealth);
+  defender.health = clamp(defender.health - damage, defender.minimumHealth || 0, defender.maxHealth);
   defender.guardStun = guarded ? move.guardStun : 0;
   defender.hitStun = hitStun;
   defender.knockdown = !guarded && move.knockdown

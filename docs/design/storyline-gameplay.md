@@ -621,13 +621,19 @@ the same primitive for B/A/B/A, with original E1030 voices and an authored held
 cast, then settles the Charlie clue. Later story challenges remain missing.
 
 The parking-lot ambush extends the same event ownership with `start_combat` and
-`combat_result`. The server simulates bounded movement, health, strikes and
-opponent decisions from sequenced player intents; a client cannot supply health,
-damage, position or victory. The browser reuses cinematic actor ownership,
-named-motion rendering, the gameplay camera and existing combat input. The fight
+`combat_result`. The client simulates movement, health, full Practice moves and
+opponent decisions, and reports a trusted personal outcome. The server validates
+the authorized attempt and saves its eventual transaction, not individual hits.
+The browser reuses cinematic actor ownership, shared combat animation,
+the gameplay camera and existing combat input. The fight
 is ephemeral within the Yarn run; only the final interrogation settles its clue.
 The [event definition](story-event-template.md#arcade-area-ambush-the-tattoo-parlour-lead)
 records the original assets and intentionally simplified mechanics.
+
+See [combat ownership and authoring](../implementation/scripting/script-authoring.md)
+for the current client/server split. Earlier full-stack chapter checks below
+describe the prior server-simulated implementation; they are not a claim that
+every chapter has been replayed after this ownership migration.
 
 Combat results distinguish `success`, a real `defeated` knockout, nonlethal
 `practiced`, and `failure` from timeout/lost heartbeats. Chai's arcade chapter

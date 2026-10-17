@@ -1,11 +1,10 @@
-// Export shared move identities and original placement. Only the Go server
-// simulates consequential outcomes; this is not another story engine.
+// Compile original placement/client encounters plus the small server result contract.
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
-import { MARTIAL_ARTS_MOVES, COMMAND_BUFFER_TICKS, COMBAT_TICKS_PER_SECOND } from "../../src/MartialArtsCombat.js";
 import { parseAuthMovement, evaluateAuthActor } from "../../src/AuthMovement.js";
 import authoredScenes from "../../play/scripts/AuthoredSceneCatalog.js";
+import { storyCombatContract } from "../../src/StoryCombatContract.js";
 const root = path.resolve(import.meta.dirname, "../..");
 const server = process.env.NEW_YOKOSUKA_SERVER_DIR;
 if (!server) throw new Error("NEW_YOKOSUKA_SERVER_DIR is required");
@@ -76,20 +75,12 @@ const encounters = spec.encounters.map(input => {
     // and formation without a duplicate scene or a runtime teleport command.
     for(const actor of actors){const x=actor.x-origin.x,z=actor.z-origin.z;actor.x=position[0]+x*c+z*s;actor.y=position[1]+actor.y-origin.y;actor.z=position[2]-x*s+z*c;}
   }
-  const actions = input.actions.map(({input:command,move:id,adaptedDamage})=> {
-    const move = MARTIAL_ARTS_MOVES[id];
-    if(!move?.animation || !move.enemyAnimation)throw new Error(`Incomplete move ${id}`);
-    return {input:command,id,label:move.label,playerAnimation:move.animation,enemyAnimation:move.enemyAnimation,
-      durationMs:Math.ceil(move.duration*1000/30),startupMs:Math.ceil(move.startup*1000/30),
-      range:move.range,arcDegrees:move.arcDegrees,damage:adaptedDamage??move.damage,
-      guardDamage:move.guardDamage,hitStunMs:Math.ceil(move.hitStun*1000/30)};
-  });
   const waves=input.waves?.map(wave=>({label:wave.label,...(wave.bossTag?{bossTag:wave.bossTag}:{}),introMs:wave.introMs||0,actors:wave.actors.map(tag=>{
     const spawn=actors.find(a=>a.tag===tag);if(!spawn||tag==="AKIR"||spawn.team==="ally")throw Error(`Invalid wave opponent ${input.id}/${tag}`);return {...spawn};
   })}));
   return {id:input.id,label:input.label,area:input.area,worldId:input.worldId,provenance:input.provenance,
     ...(input.placement?{placement:input.placement}:{}),...(input.formation?{formation:input.formation}:{}),...(input.actorWorldId?{actorWorldId:input.actorWorldId}:{}),
-    ...(input.sourceScene?{sourceScene:input.sourceScene}:{sourceActivity:input.sourceActivity,sha256:input.sha256}),...(input.sourcePackage?{sourcePackage:input.sourcePackage}:{}),actors,actions,
+    ...(input.sourceScene?{sourceScene:input.sourceScene}:{sourceActivity:input.sourceActivity,sha256:input.sha256}),...(input.sourcePackage?{sourcePackage:input.sourcePackage}:{}),actors,
     actorDefinitions:actors.filter(a=>a.tag!=="AKIR").map(actor=>{
       const def=definitions?.find(def=>def.actorCode===actor.tag);
       if(!def)throw new Error(`No reviewed actor model ${actor.tag}`);return def;
@@ -99,7 +90,9 @@ const encounters = spec.encounters.map(input => {
     playerSpeed:input.playerSpeed,enemySpeed:input.enemySpeed,maxAttackers:input.maxAttackers,timeoutMs:input.timeoutMs,
     ...(input.practiceDurationMs?{practiceDurationMs:input.practiceDurationMs}:{}),
     ...(waves?{waves,waveDelayMs:input.waveDelayMs||0}:{}),...(input.musicTrack?{musicTrack:input.musicTrack}:{}),
-    inputBufferMs:Math.ceil(COMMAND_BUFFER_TICKS*1000/COMBAT_TICKS_PER_SECOND)};
+    };
 });
-fs.writeFileSync(path.join(server,"internal/scriptevent/combats.json"),JSON.stringify({schema:spec.schema,encounters},null,2)+"\n");
+const catalog = {schema:spec.schema,encounters};
+fs.writeFileSync(path.join(root,"play/data/story-combat.json"),JSON.stringify(catalog,null,2)+"\n");
+fs.writeFileSync(path.join(server,"internal/scriptevent/combats.json"),JSON.stringify(storyCombatContract(catalog),null,2)+"\n");
 console.log(`Exported ${encounters.length} combat definitions from original staging/shared moves.`);

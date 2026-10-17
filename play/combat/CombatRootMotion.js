@@ -1,4 +1,4 @@
-export function createCombatRootMotionApplier(root, onMoved = () => {}) {
+export function createCombatRootMotionApplier(root, onMoved = () => {}, getYaw = () => root.rotation.y) {
   let activeKey = null;
   let originX = 0;
   let originZ = 0;
@@ -13,7 +13,7 @@ export function createCombatRootMotionApplier(root, onMoved = () => {}) {
       activeKey = key;
       originX = root.position.x;
       originZ = root.position.z;
-      originYaw = root.rotation.y;
+      originYaw = getYaw();
       localOriginX = localX;
       localOriginZ = localZ;
     }

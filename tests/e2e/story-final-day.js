@@ -110,7 +110,7 @@ export async function verifyFinalNight(page,testInfo,character,{musicResponses})
     await page.screenshot({path:testInfo.outputPath("gui-zhang-original-mutual-collapse.png")});
     await expect.poll(async()=>(await saved()).character.storyFlags[flag("final-spar")],{timeout:30_000}).toBe(true);
     expect((await check()).character.storyFlags[flag("final-pipe")]).not.toBe(true);
-    expect(await page.evaluate(()=>window.storyProbe.combatIntents.some(i=>i.action==="leg"))).toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(i=>i.action==="leg"))).toBe(true);
   }
   const ready=async()=>{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.mfbt.terry-pipe"&&window.storyProbe.regions.controller.active.challengePrompt.ready||window.storyProbe.sceneErrors.length,null,{timeout:60_000});await check();};
   if(!(await saved()).character.storyFlags[flag("final-pipe")]){

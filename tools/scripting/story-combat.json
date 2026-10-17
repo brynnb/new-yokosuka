@@ -4,15 +4,13 @@
     "id":"s1.mend.final-chai","label":"Defeat Chai at the harbor","area":"MEND","worldId":"mend",
     "sourceActivity":"play/assets/harbor/final-chai-intro/SEQDATA3.AUTH","sha256":"c7f0ba65895b097996708dfd0f294d8fbf2f62c0dfa5196987e7d956dd4687b4","sourceTime":"end","sourcePackage":"play/assets/harbor/final-chai-intro/manifest.json",
     "provenance":"GameSpot p65 requires actual one-on-one victory; defeat retries, unlike the earlier arcade encounter. Original CHAIAUTH3 ending positions and byte-identical original MEND/CHA_M body. Shared basic moves/AI, 100/160 health, speed and arena padding are authored balance, not Chai's native low-kick/leaping moveset. Actual knockout plus acknowledged interrogation alone save victory/arrival; no later counter, letter or ship outcome.",
-    "health":{"AKIR":100,"CHAI":160},"playerSpeed":3.2,"enemySpeed":2.6,"maxAttackers":1,"timeoutMs":240000,"arenaPadding":1.8,"musicTrack":"bgm032",
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "health":{"AKIR":100,"CHAI":160},"playerSpeed":3.2,"enemySpeed":2.6,"maxAttackers":1,"timeoutMs":240000,"arenaPadding":1.8,"musicTrack":"bgm032"
   },{
     "id":"s1.mfbt.seventy-man","label":"Ryo and Gui Zhang against the Mad Angels","area":"MFBT","worldId":"mfbt","sourceScene":"s1.mfbt.seventy-man",
-    "provenance":"GameSpot pp64-65:70 actual opponents including3 stronger bosses, with Gui Zhang alongside Ryo. Original MFBT bodies and moves, named bosses per project character table. Authored10-cohort reinforcements reuse13 prepared model slots rather than rendering70 full rigs. Positions, health/balance, nonlethal ally, short boss arrival framing and basic shared AI are adaptations, not reconstructed original battle scripts. Each of67 ordinary opponents and3 bosses requires server-simulated knockout. Only the enclosing Yarn event can save victory; no counter, movie acknowledgement or cleared partial cohort grants it.",
+    "provenance":"GameSpot pp64-65:70 actual opponents including3 stronger bosses, with Gui Zhang alongside Ryo. Original MFBT bodies and moves, named bosses per project character table. Authored10-cohort reinforcements reuse13 prepared model slots rather than rendering70 full rigs. Positions, health/balance, nonlethal ally, short boss arrival framing and basic shared AI are adaptations, not reconstructed original battle scripts. Each of67 ordinary opponents and3 bosses requires client-simulated knockout. Only the enclosing Yarn event can save victory; no counter, movie acknowledgement or cleared partial cohort grants it.",
     "health":{"AKIR":100,"KISY":100,"R001":18,"R002":18,"R003":18,"R004":18,"R005":18,"R006":18,"R007":18,"R008":18,"MRSK":72,"PEDR":90,"STSI":110},
     "teams":{"KISY":"ally"},"damageScales":{"MRSK":1.25,"PEDR":1.5,"STSI":1.75},"musicTrack":"bgm120",
     "playerSpeed":3.2,"enemySpeed":2,"maxAttackers":2,"timeoutMs":900000,"arenaPadding":2,"waveDelayMs":1200,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}],
     "waves":[
       {"label":"Mad Angels","actors":["R001","R002","R003","R004","R005","R006","R007","R008"]},
       {"label":"Reinforcements","actors":["R001","R002","R003","R004","R005","R006","R007","R008"]},
@@ -29,31 +27,26 @@
     "id":"s1.mfbt.final-spar","label":"Spar with Gui Zhang","area":"MFBT","worldId":"mfbt",
     "sourceActivity":"play/assets/harbor/final-confrontation/SEQDATA1.AUTH","sha256":"a288a7c666a0c07de748bc4fef6dca4395e0744822dc303d80200ecf6ce09bc9","sourceTime":"end",
     "sourcePackage":"play/assets/harbor/final-confrontation/manifest.json",
-    "provenance":"GameSpot p63 explicitly says no winning/losing outcome. Original TLYA ending positions and byte-identical original MFBT EVHUM/KIS_M body reused from the reviewed Chen pack. Thirty seconds of server-timed nonlethal fighting, shared moves/basic AI and arena padding are authored. Result is practiced, not Gui Zhang defeated, movie-completion victory or70-man victory.",
-    "health":{"AKIR":100,"KISY":100},"playerSpeed":2.4,"enemySpeed":1.6,"maxAttackers":1,"timeoutMs":120000,"practiceDurationMs":30000,"arenaPadding":1.8,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "provenance":"GameSpot p63 explicitly says no winning/losing outcome. Original TLYA ending positions and byte-identical original MFBT EVHUM/KIS_M body reused from the reviewed Chen pack. Thirty seconds of client-timed nonlethal fighting, shared moves/basic AI and arena padding are authored. Result is practiced, not Gui Zhang defeated, movie-completion victory or70-man victory.",
+    "health":{"AKIR":100,"KISY":100},"playerSpeed":2.4,"enemySpeed":1.6,"maxAttackers":1,"timeoutMs":120000,"practiceDurationMs":30000,"arenaPadding":1.8
   },{
     "id":"s1.mfsy.nozomi-guards","label":"Get past the warehouse guards","area":"MFSY","worldId":"mfsy","sourceScene":"s1.mfsy.nozomi-guards",
     "provenance":"GameSpot pp62-63 establishes the outside battle before the warehouse battle. Use six distinct original TERYB1 bodies in an authored open-alley formation, not a claim of recovered native roster/spawns. Shared combat and adapted health/AI, two active attackers; all six require actual defeat. Saves no rescue or deal.",
-    "health":{"AKIR":100,"NR01":28,"NR02":28,"NR03":28,"NR04":28,"NR05":28,"NR06":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "health":{"AKIR":100,"NR01":28,"NR02":28,"NR03":28,"NR04":28,"NR05":28,"NR06":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5
   },{
     "id":"s1.tery.nozomi-guards","label":"Clear the warehouse","area":"TERY","worldId":"tery","sourceScene":"s1.tery.nozomi-guards",
     "provenance":"Original TERYB2 contains these seven distinct low-detail bodies. Authored formation in the original warehouse, shared combat and adapted health/AI, two active attackers; not a recovered native roster/moveset. All seven require actual defeat. Independent saved victory cannot grant the later hostage deal.",
-    "health":{"AKIR":100,"NR11":28,"NR12":28,"NR13":28,"NR14":28,"NR15":28,"NR16":28,"NR17":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "health":{"AKIR":100,"NR11":28,"NR12":28,"NR13":28,"NR14":28,"NR15":28,"NR16":28,"NR17":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5
   },{
     "id":"s1.mfsy.biker-thugs","label":"Get past the five bikers","area":"MFSY","worldId":"mfsy","sourceScene":"s1.mfsy.biker-thugs",
     "provenance":"GameSpot p57 five-thug battle after twelve-input chase. Original BAT_MBQC low-detail biker models plus two explicit reviewed thug donors. Authored open-alley formation near original interrogation, basic moves/AI and balance, two simultaneous attackers; all five must actually be defeated. No movie-completion victory or reward.",
-    "health":{"AKIR":100,"BTK_":28,"BTH_":28,"BTA_":36,"MRSK":28,"OKYS":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "health":{"AKIR":100,"BTK_":28,"BTH_":28,"BTA_":36,"MRSK":28,"OKYS":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5
   },{
     "id":"s1.mfsy.charlie-harbor","label":"Face Charlie","area":"MFSY","worldId":"mfsy",
     "sourceActivity":"play/assets/harbor/charlie-harbor-interrogation/SEQDATA0.AUTH","sha256":"67970ac5c77f5493da141b9ad73e120de57aa7f993c85dbd5d03165de1ea5382","sourceTime":"start","sourcePackage":"play/assets/harbor/charlie-harbor-interrogation/manifest.json",
     "formation":{"AKIR":[0,0,0],"CHRL":[0,0,-3]},"placement":{"position":[-92,0,25],"yaw":0},
     "provenance":"GameSpot p57: fight Charlie after the five thugs. Original CHRL/BIK_L from the exact interrogation cast, explicit separated standing formation rather than cinematic intimidation poses. Shared basic combat, 160 health, full-health fresh player attempt and faster opponent are declared balance adaptations, not Charlie's original moveset. Winning alone cannot grant the clue; original interrogation must finish or be explicitly skipped.",
-    "health":{"AKIR":100,"CHRL":160},"playerSpeed":3.2,"enemySpeed":2.5,"maxAttackers":1,"timeoutMs":180000,"arenaPadding":2,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "health":{"AKIR":100,"CHRL":160},"playerSpeed":3.2,"enemySpeed":2.5,"maxAttackers":1,"timeoutMs":180000,"arenaPadding":2
   },{
     "id":"s1.mfsy.mark-after-work","label":"Protect Mark at Warehouse No. 17","area":"MFSY","worldId":"mfsy",
     "sourceActivity":"play/assets/harbor/mark-after-work-intro/SEQDATA2.AUTH","sha256":"5e0eb0f982f22c53a3028d73a4912d6cac3643156159c4564a7e8339ef058367",
@@ -61,67 +54,57 @@
     "formation":{"AKIR":[0,0,0],"DEB1":[3,0,-6],"DEB2":[-2,0,-6],"MRSK":[1.5,0,-4],"OKYS":[-1,0,-4],"BTC_":[0,0,-7]},
     "placement":{"position":[-91,0,33],"yaw":0},
     "provenance":"GameSpot p56 confirms the Warehouse17 rescue and Mark's brother/ChiYouMen clue. BOKOMARK introduction supplies five visible thugs; using all five as the fight roster is authored, not a recovered native free-battle roster. Reuse the exact cinematic package's original models; DEB1/BTH and DEB2/BTN associations are reviewed authored choices. Explicit floor-level formation near the original cast instead of Ryo's off-shot y=-2, two simultaneous attackers and shared basic moves/AI are adaptations. No reward or victory from the films.",
-    "health":{"AKIR":100,"DEB1":28,"DEB2":28,"MRSK":36,"OKYS":28,"BTC_":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "health":{"AKIR":100,"DEB1":28,"DEB2":28,"MRSK":36,"OKYS":28,"BTC_":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5
   },{
     "id":"s1.mfsy.workday-two-wave-one","label":"Warehouse ambush — first wave","area":"MFSY","worldId":"mfsy","actorWorldId":"dobuita",
     "sourceActivity":"play/assets/dobuita/drauth/SEQDATA2.AUTH","sha256":"a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
     "formation":{"AKIR":[0,0,0],"SMTH":[2.5,0,-1.5],"HARY":[3,0,1.5],"TONY":[5,0,-1],"SERA":[3.5,0,0],"JONZ":[5,0,1]},
     "placement":{"position":[-15.821,0,118.673],"yaw":0},
     "provenance":"GameSpot p56: five opponents, then four with replenished health. Authored outdoor dispatch encounter instead of original Warehouse3 room/door/crate trap. Original DRAUTH models are explicit donors, not recovered harbor attacker identities. Explicit corridor formation replaces cinematic grab poses. Two concurrent close attackers balance simplified controls across realistic input rates; all five must still be defeated. Shared original motions, no movie-completion victory.",
-    "health":{"AKIR":100,"SMTH":28,"TONY":28,"SERA":36,"HARY":18,"JONZ":18},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "health":{"AKIR":100,"SMTH":28,"TONY":28,"SERA":36,"HARY":18,"JONZ":18},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5
   },{
     "id":"s1.mfsy.workday-two-wave-two","label":"Warehouse ambush — second wave","area":"MFSY","worldId":"mfsy","actorWorldId":"dobuita",
     "sourceActivity":"play/assets/dobuita/drauth/SEQDATA2.AUTH","sha256":"a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
     "formation":{"AKIR":[0,0,0],"SMTH":[2.5,0,-1.5],"HARY":[3,0,1.5],"TONY":[5,0,-1],"SERA":[3.5,0,0]},
     "placement":{"position":[-15.821,0,118.673],"yaw":0},
     "provenance":"Four-opponent second wave after the actual first victory. A new ordinary combat attempt starts Ryo at full health as the guide specifies; original donor models, explicit open-corridor formation and basic moves/AI are adaptations. Cinematic grab poses are not combat starts. Both waves must be won before the clue can settle; cancellation or defeat never grants it.",
-    "health":{"AKIR":100,"SMTH":28,"TONY":28,"SERA":36,"HARY":18},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "health":{"AKIR":100,"SMTH":28,"TONY":28,"SERA":36,"HARY":18},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5
   },{
     "id":"s1.mfsy.workday-one-attack","label":"Get past the attackers","area":"MFSY","worldId":"mfsy","sourceScene":"s1.mfsy.mark-lunch-combat",
     "placement":{"position":[-15.821,0,118.673],"yaw":1.3021669961391247},
     "provenance":"Authored first-afternoon three-opponent encounter, not recovered original staging or exact attacker identities. Reuse the existing original-asset three-fighter cast/formation, rigidly relocated along the rendered loading corridor. Same shared moves and basic AI; no wage or automatic victory from this definition.",
-    "health":{"AKIR":100,"MRSK":36,"OKYS":28,"THG3":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":3,"timeoutMs":180000,"arenaPadding":1.5,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "health":{"AKIR":100,"MRSK":36,"OKYS":28,"THG3":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":3,"timeoutMs":180000,"arenaPadding":1.5
   },{
     "id":"s1.mfsy.mark-lunch","label":"Protect Mark","area":"MFSY","worldId":"mfsy",
     "sourceScene":"s1.mfsy.mark-lunch-combat",
     "provenance":"GameSpot printed p54: three-opponent noon rescue, retry until victorious, then Mark explains Chen/Mad Angels rivalry. Original MIZUMARK aftermath supplies Ryo/MRSK/OKYS placement; an anonymous third fighter borrows existing KMD_L rather than claiming an unrecovered identity. Shared moves/basic AI, health, speeds, arena bounds and third placement are adaptations. Film completion cannot win this fight.",
-    "health":{"AKIR":100,"MRSK":36,"OKYS":28,"THG3":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":3,"timeoutMs":180000,"arenaPadding":1.5,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "health":{"AKIR":100,"MRSK":36,"OKYS":28,"THG3":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":3,"timeoutMs":180000,"arenaPadding":1.5
   },{
     "id":"s1.dgct.chai-arcade","label":"Face Chai","area":"DGCT","worldId":"arcade",
     "sourceActivity":"play/assets/dobuita/chai-intro/A0172.AUTH","sha256":"01e36d04c63cc52eb2399b17f652ed583308bcbbc873abddc85c9dc7b2865b00","sourceTime":"end",
     "actorDefinitions":[{"actorCode":"CHAI","label":"Chai","modelCode":"CHA_M","activityOnly":true}],
     "provenance":"Original GMCT introduction ending supplies Ryo/Chai poses. GameSpot pp46-47 confirms that actual win and defeat both progress, with next-day recovery only on defeat. Shared basic moves/AI, 100/120 health, speeds, compact rectangular floor bounds and generic reactions are authored adaptations, not Chai's original low-kick moveset or free-battle engine.",
-    "health":{"AKIR":100,"CHAI":120},"playerSpeed":2.4,"enemySpeed":2.6,"maxAttackers":1,"timeoutMs":180000,"arenaPadding":0.8,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "health":{"AKIR":100,"CHAI":120},"playerSpeed":2.4,"enemySpeed":2.6,"maxAttackers":1,"timeoutMs":180000,"arenaPadding":0.8
   },{
     "id":"s1.jd00.gui-zhang-first","label":"Face Gui Zhang","area":"JD00","worldId":"sakuragaoka",
     "sourceActivity":"play/assets/sakuragaoka/gui-zhang/SEQDATA0.AUTH","sha256":"146b689bcb27206dfcbd4648e34096dfcad5a4b304ba841d58685d264c06c516","sourceTime":"end",
-    "provenance":"Original KSBT introduction's ending positions and exact KISY/KIS_M mapping from chars.csv/HUMANS. Contemporary GameSpot guide p37: brief free battle that cannot be lost. Thirty seconds of server-timed nonlethal fighting, shared moves/basic AI, arena padding and health/speed are authored adaptations. Outcome is practiced, not a defeat or a movie-completion victory.",
+    "provenance":"Original KSBT introduction's ending positions and exact KISY/KIS_M mapping from chars.csv/HUMANS. Contemporary GameSpot guide p37: brief free battle that cannot be lost. Thirty seconds of client-timed nonlethal fighting, shared moves/basic AI, arena padding and health/speed are authored adaptations. Outcome is practiced, not a defeat or a movie-completion victory.",
     "actorDefinitions":[{"actorCode":"KISY","label":"Chen Gui Zhang","modelCode":"KIS_M","activityOnly":true}],
-    "health":{"AKIR":100,"KISY":100},"playerSpeed":2.4,"enemySpeed":1.6,"maxAttackers":1,"timeoutMs":120000,"practiceDurationMs":30000,"arenaPadding":1.8,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "health":{"AKIR":100,"KISY":100},"playerSpeed":2.4,"enemySpeed":1.6,"maxAttackers":1,"timeoutMs":120000,"practiceDurationMs":30000,"arenaPadding":1.8
   },{
     "id":"s1.jd00.gao-rescue","label":"Save Gao Wen","area":"JD00","worldId":"sakuragaoka","sourceScene":"s1.jd00.gao-introduction",
     "provenance":"Three opponents and subsequent A QTE: GameSpot Dreamcast guide. Fighter models from original Disc 1 full MT5s, identities corroborated by the character inventory and JD00 EN_HAMA/EN_HATA/EN_RYOU files. Authored roadside poses, rectangular arena, health/speed/basic AI are adaptations, not recovered construction-lot transforms or the native free-battle engine.",
-    "health":{"AKIR":100,"TDSI":36,"HTNK":32,"OKYS":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":3,"timeoutMs":180000,"arenaPadding":1.5,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "health":{"AKIR":100,"TDSI":36,"HTNK":32,"OKYS":28},"playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":3,"timeoutMs":180000,"arenaPadding":1.5
   },{
     "id":"s1.d000.parking-lot","label":"Escape the ambush","area":"D000","worldId":"dobuita",
     "sourceActivity":"play/assets/dobuita/drauth/SEQDATA2.AUTH","sha256":"a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
     "provenance":"Original DRAUTH trap cast and AMOV positions; five opponents and at most three simultaneous attackers corroborated by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Two simultaneous close attackers balance the simplified controls, consistently with other authored crowds; all five must be defeated. Shared practice moves, health/speed, spacing, arena padding and strict restart are adaptations, not the original free-battle engine.",
     "health":{"AKIR":100,"SMTH":28,"TONY":28,"SERA":36,"HARY":18,"JONZ":18},
-    "playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "playerSpeed":3.2,"enemySpeed":2.2,"maxAttackers":2,"timeoutMs":180000,"arenaPadding":1.5
   },{
     "id":"s1.jhd0.fuku-practice","label":"Practice with Fuku-san","area":"JHD0","worldId":"exterior",
     "sourceActivity":"play/assets/hazuki/kakg/SEQDATK2.AUTH","sha256":"5b42a5329495c02803ac6e0cec1054921048088c47ed45f9efb1e0b046066267","sourceTime":"end",
-    "provenance":"KAKG dialogue's original Ryo/Fuku positions and existing combat moves. The GameSpot 2000 walkthrough describes a spar that ends automatically before Ine-san's letter. Thirty seconds of server-timed, nonlethal practice, shared basic AI/moves and arena padding are adaptations; this result is practiced, never an ambush victory.",
-    "health":{"AKIR":100,"FUKU":100},"playerSpeed":2.4,"enemySpeed":1.6,"maxAttackers":1,"timeoutMs":120000,"practiceDurationMs":30000,"arenaPadding":1.2,
-    "actions":[{"input":"hand","move":"tigerKnuckle"},{"input":"leg","move":"crescentKick"},{"input":"throw","move":"overthrow","adaptedDamage":12}]
+    "provenance":"KAKG dialogue's original Ryo/Fuku positions and existing combat moves. The GameSpot 2000 walkthrough describes a spar that ends automatically before Ine-san's letter. Thirty seconds of client-timed, nonlethal practice, shared basic AI/moves and arena padding are adaptations; this result is practiced, never an ambush victory.",
+    "health":{"AKIR":100,"FUKU":100},"playerSpeed":2.4,"enemySpeed":1.6,"maxAttackers":1,"timeoutMs":120000,"practiceDurationMs":30000,"arenaPadding":1.2
   }]
 }

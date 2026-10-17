@@ -885,6 +885,8 @@ function createPlayRuntime() {
     localDebug: LOCAL_DEBUG,
   });
   const scriptEvents = createScriptEventAssembly({
+    playerRuntime,
+    onCombatStateChanged: snapshot => combatHud.update(snapshot),
     scene,
     musicControls,
     getForklifts:()=>forkliftAssembly,
@@ -1356,7 +1358,7 @@ function createPlayRuntime() {
   const combatHud = new CombatHud({
     dom,
     getController: () => controller,
-    getEncounter: () => playerRuntime.combat?.encounter,
+    getEncounter: () => scriptEvents.combatRuntime.encounter || playerRuntime.combat?.encounter,
   });
   combatHud.initialize();
 

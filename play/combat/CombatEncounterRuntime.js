@@ -65,6 +65,12 @@ export class CombatEncounterRuntime {
     enemyAI = new MartialArtsEnemyAI(),
     sounds = null,
     reactionSequences = {},
+    playerOptions = {},
+    autoRematch = true,
+    allowControlExit = true,
+    preservePlacement = false,
+    waitForFirstAttack = true,
+    maxAttackers = Infinity,
   }) {
     this.input = input;
     this.playerActor = playerActor;
@@ -73,6 +79,7 @@ export class CombatEncounterRuntime {
     this.projectTargets = projectTargets;
     this.sounds = sounds;
     this.reactionSequences = reactionSequences;
+    Object.assign(this, { autoRematch, allowControlExit, preservePlacement, waitForFirstAttack, maxAttackers });
     this.combat = new MartialArtsCombat({ moves });
     this.player = this.combat.add(createCombatant({
       id: "ryo",
@@ -82,10 +89,11 @@ export class CombatEncounterRuntime {
       // Native expert variants are selected above the executable's >0x37
       // proficiency threshold.
       proficiency: 100,
+      ...playerOptions,
     }));
     this.enemies = (enemies || [{ id: "enemy", name: "Chai", actor: enemyActor, ai: enemyAI }])
       .map(entry => ({ ...entry, combatant: this.combat.add(createCombatant({
-        id: entry.id, team: "enemy",
+        id: entry.id, team: entry.team || "enemy", ...entry.combatOptions,
       })) }));
     if (!this.enemies.length) throw new Error("Combat encounter needs an opponent");
     this.actors = new Map([
@@ -105,11 +113,12 @@ export class CombatEncounterRuntime {
   }
 
   get selectedEnemy() {
-    return this.enemies.find(entry => entry.id === this.player.targetId) || this.enemies[0];
+    return this.opponents.find(entry => entry.id === this.player.targetId) || this.opponents[0];
   }
   get enemy() { return this.selectedEnemy.combatant; }
   get enemyActor() { return this.selectedEnemy.actor; }
-  get enemiesDefeated() { return this.enemies.every(entry => entry.combatant.defeated); }
+  get opponents() { return this.enemies.filter(entry => entry.combatant.team !== this.player.team); }
+  get enemiesDefeated() { return this.opponents.every(entry => entry.combatant.defeated); }
   get enemiesBusy() {
     // Defeat poses intentionally persist; a fallen partner must not prevent X
     // from leaving combat while the remaining partners are still alive.
@@ -126,7 +135,7 @@ export class CombatEncounterRuntime {
 
   changeTarget(direction) {
     if (!this.active || !this.controlsActive || this.player.defeated) return false;
-    const next = adjacentCombatTarget(this.projectTargets(this.enemies), this.player.targetId, direction);
+    const next = adjacentCombatTarget(this.projectTargets(this.opponents), this.player.targetId, direction);
     if (next === this.player.targetId) return false;
     this.player.targetId = next;
     this.onStateChanged(this.snapshot());
@@ -142,7 +151,7 @@ export class CombatEncounterRuntime {
     // Let the player establish the first exchange. Without this gate Chai's
     // AI starts ticking as soon as the arena finishes loading, so his hit
     // reaction can replace Ryo's first move animation before it is visible.
-    this.enemyOffenseUnlocked = false;
+    this.enemyOffenseUnlocked = !this.waitForFirstAttack;
     for (const entry of this.enemies) {
       if (entry.ai) entry.ai.cooldown = COMBAT_TICKS_PER_SECOND;
     }
@@ -168,7 +177,9 @@ export class CombatEncounterRuntime {
     this.playerActor.releaseReaction?.();
     for (const entry of this.enemies) {
       entry.actor.releaseReaction?.();
-      if (entry.placement) {
+      if (this.preservePlacement) {
+        // Story authoring owns world placement, not the practice formation.
+      } else if (entry.placement) {
         entry.actor.placeAtOffset(this.playerActor, entry.placement);
       } else if (entry.actor.placeBeside) {
         entry.actor.placeBeside(this.playerActor, 2);
@@ -224,7 +235,7 @@ export class CombatEncounterRuntime {
       controlsActive: this.controlsActive,
       targetId: this.player.targetId,
       targetName: this.player.targetId ? this.selectedEnemy.name : "All defeated",
-      opponentsRemaining: this.enemies.filter(entry => !entry.combatant.defeated).length,
+      opponentsRemaining: this.opponents.filter(entry => !entry.combatant.defeated).length,
       playerHealth: this.player.health,
       playerMaxHealth: this.player.maxHealth,
       enemyHealth: this.enemy.health,
@@ -431,21 +442,25 @@ export class CombatEncounterRuntime {
     return true;
   }
 
-  executeEnemyDecision(decision, entry = this.selectedEnemy) {
+  executeEnemyDecision(decision, entry = this.selectedEnemy, target = this.player) {
     const { combatant: enemy, actor: enemyActor } = entry;
+    const targetActor = this.actors.get(target.id);
     enemy.guardHeld = decision.kind === "guard";
     if (Number.isFinite(decision.turnYaw)) {
       enemyActor.setYaw(decision.turnYaw);
     }
     if (decision.kind === "approach") {
-      enemyActor.moveFacing(decision.distance);
+      entry.movementState = "combatAdvance";
+      enemyActor.moveFacing(decision.distance * (entry.speedScale ?? 1));
     } else if (decision.kind === "retreat") {
-      enemyActor.moveFacing(-decision.distance);
+      entry.movementState = "combatRetreat";
+      enemyActor.moveFacing(-decision.distance * (entry.speedScale ?? 1));
     } else if (decision.kind === "move") {
       const move = this.moves[decision.moveId];
       if (startCombatMove(enemy, move, {
-        lockedTargetId: this.player.id,
-        defender: this.player,
+        lockedTargetId: target.id,
+        defender: target,
+        enemyVariant: true,
       })) {
         const pairAnchor = enemyActor.combatVisualPosition?.()
           || enemyActor.position();
@@ -459,22 +474,22 @@ export class CombatEncounterRuntime {
         if (move?.synchronizedVictim) {
           // Establish the common authored yaw before a traveling receiver
           // captures its world-space root-motion origin.
-          this.playerActor.alignPairedTo?.(enemyActor);
+          targetActor.alignPairedTo?.(enemyActor);
           const playVictim = (
-            this.playerActor.playOpponentMoveVictim
-            || this.playerActor.playMoveVictim
+            targetActor.playOpponentMoveVictim
+            || targetActor.playMoveVictim
           );
-          playVictim?.call(this.playerActor, decision.moveId, {
+          playVictim?.call(targetActor, decision.moveId, {
             highProficiency: enemy.action.highProficiency,
             holdLastFrame: true,
           });
-          this.sounds?.start(this.player.id, {
+          this.sounds?.start(target.id, {
             bank: move?.enemyVictimAnimation ? "battle" : "global",
             sequence: move?.enemyVictimAnimation || move?.victimAnimation,
           });
           alignSynchronizedPair(
             enemyActor,
-            this.playerActor,
+            targetActor,
             decision.moveId,
             pairAnchor,
           );
@@ -701,7 +716,7 @@ export class CombatEncounterRuntime {
       this.input.consumeTargetChanges?.();
       return [];
     }
-    if (this.input.consumeControlsToggle?.()) {
+    if (this.input.consumeControlsToggle?.() && this.allowControlExit) {
       if (!this.controlsActive) {
         this.setControlsActive(true);
       } else if (this.player.defeated || this.enemiesDefeated) {
@@ -730,6 +745,7 @@ export class CombatEncounterRuntime {
     );
     const previousOpponentPosition = opponentPosition(this.player, this.enemy);
     for (const entry of this.enemies) syncCombatant(entry.combatant, entry.actor);
+    for (const entry of this.enemies) entry.movementState = null;
     syncCombatant(this.player, this.playerActor);
     let targetChanged = this.acquireTarget();
     for (const direction of this.input.consumeTargetChanges?.() || []) {
@@ -788,7 +804,7 @@ export class CombatEncounterRuntime {
     // combatant, but offered no way to start another exchange. Treat the
     // next attack as an explicit rematch and preserve that same input.
     if (
-      containsAttackCommand(playerCommands)
+      this.autoRematch && containsAttackCommand(playerCommands)
       && (this.player.defeated || this.enemiesDefeated)
     ) {
       this.resetCombatants();
@@ -808,10 +824,18 @@ export class CombatEncounterRuntime {
       this.aiAccumulator += frameSeconds * COMBAT_TICKS_PER_SECOND;
       while (this.aiAccumulator >= 1) {
         this.aiAccumulator -= 1;
+        let attackers = this.opponents.filter(entry => entry.combatant.action).length;
         for (const entry of this.enemies) {
           if (!entry.ai || entry.combatant.defeated) continue;
           syncCombatant(entry.combatant, entry.actor);
-          this.executeEnemyDecision(entry.ai.decide(entry.combatant, this.player), entry);
+          const target = this.combat.nearestOpponent(entry.combatant);
+          if (!target) continue;
+          let decision = entry.ai.decide(entry.combatant, target);
+          if (entry.combatant.team !== this.player.team && !entry.combatant.action && attackers >= this.maxAttackers) {
+            const relation = distanceAndFacing(entry.combatant, target);
+            decision = { kind: relation.distance < 2 ? "retreat" : "guard", turnYaw: relation.targetYaw, distance: .05 };
+          } else if (decision.kind === "move" && entry.combatant.team !== this.player.team) attackers++;
+          this.executeEnemyDecision(decision, entry, target);
         }
       }
     }

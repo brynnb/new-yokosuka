@@ -29,17 +29,17 @@ export async function verifyChaiArcade(page,testInfo,character,enterInteriorDoor
   // Explicit cinematic skip is not a combat result. The real fight must still
   // prepare, receive physical controls and reach its server-owned outcome.
   await page.keyboard.press("KeyX");
-  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.combatView?.ready&&window.storyProbe.combatRuntime?.active?.view.ready,null,{timeout:60_000});await noErrors();
-  expect(await page.evaluate(()=>window.storyProbe.regions.controller.active.combatView.actors.map(a=>a.tag))).toEqual(["AKIR","CHAI"]);
+  await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready&&window.storyProbe.combatRuntime?.active?.view.ready,null,{timeout:60_000});await noErrors();
+  expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.map(a=>a.tag))).toEqual(["AKIR","CHAI"]);
   await page.screenshot({path:testInfo.outputPath(`chai-server-fight-${ending}.png`)});await unchanged();
   if(ending==="win"){
     await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyI");const movement=new Set();
     try{
-      for(let i=0;i<1400&&await page.evaluate(()=>!!window.storyProbe.regions.controller.active?.combatView);i++){
+      for(let i=0;i<1400&&await page.evaluate(()=>!!window.storyProbe.combatRuntime?.active?.view);i++){
         const keys=await page.evaluate(()=>{
           const r=window.storyProbe.combatRuntime,v=r.active?.view;if(!v)return[];
           const p=v.actors[0],e=v.actors[1],d=Math.hypot(p.x-e.x,p.z-e.z);if(d>=.9)return[];
-          const x=(p.x-e.x)/Math.max(.01,d),z=(p.z-e.z)/Math.max(.01,d),yaw=r.getController().cameraYaw,b=r.active.input.getBindings();
+          const x=(p.x-e.x)/Math.max(.01,d),z=(p.z-e.z)/Math.max(.01,d),yaw=r.encounter.playerTargetYaw()+Math.PI,b=r.active.input.getBindings();
           const f=-Math.sin(yaw)*x-Math.cos(yaw)*z,s=Math.cos(yaw)*x-Math.sin(yaw)*z;
           return[Math.abs(f)>.25?(f>0?b.up:b.down):null,Math.abs(s)>.25?(s>0?b.right:b.left):null].filter(Boolean);
         });
@@ -48,7 +48,7 @@ export async function verifyChaiArcade(page,testInfo,character,enterInteriorDoor
         await page.keyboard.press("KeyK");await page.waitForTimeout(80);
       }
     }finally{await page.keyboard.up("KeyI");for(const key of movement)await page.keyboard.up(key);}
-    expect(await page.evaluate(()=>window.storyProbe.combatIntents.some(i=>i.guard&&i.action==="leg"))).toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(i=>i.guard&&i.action==="leg"))).toBe(true);
   }
   await scene(ending==="win"?"chai-victory":"chai-rescue");await page.waitForTimeout(7000);
   await page.screenshot({path:testInfo.outputPath(`chai-original-${ending}-ending.png`)});await unchanged();

@@ -66,7 +66,7 @@ export class PlayerMotionBank {
 export function playerFeatureMotionPaths(world) {
   const paths = [];
   if (world?.vehicle === "forklift") paths.push(SUPPLEMENTAL_PATHS.get("M_FREE.BIN"));
-  // Both free-roam practice and server-owned Story fights use these streets;
+  // Both free-roam practice and client-simulated Story fights use these streets;
   // motion availability does not activate exploration's local practice mode.
   if (world?.id === "mfbt") paths.push(FIGHT_MOTION_PATH);
   return paths;

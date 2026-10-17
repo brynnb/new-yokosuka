@@ -4,8 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
 
-test("Combat Practice renders four opponents and switches targets in camera space", async ({ page }, testInfo) => {
-  test.setTimeout(240_000);
+export async function openCombatApp(page) {
   const errors = [];
   page.on("pageerror", error => { errors.push(error.message); console.error(error.message); });
   await page.setViewportSize({ width: 1600, height: 1000 });
@@ -61,6 +60,14 @@ test("Combat Practice renders four opponents and switches targets in camera spac
   await instrument("play/multiplayer/MultiplayerSession.js", `
     MultiplayerSession.prototype.connect = function() {};
   `);
+  await instrument("play/scripts/ScriptEventAssembly.js", `
+    const assemble = createScriptEventAssembly;
+    createScriptEventAssembly = function(...args) {
+      const assembly = assemble(...args);
+      window.combatProbe.scripts = assembly;
+      return assembly;
+    };
+  `);
   await page.route("**/play/play.js*", route => route.fulfill({ contentType: "application/javascript", body: `
     import { PlayApplication } from '/play/PlayApplication.js';
     const probe = window.combatProbe;
@@ -79,6 +86,12 @@ test("Combat Practice renders four opponents and switches targets in camera spac
     null, { timeout: 150_000 });
   expect(await page.evaluate(() => window.combatProbe.errors)).toEqual([]);
   await expect(page.locator("#loading")).toHaveClass(/hidden/);
+  return errors;
+}
+
+test("Combat Practice renders four opponents and switches targets in camera space", async ({ page }, testInfo) => {
+  test.setTimeout(240_000);
+  const errors = await openCombatApp(page);
   console.info("Combat browser check: arena loaded, checking targets");
   await page.evaluate(() => {
     const controller = window.combatProbe.runtime.getController();
@@ -192,4 +205,94 @@ test("Combat Practice renders four opponents and switches targets in camera spac
   await expect(page.locator(".combat-target-indicator")).toBeVisible();
   expect(errors).toEqual([]);
   await testInfo.attach("runtime-errors", { body: JSON.stringify(errors), contentType: "application/json" });
+});
+
+test("Story borrows its original cast and uses full client combat, then restores ownership", async ({ page }, testInfo) => {
+  test.setTimeout(240_000);
+  const errors = await openCombatApp(page);
+  // Only the transport is a fixture. The production controller, preparation,
+  // original models, shared animation engine, input, HUD and cleanup are real.
+  await page.evaluate(async () => {
+    const probe = window.combatProbe, scripts = probe.scripts, c = scripts.controller;
+    probe.runtime.setActive(false);
+    probe.intents = [];
+    c.prepareStart = null;
+    let definition, run = 0, ready = false, token;
+    const yieldCombat = requestId => queueMicrotask(() => c.handleYield({ requestId, runId: run,
+      event: { type: "combat" }, combat: { id: definition, token, ready, remainingMs: 900_000 } }));
+    c.client = {
+      startScriptEvent(selector, requestId) {
+        definition = selector.activity; run++; token = run.toString(16).padStart(32, "0"); ready = false;
+        yieldCombat(requestId); return true;
+      },
+      advanceScriptEvent(runId, action, args) {
+        probe.intents.push({ action, ...args });
+        if (action === "combat_ready") ready = true;
+        if (action === "combat_result" || action === "cancel") queueMicrotask(() => c.handleYield({
+          requestId: args.requestId, runId, event: { type: action === "cancel" ? "cancelled" : "complete" },
+        }));
+        else yieldCombat(args.requestId);
+        return true;
+      },
+    };
+    probe.before = scripts.combatRuntime.getController().position?.clone?.();
+    await c.start({ kind: "activity", activity: "s1.mfbt.final-spar" }, { area: "MFBT" });
+  });
+  await page.waitForFunction(() => window.combatProbe.scripts.combatRuntime.active?.view?.ready || window.combatProbe.errors.length, null, { timeout: 90_000 });
+  await expect(page.locator(".combat-target-indicator").filter({ visible: true })).toHaveCount(1);
+  await expect(page.locator("#combat-enemy-gauge")).toHaveAttribute("data-target-id", "KISY");
+  await page.screenshot({ path: testInfo.outputPath("story-original-gui-zhang-client-combat.png") });
+  await page.locator("#renderCanvas").focus();
+  await page.keyboard.press("KeyK");
+  await expect.poll(() => page.evaluate(() => window.combatProbe.scripts.combatRuntime.encounter.playerCommandFeedback().moveLabel || "")).not.toBe("");
+  await expect.poll(() => page.evaluate(() => window.combatProbe.scripts.combatRuntime.encounter.player.health), {timeout:15_000}).toBeLessThan(100);
+  await page.screenshot({ path: testInfo.outputPath("story-gui-zhang-ai-exchange.png") });
+  await page.evaluate(() => window.combatProbe.scripts.controller.cancel("render-check"));
+  await expect(page.locator("#combat-enemy-gauge")).toBeHidden();
+  await expect.poll(() => page.evaluate(() => window.combatProbe.scripts.controller.status)).toBe("idle");
+  expect(await page.evaluate(() => window.combatProbe.intents.filter(i => i.action === "combat_result"))).toEqual([]);
+
+  await page.evaluate(() => window.combatProbe.scripts.controller.start(
+    { kind: "activity", activity: "s1.mfbt.seventy-man" }, { area: "MFBT" }));
+  await page.waitForFunction(() => window.combatProbe.scripts.combatRuntime.active?.view?.ready, null, { timeout: 90_000 });
+  const cast = await page.evaluate(() => {
+    const r = window.combatProbe.scripts.combatRuntime;
+    return { opponents: r.encounter.opponents.length,
+      visible: [...r.active.records].filter(([tag, a]) => a.root.isEnabled() && a.model.renderRoot.getChildMeshes().some(m => m.isEnabled() && m.isVisible)).map(([tag]) => tag),
+      ally: r.encounter.enemies.find(e => e.id === "KISY").combatant.team };
+  });
+  expect(cast.opponents).toBe(8);
+  expect(cast.visible).toHaveLength(10);
+  expect(cast.ally).toBe("player");
+  await page.screenshot({ path: testInfo.outputPath("story-seventy-original-cast-and-ally.png") });
+  await page.locator("#renderCanvas").focus();
+  const firstTarget=await page.locator("#combat-enemy-gauge").getAttribute("data-target-id");
+  await page.keyboard.press("KeyE");
+  await expect(page.locator("#combat-enemy-gauge")).not.toHaveAttribute("data-target-id", firstTarget);
+  await expect(page.locator("#combat-enemy-gauge")).not.toHaveAttribute("data-target-id", "KISY");
+  // A deterministic paired-animation check: place just the selected original
+  // fighter in throw range; all damage/animation still uses real keyboard input.
+  await page.evaluate(() => {
+    const e=window.combatProbe.scripts.combatRuntime.encounter;
+    e.resetCombatants();for(const entry of e.enemies)entry.ai=null;
+    const p=e.playerActor.position(),yaw=e.playerActor.yaw();
+    e.enemyActor.setCombatPosition(p.x+Math.sin(yaw)*.9,p.z+Math.cos(yaw)*.9,yaw+Math.PI);
+  });
+  await page.keyboard.press("KeyW");await page.keyboard.press("KeyS");await page.keyboard.press("KeyL");
+  await page.waitForFunction(() => {
+    const a=window.combatProbe.scripts.combatRuntime.encounter.player.action;
+    return a?.lockedTargetId&&!a.acquisitionStage;
+  }, null, {timeout:5000}).catch(async error=>{
+    console.info("Story throw state",JSON.stringify(await page.evaluate(()=>{
+      const e=window.combatProbe.scripts.combatRuntime.encounter;
+      return {player:e.player,target:e.enemy,feedback:e.playerCommandFeedback(),controls:e.controlsActive,commands:e.input.pressed};
+    })));throw error;
+  });
+  await page.screenshot({path:testInfo.outputPath("story-original-fighter-shared-throw.png")});
+  await page.waitForFunction(()=>!window.combatProbe.scripts.combatRuntime.encounter.playerMovementLocked);
+  expect(await page.evaluate(()=>window.combatProbe.scripts.combatRuntime.encounter.opponents.some(e=>e.combatant.health<e.combatant.maxHealth))).toBe(true);
+  await page.evaluate(() => window.combatProbe.scripts.controller.cancel("render-check"));
+  await expect.poll(() => page.evaluate(() => window.combatProbe.scripts.controller.status)).toBe("idle");
+  expect(await page.evaluate(() => window.combatProbe.intents.some(i => i.action === "combat_input"))).toBe(false);
+  expect(errors).toEqual([]);
 });

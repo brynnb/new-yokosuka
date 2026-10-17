@@ -327,7 +327,7 @@ export async function verifyGuiZhangEncounter(page,testInfo,character){
     }
   }finally{await page.keyboard.up(bindings.guard);}
   await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-gui-zhang-bodyguard"||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await noErrors();
-  expect(await page.evaluate(()=>window.storyProbe.combatIntents.some(i=>i.action==="leg"))).toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(i=>i.action==="leg"))).toBe(true);
   expect((await saved()).character.storyFlags["notebook.s1.gui-zhang-bodyguard"]).not.toBe(true);
   await page.waitForTimeout(9000);await page.screenshot({path:testInfo.outputPath("gui-zhang-bodyguard-explanation.png")});
   await page.waitForFunction(()=>[...(window.storyProbe.director?.activeCutscene?.packageRuntime.audio.active?.elements||[])]

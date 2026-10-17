@@ -123,13 +123,24 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     ["scripts/StoryCombatRuntime", `const probeCombatShow = StoryCombatRuntime.prototype.show;
       StoryCombatRuntime.prototype.show = function(...args) {
         window.storyProbe.combatRuntime = this;
-        window.storyProbe.lastCombatView = args[0];
         if(!this.probeIntent) {
-          this.probeIntent = true; const send = this.onIntent;
-          this.onIntent = (...args) => {
-            const accepted = send(...args);
-            if(accepted && args[0] === 'combat_input') window.storyProbe.combatIntents.push({...args[2],token:args[1],time:performance.now()});
-            return accepted;
+          this.probeIntent = true; const publish = this.onViewChanged;
+          this.onViewChanged = view => {
+            window.storyProbe.lastCombatView = view;
+            const input=this.active?.input;
+            if(input&&!input.probeCommands){
+              input.probeCommands=true;const consume=input.consumeCommands.bind(input);
+              input.consumeCommands=()=>{
+                const commands=consume(),b=input.getBindings();
+                for(const action of commands.length?commands:[""])window.storyProbe.combatInputs.push({
+                  action,guard:input.guarding,time:performance.now(),
+                  moveX:Number(input.held.has(b.right))-Number(input.held.has(b.left)),
+                  moveZ:Number(input.held.has(b.up))-Number(input.held.has(b.down)),
+                });
+                return commands;
+              };
+            }
+            return publish(view);
           };
         }
         return probeCombatShow.apply(this,args);
@@ -179,7 +190,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.route("**/play/play.js*", route => route.fulfill({ contentType: "application/javascript", body: `
     import { PlayApplication } from '/play/PlayApplication.js';
     import { ArcadeAttractScreens } from '/play/arcade/ArcadeAttractScreens.js';
-    window.storyProbe = { starts: [], nativeStarts: [], combatIntents: [], ready: false, errors: [], sceneErrors: [] };
+    window.storyProbe = { starts: [], nativeStarts: [], combatInputs: [], ready: false, errors: [], sceneErrors: [] };
     const create = ArcadeAttractScreens.prototype.create;
     ArcadeAttractScreens.prototype.create = function(id) { return this.definitions[id]?.audioChannel === 'tv' ? null : create.call(this,id); };
     const application = new PlayApplication();
@@ -1140,22 +1151,22 @@ async function verifyParkingLotAmbush(page,testInfo,character) {
     await page.waitForTimeout(2000);await page.screenshot({path:testInfo.outputPath(`ambush-${part}.png`)});
     await page.keyboard.press("KeyX");
   }
-  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.combatView?.ready || window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+  await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready || window.storyProbe.sceneErrors.length,null,{timeout:60_000});
   expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   await page.screenshot({path:testInfo.outputPath("ambush-fight.png")});
-  // Let the real server-controlled opponents defeat an idle player, then retry.
+  // Let the real client-controlled opponents defeat an idle player, then retry.
   await expect(page.getByRole("button",{name:"Try again",exact:true})).toBeVisible({timeout:60_000});
   let saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
   expect(saved.character.storyFlags["notebook.s1.tattoo-parlor"]).not.toBe(true);
   await page.getByRole("button",{name:"Try again",exact:true}).click();
-  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.combatView?.ready,null,{timeout:60_000});
+  await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready,null,{timeout:60_000});
   await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyI");
   try {
-    for(let i=0;i<400 && await page.evaluate(()=>!!window.storyProbe.regions.controller.active?.combatView);i++) {
+    for(let i=0;i<400 && await page.evaluate(()=>!!window.storyProbe.combatRuntime?.active?.view);i++) {
       await page.keyboard.press("KeyK");await page.waitForTimeout(250);
     }
   } finally {await page.keyboard.up("KeyI");}
-  const intents=await page.evaluate(()=>window.storyProbe.combatIntents);
+  const intents=await page.evaluate(()=>window.storyProbe.combatInputs);
   await testInfo.attach("combat-inputs",{body:JSON.stringify(intents),contentType:"application/json"});
   expect(intents.some(intent=>intent.guard&&intent.action==="leg")).toBe(true);
   await expect(page.getByRole("button",{name:"Ask about Charlie",exact:true})).toBeVisible({timeout:30_000});
@@ -1442,12 +1453,12 @@ async function verifyDojoAndChineseLetter(page,testInfo,character) {
       });
       await page.waitForFunction(()=>!window.storyProbe.regions.inside.has("s1.jhd0.cartel-dojo.entrance"));
       await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
-      try{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.combatView?.ready||window.storyProbe.sceneErrors.length,null,{timeout:30_000});}
+      try{await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready||window.storyProbe.sceneErrors.length,null,{timeout:30_000});}
       finally{await page.keyboard.up("KeyW");}
       expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
     };
     await enterDojo();await page.screenshot({path:testInfo.outputPath("fuku-dojo-practice.png")});
-    expect(await page.evaluate(()=>window.storyProbe.regions.controller.active.combatView.practice)).toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.practice)).toBe(true);
     await page.keyboard.press("KeyX");
     await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
     let saved=await savedState();expect(saved.character.storyFlags["story.s1.ine-letter-invitation"]).not.toBe(true);
@@ -1455,12 +1466,12 @@ async function verifyDojoAndChineseLetter(page,testInfo,character) {
     await enterDojo();
     await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyI");
     try {
-      for(let i=0;i<65&&await page.evaluate(()=>!!window.storyProbe.regions.controller.active?.combatView);i++) {
+      for(let i=0;i<65&&await page.evaluate(()=>!!window.storyProbe.combatRuntime?.active?.view);i++) {
         await page.keyboard.press("KeyK");await page.waitForTimeout(500);
       }
     } finally {await page.keyboard.up("KeyI");}
     await waitScene("story-s1-fuku-resolve");
-    expect(await page.evaluate(()=>window.storyProbe.combatIntents.some(i=>i.action==="leg"))).toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(i=>i.action==="leg"))).toBe(true);
     await page.screenshot({path:testInfo.outputPath("fuku-cartel-resolve.png")});await page.keyboard.press("KeyX");
     await waitScene("story-s1-ine-letter-invitation");
     await page.screenshot({path:testInfo.outputPath("ine-letter-invitation.png")});await page.keyboard.press("KeyX");
@@ -1574,10 +1585,10 @@ async function verifyGaoRescue(page,testInfo,character) {
     await noErrors();
   };
   const advanceTo=async type=>{
-    for(let i=0;i<40&&!await page.evaluate(type=>type==="combat"?!!window.storyProbe.regions.controller.active?.combatView:!!window.storyProbe.regions.controller.active?.challengePrompt,type);i++){
+    for(let i=0;i<40&&!await page.evaluate(type=>type==="combat"?!!window.storyProbe.combatRuntime?.active?.view:!!window.storyProbe.regions.controller.active?.challengePrompt,type);i++){
       await page.keyboard.press('Space');await page.waitForTimeout(180);
     }
-    await page.waitForFunction(type=>(type==="combat"?window.storyProbe.regions.controller.active?.combatView?.ready:window.storyProbe.regions.controller.active?.challengePrompt?.ready)||window.storyProbe.sceneErrors.length,type,{timeout:30_000});
+    await page.waitForFunction(type=>(type==="combat"?window.storyProbe.combatRuntime?.active?.view?.ready:window.storyProbe.regions.controller.active?.challengePrompt?.ready)||window.storyProbe.sceneErrors.length,type,{timeout:30_000});
     await noErrors();
   };
   if(!character.storyFlags["story.s1.gao-rescue.completed"]){
@@ -1598,20 +1609,20 @@ async function verifyGaoRescue(page,testInfo,character) {
     await page.evaluate(async()=>{await window.storyProbe.lifecycle.travelToWorld('yamanose');await window.storyProbe.lifecycle.travelToWorld('sakuragaoka');});
     await scene('s1.jd00.gao-introduction');await advanceTo('combat');
     await page.screenshot({path:testInfo.outputPath('gao-three-opponent-fight.png')});
-    expect(await page.evaluate(()=>window.storyProbe.regions.controller.active.combatView.actors.length)).toBe(4);
-    const lostToken=await page.evaluate(()=>window.storyProbe.regions.controller.active.combatView.token);
+    expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.length)).toBe(4);
+    const lostToken=await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.token);
     await expect(page.getByRole('button',{name:'Try again',exact:true})).toBeVisible({timeout:60_000});
     expect((await saved()).character.storyFlags['notebook.s1.gao-wen']).not.toBe(true);
     await page.getByRole('button',{name:'Try again',exact:true}).click();await advanceTo('combat');
     await page.waitForFunction(old=>{
-      const view=window.storyProbe.regions.controller.active?.combatView,owner=window.storyProbe.combatRuntime.active;
+      const view=window.storyProbe.combatRuntime?.active?.view,owner=window.storyProbe.combatRuntime.active;
       return view?.ready&&view.token!==old&&owner?.token===view.token&&owner.view.ready&&!!owner.input;
     },lostToken,{timeout:30_000});
     await page.locator('#renderCanvas').focus();await page.keyboard.down('KeyI');
     await page.keyboard.down('KeyS');await page.waitForTimeout(350);await page.keyboard.up('KeyS');
     const heldMovement=new Set();
     try {
-      for(let i=0;i<1600&&await page.evaluate(()=>!!window.storyProbe.regions.controller.active?.combatView);i++) {
+      for(let i=0;i<1600&&await page.evaluate(()=>!!window.storyProbe.combatRuntime?.active?.view);i++) {
         // Read the authoritative positions, then use physical keyboard input.
         // Standing still against three attackers is not a guaranteed victory.
         const keys=await page.evaluate(()=>{
@@ -1623,7 +1634,7 @@ async function verifyGaoRescue(page,testInfo,character) {
           const enemy=opponents[0];if(!enemy)return [];
           const distance=Math.hypot(player.x-enemy.x,player.z-enemy.z);if(distance>=.9)return [];
           const x=(player.x-enemy.x)/Math.max(.01,distance),z=(player.z-enemy.z)/Math.max(.01,distance);
-          const yaw=runtime.getController().cameraYaw,bindings=runtime.active.input.getBindings();
+          const yaw=runtime.encounter.playerTargetYaw()+Math.PI,bindings=runtime.active.input.getBindings();
           const forward=-Math.sin(yaw)*x-Math.cos(yaw)*z,side=Math.cos(yaw)*x-Math.sin(yaw)*z;
           return [Math.abs(forward)>.25?(forward>0?bindings.up:bindings.down):null,
             Math.abs(side)>.25?(side>0?bindings.right:bindings.left):null].filter(Boolean);
@@ -1636,12 +1647,12 @@ async function verifyGaoRescue(page,testInfo,character) {
       await page.keyboard.up('KeyI');for(const key of heldMovement)await page.keyboard.up(key);
     }
     await testInfo.attach('gao-combat-inputs',{body:JSON.stringify(await page.evaluate(()=>({
-      intents:window.storyProbe.combatIntents.slice(-12),view:window.storyProbe.regions.controller.active?.combatView,
+      intents:window.storyProbe.combatInputs.slice(-12),view:window.storyProbe.combatRuntime?.active?.view,
       held:[...(window.storyProbe.combatRuntime.active?.input?.held||[])],errors:window.storyProbe.sceneErrors,
     }))),contentType:'application/json'});
     await noErrors();
-    expect(await page.evaluate(()=>window.storyProbe.combatIntents.some(intent=>intent.guard&&intent.action==='leg'))).toBe(true);
-    expect(await page.evaluate(()=>window.storyProbe.combatIntents.some(intent=>Math.hypot(intent.moveX,intent.moveZ)>0))).toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(intent=>intent.guard&&intent.action==='leg'))).toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(intent=>Math.hypot(intent.moveX,intent.moveZ)>0))).toBe(true);
     await scene('s1.jd00.gao-hostage');await page.screenshot({path:testInfo.outputPath('gao-hostage-with-ball.png')});await advanceTo('challenge');
     expect((await saved()).character.storyFlags['notebook.s1.gao-wen']).not.toBe(true);
     await page.keyboard.press('Shift');

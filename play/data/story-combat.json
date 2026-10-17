@@ -26,50 +26,6 @@
           "health": 160
         }
       ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
-        }
-      ],
       "actorDefinitions": [
         {
           "actorCode": "CHAI",
@@ -93,15 +49,14 @@
       "enemySpeed": 2.6,
       "maxAttackers": 1,
       "timeoutMs": 240000,
-      "musicTrack": "bgm032",
-      "inputBufferMs": 400
+      "musicTrack": "bgm032"
     },
     {
       "id": "s1.mfbt.seventy-man",
       "label": "Ryo and Gui Zhang against the Mad Angels",
       "area": "MFBT",
       "worldId": "mfbt",
-      "provenance": "GameSpot pp64-65:70 actual opponents including3 stronger bosses, with Gui Zhang alongside Ryo. Original MFBT bodies and moves, named bosses per project character table. Authored10-cohort reinforcements reuse13 prepared model slots rather than rendering70 full rigs. Positions, health/balance, nonlethal ally, short boss arrival framing and basic shared AI are adaptations, not reconstructed original battle scripts. Each of67 ordinary opponents and3 bosses requires server-simulated knockout. Only the enclosing Yarn event can save victory; no counter, movie acknowledgement or cleared partial cohort grants it.",
+      "provenance": "GameSpot pp64-65:70 actual opponents including3 stronger bosses, with Gui Zhang alongside Ryo. Original MFBT bodies and moves, named bosses per project character table. Authored10-cohort reinforcements reuse13 prepared model slots rather than rendering70 full rigs. Positions, health/balance, nonlethal ally, short boss arrival framing and basic shared AI are adaptations, not reconstructed original battle scripts. Each of67 ordinary opponents and3 bosses requires client-simulated knockout. Only the enclosing Yarn event can save victory; no counter, movie acknowledgement or cleared partial cohort grants it.",
       "sourceScene": "s1.mfbt.seventy-man",
       "actors": [
         {
@@ -198,50 +153,6 @@
           "z": 60.8,
           "health": 110,
           "damageScale": 1.75
-        }
-      ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
         }
       ],
       "actorDefinitions": [
@@ -957,15 +868,14 @@
         }
       ],
       "waveDelayMs": 1200,
-      "musicTrack": "bgm120",
-      "inputBufferMs": 400
+      "musicTrack": "bgm120"
     },
     {
       "id": "s1.mfbt.final-spar",
       "label": "Spar with Gui Zhang",
       "area": "MFBT",
       "worldId": "mfbt",
-      "provenance": "GameSpot p63 explicitly says no winning/losing outcome. Original TLYA ending positions and byte-identical original MFBT EVHUM/KIS_M body reused from the reviewed Chen pack. Thirty seconds of server-timed nonlethal fighting, shared moves/basic AI and arena padding are authored. Result is practiced, not Gui Zhang defeated, movie-completion victory or70-man victory.",
+      "provenance": "GameSpot p63 explicitly says no winning/losing outcome. Original TLYA ending positions and byte-identical original MFBT EVHUM/KIS_M body reused from the reviewed Chen pack. Thirty seconds of client-timed nonlethal fighting, shared moves/basic AI and arena padding are authored. Result is practiced, not Gui Zhang defeated, movie-completion victory or70-man victory.",
       "sourceActivity": "play/assets/harbor/final-confrontation/SEQDATA1.AUTH",
       "sha256": "a288a7c666a0c07de748bc4fef6dca4395e0744822dc303d80200ecf6ce09bc9",
       "sourcePackage": "play/assets/harbor/final-confrontation/manifest.json",
@@ -983,50 +893,6 @@
           "y": 0,
           "z": 83.36587524414062,
           "health": 100
-        }
-      ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
         }
       ],
       "actorDefinitions": [
@@ -1052,8 +918,7 @@
       "enemySpeed": 1.6,
       "maxAttackers": 1,
       "timeoutMs": 120000,
-      "practiceDurationMs": 30000,
-      "inputBufferMs": 400
+      "practiceDurationMs": 30000
     },
     {
       "id": "s1.mfsy.nozomi-guards",
@@ -1111,50 +976,6 @@
           "y": 0,
           "z": 16,
           "health": 28
-        }
-      ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
         }
       ],
       "actorDefinitions": [
@@ -1264,8 +1085,7 @@
       "playerSpeed": 3.2,
       "enemySpeed": 2.2,
       "maxAttackers": 2,
-      "timeoutMs": 180000,
-      "inputBufferMs": 400
+      "timeoutMs": 180000
     },
     {
       "id": "s1.tery.nozomi-guards",
@@ -1330,50 +1150,6 @@
           "y": 0,
           "z": -13,
           "health": 28
-        }
-      ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
         }
       ],
       "actorDefinitions": [
@@ -1499,8 +1275,7 @@
       "playerSpeed": 3.2,
       "enemySpeed": 2.2,
       "maxAttackers": 2,
-      "timeoutMs": 180000,
-      "inputBufferMs": 400
+      "timeoutMs": 180000
     },
     {
       "id": "s1.mfsy.biker-thugs",
@@ -1551,50 +1326,6 @@
           "y": 0,
           "z": 18,
           "health": 28
-        }
-      ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
         }
       ],
       "actorDefinitions": [
@@ -1668,8 +1399,7 @@
       "playerSpeed": 3.2,
       "enemySpeed": 2.2,
       "maxAttackers": 2,
-      "timeoutMs": 180000,
-      "inputBufferMs": 400
+      "timeoutMs": 180000
     },
     {
       "id": "s1.mfsy.charlie-harbor",
@@ -1716,50 +1446,6 @@
           "health": 160
         }
       ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
-        }
-      ],
       "actorDefinitions": [
         {
           "actorCode": "CHRL",
@@ -1782,8 +1468,7 @@
       "playerSpeed": 3.2,
       "enemySpeed": 2.5,
       "maxAttackers": 1,
-      "timeoutMs": 180000,
-      "inputBufferMs": 400
+      "timeoutMs": 180000
     },
     {
       "id": "s1.mfsy.mark-after-work",
@@ -1878,50 +1563,6 @@
           "health": 28
         }
       ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
-        }
-      ],
       "actorDefinitions": [
         {
           "actorCode": "DEB1",
@@ -1993,8 +1634,7 @@
       "playerSpeed": 3.2,
       "enemySpeed": 2.2,
       "maxAttackers": 2,
-      "timeoutMs": 180000,
-      "inputBufferMs": 400
+      "timeoutMs": 180000
     },
     {
       "id": "s1.mfsy.workday-two-wave-one",
@@ -2089,50 +1729,6 @@
           "health": 18
         }
       ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
-        }
-      ],
       "actorDefinitions": [
         {
           "actorCode": "SMTH",
@@ -2174,8 +1770,7 @@
       "playerSpeed": 3.2,
       "enemySpeed": 2.2,
       "maxAttackers": 2,
-      "timeoutMs": 180000,
-      "inputBufferMs": 400
+      "timeoutMs": 180000
     },
     {
       "id": "s1.mfsy.workday-two-wave-two",
@@ -2258,50 +1853,6 @@
           "health": 36
         }
       ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
-        }
-      ],
       "actorDefinitions": [
         {
           "actorCode": "SMTH",
@@ -2337,8 +1888,7 @@
       "playerSpeed": 3.2,
       "enemySpeed": 2.2,
       "maxAttackers": 2,
-      "timeoutMs": 180000,
-      "inputBufferMs": 400
+      "timeoutMs": 180000
     },
     {
       "id": "s1.mfsy.workday-one-attack",
@@ -2385,50 +1935,6 @@
           "health": 28
         }
       ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
-        }
-      ],
       "actorDefinitions": [
         {
           "actorCode": "MRSK",
@@ -2458,8 +1964,7 @@
       "playerSpeed": 3.2,
       "enemySpeed": 2.2,
       "maxAttackers": 3,
-      "timeoutMs": 180000,
-      "inputBufferMs": 400
+      "timeoutMs": 180000
     },
     {
       "id": "s1.mfsy.mark-lunch",
@@ -2498,50 +2003,6 @@
           "health": 28
         }
       ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
-        }
-      ],
       "actorDefinitions": [
         {
           "actorCode": "MRSK",
@@ -2571,8 +2032,7 @@
       "playerSpeed": 3.2,
       "enemySpeed": 2.2,
       "maxAttackers": 3,
-      "timeoutMs": 180000,
-      "inputBufferMs": 400
+      "timeoutMs": 180000
     },
     {
       "id": "s1.dgct.chai-arcade",
@@ -2598,50 +2058,6 @@
           "health": 120
         }
       ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
-        }
-      ],
       "actorDefinitions": [
         {
           "actorCode": "CHAI",
@@ -2659,15 +2075,14 @@
       "playerSpeed": 2.4,
       "enemySpeed": 2.6,
       "maxAttackers": 1,
-      "timeoutMs": 180000,
-      "inputBufferMs": 400
+      "timeoutMs": 180000
     },
     {
       "id": "s1.jd00.gui-zhang-first",
       "label": "Face Gui Zhang",
       "area": "JD00",
       "worldId": "sakuragaoka",
-      "provenance": "Original KSBT introduction's ending positions and exact KISY/KIS_M mapping from chars.csv/HUMANS. Contemporary GameSpot guide p37: brief free battle that cannot be lost. Thirty seconds of server-timed nonlethal fighting, shared moves/basic AI, arena padding and health/speed are authored adaptations. Outcome is practiced, not a defeat or a movie-completion victory.",
+      "provenance": "Original KSBT introduction's ending positions and exact KISY/KIS_M mapping from chars.csv/HUMANS. Contemporary GameSpot guide p37: brief free battle that cannot be lost. Thirty seconds of client-timed nonlethal fighting, shared moves/basic AI, arena padding and health/speed are authored adaptations. Outcome is practiced, not a defeat or a movie-completion victory.",
       "sourceActivity": "play/assets/sakuragaoka/gui-zhang/SEQDATA0.AUTH",
       "sha256": "146b689bcb27206dfcbd4648e34096dfcad5a4b304ba841d58685d264c06c516",
       "actors": [
@@ -2684,50 +2099,6 @@
           "y": 0,
           "z": 22.554590225219727,
           "health": 100
-        }
-      ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
         }
       ],
       "actorDefinitions": [
@@ -2748,8 +2119,7 @@
       "enemySpeed": 1.6,
       "maxAttackers": 1,
       "timeoutMs": 120000,
-      "practiceDurationMs": 30000,
-      "inputBufferMs": 400
+      "practiceDurationMs": 30000
     },
     {
       "id": "s1.jd00.gao-rescue",
@@ -2788,50 +2158,6 @@
           "health": 28
         }
       ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
-        }
-      ],
       "actorDefinitions": [
         {
           "actorCode": "TDSI",
@@ -2861,8 +2187,7 @@
       "playerSpeed": 3.2,
       "enemySpeed": 2.2,
       "maxAttackers": 3,
-      "timeoutMs": 180000,
-      "inputBufferMs": 400
+      "timeoutMs": 180000
     },
     {
       "id": "s1.d000.parking-lot",
@@ -2916,50 +2241,6 @@
           "health": 18
         }
       ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
-        }
-      ],
       "actorDefinitions": [
         {
           "actorCode": "SMTH",
@@ -3001,15 +2282,14 @@
       "playerSpeed": 3.2,
       "enemySpeed": 2.2,
       "maxAttackers": 2,
-      "timeoutMs": 180000,
-      "inputBufferMs": 400
+      "timeoutMs": 180000
     },
     {
       "id": "s1.jhd0.fuku-practice",
       "label": "Practice with Fuku-san",
       "area": "JHD0",
       "worldId": "exterior",
-      "provenance": "KAKG dialogue's original Ryo/Fuku positions and existing combat moves. The GameSpot 2000 walkthrough describes a spar that ends automatically before Ine-san's letter. Thirty seconds of server-timed, nonlethal practice, shared basic AI/moves and arena padding are adaptations; this result is practiced, never an ambush victory.",
+      "provenance": "KAKG dialogue's original Ryo/Fuku positions and existing combat moves. The GameSpot 2000 walkthrough describes a spar that ends automatically before Ine-san's letter. Thirty seconds of client-timed, nonlethal practice, shared basic AI/moves and arena padding are adaptations; this result is practiced, never an ambush victory.",
       "sourceActivity": "play/assets/hazuki/kakg/SEQDATK2.AUTH",
       "sha256": "5b42a5329495c02803ac6e0cec1054921048088c47ed45f9efb1e0b046066267",
       "actors": [
@@ -3026,50 +2306,6 @@
           "y": 0.969336986541748,
           "z": -22.437179565429688,
           "health": 100
-        }
-      ],
-      "actions": [
-        {
-          "input": "hand",
-          "id": "tigerKnuckle",
-          "label": "Tiger Knuckle",
-          "playerAnimation": "AKI_AKI_BATTLE_PANCH_JAB",
-          "enemyAnimation": "YKI_AKI_K4_PNC_JUB",
-          "durationMs": 634,
-          "startupMs": 134,
-          "range": 1.25,
-          "arcDegrees": 70,
-          "damage": 5,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "leg",
-          "id": "crescentKick",
-          "label": "Crescent Kick",
-          "playerAnimation": "AKI_AKI_MAWASIGERI_TOP",
-          "enemyAnimation": "YKI_AKI_K2_KICK_LOW",
-          "durationMs": 800,
-          "startupMs": 234,
-          "range": 1.55,
-          "arcDegrees": 70,
-          "damage": 6,
-          "guardDamage": 0,
-          "hitStunMs": 367
-        },
-        {
-          "input": "throw",
-          "id": "overthrow",
-          "label": "Overthrow",
-          "playerAnimation": "AKI_AKI_NGS_SEOI",
-          "enemyAnimation": "YKI_AKI_NGS_TAKKULE",
-          "durationMs": 1667,
-          "startupMs": 367,
-          "range": 0.9,
-          "arcDegrees": 55,
-          "damage": 12,
-          "guardDamage": 0,
-          "hitStunMs": 1000
         }
       ],
       "actorDefinitions": [
@@ -3090,8 +2326,7 @@
       "enemySpeed": 1.6,
       "maxAttackers": 1,
       "timeoutMs": 120000,
-      "practiceDurationMs": 30000,
-      "inputBufferMs": 400
+      "practiceDurationMs": 30000
     }
   ]
 }
