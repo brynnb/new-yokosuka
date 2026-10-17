@@ -26,7 +26,7 @@ function harness(id = "s1.d000.parking-lot") {
     onIntent: (...args) => { calls.push(args); return accept; }, target: new EventTarget(), now: () => now,
     createIndicator: () => ({ dispose: () => calls.push("indicator-disposed"), projectTargets: entries => entries.map(e => ({ id:e.id, visible:true, defeated:e.combatant.defeated, screenX:e.actor.position().x })) }),
   });
-  const view = { id, token: "a".repeat(32), ready: false, remainingMs: definition.timeoutMs }, transaction = { area: definition.area };
+  const view = { id, token: "a".repeat(32), ready: false, kind: definition.training?"training":undefined, remainingMs: definition.timeoutMs }, transaction = { area: definition.area };
   const step = (seconds = .1) => { now += seconds * 1000; return runtime.update(transaction, seconds); };
   const ready = async () => { await runtime.show(view, transaction); await runtime.show({...view,ready:true},transaction); };
   return { runtime, definition, records, calls, view, transaction, controller, step, ready,
@@ -39,7 +39,7 @@ test("every Story fight uses the Practice engine, authored cast and full moves",
     assert.equal(e.moves, MARTIAL_ARTS_MOVES); assert.equal(e.autoRematch, false);
     assert.ok(e.enemies.length); assert.equal(e.player.id, "AKIR");
     assert.equal(h.records.get("AKIR").root.position.x, def.actors[0].x);
-    assert.equal(h.calls.filter(c => Array.isArray(c) && c[0] === "combat_ready").length, 1);
+    assert.equal(h.calls.filter(c => Array.isArray(c) && c[0] === (def.training?"challenge_ready":"combat_ready")).length, 1);
     h.runtime.finish(h.transaction); assert.equal(h.calls.at(-1), "snapshot");
   }
 });
@@ -94,6 +94,40 @@ test("nonlethal practice completes locally on elapsed active time without knocki
   assert.equal(e.enemy.health,1);assert.equal(e.player.health,1);
   for(let i=0;i<301;i++)h.step();
   assert.equal(h.runtime.active.outcome,"practiced");h.runtime.finish(h.transaction);
+});
+
+test("Tornado lesson requires the completed second kick through normal commands, with no time limit",async()=>{
+  const h=harness("s1.mfsy.tornado-kick");await h.ready();
+  h.runtime.active.elapsed=3600;h.step();assert.equal(h.runtime.active.outcome,null);
+  h.runtime.action("leg");for(let i=0;i<60;i++)h.step();assert.equal(h.runtime.active.outcome,null);
+  for(const command of ["up","up","leg","leg"])h.runtime.action(command);
+  for(let i=0;i<120&&!h.runtime.active.outcome;i++)h.step();
+  assert.equal(h.runtime.active.outcome,"success");
+  assert.equal(h.calls.filter(c=>c[0]==="challenge_result").length,1);
+  assert.equal(h.runtime.encounter.enemy.health,h.runtime.encounter.enemy.maxHealth);
+  h.runtime.finish(h.transaction);
+});
+
+test("Swallow lesson needs an actual counter and completed throw, not just the input sequence",async()=>{
+  const h=harness("s1.mend.swallow-flip");await h.ready();const e=h.runtime.encounter;
+  const coach=e.enemies[0].ai;e.enemies[0].ai=null;
+  for(const command of ["down","hand","leg"])h.runtime.action(command);
+  for(let i=0;i<60;i++)h.step();assert.equal(h.runtime.active.outcome,null);
+  e.enemies[0].ai=coach;
+  // Use the real coach and core; enter the command while the practice strike
+  // is in startup, as a human watching the wind-up would.
+  let entered=false;const events=[];
+  for(let i=0;i<2000&&!h.runtime.active.outcome;i++){
+    if(e.enemy.action?.moveId==="tigerKnuckle"&&e.enemy.action.tick<4&&!entered){
+      for(const command of ["down","hand","leg"])h.runtime.action(command);entered=true;
+    }
+    if(!e.enemy.action)entered=false;
+    h.step(1/60);
+    events.push(...e.lastEvents);
+  }
+  assert.equal(h.runtime.active.outcome,"success",JSON.stringify({player:e.player,enemy:e.enemy,events:events.slice(-10)}));
+  assert.equal(h.calls.filter(c=>c[0]==="challenge_result").length,1);
+  h.runtime.finish(h.transaction);
 });
 
 test("Story preserves recovery, ally animation role, timeout and ownership on failure", async () => {

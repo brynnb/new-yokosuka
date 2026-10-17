@@ -1,4 +1,5 @@
 import {expect} from "@playwright/test";
+import {performTrainingMove} from "./story-training-input.js";
 
 // Resume genuinely earned rest. Only ordinary positioning/presence, original
 // presentations and real choices are used; no future flags/date are inserted.
@@ -179,12 +180,9 @@ export async function verifyTomLessonAndFarewell(page,testInfo,character){
     await page.evaluate(()=>window.storyProbe.regions.controller.cancel("tom-practice-cancel"));await idle();
     expect((await check()).character.storyFlags[lesson]).not.toBe(true);
     await reload();await learn(true);
-    await page.keyboard.press("Shift");await choose("Try again");await ready();
-    await choose("Try again");await ready(); // Let the previous input window expire.
-    for(const [index,button]of ["Up","Up","A","A"].entries()){
-      await page.waitForFunction(index=>window.storyProbe.regions.controller.active?.challengePrompt?.index===index,index);
-      await page.locator(`[data-challenge-button="${button}"]`).click();
-    }
+    await page.locator("#renderCanvas").focus();await page.keyboard.press("KeyJ");
+    await page.waitForTimeout(3000);await ready(); // Wrong moves/waiting do not fail a lesson.
+    await performTrainingMove(page,"tornadoKickFinish");
     await scene("tom-lesson-success");expect((await check()).character.storyFlags[learned]).not.toBe(true);
     await page.screenshot({path:testInfo.outputPath("tom-original-success-before-settlement.png")});
     await expect.poll(async()=>(await saved()).character.storyFlags[learned],{timeout:90_000}).toBe(true);

@@ -2,6 +2,118 @@
   "schema": "new-yokosuka-authored-story-combat-v1",
   "encounters": [
     {
+      "id": "s1.mfsy.tornado-kick",
+      "label": "Learn the Tornado Kick",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Original demonstration-end placement and Tom model. Shared combat input, both kick stages and free retries replace the former timed QTE. Coach remains passive; completion requires the second kick to finish, not hitting Tom. No claim of reconstructed native lesson controller.",
+      "sourceScene": "s1.mfsy.tom-practice",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 106.10316467285156,
+          "y": 0,
+          "z": 14.71333122253418,
+          "health": 100
+        },
+        {
+          "tag": "TOM_",
+          "x": 109.10472106933594,
+          "y": 0,
+          "z": 15.809377670288086,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "TOM_",
+          "label": "Tom Johnson",
+          "modelCode": "AMG_L",
+          "browserFilename": "AMG_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/tom-lunch-invitation/AMG_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/tom-lunch-invitation/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "AMG_L.CHRM",
+            "evidence": "docs/design/story-final-day.md"
+          },
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 104.10316467285156,
+        "maxX": 111.10472106933594,
+        "minZ": 12.71333122253418,
+        "maxZ": 17.809377670288086
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 0,
+      "maxAttackers": 0,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "tornadoKick",
+        "completionMoveId": "tornadoKickFinish",
+        "requiresContact": false,
+        "instruction": "Perform both kicks. You do not need to hit Tom."
+      }
+    },
+    {
+      "id": "s1.mend.swallow-flip",
+      "label": "Learn the Swallow Flip",
+      "area": "MEND",
+      "worldId": "mend",
+      "provenance": "Original lesson-end Ryo/Gui Zhang placement and models. Shared combat counter and paired throw; predictable repeated practice punches and nonlethal health are authored teaching rules. No synthetic QTE or mastery for typing a sequence without countering.",
+      "sourceScene": "s1.mend.swallow-ready",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -66.8665771484375,
+          "y": 0,
+          "z": 30.502756118774414,
+          "health": 100
+        },
+        {
+          "tag": "KISY",
+          "x": -64.84970092773438,
+          "y": 0,
+          "z": 31.348831176757812,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "KISY",
+          "label": "Chen Gui Zhang",
+          "modelCode": "KIS_M",
+          "browserFilename": "KIS_M.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/master-chen/KIS_M.CHRM",
+          "textureAssetPath": "play/assets/harbor/master-chen/textures.bin",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -68.8665771484375,
+        "maxX": -62.849700927734375,
+        "minZ": 28.502756118774414,
+        "maxZ": 33.34883117675781
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "swallowFlip",
+        "completionMoveId": "swallowFlipThrow",
+        "requiresContact": true,
+        "attackMoveId": "tigerKnuckle",
+        "instruction": "Counter Gui Zhang's approaching punch, then complete the flip. He will keep trying; mistakes cannot kill you."
+      }
+    },
+    {
       "id": "s1.mend.final-chai",
       "label": "Defeat Chai at the harbor",
       "area": "MEND",

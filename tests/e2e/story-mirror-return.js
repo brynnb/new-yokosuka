@@ -98,7 +98,7 @@ export async function verifyMirrorReturn(page,testInfo,character){
   await expect(page.getByRole("button",{name:"Try again",exact:true})).toBeVisible({timeout:25_000});
   expect((await saved()).character.storyFlags["story.s1.master-chen-mirror.completed"]).not.toBe(true);await economy();
   await page.getByRole("button",{name:"Try again",exact:true}).click();await challenge();
-  expect(await page.evaluate(()=>window.storyProbe.regions.controller.active.challengePrompt.button)).toBe("Left");await page.keyboard.press("ArrowLeft");
+  expect(await page.evaluate(()=>window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0])).toBe("Left");await page.keyboard.press("ArrowLeft");
   await cutscene("story-s1-mirror-meeting-save-mirror");await page.waitForTimeout(12_000);
   await page.screenshot({path:testInfo.outputPath("chai-original-mirror-recovered.png")});
   expect((await saved()).character.storyFlags["notebook.s1.hong-kong"]).not.toBe(true);

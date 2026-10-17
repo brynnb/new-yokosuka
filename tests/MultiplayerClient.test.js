@@ -93,6 +93,14 @@ test("WebSocket preserves driving controls across the actual script-event wire b
   assert.deepEqual(socket.sent.at(-1),{v:MULTIPLAYER_PROTOCOL_VERSION,type:"script_event_advance",requestId:"drive_1",runId:91,action:"challenge_move",challengeToken:"a".repeat(32),driving});client.close();
 });
 
+test("WebSocket preserves client QTE results without per-button input", () => {
+  const client=new MultiplayerClient({url:"ws://test/ws",WebSocketClass:FakeWebSocket});
+  client.connect();const socket=FakeWebSocket.instances.at(-1);socket.open();client.welcomed=true;
+  assert.equal(client.advanceScriptEvent(91,"challenge_result",{requestId:"qte_1",challengeToken:"a".repeat(32),challengeOutcome:"success"}),true);
+  assert.deepEqual(socket.sent.at(-1),{v:MULTIPLAYER_PROTOCOL_VERSION,type:"script_event_advance",runId:91,requestId:"qte_1",action:"challenge_result",challengeToken:"a".repeat(32),challengeOutcome:"success"});
+  client.close();
+});
+
 test("WebSocket delivers durable script receipts independently of presentation replies", () => {
   FakeWebSocket.instances.length = 0;
   const received = [];

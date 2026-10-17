@@ -208,11 +208,11 @@ export class ScriptEventController {
     return this.sendAdvance("select", { optionId });
   }
 
-  challengeResponse(action,token,button=null) {
+  challengeResponse(action,token,outcome=null) {
     const active=this.active;
     if(!active?.challengePrompt || active.cancelling || active.challengeInputPending || token!==active.challengePrompt.token)return false;
     active.challengeInputPending=true;
-    return this.sendAdvance(action,{challengeToken:token,...(button ? {button}: {})});
+    return this.sendAdvance(action,{challengeToken:token,...(outcome ? {challengeOutcome:outcome}: {})});
   }
   combatResponse(action,token,intent=null) {
     const active=this.active;
@@ -336,6 +336,7 @@ export class ScriptEventController {
     if(active.combatView && (event.type!=="combat" || message.combat?.token!==active.combatView.token)) {this.presentation.endCombat();this.dialogue.hide();active.combatView=null;active.combatInputPending=false;}
     if(active.challengePrompt?.navigation&&event.type!=="challenge"){this.presentation.endNavigation();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
     if(active.challengePrompt?.driving&&event.type!=="challenge"){this.presentation.endDriving();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
+    if(active.challengePrompt?.kind==="training"&&(event.type!=="challenge"||message.challenge?.token!==active.challengePrompt.token)){this.presentation.endCombat();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
     if((active.challengePrompt?.delivery||active.challengePrompt?.race)&&event.type!=="challenge"){this.presentation.endForkliftChallenge();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
     if (TERMINAL_EVENTS.has(event.type)) {
       active.controller.abort(new DOMException(event.type, "AbortError"));
@@ -364,6 +365,10 @@ export class ScriptEventController {
       const prompt=message.challenge;
       if(!prompt || !/^[0-9a-f]{32}$/.test(prompt.token))throw new Error("server challenge prompt is invalid");
       active.challengePrompt=prompt;active.challengeInputPending=false;
+      if(prompt.kind==="training"){
+        if(!await this.present(active,()=>this.presentation.showCombat(prompt)))return false;
+        this.emitState();return true;
+      }
       if(prompt.driving){
         if(!await this.present(active,()=>this.presentation.showDriving(prompt)))return false;
         this.dialogue.showDriving(prompt);this.emitState();return true;

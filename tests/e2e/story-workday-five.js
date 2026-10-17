@@ -197,7 +197,7 @@ export async function verifyFifthSailorChase(page,testInfo,character,{reconnectO
     await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await page.getByText("Tony and Smith are near Tomato. Ask them about the Long Zha.",{exact:true}).waitFor();}finally{await page.keyboard.up("KeyW");}await page.keyboard.press("Space");
   };
   const movie=async part=>{await page.waitForFunction(part=>window.storyProbe.director?.activeCutscene?.cutscene.id===`story-s1-sailor-chase-${part}`||window.storyProbe.sceneErrors.length,part,{timeout:65_000});await check();};
-  const prompt=async(id,button)=>{await page.waitForFunction(({id,button})=>{const p=window.storyProbe.regions.controller.active?.challengePrompt;return p?.ready&&p.button===button&&window.storyProbe.authoredScene?.active?.scene.id===`s1.mfsy.sailor-chase.${id}`||window.storyProbe.sceneErrors.length;},{id,button},{timeout:65_000});await check();};
+  const prompt=async(id,button)=>{await page.waitForFunction(({id,button})=>{const p=window.storyProbe.regions.controller.active?.challengePrompt;return p?.ready&&window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0]===button&&window.storyProbe.authoredScene?.active?.scene.id===`s1.mfsy.sailor-chase.${id}`||window.storyProbe.sceneErrors.length;},{id,button},{timeout:65_000});await check();};
   const press=async(id,button)=>{await prompt(id,button);await page.keyboard.press(button==="A"?"Enter":button==="B"?"Shift":`Arrow${button}`);};
   const begin=async()=>{await approach();await page.getByRole("button",{name:"Question the sailors",exact:true}).click();await movie("intro");};
   if(!arrivalOnly){

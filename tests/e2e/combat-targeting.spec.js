@@ -3,9 +3,11 @@ import { WORLDS } from "../../play/config/worlds.js";
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
+import { performTrainingMove } from "./story-training-input.js";
 
 export async function openCombatApp(page) {
   const errors = [];
+  page.on("console", message => { if(message.type()==="error")console.error("Browser:",message.text()); });
   page.on("pageerror", error => { errors.push(error.message); console.error(error.message); });
   await page.setViewportSize({ width: 1600, height: 1000 });
   // Unpublished Story assets can be regenerated locally. Serve only exact
@@ -88,6 +90,48 @@ export async function openCombatApp(page) {
   await expect(page.locator("#loading")).toHaveClass(/hidden/);
   return errors;
 }
+
+test("Story QTEs judge locally and move lessons use rendered regular combat", async ({page},testInfo)=>{
+  test.setTimeout(360_000);
+  const errors=await openCombatApp(page);
+  await page.evaluate(()=>{
+    const p=window.combatProbe,c=p.scripts.controller;p.runtime.setActive(false);p.intents=[];c.prepareStart=null;
+    let id,token,run=0,ready=false,kind;
+    const yieldAttempt=requestId=>queueMicrotask(()=>c.handleYield({requestId,runId:run,event:{type:"challenge"},challenge:{id,label:"Practice",token,ready,kind}}));
+    c.client={startScriptEvent(selector,requestId){id=selector.activity;kind=id.includes("heartbeats")?undefined:"training";token=(++run).toString(16).padStart(32,"0");ready=false;yieldAttempt(requestId);return true;},
+      advanceScriptEvent(runId,action,args){p.intents.push({action,...args});
+        if(action==="challenge_ready"){ready=true;setTimeout(()=>yieldAttempt(args.requestId),2500);}
+        else if(action==="challenge_result"||action==="cancel")queueMicrotask(()=>c.handleYield({requestId:args.requestId,runId,event:{type:action==="cancel"?"cancelled":"complete"}}));
+        else yieldAttempt(args.requestId);return true;}};
+  });
+  const start=async(id,area)=>{
+    await page.evaluate(({id,area})=>window.combatProbe.scripts.controller.start({kind:"activity",activity:id},{area}),{id,area});
+  };
+  const idle=()=>expect.poll(()=>page.evaluate(()=>window.combatProbe.scripts.controller.status)).toBe("idle");
+  await start("s1.heartbeats.alley","MFBT");
+  await expect(page.locator("#dialogue-source")).toContainText("Press B");
+  await page.keyboard.press("Shift");
+  await expect(page.locator("#dialogue-source")).toContainText("Press A");
+  await page.screenshot({path:testInfo.outputPath("local-qte-button-prompt.png")});
+  await page.keyboard.press("Enter");await idle();
+  expect(await page.evaluate(()=>window.combatProbe.intents.map(i=>i.action))).toEqual(["challenge_ready","challenge_result"]);
+  expect(await page.evaluate(()=>window.combatProbe.intents.at(-1).challengeOutcome)).toBe("success");
+
+  for(const [id,world,area] of [["s1.mfsy.tornado-kick","mfsy","MFSY"],["s1.mend.swallow-flip","mend","MEND"]]){
+    console.info("Rendering training",id);
+    await page.evaluate(world=>window.combatProbe.lifecycle.travelToWorld(world),world);
+    await expect(page.locator("#loading")).toHaveClass(/hidden/,{timeout:30_000});
+    await start(id,area);
+    await page.waitForFunction(()=>window.combatProbe.scripts.combatRuntime.active?.serverView.ready,null,{timeout:90_000});
+    await expect(page.locator("#dialogue-source")).toContainText("No time limit");
+    await performTrainingMove(page,world==="mfsy"?"tornadoKickFinish":"swallowFlipThrow",{probe:"combatProbe",
+      onMove:()=>page.screenshot({path:testInfo.outputPath(`${world}-lesson-real-move.png`)})});
+    await idle();
+    expect(await page.evaluate(()=>window.combatProbe.intents.at(-1).challengeOutcome)).toBe("success");
+    expect(await page.evaluate(()=>window.combatProbe.scripts.combatRuntime.active)).toBeNull();
+  }
+  expect(errors).toEqual([]);
+});
 
 test("Combat Practice renders four opponents and switches targets in camera space", async ({ page }, testInfo) => {
   test.setTimeout(240_000);

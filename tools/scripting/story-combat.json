@@ -1,6 +1,16 @@
 {
   "schema":"new-yokosuka-authored-story-combat-v1",
   "encounters":[{
+    "id":"s1.mfsy.tornado-kick","label":"Learn the Tornado Kick","area":"MFSY","worldId":"mfsy","sourceScene":"s1.mfsy.tom-practice",
+    "provenance":"Original demonstration-end placement and Tom model. Shared combat input, both kick stages and free retries replace the former timed QTE. Coach remains passive; completion requires the second kick to finish, not hitting Tom. No claim of reconstructed native lesson controller.",
+    "health":{"AKIR":100,"TOM_":100},"playerSpeed":2.4,"enemySpeed":0,"maxAttackers":0,"timeoutMs":0,"arenaPadding":2,
+    "training":{"moveId":"tornadoKick","completionMoveId":"tornadoKickFinish","requiresContact":false,"instruction":"Perform both kicks. You do not need to hit Tom."}
+  },{
+    "id":"s1.mend.swallow-flip","label":"Learn the Swallow Flip","area":"MEND","worldId":"mend","sourceScene":"s1.mend.swallow-ready",
+    "provenance":"Original lesson-end Ryo/Gui Zhang placement and models. Shared combat counter and paired throw; predictable repeated practice punches and nonlethal health are authored teaching rules. No synthetic QTE or mastery for typing a sequence without countering.",
+    "health":{"AKIR":100,"KISY":100},"playerSpeed":2.4,"enemySpeed":1.6,"maxAttackers":1,"timeoutMs":0,"arenaPadding":2,
+    "training":{"moveId":"swallowFlip","completionMoveId":"swallowFlipThrow","requiresContact":true,"attackMoveId":"tigerKnuckle","instruction":"Counter Gui Zhang's approaching punch, then complete the flip. He will keep trying; mistakes cannot kill you."}
+  },{
     "id":"s1.mend.final-chai","label":"Defeat Chai at the harbor","area":"MEND","worldId":"mend",
     "sourceActivity":"play/assets/harbor/final-chai-intro/SEQDATA3.AUTH","sha256":"c7f0ba65895b097996708dfd0f294d8fbf2f62c0dfa5196987e7d956dd4687b4","sourceTime":"end","sourcePackage":"play/assets/harbor/final-chai-intro/manifest.json",
     "provenance":"GameSpot p65 requires actual one-on-one victory; defeat retries, unlike the earlier arcade encounter. Original CHAIAUTH3 ending positions and byte-identical original MEND/CHA_M body. Shared basic moves/AI, 100/160 health, speed and arena padding are authored balance, not Chai's native low-kick/leaping moveset. Actual knockout plus acknowledged interrogation alone save victory/arrival; no later counter, letter or ship outcome.",

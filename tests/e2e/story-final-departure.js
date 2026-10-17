@@ -1,4 +1,5 @@
 import {expect} from "@playwright/test";
+import {performTrainingMove} from "./story-training-input.js";
 import {fightWithKeyboard} from "./story-seventy-man.js";
 
 export async function verifyShipDeparture(page,testInfo,character,{musicResponses}){
@@ -193,7 +194,7 @@ export async function verifyFinalChai(page,testInfo,character,{musicResponses}){
   const fight=()=>fightWithKeyboard(page,()=>page.evaluate(()=>!window.storyProbe.combatRuntime?.active));
   const ready=async()=>{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.mend.chai-last-attack"&&window.storyProbe.regions.controller.active.challengePrompt.ready||window.storyProbe.sceneErrors.length,null,{timeout:60000});await check();};
   const winCounter=async()=>{for(const [index,key]of ["ArrowDown","Enter","Enter","Shift"].entries()){
-    await page.waitForFunction(index=>window.storyProbe.regions.controller.active?.challengePrompt?.ready&&window.storyProbe.regions.controller.active.challengePrompt.index===index,index);await page.keyboard.press(key);
+    await page.waitForFunction(index=>window.storyProbe.regions.controller.active?.challengePrompt?.ready&&window.storyProbe.regions.controller.dialogue.qte.active.index===index,index);await page.keyboard.press(key);
   }};
   console.info("Final Chai: original ambush, actual battle, cancelled questioning and independent saved victory");
   await choose("Not yet");await reload();await choose("Stop Chai");await scene("final-chai-intro");await page.waitForTimeout(9000);
@@ -266,10 +267,7 @@ export async function verifySwallowFlip(page,testInfo,character,{musicResponses}
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await check();};
   const cancel=async()=>{await page.evaluate(()=>window.storyProbe.regions.controller.cancel("swallow-flip-check"));await idle();await pending();};
   const ready=async()=>{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.mend.swallow-flip"&&window.storyProbe.regions.controller.active.challengePrompt.ready||window.storyProbe.sceneErrors.length,null,{timeout:160_000});await pending();};
-  const win=async()=>{for(const [index,key]of ["ArrowDown","j","Enter"].entries()){
-    await page.waitForFunction(index=>window.storyProbe.regions.controller.active?.challengePrompt?.ready&&window.storyProbe.regions.controller.active.challengePrompt.index===index,index);
-    await page.keyboard.press(key);
-  }};
+  const win=()=>performTrainingMove(page,"swallowFlipThrow",{onMove:()=>page.screenshot({path:testInfo.outputPath("swallow-shared-combat-throw.png")})});
   console.info("Final departure: independent dock admission, original lesson, actual input and acknowledged mastery");
   await choose("Explore the harbor first");expect((await check()).character.storyFlags[arrival]).not.toBe(true);
   await reload();await choose("Meet Master Chen");
@@ -284,14 +282,12 @@ export async function verifySwallowFlip(page,testInfo,character,{musicResponses}
   await expect.poll(()=>page.evaluate(()=>{const m=window.storyMusic?.director,a=m?.current?.audio;return m?.current?.trackId==="bgm064"&&!a.paused&&a.currentTime>1&&a.volume>0;}),{timeout:15000}).toBe(true);
   await scene("demo");await page.waitForTimeout(16000);await page.screenshot({path:testInfo.outputPath("swallow-original-form-demonstration.png")});
   await ready();await page.screenshot({path:testInfo.outputPath("swallow-original-held-cast-and-input.png")});
-  await page.keyboard.press("Shift");await choose("Try again");await ready();
-  // Deliberately expire this attempt; a fresh prompt must be earned by retry.
-  await choose("Try again");await ready();await win();await scene("flip");
-  await page.waitForTimeout(4000);await page.screenshot({path:testInfo.outputPath("swallow-original-successful-throw.png")});
+  await page.waitForTimeout(3000);await ready();await pending(); // No lesson deadline.
+  await win();
   await scene("praise");await choose("I'm ready to go");await scene("exit");await cancel();
   await reload();await choose("Learn from Master Chen");await scene("intro");await page.keyboard.press("KeyX");
   await scene("demo");await page.keyboard.press("KeyX");await ready();await win();
-  await scene("flip");await scene("praise");await choose("I'm ready to go");await scene("exit");
+  await scene("praise");await choose("I'm ready to go");await scene("exit");
   await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:60000}).toBe(true);
   const final=await check();expect(final.character.storyFlags[learned]).toBe(true);expect(final.character.storyFlags["notebook.s1.swallow-flip"]).toBe(true);
   expect(new Date(final.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));

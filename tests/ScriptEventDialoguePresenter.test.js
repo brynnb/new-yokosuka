@@ -45,11 +45,14 @@ test("challenge prompts own their tokens, touch buttons and timeout lifetime", a
   const token="a".repeat(32);
   presenter.showChallenge({id:"s1.heartbeats.alley",label:"Defend yourself",token,index:0,count:2,ready:false});
   await Promise.resolve();assert.deepEqual(calls,[["challenge_ready",token]]);
-  presenter.showChallenge({id:"s1.heartbeats.alley",label:"Defend yourself",token,index:0,count:2,ready:true,button:"B",deadlineMs:2000,serverTimeMs:0});
+  presenter.showChallenge({id:"s1.heartbeats.alley",label:"Defend yourself",token,ready:true});
   const stale=presenter.dom.options.children[0].listeners.click;
-  presenter.dom.options.children[0].listeners.click();assert.deepEqual(calls.at(-1),["challenge_input",token,"B"]);
+  presenter.dom.options.children.find(b=>b.dataset.challengeButton==="B").listeners.click({detail:0});
+  assert.equal(calls.length,1); // No per-button network traffic.
+  presenter.dom.options.children.find(b=>b.dataset.challengeButton==="A").listeners.click({detail:0});
+  assert.deepEqual(calls.at(-1),["challenge_result",token,"success"]);
   presenter.hide();stale();assert.equal(calls.length,2);
-  assert.equal(presenter.challengeTimer,null);
+  assert.equal(presenter.qte,null);
 });
 
 test("combat controls retain focus between snapshots and reject old-attempt clicks", () => {
@@ -74,35 +77,30 @@ test("combat controls retain focus between snapshots and reject old-attempt clic
   presenter.hide();assert.equal(root.attributes.get("data-presentation"),"dialogue");
 });
 
-test("directional QTEs share keyboard/touch routing and reject mismatched prompt order",()=>{
+test("directional QTEs share keyboard/touch routing and duplicate snapshots do not restart timing",()=>{
   const calls=[],options=optionsElement();
   const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options,
     onChallengeResponse:(...args)=>calls.push(args)});
   const prompt={id:"s1.tatq.charlie",label:"Defend yourself",token:"a".repeat(32),index:0,count:2,ready:true,button:"Left",deadlineMs:2000,serverTimeMs:0};
   presenter.showChallenge(prompt);
-  assert.deepEqual(options.children.map(b=>b.dataset.challengeButton),["Left","A"]);
+  assert.ok(options.children.some(b=>b.dataset.challengeButton==="Left"));
   presenter.challengeKeyHandler({key:"ArrowLeft",repeat:false,preventDefault(){},stopImmediatePropagation(){}});
-  assert.deepEqual(calls.at(-1),["challenge_input",prompt.token,"Left"]);
+  assert.equal(calls.length,0);assert.match(presenter.dom.sourceText.textContent,/Press A/);
+  const deadline=presenter.qte.active.deadline;
+  presenter.showChallenge(prompt);assert.equal(presenter.qte.active.index,1);assert.equal(presenter.qte.active.deadline,deadline);
   const old=presenter.challengeKeyHandler;presenter.hide();old({key:"ArrowLeft"});
-  assert.equal(calls.length,1);
-  assert.throws(()=>presenter.showChallenge({...prompt,button:"A"}),/Invalid challenge prompt/);
+  assert.equal(calls.length,0);
+  assert.throws(()=>presenter.showChallenge({...prompt,id:"not-registered"}),/Invalid challenge prompt/);
   presenter.hide();
 });
 
-test("original X/punch shares J and touch without consuming physical X/cancel",()=>{
+test("move lessons cannot silently fall back to QTE input",()=>{
   const calls=[],options=optionsElement();
   const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options,
     onChallengeResponse:(...args)=>calls.push(args)});
   const prompt={id:"s1.mend.swallow-flip",label:"Swallow Flip",token:"c".repeat(32),index:1,count:3,ready:true,button:"X",deadlineMs:2000,serverTimeMs:0};
-  presenter.showChallenge(prompt);
-  assert.deepEqual(options.children.map(b=>b.dataset.challengeButton),["Down","X","A"]);
-  assert.match(presenter.dom.sourceText.textContent,/X \(J\)/);
-  const event=key=>({key,repeat:false,preventDefault(){},stopImmediatePropagation(){}});
-  presenter.challengeKeyHandler(event("x"));assert.equal(calls.length,0);
-  for(const key of ["j","J"])presenter.challengeKeyHandler(event(key));
-  options.children[1].listeners.click();
-  assert.deepEqual(calls,Array.from({length:3},()=>["challenge_input",prompt.token,"X"]));
-  const stale=presenter.challengeKeyHandler;presenter.hide();stale(event("j"));assert.equal(calls.length,3);
+  assert.throws(()=>presenter.showChallenge(prompt),/Invalid challenge prompt/);
+  assert.equal(calls.length,0);
 });
 
 test("reinforcements show the authoritative defeat count, not ally health or model-pool size",()=>{

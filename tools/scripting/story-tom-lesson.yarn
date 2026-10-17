@@ -19,12 +19,8 @@ title: Learn
 ===
 title: Practice
 ---
-<<play_sequence "s1.mfsy.tom-practice.start">>
 <<start_challenge "s1.mfsy.tornado-kick">>
-<<play_sequence "s1.mfsy.tom-practice.finish">>
 <<if challenge_result("s1.mfsy.tornado-kick") == "success">>
-<<play_sequence "s1.mfsy.tom-practice-kick.start">>
-<<play_sequence "s1.mfsy.tom-practice-kick.finish">>
 <<start_activity "s1.mfsy.tom-lesson-success.scene">>
 <<set_flag "story.s1.tornado-kick.learned">>
 <<set_flag "notebook.s1.tornado-kick">>

@@ -66,7 +66,7 @@ export async function verifyFourthAfternoon(page,testInfo,character){
   const begin=()=>approach([-41.4,0,71],Math.PI,()=>page.getByRole("button",{name:"Help Goro",exact:true}).waitFor());
   const intro=async()=>{await page.getByRole("button",{name:"Help Goro",exact:true}).click();await page.getByText("Goro! What happened?!",{exact:true}).waitFor();};
   const advanceIntro=async()=>{for(let i=0;i<24;i++){if(await page.evaluate(()=>!!window.storyProbe.regions.controller.active?.challengePrompt))break;await page.keyboard.press("Space");await page.waitForTimeout(250);}};
-  const prompt=async(i,button)=>{await page.waitForFunction(({i,button})=>{const p=window.storyProbe.regions.controller.active?.challengePrompt,s=window.storyProbe.authoredScene?.active?.scene;return p?.ready&&p.button===button&&p.index===(i<6?0:i-6)&&s?.id===`s1.mfsy.goro-trap.${i<6?String.fromCharCode(97+i):"gh"}.prompt`||window.storyProbe.sceneErrors.length;},{i,button},{timeout:65_000});await check();};
+  const prompt=async(i,button)=>{await page.waitForFunction(({i,button})=>{const p=window.storyProbe.regions.controller.active?.challengePrompt,s=window.storyProbe.authoredScene?.active?.scene;return p?.ready&&window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0]===button&&window.storyProbe.regions.controller.dialogue.qte?.active?.index===(i<6?0:i-6)&&s?.id===`s1.mfsy.goro-trap.${i<6?String.fromCharCode(97+i):"gh"}.prompt`||window.storyProbe.sceneErrors.length;},{i,button},{timeout:65_000});await check();};
   const win=async(capture=false)=>{
     await advanceIntro();const buttons=["B","A","B","A","A","B","Left","Down","A"];
     for(let i=0;i<buttons.length;i++){

@@ -1,4 +1,5 @@
 import { createGameAudio } from "../audio/MediaElementAudio.js";
+import { StoryQteRuntime } from "./StoryQteRuntime.js";
 import storyChallenges from "../data/story-challenges.json" with { type: "json" };
 
 // The original X is a punch, not our physical X-to-cancel shortcut. J matches
@@ -108,6 +109,8 @@ export class ScriptEventDialoguePresenter {
     onAdvance = () => {},
     onSelect = () => {},
     onChallengeResponse = () => {},
+    qteSound = () => {},
+    qteOptions = {},
     onCombatAction = () => {},
     onCombatGuard = () => {},
     onNavigationUse=()=>{},onNavigationHide=()=>{},onNavigationDirection=()=>{},
@@ -125,6 +128,8 @@ export class ScriptEventDialoguePresenter {
     this.onAdvance = onAdvance;
     this.onSelect = onSelect;
     this.onChallengeResponse = onChallengeResponse;
+    this.qteSound = qteSound;
+    this.qteOptions = qteOptions;
     this.onCombatAction=onCombatAction;this.onCombatGuard=onCombatGuard;
     Object.assign(this,{onNavigationUse,onNavigationHide,onNavigationDirection});
     this.onDrivingControl=onDrivingControl;
@@ -204,13 +209,13 @@ export class ScriptEventDialoguePresenter {
     const battle=view.totalOpponents
       ? `Health: ${player.health}/${player.maxHealth} · Defeated: ${view.defeated||0}/${view.totalOpponents}\nGroup ${view.wave}/${view.waveCount} — ${view.waveLabel}${view.intro?" (arriving)":""}`
       : `Health: ${player.health}/${player.maxHealth} · Opponents: ${remaining}`;
-    this.dom.sourceText.textContent=view.ready
+    this.dom.sourceText.textContent=view.training && view.ready ? view.training : view.ready
       ? `${view.practice?`Practice · ${Math.ceil(view.remainingMs/1000)} seconds remaining`:battle}\nUse your movement/combat controls or the buttons below. Cancel to leave.`
-      : view.practice?"Preparing practice...":"Preparing the fight...";
+      : view.practice||view.training?"Preparing practice...":"Preparing the fight...";
     if(this.combatToken===view.token)return true;
     this.clearOptions();this.combatToken=view.token;
     const current=()=>this.active&&this.combatToken===view.token;
-    for(const [label,action]of [["Punch","hand"],["Kick","leg"],["Throw","throw"]]) {
+    for(const [label,action]of [...(view.training?[["Forward","up"],["Back","down"]]:[]),["Punch","hand"],["Kick","leg"],["Throw","throw"]]) {
       const button=this.dom.options.ownerDocument.createElement("button");button.type="button";button.className="dialogue-option";button.textContent=label;
       button.addEventListener("click",()=>{
         if(!current())return;
@@ -317,40 +322,59 @@ export class ScriptEventDialoguePresenter {
   }
 
   showChallenge(prompt) {
-    this.hide();
     const definition=storyChallenges.challenges.find(challenge=>challenge.id===prompt.id);
-    if(!Number.isSafeInteger(prompt.index)||!Number.isSafeInteger(prompt.count)||prompt.count<1
-      ||prompt.index<0||prompt.index>=prompt.count||!definition||prompt.count!==definition.buttons.length
-      ||prompt.ready&&prompt.button!==definition.buttons[prompt.index])throw new Error("Invalid challenge prompt");
+    if(!definition || definition.kind || !/^[0-9a-f]{32}$/.test(prompt.token))throw new Error("Invalid challenge prompt");
+    // Poll/ready acknowledgements must not restart the local clock or erase a
+    // completed outcome while its result request is waiting for the network.
+    if(this.qteToken===prompt.token) {
+      if(prompt.id!==this.qteId)throw new Error("QTE attempt changed definition");
+      if(prompt.ready && !this.qte.active)this.qte.start(definition);
+      return true;
+    }
+    this.hide();
+    this.qteToken=prompt.token;this.qteId=prompt.id;
     const requestId=++this.requestId;
     const current=()=>this.active&&requestId===this.requestId;
     this.active=true;
     this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");
     this.dom.speaker.textContent=prompt.label;
-    this.dom.sourceText.textContent=prompt.ready ? `Press ${prompt.button} (${CHALLENGE_KEYS[prompt.button]}) · ${prompt.index+1} / ${prompt.count}` : "Get ready…";
+    this.dom.sourceText.textContent="Get ready…";
     this.dom.japaneseText.hidden=true;
     this.onActiveChanged(true);
-    if(!prompt.ready){queueMicrotask(()=>{if(current())this.onChallengeResponse("challenge_ready",prompt.token);});return true;}
+    this.qte=new StoryQteRuntime({...this.qteOptions, sound:this.qteSound,
+      present:step=>{
+        this.dom.sourceText.textContent=`Press ${step.buttons.map(b=>`${b} (${CHALLENGE_KEYS[b]})`).join(" + ")} · ${step.index+1} / ${step.count}`;
+      },
+      finish:outcome=>{
+        if(!current())return;
+        this.dom.sourceText.textContent=outcome==="success"?"Correct!":"Missed — try again.";
+        this.dom.options.hidden=true;
+        this.onChallengeResponse("challenge_result",prompt.token,outcome);
+      }});
     const document=this.dom.options.ownerDocument;
-    for(const buttonCode of new Set(definition.buttons)) {
+    for(const buttonCode of storyChallenges.buttonCodes) {
       const button=document.createElement("button");button.type="button";button.className="dialogue-option";
       button.textContent=`${buttonCode} · ${CHALLENGE_KEYS[buttonCode]}`;button.dataset.challengeButton=buttonCode;
-      button.addEventListener("click",()=>{if(current())this.onChallengeResponse("challenge_input",prompt.token,buttonCode);});
+      button.addEventListener("pointerdown",event=>{if(current()){event.preventDefault();button.setPointerCapture?.(event.pointerId);this.qte.press(buttonCode);}});
+      for(const name of ["pointerup","pointercancel","lostpointercapture"])button.addEventListener(name,()=>{if(current())this.qte.release(buttonCode);});
+      // Keyboard/screen-reader activation has no pointerdown.
+      button.addEventListener("click",event=>{if(current()&&event.detail===0){this.qte.press(buttonCode);this.qte.release(buttonCode);}});
       this.dom.options.append(button);
     }
     this.dom.options.hidden=false;
     this.challengeKeyHandler=event=>{
       const code=storyChallenges.buttonCodes.find(code=>CHALLENGE_KEYS[code].toLowerCase()===event.key?.toLowerCase());
       if(!code||event.repeat||!current())return;
-      event.preventDefault();event.stopImmediatePropagation();this.onChallengeResponse("challenge_input",prompt.token,code);
+      event.preventDefault();event.stopImmediatePropagation();this.qte.press(code);
     };
+    this.challengeKeyUpHandler=event=>{const code=storyChallenges.buttonCodes.find(c=>CHALLENGE_KEYS[c].toLowerCase()===event.key?.toLowerCase());if(code&&current())this.qte.release(code);};
     // The challenge owns these keys before ordinary document-level shortcuts
     // such as Enter-to-chat. Release this capture with the prompt's lifetime.
     this.challengeKeyTarget=document.defaultView || document;
     this.challengeKeyTarget.addEventListener("keydown",this.challengeKeyHandler,true);
-    const remaining=prompt.deadlineMs-prompt.serverTimeMs;
-    if(!Number.isFinite(remaining)||remaining<0)throw new Error("Invalid challenge deadline");
-    this.challengeTimer=setTimeout(()=>{if(current())this.onChallengeResponse("challenge_poll",prompt.token);},remaining+100);
+    this.challengeKeyTarget.addEventListener("keyup",this.challengeKeyUpHandler,true);
+    if(prompt.ready)this.qte.start(definition);
+    else queueMicrotask(()=>{if(current())this.onChallengeResponse("challenge_ready",prompt.token);});
     return true;
   }
 
@@ -359,9 +383,11 @@ export class ScriptEventDialoguePresenter {
     this.navigationToken=null;this.onNavigationHide(false);this.onNavigationDirection(0,0);
     this.drivingToken=null;for(const name of ["throttle","brake","left","right"])this.onDrivingControl(name,false);
     this.dom.root.setAttribute("data-presentation","dialogue");
-    clearTimeout(this.challengeTimer);this.challengeTimer=null;
+    this.qte?.stop();this.qte=null;this.qteToken=null;this.qteId=null;
     if(this.challengeKeyHandler)this.challengeKeyTarget.removeEventListener("keydown",this.challengeKeyHandler,true);
+    if(this.challengeKeyUpHandler)this.challengeKeyTarget.removeEventListener("keyup",this.challengeKeyUpHandler,true);
     this.challengeKeyHandler=null;
+    this.challengeKeyUpHandler=null;
     this.challengeKeyTarget=null;
     const wasActive = this.active;
     this.active = false;

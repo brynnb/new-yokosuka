@@ -184,7 +184,7 @@ export async function verifyOldDistrictEntry(page,testInfo,character){
   await page.keyboard.press("ArrowLeft");await expect(page.getByRole("button",{name:"Try again",exact:true})).toBeVisible();
   expect((await saved()).character.storyFlags["story.s1.old-district-entry.completed"]).not.toBe(true);expect((await saved()).character.worldId).toBe("mfsy");
   await page.getByRole("button",{name:"Try again",exact:true}).click();
-  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready);expect(await page.evaluate(()=>window.storyProbe.regions.controller.active.challengePrompt.button)).toBe("Right");
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready);expect(await page.evaluate(()=>window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0])).toBe("Right");
   await page.keyboard.press("ArrowRight");
   await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.mfsy.old-district-catch"||window.storyProbe.sceneErrors.length);await noErrors();
   await page.waitForTimeout(5_000);await page.screenshot({path:testInfo.outputPath("old-district-original-flashlight-catch.png")});

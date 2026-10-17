@@ -914,9 +914,9 @@ async function verifyAlleyQte(page,testInfo,character) {
   const failed=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
   expect(failed.character.storyFlags["story.s1.heartbeats-alley.completed"]).not.toBe(true);
   await page.getByRole("button",{name:"Try again",exact:true}).click();
-  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready&&window.storyProbe.regions.controller.active.challengePrompt.button==="B",null,{timeout:90_000});
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready&&window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0]==="B",null,{timeout:90_000});
   await page.keyboard.press("Shift");
-  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.button==="A",null,{timeout:5000});
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0]==="A",null,{timeout:5000});
   await page.keyboard.press("Enter");
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.heartbeats-alley.completed"])).toBe(true);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
@@ -959,7 +959,7 @@ async function verifyBarQte(page, testInfo, character) {
   for (const [index, button] of ["B", "A", "B", "A"].entries()) {
     await page.waitForFunction(({ index, button }) => {
       const p = window.storyProbe.regions.controller.active?.challengePrompt;
-      return p?.ready && p.index === index && p.button === button;
+      return p?.ready && window.storyProbe.regions.controller.dialogue.qte?.active?.index === index && window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0] === button;
     }, { index, button });
     await page.keyboard.press(button === "B" ? "Shift" : "Enter");
   }
@@ -1329,7 +1329,7 @@ async function verifyCharlieConfrontation(page,testInfo,character) {
   await page.getByRole("button",{name:"Try again",exact:true}).click();await toChallenge();
   for(const [index,button,key]of [[0,"Left","ArrowLeft"],[1,"A","Enter"]]) {
     await page.waitForFunction(({index,button})=>{
-      const p=window.storyProbe.regions.controller.active?.challengePrompt;return p?.ready&&p.index===index&&p.button===button;
+      const p=window.storyProbe.regions.controller.active?.challengePrompt;return p?.ready&&window.storyProbe.regions.controller.dialogue.qte?.active?.index===index&&window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0]===button;
     },{index,button});await page.keyboard.press(key);
   }
   await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0);
@@ -1831,7 +1831,7 @@ async function verifyFirstGoro(page,testInfo,character) {
   expect((await saved()).character.storyFlags['notebook.s1.goro-directions']).not.toBe(true);
   await page.getByRole('button',{name:'Try again',exact:true}).click();await toChallenge();
   for(const [index,button,key]of [[0,'Left','ArrowLeft'],[1,'A','Enter'],[2,'B','Shift']]){
-    await page.waitForFunction(({index,button})=>{const p=window.storyProbe.regions.controller.active?.challengePrompt;return p?.ready&&p.index===index&&p.button===button;},{index,button});
+    await page.waitForFunction(({index,button})=>{const p=window.storyProbe.regions.controller.active?.challengePrompt;return p?.ready&&window.storyProbe.regions.controller.dialogue.qte?.active?.index===index&&window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0]===button;},{index,button});
     await page.keyboard.press(key);
   }
   await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==='s1.mfsy.goro-success'||window.storyProbe.sceneErrors.length,null,{timeout:20_000});await noErrors();

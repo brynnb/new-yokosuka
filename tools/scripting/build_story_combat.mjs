@@ -88,6 +88,7 @@ const encounters = spec.encounters.map(input => {
     bounds:{minX:Math.min(...actors.map(a=>a.x))-input.arenaPadding,maxX:Math.max(...actors.map(a=>a.x))+input.arenaPadding,
       minZ:Math.min(...actors.map(a=>a.z))-input.arenaPadding,maxZ:Math.max(...actors.map(a=>a.z))+input.arenaPadding},
     playerSpeed:input.playerSpeed,enemySpeed:input.enemySpeed,maxAttackers:input.maxAttackers,timeoutMs:input.timeoutMs,
+    ...(input.training?{training:input.training}:{}),
     ...(input.practiceDurationMs?{practiceDurationMs:input.practiceDurationMs}:{}),
     ...(waves?{waves,waveDelayMs:input.waveDelayMs||0}:{}),...(input.musicTrack?{musicTrack:input.musicTrack}:{}),
     };

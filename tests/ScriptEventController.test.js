@@ -67,6 +67,25 @@ test("client combat reports once per pending request and consecutive attempts re
   h.controller.reset();
 });
 
+test("training shares combat ownership, reports one result and releases cast before retry", async () => {
+  const h=harness(),calls=[],token="a".repeat(32),next="b".repeat(32);
+  h.presentation.showCombat=async view=>{calls.push(view.token);return true;};
+  h.presentation.endCombat=()=>calls.push("end");
+  const started=h.controller.start({kind:"activity",activity:"lesson"});
+  await h.controller.handleYield(yieldMessage("request-1",{type:"challenge"},{challenge:{id:"lesson",kind:"training",token,ready:true}}));
+  await started;
+  assert.equal(h.controller.challengeResponse("challenge_result",token,"success"),true);
+  assert.equal(h.sent.at(-1).challengeOutcome,"success");assert.equal(h.sent.at(-1).button,undefined);
+  assert.equal(h.controller.challengeResponse("challenge_result",token,"success"),false);
+  await h.controller.handleYield(yieldMessage("request-2",{type:"challenge"},{challenge:{id:"lesson",kind:"training",token:next,ready:false}}));
+  assert.deepEqual(calls,[token,"end",next]);
+  assert.equal(h.controller.challengeResponse("challenge_result",token,"success"),false);
+  h.controller.challengeResponse("challenge_ready",next);
+  await h.controller.handleYield(yieldMessage("request-3",{type:"line"},{line:{text:"Good work"}}));
+  assert.equal(calls.at(-1),"end");assert.equal(h.controller.active.challengePrompt,null);
+  assert.deepEqual(h.errors,[]);h.controller.reset();
+});
+
 test("server state ownership is prepared before dispatch and released after presentation cleanup", async () => {
   const order = [];
   let ready;

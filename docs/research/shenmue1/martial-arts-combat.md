@@ -136,7 +136,18 @@ Choose **Travel To... → Combat Practice** in the Play Online view. This loads
 Shenmue's `MFBT` 70-man battle arena with Chai and three stationary practice
 partners using the same rig. Chai fights back after the first attack; the
 partners receive ordinary hits and throws without attacking. This local demo
-is separate from server-owned Story fights; travel elsewhere to leave it.
+has its own encounter lifetime; travel elsewhere to leave it. Story fights now
+reuse the same client simulation, controls, targeting, AI and animation adapters.
+The server authorizes an attempt and saves its reported result, not individual
+moves or their timing.
+
+Story's Tornado Kick and Swallow Flip lessons also use this engine, with nonlethal
+instructors and unlimited retries. They observe actual completed move events,
+not a typed QTE sequence. Tornado Kick needs its second kick; Swallow Flip needs
+a connected counter and paired throw. Predictable coaching is an explicit
+adaptation; original introductory/demonstration/ending films remain separate.
+See [script authoring](../../implementation/scripting/script-authoring.md) for
+the lifecycle, result protocol and distinction from cinematic QTEs.
 
 Explicit target selection is an intentional keyboard-friendly adaptation,
 not a claim about the original game's target-selection algorithm. `Q` selects

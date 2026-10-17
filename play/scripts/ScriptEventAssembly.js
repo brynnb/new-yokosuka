@@ -52,6 +52,7 @@ export function createScriptEventAssembly({
   onCombatStateChanged,
   retargetCharacterMatrices,
   worldSounds,
+  menuSounds,
   roomScripts,
   playerXmptRuntime,
   playerMotionRuntime,
@@ -147,7 +148,9 @@ export function createScriptEventAssembly({
     actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,
       preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
     musicControls,getController,getBinding,capturePlayerState,restorePlayerState,
-    onIntent:(action,token,intent)=>controller?.combatResponse(action,token,intent),
+    onIntent:(action,token,intent)=>action.startsWith("challenge_")
+      ? controller?.challengeResponse(action,token,intent?.outcome)
+      : controller?.combatResponse(action,token,intent),
   });
   const navigationRuntime=new StoryNavigationRuntime({
     actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
@@ -204,7 +207,10 @@ export function createScriptEventAssembly({
     audioSettings: dialogueAudio,
     onAdvance: () => controller?.advanceLine(),
     onSelect: optionId => controller?.selectOption(optionId),
-    onChallengeResponse: (action,token,button) => controller?.challengeResponse(action,token,button),
+    onChallengeResponse: (action,token,outcome) => controller?.challengeResponse(action,token,outcome),
+    // Existing interface cues provide immediate local feedback. These are an
+    // explicit adaptation, not an identified original Dreamcast QTE sound bank.
+    qteSound: cue => menuSounds?.[{prompt:"move",correct:"confirm",wrong:"blocked"}[cue]](),
     onCombatAction:action=>combatRuntime.action(action),
     onCombatGuard:guard=>combatRuntime.setGuard(guard),
     onNavigationUse:()=>navigationRuntime.use(),

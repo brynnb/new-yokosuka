@@ -21,7 +21,7 @@ export async function verifyChickenRace(page,testInfo,character){
   };
   const scene=async()=>{await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-chicken-race-intro"||window.storyProbe.sceneErrors.length,null,{timeout:60_000});await noErrors();};
   const ready=async()=>{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.mfsy.chicken-race"&&window.storyProbe.regions.controller.active.challengePrompt.ready||window.storyProbe.sceneErrors.length,null,{timeout:70_000});await noErrors();};
-  const win=async()=>{for(const [index,button]of ["A","Down","Left","Right"].entries()){await page.waitForFunction(index=>window.storyProbe.regions.controller.active?.challengePrompt?.index===index,index);await page.locator(`[data-challenge-button="${button}"]`).click();}await page.getByText("The riders back down. Shozo is safe.",{exact:true}).waitFor();};
+  const win=async()=>{for(const [index,button]of ["A","Down","Left","Right"].entries()){await page.waitForFunction(index=>window.storyProbe.regions.controller.dialogue.qte?.active?.index===index,index);await page.locator(`[data-challenge-button="${button}"]`).click();}await page.getByText("The riders back down. Shozo is safe.",{exact:true}).waitFor();};
   const caption=async()=>{await page.keyboard.press("Space");};
   const cancel=async()=>{await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-chicken-cancel"));await idle();await unchanged();};
   if(new Date(initial.character.storyTimeMs).getUTCHours()<19){await approach(false);await idle();await unchanged();}

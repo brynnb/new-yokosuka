@@ -11,11 +11,8 @@ title: Demonstration
 ===
 title: Practice
 ---
-<<play_sequence "s1.mend.swallow-ready.start">>
 <<start_challenge "s1.mend.swallow-flip">>
-<<play_sequence "s1.mend.swallow-ready.finish">>
 <<if challenge_result("s1.mend.swallow-flip") == "success">>
-<<start_activity "s1.mend.swallow-flip.scene">>
 <<start_activity "s1.mend.swallow-praise.scene">>
 -> Practice again
     <<jump Practice>>

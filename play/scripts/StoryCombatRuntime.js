@@ -2,7 +2,8 @@ import catalog from "../data/story-combat.json" with { type: "json" };
 import { CombatInput } from "../combat/CombatInput.js";
 import { CombatEncounterRuntime } from "../combat/CombatEncounterRuntime.js";
 import { CombatTargetIndicator } from "../combat/CombatTargetIndicator.js";
-import { MartialArtsEnemyAI } from "../../src/MartialArtsCombat.js";
+import { CombatTrainingCoach, completedTrainingMove, trainingInstructions } from "../combat/CombatTraining.js";
+import { MartialArtsEnemyAI, setCombatCommandOverride } from "../../src/MartialArtsCombat.js";
 import { combatPlayerAnimationState } from "../characters/PlayerCombatRuntime.js";
 import { PLAYER_COMBAT_CONFIG } from "../characters/PlayerMotionLibrary.js";
 import { targetRelativeMovement, targetRelativeMovementDirection } from "../../src/ThirdPersonControllerRules.js";
@@ -33,6 +34,7 @@ export class StoryCombatRuntime {
     }
     const definition = catalog.encounters.find(def => def.id === view.id);
     if (!definition || definition.area !== transaction.area) throw new Error(`No combat presentation ${view.id} in ${transaction.area}`);
+    if(Boolean(definition.training)!==(view.kind==="training"))throw new Error("Wrong combat/training protocol");
     const owner = { transaction, definition, serverView: view, token: view.token, controller: new AbortController(),
       snapshot: this.capturePlayerState(), actorsBegun: false, prepared: false, records: null,
       wave: 0, defeated: 0, elapsed: 0, waveDelay: null, intro: 0, outcome: null, sentResult: false,
@@ -67,7 +69,7 @@ export class StoryCombatRuntime {
       owner.prepared = true;
       if (definition.musicTrack && this.musicControls?.playTemporaryTrack(definition.musicTrack, { gain: 1, loop: true })) owner.musicTrack = definition.musicTrack;
       this.publish();
-      this.onIntent("combat_ready", owner.token, null);
+      this.sendIntent(owner, "ready");
       return true;
     } catch (error) {
       if (this.active === owner) this.finish(transaction);
@@ -95,17 +97,20 @@ export class StoryCombatRuntime {
     const enemies = spawns.filter(s => s.tag !== "AKIR").map(spawn => ({
       id: spawn.tag, name: def.actorDefinitions.find(a => a.actorCode === spawn.tag).label,
       actor: owner.records.get(spawn.tag).actor, team: spawn.team === "ally" ? "player" : "enemy",
-      combatOptions: { maxHealth: spawn.health, minimumHealth: def.practiceDurationMs || spawn.team === "ally" ? 1 : 0, damageScale: spawn.damageScale ?? 1 },
-      ai: new MartialArtsEnemyAI(), speedScale: def.enemySpeed / 3,
+      combatOptions: { maxHealth: spawn.health, minimumHealth: def.training || def.practiceDurationMs || spawn.team === "ally" ? 1 : 0, damageScale: spawn.damageScale ?? 1 },
+      ai: def.training ? new CombatTrainingCoach(def.training) : new MartialArtsEnemyAI(), speedScale: def.enemySpeed / 3,
     }));
     owner.encounter = new CombatEncounterRuntime({ input: owner.input, playerActor: player.actor, enemies,
-      playerOptions: { id: "AKIR", maxHealth: def.actors[0].health, minimumHealth: def.practiceDurationMs ? 1 : 0 },
+      playerOptions: { id: "AKIR", maxHealth: def.actors[0].health, minimumHealth: def.training || def.practiceDurationMs ? 1 : 0 },
       preservePlacement: true, autoRematch: false, allowControlExit: false, waitForFirstAttack: false,
       maxAttackers: def.maxAttackers, sounds: this.sounds, reactionSequences: PLAYER_COMBAT_CONFIG.reactions,
       projectTargets: entries => owner.indicator.projectTargets(entries),
       onStateChanged: snapshot => this.onStateChanged(snapshot),
     });
     owner.encounter.setActive(true);
+    // Select the taught move just as the regular move scroll does when native
+    // inputs have overlapping aliases; command recognition remains shared.
+    if(def.training)setCombatCommandOverride(owner.encounter.player,def.training.moveId);
     for (const c of owner.encounter.combat.combatants.values()) {
       if (oldHealth.has(c.id)) c.health = oldHealth.get(c.id);
     }
@@ -130,11 +135,17 @@ export class StoryCombatRuntime {
   }
   setGuard(value) { if (this.active) this.active.guard = Boolean(value); }
 
+  sendIntent(owner, kind) {
+    return this.onIntent(`${owner.definition.training ? "challenge" : "combat"}_${kind}`, owner.token,
+      kind === "result" ? { outcome: owner.outcome } : null);
+  }
+
   publish() {
     const owner = this.active;
     if (!owner?.encounter) return;
     const { definition: def, encounter: e } = owner;
     owner.view = { id: def.id, token: owner.token, label: def.label, ready: owner.serverView.ready,
+      training: def.training ? trainingInstructions(def.training, owner.input.getBindings()) : null,
       practice: Boolean(def.practiceDurationMs), remainingMs: Math.max(0, (def.practiceDurationMs || def.timeoutMs) - owner.elapsed * 1000),
       wave: owner.wave + 1, waveCount: def.waves?.length || 1, waveLabel: def.waves?.[owner.wave].label,
       bossTag: def.waves?.[owner.wave].bossTag, intro: owner.intro > 0,
@@ -151,10 +162,10 @@ export class StoryCombatRuntime {
     const owner = this.active;
     if (!owner || owner.transaction !== transaction) return true;
     // This is a lease keepalive, not a stream of gameplay input. It also keeps
-    // long asset preparation alive; the server caps preparation and fight time.
+    // long asset preparation alive; the server caps preparation, not gameplay.
     if (this.now() - owner.pollAt >= 5000 && !owner.sentResult) {
-      const action = owner.prepared && !owner.serverView.ready ? "combat_ready" : "combat_poll";
-      if (this.onIntent(action, owner.token, null)) owner.pollAt = this.now();
+      const action = owner.prepared && !owner.serverView.ready ? "ready" : "poll";
+      if (this.sendIntent(owner, action)) owner.pollAt = this.now();
     }
     if (!owner.prepared || !owner.serverView.ready) return true;
     const dt = Math.min(.1, Math.max(0, deltaSeconds));
@@ -178,7 +189,8 @@ export class StoryCombatRuntime {
         const buttonGuard = owner.guard && !owner.input.held.has(bindings.guard);
         if (buttonGuard) owner.input.held.add(bindings.guard);
         const oldHealth = e.player.health;
-        e.update(dt);
+        const events = e.update(dt);
+        if(def.training && completedTrainingMove(def.training, events || [], e.player.id))owner.outcome="success";
         if (e.player.health < oldHealth) owner.damagedAt = owner.elapsed;
         // Retain Story's authored recovery: four HP/sec after three seconds
         // without damage. Practice and any future PvP rules do not inherit it.
@@ -202,7 +214,7 @@ export class StoryCombatRuntime {
       }
       if (e.player.defeated) owner.outcome = "defeated";
       else if (def.practiceDurationMs && owner.elapsed * 1000 >= def.practiceDurationMs) owner.outcome = "practiced";
-      else if (owner.elapsed * 1000 >= def.timeoutMs) owner.outcome = "failure";
+      else if (!def.training && owner.elapsed * 1000 >= def.timeoutMs) owner.outcome = "failure";
       else if (e.enemiesDefeated && !e.playerMovementLocked) {
         if (!def.waves || owner.wave === def.waves.length - 1) owner.outcome = "success";
         else {
@@ -222,7 +234,7 @@ export class StoryCombatRuntime {
     if (owner.outcome && !owner.sentResult) {
       owner.input.discardCommands();
       this.publish();
-      if (this.onIntent("combat_result", owner.token, { outcome: owner.outcome })) owner.sentResult = true;
+      if (this.sendIntent(owner, "result")) owner.sentResult = true;
     }
     return true;
   }

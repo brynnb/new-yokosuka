@@ -4,6 +4,24 @@ import catalog from "../play/data/story-combat.json" with { type: "json" };
 import markRescue from "../play/assets/harbor/mark-after-work-intro/manifest.json" with {type:"json"};
 import authoredScenes from "../play/scripts/AuthoredSceneCatalog.js";
 import {composeScheduledActorDefinitions} from "../src/ScheduledActorDefinitionCollection.js";
+import challenges from "../play/data/story-challenges.json" with {type:"json"};
+import {MARTIAL_ARTS_MOVES, MARTIAL_ARTS_FOLLOWUP_STAGES} from "../src/MartialArtsCombat.js";
+import {storyCombatContract} from "../src/StoryCombatContract.js";
+
+test("every teaching challenge configures a real shared move, not a second combat protocol",()=>{
+  const lessons=challenges.challenges.filter(c=>c.kind==="training");
+  const fights=storyCombatContract(catalog).encounters;
+  for(const lesson of lessons){
+    const def=catalog.encounters.find(e=>e.id===lesson.id);
+    assert.ok(MARTIAL_ARTS_MOVES[def.training.moveId]);
+    assert.ok(MARTIAL_ARTS_FOLLOWUP_STAGES[def.training.completionMoveId]);
+    if(def.training.attackMoveId)assert.ok(MARTIAL_ARTS_MOVES[def.training.attackMoveId]);
+    assert.equal(def.timeoutMs,0);
+    assert.equal(fights.some(f=>f.id===lesson.id),false);
+  }
+  assert.equal(catalog.encounters.filter(e=>e.training).length,lessons.length);
+  assert.ok(fights.every(f=>f.timeoutMs===undefined));
+});
 
 test("Mark's rescue fight shares the original film's source-qualified actor models",()=>{
   const definition=catalog.encounters.find(e=>e.id==="s1.mfsy.mark-after-work");
