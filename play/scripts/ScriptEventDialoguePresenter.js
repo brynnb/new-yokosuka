@@ -215,7 +215,7 @@ export class ScriptEventDialoguePresenter {
     if(this.combatToken===view.token)return true;
     this.clearOptions();this.combatToken=view.token;
     const current=()=>this.active&&this.combatToken===view.token;
-    for(const [label,action]of [...(view.training?[["Forward","up"],["Back","down"]]:[]),["Punch","hand"],["Kick","leg"],["Throw","throw"]]) {
+    for(const [label,action]of [...(view.training?[["Forward","up"],["Back","down"]]:[]),["Punch","hand"],["Kick","leg"],["Throw","throw"],["Punch + Kick",["hand","plus","leg"]]]) {
       const button=this.dom.options.ownerDocument.createElement("button");button.type="button";button.className="dialogue-option";button.textContent=label;
       button.addEventListener("click",()=>{
         if(!current())return;

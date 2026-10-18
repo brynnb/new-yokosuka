@@ -192,6 +192,32 @@ test('each optional lesson completes from real shared commands, including all th
   }
 });
 
+test('touch chord and held guard complete the same optional lessons without granting on a bare press',async()=>{
+  for(const [id,tokens]of [
+    ['s1.d000.double-blow',['up',['hand','plus','leg']]],
+    ['s1.mfsy.shadow-step',['up','guardDown','throw','guardUp']],
+    ['s1.mfsy.shadow-blade',['up','guardDown','throw','guardUp','hand']],
+    ['s1.mfsy.cross-charge',['up','up','guardDown','throw','guardUp']],
+  ]){
+    const h=harness(id);await h.ready();const e=h.runtime.encounter;
+    let entered=false;
+    for(let i=0;i<2200&&!h.runtime.active.outcome;i++){
+      const counter=Boolean(h.definition.training.attackMoveId);
+      if(!entered&&(!counter||e.enemy.action?.moveId==='tigerKnuckle'&&e.enemy.action.tick<4)){
+        for(const command of tokens){
+          if(command==='guardDown')h.runtime.setGuard(true);
+          else if(command==='guardUp')h.runtime.setGuard(false);
+          else h.runtime.action(command);
+        }
+        assert.equal(h.runtime.active.outcome,null);entered=true;
+      }
+      if(counter&&!e.enemy.action)entered=false;
+      h.step(1/60);
+    }
+    assert.equal(h.runtime.active.outcome,'success',id);h.runtime.finish(h.transaction);
+  }
+});
+
 test("Story preserves recovery, ally animation role, timeout and ownership on failure", async () => {
   const h=harness("s1.mfbt.seventy-man");await h.ready();const e=h.runtime.encounter;
   for(const entry of e.enemies)entry.ai=null;

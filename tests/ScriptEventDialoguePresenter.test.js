@@ -62,7 +62,9 @@ test("combat controls retain focus between snapshots and reject old-attempt clic
     onCombatAction:action=>calls.push(action),onCombatGuard:guard=>calls.push(guard)});
   const view={label:"Fight",token:"a".repeat(32),ready:true,actors:[{tag:"AKIR",health:100,maxHealth:100},{tag:"TONY",health:28}]};
   presenter.showCombat(view);
-  const [punch,,,guard]=options.children;
+  const [punch,,,chord,guard]=options.children;
+  assert.equal(chord.textContent,"Punch + Kick");
+  chord.listeners.click();assert.deepEqual(calls.pop(),["hand","plus","leg"]);
   presenter.showCombat({...view,sequence:2,practice:true,remainingMs:29500});
   assert.match(presenter.dom.sourceText.textContent,/Practice · 30 seconds remaining/);
   assert.doesNotMatch(presenter.dom.sourceText.textContent,/Opponents/);

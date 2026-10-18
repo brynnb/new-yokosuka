@@ -1,4 +1,5 @@
 import { COMBAT_TICKS_PER_SECOND, distanceAndFacing, MARTIAL_ARTS_MOVES } from "../../src/MartialArtsCombat.js";
+import { combatCommandGroups } from './CombatCommandDisplay.js';
 
 // A lesson configures the regular combat session. It observes real completion
 // events, never duplicates command recognition or awards mastery for key presses.
@@ -10,8 +11,8 @@ export function completedTrainingMove(training, events, playerId) {
 export function trainingInstructions(training, bindings) {
   const names = { up: "Forward", down: "Back", hand: "Punch", leg: "Kick", throw: "Throw", guard: "Guard" };
   const key = token => (bindings[token] || "").replace(/^Key|^Digit/, "").replace("Arrow", "");
-  const commands = MARTIAL_ARTS_MOVES[training.moveId].nativeInput
-    .map(token => token === "plus" ? "+" : `${names[token] || token} (${key(token)})`).join(" → ");
+  const commands = combatCommandGroups(MARTIAL_ARTS_MOVES[training.moveId].nativeInput)
+    .map(group => group.filter(token=>token!=="plus").map(token=>`${names[token] || token} (${key(token)})`).join(" + ")).join(" → ");
   return `${commands}\n${training.instruction}\nPractice freely; cancel to leave. No time limit.`;
 }
 

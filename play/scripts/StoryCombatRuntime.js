@@ -135,7 +135,18 @@ export class StoryCombatRuntime {
 
   action(command) {
     const owner = this.active;
-    if (owner?.serverView.ready && !owner.outcome) owner.input.pressed.push(command);
+    if (!owner?.serverView.ready || owner.outcome) return;
+    // Touch buttons enter the same tokens as physical controls. Holding the
+    // on-screen guard must modify attacks too, not merely raise Ryo's guard.
+    const commands = Array.isArray(command) ? command : [command];
+    const attack = ["hand", "leg", "throw"].includes(commands[0]);
+    const bindings = owner.input.getBindings();
+    const temporaryGuard = owner.guard && !owner.input.held.has(bindings.guard);
+    if (temporaryGuard) owner.input.held.add(bindings.guard);
+    owner.input.pressed.push(...(attack
+      ? [...owner.input.attackTokens(commands[0], bindings), ...commands.slice(1)]
+      : commands));
+    if (temporaryGuard) owner.input.held.delete(bindings.guard);
   }
   setGuard(value) { if (this.active) this.active.guard = Boolean(value); }
 
