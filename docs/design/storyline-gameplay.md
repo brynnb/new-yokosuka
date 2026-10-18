@@ -1,7 +1,7 @@
 # Storyline gameplay integration
 
 Status: authored Story prototype plus retained native-engine research
-Last reviewed: October 16, 2026
+Last reviewed: October 18, 2026
 
 The [implemented play modes](../implementation/play-modes.md) isolate Story
 and Free roam saves, calendars and NPC views. The current implementation uses
@@ -68,7 +68,7 @@ entry, live cancellation/re-entry, natural completion, owned inventory display,
 restored controls and saved reload pass. Detailed hand poses remain rough.
 Inventory now reads actual saved possessions.
 Gui Zhang's street encounter now connects the handguard to the original
-introduction, a real server-timed nonlethal fight and the original bodyguard /
+introduction, a shared client-simulated nonlethal fight and the original bodyguard /
 rooftop Chai explanation. Rendered cancellation/re-entry, physical combat
 inputs, natural ending, saved notebook and reload pass. Combat balance, entry
 volume and music-start timing are authored adaptations. The return-home
@@ -103,7 +103,7 @@ scratch artwork, shelf identity/placement and mechanical reveals are authored
 or condensed. Light-source interactions and optional basement discoveries
 remain omitted. The original automatic dojo return is condensed to an explicit
 return choice. The [Fuku/Chen mirror follow-up](story-event-template.md#return-to-master-chen)
-now connects original presentation assets, repeat travel and a server-owned
+now connects original presentation assets, repeat travel and a client-timed
 Left challenge. Compiler/database, focused client and connected rendered
 checks pass through cancellation/retry, real password/gate/door use, wrong
 challenge input/retry/success, natural final presentation and saved reload.
@@ -120,7 +120,7 @@ payment, Jimmy's call, Chai and Jimmy's chase/interrogation. The subsequent
 Goro/Mai appointment, Yada's interview and Mark's introduction. The connected
 forklift lesson now verifies three physical deliveries, cancellation/retry,
 saved notebook/time and reload without pay or replay. The evening chicken race
-now connects the original introduction and riding assets to a server-validated
+now connects the original introduction and riding assets to a client-timed
 four-input challenge, saved notebook/day and reload; its course staging remains
 an approximation. The first working morning now also connects real three-lap
 forklift driving to server-observed gates, saved notebook/date, harbor return
@@ -610,15 +610,17 @@ world merely changing.
 
 ## QTEs are a separate result problem
 
-The authored Heartbeats alley now combines original AUTH staging with a shared
-server-validated timed-input primitive. `start_challenge` selects a closed
-challenge record; `challenge_result` reads its validated result in that event
-run. Readiness starts the server timer after presentation is ready. Fresh
-prompt tokens, receipt-time checks and ordered inputs prevent ordinary Continue,
-old callbacks or movie completion from awarding success. Failure and timeout
-offer a retry; cancellation settles nothing. The Heartbeats interior now uses
-the same primitive for B/A/B/A, with original E1030 voices and an authored held
-cast, then settles the Charlie clue. Later story challenges remain missing.
+The authored Heartbeats alley combines original AUTH staging with the shared
+client QTE runtime. `start_challenge` selects a closed challenge record; the
+browser starts its clock when the presentation is ready, judges the input order
+and reports one trusted result. The server verifies the attempt's ownership,
+token and readiness, then supplies that result to Yarn. Fresh attempt tokens
+prevent old callbacks, ordinary Continue or movie completion from awarding
+success. Failure and timeout offer a retry; cancellation settles nothing.
+The Heartbeats interior uses the same runtime for B/A/B/A, with original E1030
+voices and an authored held cast, then settles the Charlie clue. Other authored
+S1 QTEs use this catalog too. Prompt windows and some combinations remain
+documented approximations of the original game.
 
 The parking-lot ambush extends the same event ownership with `start_combat` and
 `combat_result`. The client simulates movement, health, full Practice moves and

@@ -28,13 +28,14 @@ import {verifyFinalAftermath} from "./story-final-aftermath.js";
 import {verifyFamilyDeparture} from "./story-family-departure.js";
 import {verifySwallowFlip,verifySwallowPresentation,verifyFinalChai,verifyFinalChaiPresentation,verifyIntroductionLetter,verifyEarnedIntroductionLetter,verifyNozomiAmulet,verifyShipDeparture} from "./story-final-departure.js";
 import {useStoryInspectable} from "./story-object-input.js";
+import {verifySavedScrollLearning} from "./story-move-learning.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
 const resumeId = Number(process.env.NEW_YOKOSUKA_STORY_RESUME_ID || 0);
 test.afterEach(async({page},info)=>{
   if(info.status===info.expectedStatus)return;
-  const state=await page.evaluate(()=>{const p=window.storyProbe,l=p?.lifecycle;return{notices:p?.notices,errors:p?.errors,sceneErrors:p?.sceneErrors,status:p?.regions?.controller.status,world:l?.worldRuntime.activeWorld.id,ready:l?.worldRuntime.ready,switching:l?.worldRuntime.switching,movementLocked:l?.getController()?.movementLocked,rejected:p?.scriptRejections,presence:p?.presencePublishes?.slice(-5)};}).catch(()=>null);
+  const state=await page.evaluate(()=>{const p=window.storyProbe,l=p?.lifecycle;return{notices:p?.notices,errors:p?.errors,sceneErrors:p?.sceneErrors,status:p?.regions?.controller.status,world:l?.worldRuntime.activeWorld.id,ready:l?.worldRuntime.ready,switching:l?.worldRuntime.switching,movementLocked:l?.getController()?.movementLocked,actorLeases:p?.actorLeases?.slice(-4),rejected:p?.scriptRejections,presence:p?.presencePublishes?.slice(-5)};}).catch(()=>null);
   console.info("Story failure state:",JSON.stringify(state));
 });
 const variants = resumeId ? [["resume", false]] : [["complete", false], ["skip", false], ["complete", true]];
@@ -108,6 +109,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   // Instrument the actual served modules, including HMR timestamp variants.
   // Importing a bare second copy can observe a different prototype from /play.
   for (const [file, hook] of [
+    ["events/NativeAseqBabylonPresentation", `const probeActorBegin = NativeAseqBabylonActors.prototype.begin;
+      NativeAseqBabylonActors.prototype.begin=function(...args){
+        const p=window.storyProbe,c=p?.lifecycle?.getController();
+        if(p&&c)(p.actorLeases||=[]).push({scene:p.director?.activeCutscene?.cutscene.id,position:c.collider.position.asArray(),tags:args[1]});
+        return probeActorBegin.apply(this,args);
+      };`],
     ["multiplayer/PlayMultiplayerRuntime", `const probePresence=PlayMultiplayerRuntime.prototype.publishPresence;
       PlayMultiplayerRuntime.prototype.publishPresence=function(force){const result=probePresence.call(this,force);if(window.storyProbe){window.storyProbe.presencePublishes||=[];window.storyProbe.presencePublishes.push({at:performance.now(),force:!!force,sent:result,allowed:this.canPublishPresence(),connected:this.client?.connected,welcomed:this.client?.welcomed,presence:this.client?.latestPresence});if(window.storyProbe.presencePublishes.length>30)window.storyProbe.presencePublishes.shift();}return result;};`],
     ["ui/TransientNotice", `const probeNoticeShow = TransientNotice.prototype.show;
@@ -219,6 +226,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   expect(await page.evaluate(() => window.storyProbe.errors)).toEqual([]);
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
+    if(process.env.NEW_YOKOSUKA_SCROLL_LEARNING_E2E === "true"){
+      test.setTimeout(300_000);await verifySavedScrollLearning(page,testInfo,character,{moveId:process.env.NEW_YOKOSUKA_SCROLL_MOVE_ID||'twinBlades'});expect(errors).toEqual([]);return;
+    }
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
     if(process.env.NEW_YOKOSUKA_SHIP_DEPARTURE_E2E === "true"){
       test.setTimeout(540_000);await verifyShipDeparture(page,testInfo,character,{musicResponses});expect(errors).toEqual([]);return;
@@ -621,10 +631,13 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   }));
   expect(continuation.avatar).toBe("ryo");
   if (freshOpening) {
-    expect(continuation.position[0]).toBeGreaterThanOrEqual(-17.5);
-    expect(continuation.position[0]).toBeLessThanOrEqual(-16);
-    expect(continuation.position[2]).toBeGreaterThanOrEqual(0.4);
-    expect(continuation.position[2]).toBeLessThanOrEqual(1.6);
+    // Held walking input can continue while the request and scene prepare.
+    // Prove exact restoration of the borrowed gameplay pose, rather than
+    // assuming every machine stops at the first frame of the trigger volume.
+    const borrowed = await page.evaluate(() => window.storyProbe.actorLeases
+      .find(lease => lease.scene === "story-s1-first-allowance")?.position);
+    expect(borrowed).toHaveLength(3);
+    expect(Math.hypot(...continuation.position.map((value,index)=>value-borrowed[index]))).toBeLessThan(0.02);
   }
   expect(await page.evaluate(() => window.storyProbe.starts)).toEqual([
     ...(freshOpening ? openingScenes : []), "story-s1-first-allowance",

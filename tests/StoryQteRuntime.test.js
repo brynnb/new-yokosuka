@@ -17,7 +17,13 @@ test("every registered QTE runs locally to one result; training is not a QTE",()
     assert.deepEqual(h.results,["success"],def.id);h.step(5000);assert.equal(h.results.length,1);
     assert.equal(h.sounds.filter(s=>s==="prompt").length,def.buttons.length);
   }
-  assert.equal(catalog.challenges.filter(d=>d.kind==="training").length,2);
+  const lessons=catalog.challenges.filter(d=>d.kind==="training");
+  assert.ok(lessons.length>0);
+  for(const lesson of lessons){
+    const h=harness();
+    assert.throws(()=>h.runtime.start(lesson),/Invalid QTE/,lesson.id);
+    assert.deepEqual(h.results,[]);
+  }
 });
 test("per-step windows and simultaneous chords are independent of network time",()=>{
   const h=harness();h.runtime.start({steps:[{buttons:["A","B"],windowMs:750},{buttons:["Left"],windowMs:3000}]});

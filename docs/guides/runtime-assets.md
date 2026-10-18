@@ -13,7 +13,7 @@ these; they do not require R2 publication. `artwork/inventory/catalog.json`
 records their provenance and distinguishes displayed items from unused/demo
 artwork. Full-resolution reserve images in `artwork/inventory/reserve/` are
 not imported or copied into the production build. The inventory currently
-displays a curated catalog, not server-backed character possessions.
+displays the character's saved possessions, including readable Story move scrolls.
 
 `src/runtime-assets.generated.json` maps repository-relative source paths to
 SHA-256 hashes and byte sizes. `src/RuntimeAssets.js` resolves these to
@@ -41,6 +41,20 @@ different local content. `VITE_OFFLINE_ASSETS=true` selects the original local
 paths instead. This flag does not provide the separate world library; extract
 those models as described in the tools guide. New extraction output remains
 ignored until explicitly registered in the runtime manifest.
+
+Archived worktrees do not retain ignored game data or tool caches. Restore
+published assets with the command above; unpublished Story packages must be
+rebuilt with the producer named by their `manifest.json` (`generatedBy`).
+Reconnect the original extracted discs and world models first. Story audio
+builders use `VGMSTREAM_CLI`, `DTPK_DUMP`, and a Python 3.12 `DTPK_PYTHON`
+(DTPKDump imports `aifc`, removed from later Python versions). The ride-home
+music builder also needs the original Disc 3 GDI and its audio track, through
+`SHENMUE_DISC3_GDI`. Run `assets:verify-local` after recovery; the presence of
+the tracked JSON manifests alone does not prove their binary dependencies exist.
+The separate S1 world library must also satisfy `public/models.json` and
+`public/texture-packs.json`. Mode, season and time changes can load additional
+variants; a successful opening does not verify those files. `assets:verify-local`
+checks the versioned runtime manifest, not these world catalogs.
 
 Local `/play/` also uses available [prepared scenery](tooling/scenery-bundle-lab.md)
 by default, including Shenmue II zones from all four discs. Build with

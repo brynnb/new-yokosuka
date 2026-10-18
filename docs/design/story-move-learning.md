@@ -81,3 +81,10 @@ settlement, cancellation, purchases, translation, saved flags, mode fencing and
 inventory timeout/retry/stale-response handling. Browser tests separately exercise
 the renderer, teacher models, keyboard input and scroll UI; headless tests are not
 visual proof of original staging fidelity.
+
+For the real pickup/inventory/server path, the earned-save continuation in
+`tests/e2e/first-allowance.spec.js` accepts `NEW_YOKOSUKA_SCROLL_LEARNING_E2E=true`.
+Use an earned Story character that has not collected Twin Blades, or select
+Shadow Reaper with `NEW_YOKOSUKA_SCROLL_MOVE_ID=shadowReaper`. This checks the
+actual pickup choices, Read request, retained item and Story/Free roam round trip
+without granting a prerequisite or learning flag through the test fixture.
