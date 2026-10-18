@@ -336,9 +336,8 @@ used to guess the meaning of each nonzero native flag. The original starting,
 taught and scroll distinctions can also be checked against the firsthand
 [move guide](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404).
 
-The connected Tornado Kick and Swallow Flip lessons unlock their techniques
-through the existing saved `story.s1.tornado-kick.learned` and
-`story.s1.swallow-flip.learned` flags. Each lesson temporarily permits its own
+The eight taught moves and nine scrolls unlock their techniques through saved
+`story.s1.<move>.learned` flags. Each lesson temporarily permits its own
 move before mastery; preparation, cancellation, declining and unacknowledged
 completion do not permanently teach it. Each new encounter reads the current
 character's saved flags, and all waves retain the encounter's repertoire.
@@ -347,14 +346,14 @@ per-combatant permission. Enemy/ally repertoires remain independent. The HUD
 uses that same available list and refreshes when returning to Combat Test.
 
 This is move-ownership progression, not a reconstruction of per-move proficiency
-growth: existing expert-variant balancing is unchanged. Optional lessons such
-as Pit Blow, Double Blow, Swallow Dive and Shozo's techniques, and collectible
-scroll-learning events, are not yet connected to this authored Story route.
-Those techniques stay locked rather than granting them at an unrelated chapter
-or inventing native save mappings. The unresolved `nothingSkill` catalog entry
-likewise remains sandbox-only. Future learning events should settle their own
-saved mastery and extend this shared policy; owning an unread scroll alone
-must not imply learning it.
+growth: existing expert-variant balancing is unchanged. Pit Blow, Double Blow,
+Swallow Dive and Shozo's techniques use optional shared-combat lessons; nine
+scrolls can be found or bought and explicitly read from Inventory. Four taught
+moves replace their earlier command variants in Story, but not Combat Practice.
+The unresolved `nothingSkill` catalog entry remains sandbox-only. See
+[Story move learning](../../design/story-move-learning.md) for sources, gates,
+prices and the authored staging/availability approximations. Owning an unread
+scroll alone does not imply learning it.
 
 ## Canonical move catalogue
 

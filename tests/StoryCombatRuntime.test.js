@@ -172,6 +172,26 @@ test("Swallow lesson needs an actual counter and completed throw, not just the i
   h.runtime.finish(h.transaction);
 });
 
+test('each optional lesson completes from real shared commands, including all three counter lessons',async()=>{
+  for(const def of catalog.encounters.filter(d=>d.authoredStaging&&d.training)){
+    const h=harness(def.id);await h.ready();const e=h.runtime.encounter;
+    const move=MARTIAL_ARTS_MOVES[def.training.moveId];
+    let entered=false;
+    for(let i=0;i<2200&&!h.runtime.active.outcome;i++){
+      const counter=Boolean(def.training.attackMoveId);
+      if(!entered&&(!counter||e.enemy.action?.moveId==='tigerKnuckle'&&e.enemy.action.tick<4)){
+        for(const command of move.nativeInput)h.runtime.action(command);
+        entered=true;
+      }
+      if(counter&&!e.enemy.action)entered=false;
+      h.step(1/60);
+    }
+    assert.equal(h.runtime.active.outcome,'success',def.id);
+    assert.equal(h.calls.filter(c=>c[0]==='challenge_result').length,1,def.id);
+    h.runtime.finish(h.transaction);
+  }
+});
+
 test("Story preserves recovery, ally animation role, timeout and ownership on failure", async () => {
   const h=harness("s1.mfbt.seventy-man");await h.ready();const e=h.runtime.encounter;
   for(const entry of e.enemies)entry.ai=null;

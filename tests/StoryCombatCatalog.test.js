@@ -14,7 +14,7 @@ test("every teaching challenge configures a real shared move, not a second comba
   for(const lesson of lessons){
     const def=catalog.encounters.find(e=>e.id===lesson.id);
     assert.ok(MARTIAL_ARTS_MOVES[def.training.moveId]);
-    assert.ok(MARTIAL_ARTS_FOLLOWUP_STAGES[def.training.completionMoveId]);
+    assert.ok(MARTIAL_ARTS_MOVES[def.training.completionMoveId] || MARTIAL_ARTS_FOLLOWUP_STAGES[def.training.completionMoveId]);
     if(def.training.attackMoveId)assert.ok(MARTIAL_ARTS_MOVES[def.training.attackMoveId]);
     assert.equal(def.timeoutMs,0);
     assert.equal(fights.some(f=>f.id===lesson.id),false);

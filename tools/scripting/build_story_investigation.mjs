@@ -9,11 +9,13 @@ import { createHash } from "node:crypto";
 import { afsMembers } from "../lib/NativeAseqAudioPack.mjs";
 import { parseNativeSrfRecords } from "../../src/NativeLipSync.js";
 import { nativeDialogueSpeakerLabel, NATIVE_DIALOGUE_SPEAKER_LABELS } from "../../play/dialogue/NativeDialogueSpeaker.js";
+import {moveLearningRoutes} from './story-move-learning.mjs';
 
 const root = path.resolve(import.meta.dirname, "../..");
 const server = process.env.NEW_YOKOSUKA_SERVER_DIR;
 if (!server) throw new Error("NEW_YOKOSUKA_SERVER_DIR is required");
 const spec = JSON.parse(fs.readFileSync(path.join(import.meta.dirname, "story-investigation.json")));
+spec.routes.push(...moveLearningRoutes);
 if (spec.schema !== "new-yokosuka-authored-talk-routes-v1") throw new Error("Unsupported talk route schema");
 const voices = new Set(), streamVoices = new Map(), imports = [];
 const voiceRouteIds = process.argv.flatMap((value,index)=>value === "--voice-route" ? [process.argv[index+1]] : []);
@@ -69,7 +71,7 @@ for (const route of spec.routes) {
       }));
     }
     source={generatedFrom:archiveSources[0],archiveSources,messages};
-  } else if ((route.activities || route.completionActivities || route.yarnTemplate) && !route.voiceIds.length && !route.leadInVoiceIds?.length && !templateHasVoice && route.nativeSources?.length) {
+  } else if ((route.activities || route.completionActivities || route.yarnTemplate || route.shop) && !route.voiceIds.length && !route.leadInVoiceIds?.length && !templateHasVoice && route.nativeSources?.length) {
     // Silent presentation and explicitly authored text carry their reviewed
     // source provenance directly. Do not invent an AKIR voice resource.
     source = {archiveSources:[],messages:[]};
@@ -98,7 +100,7 @@ for (const route of spec.routes) {
   });
   // Repeatability is for reviewed, reward-free room travel, not repeated quest
   // payouts. One-way milestone gates would strand a player after returning.
-  if (route.repeatable && (!route.destination || route.items?.length || route.grantYen || route.spendYen || route.recordMinutes?.length || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length)) throw Error(`Unsafe repeatable route ${route.id}`);
+  if (route.repeatable && ((!route.destination && !route.shop) || route.items?.length || route.grantYen || route.spendYen || route.recordMinutes?.length || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length)) throw Error(`Unsafe repeatable route ${route.id}`);
   if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw Error(`Invalid Story destination ${route.id}`);
   const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...(route.excludedFlags||[]).map(flag=>`flag_set("${flag}")`), ...requiredItems.map(({key,quantity})=>`!has_item("${key}", ${quantity})`), ...(route.repeatable ? [] : [`flag_set("${route.completedFlag}")`])];
   if (route.hours) gates.push(route.hours[0] < route.hours[1]
@@ -131,7 +133,14 @@ for (const route of spec.routes) {
     }),
     ...[route.completedFlag,...route.effects].map(flag=>`<<set_flag "${flag}">>`)];
   let body;
-  if (route.yarnTemplate) {
+  if (route.shop) {
+    if(!route.repeatable||!route.nativeSources?.length||!route.shop.length)throw Error(`Invalid scroll shop ${route.id}`);
+    for(const item of route.shop)if(!/^[a-z][a-z0-9_]*$/.test(item.itemKey)||!Number.isSafeInteger(item.price)||item.price<=0||!/^[A-Za-z ]+$/.test(item.name))throw Error(`Invalid shop item ${route.id}`);
+    body='Ryo Hazuki: Bunkado sells these move scrolls. I can read them in my inventory after buying one. #speaker:AKIR\n'
+      +route.shop.map((item,i)=>`-> ${item.name} — ${item.price} yen <<if !has_item("${item.itemKey}", 1)>>\n    <<jump Buy${i}>>`).join('\n')
+      +'\n-> Leave\n    <<complete>>\n'
+      +route.shop.map((item,i)=>`===\ntitle: Buy${i}\n---\n<<if yen() >= ${item.price} && !has_item("${item.itemKey}", 1)>>\n<<spend_yen ${item.price} "story.s1.scroll.${item.slug}">>\n<<give_item "${item.itemKey}" 1>>\nRyo Hazuki: I bought the ${item.name} scroll. #speaker:AKIR\n<<else>>\nRyo Hazuki: I need ${item.price} yen and must not already own this scroll. #speaker:AKIR\n<<endif>>\n<<complete>>`).join('\n');
+  } else if (route.yarnTemplate) {
     // Yarn already owns branching/choices. Translate reviewed original voice
     // references inside its source instead of inventing a second node engine.
     // Activity/combat-only templates do not need a dummy pose scene. Require
@@ -236,7 +245,7 @@ for (const route of spec.routes) {
       ...(route.activityResults?{activityResults:route.activityResults}:{}),
     } }],
   });
-  if (route.repeatable) imports.at(-1).Summary = "Repeatable, reward-free room travel with authored unvoiced confirmation. The existing server transaction saves one reviewed destination and idempotent notebook/milestones; leave or cancellation does not travel.";
+  if (route.repeatable) imports.at(-1).Summary = route.shop ? 'Optional scroll purchases through existing transactional yen/inventory effects. Original prices, authored captions; buying does not learn a move. Already-owned scrolls cannot be bought again.' : "Repeatable, reward-free room travel with authored unvoiced confirmation. The existing server transaction saves one reviewed destination and idempotent notebook/milestones; leave or cancellation does not travel.";
   if (route.grantYen) imports.at(-1).Summary = "Original presentation followed by once-only personal funds, calendar, location and notebook settlement through the existing server transaction. Cancelled/failed presentation settles nothing; reload cannot repeat the grant.";
 }
 fs.writeFileSync(path.join(server, "internal/officialscript/early_investigation.generated.json"), JSON.stringify(imports, null, 2) + "\n");

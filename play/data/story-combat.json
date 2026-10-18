@@ -2439,6 +2439,302 @@
       "maxAttackers": 1,
       "timeoutMs": 120000,
       "practiceDurationMs": 30000
+    },
+    {
+      "id": "s1.jhd0.pit-blow",
+      "label": "Learn Pit Blow",
+      "area": "JHD0",
+      "worldId": "exterior",
+      "provenance": "Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.",
+      "authoredStaging": true,
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 6.9,
+          "y": 0.96,
+          "z": -24,
+          "health": 100
+        },
+        {
+          "tag": "FUKU",
+          "x": 6.9,
+          "y": 0.96,
+          "z": -22.6,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "FUKU",
+          "label": "Masayuki Fukuhara",
+          "modelCode": "FUK_M",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 5.7,
+        "maxX": 8.1,
+        "minZ": -25.2,
+        "maxZ": -21.400000000000002
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 0,
+      "maxAttackers": 0,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "pitBlow",
+        "completionMoveId": "pitBlow",
+        "requiresContact": false,
+        "instruction": "Complete Pit Blow. You do not need to hit your partner."
+      }
+    },
+    {
+      "id": "s1.d000.double-blow",
+      "label": "Learn Double Blow",
+      "area": "D000",
+      "worldId": "dobuita",
+      "provenance": "Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.",
+      "authoredStaging": true,
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -12,
+          "y": 0,
+          "z": -3.4,
+          "health": 100
+        },
+        {
+          "tag": "YAMA",
+          "x": -12,
+          "y": 0,
+          "z": -2,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "YAMA",
+          "label": "Shigeo Yamagishi",
+          "modelCode": "YMG_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -13.2,
+        "maxX": -10.8,
+        "minZ": -4.6,
+        "maxZ": -0.8
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 0,
+      "maxAttackers": 0,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "doubleBlow",
+        "completionMoveId": "doubleBlow",
+        "requiresContact": false,
+        "instruction": "Complete Double Blow. You do not need to hit your partner."
+      }
+    },
+    {
+      "id": "s1.mfsy.swallow-dive",
+      "label": "Learn Swallow Dive",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.",
+      "authoredStaging": true,
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 25,
+          "y": 0,
+          "z": 70,
+          "health": 100
+        },
+        {
+          "tag": "KISY",
+          "x": 23.6,
+          "y": 0,
+          "z": 70,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "KISY",
+          "label": "Chen Gui Zhang",
+          "modelCode": "KIS_M",
+          "browserFilename": "KIS_M.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/master-chen/KIS_M.CHRM",
+          "textureAssetPath": "play/assets/harbor/master-chen/textures.bin",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 22.400000000000002,
+        "maxX": 26.2,
+        "minZ": 68.8,
+        "maxZ": 71.2
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 0,
+      "maxAttackers": 0,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "swallowDive",
+        "completionMoveId": "swallowDive",
+        "requiresContact": false,
+        "instruction": "Complete Swallow Dive. You do not need to hit your partner."
+      }
+    },
+    {
+      "id": "s1.mfsy.shadow-step",
+      "label": "Learn Shadow Step",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.",
+      "authoredStaging": true,
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 91.5,
+          "y": 0,
+          "z": 50.3,
+          "health": 100
+        },
+        {
+          "tag": "SYZU",
+          "x": 91.5,
+          "y": 0,
+          "z": 51.699999999999996,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "SYZU",
+          "label": "Shozo Mizuki",
+          "modelCode": "KOG_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 90.3,
+        "maxX": 92.7,
+        "minZ": 49.099999999999994,
+        "maxZ": 52.9
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "shadowStep",
+        "completionMoveId": "shadowStep",
+        "requiresContact": true,
+        "attackMoveId": "tigerKnuckle",
+        "instruction": "Counter the approaching punch. Your partner will keep trying; mistakes cannot kill you."
+      }
+    },
+    {
+      "id": "s1.mfsy.shadow-blade",
+      "label": "Learn Shadow Blade",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.",
+      "authoredStaging": true,
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 78.4,
+          "y": 0,
+          "z": 39.8,
+          "health": 100
+        },
+        {
+          "tag": "SYZU",
+          "x": 78.4,
+          "y": 0,
+          "z": 41.199999999999996,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "SYZU",
+          "label": "Shozo Mizuki",
+          "modelCode": "KOG_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 77.2,
+        "maxX": 79.60000000000001,
+        "minZ": 38.599999999999994,
+        "maxZ": 42.4
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "shadowBlade",
+        "completionMoveId": "shadowBlade",
+        "requiresContact": true,
+        "attackMoveId": "tigerKnuckle",
+        "instruction": "Counter the approaching punch. Your partner will keep trying; mistakes cannot kill you."
+      }
+    },
+    {
+      "id": "s1.mfsy.cross-charge",
+      "label": "Learn Cross Charge",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.",
+      "authoredStaging": true,
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 78.4,
+          "y": 0,
+          "z": 39.8,
+          "health": 100
+        },
+        {
+          "tag": "SYZU",
+          "x": 78.4,
+          "y": 0,
+          "z": 41.199999999999996,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "SYZU",
+          "label": "Shozo Mizuki",
+          "modelCode": "KOG_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 77.2,
+        "maxX": 79.60000000000001,
+        "minZ": 38.599999999999994,
+        "maxZ": 42.4
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "crossCharge",
+        "completionMoveId": "crossCharge",
+        "requiresContact": true,
+        "attackMoveId": "tigerKnuckle",
+        "instruction": "Counter the approaching punch. Your partner will keep trying; mistakes cannot kill you."
+      }
     }
   ]
 }

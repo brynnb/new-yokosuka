@@ -5,10 +5,12 @@ import { createHash } from "node:crypto";
 import { parseAuthMovement, evaluateAuthActor } from "../../src/AuthMovement.js";
 import authoredScenes from "../../play/scripts/AuthoredSceneCatalog.js";
 import { storyCombatContract } from "../../src/StoryCombatContract.js";
+import {moveLearningEncounters} from './story-move-learning.mjs';
 const root = path.resolve(import.meta.dirname, "../..");
 const server = process.env.NEW_YOKOSUKA_SERVER_DIR;
 if (!server) throw new Error("NEW_YOKOSUKA_SERVER_DIR is required");
 const spec = JSON.parse(fs.readFileSync(path.join(import.meta.dirname,"story-combat.json")));
+spec.encounters.push(...moveLearningEncounters);
 const nativeActors = JSON.parse(fs.readFileSync(path.join(root,"play/data/events/nativeActivityActors.json"))).worlds;
 const music=JSON.parse(fs.readFileSync(path.join(root,"public/music/manifest.json"))).tracks;
 const scenes=authoredScenes.scenes;
@@ -16,7 +18,11 @@ const encounters = spec.encounters.map(input => {
   if(input.musicTrack&&!music[input.musicTrack])throw Error(`Missing reviewed combat music ${input.id}/${input.musicTrack}`);
   if(input.sourceTime && !["start","end"].includes(input.sourceTime))throw new Error(`Invalid staging time ${input.id}`);
   let poses,definitions;
-  if(input.sourceScene){
+  if(input.authoredActors){
+    if(input.sourceScene||input.sourceActivity)throw Error(`Ambiguous authored staging ${input.id}`);
+    poses=input.authoredActors.map(({tag,position:[x,y,z]})=>({tag,x:-x,y,z}));
+    definitions=input.actorDefinitions;
+  }else if(input.sourceScene){
     if(input.sourceActivity||input.sourceTime)throw new Error(`Ambiguous staging ${input.id}`);
     const scene=scenes.find(s=>s.id===input.sourceScene);
     if(!scene||scene.area!==input.area||scene.worldId!==input.worldId)throw new Error(`Wrong authored staging ${input.id}`);
@@ -80,7 +86,7 @@ const encounters = spec.encounters.map(input => {
   })}));
   return {id:input.id,label:input.label,area:input.area,worldId:input.worldId,provenance:input.provenance,
     ...(input.placement?{placement:input.placement}:{}),...(input.formation?{formation:input.formation}:{}),...(input.actorWorldId?{actorWorldId:input.actorWorldId}:{}),
-    ...(input.sourceScene?{sourceScene:input.sourceScene}:{sourceActivity:input.sourceActivity,sha256:input.sha256}),...(input.sourcePackage?{sourcePackage:input.sourcePackage}:{}),actors,
+    ...(input.authoredActors?{authoredStaging:true}:input.sourceScene?{sourceScene:input.sourceScene}:{sourceActivity:input.sourceActivity,sha256:input.sha256}),...(input.sourcePackage?{sourcePackage:input.sourcePackage}:{}),actors,
     actorDefinitions:actors.filter(a=>a.tag!=="AKIR").map(actor=>{
       const def=definitions?.find(def=>def.actorCode===actor.tag);
       if(!def)throw new Error(`No reviewed actor model ${actor.tag}`);return def;

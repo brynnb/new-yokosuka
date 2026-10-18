@@ -14,13 +14,14 @@ import { useRef } from "react";
 import {
   closeInventory,
   refreshInventory,
+  readInventoryScroll,
   useInventoryStore,
 } from "./inventoryStore.js";
 import { inventoryArtworkFor } from "./inventoryItems.js";
 import { CollectionPreviews } from './CollectionPreview.jsx';
 
 export function InventoryApp() {
-  const {open, view, items, status, error} = useInventoryStore();
+  const {open, view, items, status, error, readingKey, readError} = useInventoryStore();
   const collection = view === 'collection';
   const title = collection ? 'Collection' : 'Inventory';
   const closeRef = useRef(null);
@@ -66,6 +67,8 @@ export function InventoryApp() {
         <>
           <Dialog.Description mt="3" size="2" color="gray">{collection ? 'Capsule toys collected by this character. Duplicate toys are counted together.' : 'Items owned by this character. Story possessions are saved by the server.'}</Dialog.Description>
           <Box role="status" aria-live="polite" mt="3">
+            {readingKey && <Text color="gray">Reading scroll…</Text>}
+            {readError && <Text color="gray">{readError}</Text>}
             {status === 'loading' && <Text color="gray">Loading {collection ? 'collection' : 'inventory'}…</Text>}
             {status === 'error' && <Flex gap="3" align="center" wrap="wrap">
               <Text color="gray">{error}</Text>
@@ -108,6 +111,10 @@ export function InventoryApp() {
             </Card>
               <Text as="div" size="1" weight="bold" align="center" mt="1">{item.name}</Text>
               {item.quantity > 1 && <Text as="div" size="1" color="gray" align="center">×{item.quantity}</Text>}
+              {item.scrollReadable && <Button type="button" size="1" variant="soft" mt="2"
+                disabled={Boolean(readingKey)} onClick={()=>void readInventoryScroll(item.key)} aria-label={`Read ${item.name}`}>Read</Button>}
+              {item.scrollLearned ? <Text as="div" size="1" align="center" color="gray">Learned</Text> :
+                item.scrollReadReason && <Text as="div" size="1" align="center" color="gray">{item.scrollReadReason}</Text>}
             </Box>
           );})}
         </Grid>

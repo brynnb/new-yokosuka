@@ -1,9 +1,10 @@
 import { MARTIAL_ARTS_MOVES } from "../../src/MartialArtsCombat.js";
+import learning from "../data/story-move-learning.json" with { type: "json" };
 
 // The starting repertoire from the S1 move scroll (also the 33 entries with
 // zero definition flags in our captured native table). Keep this explicit:
 // adding an animation to the sandbox must not silently teach it to Story Ryo.
-// Provenance and the unimplemented optional lessons are documented in
+// Provenance and the optional lessons are documented in
 // docs/research/shenmue1/martial-arts-combat.md#story-move-availability.
 export const STORY_STARTING_MOVE_IDS = Object.freeze([
   "tigerKnuckle", "elbowSlam", "twistKnuckle", "elbowAssault", "upperKnuckle",
@@ -18,15 +19,23 @@ export const STORY_STARTING_MOVE_IDS = Object.freeze([
 
 // Only acknowledged, persisted lesson outcomes grant permanent access. A
 // completed offer, a declined lesson or a sandbox victory is not mastery.
-const STORY_MOVE_UNLOCKS = Object.freeze({
-  tornadoKick: "story.s1.tornado-kick.learned",
-  swallowFlip: "story.s1.swallow-flip.learned",
-});
+export const STORY_LEARNABLE_MOVES = Object.freeze(learning.moves.map(move => Object.freeze({
+  ...move, flag: `story.s1.${move.slug}.learned`,
+})));
+
+export function storyScrollForItem(itemKey) {
+  return STORY_LEARNABLE_MOVES.find(move => move.itemKey === itemKey) || null;
+}
 
 export function storyCombatMoveIds(flags = {}, trainingMoveId = null) {
   const available = new Set(STORY_STARTING_MOVE_IDS);
-  for (const [id, flag] of Object.entries(STORY_MOVE_UNLOCKS)) {
-    if (flags?.[flag] === true) available.add(id);
+  for (const {id, flag, replaces} of STORY_LEARNABLE_MOVES) {
+    if (flags?.[flag] === true) {
+      available.add(id);
+      // These four lessons upgrade a command slot in the original move scroll.
+      // The unrestricted practice catalog deliberately retains both versions.
+      if (replaces) available.delete(replaces);
+    }
   }
   if (trainingMoveId !== null) {
     if (!MARTIAL_ARTS_MOVES[trainingMoveId]) throw new Error(`Unknown training move: ${trainingMoveId}`);

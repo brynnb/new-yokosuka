@@ -6,8 +6,10 @@ import {
   configureInventoryUi,
   openInventory,
   refreshInventory,
+  readInventoryScroll,
   useInventoryStore,
 } from "../play/ui/react/inventoryStore.js";
+import {inventoryWithScrollActions,inventoryArtworkFor} from '../play/ui/react/inventoryItems.js';
 
 test("inventory opens and closes with lifecycle callbacks", () => {
   const events = [];
@@ -103,4 +105,38 @@ test('changing inventory views aborts the old request and ignores its late posse
   assert.equal(useInventoryStore.getState().view,'collection');
   assert.deepEqual(useInventoryStore.getState().items.map(x=>x.key),['toy']);
   closeInventory();
+});
+
+test('scroll actions respect Story, translation and saved learned flags',()=>{
+  const inventory=[{key:'scroll_stab_armor',name:'Stab Armor Scroll',category:'move_scroll',quantity:1}];
+  const state={inventory,character:{playMode:'story',openingCompleted:true,storyFlags:{}}};
+  assert.match(inventoryWithScrollActions(state)[0].scrollReadReason,/translate/);
+  state.character.storyFlags['story.s1.stab-armor.translated']=true;
+  assert.equal(inventoryWithScrollActions(state)[0].scrollReadable,true);
+  state.character.storyFlags['story.s1.stab-armor.learned']=true;
+  assert.equal(inventoryWithScrollActions(state)[0].scrollLearned,true);
+  assert.equal(inventoryWithScrollActions(state)[0].scrollReadable,false);
+  state.character={playMode:'free_roam'};
+  assert.equal(inventoryWithScrollActions(state)[0].scrollReadable,false);
+  assert.equal(inventoryArtworkFor('scroll_stab_armor'),inventoryArtworkFor('move-scroll'));
+});
+
+test('reading a scroll is single-flight, retryable after timeout and ignores close/reopen responses',async t=>{
+  t.mock.timers.enable({apis:['setTimeout']});closeInventory();
+  const item={key:'scroll_twin_blades',name:'Twin Blades Scroll',category:'move_scroll',quantity:1,scrollReadable:true};
+  const pending=[];
+  configureInventoryUi({loadInventory:async()=>[item],readScroll:(key,signal)=>new Promise(resolve=>pending.push({key,signal,resolve}))});
+  openInventory();await new Promise(r=>setImmediate(r));
+  const first=readInventoryScroll(item.key);readInventoryScroll(item.key);
+  assert.equal(pending.length,1);t.mock.timers.tick(10000);await first;
+  assert.match(useInventoryStore.getState().readError,/timed out/);
+  assert.equal(useInventoryStore.getState().status,'ready');
+  const retry=readInventoryScroll(item.key);
+  pending[1].resolve([{...item,scrollReadable:false,scrollLearned:true}]);await retry;
+  pending[0].resolve([item]);await new Promise(r=>setImmediate(r));
+  assert.equal(useInventoryStore.getState().items[0].scrollLearned,true);
+  await refreshInventory();const cancelled=readInventoryScroll(item.key);
+  closeInventory();assert.equal(pending[2].signal.aborted,true);
+  openInventory();pending[2].resolve([]);await cancelled;await new Promise(r=>setImmediate(r));
+  assert.equal(useInventoryStore.getState().items.length,1);closeInventory();
 });

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { storyCombatMoveIds, STORY_STARTING_MOVE_IDS } from "../play/combat/StoryMoveProgression.js";
+import { storyCombatMoveIds, STORY_STARTING_MOVE_IDS, STORY_LEARNABLE_MOVES } from "../play/combat/StoryMoveProgression.js";
 import { MARTIAL_ARTS_MOVES, MartialArtsCombat, createCombatant, queueCombatCommand,
   setCombatCommandOverride, startCombatMove } from "../src/MartialArtsCombat.js";
 
@@ -51,4 +51,18 @@ test("missing or malformed learning flags do not grant moves; practice remains u
     practice.action = null;
     assert.equal(startCombatMove(practice, move), true, move.id);
   }
+});
+
+test('every taught/scroll move has one saved grant and upgraded Story commands replace their base',()=>{
+  assert.equal(STORY_LEARNABLE_MOVES.length,17);
+  assert.equal(STORY_LEARNABLE_MOVES.filter(m=>m.itemKey).length,9);
+  for(const move of STORY_LEARNABLE_MOVES){
+    assert.ok(MARTIAL_ARTS_MOVES[move.id]);
+    const ids=storyCombatMoveIds({[move.flag]:true});
+    assert.ok(ids.includes(move.id));
+    assert.equal(ids.length,STORY_STARTING_MOVE_IDS.length+(move.replaces?0:1));
+    if(move.replaces)assert.ok(!ids.includes(move.replaces));
+    assert.ok(!storyCombatMoveIds({[move.flag]:1}).includes(move.id));
+  }
+  assert.ok(!storyCombatMoveIds(Object.fromEntries(STORY_LEARNABLE_MOVES.map(m=>[m.flag,true]))).includes('nothingSkill'));
 });

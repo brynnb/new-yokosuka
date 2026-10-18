@@ -143,6 +143,82 @@ test("Story QTEs judge locally and move lessons use rendered regular combat", as
   expect(errors).toEqual([]);
 });
 
+test('Optional Story lessons render their teachers and Inventory reads move scrolls',async({page},testInfo)=>{
+  test.setTimeout(360_000);
+  const errors=await openCombatApp(page);
+  await page.evaluate(()=>{
+    const p=window.combatProbe,c=p.scripts.controller;p.runtime.setActive(false);c.prepareStart=null;p.intents=[];
+    let id,token,run=0,ready=false;
+    const yieldAttempt=requestId=>queueMicrotask(()=>c.handleYield({requestId,runId:run,event:{type:'challenge'},challenge:{id,label:'Practice',token,ready,kind:'training'}}));
+    c.client={startScriptEvent(selector,requestId){id=selector.activity;token=(++run).toString(16).padStart(32,'0');ready=false;yieldAttempt(requestId);return true;},
+      advanceScriptEvent(runId,action,args){p.intents.push({action,...args});
+        if(action==='challenge_ready'){ready=true;yieldAttempt(args.requestId);}
+        else if(action==='challenge_result'||action==='cancel')queueMicrotask(()=>c.handleYield({requestId:args.requestId,runId,event:{type:action==='cancel'?'cancelled':'complete'}}));
+        else yieldAttempt(args.requestId);return true;}};
+  });
+  for(const [slug,move,world,area]of [['pit-blow','pitBlow','exterior','JHD0'],['double-blow','doubleBlow','dobuita','D000'],
+    ['swallow-dive','swallowDive','mfsy','MFSY'],['shadow-step','shadowStep','mfsy','MFSY'],['shadow-blade','shadowBlade','mfsy','MFSY'],['cross-charge','crossCharge','mfsy','MFSY']]){
+    console.info('Optional lesson',slug);
+    await page.evaluate(async({slug,world,area})=>{
+      const p=window.combatProbe;await p.lifecycle.travelToWorld(world);
+      await p.scripts.controller.start({kind:'activity',activity:`s1.${area.toLowerCase()}.${slug}`},{area});
+    },{slug,world,area});
+    await page.waitForFunction(()=>window.combatProbe.scripts.combatRuntime.active?.serverView.ready,null,{timeout:90_000});
+    await expect(page.locator('#dialogue-source')).toContainText('No time limit');
+    await page.screenshot({path:testInfo.outputPath(`${slug}-ready.png`)});
+    // Send physical keyboard events through the actual input mapper. Chord
+    // modifiers are held together, and counters wait for the teacher's wind-up.
+    await page.evaluate(async move=>{
+      const {MARTIAL_ARTS_MOVES}=await import('/src/MartialArtsCombat.js');
+      window.combatProbe.teachingInput={move,tokens:MARTIAL_ARTS_MOVES[move].nativeInput,entered:false};
+    },move);
+    await page.waitForFunction(()=>{
+      const p=window.combatProbe,r=p.scripts.combatRuntime,e=r.encounter,input=p.teachingInput;
+      if(!r.active)return p.intents.at(-1)?.challengeOutcome==='success';
+      if(e.player.action?.moveId===input.move)return true;
+      if(input.entered){if(performance.now()-input.at>1500&&!e.enemy.action&&!e.player.action)input.entered=false;return false;}
+      if(r.active.definition.training.attackMoveId&&(e.enemy.action?.moveId!=='tigerKnuckle'||e.enemy.action.tick>1||e.player.action||e.player.reaction))return false;
+      input.entered=true;input.at=performance.now();const b=r.active.input.getBindings();
+      const send=(type,code)=>window.dispatchEvent(new KeyboardEvent(type,{code,key:code.replace(/^Key/,'').toLowerCase(),bubbles:true}));
+      for(let i=0;i<input.tokens.length;i++){
+        const token=input.tokens[i];if(token==='plus')continue;
+        const chord=input.tokens[i+1]==='plus';send('keydown',b[token]);
+        if(chord){const next=input.tokens[i+2];send('keydown',b[next]);send('keyup',b[next]);i+=2;}
+        send('keyup',b[token]);
+      }
+      return false;
+    },null,{timeout:30_000}).catch(async error=>{
+      console.info('Teaching failure state',await page.evaluate(()=>{
+        const r=window.combatProbe.scripts.combatRuntime;return {player:r.encounter?.player,input:r.active?.input.pressed,events:r.encounter?.lastEvents};
+      }));throw error;
+    });
+    await page.screenshot({path:testInfo.outputPath(`${slug}-move.png`)});
+    await expect.poll(()=>page.evaluate(()=>window.combatProbe.scripts.controller.status)).toBe('idle');
+    expect(await page.evaluate(()=>window.combatProbe.intents.at(-1).challengeOutcome)).toBe('success');
+  }
+  let learned=false;
+  const character={id:42,playMode:'story',modeRevision:0,openingCompleted:true};
+  const snapshot=()=>({character:{...character,storyFlags:learned?{'story.s1.twin-blades.learned':true}:{},scriptStateRevision:learned?1:0},
+    inventory:[{key:'scroll_twin_blades',name:'Twin Blades Scroll',category:'move_scroll',quantity:1}]});
+  await page.route('**/api/characters/42/state',route=>route.fulfill({json:snapshot()}));
+  await page.route('**/api/characters/42/use-item',route=>{
+    expect(route.request().postDataJSON()).toEqual({itemKey:'scroll_twin_blades',modeRevision:0});
+    learned=true;return route.fulfill({json:snapshot()});
+  });
+  await page.evaluate(async character=>{
+    const {accountSession}=await import('/play/account/AccountSession.js');accountSession.applyWelcome({...character,storyFlags:{},scriptStateRevision:0});
+    const {openInventory}=await import('/play/ui/react/inventoryStore.js');openInventory();
+  },character);
+  await page.getByRole('button',{name:'Read Twin Blades Scroll'}).click();
+  await expect(page.locator('#inventory-overlay')).toContainText('Learned');
+  await expect(page.getByRole('button',{name:'Read Twin Blades Scroll'})).toHaveCount(0);
+  await page.screenshot({path:testInfo.outputPath('inventory-scroll-learned.png')});
+  expect(await page.evaluate(async()=>{
+    const {accountSession}=await import('/play/account/AccountSession.js');return accountSession.character.storyFlags['story.s1.twin-blades.learned'];
+  })).toBe(true);
+  expect(errors).toEqual([]);
+});
+
 test("Combat Practice renders four opponents and switches targets in camera space", async ({ page }, testInfo) => {
   test.setTimeout(240_000);
   const errors = await openCombatApp(page);

@@ -6,6 +6,7 @@ import { gamepadPreferences } from "../input/GamepadPreferences.js";
 import { generalPreferences } from "../settings/GeneralPreferences.js";
 import { graphicsPreferences } from "../../src/rendering/GraphicsPreferences.js";
 import { accountSession } from "../account/AccountSession.js";
+import {inventoryWithScrollActions} from './react/inventoryItems.js';
 import { DisplayOptions } from "./DisplayOptions.js";
 import { PlayUiCoordinator } from "./PlayUiCoordinator.js";
 import { TransientNotice } from "./TransientNotice.js";
@@ -255,10 +256,27 @@ export class PlayInterfaceAssembly {
     configureInventoryUi({
       loadInventory: async signal => {
         const characterId = accountSession.character?.id;
+        const modeRevision = accountSession.character?.modeRevision;
         if (!characterId) throw new Error('Enter the world with a character to view inventory.');
         const state = await accountSession.request(`/api/characters/${characterId}/state`, {signal, cache: 'no-store'});
-        if (accountSession.character?.id !== characterId) throw new Error('Character changed. Reopen inventory.');
-        return state.inventory;
+        if (accountSession.character?.id !== characterId || accountSession.character?.modeRevision !== modeRevision)
+          throw new Error('Character or play mode changed. Reopen inventory.');
+        return inventoryWithScrollActions(state);
+      },
+      readScroll: async (itemKey,signal) => {
+        const {id,modeRevision}=accountSession.character||{};
+        if(!id)throw new Error('Enter the world with a character first.');
+        const state=await accountSession.request(`/api/characters/${id}/use-item`,{
+          method:'POST',signal,body:JSON.stringify({itemKey,modeRevision}),
+        });
+        signal.throwIfAborted();
+        if(accountSession.character?.id!==id||accountSession.character?.modeRevision!==modeRevision||state.character?.modeRevision!==modeRevision)
+          throw new Error('Character or play mode changed. Reopen inventory.');
+        const items=inventoryWithScrollActions(state);
+        // Do not replace live position/time with an HTTP snapshot taken earlier.
+        if((state.character.scriptStateRevision??0)>=(accountSession.character.scriptStateRevision??0))
+          accountSession.applyWelcome({storyFlags:state.character.storyFlags,scriptStateRevision:state.character.scriptStateRevision},state.inventory);
+        return items;
       },
       onOpen: () => {
         this.playUi.openModal("inventory");

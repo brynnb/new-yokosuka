@@ -1,0 +1,19 @@
+Ryo Hazuki: {{text:prompt}} #speaker:AKIR
+-> Practice the technique
+    <<jump Practice>>
+-> Not now
+    <<complete>>
+===
+title: Practice
+---
+<<start_challenge "{{challenge}}">>
+<<if challenge_result("{{challenge}}") == "success">>
+Ryo Hazuki: {{text:receipt}} #speaker:AKIR
+{{effects}}
+<<complete>>
+<<else>>
+-> Try again
+    <<jump Practice>>
+-> Leave it for now
+    <<complete>>
+<<endif>>

@@ -12,6 +12,8 @@ guide and focused tests for the current contract.
 - [Story event template](story-event-template.md): a reusable authored event
   specification, connected progression checklist and authored opening
   investigation, with explicit approximations.
+- [Story move learning](story-move-learning.md): optional teachers, scroll pickups
+  and purchases, saved ownership, and fidelity boundaries.
 - [Shenmue II Story feasibility](shenmue2-story-feasibility.md): available
   original inputs, verified format boundaries and a bounded first-slice plan;
   this is not implemented S2 Story coverage.

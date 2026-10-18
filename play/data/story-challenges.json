@@ -1,7 +1,7 @@
 {
-  "schema":"new-yokosuka-story-challenges-v1",
-  "buttonCodes":["A","B","X","Left","Right","Up","Down"],
-  "challenges":[
+  "schema": "new-yokosuka-story-challenges-v1",
+  "buttonCodes": ["A","B","X","Left","Right","Up","Down"],
+  "challenges": [
     {"id":"s1.mend.chai-last-attack","label":"Chai's last attack — counter","buttons":["Down","A","A","B"],"windowMs":2000,"provenance":"GameSpot p65 original Down,A,A,B order after separately won final battle. Original short attack/water-fall films; held source poses, generic two-second windows and fresh retries are authored, not native QTE-controller reconstruction."},
     {"id":"s1.mend.swallow-flip","label":"Learn the Swallow Flip","kind":"training"},
     {"id":"s1.mfbt.terry-finisher","label":"Stop Terry's final attack — kick","buttons":["A"],"windowMs":2000,"provenance":"GameSpot p65 requires A after the70-man victory. Original TERY outcome motions; frozen source poses, two-second window and retry are authored adaptations. Film completion cannot win."},
@@ -41,7 +41,13 @@
     {"id":"s1.jd00.gao-ball","label":"Kick the ball — save Gao Wen","buttons":["A"],"windowMs":2000},
     {"id":"s1.heartbeats.alley","label":"Defend yourself","buttons":["B","A"],"windowMs":2000},
     {"id":"s1.heartbeats.bar","label":"Defend yourself","buttons":["B","A","B","A"],"windowMs":2000},
-    {"id":"s1.tatq.charlie","label":"Defend yourself","buttons":["Left","A"],"windowMs":2000}
+    {"id":"s1.tatq.charlie","label":"Defend yourself","buttons":["Left","A"],"windowMs":2000},
+    {"id":"s1.jhd0.pit-blow","label":"Learn Pit Blow","kind":"training"},
+    {"id":"s1.d000.double-blow","label":"Learn Double Blow","kind":"training"},
+    {"id":"s1.mfsy.swallow-dive","label":"Learn Swallow Dive","kind":"training"},
+    {"id":"s1.mfsy.shadow-step","label":"Learn Shadow Step","kind":"training"},
+    {"id":"s1.mfsy.shadow-blade","label":"Learn Shadow Blade","kind":"training"},
+    {"id":"s1.mfsy.cross-charge","label":"Learn Cross Charge","kind":"training"}
   ],
-  "source":"Original winning button orders corroborated by https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf. Two-second windows and restart on a missed input are authored adaptations."
+  "source": "Original winning button orders corroborated by https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf. Two-second windows and restart on a missed input are authored adaptations."
 }
