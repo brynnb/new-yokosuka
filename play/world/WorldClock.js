@@ -2,6 +2,31 @@ import {
   gameDateFromWorldState,
   timeOfDayBlendForDate,
 } from "../../src/WorldTime.js";
+import nativeWeatherCatalog from "../data/shenmue1-native-weather.json" with { type: "json" };
+import { NativeWeatherSchedule } from "./NativeWeatherSchedule.js";
+import { nativeClockRecordFromGameDate } from "../events/NativeClockRecordRuntime.js";
+
+const storyWeatherSchedule = new NativeWeatherSchedule(nativeWeatherCatalog);
+
+// WAIR supplies exact sky resources and light RGB. Intensity/ambient/direction
+// remain the browser's four presets: project those onto the clear-table light
+// anchors (16,17,18,19), with dawn bounded by native sky changes (05:30,07:30).
+// This is an explicit renderer adaptation, not a monthly astronomical sunset.
+export function storyLightingBlend(date) {
+  const hour = date.getUTCHours() + date.getUTCMinutes() / 60
+    + date.getUTCSeconds() / 3600;
+  let fromIndex = 3, toIndex = 3, progress = 0;
+  if (hour >= 5.5 && hour < 7.5) {
+    fromIndex = 3; toIndex = 0; progress = (hour - 5.5) / 2;
+  } else if (hour >= 7.5 && hour < 16) {
+    fromIndex = 0; toIndex = 0;
+  } else if (hour >= 16 && hour < 19) {
+    fromIndex = Math.floor(hour) - 16; toIndex = fromIndex + 1;
+    progress = hour % 1;
+  }
+  return { fromIndex, toIndex, progress,
+    presetIndex: progress < 0.5 ? fromIndex : toIndex };
+}
 
 export const FALLBACK_GAME_TIME_MS = Date.UTC(1986, 5, 9, 8, 30);
 export const LATEST_DYNAMIC_LIGHTING_HOUR = 19.75;
@@ -67,11 +92,14 @@ export class WorldClock {
     fallbackGameTimeMs = FALLBACK_GAME_TIME_MS,
     now = () => Date.now(),
     onClockChanged = () => {},
+    getPlayMode = () => "free",
   } = {}) {
     this.fallbackGameTimeMs = fallbackGameTimeMs;
     this.now = now;
     this.fallbackServerTimeMs = now();
     this.onClockChanged = onClockChanged;
+    this.getPlayMode = getPlayMode;
+    this.storySample = null;
     this.worldState = null;
     this.serverClockOffsetMs = 0;
     this.debugHour = null;
@@ -116,7 +144,8 @@ export class WorldClock {
       hasFixedSeasonName ? fixedSeasonName : this.worldState?.season,
       date,
     );
-    const weather = weatherName(
+    const native = this.storyEnvironment(world);
+    const weather = native ? native.weather : weatherName(
       world?.fixedWeather ?? this.worldState?.weather,
       this.worldState?.weatherIndex,
     );
@@ -135,6 +164,24 @@ export class WorldClock {
     this.debugHour = Number.isFinite(hour) ? hour : null;
   }
 
+  storyEnvironment(world, date = dateAtDebugHour(this.gameDate(), this.debugHour)) {
+    if (this.getPlayMode() !== "story" || world?.assetFormat === "MT7" || world?.fixedWeather) return null;
+    const key = Math.floor(date.getTime() / 1000);
+    if (this.storySample?.key === key) return this.storySample;
+    const record = nativeClockRecordFromGameDate(date);
+    const channels = storyWeatherSchedule.sample(record);
+    const light = storyWeatherSchedule.environment.sample(record, channels);
+    const previous = this.storySample;
+    const continuous = previous && key >= previous.key && key - previous.key <= 60;
+    const sky = storyWeatherSchedule.environment.sky(record, channels, continuous ? previous.sky : null);
+    this.storySample = { key, channels, sky,
+      weather: channels.snow > 0 ? "snow" : channels.rain > 0 ? "rain"
+        : channels.cloud > 0 ? "overcast" : "clear",
+      lightingOverride: { dirDiffuse: light.values.slice(5, 8) },
+    };
+    return this.storySample;
+  }
+
   lightingState(world) {
     const serverDate = this.gameDate();
     const date = dateAtDebugHour(serverDate, this.debugHour);
@@ -142,6 +189,7 @@ export class WorldClock {
     const fixedIndex = Number.isInteger(world?.fixedTimeOfDayIndex)
       ? world.fixedTimeOfDayIndex
       : null;
+    const story = this.storyEnvironment(world, date);
     const blend = fixedIndex !== null
       ? {
         fromIndex: fixedIndex,
@@ -151,7 +199,9 @@ export class WorldClock {
       }
       : world?.interior && world.dynamicTimeOfDay !== true
         ? { fromIndex: 0, toIndex: 0, progress: 0, presetIndex: 0 }
-        : timeOfDayBlendForDate(lightingDate);
+        : story ? { ...storyLightingBlend(date), lightingOverride: story.lightingOverride,
+          skyTextureUrl: story.sky.imagePath }
+          : timeOfDayBlendForDate(lightingDate);
     return { serverDate, date, blend };
   }
 

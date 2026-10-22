@@ -10,6 +10,42 @@ import {
 } from "../play/world/WorldClock.js";
 import { timeOfDayBlendForHour } from "../src/WorldTime.js";
 
+test("Story uses its calendar's native sky/weather and continues past the Free roam light cap", () => {
+  let mode = "story";
+  const clock = new WorldClock({ now: () => 1_000, getPlayMode: () => mode });
+  const at = (day, hour, minute = 0) => clock.setWorldState({
+    gameTimeMs: Date.UTC(1986, 11, day, hour, minute), serverTimeMs: 1_000,
+    dayStartHour: 0, dayEndHour: 24, paused: true, weather: "clear",
+  });
+  const world = { id: "dobuita" };
+  at(3, 16, 29); assert.equal(clock.storyEnvironment(world).sky.index, 1);
+  at(3, 16, 30); assert.equal(clock.storyEnvironment(world).sky.index, 2);
+  at(3, 17, 59); assert.equal(clock.storyEnvironment(world).sky.index, 2);
+  at(3, 18); assert.equal(clock.storyEnvironment(world).sky.index, 3);
+  const evening = clock.lightingState(world).blend;
+  assert.deepEqual(evening.lightingOverride.dirDiffuse.map(n => Math.round(n * 100)), [93, 77, 75]);
+  at(3, 23); assert.equal(clock.lightingState(world).blend.presetIndex, 3);
+  assert.equal(clock.lightingState(world).date.getUTCHours(), 23);
+  // Dec 3 dawn is cloudy; use the source's clear Dec 4 dawn for sky boundaries.
+  at(4, 5, 29); assert.equal(clock.storyEnvironment(world).sky.index, 3);
+  at(4, 5, 30); assert.equal(clock.storyEnvironment(world).sky.index, 0);
+  at(4, 7, 30); assert.equal(clock.storyEnvironment(world).sky.index, 1);
+  at(7, 18); assert.equal(clock.environmentState(world).weather, "rain");
+  assert.equal(clock.storyEnvironment(world).sky.index, 4);
+  at(11, 18); assert.equal(clock.environmentState(world).weather, "snow");
+  assert.equal(clock.environmentState({ interior: true }).precipitation, "clear");
+  assert.equal(clock.storyEnvironment({ fixedWeather: "clear" }), null);
+  assert.equal(clock.storyEnvironment({ assetFormat: "MT7" }), null);
+  assert.equal(clock.lightingState({ fixedTimeOfDayIndex: 0 }).blend.lightingOverride, undefined);
+  assert.equal(clock.lightingState({ interior: true }).blend.lightingOverride, undefined);
+  mode = "free_roam";
+  assert.equal(clock.environmentState(world).weather, "clear", "shared server weather is unchanged");
+  at(3, 23);
+  assert.deepEqual(clock.lightingState(world).blend, timeOfDayBlendForHour(19.75));
+  mode = "story";
+  assert.equal(clock.lightingState(world).blend.presetIndex, 3);
+});
+
 test("offline world clock starts from the canonical fallback", () => {
   assert.equal(
     FALLBACK_GAME_TIME_MS,

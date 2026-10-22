@@ -220,6 +220,11 @@ function createPlayRuntime() {
     dom,
     audioPreferences,
     dialogueAudioEnabled: generalPreferences.getState().dialogueAudio,
+    getCharacter: () => accountSession.character,
+    canPlayWorldMusicCue: () => Boolean(accountSession.character)
+      && worldRuntime.ready && !worldRuntime.switching
+      && !nativeCutsceneDirector?.active && !playModeSession?.pending
+      && !scriptEvents.combatRuntime.encounter && !playerRuntime.combat?.encounter,
     ninePmWorldIds: [
       WORLDS.exterior.id,
       WORLDS.yamanose.id,
@@ -246,7 +251,7 @@ function createPlayRuntime() {
     ambientDirector,
     dialogueAudio,
     dialogueAudioControls,
-    ninePmMusicCue,
+    explorationMusic,
   } = audioRuntime;
   const playerPersistence = new PlayerPersistence();
 
@@ -572,6 +577,7 @@ function createPlayRuntime() {
   });
   let debugRunSpeedMultiplier = 1;
   const worldClock = new WorldClock({
+    getPlayMode: () => accountSession.character?.playMode,
     onClockChanged: () => arcadeAttractScreens.markClockChanged(),
   });
   const worldWeather = new WorldWeatherRuntime({ scene });
@@ -593,7 +599,7 @@ function createPlayRuntime() {
     ),
     getCutscenePrecipitation: () => nativeCutsceneDirector?.activePrecipitation ?? null,
     getCutsceneLightingOverride: () => nativeCutsceneDirector?.activeLightingOverride ?? null,
-    dailyMusicCue: ninePmMusicCue,
+    dailyMusicCue: explorationMusic,
     setWorldDate: date => worldHud.setWorldDate(date),
     updateDebugClock: ({ serverDate, date, clock }) => {
       if (!LOCAL_DEBUG) return;
@@ -1681,9 +1687,9 @@ function createPlayRuntime() {
     dom,
     travelTransitions,
     audio: {
-      musicControls,
+      musicControls: explorationMusic,
       ambientDirector,
-      ninePmMusicCue,
+      dailyMusicCue: explorationMusic,
     },
     setWorldEnvironmentState,
     setActiveWorldUi,

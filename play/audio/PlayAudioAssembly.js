@@ -1,4 +1,4 @@
-import { DailyMusicCue } from "./DailyMusicCue.js";
+import { StoryExplorationMusic } from "./StoryExplorationMusic.js";
 import { DialogueAudio } from "./DialogueAudio.js";
 import { AmbientDirector } from "./AmbientDirector.js";
 import { CombatSounds } from "./CombatSounds.js";
@@ -17,6 +17,8 @@ export class PlayAudioAssembly {
     audioPreferences,
     dialogueAudioEnabled,
     ninePmWorldIds,
+    getCharacter,
+    canPlayWorldMusicCue,
     getActiveForkliftId,
     sendForkliftSound,
   }) {
@@ -52,15 +54,11 @@ export class PlayAudioAssembly {
       dom,
       runtime: this.dialogueAudio,
     });
-    this.ninePmMusicCue = new DailyMusicCue({
-      hour: 21,
-      triggerWindowSeconds: 2,
+    this.explorationMusic = new StoryExplorationMusic({
+      musicControls: this.musicControls,
+      getCharacter,
+      canPlayCue: canPlayWorldMusicCue,
       includedWorldIds: ninePmWorldIds,
-      onTrigger: () => {
-        this.musicControls.playTemporaryTrack("old-warehouse-district", {
-          gain: 0.68,
-        });
-      },
     });
     this.remoteForkliftSounds = null;
   }

@@ -293,7 +293,7 @@ export class PlayWorldLifecycle {
         ? null
         : this.worldRuntime.activeWorld.id,
       {
-        preserveTemporary: this.audio.ninePmMusicCue
+        preserveTemporary: this.audio.dailyMusicCue
           .isEligible(this.worldRuntime.activeWorld.id),
       },
     );
