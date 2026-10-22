@@ -54,14 +54,13 @@ cutscenes and their loading transitions. Two compact buttons at the bottom right
 **Skip 5s** and **Skip scene**, use the same transport actions. They appear only
 during playback; the joystick returns after gameplay resumes.
 
-The local [prepared-scenery experiment](../guides/tooling/scenery-bundle-lab.md#intro-cutscenes)
-also covers all four opening scenes through the normal world loader: OP02 has
-one bundle, and the three OP00 scenes share another. Static scenery is prepared
-offline; generated scene-object/attachment owners and node masks retain native
-hierarchies, and seasonal surfaces remain independently controlled. Actor,
-camera, motion and audio preparation are unchanged. Local `/play/` uses available
-bundles by default; `?scenery=original` selects the original loader for comparison.
-These bundles are not yet a published production asset path.
+All four opening scenes use the same prepared-scenery loader as gameplay.
+OP02 has one bundle; the three OP00 scenes share another. Static scenery is
+prepared offline while scene-object/attachment owners, native node masks and
+seasonal surfaces retain their independent ownership. Character, camera,
+motion and audio playback are unchanged. Production pins the published bundle
+versions; `?scenery=original` remains a comparison switch. See
+[prepared scenery](../guides/tooling/scenery-bundle-lab.md#intro-cutscenes).
 
 A character without `lastLoginAt` needs the opening. Multiplayer connects only
 after the opening and final world load, so the server's existing first-login

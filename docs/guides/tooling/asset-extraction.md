@@ -90,9 +90,9 @@ terrain layers must not be hidden to work around coplanar triangles.
 - **Usage**: `npm run build:mt5-overlays`
 - **Shenmue II (all extracted discs)**: `npm run build:mt7-overlays`
 - **Limit to one family while developing**:
-  `node tools/assets/generate_model_overlay_manifest.js --match 'S2_MFSY_MAP11' --output /var/tmp/mt5-overlays-sample.json`
+  `node tools/assets/generate_model_overlay_manifest.js --game s1 --match 'S2_MFSY_MAP11' --output /var/tmp/mt5-overlays-sample.json`
 - **Add another extracted-model search root**:
-  `node tools/assets/generate_model_overlay_manifest.js --root /path/to/models`
+  `node tools/assets/generate_model_overlay_manifest.js --game s1 --root /path/to/models`
 - **Control analysis concurrency**: `--workers 4` (default; accepts 1–6).
 
 `--match` produces a partial manifest; use a separate output for diagnostics.

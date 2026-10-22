@@ -177,8 +177,8 @@ unfrozen so each copy binds its own transform and lighting correctly.
 
 The bundle is owned by the world session; failed or cancelled assembly drains
 before teardown, and disposal releases all copies and shared resources. This
-is currently a development default, not a production default: bundles and validation
-inputs still need production asset-delivery integration and publication. Reviewed
+uses local bundles in development and build-pinned, verified R2 versions in
+production. Reviewed
 interiors, practice/race areas and the four opening cutscenes share this loader;
 unsupported Shenmue I interiors and cinematic stages keep their normal loaders.
 Shenmue II uses the same compiler and reader: MAPM scenery can batch, while

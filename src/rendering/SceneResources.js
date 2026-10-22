@@ -26,8 +26,14 @@ export function freezeSceneRoots(roots) {
 }
 
 export function clearWorldSceneAssets(state) {
-  const materials = new Set();
-  const textures = new Set(state.loader?.textureCache?.values?.() || []);
+  // Unbound cached materials can be selected by later character/FACE frames.
+  // They belong to this loader too and must be released when its owner leaves.
+  const materials = new Set(state.loader?.materialCache?.values?.() || []);
+  const textures = new Set([
+    ...(state.loader?.textureCache?.values?.() || []),
+    ...[...materials].flatMap(material => material.getActiveTextures?.() || [])
+      .filter(texture => !texture.isRenderTarget),
+  ]);
   const scenes = new Set();
   const visitMaterial = (material, visit) => {
     if (!material) return;

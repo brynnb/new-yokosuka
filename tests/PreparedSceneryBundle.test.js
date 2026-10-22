@@ -453,7 +453,8 @@ test("empty MT5 resources do not leave unowned hierarchy nodes in the scene", as
   assert.deepEqual([scene.meshes.length, scene.transformNodes.length], counts);
 });
 
-test("MT5 parsing releases unused pack textures but retains textures on hidden surfaces", async t => {
+for (const discardUnusedResources of [false, true]) {
+test(`MT5 parsing ${discardUnusedResources ? 'prunes static' : 'retains dynamic'} texture caches while preserving hidden surfaces`, async t => {
   const {scene} = fixture(t);
   const loader = new Mt5Loader(scene);
   const baseline = scene.textures.length;
@@ -478,14 +479,20 @@ test("MT5 parsing releases unused pack textures but retains textures on hidden s
     mesh.material.diffuseTexture = used;
     loader.materialCache.set("used", mesh.material);
   });
-  const roots = await loader.load(bytes);
-  assert.equal(scene.textures.includes(unused), false);
+  const roots = await loader.load(bytes, null, {discardUnusedResources});
+  assert.equal(scene.textures.includes(unused), !discardUnusedResources);
   assert.equal(scene.textures.includes(used), true);
-  assert.equal(scene.materials.some(material => material.name === "discarded surface"), false);
-  assert.deepEqual([...loader.textureCache.values()], [used]);
+  assert.equal(scene.materials.some(material => material.name === "discarded surface"), !discardUnusedResources);
+  assert.deepEqual([...loader.textureCache.values()], discardUnusedResources ? [used] : [used, unused]);
+  if (!discardUnusedResources) {
+    roots[0].getChildMeshes()[0].material.diffuseTexture = loader.textureCache.get(1);
+    assert.equal(scene.textures.includes(roots[0].getChildMeshes()[0].material.diffuseTexture), true,
+      'a later animation can select its still-live cached texture');
+  }
   clearWorldSceneAssets({currentMeshes: roots, loader});
   assert.equal(scene.textures.length, baseline);
 });
+}
 
 test("fixed placements batch across roots while retaining transforms, source identity and collision roles", async t => {
   const {scene, root, make} = fixture(t);

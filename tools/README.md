@@ -8,7 +8,7 @@ README beside their code.
 
 - [Asset extraction and texture export](../docs/guides/tooling/asset-extraction.md)
 - [Experimental static MT5 to MT7 conversion](../docs/guides/tooling/mt5-to-mt7.md)
-- [Prepared scenery bundles and Dobuita comparison lab](../docs/guides/tooling/scenery-bundle-lab.md)
+- [Prepared scenery, validation and publication](../docs/guides/tooling/scenery-bundle-lab.md)
 - [Shenmue I/II audio archive rendering](../docs/implementation/audio-archive.md)
 - [Scheduled actor extraction](../docs/guides/tooling/scheduled-actors.md)
 - [Animation, character diagnostics, and placement](../docs/guides/tooling/animation-and-placement.md)

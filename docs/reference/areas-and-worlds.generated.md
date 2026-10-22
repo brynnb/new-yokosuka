@@ -16,7 +16,7 @@ Input SHA-256:
 - `tools/evidence/map-transition-catalog.json`: `ae3e4be08900b4cc1879c425673f24f9511e84c5e109ab30e21b01dd9c12d94d`
 - `tools/evidence/player-portal-inventory.json`: `3dd54ae4f3d00ba5d2f024621db5e7f54c66ae07004d45a3f99dd2e9f3eebadb`
 - `play/data/shenmue1-schedule-catalog.json`: `8099ec865c6546f1dcd1a4e2e9234be4ea819c97f9c92835ce79f6a098ea7002`
-- `play/config/worlds.js`: `67d61822b8b7a9a93987753c90a7b97dcce8cbcfe186f133fd9292ba09feb6a7`
+- `play/config/worlds.js`: `d7229bec980ba30396e52e0ba04229cee91332a1007e1c90e0b17aa26a0c9d21`
 - `play/data/native-map-transitions.json`: `edc364c35074d8673ada62b12909f608fb2b28643aba4a5d6199bc2516e794e8`
 - `play/data/shenmue2-boundary-transitions.json`: `778c37d5351895434f7d94f6093b9d3b76909dcd796d130687ff1e892aea1d6f`
 

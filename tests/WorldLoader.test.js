@@ -30,7 +30,7 @@ test("world geometry is disposed before clustered lighting", () => {
     }],
     loader: {
       textureCache: new Map([["texture", { dispose: () => calls.push("texture") }]]),
-      materialCache: new Map([["material", {}]]),
+      materialCache: new Map([["material", {dispose: () => calls.push("material")}]]),
     },
     mt7Loader: { clearCaches: () => calls.push("mt7") },
   };
@@ -42,7 +42,7 @@ test("world geometry is disposed before clustered lighting", () => {
     },
   });
 
-  assert.deepEqual(calls, ["mesh", "texture", "mt7", "lighting"]);
+  assert.deepEqual(calls, ["mesh", "material", "texture", "mt7", "lighting"]);
 });
 
 test("GLB loading finds Babylon's generated mesh conversion root", () => {

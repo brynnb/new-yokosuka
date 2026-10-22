@@ -5,6 +5,7 @@ import { clearWorldSceneAssets, freezeSceneRoots } from "./SceneResources.js";
 import { spatiallyBatchMt7MapRoot } from "./StaticWorldBatching.js";
 import { installWorldMt7MapEffect } from "./MapEffects.js";
 import mt7OverlayManifest from '../../play/data/mt7-overlay-manifest.json' with {type: 'json'};
+import {isWorldMapFile} from '../WorldMapFiles.js';
 
 // Bound each resource read so a stalled request cannot hold the scene queue
 // forever. Late I/O results never reach model parsing after timeout/cancel.
@@ -201,7 +202,7 @@ export async function loadMt5Scene(state, prefix, options = {}) {
       const meshes = await state.loader.load(
         buffer,
         modelTexturePack,
-        { sourceFilename: filename },
+        {sourceFilename: filename, discardUnusedResources: options.singleModel !== true && isWorldMapFile(filename)},
       );
       if (cancelled()) {
         meshes.forEach((m) => m.dispose());
