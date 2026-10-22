@@ -202,6 +202,12 @@ Do not describe the first conversation as fully animation-faithful.
 
 ### Connected progression checklist
 
+This is a grouped integration record, not a complete event inventory or a
+blanket presentation sign-off. Use the [master event list](../reference/shenmue1-story-event-master.generated.md)
+for individual events, optional branches, lessons, recurring interactions and
+unresolved coverage. In particular, the allowance progression receipt below
+does not establish working mouth animation or envelope presentation.
+
 | Sequence | Current state |
 | --- | --- |
 | Opening → bedside → first allowance → saved continuation | Rendered/full-stack verified, including explicit intro skips, natural allowance completion, one-time payment and reload. |

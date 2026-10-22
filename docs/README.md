@@ -18,6 +18,10 @@ section here by what you want to learn:
 Runnable extraction and analysis code remains in [tools](../tools/README.md).
 [Deployment](../DEPLOYMENT.md) remains a root-level operational entry point.
 
+For story coverage, use the [Shenmue I master event list](reference/shenmue1-story-event-master.generated.md).
+It inventories gameplay interruptions beyond cutscenes and separates known
+events, current bindings, presentation gaps and unresolved coverage.
+
 ## Where new documentation belongs
 
 Keep one maintained explanation per subject and link to it from other guides.

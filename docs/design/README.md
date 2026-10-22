@@ -5,6 +5,11 @@ integration work. Their recommendations are not implementation status.
 Where they describe an existing boundary, follow the linked implementation
 guide and focused tests for the current contract.
 
+The [Shenmue I master event list](../reference/shenmue1-story-event-master.generated.md)
+owns event enumeration, including optional and unmapped events. The design
+documents below describe implementation and adaptation, not an exhaustive
+original-game event count.
+
 - [Shenmue I narrative adaptation](shenmue1-narrative-adaptation.md): shared-world
   policy, personal story context, and intentional departures from the original.
 - [Storyline gameplay integration](storyline-gameplay.md): current ownership,

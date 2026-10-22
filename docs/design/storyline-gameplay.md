@@ -7,7 +7,11 @@ The [implemented play modes](../implementation/play-modes.md) isolate Story
 and Free roam saves, calendars and NPC views. The current implementation uses
 walkthrough-guided Yarn events with original presentation assets. The
 [connected progression checklist](story-event-template.md#connected-progression-checklist)
-is the source of truth for playable coverage and verification. Connected browser
+records grouped progression verification. The
+[master event list](../reference/shenmue1-story-event-master.generated.md) owns
+individual event coverage, including optional content and unresolved families;
+neither a route binding nor progression verification proves complete facial,
+prop or camera presentation. Connected browser
 coverage reaches the opening, allowance, early witnesses, Heartbeats and the
 Charlie inquiries, the parking-lot ambush, the same-night tattoo-parlour visit
 and Charlie's later confrontation/cartel appointment. Coverage follows the core
