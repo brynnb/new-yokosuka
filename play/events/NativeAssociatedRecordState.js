@@ -1133,6 +1133,40 @@ export class NativeAssociatedRecordState {
     const telm = this.recordFor(objectTag).record?.telm;
     return telm ? { ...telm } : undefined;
   }
+
+  configureStepRecord({ objectTag, actorAvailable, recordAvailable, enabledByte, surfaceByte }) {
+    if (typeof actorAvailable !== "boolean" || typeof recordAvailable !== "boolean") {
+      throw new TypeError("native STEP availability must be Boolean");
+    }
+    if (actorAvailable && recordAvailable && [enabledByte, surfaceByte]
+      .some(value => !Number.isInteger(value) || value < 0 || value > 255)) {
+      throw new RangeError("native STEP initial fields must be exact bytes");
+    }
+    const { record } = this.recordFor(objectTag, { create: true });
+    record.step = { actorAvailable, recordAvailable, enabledByte, surfaceByte };
+  }
+
+  readStepRecord(objectTag) {
+    const step = this.recordFor(objectTag).record?.step;
+    return step ? { ...step } : null;
+  }
+
+  applyStepPackedByte({ objectTag, packedValue }) {
+    if (!Number.isInteger(packedValue)) throw new TypeError("native STEP packed value must be an integer word");
+    const mode = (packedValue >>> 8) & 255;
+    if (mode !== 0 && mode !== 1) return { applied: false, nativeNoOp: true, reason: "step-mode-no-op" };
+    const step = this.recordFor(objectTag).record?.step;
+    // Unknown is not proof that an actor/record is missing. The host must
+    // provide captured/authored state or an explicit missing-record result.
+    if (!step) return { applied: false, reason: "actor-step-state-unavailable" };
+    if (!step.actorAvailable || !step.recordAvailable) {
+      return { applied: false, nativeNoOp: true, reason: "actor-or-step-record-missing" };
+    }
+    const field = mode === 0 ? "enabledByte" : "surfaceByte";
+    const previous = step[field];
+    step[field] = packedValue & 255;
+    return { applied: true, objectTag, offset: mode + 1, previous, value: step[field] };
+  }
 }
 
 export function createNativeAssociatedRecordState() {

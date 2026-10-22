@@ -1,0 +1,2236 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01JIN.AFS",
+      "sha256": "afde2e66540afae38d1446da0d75fe631f0c8e9f45fd6c3d7617482b0507d12b"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_NOOMA.SND",
+      "sha256": "f3f201aad241ac76c252da929a9bbfffcb79d26bd6186f36abf06bc491bbc47f"
+    },
+    "authManifest": "play/assets/harbor/nozomi-amulet/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#nozomis-amulet-memory"
+  },
+  "voices": [
+    {
+      "voiceId": "01JINA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINA001.aiff",
+      "nativeMember": "01JINA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "17d5a170657fa6a431bc5cf0b40a8e98190a62bdd8571ba10092a7c5fcfa584e",
+      "speakerId": "AKIR",
+      "sourceText": "Nozomi.",
+      "displayText": "Nozomi.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINA001.wav",
+      "byteLength": 16172,
+      "sha256": "aeef160cb5ff8e87a9531ddc42e628cef15f88ad28ea42e83ee221846d2cd104"
+    },
+    {
+      "voiceId": "01JINA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINA002.aiff",
+      "nativeMember": "01JINA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "db5832a4dbcdfd7aad5f4edc0f91fbdab4339f429a8c11092b3b052c9b4bc8f7",
+      "speakerId": "AKIR",
+      "sourceText": "I scared you?",
+      "displayText": "I scared you?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINA002.wav",
+      "byteLength": 24364,
+      "sha256": "756e9b25312dd5fc2c43317af2102eb6203c877aac74642cc46d8344a73909c8"
+    },
+    {
+      "voiceId": "01JINA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINA003.aiff",
+      "nativeMember": "01JINA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "c83dd57fc04a04c53874d04667da23ba913ab4fe407ee2a6d330453cbf8c491c",
+      "speakerId": "AKIR",
+      "sourceText": "Funny?",
+      "displayText": "Funny?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINA003.wav",
+      "byteLength": 16172,
+      "sha256": "9a990b2645d28e1b09bc3633d7955cd62391280a43ae5382b901c0fdc915724a"
+    },
+    {
+      "voiceId": "01JINA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINA004.aiff",
+      "nativeMember": "01JINA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 6144,
+      "nativeSha256": "1c2246b94f2d5119e285790b7ba552a9ccaff1f0f72720a6155135b9f63433c6",
+      "speakerId": "AKIR",
+      "sourceText": "A wish for me=@?",
+      "displayText": "A wish for me...?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINA004.wav",
+      "byteLength": 24364,
+      "sha256": "8af47038cf8efc35b4763e242e6eb0f46b69b83669a119114ee0cd5d075b9448"
+    },
+    {
+      "voiceId": "01JINA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINA005.aiff",
+      "nativeMember": "01JINA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 8192,
+      "nativeSha256": "4c11af210c5a71673b808497baac7314a08c18bb5bd79d70679f26068e9b1ca5",
+      "speakerId": "AKIR",
+      "sourceText": "How did you=@know?",
+      "displayText": "How did you...know?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINA005.wav",
+      "byteLength": 32556,
+      "sha256": "94e8c865569d8a6556885cb1e86e70c0033eadddf0e2f106a43a49a21197539b"
+    },
+    {
+      "voiceId": "01JINA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINA006.aiff",
+      "nativeMember": "01JINA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 8192,
+      "nativeSha256": "40a461b6819a19b8c29b5b609f09e7a00f1f9f72a5176daaffe96f67cee4e63d",
+      "speakerId": "AKIR",
+      "sourceText": "Is that so=@",
+      "displayText": "Is that so...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINA006.wav",
+      "byteLength": 32556,
+      "sha256": "84d6c277a301ecdf03ca734e5c874c7d16a74f5f7c8a0e2680ec247b301f9c34"
+    },
+    {
+      "voiceId": "01JINA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINA007.aiff",
+      "nativeMember": "01JINA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 4096,
+      "nativeSha256": "7ca9e0158451bc02901eb7dcf30ca4e70e872849d53e54629e15e3b0af118a36",
+      "speakerId": "AKIR",
+      "sourceText": "Nozomi=@",
+      "displayText": "Nozomi...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINA007.wav",
+      "byteLength": 16172,
+      "sha256": "10cbe7aba9aa1adc1b13154e28b7d41bbdcbc7c1bb660113f5fc1aec16cb75e9"
+    },
+    {
+      "voiceId": "01JINA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINA008.aiff",
+      "nativeMember": "01JINA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 18432,
+      "nativeSha256": "7a2ca8bc2f197f8ec276bd93dbf90aaaa38adc4b5b48453df1a3ecc62b2c0e8f",
+      "speakerId": "AKIR",
+      "sourceText": "Oh yeah=@you're＆leaving for Canada soon.",
+      "displayText": "Oh yeah...you're\nleaving for Canada soon.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 27
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINA008.wav",
+      "byteLength": 73516,
+      "sha256": "32d950d32398d434190978dc710ff0d2de83a938863947d9bebde20c30a61d8c"
+    },
+    {
+      "voiceId": "01JINA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINA009.aiff",
+      "nativeMember": "01JINA009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 12288,
+      "nativeSha256": "99e16bd5d9ad035929828fb2f791c8a1cb6d04c9d6231e99d29530338ef7a8a0",
+      "speakerId": "AKIR",
+      "sourceText": "Yeah=@well be careful.",
+      "displayText": "Yeah...well be careful.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINA009.wav",
+      "byteLength": 48940,
+      "sha256": "1783287e08b940488a620d156893658d113e7742810d4db057c49f4ea41c6e92"
+    },
+    {
+      "voiceId": "01JINB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB001.aiff",
+      "nativeMember": "01JINB001.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 6144,
+      "nativeSha256": "67fc3ad41eb1959f3654c95cec749db2731b30edb15dedae1ac05a392b683d31",
+      "speakerId": "HRSK",
+      "sourceText": "Oh Ryo!",
+      "displayText": "Oh Ryo!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB001.wav",
+      "byteLength": 24364,
+      "sha256": "42fa6e72c8e0873e9d553d10bfbb603fb1fa61dd6782b9faa7c8af0accfda0e4"
+    },
+    {
+      "voiceId": "01JINB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB002.aiff",
+      "nativeMember": "01JINB002.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 26624,
+      "nativeSha256": "b32448c7c51332adae77e5036ec3331543a3e8959ca35e071bac752e2b4e435f",
+      "speakerId": "HRSK",
+      "sourceText": "No, just spooked.＆You know, it's kinda funny=@",
+      "displayText": "No, just spooked.\nYou know, it's kinda funny...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 30
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 29
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB002.wav",
+      "byteLength": 106284,
+      "sha256": "62812edd7fd831df07b60e1ab3d04460be14fa45b92d794668ac5d321083faac"
+    },
+    {
+      "voiceId": "01JINB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB003.aiff",
+      "nativeMember": "01JINB003.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 18432,
+      "nativeSha256": "8eba88635a65f5ababb7f915fbe2271d41a8eb10f9b3ff040b5b22e7a5c476db",
+      "speakerId": "HRSK",
+      "sourceText": "See, I was＆just making a wish for you=@",
+      "displayText": "See, I was\njust making a wish for you...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB003.wav",
+      "byteLength": 73516,
+      "sha256": "ed8a2daa487b078a46dcf30bf0d789b0cc4216aa35d11b36a92c03a429ac1cbc"
+    },
+    {
+      "voiceId": "01JINB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB004.aiff",
+      "nativeMember": "01JINB004.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 12288,
+      "nativeSha256": "b53f4131e95130719a0835e22084b87ec4c638eedf3cd666c79beee005864223",
+      "speakerId": "HRSK",
+      "sourceText": "and you suddenly appeared.",
+      "displayText": "and you suddenly appeared.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB004.wav",
+      "byteLength": 48940,
+      "sha256": "d8f5e1527952c793b77677109d9386321d121ae1a2d3768c91b0b662a8fd3171"
+    },
+    {
+      "voiceId": "01JINB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB005.aiff",
+      "nativeMember": "01JINB005.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 14336,
+      "nativeSha256": "8de11b1aa6b3d3afcdeeec90aa0749829835231fd31bb296f22027a43b334a15",
+      "speakerId": "HRSK",
+      "sourceText": "You are going to Hong Kong, aren't you?",
+      "displayText": "You are going to Hong Kong, aren't you?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB005.wav",
+      "byteLength": 57132,
+      "sha256": "c79ec980e04a40a896e32fb90405ad6fcbc9065756528429044f250444085f0e"
+    },
+    {
+      "voiceId": "01JINB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB006.aiff",
+      "nativeMember": "01JINB006.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 14336,
+      "nativeSha256": "67a2ec5abae9e6fe9c1139f6663e9a20dedf72815cb101de09f683c5e165026d",
+      "speakerId": "HRSK",
+      "sourceText": "I finally made＆Fuku-san tell me.",
+      "displayText": "I finally made\nFuku-san tell me.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB006.wav",
+      "byteLength": 57132,
+      "sha256": "878fd5b9b6c83cf5d618f810264b956eca53e9ebca0e559e325d496e6a39f8fe"
+    },
+    {
+      "voiceId": "01JINB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB007.aiff",
+      "nativeMember": "01JINB007.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 14336,
+      "nativeSha256": "ab894be81e6f4a93af42285dfba50ac40f599430ea19ea3da8097acf864cc288",
+      "speakerId": "HRSK",
+      "sourceText": "You've been so＆preoccupied lately=@",
+      "displayText": "You've been so\npreoccupied lately...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB007.wav",
+      "byteLength": 57132,
+      "sha256": "14939d447bb29d416c7b1eae43d9e1001e463619bbb8bb9484a546d84480802d"
+    },
+    {
+      "voiceId": "01JINB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB008.aiff",
+      "nativeMember": "01JINB008.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 26624,
+      "nativeSha256": "1fa505c9d1eaef7c95a8e59c5f43981e3836eadfb96d16f5f0724a7db2eb1530",
+      "speakerId": "HRSK",
+      "sourceText": "I won't stop you=@I know＆you well enough to know I can't.",
+      "displayText": "I won't stop you...I know\nyou well enough to know I can't.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 38
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB008.wav",
+      "byteLength": 106284,
+      "sha256": "233010d563f8322ca8d93ceb9eeb9f821fb931fedadd83574103adebdeec793c"
+    },
+    {
+      "voiceId": "01JINB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB009.aiff",
+      "nativeMember": "01JINB009.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 14336,
+      "nativeSha256": "cb06363c65354689ca6722da72bec36e9006f525e787dfbeb1348094cc07745c",
+      "speakerId": "HRSK",
+      "sourceText": "Here, take this amulet.",
+      "displayText": "Here, take this amulet.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 39
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB009.wav",
+      "byteLength": 57132,
+      "sha256": "abc6dc7d4cc6919a0805ca46588494c12ff7b4a1a6be5ff6d187e2fbee380639"
+    },
+    {
+      "voiceId": "01JINB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB010.aiff",
+      "nativeMember": "01JINB010.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 22528,
+      "nativeSha256": "cfe6bf6eda5e24495503539d12220a0feb04490795f1048eeb174c4664d38501",
+      "speakerId": "HRSK",
+      "sourceText": "I'm hoping it will keep＆you safe, at least that's what I've been=@",
+      "displayText": "I'm hoping it will keep\nyou safe, at least that's what I've been...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB010.wav",
+      "byteLength": 89900,
+      "sha256": "1d9f7b94a17cf3c548cbe2dad0c42a98b641d226afa6b5582e4c9aa895b627f6"
+    },
+    {
+      "voiceId": "01JINB011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB011.aiff",
+      "nativeMember": "01JINB011.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 12288,
+      "nativeSha256": "c336ad2833c15a59c9af71c83c32a0e6762efc2542dcc0f60b78b16fbb1d4181",
+      "speakerId": "HRSK",
+      "sourceText": "wishing and willing it to do.",
+      "displayText": "wishing and willing it to do.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB011.wav",
+      "byteLength": 48940,
+      "sha256": "942958b6cce9f1402a27e841121fe2131911c4c7cf4fb7824340a2508ded719b"
+    },
+    {
+      "voiceId": "01JINB012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB012.aiff",
+      "nativeMember": "01JINB012.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 16384,
+      "nativeSha256": "5a31c2b1eb182913c0f06bbf4277299dbd4f1fe7141073a02f36b7f4139e7b7d",
+      "speakerId": "HRSK",
+      "sourceText": "I'm so glad I was＆able to give it to you.",
+      "displayText": "I'm so glad I was\nable to give it to you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB012.wav",
+      "byteLength": 65324,
+      "sha256": "425aae5914059f3210f6c2c2fdbe752d4e93f0961333fe901d7f86df712c9107"
+    },
+    {
+      "voiceId": "01JINB013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB013.aiff",
+      "nativeMember": "01JINB013.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 12288,
+      "nativeSha256": "d1346283dee722cda93d1d9f583ae0041fbf657b1cc6d9a197273075ac803ed5",
+      "speakerId": "HRSK",
+      "sourceText": "I've been so busy lately,",
+      "displayText": "I've been so busy lately,",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB013.wav",
+      "byteLength": 48940,
+      "sha256": "147cfa5d1d5e86819c617e10489b94d887a7b0e84162a3d7d7db36079cd8ad96"
+    },
+    {
+      "voiceId": "01JINB014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB014.aiff",
+      "nativeMember": "01JINB014.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 18432,
+      "nativeSha256": "f43192b39edfa5dfa4847c3956429b8e67569db56dc49db6c2af5143b4fb5e6a",
+      "speakerId": "HRSK",
+      "sourceText": "getting ready to＆return to Canada. I=@",
+      "displayText": "getting ready to\nreturn to Canada. I...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB014.wav",
+      "byteLength": 73516,
+      "sha256": "40eae0efcfb8bd97a72d3cc9a6c52e573c67be2310441be903c64971bde4bd9c"
+    },
+    {
+      "voiceId": "01JINB015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB015.aiff",
+      "nativeMember": "01JINB015.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 12288,
+      "nativeSha256": "17fe42989346bc74b40d5b2d6c753df0e67d4536e273eb4bf73da0268217f31a",
+      "speakerId": "HRSK",
+      "sourceText": "Well, I gotta go home.",
+      "displayText": "Well, I gotta go home.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB015.wav",
+      "byteLength": 48940,
+      "sha256": "34439610ed0c3e98dc283dea6144b2f75e37e291162e9b2d453de18f27297f29"
+    },
+    {
+      "voiceId": "01JINB016",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB016.aiff",
+      "nativeMember": "01JINB016.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 4096,
+      "nativeSha256": "77e80bf0ce1af1fb4d6ecd0c308c45571daf181bb96c80a748865bdbef65b9b6",
+      "speakerId": "HRSK",
+      "sourceText": "OK.",
+      "displayText": "OK.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB016.wav",
+      "byteLength": 16172,
+      "sha256": "74305f66ee7af260f0065857686bde791d16a48aef7f905149c6d5fb6094030b"
+    },
+    {
+      "voiceId": "01JINB017",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB017.aiff",
+      "nativeMember": "01JINB017.str",
+      "nativeIndex": 25,
+      "nativeByteLength": 16384,
+      "nativeSha256": "908c9c86f348b7c3e7d9e57583fee4f9282afc6748f604d20364d4f82ba14432",
+      "speakerId": "HRSK",
+      "sourceText": "We're both=@leaving Japan.",
+      "displayText": "We're both...leaving Japan.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 41
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 18
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB017.wav",
+      "byteLength": 65324,
+      "sha256": "fd77cef6c1e0a2a5443beb5130fcc5e826914fec015ea83596fd4b0e57121775"
+    },
+    {
+      "voiceId": "01JINB018",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SOUND/01JINB018.aiff",
+      "nativeMember": "01JINB018.str",
+      "nativeIndex": 26,
+      "nativeByteLength": 20480,
+      "nativeSha256": "7cf11444c59aa6ea2e19f649e8eff664d4f1609346bf4d0cf45db8c1d87328fb",
+      "speakerId": "HRSK",
+      "sourceText": "I wish=@we had more time.",
+      "displayText": "I wish...we had more time.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 62
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-amulet/voice/01JINB018.wav",
+      "byteLength": 81708,
+      "sha256": "2458d975d81609dbf7cbfcbfa0d686d5a0a9b2ac5c255946386026a5a1ac15d8"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SE/cloths2/friction2.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-amulet/sfx/a9040000.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SE/footsoil/ryoashi05.aiff",
+      "playbackId": 1,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-amulet/sfx/a9040100.wav",
+      "byteLength": 14884,
+      "sha256": "565ee6addd2a88dfa716c1c51c9e81d13fd0245434e9e467e3598443fb9ff75e"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SE/footsoil/ryoashi6.aiff",
+      "playbackId": 2,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-amulet/sfx/a9040200.wav",
+      "byteLength": 12052,
+      "sha256": "e3936e0df4975dd2f4a7ee33b7d603f64e4e514601e2d03c173643de40273081"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SE/footsoil/ryoashi7.aiff",
+      "playbackId": 3,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-amulet/sfx/a9040300.wav",
+      "byteLength": 10220,
+      "sha256": "a5890240dafd43884ecced054ebea186d119a1e2d68d6a9ba85b8639bf7cf6cb"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SE/cloths2/friction4.aiff",
+      "playbackId": 4,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-amulet/sfx/a9040400.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 5,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-amulet/sfx/a9040500.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIN/SE/footsoil/ryoashi08.aiff",
+      "playbackId": 6,
+      "sampleId": 4,
+      "sampleRate": 44100,
+      "asset": "public/audio/world/nozomi-amulet/sfx/a9040600.wav",
+      "byteLength": 18316,
+      "sha256": "6cc55e275086b04337ee43e8c380a4c08c50a0f8c0343788c1995df592af7de7"
+    }
+  ]
+}

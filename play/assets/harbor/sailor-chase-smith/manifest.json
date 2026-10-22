@@ -1,0 +1,115 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA0.AUTH",
+        "path": "disc3/SCENE/03/MA00/PK_CTS2.PKS",
+        "sourceSha256": "b9ffa3ac9287ace6094cb02bb05c855150ff33aa17826e0025b858182de94ed9",
+        "archiveMember": "SEQDATA0.AUTH",
+        "byteLength": 14340,
+        "sha256": "ed195b92f791186dfac3b7ba87a0da49375d171a8c7c27c5f051fde33019cd81"
+      },
+      {
+        "name": "M_01CTSA.MOTN",
+        "path": "disc3/SCENE/03/MA00/PK_CTS2.PKS",
+        "sourceSha256": "b9ffa3ac9287ace6094cb02bb05c855150ff33aa17826e0025b858182de94ed9",
+        "archiveMember": "M_01CTSA.MOTN",
+        "byteLength": 211868,
+        "sha256": "785d261f5976b6c81ffed8ec129aaa4e259cb1b01b440502d9a32e89ec75f058"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-harbor-work.md",
+    "resourceName": "PK_CTS2",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/sailor-chase-smith/manifest.json",
+  "sceneObjects": {},
+  "packageActors": {
+    "SMTH": {
+      "label": "Smith Bradley",
+      "modelCode": "GIB_M",
+      "browserFilename": "GIB_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/GIB_M.CHRM",
+      "textureAssetPath": "play/assets/characters/GIB_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "SMTH"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/sailor-chase-smith/M_01CTSA.MOTN",
+      "byteLength": 211868,
+      "sha256": "785d261f5976b6c81ffed8ec129aaa4e259cb1b01b440502d9a32e89ec75f058"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/sailor-chase-smith/M_01CTSA.MOTN",
+      "byteLength": 211868,
+      "sha256": "785d261f5976b6c81ffed8ec129aaa4e259cb1b01b440502d9a32e89ec75f058"
+    },
+    {
+      "path": "play/assets/harbor/sailor-chase-smith/SEQDATA0.AUTH",
+      "byteLength": 14340,
+      "sha256": "ed195b92f791186dfac3b7ba87a0da49375d171a8c7c27c5f051fde33019cd81"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "PK_CTS2/SEQDATA0.AUTH",
+      "archiveMember": "SEQDATA0.AUTH",
+      "byteLength": 14340,
+      "sha256": "ed195b92f791186dfac3b7ba87a0da49375d171a8c7c27c5f051fde33019cd81",
+      "durationFrames": 1500,
+      "durationSeconds": 50.016666412353516,
+      "frameCount": 66,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2,
+        "sound": 47,
+        "voice": 18
+      },
+      "actors": [
+        "AKIR",
+        "SMTH"
+      ],
+      "motions": [
+        {
+          "actorTag": "SMTH",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "OTH_TNY_AT1_SIMEAGERU_UDE_TNYSIMEAGE_0100",
+          "startFrame": 1,
+          "endFrame": 1426
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 137,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT1_SIMEAGERU_UDE_TNYSIMEAGE_0100",
+          "startFrame": 1,
+          "endFrame": 1392
+        }
+      ]
+    }
+  ]
+}

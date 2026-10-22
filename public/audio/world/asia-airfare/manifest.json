@@ -1,0 +1,1526 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01ETU.AFS",
+      "sha256": "f21b7837177788630c2f7e849e5627152a1e335628ae70e4ffe4062afa39db4c"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_ETUKO.SND",
+      "sha256": "6e960914c59edd80ddc282179ec6379c26a7c461a15d89954ab2af3bb9fd5485"
+    },
+    "authManifest": "play/assets/dobuita/asia-airfare/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01ETUA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA001.aiff",
+      "nativeMember": "01ETUA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "d3d5abc8cbe501ca9346381311e4e23a7f91e44412b9396a5b83fa31fd8dceff",
+      "speakerId": "AKIR",
+      "sourceText": "Excuse me=@",
+      "displayText": "Excuse me...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUA001.wav",
+      "byteLength": 16172,
+      "sha256": "d7f7c312c21d9df23dec3aead64a29d26ceaffd2e2b580ab6058b9f2808b3a6b"
+    },
+    {
+      "voiceId": "01ETUA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA002.aiff",
+      "nativeMember": "01ETUA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "d926cc9aee44b6debce777226c95d067c28fdd74ee11da28e69cef31afd63b7b",
+      "speakerId": "AKIR",
+      "sourceText": "Um, excuse me=@",
+      "displayText": "Um, excuse me...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUA002.wav",
+      "byteLength": 32556,
+      "sha256": "373f282ec081bbe56ca880264d601255fdf5bc61de327e9cde03865c2ea6f437"
+    },
+    {
+      "voiceId": "01ETUA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA003.aiff",
+      "nativeMember": "01ETUA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 8192,
+      "nativeSha256": "629c355065706173e6f387d08e7fff77fdbb8b186255fbdbb5da984d86875bb0",
+      "speakerId": "AKIR",
+      "sourceText": "I want to go to Hong Kong.",
+      "displayText": "I want to go to Hong Kong.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUA003.wav",
+      "byteLength": 32556,
+      "sha256": "cafe931d0e76f85a763b2d820f95b0f25840ed9efbdb131315aea3cccee133de"
+    },
+    {
+      "voiceId": "01ETUA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA004.aiff",
+      "nativeMember": "01ETUA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 16384,
+      "nativeSha256": "813622cbee8360cc32e1ad9ebdfa41028d44010bc5ef786c3a42d830d2ad255f",
+      "speakerId": "AKIR",
+      "sourceText": "170,000 Yen=@Any others?",
+      "displayText": "170,000 Yen...Any others?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUA004.wav",
+      "byteLength": 65324,
+      "sha256": "e26d6ef0096d426f2cb3d51d6ea9fb10d47a3384dfd9d33fa5435fc3c3e061e4"
+    },
+    {
+      "voiceId": "01ETUA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA005.aiff",
+      "nativeMember": "01ETUA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 12288,
+      "nativeSha256": "b5cb7bf53e3401d095a25b83fbb9b40a46e5c9350714595c747714d086d9172c",
+      "speakerId": "AKIR",
+      "sourceText": "I'm looking for a cheap fare=@",
+      "displayText": "I'm looking for a cheap fare...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 18
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUA005.wav",
+      "byteLength": 48940,
+      "sha256": "ec2df17138eeca7de5e72123eb0ae6c46c08e62206c27b1d61bc9cc00b567541"
+    },
+    {
+      "voiceId": "01ETUA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA006.aiff",
+      "nativeMember": "01ETUA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 12288,
+      "nativeSha256": "e09fcc87d15271a5a0082fd4e59091430cec7a537ebaf29ec209e4fa52cfcdf9",
+      "speakerId": "AKIR",
+      "sourceText": "158,000 Yen?=@",
+      "displayText": "158,000 Yen?...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUA006.wav",
+      "byteLength": 48940,
+      "sha256": "2aff9b0761ab1c502f244716250ed3c5e980b125e82501f4e81e8f2066b9b89c"
+    },
+    {
+      "voiceId": "01ETUA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA007.aiff",
+      "nativeMember": "01ETUA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 8192,
+      "nativeSha256": "33f9508a962f78eda4b7b72b10e72b875a0e5f1f899cd17cc356520f007acac1",
+      "speakerId": "AKIR",
+      "sourceText": "Is there anything cheaper?",
+      "displayText": "Is there anything cheaper?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUA007.wav",
+      "byteLength": 32556,
+      "sha256": "bf1d43bd44e89423cc48535b26816e7fbfa41f4bb99a4b566aab102b814f5593"
+    },
+    {
+      "voiceId": "01ETUA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUA008.aiff",
+      "nativeMember": "01ETUA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 8192,
+      "nativeSha256": "7c6c9b15fb7c9aff528177630ddf9fdecaffd29ea2dcbab0cd1cc2c2e117606f",
+      "speakerId": "AKIR",
+      "sourceText": "OK Thanks.",
+      "displayText": "OK Thanks.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUA008.wav",
+      "byteLength": 32556,
+      "sha256": "bbf07fd53030e438d93cc441a7a0a6bfaa16319cc87df81172e8ec39450daed9"
+    },
+    {
+      "voiceId": "01ETUB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB001.aiff",
+      "nativeMember": "01ETUB001.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 8192,
+      "nativeSha256": "1d2994cc5429a0da240077ce581d717e6e76116060db714d1d8cc12ddd7530a1",
+      "speakerId": "ETKO",
+      "sourceText": "Be right there.",
+      "displayText": "Be right there.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 26
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUB001.wav",
+      "byteLength": 32556,
+      "sha256": "530382eb6e8ee235858efdcaf52c0809ae41a5e1b2fe5e8c62bb50d77008523f"
+    },
+    {
+      "voiceId": "01ETUB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB002.aiff",
+      "nativeMember": "01ETUB002.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 18432,
+      "nativeSha256": "6af8a8c6e0165728380765d64c1c23a730d71e84070ec68e618c17190b0204c9",
+      "speakerId": "ETKO",
+      "sourceText": "Wait a minute=@ I wanna finish this=@",
+      "displayText": "Wait a minute... I wanna finish this...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUB002.wav",
+      "byteLength": 73516,
+      "sha256": "c3a29258d2dd4bc805c70ac9fe776ded694d6577235f4544c6a5d44fa96da7d7"
+    },
+    {
+      "voiceId": "01ETUB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB003.aiff",
+      "nativeMember": "01ETUB003.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 18432,
+      "nativeSha256": "4576af13073a9c6a0ecf676bb95f16064e519951c963cebea64faaf9ffc9080b",
+      "speakerId": "ETKO",
+      "sourceText": "Didn't I just tell you to wait a minute!?",
+      "displayText": "Didn't I just tell you to wait a minute!?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 23
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUB003.wav",
+      "byteLength": 73516,
+      "sha256": "dcad850b34a167b54648ab132d92255d01059ce85a9614d322cb83cdc11a309d"
+    },
+    {
+      "voiceId": "01ETUB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB004.aiff",
+      "nativeMember": "01ETUB004.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 16384,
+      "nativeSha256": "3d42b6d8bd2e47219d84ee879a2ab79c125986e2412511701d504df5bfbe9467",
+      "speakerId": "ETKO",
+      "sourceText": "The pamphlets are over there.",
+      "displayText": "The pamphlets are over there.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUB004.wav",
+      "byteLength": 65324,
+      "sha256": "69737ec1e814f841889d15709d142ad06221bd032447271f5518a4c36f973f38"
+    },
+    {
+      "voiceId": "01ETUB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB005.aiff",
+      "nativeMember": "01ETUB005.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 10240,
+      "nativeSha256": "cd403b7d821f5d14aea280e2b598f1fb840f07ac35ed76833a025178859ff377",
+      "speakerId": "ETKO",
+      "sourceText": "Find one, decide.",
+      "displayText": "Find one, decide.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUB005.wav",
+      "byteLength": 40748,
+      "sha256": "ec4f8b45c839a4bb92a27570a8d7aa3a8f9e7bf8def4f5e58fdce6956cbb7171"
+    },
+    {
+      "voiceId": "01ETUB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB006.aiff",
+      "nativeMember": "01ETUB006.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 16384,
+      "nativeSha256": "69909bf5295a50aebcdb5b1e0ae706df84e8e85e856e7694294c26d07a3938ff",
+      "speakerId": "ETKO",
+      "sourceText": "Jeez! What a pain in the=@",
+      "displayText": "Jeez! What a pain in the...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 27
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUB006.wav",
+      "byteLength": 65324,
+      "sha256": "52a8d9e28e5be2cad3b51ee01414aad9a5ee737fb87f7d93abe1465fb08757e7"
+    },
+    {
+      "voiceId": "01ETUB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB007.aiff",
+      "nativeMember": "01ETUB007.str",
+      "nativeIndex": 25,
+      "nativeByteLength": 28672,
+      "nativeSha256": "3fec3eb40893363e15025e871f259a90cd8494b7a5293219c72a8f633d6c2748",
+      "speakerId": "ETKO",
+      "sourceText": "Aa-h! Here it is. This is＆the cheapest we got.",
+      "displayText": "Aa-h! Here it is. This is\nthe cheapest we got.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 24
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 31
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 30
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUB007.wav",
+      "byteLength": 114476,
+      "sha256": "1258c791667bc9d8e2d7addce1b80513c62d17ba385ebfc30fcf5d8c125130d9"
+    },
+    {
+      "voiceId": "01ETUB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB008.aiff",
+      "nativeMember": "01ETUB008.str",
+      "nativeIndex": 26,
+      "nativeByteLength": 10240,
+      "nativeSha256": "86691e0730f0e79b727aafcdfea520ead898dd5e529587219cef29577507ac59",
+      "speakerId": "ETKO",
+      "sourceText": "No that's it!!!",
+      "displayText": "No that's it!!!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUB008.wav",
+      "byteLength": 40748,
+      "sha256": "c485d58aa8accb879c168d004738cb0dec0e5f7704c5882770920d8d1c1b81ec"
+    },
+    {
+      "voiceId": "01ETUB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB009.aiff",
+      "nativeMember": "01ETUB009.str",
+      "nativeIndex": 27,
+      "nativeByteLength": 8192,
+      "nativeSha256": "ec70e4f6dc7fb40046fc2fdeb80393b8352e6bd0bacc0abfe51568807c642a00",
+      "speakerId": "ETKO",
+      "sourceText": "Hold it bud.",
+      "displayText": "Hold it bud.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUB009.wav",
+      "byteLength": 32556,
+      "sha256": "49b19d089625429c3c304545e32bd3cd7a0e26c39e1947713c2cfc7e138e70eb"
+    },
+    {
+      "voiceId": "01ETUB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB010.aiff",
+      "nativeMember": "01ETUB010.str",
+      "nativeIndex": 28,
+      "nativeByteLength": 8192,
+      "nativeSha256": "3c7a14b5de6de55fee94336d048f772ceb84abea3ffb20e6d041ee644dffbb54",
+      "speakerId": "ETKO",
+      "sourceText": "I went and got it out=@",
+      "displayText": "I went and got it out...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUB010.wav",
+      "byteLength": 32556,
+      "sha256": "e659c289c9a4f936b4fde0530895b0cc43091b1b6be63afed0fa3f83450ae2dc"
+    },
+    {
+      "voiceId": "01ETUB011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SOUND/01ETUB011.aiff",
+      "nativeMember": "01ETUB011.str",
+      "nativeIndex": 29,
+      "nativeByteLength": 12288,
+      "nativeSha256": "c6d186662c4939e0c950aeaf1ec009f52c3becda9081c382d226c8209ac7a815",
+      "speakerId": "ETKO",
+      "sourceText": "So at least take it with you.",
+      "displayText": "So at least take it with you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/asia-airfare/voice/01ETUB011.wav",
+      "byteLength": 48940,
+      "sha256": "89ecc87048757dd586d15ec39b5918a05ed130a5fa2e4130a515ba68e51a273e"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/hit/Deskhit.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/asia-airfare/sfx/a9040200.wav",
+      "byteLength": 5652,
+      "sha256": "c510fdb7312a958a72f8588e99a3d11b4811c5b337307a96f6f42f40718ae33d"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/smallobject/paper1.aiff",
+      "playbackId": 11,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/asia-airfare/sfx/a9040b00.wav",
+      "byteLength": 45380,
+      "sha256": "3b51f7c24755d3cdb91337a51dfdf0bb74cbf7e5cc668ab8bab3cb490cbc0f08"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/smallobject/paper2.aiff",
+      "playbackId": 12,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/asia-airfare/sfx/a9040c00.wav",
+      "byteLength": 48100,
+      "sha256": "3ee57119477ec4753e1433911f99fc001d66635c3a5e6e5ad61d3b3e4d24068c"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 15,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/asia-airfare/sfx/a9040f00.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 16,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/asia-airfare/sfx/a9041000.wav",
+      "byteLength": 5412,
+      "sha256": "64fa0eff3320191bd9befe41d84a45f91d48ae9a9c821c8aac766ce9b3fcf3f3"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 17,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/asia-airfare/sfx/a9041100.wav",
+      "byteLength": 4620,
+      "sha256": "b777d818c86e674e40a080c0aabb21e31a54b732828322cdb9b9288dd4184907"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 18,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/asia-airfare/sfx/a9041200.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 19,
+      "sampleId": 19,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/asia-airfare/sfx/a9041300.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9041400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/door/woodclose2.aiff",
+      "playbackId": 20,
+      "sampleId": 21,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/asia-airfare/sfx/a9041400.wav",
+      "byteLength": 22244,
+      "sha256": "08b6668aad9b4025f421e129ba00b8b4a633e12b043634d70cb6c17ccc5a4f5d"
+    },
+    {
+      "commandHex": "a9041500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01ETU/SE/door/woodopen2.aiff",
+      "playbackId": 21,
+      "sampleId": 22,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/asia-airfare/sfx/a9041500.wav",
+      "byteLength": 56572,
+      "sha256": "6e8e65543827293ca1f7a5f58b151eed7b3ecb3378ffdeb7f8557f0287b4606f"
+    }
+  ]
+}

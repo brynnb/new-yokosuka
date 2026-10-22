@@ -1,0 +1,423 @@
+#!/usr/bin/env node
+// Disc3 chapter films use the shared AUTH/audio pipeline. Ordinary Yarn owns
+// appointments, challenges and rewards; presentation cannot award them.
+import fs from "node:fs";
+import path from "node:path";
+import {execFileSync} from "node:child_process";
+import {buildNativeAseqActivityPack,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
+import {buildNativeAseqAudioPack,registerNativeAseqMusic} from "../lib/NativeAseqAudioPack.mjs";
+import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
+import {addNativeAseqStageAssets} from "../lib/NativeAseqStageAssets.mjs";
+import {parseAuthSequence} from "../../src/AuthSequence.js";
+import {runtimeAssetUrl} from "../../src/RuntimeAssets.js";
+
+const root=path.resolve(import.meta.dirname,"../..");
+const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,"extracted_disc3_v2"),"data/SCENE/03");
+const generatedBy="tools/cutscenes/build_harbor_job_pack.mjs";
+const defaultEvidence="docs/design/story-harbor-work.md";
+const archives={
+  "MEND/TRAPAUTH":"7999c35b3d0caf136f56aba260beaa01c6c6d257e2e3a17ba4f857430f3c1373",
+  "MEND/ENDAUTH":"e2c64bb5800b4e1fcc383db5e93855a10f4086b41f2f7356f41528e366815cac",
+  "MEND/NZOM":"94bbe7abd363493e3789aab1af4f464ed396d5bf1cb6ebd81f70cc0d7e986cb1",
+  "MEND/CHAIAUTH":"996524cfb8bdb5996b27b05e1de01af5df3c969824d888a18da639afbd32ce19",
+  "MEND/M0W0":"393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2",
+  "MEND/MODELS":"c12fe80d9cafa7679096dcfbab319082eac9d2ca501f1962ae490582c73fd80e",
+  "MFSY/GBTM":"dbb33b890d20130e87079bf375b75da15de989f94bf4a6000f717802b62e9665",
+  "MFBT/TLYA":"957366f53fa6ad4fdcc10f8423184b2a4e475e993551ff27f626b84183946de2",
+  "MFBT/TLYB":"faee26bea43ec8ee1db00f5a5a71b97a0fd19b881bd6151f65f028117334d5ad",
+  "MFBT/TLYC":"6066c148e1c9bc7fded7e03b7c9e2477590ced425ad95837e179253313b2c20b",
+  "MFBT/KISY":"19a4298fd9ba1701aa5dc9b8494948bd5ca28ed76db8f576342544eb57da96ee",
+  "MFBT/TERY":"108f7026e765552e93a8b3d6974d60a682aba59390cb9933b4bdfa313c9edc07",
+  "MFBT/TLYE":"470c9c4ef3ac227ed6ed3c9ffa9328816b948dec88dcefba8a88e3f58e2896fc",
+  M0W1:"339c4c542124a89434144981f88a7068f474a678d84ca6558baece6627c6eda1",
+  "JHD0/MSOU":"92d841582c87eda667d2f377bbbc3cadbb2618fa4a414651bcee72182a8d14ec",
+  TOMOGORI:"cce64a24b1d50d80efd0e008a7e714b6811e5c7db4063df0e043d2de840dcc09",
+  MARU_KUB:"ffc7a9549dca0d9fe6f683f7884e8239a511bfc74f5d8cac7281962674552cb5",
+  "JD00/BIKE":"210e1da2234b945233003d61801d2fd6f12b0a48c4b05d3f8bfcb14bce8aa971",
+  "MS08/MS08":"37dfa2edd029a819f8e25f75b27332bef5d4f416868aaab2cd9b8068e0d4010f",
+  MARU_LET:"49b859b07413108e9ed5726a28ad48ca91e723053602b1642e35e8a631287fa0",
+  "MA00/PK_CTS":"286c088071aaea7bb3764a410ab526e4db8243442b80d3e9024ec6ff05811ae0",
+  "MA00/PK_CTS2":"b9ffa3ac9287ace6094cb02bb05c855150ff33aa17826e0025b858182de94ed9",
+  GOROKEKN:"b46218e928a21665463da0a39bc956eb9799d89b81554fdd39f722c84cf89c71",
+  "MB9Q/MPK00":"70a419eb5544dade0c62f3b2ca0a8d747eaf79e11e9df5c467b728d753b22f7c",
+  RYUSATSU:"385fd95a064964da1723afade848a3673e5632d56c1536460df9be7acd03686c",
+  BAT_MBQC:"52867cbea1dd59044282ee476405026a769a909eab8bbcced955f94975d470e0",
+  NZMPHOTO:"c1b2ba44ca7111fb9e85237a775b253c0bcef99e7a4bbb3ed3c64e00bc46be1e",
+  BOKOMARK:"f074ed751b0000c66357087fc8ed23c0a343080723bb511567b92c2d0ed96164",
+  HIRUAUTH:"e740397e02958441010345d34d1369b20bbad9bc2ebdf397b413251b20a9a97e",
+  GOROCOOP:"23073336078302cec958cdedb84443428f1e6f64ca2126e311fd5dd7ea9312a1",
+  MGOR:"7feb53502a9325de4ffaa6539d38b9d2d7adb4d431285339035fa25057ca8ee6",
+  MARU:"a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
+  ALPHA:"d05201b595601a36e2da5df6cc5e817bf1c72927e76ab82d3318ca3cd71f099a",
+  MIZUMARK:"6a1cd83fe0df231e4faa6294a5436aa2175c309815fd864a0603ffc2a085c08f",
+  GOROMA:"906e93a9d55a9d60a5f1fd91ef8ded61ada192462e8e7fe3262753cf0bb77c1c",
+  ALP_PAY:"e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709",
+};
+const finalCast=[
+  {path:"play/assets/harbor/master-chen/manifest.json",sha256:"a997ad1a777bc5e175e733245002de2245eec3550dc253e0e79057b73041de9b"},
+  {path:"play/assets/harbor/nozomi-rescue/manifest.json",sha256:"e5ead3f29e62608ab03873c5c3d419ae10924b8d4122a029bd29c175f573d9e0"},
+];
+const finalMusic={id:"bgm013",sourceId:"1e01b7d3dc308c6255896489d098cb59df125f959872de96f79000cb99c18b4e",bankHash:"0c5250def8570bef8982a1634d3eef79781960a4b8a2c745d56593a314d07cb0",label:"The final confrontation"};
+const battleMusic={id:"bgm120",sourceId:"6f6feae07377adcf7a511b69ae27bb46bd4b93a8a23f60eff32750d44cdd1264",bankHash:"6930abc0fa5b1a90b97ca0c8491623decba6a7217d865e0660097047fef122bc",label:"The seventy-man battle"};
+const alphaRoom={archive:"ALPHA",member:"MAPALP.MAPD",model:"MAPALP",textureHash:"8c8f0a6b1ba88e96ebc453d12826aaea74a85dad57ade4893df7c3daaf530612",textureFilename:"alpha-textures.bin"};
+const aftermathSelection="Walkthrough-guided post-battle sequence. Yarn independently owns the A challenge, acknowledged interrogation, pier discussion and home return; these original films cannot award those outcomes themselves.";
+const finalChaiMusic={id:"bgm032",sourceId:"49ca27343179e9c1a44e4c94f73ae245be375bff5104118f4479b99bfb8b38e7",bankHash:"3d9b68d62783125f66668619105522c127f35aed31d34ae8d0ca87830ef1e244",label:"Chai's final encounter"};
+const finalChaiSource={archive:"MEND/CHAIAUTH",resourceName:"CHAIAUTH",motion:"M_0184.MOTN",evidence:"docs/design/story-final-day.md#final-chai",
+  sharedActorManifest:finalCast[0],stream:"A0184D",streamHash:"54433e3e67e8fa5b3d726ce1c7ec162c19cd759ab6db78fd0c2f601c2e9c8fcb",
+  sound:"A1_MOMOR.SND",soundHash:"ac1ff0499b2c24bc4439f78b17c09b6f5ee066f40ab4b2ba76acaa72eb567109",music:finalChaiMusic,
+  selectionRule:"Walkthrough-guided final Chai encounter. Original films present the approach, post-battle questioning and second attack, not combat or QTE authority. Actual fight and Down/A/A/B counter settle independently; original short water-fall clip is selected as an authored winning ending, not a recovered native branch controller."};
+const profiles=[
+  {id:"ship-boarding",archive:"MEND/TRAPAUTH",resourceName:"TRAPAUTH",evidence:"docs/design/story-final-day.md#boarding-and-sailing",auth:"SEQDATA1.AUTH",frames:464,motion:"M_0180.MOTN",actors:["AKIR"],
+    sound:"A1_SHUKO.SND",soundHash:"90a84dacf6b2d57654a727f5cf9a442393b6118cfcb496bd7376d9e3c1475224",
+    music:{id:"bgm095",sourceId:"d7e211ad794a3d388e296ba15fc89855a63f982ce28d01ab9b790b06c1595e00",bankHash:"5ddda742e9ad81265e192ff070d1bdeaa4e9b9468cbcf6c786aed3cb32ff2fb9",label:"Leaving Yokosuka"},
+    selectionRule:"Original boarding animation and camera on the resident departure dock. Shared Yarn confirmation owns boarding/sailing order and atomic final destination. BGM095 entry cue is authored from the original resource cluster. No invented English speech or native room-controller recovery."},
+  {id:"ship-sailing",sequenceProgram:{worldId:"mend",area:"MEND"},archive:"MEND/ENDAUTH",resourceName:"ENDAUTH",evidence:"docs/design/story-final-day.md#boarding-and-sailing",motion:"M_01156.BIN",
+    motionSource:{path:"MEND/M_01156.BIN",byteLength:37416,sha256:"600154cdb0e421f1335bcbc2acb4a06acfe930515c8e77e57d87438927ccd7d7"},motionParseOptions:{sequenceIndices:[8,13]},
+    actors:["SHIP","AKIR","KAM1","TAIJ"],activities:[
+      {file:"SEQDATA1.AUTH",durationFrames:200,actors:["SHIP","AKIR"]},
+      {file:"SEQDATA7.AUTH",durationFrames:690,actors:["KAM1","SHIP","AKIR"]},
+      {file:"SEQDATA8.AUTH",durationFrames:760,actors:["SHIP","AKIR","TAIJ"]},
+      {file:"SEQDATA9.AUTH",durationFrames:930,actors:["SHIP"]}],
+    sharedActorManifest:finalCast[0],props:{SHIP:"B05K206G",KAM1:"KMH02A3G"},propTextureHash:"c02a664047f6ea8aa96dd55a2273ba7abd6ab45d2e12441d5f2f2f3ee6ea0d79",authoredPropBindings:true,
+    stage:{archive:"ENDMAP.PKS",sha256:"a2471208d4295d930f75b5583555b4c09f41c84ea844ce78672a4eb4368a2da4",textures:"ENDMAP.PKF",textureHash:"44b74680517413341919e844f9d8c0426246e6f44582358377a2d71dbfd0dc08",maps:["MAP01","MAP02","MAP03","MAP04","MAP07","MAP09","MAP11","MAP12"],hiddenMaps:["MAP04"]},
+    sound:"A1_END.SND",soundHash:"a8a5aa0c742a92be74939a3b2fce1010cbf0220576950faf438cf2dd73d0fb75",
+    selectionRule:"Authored selection of original ENDAUTH1/7/8/9 departure shots, not every alternative in archive order. Original moving ship, Ryo and Chen use original camera/motion. Shared isolated stage replaces the resident dock hull, selecting MAP03 over alternate MAP04. KAM1 has original root movement but no decoded wing loop. Only acknowledged final shot permits ordinary Yarn to save the shipboard checkpoint; no S2 outcome."},
+  {id:"nozomi-amulet",archive:"MEND/NZOM",resourceName:"NZOM",evidence:"docs/design/story-final-day.md#nozomis-amulet-memory",auth:"SEQDATA0.AUTH",frames:4187,motion:"M_01JN.MOTN",bank:21,actors:["AKIR","HRSK"],
+    actorModels:{HRSK:["Nozomi Harasaki","NZM_M"]},actorTextureHash:"2be31a8cac926c808abfc7168326f9bb90cb04f81746fabfc74640e8cc3b8633",
+    stage:{archive:"NZOM.PKS",sha256:"94bbe7abd363493e3789aab1af4f464ed396d5bf1cb6ebd81f70cc0d7e986cb1",textures:"NZOM.PKF",textureHash:"2be31a8cac926c808abfc7168326f9bb90cb04f81746fabfc74640e8cc3b8633",maps:["MAP"]},
+    stream:"01JIN",streamHash:"afde2e66540afae38d1446da0d75fe631f0c8e9f45fd6c3d7617482b0507d12b",sound:"A1_NOOMA.SND",soundHash:"f3f201aad241ac76c252da929a9bbfffcb79d26bd6186f36abf06bc491bbc47f",
+    music:{id:"bgm070",sourceId:"0ab6fbfdb3ef1c1a08791ffecbe9620d2e6da882f6f7dad181722ee2f5e0b8f2",bankHash:"3bf2397f3f58b598d28e9b27bbed991aae6bb19b536a2ff160a56afd753a996f",label:"Nozomi's farewell amulet"},
+    selectionRule:"Original Nozomi amulet farewell remembered before the separately acknowledged ship departure. Shared isolated-stage lease borrows its own original scenery, body, motions, camera and speech. Recollection at the quay, daytime staging and BGM070 entry cue are authored; original envelope/amulet hand callbacks are not reconstructed. Yarn alone settles the amulet and notebook, not the ship or S2."},
+  {...finalChaiSource,id:"chen-introduction-letter",auth:"SEQDATA4.AUTH",frames:2638,actors:["BAG0","AKIR","CHAI","KISY","TAIJ"],
+    evidence:"docs/design/story-final-day.md#chens-introduction-letter",
+    props:{BAG0:"RBGS5M2G"},propArchive:"MEND/MODELS",propTextureHash:"e109ad0455b02d68ebf8eb7853e294fab21769f17f906f2b8bf50ad08f7d55f1",authoredPropBindings:true,
+    stream:"A0184C",streamHash:"857f3a7e3df67fbfcfcf464fcae753613cdb81c97fcfb8042568e5e66c89627d",
+    music:{id:"bgm067",sourceId:"768f96d18e58ac3d318f16346117d8bca582c1b3c69c23ac85673216d8be262f",bankHash:"9f33256035430de3810371027603ed95b03e8d3d373d8f25bf0667da098b1695",label:"Master Chen's introduction letter"},
+    selectionRule:"Original post-counter conversation confirms Gui Zhang's injury and Tao Li Shao introduction. Existing Yarn independently grants one letter and notebook only after acknowledgement. BGM067 belongs to the original resource cluster; its film-entry cue and bag-model association are authored. Detailed envelope hand callbacks are not reconstructed. No ship or S2 outcome."},
+  {...finalChaiSource,id:"final-chai-intro",auth:"SEQDATA3.AUTH",frames:772,actors:["AKIR","CHAI","KISY","TAIJ","TKOT"],
+    props:{TKOT:"TEKS500G"},propArchive:"MEND/MODELS",propTextureHash:"e109ad0455b02d68ebf8eb7853e294fab21769f17f906f2b8bf50ad08f7d55f1",authoredPropBindings:true,
+    stream:"A0184",streamHash:"ad893719cdbca6689d7dbe1d9d82a6c98b37ffe5d90c44315bd2e0030c3bd229",additionalStreams:[{stream:"A0184B",sha256:"8d7cfa6fe566dc87816613c04f6e1d15c89d5f5bc3dc112510782a8884dcb644"}],
+    sound:"A1_SAIB.SND",soundHash:"b931e084250c0773a842b2ca91e5be27c11bef4b6c43537cb014d4c6967b4cc9",
+    unavailableVoices:{"01m046000038.str":{reason:"Original generic voice reference is absent from the pinned English A0184/A0184B archives and published dialogue catalog. Its common-voice source is unresolved; do not alias a different cry or invent words.",evidence:"docs/design/story-final-day.md#final-chai"}}},
+  {...finalChaiSource,id:"final-chai-interrogation",auth:"SEQDATA0.AUTH",frames:574,actors:["AKIR","CHAI"]},
+  {...finalChaiSource,id:"final-chai-counter",actors:["AKIR","CHAI"],activities:[
+    {file:"SEQDATA1.AUTH",durationFrames:158,actors:["AKIR","CHAI"]},
+    {file:"SEQDATA6.AUTH",durationFrames:148,actors:["AKIR","CHAI"]}]},
+  {id:"swallow-lesson",archive:"MEND/M0W0",resourceName:"M0W0",evidence:"docs/design/story-final-day.md#swallow-flip",motion:"M_01CHY.MOTN",
+    actors:["AKIR","KISY","TAIJ","TETU","BAG_","BAG0"],activities:[
+      {file:"SEQDATA0.AUTH",durationFrames:3110,actors:["BAG0","BAG_","AKIR","KISY","TETU","TAIJ"]},
+      {file:"SEQDATA1.AUTH",durationFrames:1076,actors:["BAG_","AKIR","KISY","TETU","TAIJ"]},
+      {file:"SEQDATA5.AUTH",durationFrames:330,actors:["AKIR","KISY","TAIJ","TETU"]},
+      {file:"SEQDATA6.AUTH",durationFrames:820,actors:["AKIR","BAG_","KISY","TETU","TAIJ"]},
+      {file:"SEQDATA8.AUTH",durationFrames:570,actors:["AKIR","KISY","TETU","BAG_","TAIJ"]}],
+    sharedActorManifest:finalCast[0],
+    // Both native bag roots otherwise render complete bags simultaneously,
+    // one floating at hand height after release. Native hand/swap callbacks
+    // are not recovered: retain the grounded original bag, not a duplicate.
+    props:{TETU:"TEKS500G",BAG_:"RBGS5M1G",BAG0:"RBGS5M2G"},referenceActors:["BAG0"],propArchive:"MEND/MODELS",propTextureHash:"e109ad0455b02d68ebf8eb7853e294fab21769f17f906f2b8bf50ad08f7d55f1",authoredPropBindings:true,
+    stream:"E1016",streamHash:"734af7dd9d64f57387956256dc1512b1b2bb6f5893d02b67a469cbb5539caa9f",sound:"A1_CHINW.SND",soundHash:"ed9932de7f39e4eaeec289889ef30e6398f179fa0488dde53f9ce4742d619d8d",
+    music:{id:"bgm064",sourceId:"dc78fbf32b4247ad427c9930d6cc8b2fb4fd82b82c02956bb48015634283cc4e",bankHash:"76dcd6a239ab64c4674cafa07d5dbe9e5afafd6c61fb609e56ef2217f3f6795f",label:"Master Chen's Swallow Flip lesson"},
+    selectionRule:"Original introduction, form demonstration, successful flip, praise and learned exit alternatives. Yarn owns actual Down/X/A success, optional further practice and acknowledged mastery; these films cannot award it themselves. Native timing-based free spar is condensed to the existing timed challenge."},
+  {id:"terry-final-intro",archive:"MFBT/TERY",resourceName:"TERY",evidence:"docs/design/story-final-day.md#terry-and-the-last-night",selectionRule:aftermathSelection,auth:"SEQDATA0.AUTH",motion:"M_01TLY.MOTN",bank:25,frames:575,actors:["PIPE","AKIR","KISY","TERY"],sharedActorManifests:finalCast,
+    props:{PIPE:"PIPS501G"},propTextureHash:"57467acd5f8941f70e233d4f325ebaacdab355bd9632ac6a5b57cc1712988fcb",authoredPropBindings:true,
+    music:battleMusic,stream:"01TLY",streamHash:"f9e731020b87e0329f48a064dc875e2fffe1ddea5f3cec65ab62a0b50c64e864",sound:"A1_PIPEQ.SND",soundHash:"82a86de527680626f47425bd1f7b9cddda69ed1d4294f3f8410a661b9b24edad"},
+  {id:"terry-final-success",archive:"MFBT/TERY",resourceName:"TERY",evidence:"docs/design/story-final-day.md#terry-and-the-last-night",selectionRule:aftermathSelection,auth:"SEQDATA1.AUTH",motion:"M_01TLY.MOTN",bank:25,frames:997,actors:["PIPE","AKIR","KISY","TERY"],sharedActorManifests:finalCast,
+    unavailableVoices:Object.fromEntries(["01TLYB007.str","01TLYB008.str"].map(id=>[id,{reason:`Original successful Terry response requests ${id}, absent from all six checked English01TLY archives. No substitute voice or invented subtitle.`,evidence:"docs/design/story-final-day.md#terry-and-the-last-night"}])),
+    props:{PIPE:"PIPS501G"},propTextureHash:"57467acd5f8941f70e233d4f325ebaacdab355bd9632ac6a5b57cc1712988fcb",authoredPropBindings:true,
+    music:battleMusic,stream:"01TLY",streamHash:"f9e731020b87e0329f48a064dc875e2fffe1ddea5f3cec65ab62a0b50c64e864",sound:"A1_PIPEQ.SND",soundHash:"82a86de527680626f47425bd1f7b9cddda69ed1d4294f3f8410a661b9b24edad"},
+  {id:"terry-interrogation",archive:"MFBT/TERY",resourceName:"TERY",evidence:"docs/design/story-final-day.md#terry-and-the-last-night",selectionRule:aftermathSelection,auth:"SEQDATA2.AUTH",motion:"M_01TLYD.MOTN",frames:1200,actors:["PIPE","AKIR","KISY","TERY"],sharedActorManifests:finalCast,
+    props:{PIPE:"PIPS501G"},propTextureHash:"57467acd5f8941f70e233d4f325ebaacdab355bd9632ac6a5b57cc1712988fcb",authoredPropBindings:true,
+    music:battleMusic,stream:"01TLYD",streamHash:"d1fc504f86af01b675fad9c453d69a8658cf50a7bc7c67c576b1e424b008df43",sound:"A1_TLYD.SND",soundHash:"6982afc70869163b0e71fbe3eb8939dc5890741e67bad301404f4a90a3d746b3"},
+  {id:"gui-after-battle",archive:"MFBT/TLYE",resourceName:"TLYE",evidence:"docs/design/story-final-day.md#terry-and-the-last-night",selectionRule:aftermathSelection,auth:"SEQDATA2.AUTH",motion:"M_01TLYE.MOTN",bank:32,frames:1520,actors:["KISY","AKIR"],sharedActorManifests:finalCast,
+    room:{archive:"MFBT/TLYE",member:"MAP_TLYE.MAPM",model:"MAP_TLYE",textureHash:"089c11c5bb28f6e94d82b58620c8c18e4cd9d651783c4b563c73df9201267f88",textureFilename:"tlye-textures.bin"},
+    music:{id:"bgm106",sourceId:"bf9cde87eead6453c47ffde1645cb5471aa0e5ecac71a48c6f72141444b10cfe",bankHash:"f0c657c96c112ce6493cd516044363818b8788ee144d481c240ea2fbba3b87d1",label:"After the confrontation"},
+    stream:"01TLYE",streamHash:"f68c745b022290722a7b248b4a77154ca13adfad750143cdbd8bfd9bebaac921",sound:"A1_TLYE.SND",soundHash:"1be0c960d6959c15290669be499fa55f9ec73e921f4229e30767bfff46a142de"},
+  {id:"tom-plane",archive:"MFSY/GBTM",resourceName:"GBTM",evidence:"docs/design/story-final-day.md#night-confrontation",auth:"SEQDATA0.AUTH",motion:"M_01TOM.MOTN",frames:932,actors:["JET_","AKIR"],
+    extraMotionBanks:[{bank:0,sourcePath:path.join(root,".disc-work/runtime-motion/MOTION.BIN"),assetPath:"play/assets/dobuita/jimmy-escaped/MOTION.BIN",byteLength:1826804,sha256:"aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23",parseOptions:{sequenceIndices:[101]}}],
+    props:{JET_:"HIKOUKI"},propTextureHash:"654fda5863b88f7f55f099630702a39f448c9da6d476db100955ac6a1eb7d307",authoredPropBindings:true,
+    stream:"01TOMC",streamHash:"11b5327a43bf069e5cc7244089747897f73bf9120f724f1a3c52706a5f5536e7",sound:"A1_TOMBY.SND",soundHash:"18140e9fe63ead409573ad6f90fc84d485698701f9b2060c98edd4cd302d9550"},
+  {id:"final-confrontation",archive:"MFBT/TLYA",resourceName:"TLYA",evidence:"docs/design/story-final-day.md#night-confrontation",auth:"SEQDATA1.AUTH",motion:"M_TLYA.MOTN",frames:1945,actors:["AKIR","KISY","STSI"],sharedActorManifests:finalCast,
+    extraMembers:[{archive:"MFBT/KISY",name:"M_01_H.MOTN"}],
+    props:{PIPE:"PIPS501G"},propArchive:"MFBT/TERY",propTextureHash:"57467acd5f8941f70e233d4f325ebaacdab355bd9632ac6a5b57cc1712988fcb",referenceActors:["PIPE"],authoredPropBindings:true,
+    music:finalMusic,
+    stream:"01TLYA",streamHash:"14506134c2267315e09eaee30a1de8bd0f365eb7535bafe323c342a43755765f",sound:"A1_KBTMM.SND",soundHash:"8fd00ade815b64fa4babad37b74cfe4b67f413d1c169592895e02185244173bd"},
+  {id:"terry-retreat",archive:"MFBT/TLYB",resourceName:"TLYB",evidence:"docs/design/story-final-day.md#night-confrontation",auth:"SEQDATA2.AUTH",motion:"M_TLYB.MOTN",bank:17,frames:410,actors:["AKIR","KISY","TERY"],sharedActorManifests:finalCast,
+    music:{id:"bgm084",sourceId:"7e5bc0053824814ff10b0c7b78d3ddef0d0f0a769d47c53e35fdfe3851f7f3d0",bankHash:"b2f1eeab4d264b03ea48c16a50b0b69885e4b939f38268d648db10c19c158d36",label:"Chasing Terry"},
+    stream:"01TLYB",streamHash:"e8e2237cbad017b553e1403f3de03bcfb7a422e437e2d93e2d25b89815e0bef9",sound:"A1_TERYB.SND",soundHash:"b958790c04e40b331e1614db329ea848ce75d60e61e27740a3b1c2cfbe5d642e"},
+  {id:"final-encirclement",archive:"MFBT/TLYC",resourceName:"TLYC",evidence:"docs/design/story-final-day.md#night-confrontation",auth:"SEQDATA3.AUTH",motion:"M_TLYC.MOTN",bank:18,frames:1020,actors:["KISY","BTA_","BTD_","BTB_","BTC_","BTE_","BTF_","AKIR"],sharedActorManifests:finalCast,
+    actorModels:Object.fromEntries(["BTA","BTB","BTC","BTD","BTE","BTF"].map(code=>[`${code}_`,["Mad Angels fighter",`${code}_L`]])),actorTextureHash:"f620a7375bd08db10de018b69fca57fc631f4b73eb80931ae9b7e0d3790089dc",
+    unavailableVoices:Object.fromEntries(["01TLYCA004.str","01TLYCC001.str"].map(id=>[id,{reason:`Original TLYC requests ${id}, absent from the pinned English01TLYC archive; no substitute speech.`,evidence:"docs/design/story-final-day.md#night-confrontation"}])),
+    music:finalMusic,
+    stream:"01TLYC",streamHash:"750aa6980c78cebe6a9ee77e92b47bd4fb6d48e0c2f73db36785c9daaaa9ffcf",sound:"A1_KAKOM.SND",soundHash:"071d3c459b07af41da602e9b685d45f1e7827dfa6e230451ef1563072a974a3d"},
+  {id:"tom-lesson",archive:"M0W1",resourceName:"M0W1",evidence:"docs/design/story-final-day.md#toms-lesson-and-farewell",motion:"M_0001.MOTN",
+    actors:["AKIR","TOM_","RADI","BTL1","BTL2"],activities:[
+      {file:"SEQDATA0.AUTH",durationFrames:1099,actors:["AKIR","RADI","TOM_","BTL1"]},
+      {file:"SEQDATA1.AUTH",durationFrames:432,actors:["AKIR","TOM_","RADI","BTL1"]},
+      {file:"SEQDATA2.AUTH",durationFrames:589,actors:["TOM_","AKIR","BTL1","RADI"]},
+      {file:"SEQDATA7.AUTH",durationFrames:416,actors:["AKIR","BTL2","TOM_","RADI"]},
+      {file:"SEQDATA8.AUTH",durationFrames:742,actors:["RADI","AKIR","TOM_"]},
+      {file:"SEQDATA9.AUTH",durationFrames:432,actors:["TOM_","AKIR","RADI"]}],
+    sharedActorManifest:{path:"play/assets/harbor/tom-lunch-invitation/manifest.json",sha256:"384aa14999e496b67b9a3303283352fe61234cd574d4fa1767093deeac5f4436"},
+    props:{RADI:"RADK400G",BTL1:"BINS501G",BTL2:"BINS501G"},referenceActors:["RADI"],authoredPropBindings:true,propTextureHash:"a06e7d5b5dd1ae6a3ce75d9bf9987a92eb0018fe4d1fd37d9473c2b6e026c4d9",
+    stream:"E1021",streamHash:"2a2885b618151bb0c8226e44a9358b6fe338ac1886ef0a4b9e4fc835092a9167",sound:"E1_TOMWZ.SND",soundHash:"f157fc9a22209dd9c128062a2d0df623d787c66fb3652ef7ef4f3a542a6a59a1",
+    selectionRule:"Original offer/refusal/acceptance/double-kick demonstration/success/stop alternatives. Yarn selects the branch; these six clips are not a sequential playlist or recovered native selector."},
+  {id:"tom-farewell",archive:"M0W1",resourceName:"M0W1",evidence:"docs/design/story-final-day.md#toms-lesson-and-farewell",auth:"SEQDATAB.AUTH",motion:"M_0001.MOTN",frames:2849,actors:["AKIR","TOM_","RADI"],
+    sharedActorManifest:{path:"play/assets/harbor/tom-lunch-invitation/manifest.json",sha256:"384aa14999e496b67b9a3303283352fe61234cd574d4fa1767093deeac5f4436"},
+    props:{RADI:"RADK400G"},referenceActors:["RADI"],authoredPropBindings:true,propTextureHash:"a06e7d5b5dd1ae6a3ce75d9bf9987a92eb0018fe4d1fd37d9473c2b6e026c4d9",
+    stream:"01TOMB",streamHash:"23daed8e59dcd1d271fd07fb41ea37e1131917bc234b7d06def325fb2b2aef85",sound:"E1TOMWZA.SND",soundHash:"193dce839f758b9e6c5f72370496eca21977ea483e3e3233ead2b9b2993712f3",
+    additionalStreams:[{stream:"01TOMA",sha256:"beee7fd3fe15645298fd1ea0c74dc6d8f7b30308209b16e15f2ff40c578f9d20"},{stream:"01TOMC",sha256:"11b5327a43bf069e5cc7244089747897f73bf9120f724f1a3c52706a5f5536e7"}],
+    unavailableVoices:{"01TOMBB013.str":{reason:"Original farewell requests01TOMBB013.str, absent from all three pinned English01TOM archives. No substitute speech or invented subtitle.",evidence:"docs/design/story-final-day.md#toms-lesson-and-farewell"}},
+    selectionRule:"Original standalone farewell B, not combined mastery/farewell A. It follows either genuinely learned or explicitly declined optional practice; film completion cannot grant Tornado Kick."},
+  {id:"final-meditation",directory:"hazuki",evidence:"docs/design/story-final-day.md",archive:"JHD0/MSOU",resourceName:"MSOU",auth:"SEQDATA1.AUTH",motion:"M_01MSO.MOTN",frames:1150,
+    actors:["KATA","SAYA","IWAO","AKIR"],actorModels:{IWAO:["Iwao Hazuki","IWA_M"]},
+    actorTextureHash:"5e90754604ccd7e8e8b2f3bdb78bbe1a71244c6d40ffa8323a93710bac22a689",
+    props:{KATA:"SINS501G",SAYA:"SAYS500G"},propTextureHash:"5e90754604ccd7e8e8b2f3bdb78bbe1a71244c6d40ffa8323a93710bac22a689",authoredPropBindings:true,
+    stream:"01MSO",streamHash:"b59e6b7d3deb775dbb7047cba38165823fa4607e704aaec734352b16c64dfea5",sound:"A1_MSO.SND",soundHash:"110edb5bff6026fd13f56c35f51dcfb11b36eedc06ce7889db26b520695bb782"},
+  {id:"tom-lunch-invitation",evidence:"docs/design/story-final-day.md",archive:"TOMOGORI",auth:"SEQDATA1.AUTH",motion:"M_01TOM.MOTN",frames:713,actors:["AKIR","TOM_"],
+    actorModels:{TOM_:["Tom Johnson","AMG_L"]},actorTextureHash:"8d7e24d502b2e6cb17c043e6e8ddf0641bc948ca259ae1e657e3d24241b1fcd8",
+    stream:"01TOMA",streamHash:"beee7fd3fe15645298fd1ea0c74dc6d8f7b30308209b16e15f2ff40c578f9d20",sound:"A1_TOMNA.SND",soundHash:"f05e0870a7def1a11cd1059e0e012bb5131071b533a3aed7b419d4620314c233"},
+  {id:"yada-dismissal",evidence:"docs/design/story-final-day.md",archive:"MARU_KUB",auth:"SEQDATA2.AUTH",motion:"M_01KUB.MOTN",bank:17,frames:1720,actors:["DOOR","AKIR","TMRA"],room:alphaRoom,
+    stream:"01KUB",streamHash:"c7f5d9c7eba61af610ca0a599cca706a988d123594219ddafbce056ccd13ce06",sound:"A1_KUBI.SND",soundHash:"7573286f022f6eaf283b1e4f5e780a613a9b84fec71f2b2d8a6b4ec2e7c75495"},
+  {id:"nozomi-motorcycle",directory:"sakuragaoka",evidence:"docs/design/story-nozomi-rescue.md",archive:"JD00/BIKE",resourceName:"BIKE",auth:"SEQDATA1.AUTH",motion:"M_01BIKE.MOTN",frames:1640,
+    selectionRule:"Walkthrough-guided nighttime motorcycle handoff; normalized local slot, not a native owner selection or driving result.",
+    actors:["HIKA","BIKE","HELM","TAIL","AKIR","ITOH","SUJI"],
+    props:{BIKE:"BIKS520G",HELM:"HELM400G",HIKA:"RAYS5SPG",TAIL:"TALS500G",SUJI:"TIKHIA4G"},referenceActors:["HIKA","TAIL","SUJI"],
+    propTextureHash:"7543a068268fc6664eb8b2394a03ea2ae9001d79e8712108a328f526a665398c",authoredPropBindings:true,
+    music:{id:"bgm200",sourceId:"d613ad6c6de39f76be5166d29e5ceb8d3a028280998f913909597f6eaa958a29",bankHash:"33e03d8688b0714d16e3f987a054dcbafc52722fe69c69429531516bfa7fab9e",label:"Borrowing Naoyuki's motorcycle"},
+    stream:"01BIKE",streamHash:"e5dbf50ca72ea0ae81ac0d886556eb5fe7616d15f720dc5503df7c3e0aca03ad",sound:"A1_BIKEK.SND",soundHash:"dae8dded2c83d1e34f455f9327f9d445c3b3f4208d81dc6223353a4728d216cf"},
+  {id:"chen-warning",archive:"MS08/MS08",resourceName:"MS08",auth:"SEQDATA5.AUTH",motion:"M_01CAU.MOTN",frames:4120,actors:["HAK0","AKIR","KISY","TAIJ"],
+    sharedActorManifest:{path:"play/assets/harbor/master-chen/manifest.json",sha256:"a997ad1a777bc5e175e733245002de2245eec3550dc253e0e79057b73041de9b"},
+    props:{HAK0:"HAKS5YKG"},propTextureHash:"9d959ba7d4754a6a23d1de5b6fb41d96281e03ac4c541f3ba5ee3c8fc38d1b0d",authoredPropBindings:true,
+    stream:"01CAU",streamHash:"4e61b4621349727688c7dbd35b30d0f11920850084800a42d0073dca4423546f",sound:"A1_CHINA.SND",soundHash:"6862f133cb92a0f81672fbefee6f57c7d143fdd2c257f92aff51fb5829611c1f"},
+  {id:"warning-letter",archive:"MARU_LET",auth:"SEQDATA3.AUTH",motion:"M_01CAU.MOTN",bank:18,frames:1400,actors:["AKIR","TMRA"],room:alphaRoom,
+    extraMembers:["FUTS5KBG.CHRM","KMMS500G.CHRM"],
+    music:{id:"bgm119",sourceId:"84af3eae1fc0efdcdaf7efb9a15479b28920513dbadcb2997445755e413e5c1e",bankHash:"48e854a5c8681536f015195da0630fa8e90307404a2e9b70a93b335fdbccebcf",label:"Gui Zhang's warning letter"},
+    stream:"01CAUA",streamHash:"34612fd23f8462a9d8ad379536ad33e6394496dc6b5538818ff24d47cdf0598c",sound:"A1_CAV.SND",soundHash:"ddea01f48db1846c2d1e5f8f2cadf610e03fdfcae6c918c1ea03837267336c94"},
+  {id:"sailor-chase-intro",archive:"MA00/PK_CTS",resourceName:"PK_CTS",auth:"SEQDATA0.AUTH",motion:"M_01CTS.MOTN",frames:1140,actors:["FORK","AKIR","SMTH","TONY"],extraMembers:["M_01_T_S.MOTN"],
+    unavailableVoices:Object.fromEntries(["01CTSA001.str","01CTSB003.str"].map(id=>[id,{reason:`Original introduction requests ${id}, absent from the pinned English 01CTS.AFS; no substituted voice or subtitle.`,evidence:"docs/design/story-harbor-work.md#fifth-afternoon-sailor-chase"}])),
+    props:{FORK:"FOKS502G"},propTextureHash:"a05a9329bb14d7f33b5004742976fa91e4725afe7b8790280fabd7766b8ef4dc",
+    stream:"01CTS",streamHash:"1ab83d84faf5fed5eb3db0dbf1aa5e229e957107a9da460a15b2115200c4effa",sound:"A1_CTS.SND",soundHash:"7a8a22298e29cd5648c9d9e007244b0e21e5a254d9b2e052f1511215bcebb374"},
+  {id:"sailor-chase-tony",archive:"MA00/PK_CTS2",resourceName:"PK_CTS2",auth:"SEQDATA1.AUTH",motion:"M_01CTSA.MOTN",frames:1500,actors:["AKIR","TONY"],
+    unavailableSounds:{"a9041800:/p16/prj16m5/AUTH01/01CTSA/SE/cloths/SUBERU4.aiff":{reason:"Original Tony ending requests a9041800, absent from the pinned A1_CTSA.SND; incidental cloth effect omitted, no substitute.",evidence:"docs/design/story-harbor-work.md#fifth-afternoon-sailor-chase"}},
+    additionalStreams:[{stream:"01CTSB",sha256:"eaacd33fdd71a7fa08578ddac5e5f4b4842dd27b94f4f7039f73118e6612470e"}],
+    stream:"01CTSA",streamHash:"27998887e7209f0b21a738a9b3e9141b11c8eb459c414c4cd586a8b8504506c1",sound:"A1_CTSA.SND",soundHash:"222284c2d1b2b94f5926607b62e9111a7b22e1edd87359eb429224d660b426d1"},
+  {id:"sailor-chase-smith",archive:"MA00/PK_CTS2",resourceName:"PK_CTS2",auth:"SEQDATA0.AUTH",motion:"M_01CTSA.MOTN",frames:1500,actors:["AKIR","SMTH"],
+    unavailableSounds:{"a9041900:/p16/prj16m5/AUTH01/01CTSA/SE/cloths/SUBERU5.aiff":{reason:"Original Smith ending requests a9041900, absent from the pinned A1_CTSA.SND; incidental cloth effect omitted, no substitute.",evidence:"docs/design/story-harbor-work.md#fifth-afternoon-sailor-chase"}},
+    additionalStreams:[{stream:"01CTSA",sha256:"27998887e7209f0b21a738a9b3e9141b11c8eb459c414c4cd586a8b8504506c1"}],
+    unavailableVoices:{"01CTSBB001.str":{reason:"Original Smith ending requests 01CTSBB001.str, absent from both pinned English ending archives; no substituted voice or subtitle.",evidence:"docs/design/story-harbor-work.md#fifth-afternoon-sailor-chase"}},
+    stream:"01CTSB",streamHash:"eaacd33fdd71a7fa08578ddac5e5f4b4842dd27b94f4f7039f73118e6612470e",sound:"A1_CTSA.SND",soundHash:"222284c2d1b2b94f5926607b62e9111a7b22e1edd87359eb429224d660b426d1"},
+  {id:"goro-mai-marriage",archive:"GOROKEKN",auth:"SEQDATA0.AUTH",motion:"M_01GHO.MOTN",frames:1234,actors:["HINA","AKIR","GORO"],
+    stream:"01GHO",streamHash:"c262947548666f943f1e07dccbe3042d168b27d48bd9bfbea4d8e12668fa2e70",sound:"A1_GKEKN.SND",soundHash:"e64d21ff00d541ee002566225a066ca8208780cf6f96c94eabb5a657bdd7345f"},
+  {id:"goro-trap-aftermath",archive:"MB9Q/MPK00",resourceName:"MB9Q",auth:"SEQDATA1.AUTH",motion:"M_019RN.MOTN",frames:880,actors:["TONY","AKIR","JONZ","SMTH","RBRT"],
+    // Retain YKB's original reference body for the cloth regression fixture;
+    // it is Ryo, not an eighth fighter. GH borrows Tony/Smith's real bodies.
+    extraMembers:["M_MB9Q2.MOTN","YKB_M.CHRM"],stagingActors:["BKA_","BKB_","BKC_","BKD_","BKE_","BKF_","BKG_","BKH_"],
+    actorModels:{TONY:["Tony Abrams","GIJ_M"],SMTH:["Smith Bradley","GIB_M"],JONZ:["Jones Henders","GIF_L"],RBRT:["Mad Angels thug","GID_L"],
+      BKA_:["Mad Angels fighter","GIA_L"],BKB_:["Mad Angels fighter","GID_L"],BKC_:["Mad Angels fighter","GIE_L"],BKD_:["Mad Angels fighter","GIF_L"],BKE_:["Mad Angels fighter","GIJ_M"],BKF_:["Mad Angels fighter","GIB_M"],BKG_:["Mad Angels fighter","GIJ_M"],BKH_:["Mad Angels fighter","GIB_M"]},
+    actorTextureHash:"93b83942438429938cbbde61cbd5c0404792dadf1adac834c6e432e66d2d94cd",
+    stream:"019RN",streamHash:"a7b214337ce9c402f5bda977813e1cd8bd6a284a1ffbdc90c5f307cce1ea72d2",sound:"A1_QRENQ.SND",soundHash:"e45706b0f968996730938ba1d78de4ab4119655a2ca059ed93a3f4afbe62d534"},
+  {id:"mark-long-zha",archive:"RYUSATSU",auth:"SEQDATA1.AUTH",motion:"M_01MKJ.MOTN",frames:1000,actors:["AKIR","MARK"],
+    stream:"01MKJ",streamHash:"cb353da35315b081014c3a92fe4e0a2bb2cb0f6c2d5ae2986eefca6585d32772",sound:"A1_MKJ.SND",soundHash:"264c861f97044a430b1723fcce33393b77ffce22483534bed0fabc7bde5b0408"},
+  {id:"charlie-harbor-interrogation",archive:"BAT_MBQC",auth:"SEQDATA0.AUTH",motion:"M_01CBK.MOTN",frames:1560,actors:["AKIR","BTK_","BTH_","CHRL","BTA_"],
+    actorModels:{BTK_:["Mad Angels biker","BTK_S"],BTH_:["Mad Angels biker","BTH_S"],BTA_:["Mad Angels biker","BTA_S"]},
+    actorTextureHash:"21659e72e8d07d6672f87185bef848ed61a61e659f63c924c51af73512f7793f",
+    stream:"01CBK",streamHash:"ac592d84435e75dddc18d05e66f969bfb815ac2310f5a5396fc1cba64b3e0792",sound:"A1_CBK.SND",soundHash:"9c57255615360306201708cba0ded088d6a61c62e975a5a906a4c264e39e0758"},
+  {id:"nozomi-photo-intro",archive:"NZMPHOTO",auth:"SEQDATA1.AUTH",motion:"M_01PHO.MOTN",frames:1220,actors:["PHT1","PHT2","BLC0","BLC1","AKIR","TJMA","HRSK","POLA"],
+    props:{PHT1:"SHAS503G",PHT2:"SHAS506G",BLC0:"BLAS500G",BLC1:"BLAS500G",POLA:"POCS500G"},referenceActors:["BLC0","BLC1"],authoredPropBindings:true},
+  {id:"nozomi-photo-ending",archive:"NZMPHOTO",auth:"SEQDATA2.AUTH",motion:"M_01PHO.MOTN",frames:1940,actors:["AKIR","TJMA","HRSK","PHT2","POLA","PHT1"],
+    props:{PHT1:"SHAS503G",PHT2:"SHAS506G",POLA:"POCS500G"},authoredPropBindings:true},
+  {id:"mark-after-work-intro",archive:"BOKOMARK",auth:"SEQDATA2.AUTH",motion:"M_01MKB.MOTN",frames:520,actors:["AKIR","DEB1","DEB2","MARK","MRSK","OKYS","BTC_"],
+    actorModels:{DEB1:["Mad Angels thug","BTH_L"],DEB2:["Mad Angels thug","BTN_L"],BTC_:["Mad Angels thug","BTC_L"]},
+    actorTextureHash:"526ca5ef63b27b189ceeac0dcadbd5950334105132b27008fd77ec95ef1965df",
+    unavailableVoices:Object.fromEntries(["01MKBD003.str","01MKBD004.str"].map(id=>[id,{
+      reason:`Original introduction requests ${id}, absent from the pinned English 01MKB.AFS; no substitute voice or invented subtitle.`,
+      evidence:"docs/design/story-harbor-work.md#warehouse-no-17-mark-rescue",
+    }])),
+    unavailableSounds:{"a9041c00:/p16/prj16m5/AUTH01/01MKB/SE/footconcrete/joseiconsneaker1.aiff":{
+      reason:"Original introduction requests a9041c00; the pinned A1_MKB.SND contains a9040000 through a9041b00 only. Incidental footstep omitted, no substitute.",
+      evidence:"docs/design/story-harbor-work.md#warehouse-no-17-mark-rescue",
+    }}},
+  {id:"mark-after-work-aftermath",archive:"BOKOMARK",auth:"SEQDATA3.AUTH",motion:"M_01MKB.MOTN",frames:700,actors:["AKIR","MARK","MRSK","OKYS"]},
+  {id:"mark-brother-explanation",archive:"BOKOMARK",auth:"SEQDATA4.AUTH",motion:"M_01MKB.MOTN",frames:1961,actors:["AKIR","MARK"]},
+  {id:"workday-lunch",archive:"HIRUAUTH",auth:"SEQDATA1.AUTH",motion:"M_01BEN.MOTN",frames:450,silent:true,
+    actors:[...Array.from({length:6},(_,i)=>[`BTF${i+1}`,`BTS${i+1}`]).flat(),"AKIR","YOHI","TYMK","TAKE","MARK","HTSI"],
+    props:Object.fromEntries(Array.from({length:6},(_,i)=>[[`BTF${i+1}`,"BNMS301G"],[`BTS${i+1}`,"BNMS302G"]]).flat()),
+    propTextureHash:"c6796091fbbb5a0ba8f3f50567fdf4b7419227ff984c38942d7bb0a08f635968"},
+  {id:"after-work-goro",archive:"GOROMA",auth:"SEQDATA2.AUTH",motion:"M_01GOJ.MOTN",frames:2410,actors:["DOOR","AKIR","GORO"],
+    stream:"01GOJ",streamHash:"06c5dd27705cf46350c3b59ebdefc89c14174499959526d9f253358b68f90bb8",sound:"A1_GOJ.SND",soundHash:"210668743582286b7b4bfa406ee36f766233f06fcb88b67021b522a5afe4adf3"},
+  {id:"payday",archive:"ALP_PAY",motion:"M_MO01.MOTN",assetOnly:true},
+  {id:"goro-job-lead",archive:"GOROCOOP",auth:"SEQDATA1.AUTH",motion:"M_01GOH.MOTN",frames:2330,actors:["AKIR","GORO"],
+    stream:"01GOHA",streamHash:"018d20a6b303b790e3dff9f1b872c776b974d3857e75f8b438e5742870e5721a",sound:"A1_GOH.SND",soundHash:"5537070981a30cb231cf7fd646735bda7cb8b201ef09ab023f9a4bd8b68a6908"},
+  {id:"goro-job-appointment",archive:"MGOR",auth:"SEQDATA0.AUTH",motion:"M_01GOR.MOTN",frames:1960,actors:["AKIR","HINA","GORO","DOOR","HAKO"],
+    stream:"01GORA",streamHash:"5ab0691cb71108cf8630d7395d67448989a5e40edbd250852d957eb7a855074a",sound:"A1_GOROU.SND",soundHash:"25a7de8fc75c0b9ea03d0015aef36fa8253230d6d965fad226af5ce3311f543e"},
+  {id:"yada-job-interview",archive:"MARU",auth:"SEQDATA0.AUTH",motion:"M_01MAK.MOTN",frames:830,actors:["AKIR","TMRA","DOOR"],room:alphaRoom},
+  {id:"mark-job-introduction",archive:"MARU",auth:"SEQDATA1.AUTH",motion:"M_01MAK.MOTN",frames:1934,actors:["FORK","AKIR","TMRA","ETC2","ETC1","MARK"],
+    props:{FORK:"FOKS502G"},propTextureHash:"faadd8aecb7e224885eb12d3cbc731215eb64ffb4648649c61c7a9a9272bd280"},
+  {id:"mark-lunch-intro",archive:"MIZUMARK",auth:"SEQDATA1.AUTH",motion:"M_01MAD.MOTN",frames:1120,actors:["BENB","AKIR","MRSK","MARK","OKYS"],
+    props:{BENB:"BNMS301G"},propTextureHash:"92687965dcded1c555ecaf72a29f00086781de3dbfc1da3be0be148d5b9f5fda",
+    // The original bank ends at a9041400. Do not alias this missing effect to
+    // another sample or silently strip the AUTH command from its provenance.
+    unavailableSounds:{"a9041500:/p16/prj16m5/AUTH01/01MAD/SE/body/ikepocha.aiff":{
+      reason:"Original AUTH requests a9041500, absent from the pinned A1_MAD.SND bank (a9040000 through a9041400); incidental effect omitted.",
+      evidence:"docs/design/story-harbor-work.md#mark-at-lunch-presentation-assets",
+    }}},
+  {id:"mark-lunch-aftermath",archive:"MIZUMARK",auth:"SEQDATA2.AUTH",motion:"M_01MAD.MOTN",frames:1050,actors:["AKIR","OKYS","MRSK","MARK"]},
+].map(p=>p.archive==="NZMPHOTO"?{...p,propTextureHash:"c689ecc4b3d11bcef397c5038c916e98fecf984662e60ea6be9fd994f0ff2060",stream:"01PHO",streamHash:"6c0170c065add4c5515ffec8ae68ca8ef223805f96fd654949274762dcb61edd",sound:"A1_NZPHO.SND",soundHash:"b00875e4a2dcf3db1af7eff22e55c3dc6b7ccf9a20490ecd0b374d0e06d54afc"}
+  :p.archive==="BOKOMARK"?{...p,bank:21,stream:"01MKB",streamHash:"29dfd4ec9003c458ad53d6e1cabc621edd1a7fac8cff367b1e348de818e3e0fd",sound:"A1_MKB.SND",soundHash:"8286272d55f5011e16b49dc5cb7c0596a090e365ff409cbf96440a65ad02724e"}
+  :p.archive==="MARU"?{...p,stream:"01MAK",streamHash:"991e51fcbe77d0e590fd5db522b6fee46fe11cf7b02fc9bcaa6b81917cfc075d",sound:"A1_MARK.SND",soundHash:"ef5b84e9994323af1b7dc315612030cd1b923e79aa8770dd0e8afc6cad394ba8"}
+  :p.archive==="MIZUMARK"?{...p,stream:"01MAD",streamHash:"3295b7ef69bde0372cb212cc500adcababc86421d712ae860ecaead614a7714a",sound:"A1_MAD.SND",soundHash:"b76ce9d7ad7f386a45001adcbf12a855718b0254ca72475dfdec78c4bfb38890"}:p);
+const characters={CHAI:["Chai","CHA_M"],CHRL:["Charlie Grant","BIK_L"],YOHI:["Yohei Kondo","YHI_L"],TYMK:["Tsuyoshi Murakami","RFA_L"],TAKE:["Hiroaki Takeuchi","ZZC_L"],HTSI:["Hitoshi Numakubo","SGH_L"],
+  ITOH:["Naoyuki Ito","RFB_L"],
+  GORO:["Goro Mihashi","KMB_L"],HINA:["Mai Sawano","MIB_L"],TMRA:["Ryozo Yada","KWD_L"],MARK:["Mark Kimberly","GIC_L"],TONY:["Tony Abrams","GIJ_M"],SMTH:["Smith Bradley","GIB_M"],
+  // HRSK reuses the reviewed full body from nativeActivityActors, not the
+  // character-name CSV's unshipped NZM_M reference.
+  MRSK:["Shingo Murasaki","PPL_L"],OKYS:["Minoru Okayasu","OKA_L"],TJMA:["Eri Tajima","RFD_L"],HRSK:["Nozomi Harasaki","NZM_L"]};
+const runtimePaths=[];
+// Most employment archives are resident MFSY resources; the nine-input fight
+// owns its own MB9Q package. Preserve that original path in provenance.
+const archiveStem=archive=>archive.includes("/")?archive:`MFSY/${archive}`;
+const profileArg=process.argv.indexOf("--profile");
+const selected=profileArg<0?profiles:profiles.filter(p=>p.id===process.argv[profileArg+1]);
+if(!selected.length)throw Error("Unknown harbor job profile");
+for(const p of selected){
+  const prefix=`play/assets/${p.directory||"harbor"}/${p.id}`,audioPrefix=`public/audio/world/${p.id}`,evidence=p.evidence||defaultEvidence;
+  const members=[],outputMembers=[],generatedAssets=[],sceneObjects={},packageActors={};
+  const member=(archive,name)=>{
+    // Multiple scene instances may share one archive model (six lunchboxes).
+    // Provenance/output members describe unique source files, not instances.
+    if(members.some(m=>m.archiveMember===name&&m.sourceManifestPath===`disc3/SCENE/03/${archiveStem(archive)}.PKS`))return name;
+    const sourcePath=path.join(source,`${archiveStem(archive)}.PKS`),bytes=fs.readFileSync(sourcePath);
+    if(sha256(bytes)!==archives[archive])throw Error(`Changed original ${archive}.PKS`);
+    const found=parseIpacActivityArchive(bytes).members.find(m=>m.name===name);
+    if(!found)throw Error(`Missing ${archive}/${name}`);
+    members.push({name,sourcePath,sourceManifestPath:`disc3/SCENE/03/${archiveStem(archive)}.PKS`,archiveMember:name,sourceSha256:archives[archive],byteLength:found.bytes.length,sha256:sha256(found.bytes)});
+    return name;
+  };
+  const activities=p.activities||(p.auth?[{file:p.auth,durationFrames:p.frames,actors:p.actors}]:[]);
+  for(const activity of activities){
+    member(p.archive,activity.file);
+    if(p.silent){
+      const bytes=parseIpacActivityArchive(fs.readFileSync(path.join(source,`${archiveStem(p.archive)}.PKS`))).members.find(m=>m.name===activity.file).bytes;
+      // A silent profile must actually have no original audio commands; never
+      // use this to conceal a missing bank or an unimplemented voice request.
+      if(parseAuthSequence(bytes).sounds.length)throw Error(`Unexpected original audio in silent ${p.id}`);
+    }
+  }
+  if(p.motionSource){
+    const s=p.motionSource;
+    members.push({name:p.motion,sourcePath:path.join(source,s.path),sourceManifestPath:`disc3/SCENE/03/${s.path}`,byteLength:s.byteLength,sha256:s.sha256});
+  }else member(p.archive,p.motion);
+  for(const extra of p.extraMembers||[])outputMembers.push(typeof extra==="string"?member(p.archive,extra):member(extra.archive,extra.name));
+  if(p.assetOnly){
+    // ALP_PAY has salary motions, but no AUTH film. Preserve those originals
+    // without fabricating a native activity; Yarn owns the authored handover.
+    const bytes=fs.readFileSync(path.join(source,`MFSY/${p.archive}.PKS`));
+    const payload=parseIpacActivityArchive(bytes).members.find(m=>m.name===p.motion).bytes;
+    fs.mkdirSync(path.join(root,prefix),{recursive:true});
+    fs.writeFileSync(path.join(root,prefix,p.motion),payload);
+    const assetPath=`${prefix}/${p.motion}`;
+    fs.writeFileSync(path.join(root,prefix,"manifest.json"),JSON.stringify({generatedBy,resourceName:p.archive,sourceMembers:members.map(({sourcePath,...record})=>record),
+      outputs:[{path:assetPath,byteLength:payload.length,sha256:sha256(payload)}],evidence},null,2)+"\n");
+    runtimePaths.push(`${prefix}/manifest.json`,assetPath);
+    console.log(`Built ${p.id}: original salary motion bank, no native AUTH`);
+    continue;
+  }
+  const texture=(archive,hash,filename)=>{
+    const bytes=fs.readFileSync(path.join(source,`${archiveStem(archive)}.PKF`));
+    if(sha256(bytes)!==hash)throw Error(`Changed original ${archive}.PKF`);
+    const assetPath=`${prefix}/${filename}`;
+    generatedAssets.push({assetPath,bytes:extractNativeTexnPack(bytes,`${archive}.PKF`).bytes});return assetPath;
+  };
+  let sharedActors={};
+  for(const binding of p.sharedActorManifests||(p.sharedActorManifest?[p.sharedActorManifest]:[])){
+    const bytes=fs.readFileSync(path.join(root,binding.path));
+    if(sha256(bytes)!==binding.sha256)throw Error(`Changed shared original actors for ${p.id}`);
+    for(const [tag,actor]of Object.entries(JSON.parse(bytes).packageActors)){
+      if(sharedActors[tag]&&JSON.stringify(sharedActors[tag])!==JSON.stringify(actor))throw Error(`Conflicting shared actor ${p.id}/${tag}`);
+      sharedActors[tag]=actor;
+    }
+  }
+  for(const tag of p.actors){
+    if(p.actorModels?.[tag])continue;
+    if(sharedActors[tag]){
+      const actor=sharedActors[tag];
+      runtimeAssetUrl(actor.assetPath);runtimeAssetUrl(actor.textureAssetPath);
+      packageActors[tag]=actor;
+      continue;
+    }
+    if(!characters[tag])continue;
+    const [label,code]=characters[tag];
+    // A film is imported during application startup. Missing shared bodies
+    // must fail generation, not leave the account menu waiting indefinitely.
+    runtimeAssetUrl(`play/assets/characters/${code}.CHRM`);
+    runtimeAssetUrl(`play/assets/characters/${code.slice(0,3)}_textures.bin`);
+    packageActors[tag]={label,modelCode:code,browserFilename:`${code}.CHRM`,assetFormat:"MT5",characterScale:1,assetPath:`play/assets/characters/${code}.CHRM`,textureAssetPath:`play/assets/characters/${code.slice(0,3)}_textures.bin`};
+  }
+  if(p.actorModels){
+    const textureAssetPath=texture(p.archive,p.actorTextureHash,"character-textures.bin");
+    for(const [tag,[label,code]]of Object.entries(p.actorModels)){
+      if(!p.actors.includes(tag)&&!p.stagingActors?.includes(tag))throw Error(`Unused package actor ${p.id}/${tag}`);
+      outputMembers.push(member(p.archive,`${code}.CHRM`));
+      packageActors[tag]={label,modelCode:code,browserFilename:`${code}.CHRM`,assetFormat:"MT5",characterScale:1,
+        assetPath:`${prefix}/${code}.CHRM`,textureAssetPath,
+        sourceBinding:{kind:"authored-package-model-association",archiveMember:`${code}.CHRM`,evidence}};
+    }
+  }
+  for(const tag of p.actors.filter(t=>["DOOR","HAKO"].includes(t)))sceneObjects[tag]={model:"unmapped-original-reference",browserFilename:`${p.archive}-${tag}-reference`,referenceOnly:true};
+  if(p.room){
+    // Both Alpha and TLYE have original geometry absent from the resident
+    // gameplay layer. Borrow it with the existing scene-object lease.
+    const room=p.room;
+    if(!room.archive||!room.member||!room.model||!room.textureHash||!room.textureFilename)throw Error(`Incomplete original room ${p.id}`);
+    outputMembers.push(member(room.archive,room.member));
+    const textureAssetPath=texture(room.archive,room.textureHash,room.textureFilename);
+    sceneObjects.ROOM={model:room.model,browserFilename:room.member,assetPath:`${prefix}/${room.member}`,textureAssetPath,
+      lifecycle:{kind:"room-script-persistent"},initialPresentation:{position:[0,0,0],rotationDegrees:[0,0,0],scale:[1,1,1]}};
+  }
+  const stageStates=p.stage?addNativeAseqStageAssets({stage:p.stage,sourceDirectory:path.join(source,path.dirname(archiveStem(p.archive))),sourceManifestPrefix:`disc3/SCENE/03/${path.dirname(archiveStem(p.archive))}`,assetPrefix:prefix,members,outputMembers,sceneObjects,generatedAssets}):[];
+  const propTextureAssetPath=p.props?texture(p.propArchive||p.archive,p.propTextureHash,"textures.bin"):null;
+  if(p.id==="mark-job-introduction"){
+    const textureAssetPath=propTextureAssetPath;
+    // Original MARU props/cast; the ETC1/ETC2 model association is authored.
+    for(const [tag,model] of [["ETC1","SGG_L"],["ETC2","SGJ_L"]]){
+      outputMembers.push(member("MARU",`${model}.CHRM`));
+      packageActors[tag]={label:"Harbor worker",modelCode:model,browserFilename:`${model}.CHRM`,assetFormat:"MT5",characterScale:1,assetPath:`${prefix}/${model}.CHRM`,textureAssetPath};
+    }
+  }
+  for(const [tag,model]of Object.entries(p.props||{})){
+    outputMembers.push(member(p.propArchive||p.archive,`${model}.CHRM`));
+    sceneObjects[tag]={model,browserFilename:`${model}.CHRM`,assetPath:`${prefix}/${model}.CHRM`,textureAssetPath:propTextureAssetPath,
+      ...(p.referenceActors?.includes(tag)?{referenceOnly:true}:{}),
+      ...(p.authoredPropBindings?{sourceBinding:{kind:"authored-package-prop-association",evidence}}:{})};
+  }
+  const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:p.resourceName||p.archive,disc:3,sourceMembers:members,expectedMembers:members,
+    bindingEvidence:evidence,selectionRule:p.selectionRule||"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",
+    outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),...(p.silent?{}:{audioManifest:`${audioPrefix}/manifest.json`}),
+    motionBanks:[{bank:p.bank??16,member:p.motion,...(p.motionParseOptions?{parseOptions:p.motionParseOptions}:{})},...(p.extraMotionBanks||[])],activities:activities.map((activity,slot)=>({...activity,slot,binding:{kind:"map-embedded-slot"},
+      ...(p.stage?{browserMapVisibility:[],browserIsolatedStage:true,browserLightingPresetIndex:0}:{}),
+      ...(Object.values(sceneObjects).some(o=>o.lifecycle?.kind==="room-script-persistent")?{nativeSceneObjectStates:[...(p.room?[{actorTag:"ROOM",presented:true}]:[]),...stageStates]}:{})})),
+    packageActors,sceneObjects,outputMembers:[...new Set(outputMembers)],generatedAssets,
+  });
+  runtimePaths.push(`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path));
+  if(p.sequenceProgram){
+    // Explicitly reviewed sequential shots, not the alternate activities in
+    // every multi-film archive. Reuse the same compiler as the ride home.
+    const routeFile=path.join(root,"tools/data/native-activity-preview-routes.json"),routes=JSON.parse(fs.readFileSync(routeFile));
+    const route={cutsceneId:`story-s1-${p.id}`,programId:`story-s1-${p.id}`,packageId:p.id,...p.sequenceProgram,manifest:`${prefix}/manifest.json`,activities:activities.map((_,slot)=>({slot}))};
+    routes.routes=routes.routes.filter(r=>r.programId!==route.programId);routes.routes.push(route);fs.writeFileSync(routeFile,JSON.stringify(routes,null,2)+"\n");
+  }
+  console.log(`Built ${p.id}: ${manifest.activities[0].durationSeconds.toFixed(2)} seconds`);
+  if(p.silent||!process.argv.includes("--audio"))continue;
+  const audio=buildNativeAseqAudioPack({generatedBy,disc:3,authDirectory:path.join(root,prefix),authFiles:activities.map(a=>a.file),authManifest:`${prefix}/manifest.json`,resourceBindingEvidence:evidence,
+    ...(p.stream?{stream:{label:`${p.stream}.AFS`,path:path.join(source,`STREAM/${p.stream}.AFS`),manifestPath:`disc3/SCENE/03/STREAM/${p.stream}.AFS`,sha256:p.streamHash}}:{}),
+    additionalStreams:p.additionalStreams?.map(s=>({label:`${s.stream}.AFS`,path:path.join(source,`STREAM/${s.stream}.AFS`),manifestPath:`disc3/SCENE/03/STREAM/${s.stream}.AFS`,sha256:s.sha256})),
+    soundBank:{label:p.sound,path:path.join(source,`SOUND/${p.sound}`),manifestPath:`disc3/SCENE/03/SOUND/${p.sound}`,sha256:p.soundHash},
+    unavailableSounds:p.unavailableSounds,unavailableVoices:p.unavailableVoices,
+    outputDirectory:path.join(root,audioPrefix),outputAssetPrefix:audioPrefix,dtpkDump:process.env.DTPK_DUMP||path.join(root,".disc-work/pool-audio/dtpkdump/DTPKDump.py"),
+    vgmstream:process.env.VGMSTREAM_CLI||path.join(root,".disc-work/tooling/vgmstream/vgmstream-cli"),python:process.env.DTPK_PYTHON||"python3",
+  });
+  runtimePaths.push(`${audioPrefix}/manifest.json`,...[...audio.voices,...audio.sounds].filter(a=>a.asset&&!a.unavailable).map(a=>a.asset));
+  if(p.music)runtimePaths.push(...registerNativeAseqMusic(root,p.music));
+  console.log(`Built ${p.id} audio: ${audio.voices.length} voices; ${audio.sounds.length} effects`);
+}
+execFileSync(process.execPath,["tools/runtime-assets.mjs","update",...new Set(runtimePaths)],{cwd:root,stdio:"inherit"});

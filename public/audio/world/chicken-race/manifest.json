@@ -1,0 +1,1403 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_chicken_race.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01CRA.AFS",
+      "sha256": "0e38fe5beb85e03a2c7fc5b687187170fb1528016e9ad4d474149f683ca41353"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_CRA.SND",
+      "sha256": "f7fb89b9cca937f8376cfdd88f1f28f477fa4367acb4d313616ff8198509d8de"
+    },
+    "authManifest": "play/assets/harbor/chicken-race/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-harbor-work.md#evening-chicken-race"
+  },
+  "voices": [
+    {
+      "voiceId": "01CRAA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAA001.aiff",
+      "nativeMember": "01CRAA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 6144,
+      "nativeSha256": "d46dc3058614a60f26188d4c36a5389f1110e80e0c08432900b6da8e5dd85fb8",
+      "speakerId": "AKIR",
+      "sourceText": "Cut it out!",
+      "displayText": "Cut it out!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAA001.wav",
+      "byteLength": 24364,
+      "sha256": "97210ce40c65585a93519492334c28e96eb218dc9c7fa603c82789808e4647d4"
+    },
+    {
+      "voiceId": "01CRAA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAA002.aiff",
+      "nativeMember": "01CRAA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 10240,
+      "nativeSha256": "2f678e31011ac8b0b3bbe60dedd790f48aefe0932c9ae0cc68d726ca4db2690d",
+      "speakerId": "AKIR",
+      "sourceText": "Quit terrorizing him!",
+      "displayText": "Quit terrorizing him!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 30
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAA002.wav",
+      "byteLength": 40748,
+      "sha256": "c0e5f28e7956a05f3f2b2e895df4dc2e28fc2e5ead17ee58f719960e727e03a2"
+    },
+    {
+      "voiceId": "01CRAA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAA003.aiff",
+      "nativeMember": "01CRAA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "1a809b0400e053b8fb73e8833f0d8c7e30d37b6034e3cb546a4775c0eed15e79",
+      "speakerId": "AKIR",
+      "sourceText": "What!?",
+      "displayText": "What!?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAA003.wav",
+      "byteLength": 16172,
+      "sha256": "ec945fd399ee4a0fd936cb494fe15ea608b86828c6409c2984df27ccac8543ca"
+    },
+    {
+      "voiceId": "01CRAA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAA004.aiff",
+      "nativeMember": "01CRAA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 6144,
+      "nativeSha256": "82e67f7ddcd0de38b73a4df150bdde098e4318fd699f49569c8a786e905a84a7",
+      "speakerId": "AKIR",
+      "sourceText": "Motorcycle?",
+      "displayText": "Motorcycle?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAA004.wav",
+      "byteLength": 24364,
+      "sha256": "45751126df732b6d72258c967fee5474862bfbe787e1abdea4aa0d1074b80f85"
+    },
+    {
+      "voiceId": "01CRAA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAA005.aiff",
+      "nativeMember": "01CRAA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 28672,
+      "nativeSha256": "caf0abd60cf0253e021129e742c700c2711c7d612ea2bcaf93ebe5aafc57fbcd",
+      "speakerId": "AKIR",
+      "sourceText": "O.K.=@ I'll play your little game. But=@＆If I win, you leave him alone.",
+      "displayText": "O.K.... I'll play your little game. But...\nIf I win, you leave him alone.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 24
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAA005.wav",
+      "byteLength": 114476,
+      "sha256": "3ac51084a3792bf29f7d674de46a88680ddfe3e9e01fcb03e789d49f79dedea2"
+    },
+    {
+      "voiceId": "01CRAB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAB001.aiff",
+      "nativeMember": "01CRAB001.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 26624,
+      "nativeSha256": "7355d772de8ca079c2b2e9eed15df9a31ec29120bc35edd41e81469fd3c73e2d",
+      "speakerId": "SYZU",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAB001.wav",
+      "byteLength": 106284,
+      "sha256": "075534a881e97cadde3dbfb04891bbfd16b0420115394a1bf85258a579d0ae66"
+    },
+    {
+      "voiceId": "01CRAB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAB002.aiff",
+      "nativeMember": "01CRAB002.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 18432,
+      "nativeSha256": "551ed26dc2e7f2263f6e03e434a72701276d2871504878a71eb47e5bff2db133",
+      "speakerId": "SYZU",
+      "sourceText": "Waaaah. Help, somebody!!!",
+      "displayText": "Waaaah. Help, somebody!!!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 22
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 27
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 27
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAB002.wav",
+      "byteLength": 73516,
+      "sha256": "3cd9fb7b71ef0e881550bb8d6d71437806c8b74d51060758f650bcd0f4407531"
+    },
+    {
+      "voiceId": "01CRAC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAC001.aiff",
+      "nativeMember": "01CRAC001.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 16384,
+      "nativeSha256": "54c1962d52aeb233d2cc89b32743efa19d2f80e404b6cb3caafbbbf05986ed5a",
+      "speakerId": "BIKB",
+      "sourceText": "I told you to stay outta here,＆Old man!",
+      "displayText": "I told you to stay outta here,\nOld man!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAC001.wav",
+      "byteLength": 65324,
+      "sha256": "ab8b865fb3d8ebeb85bb51a741f94d845ec774e9f6e2cd90294f499fe87e353d"
+    },
+    {
+      "voiceId": "01CRAC002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAC002.aiff",
+      "nativeMember": "01CRAC002.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 10240,
+      "nativeSha256": "2fe494298b7d9c7a936ee07d0bd52d06dd7ac08e20f57e79b5cd617122d6dbd7",
+      "speakerId": "BIKB",
+      "sourceText": "Who the hell are you?",
+      "displayText": "Who the hell are you?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAC002.wav",
+      "byteLength": 40748,
+      "sha256": "63f5e8c97b1d7e54bddb1a0ebe28f60a661bd644b6dc8daf160c9564c0d08e42"
+    },
+    {
+      "voiceId": "01CRAC003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAC003.aiff",
+      "nativeMember": "01CRAC003.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 20480,
+      "nativeSha256": "43fadf8e4c4e2063925387cea6a5409d56baf159755805144046b5bd0efa3df8",
+      "speakerId": "BIKB",
+      "sourceText": "All right then,＆we'll just play you!",
+      "displayText": "All right then,\nwe'll just play you!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 20
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAC003.wav",
+      "byteLength": 81708,
+      "sha256": "e066ae5cb1c9f3e2b52159f2fc4e281c9f7635cea104b66964333d22fc607717"
+    },
+    {
+      "voiceId": "01CRAC004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAC004.aiff",
+      "nativeMember": "01CRAC004.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 16384,
+      "nativeSha256": "c8c040fb2b0552695c49a7b75bb81d07bf479227bdcf2d2dc9ace9d01284187e",
+      "speakerId": "BIKB",
+      "sourceText": "How about you race us?",
+      "displayText": "How about you race us?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAC004.wav",
+      "byteLength": 65324,
+      "sha256": "032ffd76b15c0f66b10453d1ecad493f1780b29fb1c5e8e20627e15b32c98fef"
+    },
+    {
+      "voiceId": "01CRAD001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAD001.aiff",
+      "nativeMember": "01CRAD001.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 16384,
+      "nativeSha256": "27d969f15e220f146a9d1872524fd3efa29e4371c5703566ed7a0170d060f505",
+      "speakerId": "BIKA",
+      "sourceText": "Hey hey hey,＆I'm gonna run you over.",
+      "displayText": "Hey hey hey,\nI'm gonna run you over.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 34
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAD001.wav",
+      "byteLength": 65324,
+      "sha256": "4e93f7c5355a2966c7590945ef8bdf4bfb3e34ec0550bed721c9333ad9889a99"
+    },
+    {
+      "voiceId": "01CRAD002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAD002.aiff",
+      "nativeMember": "01CRAD002.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 24576,
+      "nativeSha256": "36cb747304ffd32e85a159385385aa83d9a69f50483860da2cc7dc9b2abacc4c",
+      "speakerId": "BIKA",
+      "sourceText": "Look at him.＆Talks like a goodie-goodie, little shit.",
+      "displayText": "Look at him.\nTalks like a goodie-goodie, little shit.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAD002.wav",
+      "byteLength": 98092,
+      "sha256": "3a2290829e7a115d0eb6cc71bb922278c90a6a3b3d999f0e63e6b9c315456880"
+    },
+    {
+      "voiceId": "01CRAD003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SOUND/01CRAD003.aiff",
+      "nativeMember": "01CRAD003.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 20480,
+      "nativeSha256": "238ab04ef8d7e46743c21eebc3557ccd348e9d489aedb4c597ec17dcf77de883",
+      "speakerId": "BIKA",
+      "sourceText": "A chicken race.＆You do know what that is, right?",
+      "displayText": "A chicken race.\nYou do know what that is, right?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chicken-race/voice/01CRAD003.wav",
+      "byteLength": 81708,
+      "sha256": "5d0e5d1766067cd5775f372b86404f22bd9e86b633a890e93720da1988c26179"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SE/cloths2/cl04.aiff",
+      "playbackId": 0,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chicken-race/sfx/a9040000.wav",
+      "byteLength": 37108,
+      "sha256": "dfcfeb5de29e48c458f7a8b1a17749416ab3cd1a976190555100e9ca1dea3bef"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SE/foot/sneaker1.aiff",
+      "playbackId": 2,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chicken-race/sfx/a9040200.wav",
+      "byteLength": 10964,
+      "sha256": "3db696efc3f22f883429c8558b9cd97102c30e9f4401b0d78a4cb82baaf2e2b7"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SE/foot/sneaker2.aiff",
+      "playbackId": 3,
+      "sampleId": 19,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chicken-race/sfx/a9040300.wav",
+      "byteLength": 8260,
+      "sha256": "61d795e4c9924a4846d90d3114587d666b3de1a9ba9b82855be70278bbbbff72"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SE/foot/sneaker3.aiff",
+      "playbackId": 4,
+      "sampleId": 20,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chicken-race/sfx/a9040400.wav",
+      "byteLength": 11188,
+      "sha256": "fef02cc6d21fef1cbee18ba5ee6e940b07c8b2a6f06b1d6655873f03702c6d6d"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SE/foot/sneaker5.aiff",
+      "playbackId": 5,
+      "sampleId": 21,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chicken-race/sfx/a9040500.wav",
+      "byteLength": 10804,
+      "sha256": "666406d82f6427ba7aa03663efd796fc9fc4dad74e69c139f58215e3d559b620"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SE/body/jumpdown2.aiff",
+      "playbackId": 6,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chicken-race/sfx/a9040600.wav",
+      "byteLength": 9364,
+      "sha256": "a401ae4b68372927cbe940a7a63e99c42e2d1069869c77a001bd61347b2a4d11"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SE/foot/sneaker6.aiff",
+      "playbackId": 7,
+      "sampleId": 22,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chicken-race/sfx/a9040700.wav",
+      "byteLength": 5076,
+      "sha256": "ea49d56b15e34b4f429b4c55e70cb785da3eb56b797680c98e5577b6f2ff0087"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SE/cloths/SUBERU4.aiff",
+      "playbackId": 8,
+      "sampleId": 23,
+      "sampleRate": 44100,
+      "asset": "public/audio/world/chicken-race/sfx/a9040800.wav",
+      "byteLength": 91756,
+      "sha256": "b02e61c929a092052c8878cceef27932725f9da808c950db3c35d093509904b8"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CRA/SE/vehicle/CHIKIN_BIKE1.aiff",
+      "playbackId": 9,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chicken-race/sfx/a9040900.wav",
+      "byteLength": 1428508,
+      "sha256": "52562257a4770e4cbb26367332adeabc3b85836aac2701ef96e529595e1a0e6a",
+      "nativeSegments": [
+        {
+          "playbackId": 9,
+          "sampleId": 0,
+          "sampleRate": 16000,
+          "byteLength": 97356,
+          "sha256": "2eaa5ac43bdf7c8d619423a9c5fe7344c2d2e42ef7c5af72674592c2ad22481d"
+        },
+        {
+          "playbackId": 10,
+          "sampleId": 7,
+          "sampleRate": 16000,
+          "byteLength": 96292,
+          "sha256": "f59032d3beb633e4ba54effcc998a941af68677b87a3c47af1616a1c01e97cd0"
+        },
+        {
+          "playbackId": 11,
+          "sampleId": 8,
+          "sampleRate": 16000,
+          "byteLength": 95228,
+          "sha256": "de9fdf686410985c627c48b06f2bfc47a766c79ec47c6a6c387104423cbd1816"
+        },
+        {
+          "playbackId": 12,
+          "sampleId": 9,
+          "sampleRate": 16000,
+          "byteLength": 95060,
+          "sha256": "e60d4dac50b1ad7cf4674fca4d9feb2d230d5fa01157f5a1d3afc00ed04a9268"
+        },
+        {
+          "playbackId": 13,
+          "sampleId": 10,
+          "sampleRate": 16000,
+          "byteLength": 95404,
+          "sha256": "529600ffd7160d8f0b8452b992b4c505971057c440d3e48b7d649f62ca48f22b"
+        },
+        {
+          "playbackId": 14,
+          "sampleId": 11,
+          "sampleRate": 16000,
+          "byteLength": 95900,
+          "sha256": "997f2dbaba9d43c8f64225db0e5aeed6fb5d669861c897236d77da9deb341cf1"
+        },
+        {
+          "playbackId": 15,
+          "sampleId": 12,
+          "sampleRate": 16000,
+          "byteLength": 102156,
+          "sha256": "bb9fd4c81462cc3815202cf60c993723613cdc24450e383ca60bcc6b4a6e7594"
+        },
+        {
+          "playbackId": 16,
+          "sampleId": 13,
+          "sampleRate": 16000,
+          "byteLength": 93092,
+          "sha256": "51a16f2dd57d1a6838a91f7e1649d9a60546299a2a3e509f7abe611f451f317b"
+        },
+        {
+          "playbackId": 17,
+          "sampleId": 14,
+          "sampleRate": 16000,
+          "byteLength": 97356,
+          "sha256": "52c0302133d5139f65fd80393dd9fb58655edbf3453db6e00041e1591b0dadc2"
+        },
+        {
+          "playbackId": 18,
+          "sampleId": 1,
+          "sampleRate": 16000,
+          "byteLength": 95228,
+          "sha256": "010a5fce0a2c5aae2b3e8a05d11e350a5f759503b3ff528d32dac45c86d4658b"
+        },
+        {
+          "playbackId": 19,
+          "sampleId": 2,
+          "sampleRate": 16000,
+          "byteLength": 96828,
+          "sha256": "bf3f8106d9a995d3f0256ac8a60ef479eae537aad36070dd0641a181e39d010c"
+        },
+        {
+          "playbackId": 20,
+          "sampleId": 3,
+          "sampleRate": 16000,
+          "byteLength": 95228,
+          "sha256": "21fd86c2d320feeaebc030e27a9639e329f140d204dfb670b03ef7defd73b045"
+        },
+        {
+          "playbackId": 21,
+          "sampleId": 4,
+          "sampleRate": 16000,
+          "byteLength": 94692,
+          "sha256": "4b89a40d5dca6df9dd87bbf3e7f0c50653dc5726542ec857cd10358acafb0cdf"
+        },
+        {
+          "playbackId": 22,
+          "sampleId": 5,
+          "sampleRate": 16000,
+          "byteLength": 95756,
+          "sha256": "cbbce8c2925520c7f79221b17518f8167cc4286b3be47e08c2a7b01ea006c4cd"
+        },
+        {
+          "playbackId": 23,
+          "sampleId": 6,
+          "sampleRate": 16000,
+          "byteLength": 83548,
+          "sha256": "6ea9f39f29f2d373ee6b3c54643feafee2d1b5244c51e7bc102f18bae6321ebd"
+        }
+      ]
+    }
+  ]
+}

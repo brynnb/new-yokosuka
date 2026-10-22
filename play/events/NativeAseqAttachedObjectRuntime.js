@@ -310,6 +310,7 @@ export class NativeAseqAttachedObjectRuntime {
         browserFilename,
         sceneObject: value.sceneObject === true,
         assetPath: String(value?.assetPath || "").trim() || null,
+        textureAssetPath: String(value?.textureAssetPath || "").trim() || null,
         attachments: Object.freeze(attachments),
         presentation: Object.freeze(presentation),
         nodeTransforms: Object.freeze(nodeTransforms),
@@ -405,7 +406,7 @@ export class NativeAseqAttachedObjectRuntime {
         ? parent.model.latestControllerMatrices?.[nodes[0].index]
         : null;
       const parentRenderRoot = parent?.model?.renderRoot;
-      if (!record || !parentRenderRoot || !Array.isArray(parentMatrix) || parentMatrix.length !== 16) {
+      if (!record || !parentRenderRoot || !(Array.isArray(parentMatrix)||ArrayBuffer.isView(parentMatrix)) || parentMatrix.length !== 16) {
         record?.root.setEnabled(false);
         continue;
       }

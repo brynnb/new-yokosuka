@@ -49,6 +49,24 @@ class DialoguePredicateValueExtractorTests(unittest.TestCase):
         self.assertEqual(operators["11"], "lessThan")
         self.assertEqual(operators["12"], "lessThanOrEqual")
 
+    def test_story_step_is_an_ordered_bank2_table_not_a_chapter_guess(self):
+        step = self.report["nativeStoryStep"]
+        self.assertEqual(step["runtimeAddress"], "0xc22020c")
+        self.assertEqual(step["displayFormat"], "STEP %2d.%1d")
+        self.assertEqual(step["resetValue"], 0)
+        self.assertEqual(step["noMatch"], "retain-previous-step")
+        self.assertEqual(len(step["records"]), 80)
+        self.assertEqual(step["records"][0], {"step": 979, "bank2Bit": 979})
+        self.assertEqual(step["records"][-1], {"step": 11, "bank2Bit": 5})
+        self.assertEqual(step["tableSha256"],
+                         "d26687953dc8a6090d84b43907ba3d69c83681baea4340a1aed98f9a2ba15937")
+
+    def test_story_step_rejects_an_unverified_executable(self):
+        executable = bytearray(MODULE.DEFAULT_EXECUTABLE.read_bytes())
+        executable[0x2780B8 - 0x010000] ^= 1
+        with self.assertRaises(MODULE.PredicateValueError):
+            MODULE.extract_native_story_step(executable)
+
     def test_runtime_calendar_layout_is_exact(self):
         values = {
             item["encodedGroup"]: item
@@ -67,6 +85,23 @@ class DialoguePredicateValueExtractorTests(unittest.TestCase):
         self.assertEqual(currency["runtimeStructureOffset"], "0x18")
         self.assertEqual(currency["persistentValueSelector"], 2)
         self.assertEqual(currency["scriptReadOperation"], "0x005f")
+
+    def test_arrival_entry_follows_the_transition_queue_to_operation_0026(self):
+        arrival = self.report["nativeArrivalState"]
+        self.assertEqual(arrival["entryQueryOperation"], "0x0026")
+        self.assertEqual(arrival["fields"], [
+            {"name": name, "operation0030Argument": index,
+             "pendingControllerOffset": offset, "runtimeAddress": address, "width": 4}
+            for index, (name, offset, address) in enumerate((
+                ("scene", 0xd4, "0xc20c3d8"),
+                ("area", 0xd0, "0xc20c3dc"),
+                ("entry", 0xd8, "0xc20c3e0"),
+            ))
+        ])
+        executable = bytearray(MODULE.DEFAULT_EXECUTABLE.read_bytes())
+        executable[0x0C0C99D4 - MODULE.RUNTIME_BASE] ^= 1
+        with self.assertRaises(MODULE.PredicateValueError):
+            MODULE.extract_native_arrival_state(executable)
 
     def test_native_spatial_table_is_exact(self):
         table = self.report["nativeSpatialTable"]

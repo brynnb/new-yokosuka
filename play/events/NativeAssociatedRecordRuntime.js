@@ -121,9 +121,21 @@ export function createNativeAssociatedRecordSemanticHandlers({
   applyActorFigpByte10,
   applyResolvedObjectFigpBytePair,
   applyResolvedObjectTelmControl,
+  applyActorStepPackedByte,
   readNativeVector,
 } = {}) {
   return {
+    "actor-step-packed-byte-write": async ({ action, context, readArgument }) => {
+      const apply = applyActorStepPackedByte || context.applyActorStepPackedByte;
+      if (typeof apply !== "function") return { status: "stopped", reason: "actor-step-adapter-missing" };
+      const mutation = await apply({
+        objectTag: objectTagArgument(action, readArgument, 0),
+        packedValue: readArgument(1),
+      });
+      return mutation?.applied || mutation?.nativeNoOp
+        ? { status: "continued", mutation }
+        : { status: "stopped", reason: mutation?.reason || "actor-step-write-failed" };
+    },
     "actor-momt-mask-control": async ({
       action,
       context,

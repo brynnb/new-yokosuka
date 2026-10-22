@@ -20,6 +20,11 @@ test("intro menu, transparent inventory and Space dialogue completion", async ({
     x: -6.48, y: 0, z: -19.32, yaw: 0,
     lastLoginAt: "2026-01-01T00:00:00Z",
   }] } }));
+  // The inventory UI now renders server possessions, not all available art.
+  await page.route("**/api/characters/42/state",route=>route.fulfill({json:{inventory:[
+    {key:'chinese_letter',name:'Chinese Letter',category:'key_item',quantity:1},
+    {key:'sword_handguard',name:'Sword Handguard',category:'key_item',quantity:1},
+  ]}}));
   const instrument = (path, body) => page.route(`**/${path}*`, async route => {
     const response = await route.fetch();
     await route.fulfill({ response, body: `${await response.text()}\n${body}` });
@@ -87,6 +92,13 @@ test("intro menu, transparent inventory and Space dialogue completion", async ({
   await page.waitForFunction(() => window.menuDialogueTest.ready || window.menuDialogueTest.errors.length, null, { timeout: 150_000 });
   expect(await page.evaluate(() => window.menuDialogueTest.errors)).toEqual([]);
   await expect(page.locator("#loading")).toHaveClass(/hidden/);
+  // This fake transport omits Welcome, which normally hydrates the native save
+  // before an owned server event. Supply the canonical neutral fixture through
+  // the real runtime boundary; do not bypass its missing-save guard.
+  await page.evaluate(async()=>{
+    const {createNativeDialogueSnapshot}=await import('/play/dialogue/NativeDialogueSnapshot.js');
+    window.menuDialogueTest.lifecycle.nativeStoryRuntime.applyDialogueState(createNativeDialogueSnapshot().toJSON());
+  });
 
   await expect(page.locator("#travel-button")).toHaveText("Travel to...");
   await expect(page.locator("#animation-button")).toHaveText("Select emote...");
@@ -102,7 +114,7 @@ test("intro menu, transparent inventory and Space dialogue completion", async ({
   ]);
 
   await page.locator("#inventory-button").click();
-  await expect(page.locator(".inventory-slot")).toHaveCount(16);
+  await expect(page.locator(".inventory-slot")).toHaveCount(2);
   const pixels = await page.locator(".inventory-slot-icon").first().evaluate(async element => {
     const image = element;
     await image.decode();

@@ -1,0 +1,1102 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01TLYD.AFS",
+      "sha256": "d1fc504f86af01b675fad9c453d69a8658cf50a7bc7c67c576b1e424b008df43"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_TLYD.SND",
+      "sha256": "6982afc70869163b0e71fbe3eb8939dc5890741e67bad301404f4a90a3d746b3"
+    },
+    "authManifest": "play/assets/harbor/terry-interrogation/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#terry-and-the-last-night"
+  },
+  "voices": [
+    {
+      "voiceId": "01TLYDA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SOUND/01TLYDA001.aiff",
+      "nativeMember": "01TLYDA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 16384,
+      "nativeSha256": "624fdd8f0af5e34886e2a0ad2aa88d8e91520b0f9549387d84daef61974ca76d",
+      "speakerId": "AKIR",
+      "sourceText": "Now=@＆Where is Lan Di?!",
+      "displayText": "Now...\nWhere is Lan Di?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-interrogation/voice/01TLYDA001.wav",
+      "byteLength": 65324,
+      "sha256": "cff339d972930c3772f21400643d4d4ab2cb2adea8f0d745fe838ab88ce95f5d"
+    },
+    {
+      "voiceId": "01TLYDA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SOUND/01TLYDA002.aiff",
+      "nativeMember": "01TLYDA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "a1bbd3633496cf55ce484acedcfbabc7353bdd41467b2aab3569457e74eec047",
+      "speakerId": "AKIR",
+      "sourceText": "Tell me!",
+      "displayText": "Tell me!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-interrogation/voice/01TLYDA002.wav",
+      "byteLength": 24364,
+      "sha256": "e1f283f63a04eda2ddd5f515662cd852f003d322872314e337c72e35e66c2fac"
+    },
+    {
+      "voiceId": "01TLYDA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SOUND/01TLYDA003.aiff",
+      "nativeMember": "01TLYDA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "f781af39dadd466323b591c1f4f790a787d379d45c8419951cf51a5e9578fe11",
+      "speakerId": "AKIR",
+      "sourceText": "What?!",
+      "displayText": "What?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-interrogation/voice/01TLYDA003.wav",
+      "byteLength": 16172,
+      "sha256": "e4dc7de77f89f9c31b52f2a2798b061bceaf1696832b0ad45c3082c87e3ab647"
+    },
+    {
+      "voiceId": "01TLYDA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SOUND/01TLYDA004.aiff",
+      "nativeMember": "01TLYDA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "33fe57f95f2d1c0464c226291103ac423e20cf034ded3e0240866b2a924e164f",
+      "speakerId": "AKIR",
+      "sourceText": "Damn!",
+      "displayText": "Damn!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-interrogation/voice/01TLYDA004.wav",
+      "byteLength": 16172,
+      "sha256": "adacf881b697f8a1068de4461ec1e8e5b40a603d135b4dcbc9f1368c4bf23693"
+    },
+    {
+      "voiceId": "01TLYDA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SOUND/01TLYDA005.aiff",
+      "nativeMember": "01TLYDA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 4096,
+      "nativeSha256": "8a701aa476698c0f0c4e0cd78df7f9a3504535f67e3dc8ef5c82a064a0c80015",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-interrogation/voice/01TLYDA005.wav",
+      "byteLength": 16172,
+      "sha256": "5c52b620ab4498b63d8437e66e1bff3984772f846ffec7499f1a273e79cfeaa7"
+    },
+    {
+      "voiceId": "01TLYDB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SOUND/01TLYDB001.aiff",
+      "nativeMember": "01TLYDB001.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 26624,
+      "nativeSha256": "2b92794920be8ab56e8a9c49ece2df071766490d31d51d4169e33b3c687e2dd0",
+      "speakerId": "TERY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 36
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 44
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 30
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-interrogation/voice/01TLYDB001.wav",
+      "byteLength": 106284,
+      "sha256": "e476744b76858640303c6ca456c8b46e0dfa7f59fb5a5254a2efb2280d985799"
+    },
+    {
+      "voiceId": "01TLYDB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SOUND/01TLYDB002.aiff",
+      "nativeMember": "01TLYDB002.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 10240,
+      "nativeSha256": "124088226d3f0188501d82a4d11145b3254925f00aa7f101318e7e29c238a77e",
+      "speakerId": "TERY",
+      "sourceText": "Never give up, do you?!",
+      "displayText": "Never give up, do you?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-interrogation/voice/01TLYDB002.wav",
+      "byteLength": 40748,
+      "sha256": "a12bf46a6a5d4daaf9cf9010e2aaa26e360615ead49168fce1f71d13b45fc85b"
+    },
+    {
+      "voiceId": "01TLYDB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SOUND/01TLYDB003.aiff",
+      "nativeMember": "01TLYDB003.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 28672,
+      "nativeSha256": "cf240343f150bc3f18b284f710c0d03f1988a05697e39e8e7bc707ca5e05e48b",
+      "speakerId": "TERY",
+      "sourceText": "That creepy skinhead,＆he took him out to the ship.",
+      "displayText": "That creepy skinhead,\nhe took him out to the ship.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-interrogation/voice/01TLYDB003.wav",
+      "byteLength": 114476,
+      "sha256": "8064ea32a389d85ed70291258e040f662ff81594a3829e79f737bb17516446c5"
+    },
+    {
+      "voiceId": "01TLYDB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SOUND/01TLYDB004.aiff",
+      "nativeMember": "01TLYDB004.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 10240,
+      "nativeSha256": "26ccccd931ed40c3b50e585d12fed1c4bedbb4b755f0e775b288f1b016391c02",
+      "speakerId": "TERY",
+      "sourceText": "Too bad, heh.",
+      "displayText": "Too bad, heh.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-interrogation/voice/01TLYDB004.wav",
+      "byteLength": 40748,
+      "sha256": "ce0bdc9bbf84e816a072c1113557b0c967ba4519426fca4dba8d70bd32644dbc"
+    },
+    {
+      "voiceId": "01TLYDB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SOUND/01TLYDB005.aiff",
+      "nativeMember": "01TLYDB005.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 24576,
+      "nativeSha256": "6831622c1bb86300383d9659543e48f93d8df0f6a086c61767ccb4fa1104d6dc",
+      "speakerId": "TERY",
+      "sourceText": "You want him that bad,＆you'd best start swimming.",
+      "displayText": "You want him that bad,\nyou'd best start swimming.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-interrogation/voice/01TLYDB005.wav",
+      "byteLength": 98092,
+      "sha256": "4118cfb21e2f58f51ce876125a5d8e47194e2ed6fdba95617b9e770c4318f553"
+    },
+    {
+      "voiceId": "01TLYDB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SOUND/01TLYDB006.aiff",
+      "nativeMember": "01TLYDB006.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 32768,
+      "nativeSha256": "598a8be620d5b75eeb7eb1b513a3f7ad4d144493b7e174c9bc8db28d88871599",
+      "speakerId": "TERY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 79
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 48
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-interrogation/voice/01TLYDB006.wav",
+      "byteLength": 130860,
+      "sha256": "0ec47408ca5bc6145a1206070cad07fe99783a758cdb2fd19ac2ca926a47a461"
+    },
+    {
+      "voiceId": "01TLYDB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SOUND/01TLYDB007.aiff",
+      "nativeMember": "01TLYDB007.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 4096,
+      "nativeSha256": "8ff2d7fd0288a6d58a3b2ebaac2303378870e829c794a5d5c7af159bf4d84edd",
+      "speakerId": "TERY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-interrogation/voice/01TLYDB007.wav",
+      "byteLength": 16172,
+      "sha256": "2ac1806e7fbca80b0af04ca76c6b16ce8e43861b52bd2df1850074f92ed128b1"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/body/Down1a.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040000.wav",
+      "byteLength": 27940,
+      "sha256": "d7891ca13f342dfa00d4d2012262fd48a866940cb24034d90511bf030b7adbe0"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/cloths2/furimuki_n02.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040200.wav",
+      "byteLength": 25804,
+      "sha256": "3b3aeed23907f3e1ecf3257f2b40ae6f8cadb6e98208a035c01a2e5a65c27a0f"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040300.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/cloths/kubisimeru1.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040400.wav",
+      "byteLength": 27180,
+      "sha256": "11c6cbc0473db917ce2c36b0c42c2b4661067f593f8b8dacc4a38e269355d9c6"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/punch/punch5.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040500.wav",
+      "byteLength": 16124,
+      "sha256": "a4aa628f27dc444367018d06688bb369ef2fa907d2bd6f241e292ea98b3ac405"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040600.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040700.wav",
+      "byteLength": 5412,
+      "sha256": "64fa0eff3320191bd9befe41d84a45f91d48ae9a9c821c8aac766ce9b3fcf3f3"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040800.wav",
+      "byteLength": 6364,
+      "sha256": "a087e557bddc12e1ca7a20b8ad3ee5e15dfa88ad4531cbba9c0b85b9367c66af"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040900.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040a00.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/foot/sneaker1.aiff",
+      "playbackId": 11,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040b00.wav",
+      "byteLength": 10964,
+      "sha256": "3db696efc3f22f883429c8558b9cd97102c30e9f4401b0d78a4cb82baaf2e2b7"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/foot/sneaker3.aiff",
+      "playbackId": 12,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040c00.wav",
+      "byteLength": 11188,
+      "sha256": "fef02cc6d21fef1cbee18ba5ee6e940b07c8b2a6f06b1d6655873f03702c6d6d"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/foot/sneaker5.aiff",
+      "playbackId": 13,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040d00.wav",
+      "byteLength": 10804,
+      "sha256": "666406d82f6427ba7aa03663efd796fc9fc4dad74e69c139f58215e3d559b620"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/cloths/SUBERU1.aiff",
+      "playbackId": 14,
+      "sampleId": 14,
+      "sampleRate": 44100,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040e00.wav",
+      "byteLength": 29988,
+      "sha256": "26366787a5195d7458fb6a93390100846ecf090c0e858b5ab699ebbff6e0e0aa"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/cloths/SUBERU2.aiff",
+      "playbackId": 15,
+      "sampleId": 15,
+      "sampleRate": 44100,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9040f00.wav",
+      "byteLength": 40436,
+      "sha256": "df19486630969578fe761bf192cd9887f29da717f6c33312485cae3b210f2e8c"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/cloths/SUBERU4.aiff",
+      "playbackId": 16,
+      "sampleId": 16,
+      "sampleRate": 44100,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9041000.wav",
+      "byteLength": 91756,
+      "sha256": "b02e61c929a092052c8878cceef27932725f9da808c950db3c35d093509904b8"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/cloths/SUBERU5.aiff",
+      "playbackId": 17,
+      "sampleId": 17,
+      "sampleRate": 44100,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9041100.wav",
+      "byteLength": 27796,
+      "sha256": "4b843cfb8f1642b70784bd156ac201b132004d8cae2d04cd04ddbb01c70da584"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/swing/swing04.aiff",
+      "playbackId": 18,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9041200.wav",
+      "byteLength": 18884,
+      "sha256": "f3ec04b6eca88d8d2f827b545042f3b7eee8ca35411dfb6fab8b7c13e4e1816c"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYD/SE/cloths2/tukami.aiff",
+      "playbackId": 19,
+      "sampleId": 19,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-interrogation/sfx/a9041300.wav",
+      "byteLength": 6324,
+      "sha256": "53661a375867c67feac785364f1a3f06cf1cd3cbd9abdc8b7fd712805073173c"
+    }
+  ]
+}

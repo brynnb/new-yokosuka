@@ -21,6 +21,46 @@ EXECUTABLE_SHA256 = (
     "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
 )
 RANGES = {
+    "recordCapture": (
+        0x0C14A910, 174,
+        "e558003cf88553707e891d313c76350093091c58410a8832c8daece758da1d7f",
+    ),
+    "clockRestoreRequest": (
+        0x0C14AA28, 6,
+        "c22dd7b573d049c05c218258cb9ba4fb34c06c3e191d244d6b80aec85c54f1f0",
+    ),
+    "clockRestore": (
+        0x0C14AA2E, 88,
+        "e587d99f6011d1cf52c344f33781f41ae5719297135cc8ef496c5d4fccc21656",
+    ),
+    "saveImport": (
+        0x0C14AA86, 32,
+        "1797bf53fd71cbecc09251db147ae276cf338387c25e683737bb7358ccb2c75e",
+    ),
+    "markLoaded": (
+        0x0C14AAA6, 12,
+        "6d726a4c839b9d2f77c15d23bd871989fb91b2f41649de1908e4c329da3b175f",
+    ),
+    "resetLoaded": (
+        0x0C14AAB2, 12,
+        "5e5d84acc19da45ac9da0df2d67a0df0f5aa8ef13c7b7852c2db63a22d388e11",
+    ),
+    "consumeLoaded": (
+        0x0C14AABE, 24,
+        "b086b2256ce0ce0cf5d5cf5e4356b577dc7f7c2eb56bdeb1c3b537fba2b92cbf",
+    ),
+    "saveCaptureCaller": (
+        0x0C09CB64, 18,
+        "61e72e320e3570ed1d544cf86dda51c0486cd734c268edce0029ebef9969564b",
+    ),
+    "saveImportCaller": (
+        0x0C09CF8E, 12,
+        "e422de370979e488f571d6ee7cab0bfd3b1a9d95847ff36a2b7bd6765bfef540",
+    ),
+    "successfulLoadCaller": (
+        0x0C17E796, 36,
+        "ccc3ca2916c65f6688b3167cae046ed9b83e27af604eef348bbf1303af924067",
+    ),
     "handler": (
         0x0C16A1DC,
         234,
@@ -100,6 +140,8 @@ def operation_calls(event_ir: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def constant(call: dict[str, Any], index: int) -> int | None:
+    if index >= len(call["arguments"]):
+        return None
     argument = call["arguments"][index]
     return (
         argument["value"]
@@ -161,6 +203,64 @@ def verify_native_contract(executable: bytes) -> dict[str, str]:
     return {name: f"0x{value:08x}" for name, value in literals.items()}
 
 
+def extract_save_ownership(executable: bytes) -> dict[str, Any]:
+    """Decode both save callsites, not just an assumed neighboring buffer."""
+    verify_native_contract(executable)
+    offsets = struct.unpack("<HH", runtime_slice(executable, 0x0C09CBCC, 4))
+    restored = struct.unpack("<HH", runtime_slice(executable, 0x0C09D022, 4))
+    if offsets != (0x1B0, 0x7A4) or restored != offsets:
+        raise ValueError("operation-0x01c7 save section offsets changed")
+    for address, expected in {
+        0x0C09CC0C: 0x0C14A910,
+        0x0C09D060: 0x0C14AA86,
+        0x0C17E7F8: 0x0C14AAA6,
+        0x0C17E7E0: 0x0C14AA28,
+        0x0C14AB88: 0x0C2203A2,
+        0x0C14AB8C: 0x0C2203A0,
+    }.items():
+        if u32(executable, address) != expected:
+            raise ValueError("operation-0x01c7 save lifecycle literal changed")
+    # Image initialization is evidence for cold startup, not a universal new-game
+    # reset: the native reset helper only clears the two load-status bytes.
+    initial = runtime_slice(executable, 0x0C220370, 88)
+    if any(initial):
+        raise ValueError("operation-0x01c7 executable initial state changed")
+    return {
+        "scope": "saved-global-state-not-room-local",
+        "parameters": {
+            "runtimeAddress": "0x0c2203a3", "byteLength": 32,
+            "saveOffset": offsets[0],
+        },
+        "record": {
+            "runtimeAddress": "0x0c220370", "byteLength": 48,
+            "saveOffset": offsets[1],
+        },
+        "loadStatus": {
+            "consumableByte": "0x0c2203a0",
+            "queryByte": "0x0c2203a1",
+            "deferredClockRestoreByte": "0x0c2203a2",
+            "markLoaded": "Sets consumableByte and queryByte to one.",
+            "resetLoaded": "Clears those two bytes only; preserves record and parameters.",
+            "consumeLoaded": "Decrements consumableByte if nonzero and returns one; otherwise zero. Does not clear queryByte.",
+        },
+        "capture": {
+            "helper": "0x0c14a910", "caller": "0x0c09cb72",
+            "actorAbsent": "Clears only the 48-byte output record; does not copy the parameter output.",
+            "actorPresent": "Captures actor/global/clock fields and copies all 32 parameter bytes.",
+        },
+        "restore": {
+            "helper": "0x0c14aa86", "caller": "0x0c09cf96",
+            "behavior": "Copies both saved sections into their globals without setting load flags.",
+            "actorApply": "Mode one applies actor state and two globals, then invokes the native refresh helpers; it does not restore the clock.",
+            "clockApply": "Separate helper 0x0c14aa2e consumes the deferred-clock flag before restoring clock fields.",
+        },
+        "coldImage": {
+            "address": "0x0c220370", "byteLength": len(initial),
+            "sha256": sha256(initial), "allZero": True,
+        },
+    }
+
+
 def route_key(call: dict[str, Any]) -> tuple[int | None, int | None, int]:
     mode = constant(call, 0)
     submode = constant(call, 1) if mode == 3 else None
@@ -175,32 +275,25 @@ def build_report(
     calls = operation_calls(event_ir)
     dialogue_calls = [call for call in calls if call["dialogueRegion"]]
     routes = Counter(route_key(call) for call in calls)
-    expected_routes = {
-        (0, None, 1): 55,
-        (1, None, 1): 55,
-        (2, None, 2): 263,
-        (3, 0, 3): 120,
-        (3, 1, 4): 195,
-        (3, 2, 3): 1,
-        (3, 3, 4): 1,
+    allowed_routes = {
+        (0, None, 1), (1, None, 1), (2, None, 2),
+        (3, 0, 3), (3, 1, 4), (3, 2, 3), (3, 3, 4),
     }
-    if (
-        len(calls) != 690
-        or len(dialogue_calls) != 62
-        or routes != expected_routes
-        or argument_kinds(calls) != {
-            "0": {"constant": 690},
-            "1": {"constant": 580},
-            "2": {"constant": 317},
-            "3": {
-                "constant": 103,
-                "frame-field": 8,
-                "runtime": 77,
-                "scene-field": 8,
-            },
-        }
-    ):
-        raise ValueError("operation-0x01c7 authored inventory changed")
+    # Corpus coverage grows as additional controller roots are recovered. Counts
+    # are observations, not part of the operation's ABI. Validate every call's
+    # shape and bounded address instead of pinning an obsolete 690-call corpus.
+    if not calls or set(routes) - allowed_routes:
+        raise ValueError(f"operation-0x01c7 unsupported authored routes: {dict(routes)}")
+    for call in calls:
+        if constant(call, 0) == 3:
+            width = 4 if constant(call, 1) in (2, 3) else 1
+            offset = constant(call, 2)
+            if not isinstance(offset, int) or not 0 <= offset <= 32 - width:
+                raise ValueError("operation-0x01c7 authored parameter offset is unproved")
+        if len(call["arguments"]) == 4 and call["arguments"][3]["kind"] not in {
+            "constant", "frame-field", "runtime", "scene-field",
+        }:
+            raise ValueError("operation-0x01c7 authored write value is unproved")
     return {
         "schema": "new-yokosuka-operation-01c7-evidence-v1",
         "status": "exact-native-routes-and-all-disc-inventory",
@@ -209,6 +302,7 @@ def build_report(
             "executableRuntimeBase": "0x0c010000",
             "executableSha256": EXECUTABLE_SHA256,
             "eventIr": ".disc-work/dialogue/native-event-ir.json",
+            "eventIrScope": event_ir.get("summary", {}).get("sourceScope"),
         },
         "operation": {
             "operationId": 0x01C7,
@@ -283,10 +377,13 @@ def build_report(
                 for (mode, submode, _argc), count in sorted(routes.items())
             },
         },
+        "saveOwnership": extract_save_ownership(executable),
         "evidenceBoundary": [
             "The operation retains its numeric identity; no gameplay-domain label is inferred.",
             "The mode-one record-apply helper remains a mandatory external adapter.",
-            "The fixed globals are not assigned to scene persistence without ownership evidence.",
+            "Record and parameter persistence is proved by matching original save export/import callsites; they are not per-room scratch memory.",
+            "Cold executable zeros do not prove that every new-game reset clears parameters; load-status reset demonstrably does not.",
+            "Actor, clock and refresh adapters remain integration boundaries; discovering their saved record is not proof of rendered restore behavior.",
             "Only the seven exact authored mode, submode, and argument-count shapes are promoted.",
             "Runtime operands remain interpreter stops when no exact resolver is supplied.",
         ],
@@ -303,6 +400,8 @@ def main() -> None:
         args.executable.read_bytes(),
         json.loads(args.event_ir.read_text(encoding="utf-8")),
     )
+    with args.event_ir.open("rb") as source:
+        report["source"]["eventIrSha256"] = hashlib.file_digest(source, "sha256").hexdigest()
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(

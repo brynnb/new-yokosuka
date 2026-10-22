@@ -7,6 +7,7 @@ import {
 import { parseAuthStrings } from "../../src/AuthStrings.js";
 import { MotnLoader } from "../../src/MotnLoader.js";
 import { NativeAseqAudioCatalog } from "./NativeAseqAudioCatalog.js";
+import { prependAuthoredActivityLeadIn } from "./AuthoredActivityLeadIn.js";
 import {
   enrichNativeAseqActivityFrames,
   validateNativeAseqActivityMetadata,
@@ -91,7 +92,9 @@ export class NativeAseqActivityCatalog {
         throw new Error(`AUTH motion bank ${bank} is not an exact manifest output`);
       }
       if (this.motionBanks.has(bank)) throw new Error(`duplicate AUTH motion bank ${bank}`);
-      this.motionBanks.set(bank, output);
+      this.motionBanks.set(bank, { ...output,
+        sequenceIndexBase: requireInteger(record.sequenceIndexBase ?? 0, "motion sequence index base"),
+      });
     }
 
     this.activities = new Map();
@@ -459,6 +462,7 @@ export class NativeAseqActivityRuntime {
         .filter(command => command.motionBank === bank)
         .map(command => command.sequenceIndex);
       motionPackages.set(bank, MotnLoader.parse(await this.loadExact(output, { signal }), {
+        sequenceIndexBase: output.sequenceIndexBase,
         sequenceIndices: [...new Set(indices)],
       }));
     }
@@ -488,7 +492,7 @@ export class NativeAseqActivityRuntime {
       metadata: this.catalog.presentationMetadata,
       audioCatalog,
     });
-    return Object.freeze({ ...base, frames: Object.freeze(frames) });
+    return Object.freeze(prependAuthoredActivityLeadIn({ ...base, frames: Object.freeze(frames) }, record.authoredLeadIn, audioCatalog));
   }
 
   async preparePresentation(prepared, { signal } = {}) {
@@ -561,8 +565,9 @@ export class NativeAseqActivityRuntime {
     signal?.throwIfAborted();
     if (this.active) throw new Error("an AUTH activity is already active");
     this.lastUpdateError = null;
-    const record = this.catalog.resolve({ slot, binding });
-    const prepared = await this.prepare(record, { signal });
+    const sourceRecord = this.catalog.resolve({ slot, binding });
+    const prepared = await this.prepare(sourceRecord, { signal });
+    const record = prepared.record;
     const detail = presentationDetail(prepared);
     const activityPrepared = await this.onActivityPreparing?.(record);
     signal?.throwIfAborted();

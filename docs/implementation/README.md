@@ -14,6 +14,7 @@ Reverse-engineering evidence and original-game findings belong under
 - [Prepared scenery experiment (local lab)](../guides/tooling/scenery-bundle-lab.md)
 - [World time, lighting, seasons, and variants](world-time-and-variants.md)
 - [Multiplayer server and persistence](multiplayer-server.md)
+- [Story mode and Free roam](play-modes.md)
 - [Scheduled NPCs](scheduled-npcs.md)
 - [Shenmue II models](../guides/shenmue2-models.md)
 - [Shenmue II animation system](shenmue2-animation.md)
@@ -29,8 +30,7 @@ Reverse-engineering evidence and original-game findings belong under
 - [MJQ pool integration](mjq-pool.md)
 
 Extraction instructions belong in [guides](../guides/README.md). Plans for
-personal story progression belong in [design](../design/README.md), not the
-runtime feature list.
+remaining story-event integration belong in [design](../design/README.md).
 
 ## Play runtime ownership
 
@@ -61,3 +61,19 @@ For changes to these boundaries, run the relevant `tests/*Runtime.test.js` tests
 then `npm test` and `npm run build`. Browser startup/disposal is covered by
 `tests/e2e/application-lifecycle.spec.js`; the cutscene preview test exercises
 real asset loading, playback, and returning to the menu.
+
+## Settings input and modal lifetime limitation
+
+The current Settings dialog force-mounts its content while `open=false` so its
+hidden legacy checkbox/slider inputs retain the identity held by `play/ui/dom.js`
+and preference bindings. Radix's modal content still calls `hideOthers` while
+mounted, leaving the visible sidebar with `aria-hidden=true` even when settings
+and story dialogue are closed. This is an existing accessibility limitation,
+not a story-event save or control-lock failure. Inventory and notebook remain
+visually usable, but role-based sidebar discovery is affected.
+
+The correct follow-up is to separate persistent legacy input ownership from
+visible modal ownership. Simply removing `forceMount` or switching the Root's
+`modal` prop with `open` replaces those inputs when content changes type and
+leaves cached bindings pointing at detached nodes. Do not repair this by
+globally removing `aria-hidden` or disabling the open dialog's modal behavior.

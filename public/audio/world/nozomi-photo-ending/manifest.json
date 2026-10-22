@@ -1,0 +1,1288 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01PHO.AFS",
+      "sha256": "6c0170c065add4c5515ffec8ae68ca8ef223805f96fd654949274762dcb61edd"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_NZPHO.SND",
+      "sha256": "b00875e4a2dcf3db1af7eff22e55c3dc6b7ccf9a20490ecd0b374d0e06d54afc"
+    },
+    "authManifest": "play/assets/harbor/nozomi-photo-ending/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-harbor-work.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01PHOA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOA003.aiff",
+      "nativeMember": "01PHOA003.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "a2bb96ef1c56e87b95c12ef79b387bafe472b01e2c204f282e62a7c67bb022bf",
+      "speakerId": "AKIR",
+      "sourceText": "Oh, this one.",
+      "displayText": "Oh, this one.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOA003.wav",
+      "byteLength": 32556,
+      "sha256": "b5fd2667f5a1f4051982122da6ff4c407d941cac82deb87d6ba20e4a3cbb1a6e"
+    },
+    {
+      "voiceId": "01PHOA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOA004.aiff",
+      "nativeMember": "01PHOA004.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 6144,
+      "nativeSha256": "ff8c666ae9e0d43efc15fd24cd08feac338f49bb6cb6318db09d7e38164f3be1",
+      "speakerId": "AKIR",
+      "sourceText": "What's with her?",
+      "displayText": "What's with her?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOA004.wav",
+      "byteLength": 24364,
+      "sha256": "aa286433351c27f08b7b2d48191892a90aee975a5785dac0c9223cb99ef3c5d3"
+    },
+    {
+      "voiceId": "01PHOA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOA005.aiff",
+      "nativeMember": "01PHOA005.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "996afc9c9154539dcf046f25fe2f095600db57a0d00fb6ed7a69592e88c21537",
+      "speakerId": "AKIR",
+      "sourceText": "What?!",
+      "displayText": "What?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOA005.wav",
+      "byteLength": 16172,
+      "sha256": "f90a23c88d85ee7178aa2daea1782cc5f7088406e3d3dc01ac2949b1e0a83c08"
+    },
+    {
+      "voiceId": "01PHOA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOA006.aiff",
+      "nativeMember": "01PHOA006.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 24576,
+      "nativeSha256": "9a17f5b56a48aae3a678fa941c0fc260f8e3e2cca26e957d73cec69928e59c51",
+      "speakerId": "AKIR",
+      "sourceText": "Hey, if it's what you've decided,＆it's what you've decided.",
+      "displayText": "Hey, if it's what you've decided,\nit's what you've decided.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOA006.wav",
+      "byteLength": 98092,
+      "sha256": "1198173094670310e9cb02cf60a8fc5891c04483435c8940fce3d190270b1e0a"
+    },
+    {
+      "voiceId": "01PHOA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOA007.aiff",
+      "nativeMember": "01PHOA007.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 8192,
+      "nativeSha256": "c82d0fb57ca612c4f470494d43b3acb96643bcbc8ae677d33cf1c025be7912bb",
+      "speakerId": "AKIR",
+      "sourceText": "Of course I won't.",
+      "displayText": "Of course I won't.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOA007.wav",
+      "byteLength": 32556,
+      "sha256": "7a7b1255c8253529d39450ad8a2f2d51cb0282c508290d155be63a978a8b3d61"
+    },
+    {
+      "voiceId": "01PHOA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOA008.aiff",
+      "nativeMember": "01PHOA008.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 4096,
+      "nativeSha256": "ef6515ec7774ae576896128a0d6df04c6a6eac2b44ed7e0007a52afc9aa7eec2",
+      "speakerId": "AKIR",
+      "sourceText": "I will.",
+      "displayText": "I will.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOA008.wav",
+      "byteLength": 16172,
+      "sha256": "9fae586710d6e4099a548b688e8b6627ea8f8c731dca3a2e5628f33189db5271"
+    },
+    {
+      "voiceId": "01PHOA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOA009.aiff",
+      "nativeMember": "01PHOA009.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 4096,
+      "nativeSha256": "1a93c8d4c41cd12ee4fa800a63a154d9b6651c032b91a3f6518aff5b807297de",
+      "speakerId": "AKIR",
+      "sourceText": "Sure.",
+      "displayText": "Sure.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOA009.wav",
+      "byteLength": 16172,
+      "sha256": "786f8c7e85f5d4d88f3bfad2b091b6cb2bc8ef41601c2279992218cda374c43c"
+    },
+    {
+      "voiceId": "01PHOA010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOA010.aiff",
+      "nativeMember": "01PHOA010.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 4096,
+      "nativeSha256": "63c7bdfe53af89c996bc5a78bb362d1a137bd1da1ec4916485b26ecc2569d5f0",
+      "speakerId": "AKIR",
+      "sourceText": "Nozomi=@",
+      "displayText": "Nozomi...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOA010.wav",
+      "byteLength": 16172,
+      "sha256": "f788393675deeb36239ff859e76118f3503410a4f0944eb78e5d762a810ef6c0"
+    },
+    {
+      "voiceId": "01PHOB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOB006.aiff",
+      "nativeMember": "01PHOB006.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 22528,
+      "nativeSha256": "a6e168fbe2485a15c4cc94554a1d7b72b072ebdffd39049f8f6f06a79f18219d",
+      "speakerId": "TJMA",
+      "sourceText": "OK! This one's yours＆and this one's Nozomi's.",
+      "displayText": "OK! This one's yours\nand this one's Nozomi's.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOB006.wav",
+      "byteLength": 89900,
+      "sha256": "051a4d679b7cb8fd7667949d82846eaae87571338b0c3533192ac07d0e35e181"
+    },
+    {
+      "voiceId": "01PHOB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOB007.aiff",
+      "nativeMember": "01PHOB007.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 10240,
+      "nativeSha256": "a8cc6f896c4af6b8d92ca10493079a4fa4ad6d2bf1e996383b7c399efe82cb7b",
+      "speakerId": "TJMA",
+      "sourceText": "They're keepsakes!",
+      "displayText": "They're keepsakes!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOB007.wav",
+      "byteLength": 40748,
+      "sha256": "df40458ab624a0e3a3427b0f141039e301b26d4b1b3ccd542da92a2d2dae6d79"
+    },
+    {
+      "voiceId": "01PHOC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOC001.aiff",
+      "nativeMember": "01PHOC001.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 16384,
+      "nativeSha256": "99fe8233a475ab07a7d1a8bdfcecf429e34dfc6492bf0c7118084bd796392464",
+      "speakerId": "HRSK",
+      "sourceText": "I=@I'm going to Canada.",
+      "displayText": "I...I'm going to Canada.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 47
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOC001.wav",
+      "byteLength": 65324,
+      "sha256": "e778e36a151a7ecc288c9b7193b1460eb3b58c167989d04bfc726c13a955c29b"
+    },
+    {
+      "voiceId": "01PHOC002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOC002.aiff",
+      "nativeMember": "01PHOC002.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 12288,
+      "nativeSha256": "a8405561056265f0edeb3959ef2eeecddd7644b1f576ffcfdfe695534b86ca19",
+      "speakerId": "HRSK",
+      "sourceText": "I took a while to decide but=@",
+      "displayText": "I took a while to decide but...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOC002.wav",
+      "byteLength": 48940,
+      "sha256": "5d919c9a50d3607e00130b7fc0ccf2177bd2296af0b243f5968bb689c41a4d56"
+    },
+    {
+      "voiceId": "01PHOC004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOC004.aiff",
+      "nativeMember": "01PHOC004.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 12288,
+      "nativeSha256": "c235557c6ad46c7f6900f22eb2a454af84ffbc9cab30323ba0d24dca5ad4cc1b",
+      "speakerId": "HRSK",
+      "sourceText": "I'll always treasure this.",
+      "displayText": "I'll always treasure this.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOC004.wav",
+      "byteLength": 48940,
+      "sha256": "218b365bbf374a0f877142a127a86ac86bece07bef98b62a4bf7b5d4b9903537"
+    },
+    {
+      "voiceId": "01PHOC005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOC005.aiff",
+      "nativeMember": "01PHOC005.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 16384,
+      "nativeSha256": "1619a08aa8a2626ba736e0f1fff6af58a7ceccc9880044bc55ceee227a74d443",
+      "speakerId": "HRSK",
+      "sourceText": "Ryo, take care of yours too.",
+      "displayText": "Ryo, take care of yours too.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOC005.wav",
+      "byteLength": 65324,
+      "sha256": "37ed57eb7cb18bee235e2cd5edeea925c569ea5d94dd4d153977c1f482bb5f99"
+    },
+    {
+      "voiceId": "01PHOC006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOC006.aiff",
+      "nativeMember": "01PHOC006.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 12288,
+      "nativeSha256": "83f3ba3e4d4b37697909ae95f411a1a29172749873252f0280aae22cacfd9a94",
+      "speakerId": "HRSK",
+      "sourceText": "I'll come back when I'm on vacation.",
+      "displayText": "I'll come back when I'm on vacation.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOC006.wav",
+      "byteLength": 48940,
+      "sha256": "e1088e99591e2bcf2872af1982d72853bc9a3073f44f162668d20586fd0b4725"
+    },
+    {
+      "voiceId": "01PHOC007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOC007.aiff",
+      "nativeMember": "01PHOC007.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 6144,
+      "nativeSha256": "75914145d4286d49e583fb88c604876f5e0ee980c30e16b245d6d1dc94ca8d90",
+      "speakerId": "HRSK",
+      "sourceText": "Bye then, Ryo.",
+      "displayText": "Bye then, Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOC007.wav",
+      "byteLength": 24364,
+      "sha256": "3668bcee36a7ba997e6ab764598a14f9e67d87caa09807247ac2950979b11170"
+    },
+    {
+      "voiceId": "01PHOC008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOC008.aiff",
+      "nativeMember": "01PHOC008.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 18432,
+      "nativeSha256": "16fdbcb341fcc01aa55538c3747c56beb193fe8c358757b304b106c1ca734601",
+      "speakerId": "HRSK",
+      "sourceText": "Ryo. Don't do anything stupid.",
+      "displayText": "Ryo. Don't do anything stupid.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 37
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-ending/voice/01PHOC008.wav",
+      "byteLength": 73516,
+      "sha256": "1fadeca443bb99d644f42284bd97cb89970d296715dbbf2d012d7d82e697065b"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-ending/sfx/a9040000.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-ending/sfx/a9040100.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/cloths2/cloths02.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-ending/sfx/a9040400.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/cloths2/friction4.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-ending/sfx/a9040500.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-ending/sfx/a9040600.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-ending/sfx/a9040700.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-ending/sfx/a9040800.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    }
+  ]
+}

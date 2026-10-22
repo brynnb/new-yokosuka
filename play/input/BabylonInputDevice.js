@@ -28,18 +28,24 @@ export class BabylonInputDevice {
       (source) => this.#disconnect(source),
     );
     this.onBlur = () => this.actions.clearDevice("keyboard");
+    // Babylon listens on the canvas. A menu can take focus between keydown
+    // and keyup; always release that key even when the UI receives the event.
+    this.onKeyUp = event => {
+      if(event?.code)this.actions.setButton("keyboard",event.code,false);
+    };
     eventTarget?.addEventListener?.("blur", this.onBlur);
-    this.removeBlurListener = () => eventTarget?.removeEventListener?.(
-      "blur",
-      this.onBlur,
-    );
+    eventTarget?.addEventListener?.("keyup", this.onKeyUp, true);
+    this.removeInputListeners = () => {
+      eventTarget?.removeEventListener?.("blur",this.onBlur);
+      eventTarget?.removeEventListener?.("keyup",this.onKeyUp,true);
+    };
   }
 
   #connect(source) {
     if (source?.deviceType !== DeviceType.Keyboard) return;
     if (this.keyboardObservers.has(source)) return;
     const observer = source.onInputChangedObservable.add((event) => {
-      if (!event?.code || isEditableTarget(event.target)) return;
+      if (!event?.code || (event.type==="keydown"&&isEditableTarget(event.target))) return;
       if (event.ctrlKey || event.metaKey) {
         this.actions.setButton("keyboard", event.code, false);
         return;
@@ -76,7 +82,7 @@ export class BabylonInputDevice {
     this.manager.onDeviceDisconnectedObservable.remove(
       this.disconnectedObserver,
     );
-    this.removeBlurListener?.();
+    this.removeInputListeners?.();
     this.actions.clearDevice("keyboard");
     this.manager.dispose();
   }

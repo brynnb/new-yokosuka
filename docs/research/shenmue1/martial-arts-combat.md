@@ -117,6 +117,8 @@ reference.
 | `play/combat/CombatInput.js` | Converts physical keyboard timing into native command tokens and simultaneous `plus` chords. |
 | `play/combat/CombatRootMotion.js` | Converts authored local root displacement into world X/Z motion at the actor's captured yaw. |
 | `play/combat/CombatEncounterRuntime.js` | Bridges simulation events to player/enemy actors, animations, placement, HUD state, reactions, and rematches. |
+| `src/CombatTargetSelection.js` | Selects adjacent living opponents in camera-projected horizontal order. |
+| `play/combat/CombatTargetIndicator.js` | Shares the gameplay camera projection between selection and the selected opponent's overhead marker. |
 | `play/audio/CombatSounds.js` | Runs per-actor native motion cue timelines at 30 Hz and plays reconstructed `BATTLE_1` command assets through the shared audio preferences. |
 | `play/data/native-combat-sound-cues.js` | Generated motion-name-to-frame/cue map restricted to playable commands declared by `BATTLE_1.SND`. |
 | `play/characters/AnimationStateMachine.js` | Builds clips from the two motion banks, routes matrices to the character rig, blends one-shots, holds knockdown poses, and transitions defeat into a looping down pose. |
@@ -131,16 +133,46 @@ reference.
 ## Current playable implementation
 
 Choose **Travel To... → Combat Practice** in the Play Online view. This loads
-Shenmue's `MFBT` 70-man battle arena and spawns Chai beside Ryo. Combat is
-only active on that map; travel elsewhere to leave the fight.
+Shenmue's `MFBT` 70-man battle arena with Chai and three stationary practice
+partners using the same rig. Chai fights back after the first attack; the
+partners receive ordinary hits and throws without attacking. This local demo
+has its own encounter lifetime; travel elsewhere to leave it. Story fights now
+reuse the same client simulation, controls, targeting, AI and animation adapters.
+The server authorizes an attempt and saves its reported result, not individual
+moves or their timing.
+
+Story's Tornado Kick and Swallow Flip lessons also use this engine, with nonlethal
+instructors and unlimited retries. They observe actual completed move events,
+not a typed QTE sequence. Tornado Kick needs its second kick; Swallow Flip needs
+a connected counter and paired throw. Predictable coaching is an explicit
+adaptation; original introductory/demonstration/ending films remain separate.
+See [script authoring](../../implementation/scripting/script-authoring.md) for
+the lifecycle, result protocol and distinction from cinematic QTEs.
+
+Explicit target selection is an intentional keyboard-friendly adaptation,
+not a claim about the original game's target-selection algorithm. `Q` selects
+left and `E` selects right, using the current camera projection rather than
+world coordinates or spawn order. Selection wraps at either end, excludes
+defeated and behind-camera opponents, and retains its current target when
+no candidate is in front of the camera. These keys are rebindable in Settings
+and inactive outside combat controls. A gold overhead label identifies the
+target; its name and health also appear in the enemy gauge. Defeating it
+automatically selects the nearest remaining opponent. Attack after losing or
+defeating all four to reset the round.
+
+Selection directs facing and throw/counter acquisition. A throw already in
+progress retains its original recipient even if selection changes. Ordinary
+strikes still test all enemies in range and can hit more than one opponent;
+they are not restricted to the selected target.
 
 The runtime uses a deterministic 30 Hz combat simulation with startup,
-active, and recovery phases; facing and range checks; one hit per action;
+active, and recovery phases; facing and range checks; one hit per defender per action;
 guard stun; hit stun; knockdowns; defeat; a 12-token buffered command
 matcher; and a range-aware enemy AI. Combat locomotion is locked while Ryo
 is attacking or reacting. Between actions, combat-control movement is
-target-relative: Ryo continuously faces Chai, W/S advance and retreat, and
-A/D strafe around him. These directions use the extracted
+target-relative: Ryo continuously faces the selected opponent, W/S advance and
+retreat, and A/D strafe around them. First-person combat also faces the target
+and uses the same movement directions. These directions use the extracted
 `YKI_AKI_KAMAE1_WALK_F/L/R` footwork, with the forward clip played backward
 for retreat. Holding Shift dashes in any movement direction, and a minimum
 combatant-radius separation prevents the fighters from walking through one
@@ -177,8 +209,9 @@ extension locks the panel green and holds its resolved move label through
 the action's complete simulation/animation lifetime. The panel returns to
 its normal empty input state when that action releases control.
 The always-open, internally scrolling **All Combinations** pane in the
-top-left HUD lists all 51 learned techniques plus the 10 extracted multi-hit
-strings. Four native command pairs are genuinely identical; click the desired
+top-left HUD lists all 51 techniques plus the 10 extracted multi-hit strings
+in Combat Test. Story lists only the currently available techniques (below).
+Four native command pairs are genuinely identical; click the desired
 technique name in that pane to choose which learned variant that command
 should play.
 
@@ -291,6 +324,36 @@ matrix RMS `0.000`) and contains essentially the same full travel distance.
 The command matcher therefore delays Shadow Step briefly for its immediate
 `J` extension, then plays only the complete Shadow Blade clip; playing both
 clips serially would duplicate the evasive step.
+
+## Story move availability
+
+Combat Test is an unrestricted sandbox, including when entered by a Story
+character. It neither teaches moves nor changes saved Story progress. Story
+encounters instead start with the 33 ordinary techniques recorded explicitly
+in `play/combat/StoryMoveProgression.js`. They match the zero-flag entries of
+the captured native move-definition table; that correspondence is tested, not
+used to guess the meaning of each nonzero native flag. The original starting,
+taught and scroll distinctions can also be checked against the firsthand
+[move guide](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404).
+
+The eight taught moves and nine scrolls unlock their techniques through saved
+`story.s1.<move>.learned` flags. Each lesson temporarily permits its own
+move before mastery; preparation, cancellation, declining and unacknowledged
+completion do not permanently teach it. Each new encounter reads the current
+character's saved flags, and all waves retain the encounter's repertoire.
+Keyboard recognition, move-list actions and direct move starts share the same
+per-combatant permission. Enemy/ally repertoires remain independent. The HUD
+uses that same available list and refreshes when returning to Combat Test.
+
+This is move-ownership progression, not a reconstruction of per-move proficiency
+growth: existing expert-variant balancing is unchanged. Pit Blow, Double Blow,
+Swallow Dive and Shozo's techniques use optional shared-combat lessons; nine
+scrolls can be found or bought and explicitly read from Inventory. Four taught
+moves replace their earlier command variants in Story, but not Combat Practice.
+The unresolved `nothingSkill` catalog entry remains sandbox-only. See
+[Story move learning](../../design/story-move-learning.md) for sources, gates,
+prices and the authored staging/availability approximations. Owning an unread
+scroll alone does not imply learning it.
 
 ## Canonical move catalogue
 

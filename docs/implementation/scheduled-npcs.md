@@ -7,7 +7,7 @@ sends world-scoped NPC snapshots. This repository loads the required character
 assets and renders those states.
 
 The server's
-[scheduled-NPC guide](https://github.com/brynnb/new-yokosuka-server/blob/main/docs/implementation/scheduled-npcs.md)
+[scheduled-NPC guide](https://github.com/brynnb/new-yokosuka-server/blob/main/docs/scheduled-npcs.md)
 is the source of truth for timetable interpretation, obstruction, persistence,
 and network publication. This page describes the browser-owned half.
 

@@ -1,0 +1,24 @@
+-> Protect Gui Zhang
+    <<jump Counter>>
+-> Leave it for now
+    <<complete>>
+===
+title: Counter
+---
+<<play_sequence "s1.mfbt.pipe-ready.start">>
+<<start_challenge "s1.mfbt.terry-pipe">>
+<<play_sequence "s1.mfbt.pipe-ready.finish">>
+<<if challenge_result("s1.mfbt.terry-pipe") == "success">>
+<<play_sequence "s1.mfbt.pipe-counter.start">>
+<<play_sequence "s1.mfbt.pipe-counter.finish">>
+<<start_activity "s1.mfbt.terry-retreat.scene">>
+<<start_activity "s1.mfbt.final-encirclement.scene">>
+<<travel_story "s1.final.battle-floor">>
+{{effects}}
+<<complete>>
+<<else>>
+-> Try again
+    <<jump Counter>>
+-> Leave it for now
+    <<complete>>
+<<endif>>

@@ -1,0 +1,19 @@
+-> Sleep until 7:30 a.m.
+    <<jump Sleep>>
+-> Stay awake
+    <<jump Done>>
+===
+title: Sleep
+---
+<<if game_hour() < 7.5>>
+<<advance_story_time "s1.final.morning">>
+<<else>>
+<<advance_story_time "s1.final.next-morning">>
+<<endif>>
+<<travel_story "s1.home.bedroom-morning">>
+{{effects}}
+<<jump Done>>
+===
+title: Done
+---
+<<complete>>

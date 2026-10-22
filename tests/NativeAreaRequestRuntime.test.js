@@ -4,7 +4,20 @@ import test from "node:test";
 import {
   createNativeAreaRequestSemanticHandlers,
   createNativeAreaRequestState,
+  nativeArrivalFields,
 } from "../play/events/NativeAreaRequestRuntime.js";
+
+test("applied arrival uses the fixed globals rather than the pending request slots", () => {
+  assert.deepEqual(nativeArrivalFields({ scene: 2, area: "JOMO", entry: 1 }), [
+    { offset: 0x0c20c3d8, width: 4, value: 2 },
+    { offset: 0x0c20c3dc, width: 4, value: 0x4f4d4f4a },
+    { offset: 0x0c20c3e0, width: 4, value: 1 },
+  ]);
+  for (const detail of [{ scene: 1, area: "JOMO" }, { scene: 1, area: "BAD", entry: 0 },
+    { scene: 1, area: "JOMO", entry: -1 }]) {
+    assert.throws(() => nativeArrivalFields(detail), /exact scene/);
+  }
+});
 import {
   createNativeEventOperationExecutor,
 } from "../play/events/NativeEventOperationRuntime.js";

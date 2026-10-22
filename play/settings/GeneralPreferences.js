@@ -16,13 +16,18 @@ export const DEFAULT_CONTROL_BINDINGS = Object.freeze({
   forkliftHorn: "KeyH",
   cancel: "KeyX",
   dialogueAdvance: "Space",
+  storyHide: "KeyC",
+  storyUse: "KeyE",
   combatHand: "KeyJ",
   combatLeg: "KeyK",
   combatThrow: "KeyL",
   combatGuard: "KeyI",
+  combatTargetLeft: "KeyQ",
+  combatTargetRight: "KeyE",
 });
 
 export const CONTROL_BINDING_GROUPS = Object.freeze([
+  {label:"Story interactions",controls:[["storyHide","Hide behind cover"],["storyUse","Use story door"]]},
   {
     label: "Movement",
     controls: [
@@ -53,6 +58,8 @@ export const CONTROL_BINDING_GROUPS = Object.freeze([
       ["combatLeg", "Leg"],
       ["combatThrow", "Throw"],
       ["combatGuard", "Guard"],
+      ["combatTargetLeft", "Previous target (screen left)"],
+      ["combatTargetRight", "Next target (screen right)"],
     ],
   },
 ]);

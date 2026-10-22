@@ -3,6 +3,151 @@ import test from "node:test";
 import {
   createNativeDialoguePersistence,
 } from "../play/dialogue/NativeDialoguePersistence.js";
+import { createNativeDialogueSnapshot } from "../play/dialogue/NativeDialogueSnapshot.js";
+import { createNativeRoomScriptRuntime } from "../play/events/NativeRoomScriptRuntime.js";
+import { createNativeEventOperationExecutor } from "../play/events/NativeEventOperationRuntime.js";
+
+function deferred() {
+  let resolve, reject;
+  const promise = new Promise((a, b) => { resolve = a; reject = b; });
+  return { promise, resolve, reject };
+}
+
+test("room parameters use the current personal save and old cleanup cannot undo a receipt", async () => {
+  const requests = [];
+  const persistence = createNativeDialoguePersistence({saveSnapshot: async snapshot => {
+    requests.push(snapshot); return {...snapshot, revision: snapshot.revision + 1};
+  }});
+  const room = createNativeRoomScriptRuntime({operation01c7: {
+    getState: () => persistence.gameplayState()?.operation01c7State ?? null,
+  }});
+  room.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({handlers: room.semanticHandlers()});
+  const write = value => ({kind: "engineOperation", adapterStatus: "proven",
+    semanticId: "native-operation-01c7-control",
+    arguments: [3, 1, 2, value].map(value => ({kind: "constant", value})),
+  });
+  assert.equal((await execute(write(1), room.eventContext())).status, "stopped");
+  persistence.hydrate(null);
+  const tx = room.beginTransaction({area: "JOMO"});
+  await execute(write(1), tx.context);
+  tx.commit();
+  await persistence.persistMutation();
+  assert.equal(requests.length, 1);
+  assert.equal(Buffer.from(requests[0].gameState.sceneParameters, "base64")[2], 1);
+  room.activateArea("D000");
+  assert.equal(room.operation01c7State.readParameterByte(2), 1);
+
+  const stale = room.beginTransaction({area: "D000"});
+  await execute(write(99), stale.context);
+  const receipt = createNativeDialogueSnapshot(persistence.committedSnapshot);
+  receipt.operation01c7State.writeParameterByte(2, 7);
+  receipt.revision++;
+  persistence.acceptServerSnapshot(receipt.toJSON());
+  assert.throws(() => stale.commit(), /personal save changed/);
+  stale.rollback({reason: "old session finished cleanup"});
+  assert.equal(room.operation01c7State.readParameterByte(2), 7);
+  assert.equal(persistence.snapshot.revision, 2);
+  persistence.clear();
+  assert.equal((await execute(write(1), room.eventContext())).status, "stopped");
+  persistence.hydrate(null);
+  assert.equal(room.operation01c7State.readParameterByte(2), 0);
+});
+
+test("server ownership flushes old writes and applies settled flags only after presentation cleanup", async () => {
+  const requests = [];
+  const persistence = createNativeDialoguePersistence({saveSnapshot: async snapshot => {
+    requests.push(snapshot);
+    return {...snapshot, revision: snapshot.revision + 1};
+  }});
+  persistence.hydrate(null);
+  persistence.snapshot.dialogueState.write(2, 900, 1);
+  persistence.markDirty();
+  const finish = await persistence.beginServerEvent();
+  assert.equal(requests.length, 1);
+  const presentationBaseline = persistence.captureWorkingState();
+  persistence.snapshot.dialogueState.write(2, 901, 1);
+  await persistence.persistMutation();
+  assert.equal(requests.length, 1, "presentation must not save native state");
+  const server = createNativeDialogueSnapshot(presentationBaseline);
+  server.dialogueState.write(2, 832, 1);
+  server.revision++;
+  assert.equal(persistence.acceptServerSnapshot(server.toJSON()), true);
+  assert.equal(persistence.snapshot.dialogueState.read(2, 832), 0);
+  // The activity's own cleanup restores its earlier working state first.
+  persistence.restoreWorkingState(presentationBaseline);
+  assert.equal(finish(), true);
+  assert.equal(persistence.snapshot.dialogueState.read(2, 832), 1);
+  assert.equal(persistence.snapshot.dialogueState.read(2, 901), 0);
+  assert.equal(persistence.snapshot.dialogueState.read(2, 900), 1);
+  assert.equal(persistence.snapshot.revision, 2);
+  assert.equal(finish(), false);
+  await persistence.persistMutation();
+  assert.equal(requests.length, 1, "receipt was already saved on the server");
+});
+
+test("gate-pass receipt survives later cancellation and out-of-order duplicate receipts", async () => {
+  const persistence = createNativeDialoguePersistence({saveSnapshot: async () => { throw new Error("unexpected save"); }});
+  const initial = persistence.hydrate(null).toJSON();
+  const finish = await persistence.beginServerEvent();
+  const first = createNativeDialogueSnapshot(initial);
+  first.dialogueState.write(2, 832, 1);
+  first.revision = 1;
+  persistence.acceptServerSnapshot(first.toJSON());
+  const second = createNativeDialogueSnapshot(first.toJSON());
+  second.dialogueState.write(2, 833, 1);
+  second.revision = 2;
+  persistence.acceptServerSnapshot(second.toJSON());
+  assert.equal(persistence.acceptServerSnapshot(first.toJSON()), false);
+  assert.equal(persistence.acceptServerSnapshot(second.toJSON()), false);
+  finish(); // No final complete reply is necessary for these already-committed effects.
+  assert.deepEqual(persistence.captureWorkingState(), second.toJSON());
+  assert.throws(() => persistence.acceptServerSnapshot({...second.toJSON(), state: initial.state}), /without advancing/);
+  assert.throws(() => persistence.acceptServerSnapshot({revision: 3}), /incomplete/);
+  for (const actorBytes of [true, [], { AKIR: "1" }]) {
+    assert.throws(() => persistence.acceptServerSnapshot({
+      ...second.toJSON(), revision: 3, gameState: { ...second.toJSON().gameState, actorBytes },
+    }), /incomplete/);
+  }
+});
+
+test("late save success and failure cannot modify a newly hydrated character", async () => {
+  for (const outcome of ["success", "conflict", "failure"]) {
+    const reply = deferred(), started = deferred(), errors = [];
+    const persistence = createNativeDialoguePersistence({
+      saveSnapshot: snapshot => { started.resolve(snapshot); return reply.promise; },
+      onSaved: () => errors.push("old save"), onConflict: () => errors.push("old conflict"), onError: () => errors.push("old error"),
+    });
+    persistence.hydrate(null).dialogueState.write(2, 900, 1);
+    const saving = persistence.persistMutation();
+    const request = await started.promise;
+    const next = createNativeDialogueSnapshot();
+    next.revision = 12;
+    persistence.hydrate(next.toJSON());
+    if (outcome === "success") reply.resolve({...request,revision:1});
+    else reply.reject(Object.assign(new Error(outcome), {status:409, ...(outcome === "conflict" ? {dialogueState:request} : {})}));
+    await saving;
+    assert.deepEqual(persistence.captureWorkingState(), next.toJSON(), outcome);
+    assert.deepEqual(errors, []);
+  }
+});
+
+test("late server cleanup and queued saves are fenced across session replacement", async () => {
+  let saves = 0;
+  const persistence = createNativeDialoguePersistence({saveSnapshot: async snapshot => { saves++; return {...snapshot,revision:snapshot.revision+1}; }});
+  persistence.hydrate(null);
+  const finish = await persistence.beginServerEvent();
+  const replacement = createNativeDialogueSnapshot();
+  replacement.revision = 20;
+  persistence.hydrate(replacement.toJSON());
+  assert.equal(finish(), false);
+  persistence.snapshot.dialogueState.write(2, 900, 1);
+  const queued = persistence.persistMutation();
+  persistence.clear();
+  await queued;
+  assert.equal(saves, 0);
+  assert.equal(persistence.acceptServerSnapshot(replacement.toJSON()), false);
+});
 
 test("native dialogue persistence serializes revisions and later mutations", async () => {
   const requests = [];
@@ -47,6 +192,7 @@ test("native dialogue persistence rehydrates a revision conflict before the next
   const conflict = Object.assign(new Error("revision conflict"), {
     status: 409,
     dialogueState: {
+      ...createNativeDialogueSnapshot().toJSON(),
       revision: 3,
     },
   });

@@ -10,11 +10,13 @@ test("HQ inventory renders transparent icons in grey slots without loading reser
   await page.route("**/play/play.js*", (route) => route.fulfill({
     contentType: "application/javascript",
     body: `
-      import { openInventory } from '/play/ui/react/inventoryStore.js';
+      import { openInventory, configureInventoryUi } from '/play/ui/react/inventoryStore.js';
+      import { INVENTORY_ITEMS } from '/play/ui/react/inventoryItems.js';
       import { useAccountStore } from '/play/account/react/accountStore.js';
       useAccountStore.setState({ screen: 'closed' });
       document.body.classList.remove('account-pending');
       document.querySelector('#loading')?.remove();
+      configureInventoryUi({loadInventory:async()=>INVENTORY_ITEMS.map(item=>({key:item.id.replaceAll('-','_'),name:item.name,category:'key_item',quantity:1}))});
       openInventory();
     `,
   }));

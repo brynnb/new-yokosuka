@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import {vehicleSpawnManifest} from "../src/VehicleSpawns.js";
 import {
   MULTIPLAYER_PROTOCOL_VERSION,
   MultiplayerClient,
@@ -49,7 +50,9 @@ class FakeWebSocket {
     this.sent.push(JSON.parse(payload));
   }
 
-  close() {
+  close(code, reason) {
+    if(code!==undefined&&code!==1000&&(code<3000||code>4999))throw new Error("Invalid browser WebSocket close code");
+    this.closeDetails={code,reason};
     if (this.readyState === FakeWebSocket.CLOSED) return;
     this.readyState = FakeWebSocket.CLOSED;
     this.emit("close");
@@ -70,6 +73,53 @@ function localState(overrides = {}) {
     ...overrides,
   };
 }
+
+test("presence stamps only applied Story arrivals and never rolls the acknowledgement back",()=>{
+  const client=new MultiplayerClient({url:"ws://localhost/ws",WebSocketClass:FakeWebSocket});
+  client.setLocalPresence(localState());client.connect();const socket=FakeWebSocket.instances.at(-1);socket.open();
+  socket.emit("message",{data:JSON.stringify({v:MULTIPLAYER_PROTOCOL_VERSION,type:"welcome",self:{id:"one"},worldState:{}})});
+  assert.equal(socket.sent.at(-1).storyArrivalRevision,undefined);
+  assert.equal(client.setAppliedStoryArrivalRevision(4),true);client.forcePresence();assert.equal(socket.sent.at(-1).storyArrivalRevision,4);
+  for(const bad of [0,-1,3,NaN,4.5])assert.equal(client.setAppliedStoryArrivalRevision(bad),false);
+  assert.equal(client.setAppliedStoryArrivalRevision(4),true);assert.equal(client.setAppliedStoryArrivalRevision(5),true);client.forcePresence();assert.equal(socket.sent.at(-1).storyArrivalRevision,5);
+  client.close();
+});
+
+test("WebSocket preserves driving controls across the actual script-event wire boundary",()=>{
+  FakeWebSocket.instances.length=0;
+  const client=new MultiplayerClient({url:"ws://test/ws",WebSocketClass:FakeWebSocket});client.connect();const socket=FakeWebSocket.instances[0];socket.open();client.welcomed=true;
+  const driving={sequence:2,throttle:1,brake:0,steering:-1};
+  assert.equal(client.advanceScriptEvent(91,"challenge_move",{requestId:"drive_1",challengeToken:"a".repeat(32),driving}),true);
+  assert.deepEqual(socket.sent.at(-1),{v:MULTIPLAYER_PROTOCOL_VERSION,type:"script_event_advance",requestId:"drive_1",runId:91,action:"challenge_move",challengeToken:"a".repeat(32),driving});client.close();
+});
+
+test("WebSocket preserves client QTE results without per-button input", () => {
+  const client=new MultiplayerClient({url:"ws://test/ws",WebSocketClass:FakeWebSocket});
+  client.connect();const socket=FakeWebSocket.instances.at(-1);socket.open();client.welcomed=true;
+  assert.equal(client.advanceScriptEvent(91,"challenge_result",{requestId:"qte_1",challengeToken:"a".repeat(32),challengeOutcome:"success"}),true);
+  assert.deepEqual(socket.sent.at(-1),{v:MULTIPLAYER_PROTOCOL_VERSION,type:"script_event_advance",runId:91,requestId:"qte_1",action:"challenge_result",challengeToken:"a".repeat(32),challengeOutcome:"success"});
+  client.close();
+});
+
+test("WebSocket delivers durable script receipts independently of presentation replies", () => {
+  FakeWebSocket.instances.length = 0;
+  const received = [];
+  const client = new MultiplayerClient({
+    url: "ws://test/ws", WebSocketClass: FakeWebSocket,
+    callbacks: { onScriptEventCommitted: message => received.push(message) },
+  });
+  client.connect();
+  const socket = FakeWebSocket.instances[0];
+  socket.open();
+  const receipt = {
+    v: MULTIPLAYER_PROTOCOL_VERSION, type: "script_event_committed",
+    runId: 91, characterId: 2, modeRevision: 7,
+    state: { revision: 5, nativeDialogue: { revision: 4 } },
+  };
+  socket.emit("message", { data: JSON.stringify(receipt) });
+  assert.deepEqual(received, [receipt]);
+  client.close();
+});
 
 test("multiplayer URL follows page security and supports overrides", () => {
   assert.equal(
@@ -150,12 +200,8 @@ test("presence normalization and diffing cover visual state", () => {
     })).vehicleId,
     "forklift-abcdef123456",
   );
-  assert.equal(
-    normalizeLocalPresence(localState({
-      vehicleId: "forklift-15",
-    })).vehicleId,
-    "forklift-15",
-  );
+  const configuredId=Object.values(vehicleSpawnManifest.worlds).flatMap(w=>w.forklifts).at(-1).id;
+  assert.equal(normalizeLocalPresence(localState({vehicleId:configuredId})).vehicleId,configuredId);
 });
 
 test("presence normalization preserves backpedaling and directional turns", () => {
@@ -595,12 +641,53 @@ test("saved-name validation completes before initial presence", async () => {
     }),
   });
   assert.equal(socket.sent.length, 0);
+  assert.equal(client.welcomed, false);
+  assert.equal(client.setLocalPresence(localState({ x: 70 }), { force: true }), false);
+  assert.equal(client.forcePresence(), false);
+  assert.equal(socket.sent.length, 0);
   finishWelcome();
   await welcomeReady;
   await Promise.resolve();
   assert.equal(socket.sent.length, 1);
   assert.equal(socket.sent[0].type, "presence");
+  assert.equal(socket.sent[0].x, 70);
   client.close();
+});
+
+test("failed or obsolete welcome restoration cannot publish cached poses or close a newer socket", async t => {
+  const errors = t.mock.method(console, "error", () => {});
+  const originalWindow = globalThis.window;
+  const scheduled = [];
+  globalThis.window = { setTimeout: callback => (scheduled.push(callback), scheduled.length), clearTimeout() {} };
+  try {
+    for (const obsoleteFailure of [false, true]) {
+      const pending = [];
+      const client = new MultiplayerClient({ url: "ws://test/ws", WebSocketClass: FakeWebSocket,
+        callbacks: { onWelcome: () => new Promise((resolve, reject) => pending.push({ resolve, reject })) } });
+      const welcome = () => FakeWebSocket.instances.at(-1).emit("message", { data: JSON.stringify({
+        v: MULTIPLAYER_PROTOCOL_VERSION, type: "welcome", self: { id: "one" }, worldState: {},
+      }) });
+      client.setLocalPresence(localState()); client.connect();
+      const first = client.socket; first.open(); welcome();
+      first.close(); scheduled.at(-1)();
+      const second = client.socket; second.open(); welcome();
+      if (obsoleteFailure) pending[0].reject(Error("old arrival failed")); else pending[0].resolve();
+      await Promise.resolve(); await Promise.resolve();
+      assert.equal(second.sent.length, 0); assert.equal(second.readyState, FakeWebSocket.OPEN);
+      assert.equal(client.welcomed, false);
+      pending[1].reject(Error("current arrival failed"));
+      await Promise.resolve(); await Promise.resolve();
+      assert.equal(second.sent.length, 0); assert.equal(second.readyState, FakeWebSocket.CLOSED);
+      assert.equal(client.welcomed, false); assert.equal(client.socket, null);
+      // Recovery uses the existing backoff, not stale presence or a fatal session ban.
+      scheduled.at(-1)(); const third = client.socket; third.open(); welcome();
+      client.setLocalPresence(localState({ x: 80 }), { force: true });
+      pending[2].resolve(); await Promise.resolve(); await Promise.resolve();
+      assert.equal(third.sent.length, 1); assert.equal(third.sent[0].x, 80);
+      client.close();
+    }
+    assert.equal(errors.mock.callCount(), 2); // Current failures only, never obsolete callbacks.
+  } finally { globalThis.window = originalWindow; }
 });
 
 test("a replaced session stops reconnecting and reports why it ended", () => {
@@ -631,6 +718,7 @@ test("a replaced session stops reconnecting and reports why it ended", () => {
   assert.equal(resets, 1);
   assert.equal(socket.readyState, FakeWebSocket.CLOSED);
   assert.equal(client.intentionalClose, true);
+  assert.deepEqual(socket.closeDetails,{code:1000,reason:"session replaced"});
   assert.equal(client.sessionReplaced, true);
   client.connect();
   assert.equal(FakeWebSocket.instances.length, 1);

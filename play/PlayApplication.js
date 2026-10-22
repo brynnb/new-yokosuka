@@ -17,6 +17,7 @@ import {
 import { RYO_YK_RENDER_MATRIX_ROUTES } from "../src/RuntimeMatrixRecording.js";
 import { StuckMovementDetector } from "../src/StuckMovementDetector.js";
 import state from "../src/state.js";
+import {scheduledActorStoryVisible} from "../src/ScheduledActorPresentation.js";
 import {
   DEFAULT_THIRD_PERSON_CONTROLLER_OPTIONS,
 } from "../src/ThirdPersonController.js";
@@ -156,12 +157,15 @@ import {
 import {
   createScriptEventAssembly,
 } from "./scripts/ScriptEventAssembly.js";
+import { StoryRegionRuntime } from "./scripts/StoryRegionRuntime.js";
+import {StoryObjectPresentation} from "./scripts/StoryObjectPresentation.js";
 import { NativeStoryRuntime } from "./scripts/NativeStoryRuntime.js";
 import {
   CutscenePreviewRuntime,
 } from "./cutscenes/CutscenePreviewRuntime.js";
 import { CombatHud } from "./combat/CombatHud.js";
 import { accountSession } from "./account/AccountSession.js";
+import { PlayModeSession } from "./account/PlayModeSession.js";
 import { NEW_CHARACTER_OPENING_ARRIVAL, needsNewCharacterOpening, playNewCharacterOpening } from "./cutscenes/NewCharacterOpening.js";
 import { PlayLoopRuntime } from "./PlayLoopRuntime.js";
 import { PlaySceneRuntime } from "./PlaySceneRuntime.js";
@@ -173,6 +177,7 @@ const RENDER_MATRIX_BY_KEY = new Map(RYO_YK_RENDER_MATRIX_ROUTES);
 // Runtime state belongs to one application lifetime. Keep cross-domain wiring
 // here; domain modules own the player, world, story, and network behavior.
 function createPlayRuntime() {
+  let playModeSession = null;
   const LOCAL_DEBUG = import.meta.env.DEV && [
     "127.0.0.1",
     "localhost",
@@ -215,6 +220,11 @@ function createPlayRuntime() {
     dom,
     audioPreferences,
     dialogueAudioEnabled: generalPreferences.getState().dialogueAudio,
+    getCharacter: () => accountSession.character,
+    canPlayWorldMusicCue: () => Boolean(accountSession.character)
+      && worldRuntime.ready && !worldRuntime.switching
+      && !nativeCutsceneDirector?.active && !playModeSession?.pending
+      && !scriptEvents.combatRuntime.encounter && !playerRuntime.combat?.encounter,
     ninePmWorldIds: [
       WORLDS.exterior.id,
       WORLDS.yamanose.id,
@@ -241,7 +251,7 @@ function createPlayRuntime() {
     ambientDirector,
     dialogueAudio,
     dialogueAudioControls,
-    ninePmMusicCue,
+    explorationMusic,
   } = audioRuntime;
   const playerPersistence = new PlayerPersistence();
 
@@ -557,16 +567,21 @@ function createPlayRuntime() {
       && worldRuntime.ready
       && isPersistentPlayerWorld(worldRuntime.activeWorld)
       && !cutscenePreviewRuntime?.gameplayPreview
+      && !playModeSession?.pending
     ),
     getPlayerPresence: () => multiplayerAdapter.playerPresence(),
     getVehiclePresence: () => multiplayerAdapter.vehiclePresence(),
     onSessionReplaced: message => {
+      // Our own mode switch already owns input locking and full teardown.
+      // Other tabs still need the terminal screen, but do not flash it here.
+      if (playModeSession?.pending) return;
       cutscenePreviewRuntime?.cancel("disposed");
       worldLifecycle.unloadForReplacedSession(message);
     },
   });
   let debugRunSpeedMultiplier = 1;
   const worldClock = new WorldClock({
+    getPlayMode: () => accountSession.character?.playMode,
     onClockChanged: () => arcadeAttractScreens.markClockChanged(),
   });
   const worldWeather = new WorldWeatherRuntime({ scene });
@@ -574,6 +589,10 @@ function createPlayRuntime() {
     clock: worldClock,
     weather: worldWeather,
     sceneState: state,
+    getNativeWeather: () => accountSession.character?.playMode === "story"
+      ? nativeRoomScriptRuntime?.readWeatherState() ?? null : null,
+    getNativeWeatherEnvironment: () => accountSession.character?.playMode === "story"
+      ? nativeRoomScriptRuntime?.readWeatherEnvironment() ?? null : null,
     getWorld: () => worldRuntime.activeWorld,
     getReady: () => worldRuntime.ready,
     isSwitching: () => worldRuntime.switching,
@@ -584,7 +603,7 @@ function createPlayRuntime() {
     ),
     getCutscenePrecipitation: () => nativeCutsceneDirector?.activePrecipitation ?? null,
     getCutsceneLightingOverride: () => nativeCutsceneDirector?.activeLightingOverride ?? null,
-    dailyMusicCue: ninePmMusicCue,
+    dailyMusicCue: explorationMusic,
     setWorldDate: date => worldHud.setWorldDate(date),
     updateDebugClock: ({ serverDate, date, clock }) => {
       if (!LOCAL_DEBUG) return;
@@ -602,8 +621,7 @@ function createPlayRuntime() {
     showDayRollover: (world, date, signal) => (
       loadingScreen.showDayRollover(world, date, signal)
     ),
-    getMovementLocked: () => Boolean(controller?.movementLocked),
-    setMovementLocked: locked => controller?.setMovementLocked(locked),
+    acquireMovementLock: () => controller.acquireMovementLock(),
     updateSceneLighting: () => nativeSceneLighting.update(),
     applyTimeOfDay,
     updateModelVisibility,
@@ -644,6 +662,7 @@ function createPlayRuntime() {
       || actorRoot.position.add(new BABYLON.Vector3(0, 1.4, 0))
     ),
     getCameraFadeEnabled: () => !nativeCutsceneDirector?.active,
+    isActorPresent: definition => scheduledActorStoryVisible(definition,accountSession.character),
     networkState: scheduledActorNetworkState,
     localDebug: LOCAL_DEBUG,
     remoteAvatar: {
@@ -729,6 +748,18 @@ function createPlayRuntime() {
     onCutscene: cutsceneId => void cutscenePreviewRuntime.requestInGame(cutsceneId),
     onEmote: playEmote,
     onCharacter: switchCharacter,
+    onPlayMode: mode => playModeSession.switchTo(mode),
+    onStoryWait: async id => {
+      if (accountSession.character?.playMode !== "story" || !playModeSession?.canSwitch() || playModeSession.pending || scriptEventController.status !== "idle") {
+        transientNotice.show("Finish your current activity before waiting.");
+        return;
+      }
+      try {
+        const result = await scriptEventController.start({ kind:"activity",activity:id },{ area:worldRuntime.activeWorld.nativeArea });
+        if (result.outcome === "declined") transientNotice.show("That time has already passed today.");
+        else if (result.outcome === "rejected") transientNotice.show(result.error.message);
+      } catch (error) { transientNotice.show("Could not wait right now. Please try again."); }
+    },
     onSelectionCommitted: focusGameSurface,
   });
   const nativeDialogue = createNativeDialogueAssembly({
@@ -830,6 +861,7 @@ function createPlayRuntime() {
   const nativeSelectedObjectActionController =
     createNativeSelectedObjectActionController();
   const nativeRoomScriptRuntime = createNativeRoomScriptAssembly({
+    dialoguePersistence: nativeDialoguePersistence,
     scheduledActors,
     currentGameDate: currentServerGameDate,
     sceneResourceRegistry: nativeSceneResourceRegistry,
@@ -863,6 +895,22 @@ function createPlayRuntime() {
     localDebug: LOCAL_DEBUG,
   });
   const scriptEvents = createScriptEventAssembly({
+    getCharacter: () => accountSession.character,
+    menuSounds,
+    playerRuntime,
+    onCombatStateChanged: snapshot => combatHud.update(snapshot),
+    scene,
+    musicControls,
+    getForklifts:()=>forkliftAssembly,
+    getController:()=>controller,
+    getBinding:action=>generalPreferences.binding(action),
+    camera,
+    getPlayerModel: () => characterRuntime.presentationModel(playerRuntime.characterLoader, playerRuntime.modelRoot, actorRoot),
+    syncPlayerTransform: () => controller?.collider?.position.copyFrom(actorRoot.position),
+    motionRuntime: scheduledActorMotionRuntime,
+    capturePlayerState:()=>worldLifecycle.capturePlayerReturnState(),
+    restorePlayerState:snapshot=>worldLifecycle.restorePlayerPose(snapshot),
+    cutsceneDirector: nativeCutsceneDirector,
     nativeRuntime: nativeScriptedEventRuntime,
     getArea: () => worldRuntime.activeWorld.nativeArea,
     dialoguePersistence: nativeDialoguePersistence,
@@ -886,8 +934,7 @@ function createPlayRuntime() {
       actorRoot.position.z,
     ],
     cameraPresentation: nativeCameraPresentation,
-    getMovementLocked: () => Boolean(controller?.movementLocked),
-    setMovementLocked: locked => controller?.setMovementLocked(locked),
+    acquireMovementLock: () => controller.acquireMovementLock(),
     dom,
     dialogueAudio,
     setDialogueControlsActive: active => (
@@ -906,6 +953,13 @@ function createPlayRuntime() {
   } = scriptEvents;
   nativeScriptActivityRunner = assembledActivityRunner;
   const nativeStoryRuntime = new NativeStoryRuntime({
+    storyObjects: new StoryObjectPresentation({getCharacter: () => accountSession.character}),
+    storyRegions: new StoryRegionRuntime({ controller: scriptEventController,
+      getCharacter: () => accountSession.character,
+      getGameDate: currentServerGameDate,
+      publishPresence: () => { multiplayerRuntime.markPresenceDirty(); return multiplayerRuntime.publishPresence(true); },
+      onError: error => { console.warn("Story region did not start:", error); transientNotice.show("This story scene could not start. Leave the area and approach again to retry."); },
+    }),
     isStartupPresentationActive: () => openingSequenceActive || Boolean(cutscenePreviewRuntime?.gameplayPreview),
     dialoguePersistence: nativeDialoguePersistence,
     dialogueOverlay: nativeDialogueOverlay,
@@ -1245,6 +1299,20 @@ function createPlayRuntime() {
   }
 
   async function fetchInitialServerWorldState() {
+    if (accountSession.character?.playMode === "story") {
+      // A connected story session already receives a live personal clock.
+      // Re-reading its last database checkpoint during travel would rewind it.
+      if (multiplayerRuntime.client?.connected && worldClock.worldState) return;
+      const result = await accountSession.request(
+        `/api/characters/${accountSession.character.id}/state`,
+        { signal: AbortSignal.any([lifetime.signal, AbortSignal.timeout(10000)]) },
+      );
+      if (!result.worldState) throw new Error("The server did not supply your story clock.");
+      worldEnvironment.setServerState(result.worldState);
+      worldEnvironment.synchronize({ applyScene: false });
+      refreshLoadingDateTime();
+      return;
+    }
     const loaded = await worldEnvironment.fetchInitial({
       timeoutMs: INITIAL_SERVER_CONNECT_TIMEOUT_MS,
     });
@@ -1290,6 +1358,7 @@ function createPlayRuntime() {
 
 
   async function switchCharacter(character, options = {}) {
+    if (accountSession.character?.playMode === "story" && character.id !== "ryo") return false;
     return playerRuntime.switchCharacter(character, options);
   }
 
@@ -1304,7 +1373,7 @@ function createPlayRuntime() {
   const combatHud = new CombatHud({
     dom,
     getController: () => controller,
-    getEncounter: () => playerRuntime.combat?.encounter,
+    getEncounter: () => scriptEvents.combatRuntime.encounter || playerRuntime.combat?.encounter,
   });
   combatHud.initialize();
 
@@ -1324,6 +1393,13 @@ function createPlayRuntime() {
     nativeActorTag: () => CHARACTER_BY_ID.get(
       playerRuntime.activeCharacterId,
     )?.nativeActorTag,
+    // A presentation can change rooms before the rendered host world changes.
+    // Do not borrow that room's actor property for the previous world's audio.
+    nativeActorStepRecord: ({ area, actorTag }) => (
+      actorTag && area === nativeRoomScriptRuntime.activeArea
+        ? nativeRoomScriptRuntime.sceneState.associatedRecords.readStepRecord(actorTag)
+        : null
+    ),
     cinemaSeatInteractions,
     worldSounds,
     forkliftNetwork,
@@ -1618,9 +1694,9 @@ function createPlayRuntime() {
     dom,
     travelTransitions,
     audio: {
-      musicControls,
+      musicControls: explorationMusic,
       ambientDirector,
-      ninePmMusicCue,
+      dailyMusicCue: explorationMusic,
     },
     setWorldEnvironmentState,
     setActiveWorldUi,
@@ -1634,6 +1710,7 @@ function createPlayRuntime() {
     vectorFromArray: values => BABYLON.Vector3.FromArray(values),
   });
   multiplayerAdapter = new PlayMultiplayerAdapter({
+    worlds: WORLDS,
     multiplayerRuntime,
     worldRuntime,
     worldLifecycle,
@@ -1699,6 +1776,7 @@ function createPlayRuntime() {
       scene,
       travelTransitions,
       worldMapLayerState,
+      storyObjects: nativeStoryRuntime.storyObjects,
     },
   });
   debugPanel.initialize(
@@ -1894,6 +1972,20 @@ function createPlayRuntime() {
     showNotice: text => transientNotice.show(text),
   });
 
+  playModeSession = new PlayModeSession({
+    account: accountSession,
+    signal: lifetime.signal,
+    canSwitch: () => worldRuntime.ready && !worldRuntime.switching && !openingSequenceActive
+      && !controller?.movementLocked && !forkliftModeRuntime.driving
+      && !arcadeGames?.active && !poolRuntime.active
+      && !cutscenePreviewRuntime.active && !cutscenePreviewRuntime.starting
+      && !cutscenePreviewRuntime.gameplayPreview && dialogueControlModes.size === 0,
+    saveDialogue: () => nativeDialoguePersistence.save(),
+    lock: () => playUi.openModal("play-mode"),
+    unlock: () => playUi.closeModal("play-mode"),
+    onState: update => selectionMenus.setPlayModeState(update),
+  });
+
   return {
     async start() {
       try {
@@ -1911,6 +2003,10 @@ function createPlayRuntime() {
       }
       disposeMenuBackground();
       if (disposed) return;
+      selectionMenus.setPlayModeState({
+        playMode: accountSession.character.playMode,
+        modeBusy: false, modeError: null,
+      });
       startPlayRuntime();
       openingSequenceActive = needsNewCharacterOpening(accountSession.character);
       if (openingSequenceActive) {
@@ -1920,9 +2016,16 @@ function createPlayRuntime() {
           signal: lifetime.signal,
         });
         lifetime.signal.throwIfAborted();
+        const result = await accountSession.request(
+          `/api/characters/${accountSession.character.id}/opening-complete`, {
+          method: "POST",
+          signal: AbortSignal.any([lifetime.signal, AbortSignal.timeout(10000)]),
+          body: JSON.stringify({ revision: accountSession.character.modeRevision }),
+        });
+        accountSession.applyWelcome(result.character);
         await initialize({
-          initialWorldOverride: WORLDS[NEW_CHARACTER_OPENING_ARRIVAL.worldId],
-          initialPlacement: NEW_CHARACTER_OPENING_ARRIVAL,
+          initialNativeArrival: accountSession.character.playMode === "story"
+            ? NEW_CHARACTER_OPENING_ARRIVAL.nativeArrival : null,
         });
         lifetime.signal.throwIfAborted();
         // Connect only after reaching the playable world. Cinematic positions

@@ -9,6 +9,7 @@ test("opening arrival uses native JOMO entry 1 facing the bedroom doorway", () =
     .entries.find(entry => entry.entry === 1).browserProjection;
   const arrival = NEW_CHARACTER_OPENING_ARRIVAL;
   assert.equal(arrival.worldId, "interior");
+  assert.deepEqual(arrival.nativeArrival, { scene: 1, area: "JOMO", entry: 1 });
   assert.deepEqual(arrival.position, entry.position);
   const placements = JSON.parse(fs.readFileSync("play/data/jomo-runtime-placements.json", "utf8"));
   const hinge = placements.placements.find(item => item.runtime?.objectTag === "dor7").position;
@@ -17,18 +18,18 @@ test("opening arrival uses native JOMO entry 1 facing the bedroom doorway", () =
   assert.ok(Math.abs(arrival.yaw - Math.atan2(dx, dz)) < 1e-6);
 });
 
-test("only characters without a first world login need the opening", () => {
+test("opening completion belongs to the mode, not the first world login", () => {
   assert.equal(needsNewCharacterOpening(null), false);
-  assert.equal(needsNewCharacterOpening({ id: 1 }), true);
-  assert.equal(needsNewCharacterOpening({ id: 1, lastLoginAt: null }), true);
-  assert.equal(needsNewCharacterOpening({ id: 1, lastLoginAt: "2026-09-28" }), false);
+  assert.equal(needsNewCharacterOpening({ id: 1, openingCompleted: false }), true);
+  assert.equal(needsNewCharacterOpening({ id: 1, openingCompleted: false, lastLoginAt: "2026-09-28" }), true);
+  assert.equal(needsNewCharacterOpening({ id: 1, openingCompleted: true }), false);
 });
 
 test("opening waits for murder, Ine-san's mail and the original Lan Di dream", async () => {
   const played = [];
   let finish;
   const opening = playNewCharacterOpening({
-    character: { id: 1 },
+    character: { id: 1, playMode: "story", openingCompleted: false },
     playCutscene: id => { played.push(id); return new Promise(resolve => { finish = resolve; }); },
   });
   assert.deepEqual(NEW_CHARACTER_OPENING, ["S1-OP02-00", "S1-000", "S1-OP00-MAIL", "S1-OP00-DREAM"]);
@@ -42,7 +43,7 @@ test("opening waits for murder, Ine-san's mail and the original Lan Di dream", a
 
 test("returning characters do not replay the opening", async () => {
   assert.equal(await playNewCharacterOpening({
-    character: { id: 1, lastLoginAt: "2026-09-28" },
+    character: { id: 1, openingCompleted: true },
     playCutscene: () => assert.fail("must not play"),
   }), false);
 });
@@ -50,7 +51,7 @@ test("returning characters do not replay the opening", async () => {
 test("scene failure does not silently advance or release gameplay", async () => {
   const played = [];
   await assert.rejects(playNewCharacterOpening({
-    character: { id: 1 },
+    character: { id: 1, playMode: "story", openingCompleted: false },
     playCutscene: async id => { played.push(id); throw new Error("failed asset"); },
   }), /failed asset/);
   assert.deepEqual(played, ["S1-OP02-00"]);
@@ -60,8 +61,17 @@ test("disposal during playback prevents the next scene", async () => {
   const lifetime = new AbortController();
   const played = [];
   await assert.rejects(playNewCharacterOpening({
-    character: { id: 1 }, signal: lifetime.signal,
+    character: { id: 1, playMode: "story", openingCompleted: false }, signal: lifetime.signal,
     playCutscene: async id => { played.push(id); lifetime.abort(); },
   }), { name: "AbortError" });
   assert.deepEqual(played, ["S1-OP02-00"]);
+});
+
+test("other avatars get only the combined Shenhua and hawk opening", async () => {
+  const played=[];
+  await playNewCharacterOpening({
+    character:{id:2,avatarId:"fuku",playMode:"free_roam",openingCompleted:false},
+    playCutscene:async id=>played.push(id),
+  });
+  assert.deepEqual(played,["S1-OP02-00"]);
 });

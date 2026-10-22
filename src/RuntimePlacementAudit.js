@@ -15,6 +15,22 @@ function renderableMeshes(root) {
   ));
 }
 
+// Empty MT5 control meshes have a default zero bounding box. Babylon's
+// hierarchy helper includes that box when it is the queried root, even when
+// it has no vertices, skewing inspection targets and container ownership.
+export function runtimePlacementBounds(root) {
+  let min=null,max=null;
+  for(const mesh of [root,...root.getDescendants(false)]){
+    if(typeof mesh.getTotalVertices!=="function"||mesh.getTotalVertices()<=0)continue;
+    mesh.computeWorldMatrix(true);
+    const box=mesh.getBoundingInfo().boundingBox;
+    if(!finiteVector3(box.minimumWorld)||!finiteVector3(box.maximumWorld))throw Error(`Invalid rendered bounds: ${mesh.name}`);
+    if(!min){min=box.minimumWorld.clone();max=box.maximumWorld.clone();}
+    else{min.minimizeInPlace(box.minimumWorld);max.maximizeInPlace(box.maximumWorld);}
+  }
+  return min?{min,max}:null;
+}
+
 function meshCanRender(mesh) {
   const materialAlpha = mesh.material?.alpha;
   return (
@@ -32,8 +48,8 @@ export function inspectRuntimePlacementRoot(root, placement, rootIndex = 0) {
   }
 
   const meshes = renderableMeshes(root);
-  const bounds = root.getHierarchyBoundingVectors(true);
-  const boundsFinite = finiteVector3(bounds.min) && finiteVector3(bounds.max);
+  const bounds = runtimePlacementBounds(root);
+  const boundsFinite = finiteVector3(bounds?.min) && finiteVector3(bounds?.max);
   const expectedPosition = placement.position;
   const positionMatches = (
     Array.isArray(expectedPosition)

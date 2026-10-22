@@ -13,6 +13,16 @@ SPEC.loader.exec_module(MODULE)
 
 
 class ExtractNativeClockRecordOperationEvidenceTest(unittest.TestCase):
+    def test_exact_clock_initialization_and_arrival_query_sources(self):
+        executable = MODULE.DEFAULT_EXECUTABLE.read_bytes()
+        report = MODULE.build_boot_report(executable)
+        self.assertEqual(report, json.loads((ROOT / "tools/evidence/native-clock-initialization-evidence.json").read_text()))
+        self.assertEqual(report["contract"]["gateZeroScenes"], [0, 80])
+        changed = bytearray(executable)
+        changed[0x0C181CE8 - MODULE.BASE] ^= 1
+        with self.assertRaisesRegex(ValueError, "unexpected 1ST_READ"):
+            MODULE.build_boot_report(changed)
+
     def test_recovers_every_exact_destination(self):
         report = MODULE.build_report(
             MODULE.DEFAULT_EXECUTABLE.read_bytes(),

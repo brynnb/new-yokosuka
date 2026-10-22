@@ -4,6 +4,20 @@ import test from "node:test";
 import { PlayWorldLifecycle } from "../play/world/PlayWorldLifecycle.js";
 import { PlayerRuntime } from "../play/characters/PlayerRuntime.js";
 
+test("the shared battle streets enable local practice only in exploration, never alongside Story",()=>{
+  const mfbt={id:"mfbt"},other={id:"mfsy"},calls=[];
+  const lifecycle=Object.assign(Object.create(PlayWorldLifecycle.prototype),{
+    worlds:{mfbt},worldRuntime:{activeWorld:mfbt},accountSession:{character:{playMode:"free-roam"}},
+    dom:{app:{classList:{toggle:(name,active)=>calls.push([name,active])}}},
+    playerRuntime:{combat:{setActive:active=>calls.push(["practice",active])}},
+  });
+  lifecycle.syncCombat();lifecycle.accountSession.character.playMode="story";lifecycle.syncCombat();
+  lifecycle.accountSession.character.playMode="free-roam";lifecycle.syncCombat();
+  lifecycle.worldRuntime.activeWorld=other;lifecycle.syncCombat();
+  assert.deepEqual(calls,[["combat-mode",true],["practice",true],["combat-mode",false],["practice",false],
+    ["combat-mode",true],["practice",true],["combat-mode",false],["practice",false]]);
+});
+
 test("preview return restores the live avatar, exact position, heading and camera without persistence", async () => {
   const calls = [];
   const world = { id: "dobuita" };
@@ -76,15 +90,17 @@ test("failed avatar restoration cannot enter the world as cinematic Ryo", async 
 });
 
 for (const { alreadyLoaded, arrival } of [false, true].flatMap(alreadyLoaded =>
-  ["default", "story", "returning"].map(arrival => ({ alreadyLoaded, arrival }))
+  ["default", "story", "returning", "opening"].map(arrival => ({ alreadyLoaded, arrival }))
 )) {
   test(`initialization restores selected avatar with existing controller=${alreadyLoaded}, arrival=${arrival}`, async () => {
     const calls = [];
     const controller = {};
     const avatar = { id: "shenhua" };
     const worlds = { interior: { id: "interior" }, exterior: { id: "exterior" } };
-    const initialPlacement = arrival === "story" ? { position: [-17.6, 0, 4.1], yaw: Math.PI } : null;
-    const expectedWorld = arrival === "returning" ? worlds.exterior : worlds.interior;
+    const initialPlacement = arrival === "story" ? { position: [-17.6, 0, 4.1], yaw: Math.PI,
+      nativeArrival: { scene: 1, area: "JOMO", entry: 1 } } : null;
+    const initialNativeArrival = arrival === "opening" ? { scene: 1, area: "JOMO", entry: 1 } : null;
+    const expectedWorld = ["returning", "opening"].includes(arrival) ? worlds.exterior : worlds.interior;
     let loaded = alreadyLoaded;
     const lifecycle = Object.assign(Object.create(PlayWorldLifecycle.prototype), {
       accountSession: { character: { avatarId: avatar.id, worldId: "exterior", x: 1, y: 0, z: 2, yaw: 0.25 } },
@@ -101,8 +117,9 @@ for (const { alreadyLoaded, arrival } of [false, true].flatMap(alreadyLoaded =>
       },
       worldRuntime: { initialize: async (world, options) => {
         assert.equal(world, expectedWorld);
-        assert.deepEqual(options.savedPosition, initialPlacement?.position || (arrival === "returning" ? [1, 0, 2] : null));
+        assert.deepEqual(options.savedPosition, initialPlacement?.position || (["returning", "opening"].includes(arrival) ? [1, 0, 2] : null));
         assert.equal(options.savedYaw, initialPlacement?.yaw ?? 0.25);
+        assert.deepEqual(options.nativeArrival, initialNativeArrival ?? initialPlacement?.nativeArrival ?? null);
         assert.equal(options.persistLocation, false);
         loaded = true;
         calls.push(["world"]);
@@ -112,7 +129,8 @@ for (const { alreadyLoaded, arrival } of [false, true].flatMap(alreadyLoaded =>
       persistRunToggle() {}, persistPlayerLocation() { calls.push(["persist"]); },
       selectionMenus: { setCharacterDisabled: disabled => assert.equal(disabled, false) },
     });
-    await lifecycle.initialize({ initialWorldOverride: arrival === "returning" ? null : worlds.interior, initialPlacement });
+    await lifecycle.initialize({ initialWorldOverride: ["returning", "opening"].includes(arrival) ? null : worlds.interior,
+      initialPlacement, initialNativeArrival });
     assert.deepEqual(calls, [["loading"], alreadyLoaded ? ["switch", avatar, { persist: false }] : ["initial", avatar.id], ["world"], ["persist"]]);
   });
 }

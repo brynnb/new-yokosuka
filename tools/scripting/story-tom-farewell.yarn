@@ -1,0 +1,13 @@
+-> Say goodbye to Tom
+    <<jump Farewell>>
+-> Leave it for now
+    <<complete>>
+===
+title: Farewell
+---
+<<start_activity "s1.mfsy.tom-farewell.scene">>
+<<if game_hour() < 22>>
+<<advance_story_time "s1.final.night">>
+<<endif>>
+{{effects}}
+<<complete>>

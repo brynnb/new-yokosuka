@@ -41,6 +41,7 @@ from tools.scripting.extract_dialogue_operations import mapinfo_dispatch_calls
 from tools.scripting.extract_dialogue_launch_arguments import (
     frame_argument_base,
     pushed_arguments,
+    relocate_static_call_arguments,
 )
 from tools.worlds.extract_jomo_object_operations import extract_dispatch_calls
 from tools.worlds.extract_map_transition_catalog import scn3_ranges
@@ -59,6 +60,7 @@ from tools.scripting.native_event_dataflow import (
     operation_result_target,
     scene_field_bitwise_writes,
     scene_field_constant_writes,
+    scene_field_expression_writes,
 )
 from tools.scripting.native_event_predicates import (
     branch_successors,
@@ -470,6 +472,8 @@ def map_index(
                 source_instruction_start,
                 frame_argument_bases.get(edge["source"]),
             )
+            if arguments is not None:
+                arguments = relocate_static_call_arguments(arguments, static_base)
             item = {
                 "callFileOffset": hx(edge["call"]),
                 "targetFileOffset": hx(edge["target"]),
@@ -685,6 +689,7 @@ def map_index(
                     static_base,
                     reached,
                 ),
+                *scene_field_expression_writes(function_rows, static_base, reached),
             ],
             "returnValue": function_return_value(function_rows, reached),
             "nativeOperations": sorted(

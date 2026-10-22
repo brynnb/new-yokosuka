@@ -1,0 +1,324 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "01EAR.AUTH",
+        "path": "disc2/SCENE/02/JOMO/MAPINFO.BIN",
+        "sourceOffset": 738400,
+        "sourceSha256": "6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe",
+        "byteLength": 15244,
+        "sha256": "f7196a33095b31f38643bb19b1c6aba99f683d714592a9c26012df9a3f105318"
+      },
+      {
+        "name": "M_01EAR.MOTN",
+        "path": "disc2/SCENE/02/JOMO/COMMON02.PKS",
+        "sourceSha256": "916aab45137cf340516a1cdd2ee61540e7c6562a1e92c5f932e9055ae0db3b89",
+        "archiveMember": "M_01EAR.MOTN",
+        "byteLength": 63684,
+        "sha256": "e5d9f9571a52363b2d338897b7062806fc43dd4ff8d62d53b06691c27d926649"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "01EAR",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/travel-family/manifest.json",
+  "packageActors": {
+    "FUKU": {
+      "label": "Masayuki Fukuhara",
+      "modelCode": "FUK_M",
+      "browserFilename": "FUK_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/FUK_M.CHRM",
+      "textureAssetPath": "play/assets/characters/FUK_textures.bin"
+    },
+    "INE_": {
+      "label": "Ine-san",
+      "modelCode": "INE_M",
+      "browserFilename": "INE_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/INE_M.CHRM",
+      "textureAssetPath": "play/assets/INE_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "INE_",
+    "FUKU"
+  ],
+  "motionBanks": [
+    {
+      "bank": 25,
+      "path": "play/assets/hazuki/travel-family/M_01EAR.MOTN",
+      "byteLength": 63684,
+      "sha256": "e5d9f9571a52363b2d338897b7062806fc43dd4ff8d62d53b06691c27d926649",
+      "sequenceIndexBase": 144
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/travel-family/M_01EAR.MOTN",
+      "byteLength": 63684,
+      "sha256": "e5d9f9571a52363b2d338897b7062806fc43dd4ff8d62d53b06691c27d926649"
+    },
+    {
+      "path": "play/assets/hazuki/travel-family/01EAR.AUTH",
+      "byteLength": 15244,
+      "sha256": "f7196a33095b31f38643bb19b1c6aba99f683d714592a9c26012df9a3f105318"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "01EAR/01EAR.AUTH",
+      "archiveMember": "01EAR.AUTH",
+      "byteLength": 15244,
+      "sha256": "f7196a33095b31f38643bb19b1c6aba99f683d714592a9c26012df9a3f105318",
+      "durationFrames": 2467,
+      "durationSeconds": 82.25,
+      "frameCount": 69,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 24,
+        "sound": 30,
+        "voice": 28
+      },
+      "actors": [
+        "AKIR",
+        "INE_",
+        "FUKU"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 144,
+          "motionName": "AKI_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 31,
+          "endFrame": 245
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 146,
+          "motionName": "JIJ_INE_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 291,
+          "endFrame": 505
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 145,
+          "motionName": "IWA_FUK_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 81,
+          "motionBank": 25,
+          "sequenceIndex": 145,
+          "motionName": "IWA_FUK_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 1,
+          "endFrame": 135
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 216,
+          "motionBank": 25,
+          "sequenceIndex": 144,
+          "motionName": "AKI_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 206,
+          "endFrame": 507
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 216,
+          "motionBank": 25,
+          "sequenceIndex": 146,
+          "motionName": "JIJ_INE_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 457,
+          "endFrame": 758
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 216,
+          "motionBank": 25,
+          "sequenceIndex": 145,
+          "motionName": "IWA_FUK_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 166,
+          "endFrame": 467
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 518,
+          "motionBank": 25,
+          "sequenceIndex": 146,
+          "motionName": "JIJ_INE_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 1464,
+          "endFrame": 1611
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 666,
+          "motionBank": 25,
+          "sequenceIndex": 144,
+          "motionName": "AKI_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 470,
+          "endFrame": 549
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 746,
+          "motionBank": 25,
+          "sequenceIndex": 144,
+          "motionName": "AKI_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 553,
+          "endFrame": 715
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 746,
+          "motionBank": 25,
+          "sequenceIndex": 146,
+          "motionName": "JIJ_INE_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 804,
+          "endFrame": 966
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 746,
+          "motionBank": 25,
+          "sequenceIndex": 145,
+          "motionName": "IWA_FUK_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 513,
+          "endFrame": 675
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 909,
+          "motionBank": 25,
+          "sequenceIndex": 144,
+          "motionName": "AKI_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 755,
+          "endFrame": 1216
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 909,
+          "motionBank": 25,
+          "sequenceIndex": 146,
+          "motionName": "JIJ_INE_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 1006,
+          "endFrame": 1467
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 909,
+          "motionBank": 25,
+          "sequenceIndex": 145,
+          "motionName": "IWA_FUK_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 715,
+          "endFrame": 1176
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 1371,
+          "motionBank": 25,
+          "sequenceIndex": 146,
+          "motionName": "JIJ_INE_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 1502,
+          "endFrame": 1709
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1579,
+          "motionBank": 25,
+          "sequenceIndex": 144,
+          "motionName": "AKI_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 1491,
+          "endFrame": 1622
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 1579,
+          "motionBank": 25,
+          "sequenceIndex": 146,
+          "motionName": "JIJ_INE_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 1722,
+          "endFrame": 1853
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 1579,
+          "motionBank": 25,
+          "sequenceIndex": 145,
+          "motionName": "IWA_FUK_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 1431,
+          "endFrame": 1562
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1711,
+          "motionBank": 25,
+          "sequenceIndex": 144,
+          "motionName": "AKI_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 1613,
+          "endFrame": 1852
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 1711,
+          "motionBank": 25,
+          "sequenceIndex": 146,
+          "motionName": "JIJ_INE_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 1864,
+          "endFrame": 2141
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 1711,
+          "motionBank": 25,
+          "sequenceIndex": 145,
+          "motionName": "IWA_FUK_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 1573,
+          "endFrame": 1812
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1951,
+          "motionBank": 25,
+          "sequenceIndex": 144,
+          "motionName": "AKI_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 1938,
+          "endFrame": 2454
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 1951,
+          "motionBank": 25,
+          "sequenceIndex": 145,
+          "motionName": "IWA_FUK_AT1_KIKUMIMIMOTANAI_0100",
+          "startFrame": 1898,
+          "endFrame": 2412
+        }
+      ]
+    }
+  ]
+}

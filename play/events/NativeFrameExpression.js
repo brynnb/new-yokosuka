@@ -7,11 +7,18 @@ export function evaluateNativeFrameExpression(
   expression,
   readFrameField,
   depth = 0,
+  readOperationResult,
 ) {
   if (depth > 20) return { resolved: false, reason: "frame-expression-depth" };
   const evaluate = operand => evaluateNativeFrameExpression(
-    operand, readFrameField, depth + 1,
+    operand, readFrameField, depth + 1, readOperationResult,
   );
+  if (expression?.kind === "operation-result") {
+    const value = readOperationResult?.(expression.callFileOffset);
+    return Number.isInteger(value)
+      ? { resolved: true, value: value >>> 0 }
+      : { resolved: false, reason: `frame-expression-operation-result-missing:${expression.callFileOffset}` };
+  }
   if (expression?.kind === "constant" && Number.isInteger(expression.value)) {
     return { resolved: true, value: expression.value >>> 0 };
   }

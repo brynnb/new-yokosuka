@@ -1,0 +1,314 @@
+{
+  "schema":"new-yokosuka-authored-story-scenes-v1",
+  "motionBanks":{"motorcycle":"play/assets/sakuragaoka/nozomi-motorcycle/M_01BIKE.MOTN","harborPay":"play/assets/harbor/payday/M_MO01.MOTN","basement":"play/assets/basement/mirror-search/M_0138.MOTN","koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN","mgqb":"play/assets/harbor/goro-encounter/M_MGQB.MOTN","mbui":"play/assets/harbor/warehouse-eight/M_0153A.MOTN","oldDistrict":"play/assets/harbor/old-district-entry/M_0153.MOTN"},
+  "scenes":[
+    {"id":"s1.mfsy.workday-four-spying","area":"MFSY","worldId":"mfsy",
+     "provenance":"Original TYMK/RFA_L coworker model and F1109 warning. Authored standing conversation on the previously rendered Alpha-side walkway, about nine metres from HIRUAUTH's seated Tsuyoshi. Condenses his post12:45 walk and repeated inquiries; no recovered patrol, gestures or camera. All coordinates are native (shared renderer mirrors X).",
+     "actorDefinitions":[{"actorCode":"TYMK","label":"Tsuyoshi Murakami","modelCode":"RFA_L","activityOnly":true}],
+     "actors":[
+       {"tag":"AKIR","pose":{"x":-45.7,"y":0,"z":48.2,"rotationX":0,"rotationY":225,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+       {"tag":"TYMK","pose":{"x":-44.4,"y":0,"z":49.5,"rotationX":0,"rotationY":45,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+     ],"camera":{"positionX":-48.5,"positionY":1.8,"positionZ":48.5,"targetX":-44.9,"targetY":1.1,"targetZ":48.9,"roll":0,"perspective":55}},
+    {"id":"s1.mfsy.payday","area":"MFSY","worldId":"mfsy","waitForMotions":true,
+     "provenance":"Original ALP_PAY M_MO01 paired salary handover clips; original ALPHA office scenery and existing TMRA/KWD_L binding. Nearby two-person office alignment, camera and borrowed encouragement lines are authored. No recovered native payroll/amount display or exact banknote/finger attachment. The enclosing Yarn transaction alone pays.",
+     "actorDefinitions":[{"actorCode":"TMRA","label":"Ryozo Yada","modelCode":"KWD_L","activityOnly":true}],
+     "actors":[
+       {"tag":"AKIR","pose":{"x":-25.6,"y":0,"z":76.4,"rotationX":0,"rotationY":135,"rotationZ":0},"motion":{"bank":"harborPay","name":"AKI_MORAU_KYUURYOU_A_FORKLIFT_FE","loop":false}},
+       {"tag":"TMRA","pose":{"x":-26.3,"y":0,"z":77.1,"rotationX":0,"rotationY":315,"rotationZ":0},"motion":{"bank":"harborPay","name":"YKI_YAD_MORAU_KYUURYOU_A_FORKLIFT_FE","loop":false}}
+     ],"camera":{"positionX":-23.4,"positionY":1.8,"positionZ":75.7,"targetX":-25.95,"targetY":1,"targetZ":76.75,"roll":0,"perspective":60},
+     "sceneObjects":{"ROOM":{"model":"MAPALP","browserFilename":"MAPALP.MAPD","assetPath":"play/assets/harbor/yada-job-interview/MAPALP.MAPD","textureAssetPath":"play/assets/harbor/yada-job-interview/alpha-textures.bin","lifecycle":{"kind":"room-script-persistent"},"initialPresentation":{"position":[0,0,0],"rotationDegrees":[0,0,0],"scale":[1,1,1]}}}},
+    {"id":"s1.jomo.fuku-travel-advice","area":"JOMO","worldId":"interior","actorDefinitions":[{"actorCode":"FUKU","label":"Masayuki Fukuhara","modelCode":"FUK_M","activityOnly":true}],"provenance":"Held original A0160 first bedroom actor poses/camera for three HUMANS travel-agency lines. Conversation gestures and lead-in framing duration are authored; the subsequent original 01EAR kitchen scene is separate.","actors":[{"tag":"AKIR","pose":{"x":22.09458351135254,"y":0,"z":-1.1005860567092896,"rotationX":0,"rotationY":-80.21407318115234,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},{"tag":"FUKU","pose":{"x":22.865690231323242,"y":0,"z":-3.013715982437134,"rotationX":0,"rotationY":160,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],"camera":{"positionX":21.279356002807617,"positionY":1.748088002204895,"positionZ":-0.2644360065460205,"targetX":22.954631805419922,"targetY":1.241387963294983,"targetZ":-2.600006103515625,"roll":-5,"perspective":32.98500442504883}},
+    {"id":"s1.ms08.save-mirror","area":"MS08","worldId":"ms08","actorDefinitions":[],"provenance":"Original MS8A SEQDATA3 final player position/facing; authored held standing pose/camera and two-second Left prompt, not recovered native QTE staging or hand/button choreography.","actors":[{"tag":"AKIR","pose":{"x":-19.992618560791016,"y":0,"z":-10.781557083129883,"rotationX":0,"rotationY":-91.70889282226562,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],"camera":{"positionX":-18.5,"positionY":1.9,"positionZ":-9,"targetX":-20,"targetY":1.1,"targetZ":-10.8,"roll":0,"perspective":65}},
+    {"id":"s1.mfsy.master-chen-return-phone","area":"MFSY","worldId":"mfsy","provenance":"Authored pose/camera at original BTEL harbor telephone; original free telephone motion and reused password dialogue. No recovered phone-owner staging or new story save.","actorDefinitions":[],"actors":[{"tag":"AKIR","pose":{"x":-118.8,"y":0,"z":121.469,"rotationX":0,"rotationY":90,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_DENWA_LP","loop":true}}],"camera":{"positionX":-117.8,"positionY":1.9,"positionZ":122.5,"targetX":-119.4,"targetY":1.3,"targetZ":121.469,"roll":0,"perspective":80}},
+    {"area":"YDB1","worldId":"ydb1","actorDefinitions":[],"provenance":"Original selected basement motion/prop where named; authored standing alignment, camera and hand binding. Shared cancellable object transforms condense mechanical movement. No recovered room controller or exact hand/debris fidelity.","id":"s1.ydb1.floor","actors":[{"tag":"AKIR","pose":{"x":5.7,"y":-0.005110997706651688,"z":2.7,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],"camera":{"positionX":4.8,"positionY":1.7,"positionZ":2.5,"targetX":6.3,"targetY":0.05,"targetZ":2,"roll":0,"perspective":65}},
+    {"area":"YDB1","worldId":"ydb1","actorDefinitions":[],"provenance":"Original selected basement motion/prop where named; authored standing alignment, camera and hand binding. Shared cancellable object transforms condense mechanical movement. No recovered room controller or exact hand/debris fidelity.","id":"s1.ydb1.shelf","waitForMotions":true,"actors":[{"tag":"AKIR","pose":{"x":5.7,"y":-0.005110997706651688,"z":2,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"basement","name":"AKI_HIKU_TANA_0138","loop":false}}],"objectTransforms":[{"object":"SHEF","offset":[0,0,1.9]}],"camera":{"positionX":4.8,"positionY":1.7,"positionZ":3.5,"targetX":7,"targetY":1,"targetZ":2,"roll":0,"perspective":65}},
+    {"area":"YDB1","worldId":"ydb1","actorDefinitions":[],"provenance":"Original selected basement motion/prop where named; authored standing alignment, camera and hand binding. Shared cancellable object transforms condense mechanical movement. No recovered room controller or exact hand/debris fidelity.","id":"s1.ydb1.axe","waitForMotions":true,"actors":[{"tag":"AKIR","pose":{"x":3.5,"y":-0.005110997706651688,"z":4.8,"rotationX":0,"rotationY":90,"rotationZ":0},"motion":{"bank":"basement","name":"AKI_TORU_ONO_TIKATANSAKU_FE","loop":false}}],"objectTransforms":[{"object":"AXE_","visible":false}],"attachedObjects":{"AXE_":{"browserFilename":"ONOS500G.CHRM","assetPath":"play/assets/basement/mirror-search/ONOS500G.CHRM","textureAssetPath":"play/assets/basement/mirror-search/textures.bin","attachments":[{"activityId":"s1.ydb1.axe","frame":0,"parentActorTag":"AKIR","controlId":18,"translation":[0,0.08,0],"rotationRaw":[0,0,0]}],"presentation":[{"activityId":"s1.ydb1.axe","frame":0,"visible":false},{"activityId":"s1.ydb1.axe","frame":140,"visible":true}]}},"camera":{"positionX":4.4,"positionY":1.4,"positionZ":3.3,"targetX":3.1,"targetY":0.9,"targetZ":4.8,"roll":0,"perspective":65}},
+    {"area":"YDB1","worldId":"ydb1","actorDefinitions":[],"provenance":"Original selected basement motion/prop where named; authored standing alignment, camera and hand binding. Shared cancellable object transforms condense mechanical movement. No recovered room controller or exact hand/debris fidelity.","id":"s1.ydb1.wall","waitForMotions":true,"actors":[{"tag":"AKIR","pose":{"x":7.1,"y":-0.005110997706651688,"z":2,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"basement","name":"AKI_KABEKOWA_ONO_TIKA_FE","loop":false}}],"objectTransforms":[{"object":"KABE","visible":true},{"object":"HOKY","visible":true}],"attachedObjects":{"AXE_":{"browserFilename":"ONOS500G.CHRM","assetPath":"play/assets/basement/mirror-search/ONOS500G.CHRM","textureAssetPath":"play/assets/basement/mirror-search/textures.bin","attachments":[{"activityId":"s1.ydb1.wall","frame":0,"parentActorTag":"AKIR","controlId":18,"translation":[0,0.08,0],"rotationRaw":[0,0,0]}],"presentation":[{"activityId":"s1.ydb1.wall","frame":0,"visible":true}]}},"camera":{"positionX":5.6,"positionY":1.6,"positionZ":3.7,"targetX":8,"targetY":0.8,"targetZ":2,"roll":0,"perspective":65}},
+    {"area":"YDB1","worldId":"ydb1","actorDefinitions":[],"provenance":"Original selected basement motion/prop where named; authored standing alignment, camera and hand binding. Shared cancellable object transforms condense mechanical movement. No recovered room controller or exact hand/debris fidelity.","id":"s1.ydb1.mirror","waitForMotions":true,"actors":[{"tag":"AKIR","pose":{"x":7.1,"y":-0.005110997706651688,"z":2,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"basement","name":"AKI_TORU_HOUOUKYOU_TIKATANSAKU","loop":false}}],"objectTransforms":[{"object":"HOKY","visible":false}],"attachedObjects":{"HOKY":{"browserFilename":"PNX02M1G.CHRM","assetPath":"play/assets/basement/mirror-search/PNX02M1G.CHRM","textureAssetPath":"play/assets/basement/mirror-search/textures.bin","attachments":[{"activityId":"s1.ydb1.mirror","frame":0,"parentActorTag":"AKIR","controlId":18,"translation":[0,0.08,0],"rotationRaw":[0,0,0]}],"presentation":[{"activityId":"s1.ydb1.mirror","frame":0,"visible":false},{"activityId":"s1.ydb1.mirror","frame":280,"visible":true}]}},"camera":{"positionX":7.7,"positionY":1.1,"positionZ":3.35,"targetX":7.1,"targetY":0.8,"targetZ":2,"roll":0,"perspective":65}},
+  {
+    "id":"s1.jhd0.basement-descent","area":"JHD0","worldId":"exterior","actorDefinitions":[],
+    "provenance":"Authored close-up on the accessible side of the solved passage. Original room geometry, no recovered ladder choreography.",
+    "actors":[{"tag":"AKIR","pose":{"x":-10.3,"y":0.96,"z":-22.5,"rotationX":0,"rotationY":90,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":-10.4,"positionY":2.4,"positionZ":-22.5,"targetX":-12.3,"targetY":1.7,"targetZ":-22.5,"roll":0,"perspective":65}
+  },{
+    "id":"s1.ydb1.basement-return","area":"YDB1","worldId":"ydb1","actorDefinitions":[],
+    "provenance":"Authored north-passage exit prompt/standing pose, not original camera or climb motion.",
+    "actors":[{"tag":"AKIR","pose":{"x":0.758,"y":-0.005110997706651688,"z":7.35,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":1.8,"positionY":1.2,"positionZ":6.9,"targetX":0.758,"targetY":1.1,"targetZ":7.7,"roll":0,"perspective":65}
+  },{
+    "id":"s1.jhd0.handguard-switch","area":"JHD0","worldId":"exterior","actorDefinitions":[],
+    "provenance":"Original KAK2/SKAB left-scroll/recess location; authored held Ryo and close-up. Visibility condenses scroll rolling and handguard handling; no recovered original voice or hand choreography.",
+    "objectTransforms":[{"object":"KAK2","visible":false}],
+    "actors":[{"tag":"AKIR","pose":{"x":-9.7,"y":0.75,"z":-21.937,"rotationX":0,"rotationY":90,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":-9.8,"positionY":2.6,"positionZ":-21.937,"targetX":-11.24,"targetY":2,"targetZ":-21.937,"roll":0,"perspective":50}
+  },{
+    "id":"s1.jhd0.sword-switch","area":"JHD0","worldId":"exterior","actorDefinitions":[],
+    "provenance":"Original KAK1/SKAB right-scroll mechanism; authored sideways wall movement and held close-up. Descent/collision are separate, not implied by this presentation.",
+    "objectTransforms":[{"object":"KAK1","visible":false},{"object":"SKAB","offset":[0,0,2.15]}],
+    "actors":[{"tag":"AKIR","pose":{"x":-9.7,"y":0.75,"z":-22.947,"rotationX":0,"rotationY":90,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":-9.8,"positionY":2.6,"positionZ":-22.947,"targetX":-11.8,"targetY":1.8,"targetZ":-22.45,"roll":0,"perspective":65}
+  },{
+    "id":"s1.jomo.iwao-key","area":"JOMO","worldId":"interior","actorDefinitions":[],
+    "provenance":"Original IWWH/ihko/KAGI room placement, authored held Ryo inspection pose and case close-up. No recovered pickup or detailed hand animation.",
+    "actors":[{"tag":"AKIR","pose":{"x":-1.4,"y":0,"z":0.5,"rotationX":0,"rotationY":145,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":-0.8,"positionY":1.1,"positionZ":-1.35,"targetX":-2.05,"targetY":0.4,"targetZ":-0.49,"roll":0,"perspective":55}
+  },{
+    "id":"s1.jhd0.sword-case","area":"JHD0","worldId":"exterior","actorDefinitions":[],
+    "provenance":"Original KHKS/PONK/PONS dojo placement, authored held Ryo inspection pose and case close-up. No recovered lid or hand animation.",
+    "actors":[{"tag":"AKIR","pose":{"x":-9.7,"y":0.75,"z":-24.5,"rotationX":0,"rotationY":132,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":-8.9,"positionY":2.1,"positionZ":-24.7,"targetX":-10.46,"targetY":1.25,"targetZ":-25.2,"roll":0,"perspective":55}
+  },{
+    "id":"s1.jomo.fuku-handguard-home","area":"JOMO","worldId":"interior",
+    "actorDefinitions":[{"actorCode":"FUKU","label":"Masayuki Fukuhara","modelCode":"FUK_M","activityOnly":true}],
+    "provenance":"Original A0169 foyer poses at 35 seconds supply the referral tableau. An authored Fuku close-up remains on the foyer side of the closed bedroom door; held gestures and omitted handguard handling are adaptations.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":17.042717,"y":0.003119,"z":1.569937,"rotationX":0,"rotationY":80.832649,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"FUKU","pose":{"x":15.28388,"y":0.01873,"z":2.127268,"rotationX":0,"rotationY":-90,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+    ],
+    "camera":{"positionX":15.9,"positionY":1.6,"positionZ":2.6,"targetX":15.28388,"targetY":1.4,"targetZ":2.127268,"roll":0,"perspective":65}
+  },{
+    "id":"s1.mksg.patrol-introduction","area":"MKSG","worldId":"mksg","actorDefinitions":[],
+    "provenance":"Original E1006 warning; authored camera at original MKSG default start. Guards are prepared by the shared navigation cast, not duplicated scenery actors.",
+    "actors":[{"tag":"AKIR","pose":{"x":-17,"y":0,"z":-15,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":-16,"positionY":1.7,"positionZ":-19,"targetX":-17,"targetY":1.1,"targetZ":-15,"roll":0,"perspective":60}
+  },{
+    "id":"s1.mksg.caught","area":"MKSG","worldId":"mksg","actorDefinitions":[],
+    "provenance":"Original guard dismissal voice/motion with authored two-person shot. The next-day return is server settlement, not a native escort controller.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-17,"y":0,"z":-15,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"KEBB","pose":{"x":-15.3,"y":0,"z":-15,"rotationX":0,"rotationY":90,"rotationZ":0},"motion":{"bank":"oldDistrict","name":"GRD_KAIWA_STAND_LP_0132","loop":true}}
+    ],
+    "camera":{"positionX":-16.2,"positionY":1.7,"positionZ":-19.5,"targetX":-16.2,"targetY":1.1,"targetZ":-15,"roll":0,"perspective":60}
+  },{
+    "id":"s1.mfsy.old-district-day-gate","area":"MFSY","worldId":"mfsy",
+    "provenance":"Original SA1039 guard/model and GRD conversation motion; authored gate placement/camera near original MFSY entry 1.",
+    "actorDefinitions":[{"actorCode":"KEBB","label":"Yasutomo Miyagi","modelCode":"KVB_L","activityOnly":true}],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-118,"y":0,"z":-12,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"KEBB","pose":{"x":-115.5,"y":0,"z":-12,"rotationX":0,"rotationY":90,"rotationZ":0},"motion":{"bank":"oldDistrict","name":"GRD_KAIWA_STAND_LP_0132","loop":true}}
+    ],
+    "camera":{"positionX":-117,"positionY":1.8,"positionZ":-17,"targetX":-117,"targetY":1.1,"targetZ":-12,"roll":0,"perspective":65}
+  },{
+    "id":"s1.mfsy.old-district-night-approach","area":"MFSY","worldId":"mfsy","actorDefinitions":[],
+    "provenance":"Original E1008 line and thinking motion; authored nighttime close-up at the gate. No daytime guard is staged.",
+    "actors":[{"tag":"AKIR","pose":{"x":-118,"y":0,"z":-12,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"oldDistrict","name":"AKI_KANGAETEIRU_STAND_LP_0132","loop":true}}],
+    "camera":{"positionX":-120,"positionY":1.7,"positionZ":-15,"targetX":-118,"targetY":1.1,"targetZ":-12,"roll":0,"perspective":55}
+  },{
+    "id":"s1.mfsy.old-district-head-bump","area":"MFSY","worldId":"mfsy","actorDefinitions":[],"waitForMotions":true,
+    "provenance":"Original MKSG head-bump motion, authored harbor-gate alignment/close-up. Guard-station room/camera is not reconstructed.",
+    "actors":[{"tag":"AKIR","pose":{"x":-118,"y":0,"z":-12,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"oldDistrict","name":"AKI_ATAMABUTUKERU1_0153","loop":false}}],
+    "camera":{"positionX":-120,"positionY":1.7,"positionZ":-15,"targetX":-118,"targetY":1.1,"targetZ":-12,"roll":0,"perspective":55}
+  },{
+    "id":"s1.mfsy.old-district-prompt","area":"MFSY","worldId":"mfsy","actorDefinitions":[],
+    "provenance":"Hold the original head-bump final pose for the server-validated Right prompt; an authored cue, not native QTE timing.",
+    "actors":[{"tag":"AKIR","pose":{"x":-118,"y":0,"z":-12,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"oldDistrict","name":"AKI_ATAMABUTUKERU1_0153","loop":false,"elapsedSeconds":16.9}}],
+    "camera":{"positionX":-120,"positionY":1.7,"positionZ":-15,"targetX":-118,"targetY":1.1,"targetZ":-12,"roll":0,"perspective":55}
+  },{
+    "id":"s1.mfsy.old-district-catch","area":"MFSY","worldId":"mfsy","actorDefinitions":[],"waitForMotions":true,
+    "provenance":"Original flashlight-taking motion/model after real Right success. Authored right-hand binding and appearance cue; no recovered falling trajectory or guard-station choreography.",
+    "actors":[{"tag":"AKIR","pose":{"x":-118,"y":0,"z":-12,"rotationX":0,"rotationY":270,"rotationZ":0},"motion":{"bank":"oldDistrict","name":"AKI_KAITYUUDENTOUTORU1_0153","loop":false}}],
+    "attachedObjects":{"FLAS":{"browserFilename":"KAIS500G.CHRM","assetPath":"play/assets/harbor/old-district-entry/KAIS500G.CHRM","textureAssetPath":"play/assets/harbor/old-district-entry/EVENT.PKF",
+      "attachments":[{"activityId":"s1.mfsy.old-district-catch","frame":120,"parentActorTag":"AKIR","controlId":18,"translation":[0,0,0],"rotationRaw":[0,0,0]}],
+      "presentation":[{"activityId":"s1.mfsy.old-district-catch","frame":0,"visible":false},{"activityId":"s1.mfsy.old-district-catch","frame":120,"visible":true}]}},
+    "camera":{"positionX":-115,"positionY":0.9,"positionZ":-14.4,"targetX":-115.8,"targetY":0.35,"targetZ":-12,"roll":0,"perspective":45}
+  },{
+    "id":"s1.mfsy.warehouse-eight-refusal","area":"MFSY","worldId":"mfsy",
+    "provenance":"Original guard model/tag and SA1035 voices. Authored poses and camera beside original OTC8 front shutter.",
+    "actorDefinitions":[{"actorCode":"KEBG","label":"Shozo Kuga","modelCode":"KVG_L","activityOnly":true}],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":5,"y":0,"z":132,"rotationX":0,"rotationY":225,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"KEBG","pose":{"x":6.5,"y":0,"z":133.5,"rotationX":0,"rotationY":45,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+    ],
+    "camera":{"positionX":1,"positionY":1.8,"positionZ":131,"targetX":5.8,"targetY":1.1,"targetZ":133,"roll":0,"perspective":65}
+  },{
+    "id":"s1.mfsy.warehouse-eight-window-inspect","area":"MFSY","worldId":"mfsy","actorDefinitions":[],
+    "provenance":"Authored rear-window inspection shot; original 8MAD world window retained.",
+    "actors":[{"tag":"AKIR","pose":{"x":18.5,"y":0,"z":157,"rotationX":0,"rotationY":45,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":24,"positionY":3,"positionZ":160,"targetX":18,"targetY":3,"targetZ":153,"roll":0,"perspective":65}
+  },{
+    "id":"s1.mfsy.warehouse-eight-climb","area":"MFSY","worldId":"mfsy","actorDefinitions":[],"waitForMotions":true,
+    "provenance":"Original MBUI entering-window motion at original MFSY return entry 5 [18.5,3.6,153.6], facing reversed to enter. 8MAD contains two separated windows: its object origin is not the climb point. Static shot and platform alignment are authored; crate movement/incremental climb are not reproduced.",
+    "actors":[{"tag":"AKIR","pose":{"x":18.5,"y":3.5999999046325684,"z":153.60000610351562,"rotationX":0,"rotationY":45,"rotationZ":0},"motion":{"bank":"mbui","name":"AKI_HAIRU_MADO_SOUKO_0153","loop":false}}],
+    "camera":{"positionX":24,"positionY":6,"positionZ":158,"targetX":18,"targetY":5,"targetZ":153,"roll":0,"perspective":65}
+  },{
+    "id":"s1.ms8s.warehouse-eight-overheard","area":"MS8S","worldId":"ms8s","actorDefinitions":[],
+    "provenance":"Original E1009B workers' voices remain offscreen. Authored listening shot at the original MS8S CHRS arrival; upper-walkway search is condensed.",
+    "actors":[{"tag":"AKIR","pose":{"x":17,"y":4.275000095367432,"z":152.24000549316406,"rotationX":0,"rotationY":31,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}],
+    "camera":{"positionX":20,"positionY":6,"positionZ":151,"targetX":17,"targetY":5.4,"targetZ":152.24,"roll":0,"perspective":65}
+  },{
+    "id":"s1.mfsy.goro-introduction","area":"MFSY","worldId":"mfsy",
+    "provenance":"Original E1046 speaker tags and MGQB motions. Model mappings use the existing character inventory (GORO/KMB_L, NGSM/YAB_L, MURI/FSC_L). Positions and camera are authored beside original TBOX, not recovered DYNAMICS transforms.",
+    "actorDefinitions":[
+      {"actorCode":"GORO","label":"Goro Mihashi","modelCode":"KMB_L","activityOnly":true},
+      {"actorCode":"NGSM","label":"Tetsuya Nagashima","modelCode":"YAB_L","activityOnly":true},
+      {"actorCode":"MURI","label":"Hiroshi Murai","modelCode":"FSC_L","activityOnly":true}
+    ],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-116,"y":0,"z":125,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"GORO","pose":{"x":-116,"y":0,"z":122.5,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"mgqb","name":"OTH_THO_TALK_STAND_YANKII_LP_F","loop":true}},
+      {"tag":"NGSM","pose":{"x":-117.5,"y":0,"z":122.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"MURI","pose":{"x":-118.2,"y":0,"z":121.9,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"mgqb","name":"OTH_MAN_BIBIRU_LP_QTE","loop":true}}
+    ],
+    "camera":{"positionX":-112.7,"positionY":1.8,"positionZ":125.8,"targetX":-116.8,"targetY":1.1,"targetZ":123.4,"roll":0,"perspective":65}
+  },{
+    "id":"s1.mfsy.goro-success","area":"MFSY","worldId":"mfsy","actorDefinitions":[],"waitForMotions":true,
+    "provenance":"Original paired AKI_SEIKOU_W3QTE / OTH_TKA_SEIKOU_W3QTE winning clips after real Left/A/B. Pair placement and shot are authored; original per-button dynamics/cameras are not reproduced.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-116,"y":0,"z":124,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"mgqb","name":"AKI_SEIKOU_W3QTE","loop":false}},
+      {"tag":"GORO","pose":{"x":-116,"y":0,"z":122.5,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"mgqb","name":"OTH_TKA_SEIKOU_W3QTE","loop":false}},
+      {"tag":"NGSM","presented":false,"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":false}},
+      {"tag":"MURI","presented":false,"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":false}}
+    ],
+    "camera":{"positionX":-112.7,"positionY":1.8,"positionZ":125.8,"targetX":-116,"targetY":1.1,"targetZ":123.2,"roll":0,"perspective":65}
+  },{
+    "id":"s1.mfsy.goro-aftermath","area":"MFSY","worldId":"mfsy","actorDefinitions":[],
+    "provenance":"Original E1046 Warehouse No. 8 directions. Authored held talk pose and camera, restored after dialogue.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-116,"y":0,"z":124,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"GORO","pose":{"x":-116,"y":0,"z":122.5,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"mgqb","name":"OTH_THO_TALK_STAND_YANKII_LP_F","loop":true}},
+      {"tag":"NGSM","presented":false,"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"MURI","presented":false,"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+    ],
+    "camera":{"positionX":-113.5,"positionY":1.8,"positionZ":125.8,"targetX":-116,"targetY":1.1,"targetZ":123.2,"roll":0,"perspective":65}
+  },{
+    "id":"s1.d000.master-chen-phone","area":"D000","worldId":"dobuita",
+    "provenance":"Original telephone placement supplies the location. The held phone gesture and camera are authored; receiver pickup, dial pad and hangup choreography are not reconstructed. Original E1032 dialogue/choices and durable effects are server-owned.",
+    "actorDefinitions":[],
+    "actors":[{"tag":"AKIR","pose":{"x":38.12,"y":0,"z":9.82,"rotationX":0,"rotationY":-90,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_DENWA_LP","loop":true}}],
+    "camera":{"positionX":37.4,"positionY":1.75,"positionZ":10.2,"targetX":38.3,"targetY":1.2,"targetZ":9.7,"roll":0,"perspective":80}
+  },{
+    "id":"s1.jomo.master-chen-phone","area":"JOMO","worldId":"interior",
+    "provenance":"Original TEL_ foyer placement supplies the location; reuse the same held phone gesture as Dobuita with an authored interior camera. Original complete receiver/dial/hangup choreography is not claimed.",
+    "actorDefinitions":[],
+    "actors":[{"tag":"AKIR","pose":{"x":15.4,"y":0,"z":2.2,"rotationX":0,"rotationY":-90,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_DENWA_LP","loop":true}}],
+    "camera":{"positionX":14.1,"positionY":1.6,"positionZ":3.4,"targetX":15.8,"targetY":1.1,"targetZ":2.2,"roll":0,"perspective":55}
+  },{
+    "id":"s1.jd00.gao-introduction","area":"JD00","worldId":"sakuragaoka",
+    "provenance":"Original E1049 cast and KOJI CHRT CHRL/BIK_L binding. Gang identities/models from the Shenmue-Mods character inventory; original JD00 EN_HAMA/EN_HATA/EN_RYOU files support the three fighter identities. Positions/camera are authored around the existing walkable Sakuragaoka entry, rather than claimed recovered construction-lot transforms. Original path into the lot is not reproduced.",
+    "actorDefinitions":[
+      {"actorCode":"KKBN","label":"Xie Gao Wen","modelCode":"KOM_L","activityOnly":true},
+      {"actorCode":"CHRL","label":"Charlie Grant","modelCode":"BIK_L","activityOnly":true},
+      {"actorCode":"TDSI","label":"Tadashi Hama","modelCode":"KMD_L","activityOnly":true},
+      {"actorCode":"HTNK","label":"Yoshihide Hatanaka","modelCode":"KAZ_L","activityOnly":true},
+      {"actorCode":"OKYS","label":"Minoru Okayasu","modelCode":"OKA_L","activityOnly":true},
+      {"actorCode":"MRSK","label":"Shingo Murasaki","modelCode":"PPL_L","activityOnly":true}
+    ],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":8,"y":0,"z":22,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"KKBN","pose":{"x":8,"y":0,"z":20.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"koji","name":"GAK_YAS_SOCCOR_SEIKOU_TALK_LP_KOJ","loop":true}},
+      {"tag":"CHRL","pose":{"x":11,"y":0,"z":20.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"TDSI","pose":{"x":7,"y":0,"z":20.5,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"HTNK","pose":{"x":9.5,"y":0,"z":20.5,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"OKYS","pose":{"x":10,"y":0,"z":21.8,"rotationX":0,"rotationY":230,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"MRSK","pose":{"x":10.5,"y":0,"z":22.5,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+    ],
+    "camera":{"positionX":10.5,"positionY":1.7,"positionZ":24,"targetX":8,"targetY":1,"targetZ":21.3,"roll":0,"perspective":65}
+  },{
+    "id":"s1.jd00.gao-hostage","area":"JD00","worldId":"sakuragaoka","actorDefinitions":[],
+    "provenance":"Original KOJI hostage loops and ball model, authored placement/hand offset/camera. This is presentation before a server-validated A QTE, not an automatic rescue.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":8,"y":0,"z":22,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"KKBN","pose":{"x":8,"y":0,"z":20.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"koji","name":"GAK_KID_TUKAMARU_BALL_LP_KOUJI_QTE","loop":true}},
+      {"tag":"CHRL","pose":{"x":8,"y":0,"z":20.4,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"koji","name":"OTH_CHY_TUKAMARU_BALL_LP_KOUJI_QTE","loop":true}}
+    ],
+    "attachedObjects":{"FBB_":{"browserFilename":"FBB0201G.CHRM","assetPath":"play/assets/sakuragaoka/gao-wen/FBB0201G.CHRM","textureAssetPath":"play/assets/characters/BIK_textures.bin",
+      "attachments":[{"activityId":"s1.jd00.gao-hostage","frame":0,"parentActorTag":"AKIR","controlId":18,"translation":[0,0,0.08],"rotationRaw":[0,0,0]}]}},
+    "camera":{"positionX":10.5,"positionY":1.7,"positionZ":22,"targetX":8,"targetY":1,"targetZ":21,"roll":0,"perspective":65}
+  },{
+    "id":"s1.jd00.gao-kick","area":"JD00","worldId":"sakuragaoka","actorDefinitions":[],"waitForMotions":true,
+    "provenance":"Original KOJI success/kick/release clips after a real A input; wait for the longest original clip (Gao, 418 frames). Authored poses/camera and ball hand-to-foot switch/hiding are approximations, not recovered native projectile cues. Ryo's 243-frame clip kicks after frame 120; controller type 34 is the raised foot, not wrist type 11.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":8,"y":0,"z":22,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"koji","name":"AKI_QOK_KERU_BALL_A_KOUJI_QTE","loop":false}},
+      {"tag":"KKBN","pose":{"x":8,"y":0,"z":20.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"koji","name":"GAK_KID_HANARERU_KOUJI_QTE","loop":false}},
+      {"tag":"CHRL","pose":{"x":8,"y":0,"z":20.4,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"koji","name":"OTH_CHY_OTOSU_BALL_KOUJI_QTE","loop":false}}
+    ],
+    "attachedObjects":{"FBB_":{"browserFilename":"FBB0201G.CHRM","assetPath":"play/assets/sakuragaoka/gao-wen/FBB0201G.CHRM","textureAssetPath":"play/assets/characters/BIK_textures.bin",
+      "attachments":[{"activityId":"s1.jd00.gao-kick","frame":0,"parentActorTag":"AKIR","controlId":18,"translation":[0,0,0.08],"rotationRaw":[0,0,0]},
+        {"activityId":"s1.jd00.gao-kick","frame":126,"parentActorTag":"AKIR","controlId":34,"translation":[0,0.1,0.03],"rotationRaw":[0,0,0]}],
+      "presentation":[{"activityId":"s1.jd00.gao-kick","frame":0,"visible":true},{"activityId":"s1.jd00.gao-kick","frame":152,"visible":false}]}},
+    "camera":{"positionX":10.5,"positionY":1.7,"positionZ":22,"targetX":8,"targetY":1,"targetZ":21,"roll":0,"perspective":65}
+  },{
+    "id":"s1.jd00.gao-aftermath","area":"JD00","worldId":"sakuragaoka","actorDefinitions":[],
+    "provenance":"Original post-rescue E1049 voices and Gao Wen's KOJI talk loop/ball model. Authored two-person standing shot; Charlie's departure path is omitted.",
+    "actors":[
+      {"tag":"AKIR","pose":{"x":8,"y":0,"z":22,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"KKBN","pose":{"x":8,"y":0,"z":20.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"koji","name":"GAK_YAS_SOCCOR_SEIKOU_TALK_LP_KOJ","loop":true}}
+    ],
+    "attachedObjects":{"FBB_":{"browserFilename":"FBB0201G.CHRM","assetPath":"play/assets/sakuragaoka/gao-wen/FBB0201G.CHRM","textureAssetPath":"play/assets/characters/BIK_textures.bin",
+      "attachments":[{"activityId":"s1.jd00.gao-aftermath","frame":0,"parentActorTag":"KKBN","controlId":18,"translation":[0,0,0.08],"rotationRaw":[0,0,0]}]}},
+    "camera":{"positionX":10.5,"positionY":1.7,"positionZ":24,"targetX":8,"targetY":1,"targetZ":21.3,"roll":0,"perspective":65}
+  },{
+    "id":"s1.tatq.charlie-introduction","area":"TATQ","worldId":"tatq",
+    "provenance":"Authored held staging of the original A0136A cast. Original TATQ AUTH at MAPINFO 0x23ce4 supplies actor positions; motion, running/curtain/knife choreography and camera direction are approximated.",
+    "actorDefinitions":[
+      {"actorCode":"TONY","label":"Tony Abrams","modelCode":"GIJ_M","activityOnly":true},
+      {"actorCode":"SMTH","label":"Smith Bradley","modelCode":"GIB_M","activityOnly":true}
+    ],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":2.18472,"y":0,"z":2.179908,"rotationX":0,"rotationY":30.3323,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"HORS","pose":{"x":0.10125,"y":0.04,"z":-1.678591,"rotationX":0,"rotationY":194.32393,"rotationZ":0},"motion":{"bank":"mobj","name":"OTH_MAN_TALK_KOSITE_LP","loop":true}},
+      {"tag":"TONY","pose":{"x":0.122229,"y":0,"z":-0.255379,"rotationX":0,"rotationY":-45,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"SMTH","pose":{"x":-0.550528,"y":0,"z":-0.665646,"rotationX":0,"rotationY":-120.977951,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+    ],
+    "camera":{"positionX":-2,"positionY":1.85,"positionZ":2.5,"targetX":0.55,"targetY":1.1,"targetZ":-0.2,"roll":0,"perspective":70}
+  },{
+    "id":"s1.tatq.charlie-confrontation","area":"TATQ","worldId":"tatq",
+    "provenance":"Original AUTH 0x281e0 supplies Ryo/CHRL positions. BIS_L is the sole bespoke humanoid body in TATQ QTE.PKS, correlated with its newly introduced CHRL role; rendered identity verified. Generic standing holds and the camera are authored. First-frame M_0136 QTE poses were visibly unsuitable without their original surrounding scene, so they are not silently presented as the native knife choreography.",
+    "actorDefinitions":[{"actorCode":"CHRL","label":"Charlie","modelCode":"BIS_L","activityOnly":true}],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-0.533373,"y":0,"z":-2.581587,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"CHRL","pose":{"x":-0.89589,"y":0,"z":-3.498957,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"HORS","presented":false,"motion":{"bank":"mobj","name":"OTH_MAN_TALK_KOSITE_LP","loop":true}}
+    ],
+    "camera":{"positionX":2,"positionY":1.6,"positionZ":-2.9,"targetX":-0.7,"targetY":1.1,"targetZ":-2.9,"roll":0,"perspective":65}
+  },{
+    "id":"s1.tatq.first-visit","area":"TATQ","worldId":"tatq",
+    "provenance":"HORS room anchor [-1.3584,0,-2.4255] from original CM_D000.BIN journey at 14:00, selector tables 0x19230/0x1974c. Ryo's nearby floor position, facing, standing motions and camera are authored approximations, not the original grab scene.",
+    "actorDefinitions":[],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":1.3584,"y":0,"z":-0.8,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"HORS","pose":{"x":1.3584,"y":0,"z":-2.4255,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"mobj","name":"OTH_MAN_TALK_KOSITE_LP","loop":true}}
+    ],
+    "camera":{"positionX":-1,"positionY":1.65,"positionZ":-1.6,"targetX":1.3584,"targetY":1.2,"targetZ":-1.4,"roll":0,"perspective":60}
+  },{
+    "id":"s1.heartbeats.bar.staging","area":"DBHB","worldId":"dbhb",
+    "provenance":"Model identities reuse the reviewed SERA/TUW_L, JONZ/GIF_L and HARY/GIE_L mappings in nativeActivityActors.json. Positions and camera are authored around DBHB's original AKIR arrival [-0.68,0,-7.32], MAPINFO CHRS 0x24530, sha256 34c9c357ac832d80fd9bd9b8cadbf02a770388a394c65a234d35594bcedfe9a7. Standing loops are an approximation; original attacks, props and recovery choreography are not reconstructed.",
+    "actorDefinitions":[
+      {"actorCode":"SERA","label":"Takeshi Sera","modelCode":"TUW_L","activityOnly":true},
+      {"actorCode":"JONZ","label":"Jones Henders","modelCode":"GIF_L","activityOnly":true},
+      {"actorCode":"HARY","label":"Harry Thompson","modelCode":"GIE_L","activityOnly":true}
+    ],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":2.15,"y":0,"z":-6.7,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"SERA","pose":{"x":2.1,"y":0,"z":-5.7,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"JONZ","pose":{"x":2.5,"y":0,"z":-4.6,"rotationX":0,"rotationY":-20,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"HARY","pose":{"x":2,"y":0,"z":-3.5,"rotationX":0,"rotationY":20,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"HATO","motion":{"bank":"mobj","name":"OTH_MAN_MIMAWASU_CAUNTER_LP_H75_F","loop":true}}
+    ],
+    "camera":{"positionX":1.8,"positionY":1.6,"positionZ":-7.32,"targetX":1.8,"targetY":1.2,"targetZ":-4.7,"roll":0,"perspective":70}
+  },{
+    "id":"s1.d000.ambush.interrogation","area":"D000","worldId":"dobuita",
+    "provenance":"Authored Ryo/Tony two-person standing shot around DRAUTH trap's original Ryo placement, before original E1068 questions. The original grab/gesture choreography is not reconstructed.",
+    "actorDefinitions":[],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":35.64,"y":0.0783,"z":21.827,"rotationX":0,"rotationY":0,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"TONY","pose":{"x":35.64,"y":0.0954,"z":20.6,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+    ],
+    "camera":{"positionX":33.6,"positionY":1.7,"positionZ":23.3,"targetX":35.64,"targetY":1.2,"targetZ":21.2,"roll":0,"perspective":60}
+  },{
+    "id":"s1.mfsy.mark-lunch-combat","area":"MFSY","worldId":"mfsy",
+    "provenance":"Original MIZUMARK/SEQDATA2.AUTH first-frame Ryo, MRSK and OKYS positions (native X retained here and mirrored by the shared combat compiler). Original MRSK/PPL_L and OKYS/OKA_L bindings are reused. The GameSpot guide printed p54 calls for three fighters: THG3 is an explicitly anonymous adapted opponent borrowing the existing KMD_L model, not an identification of the original third fighter. His nearby placement and the standing tableau/camera are authored.",
+    "actorDefinitions":[
+      {"actorCode":"MRSK","label":"Shingo Murasaki","modelCode":"PPL_L","activityOnly":true},
+      {"actorCode":"OKYS","label":"Minoru Okayasu","modelCode":"OKA_L","activityOnly":true},
+      {"actorCode":"THG3","label":"Harbor thug","modelCode":"KMD_L","activityOnly":true}
+    ],
+    "actors":[
+      {"tag":"AKIR","pose":{"x":-30.28279685974121,"y":0,"z":57.6168327331543,"rotationX":0,"rotationY":153.66729736328125,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"MRSK","pose":{"x":-29.87948226928711,"y":0,"z":60.19791793823242,"rotationX":0,"rotationY":-160.88653564453125,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"OKYS","pose":{"x":-28.146915435791016,"y":0,"z":59.164703369140625,"rotationX":0,"rotationY":-132.12405395507812,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+      {"tag":"THG3","pose":{"x":-32.4,"y":0,"z":60.1,"rotationX":0,"rotationY":180,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+    ],
+    "camera":{"positionX":-30.3,"positionY":2.5,"positionZ":54.6,"targetX":-30.3,"targetY":1,"targetZ":59.1,"roll":0,"perspective":65}
+  }]
+}

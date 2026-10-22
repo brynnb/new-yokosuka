@@ -10,6 +10,10 @@ function harness({
   telephoneRuntime = null,
   motionCueRuntime = null,
   playerXmptRuntime = null,
+  additionalActors = [],
+  sceneStagingRuntime = null,
+  combatRuntime = null,
+  failFacingRestore = false,
 } = {}) {
   const calls = [];
   let motionStatus = 0;
@@ -35,11 +39,12 @@ function harness({
     rollbackTransaction: token => (calls.push(["motion-rollback", token]), true),
   };
   const scheduledActors = {
-    dialogueActor: () => ({
+    dialogueActor: code => code === "HATO" ? ({
       actorCode: "HATO", instanceId: "hato-1", position: [1, 2, 3],
-    }),
+    }) : additionalActors.find(actor => actor.actorCode === code) || null,
     dialogueFacingState: id => structuredClone(facing.get(id) || null),
     restoreDialogueFacingState: (id, state) => {
+      if (failFacingRestore) throw new Error("actor disappeared");
       calls.push(["facing-restore", id, state]);
       if (state) facing.set(id, structuredClone(state));
       else facing.delete(id);
@@ -60,10 +65,10 @@ function harness({
     getPlayerPosition: () => [4, 5, 6],
     beginCameraPresentation: () => calls.push(["presentation-begin"]),
     abortCameraPresentation: () => calls.push(["presentation-abort"]),
-    getMovementLocked: () => movementLocked,
-    setMovementLocked: value => {
-      movementLocked = value;
-      calls.push(["movement", value]);
+    acquireMovementLock: () => {
+      movementLocked = true;
+      calls.push(["movement", true]);
+      return () => { movementLocked = false; calls.push(["movement", false]); };
     },
     startActivity: async (activity, context) => {
       calls.push(["activity", activity, context]);
@@ -80,6 +85,8 @@ function harness({
     },
     telephoneRuntime,
     motionCueRuntime,
+    sceneStagingRuntime,
+    combatRuntime,
   });
   return {
     adapters,
@@ -119,6 +126,31 @@ test("Babylon adapters compose XMPT and motion-cue ownership", () => {
   assert.deepEqual(xmptCalls, [["begin"], ["commit", "xmpt"]]);
   assert.equal(h.calls.some(([name]) => name === "motion-begin"), true);
   assert.equal(motionCueCalls.at(-1)[0], "settled");
+});
+
+test("failed tableau cleanup still restores the script's movement lock", () => {
+  const h = harness({ sceneStagingRuntime: { cancel() { throw new Error("actor cleanup failed"); } } });
+  const transaction = h.adapters.begin({ area: "D000" });
+  assert.equal(h.movementLocked(), true);
+  assert.throws(() => h.adapters.rollback(transaction), /actor cleanup failed/);
+  assert.equal(h.movementLocked(), false);
+});
+
+test("failed combat cleanup still releases camera and input ownership", () => {
+  const h = harness({ combatRuntime: { finish() { throw new Error("combat actor cleanup failed"); } } });
+  const transaction = h.adapters.begin({ area: "D000" });
+  assert.equal(h.adapters.startCamera({ area: "D000",cameraNumber:2950 }, transaction),true);
+  assert.throws(() => h.adapters.rollback(transaction), /combat actor cleanup failed/);
+  assert.equal(h.movementLocked(), false);
+  assert.equal(h.calls.some(([name]) => name === "camera-rollback"), true);
+});
+
+test("failed actor cleanup cannot leak the script's movement lock", () => {
+  const h = harness({ failFacingRestore: true });
+  const transaction = h.adapters.begin({ area: "D000", actorCode: "HATO", actorInstanceId: "hato-1" });
+  assert.equal(h.adapters.lookAtActor({ actorCode: "HATO", targetActorCode: "AKIR" }, transaction), true);
+  assert.throws(() => h.adapters.rollback(transaction), /actor disappeared/);
+  assert.equal(h.movementLocked(), false);
 });
 
 test("Babylon adapters own telephone motion and its timeline together", () => {
@@ -201,6 +233,21 @@ test("Babylon adapter rollback releases a waiting motion and restores facing", a
   assert.equal(h.movementLocked(), false);
   assert.equal(h.calls.some(([name]) => name === "camera-rollback"), false);
   assert.ok(h.calls.some(([name]) => name === "motion-rollback"));
+});
+
+for (const ending of ["commit", "rollback"]) test(`multi-participant conversation ${ending} restores each prior facing`, () => {
+  const h = harness({ additionalActors: [{ actorCode: "RNKT", instanceId: "wife-1", position: [1, 0, 4] }] });
+  const owner = h.adapters.begin({ area: "D000", actorCode: "HATO" });
+  for (const actorCode of ["HATO", "RNKT"]) {
+    assert.equal(h.adapters.lookAtActor({ actorCode, targetActorCode: "AKIR" }, owner), true);
+  }
+  assert.equal(h.facing.has("wife-1"), true);
+  assert.equal(h.adapters.clearActorLook({ actorCode: "HATO" }, owner), true);
+  assert.equal(h.facing.has("wife-1"), true, "clearing one participant must retain the other");
+  assert.equal(h.adapters[ending](owner), true);
+  assert.equal(h.facing.has("wife-1"), false);
+  assert.deepEqual(h.facing.get("hato-1"), { target: [9, 8, 7], active: true });
+  assert.equal(h.movementLocked(), false);
 });
 
 test("specialized activity runs without pre-owning its native camera or motion", async () => {

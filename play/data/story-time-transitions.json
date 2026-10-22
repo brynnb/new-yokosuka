@@ -1,0 +1,27 @@
+{
+  "schema": "new-yokosuka-story-time-transitions-v1",
+  "transitions": [
+    {"id":"s1.departure.dawn","label":"Return home at 5:21 a.m.","hour":5,"minute":21,"nextDay":false},
+    {"id":"s1.departure.next-dawn","label":"Return home at the next 5:21 a.m.","hour":5,"minute":21,"nextDay":true},
+    {"id":"s1.departure.morning","label":"Sleep until 8:30 a.m.","hour":8,"minute":30,"nextDay":false},
+    {"id":"s1.departure.next-morning","label":"Sleep until the next 8:30 a.m.","hour":8,"minute":30,"nextDay":true},
+    {"id":"s1.wait.lunch","label":"Wait until 11:30 a.m.","hour":11,"minute":30,"nextDay":false},
+    {"id":"s1.final.night","label":"Begin the final confrontation at 10 p.m.","hour":22,"minute":0,"nextDay":false},
+    {"id":"s1.final.harbor-morning","label":"Head to the harbor at 10:15 a.m.","hour":10,"minute":15,"nextDay":false},
+    {"id":"s1.nozomi.dawn","label":"Return home at dawn","hour":5,"minute":56,"nextDay":false},
+    {"id":"s1.nozomi.next-dawn","label":"Return home at the next dawn","hour":5,"minute":56,"nextDay":true},
+    {"id":"s1.final.morning","label":"Sleep until 7:30 a.m.","hour":7,"minute":30,"nextDay":false},
+    {"id":"s1.final.next-morning","label":"Sleep until the next 7:30 a.m.","hour":7,"minute":30,"nextDay":true},
+    {"id":"s1.wait.late-night","label":"Rest until 11:45 p.m.","hour":23,"minute":45,"nextDay":false},
+    {"id":"s1.work.shift-end","label":"End the working shift","hour":17,"minute":0,"nextDay":false},
+    {"id":"s1.work.lunch","label":"Lunch break","hour":12,"minute":0,"nextDay":false},
+    {"id":"s1.work.race-end","label":"Start the working morning","hour":9,"minute":0,"nextDay":false},
+    {"id":"s1.work.training-end","label":"End forklift practice","hour":17,"minute":0,"nextDay":false},
+    {"id":"s1.wait.late-morning","label":"Wait until 10 a.m.","hour":10,"minute":0,"nextDay":false},
+    {"id":"s1.wait.afternoon","label":"Wait until 1 p.m.","hour":13,"minute":0,"nextDay":false},
+    {"id":"s1.wait.two-pm","label":"Wait until 2 p.m.","hour":14,"minute":0,"nextDay":false},
+    {"id":"s1.wait.evening","label":"Wait until 7 p.m.","hour":19,"minute":0,"nextDay":false},
+    {"id":"s1.wait.night","label":"Wait until 8 p.m.","hour":20,"minute":0,"nextDay":false},
+    {"id":"s1.wait.morning","label":"Wait until tomorrow morning","hour":8,"minute":30,"nextDay":true}
+  ]
+}

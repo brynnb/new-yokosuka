@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import nativeTransitions from "../play/data/native-map-transitions.json" with { type: "json" };
+import { WORLDS } from "../play/config/worlds.js";
+import { OUTDOOR_BOUNDARY_TRANSITIONS } from "../src/BoundaryTransitions.js";
 
 import ju00Placements from "../play/data/ju00-runtime-placements.json" with {
   type: "json",
@@ -12,6 +14,15 @@ import {
   mapTransitionForNativeDestination,
   mapTransitionForObject,
 } from "../src/MapTransitions.js";
+
+test("every playable S1 arrival tuple names its destination world's native room", () => {
+  const routes = [...MAP_TRANSITIONS, ...OBJECT_MAP_TRANSITIONS, ...OUTDOOR_BOUNDARY_TRANSITIONS]
+    .filter(route => Number.isInteger(route.destination.scene));
+  assert.ok(routes.length > 0);
+  for (const { id, destination } of routes) {
+    assert.equal(WORLDS[destination.worldId]?.nativeArea, destination.area, id);
+  }
+});
 
 test("all 22 physical Dobuita storefronts retain their reciprocal routes", () => {
   const routes = nativeTransitions.reverseMatchedD000Transitions;

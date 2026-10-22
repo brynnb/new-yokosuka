@@ -108,6 +108,15 @@
   display: none;
 }
 
+/* Keep the shared dialogue panel compact while it acts as combat controls. */
+.dialogue-overlay[data-presentation="combat"] .dialogue-options {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.dialogue-overlay[data-presentation="combat"] .dialogue-source {
+  font-size: clamp(14px, 1.4vw, 18px);
+}
+
 .dialogue-option {
   width: 100%;
   padding: 10px 14px;
@@ -163,5 +172,9 @@
 
   .dialogue-panel {
     padding: 12px 14px 14px;
+  }
+
+  .dialogue-overlay[data-presentation="combat"] .dialogue-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

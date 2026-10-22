@@ -1,0 +1,16 @@
+-> Meditate
+    <<jump Present>>
+-> Not yet
+    <<complete>>
+===
+title: Present
+---
+{{completionActivities}}
+// The original transfer happens around10:15. Late personal saves keep their
+// current date/time instead of rewinding or waiting a whole extra day.
+<<if game_hour() < 10.25>>
+<<advance_story_time "s1.final.harbor-morning">>
+<<endif>>
+<<travel_story "s1.final.tom-invitation">>
+{{effects}}
+<<complete>>

@@ -1,0 +1,24 @@
+-> Stop Chai
+    <<jump Introduction>>
+-> Not yet
+    <<complete>>
+===
+title: Introduction
+---
+<<start_activity "s1.mend.final-chai-intro.scene">>
+<<jump Fight>>
+===
+title: Fight
+---
+<<start_combat "s1.mend.final-chai">>
+<<if combat_result("s1.mend.final-chai") == "success">>
+<<start_activity "s1.mend.final-chai-interrogation.scene">>
+<<travel_story "{{destination}}">>
+{{effects}}
+<<complete>>
+<<else>>
+-> Try again
+    <<jump Fight>>
+-> Leave it for now
+    <<complete>>
+<<endif>>

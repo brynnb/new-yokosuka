@@ -23,6 +23,7 @@ import struct
 from collections import Counter
 from pathlib import Path
 from typing import Any
+from tools.lib.portable_paths import portable_project_path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -50,6 +51,24 @@ INDIRECT_RECORD_SIZE = 36
 INDIRECT_RECORD_WORDS = INDIRECT_RECORD_SIZE // 4
 
 VERIFIED_RANGES = {
+    "managerTaskCreate": (0x0C15F42C, 48,
+        "3039ca3cfa34160aa4fec56885e68c8d62471e0725c6f78d97df7287dee057e4"),
+    "managerTaskUpdate": (0x0C15E482, 298,
+        "d1593b6c752f9b87d9a34d5d7f0b208bcfa89a6e6feba989a1e09e1548f0d75d"),
+    "taskResume": (0x0C0975D6, 42,
+        "3255aa981e175a5cb05e3050de991fbf85257e86bcf6381c90101f0569023309"),
+    "taskPayload": (0x0C09766A, 14,
+        "e6e92c85994bb269cabbf26002f45ecd445e15b46406c59a49ef9481d1a7e57f"),
+    "pendingOwnerControl": (
+        0x0C15A82E,
+        206,
+        "632bdee695b18abae8840d0c287797d6eed79d6d6441550648bc6e8b7ff3bd04",
+    ),
+    "integerResultWriter": (
+        0x0C0BB342,
+        10,
+        "2ea5c246809c512414651272a9028324ca275f75d0808e12e743903b11ec720a",
+    ),
     "contextConstructor": (
         0x0C0BB124,
         130,
@@ -84,6 +103,11 @@ VERIFIED_RANGES = {
         0x0C15E5AC,
         136,
         "8ac7593126664a31246cd16520458e19b4ec0b6ce40e2ba42a747b91e1350519",
+    ),
+    "persistentScriptBitWriter": (
+        0x0C0F0B5E,
+        100,
+        "9463956839c415863ea632e4813fcd2a1829bc20d9082042d344b6a10655bc0d",
     ),
     "candidateScratchInitialize": (
         0x0C15E634,
@@ -195,6 +219,17 @@ def verify_executable(executable: bytes) -> dict[str, Any]:
     ]
     if table != EXPECTED_DISPATCH_TABLE:
         raise ValueError(f"selector dispatch entries changed: {table}")
+    if (u32_runtime(executable, 0x0C29B068) != 0x0C15A82E
+            or u32_runtime(executable, 0x0C15A8D0) != 0x0C224010
+            or u32_runtime(executable, 0x0C15A8CC) != 0x0C0BB342):
+        raise ValueError("interaction pending-owner reset wiring changed")
+    if (u32_runtime(executable, 0x0C15E774) != 0x0C0F0B5E
+            or u32_runtime(executable, 0x0C15E778) != 0x4B18967F):
+        raise ValueError("descriptor bit-writer or candidate distance constant changed")
+    if (u32_runtime(executable, 0x0C15F46C) != 0x0C224260
+            or u32_runtime(executable, 0x0C15F474) != 0x0C15E482
+            or u32_runtime(executable, 0x0C160948) != 0x0C0BB342):
+        raise ValueError("interaction manager task or zero-result wiring changed")
 
     return {
         "executable": "1ST_READ.BIN",
@@ -210,6 +245,24 @@ def verify_executable(executable: bytes) -> dict[str, Any]:
             {"selector": index, "runtimeAddress": hx(address)}
             for index, address in enumerate(table)
         ],
+        "pendingOwnerReset": {
+            "operationId": 0x01A2,
+            "handlerAddress": hx(0x0C15A82E),
+            "mode": 0,
+            "globalDwordAddress": hx(0x0C224010),
+            "storedWord": 0,
+            "result": 0,
+            "boundary": "Mode zero only: clears the pending-owner word without resolving or cancelling its former task. Mode one launch and other poll/cancel routes remain unsupported.",
+        },
+        "managerTask": {
+            "createAddress": "0x0c15f42c", "globalOwnerAddress": "0x0c224260",
+            "category": 5, "kind": 11, "workBytes": 0x294,
+            "updateCallback": "0x0c15e482", "createdSuspended": True,
+            "initializerResumesTask": True, "initializerVmResult": 0,
+            "controlWordOffset": "0x38", "initialControlWord": 0,
+            "activeUpdateModes": [1, 2],
+            "boundary": "Mode zero returns without work. Modes one and two perform camera/proximity and candidate updates and require separate runtime support.",
+        },
     }
 
 
@@ -235,6 +288,7 @@ def descriptor_records(
                 "fileOffset": hx(offset),
                 "words": words,
                 "wordsHex": [f"0x{word:08x}" for word in words],
+                "initialPersistentBitIndices": [words[2] & 0xFFFF, words[2] >> 16],
             }
         )
         offset += DESCRIPTOR_SIZE
@@ -352,7 +406,7 @@ def registration_schema(entry: dict[str, Any]) -> dict[str, Any]:
     return {
         "disc": entry["disc"],
         "area": entry["area"],
-        "source": entry["source"],
+        "source": portable_project_path(entry["source"]),
         "mapinfoSha256": entry["mapinfoSha256"],
         "setupFunction": entry["setupFunction"],
         "callFileOffset": entry["callFileOffset"],
@@ -473,6 +527,7 @@ def build_report(
                 "offset": "0x4c",
                 "recordCount": 10,
                 "recordSizeBytes": 20,
+                "initialWords": [0xFFFFFFFF, 0, 0x4B18967F, 0x4B18967F, 0],
             },
             "runtimeSlots": {
                 "offset": "0x114",
@@ -493,6 +548,17 @@ def build_report(
                 "word5": 0,
                 "word6": 0,
                 "words7Through12": "0xffffffff",
+            },
+            "persistentScriptBitWrites": {
+                "sourceWord": 2,
+                "indexOrder": ["low unsigned 16 bits", "high unsigned 16 bits"],
+                "writerAddress": "0x0c0f0b5e",
+                "callAddresses": ["0x0c15e5ee", "0x0c15e5fa"],
+                "value": 1,
+                "capacityBits": 256,
+                "outOfRangeBehavior": "no write",
+                "saveByteOffset": "0x059c",
+                "evidence": "tools/evidence/persistent-script-bit-operation-evidence.json",
             },
             "provenIndirectLookup": (
                 "descriptor word 0 indexes a dword sequence in static input "

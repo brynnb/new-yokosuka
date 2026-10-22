@@ -1,0 +1,192 @@
+Ryo Hazuki: Charlie and the Mad Angels are leaving on bikes. Follow them through the harbor. #speaker:AKIR
+-> Chase the bikers
+    <<jump Beat01>>
+-> Leave it for now
+    <<jump Done>>
+===
+title: Beat01
+---
+<<play_sequence "s1.mfsy.biker-chase.beat-01.start">>
+<<start_challenge "s1.mfsy.biker-chase.left">>
+<<if challenge_result("s1.mfsy.biker-chase.left") != "success">>
+<<play_sequence "s1.mfsy.biker-chase.beat-01.finish">>
+Ryo Hazuki: I lost them. Try the chase again? #speaker:AKIR
+-> Try again
+    <<jump Beat01>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Beat02>>
+<<endif>>
+===
+title: Beat02
+---
+<<play_sequence "s1.mfsy.biker-chase.beat-02.start">>
+<<start_challenge "s1.mfsy.biker-chase.right">>
+<<if challenge_result("s1.mfsy.biker-chase.right") != "success">>
+<<play_sequence "s1.mfsy.biker-chase.beat-02.finish">>
+Ryo Hazuki: I lost them. Try the chase again? #speaker:AKIR
+-> Try again
+    <<jump Beat01>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Beat03>>
+<<endif>>
+===
+title: Beat03
+---
+<<play_sequence "s1.mfsy.biker-chase.beat-03.start">>
+<<start_challenge "s1.mfsy.biker-chase.a">>
+<<if challenge_result("s1.mfsy.biker-chase.a") != "success">>
+<<play_sequence "s1.mfsy.biker-chase.beat-03.finish">>
+Ryo Hazuki: I lost them. Try the chase again? #speaker:AKIR
+-> Try again
+    <<jump Beat01>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Beat04>>
+<<endif>>
+===
+title: Beat04
+---
+<<play_sequence "s1.mfsy.biker-chase.beat-04.start">>
+<<start_challenge "s1.mfsy.biker-chase.left">>
+<<if challenge_result("s1.mfsy.biker-chase.left") != "success">>
+<<play_sequence "s1.mfsy.biker-chase.beat-04.finish">>
+Ryo Hazuki: I lost them. Try the chase again? #speaker:AKIR
+-> Try again
+    <<jump Beat01>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Beat05>>
+<<endif>>
+===
+title: Beat05
+---
+<<play_sequence "s1.mfsy.biker-chase.beat-05.start">>
+<<start_challenge "s1.mfsy.biker-chase.left">>
+<<if challenge_result("s1.mfsy.biker-chase.left") != "success">>
+<<play_sequence "s1.mfsy.biker-chase.beat-05.finish">>
+Ryo Hazuki: I lost them. Try the chase again? #speaker:AKIR
+-> Try again
+    <<jump Beat01>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Beat06>>
+<<endif>>
+===
+title: Beat06
+---
+<<play_sequence "s1.mfsy.biker-chase.beat-06.start">>
+<<start_challenge "s1.mfsy.biker-chase.a">>
+<<if challenge_result("s1.mfsy.biker-chase.a") != "success">>
+<<play_sequence "s1.mfsy.biker-chase.beat-06.finish">>
+Ryo Hazuki: I lost them. Try the chase again? #speaker:AKIR
+-> Try again
+    <<jump Beat01>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Beat07>>
+<<endif>>
+===
+title: Beat07
+---
+<<play_sequence "s1.mfsy.biker-chase.beat-07.start">>
+<<start_challenge "s1.mfsy.biker-chase.right">>
+<<if challenge_result("s1.mfsy.biker-chase.right") != "success">>
+<<play_sequence "s1.mfsy.biker-chase.beat-07.finish">>
+Ryo Hazuki: I lost them. Try the chase again? #speaker:AKIR
+-> Try again
+    <<jump Beat01>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Beat08>>
+<<endif>>
+===
+title: Beat08
+---
+<<play_sequence "s1.mfsy.biker-chase.beat-08.start">>
+<<start_challenge "s1.mfsy.biker-chase.right">>
+<<if challenge_result("s1.mfsy.biker-chase.right") != "success">>
+<<play_sequence "s1.mfsy.biker-chase.beat-08.finish">>
+Ryo Hazuki: I lost them. Try the chase again? #speaker:AKIR
+-> Try again
+    <<jump Beat01>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Beat09>>
+<<endif>>
+===
+title: Beat09
+---
+<<play_sequence "s1.mfsy.biker-chase.beat-09.start">>
+<<start_challenge "s1.mfsy.biker-chase.right">>
+<<if challenge_result("s1.mfsy.biker-chase.right") != "success">>
+<<play_sequence "s1.mfsy.biker-chase.beat-09.finish">>
+Ryo Hazuki: I lost them. Try the chase again? #speaker:AKIR
+-> Try again
+    <<jump Beat01>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Beat10>>
+<<endif>>
+===
+title: Beat10
+---
+<<play_sequence "s1.mfsy.biker-chase.beat-10.start">>
+<<start_challenge "s1.mfsy.biker-chase.left">>
+<<if challenge_result("s1.mfsy.biker-chase.left") != "success">>
+<<play_sequence "s1.mfsy.biker-chase.beat-10.finish">>
+Ryo Hazuki: I lost them. Try the chase again? #speaker:AKIR
+-> Try again
+    <<jump Beat01>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Beat11>>
+<<endif>>
+===
+title: Beat11
+---
+<<play_sequence "s1.mfsy.biker-chase.beat-11.start">>
+<<start_challenge "s1.mfsy.biker-chase.left">>
+<<if challenge_result("s1.mfsy.biker-chase.left") != "success">>
+<<play_sequence "s1.mfsy.biker-chase.beat-11.finish">>
+Ryo Hazuki: I lost them. Try the chase again? #speaker:AKIR
+-> Try again
+    <<jump Beat01>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<jump Beat12>>
+<<endif>>
+===
+title: Beat12
+---
+<<play_sequence "s1.mfsy.biker-chase.beat-12.start">>
+<<start_challenge "s1.mfsy.biker-chase.right">>
+<<if challenge_result("s1.mfsy.biker-chase.right") != "success">>
+<<play_sequence "s1.mfsy.biker-chase.beat-12.finish">>
+Ryo Hazuki: I lost them. Try the chase again? #speaker:AKIR
+-> Try again
+    <<jump Beat01>>
+-> Leave it for now
+    <<jump Done>>
+<<else>>
+<<play_sequence "s1.mfsy.biker-chase.beat-12.finish">>
+<<travel_story "{{destination}}">>
+{{effects}}
+<<jump Done>>
+<<endif>>
+===
+title: Done
+---
+<<complete>>

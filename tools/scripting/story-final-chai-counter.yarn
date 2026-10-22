@@ -1,0 +1,25 @@
+-> Face Chai's last attack
+    <<jump Attack>>
+-> Not yet
+    <<complete>>
+===
+title: Attack
+---
+<<start_activity "s1.mend.chai-counter-ready.scene">>
+<<jump Counter>>
+===
+title: Counter
+---
+<<play_sequence "s1.mend.chai-counter-ready.start">>
+<<start_challenge "s1.mend.chai-last-attack">>
+<<play_sequence "s1.mend.chai-counter-ready.finish">>
+<<if challenge_result("s1.mend.chai-last-attack") == "success">>
+<<start_activity "s1.mend.chai-counter-win.scene">>
+{{effects}}
+<<complete>>
+<<else>>
+-> Try again
+    <<jump Counter>>
+-> Leave it for now
+    <<complete>>
+<<endif>>

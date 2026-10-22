@@ -38,6 +38,27 @@ function duel(distance = 1) {
   return { combat, ryo, enemy };
 }
 
+test("explicit targeting chooses a throw recipient without changing spatial multi-enemy strikes", () => {
+  const { combat, ryo, enemy } = duel(0.8);
+  const selected = combat.add(createCombatant({ id: "selected", team: "enemy", z: 1, yaw: Math.PI }));
+  ryo.targetId = selected.id;
+  queueCombatCommand(ryo, "throw");
+  for (let tick = 0; tick < 20 && !ryo.action; tick++) combat.step();
+  assert.equal(ryo.action.lockedTargetId, selected.id);
+  ryo.targetId = enemy.id;
+  assert.equal(ryo.action.lockedTargetId, selected.id, "an in-flight throw keeps its original recipient");
+
+  ryo.action = null;
+  ryo.commandQueue.length = 0;
+  selected.reaction = null;
+  enemy.reaction = null;
+  assert.equal(startCombatMove(ryo, MARTIAL_ARTS_MOVES.tigerKnuckle), true);
+  const hits = [];
+  for (let tick = 0; tick < 40; tick++) hits.push(...combat.step().filter(event => event.type === "hit"));
+  assert.ok(hits.some(hit => hit.defenderId === enemy.id));
+  assert.ok(hits.some(hit => hit.defenderId === selected.id));
+});
+
 test("move phases use authored duration without off-by-one recovery", () => {
   const move = MARTIAL_ARTS_MOVES.tigerKnuckle;
   assert.equal(actionPhase({ tick: 0 }, move), "startup");

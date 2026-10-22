@@ -1,0 +1,2246 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01EAR.AFS",
+      "sha256": "f29867ee43becb0b3d502df754bc03d5ea4882bdd7e073038115098e73e8a76e"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_KIKUM.SND",
+      "sha256": "1796869c37bc441211d7e2478f56af77883e9d97492838d115dc941c05ddbc32"
+    },
+    "authManifest": "play/assets/hazuki/travel-family/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01EARA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARA001.aiff",
+      "nativeMember": "01EARA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 12288,
+      "nativeSha256": "ff6ab5636de84a1719aa8df7240f2d58fd52368f0c55375a2d5dfca588a0d754",
+      "speakerId": "AKIR",
+      "sourceText": "Ine-san, do you have a minute?",
+      "displayText": "Ine-san, do you have a minute?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARA001.wav",
+      "byteLength": 48940,
+      "sha256": "a1547fae2d0db9c8524732ca684d99e17c21e5dbd74b18555874981371034fb8"
+    },
+    {
+      "voiceId": "01EARA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARA002.aiff",
+      "nativeMember": "01EARA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 22528,
+      "nativeSha256": "25604b57191dc0060220002d79a88bfbbe8df944f7ce8aff563612da26f1faab",
+      "speakerId": "AKIR",
+      "sourceText": "I know it's sudden but=@＆I'm thinking of going on a trip.",
+      "displayText": "I know it's sudden but...\nI'm thinking of going on a trip.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 30
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARA002.wav",
+      "byteLength": 89900,
+      "sha256": "185b2a9a5b8f1407ea1647e5057c1e5548485ddd9bfebe84e632cddff5dd76e9"
+    },
+    {
+      "voiceId": "01EARA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARA003.aiff",
+      "nativeMember": "01EARA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "a96fa9872fbf1f6ce7ba44443468d3240a6a554f418b79976e6cbc2e663e5b6a",
+      "speakerId": "AKIR",
+      "sourceText": "Yes.",
+      "displayText": "Yes.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARA003.wav",
+      "byteLength": 16172,
+      "sha256": "a950cf7677e2c9654aa418efc73a0d231c8bb70a23d7878d6c6526211662e5c6"
+    },
+    {
+      "voiceId": "01EARA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARA004.aiff",
+      "nativeMember": "01EARA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 12288,
+      "nativeSha256": "df3a0ae8720dafbf3a70f5000a1915bdb288c833d23779a6b1cb04072bc66788",
+      "speakerId": "AKIR",
+      "sourceText": "Oh, yeah=@",
+      "displayText": "Oh, yeah...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 36
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARA004.wav",
+      "byteLength": 48940,
+      "sha256": "34ecedba18baef83cbccd9a8e3feb4c65e52171e5635406755dfef40557139ce"
+    },
+    {
+      "voiceId": "01EARA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARA005.aiff",
+      "nativeMember": "01EARA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 4096,
+      "nativeSha256": "36dc73804d9fa264d5291c9c9f60c6735dae24c4ece27e7b71b88f3bfb63d0d5",
+      "speakerId": "AKIR",
+      "sourceText": "Fuku-san!",
+      "displayText": "Fuku-san!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARA005.wav",
+      "byteLength": 16172,
+      "sha256": "4ab25a1d889c27b5948fe3565a457abf4f2f31dbea8338fd992612460296684b"
+    },
+    {
+      "voiceId": "01EARA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARA006.aiff",
+      "nativeMember": "01EARA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 4096,
+      "nativeSha256": "6e1354f5f1785f3e533ff5da2a36c61c5b48a53bcb8ae444e5439b09a34ffd33",
+      "speakerId": "AKIR",
+      "sourceText": "Idiot=@",
+      "displayText": "Idiot...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARA006.wav",
+      "byteLength": 16172,
+      "sha256": "865e806e281dcfbb0b9977db553ac8bfe0ef0b572c3fac5f8bcfe09ddc1b8ea5"
+    },
+    {
+      "voiceId": "01EARA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARA007.aiff",
+      "nativeMember": "01EARA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 8192,
+      "nativeSha256": "97009eee8911fa21ed0a68826131580f0feaaa3a09f7640cd6b225ea33fceb8a",
+      "speakerId": "AKIR",
+      "sourceText": "Oh, nothing=@",
+      "displayText": "Oh, nothing...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARA007.wav",
+      "byteLength": 32556,
+      "sha256": "2b60e9ca44f985f61d7c1bcfcf9b37b7c6558fbe9e49436fe962e603d2377190"
+    },
+    {
+      "voiceId": "01EARA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARA008.aiff",
+      "nativeMember": "01EARA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 6144,
+      "nativeSha256": "ade5dfcf61a4e9200047f6c9d2d28c690de6c6a8da2734181b23cc2babaa48b4",
+      "speakerId": "AKIR",
+      "sourceText": "Ine-san=@",
+      "displayText": "Ine-san...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARA008.wav",
+      "byteLength": 24364,
+      "sha256": "642957c4802fb2638f4fa31ed7c48638efd4e335603215754f9832c1ccdab07e"
+    },
+    {
+      "voiceId": "01EARA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARA009.aiff",
+      "nativeMember": "01EARA009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 6144,
+      "nativeSha256": "544a12e2bf7c753b47fa3e237446b7889110a800a5e1c67206286f1324657bdc",
+      "speakerId": "AKIR",
+      "sourceText": "Thanks a lot.",
+      "displayText": "Thanks a lot.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARA009.wav",
+      "byteLength": 24364,
+      "sha256": "d0983a3a9a0d96fdda9b1ed064e109ae87c92b3bbe199b845872da3640da4f52"
+    },
+    {
+      "voiceId": "01EARA010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARA010.aiff",
+      "nativeMember": "01EARA010.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 14336,
+      "nativeSha256": "748ae74307fcf36e0b8025887af639e15b2da9d06dda6a1a7b82231ddf8fe006",
+      "speakerId": "AKIR",
+      "sourceText": "You didn't have to tell her everything!",
+      "displayText": "You didn't have to tell her everything!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARA010.wav",
+      "byteLength": 57132,
+      "sha256": "ed21f522a7d1006bf83b4a07f34f4d0a51d666770d9fa7f4102bd29868dd5560"
+    },
+    {
+      "voiceId": "01EARA011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARA011.aiff",
+      "nativeMember": "01EARA011.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 16384,
+      "nativeSha256": "efb1df1a1e21e2597eb4db90e513129c99be0a2514c38334d638acc25b42fd86",
+      "speakerId": "AKIR",
+      "sourceText": "I'm going to have to do this by myself.",
+      "displayText": "I'm going to have to do this by myself.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARA011.wav",
+      "byteLength": 65324,
+      "sha256": "950877f79922744ed4ce73dba8c2892ad31b01bfd79b345d70ea970a2a983345"
+    },
+    {
+      "voiceId": "01EARB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARB001.aiff",
+      "nativeMember": "01EARB001.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 12288,
+      "nativeSha256": "800acc1550ebe8ccfa69ecbe52d956b7feb98cf0861ab6ec9924b3036ed242f7",
+      "speakerId": "INE_",
+      "sourceText": "Yes, what is it?",
+      "displayText": "Yes, what is it?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARB001.wav",
+      "byteLength": 48940,
+      "sha256": "57a0c547117b90cc96127d28caa3c9208325532b9dfbd0a1c9c19a73daa23739"
+    },
+    {
+      "voiceId": "01EARB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARB002.aiff",
+      "nativeMember": "01EARB002.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 6144,
+      "nativeSha256": "8b8575a7786b7d1a0bc857694472bcad05b65325bd0653587dc599ba96f0e734",
+      "speakerId": "INE_",
+      "sourceText": "A trip?",
+      "displayText": "A trip?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARB002.wav",
+      "byteLength": 24364,
+      "sha256": "9b60131abcd5e5183c55d6aa1575d6dd4462679abb48f1c6d61079dd593c9c0f"
+    },
+    {
+      "voiceId": "01EARB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARB003.aiff",
+      "nativeMember": "01EARB003.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 24576,
+      "nativeSha256": "58be70e669313899147f2fb75f68f4bf740d390d7a8f1541bb92ed9db42f03f8",
+      "speakerId": "INE_",
+      "sourceText": "Good, you could use a vacation.",
+      "displayText": "Good, you could use a vacation.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 23
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARB003.wav",
+      "byteLength": 98092,
+      "sha256": "1e4bd72b5cc494029bb81341685822ed66935dafd81ac73a3b18536fd3d334f3"
+    },
+    {
+      "voiceId": "01EARB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARB004.aiff",
+      "nativeMember": "01EARB004.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 12288,
+      "nativeSha256": "a260891ce112b8893a87906376dde26681d34556f2a7ace5cb64aac11e46cff4",
+      "speakerId": "INE_",
+      "sourceText": "Where are you thinking of going?",
+      "displayText": "Where are you thinking of going?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARB004.wav",
+      "byteLength": 48940,
+      "sha256": "fb84f3cfc4202d2bc92d827cb6e8ae8003ef73c8b1d31b6ec3838ef0efc82463"
+    },
+    {
+      "voiceId": "01EARB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARB005.aiff",
+      "nativeMember": "01EARB005.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 6144,
+      "nativeSha256": "6a1b4e9cdd58aaab57404ce89bc155f1ad901a8b5cb02ddbcdb07bc16b5edad5",
+      "speakerId": "INE_",
+      "sourceText": "Hong Kong?",
+      "displayText": "Hong Kong?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARB005.wav",
+      "byteLength": 24364,
+      "sha256": "935c676cf875151e80f07bc8d6e5c4ca52a7f079778824ffcbc3225cae666d14"
+    },
+    {
+      "voiceId": "01EARB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARB006.aiff",
+      "nativeMember": "01EARB006.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 16384,
+      "nativeSha256": "75713fc7cd3b6a97f479156ba8fd1023852f49ffa5522b672c23394dbdf55b7c",
+      "speakerId": "INE_",
+      "sourceText": "What are you planning to do, Ryo-san?",
+      "displayText": "What are you planning to do, Ryo-san?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARB006.wav",
+      "byteLength": 65324,
+      "sha256": "430f0c3f37b26487de9eabf748102b692d1bcf835df2a57baea9a1a145451778"
+    },
+    {
+      "voiceId": "01EARB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARB007.aiff",
+      "nativeMember": "01EARB007.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 6144,
+      "nativeSha256": "2639ca3f2594908b288c9e5a057837fa322b4d7245b7601f94c44ca641c1f6d0",
+      "speakerId": "INE_",
+      "sourceText": "Nothing?!",
+      "displayText": "Nothing?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARB007.wav",
+      "byteLength": 24364,
+      "sha256": "09ae2416bc591a7c8ea2c1d6cc4bb6ec0afb447a6a651a6056d0bd410aa080a2"
+    },
+    {
+      "voiceId": "01EARB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARB008.aiff",
+      "nativeMember": "01EARB008.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 22528,
+      "nativeSha256": "e40418884917a81b598f3ec2e03a0d64bbae89fb632c741c808496c3af46dcfa",
+      "speakerId": "INE_",
+      "sourceText": "This is crazy. I can't let you do this!",
+      "displayText": "This is crazy. I can't let you do this!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 23
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARB008.wav",
+      "byteLength": 89900,
+      "sha256": "e112c432a0c42a95903792143a34cdf2d695424fa6ee06a045772fb671d9fee4"
+    },
+    {
+      "voiceId": "01EARB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARB009.aiff",
+      "nativeMember": "01EARB009.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 8192,
+      "nativeSha256": "dff339616f13ca0f1f84b42d0c2b4eca45ba346fa06b0a9ea47d66984d0bb08d",
+      "speakerId": "INE_",
+      "sourceText": "I'm not listening.",
+      "displayText": "I'm not listening.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARB009.wav",
+      "byteLength": 32556,
+      "sha256": "de6c1d4a721e3586509a24b688574f8dc696f10d10547608f73d31072b7989c6"
+    },
+    {
+      "voiceId": "01EARB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARB010.aiff",
+      "nativeMember": "01EARB010.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 10240,
+      "nativeSha256": "ae75a79d2e132f7d2fe1c386347ea5c468e9bc48ceaf5179e57dd9c632c410b7",
+      "speakerId": "INE_",
+      "sourceText": "End of discussion.",
+      "displayText": "End of discussion.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARB010.wav",
+      "byteLength": 40748,
+      "sha256": "9a89fd10a21fc5c609f978f05aa28dd3a6899f718350db7c46908f1bb7f9cf10"
+    },
+    {
+      "voiceId": "01EARC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARC001.aiff",
+      "nativeMember": "01EARC001.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 6144,
+      "nativeSha256": "d717d9bc8e2a5561fab449d93149a6c06c02a572ce1a28c38ce0bf99ebcf223f",
+      "speakerId": "FUKU",
+      "sourceText": "Hong Kong.",
+      "displayText": "Hong Kong.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARC001.wav",
+      "byteLength": 24364,
+      "sha256": "5b8f1605420f01d668d77a655ef90981f10a533b579171a657a64020281e4e06"
+    },
+    {
+      "voiceId": "01EARC002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARC002.aiff",
+      "nativeMember": "01EARC002.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 22528,
+      "nativeSha256": "45c28b972a964a887a561eeb627836c77e427b7203b5d33f78f3b4b6c76bd7fd",
+      "speakerId": "FUKU",
+      "sourceText": "It seems the man who killed＆Hazuki-sensei's there.",
+      "displayText": "It seems the man who killed\nHazuki-sensei's there.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARC002.wav",
+      "byteLength": 89900,
+      "sha256": "93f65da468efab7014cbccdd587c2440e25b800d20d3da332e052d4db63cfabf"
+    },
+    {
+      "voiceId": "01EARC003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARC003.aiff",
+      "nativeMember": "01EARC003.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 18432,
+      "nativeSha256": "4c5dc2cd35eb18c09c433c8e7e22c083c86c1a22a54220c3292fbc3361122c98",
+      "speakerId": "FUKU",
+      "sourceText": "Ine-san, please give him＆the money for the trip.",
+      "displayText": "Ine-san, please give him\nthe money for the trip.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARC003.wav",
+      "byteLength": 73516,
+      "sha256": "95de839a4d571312b753a52abb577d701cda2f48b15a50a471cc77418a3396d9"
+    },
+    {
+      "voiceId": "01EARC004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARC004.aiff",
+      "nativeMember": "01EARC004.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 18432,
+      "nativeSha256": "93ecbdd3a035703cf7ef478e4d1264a424da9b573e7cbb862db8f35a839d7f1d",
+      "speakerId": "FUKU",
+      "sourceText": "Well, he has to get there＆somehow, Ine-san.",
+      "displayText": "Well, he has to get there\nsomehow, Ine-san.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARC004.wav",
+      "byteLength": 73516,
+      "sha256": "2d106f3db7f8051622d6b4785b484250e43be3767423351c10a403e4d65fa0ff"
+    },
+    {
+      "voiceId": "01EARC005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARC005.aiff",
+      "nativeMember": "01EARC005.str",
+      "nativeIndex": 25,
+      "nativeByteLength": 16384,
+      "nativeSha256": "7c64dca2bbab9dff65e668d15ba64383939643f0c23460ed27b79d0e13edc460",
+      "speakerId": "FUKU",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 46
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARC005.wav",
+      "byteLength": 65324,
+      "sha256": "266bd4b7b5fe53c9321c3915631bf091a25c42f555181a8148482085237f36a5"
+    },
+    {
+      "voiceId": "01EARC006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARC006.aiff",
+      "nativeMember": "01EARC006.str",
+      "nativeIndex": 26,
+      "nativeByteLength": 14336,
+      "nativeSha256": "5d82e58678c9fd892c7166f803305d5a402d288dbee6d7f17b75f2872b669cca",
+      "speakerId": "FUKU",
+      "sourceText": "What?=@＆What did I do?",
+      "displayText": "What?...\nWhat did I do?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARC006.wav",
+      "byteLength": 57132,
+      "sha256": "cdee6006e414a1e0a8712e2cf0cf4c74f10a9c0bdf3e5258b84c08335fab3bbe"
+    },
+    {
+      "voiceId": "01EARC007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01EAR/SOUND/01EARC007.aiff",
+      "nativeMember": "01EARC007.str",
+      "nativeIndex": 27,
+      "nativeByteLength": 16384,
+      "nativeSha256": "774ecae5de23573a05df5b733cb88269b6eb3239c502bf765202aaf92e31ed4b",
+      "speakerId": "FUKU",
+      "sourceText": "I'm sorry.",
+      "displayText": "I'm sorry.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 53
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/travel-family/voice/01EARC007.wav",
+      "byteLength": 65324,
+      "sha256": "04eeb4c28568ecf677b25d79bc0690bcfe5c7e497e1a1814ed890b555b0c3502"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CAT/SE/cloths2/friction2.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/travel-family/sfx/a9040000.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CAT/SE/cloths2/furimuki_f01.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/travel-family/sfx/a9040100.wav",
+      "byteLength": 9348,
+      "sha256": "2026b716ba3115748b89ec3ac3b6041824b6ddbba78ee708f62af1fb8dc3756a"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CAT/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/travel-family/sfx/a9040200.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CAT/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/travel-family/sfx/a9040300.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CAT/SE/footroom/ganashi1.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/travel-family/sfx/a9040400.wav",
+      "byteLength": 14628,
+      "sha256": "453b22a729a4cb871ae57220d0cd6deeac1fd763dc17483c135d418df06a75f8"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CAT/SE/footroom/ganashi2.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/travel-family/sfx/a9040500.wav",
+      "byteLength": 8436,
+      "sha256": "33f47776093b9b711da79586f193da2a51a1c284d13ba37865558f4a07a94160"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CAT/SE/footroom/ganashi3.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/travel-family/sfx/a9040600.wav",
+      "byteLength": 4508,
+      "sha256": "24bd6dd3ac1c7bc2bd6e316878371b54b71d2c99661584880b53a1ba3024f229"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CAT/SE/footroom/ryo1.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/travel-family/sfx/a9040700.wav",
+      "byteLength": 5076,
+      "sha256": "1ffbc05a7c076950b41f8df8e6c292faec92bc490676e2fe2909bf6d6bc2daa3"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CAT/SE/footroom/ryo2.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/travel-family/sfx/a9040800.wav",
+      "byteLength": 8692,
+      "sha256": "d8a32b777023f8d593da3c2c4271bb7b99976e232152a4af8c56ec1948ce7694"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CAT/SE/footroom/ryo3.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/travel-family/sfx/a9040900.wav",
+      "byteLength": 4948,
+      "sha256": "a76ae727b80cdf79be5a30378bf9e6cf9a6bbbf81fff8692909ae85b947c2872"
+    }
+  ]
+}

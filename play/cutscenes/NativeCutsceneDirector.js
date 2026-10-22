@@ -78,6 +78,16 @@ export class NativeCutsceneDirector {
     this.pendingStart = null;
     this.disposed = false;
     this.directActivityRuntime = null;
+    this.settlementListeners = new Set();
+  }
+
+  onSettled(listener) {
+    this.settlementListeners.add(listener);
+    return () => this.settlementListeners.delete(listener);
+  }
+
+  notifySettlement(cutscene, outcome, reason = null) {
+    for (const listener of this.settlementListeners) listener({ cutscene, outcome, reason });
   }
 
   get active() {
@@ -252,6 +262,7 @@ export class NativeCutsceneDirector {
       pending.controller.abort(new DOMException(String(reason), "AbortError"));
       try {
         this.onStopped(pending.cutscene, reason);
+        this.notifySettlement(pending.cutscene, "stopped", reason);
       } catch (error) {
         errors.push(error);
       }
@@ -267,6 +278,7 @@ export class NativeCutsceneDirector {
           this.#releaseActive();
           try {
             this.onStopped(active.cutscene, reason);
+            this.notifySettlement(active.cutscene, "stopped", reason);
           } catch (error) {
             errors.push(error);
           }
@@ -637,6 +649,7 @@ export class NativeCutsceneDirector {
     if (!active || active.cutscene.id !== cutsceneId) return;
     this.#releaseActive();
     this.onComplete(active.cutscene);
+    this.notifySettlement(active.cutscene, "completed");
   }
 
   #beforeComplete(cutsceneId) {
@@ -653,6 +666,7 @@ export class NativeCutsceneDirector {
     if (!active || active.cutscene.id !== cutsceneId) return;
     this.#releaseActive();
     this.onStopped(active.cutscene, reason);
+    this.notifySettlement(active.cutscene, "stopped", reason);
   }
 
   #releaseActive() {

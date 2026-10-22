@@ -120,6 +120,377 @@ export const NATIVE_DIALOGUE_PREDICATE_DATA = Object.freeze({
       }
     ]
   },
+  "storyStep": {
+    "runtimeAddress": "0xc22020c",
+    "width": 2,
+    "signed": true,
+    "resetValue": 0,
+    "tableAddress": "0xc2780b8",
+    "tableSha256": "d26687953dc8a6090d84b43907ba3d69c83681baea4340a1aed98f9a2ba15937",
+    "displayFormat": "STEP %2d.%1d",
+    "selection": "first-set-bank2-bit-in-table-order",
+    "noMatch": "retain-previous-step",
+    "records": [
+      {
+        "step": 979,
+        "bank2Bit": 979
+      },
+      {
+        "step": 241,
+        "bank2Bit": 550
+      },
+      {
+        "step": 234,
+        "bank2Bit": 545
+      },
+      {
+        "step": 233,
+        "bank2Bit": 540
+      },
+      {
+        "step": 232,
+        "bank2Bit": 535
+      },
+      {
+        "step": 231,
+        "bank2Bit": 530
+      },
+      {
+        "step": 225,
+        "bank2Bit": 527
+      },
+      {
+        "step": 224,
+        "bank2Bit": 525
+      },
+      {
+        "step": 223,
+        "bank2Bit": 520
+      },
+      {
+        "step": 222,
+        "bank2Bit": 510
+      },
+      {
+        "step": 221,
+        "bank2Bit": 500
+      },
+      {
+        "step": 218,
+        "bank2Bit": 480
+      },
+      {
+        "step": 217,
+        "bank2Bit": 475
+      },
+      {
+        "step": 216,
+        "bank2Bit": 470
+      },
+      {
+        "step": 215,
+        "bank2Bit": 460
+      },
+      {
+        "step": 214,
+        "bank2Bit": 450
+      },
+      {
+        "step": 213,
+        "bank2Bit": 440
+      },
+      {
+        "step": 212,
+        "bank2Bit": 430
+      },
+      {
+        "step": 211,
+        "bank2Bit": 420
+      },
+      {
+        "step": 203,
+        "bank2Bit": 415
+      },
+      {
+        "step": 202,
+        "bank2Bit": 410
+      },
+      {
+        "step": 201,
+        "bank2Bit": 400
+      },
+      {
+        "step": 193,
+        "bank2Bit": 395
+      },
+      {
+        "step": 192,
+        "bank2Bit": 390
+      },
+      {
+        "step": 191,
+        "bank2Bit": 380
+      },
+      {
+        "step": 181,
+        "bank2Bit": 370
+      },
+      {
+        "step": 176,
+        "bank2Bit": 360
+      },
+      {
+        "step": 175,
+        "bank2Bit": 350
+      },
+      {
+        "step": 174,
+        "bank2Bit": 345
+      },
+      {
+        "step": 173,
+        "bank2Bit": 340
+      },
+      {
+        "step": 172,
+        "bank2Bit": 330
+      },
+      {
+        "step": 171,
+        "bank2Bit": 320
+      },
+      {
+        "step": 164,
+        "bank2Bit": 310
+      },
+      {
+        "step": 163,
+        "bank2Bit": 305
+      },
+      {
+        "step": 162,
+        "bank2Bit": 300
+      },
+      {
+        "step": 161,
+        "bank2Bit": 290
+      },
+      {
+        "step": 154,
+        "bank2Bit": 287
+      },
+      {
+        "step": 153,
+        "bank2Bit": 285
+      },
+      {
+        "step": 152,
+        "bank2Bit": 283
+      },
+      {
+        "step": 151,
+        "bank2Bit": 280
+      },
+      {
+        "step": 141,
+        "bank2Bit": 270
+      },
+      {
+        "step": 133,
+        "bank2Bit": 266
+      },
+      {
+        "step": 132,
+        "bank2Bit": 263
+      },
+      {
+        "step": 131,
+        "bank2Bit": 260
+      },
+      {
+        "step": 125,
+        "bank2Bit": 250
+      },
+      {
+        "step": 124,
+        "bank2Bit": 249
+      },
+      {
+        "step": 123,
+        "bank2Bit": 248
+      },
+      {
+        "step": 122,
+        "bank2Bit": 245
+      },
+      {
+        "step": 121,
+        "bank2Bit": 242
+      },
+      {
+        "step": 114,
+        "bank2Bit": 240
+      },
+      {
+        "step": 113,
+        "bank2Bit": 230
+      },
+      {
+        "step": 112,
+        "bank2Bit": 220
+      },
+      {
+        "step": 111,
+        "bank2Bit": 210
+      },
+      {
+        "step": 102,
+        "bank2Bit": 200
+      },
+      {
+        "step": 101,
+        "bank2Bit": 190
+      },
+      {
+        "step": 91,
+        "bank2Bit": 180
+      },
+      {
+        "step": 84,
+        "bank2Bit": 170
+      },
+      {
+        "step": 83,
+        "bank2Bit": 168
+      },
+      {
+        "step": 82,
+        "bank2Bit": 165
+      },
+      {
+        "step": 81,
+        "bank2Bit": 160
+      },
+      {
+        "step": 71,
+        "bank2Bit": 155
+      },
+      {
+        "step": 62,
+        "bank2Bit": 150
+      },
+      {
+        "step": 61,
+        "bank2Bit": 140
+      },
+      {
+        "step": 53,
+        "bank2Bit": 130
+      },
+      {
+        "step": 52,
+        "bank2Bit": 120
+      },
+      {
+        "step": 51,
+        "bank2Bit": 110
+      },
+      {
+        "step": 43,
+        "bank2Bit": 106
+      },
+      {
+        "step": 42,
+        "bank2Bit": 103
+      },
+      {
+        "step": 41,
+        "bank2Bit": 100
+      },
+      {
+        "step": 33,
+        "bank2Bit": 90
+      },
+      {
+        "step": 32,
+        "bank2Bit": 80
+      },
+      {
+        "step": 31,
+        "bank2Bit": 70
+      },
+      {
+        "step": 24,
+        "bank2Bit": 65
+      },
+      {
+        "step": 23,
+        "bank2Bit": 60
+      },
+      {
+        "step": 22,
+        "bank2Bit": 50
+      },
+      {
+        "step": 21,
+        "bank2Bit": 40
+      },
+      {
+        "step": 14,
+        "bank2Bit": 30
+      },
+      {
+        "step": 13,
+        "bank2Bit": 20
+      },
+      {
+        "step": 12,
+        "bank2Bit": 10
+      },
+      {
+        "step": 11,
+        "bank2Bit": 5
+      }
+    ],
+    "evidenceBoundary": [
+      "Values are native STEP codes, not assigned chapter or quest names.",
+      "Reset, ordered selection and decimal display are verified separately; no-match is not an implicit reset.",
+      "Timing counters updated by the owning routine are outside this bounded contract."
+    ]
+  },
+  "arrivalState": {
+    "requestOperation": "0x0030",
+    "entryQueryOperation": "0x0026",
+    "fields": [
+      {
+        "name": "scene",
+        "operation0030Argument": 0,
+        "pendingControllerOffset": 212,
+        "runtimeAddress": "0xc20c3d8",
+        "width": 4
+      },
+      {
+        "name": "area",
+        "operation0030Argument": 1,
+        "pendingControllerOffset": 208,
+        "runtimeAddress": "0xc20c3dc",
+        "width": 4
+      },
+      {
+        "name": "entry",
+        "operation0030Argument": 2,
+        "pendingControllerOffset": 216,
+        "runtimeAddress": "0xc20c3e0",
+        "width": 4
+      }
+    ],
+    "provenBehavior": "Operation 0x0030 queues scene, area and entry. The main transition consumer copies them to the current globals; operation 0x0026 returns the entry dword unchanged.",
+    "evidenceBoundary": [
+      "Entry is an authored arrival/event selector, not universally a door or spawn index.",
+      "Current arrival globals are distinct from mutable room-local scene fields.",
+      "Room-script initialization must execute its own conditions; an entry does not directly name a cutscene."
+    ]
+  },
   "actorRuntimeValues": {
     "identityTableAddress": "0xc278d08",
     "identityTableCount": 301,

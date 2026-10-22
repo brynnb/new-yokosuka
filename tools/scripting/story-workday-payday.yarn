@@ -1,0 +1,19 @@
+Ryo Hazuki: {{text:briefing}} #speaker:AKIR
+-> Collect today's wages
+    <<jump Collect>>
+-> Leave it for now
+    <<jump Done>>
+===
+title: Collect
+---
+<<play_sequence "{{staging}}.start">>
+{{voice:F1163B009}}
+{{voice:F1163A008}}
+<<play_sequence "{{staging}}.finish">>
+Ryo Hazuki: {{text:success}} #speaker:AKIR
+{{effects}}
+<<jump Done>>
+===
+title: Done
+---
+<<complete>>

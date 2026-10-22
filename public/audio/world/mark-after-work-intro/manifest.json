@@ -1,0 +1,641 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01MKB.AFS",
+      "sha256": "29dfd4ec9003c458ad53d6e1cabc621edd1a7fac8cff367b1e348de818e3e0fd"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_MKB.SND",
+      "sha256": "8286272d55f5011e16b49dc5cb7c0596a090e365ff409cbf96440a65ad02724e"
+    },
+    "authManifest": "play/assets/harbor/mark-after-work-intro/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-harbor-work.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01MKBA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBA001.aiff",
+      "nativeMember": "01MKBA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 6144,
+      "nativeSha256": "5353e17c6fa7c06822e32b83e53b191fba489bbb08ae9ffced3346a800a09655",
+      "speakerId": "AKIR",
+      "sourceText": "Cut it out!",
+      "displayText": "Cut it out!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-after-work-intro/voice/01MKBA001.wav",
+      "byteLength": 24364,
+      "sha256": "e681ac40f167c85651027256880768362115330024ca044dd924faf37670d961"
+    },
+    {
+      "voiceId": "01MKBB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBB001.aiff",
+      "nativeMember": "01MKBB001.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 4096,
+      "nativeSha256": "3d7ce2530088e206ca7999ac1fdd0a3e1af3d089ba65b07081f844ef25fa2bbf",
+      "speakerId": "OKYS",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-after-work-intro/voice/01MKBB001.wav",
+      "byteLength": 16172,
+      "sha256": "f0fcce89823e7ce910ae9ceafcbde363709bc8df004fb5eae02999a85a395fd7"
+    },
+    {
+      "voiceId": "01MKBB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBB004.aiff",
+      "nativeMember": "01MKBB004.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 14336,
+      "nativeSha256": "cec2664e64a96ce7b873ab196fc5c957c09d1828eaa85c6f129b744ff152600e",
+      "speakerId": "OKYS",
+      "sourceText": "You again?!",
+      "displayText": "You again?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-after-work-intro/voice/01MKBB004.wav",
+      "byteLength": 57132,
+      "sha256": "57b2a78d36b505823ad657800764ccfbe1fc099f38558be732eae1c7ffbbb840"
+    },
+    {
+      "voiceId": "01MKBC004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBC004.aiff",
+      "nativeMember": "01MKBC004.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 18432,
+      "nativeSha256": "6d463febfc65871f322bf5a69c401c188901250ea25f659dc3f0b57534080984",
+      "speakerId": "MRSK",
+      "sourceText": "This time you're dead!",
+      "displayText": "This time you're dead!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-after-work-intro/voice/01MKBC004.wav",
+      "byteLength": 73516,
+      "sha256": "240d24ebd7e287422458f267cdaac588c9fc056b389f78286b6a53bddcc218c5"
+    },
+    {
+      "voiceId": "01MKBD001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD001.aiff",
+      "nativeMember": "01MKBD001.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 14336,
+      "nativeSha256": "36c59c4760708b3359e4de1cb9d7839c920f1826487995ff901d78d6a9415de0",
+      "speakerId": "MARK",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-after-work-intro/voice/01MKBD001.wav",
+      "byteLength": 57132,
+      "sha256": "266d66a1c372acfc8749aa1c5ca6adbd23eac78ff7d1b3dc86026d710156edc9"
+    },
+    {
+      "voiceId": "01MKBD002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD002.aiff",
+      "nativeMember": "01MKBD002.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 14336,
+      "nativeSha256": "0dc7f9c896e5620ee42dac0b43a43422d5045f6a6b73076e59510197b6e28f7b",
+      "speakerId": "MARK",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 63
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-after-work-intro/voice/01MKBD002.wav",
+      "byteLength": 57132,
+      "sha256": "37f4523c7dc182a6b531474c5bd5a844d1cc492adc52cd0c5ba42e87fc3e7402"
+    },
+    {
+      "voiceId": "01MKBD003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD003.aiff",
+      "nativeMember": "01MKBD003.str",
+      "speakerId": "MARK",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "Original introduction requests 01MKBD003.str, absent from the pinned English 01MKB.AFS; no substitute voice or invented subtitle.",
+      "evidence": "docs/design/story-harbor-work.md#warehouse-no-17-mark-rescue"
+    },
+    {
+      "voiceId": "01MKBD004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD004.aiff",
+      "nativeMember": "01MKBD004.str",
+      "speakerId": "MARK",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "Original introduction requests 01MKBD004.str, absent from the pinned English 01MKB.AFS; no substitute voice or invented subtitle.",
+      "evidence": "docs/design/story-harbor-work.md#warehouse-no-17-mark-rescue"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths2/cl02.aiff",
+      "playbackId": 0,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9040000.wav",
+      "byteLength": 36916,
+      "sha256": "11b76e7843d092c6ff63058379b812ee5bbaa8b9475716e13ff3bb3dbc43e9dd"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths2/cl05.aiff",
+      "playbackId": 1,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9040100.wav",
+      "byteLength": 73092,
+      "sha256": "3c23439039c6b2a12d7cb1d4b1a58ea508e4ce2efa253b486096479f227dda30"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths2/cl06.aiff",
+      "playbackId": 2,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9040200.wav",
+      "byteLength": 62916,
+      "sha256": "5703d450986e9acb352cdaa832e51acc60482d8cdfa9d14811f6c3868ed8fd94"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/footconcrete/cool1.aiff",
+      "playbackId": 3,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9040300.wav",
+      "byteLength": 3612,
+      "sha256": "2be5bf21ac48bd030b29dea45aa0323ae964b5cc64d51560369a714393069a11"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/body/gomi1.aiff",
+      "playbackId": 7,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9040700.wav",
+      "byteLength": 13308,
+      "sha256": "b60797f12d0f0dcc6696c536848d0b7b3f1c114502d208f8919436c8d58fe812"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/kick/kick01.aiff",
+      "playbackId": 9,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9040900.wav",
+      "byteLength": 8076,
+      "sha256": "7e39276e57ec28e1187288ec5fc6d699e721e04e0c0b7caaf667fc207845e552"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/kick/kick02.aiff",
+      "playbackId": 10,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9040a00.wav",
+      "byteLength": 9748,
+      "sha256": "cba15f2cbf9809e8f00b51ec877d2e00c3b9d733e4679b01b75e225046d1a480"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/kick/kick10.aiff",
+      "playbackId": 11,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9040b00.wav",
+      "byteLength": 11572,
+      "sha256": "9b6983f900c431c2c89ae50f9dc76249eaedfe2e5431c83babafd6ac5fd8f0ec"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/kick/kick12.aiff",
+      "playbackId": 12,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9040c00.wav",
+      "byteLength": 10484,
+      "sha256": "aba17b3658a9da2d1625bade99d6bb13e8ad75beaf252b6a538e471eced3e814"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/footconcrete/lenashi05.aiff",
+      "playbackId": 13,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9040d00.wav",
+      "byteLength": 9340,
+      "sha256": "213ad08ea81186298f807f73e31c142a8bb3c5899b680dc29fe9cef6989715da"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 14,
+      "sampleId": 19,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9040e00.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 15,
+      "sampleId": 20,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9040f00.wav",
+      "byteLength": 5412,
+      "sha256": "64fa0eff3320191bd9befe41d84a45f91d48ae9a9c821c8aac766ce9b3fcf3f3"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot/sneaker1.aiff",
+      "playbackId": 19,
+      "sampleId": 24,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9041300.wav",
+      "byteLength": 10964,
+      "sha256": "3db696efc3f22f883429c8558b9cd97102c30e9f4401b0d78a4cb82baaf2e2b7"
+    },
+    {
+      "commandHex": "a9041400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot/sneaker3.aiff",
+      "playbackId": 20,
+      "sampleId": 25,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9041400.wav",
+      "byteLength": 11188,
+      "sha256": "fef02cc6d21fef1cbee18ba5ee6e940b07c8b2a6f06b1d6655873f03702c6d6d"
+    },
+    {
+      "commandHex": "a9041500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/foot/sneaker5.aiff",
+      "playbackId": 21,
+      "sampleId": 26,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9041500.wav",
+      "byteLength": 10804,
+      "sha256": "666406d82f6427ba7aa03663efd796fc9fc4dad74e69c139f58215e3d559b620"
+    },
+    {
+      "commandHex": "a9041900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/footconcrete/lenashi01.aiff",
+      "playbackId": 25,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9041900.wav",
+      "byteLength": 8292,
+      "sha256": "f2d1fdce461ee5a7de59c1750aea2a767b50a9f7592b2320fe70374f3f5e5998"
+    },
+    {
+      "commandHex": "a9041a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/footconcrete/lenashi03.aiff",
+      "playbackId": 26,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9041a00.wav",
+      "byteLength": 10548,
+      "sha256": "7f0b9000b825e5eb3571dc4ab783e16d852d013404049ea3c29d0ae95e1f2ae7"
+    },
+    {
+      "commandHex": "a9041b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/cloths/SUBERU2.aiff",
+      "playbackId": 27,
+      "sampleId": 27,
+      "sampleRate": 44100,
+      "asset": "public/audio/world/mark-after-work-intro/sfx/a9041b00.wav",
+      "byteLength": 40436,
+      "sha256": "df19486630969578fe761bf192cd9887f29da717f6c33312485cae3b210f2e8c"
+    },
+    {
+      "commandHex": "a9041c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SE/footconcrete/joseiconsneaker1.aiff",
+      "unavailable": true,
+      "unavailableReason": "Original introduction requests a9041c00; the pinned A1_MKB.SND contains a9040000 through a9041b00 only. Incidental footstep omitted, no substitute.",
+      "evidence": "docs/design/story-harbor-work.md#warehouse-no-17-mark-rescue"
+    }
+  ]
+}

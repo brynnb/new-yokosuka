@@ -13,6 +13,37 @@ import {
   nativeActorFootstepSurfaceIndex,
   nativeFootstepSurfaceIndexAt,
 } from "../play/audio/NativeFootstepSurfaceResolver.js";
+import { createNativeRoomScriptRuntime } from "../play/events/NativeRoomScriptRuntime.js";
+import { createNativeEventOperationExecutor } from "../play/events/NativeEventOperationRuntime.js";
+
+test("room script STEP writes reach the shared footstep resolver and undo on cancellation", async () => {
+  const room = createNativeRoomScriptRuntime();
+  room.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({ handlers: room.semanticHandlers() });
+  const resolve = (area = "JOMO", point = {}) => nativeFootstepSurfaceIndexAt({
+    // Outside the finite material grid, so this tests the STEP fallback.
+    area, actorTag: "AKIR", browserX: 9999, browserZ: 9999, ...point,
+    actorStepRecord: room.sceneState.associatedRecords.readStepRecord("AKIR"),
+  });
+  assert.equal(resolve(), 3);
+  const tx = room.beginTransaction({ area: "JOMO" });
+  const write = value => execute({ kind: "engineOperation", adapterStatus: "proven",
+    semanticId: "actor-step-packed-byte-write", arguments: [
+      { kind: "constant", value: 0x52494b41, ascii: "AKIR" },
+      { kind: "constant", value },
+    ],
+  }, tx.context);
+  await write(269);
+  assert.equal(resolve(), 13);
+  assert.equal(resolve("D000", {browserX: 64.87008857727051, browserZ: 62.61539840698242}), 17,
+    "nonzero collision material still has precedence");
+  await write(0);
+  assert.equal(resolve(), null);
+  tx.rollback("cancelled");
+  assert.equal(resolve(), 3);
+  room.activateArea("MFSY");
+  assert.equal(resolve("MFSY"), 0, "another room owns a separate captured property");
+});
 
 test("decodes the executable's priority, STEP remainder, and filters", () => {
   assert.deepEqual(decodeNativeSurfaceCode(0x03f7), {

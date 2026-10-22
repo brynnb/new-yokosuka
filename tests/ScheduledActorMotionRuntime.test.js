@@ -62,6 +62,9 @@ test("named native locomotion clips load as a reusable runtime resource", async 
   assert.equal(motionRuntime.sequences.has("mobj:DOG_DOG_RUN_LP"), true);
   assert.equal(motionRuntime.movementNames.has("mobj:CAT_CAT_TATI_LP"), false);
   assert.equal(motionRuntime.movementNames.has("mobj:DOG_DOG_RUN_LP"), true);
+  assert.equal(motionRuntime.namedDurationSeconds({bank:"mobj",name:"CAT_CAT_TATI_LP"}),
+    motionRuntime.sequences.get("mobj:CAT_CAT_TATI_LP").durationFrames/30);
+  assert.throws(()=>motionRuntime.namedDurationSeconds({bank:"mobj",name:"UNLOADED"}),/No loaded motion duration/);
 });
 
 async function loadCharacter(filename, characterRigMode = "baked") {

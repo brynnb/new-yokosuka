@@ -1,0 +1,31 @@
+<<play_sequence "{{staging}}.start">>
+{{voice:E1008A010}}
+<<play_sequence "{{staging}}.finish">>
+<<if flag_set("story.s1.old-district-flashlight.caught")>>
+<<jump Enter>>
+<<endif>>
+<<play_sequence "s1.mfsy.old-district-head-bump.start">>
+<<play_sequence "s1.mfsy.old-district-head-bump.finish">>
+<<jump Catch>>
+===
+title: Catch
+---
+<<play_sequence "s1.mfsy.old-district-prompt.start">>
+<<start_challenge "s1.mfsy.old-district-flashlight">>
+<<play_sequence "s1.mfsy.old-district-prompt.finish">>
+<<if challenge_result("s1.mfsy.old-district-flashlight") != "success">>
+-> Try again
+    <<jump Catch>>
+-> Leave it for now
+    <<complete>>
+<<else>>
+<<play_sequence "s1.mfsy.old-district-catch.start">>
+<<play_sequence "s1.mfsy.old-district-catch.finish">>
+<<jump Enter>>
+<<endif>>
+===
+title: Enter
+---
+<<travel_story "s1.harbor.old-district-entry">>
+{{effects}}
+<<complete>>

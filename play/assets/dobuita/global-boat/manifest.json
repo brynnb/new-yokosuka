@@ -1,0 +1,147 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "01MIT.AUTH",
+        "path": "disc2/SCENE/02/DSKI/MAPINFO.BIN",
+        "sourceOffset": 164092,
+        "sourceSha256": "17d1f11dda00b6040dab2d3cd914bf05b0caa605d90ed751cbd445f278e80f1e",
+        "byteLength": 7768,
+        "sha256": "fb621852f1ba096115a1d46a23ac600f9d5b6479608a071e178785d9a965a00a"
+      },
+      {
+        "name": "M_01MIT.BIN",
+        "path": "disc2/SCENE/02/DSKI/M_01MIT.BIN",
+        "byteLength": 76908,
+        "sha256": "fdc0e3df9d0664a748bfb3119d4ec1a37df8ed866ff0344be82f1d33819412b4"
+      },
+      {
+        "name": "CLIK302G.CHRM",
+        "path": "disc2/SCENE/02/DSKI/MPK00.PKS",
+        "archiveMember": "CLIK302G.CHRM",
+        "byteLength": 1716,
+        "sha256": "5e8a318cc8c226482dabd2b55c22778f197c88fd55a1f3e0ee96114bdbd99646"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "01MIT",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/global-boat/manifest.json",
+  "sceneObjects": {
+    "DOOR": {
+      "model": "door-transform-reference",
+      "browserFilename": "DOOR",
+      "referenceOnly": true
+    },
+    "TYOB": {
+      "model": "CLIK302G.CHRM",
+      "browserFilename": "CLIK302G.CHRM",
+      "assetPath": "play/assets/dobuita/global-boat/CLIK302G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/global-boat/textures.bin"
+    }
+  },
+  "packageActors": {
+    "SIND": {
+      "label": "Satoshi Shinoda",
+      "modelCode": "SND_L",
+      "browserFilename": "SND_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/SND_L.CHRM",
+      "textureAssetPath": "play/assets/characters/SND_textures.bin"
+    }
+  },
+  "actorTags": [
+    "TYOB",
+    "DOOR",
+    "SIND",
+    "AKIR"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/dobuita/global-boat/M_01MIT.BIN",
+      "byteLength": 76908,
+      "sha256": "fdc0e3df9d0664a748bfb3119d4ec1a37df8ed866ff0344be82f1d33819412b4",
+      "sequenceIndexBase": 0
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/global-boat/M_01MIT.BIN",
+      "byteLength": 76908,
+      "sha256": "fdc0e3df9d0664a748bfb3119d4ec1a37df8ed866ff0344be82f1d33819412b4"
+    },
+    {
+      "path": "play/assets/dobuita/global-boat/01MIT.AUTH",
+      "byteLength": 7768,
+      "sha256": "fb621852f1ba096115a1d46a23ac600f9d5b6479608a071e178785d9a965a00a"
+    },
+    {
+      "path": "play/assets/dobuita/global-boat/CLIK302G.CHRM",
+      "byteLength": 1716,
+      "sha256": "5e8a318cc8c226482dabd2b55c22778f197c88fd55a1f3e0ee96114bdbd99646"
+    },
+    {
+      "path": "play/assets/dobuita/global-boat/textures.bin",
+      "byteLength": 407264,
+      "sha256": "ce8f0289f3a35f5131a608bc125bfb6e985a9202222401b97963175d0aecdba5"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "01MIT/01MIT.AUTH",
+      "archiveMember": "01MIT.AUTH",
+      "byteLength": 7768,
+      "sha256": "fb621852f1ba096115a1d46a23ac600f9d5b6479608a071e178785d9a965a00a",
+      "durationFrames": 1470,
+      "durationSeconds": 49.016666412353516,
+      "frameCount": 33,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 2,
+        "sound": 16,
+        "voice": 15
+      },
+      "actors": [
+        "TYOB",
+        "DOOR",
+        "SIND",
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "SIND",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "YKI_SND_AT2_KIKU_HUNABIN_WORLDTRAVELMITUMORI_0100",
+          "startFrame": 1,
+          "endFrame": 1470
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 60,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT2_KIKU_HUNABIN_WORLDTRAVELMITUMORI_0100",
+          "startFrame": 1,
+          "endFrame": 1385
+        }
+      ]
+    }
+  ]
+}

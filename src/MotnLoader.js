@@ -322,22 +322,29 @@ export class MotnLoader {
             ? new Set(options.sequenceIndices)
             : null;
         const sequences = [];
+        const sequenceIndexBase = options.sequenceIndexBase ?? 0;
+        if (!Number.isInteger(sequenceIndexBase) || sequenceIndexBase < 0 || sequenceIndexBase > 65535) {
+            throw new RangeError("MOTN sequence index base must be an unsigned word");
+        }
         for (let i = 0; i < header.sequenceCount; i++) {
             if (
                 (requestedNames || requestedIndices)
-                && !requestedIndices?.has(i)
+                && !requestedIndices?.has(i + sequenceIndexBase)
                 && !requestedNames?.has(this.parseName(header, i).name)
             ) {
                 continue;
             }
-            sequences.push(
-                this.parseSequence(
-                    header,
-                    i,
-                    sequenceEndFor(dataOffsets[i]),
-                    actionMetadataEndFor(actionMetadataOffsets[i]),
-                ),
+            const sequence = this.parseSequence(
+                header,
+                i,
+                sequenceEndFor(dataOffsets[i]),
+                actionMetadataEndFor(actionMetadataOffsets[i]),
             );
+            // Some scene packages contain only a declared window of a native
+            // motion bank. Keep physical source indices separate from AUTH IDs.
+            sequences.push(sequenceIndexBase === 0 ? sequence : {
+                ...sequence, sourceIndex: i, index: i + sequenceIndexBase,
+            });
         }
 
         return {

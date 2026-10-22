@@ -108,11 +108,17 @@ export class CombatHud {
   update(snapshot) {
     const { dom } = this;
     if (!dom.combatHud) return;
+    const moves = this.getEncounter()?.playerMoves || MARTIAL_ARTS_MOVES;
+    if (moves !== this.moveListMoves) this.populateMoveList(moves);
     const controlsActive = Boolean(snapshot.active && snapshot.controlsActive);
     dom.app.classList.toggle("combat-controls-active", controlsActive);
     dom.combatHud.hidden = !controlsActive;
     dom.combatPlayerGauge.hidden = !controlsActive;
     dom.combatEnemyGauge.hidden = !controlsActive;
+    const targetLabel = dom.combatEnemyGauge.querySelector("strong");
+    if (targetLabel) targetLabel.textContent = snapshot.targetName;
+    dom.combatEnemyGauge.setAttribute("aria-label", `${snapshot.targetName} health`);
+    dom.combatEnemyGauge.dataset.targetId = snapshot.targetId || "";
     if (dom.combatModeControlLabel) {
       dom.combatModeControlLabel.textContent = "Toggle Combat";
     }
@@ -121,12 +127,14 @@ export class CombatHud {
       controller.options.inputContext = controlsActive
         ? "combat"
         : "exploration";
-      controller.keys.clear();
+      // Health/target feedback updates must not release held movement keys.
+      if (this.controlsActive !== controlsActive) controller.keys.clear();
       controller.options.runEnabled = true;
       controller.options.toggleRun = !controlsActive;
       controller.options.toggleAutoRunKey = controlsActive ? null : "KeyQ";
       if (controlsActive) controller.autoRun = false;
     }
+    this.controlsActive = controlsActive;
     for (const button of dom.combatMoveList?.querySelectorAll(
       "button[data-position-condition]",
     ) || []) {
@@ -178,9 +186,10 @@ export class CombatHud {
     dom.combatCommandFeedback.hidden = !controlsActive;
   }
 
-  populateMoveList() {
+  populateMoveList(moves = this.getEncounter()?.playerMoves || MARTIAL_ARTS_MOVES) {
     const { dom } = this;
     if (!dom.combatMoveList) return;
+    this.moveListMoves = moves;
     dom.combatMoveList.replaceChildren();
     if (dom.combatMoveCount) dom.combatMoveCount.textContent = "Moves List";
     const commandWithFollowups = (move) => {
@@ -203,7 +212,7 @@ export class CombatHud {
       const heading = document.createElement("h3");
       heading.textContent = `${category} moves`;
       const list = document.createElement("ol");
-      for (const move of Object.values(MARTIAL_ARTS_MOVES)) {
+      for (const move of Object.values(moves)) {
         if (move.category !== category) continue;
         const item = document.createElement("li");
         const label = document.createElement("button");

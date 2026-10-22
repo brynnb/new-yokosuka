@@ -478,6 +478,14 @@ export class ScheduledActorMotionRuntime {
     );
   }
 
+  namedDurationSeconds(selection) {
+    const sequence = this.sequences.get(`${selection.bank}:${selection.name}`);
+    if (!Number.isSafeInteger(sequence?.durationFrames) || sequence.durationFrames < 1) {
+      throw new Error(`No loaded motion duration: ${selection.bank}:${selection.name}`);
+    }
+    return sequence.durationFrames / MOTION_FPS;
+  }
+
   applyNamed(
     model,
     selection,

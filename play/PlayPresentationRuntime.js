@@ -122,7 +122,10 @@ export class PlayPresentationRuntime {
       story.runtime.updateAutomatic({
         world: world.runtime.activeWorld,
         enabled: !world.runtime.activeWorld.cutsceneOnly
-          && story.scriptedEvents.status === "idle",
+          // Geometry can be ready while the travel session still finalizes
+          // arrival/avatar state. Don't consume a once-per-entry dispatch yet.
+          && !world.runtime.switching && !player.runtime.characterSwitching
+          && !story.scriptedEvents.busy,
         playerPosition: player.actorRoot.position,
         playerYaw: player.actorRoot.rotation.y,
       });

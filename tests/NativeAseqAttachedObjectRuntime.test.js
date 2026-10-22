@@ -105,7 +105,9 @@ test("AUTH FIXO props follow the exact parent controller and hide between activi
         latestControllerFamily: {
           nodes: [{ index: 3, type: 12 }],
         },
-        latestControllerMatrices: [null, null, null, parentMatrix],
+        // Named-motion interpolation uses typed matrices; exact AUTH frames
+        // use ordinary arrays. Both must follow the same attachment path.
+        latestControllerMatrices: [null, null, null, new Float32Array(parentMatrix)],
       },
     };
     const runtime = new NativeAseqAttachedObjectRuntime({
@@ -375,6 +377,7 @@ test("AUTH FIXO props instantiate exact package-owned models when absent", async
         CAN1: {
           browserFilename: "S1_D000_COKS520G.MT5",
           assetPath: "play/assets/dobuita/djhn/COKS520G.CHRM",
+          textureAssetPath: "fixture/prop-textures.bin",
           attachments: [{
             activityId: "activity-22",
             frame: 0,
@@ -388,6 +391,7 @@ test("AUTH FIXO props instantiate exact package-owned models when absent", async
       resolveActor: () => null,
       instantiateAsset: async definition => {
         assert.equal(definition.assetPath, "play/assets/dobuita/djhn/COKS520G.CHRM");
+        assert.equal(definition.textureAssetPath, "fixture/prop-textures.bin");
         return [can];
       },
     });

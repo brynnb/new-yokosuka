@@ -1,0 +1,378 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "A0165.AUTH",
+        "path": "disc2/SCENE/02/ARAR/MAPINFO.BIN",
+        "sourceOffset": 24564,
+        "sourceSha256": "e5adb7020c8c0704316adc482881b77ce9660f59c97f946ab2735e8ac9612c98",
+        "byteLength": 19064,
+        "sha256": "1cb299fd3831f2501cd9742d0dd00c2ea59e32d9be393d5b21af5e1f0bd35853"
+      },
+      {
+        "name": "M_0165.BIN",
+        "path": "disc2/SCENE/02/ARAR/M_0165.BIN",
+        "byteLength": 453880,
+        "sha256": "2451ea8698e5e2ec6c7e2cf6097d78e0532cd874791bc5927cbcef202688f7ac"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "A0165",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/boat-ticket-collection/manifest.json",
+  "packageActors": {
+    "JIMY": {
+      "label": "Jimmy Yan",
+      "modelCode": "JIM_M",
+      "browserFilename": "JIM_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/JIM_M.CHRM",
+      "textureAssetPath": "play/assets/characters/JIM_textures.bin"
+    },
+    "KJHS": {
+      "label": "Koji Hase",
+      "modelCode": "TPL_L",
+      "browserFilename": "TPL_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/TPL_L.CHRM",
+      "textureAssetPath": "play/assets/characters/TPL_textures.bin"
+    },
+    "MNWA": {
+      "label": "Kazumi Minowa",
+      "modelCode": "MIR_L",
+      "browserFilename": "MIR_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/MIR_L.CHRM",
+      "textureAssetPath": "play/assets/characters/MIR_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "JIMY",
+    "KJHS",
+    "MNWA"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/dobuita/boat-ticket-collection/M_0165.BIN",
+      "byteLength": 453880,
+      "sha256": "2451ea8698e5e2ec6c7e2cf6097d78e0532cd874791bc5927cbcef202688f7ac",
+      "sequenceIndexBase": 0
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/boat-ticket-collection/M_0165.BIN",
+      "byteLength": 453880,
+      "sha256": "2451ea8698e5e2ec6c7e2cf6097d78e0532cd874791bc5927cbcef202688f7ac"
+    },
+    {
+      "path": "play/assets/dobuita/boat-ticket-collection/A0165.AUTH",
+      "byteLength": 19064,
+      "sha256": "1cb299fd3831f2501cd9742d0dd00c2ea59e32d9be393d5b21af5e1f0bd35853"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "A0165/A0165.AUTH",
+      "archiveMember": "A0165.AUTH",
+      "byteLength": 19064,
+      "sha256": "1cb299fd3831f2501cd9742d0dd00c2ea59e32d9be393d5b21af5e1f0bd35853",
+      "durationFrames": 2082,
+      "durationSeconds": 69.41666412353516,
+      "frameCount": 82,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 29,
+        "voice": 20,
+        "sound": 48
+      },
+      "actors": [
+        "AKIR",
+        "JIMY",
+        "KJHS",
+        "MNWA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_KUBI_TUKAMU_0146",
+          "startFrame": 120,
+          "endFrame": 248
+        },
+        {
+          "actorTag": "JIMY",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 24,
+          "motionName": "YKI_SMM_TUITEKINA_0336",
+          "startFrame": 284,
+          "endFrame": 411
+        },
+        {
+          "actorTag": "KJHS",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 19,
+          "motionName": "OTH_TKB_KUBI_TUKAMU_0146",
+          "startFrame": 446,
+          "endFrame": 1420
+        },
+        {
+          "actorTag": "MNWA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "OTH_TKA_SUWARU_SOFA_0146",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 130,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_TEGAMI_KAIDOKU_TOUKIYA1_0100",
+          "startFrame": 21,
+          "endFrame": 120
+        },
+        {
+          "actorTag": "JIMY",
+          "frame": 130,
+          "motionBank": 16,
+          "sequenceIndex": 22,
+          "motionName": "YKI_MAN_SIT_SOFA_LP_F",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "JIMY",
+          "frame": 190,
+          "motionBank": 16,
+          "sequenceIndex": 22,
+          "motionName": "YKI_MAN_SIT_SOFA_LP_F",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 230,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_KOTOWARU_TORNADO_KICK_A_0100",
+          "startFrame": 1,
+          "endFrame": 201
+        },
+        {
+          "actorTag": "JIMY",
+          "frame": 250,
+          "motionBank": 16,
+          "sequenceIndex": 22,
+          "motionName": "YKI_MAN_SIT_SOFA_LP_F",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "JIMY",
+          "frame": 310,
+          "motionBank": 16,
+          "sequenceIndex": 22,
+          "motionName": "YKI_MAN_SIT_SOFA_LP_F",
+          "startFrame": 1,
+          "endFrame": 60
+        },
+        {
+          "actorTag": "JIMY",
+          "frame": 321,
+          "motionBank": 16,
+          "sequenceIndex": 21,
+          "motionName": "YKI_JIM_GOODLUCK_SCHOOLBOY_0146",
+          "startFrame": 847,
+          "endFrame": 955
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 431,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_KUBI_TUKAMU_0146",
+          "startFrame": 370,
+          "endFrame": 629
+        },
+        {
+          "actorTag": "JIMY",
+          "frame": 431,
+          "motionBank": 16,
+          "sequenceIndex": 21,
+          "motionName": "YKI_JIM_GOODLUCK_SCHOOLBOY_0146",
+          "startFrame": 596,
+          "endFrame": 995
+        },
+        {
+          "actorTag": "MNWA",
+          "frame": 501,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "OTH_TKA_SUWARU_SOFA_0146",
+          "startFrame": 341,
+          "endFrame": 1008
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 691,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_KUBI_TUKAMU_0146",
+          "startFrame": 550,
+          "endFrame": 689
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 831,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_KUBI_TUKAMU_0146",
+          "startFrame": 1125,
+          "endFrame": 1339
+        },
+        {
+          "actorTag": "JIMY",
+          "frame": 831,
+          "motionBank": 16,
+          "sequenceIndex": 21,
+          "motionName": "YKI_JIM_GOODLUCK_SCHOOLBOY_0146",
+          "startFrame": 1428,
+          "endFrame": 1847
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1046,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "AKI_NAGURU_WAKIBARA_0146",
+          "startFrame": 152,
+          "endFrame": 356
+        },
+        {
+          "actorTag": "KJHS",
+          "frame": 1106,
+          "motionBank": 16,
+          "sequenceIndex": 19,
+          "motionName": "OTH_TKB_KUBI_TUKAMU_0146",
+          "startFrame": 1464,
+          "endFrame": 1608
+        },
+        {
+          "actorTag": "MNWA",
+          "frame": 1169,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "OTH_TKA_SUWARU_SOFA_0146",
+          "startFrame": 1490,
+          "endFrame": 1570
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1251,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "AKI_NAGURU_WAKIBARA_0146",
+          "startFrame": 462,
+          "endFrame": 919
+        },
+        {
+          "actorTag": "JIMY",
+          "frame": 1251,
+          "motionBank": 16,
+          "sequenceIndex": 21,
+          "motionName": "YKI_JIM_GOODLUCK_SCHOOLBOY_0146",
+          "startFrame": 1804,
+          "endFrame": 2261
+        },
+        {
+          "actorTag": "KJHS",
+          "frame": 1251,
+          "motionBank": 16,
+          "sequenceIndex": 19,
+          "motionName": "OTH_TKB_KUBI_TUKAMU_0146",
+          "startFrame": 1713,
+          "endFrame": 2170
+        },
+        {
+          "actorTag": "MNWA",
+          "frame": 1251,
+          "motionBank": 16,
+          "sequenceIndex": 17,
+          "motionName": "OTH_TKA_NAGURU_WAKIBARA_0146",
+          "startFrame": 408,
+          "endFrame": 865
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1709,
+          "motionBank": 16,
+          "sequenceIndex": 25,
+          "motionName": "AKI_AKI_BATTLE_TUKAMI_0165",
+          "startFrame": 1,
+          "endFrame": 115
+        },
+        {
+          "actorTag": "JIMY",
+          "frame": 1709,
+          "motionBank": 16,
+          "sequenceIndex": 20,
+          "motionName": "YKI_AKI_BATTLE_TUKAMARE_0165",
+          "startFrame": 1,
+          "endFrame": 115
+        },
+        {
+          "actorTag": "KJHS",
+          "frame": 1709,
+          "motionBank": 16,
+          "sequenceIndex": 19,
+          "motionName": "OTH_TKB_KUBI_TUKAMU_0146",
+          "startFrame": 2125,
+          "endFrame": 2272
+        },
+        {
+          "actorTag": "MNWA",
+          "frame": 1709,
+          "motionBank": 16,
+          "sequenceIndex": 17,
+          "motionName": "OTH_TKA_NAGURU_WAKIBARA_0146",
+          "startFrame": 698,
+          "endFrame": 955
+        },
+        {
+          "actorTag": "JIMY",
+          "frame": 1824,
+          "motionBank": 16,
+          "sequenceIndex": 23,
+          "motionName": "YKI_JIM_AT1_ODOSARERU_ASIATRAVEL_0100",
+          "startFrame": 170,
+          "endFrame": 428
+        }
+      ]
+    }
+  ]
+}

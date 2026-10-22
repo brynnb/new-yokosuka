@@ -1,0 +1,24 @@
+-> Start the motorcycle ride
+    <<jump Ride>>
+-> Return to Naoyuki
+    <<travel_story "s1.nozomi.naoyuki-return">>
+    <<jump Done>>
+===
+title: Ride
+---
+<<start_challenge "s1.nbik.nozomi-ride">>
+<<if challenge_result("s1.nbik.nozomi-ride") == "success">>
+<<travel_story "s1.work.biker-alley">>
+{{effects}}
+<<jump Done>>
+<<else>>
+-> Try the ride again
+    <<jump Ride>>
+-> Return to Naoyuki
+    <<travel_story "s1.nozomi.naoyuki-return">>
+    <<jump Done>>
+<<endif>>
+===
+title: Done
+---
+<<complete>>

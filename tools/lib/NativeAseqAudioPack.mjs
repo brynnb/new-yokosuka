@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import {
+  accessSync,
   copyFileSync,
   mkdirSync,
   mkdtempSync,
@@ -20,7 +21,27 @@ import { parseDTPK, translateDTPKRate } from "./dtpk.mjs";
 const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
 const align = value => (value + 0x7ff) & ~0x7ff;
 
-function afsMembers(bytes, label) {
+// A viewer rendering is not automatically available to /play. Register the
+// exact reviewed source in its runtime manifest; never render a second copy or
+// let a package cue silently reference a viewer-only track.
+export function registerNativeAseqMusic(root, definition) {
+  const {id,sourceId,bankHash,label}=definition;
+  const filename=path.join(root,"public/music/manifest.json");
+  const music=JSON.parse(readFileSync(filename));
+  const viewer=JSON.parse(readFileSync(path.join(root,"public/music/asset-viewer-manifest.json")));
+  const track=viewer.tracks[sourceId];
+  if(!track||track.source.bankSha256!==bankHash||track.source.file!==`${id.toUpperCase()}.SND`||track.source.group!==0||track.source.track!==0)throw Error(`Changed original music for ${id}`);
+  accessSync(path.join(root,"public",track.ogg_url));
+  const existing=music.tracks[id];
+  if(existing&&(existing.url!==track.ogg_url||existing.source?.id!==sourceId||existing.source.bankSha256!==bankHash))throw Error(`Conflicting shared music identity ${id}`);
+  // One original recording can score multiple scenes. Registering another
+  // consumer must not rename the already published shared track each time.
+  music.tracks[id]={url:track.ogg_url,label:existing?.label||label,durationSeconds:track.durationSeconds,loop:true,source:track.source};
+  writeFileSync(filename,JSON.stringify(music,null,2)+"\n");
+  return ["public/music/manifest.json",`public${track.ogg_url}`];
+}
+
+export function afsMembers(bytes, label) {
   if (bytes.subarray(0, 4).toString("binary") !== "AFS\0") {
     throw new Error(`${label} signature changed`);
   }
@@ -113,6 +134,23 @@ function concatenatePcmWav(segments, label) {
   return output;
 }
 
+// AUTH may deliberately borrow a voice from another AFS (the two sailor
+// endings share Ryo's AA lines). Resolve exact member identities across only
+// explicitly pinned sources; never substitute a similarly named voice.
+export function mergeNativeVoiceCatalogs(catalogs) {
+  const result = new Map();
+  const presentation = record => JSON.stringify([record.speakerId, record.sourceText, record.displayText, record.lipSync]);
+  for (const catalog of catalogs) for (const entry of catalog) {
+    const name = entry.member.name.toUpperCase(), previous = result.get(name);
+    if (previous && (!previous.member.bytes.equals(entry.member.bytes)
+      || presentation(previous.record) !== presentation(entry.record))) {
+      throw new Error(`Ambiguous native voice ${name}`);
+    }
+    if (!previous) result.set(name, entry);
+  }
+  return result;
+}
+
 export function buildNativeAseqAudioPack(config) {
   const authRecords = config.authFiles.map(filename => {
     const bytes = readFileSync(path.join(config.authDirectory, filename));
@@ -157,23 +195,18 @@ export function buildNativeAseqAudioPack(config) {
   if (voicesByName.size > 0 && !config.stream) {
     throw new Error("AUTH voice commands require an exact native stream archive");
   }
-  const stream = config.stream ? readFileSync(config.stream.path) : null;
-  if (stream && sha256(stream) !== config.stream.sha256) {
-    throw new Error(`${config.stream.label} changed`);
-  }
-  const members = stream ? afsMembers(stream, config.stream.label) : [];
-  const nativeVoices = members.filter(member => path.extname(member.name).toUpperCase() === ".STR");
-  const subtitles = members.filter(member => path.extname(member.name).toUpperCase() === ".SRF");
-  if (stream && subtitles.length !== 1) {
-    throw new Error(`${config.stream.label} requires one SRF member`);
-  }
-  const subtitleRecords = stream ? parseNativeSrfRecords(subtitles[0].bytes) : [];
-  if (stream && nativeVoices.length !== subtitleRecords.length) {
-    throw new Error(`${config.stream.label} SRF records do not align with voices`);
-  }
-  const presentation = new Map(nativeVoices.map(
-    (member, index) => [member.name.toUpperCase(), subtitleRecords[index]],
-  ));
+  const streamSources = [...(config.stream ? [config.stream] : []), ...(config.additionalStreams || [])];
+  const voiceCatalog = mergeNativeVoiceCatalogs(streamSources.map(source => {
+    const stream = readFileSync(source.path);
+    if (sha256(stream) !== source.sha256) throw new Error(`${source.label} changed`);
+    const members = afsMembers(stream, source.label);
+    const speech = members.filter(member => path.extname(member.name).toUpperCase() === ".STR");
+    const subtitles = members.filter(member => path.extname(member.name).toUpperCase() === ".SRF");
+    if (subtitles.length !== 1) throw new Error(`${source.label} requires one SRF member`);
+    const records = parseNativeSrfRecords(subtitles[0].bytes);
+    if (speech.length !== records.length) throw new Error(`${source.label} SRF records do not align with voices`);
+    return speech.map((member,index) => ({member, record: records[index], source}));
+  }));
   if (soundsByIdentity.size > 0 && !config.soundBank) {
     throw new Error("AUTH sound commands require an exact native sound bank");
   }
@@ -190,7 +223,7 @@ export function buildNativeAseqAudioPack(config) {
     mkdirSync(sfxDirectory, { recursive: true });
     const voices = [];
     for (const [upperName, usage] of [...voicesByName].sort()) {
-      const member = members.find(candidate => candidate.name.toUpperCase() === upperName);
+      const resolved = voiceCatalog.get(upperName), member = resolved?.member;
       const unavailable = config.unavailableVoices?.[usage.nativeMember];
       if (!member && unavailable) {
         voices.push({
@@ -220,7 +253,7 @@ export function buildNativeAseqAudioPack(config) {
       writeFileSync(nativePath, member.bytes);
       run(config.vgmstream, ["-o", outputPath, nativePath]);
       const output = readFileSync(outputPath);
-      const record = presentation.get(upperName);
+      const record = resolved.record;
       voices.push({
         voiceId: path.basename(usage.nativeMember, ".str"),
         sourcePath: usage.sourcePath,
@@ -228,6 +261,7 @@ export function buildNativeAseqAudioPack(config) {
         nativeIndex: member.index,
         nativeByteLength: member.byteLength,
         nativeSha256: expectedHash,
+        ...(config.additionalStreams?.length ? {nativeArchive: resolved.source.manifestPath} : {}),
         speakerId: record?.speakerId ?? null,
         sourceText: record?.sourceText ?? null,
         displayText: record?.displayText ?? null,
@@ -328,6 +362,7 @@ export function buildNativeAseqAudioPack(config) {
         stream: config.stream
           ? { disc: config.disc, path: config.stream.manifestPath, sha256: config.stream.sha256 }
           : null,
+        ...(config.additionalStreams?.length ? {additionalStreams: config.additionalStreams.map(source => ({disc:config.disc,path:source.manifestPath,sha256:source.sha256}))} : {}),
         soundBank: config.soundBank
           ? { disc: config.disc, path: config.soundBank.manifestPath, sha256: config.soundBank.sha256 }
           : null,

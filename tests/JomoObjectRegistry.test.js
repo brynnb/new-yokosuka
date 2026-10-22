@@ -1,5 +1,28 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import authoredTalks from "../play/data/authored-story-talks.json" with {type:"json"};
+import storyObjects from "../play/data/authored-story-objects.json" with {type:"json"};
+
+test("authored object labels use the shared classifier and preserve native mechanics",()=>{
+  const objects=authoredTalks.objects.filter(o=>o.label);
+  assert.ok(objects.length>=2);
+  for(const object of objects){
+    const model=object.area==="JOMO"?"S1_JOMO_KHKO105G.MT5":`S1_${object.area}_KHKS500G.MT5`;
+    assert.equal(jomoObjectBehavior(model,object.object).label,object.label);
+  }
+  assert.equal(jomoObjectBehavior("S1_JOMO_HIKR101G.MT5","IWWH").kind,"drawer");
+  assert.equal(jomoObjectBehavior("S1_JHD0_KHKS500G.MT5","another-tag").kind,"none");
+});
+
+test("reviewed authored props retain declared initial visibility while native mechanics retain priority",()=>{
+  for(const placement of storyObjects.placements){
+    const behavior=jomoObjectBehavior(placement.model,placement.runtime.objectTag,placement.runtime);
+    assert.equal(behavior.initiallyEnabled,placement.runtime.initiallyEnabled);
+    const route=authoredTalks.objects.find(o=>o.area===placement.area&&o.object===placement.runtime.objectTag);
+    assert.equal(behavior.kind,route?"inspect":"passive-scenery");
+  }
+  assert.throws(()=>jomoObjectBehavior("S2_YDB1_PNX02M1G.MT5","HOKY",{authoredStoryProp:true}),/Missing authored Story visibility/);
+});
 import { DRAWER_OPEN_DISTANCE } from "../src/RuntimeObjectAnimation.js";
 import { jomoObjectBehavior } from "../src/JomoObjectRegistry.js";
 

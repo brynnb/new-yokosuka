@@ -97,6 +97,8 @@ export class ThirdPersonController {
         this.runToggled = false;
         this.autoRun = false;
         this.movementLocked = false;
+        this.manualMovementLocked = false;
+        this.movementLockOwners = new Set();
         this.touchInput = { x: 0, y: 0, magnitude: 0 };
         this.touchRunning = false;
         this.gamepadLookActive = false;
@@ -1054,8 +1056,11 @@ export class ThirdPersonController {
         }
         const movementLocked = this.movementLocked || Boolean(lockMovement);
         const targetRelative = (
-            !this.firstPerson && Number.isFinite(movementTargetYaw)
+            Number.isFinite(movementTargetYaw)
         );
+        if (targetRelative && this.firstPerson && !movementLocked) {
+            this.cameraYaw = movementTargetYaw + Math.PI;
+        }
         const keyboardTurn = movementLocked ? 0 : inputSnapshot
             ? inputSnapshot.value("turn")
             : firstPersonTurnInput(this.keys);
@@ -1095,7 +1100,7 @@ export class ThirdPersonController {
             )
         );
         // Keyboard A/D turns during exploration; analog sticks remain directional.
-        if (this.firstPerson || (!targetRelative && keyboardTurn !== 0)) {
+        if (!targetRelative && (this.firstPerson || keyboardTurn !== 0)) {
             const turnInput = Math.max(
                 -1,
                 Math.min(
@@ -1117,14 +1122,14 @@ export class ThirdPersonController {
                 movementKeys.delete(key);
             }
         }
-        let movement = this.firstPerson
-            ? firstPersonMovement(movementKeys, this.cameraYaw)
-            : targetRelative
-                ? targetRelativeMovement(movementKeys, movementTargetYaw)
+        let movement = targetRelative
+            ? targetRelativeMovement(movementKeys, movementTargetYaw)
+            : this.firstPerson
+                ? firstPersonMovement(movementKeys, this.cameraYaw)
                 : cameraRelativeMovement(movementKeys, this.cameraYaw);
         if (touchActive) {
             let touchMovement;
-            if (this.firstPerson) {
+            if (this.firstPerson && !targetRelative) {
                 const forwardAngle = this.cameraYaw + Math.PI;
                 touchMovement = new BABYLON.Vector3(
                     Math.sin(forwardAngle) * Math.sign(movementInput.y),
@@ -1375,7 +1380,26 @@ export class ThirdPersonController {
     }
 
     setMovementLocked(locked) {
-        this.movementLocked = Boolean(locked);
+        this.manualMovementLocked = Boolean(locked);
+        return this.refreshMovementLock();
+    }
+
+    acquireMovementLock() {
+        const owner = {};
+        this.movementLockOwners.add(owner);
+        this.refreshMovementLock();
+        return () => {
+            if (!this.movementLockOwners.delete(owner)) return false;
+            this.refreshMovementLock();
+            return true;
+        };
+    }
+
+    refreshMovementLock() {
+        // Scoped work must not snapshot another owner's derived boolean and
+        // later restore it. Releasing a token only removes that token; manual
+        // gameplay locks and newer owners remain independently effective.
+        this.movementLocked = this.manualMovementLocked || this.movementLockOwners.size > 0;
         if (this.movementLocked) {
             this.autoRun = false;
             this.keys.clear();

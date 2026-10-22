@@ -129,6 +129,31 @@ def static_pointer(value: int, source: int | None = None) -> dict[str, Any]:
     return result
 
 
+def relocate_static_call_arguments(arguments: list[dict[str, Any]], static_base: int) -> list[dict[str, Any]]:
+    """Normalize local-call STATIC_BASE offsets to the IR's MAPINFO addresses.
+
+    pushed_arguments has no module byte buffer and therefore retains relative
+    offsets. Engine/child-call recovery already has a static base; do not apply
+    this conversion to those already-normalized operands.
+    """
+    if not isinstance(static_base, int) or static_base < 0 or static_base > 0xffffffff:
+        raise ValueError("native static-data base is invalid")
+    result = []
+    for argument in arguments:
+        if argument.get("kind") != "static-pointer":
+            result.append(argument)
+            continue
+        if "staticDataOffset" in argument:
+            raise ValueError("native local-call static argument is already relocated")
+        offset = argument.get("value")
+        if not isinstance(offset, int) or not 0 <= offset <= 0xffffffff:
+            raise ValueError("native local-call static-data offset is invalid")
+        value = (static_base + offset) & 0xffffffff
+        result.append({**argument, "value": value, "hex": f"0x{value:08x}",
+                       "staticDataOffset": offset, "staticDataBaseFileOffset": hx(static_base)})
+    return result
+
+
 def add_values(
     left: dict[str, Any],
     right: dict[str, Any],

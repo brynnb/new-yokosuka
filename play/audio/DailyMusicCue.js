@@ -21,15 +21,21 @@ export class DailyMusicCue {
     excludedWorldIds = [],
     includedWorldIds = null,
     triggerWindowSeconds = 2,
+    maxAdvanceSeconds = Infinity,
     onTrigger,
   }) {
     this.triggerSecond = hour * 60 * 60;
     this.triggerWindowSeconds = Math.max(0, triggerWindowSeconds);
+    this.maxAdvanceSeconds = maxAdvanceSeconds;
     this.excludedWorldIds = new Set(excludedWorldIds);
     this.includedWorldIds = includedWorldIds
       ? new Set(includedWorldIds)
       : null;
     this.onTrigger = onTrigger;
+    this.reset();
+  }
+
+  reset() {
     this.previous = null;
     this.triggeredDay = null;
   }
@@ -50,6 +56,7 @@ export class DailyMusicCue {
       || this.triggeredDay === sample.day
       || !this.isEligible(worldId)
       || previous.second >= this.triggerSecond
+      || sample.second - previous.second > this.maxAdvanceSeconds
       || sample.second < this.triggerSecond
       || sample.second > this.triggerSecond + this.triggerWindowSeconds
     ) {

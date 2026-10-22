@@ -22,6 +22,8 @@ export class ScriptEventController {
     client,
     presentation,
     dialogue,
+    prepareStart = null,
+    requestTimeoutMs = 15000,
     createRequestId = defaultRequestId,
     onStateChanged = () => {},
     onStarted = () => {},
@@ -41,6 +43,9 @@ export class ScriptEventController {
     this.client = client;
     this.presentation = presentation;
     this.dialogue = dialogue;
+    this.prepareStart = prepareStart;
+    this.requestTimeoutMs = requestTimeoutMs;
+    this.abandonedStarts = new Set();
     this.createRequestId = createRequestId;
     this.onStateChanged = onStateChanged;
     this.onStarted = onStarted;
@@ -48,6 +53,7 @@ export class ScriptEventController {
     this.pendingStart = null;
     this.active = null;
     this.processing = Promise.resolve();
+    this.runEndWaiters = new Map();
   }
 
   get status() {
@@ -57,6 +63,10 @@ export class ScriptEventController {
     if (this.active.awaitingLine) return "line";
     if (this.active.optionIds) return "options";
     return "running";
+  }
+
+  get ownsPlayerPresentation() {
+    return Boolean(this.active?.presentationStarted && this.presentation.ownsPlayerPresentation);
   }
 
   start(selector, context = {}) {
@@ -70,22 +80,89 @@ export class ScriptEventController {
       resolve = resolve_;
       reject = reject_;
     });
-    this.pendingStart = {
+    const pending = this.pendingStart = {
       requestId,
       selector: { ...selector },
       context: { ...context },
       resolve,
       reject,
+      releaseState: null,
+      sent: false,
+      controller: new AbortController(),
     };
-    if (this.client.startScriptEvent(selector, requestId) !== true) {
+    this.armRequestTimeout(pending);
+    if (this.prepareStart) {
+      this.emitState();
+      void this.preparePendingStart(pending);
+    } else this.sendStart(pending);
+    return result;
+  }
+
+  async preparePendingStart(pending) {
+    try {
+      const release = await this.prepareStart({ signal: pending.controller.signal });
+      if (typeof release !== "function") throw new Error("script state ownership did not provide cleanup");
+      if (this.pendingStart !== pending) {
+        release();
+        return;
+      }
+      pending.releaseState = release;
+      this.sendStart(pending);
+    } catch (error) {
+      if (this.pendingStart !== pending) return;
+      this.clearRequestTimeout(pending);
       this.pendingStart = null;
+      pending.releaseState?.();
+      pending.reject(error);
+      this.emitState();
+    }
+  }
+
+  sendStart(pending) {
+    const { selector, requestId } = pending;
+    if (this.client.startScriptEvent(selector, requestId) !== true) {
+      this.clearRequestTimeout(pending);
+      this.pendingStart = null;
+      pending.releaseState?.();
       const error = new Error("script event requires a server connection");
       error.code = "connection_unavailable";
-      reject(error);
-      return result;
+      pending.reject(error);
+      this.emitState();
+      return;
     }
+    pending.sent = true;
+    this.armRequestTimeout(pending);
     this.emitState();
-    return result;
+  }
+
+  clearRequestTimeout(owner) {
+    if (owner?.timer) clearTimeout(owner.timer);
+    if (owner) owner.timer = null;
+  }
+
+  abandonStart(pending) {
+    this.clearRequestTimeout(pending);
+    pending.controller.abort(new DOMException("script start abandoned", "AbortError"));
+    if (!pending.sent) return;
+    this.abandonedStarts.add(pending.requestId);
+    // Only retain recent requests; the server also expires abandoned leases.
+    if (this.abandonedStarts.size > 32) this.abandonedStarts.delete(this.abandonedStarts.values().next().value);
+  }
+
+  armRequestTimeout(owner) {
+    this.clearRequestTimeout(owner);
+    owner.timer = setTimeout(() => {
+      const error = new Error("script event response timed out; its result is not known");
+      error.code = "script_timeout";
+      if (this.pendingStart === owner) {
+        this.abandonStart(owner);
+        this.pendingStart = null;
+        owner.releaseState?.();
+        owner.reject(error);
+        this.emitState();
+      } else if (this.active === owner) void this.fail(error);
+    }, this.requestTimeoutMs);
+    owner.timer.unref?.();
   }
 
   handleYield(message) {
@@ -98,7 +175,9 @@ export class ScriptEventController {
   handleRejected(message) {
     const pending = this.pendingStart;
     if (pending && message?.requestId === pending.requestId) {
+      this.clearRequestTimeout(pending);
       this.pendingStart = null;
+      pending.releaseState?.();
       const error = new Error(message.message || "script event was rejected");
       error.code = message.code;
       pending.resolve({ outcome: "rejected", error, message });
@@ -108,6 +187,7 @@ export class ScriptEventController {
     if (!this.active || message?.requestId !== this.active.requestId) {
       return false;
     }
+    this.clearRequestTimeout(this.active);
     const error = new Error(message.message || "script event advance was rejected");
     error.code = message.code;
     void this.fail(error);
@@ -128,10 +208,33 @@ export class ScriptEventController {
     return this.sendAdvance("select", { optionId });
   }
 
+  challengeResponse(action,token,outcome=null) {
+    const active=this.active;
+    if(!active?.challengePrompt || active.cancelling || active.challengeInputPending || token!==active.challengePrompt.token)return false;
+    active.challengeInputPending=true;
+    return this.sendAdvance(action,{challengeToken:token,...(outcome ? {challengeOutcome:outcome}: {})});
+  }
+  combatResponse(action,token,intent=null) {
+    const active=this.active;
+    if(!active?.combatView || active.cancelling || active.combatInputPending || token!==active.combatView.token)return false;
+    active.combatInputPending=true;
+    return this.sendAdvance(action,{combatToken:token,...(intent?{combat:intent}:{})});
+  }
+  navigationResponse(action,token,intent=null){
+    const a=this.active;if(!a?.challengePrompt?.navigation||a.cancelling||a.challengeInputPending||token!==a.challengePrompt.token)return false;
+    a.challengeInputPending=true;return this.sendAdvance(action,{challengeToken:token,...(intent?{navigation:intent}:{})});
+  }
+  drivingResponse(action,token,intent=null){
+    const a=this.active;if(!a?.challengePrompt?.driving||a.cancelling||a.challengeInputPending||token!==a.challengePrompt.token)return false;
+    a.challengeInputPending=true;return this.sendAdvance(action,{challengeToken:token,...(intent?{driving:intent}:{})});
+  }
+
   cancel(reason = "user-cancelled") {
     if (this.pendingStart) {
       const pending = this.pendingStart;
+      this.abandonStart(pending);
       this.pendingStart = null;
+      pending.releaseState?.();
       const error = new Error(`script event cancelled: ${reason}`);
       error.code = "start_cancelled";
       pending.reject(error);
@@ -143,8 +246,7 @@ export class ScriptEventController {
     this.active.cancelling = true;
     this.active.controller.abort(new DOMException(reason, "AbortError"));
     this.dialogue.hide();
-    this.presentation.rollback(reason);
-    this.active.presentationStarted = false;
+    this.rollbackPresentation(this.active, reason);
     return this.sendAdvance("cancel");
   }
 
@@ -163,22 +265,33 @@ export class ScriptEventController {
 
   reset(reason = "reset") {
     if (this.pendingStart) {
+      this.abandonStart(this.pendingStart);
       const error = new Error(`script event interrupted: ${reason}`);
       error.code = "start_interrupted";
       this.pendingStart.reject(error);
+      this.pendingStart.releaseState?.();
     }
     this.pendingStart = null;
+    this.clearRequestTimeout(this.active);
     this.active?.controller.abort(new DOMException(reason, "AbortError"));
     this.dialogue.hide();
-    if (this.active?.presentationStarted) this.presentation.rollback(reason);
+    this.rollbackPresentation(this.active, reason);
+    this.active?.releaseState?.();
     this.active = null;
     this.emitState();
   }
 
   async processYield(message) {
+    if (this.abandonedStarts.delete(message?.requestId)) {
+      if (Number.isSafeInteger(message.runId) && message.runId > 0 && !TERMINAL_EVENTS.has(message?.event?.type)) {
+        this.client.advanceScriptEvent(message.runId, "cancel", { requestId: this.createRequestId() });
+      }
+      return false;
+    }
     let active = this.active;
     const pending = this.pendingStart;
     if (pending && message?.requestId === pending.requestId) {
+      this.clearRequestTimeout(pending);
       this.pendingStart = null;
       active = {
         runId: message.runId,
@@ -198,6 +311,7 @@ export class ScriptEventController {
         cancelling: false,
         awaitingLine: false,
         optionIds: null,
+        releaseState: pending.releaseState,
       };
       this.active = active;
       try {
@@ -214,8 +328,16 @@ export class ScriptEventController {
     } else if (!active || message?.requestId !== active.requestId) {
       return false;
     }
+    this.clearRequestTimeout(active);
     const event = message?.event;
     if (!event?.type) throw new Error("server yielded an invalid script event");
+    // Consecutive fights can yield directly without a dialogue in between.
+    // A new attempt must release the old cast/input before acquiring its own.
+    if(active.combatView && (event.type!=="combat" || message.combat?.token!==active.combatView.token)) {this.presentation.endCombat();this.dialogue.hide();active.combatView=null;active.combatInputPending=false;}
+    if(active.challengePrompt?.navigation&&event.type!=="challenge"){this.presentation.endNavigation();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
+    if(active.challengePrompt?.driving&&event.type!=="challenge"){this.presentation.endDriving();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
+    if(active.challengePrompt?.kind==="training"&&(event.type!=="challenge"||message.challenge?.token!==active.challengePrompt.token)){this.presentation.endCombat();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
+    if((active.challengePrompt?.delivery||active.challengePrompt?.race)&&event.type!=="challenge"){this.presentation.endForkliftChallenge();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
     if (TERMINAL_EVENTS.has(event.type)) {
       active.controller.abort(new DOMException(event.type, "AbortError"));
       this.dialogue.hide();
@@ -223,6 +345,7 @@ export class ScriptEventController {
         if (event.type === "complete") this.presentation.commit();
         else this.presentation.rollback(event.type);
       }
+      active.releaseState?.();
       this.active = null;
       this.emitState();
       return true;
@@ -231,6 +354,37 @@ export class ScriptEventController {
       this.presentation.begin(active.context);
       active.presentationStarted = true;
     }
+    if(event.type==="combat") {
+      const view=message.combat;
+      if(!view || !/^[0-9a-f]{32}$/.test(view.token))throw new Error("Invalid combat snapshot");
+      active.combatView=view;active.combatInputPending=false;
+      if(!await this.present(active,()=>this.presentation.showCombat(view)))return false;
+      this.emitState();return true;
+    }
+    if(event.type==="challenge") {
+      const prompt=message.challenge;
+      if(!prompt || !/^[0-9a-f]{32}$/.test(prompt.token))throw new Error("server challenge prompt is invalid");
+      active.challengePrompt=prompt;active.challengeInputPending=false;
+      if(prompt.kind==="training"){
+        if(!await this.present(active,()=>this.presentation.showCombat(prompt)))return false;
+        this.emitState();return true;
+      }
+      if(prompt.driving){
+        if(!await this.present(active,()=>this.presentation.showDriving(prompt)))return false;
+        this.dialogue.showDriving(prompt);this.emitState();return true;
+      }
+      if(prompt.delivery||prompt.race){
+        if(!await this.present(active,()=>this.presentation.showForkliftChallenge(prompt)))return false;
+        if(prompt.race)this.dialogue.showRace(prompt);else this.dialogue.showDelivery(prompt);this.emitState();return true;
+      }
+      if(prompt.navigation){
+        if(!await this.present(active,()=>this.presentation.showNavigation(prompt)))return false;
+        this.dialogue.showNavigation(prompt);this.emitState();return true;
+      }
+      if(!await this.present(active,()=>this.dialogue.showChallenge(prompt)))return false;
+      this.emitState();return true;
+    }
+    if(active.challengePrompt){this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
     if (event.type === "command") {
       if (!await this.present(active, () => this.presentation.execute(event))) return false;
       return this.sendAdvance("continue");
@@ -285,21 +439,18 @@ export class ScriptEventController {
       return false;
     }
     active.requestId = requestId;
+    this.armRequestTimeout(active);
     this.emitState();
     return true;
   }
 
   async fail(error) {
     const active = this.active;
+    this.clearRequestTimeout(active);
     active?.controller.abort(error);
     this.dialogue.hide();
-    if (active?.presentationStarted) {
-      try {
-        this.presentation.rollback("client-error");
-      } catch (rollbackError) {
-        console.error("Script presentation rollback failed:", rollbackError);
-      }
-    }
+    this.rollbackPresentation(active, "client-error");
+    active?.releaseState?.();
     this.active = null;
     if (active) {
       this.client.advanceScriptEvent(active.runId, "cancel", {
@@ -311,8 +462,34 @@ export class ScriptEventController {
     return false;
   }
 
+  rollbackPresentation(active, reason) {
+    if (!active?.presentationStarted) return;
+    active.presentationStarted = false;
+    try {
+      this.presentation.rollback(reason);
+    } catch (error) {
+      // A failed visual cleanup must not retain a native-state owner or prevent
+      // the server cancellation request from releasing its run lease.
+      console.error("Script presentation rollback failed:", error);
+    }
+  }
+
   emitState() {
     this.onStateChanged(this.status);
+    for (const [runId, waiters] of this.runEndWaiters) {
+      if (this.active?.runId === runId) continue;
+      this.runEndWaiters.delete(runId);
+      for (const resolve of waiters) resolve();
+    }
+  }
+
+  waitForRunEnd(runId) {
+    if (this.active?.runId !== runId) return Promise.resolve();
+    return new Promise(resolve => {
+      const waiters = this.runEndWaiters.get(runId) || [];
+      waiters.push(resolve);
+      this.runEndWaiters.set(runId, waiters);
+    });
   }
 }
 

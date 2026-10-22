@@ -31,6 +31,38 @@ function floatWord(value) {
   return view.getUint32(0, true);
 }
 
+test("STEP packed writes keep exact byte lanes, missing state and snapshot rollback", async () => {
+  const state = createNativeSceneGameplayState();
+  const execute = createNativeEventOperationExecutor({ handlers: createNativeAssociatedRecordSemanticHandlers() });
+  const context = createNativeSceneFieldRuntimeContext(state);
+  const write = value => execute(action([
+    { kind: "constant", value: 0x52494b41, ascii: "AKIR" },
+    { kind: "constant", value },
+  ], "actor-step-packed-byte-write"), context);
+  assert.equal((await write(259)).reason, "actor-step-state-unavailable");
+  state.associatedRecords.configureStepRecord({
+    objectTag: "AKIR", actorAvailable: true, recordAvailable: true,
+    enabledByte: 1, surfaceByte: 0,
+  });
+  const snapshot = state.snapshot();
+  assert.equal((await write(259)).status, "continued");
+  assert.deepEqual(state.associatedRecords.readStepRecord("AKIR"), {
+    actorAvailable: true, recordAvailable: true, enabledByte: 1, surfaceByte: 3,
+  });
+  await write(0); // Mode 0 disables sound; it does not change the surface.
+  assert.equal(state.associatedRecords.readStepRecord("AKIR").enabledByte, 0);
+  assert.equal((await write(0x102ff)).mutation.nativeNoOp, true);
+  await write(0x10001); // Higher word bits are ignored; mode 0, byte 1.
+  assert.equal(state.associatedRecords.readStepRecord("AKIR").enabledByte, 1);
+  state.restore(snapshot);
+  assert.equal(state.associatedRecords.readStepRecord("AKIR").surfaceByte, 0);
+  for (const [actorAvailable, recordAvailable] of [[false, false], [true, false]]) {
+    state.associatedRecords.configureStepRecord({ objectTag: "AKIR", actorAvailable, recordAvailable });
+    assert.equal((await write(1)).mutation.nativeNoOp, true);
+  }
+  assert.equal((await write(512)).mutation.nativeNoOp, true);
+});
+
 test("sets and clears exact MOMT flags-word bit zero", async () => {
   const state = createNativeSceneGameplayState();
   state.configureActorMomtFlagState({

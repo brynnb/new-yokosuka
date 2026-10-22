@@ -1,0 +1,162 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_hazuki_mirror_search_pack.mjs",
+  "source": {
+    "disc": 2,
+    "path": "disc2/SCENE/02/JHD0/INEK.PKS",
+    "sha256": "2b94364ecf97a89eae19615f9efb701bb4f970ceee07244bb861a0c721d4f479",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "M_01MIR.MOTN",
+        "byteLength": 60620,
+        "sha256": "58aaf7b7c7d0e7d139b1fe35cd8faa597ce7758fbd4e442bcefe38958342ff28"
+      },
+      {
+        "name": "SEQDATA1.AUTH",
+        "byteLength": 11236,
+        "sha256": "6f0ba26938055bd4691794be78499d15debdd38e9881b097aa293abb99c28a36"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-event-template.md#family-lead-to-the-antique-shop",
+    "resourceName": "INEK",
+    "variant": "",
+    "selectionRule": "Borrow original AUTH-extension ordinals with zero pointer bindings; authored sequence, not recovered room-owner branching."
+  },
+  "audioManifest": "public/audio/world/family-ine/manifest.json",
+  "actorTags": [
+    "AKIR",
+    "INE_"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/hazuki/family-ine/M_01MIR.MOTN",
+      "byteLength": 60620,
+      "sha256": "58aaf7b7c7d0e7d139b1fe35cd8faa597ce7758fbd4e442bcefe38958342ff28"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/family-ine/M_01MIR.MOTN",
+      "byteLength": 60620,
+      "sha256": "58aaf7b7c7d0e7d139b1fe35cd8faa597ce7758fbd4e442bcefe38958342ff28"
+    },
+    {
+      "path": "play/assets/hazuki/family-ine/SEQDATA1.AUTH",
+      "byteLength": 11236,
+      "sha256": "6f0ba26938055bd4691794be78499d15debdd38e9881b097aa293abb99c28a36"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "primaryPointer": 0,
+      "secondaryPointer": 0,
+      "activityId": "INEK/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 11236,
+      "sha256": "6f0ba26938055bd4691794be78499d15debdd38e9881b097aa293abb99c28a36",
+      "durationFrames": 2460,
+      "durationSeconds": 82.01667022705078,
+      "frameCount": 72,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 9,
+        "effect": 26,
+        "sound": 20,
+        "voice": 21
+      },
+      "actors": [
+        "AKIR",
+        "INE_"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_OSIERU_KAGAMI_INEKOKOROATARI_0100",
+          "startFrame": 1,
+          "endFrame": 610
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "JIJ_INE_AT1_OSIERU_KAGAMI_INEKOKOROATARI_0100",
+          "startFrame": 251,
+          "endFrame": 860
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 611,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_OSIERU_KAGAMI_INEKOKOROATARI_0100",
+          "startFrame": 581,
+          "endFrame": 2530
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 611,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "JIJ_INE_AT1_OSIERU_KAGAMI_INEKOKOROATARI_0100",
+          "startFrame": 831,
+          "endFrame": 1020
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 801,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "JIJ_INE_AT1_OSIERU_KAGAMI_INEKOKOROATARI_0100",
+          "startFrame": 1021,
+          "endFrame": 1090
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 871,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "JIJ_INE_AT1_OSIERU_KAGAMI_INEKOKOROATARI_0100",
+          "startFrame": 1081,
+          "endFrame": 1490
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 1281,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "JIJ_INE_AT1_OSIERU_KAGAMI_INEKOKOROATARI_0100",
+          "startFrame": 1501,
+          "endFrame": 2160
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 1941,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "JIJ_INE_AT1_OSIERU_KAGAMI_INEKOKOROATARI_0100",
+          "startFrame": 2151,
+          "endFrame": 2440
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 2231,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "JIJ_INE_AT1_OSIERU_KAGAMI_INEKOKOROATARI_0100",
+          "startFrame": 2441,
+          "endFrame": 2520
+        }
+      ]
+    }
+  ]
+}

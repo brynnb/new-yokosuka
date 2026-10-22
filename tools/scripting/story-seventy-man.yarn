@@ -1,0 +1,20 @@
+-> Fight the Mad Angels
+    <<jump Fight>>
+-> Leave it for now
+    <<complete>>
+===
+title: Fight
+---
+<<start_combat "s1.mfbt.seventy-man">>
+<<if combat_result("s1.mfbt.seventy-man") != "success">>
+-> Try again
+    <<jump Fight>>
+-> Leave it for now
+    <<complete>>
+<<else>>
+<<play_sequence "s1.mfbt.seventy-man-victory.start">>
+Ryo Hazuki: {{text:victory}} #speaker:AKIR
+<<play_sequence "s1.mfbt.seventy-man-victory.finish">>
+{{effects}}
+<<complete>>
+<<endif>>

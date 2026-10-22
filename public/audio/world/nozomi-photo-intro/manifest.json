@@ -1,0 +1,684 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01PHO.AFS",
+      "sha256": "6c0170c065add4c5515ffec8ae68ca8ef223805f96fd654949274762dcb61edd"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_NZPHO.SND",
+      "sha256": "b00875e4a2dcf3db1af7eff22e55c3dc6b7ccf9a20490ecd0b374d0e06d54afc"
+    },
+    "authManifest": "play/assets/harbor/nozomi-photo-intro/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-harbor-work.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01PHOA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOA001.aiff",
+      "nativeMember": "01PHOA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 6144,
+      "nativeSha256": "777c0b96a9a533ca2778ebcae31eb125b68f5bda5e1ad18b26b6baf79b211e7e",
+      "speakerId": "AKIR",
+      "sourceText": "No=@that's OK.",
+      "displayText": "No...that's OK.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-intro/voice/01PHOA001.wav",
+      "byteLength": 24364,
+      "sha256": "92fb1623ab0ca97f4cb8af303629b5609a59be86678ab1bc18a28a5a68f67a59"
+    },
+    {
+      "voiceId": "01PHOB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOB001.aiff",
+      "nativeMember": "01PHOB001.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 6144,
+      "nativeSha256": "7e4ad3b4dec39ecc9fe8e0df76e894a5c57a75f7bbe38f858c596e589d225632",
+      "speakerId": "TJMA",
+      "sourceText": "Ryo!",
+      "displayText": "Ryo!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 31
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-intro/voice/01PHOB001.wav",
+      "byteLength": 24364,
+      "sha256": "18c3564ef41d8690c06b0025ed56a611b09c1056294019d58890daaf2d9f5739"
+    },
+    {
+      "voiceId": "01PHOB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOB002.aiff",
+      "nativeMember": "01PHOB002.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 14336,
+      "nativeSha256": "d25c44f254180104f7f57da1dfbf21ec83f92082d14158294b519a2ec1b9f511",
+      "speakerId": "TJMA",
+      "sourceText": "Lemme take a picture of you two.",
+      "displayText": "Lemme take a picture of you two.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-intro/voice/01PHOB002.wav",
+      "byteLength": 57132,
+      "sha256": "8cd6da7cef88fe05b5928c7f99377876921d956818987aff572cfb720606000d"
+    },
+    {
+      "voiceId": "01PHOB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOB003.aiff",
+      "nativeMember": "01PHOB003.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 26624,
+      "nativeSha256": "5fe96773c73a6557804170171cba6baa2189af556c19402fb612556926dc4605",
+      "speakerId": "TJMA",
+      "sourceText": "Don't be shy.＆Stand there=@here we go!",
+      "displayText": "Don't be shy.\nStand there...here we go!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 25
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 32
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-intro/voice/01PHOB003.wav",
+      "byteLength": 106284,
+      "sha256": "0d517ce9a6814f924cef466db59a2a10990edd9ff725f1a6157c33e400952993"
+    },
+    {
+      "voiceId": "01PHOB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOB004.aiff",
+      "nativeMember": "01PHOB004.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 20480,
+      "nativeSha256": "206d5f4e37c4fc0db3a6c229607701d5231b782126b220b905d97281117e1001",
+      "speakerId": "TJMA",
+      "sourceText": "That's it. Here goes.",
+      "displayText": "That's it. Here goes.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 25
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 31
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-intro/voice/01PHOB004.wav",
+      "byteLength": 81708,
+      "sha256": "2ae782dbe9d6e97f677f278c6c864820c137d5db095c516cc78a76841a81fbba"
+    },
+    {
+      "voiceId": "01PHOB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOB005.aiff",
+      "nativeMember": "01PHOB005.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 16384,
+      "nativeSha256": "4634885cbb712e89cbaedc5800ad931a6f940f1feb1b6b527fbacd659d296bc0",
+      "speakerId": "TJMA",
+      "sourceText": "Which do you want? Ryo.",
+      "displayText": "Which do you want? Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 37
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-intro/voice/01PHOB005.wav",
+      "byteLength": 65324,
+      "sha256": "a62ed8cd8ca5c8953923d1af6c75ed9676a90eb280211a96e3fb7b87e80986a0"
+    },
+    {
+      "voiceId": "01PHOB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SOUND/01PHOB008.aiff",
+      "nativeMember": "01PHOB008.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 18432,
+      "nativeSha256": "44b485702cba6a6200ccc953bce7a23019ff98817c4f0d887274e2d4c414e5d4",
+      "speakerId": "TJMA",
+      "sourceText": "Both of you get＆in closer. Smile!",
+      "displayText": "Both of you get\nin closer. Smile!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 23
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-photo-intro/voice/01PHOB008.wav",
+      "byteLength": 73516,
+      "sha256": "ef587eb841ec0d54bb158a81ef131721d7633a75099bf25ed01cc8f1b29eb57f"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-intro/sfx/a9040000.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-intro/sfx/a9040100.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/smallobject/camera.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 44100,
+      "asset": "public/audio/world/nozomi-photo-intro/sfx/a9040200.wav",
+      "byteLength": 36716,
+      "sha256": "68f0c0bc2c423ac059e751053f902e2aa9472dd7821fcc2ffaeff0c98cae3474"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/smallobject/camerafilm.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 44100,
+      "asset": "public/audio/world/nozomi-photo-intro/sfx/a9040300.wav",
+      "byteLength": 65900,
+      "sha256": "a420469e84d71aa44f189e71df5e33be4e34b77639272184bf6165084e6b28d6"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/cloths2/friction4.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-intro/sfx/a9040500.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-intro/sfx/a9040700.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-intro/sfx/a9040800.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/foot/sneaker1.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-intro/sfx/a9040900.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01PHO/SE/foot/sneaker5.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-photo-intro/sfx/a9040a00.wav",
+      "byteLength": 10804,
+      "sha256": "0334446f014be77a677e0e4e97f7e1604c7dc5b356bef53103d39acc9081f9e1"
+    }
+  ]
+}

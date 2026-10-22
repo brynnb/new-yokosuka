@@ -567,6 +567,37 @@ export function createNativeInteractionRecordSemanticHandlers({
     return { status: "continued" };
   };
   return {
+    "interaction-manager-pending-owner-clear": async ({ context, readArgument }) => {
+      if (readArgument(0) !== 0) {
+        return { status: "stopped", reason: "interaction-pending-owner-mode-unproven" };
+      }
+      if (typeof context.writeSceneField !== "function") {
+        return { status: "stopped", reason: "interaction-pending-owner-writer-missing" };
+      }
+      // Native mode zero only forgets this pointer. It does not cancel the
+      // former task or reset the separately owned descriptor/slot tables.
+      await context.writeSceneField({ offset: 0x0c224010, width: 4, value: 0 });
+      return { status: "continued", result: 0 };
+    },
+    "interaction-manager-initialize": async ({ action, context, readArgument }) => {
+      if (typeof context.initializeInteractionManager !== "function") {
+        return { status: "stopped", reason: "interaction-manager-initializer-missing" };
+      }
+      try {
+        const initialized = context.initializeInteractionManager({
+          pointers: [0, 1, 2, 3, 11, 12].map(readArgument),
+          sceneBindings: [4, 5, 6, 7, 8, 13].map(index => action.arguments[index]),
+          ownerWord: readArgument(9), controlArgument: readArgument(10),
+          persistentBits: context.nativePersistentScriptBitState,
+          source: { functionFileOffset: context.location?.functionId, callFileOffset: action.callFileOffset },
+        });
+        // The secondary dispatcher pre-clears its VM result. This void
+        // initializer never calls the result writer; C's r0 is not its result.
+        return { status: "continued", result: 0, mutation: initialized };
+      } catch (error) {
+        return { status: "stopped", reason: error.message };
+      }
+    },
     "interaction-manager-nearest-descriptor-query": async ({
       action,
       context,

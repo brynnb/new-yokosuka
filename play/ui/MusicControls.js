@@ -9,7 +9,9 @@ export class MusicControls {
   constructor({
     dom,
     manifestUrl = "/music/manifest.json",
-    fetchManifest = (url) => fetch(url),
+    // Mutable policy data must revalidate when a new client adds selections.
+    // The large audio files themselves still use immutable asset URLs.
+    fetchManifest = (url) => fetch(url, { cache: "no-cache" }),
     directorFactory = (options) => new PlayMusicDirector(options),
     masterMuted = false,
     overallVolume = 1,
@@ -68,6 +70,10 @@ export class MusicControls {
 
   setWorld(worldId, options) {
     if (!this.disposed) this.director.setWorld(worldId, options);
+  }
+
+  isTemporaryTrackPlaying() {
+    return this.director.getState().temporary;
   }
 
   playTemporaryTrack(trackId, options) {

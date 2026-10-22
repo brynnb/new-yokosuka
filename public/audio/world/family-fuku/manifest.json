@@ -1,0 +1,1610 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_hazuki_mirror_search_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01SOR.AFS",
+      "sha256": "79a7ebea404ad420c341d06f1934dfc44867ac743b4072ed00a51ea72c8008b9"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_FUKAY.SND",
+      "sha256": "c6e17b9a5d3a3529629ae74ec8f22587f8be7a9dfe0aec51850a361f7bb10736"
+    },
+    "authManifest": "play/assets/hazuki/family-fuku/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#family-lead-to-the-antique-shop"
+  },
+  "voices": [
+    {
+      "voiceId": "01SORA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORA001.aiff",
+      "nativeMember": "01SORA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "f64e1ea417c50aa4b451924f84205a7cc1a121317076571f1aa387bc9a66a43b",
+      "speakerId": "AKIR",
+      "sourceText": "Fuku-san!",
+      "displayText": "Fuku-san!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORA001.wav",
+      "byteLength": 16172,
+      "sha256": "b9fb61708ca80d69fe88e8a8edd809fcca7b2c04c6a7f6bf2a8d15ba6f486850"
+    },
+    {
+      "voiceId": "01SORA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORA002.aiff",
+      "nativeMember": "01SORA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "8c0c932f84ffb5ae8c392f3e02e503dca80ceb3306c2d0b45485bad14fe36ba7",
+      "speakerId": "AKIR",
+      "sourceText": "What is it, Fuku-san?",
+      "displayText": "What is it, Fuku-san?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORA002.wav",
+      "byteLength": 32556,
+      "sha256": "0ca3766170d27482782431fbe836896b900bca3d9d517049ecfa399e25bee7e2"
+    },
+    {
+      "voiceId": "01SORA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORA003.aiff",
+      "nativeMember": "01SORA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 6144,
+      "nativeSha256": "20439b57d0f240d64267ff585a1cc15bcb1ede6251ad905a5154cb803317a43a",
+      "speakerId": "AKIR",
+      "sourceText": "What did you tell her?",
+      "displayText": "What did you tell her?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORA003.wav",
+      "byteLength": 24364,
+      "sha256": "ffbb1f364f3a3784667fcfef36dd403218ca7cab952330a9cf7b7fdb9fb6a4f6"
+    },
+    {
+      "voiceId": "01SORA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORA004.aiff",
+      "nativeMember": "01SORA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 6144,
+      "nativeSha256": "4fb621fef5211e12110c8e54835fffa88989304b49b04e0c058b36d496410db3",
+      "speakerId": "AKIR",
+      "sourceText": "You what?",
+      "displayText": "You what?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORA004.wav",
+      "byteLength": 24364,
+      "sha256": "544e92889c809fecc8b4b1a483fea0280bb12f8102693dbb316258ffc9aa538a"
+    },
+    {
+      "voiceId": "01SORA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORA005.aiff",
+      "nativeMember": "01SORA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 6144,
+      "nativeSha256": "903fa934e3d9d75a33a7efdbeaeb292b2fd3b6e63e5f3021b220610f588bf1da",
+      "speakerId": "AKIR",
+      "sourceText": "Fuku-san=@",
+      "displayText": "Fuku-san...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORA005.wav",
+      "byteLength": 24364,
+      "sha256": "a8e38f9a729f7bdb84efa5aea17ac041dc6f4570f66ab95f784a689ad0cd3ea7"
+    },
+    {
+      "voiceId": "01SORA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORA006.aiff",
+      "nativeMember": "01SORA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 6144,
+      "nativeSha256": "f968031507ee4ca203b34662cf4f27ab5f233ca359f56e4333001e110bab695d",
+      "speakerId": "AKIR",
+      "sourceText": "It's O.K.",
+      "displayText": "It's O.K.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORA006.wav",
+      "byteLength": 24364,
+      "sha256": "2ae00edd3a07e9d7145a4bf82b76afa300747cbbc820154761d326de226f19e5"
+    },
+    {
+      "voiceId": "01SORA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORA007.aiff",
+      "nativeMember": "01SORA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 20480,
+      "nativeSha256": "3a3e3850b29f5ec2080045b08a41286386c8ecb55324cbf3fc500d976656b87b",
+      "speakerId": "AKIR",
+      "sourceText": "Fuku-san=@ Do you know anything＆about the Phoenix Mirror?",
+      "displayText": "Fuku-san... Do you know anything\nabout the Phoenix Mirror?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORA007.wav",
+      "byteLength": 81708,
+      "sha256": "f84e6a01143512524445ca19cebd884774f841606db995ffe37124b75c4591c2"
+    },
+    {
+      "voiceId": "01SORA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORA008.aiff",
+      "nativeMember": "01SORA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 10240,
+      "nativeSha256": "45623c29ba7f213d360ac16953081ca76a1a02c4ab09b4f1559895e42a270600",
+      "speakerId": "AKIR",
+      "sourceText": "My father may have had it.",
+      "displayText": "My father may have had it.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORA008.wav",
+      "byteLength": 40748,
+      "sha256": "e6e1bc94c5616c349a2113266b43d73c60dfff3ffcf49197a7aa29dcf52003cd"
+    },
+    {
+      "voiceId": "01SORA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORA009.aiff",
+      "nativeMember": "01SORA009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 4096,
+      "nativeSha256": "dc6b332b1a2736828e18092a9fee35af1e0a5d34dcc49b347a6ce9efd86abd9e",
+      "speakerId": "AKIR",
+      "sourceText": "Really?",
+      "displayText": "Really?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORA009.wav",
+      "byteLength": 16172,
+      "sha256": "55c4429b3ef18f0b846ac08c19c7166856bb73ba4182e0469660d66e7cd8e5d6"
+    },
+    {
+      "voiceId": "01SORA010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORA010.aiff",
+      "nativeMember": "01SORA010.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 14336,
+      "nativeSha256": "fbce4395f412964f6146600c58368e22cbf68fe1440aca283b90a50a476f062a",
+      "speakerId": "AKIR",
+      "sourceText": "O.K=@. Let's go ask her.",
+      "displayText": "O.K.... Let's go ask her.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 27
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORA010.wav",
+      "byteLength": 57132,
+      "sha256": "39d1536a9648cb06298aa90259728a4bf0695bfea2796a8fee5c6311ee91c739"
+    },
+    {
+      "voiceId": "01SORB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORB001.aiff",
+      "nativeMember": "01SORB001.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 18432,
+      "nativeSha256": "2c5b5d17bc44328af06ab65c97b5ed3ca7d798da99f9b5dcc6a680e684fd1bee",
+      "speakerId": "FUKU",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 29
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 45
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORB001.wav",
+      "byteLength": 73516,
+      "sha256": "9a2af56df434a089cf48b6d2eb88a8730c39cf03d531a03522735338fabd241d"
+    },
+    {
+      "voiceId": "01SORB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORB002.aiff",
+      "nativeMember": "01SORB002.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 4096,
+      "nativeSha256": "d9d341636d70dfe458573319e39f6ce55af9ae46dad0812100419140ee3b86e6",
+      "speakerId": "FUKU",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORB002.wav",
+      "byteLength": 16172,
+      "sha256": "9803c142fd8c761a721e97d8c0073f6cae6ebc942487334dcf7b8f7be2b34158"
+    },
+    {
+      "voiceId": "01SORB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORB003.aiff",
+      "nativeMember": "01SORB003.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 18432,
+      "nativeSha256": "140a5b98a94869ad39ee8363e4818c494e55f7826e52a7758794639f0f87210f",
+      "speakerId": "FUKU",
+      "sourceText": "Umm, Ryo-san, I=@",
+      "displayText": "Umm, Ryo-san, I...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORB003.wav",
+      "byteLength": 73516,
+      "sha256": "23765405a1dff755ec28c2c605d46a73f17bd3d6fbc37d25d2a943de2dd401be"
+    },
+    {
+      "voiceId": "01SORB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORB004.aiff",
+      "nativeMember": "01SORB004.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 22528,
+      "nativeSha256": "7d8a586811d85253853eb5acd0f47f43b2859ccf579ca9e8ac28fb50fe4a6535",
+      "speakerId": "FUKU",
+      "sourceText": "I'm sorry! I told Ine-san.",
+      "displayText": "I'm sorry! I told Ine-san.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 45
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORB004.wav",
+      "byteLength": 89900,
+      "sha256": "d5ed829241967354c136d4c489533c5d2584f80224241f633c08276de2f6a2d1"
+    },
+    {
+      "voiceId": "01SORB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORB005.aiff",
+      "nativeMember": "01SORB005.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 24576,
+      "nativeSha256": "cdaffee7ca8f5793034af308594c86d2ad793f04324814177caff375b3e805d4",
+      "speakerId": "FUKU",
+      "sourceText": "I told her what you're doing.＆I told her everything I know=@",
+      "displayText": "I told her what you're doing.\nI told her everything I know...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 43
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 33
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORB005.wav",
+      "byteLength": 98092,
+      "sha256": "baa6b40a295054a0e0d178bf9487bf7bd5d7d65827dd8990f3f5939e4994e561"
+    },
+    {
+      "voiceId": "01SORB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORB006.aiff",
+      "nativeMember": "01SORB006.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 40960,
+      "nativeSha256": "9a82887582df63958d981ca67d73a25cdbc55868f095830eaaad2e038a5ea554",
+      "speakerId": "FUKU",
+      "sourceText": "I just couldn't help myself.＆And Ine-san needed to know.",
+      "displayText": "I just couldn't help myself.\nAnd Ine-san needed to know.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 42
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 77
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORB006.wav",
+      "byteLength": 163628,
+      "sha256": "6532f99c607c5b72d3c04c4c2bcc6156a7273b9d7838595a46901235bc0f4523"
+    },
+    {
+      "voiceId": "01SORB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORB007.aiff",
+      "nativeMember": "01SORB007.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 10240,
+      "nativeSha256": "cc7c5993d22131ca45a2430e3d132d1110409b4847e734e23a370f8a0391501a",
+      "speakerId": "FUKU",
+      "sourceText": "I'm really sorry.",
+      "displayText": "I'm really sorry.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORB007.wav",
+      "byteLength": 40748,
+      "sha256": "f25170c2979bebae7dd586f1f747d859e40204881a567082e2955c35955667a4"
+    },
+    {
+      "voiceId": "01SORB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORB008.aiff",
+      "nativeMember": "01SORB008.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 14336,
+      "nativeSha256": "9cb55e1a321d3243a616823a63f0e9ce680e9faea529ff29e0420f6a9f5748d8",
+      "speakerId": "FUKU",
+      "sourceText": "The Phoenix Mirror?",
+      "displayText": "The Phoenix Mirror?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORB008.wav",
+      "byteLength": 57132,
+      "sha256": "e6156ffd4c8cb86a29b65672936fe22ce5c5805240a58642efc47b858d2691bb"
+    },
+    {
+      "voiceId": "01SORB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORB009.aiff",
+      "nativeMember": "01SORB009.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 20480,
+      "nativeSha256": "2247793a166dc9ed77907731560f85c37872b0884060934dba8b7820d9e7aca1",
+      "speakerId": "FUKU",
+      "sourceText": "No! I've never heard him say＆anything about a mirror.",
+      "displayText": "No! I've never heard him say\nanything about a mirror.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORB009.wav",
+      "byteLength": 81708,
+      "sha256": "3fa5304e0936b1a85920777ad55c44978ad8f3d1d7bc51496b09baf6fe3e2615"
+    },
+    {
+      "voiceId": "01SORB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SOUND/01SORB010.aiff",
+      "nativeMember": "01SORB010.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 14336,
+      "nativeSha256": "5d2294cea14e37568cef8d6714a3d42bbf3ad51481d9eb2c837598243da610de",
+      "speakerId": "FUKU",
+      "sourceText": "Ine-san might know something＆about it though!",
+      "displayText": "Ine-san might know something\nabout it though!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-fuku/voice/01SORB010.wav",
+      "byteLength": 57132,
+      "sha256": "045b1b7908dcac361f005f5ff5c113259ad619f1c5958d92bbc7c95b0ce382f8"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 0,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-fuku/sfx/a9040000.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 1,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-fuku/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SE/cloths2/furimuki_f01.aiff",
+      "playbackId": 2,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-fuku/sfx/a9040200.wav",
+      "byteLength": 9348,
+      "sha256": "2026b716ba3115748b89ec3ac3b6041824b6ddbba78ee708f62af1fb8dc3756a"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SE/footsoil/ryoashi6.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-fuku/sfx/a9040300.wav",
+      "byteLength": 12052,
+      "sha256": "e3936e0df4975dd2f4a7ee33b7d603f64e4e514601e2d03c173643de40273081"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SE/footsoil/ryoashi7.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-fuku/sfx/a9040400.wav",
+      "byteLength": 10220,
+      "sha256": "a5890240dafd43884ecced054ebea186d119a1e2d68d6a9ba85b8639bf7cf6cb"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SE/foot2/RYOASHITSUCHI2.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-fuku/sfx/a9040500.wav",
+      "byteLength": 7500,
+      "sha256": "99f5b37ae10abfd6cdaaecfbf2fc4456c7147b7faac732f917e8f6fde14c8055"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SE/cloths2/R_mouhu_nageru.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-fuku/sfx/a9040600.wav",
+      "byteLength": 21612,
+      "sha256": "5c49cb5c012c4b62f58d0b81d8f68aa02b2734dd78710011d0c69a431d5a0988"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SOR/SE/cloths/SUBERU2.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 44100,
+      "asset": "public/audio/world/family-fuku/sfx/a9040700.wav",
+      "byteLength": 40436,
+      "sha256": "df19486630969578fe761bf192cd9887f29da717f6c33312485cae3b210f2e8c"
+    }
+  ]
+}

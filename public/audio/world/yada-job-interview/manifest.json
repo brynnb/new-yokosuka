@@ -1,0 +1,704 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01MAK.AFS",
+      "sha256": "991e51fcbe77d0e590fd5db522b6fee46fe11cf7b02fc9bcaa6b81917cfc075d"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_MARK.SND",
+      "sha256": "ef5b84e9994323af1b7dc315612030cd1b923e79aa8770dd0e8afc6cad394ba8"
+    },
+    "authManifest": "play/assets/harbor/yada-job-interview/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-harbor-work.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01MAKA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SOUND/01MAKA001.aiff",
+      "nativeMember": "01MAKA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "66e0e0f46760d1658406c56c98a1beb286799a9aecb7252193bddb18a6d6701a",
+      "speakerId": "AKIR",
+      "sourceText": "Excuse me.",
+      "displayText": "Excuse me.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-job-interview/voice/01MAKA001.wav",
+      "byteLength": 16172,
+      "sha256": "14b379f9cbe4e0ab65a8867212a9e325bd4b58bb5a86281fba598111511b1e19"
+    },
+    {
+      "voiceId": "01MAKA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SOUND/01MAKA002.aiff",
+      "nativeMember": "01MAKA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "7629b543fb2bb5fad63503088da464928c1945c5e4644638bd17906d108e348d",
+      "speakerId": "AKIR",
+      "sourceText": "Are you Yada-san?",
+      "displayText": "Are you Yada-san?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-job-interview/voice/01MAKA002.wav",
+      "byteLength": 24364,
+      "sha256": "9f75dd939cc61cad8d684936c538059a2e1714763e1015b4f031fd683610327e"
+    },
+    {
+      "voiceId": "01MAKA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SOUND/01MAKA003.aiff",
+      "nativeMember": "01MAKA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 14336,
+      "nativeSha256": "46ef04e519ff3331b2aade2411fbb310c4562c62a10e4d6f66a1f2ad692b48c9",
+      "speakerId": "AKIR",
+      "sourceText": "Mai-san at the lunch stand mentioned me?",
+      "displayText": "Mai-san at the lunch stand mentioned me?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-job-interview/voice/01MAKA003.wav",
+      "byteLength": 57132,
+      "sha256": "291a16ff51c2442bc02f4e6b0679cbe609311090e1c09a941bb175a0209dab64"
+    },
+    {
+      "voiceId": "01MAKA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SOUND/01MAKA004.aiff",
+      "nativeMember": "01MAKA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "a987fe5e27fc2072164d494b35ef2f3cf6153543e4a8045b3b21e37129d7bd9a",
+      "speakerId": "AKIR",
+      "sourceText": "Yes.",
+      "displayText": "Yes.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-job-interview/voice/01MAKA004.wav",
+      "byteLength": 16172,
+      "sha256": "7bddcd16110e6af99669dfd4e2b275bdc642d6a224f594288b47ae3eb8a5cfd9"
+    },
+    {
+      "voiceId": "01MAKB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SOUND/01MAKB001.aiff",
+      "nativeMember": "01MAKB001.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 8192,
+      "nativeSha256": "f867a6a562faf110fa2e5a36cbde204e379fd08907ca65b688faffd45ee689a5",
+      "speakerId": "TMRA",
+      "sourceText": "Wadda you want?",
+      "displayText": "Wadda you want?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-job-interview/voice/01MAKB001.wav",
+      "byteLength": 32556,
+      "sha256": "c7bb4c9c2c3255ee2d265f5a82ca98a1140d01530831702d1856511cda2d0019"
+    },
+    {
+      "voiceId": "01MAKB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SOUND/01MAKB002.aiff",
+      "nativeMember": "01MAKB002.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 8192,
+      "nativeSha256": "c94e5306752b97396b7cbaf94d621de25e398099e7b3c866aba4312e842122d4",
+      "speakerId": "TMRA",
+      "sourceText": "Yeah, that's me.",
+      "displayText": "Yeah, that's me.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-job-interview/voice/01MAKB002.wav",
+      "byteLength": 32556,
+      "sha256": "009e1f39ed4cec9905326bdf98cbf84a72df3478baf182c168514ad1d3f40748"
+    },
+    {
+      "voiceId": "01MAKB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SOUND/01MAKB003.aiff",
+      "nativeMember": "01MAKB003.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 18432,
+      "nativeSha256": "b8b5c591eaa7c38e79b16732857a98845eaceb8ceac5b5701a8d52f0e70ad186",
+      "speakerId": "TMRA",
+      "sourceText": "Ohh yes, Mai from the lunch stand.",
+      "displayText": "Ohh yes, Mai from the lunch stand.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 29
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-job-interview/voice/01MAKB003.wav",
+      "byteLength": 73516,
+      "sha256": "04e722c4c9b3f49ba80942ca7e8a6cbb33bef009edeb4b8a5fad1911167f153a"
+    },
+    {
+      "voiceId": "01MAKB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SOUND/01MAKB004.aiff",
+      "nativeMember": "01MAKB004.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 24576,
+      "nativeSha256": "82b0832a1f5677bef3d8ec67fe1df0f39400f58e64520361bfa3d218ccd2047b",
+      "speakerId": "TMRA",
+      "sourceText": "Yes, she did=@ Can you start right away?",
+      "displayText": "Yes, she did... Can you start right away?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 70
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-job-interview/voice/01MAKB004.wav",
+      "byteLength": 98092,
+      "sha256": "1259c8005782dc0574d039c384e32dfa696f604de654c000766f9b06a01ffd6b"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SE/cloths2/friction3.aiff",
+      "playbackId": 5,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-job-interview/sfx/a9040500.wav",
+      "byteLength": 14788,
+      "sha256": "e0b0c547a2a7acb4fd9970421c7c66f241838f2074ac48a82bdb6b9b880c1606"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 8,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-job-interview/sfx/a9040800.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 13,
+      "sampleId": 24,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-job-interview/sfx/a9040d00.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 14,
+      "sampleId": 25,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-job-interview/sfx/a9040e00.wav",
+      "byteLength": 5412,
+      "sha256": "64fa0eff3320191bd9befe41d84a45f91d48ae9a9c821c8aac766ce9b3fcf3f3"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 15,
+      "sampleId": 26,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-job-interview/sfx/a9040f00.wav",
+      "byteLength": 6364,
+      "sha256": "a087e557bddc12e1ca7a20b8ad3ee5e15dfa88ad4531cbba9c0b85b9367c66af"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 16,
+      "sampleId": 27,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-job-interview/sfx/a9041000.wav",
+      "byteLength": 4620,
+      "sha256": "b777d818c86e674e40a080c0aabb21e31a54b732828322cdb9b9288dd4184907"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 17,
+      "sampleId": 28,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-job-interview/sfx/a9041100.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 18,
+      "sampleId": 29,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-job-interview/sfx/a9041200.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9041600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SE/foot/sneaker1.aiff",
+      "playbackId": 22,
+      "sampleId": 33,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-job-interview/sfx/a9041600.wav",
+      "byteLength": 10964,
+      "sha256": "3db696efc3f22f883429c8558b9cd97102c30e9f4401b0d78a4cb82baaf2e2b7"
+    },
+    {
+      "commandHex": "a9041700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SE/foot/sneaker5.aiff",
+      "playbackId": 23,
+      "sampleId": 34,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-job-interview/sfx/a9041700.wav",
+      "byteLength": 10804,
+      "sha256": "666406d82f6427ba7aa03663efd796fc9fc4dad74e69c139f58215e3d559b620"
+    },
+    {
+      "commandHex": "a9041800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SE/door/woodclose2.aiff",
+      "playbackId": 24,
+      "sampleId": 35,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-job-interview/sfx/a9041800.wav",
+      "byteLength": 22244,
+      "sha256": "08b6668aad9b4025f421e129ba00b8b4a633e12b043634d70cb6c17ccc5a4f5d"
+    },
+    {
+      "commandHex": "a9041900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SE/door/woodopen1.aiff",
+      "playbackId": 25,
+      "sampleId": 36,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-job-interview/sfx/a9041900.wav",
+      "byteLength": 43948,
+      "sha256": "616707e7b803f459d2218eed0f4149bb1b2a198f955b3ad4ec2f3e91a4b6b854"
+    },
+    {
+      "commandHex": "a9041f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MAK/SE/smallobject/kettleloop.aiff",
+      "playbackId": 36,
+      "sampleId": 19,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-job-interview/sfx/a9041f00.wav",
+      "byteLength": 109108,
+      "sha256": "19081a23c426114a834162116551cd40951a39682d0ba1480984bf68680c4eb8"
+    }
+  ]
+}

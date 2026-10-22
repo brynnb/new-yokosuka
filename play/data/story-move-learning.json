@@ -1,0 +1,27 @@
+{
+  "schema": "new-yokosuka-story-move-learning-v1",
+  "sources": [
+    "https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/25383",
+    "https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404",
+    "https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/6804"
+  ],
+  "moves": [
+    {"id":"pitBlow","slug":"pit-blow","name":"Pit Blow","replaces":"elbowSlam","teacher":"Fuku-san"},
+    {"id":"doubleBlow","slug":"double-blow","name":"Double Blow","replaces":"twinHandWaves","teacher":"Yamagishi-san"},
+    {"id":"swallowDive","slug":"swallow-dive","name":"Swallow Dive","replaces":"sideReaperKick","teacher":"Gui Zhang"},
+    {"id":"tornadoKick","slug":"tornado-kick","name":"Tornado Kick","replaces":"againstCascade","teacher":"Tom"},
+    {"id":"shadowStep","slug":"shadow-step","name":"Shadow Step","teacher":"Shozo Mizuki"},
+    {"id":"shadowBlade","slug":"shadow-blade","name":"Shadow Blade","teacher":"Shozo Mizuki"},
+    {"id":"crossCharge","slug":"cross-charge","name":"Cross Charge","teacher":"Shozo Mizuki"},
+    {"id":"swallowFlip","slug":"swallow-flip","name":"Swallow Flip","teacher":"Master Chen"},
+    {"id":"twinBlades","slug":"twin-blades","name":"Twin Blades","itemKey":"scroll_twin_blades","location":"Fuku-san's room"},
+    {"id":"shadowReaper","slug":"shadow-reaper","name":"Shadow Reaper","itemKey":"scroll_shadow_reaper","location":"Hazuki residence passage"},
+    {"id":"stabArmor","slug":"stab-armor","name":"Stab Armor","itemKey":"scroll_stab_armor","location":"Hidden basement","requiredFlag":"story.s1.stab-armor.translated"},
+    {"id":"risingFlash","slug":"rising-flash","name":"Rising Flash","itemKey":"scroll_rising_flash","price":500},
+    {"id":"mudSpider","slug":"mud-spider","name":"Mud Spider","itemKey":"scroll_mud_spider","price":1000},
+    {"id":"crawlCyclone","slug":"crawl-cyclone","name":"Crawl Cyclone","itemKey":"scroll_crawl_cyclone","price":1000},
+    {"id":"twinSwallowLeap","slug":"twin-swallow-leap","name":"Twin Swallow Leap","itemKey":"scroll_twin_swallow_leap","price":1000},
+    {"id":"tigerStorm","slug":"tiger-storm","name":"Tiger Storm","itemKey":"scroll_tiger_storm","price":2000},
+    {"id":"armBreakFire","slug":"arm-break-fire","name":"Arm Break Fire","itemKey":"scroll_arm_break_fire","price":3000}
+  ]
+}

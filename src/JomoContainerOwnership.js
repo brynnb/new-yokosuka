@@ -2,6 +2,13 @@ function extent(bounds, axis) {
   return Math.max(0, bounds.max[axis] - bounds.min[axis]);
 }
 
+// Picking and dispatch must agree: an interaction-only ray must not select
+// a contained prop through the opaque closed drawer that owns it.
+export function containerInteractionAllowed(root) {
+  const container=root?.parent?.metadata?.interactiveDrawer;
+  return !container || container.state==="open";
+}
+
 function volume(bounds) {
   return extent(bounds, 0) * extent(bounds, 1) * extent(bounds, 2);
 }

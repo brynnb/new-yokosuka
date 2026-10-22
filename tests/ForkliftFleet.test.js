@@ -32,13 +32,13 @@ test("harbor has no authored forklift or cargo spawns", () => {
   assert.equal(HARBOR_FORKLIFT_CONFIG.cargoEnabled, false);
   assert.equal(FORKLIFT_PLAYGROUND_SPAWNS.length, 5);
   assert.equal(FORKLIFT_PLAYGROUND_CARGO_SPAWNS.length, 3);
-  assert.equal(FORKLIFT_RACE_SPAWNS.length, 5);
+  assert.equal(FORKLIFT_RACE_SPAWNS.length, 0, "unused race grid positions must not create permanent obstacles");
   assert.deepEqual(
     FORKLIFT_RACE_GRID_SPAWNS.map((spawn) => spawn.position.x),
     [63, 60, 57, 54, 51],
   );
   assert.ok(
-    [...FORKLIFT_PLAYGROUND_SPAWNS, ...FORKLIFT_RACE_SPAWNS]
+    [...FORKLIFT_PLAYGROUND_SPAWNS, ...FORKLIFT_RACE_GRID_SPAWNS]
       .every(({ model }) => model === DETAILED_FORKLIFT_MODEL),
   );
 });

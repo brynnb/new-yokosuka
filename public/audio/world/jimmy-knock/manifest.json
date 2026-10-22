@@ -1,0 +1,502 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_jimmy_chase_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01JIMB.AFS",
+      "sha256": "69b911a894d83b73b9abc70650c60b761046e08597b510f33bac3166328cc463"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_JIMMA.SND",
+      "sha256": "8a883e707d3ad32ee4e0bd00c1c3203c27936759c189f58fdda01bb805252dc1"
+    },
+    "authManifest": "play/assets/dobuita/jimmy-knock/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md#jimmy-chase-and-interrogation"
+  },
+  "voices": [
+    {
+      "voiceId": "01JIMBA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMBA001.aiff",
+      "nativeMember": "01JIMBA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "0b7bf2af0f70b70c1a99eb5a3189c7e55d60131c0d988735c4fc9e98afe1f3bf",
+      "speakerId": "AKIR",
+      "sourceText": "Hey!",
+      "displayText": "Hey!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-knock/voice/01JIMBA001.wav",
+      "byteLength": 16172,
+      "sha256": "c5c32e9da0a8a06019cc725acfb01f46b29fd2c3a6913dcf23cc89310b89aeb9"
+    },
+    {
+      "voiceId": "01JIMBA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMBA002.aiff",
+      "nativeMember": "01JIMBA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "de03bbe81666e0a56b1604e6678639201ff83f186a24ba4ba6172272ce776bed",
+      "speakerId": "AKIR",
+      "sourceText": "What's your problem!",
+      "displayText": "What's your problem!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-knock/voice/01JIMBA002.wav",
+      "byteLength": 32556,
+      "sha256": "4d25e841fd8584bb49307c4f4da149030007816971189ef8ad4b9fbfdbe19886"
+    },
+    {
+      "voiceId": "01JIMBA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMBA003.aiff",
+      "nativeMember": "01JIMBA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 6144,
+      "nativeSha256": "a29faab32fc640108e4851c475063da4ec87bfa1152c945e33e16fec9e012468",
+      "speakerId": "AKIR",
+      "sourceText": "Stop!!",
+      "displayText": "Stop!!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 25
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-knock/voice/01JIMBA003.wav",
+      "byteLength": 24364,
+      "sha256": "51c5cb314876fb23da6b6bef61991a900444ab2e5b22f0a9ee7b086100b75c61"
+    },
+    {
+      "voiceId": "01JIMBA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMBA004.aiff",
+      "nativeMember": "01JIMBA004.str",
+      "speakerId": "AKIR",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "This exact AUTH voice reference is absent from the original archive directory; retain its cue without substitute speech.",
+      "evidence": "disc2/SCENE/02/STREAM/01JIMB.AFS member directory"
+    },
+    {
+      "voiceId": "01JIMBB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMBB001.aiff",
+      "nativeMember": "01JIMBB001.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 8192,
+      "nativeSha256": "82a3e1919153c5c9a3c82763741d633b1276a834bc2275f421451db279b7ffa9",
+      "speakerId": "JIMY",
+      "sourceText": "Who the hell is it=@!",
+      "displayText": "Who the hell is it...!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-knock/voice/01JIMBB001.wav",
+      "byteLength": 32556,
+      "sha256": "8917f3a6dc2962bfcdedcee139c00b8de3058c351e163c9a90c9b2a3e4a0ac6b"
+    },
+    {
+      "voiceId": "01JIMBB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMBB002.aiff",
+      "nativeMember": "01JIMBB002.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 6144,
+      "nativeSha256": "85ff7bacd9ec1d0493f9253ace93a799c042192f950915be8eae04dbe1c8519c",
+      "speakerId": "JIMY",
+      "sourceText": "Shi=@!",
+      "displayText": "Shi...!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 27
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-knock/voice/01JIMBB002.wav",
+      "byteLength": 24364,
+      "sha256": "b1fa66e8748e3edaa700e4d89e522075f5f4f9028b4bb657bd92fdedc0eb42ae"
+    },
+    {
+      "voiceId": "01JIMBB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMBB003.aiff",
+      "nativeMember": "01JIMBB003.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 4096,
+      "nativeSha256": "ddaef00e077a4d627ed4dfe791c87d7473cd33c038f347238a0498710851f2f2",
+      "speakerId": "JIMY",
+      "sourceText": "Damn!",
+      "displayText": "Damn!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-knock/voice/01JIMBB003.wav",
+      "byteLength": 16172,
+      "sha256": "c57ad8d85cffd2a1d11de02dfa4ef594052d4c30535228b889e4700691149aff"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040000.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040100.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/cloths2/cloths02.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040200.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/creakse/Creak.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040300.wav",
+      "byteLength": 18708,
+      "sha256": "f4682a036304d581c800f048247030f51ce1e64ebf30c9a84800c04c4cfb846d"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/hit/Deskhit.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040400.wav",
+      "byteLength": 5652,
+      "sha256": "c510fdb7312a958a72f8588e99a3d11b4811c5b337307a96f6f42f40718ae33d"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/hit/Deskhit04.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040500.wav",
+      "byteLength": 6876,
+      "sha256": "1963cd31e3f20692dc65fe7dd1c0affceec25bf05fea41acc9957c73edc690fb"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/door2/doorkishimi.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040600.wav",
+      "byteLength": 75940,
+      "sha256": "8afb777ef7a700cb71231b55b6b098f8933672ef5c86a8e89d049fc5b0e3b168"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/door/Dooropen3.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040700.wav",
+      "byteLength": 12532,
+      "sha256": "b419c0174518e24128d2497e562d78a349a520ce1b420debf9e7b127a80f018a"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/cloths2/friction4.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040800.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040900.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040a00.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/hit/Hith.aiff",
+      "playbackId": 11,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040b00.wav",
+      "byteLength": 9156,
+      "sha256": "29481a8c19da762b02e14fac006aedf1ebdaa5910a2f51495d6b35a14a5e6bed"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/foot/Itawalk2.aiff",
+      "playbackId": 12,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040c00.wav",
+      "byteLength": 16980,
+      "sha256": "8c1355c8eee77063c212955fe2a81214390b163ada8360a388cd2a919f0cfdbe"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/foot/Itawalk3.aiff",
+      "playbackId": 13,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040d00.wav",
+      "byteLength": 17188,
+      "sha256": "04cd234032a9fca2e034075f9d3c6429ee73681acff9e4712f391b42dfab7ced"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/punch/Punch4.aiff",
+      "playbackId": 14,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040e00.wav",
+      "byteLength": 3932,
+      "sha256": "76b091e1aa3f60387ecd5eef139af37122c8ab399fcaab9b4331d46d910b64bf"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 15,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9040f00.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 16,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9041000.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/body/shoulder2.aiff",
+      "playbackId": 17,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9041100.wav",
+      "byteLength": 2084,
+      "sha256": "ab7daa803b5619e55f7b99c9c812538f75425f8f62aeb07eec5e5c2257012565"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/foot2/syueisuriashi2.aiff",
+      "playbackId": 18,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9041200.wav",
+      "byteLength": 8004,
+      "sha256": "62213f308bd9d3b13024a28a7aa2630459aa217a599fb9c30a8a2a5853299e46"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SE/door/woodopen2.aiff",
+      "playbackId": 19,
+      "sampleId": 19,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-knock/sfx/a9041300.wav",
+      "byteLength": 56572,
+      "sha256": "6e8e65543827293ca1f7a5f58b151eed7b3ecb3378ffdeb7f8557f0287b4606f"
+    }
+  ]
+}

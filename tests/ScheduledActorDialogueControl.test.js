@@ -133,6 +133,38 @@ test("scripted activities can acquire an inactive resident's default model", () 
   assert.equal(root.isEnabled(), false);
 });
 
+test("activity ownership reveals an occlusion-hidden body and restores its prior policy", () => {
+  const root={position:vector(0,0,0),rotation:vector(0,0,0),scaling:vector(1,1,1),rotationQuaternion:null,
+    enabled:true,isEnabled(){return this.enabled;},setEnabled(value){this.enabled=value;}};
+  const renderRoot={enabled:false,isEnabled(){return this.enabled;},setEnabled(value){this.enabled=value;}};
+  const model={root,renderRoot,modelCode:"TAT_M",occlusionRenderCulled:true};
+  const entry={definition:{actorCode:"HORS",instanceId:"artist"},defaultModel:model,models:new Map()};
+  const runtime=runtimeWithEntries([entry]),owner={};
+  runtime.beginActivityActors(owner,["HORS"]);
+  assert.equal(renderRoot.enabled,true);assert.equal(model.occlusionRenderCulled,false);
+  runtime.update(0);assert.equal(renderRoot.enabled,true);
+  runtime.endActivityActors(owner);
+  assert.equal(renderRoot.enabled,false);assert.equal(model.occlusionRenderCulled,true);
+  assert.equal(root.enabled,true);assert.equal(runtime.activityActorOwners.size,0);
+});
+
+test("failed render acquisition and restoration release activity ownership",()=>{
+  const root={position:vector(0,0,0),rotation:vector(0,0,0),scaling:vector(1,1,1),rotationQuaternion:null,
+    enabled:true,isEnabled(){return this.enabled;},setEnabled(value){this.enabled=value;}};
+  let failEnable=true,failRestore=false;
+  const renderRoot={enabled:false,isEnabled(){return this.enabled;},setEnabled(value){
+    if(value&&failEnable||!value&&failRestore)throw new Error("render disposed");this.enabled=value;
+  }};
+  const model={root,renderRoot,modelCode:"TAT_M",occlusionRenderCulled:true};
+  const entry={definition:{actorCode:"HORS",instanceId:"artist"},defaultModel:model,models:new Map()};
+  const runtime=runtimeWithEntries([entry]);
+  assert.throws(()=>runtime.beginActivityActors({},["HORS"]),/render disposed/);
+  assert.equal(runtime.activityActorOwners.size,0);assert.equal(entry.activityPresentation,null);
+  failEnable=false;const owner={};runtime.beginActivityActors(owner,["HORS"]);
+  failRestore=true;assert.throws(()=>runtime.endActivityActors(owner),/Scheduled activity cleanup failed/);
+  assert.equal(runtime.activityActorOwners.size,0);assert.equal(entry.activityPresentation,null);
+});
+
 test("scripted activity ownership rejects ambiguous and already-owned actors", () => {
   const makeEntry = instanceId => ({
     definition: { actorCode: "SMTH", instanceId },

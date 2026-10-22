@@ -725,6 +725,11 @@ function CharacterCreateScreen() {
               autoFocus
             />
           </label>
+          <p className="character-name-guidance">
+            {avatar.id === "ryo"
+              ? "Starts in Story mode with the full opening. You can switch to Free roam in the sidebar."
+              : "Starts in Free roam in Dobuita after the Shenhua and hawk opening. You can switch to Story mode as Ryo later."}
+          </p>
           <AccountButton
             className="ny-button-primary account-button-big"
             type="submit"

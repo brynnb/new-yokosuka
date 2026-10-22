@@ -12,6 +12,8 @@ Preserved wiki tables and original-source examples are indexed under
 
 | Reference | Owns |
 | --- | --- |
+| [Shenmue I master event list](shenmue1-story-event-master.generated.md) | Story and optional gameplay interruptions, lessons, discoveries, activities and outcomes; current bindings are separate from completeness and presentation readiness |
+| [Shenmue I conversation appendix](shenmue1-story-conversations.generated.md) | Native conversation entries by character, representative original dialogue, exact message/body references and unresolved decoder boundaries; entries can overlap named story events |
 | [Actor identities](actor-identities.md), its [complete generated index](actor-identities.generated.md), [reviewed label registry](reviewed-actor-labels.json), and [project descriptor registry](project-actor-descriptors.json) | Actor codes, authored dialogue identities, evidence-backed reviewed labels, explicitly project-generated descriptors, model codes, program instances, and narrative grouping |
 | [Areas and worlds](areas-and-worlds.md) and its [complete generated index](areas-and-worlds.generated.md) | Native areas, browser worlds, display locations, interiors, and transitions |
 | [State banks and flags](state-banks-and-flags.md) and its [complete generated index](state-banks-and-flags.generated.md) | Persistent storage and researched flag labels |
@@ -41,6 +43,32 @@ identity groups projections that represent one story character and may impose
 adaptation policy; it does not rewrite the source code or prove native behavior.
 
 ## Regenerating the indexes
+
+The story-event inventory has a separate producer. It also checks that every
+current authored route, taught/scroll move and ordinary QTE segment remains
+accounted for. It generates both the master list and conversation appendix:
+
+```sh
+node tools/reference/generate_story_event_master.mjs
+node tools/reference/generate_story_event_master.mjs --check
+node --test tests/StoryEventInventory.test.js
+```
+
+These commands use the retained source index and do not need disc files.
+After changing subtitle evidence or native conversation inputs, rebuild the
+source index first:
+
+```sh
+python3 -m tools.reference.build_story_event_sources
+python3 -m tools.reference.build_story_event_sources --check
+```
+
+That source step requires the three extracted `HUMANS.AFS` copies and the
+all-disc `.disc-work/dialogue/inventory.json` from the
+[dialogue extraction workflow](../guides/tooling/dialogue-extraction.md).
+Use `--help` for source-path overrides. It checks archive hashes, removes
+identical resource copies and preserves exact subtitle provenance; it does not
+invent a new decoder or establish that every source branch is reachable.
 
 Run these after changing an authoritative input:
 

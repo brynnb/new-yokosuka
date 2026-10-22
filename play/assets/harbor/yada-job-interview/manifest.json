@@ -1,0 +1,173 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA0.AUTH",
+        "path": "disc3/SCENE/03/MFSY/MARU.PKS",
+        "sourceSha256": "a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
+        "archiveMember": "SEQDATA0.AUTH",
+        "byteLength": 108052,
+        "sha256": "9b5cb6a581aea4a987b22ed34281cad80834710028ed180babf8da73f5b2896a"
+      },
+      {
+        "name": "M_01MAK.MOTN",
+        "path": "disc3/SCENE/03/MFSY/MARU.PKS",
+        "sourceSha256": "a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
+        "archiveMember": "M_01MAK.MOTN",
+        "byteLength": 172884,
+        "sha256": "44e0a87c697e69f427fd28bf93d58278a7176388b0392ccbb6673b0a91d22bfe"
+      },
+      {
+        "name": "MAPALP.MAPD",
+        "path": "disc3/SCENE/03/MFSY/ALPHA.PKS",
+        "sourceSha256": "d05201b595601a36e2da5df6cc5e817bf1c72927e76ab82d3318ca3cd71f099a",
+        "archiveMember": "MAPALP.MAPD",
+        "byteLength": 97724,
+        "sha256": "e7cc167b5d4791494806d221d8ffdd3ee08dac1d1b9b52a2737e76e8a07b1c81"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-harbor-work.md",
+    "resourceName": "MARU",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/yada-job-interview/manifest.json",
+  "sceneObjects": {
+    "DOOR": {
+      "model": "unmapped-original-reference",
+      "browserFilename": "MARU-DOOR-reference",
+      "referenceOnly": true
+    },
+    "ROOM": {
+      "model": "MAPALP",
+      "browserFilename": "MAPALP.MAPD",
+      "assetPath": "play/assets/harbor/yada-job-interview/MAPALP.MAPD",
+      "textureAssetPath": "play/assets/harbor/yada-job-interview/alpha-textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "packageActors": {
+    "TMRA": {
+      "label": "Ryozo Yada",
+      "modelCode": "KWD_L",
+      "browserFilename": "KWD_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/KWD_L.CHRM",
+      "textureAssetPath": "play/assets/characters/KWD_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "TMRA",
+    "DOOR"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/yada-job-interview/M_01MAK.MOTN",
+      "byteLength": 172884,
+      "sha256": "44e0a87c697e69f427fd28bf93d58278a7176388b0392ccbb6673b0a91d22bfe"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/yada-job-interview/M_01MAK.MOTN",
+      "byteLength": 172884,
+      "sha256": "44e0a87c697e69f427fd28bf93d58278a7176388b0392ccbb6673b0a91d22bfe"
+    },
+    {
+      "path": "play/assets/harbor/yada-job-interview/SEQDATA0.AUTH",
+      "byteLength": 108052,
+      "sha256": "9b5cb6a581aea4a987b22ed34281cad80834710028ed180babf8da73f5b2896a"
+    },
+    {
+      "path": "play/assets/harbor/yada-job-interview/MAPALP.MAPD",
+      "byteLength": 97724,
+      "sha256": "e7cc167b5d4791494806d221d8ffdd3ee08dac1d1b9b52a2737e76e8a07b1c81"
+    },
+    {
+      "path": "play/assets/harbor/yada-job-interview/alpha-textures.bin",
+      "byteLength": 430464,
+      "sha256": "c91ac800b9c7f60379ecae4f27e908e616becf18b9fb3b1542fb11b3fc4fba53"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "MARU/SEQDATA0.AUTH",
+      "archiveMember": "SEQDATA0.AUTH",
+      "byteLength": 108052,
+      "sha256": "9b5cb6a581aea4a987b22ed34281cad80834710028ed180babf8da73f5b2896a",
+      "durationFrames": 830,
+      "durationSeconds": 27.683332443237305,
+      "frameCount": 30,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 2,
+        "sound": 22,
+        "voice": 8
+      },
+      "actors": [
+        "AKIR",
+        "TMRA",
+        "DOOR"
+      ],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "ROOM",
+          "presented": true
+        }
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AT1_TAZUNERU_ARUBAITO_MARKTOUJOUO_0100",
+          "startFrame": 1,
+          "endFrame": 799
+        },
+        {
+          "actorTag": "TMRA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "YKI_YAD_AT1_TAZUNERU_ARUBAITO_MARKTOUJOU0_0100",
+          "startFrame": 1,
+          "endFrame": 660
+        }
+      ]
+    }
+  ]
+}

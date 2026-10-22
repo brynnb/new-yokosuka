@@ -79,7 +79,7 @@ export class WorldRuntime {
     }
   }
 
-  async load(world, signal = null) {
+  async load(world, signal = null, { nativeArrival = null } = {}) {
     this.ensureLoadActive(signal);
     await this.clear();
     const result = await this.loadWorldAssets(world, signal);
@@ -94,6 +94,7 @@ export class WorldRuntime {
       environment: result.environment,
       loaded: result.loaded,
       signal,
+      nativeArrival,
     });
     this.ensureLoadActive(signal);
   }
@@ -126,7 +127,7 @@ export class WorldRuntime {
     const travelState = controllerState === undefined
       ? controller?.captureTravelState() || null
       : controllerState;
-    if (!this.switching && this.ready && world === this.activeWorld) {
+    if (!this.switching && this.ready && world === this.activeWorld && !transition) {
       this.exitCinemaSeat();
       const position = debugSpawn
         ? this.vectorFromArray(debugSpawn.position)
@@ -154,7 +155,15 @@ export class WorldRuntime {
       load: async (signal) => {
         await this.beginLoading(world, signal, loadingPresentation);
         this.ensureLoadActive(signal);
-        await this.load(world, signal);
+        await this.load(world, signal, {
+          // S1 transitions explicitly carry the native scene/area/entry. S2
+          // has a different source contract, so do not infer S1 scene globals.
+          // Explicit entry:null marks a reviewed browser-only edge (bus and
+          // manually connected returns). It cannot supply an original entry
+          // word. Missing/malformed fields on a claimed native edge still fail.
+          nativeArrival: Number.isInteger(transition?.destination?.scene) && transition.destination.entry !== null
+            ? transition.destination : null,
+        });
         this.ensureLoadActive(signal);
         await this.ensurePlayerLoaded(world, signal);
         this.ensureLoadActive(signal);
@@ -177,6 +186,7 @@ export class WorldRuntime {
         return true;
       },
       onError: (error) => {
+        this.ready = false;
         console.error(error);
         this.showLoadingError("This area couldn’t be loaded.\nPlease try again.");
       },
@@ -194,6 +204,7 @@ export class WorldRuntime {
     persistLocation = true,
     reveal = true,
     loadingPresentation = null,
+    nativeArrival = null,
   } = {}) {
     return this.session.run({
       onStart: () => { this.ready = false; },
@@ -202,7 +213,7 @@ export class WorldRuntime {
         this.ensureLoadActive(signal);
         await beforeLoad?.();
         this.ensureLoadActive(signal);
-        await this.load(world, signal);
+        await this.load(world, signal, { nativeArrival });
         this.ensureLoadActive(signal);
         await this.ensurePlayerLoaded(world, signal);
         this.ensureLoadActive(signal);

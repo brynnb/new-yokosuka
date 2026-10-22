@@ -1,6 +1,56 @@
 import { runtimeAssetGroup, runtimeAssetUrl } from "../../src/RuntimeAssets.js";
 import { INTRODUCTION_ENVIRONMENTS } from "./IntroductionEnvironments.js";
+import goroJobLeadManifest from "../assets/harbor/goro-job-lead/manifest.json";
+import chickenRaceManifest from "../assets/harbor/chicken-race/manifest.json";
+import chickenRaceAudio from "../../public/audio/world/chicken-race/manifest.json";
+import charlieHarborManifest from "../assets/harbor/charlie-harbor-interrogation/manifest.json";
+import goroTrapManifest from "../assets/harbor/goro-trap-aftermath/manifest.json";
+import goroMaiManifest from "../assets/harbor/goro-mai-marriage/manifest.json";
+import goroMaiAudio from "../../public/audio/world/goro-mai-marriage/manifest.json";
+import warningLetterManifest from "../assets/harbor/warning-letter/manifest.json";
+import warningLetterAudio from "../../public/audio/world/warning-letter/manifest.json";
+import chenWarningManifest from "../assets/harbor/chen-warning/manifest.json";
+import chenWarningAudio from "../../public/audio/world/chen-warning/manifest.json";
+import sailorIntroManifest from "../assets/harbor/sailor-chase-intro/manifest.json";
+import sailorIntroAudio from "../../public/audio/world/sailor-chase-intro/manifest.json";
+import sailorTonyManifest from "../assets/harbor/sailor-chase-tony/manifest.json";
+import sailorTonyAudio from "../../public/audio/world/sailor-chase-tony/manifest.json";
+import sailorSmithManifest from "../assets/harbor/sailor-chase-smith/manifest.json";
+import sailorSmithAudio from "../../public/audio/world/sailor-chase-smith/manifest.json";
+import goroTrapAudio from "../../public/audio/world/goro-trap-aftermath/manifest.json";
+import markLongZhaManifest from "../assets/harbor/mark-long-zha/manifest.json";
+import markLongZhaAudio from "../../public/audio/world/mark-long-zha/manifest.json";
+import charlieHarborAudio from "../../public/audio/world/charlie-harbor-interrogation/manifest.json";
+import goroJobLeadAudio from "../../public/audio/world/goro-job-lead/manifest.json";
+import goroJobAppointmentManifest from "../assets/harbor/goro-job-appointment/manifest.json";
+import goroJobAppointmentAudio from "../../public/audio/world/goro-job-appointment/manifest.json";
+import yadaJobInterviewManifest from "../assets/harbor/yada-job-interview/manifest.json";
+import yadaJobInterviewAudio from "../../public/audio/world/yada-job-interview/manifest.json";
+import markJobIntroductionManifest from "../assets/harbor/mark-job-introduction/manifest.json";
+import markJobIntroductionAudio from "../../public/audio/world/mark-job-introduction/manifest.json";
+import markLunchIntroManifest from "../assets/harbor/mark-lunch-intro/manifest.json";
+import markLunchIntroAudio from "../../public/audio/world/mark-lunch-intro/manifest.json";
+import markLunchAftermathManifest from "../assets/harbor/mark-lunch-aftermath/manifest.json";
+import markLunchAftermathAudio from "../../public/audio/world/mark-lunch-aftermath/manifest.json";
+import afterWorkGoroManifest from "../assets/harbor/after-work-goro/manifest.json";
+import afterWorkGoroAudio from "../../public/audio/world/after-work-goro/manifest.json";
+import workdayLunchManifest from "../assets/harbor/workday-lunch/manifest.json";
+import nozomiPhotoIntroManifest from "../assets/harbor/nozomi-photo-intro/manifest.json";
+import nozomiPhotoIntroAudio from "../../public/audio/world/nozomi-photo-intro/manifest.json";
+import nozomiPhotoEndingManifest from "../assets/harbor/nozomi-photo-ending/manifest.json";
+import nozomiPhotoEndingAudio from "../../public/audio/world/nozomi-photo-ending/manifest.json";
+import markAfterWorkIntroManifest from "../assets/harbor/mark-after-work-intro/manifest.json";
+import markAfterWorkIntroAudio from "../../public/audio/world/mark-after-work-intro/manifest.json";
+import markAfterWorkAftermathManifest from "../assets/harbor/mark-after-work-aftermath/manifest.json";
+import markAfterWorkAftermathAudio from "../../public/audio/world/mark-after-work-aftermath/manifest.json";
+import markBrotherManifest from "../assets/harbor/mark-brother-explanation/manifest.json";
+import markBrotherAudio from "../../public/audio/world/mark-brother-explanation/manifest.json";
 import nativeActivityActorManifest from "../data/events/nativeActivityActors.json";
+import allowanceManifest from "../assets/hazuki/first-allowance/manifest.json";
+import allowanceAudio from "../../public/audio/world/first-allowance/manifest.json";
+import chineseLetterManifest from "../assets/hazuki/chinese-letter/manifest.json";
+import chineseLetterAudio from "../../public/audio/world/chinese-letter/manifest.json";
+import firstDojoAudio from "../../public/audio/world/first-dojo/manifest.json";
 import op00ActivityActorManifest from "../data/events/op00ActivityActors.json";
 import op00AssetInventory from "../assets/introduction/op00/asset-inventory.generated.json";
 import op00ActivityManifest from "../assets/introduction/op00/manifest.json";
@@ -44,6 +94,109 @@ import houoActivityManifest from "../assets/hazuki/houo/manifest.json";
 import houoAudioManifest from "../../public/audio/world/houo/manifest.json";
 import tokiActivityManifest from "../assets/dobuita/toki/manifest.json";
 import tokiAudioManifest from "../../public/audio/world/toki/manifest.json";
+import phoneBookManifest from "../assets/dobuita/phone-book/manifest.json";
+import phoneBookAudio from "../../public/audio/world/phone-book/manifest.json";
+import masterChenManifest from "../assets/harbor/master-chen/manifest.json";
+import masterChenAudio from "../../public/audio/world/master-chen/manifest.json";
+import mirrorMeetingManifest from "../assets/harbor/mirror-meeting/manifest.json";
+import mirrorMeetingAudio from "../../public/audio/world/mirror-meeting/manifest.json";
+import postChenHomeManifest from "../assets/hazuki/post-chen-home/manifest.json";
+import postChenHomeAudio from "../../public/audio/world/post-chen-home/manifest.json";
+import bankSavingsManifest from "../assets/hazuki/bank-savings/manifest.json";
+import bankSavingsAudio from "../../public/audio/world/bank-savings/manifest.json";
+import travelFamilyManifest from "../assets/hazuki/travel-family/manifest.json";
+import travelFamilyAudio from "../../public/audio/world/travel-family/manifest.json";
+import fukuTravelFundsManifest from "../assets/hazuki/fuku-travel-funds/manifest.json";
+import fukuTravelFundsAudio from "../../public/audio/world/fuku-travel-funds/manifest.json";
+import globalAirfareManifest from "../assets/dobuita/global-airfare/manifest.json";
+import globalAirfareAudio from "../../public/audio/world/global-airfare/manifest.json";
+import asiaAirfareManifest from "../assets/dobuita/asia-airfare/manifest.json";
+import asiaAirfareAudio from "../../public/audio/world/asia-airfare/manifest.json";
+import globalBoatManifest from "../assets/dobuita/global-boat/manifest.json";
+import globalBoatAudio from "../../public/audio/world/global-boat/manifest.json";
+import boatPurchaseManifest from "../assets/dobuita/boat-ticket-purchase/manifest.json";
+import boatPurchaseAudio from "../../public/audio/world/boat-ticket-purchase/manifest.json";
+import boatCollectionManifest from "../assets/dobuita/boat-ticket-collection/manifest.json";
+import boatCollectionAudio from "../../public/audio/world/boat-ticket-collection/manifest.json";
+import jimmyCallManifest from "../assets/hazuki/jimmy-morning-call/manifest.json";
+import jimmyCallAudio from "../../public/audio/world/jimmy-morning-call/manifest.json";
+import nozomiCallManifest from "../assets/hazuki/nozomi-night-call/manifest.json";
+import nozomiCallAudio from "../../public/audio/world/nozomi-night-call/manifest.json";
+import nozomiMotorcycleManifest from "../assets/sakuragaoka/nozomi-motorcycle/manifest.json";
+import nozomiMotorcycleAudio from "../../public/audio/world/nozomi-motorcycle/manifest.json";
+import nozomiRescueManifest from "../assets/harbor/nozomi-rescue/manifest.json";
+import nozomiRescueAudio from "../../public/audio/world/nozomi-rescue/manifest.json";
+import nozomiHomeManifest from "../assets/harbor/nozomi-home/manifest.json";
+import nozomiHomeAudio from "../../public/audio/world/nozomi-home/manifest.json";
+import finalMeditationManifest from "../assets/hazuki/final-meditation/manifest.json";
+import finalMeditationAudio from "../../public/audio/world/final-meditation/manifest.json";
+import tomLunchManifest from "../assets/harbor/tom-lunch-invitation/manifest.json";
+import tomLunchAudio from "../../public/audio/world/tom-lunch-invitation/manifest.json";
+import yadaDismissalManifest from "../assets/harbor/yada-dismissal/manifest.json";
+import yadaDismissalAudio from "../../public/audio/world/yada-dismissal/manifest.json";
+import tomLessonManifest from "../assets/harbor/tom-lesson/manifest.json";
+import tomLessonAudio from "../../public/audio/world/tom-lesson/manifest.json";
+import tomFarewellManifest from "../assets/harbor/tom-farewell/manifest.json";
+import tomFarewellAudio from "../../public/audio/world/tom-farewell/manifest.json";
+import tomPlaneManifest from "../assets/harbor/tom-plane/manifest.json";
+import tomPlaneAudio from "../../public/audio/world/tom-plane/manifest.json";
+import finalConfrontationManifest from "../assets/harbor/final-confrontation/manifest.json";
+import finalConfrontationAudio from "../../public/audio/world/final-confrontation/manifest.json";
+import terryRetreatManifest from "../assets/harbor/terry-retreat/manifest.json";
+import terryRetreatAudio from "../../public/audio/world/terry-retreat/manifest.json";
+import finalEncirclementManifest from "../assets/harbor/final-encirclement/manifest.json";
+import finalEncirclementAudio from "../../public/audio/world/final-encirclement/manifest.json";
+import terryFinalIntroManifest from "../assets/harbor/terry-final-intro/manifest.json";
+import terryFinalIntroAudio from "../../public/audio/world/terry-final-intro/manifest.json";
+import terryFinalSuccessManifest from "../assets/harbor/terry-final-success/manifest.json";
+import terryFinalSuccessAudio from "../../public/audio/world/terry-final-success/manifest.json";
+import terryInterrogationManifest from "../assets/harbor/terry-interrogation/manifest.json";
+import terryInterrogationAudio from "../../public/audio/world/terry-interrogation/manifest.json";
+import guiAfterBattleManifest from "../assets/harbor/gui-after-battle/manifest.json";
+import guiAfterBattleAudio from "../../public/audio/world/gui-after-battle/manifest.json";
+import familyDepartureManifest from "../assets/hazuki/family-departure/manifest.json";
+import familyDepartureAudio from "../../public/audio/world/family-departure/manifest.json";
+import swallowLessonManifest from "../assets/harbor/swallow-lesson/manifest.json";
+import swallowLessonAudio from "../../public/audio/world/swallow-lesson/manifest.json";
+import finalChaiIntroManifest from "../assets/harbor/final-chai-intro/manifest.json";
+import finalChaiIntroAudio from "../../public/audio/world/final-chai-intro/manifest.json";
+import finalChaiInterrogationManifest from "../assets/harbor/final-chai-interrogation/manifest.json";
+import finalChaiInterrogationAudio from "../../public/audio/world/final-chai-interrogation/manifest.json";
+import finalChaiCounterManifest from "../assets/harbor/final-chai-counter/manifest.json";
+import finalChaiCounterAudio from "../../public/audio/world/final-chai-counter/manifest.json";
+import chenIntroductionLetterManifest from "../assets/harbor/chen-introduction-letter/manifest.json";
+import chenIntroductionLetterAudio from "../../public/audio/world/chen-introduction-letter/manifest.json";
+import nozomiAmuletManifest from "../assets/harbor/nozomi-amulet/manifest.json";
+import nozomiAmuletAudio from "../../public/audio/world/nozomi-amulet/manifest.json";
+import shipBoardingManifest from "../assets/harbor/ship-boarding/manifest.json";
+import shipBoardingAudio from "../../public/audio/world/ship-boarding/manifest.json";
+import shipSailingManifest from "../assets/harbor/ship-sailing/manifest.json";
+import shipSailingAudio from "../../public/audio/world/ship-sailing/manifest.json";
+import chaiIntroManifest from "../assets/dobuita/chai-intro/manifest.json";
+import chaiIntroAudio from "../../public/audio/world/chai-intro/manifest.json";
+import chaiVictoryManifest from "../assets/dobuita/chai-victory/manifest.json";
+import chaiVictoryAudio from "../../public/audio/world/chai-victory/manifest.json";
+import chaiRescueManifest from "../assets/dobuita/chai-rescue/manifest.json";
+import chaiRescueAudio from "../../public/audio/world/chai-rescue/manifest.json";
+import jimmyKnockManifest from "../assets/dobuita/jimmy-knock/manifest.json";
+import jimmyKnockAudio from "../../public/audio/world/jimmy-knock/manifest.json";
+import jimmyCaughtManifest from "../assets/dobuita/jimmy-caught/manifest.json";
+import jimmyCaughtAudio from "../../public/audio/world/jimmy-caught/manifest.json";
+import jimmyEscapedManifest from "../assets/dobuita/jimmy-escaped/manifest.json";
+import jimmyEscapedAudio from "../../public/audio/world/jimmy-escaped/manifest.json";
+import jimmyInterrogationManifest from "../assets/dobuita/jimmy-interrogation/manifest.json";
+import jimmyInterrogationAudio from "../../public/audio/world/jimmy-interrogation/manifest.json";
+import familyFukuManifest from "../assets/hazuki/family-fuku/manifest.json";
+import familyFukuAudio from "../../public/audio/world/family-fuku/manifest.json";
+import familyIneManifest from "../assets/hazuki/family-ine/manifest.json";
+import familyIneAudio from "../../public/audio/world/family-ine/manifest.json";
+import bunkadoHandguardManifest from "../assets/dobuita/bunkado-handguard/manifest.json";
+import bunkadoHandguardAudio from "../../public/audio/world/bunkado-handguard/manifest.json";
+import guiZhangManifest from "../assets/sakuragaoka/gui-zhang/manifest.json";
+import guiZhangIntroductionAudio from "../../public/audio/world/gui-zhang/introduction/manifest.json";
+import guiZhangBodyguardAudio from "../../public/audio/world/gui-zhang/bodyguard/manifest.json";
+import familyCrestManifest from "../assets/hazuki/family-crest/manifest.json";
+import familyCrestAudio from "../../public/audio/world/family-crest/manifest.json";
 import kkyaActivityManifest from "../assets/hazuki/kkya/manifest.json";
 import kkybActivityManifest from "../assets/hazuki/kkyb/manifest.json";
 import kkycActivityManifest from "../assets/hazuki/kkyc/manifest.json";
@@ -86,6 +239,13 @@ const bundledBebfAssets = runtimeAssetGroup("play/assets/hazuki/bebf/*.{AUTH,MOT
 const bundledSakrAssets = runtimeAssetGroup("play/assets/yd01/sakr/*.{AUTH,MOTN,MT5,BIN}");
 const bundledHouoAssets = runtimeAssetGroup("play/assets/hazuki/houo/*.{AUTH,MOTN,CHRM,bin}");
 const bundledTokiAssets = runtimeAssetGroup("play/assets/dobuita/toki/*.{AUTH,MOTN,MT5,BIN}");
+const bundledPhoneBookAssets = runtimeAssetGroup("play/assets/dobuita/phone-book/*.{AUTH,MOTN,CHRM,bin}");
+const bundledMasterChenAssets = runtimeAssetGroup("play/assets/harbor/master-chen/*.{AUTH,MOTN,CHRM,bin}");
+const bundledMirrorMeetingAssets = runtimeAssetGroup("play/assets/harbor/mirror-meeting/*.{AUTH,MOTN,CHRM,bin}");
+const bundledFamilyFukuAssets = runtimeAssetGroup("play/assets/hazuki/family-fuku/*.{AUTH,MOTN}");
+const bundledFamilyIneAssets = runtimeAssetGroup("play/assets/hazuki/family-ine/*.{AUTH,MOTN}");
+const bundledBunkadoHandguardAssets = runtimeAssetGroup("play/assets/dobuita/bunkado-handguard/*.{AUTH,MOTN,CHRM,bin}");
+const bundledGuiZhangAssets = runtimeAssetGroup("play/assets/sakuragaoka/gui-zhang/*.{AUTH,MOTN}");
 const bundledKkyaAssets = runtimeAssetGroup("play/assets/hazuki/kkya/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkybAssets = runtimeAssetGroup("play/assets/hazuki/kkyb/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkycAssets = runtimeAssetGroup("play/assets/hazuki/kkyc/*.{AUTH,MOTN,CHRM,MAPM}");
@@ -226,7 +386,92 @@ const nativeSilentActivityMusic = resource => Object.freeze({
   }),
 });
 
-export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
+const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
+  ...[["chicken-race",chickenRaceManifest,chickenRaceAudio,"mfsy"],["goro-job-lead",goroJobLeadManifest,goroJobLeadAudio,"mfsy"],["goro-job-appointment",goroJobAppointmentManifest,goroJobAppointmentAudio,"mfsy"],
+    ["charlie-harbor-interrogation",charlieHarborManifest,charlieHarborAudio,"mfsy"],
+    ["goro-trap-aftermath",goroTrapManifest,goroTrapAudio,"mfsy"],["mark-long-zha",markLongZhaManifest,markLongZhaAudio,"mfsy"],
+    ["goro-mai-marriage",goroMaiManifest,goroMaiAudio,"mfsy"],
+    ["warning-letter",warningLetterManifest,warningLetterAudio,"mfsy",Object.freeze({cues:[{startActivity:true,trackId:"bgm119",loop:true}],gain:1})],
+    ["chen-warning",chenWarningManifest,chenWarningAudio,"ms08"],
+    ["nozomi-rescue",nozomiRescueManifest,nozomiRescueAudio,"tery",Object.freeze({cues:[{startActivity:true,trackId:"bgm084",loop:true}],gain:1})],
+    ["nozomi-home",nozomiHomeManifest,nozomiHomeAudio,"nbik-home",Object.freeze({cues:[{activitySlot:1,trackId:"nozomi-home",loop:false}],gain:1})],
+    ["final-meditation",finalMeditationManifest,finalMeditationAudio,"exterior"],
+    ["tom-lunch-invitation",tomLunchManifest,tomLunchAudio,"mfsy"],
+    ["yada-dismissal",yadaDismissalManifest,yadaDismissalAudio,"mfsy"],
+    ["tom-lesson",tomLessonManifest,tomLessonAudio,"mfsy"],
+    ["tom-farewell",tomFarewellManifest,tomFarewellAudio,"mfsy"],
+    ["tom-plane",tomPlaneManifest,tomPlaneAudio,"mfsy"],
+    ["final-confrontation",finalConfrontationManifest,finalConfrontationAudio,"mfbt",Object.freeze({cues:[{startActivity:true,trackId:"bgm013",loop:true}],gain:1})],
+    ["terry-retreat",terryRetreatManifest,terryRetreatAudio,"mfbt",Object.freeze({cues:[{startActivity:true,trackId:"bgm084",loop:true}],gain:1})],
+    ["final-encirclement",finalEncirclementManifest,finalEncirclementAudio,"mfbt",Object.freeze({cues:[{startActivity:true,trackId:"bgm013",loop:true}],gain:1})],
+    ...[["terry-final-intro",terryFinalIntroManifest,terryFinalIntroAudio],["terry-final-success",terryFinalSuccessManifest,terryFinalSuccessAudio],["terry-interrogation",terryInterrogationManifest,terryInterrogationAudio]].map(([id,manifest,audio])=>[id,manifest,audio,"mfbt",Object.freeze({cues:[{startActivity:true,trackId:"bgm120",loop:true}],gain:1})]),
+    ["gui-after-battle",guiAfterBattleManifest,guiAfterBattleAudio,"mfbt",Object.freeze({cues:[{startActivity:true,trackId:"bgm106",loop:true}],gain:1})],
+    ["family-departure",familyDepartureManifest,familyDepartureAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm107",loop:true}],gain:1})],
+    ["swallow-lesson",swallowLessonManifest,swallowLessonAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm064",loop:true}],gain:1})],
+    ["chen-introduction-letter",chenIntroductionLetterManifest,chenIntroductionLetterAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm067",loop:true}],gain:1})],
+    ["nozomi-amulet",nozomiAmuletManifest,nozomiAmuletAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm070",loop:true}],gain:1})],
+    ["ship-boarding",shipBoardingManifest,shipBoardingAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm095",loop:true}],gain:1})],
+    ["ship-sailing",shipSailingManifest,shipSailingAudio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm095",loop:true}],gain:1})],
+    ...[["final-chai-intro",finalChaiIntroManifest,finalChaiIntroAudio],["final-chai-interrogation",finalChaiInterrogationManifest,finalChaiInterrogationAudio],["final-chai-counter",finalChaiCounterManifest,finalChaiCounterAudio]].map(([id,manifest,audio])=>[id,manifest,audio,"mend",Object.freeze({cues:[{startActivity:true,trackId:"bgm032",loop:true}],gain:1})]),
+    ["sailor-chase-intro",sailorIntroManifest,sailorIntroAudio,"mfsy"],["sailor-chase-tony",sailorTonyManifest,sailorTonyAudio,"mfsy"],["sailor-chase-smith",sailorSmithManifest,sailorSmithAudio,"mfsy"],
+    ["yada-job-interview",yadaJobInterviewManifest,yadaJobInterviewAudio,"mfsy"],["mark-job-introduction",markJobIntroductionManifest,markJobIntroductionAudio,"mfsy"],
+    ["mark-lunch-intro",markLunchIntroManifest,markLunchIntroAudio,"mfsy"],["mark-lunch-aftermath",markLunchAftermathManifest,markLunchAftermathAudio,"mfsy"],
+    ["after-work-goro",afterWorkGoroManifest,afterWorkGoroAudio,"mfsy"],
+    ["workday-lunch",workdayLunchManifest,null,"mfsy"],
+    ["nozomi-photo-intro",nozomiPhotoIntroManifest,nozomiPhotoIntroAudio,"mfsy"],["nozomi-photo-ending",nozomiPhotoEndingManifest,nozomiPhotoEndingAudio,"mfsy"],
+    ["mark-after-work-intro",markAfterWorkIntroManifest,markAfterWorkIntroAudio,"mfsy"],["mark-after-work-aftermath",markAfterWorkAftermathManifest,markAfterWorkAftermathAudio,"mfsy"],["mark-brother-explanation",markBrotherManifest,markBrotherAudio,"mfsy"],
+    ["jimmy-knock",jimmyKnockManifest,jimmyKnockAudio,"dobuita"],["jimmy-caught",jimmyCaughtManifest,jimmyCaughtAudio,"dobuita"],["jimmy-escaped",jimmyEscapedManifest,jimmyEscapedAudio,"dobuita"],["jimmy-interrogation",jimmyInterrogationManifest,jimmyInterrogationAudio,"daza"],
+    ["chai-intro",chaiIntroManifest,chaiIntroAudio,"arcade"],["chai-victory",chaiVictoryManifest,chaiVictoryAudio,"arcade"],["chai-rescue",chaiRescueManifest,chaiRescueAudio,"arcade"],
+    ["jimmy-morning-call",jimmyCallManifest,jimmyCallAudio,"interior"],["post-chen-home",postChenHomeManifest,postChenHomeAudio,"interior"],["bank-savings",bankSavingsManifest,bankSavingsAudio,"interior"],["travel-family",travelFamilyManifest,travelFamilyAudio,"interior"],
+    ["nozomi-night-call",nozomiCallManifest,nozomiCallAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm063",loop:true}],gain:1})],
+    ["nozomi-motorcycle",nozomiMotorcycleManifest,nozomiMotorcycleAudio,"sakuragaoka",Object.freeze({cues:[{startActivity:true,trackId:"bgm200",loop:true}],gain:1})],
+    ["fuku-travel-funds",fukuTravelFundsManifest,fukuTravelFundsAudio,"interior"],["global-airfare",globalAirfareManifest,globalAirfareAudio,"dski"],["asia-airfare",asiaAirfareManifest,asiaAirfareAudio,"daza"],
+    ["global-boat",globalBoatManifest,globalBoatAudio,"dski"],["boat-ticket-purchase",boatPurchaseManifest,boatPurchaseAudio,"daza"],["boat-ticket-collection",boatCollectionManifest,boatCollectionAudio,"daza"]].map(([id,manifest,audioManifest,worldId,music])=>Object.freeze({
+    id,worldId,actorDefinitions:Object.freeze([]),actorTags:Object.freeze(manifest.actorTags),
+    // The compiler's explicit output list includes room maps and props too;
+    // don't infer their directory or file extension from the gameplay world.
+    assets:Object.freeze({...Object.fromEntries([...manifest.outputs.map(asset=>asset.path),...(manifest.motionBanks||[]).map(bank=>bank.path)].map(path=>[path,runtimeAssetUrl(path)])),
+      ...Object.fromEntries(Object.values(manifest.packageActors||{}).flatMap(actor=>[actor.assetPath,actor.textureAssetPath].filter(Boolean)).map(path=>[path,runtimeAssetUrl(path)])),
+      ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
+    environment:Object.freeze({packageActors:manifest.packageActors,...(manifest.sceneObjects?{sceneObjects:manifest.sceneObjects}:{}),
+      ...(manifest.activities.some(activity=>activity.browserIsolatedStage)?{isolatedStage:true}:{}),
+      ...(["boat-ticket-collection","jimmy-interrogation"].includes(id)?{suppressScheduledActors:["ETKO"]}:{})}),
+    playback:Object.freeze({manifest,audioManifest}),
+    ...(music?{music}:{}),
+  })),
+  Object.freeze({id:"family-crest",worldId:"interior",actorDefinitions:[],actorTags:Object.freeze(familyCrestManifest.actorTags),
+    assets:Object.freeze({...runtimeAssetGroup("play/assets/hazuki/family-crest/*.{AUTH,MOTN}"),
+      ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,
+      "play/assets/INE_M.CHRM":runtimeAssetUrl("play/assets/INE_M.CHRM"),
+      "play/assets/INE_textures.bin":runtimeAssetUrl("play/assets/INE_textures.bin")}),
+    environment:Object.freeze({packageActors:familyCrestManifest.packageActors}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR,INE_:nativeFaceManifest.facialAssets.INE_})}),
+    playback:Object.freeze({manifest:familyCrestManifest,audioManifest:familyCrestAudio}),
+    music:Object.freeze({cues:Object.freeze([{startActivity:true,trackId:"bgm077",loop:true}]),gain:1}),
+  }),
+  Object.freeze({id:"chinese-letter",worldId:"interior",actorDefinitions:[],actorTags:chineseLetterManifest.actorTags,
+    assets:Object.freeze({...runtimeAssetGroup("play/assets/hazuki/chinese-letter/*.{AUTH,MOTN,MT5}"),
+      ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,...op00HandAssets,
+      "play/assets/INE_M.CHRM":runtimeAssetUrl("play/assets/INE_M.CHRM"),
+      "play/assets/INE_textures.bin":runtimeAssetUrl("play/assets/INE_textures.bin")}),
+    actors:Object.freeze({requirePlayer:true,preservePlayerOnComplete:false}),
+    environment:Object.freeze({sceneObjects:chineseLetterManifest.sceneObjects,packageActors:chineseLetterManifest.packageActors}),
+    presentation:Object.freeze({facialAssets:{AKIR:nativeFaceManifest.facialAssets.AKIR,INE_:nativeFaceManifest.facialAssets.INE_},
+      handAssets:{AKIR:op00AssetInventory.handAssets.AKIR,INE_:op00AssetInventory.handAssets.INE_}}),
+    playback:Object.freeze({manifest:chineseLetterManifest,audioManifest:chineseLetterAudio}),
+    music:Object.freeze({cues:[{startActivity:true,trackId:"bgm115",loop:true}],gain:1}),
+  }),
+  Object.freeze({ id: "first-allowance", worldId: "interior", actorDefinitions: [],
+    actorTags: allowanceManifest.actorTags,
+    assets: Object.freeze({ ...runtimeAssetGroup("play/assets/hazuki/first-allowance/*.{AUTH,MOTN}"),
+      "play/assets/INE_M.CHRM": runtimeAssetUrl("play/assets/INE_M.CHRM"),
+      "play/assets/INE_textures.bin": runtimeAssetUrl("play/assets/INE_textures.bin"),
+    }),
+    actors: Object.freeze({ requirePlayer: true, preservePlayerOnComplete: false }),
+    environment: Object.freeze({ sceneObjects: allowanceManifest.sceneObjects, packageActors: allowanceManifest.packageActors }),
+    playback: Object.freeze({ manifest: allowanceManifest, audioManifest: allowanceAudio }),
+  }),
   ...jomoVisionPackages,
   ...[["op00-mail", op00MailManifest, op00MailAudio], ["op00-dream", op00DreamManifest, op00DreamAudio]].map(([id, manifest, audioManifest]) => Object.freeze({
     id, worldId: "op00", actorDefinitions: [], actorTags: manifest.actorTags,
@@ -279,6 +524,70 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
       audioManifest: houoAudioManifest,
     }),
     music: nativeSilentActivityMusic("HOUO"),
+  }),
+  Object.freeze({
+    id: "master-chen",worldId:"ms08",actorDefinitions:Object.freeze([]),actorTags:Object.freeze(masterChenManifest.actorTags),
+    assets:Object.freeze({...sourceAssetMap(bundledMasterChenAssets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
+    environment:Object.freeze({packageActors:masterChenManifest.packageActors,sceneObjects:masterChenManifest.sceneObjects,attachedObjects:masterChenManifest.attachedObjects}),
+    playback:Object.freeze({manifest:masterChenManifest,audioManifest:masterChenAudio}),
+  }),
+  Object.freeze({
+    id:"mirror-meeting",worldId:"ms08",actorDefinitions:Object.freeze([]),actorTags:Object.freeze(mirrorMeetingManifest.actorTags),
+    assets:Object.freeze({...sourceAssetMap(bundledMirrorMeetingAssets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
+    environment:Object.freeze({packageActors:mirrorMeetingManifest.packageActors,sceneObjects:mirrorMeetingManifest.sceneObjects,attachedObjects:mirrorMeetingManifest.attachedObjects}),
+    playback:Object.freeze({manifest:mirrorMeetingManifest,audioManifest:mirrorMeetingAudio}),
+  }),
+  Object.freeze({
+    id:"bunkado-handguard",worldId:"dkty",actorDefinitions:Object.freeze([]),actorTags:Object.freeze(bunkadoHandguardManifest.actorTags),
+    assets:Object.freeze({...sourceAssetMap(bundledBunkadoHandguardAssets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
+    // TUBA's detailed hand controls are not reconstructed. The animated
+    // body's low-detail hands are an explicit approximation; importing the
+    // OP00 rig alone does not supply this scene's missing pose controls.
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
+    environment:Object.freeze({packageActors:bunkadoHandguardManifest.packageActors,sceneObjects:bunkadoHandguardManifest.sceneObjects}),
+    playback:Object.freeze({manifest:bunkadoHandguardManifest,audioManifest:bunkadoHandguardAudio}),
+    music:Object.freeze({cues:Object.freeze([Object.freeze({startActivity:true,trackId:"bgm052",loop:true})]),gain:1}),
+  }),
+  Object.freeze({
+    id:"gui-zhang-street",worldId:"sakuragaoka",
+    actorDefinitions:Object.freeze([
+      Object.freeze({actorCode:"KISY",label:"Chen Gui Zhang",modelCode:"KIS_M",activityOnly:true}),
+      Object.freeze({actorCode:"CHAI",label:"Chai",modelCode:"CHA_M",activityOnly:true}),
+    ]),
+    actorTags:Object.freeze(guiZhangManifest.actorTags),
+    assets:Object.freeze({...sourceAssetMap(bundledGuiZhangAssets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
+    playback:Object.freeze({manifest:guiZhangManifest,audioManifests:Object.freeze([
+      Object.freeze({activitySlot:0,manifest:guiZhangIntroductionAudio}),
+      Object.freeze({activitySlot:1,manifest:guiZhangBodyguardAudio}),
+    ])}),
+    music:Object.freeze({cues:Object.freeze([
+      Object.freeze({activitySlot:0,trackId:"bgm116",loop:true}),
+      Object.freeze({activitySlot:1,trackId:"bgm024",loop:true}),
+    ]),gain:1}),
+  }),
+  ...[
+    ["family-fuku",familyFukuManifest,familyFukuAudio,bundledFamilyFukuAssets,"FUKU","bgm085"],
+    ["family-ine",familyIneManifest,familyIneAudio,bundledFamilyIneAssets,"INE_","bgm077"],
+  ].map(([id,manifest,audioManifest,assets,actor,trackId])=>Object.freeze({
+    id,worldId:"exterior",actorDefinitions:nativeActors.forWorld("exterior"),actorTags:Object.freeze(manifest.actorTags),
+    assets:Object.freeze({...sourceAssetMap(assets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,...op00HandAssets}),
+    presentation:Object.freeze({
+      handAssets:Object.freeze({AKIR:op00AssetInventory.handAssets.AKIR,[actor]:op00AssetInventory.handAssets[actor]}),
+      facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR,[actor]:nativeFaceManifest.facialAssets[actor]}),
+    }),
+    playback:Object.freeze({manifest,audioManifest}),
+    music:Object.freeze({cues:Object.freeze([Object.freeze({startActivity:true,trackId,loop:true})]),gain:1}),
+  })),
+  Object.freeze({
+    id: "phone-book",
+    worldId: "dobuita", actorDefinitions: Object.freeze([]), actorTags: Object.freeze(["AKIR"]),
+    assets: Object.freeze({...sourceAssetMap(bundledPhoneBookAssets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
+    presentation: Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
+    environment: Object.freeze({sceneObjects:phoneBookManifest.sceneObjects,attachedObjects:phoneBookManifest.attachedObjects}),
+    playback: Object.freeze({manifest:phoneBookManifest,audioManifest:phoneBookAudio}),
   }),
   Object.freeze({
     id: "toki",
@@ -990,3 +1299,22 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([
     music: nativeSilentActivityMusic("SAKR"),
   }),
 ]);
+
+// Keep the original MSKA preview untouched. Story mode adds the preceding
+// SA1116 conversation using declared held-pose staging, not a native controller.
+const firstDojoBase = SOURCE_CUTSCENE_PACKAGES.find(definition => definition.id === "mska");
+export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([...SOURCE_CUTSCENE_PACKAGES, Object.freeze({
+  // YQ14 uses Dobuita's original global coordinates. Story encounters reuse
+  // this package in the live street; the isolated viewer preview stays intact.
+  ...SOURCE_CUTSCENE_PACKAGES.find(definition=>definition.id==="yq14"),
+  id:"story-heartbeats-alley",worldId:"dobuita",
+}), Object.freeze({
+  ...firstDojoBase,
+  id: "first-dojo",
+  playback: Object.freeze({
+    manifest: { ...mskaActivityManifest, activities: mskaActivityManifest.activities.map(activity => ({
+      ...activity, authoredLeadIn: firstDojoAudio.authoredLeadIn,
+    })) },
+    audioManifest: { ...mskaAudioManifest, voices: [...firstDojoAudio.voices, ...mskaAudioManifest.voices] },
+  }),
+})]);

@@ -1,0 +1,818 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01MKJ.AFS",
+      "sha256": "cb353da35315b081014c3a92fe4e0a2bb2cb0f6c2d5ae2986eefca6585d32772"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_MKJ.SND",
+      "sha256": "264c861f97044a430b1723fcce33393b77ffce22483534bed0fabc7bde5b0408"
+    },
+    "authManifest": "play/assets/harbor/mark-long-zha/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-harbor-work.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01MKJA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SOUND/01MKJA001.aiff",
+      "nativeMember": "01MKJA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 6144,
+      "nativeSha256": "36aec3f1381df239aa37678b5f88bfd051d4e99ef61cd759eda01efa85efe9f0",
+      "speakerId": "AKIR",
+      "sourceText": "Information?",
+      "displayText": "Information?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-long-zha/voice/01MKJA001.wav",
+      "byteLength": 24364,
+      "sha256": "69be71338b784bb61882ee76cc07aaea07651da6cd145d43ece3009f0ca7ce76"
+    },
+    {
+      "voiceId": "01MKJA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SOUND/01MKJA002.aiff",
+      "nativeMember": "01MKJA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "fd4ddb11947948fd6e3323ff66fac39365c5f2a29bfdaa124be83b8dccfe69cb",
+      "speakerId": "AKIR",
+      "sourceText": "Long Zha?",
+      "displayText": "Long Zha?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-long-zha/voice/01MKJA002.wav",
+      "byteLength": 24364,
+      "sha256": "a6360438fc301b1709abbf2d7c2dbed2169174d0faeb8a503a58a4bcffe81180"
+    },
+    {
+      "voiceId": "01MKJA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SOUND/01MKJA003.aiff",
+      "nativeMember": "01MKJA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 22528,
+      "nativeSha256": "49c5af371159badef215485496b69cbf6f2b4e35d848a2ed134b86635a732a58",
+      "speakerId": "AKIR",
+      "sourceText": "Long Zha=@＆When's it supposed to happen?",
+      "displayText": "Long Zha...\nWhen's it supposed to happen?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 60
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-long-zha/voice/01MKJA003.wav",
+      "byteLength": 89900,
+      "sha256": "aa8f274769db041e19443128bcfdf2f973c3df21bd1acec88b0314436c0d2f42"
+    },
+    {
+      "voiceId": "01MKJB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SOUND/01MKJB001.aiff",
+      "nativeMember": "01MKJB001.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 22528,
+      "nativeSha256": "f8bac2caf4b678572bafe60fad3d4371c655b8d6e686e6064382e341523ea2a2",
+      "speakerId": "MARK",
+      "sourceText": "Hey, Ryo. I overheard some＆information.",
+      "displayText": "Hey, Ryo. I overheard some\ninformation.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 58
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-long-zha/voice/01MKJB001.wav",
+      "byteLength": 89900,
+      "sha256": "919ce527e0ea1f9b22c737be454f262c6d890db60ba0379c653529ba1e286b48"
+    },
+    {
+      "voiceId": "01MKJB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SOUND/01MKJB002.aiff",
+      "nativeMember": "01MKJB002.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 32768,
+      "nativeSha256": "0cf58949354342dc198dcbc1f9cfbe9a0f1c89784097b5a8f4b1bda21e69861a",
+      "speakerId": "MARK",
+      "sourceText": "I heard them all whispering＆something about Long Zha. That it's soon.",
+      "displayText": "I heard them all whispering\nsomething about Long Zha. That it's soon.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 46
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-long-zha/voice/01MKJB002.wav",
+      "byteLength": 130860,
+      "sha256": "c39235581186bca2d6850052cd8637cac50886350f17d9dd075680e1b918bba5"
+    },
+    {
+      "voiceId": "01MKJB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SOUND/01MKJB003.aiff",
+      "nativeMember": "01MKJB003.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 26624,
+      "nativeSha256": "c0c1b2728f6c0b33ddfcb7e94e773f1ecf35ecd0a2df3c501f7dd8b0e1f3def6",
+      "speakerId": "MARK",
+      "sourceText": "Best I can figure, it's some＆Mad Angels black market deal.",
+      "displayText": "Best I can figure, it's some\nMad Angels black market deal.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-long-zha/voice/01MKJB003.wav",
+      "byteLength": 106284,
+      "sha256": "00fdda9f27792fb56824b3b176d9feda8c6ed9bf72948ad59286d50d8c6acf99"
+    },
+    {
+      "voiceId": "01MKJB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SOUND/01MKJB004.aiff",
+      "nativeMember": "01MKJB004.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 18432,
+      "nativeSha256": "db40eb6d7855bdb5d86b58ec701fc527f698fa6774bb19cf75be52c8d6b71b1a",
+      "speakerId": "MARK",
+      "sourceText": "Makes sense, they've＆been on edge lately.",
+      "displayText": "Makes sense, they've\nbeen on edge lately.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 29
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/mark-long-zha/voice/01MKJB004.wav",
+      "byteLength": 73516,
+      "sha256": "d0baa9b57e3df041bcedbbebc008991691e6e126a2d255b5dab6f5af15d34b09"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SE/cloths2/furimuki_n02.aiff",
+      "playbackId": 0,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-long-zha/sfx/a9040000.wav",
+      "byteLength": 25804,
+      "sha256": "3b3aeed23907f3e1ecf3257f2b40ae6f8cadb6e98208a035c01a2e5a65c27a0f"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 1,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-long-zha/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 2,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-long-zha/sfx/a9040200.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 3,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-long-zha/sfx/a9040300.wav",
+      "byteLength": 5412,
+      "sha256": "64fa0eff3320191bd9befe41d84a45f91d48ae9a9c821c8aac766ce9b3fcf3f3"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 4,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-long-zha/sfx/a9040400.wav",
+      "byteLength": 6364,
+      "sha256": "a087e557bddc12e1ca7a20b8ad3ee5e15dfa88ad4531cbba9c0b85b9367c66af"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 5,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-long-zha/sfx/a9040500.wav",
+      "byteLength": 4620,
+      "sha256": "b777d818c86e674e40a080c0aabb21e31a54b732828322cdb9b9288dd4184907"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 6,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-long-zha/sfx/a9040600.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 7,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-long-zha/sfx/a9040700.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SE/cloths2/R_mouhu_nageru.aiff",
+      "playbackId": 8,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-long-zha/sfx/a9040800.wav",
+      "byteLength": 21612,
+      "sha256": "5c49cb5c012c4b62f58d0b81d8f68aa02b2734dd78710011d0c69a431d5a0988"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SE/cloths2/R_saihu_nageru.aiff",
+      "playbackId": 9,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-long-zha/sfx/a9040900.wav",
+      "byteLength": 3316,
+      "sha256": "86e776a1e087d710d0b4079f4ab7d1bee5291779a53cbb36948fe5bfae8c39ba"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SE/foot/sneaker1.aiff",
+      "playbackId": 10,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-long-zha/sfx/a9040a00.wav",
+      "byteLength": 10964,
+      "sha256": "3db696efc3f22f883429c8558b9cd97102c30e9f4401b0d78a4cb82baaf2e2b7"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MKJ/SE/foot/sneaker2.aiff",
+      "playbackId": 11,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/mark-long-zha/sfx/a9040b00.wav",
+      "byteLength": 8260,
+      "sha256": "61d795e4c9924a4846d90d3114587d666b3de1a9ba9b82855be70278bbbbff72"
+    }
+  ]
+}

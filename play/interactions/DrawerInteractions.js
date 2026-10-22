@@ -1,6 +1,7 @@
 import * as BABYLON from "@babylonjs/core";
 import { containingJomoContainer } from "../../src/JomoContainerOwnership.js";
 import { jomoObjectBehavior } from "../../src/JomoObjectRegistry.js";
+import {runtimePlacementBounds} from "../../src/RuntimePlacementAudit.js";
 import {
   mt5BrowserRotation,
   nodeRotationMatrix,
@@ -18,7 +19,8 @@ function hierarchyBounds(root) {
   for (const node of root.getDescendants(false)) {
     node.computeWorldMatrix?.(true);
   }
-  const bounds = root.getHierarchyBoundingVectors(true);
+  const bounds = runtimePlacementBounds(root);
+  if(!bounds)return null;
   const values = [
     bounds.min.x,
     bounds.min.y,

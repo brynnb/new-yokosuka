@@ -1,0 +1,13 @@
+<<play_sequence "{{staging}}.start">>
+Ryo Hazuki: {{text:prompt}} #speaker:AKIR
+<<play_sequence "{{staging}}.finish">>
+-> {{text:confirm}}
+    <<jump Travel>>
+-> Leave it for now
+    <<complete>>
+===
+title: Travel
+---
+<<travel_story "{{destination}}">>
+{{effects}}
+<<complete>>

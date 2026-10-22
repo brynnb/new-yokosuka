@@ -37,6 +37,7 @@ export function createNativeCutsceneAssembly({
   let activePrecipitation = null;
   const director = createPlayNativeCutsceneDirector({
     beforeComplete: cutscene => {
+      if (cutscene.storyPresentation) return Promise.resolve();
       getPreviewRuntime().beginEnding(cutscene.id);
       return coverLoading();
     },
@@ -97,11 +98,10 @@ export function createNativeCutsceneAssembly({
       }
       const snapshot = {
         noClip: controller.noClip,
-        movementLocked: controller.movementLocked,
         lightingPresetIndex: activeLightingPresetIndex,
         precipitation: activePrecipitation,
       };
-      controller.setMovementLocked(true);
+      const releaseMovementLock = controller.acquireMovementLock();
       controller.setNoClip(true);
       setPresentationActive(true);
       musicControls.setPlaybackPaused(false);
@@ -122,7 +122,7 @@ export function createNativeCutsceneAssembly({
         if (released) return;
         released = true;
         controller.setNoClip(snapshot.noClip);
-        controller.setMovementLocked(snapshot.movementLocked);
+        releaseMovementLock();
         setPresentationActive(false);
         if (requestedLightingPresetIndex !== undefined) {
           activeLightingPresetIndex = snapshot.lightingPresetIndex;
@@ -140,6 +140,7 @@ export function createNativeCutsceneAssembly({
       restoreArea: area => getRoomScripts().activateArea(area),
     },
     onComplete: (cutscene) => {
+      if (cutscene.storyPresentation) return;
       if (getPreviewRuntime().complete()) return;
       const completion = cutscene.completion;
       if (completion?.notice) transientNotice.show(completion.notice);
@@ -156,6 +157,7 @@ export function createNativeCutsceneAssembly({
       }
     },
     onStopped: (cutscene, reason) => {
+      if (cutscene.storyPresentation) return;
       if (["user-cancelled", "world-change", "superseded", "disposed"].includes(reason)) {
         const previewCompleted = getPreviewRuntime().complete();
         if (!previewCompleted && reason === "user-cancelled") void finishLoading();

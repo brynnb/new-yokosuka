@@ -5,13 +5,65 @@
     "executable": "1ST_READ.BIN",
     "executableRuntimeBase": "0x0c010000",
     "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
-    "eventIr": ".disc-work/dialogue/native-event-ir.json"
+    "eventIr": ".disc-work/dialogue/native-event-ir.json",
+    "eventIrScope": "scripted-events",
+    "eventIrSha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0"
   },
   "operation": {
     "operationId": 455,
     "operationHex": "0x01c7",
     "handlerAddress": "0x0c16a1dc",
     "verifiedRanges": {
+      "recordCapture": {
+        "address": "0x0c14a910",
+        "length": 174,
+        "sha256": "e558003cf88553707e891d313c76350093091c58410a8832c8daece758da1d7f"
+      },
+      "clockRestoreRequest": {
+        "address": "0x0c14aa28",
+        "length": 6,
+        "sha256": "c22dd7b573d049c05c218258cb9ba4fb34c06c3e191d244d6b80aec85c54f1f0"
+      },
+      "clockRestore": {
+        "address": "0x0c14aa2e",
+        "length": 88,
+        "sha256": "e587d99f6011d1cf52c344f33781f41ae5719297135cc8ef496c5d4fccc21656"
+      },
+      "saveImport": {
+        "address": "0x0c14aa86",
+        "length": 32,
+        "sha256": "1797bf53fd71cbecc09251db147ae276cf338387c25e683737bb7358ccb2c75e"
+      },
+      "markLoaded": {
+        "address": "0x0c14aaa6",
+        "length": 12,
+        "sha256": "6d726a4c839b9d2f77c15d23bd871989fb91b2f41649de1908e4c329da3b175f"
+      },
+      "resetLoaded": {
+        "address": "0x0c14aab2",
+        "length": 12,
+        "sha256": "5e5d84acc19da45ac9da0df2d67a0df0f5aa8ef13c7b7852c2db63a22d388e11"
+      },
+      "consumeLoaded": {
+        "address": "0x0c14aabe",
+        "length": 24,
+        "sha256": "b086b2256ce0ce0cf5d5cf5e4356b577dc7f7c2eb56bdeb1c3b537fba2b92cbf"
+      },
+      "saveCaptureCaller": {
+        "address": "0x0c09cb64",
+        "length": 18,
+        "sha256": "61e72e320e3570ed1d544cf86dda51c0486cd734c268edce0029ebef9969564b"
+      },
+      "saveImportCaller": {
+        "address": "0x0c09cf8e",
+        "length": 12,
+        "sha256": "e422de370979e488f571d6ee7cab0bfd3b1a9d95847ff36a2b7bd6765bfef540"
+      },
+      "successfulLoadCaller": {
+        "address": "0x0c17e796",
+        "length": 36,
+        "sha256": "ccc3ca2916c65f6688b3167cae046ed9b83e27af604eef348bbf1303af924067"
+      },
       "handler": {
         "address": "0x0c16a1dc",
         "length": 234,
@@ -97,41 +149,83 @@
     ]
   },
   "allDiscInventory": {
-    "authoredCallCount": 690,
-    "provenCallCount": 690,
+    "authoredCallCount": 845,
+    "provenCallCount": 845,
     "dialogueRegionCallCount": 62,
-    "areaCount": 57,
+    "areaCount": 99,
     "argumentKindCounts": {
       "0": {
-        "constant": 690
+        "constant": 845
       },
       "1": {
-        "constant": 580
+        "constant": 651
       },
       "2": {
-        "constant": 317
+        "constant": 332
       },
       "3": {
-        "constant": 103,
-        "frame-field": 8,
-        "runtime": 77,
-        "scene-field": 8
+        "constant": 106,
+        "frame-field": 15,
+        "runtime": 42,
+        "scene-field": 42
       }
     },
     "routeCounts": {
-      "mode-0": 55,
-      "mode-1": 55,
-      "mode-2": 263,
-      "mode-3-submode-0": 120,
-      "mode-3-submode-1": 195,
+      "mode-0": 97,
+      "mode-1": 97,
+      "mode-2": 319,
+      "mode-3-submode-0": 126,
+      "mode-3-submode-1": 204,
       "mode-3-submode-2": 1,
       "mode-3-submode-3": 1
+    }
+  },
+  "saveOwnership": {
+    "scope": "saved-global-state-not-room-local",
+    "parameters": {
+      "runtimeAddress": "0x0c2203a3",
+      "byteLength": 32,
+      "saveOffset": 432
+    },
+    "record": {
+      "runtimeAddress": "0x0c220370",
+      "byteLength": 48,
+      "saveOffset": 1956
+    },
+    "loadStatus": {
+      "consumableByte": "0x0c2203a0",
+      "queryByte": "0x0c2203a1",
+      "deferredClockRestoreByte": "0x0c2203a2",
+      "markLoaded": "Sets consumableByte and queryByte to one.",
+      "resetLoaded": "Clears those two bytes only; preserves record and parameters.",
+      "consumeLoaded": "Decrements consumableByte if nonzero and returns one; otherwise zero. Does not clear queryByte."
+    },
+    "capture": {
+      "helper": "0x0c14a910",
+      "caller": "0x0c09cb72",
+      "actorAbsent": "Clears only the 48-byte output record; does not copy the parameter output.",
+      "actorPresent": "Captures actor/global/clock fields and copies all 32 parameter bytes."
+    },
+    "restore": {
+      "helper": "0x0c14aa86",
+      "caller": "0x0c09cf96",
+      "behavior": "Copies both saved sections into their globals without setting load flags.",
+      "actorApply": "Mode one applies actor state and two globals, then invokes the native refresh helpers; it does not restore the clock.",
+      "clockApply": "Separate helper 0x0c14aa2e consumes the deferred-clock flag before restoring clock fields."
+    },
+    "coldImage": {
+      "address": "0x0c220370",
+      "byteLength": 88,
+      "sha256": "10eef285deef7a4b7c82b22aa53589b7833df29de3814649c772bbd5c832f365",
+      "allZero": true
     }
   },
   "evidenceBoundary": [
     "The operation retains its numeric identity; no gameplay-domain label is inferred.",
     "The mode-one record-apply helper remains a mandatory external adapter.",
-    "The fixed globals are not assigned to scene persistence without ownership evidence.",
+    "Record and parameter persistence is proved by matching original save export/import callsites; they are not per-room scratch memory.",
+    "Cold executable zeros do not prove that every new-game reset clears parameters; load-status reset demonstrably does not.",
+    "Actor, clock and refresh adapters remain integration boundaries; discovering their saved record is not proof of rendered restore behavior.",
     "Only the seven exact authored mode, submode, and argument-count shapes are promoted.",
     "Runtime operands remain interpreter stops when no exact resolver is supplied."
   ]

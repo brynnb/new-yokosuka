@@ -8,6 +8,7 @@ import {
   applyNativeDoorCollisionStates,
   createNativeWorldCollision,
   nativeCollisionDefinitionForWorld,
+  loadNativeCollisionDefinitionForWorld,
   nativeCollisionSegments,
 } from "../play/world/NativeWorldCollision.js";
 import {
@@ -16,6 +17,13 @@ import {
 import {
   parseShenmue2WorldCollisions,
 } from "../tools/lib/shenmue2-world-collisions.mjs";
+
+test("custom world geometry does not borrow source-area collision in a different frame",async()=>{
+  const world=WORLDS["s1-voyage"],area=JSON.parse(fs.readFileSync(new URL("../public/data/native-collisions/MEND.json",import.meta.url)));
+  assert.ok(nativeCollisionDefinitionForWorld(WORLDS.mend,area));
+  assert.equal(nativeCollisionDefinitionForWorld(world,area),null);
+  assert.equal(await loadNativeCollisionDefinitionForWorld(world),null);
+});
 
 function record(code, shapeType, payload) {
   const header = Buffer.alloc(8);
@@ -691,16 +699,20 @@ test("a sliding panel moves only its own native boundary", () => {
   assert.equal(meshes.length, 2);
 
   const root = new BABYLON.TransformNode("sliding-door", scene);
-  root.position.set(0, 0, 0);
+  // Real two-leaf doors put the root at the shared boundary endpoint, not
+  // at the moving panel's center. Matching the root would move both leaves.
+  root.position.set(-.5, 0, 0);
   const panel = new BABYLON.TransformNode("sliding-panel", scene);
   panel.parent = root;
+  panel.position.x = .5;
   const bindPosition = panel.getAbsolutePosition().clone();
-  panel.position.x = 1;
+  panel.position.x = 1.5;
   applyNativeDoorCollisionStates(meshes, [{
     type: "sliding",
     root,
     nodes: [panel],
     collisionBindPositions: [bindPosition],
+    collisionBindCenter: bindPosition,
     state: "open",
   }]);
 
@@ -716,11 +728,15 @@ test("a sliding panel moves only its own native boundary", () => {
     root,
     nodes: [panel],
     collisionBindPositions: [bindPosition],
+    collisionBindCenter: bindPosition,
     state: "closed",
   }]);
   assert.ok(meshes.every((mesh) => (
     mesh.checkCollisions && mesh.position.equals(BABYLON.Vector3.Zero())
   )));
+  assert.throws(() => applyNativeDoorCollisionStates(meshes, [{
+    type: "sliding", root, nodes: [panel], collisionBindPositions: [bindPosition], state: "open",
+  }]), /no closed collision center/);
   scene.dispose();
   engine.dispose();
 });

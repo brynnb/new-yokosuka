@@ -41,6 +41,18 @@ export class ScriptEventPresentationRuntime {
     return true;
   }
 
+  get ownsPlayerPresentation() {
+    return Boolean(this.transaction && this.adapters.ownsPlayerPresentation?.(this.transaction));
+  }
+  showCombat(view) {if(!this.transaction)throw new Error("Combat has no presentation transaction");return this.adapters.showCombat(view,this.transaction);}
+  endCombat() {return this.adapters.endCombat(this.transaction);}
+  showNavigation(prompt){if(!this.transaction)throw Error("Navigation has no presentation transaction");return this.adapters.showNavigation(prompt,this.transaction);}
+  endNavigation(){return this.adapters.endNavigation(this.transaction);}
+  showDriving(prompt){if(!this.transaction)throw Error("Driving has no presentation transaction");return this.adapters.showDriving(prompt,this.transaction);}
+  endDriving(){return this.adapters.endDriving(this.transaction);}
+  showForkliftChallenge(prompt){if(!this.transaction)throw Error("Forklift challenge has no presentation transaction");return this.adapters.showForkliftChallenge(prompt,this.transaction);}
+  endForkliftChallenge(){return this.adapters.endForkliftChallenge(this.transaction);}
+
   async execute(event) {
     if (!this.transaction) {
       throw new Error("script presentation transaction is not active");

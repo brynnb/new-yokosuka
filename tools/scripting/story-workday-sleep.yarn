@@ -1,0 +1,17 @@
+Ryo Hazuki: {{text:briefing}} #speaker:AKIR
+-> Sleep until tomorrow
+    <<jump Sleep>>
+-> Stay awake
+    <<jump Done>>
+===
+title: Sleep
+---
+Ryo Hazuki: {{text:success}} #speaker:AKIR
+<<advance_story_time "{{timeTransition}}">>
+<<travel_story "{{destination}}">>
+{{effects}}
+<<jump Done>>
+===
+title: Done
+---
+<<complete>>

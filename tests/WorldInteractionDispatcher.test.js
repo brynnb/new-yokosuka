@@ -107,6 +107,25 @@ test("dispatcher owns its pointer observer lifecycle", () => {
   assert.equal(harness.observable.removed, observer);
 });
 
+test("a real map surface routes through ordinary server-owned object use without creating a scene prop",()=>{
+  const h=createHarness(),mesh={_filename:"room"},surface={objectTag:"WALL",root:mesh,position:{x:1,y:0,z:1}};
+  h.dispatcher.storyObjects={isSurfaceMesh:m=>m===mesh,pickSurface:pick=>pick.pickedMesh===mesh?surface:null};
+  h.candidates.push(mesh);h.dispatcher.handle(h.pointerInfo(mesh));
+  assert.equal(h.calls[0][0],"script-object");
+  assert.equal(h.calls[0][1].objectSelector,"WALL");assert.equal(h.calls[0][1].root,mesh);
+  surface.position.x=30;h.dispatcher.handle(h.pointerInfo(mesh));assert.equal(h.calls.length,1);
+});
+
+test("a contained prop cannot steal a closed drawer's interaction ray",()=>{
+  const h=createHarness(),drawer={state:"closed"};
+  const parent={metadata:{interactiveDrawer:drawer}},root={parent};
+  const content={metadata:{interactiveInspectable:{root}}};
+  assert.equal(h.dispatcher.isInteractiveMesh(content),false);
+  assert.equal(h.dispatcher.isInteractiveMesh(parent),true);
+  drawer.state="opening";assert.equal(h.dispatcher.isInteractiveMesh(content),false);
+  drawer.state="open";assert.equal(h.dispatcher.isInteractiveMesh(content),true);
+});
+
 test("an NPC pick takes precedence over world-object routing", () => {
   const harness = createHarness();
   const npc = {

@@ -203,6 +203,70 @@ function actor(x = 0, z = 0, yaw = 0) {
   };
 }
 
+test("move-list actions use player ownership without restricting the practice catalog or enemy", () => {
+  for (const allowedMoveIds of [undefined, ["tigerKnuckle", "crescentKick", "overthrow"]]) {
+    const runtime = new CombatEncounterRuntime({ input: new Input(), playerActor: actor(), enemyActor: actor(0, 1),
+      playerOptions: { allowedMoveIds } });
+    runtime.setActive(true);
+    assert.equal(Boolean(runtime.playerMoves.tornadoKick), allowedMoveIds === undefined);
+    assert.equal(runtime.performPlayerMove("tornadoKick"), allowedMoveIds === undefined);
+    assert.equal(runtime.selectPlayerMove("swallowFlip"), allowedMoveIds === undefined);
+    assert.equal(runtime.enemy.allowedMoveIds, null);
+    runtime.setActive(false);
+  }
+});
+
+test("multi-opponent targeting faces the selection, routes reactions by id, and exits after a partial victory", () => {
+  const input = new Input(), player = actor();
+  const left = actor(), right = actor();
+  const runtime = new CombatEncounterRuntime({ input, playerActor: player,
+    enemies: [{ id: "left", name: "Left", actor: left }, { id: "right", name: "Right", actor: right }],
+    projectTargets: entries => entries.map(entry => ({ id: entry.id, visible: true,
+      defeated: entry.combatant.defeated, screenX: entry.actor.x })),
+  });
+  runtime.setActive(true);
+  left.x = -1; left.z = 1; right.x = 1; right.z = 1;
+  runtime.player.targetId = "left";
+  assert.equal(runtime.changeTarget("right"), true);
+  runtime.update(0);
+  assert.equal(runtime.player.targetId, "right");
+  assert.equal(player.angle, Math.PI / 4);
+  runtime.processEvent({ type: "hit", defenderId: "left", attackerId: "ryo", moveId: "tigerKnuckle" });
+  assert.equal(left.reactions.length, 1);
+  assert.equal(right.reactions.length, 0, "non-selected hit recipient owns its reaction");
+  runtime.enemy.defeated = true;
+  runtime.enemy.health = 0;
+  runtime.enemy.reaction = { kind: "defeated" };
+  runtime.update(0);
+  assert.equal(runtime.player.targetId, "left");
+  assert.equal(runtime.snapshot().opponentsRemaining, 1);
+  assert.equal(runtime.combat.combatants.get("right").health, 0, "partial victory does not reset the round");
+  input.controlsToggle = true;
+  runtime.update(0);
+  assert.equal(runtime.controlsActive, false, "a held defeat pose cannot trap the player in combat");
+  runtime.setActive(false);
+  assert.equal(left.enabled, false);
+  assert.equal(right.enabled, false);
+});
+
+test("changing selection during throw acquisition keeps facing the original recipient", () => {
+  const player = actor(), original = actor(), next = actor();
+  const runtime = new CombatEncounterRuntime({ input: new Input(), playerActor: player,
+    enemies: [{ id: "original", name: "Original", actor: original }, { id: "next", name: "Next", actor: next }],
+    projectTargets: entries => entries.map((entry, index) => ({ id: entry.id, visible: true, screenX: index })),
+  });
+  runtime.setActive(true);
+  original.x = 0; original.z = 1; next.x = 2; next.z = 1;
+  runtime.player.targetId = "original";
+  runtime.player.action = { moveId: "grab", acquisitionStage: true, lockedTargetId: "original" };
+  runtime.changeTarget("right");
+  runtime.update(0);
+  assert.equal(runtime.player.targetId, "next");
+  assert.equal(runtime.playerTargetYaw(), 0);
+  assert.equal(player.angle, 0);
+  assert.equal(runtime.player.action.lockedTargetId, "original");
+});
+
 test("encounter routes animation events to their native sound banks", () => {
   const calls = [];
   const sounds = {

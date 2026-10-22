@@ -53,6 +53,25 @@ function harness(preferenceOverrides = {}) {
   return { sounds, played, state };
 }
 
+test("STEP controller mute prevents sound and its live surface replaces the static fallback", () => {
+  const { sounds, played } = harness();
+  // Variant three of surface three is an unresolved native joined sound;
+  // use its already packaged variant zero when exercising the audio boundary.
+  sounds.random = () => 0;
+  const nativeActorStepRecord = { actorAvailable: true, recordAvailable: true,
+    enabledByte: 0, surfaceByte: 3 };
+  sounds.setMovement({ moving: true, terrain: { mesh: { metadata: {} } },
+    nativeArea: "JOMO", nativeActorTag: "AKIR", position: {x: 9999, z: 9999},
+    nativeActorStepRecord,
+  });
+  const cue = { type: "surfaceSound", cue: {contactKind: 0} };
+  assert.equal(sounds.handleActionCue(cue), false);
+  assert.equal(played.length, 0);
+  nativeActorStepRecord.enabledByte = 1;
+  assert.equal(sounds.handleActionCue(cue), true);
+  assert.equal(played[0].source, `/audio/world/${nativeFootstepCommand({surfaceIndex: 3, variant: 0})}.webm`);
+});
+
 test("parses native locomotion surface callbacks separately from DTPK cues", () => {
   const bytes = new Uint8Array(36);
   bytes.set([0x00, 0x00, 0x04, 0x05, 0x00, 0x00, 0x00, 0x01], 12);

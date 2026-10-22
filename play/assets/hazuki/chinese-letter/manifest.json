@@ -1,0 +1,147 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_chinese_letter_assets.mjs",
+  "source": {
+    "disc": 1,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "LETTER.AUTH",
+        "path": "extracted_files/data/SCENE/01/JOMO/MAPINFO.BIN",
+        "sourceOffset": 690272,
+        "sourceSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+        "byteLength": 22008,
+        "sha256": "6505ad7b3c4ad0266bfb15d1849d5e7e4a77105d5a0bd54fd0d2e428bd065572"
+      },
+      {
+        "name": "M_01CRY.MOTN",
+        "path": "extracted_files/data/SCENE/01/JOMO/COMMON01.PKS",
+        "sourceSha256": "4b117711c45ca0a94690ce14b8896ddb5feacfde0ba5c7f2a13ae5310201ba22",
+        "archiveMember": "M_01CRY.MOTN",
+        "byteLength": 44008,
+        "sha256": "754b8ad7a98beeaf0c7e6d999b6be50aa77d51a37e6451c62fea5401f232f81f"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-event-template.md#next-day-dojo-practice-and-the-chinese-letter",
+    "resourceName": "01CRY",
+    "variant": "",
+    "selectionRule": "exact JOMO embedded AUTH at 0xa8860; package slot 0 is not a claimed native slot"
+  },
+  "audioManifest": "public/audio/world/chinese-letter/manifest.json",
+  "sceneObjects": {
+    "MAIL": {
+      "model": "MALS501G",
+      "browserFilename": "MALS501G.MT5",
+      "assetPath": "play/assets/hazuki/chinese-letter/MALS501G.MT5",
+      "lifecycle": {
+        "kind": "auth-scoped"
+      }
+    },
+    "TTMI": {
+      "model": "TTMS246G",
+      "browserFilename": "TTMS246G.MT5",
+      "assetPath": "play/assets/hazuki/chinese-letter/TTMS246G.MT5",
+      "lifecycle": {
+        "kind": "auth-scoped"
+      }
+    }
+  },
+  "packageActors": {
+    "INE_": {
+      "label": "Ine-san",
+      "modelCode": "INE_M",
+      "browserFilename": "INE_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/INE_M.CHRM",
+      "textureAssetPath": "play/assets/INE_textures.bin"
+    }
+  },
+  "actorTags": [
+    "MAIL",
+    "TTMI",
+    "AKIR",
+    "INE_"
+  ],
+  "motionBanks": [
+    {
+      "bank": 25,
+      "path": "play/assets/hazuki/chinese-letter/M_01CRY.MOTN",
+      "byteLength": 44008,
+      "sha256": "754b8ad7a98beeaf0c7e6d999b6be50aa77d51a37e6451c62fea5401f232f81f",
+      "sequenceIndexBase": 80
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/chinese-letter/M_01CRY.MOTN",
+      "byteLength": 44008,
+      "sha256": "754b8ad7a98beeaf0c7e6d999b6be50aa77d51a37e6451c62fea5401f232f81f"
+    },
+    {
+      "path": "play/assets/hazuki/chinese-letter/LETTER.AUTH",
+      "byteLength": 22008,
+      "sha256": "6505ad7b3c4ad0266bfb15d1849d5e7e4a77105d5a0bd54fd0d2e428bd065572"
+    },
+    {
+      "path": "play/assets/hazuki/chinese-letter/MALS501G.MT5",
+      "byteLength": 19200,
+      "sha256": "4203fa2bcf8c60b676df5230bc36ef316e542e8d55c723b6bc1715171b8b6ac6"
+    },
+    {
+      "path": "play/assets/hazuki/chinese-letter/TTMS246G.MT5",
+      "byteLength": 6544,
+      "sha256": "962072e865b9032240941128962c889f03ed2f4f1c50eb4fdcc136318b435cb3"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "01CRY/LETTER.AUTH",
+      "archiveMember": "LETTER.AUTH",
+      "byteLength": 22008,
+      "sha256": "6505ad7b3c4ad0266bfb15d1849d5e7e4a77105d5a0bd54fd0d2e428bd065572",
+      "durationFrames": 2016,
+      "durationSeconds": 68.30000305175781,
+      "frameCount": 27,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 2,
+        "sound": 13,
+        "voice": 13
+      },
+      "actors": [
+        "MAIL",
+        "TTMI",
+        "AKIR",
+        "INE_"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 81,
+          "motionName": "AKI_AUTO1_YAKUSOKU_0124",
+          "startFrame": 176,
+          "endFrame": 2364
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 83,
+          "motionName": "JIJ_INE_AUTO1_YAKUSOKU_0124",
+          "startFrame": 176,
+          "endFrame": 2289
+        }
+      ]
+    }
+  ]
+}

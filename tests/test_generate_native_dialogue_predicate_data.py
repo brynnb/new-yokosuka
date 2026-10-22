@@ -29,6 +29,9 @@ class NativeDialoguePredicateDataTests(unittest.TestCase):
         self.assertEqual(len(provenance["executableSha256"]), 64)
         self.assertEqual(len(provenance["spatialTableSha256"]), 64)
         self.assertEqual(self.data["currency"]["persistentValueSelector"], 2)
+        self.assertEqual(len(self.data["storyStep"]["records"]), 80)
+        self.assertEqual(self.data["storyStep"]["selection"], "first-set-bank2-bit-in-table-order")
+        self.assertEqual(self.data["arrivalState"]["fields"][2]["runtimeAddress"], "0xc20c3e0")
 
     def test_runtime_data_retains_all_exact_spatial_records(self):
         records = self.data["spatialTable"]["records"]

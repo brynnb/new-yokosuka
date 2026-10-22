@@ -1,4 +1,5 @@
 import * as BABYLON from "@babylonjs/core";
+import {runtimeAssetUrl} from "../../src/RuntimeAssets.js";
 import { clearWorldSceneAssets } from "../../src/rendering/SceneResources.js";
 import { fetchAsset, getTexturePack } from "../../src/assetLoader.js";
 import { Mt5Loader } from "../../src/Mt5Loader.js";
@@ -334,7 +335,10 @@ export function scheduledActorFacingYaw(position, target) {
   const deltaX = target[0] - position[0];
   const deltaZ = target[2] - position[2];
   if (deltaX === 0 && deltaZ === 0) return null;
-  return Math.atan2(deltaX, deltaZ);
+  // Character models face local -Z, just as the scheduled-route root yaw
+  // below adds PI to its travel heading. Using the heading directly here
+  // makes every NPC turn its back to the player during FACE/look_at_actor.
+  return Math.atan2(deltaX, deltaZ) + Math.PI;
 }
 
 export function scheduledActorModelScaleCorrection(
@@ -404,6 +408,15 @@ export function pickScheduledActorSelection(
     directPick?.pickedMesh,
   );
   if (directSelection) return directSelection;
+  // A real interactive surface is a stronger target than the invisible NPC
+  // selection proxy behind it. Otherwise a merchant's generous proxy steals
+  // clicks on the book/phone on their counter. Keep the proxy fallback for
+  // noninteractive wall overlays and bind-pose character pieces.
+  for (let node = directPick?.pickedMesh; node; node = node.parent) {
+    if (Object.keys(node.metadata || {}).some(key => (
+      key.startsWith("interactive") && node.metadata[key]
+    ))) return null;
+  }
   // POINTERPICK reports only the nearest general-purpose hit. Re-pick against
   // the actor proxy so a wall overlay or bind-pose character piece cannot
   // steal the interaction.
@@ -1139,6 +1152,7 @@ export class ScheduledActorRuntime {
     getGameDate = null,
     getCameraOcclusionTarget = null,
     getCameraFadeEnabled = null,
+    isActorPresent = () => true,
     networkState = null,
     motionRuntime = null,
     debugPickable = false,
@@ -1156,6 +1170,7 @@ export class ScheduledActorRuntime {
     this.getGameDate = getGameDate;
     this.getCameraOcclusionTarget = getCameraOcclusionTarget;
     this.getCameraFadeEnabled = getCameraFadeEnabled;
+    this.isActorPresent = isActorPresent;
     this.networkState = networkState;
     this.motionRuntime = motionRuntime;
     this.debugPickable = debugPickable;
@@ -1163,6 +1178,7 @@ export class ScheduledActorRuntime {
     this.entries = [];
     this.dialogueFacingTargets = new Map();
     this.activityActorOwners = new Map();
+    this.activityActorSuppressions = new Map();
     this.localObjectOwners = new Map();
     this.localObjectTemplates = new Map();
     this.secondaryMotionModels = new Set();
@@ -1173,6 +1189,7 @@ export class ScheduledActorRuntime {
 
   clear() {
     this.loadController?.abort();
+    for(const lease of this.activityActorSuppressions.values())lease.release();
     for (const owner of new Set(this.activityActorOwners.values())) {
       this.endActivityActors(owner);
     }
@@ -1285,11 +1302,48 @@ export class ScheduledActorRuntime {
     return true;
   }
 
+  acquireActivityActorSuppression(owner, actorCodes) {
+    if (owner == null || this.activityActorSuppressions.has(owner)) {
+      throw new Error("Invalid scheduled actor suppression owner");
+    }
+    const codes = new Set(actorCodes.map(code => String(code).toUpperCase()));
+    if (codes.has("") || [...this.activityActorSuppressions.values()].some(
+      lease => [...codes].some(code => lease.codes.has(code)),
+    )) throw new Error("Scheduled actor suppression conflicts with an existing owner");
+    const entries = this.entries.filter(entry => codes.has(entry.definition.actorCode));
+    if (entries.some(entry => entry.activityPresentation)) {
+      throw new Error("Cannot suppress an activity-owned actor");
+    }
+    const snapshots = new Map();
+    const lease = { codes, release: () => {
+      if (this.activityActorSuppressions.get(owner) !== lease) return false;
+      this.activityActorSuppressions.delete(owner);
+      const errors = [];
+      for (const [root, enabled] of snapshots) {
+        try { if (!root.isDisposed?.()) root.setEnabled(enabled); }
+        catch (error) { errors.push(error); }
+      }
+      if (errors.length) throw new AggregateError(errors, "Scheduled suppression cleanup failed");
+      return true;
+    } };
+    this.activityActorSuppressions.set(owner, lease);
+    try {
+      for (const entry of entries) for (const root of new Set([
+        entry.root, ...entry.modelRoots.values(), entry.secondaryObject?.root,
+      ].filter(Boolean))) {
+        snapshots.set(root, root.isEnabled(false));
+        root.setEnabled(false);
+      }
+    } catch (error) { lease.release(); throw error; }
+    return lease.release;
+  }
+
   beginActivityActors(owner, actorCodes) {
     if (owner === null || owner === undefined) {
       throw new TypeError("scheduled activity actors require an owner");
     }
     const entries = this.activityEntries(actorCodes);
+    if(entries.some(entry=>[...this.activityActorSuppressions.values()].some(lease=>lease.codes.has(entry.definition.actorCode))))throw new Error("Scheduled actor is replaced by a cinematic body");
     if ([...this.activityActorOwners.values()].includes(owner)) {
       throw new Error("scheduled activity owner is already active");
     }
@@ -1329,12 +1383,32 @@ export class ScheduledActorRuntime {
         root: model.root,
         model,
         snapshot: captureActivityRoot(model.root),
+        renderSnapshot: {
+          enabled: model.renderRoot?.isEnabled?.(false),
+          occlusionCulled: Boolean(model.occlusionRenderCulled),
+          cameraFaded: Boolean(model.cameraFadeState),
+        },
       };
     });
-    for (const actor of selected) {
-      actor.entry.activityPresentation = actor;
-      this.activityActorOwners.set(actor.instanceId, owner);
-      actor.root.setEnabled(true);
+    try {
+      for (const actor of selected) {
+        actor.entry.activityPresentation = actor;
+        this.activityActorOwners.set(actor.instanceId, owner);
+        actor.root.setEnabled(true);
+        // Ambient GPU occlusion disables renderRoot independently of placement.
+        // updateEntry skips activity-owned actors, so a previously hidden body
+        // would otherwise stay invisible throughout the scene. Cinematic
+        // ownership also excludes close-camera fading until the actor is released.
+        setScheduledActorOcclusionCulled(actor.model, false);
+        actor.model.renderRoot?.setEnabled?.(true);
+        setScheduledActorCameraFade(actor.model, false);
+      }
+    } catch(error) {
+      try { this.endActivityActors(owner); }
+      catch(cleanupError) {
+        throw new AggregateError([error,cleanupError],"Scheduled activity acquisition cleanup failed");
+      }
+      throw error;
     }
     return selected.map(({ actorCode, instanceId, root, model }) => ({
       actorCode,
@@ -1365,14 +1439,25 @@ export class ScheduledActorRuntime {
       ) === owner
     ));
     if (entries.length === 0) return false;
+    const errors=[];
     for (const entry of entries) {
       const activity = entry.activityPresentation;
-      restoreActivityRoot(activity.root, activity.snapshot);
+      // Release every state owner even if a disposed mesh/material rejects one
+      // restoration. A failed cleanup must not leave actors permanently leased.
+      for(const restore of [
+        ()=>setScheduledActorCameraFade(activity.model,activity.renderSnapshot.cameraFaded),
+        ()=>setScheduledActorOcclusionCulled(activity.model,activity.renderSnapshot.occlusionCulled),
+        ()=>{if(typeof activity.renderSnapshot.enabled==="boolean")activity.model.renderRoot.setEnabled(activity.renderSnapshot.enabled);},
+        ()=>restoreActivityRoot(activity.root,activity.snapshot),
+      ]) {
+        try { restore(); } catch(error) { errors.push(error); }
+      }
       this.activityActorOwners.delete(activity.instanceId);
       entry.activityPresentation = null;
       entry.motionKey = null;
       entry.motionElapsedSeconds = 0;
     }
+    if(errors.length)throw new AggregateError(errors,"Scheduled activity cleanup failed");
     return true;
   }
 
@@ -1476,17 +1561,26 @@ export class ScheduledActorRuntime {
     return needed ? scheduledActorModelCode(definition, authoritative) : undefined;
   }
 
+  modelAssetUrls(definition, modelDefinition) {
+    if(!modelDefinition.modelCode)return {modelUrl:null,texturePackUrl:null};
+    const source=modelDefinition.modelCode===definition.modelCode?definition:modelDefinition;
+    if(Boolean(source.assetPath)!==Boolean(source.textureAssetPath))throw Error(`Incomplete actor model/texture source ${definition.actorCode}`);
+    if(source.assetPath){
+      // Archive-owned cinematic/fight actors must retain their exact registered
+      // model and texture pairing, not guess a global HUMANS filename.
+      return {modelUrl:runtimeAssetUrl(source.assetPath),texturePackUrl:runtimeAssetUrl(source.textureAssetPath)};
+    }
+    return {
+      modelUrl:this.bundledCharacterAsset(this.bundledCharacterModels,`${modelDefinition.modelCode}.CHRM`,definition.characterAssetDirectory),
+      texturePackUrl:this.bundledCharacterAsset(this.bundledCharacterTextures,modelDefinition.textureFile||`${modelDefinition.modelCode.replace(/_[ML]$/,"")}_textures.bin`,definition.characterAssetDirectory),
+    };
+  }
+
   async prefetchModel(definition, code, signal, priority = 0) {
     if (!code) return;
     const model = definition.modelOverrides?.find(row => row.modelCode === code)
       || definition;
-    await Promise.all([
-      this.bundledCharacterAsset(this.bundledCharacterModels,
-        `${code}.CHRM`, definition.characterAssetDirectory),
-      this.bundledCharacterAsset(this.bundledCharacterTextures,
-        model.textureFile || `${code.replace(/_[ML]$/, "")}_textures.bin`,
-        definition.characterAssetDirectory),
-    ].map(url => this.fetchArrayBuffer(url, {signal, priority})));
+    await Promise.all(Object.values(this.modelAssetUrls(definition,model)).map(url => this.fetchArrayBuffer(url, {signal, priority})));
   }
 
   async prefetch(definitions, worldId, signal) {
@@ -2026,24 +2120,7 @@ export class ScheduledActorRuntime {
   async loadModel(definition, modelDefinition, signal = null) {
     const isHumansActor = Boolean(modelDefinition.modelCode);
     const isMt7Character = definition.characterAssetFormat === "MT7";
-    const modelUrl = isHumansActor
-      ? this.bundledCharacterAsset(
-        this.bundledCharacterModels,
-        `${modelDefinition.modelCode}.CHRM`,
-        definition.characterAssetDirectory,
-      )
-      : null;
-    const texturePackUrl = isHumansActor
-      ? this.bundledCharacterAsset(
-        this.bundledCharacterTextures,
-        modelDefinition.textureFile
-          || (
-            `${modelDefinition.modelCode.replace(/_[ML]$/, "")}`
-            + "_textures.bin"
-          ),
-        definition.characterAssetDirectory,
-      )
-      : null;
+    const {modelUrl,texturePackUrl}=this.modelAssetUrls(definition,modelDefinition);
     const [modelBuffer, texturePack] = await Promise.all([
       modelUrl
         ? this.fetchArrayBuffer(modelUrl, {signal, priority: 1})
@@ -2210,7 +2287,7 @@ export class ScheduledActorRuntime {
       ])) {
         setScheduledActorCameraFade(
           model,
-          cameraFadeEnabled && scheduledActorModelBlocksCamera(
+          !entry.activityPresentation && cameraFadeEnabled && scheduledActorModelBlocksCamera(
             model,
             cameraOcclusionTarget,
             cameraPosition,
@@ -2227,6 +2304,17 @@ export class ScheduledActorRuntime {
     cameraPosition = null,
   ) {
     if (entry.activityPresentation) {
+      entry.presentationClock = null;
+      return;
+    }
+    // A package body replaces this resident; ambient updates must not turn
+    // its old body back on behind the cinematic copy each frame.
+    if (this.isActorPresent(entry.definition) === false || this.activityActorSuppressions.size && [...this.activityActorSuppressions.values()].some(
+      lease => lease.codes.has(entry.definition.actorCode),
+    )) {
+      for (const root of new Set([
+        entry.root, ...entry.modelRoots.values(), entry.secondaryObject?.root,
+      ].filter(Boolean))) root.setEnabled(false);
       entry.presentationClock = null;
       return;
     }

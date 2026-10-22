@@ -1,7 +1,7 @@
 # Database and Yarn script authoring
 
 Status: canonical authoring architecture
-Last reviewed: August 2, 2026
+Last reviewed: October 16, 2026
 
 ## Purpose
 
@@ -73,7 +73,8 @@ server selects a currently published version and pins the event run to it.
 The server may authorize durable state only through supported, validated
 commands and authoritative inputs. The client can report presentation cleanup,
 line advancement, or a selected server-issued option ID. It cannot grant
-itself flags, inventory, money, progress, or a successful gameplay result.
+itself flags, inventory, money or progress. Personal QTE/training/combat results
+are intentionally trusted client reports; only the selected script decides their effects.
 
 Presentation commands name entries in a bounded client catalog. Cameras,
 motions, sequences, and activities must exist under exact identifiers and have
@@ -81,8 +82,92 @@ complete adapters. The client rejects unknown or incomplete entries.
 
 `start_activity` is currently a server-orchestrated presentation command. Its
 acknowledgement says that registered client presentation settled; it is not a
-gameplay-result claim. Result-bearing activities require a separate
-server-owned protocol before scripts may branch on success or award anything.
+gameplay-result claim. Result-bearing activities use the server-owned challenge
+or combat protocol before scripts branch on success or award anything.
+
+`start_challenge "registered-id"` / `challenge_result("registered-id")` use
+client-timed prompts or registered move lessons. `start_combat "registered-id"` /
+`combat_result("registered-id")` use client-simulated personal fights. IDs
+come from closed catalogs, not arbitrary client assets. The browser owns movement,
+targeting, moves, hits, health, AI and the outcome through the same engine as
+Combat Practice. It sends readiness, sparse keepalives and a typed result, not
+attack packets. Ordinary Continue, an introduction skip or a stale token cannot
+authorize a success branch. A modified client can report an allowed outcome early;
+that is an accepted personal-Story policy. Cancel/failure leaves
+the enclosing story event retryable unless its reviewed script explicitly settles
+a different outcome.
+
+Authored combat definitions live in `tools/scripting/story-combat.json`.
+`build_story_combat.mjs` derives positions from a hash-pinned original AUTH or a
+reviewed authored scene (never both) into `play/data/story-combat.json`. The full
+Practice move catalog stays in `src/MartialArtsCombat.js`; no three-move copy is
+generated. Only ID/label/allowed outcomes go into the server's
+`internal/scriptevent/combats.json`. `check-server-contract.mjs` checks that
+projection; `--sync-scripting` does not overwrite client combat content.
+Content, simulation and Babylon presentation remain separate; do not implement
+one-off fights in Yarn command handlers.
+
+`StoryQteRuntime` starts its monotonic timer when the ready acknowledgement is
+presented, not when the server sent it. Keyboard and touch judge locally and send
+one `challenge_result` (`challengeOutcome: "success" | "failure"`) for the whole
+attempt; no button stream or server deadline remains. Retry uses a fresh attempt
+token; duplicate ready/poll replies do not reset local progress. Definitions can
+use per-step windows and simultaneous button chords; the current cinematic QTE
+catalog still uses authored two-second windows, not recovered Dreamcast timing.
+Prompt/correct/wrong feedback reuses the existing menu cues and effects-volume
+preferences. These are explicit audio adaptations, not verified original QTE sounds.
+
+Move lessons are `kind: "training"`, not cinematic QTEs. Tornado Kick and Swallow
+Flip configure the regular `StoryCombatRuntime` with nonlethal instructors and
+no time limit. The lesson selects its move through the existing command override
+used by move scrolls, and observes actual `move-ended` events. Tornado Kick
+requires the second kick, even in the air; Swallow Flip requires a connected
+counter/throw. Instructions show the player's current combat key bindings.
+Gui Zhang's predictable teaching strikes are authored coaching, not native AI.
+Original introductions/demonstrations and acknowledged endings remain in Yarn;
+the fake held-pose QTE and duplicate success-move films are retired.
+
+`StoryCombatRuntime` owns the encounter lifetime, original borrowed models,
+nonlethal practice, waves, ally rules, recovery and final outcome. It composes
+`CombatEncounterRuntime`, `CombatInput`, `CombatTargetIndicator` and the existing
+animation adapter rather than maintaining another fighting engine. The shared
+targeting automatically faces the selected opponent; left/right target keys
+choose adjacent opponents in camera space. Both modes use the shared move list
+and health HUD: Combat Test exposes all techniques, while Story lists starting
+and earned moves, plus the current lesson's temporary teaching permission. See
+[move availability](../../research/shenmue1/martial-arts-combat.md#story-move-availability).
+NPC moves/AI and balance remain adaptations, not recovered
+character-specific native movesets. AI animation roles are independent of team.
+
+The server still owns encounter authorization, attempt tokens, bounded leases,
+character saves and once-only Yarn settlement. Neither winning nor reporting a
+result immediately commits a subsequent unfinished conversation's effects.
+Fight-local HP is separate from persistent HP. Client and server must deploy
+together for this protocol change; it needs no database migration. Future PvP
+must validate cross-player outcomes separately; personal Story results cannot
+mutate another player's combat state. No speculative PvP implementation is added.
+
+Migration verification: 199 focused client tests cover all 17 encounter
+definitions, wave progression, nonlethal practice, recovery, cancellation,
+timeouts and successive attempt ownership. Hardware-rendered checks exercise
+Practice, original Gui Zhang AI combat and the seventy-man fight's first cohort,
+selection, shared throw animation and cleanup (account/transport are fixtures).
+That is the earlier combat migration baseline. The local-timing/lesson update
+adds focused timer, chord, stale-response, real-move and wire-boundary tests;
+`tests/e2e/combat-targeting.spec.js` exercises delayed QTE readiness and both
+lessons through the real renderer with fixture account/transport only.
+Separate real Yarn/PostgreSQL checks exercise result authorization and settlement.
+This is not a complete rendered replay of all chapters or a claim of final balance.
+
+`postCombatChallenge` on a reviewed investigation route links a fight, a separate
+challenge and its aftermath within that same Yarn transaction. Failed fights
+retry the fight; failed challenges retry their staging. Only the common success
+ending stages notebook/effects. Authored scene staging can borrow original prop
+models through the shared attachment runtime. `waitForMotions: true` waits for
+the longest loaded non-looping clip, with a 120-second safety ceiling; use an
+explicit `durationSeconds` only for a reviewed authored hold. These timing
+options are mutually exclusive. Neither presentation feature decides a gameplay
+result.
 
 ## Original and community scripts
 

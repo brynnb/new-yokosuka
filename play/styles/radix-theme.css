@@ -51,6 +51,18 @@
   touch-action: manipulation;
 }
 
+.journal-page {
+  --card-background-color: var(--gray-3);
+  height: min(380px, 50dvh);
+  overflow-y: auto;
+}
+
+.journal-page-copy {
+  white-space: pre-line;
+  line-height: 1.8;
+  font-size: var(--font-size-4);
+}
+
 .inventory-slot,
 .inventory-entry {
   --card-background-color: var(--gray-5);

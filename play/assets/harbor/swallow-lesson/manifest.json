@@ -1,0 +1,735 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA0.AUTH",
+        "path": "disc3/SCENE/03/MEND/M0W0.PKS",
+        "sourceSha256": "393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2",
+        "archiveMember": "SEQDATA0.AUTH",
+        "byteLength": 18648,
+        "sha256": "97bef5632d90b0af2413b7892929bb90aa22ccb3ffbb91373b5f29b602a1301e"
+      },
+      {
+        "name": "SEQDATA1.AUTH",
+        "path": "disc3/SCENE/03/MEND/M0W0.PKS",
+        "sourceSha256": "393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2",
+        "archiveMember": "SEQDATA1.AUTH",
+        "byteLength": 10176,
+        "sha256": "b918447f2969f167b8b3198549ced6985d246d92ee56371568f17c351727265f"
+      },
+      {
+        "name": "SEQDATA5.AUTH",
+        "path": "disc3/SCENE/03/MEND/M0W0.PKS",
+        "sourceSha256": "393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2",
+        "archiveMember": "SEQDATA5.AUTH",
+        "byteLength": 5296,
+        "sha256": "448c1c2e6457f6b64c2b94e7820a684e87653785759f7c4910f11c6f4133b406"
+      },
+      {
+        "name": "SEQDATA6.AUTH",
+        "path": "disc3/SCENE/03/MEND/M0W0.PKS",
+        "sourceSha256": "393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2",
+        "archiveMember": "SEQDATA6.AUTH",
+        "byteLength": 3956,
+        "sha256": "2ba3e523888620fe0b3a98a65c78d1ba0639c3d368a95eed8556d2e535d5f635"
+      },
+      {
+        "name": "SEQDATA8.AUTH",
+        "path": "disc3/SCENE/03/MEND/M0W0.PKS",
+        "sourceSha256": "393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2",
+        "archiveMember": "SEQDATA8.AUTH",
+        "byteLength": 3292,
+        "sha256": "7f0d2535d2d5075ce0a00cf397234a8946a367e276a5fc96460f7bd777548e63"
+      },
+      {
+        "name": "M_01CHY.MOTN",
+        "path": "disc3/SCENE/03/MEND/M0W0.PKS",
+        "sourceSha256": "393506f002d2a7360856b4af44e918c8df2c55166bec93a18d657136eb0509c2",
+        "archiveMember": "M_01CHY.MOTN",
+        "byteLength": 218544,
+        "sha256": "693acf24e3d6e3e69e8d0744b0674c73bd580d5955ee32a5353e4156e62b14c1"
+      },
+      {
+        "name": "TEKS500G.CHRM",
+        "path": "disc3/SCENE/03/MEND/MODELS.PKS",
+        "sourceSha256": "c12fe80d9cafa7679096dcfbab319082eac9d2ca501f1962ae490582c73fd80e",
+        "archiveMember": "TEKS500G.CHRM",
+        "byteLength": 2764,
+        "sha256": "7a895b6bbe137ec5f4b207d79c3ee2d74cdbec62dc3f7aa03e3a19a184421bca"
+      },
+      {
+        "name": "RBGS5M1G.CHRM",
+        "path": "disc3/SCENE/03/MEND/MODELS.PKS",
+        "sourceSha256": "c12fe80d9cafa7679096dcfbab319082eac9d2ca501f1962ae490582c73fd80e",
+        "archiveMember": "RBGS5M1G.CHRM",
+        "byteLength": 12924,
+        "sha256": "2df54e6b9d31316cd589f353996857491eaf794bf3323ad5dbb7df2863db9394"
+      },
+      {
+        "name": "RBGS5M2G.CHRM",
+        "path": "disc3/SCENE/03/MEND/MODELS.PKS",
+        "sourceSha256": "c12fe80d9cafa7679096dcfbab319082eac9d2ca501f1962ae490582c73fd80e",
+        "archiveMember": "RBGS5M2G.CHRM",
+        "byteLength": 12740,
+        "sha256": "ec098ba0921d1e189d279cf51b7eaae6a10078a9bbee71561f513410427a63fb"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-final-day.md#swallow-flip",
+    "resourceName": "M0W0",
+    "variant": "",
+    "selectionRule": "Original introduction, form demonstration, successful flip, praise and learned exit alternatives. Yarn owns actual Down/X/A success, optional further practice and acknowledged mastery; these films cannot award it themselves. Native timing-based free spar is condensed to the existing timed challenge."
+  },
+  "audioManifest": "public/audio/world/swallow-lesson/manifest.json",
+  "sceneObjects": {
+    "TETU": {
+      "model": "TEKS500G",
+      "browserFilename": "TEKS500G.CHRM",
+      "assetPath": "play/assets/harbor/swallow-lesson/TEKS500G.CHRM",
+      "textureAssetPath": "play/assets/harbor/swallow-lesson/textures.bin",
+      "sourceBinding": {
+        "kind": "authored-package-prop-association",
+        "evidence": "docs/design/story-final-day.md#swallow-flip"
+      }
+    },
+    "BAG_": {
+      "model": "RBGS5M1G",
+      "browserFilename": "RBGS5M1G.CHRM",
+      "assetPath": "play/assets/harbor/swallow-lesson/RBGS5M1G.CHRM",
+      "textureAssetPath": "play/assets/harbor/swallow-lesson/textures.bin",
+      "sourceBinding": {
+        "kind": "authored-package-prop-association",
+        "evidence": "docs/design/story-final-day.md#swallow-flip"
+      }
+    },
+    "BAG0": {
+      "model": "RBGS5M2G",
+      "browserFilename": "RBGS5M2G.CHRM",
+      "assetPath": "play/assets/harbor/swallow-lesson/RBGS5M2G.CHRM",
+      "textureAssetPath": "play/assets/harbor/swallow-lesson/textures.bin",
+      "referenceOnly": true,
+      "sourceBinding": {
+        "kind": "authored-package-prop-association",
+        "evidence": "docs/design/story-final-day.md#swallow-flip"
+      }
+    }
+  },
+  "packageActors": {
+    "KISY": {
+      "label": "Chen Gui Zhang",
+      "modelCode": "KIS_M",
+      "browserFilename": "KIS_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/harbor/master-chen/KIS_M.CHRM",
+      "textureAssetPath": "play/assets/harbor/master-chen/textures.bin"
+    },
+    "TAIJ": {
+      "label": "Master Chen",
+      "modelCode": "SYU_M",
+      "browserFilename": "SYU_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/harbor/master-chen/SYU_M.CHRM",
+      "textureAssetPath": "play/assets/harbor/master-chen/textures.bin"
+    }
+  },
+  "actorTags": [
+    "BAG0",
+    "BAG_",
+    "AKIR",
+    "KISY",
+    "TETU",
+    "TAIJ"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/swallow-lesson/M_01CHY.MOTN",
+      "byteLength": 218544,
+      "sha256": "693acf24e3d6e3e69e8d0744b0674c73bd580d5955ee32a5353e4156e62b14c1"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/swallow-lesson/M_01CHY.MOTN",
+      "byteLength": 218544,
+      "sha256": "693acf24e3d6e3e69e8d0744b0674c73bd580d5955ee32a5353e4156e62b14c1"
+    },
+    {
+      "path": "play/assets/harbor/swallow-lesson/SEQDATA0.AUTH",
+      "byteLength": 18648,
+      "sha256": "97bef5632d90b0af2413b7892929bb90aa22ccb3ffbb91373b5f29b602a1301e"
+    },
+    {
+      "path": "play/assets/harbor/swallow-lesson/SEQDATA1.AUTH",
+      "byteLength": 10176,
+      "sha256": "b918447f2969f167b8b3198549ced6985d246d92ee56371568f17c351727265f"
+    },
+    {
+      "path": "play/assets/harbor/swallow-lesson/SEQDATA5.AUTH",
+      "byteLength": 5296,
+      "sha256": "448c1c2e6457f6b64c2b94e7820a684e87653785759f7c4910f11c6f4133b406"
+    },
+    {
+      "path": "play/assets/harbor/swallow-lesson/SEQDATA6.AUTH",
+      "byteLength": 3956,
+      "sha256": "2ba3e523888620fe0b3a98a65c78d1ba0639c3d368a95eed8556d2e535d5f635"
+    },
+    {
+      "path": "play/assets/harbor/swallow-lesson/SEQDATA8.AUTH",
+      "byteLength": 3292,
+      "sha256": "7f0d2535d2d5075ce0a00cf397234a8946a367e276a5fc96460f7bd777548e63"
+    },
+    {
+      "path": "play/assets/harbor/swallow-lesson/TEKS500G.CHRM",
+      "byteLength": 2764,
+      "sha256": "7a895b6bbe137ec5f4b207d79c3ee2d74cdbec62dc3f7aa03e3a19a184421bca"
+    },
+    {
+      "path": "play/assets/harbor/swallow-lesson/RBGS5M1G.CHRM",
+      "byteLength": 12924,
+      "sha256": "2df54e6b9d31316cd589f353996857491eaf794bf3323ad5dbb7df2863db9394"
+    },
+    {
+      "path": "play/assets/harbor/swallow-lesson/RBGS5M2G.CHRM",
+      "byteLength": 12740,
+      "sha256": "ec098ba0921d1e189d279cf51b7eaae6a10078a9bbee71561f513410427a63fb"
+    },
+    {
+      "path": "play/assets/harbor/swallow-lesson/textures.bin",
+      "byteLength": 941760,
+      "sha256": "49434003d720616606c60a314b1b1b9db2bbe7798717ff455872184051b532d4"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "M0W0/SEQDATA0.AUTH",
+      "archiveMember": "SEQDATA0.AUTH",
+      "byteLength": 18648,
+      "sha256": "97bef5632d90b0af2413b7892929bb90aa22ccb3ffbb91373b5f29b602a1301e",
+      "durationFrames": 3110,
+      "durationSeconds": 103.68333435058594,
+      "frameCount": 61,
+      "commandCounts": {
+        "camera": 1,
+        "move": 6,
+        "motion": 17,
+        "voice": 18,
+        "sound": 30
+      },
+      "actors": [
+        "BAG0",
+        "BAG_",
+        "AKIR",
+        "KISY",
+        "TETU",
+        "TAIJ"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_SYOUKAI_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "TAIJ",
+          "frame": 410,
+          "motionBank": 16,
+          "sequenceIndex": 14,
+          "motionName": "YKI_CIN_AT1_SYOUKAISURU_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 1,
+          "endFrame": 928
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 450,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_SYOUKAI_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 1,
+          "endFrame": 919
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 460,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "OTH_KIS_AT1_SYOUKAI_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 1,
+          "endFrame": 878
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 1368,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "OTH_KIS_AT1_SYOUKAI_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 879,
+          "endFrame": 959
+        },
+        {
+          "actorTag": "TAIJ",
+          "frame": 1368,
+          "motionBank": 16,
+          "sequenceIndex": 14,
+          "motionName": "YKI_CIN_AT1_SYOUKAISURU_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 929,
+          "endFrame": 1752
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1369,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_SYOUKAI_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 890,
+          "endFrame": 969
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1449,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_SYOUKAI_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 951,
+          "endFrame": 1067
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 1449,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "OTH_KIS_AT1_SYOUKAI_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 950,
+          "endFrame": 1320
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1567,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_SYOUKAI_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 1037,
+          "endFrame": 1395
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 1820,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "OTH_KIS_AT1_SYOUKAI_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 1292,
+          "endFrame": 1663
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1926,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_SYOUKAI_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 1400,
+          "endFrame": 1665
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 2192,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_SYOUKAI_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 1631,
+          "endFrame": 2541
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 2192,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "OTH_KIS_AT1_SYOUKAI_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 1632,
+          "endFrame": 1777
+        },
+        {
+          "actorTag": "TAIJ",
+          "frame": 2192,
+          "motionBank": 16,
+          "sequenceIndex": 14,
+          "motionName": "YKI_CIN_AT1_SYOUKAISURU_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 1721,
+          "endFrame": 1886
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 2338,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "OTH_KIS_AT1_SYOUKAI_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 1706,
+          "endFrame": 2541
+        },
+        {
+          "actorTag": "TAIJ",
+          "frame": 2358,
+          "motionBank": 16,
+          "sequenceIndex": 14,
+          "motionName": "YKI_CIN_AT1_SYOUKAISURU_ENSEIKEN_WAZADENTAIJIN_0100",
+          "startFrame": 1796,
+          "endFrame": 2594
+        }
+      ]
+    },
+    {
+      "slot": 1,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "M0W0/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 10176,
+      "sha256": "b918447f2969f167b8b3198549ced6985d246d92ee56371568f17c351727265f",
+      "durationFrames": 1076,
+      "durationSeconds": 35.88333511352539,
+      "frameCount": 52,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5,
+        "motion": 10,
+        "voice": 7,
+        "sound": 41
+      },
+      "actors": [
+        "BAG_",
+        "AKIR",
+        "KISY",
+        "TETU",
+        "TAIJ"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT2_KIKU_SETUMEI_WAZADENTAIJIN_0100",
+          "startFrame": 1,
+          "endFrame": 423
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "OTH_KIS_AT2_SETUMEISURU_WAZADENTAIJIN_0100",
+          "startFrame": 1,
+          "endFrame": 336
+        },
+        {
+          "actorTag": "TAIJ",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 15,
+          "motionName": "YKI_CIN_AT2_SETUMEISURU_WAZADENTAIJIN_0100",
+          "startFrame": 1,
+          "endFrame": 336
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 337,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "OTH_KIS_AT2_SETUMEISURU_WAZADENTAIJIN_0100",
+          "startFrame": 330,
+          "endFrame": 417
+        },
+        {
+          "actorTag": "TAIJ",
+          "frame": 337,
+          "motionBank": 16,
+          "sequenceIndex": 15,
+          "motionName": "YKI_CIN_AT2_SETUMEISURU_WAZADENTAIJIN_0100",
+          "startFrame": 329,
+          "endFrame": 416
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 425,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "OTH_KIS_AT2_SETUMEISURU_WAZADENTAIJIN_0100",
+          "startFrame": 423,
+          "endFrame": 430
+        },
+        {
+          "actorTag": "TAIJ",
+          "frame": 425,
+          "motionBank": 16,
+          "sequenceIndex": 15,
+          "motionName": "YKI_CIN_AT2_SETUMEISURU_WAZADENTAIJIN_0100",
+          "startFrame": 423,
+          "endFrame": 430
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 432,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT2_KIKU_SETUMEI_WAZADENTAIJIN_0100",
+          "startFrame": 424,
+          "endFrame": 1183
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 433,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "OTH_KIS_AT2_SETUMEISURU_WAZADENTAIJIN_0100",
+          "startFrame": 426,
+          "endFrame": 1078
+        },
+        {
+          "actorTag": "TAIJ",
+          "frame": 433,
+          "motionBank": 16,
+          "sequenceIndex": 15,
+          "motionName": "YKI_CIN_AT2_SETUMEISURU_WAZADENTAIJIN_0100",
+          "startFrame": 426,
+          "endFrame": 1113
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "M0W0/SEQDATA5.AUTH",
+      "archiveMember": "SEQDATA5.AUTH",
+      "byteLength": 5296,
+      "sha256": "448c1c2e6457f6b64c2b94e7820a684e87653785759f7c4910f11c6f4133b406",
+      "durationFrames": 330,
+      "durationSeconds": 11.016666412353516,
+      "frameCount": 18,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 6,
+        "sound": 15,
+        "voice": 1
+      },
+      "actors": [
+        "AKIR",
+        "KISY",
+        "TAIJ",
+        "TETU"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AT6_RENSYUU_NAGE_WAZADENTAIJIN_0100",
+          "startFrame": 215,
+          "endFrame": 224
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "OTH_KIS_AT6_RENSYUU_NAGE_WAZADENTAIJIN_0100",
+          "startFrame": 201,
+          "endFrame": 210
+        },
+        {
+          "actorTag": "TAIJ",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 17,
+          "motionName": "YKI_CIN_AT7A_JOUDEKIDA_SAINOU_WAZADENTAIJIN_0100",
+          "startFrame": 169,
+          "endFrame": 170
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 11,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AT6_RENSYUU_NAGE_WAZADENTAIJIN_0100",
+          "startFrame": 215,
+          "endFrame": 630
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 11,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "OTH_KIS_AT6_RENSYUU_NAGE_WAZADENTAIJIN_0100",
+          "startFrame": 202,
+          "endFrame": 630
+        },
+        {
+          "actorTag": "TAIJ",
+          "frame": 11,
+          "motionBank": 16,
+          "sequenceIndex": 17,
+          "motionName": "YKI_CIN_AT7A_JOUDEKIDA_SAINOU_WAZADENTAIJIN_0100",
+          "startFrame": 170,
+          "endFrame": 1109
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "M0W0/SEQDATA6.AUTH",
+      "archiveMember": "SEQDATA6.AUTH",
+      "byteLength": 3956,
+      "sha256": "2ba3e523888620fe0b3a98a65c78d1ba0639c3d368a95eed8556d2e535d5f635",
+      "durationFrames": 820,
+      "durationSeconds": 27.350000381469727,
+      "frameCount": 7,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5,
+        "motion": 3,
+        "voice": 5,
+        "sound": 1
+      },
+      "actors": [
+        "AKIR",
+        "BAG_",
+        "KISY",
+        "TETU",
+        "TAIJ"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "AKI_AT7A_JOUDEKI_SAINOU_WAZADENTAIJIN_0100",
+          "startFrame": 160,
+          "endFrame": 695
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "OTH_KIS_AT7A_JOUDEKI_SAINOU_WAZADENTAIJIN_0100",
+          "startFrame": 601,
+          "endFrame": 1391
+        },
+        {
+          "actorTag": "TAIJ",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 17,
+          "motionName": "YKI_CIN_AT7A_JOUDEKIDA_SAINOU_WAZADENTAIJIN_0100",
+          "startFrame": 170,
+          "endFrame": 1109
+        }
+      ]
+    },
+    {
+      "slot": 4,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "M0W0/SEQDATA8.AUTH",
+      "archiveMember": "SEQDATA8.AUTH",
+      "byteLength": 3292,
+      "sha256": "7f0d2535d2d5075ce0a00cf397234a8946a367e276a5fc96460f7bd777548e63",
+      "durationFrames": 570,
+      "durationSeconds": 19.016666412353516,
+      "frameCount": 11,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5,
+        "motion": 6,
+        "voice": 5,
+        "sound": 2
+      },
+      "actors": [
+        "AKIR",
+        "KISY",
+        "TETU",
+        "BAG_",
+        "TAIJ"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AT8_OWARU_RENSYUU_WAZADENTAIJIN_0100",
+          "startFrame": 2,
+          "endFrame": 108
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 13,
+          "motionName": "OTH_KIS_AT8_OWARU_RENSYUU_WAZADENTAIJIN_0100",
+          "startFrame": 1,
+          "endFrame": 681
+        },
+        {
+          "actorTag": "TAIJ",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "YKI_CIN_AT8_OWARU_RENSYUU_WAZADENTAIJIN_0100",
+          "startFrame": 1,
+          "endFrame": 677
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 108,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AT8_OWARU_RENSYUU_WAZADENTAIJIN_0100",
+          "startFrame": 170,
+          "endFrame": 362
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 301,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AT8_OWARU_RENSYUU_WAZADENTAIJIN_0100",
+          "startFrame": 362,
+          "endFrame": 515
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 455,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "AKI_AT8_OWARU_RENSYUU_WAZADENTAIJIN_0100",
+          "startFrame": 500,
+          "endFrame": 608
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import nativeInteractionManagerPack from "../data/events/nativeInteractionManagers.generated.json" with {
   type: "json",
 };
+import actorFootstepProperties from "../data/native-actor-footstep-properties.json" with { type: "json" };
 import {
   createNativeInteractionManagerCatalog,
 } from "./NativeInteractionManagerCatalog.js";
@@ -65,6 +66,15 @@ export function applyNativeRoomScriptProfile(sceneState, area) {
     throw new TypeError("native room script gameplay state is required");
   }
   const key = String(area || "").toUpperCase();
+  for (const [objectTag, { areas }] of Object.entries(actorFootstepProperties.actors)) {
+    const property = areas[key];
+    if (!property) continue;
+    const bytes = property.evidence.propertyBytes.match(/../g).map(byte => Number.parseInt(byte, 16));
+    sceneState.associatedRecords.configureStepRecord({
+      objectTag, actorAvailable: true, recordAvailable: true,
+      enabledByte: bytes[1], surfaceByte: bytes[2],
+    });
+  }
   const profile = PROFILES[key];
   if (!profile) return { area: key, applied: false, evidence: null };
   for (const field of profile.nativeFields) {
@@ -148,13 +158,19 @@ export function applyNativeInteractionManagerProfile(sceneState, program) {
   ) {
     throw new TypeError("native room script gameplay state is required");
   }
-  sceneState.clearInteractionManager();
-  if (!program) return { applied: false, managerId: null };
-  const manager = NATIVE_INTERACTION_MANAGERS.getBySource(program);
+  const manager = program ? NATIVE_INTERACTION_MANAGERS.getBySource(program) : null;
   if (!manager) {
+    sceneState.clearInteractionManager();
     return { applied: false, managerId: null };
   }
-  sceneState.configureInteractionManager(manager);
+  // This is room-owned state, not per-event scratch. A new transaction in the
+  // same exact source must retain committed slots for subsequent native polls.
+  // Area activation clears the owner; a different disc/hash replaces it. The
+  // transaction snapshot still restores the old owner if setup/execution fails.
+  if (sceneState.interactionManager?.identity !== manager.id
+    || !sceneState.interactionManager.isConfigured()) {
+    sceneState.configureInteractionManager(manager);
+  }
   return { applied: true, managerId: manager.id };
 }
 

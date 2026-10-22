@@ -1,0 +1,133 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "A0160.AUTH",
+        "path": "disc2/SCENE/02/JOMO/MAPINFO.BIN",
+        "sourceOffset": 753652,
+        "sourceSha256": "6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe",
+        "byteLength": 3276,
+        "sha256": "5d559c6b948d565b4755ebdcaf04fc6d7d7276e8d5087a8c6b1a6b81e901e9e2"
+      },
+      {
+        "name": "M_0160.MOTN",
+        "path": "disc2/SCENE/02/JOMO/COMMON02.PKS",
+        "sourceSha256": "916aab45137cf340516a1cdd2ee61540e7c6562a1e92c5f932e9055ae0db3b89",
+        "archiveMember": "M_0160.MOTN",
+        "byteLength": 7456,
+        "sha256": "f7b5e2410d8bf9bcb5e31372f1b69dceea706e1a26e975fc262ad73165040a62"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "A0160",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/post-chen-home/manifest.json",
+  "packageActors": {
+    "FUKU": {
+      "label": "Masayuki Fukuhara",
+      "modelCode": "FUK_M",
+      "browserFilename": "FUK_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/FUK_M.CHRM",
+      "textureAssetPath": "play/assets/characters/FUK_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "FUKU"
+  ],
+  "motionBanks": [
+    {
+      "bank": 25,
+      "path": "play/assets/hazuki/post-chen-home/M_0160.MOTN",
+      "byteLength": 7456,
+      "sha256": "f7b5e2410d8bf9bcb5e31372f1b69dceea706e1a26e975fc262ad73165040a62",
+      "sequenceIndexBase": 112
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/post-chen-home/M_0160.MOTN",
+      "byteLength": 7456,
+      "sha256": "f7b5e2410d8bf9bcb5e31372f1b69dceea706e1a26e975fc262ad73165040a62"
+    },
+    {
+      "path": "play/assets/hazuki/post-chen-home/A0160.AUTH",
+      "byteLength": 3276,
+      "sha256": "5d559c6b948d565b4755ebdcaf04fc6d7d7276e8d5087a8c6b1a6b81e901e9e2"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "A0160/A0160.AUTH",
+      "archiveMember": "A0160.AUTH",
+      "byteLength": 3276,
+      "sha256": "5d559c6b948d565b4755ebdcaf04fc6d7d7276e8d5087a8c6b1a6b81e901e9e2",
+      "durationFrames": 650,
+      "durationSeconds": 21.683332443237305,
+      "frameCount": 10,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 4,
+        "voice": 4,
+        "sound": 3
+      },
+      "actors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 112,
+          "motionName": "AKI_AT1_MUKATTA_HONGKONG_HONGKONG_0100",
+          "startFrame": 111,
+          "endFrame": 761
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 113,
+          "motionName": "IWA_FUK_AT1_MUKATTA_HONGKONG_HONGKONG_0100",
+          "startFrame": 1,
+          "endFrame": 625
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 376,
+          "motionBank": 25,
+          "sequenceIndex": 113,
+          "motionName": "IWA_FUK_AT1_MUKATTA_HONGKONG_HONGKONG_0100",
+          "startFrame": 1,
+          "endFrame": 625
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 496,
+          "motionBank": 25,
+          "sequenceIndex": 113,
+          "motionName": "IWA_FUK_AT1_MUKATTA_HONGKONG_HONGKONG_0100",
+          "startFrame": 497,
+          "endFrame": 625
+        }
+      ]
+    }
+  ]
+}

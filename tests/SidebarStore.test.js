@@ -9,9 +9,22 @@ import {
   selectSidebarCutscene,
   selectSidebarEmote,
   selectSidebarTravel,
+  selectSidebarStoryWait,
   setSidebarPickerOpen,
   useSidebarStore,
 } from "../play/ui/react/sidebarStore.js";
+
+test("waiting dispatches only in the available Story context", () => {
+  const calls=[];
+  configureSidebarMenus({emotes:[],characters:[],onStoryWait:id=>calls.push(id)});
+  useSidebarStore.setState({playMode:"free_roam",modeBusy:false});
+  assert.equal(selectSidebarStoryWait("s1.wait.evening"),false);
+  useSidebarStore.setState({playMode:"story",modeBusy:true});
+  assert.equal(selectSidebarStoryWait("s1.wait.evening"),false);
+  useSidebarStore.setState({modeBusy:false});
+  assert.equal(selectSidebarStoryWait("s1.wait.evening"),true);
+  assert.deepEqual(calls,["s1.wait.evening"]);
+});
 
 test("Radix sidebar selections route through the game callbacks", async () => {
   const calls = [];
@@ -26,7 +39,7 @@ test("Radix sidebar selections route through the game callbacks", async () => {
     onCharacter: (character) => calls.push(["character", character.id]),
     onSelectionCommitted: () => calls.push(["focus"]),
   });
-  useSidebarStore.setState({ animationDisabled: false });
+  useSidebarStore.setState({ animationDisabled: false, characterDisabled: false, playMode: "free_roam", modeBusy: false });
 
   setSidebarPickerOpen("travel", true);
   assert.equal(useSidebarStore.getState().openPicker, "travel");
@@ -75,6 +88,7 @@ test("disabled animation selection cannot dispatch an emote", () => {
 });
 
 test("Default restores the avatar chosen during character creation", () => {
+  useSidebarStore.setState({ characterDisabled: false, playMode: "free_roam", modeBusy: false });
   const appearances = [];
   configureSidebarMenus({
     emotes: [],
@@ -93,6 +107,15 @@ test("Default restores the avatar chosen during character creation", () => {
   selectSidebarCharacter(DEFAULT_APPEARANCE_VALUE);
 
   assert.deepEqual(appearances, ["s1-hos-l"]);
+});
+
+test("story mode cannot switch away from Ryo through the sidebar callback", () => {
+  let changed=false;
+  configureSidebarMenus({characters:[{id:"ine"}],onCharacter:()=>{changed=true;}});
+  useSidebarStore.setState({characterDisabled:false,playMode:"story"});
+  selectSidebarCharacter("ine");
+  assert.equal(changed,false);
+  useSidebarStore.setState({playMode:"free_roam"});
 });
 
 test("one travel-menu opening commits only one destination", () => {

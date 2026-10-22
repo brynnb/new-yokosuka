@@ -1,6 +1,8 @@
 import { AccountConnectionStatus } from "./AccountConnectionStatus.js";
 import { setAccountMenuVisible } from "./AccountMenuPresentation.js";
 import { updateGameUi } from "../ui/react/gameUiStore.js";
+import { setJournalCharacter } from "../ui/react/journalStore.js";
+import { consumeModeResume } from "./PlayModeSession.js";
 
 const GUEST_TOKEN_KEY = "new-yokosuka.guest-token.v1";
 
@@ -87,6 +89,17 @@ export class AccountSession {
 
   async start({ previewCutscene = null } = {}) {
     const flow = await this.#accountFlow();
+    try {
+      const resumed = await consumeModeResume(this.request);
+      if (resumed) {
+        this.#apply(resumed);
+        this.character = resumed.character;
+        flow.showClosed();
+      }
+    } catch (error) {
+      // Authentication expiry/deletion returns to the existing account flow.
+      console.warn("[Play mode] Could not resume character:", error.message);
+    }
     this.connectionStatus.start((status) => flow.setConnectionStatus(status));
     let authenticationScreen = "entry";
     while (!this.character) {
@@ -134,6 +147,7 @@ export class AccountSession {
     this.connectionStatus.stop();
     this.#renderPlayerName();
     this.renderProgression(this.character);
+    setJournalCharacter(this.character);
     document.body?.classList?.remove("account-pending");
   }
 
@@ -152,6 +166,7 @@ export class AccountSession {
     this.characters = [];
     this.character = null;
     this.inventory = [];
+    setJournalCharacter(null);
     if (
       this.characterSelectionPending
       && this.flow?.restartAfterLogout?.()
@@ -166,6 +181,7 @@ export class AccountSession {
     this.character = { ...this.character, ...character };
     this.inventory = inventory;
     this.renderProgression(this.character);
+    setJournalCharacter(this.character);
   }
 
   applyPurchase(result) {

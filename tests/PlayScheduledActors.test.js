@@ -178,3 +178,22 @@ test("supplemental scheduled actors contribute their own dependencies", () => {
     "SUPPLEMENTAL.MT5",
   ]);
 });
+
+test("a scene and combat can share one supplemental actor without losing dependencies", () => {
+  const fighter = { actorCode: "TDSI", modelCode: "KMD_L", activityOnly: true };
+  const scene = createScheduledActorDefinitionCollection([fighter], {
+    localObjectModels: ["BALL.MT5"], motionRequirements: { koji: ["HOSTAGE"] },
+  });
+  const combat = createScheduledActorDefinitionCollection([{ ...fighter }], {
+    motionRequirements: { fight: ["STANCE"] },
+  });
+  const combined = composeScheduledActorDefinitions([scene, combat]);
+  assert.deepEqual([...combined], [fighter]);
+  assert.deepEqual(combined.localObjectModels, ["BALL.MT5"]);
+  assert.deepEqual(combined.motionRequirements, {
+    koji: ["HOSTAGE"], fight: ["STANCE"],
+  });
+  assert.throws(() => composeScheduledActorDefinitions([
+    scene, [{ ...fighter, modelCode: "OTHER_L" }],
+  ]), /Conflicting supplemental actor TDSI/);
+});

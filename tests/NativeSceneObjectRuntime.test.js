@@ -38,6 +38,126 @@ function executor() {
   });
 }
 
+function createObjectAction(selector, nameWord, motionWord = 0) {
+  return { kind: "engineOperation", semanticId: "native-named-scene-object-create", callFileOffset: "0x15852",
+    arguments: [selector, motionWord, nameWord].map(value => ({ kind: "constant", value })) };
+}
+
+test("named-object creation returns its case-preserved name and exact direct constructor state", async () => {
+  const scene = createNativeSceneGameplayState();
+  const context = createNativeSceneFieldRuntimeContext(scene);
+  const result = await executor()(createObjectAction(1, 0x30726f64), context);
+  assert.equal(result.status, "continued");
+  assert.equal(result.result, 0x30726f64);
+  assert.equal(result.mutation.objectTag, "dor0");
+  assert.equal(result.mutation.taskKind, 6, "selector one is constructor category six, not asset/mesh index one");
+  assert.deepEqual(scene.readObjectVector("dor0"), [0, 0, 0]);
+  assert.deepEqual(scene.objectVectorState.readObjectSecondaryVector("dor0"), [0, 0, 0]);
+  assert.deepEqual(scene.objectVectorState.readObjectScaleVector("dor0"), Array(3).fill(0x3f800000));
+  assert.equal(scene.readNativeObjectDword5c("dor0").dword5c, 0x85);
+  assert.equal(scene.readActorFieldState("dor0").dword7c, 0);
+  assert.equal(scene.objectVectorState.readCreatedObject("dor0").modelAttached, false,
+    "this state check does not claim that a door model has been installed or rendered");
+  assert.equal(scene.readObjectVector("DOR0"), undefined);
+});
+
+test("zero names use the native shared counter, collision retry, wrap and transactional ownership", async () => {
+  const scene = createNativeSceneGameplayState();
+  const context = createNativeSceneFieldRuntimeContext(scene);
+  scene.configureActorFieldState({ actorTag: " 000", actorAvailable: true });
+  const first = await executor()(createObjectAction(0, 0), context);
+  assert.equal(first.mutation.objectTag, " 001");
+  assert.equal(first.result, 0x31303020);
+  assert.equal(scene.objectVectorState.nativeObjectNameCounter, 2);
+  const saved = scene.snapshot();
+  scene.objectVectorState.nativeObjectNameCounter = 999;
+  const last = await executor()(createObjectAction(3, 0), context);
+  assert.equal(last.mutation.objectTag, " 999");
+  assert.equal(last.mutation.taskKind, 8);
+  assert.equal(scene.objectVectorState.nativeObjectNameCounter, 0);
+  scene.restore(saved);
+  assert.equal(scene.objectVectorState.nativeObjectNameCounter, 2);
+  assert.equal(scene.objectVectorState.readCreatedObject(" 999"), null);
+  scene.clear();
+  assert.equal(scene.objectVectorState.nativeObjectNameCounter, 2, "travel clears bindings but not the source-global counter");
+  assert.equal(scene.objectVectorState.createdObjects.size, 0);
+});
+
+test("literal names shadow rather than rename an existing binding and do not inherit its vectors", async () => {
+  const scene = createNativeSceneGameplayState();
+  const context = createNativeSceneFieldRuntimeContext(scene);
+  await executor()(createObjectAction(1, 0x30726f64), context);
+  scene.writeObjectVector("dor0", [1, 2, 3]);
+  scene.writeObjectVector("dor0", [4, 5, 6], { associated: true });
+  scene.configureActorFieldState({ actorTag: "dor0", actorAvailable: true, dwordB8: 123 });
+  const repeated = await executor()(createObjectAction(2, 0x30726f64), context);
+  assert.equal(repeated.result, 0x30726f64);
+  assert.equal(scene.objectVectorState.nativeObjectNameCounter, 0);
+  assert.equal(scene.objectVectorState.readCreatedObject("dor0").previousBinding.taskKind, 6);
+  assert.equal(scene.objectVectorState.readCreatedObject("dor0").taskKind, 7);
+  assert.deepEqual(scene.readObjectVector("dor0"), [0, 0, 0]);
+  assert.equal(scene.readObjectVector("dor0", { associated: true }), undefined);
+  assert.equal(scene.readActorFieldState("dor0").dwordB8, undefined);
+});
+
+test("invalid creation and native-name exhaustion cannot leak state or invent a fallback name", async () => {
+  const scene = createNativeSceneGameplayState();
+  const context = createNativeSceneFieldRuntimeContext(scene);
+  for (const action of [createObjectAction(4, 0), createObjectAction(1, 0, 1), createObjectAction(1, NaN)]) {
+    assert.equal((await executor()(action, context)).status, "stopped");
+    assert.equal(scene.objectVectorState.createdObjects.size, 0);
+    assert.equal(scene.objectVectorState.nativeObjectNameCounter, 0);
+  }
+  let queries = 0;
+  assert.throws(() => scene.objectVectorState.createNamedSceneObject({ selector: 1, motionWord: 0, nameWord: 0,
+    isNameInUse: () => { queries += 1; return true; } }), /namespace is exhausted/);
+  assert.equal(queries, 1000);
+  assert.equal(scene.objectVectorState.nativeObjectNameCounter, 0);
+  assert.equal(scene.objectVectorState.createdObjects.size, 0);
+});
+
+test("secondary CPAM installation targets the exact name and publishes the dispatcher's zero result", async () => {
+  const scene = createNativeSceneGameplayState();
+  const context = createNativeSceneFieldRuntimeContext(scene);
+  await executor()(createObjectAction(1, 0x30726f64), context);
+  const cpam = { kind: "secondaryEngineOperation", semanticId: "native-object-cpam-install", callFileOffset: "0x15882",
+    arguments: [{ kind: "constant", value: 0x30726f64 }] };
+  const result = await executor()(cpam, context);
+  assert.equal(result.status, "continued");
+  assert.equal(result.result, 0, "do not leak the C helper's record allocation pointer into the VM");
+  assert.equal(result.mutation.objectTag, "dor0");
+  assert.equal(result.mutation.recordTag, "CPAM");
+  assert.equal(result.mutation.recordBytes, 4);
+  assert.equal(result.mutation.floatWord48, 0);
+  assert.equal(result.mutation.payloadWord, 0, "the original c0aac90/c1dc970 allocator zero-fills the payload");
+  assert.equal(scene.objectVectorState.objectFloat48Words.get("dor0"), 0);
+  assert.equal(Object.hasOwn(scene.objectVectorState.cameraParameterRecords.get("dor0")[0], "floatWord48"), false,
+    "object +0x48 is shared object state, not a per-record field");
+  assert.equal((await executor()(cpam, context)).status, "continued");
+  assert.equal(scene.objectVectorState.cameraParameterRecords.get("dor0").length, 2,
+    "repeat installation allocates a second source record");
+  scene.installCurrentPresentationOwner("dor0");
+  assert.equal((await executor()({ ...cpam, arguments: [{ kind: "constant", value: 0 }] }, context)).status, "stopped",
+    "zero is a null name, not a fallback to the current owner");
+  const saved = scene.snapshot();
+  await executor()(createObjectAction(2, 0x30726f64), context);
+  assert.equal(scene.objectVectorState.cameraParameterRecords.has("dor0"), false, "new bindings cannot inherit old CPAM ownership");
+  assert.equal(scene.objectVectorState.objectFloat48Words.has("dor0"), false);
+  scene.restore(saved);
+  assert.equal(scene.objectVectorState.cameraParameterRecords.has("dor0"), true);
+});
+
+test("missing CPAM targets stop without fabricating a record or null-object no-op", async () => {
+  const scene = createNativeSceneGameplayState();
+  const context = createNativeSceneFieldRuntimeContext(scene);
+  for (const word of [0, 0x30726f64, NaN]) {
+    const result = await executor()({ kind: "secondaryEngineOperation", semanticId: "native-object-cpam-install",
+      arguments: [{ kind: "constant", value: word }] }, context);
+    assert.equal(result.status, "stopped");
+    assert.equal(scene.objectVectorState.cameraParameterRecords.size, 0);
+  }
+});
+
 test("writes the exact native direct scale vector from operation 0x0027", async () => {
   const state = createNativeSceneGameplayState();
   const words = [0x3fb33333, 0x3f800000, 0x3f000000];

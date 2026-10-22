@@ -1,3 +1,6 @@
+import { NativeProgramDataMemory } from "./NativeProgramDataRuntime.js";
+import { NativePersistentScriptBitState } from "./NativePersistentScriptBitState.js";
+
 function requireUnsignedWord(value, label) {
   if (!Number.isInteger(value) || value < 0 || value > 0xffffffff) {
     throw new RangeError(`${label} must be an unsigned 32-bit word`);
@@ -40,6 +43,8 @@ export class NativeInteractionManagerState {
     this.indirectRecordKeys = null;
     this.indirectRecordVectors = null;
     this.runtimeSlots = null;
+    this.initializedTables = null;
+    this.ownerBinding = null;
     this.revision = 0;
   }
 
@@ -87,10 +92,86 @@ export class NativeInteractionManagerState {
       [...records].map(([index, record]) => [index, record.vectorWords]),
     );
     this.runtimeSlots = Array.from({ length: 16 }, () => ({
-      words: [0, 0, 0, -3, 0, 0],
+      // Original manager initializer 0xc15dbcc, stores at 0xc15dc6c-0xc15dcda.
+      // Keep word two's -1 sentinel and word five's control value: these are
+      // not an all-zero payload with only a free-status marker.
+      words: [0, 0, -1, -3, 0, 5],
     }));
+    this.initializedTables = null;
+    this.ownerBinding = null;
     this.revision += 1;
     return this.readConfiguration();
+  }
+
+  // Table portion of secondary selector zero (0xc15dbcc). The caller still
+  // owns task activation, object resolution and scene-address bindings; this
+  // must not be used to claim those unimplemented parts of startup succeeded.
+  initializeTables({ id, memory, descriptorPointer, indexPointer,
+    indexEndPointer, recordPointer, controlArgument, persistentBits } = {}) {
+    if (!(memory instanceof NativeProgramDataMemory)
+      || !(persistentBits instanceof NativePersistentScriptBitState)) {
+      throw new TypeError("interaction initialization requires owned program memory and persistent bits");
+    }
+    const pointers = [descriptorPointer, indexPointer, indexEndPointer, recordPointer]
+      .map(value => requireUnsignedWord(value, "interaction table pointer"));
+    for (const pointer of pointers) memory.access(pointer, 0, 4);
+    if (descriptorPointer >= indexPointer || indexPointer >= indexEndPointer) {
+      throw new RangeError("interaction descriptor/index table bounds are invalid");
+    }
+    if (!Number.isInteger(controlArgument) || controlArgument < -0x80000000
+      || controlArgument > 0xffffffff) throw new TypeError("interaction control must be a 32-bit word");
+
+    // Validate the entire graph before touching room/save state. Bounds come
+    // from the owned source pool and adjacent authored tables, not a guessed
+    // descriptor count or an arbitrary execution budget.
+    const descriptors = [], sequences = [], records = new Map();
+    let pointer = descriptorPointer;
+    for (;;) {
+      if (pointer + 4 > indexPointer) throw new Error("interaction descriptor sentinel is missing");
+      const first = memory.read(pointer, 0, 4);
+      if (first === 0xffffffff) break;
+      if (pointer + 52 > indexPointer) throw new Error("interaction descriptor crosses its table boundary");
+      const words = Array.from({ length: 13 }, (_, index) => memory.read(pointer, index, 4));
+      const sequence = [];
+      let cursor = indexPointer + first * 4;
+      for (;;) {
+        if (!Number.isSafeInteger(cursor) || cursor < indexPointer || cursor + 4 > indexEndPointer) {
+          throw new Error("interaction indirect sequence is outside its table or missing its sentinel");
+        }
+        const index = memory.read(cursor, 0, 4);
+        if (index === 0xffffffff) break;
+        const address = recordPointer + index * 36;
+        // Do not allow 32-bit multiplication wrap to turn a corrupt index
+        // into an apparently valid record elsewhere in the source pool.
+        if (address > 0xffffffff) throw new RangeError("interaction record address overflows");
+        const recordWords = Array.from({ length: 9 }, (_, word) => memory.read(address, word, 4));
+        records.set(index, { index, key: recordWords[0], vectorWords: recordWords.slice(5, 8) });
+        sequence.push(index);
+        cursor += 4;
+      }
+      descriptors.push({ pointer, words });
+      sequences.push(sequence);
+      pointer += 52;
+    }
+
+    this.configure({ id, descriptorSequences: sequences, indirectRecords: [...records.values()] });
+    for (const descriptor of descriptors) {
+      for (const word of [1, 3, 4, 5, 6]) memory.write(descriptor.pointer, word, 4, 0);
+      for (let word = 7; word < 13; word += 1) memory.write(descriptor.pointer, word, 4, 0xffffffff);
+      // 0xc15e5ec-0xc15e5fc passes each unsigned half of word two to
+      // 0xc0f0b5e. Its 256-bit bounds check intentionally ignores other IDs.
+      persistentBits.write(descriptor.words[2] & 0xffff, 1);
+      persistentBits.write(descriptor.words[2] >>> 16, 1);
+    }
+    this.initializedTables = {
+      descriptorPointer, indexPointer, indexEndPointer, recordPointer,
+      descriptorCount: descriptors.length,
+      controlLimit: Math.min(controlArgument | 0, descriptors.length),
+      candidateCapacity: Math.min(10, descriptors.length),
+      // Exact float-word constant loaded at 0xc15e778, not Infinity.
+      candidateScratch: Array.from({ length: 10 }, () => [0xffffffff, 0, 0x4b18967f, 0x4b18967f, 0]),
+    };
+    return structuredClone(this.initializedTables);
   }
 
   isConfigured() {
@@ -153,7 +234,9 @@ export class NativeInteractionManagerState {
       words: [
         secondWord,
         firstWord,
-        0,
+        // 0xc15dede writes offsets 0, 4, 12, 16 and 20 only. Offset 8 belongs
+        // to the existing slot; reallocation must not silently overwrite it.
+        this.runtimeSlots[index].words[2],
         2,
         0,
         5,

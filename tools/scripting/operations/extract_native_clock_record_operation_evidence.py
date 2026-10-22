@@ -53,6 +53,14 @@ RANGES = {
     ),
 }
 
+BOOT_RANGES = {
+    "clockInitialize": (0x0C181CBE, 122, "986b0fcc06c7f629c479e19e05d0cf4626d23ed94f8db9b2e6f5ec41b9426b77"),
+    "roomClockInitializeCall": (0x0C0F08B0, 12, "df7403c8fd5bc28f226998ba5790f0f11acec47f3f185026e28c342109f9cabf"),
+    "roomClockLoaderField": (0x0C0F05A2, 6, "3032e11a11658d1b536cad781e5e94136b2cfcaa61da25fa7e17ef494d54493e"),
+    "arrivalEntryQuery": (0x0C1649A8, 8, "f64c232d66f39fca1f1a485d355fd8f17434527ce525a6412d559f32f3147119"),
+    "currentSceneQuery": (0x0C1649B0, 8, "d5f8c8a86a3a158d4969c987c7824a22d3072816fa98d080af32da4672d47a12"),
+}
+
 
 def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
@@ -67,6 +75,62 @@ def runtime_slice(data: bytes, address: int, size: int) -> bytes:
 
 def u32(data: bytes, address: int) -> int:
     return struct.unpack("<I", runtime_slice(data, address, 4))[0]
+
+
+def build_boot_report(data: bytes) -> dict[str, Any]:
+    if digest(data) != EXECUTABLE_SHA256:
+        raise ValueError("unexpected 1ST_READ.BIN")
+    for name, (address, size, expected) in BOOT_RANGES.items():
+        if digest(runtime_slice(data, address, size)) != expected:
+            raise ValueError(f"native clock initialization {name} changed")
+    # Decode literal addresses and immediate scene comparisons, rather than
+    # treating the adjacent byte locations as evidence of their meaning.
+    literals = {
+        "scene": u32(data, 0x0C181E58),
+        "loaderControl": u32(data, 0x0C0F0684),
+        "gate": u32(data, 0x0C181E74),
+        "advance": u32(data, 0x0C181E78),
+        "entryQuery": u32(data, 0x0C164C1C),
+        "sceneQuery": u32(data, 0x0C164C24),
+    }
+    if literals != {"scene": 0x0C20C3D8, "loaderControl": 0x0C20C3FC,
+                    "gate": 0x0C225251, "advance": 0x0C225250,
+                    "entryQuery": 0x0C20C3E0, "sceneQuery": 0x0C20C3D8}:
+        raise ValueError("native clock/arrival literal bindings changed")
+    if u32(data, 0x0C0F0990) != BOOT_RANGES["clockInitialize"][0]:
+        raise ValueError("room clock initializer target changed")
+    scenes = []
+    for address in [0x0C181CE8, 0x0C181CEC]:
+        word = struct.unpack("<H", runtime_slice(data, address, 2))[0]
+        if word >> 8 != 0x88:
+            raise ValueError("clock initializer scene comparison changed")
+        scenes.append(word & 255)
+    fields = [
+        {"address": hex(u32(data, literal)), "width": 1, "value": value}
+        for literal, value in [(0x0C181E64, 0), (0x0C181E68, 0), (0x0C181E6C, 30)]
+    ]
+    return {
+        "schema": "new-yokosuka-native-clock-initialization-evidence-v1",
+        "generatedBy": "tools/scripting/operations/extract_native_clock_record_operation_evidence.py --boot-only",
+        "source": {"executable": "1ST_READ.BIN", "runtimeBase": hex(BASE), "sha256": EXECUTABLE_SHA256},
+        "verifiedRanges": {name: {"address": hex(a), "length": n, "sha256": h}
+                           for name, (a, n, h) in BOOT_RANGES.items()},
+        "contract": {
+            "fields": {name: hex(address) for name, address in literals.items()},
+            "loaderGuard": "The room loader calls 0xc181cbe only when dword 0xc20c3fc equals zero. Nonzero preserves the previous clock control bytes.",
+            "gateZeroScenes": scenes,
+            "gateOtherScenes": 1,
+            "advanceInitialValue": "copy of gate byte",
+            "fixedInitialBytes": fields,
+            "scene80Byte": {"address": hex(u32(data, 0x0C181E70)), "value": 1, "otherScenes": 0},
+            "queries": {"0x0026": "entry dword unchanged", "0x019c": "current scene dword unchanged"},
+        },
+        "evidenceBoundary": [
+            "A source asset disc is not proof of the player's current scene or arrival entry.",
+            "The loader-control dword must be provided by the session/load owner; unknown is not zero.",
+            "This report covers control-byte initialization and the two arrival queries, not native timer registration, calendar bounds or authoritative server clock advancement.",
+        ],
+    }
 
 
 def operation_calls(
@@ -238,7 +302,14 @@ def main() -> None:
     parser.add_argument("--executable", type=Path, default=DEFAULT_EXECUTABLE)
     parser.add_argument("--event-ir", type=Path, default=DEFAULT_EVENT_IR)
     parser.add_argument("--out", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--boot-only", action="store_true", help="verify scene/clock initialization without loading the full event IR")
     args = parser.parse_args()
+    if args.boot_only:
+        output = args.out if args.out != DEFAULT_OUTPUT else ROOT / "tools/evidence/native-clock-initialization-evidence.json"
+        report = build_boot_report(args.executable.read_bytes())
+        output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+        print(f"Verified native scene/clock initialization: {output}")
+        return
     report = build_report(
         args.executable.read_bytes(),
         json.loads(args.event_ir.read_text(encoding="utf-8")),

@@ -11,7 +11,6 @@ import { useEffect, useRef } from "react";
 
 import {
   closeJournal,
-  JOURNAL_PAGES,
   turnJournalPage,
   useJournalStore,
 } from "./journalStore.js";
@@ -19,8 +18,10 @@ import {
 export function JournalApp() {
   const open = useJournalStore((state) => state.open);
   const pageIndex = useJournalStore((state) => state.pageIndex);
+  const pages = useJournalStore((state) => state.pages);
   const closeRef = useRef(null);
-  const page = JOURNAL_PAGES[pageIndex];
+  const page = pages[pageIndex];
+  const pageCount = Math.max(1, pages.length);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -76,12 +77,12 @@ export function JournalApp() {
           </Dialog.Close>
         </Flex>
 
-        <Card size="3" mt="4" aria-live="polite">
-          <Heading id="journal-page-title" as="h3" size="5">
-            {page.title}
+        <Card className="journal-page" size="3" mt="4" aria-live="polite">
+          <Heading id="journal-page-title" as="h3" size="3" color="gray">
+            Page {pageIndex + 1}
           </Heading>
-          <Text id="journal-page-copy" as="p" color="gray" mt="3">
-            {page.copy}
+          <Text id="journal-page-copy" className="journal-page-copy" as="p" mt="4">
+            {page?.text ?? "Your notebook is empty."}
           </Text>
         </Card>
 
@@ -96,12 +97,12 @@ export function JournalApp() {
             Previous
           </Button>
           <Text id="journal-page-number" size="2" color="gray">
-            {pageIndex + 1} / {JOURNAL_PAGES.length}
+            {pageIndex + 1} / {pageCount}
           </Text>
           <Button
             id="journal-next"
             type="button"
-            disabled={pageIndex === JOURNAL_PAGES.length - 1}
+            disabled={pageIndex >= pageCount - 1}
             onClick={() => turnJournalPage(1)}
           >
             Next

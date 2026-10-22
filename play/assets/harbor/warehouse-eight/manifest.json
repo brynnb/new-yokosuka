@@ -1,0 +1,25 @@
+{
+  "schema": "new-yokosuka-authored-story-assets-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_story_assets.mjs",
+  "source": {
+    "disc": 2,
+    "path": "disc2/SCENE/02/MFSY/MBUI.PKS",
+    "sha256": "2bca65f726a8b939a7a0bb8c8b0fbb4b2bd49faab64000150ee42f8ecf9193b3"
+  },
+  "outputs": [
+    {
+      "path": "play/assets/harbor/warehouse-eight/M_0153A.MOTN",
+      "byteLength": 49200,
+      "sha256": "5a941d6205a10bb95862f2a7af6d1e9d9633354365c35495e3140b0b9746d19c"
+    }
+  ],
+  "sequences": [
+    {
+      "index": 1,
+      "name": "AKI_HAIRU_MADO_SOUKO_0153",
+      "durationFrames": 794,
+      "controllerFamilyIndex": 0
+    }
+  ],
+  "adaptation": "Original entering-window motion aligned to original MFSY return entry 5, not the two-window object's origin. Shot, platform alignment and climb confirmation are authored; crate physics/incremental climb are omitted. Server settlement owns the MS8S arrival."
+}

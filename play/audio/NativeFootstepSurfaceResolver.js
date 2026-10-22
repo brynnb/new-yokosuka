@@ -115,8 +115,16 @@ export function nativeFootstepSurfaceIndexAt({
   fallbackSurfaceIndex = 0,
   catalog = surfaceCatalog,
   actorCatalog = actorProperties,
+  actorStepRecord = null,
 } = {}) {
-  const actorFallbackSurfaceIndex = nativeActorFootstepSurfaceIndex({
+  if (actorStepRecord && (!actorStepRecord.actorAvailable
+    || !actorStepRecord.recordAvailable || actorStepRecord.enabledByte === 0)) return null;
+  if (actorStepRecord && (!Number.isInteger(actorStepRecord.enabledByte)
+    || !Number.isInteger(actorStepRecord.surfaceByte)
+    || actorStepRecord.surfaceByte < 0 || actorStepRecord.surfaceByte >= 23)) {
+    throw new RangeError("native STEP sound fields are unsupported");
+  }
+  const actorFallbackSurfaceIndex = actorStepRecord?.surfaceByte ?? nativeActorFootstepSurfaceIndex({
     area,
     actorTag,
     catalog: actorCatalog,

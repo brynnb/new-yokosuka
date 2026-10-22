@@ -1,0 +1,11 @@
+Ryo Hazuki: {{text:prompt}} #speaker:AKIR
+-> Take the move scroll
+    <<jump Take>>
+-> Leave it here
+    <<complete>>
+===
+title: Take
+---
+Ryo Hazuki: {{text:receipt}} #speaker:AKIR
+{{effects}}
+<<complete>>

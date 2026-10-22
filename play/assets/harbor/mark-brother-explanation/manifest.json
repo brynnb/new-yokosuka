@@ -1,0 +1,161 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA4.AUTH",
+        "path": "disc3/SCENE/03/MFSY/BOKOMARK.PKS",
+        "sourceSha256": "f074ed751b0000c66357087fc8ed23c0a343080723bb511567b92c2d0ed96164",
+        "archiveMember": "SEQDATA4.AUTH",
+        "byteLength": 8208,
+        "sha256": "d3942333f9a45d6b63948cc5a572317227a0e8e1c81d72524e3ccb841c27dfae"
+      },
+      {
+        "name": "M_01MKB.MOTN",
+        "path": "disc3/SCENE/03/MFSY/BOKOMARK.PKS",
+        "sourceSha256": "f074ed751b0000c66357087fc8ed23c0a343080723bb511567b92c2d0ed96164",
+        "archiveMember": "M_01MKB.MOTN",
+        "byteLength": 333924,
+        "sha256": "4784996450a9c0456f2617396c268f130a63af369202fb0e68b862fdf9e438d9"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-harbor-work.md",
+    "resourceName": "BOKOMARK",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/mark-brother-explanation/manifest.json",
+  "sceneObjects": {},
+  "packageActors": {
+    "MARK": {
+      "label": "Mark Kimberly",
+      "modelCode": "GIC_L",
+      "browserFilename": "GIC_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/GIC_L.CHRM",
+      "textureAssetPath": "play/assets/characters/GIC_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "MARK"
+  ],
+  "motionBanks": [
+    {
+      "bank": 21,
+      "path": "play/assets/harbor/mark-brother-explanation/M_01MKB.MOTN",
+      "byteLength": 333924,
+      "sha256": "4784996450a9c0456f2617396c268f130a63af369202fb0e68b862fdf9e438d9"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/mark-brother-explanation/M_01MKB.MOTN",
+      "byteLength": 333924,
+      "sha256": "4784996450a9c0456f2617396c268f130a63af369202fb0e68b862fdf9e438d9"
+    },
+    {
+      "path": "play/assets/harbor/mark-brother-explanation/SEQDATA4.AUTH",
+      "byteLength": 8208,
+      "sha256": "d3942333f9a45d6b63948cc5a572317227a0e8e1c81d72524e3ccb841c27dfae"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "BOKOMARK/SEQDATA4.AUTH",
+      "archiveMember": "SEQDATA4.AUTH",
+      "byteLength": 8208,
+      "sha256": "d3942333f9a45d6b63948cc5a572317227a0e8e1c81d72524e3ccb841c27dfae",
+      "durationFrames": 1961,
+      "durationSeconds": 65.38333129882812,
+      "frameCount": 39,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 7,
+        "effect": 10,
+        "voice": 15,
+        "sound": 14
+      },
+      "actors": [
+        "AKIR",
+        "MARK"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 21,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AT3_KOROSARERU_OTOUTO_MARKBOKOBOKO0_0100",
+          "startFrame": 1,
+          "endFrame": 960
+        },
+        {
+          "actorTag": "MARK",
+          "frame": 1,
+          "motionBank": 21,
+          "sequenceIndex": 11,
+          "motionName": "OTH_MRK_AT3_KOROSARERU_OTOUTO_MARKBOKOBOKO0_0100",
+          "startFrame": 1,
+          "endFrame": 267
+        },
+        {
+          "actorTag": "MARK",
+          "frame": 268,
+          "motionBank": 21,
+          "sequenceIndex": 11,
+          "motionName": "OTH_MRK_AT3_KOROSARERU_OTOUTO_MARKBOKOBOKO0_0100",
+          "startFrame": 551,
+          "endFrame": 1243
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 961,
+          "motionBank": 21,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AT3_KOROSARERU_OTOUTO_MARKBOKOBOKO0_0100",
+          "startFrame": 993,
+          "endFrame": 1492
+        },
+        {
+          "actorTag": "MARK",
+          "frame": 961,
+          "motionBank": 21,
+          "sequenceIndex": 11,
+          "motionName": "OTH_MRK_AT3_KOROSARERU_OTOUTO_MARKBOKOBOKO0_0100",
+          "startFrame": 961,
+          "endFrame": 1460
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1461,
+          "motionBank": 21,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AT3_KOROSARERU_OTOUTO_MARKBOKOBOKO0_0100",
+          "startFrame": 1576,
+          "endFrame": 2076
+        },
+        {
+          "actorTag": "MARK",
+          "frame": 1461,
+          "motionBank": 21,
+          "sequenceIndex": 11,
+          "motionName": "OTH_MRK_AT3_KOROSARERU_OTOUTO_MARKBOKOBOKO0_0100",
+          "startFrame": 1561,
+          "endFrame": 2061
+        }
+      ]
+    }
+  ]
+}

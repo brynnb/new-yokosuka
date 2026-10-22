@@ -205,6 +205,25 @@ test("AUTH presentation applies authored frame time, command order, and motion p
   ]);
 });
 
+test("authored lead-in holds its pose until the original motion replaces it", () => {
+  const { runtime, calls } = harness();
+  const owner = runtime.beginActivity({ activityId: "TEST/HELD.AUTH", actors: ["AKIR"], initialFrames: [] });
+  const motion = { name: "motion", actorTag: "AKIR", startFrame: 5, endFrame: 30,
+    motion: { sequence: { valid: true } } };
+  runtime.advanceActivity({ owner, previousFrame: 0, currentFrame: 1,
+    frames: [{ frame: 1, commands: [{ ...motion, hold: true }] }] });
+  const heldFrame = calls.filter(call => call[0] === "motion").at(-1)[2].frame;
+  for (let frame = 2; frame <= 40; frame++) {
+    runtime.advanceActivity({ owner, previousFrame: frame - 1, currentFrame: frame, frames: [] });
+    assert.equal(calls.filter(call => call[0] === "motion").at(-1)[2].frame, heldFrame);
+  }
+  runtime.advanceActivity({ owner, previousFrame: 40, currentFrame: 41,
+    frames: [{ frame: 41, commands: [motion] }] });
+  runtime.advanceActivity({ owner, previousFrame: 41, currentFrame: 42, frames: [] });
+  assert.equal(calls.filter(call => call[0] === "motion").at(-1)[2].frame, heldFrame + 1);
+  runtime.endActivity({ owner, reason: "complete" });
+});
+
 test("AUTH presentation samples a rebased clip without changing its cue lifetime", () => {
   const { runtime, calls } = harness();
   const owner = runtime.beginActivity({ activityId: "TEST/REBASED.AUTH", actors: ["AKIR"], initialFrames: [] });

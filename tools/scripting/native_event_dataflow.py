@@ -12,6 +12,7 @@ from tools.worlds.extract_jomo_object_operations import (
     value_json,
 )
 from tools.scripting.native_event_predicates import (
+    branch_successors,
     comparison_branch_outcomes,
     hx,
     signed_immediate,
@@ -731,9 +732,20 @@ def operation_argument(
         else None
     )
     if sts_source is not None:
+        store_address = int(sts_source.group("address"), 16)
         expression = _exact_fpul_store_expression(
-            rows, int(sts_source.group("address"), 16),
+            rows, store_address,
         )
+        store = rows.get(store_address)
+        if expression is None and store is not None and store[1] == "sts" and store[2].startswith("macl,"):
+            # MACL is a real integer result, not an opaque runtime value.
+            # Reuse the exact local arithmetic resolver already used by
+            # div/rem recovery. It stops at calls, branches and unknown input
+            # writers, and requires the immediately preceding mul.l producer.
+            instructions = [rows[address] for address in sorted(rows) if address <= store_address]
+            expression = _exact_integer_register_expression(
+                instructions, store[2].split(",", 1)[1], len(instructions), 0,
+            )
         if expression is not None:
             return {**argument, **expression}
     if memory_load is not None:
@@ -1083,9 +1095,9 @@ def frame_field_expression_writes(
     """Recover complete straight-line integer expressions stored in a frame.
 
     This models exact compiler-local arithmetic, not source-level intent.
-    Register state is discarded at every call or control transfer, and a
-    write is emitted only when its frame address and entire expression are
-    available from the supported SH-4 subset.
+    Calls invalidate scratch registers but preserve balanced r13 stack values
+    and expose their returned word. Control-flow joins discard this local
+    evidence. A write requires its complete frame address and expression.
     """
 
     allowed = reached if reached is not None else set(rows)
@@ -1097,6 +1109,9 @@ def frame_field_expression_writes(
     }
     fpul: dict[str, Any] | None = None
     macl: dict[str, Any] | None = None
+    stack: list[dict[str, Any] | None] = []
+    pending_call: int | None = None
+    previous_address: int | None = None
     writes = []
 
     def constant(value: int) -> dict[str, Any]:
@@ -1115,11 +1130,54 @@ def frame_field_expression_writes(
     terminators = {
         "bra", "braf", "bf", "bf.s", "bt", "bt.s", "jmp", "rts",
     }
+    join_addresses = {
+        successor
+        for row in rows.values() if row[1] in terminators
+        for successor in branch_successors(row, rows)
+    }
+
+    def reads_frame(value: dict[str, Any] | None) -> bool:
+        if value is None:
+            return False
+        return value.get("kind") == "frame-field" or any(
+            reads_frame(value.get(key)) for key in ("left", "right", "operand")
+        )
+
     for address in sorted(rows):
         if address not in allowed:
             continue
+        if address in join_addresses or (
+            previous_address is not None and address != previous_address + 2
+        ):
+            registers = {f"r{index}": None for index in range(16)}
+            floating_registers = {f"fr{index}": None for index in range(16)}
+            stack = []
+            fpul = macl = pending_call = None
+        previous_address = address
+        if pending_call is not None and address == pending_call + 4:
+            # Apply call clobbers after its delay slot. Values held on the
+            # native stack survive; a deferred read of mutable frame memory
+            # would not be the value pushed before the call, so discard it.
+            for index in range(8):
+                registers[f"r{index}"] = None
+            for register, value in registers.items():
+                if reads_frame(value):
+                    registers[register] = None
+            stack = [None if reads_frame(value) else value for value in stack]
+            floating_registers = {f"fr{index}": None for index in range(16)}
+            fpul = macl = None
+            registers["r0"] = {"kind": "operation-result", "callFileOffset": hx(pending_call)}
+            pending_call = None
         _address, mnemonic, operands, literal = rows[address]
-        parts = operands.split(",", 1) if "," in operands else []
+        parts = operands.rsplit(",", 1) if "," in operands else []
+
+        if (
+            assigned_register(mnemonic, operands) == "r13" and mnemonic != "add"
+        ) or (
+            "r13" in operands and mnemonic in {"mov.b", "mov.w"}
+            and ("@-r13" in operands or "@r13+" in operands)
+        ):
+            stack = []
 
         if mnemonic == "mov" and len(parts) == 2:
             source, destination = parts
@@ -1134,6 +1192,14 @@ def frame_field_expression_writes(
         elif mnemonic == "add" and len(parts) == 2:
             source, destination = parts
             current = registers.get(destination)
+            immediate = signed_immediate(operands, destination)
+            if destination == "r13":
+                if immediate is None or immediate < 0 or immediate % 4:
+                    stack = []
+                else:
+                    for _ in range(min(immediate // 4, len(stack))):
+                        stack.pop()
+                continue
             if (
                 source == "r14"
                 and current is not None
@@ -1164,7 +1230,11 @@ def frame_field_expression_writes(
             width = {"mov.b": 1, "mov.w": 2, "mov.l": 4}[mnemonic]
             direct = FRAME_LOAD.fullmatch(operands)
             indexed = FRAME_INDEXED_LOAD.fullmatch(operands)
-            if direct is not None:
+            if mnemonic == "mov.l" and destination == "@-r13":
+                stack.append(registers.get(source))
+            elif mnemonic == "mov.l" and source == "@r13+":
+                registers[destination] = stack.pop() if stack else None
+            elif direct is not None:
                 registers[direct.group("register")] = {
                     "kind": "frame-field",
                     "offset": int(direct.group("offset")),
@@ -1215,6 +1285,8 @@ def frame_field_expression_writes(
                         "width": width,
                         "expression": expression,
                     })
+            elif destination in registers:
+                registers[destination] = None
         elif mnemonic == "neg" and len(parts) == 2:
             source, destination = parts
             value = registers.get(source)
@@ -1310,13 +1382,7 @@ def frame_field_expression_writes(
                 else None
             )
         elif mnemonic in calls:
-            for index in range(8):
-                registers[f"r{index}"] = None
-            floating_registers = {
-                f"fr{index}": None for index in range(16)
-            }
-            fpul = None
-            macl = None
+            pending_call = address
         elif mnemonic in terminators:
             registers = {f"r{index}": None for index in range(16)}
             floating_registers = {
@@ -1324,6 +1390,8 @@ def frame_field_expression_writes(
             }
             fpul = None
             macl = None
+            stack = []
+            pending_call = None
         elif len(parts) == 2 and parts[1] in registers:
             registers[parts[1]] = None
 
@@ -1584,7 +1652,12 @@ def scene_field_constant_writes(
     static_data_base: int,
     reached: set[int] | None = None,
 ) -> list[dict[str, Any]]:
-    """Recover exact constant stores through ``literal + r9`` addresses."""
+    """Recover exact constant stores through scene-rooted addresses.
+
+    Small room fields use immediate offsets rather than PC-relative literals.
+    In particular, JOMO writes its dispatcher event word at offset zero this
+    way; omitting those writes makes otherwise recovered event bodies inert.
+    """
 
     ordered = [rows[address] for address in sorted(rows)]
     indices = {row[0]: index for index, row in enumerate(ordered)}
@@ -1597,17 +1670,8 @@ def scene_field_constant_writes(
         match = REGISTER_STORE.fullmatch(store[2])
         if match is None:
             continue
-        address_register = match.group("address")
-        add = rows.get(address - 4)
-        base = rows.get(address - 6)
-        if (
-            add is None
-            or add[1:3] != ("add", f"r9,{address_register}")
-            or base is None
-            or base[1] != "mov.l"
-            or base[3] is None
-            or not base[2].endswith(f",{address_register}")
-        ):
+        target = _rooted_address_offset(rows, address, match.group("address"), "r9")
+        if target is None:
             continue
         value = resolve_register(
             ordered,
@@ -1620,14 +1684,45 @@ def scene_field_constant_writes(
         writes.append({
             "kind": "sceneFieldWrite",
             "callFileOffset": hx(address),
-            "offset": base[3],
-            "offsetHex": hx(base[3]),
+            "offset": target[0],
+            "offsetHex": hx(target[0]),
             "width": {"mov.b": 1, "mov.w": 2, "mov.l": 4}[store[1]],
             "value": value.value,
             "valueHex": f"0x{value.value:08x}",
-            "addressDefinitionFileOffset": hx(base[0]),
+            "addressDefinitionFileOffset": hx(target[1]),
             "valueSource": value.source,
         })
+    return writes
+
+
+def scene_field_expression_writes(
+    rows: dict[int, tuple[int, str, str, int | None]],
+    static_data_base: int,
+    reached: set[int] | None = None,
+) -> list[dict[str, Any]]:
+    """Recover nonconstant stores into scene state without guessing a value."""
+    ordered = [rows[address] for address in sorted(rows)]
+    indices = {row[0]: index for index, row in enumerate(ordered)}
+    writes = []
+    for address in sorted(reached if reached is not None else rows):
+        store = rows.get(address)
+        if store is None or store[1] not in {"mov.b", "mov.w", "mov.l"}:
+            continue
+        match = REGISTER_STORE.fullmatch(store[2])
+        if match is None:
+            continue
+        target = _rooted_address_offset(rows, address, match.group("address"), "r9")
+        if target is None:
+            continue
+        expression = _exact_integer_register_expression(
+            ordered, match.group("source"), indices[address], static_data_base,
+        )
+        if expression is None or expression.get("kind") == "constant":
+            continue
+        writes.append({"kind": "sceneFieldExpressionWrite", "callFileOffset": hx(address),
+                       "offset": target[0], "offsetHex": hx(target[0]),
+                       "width": {"mov.b": 1, "mov.w": 2, "mov.l": 4}[store[1]],
+                       "expression": expression, "addressDefinitionFileOffset": hx(target[1])})
     return writes
 
 
@@ -1782,21 +1877,35 @@ def frame_field_scene_writes(
         source_register = match.group("source")
         load = rows.get(address - 2)
         addend_word = None
+        direct_scene_load = (
+            BASE_REGISTER_SLOT.fullmatch(load[2])
+            if load is not None and load[1] in {"mov.b", "mov.w", "mov.l"}
+            else None
+        )
+        if direct_scene_load is not None and (
+            direct_scene_load.group("base") != "r9"
+            or direct_scene_load.group("destination") != source_register
+        ):
+            direct_scene_load = None
         indexed_scene_load = (
             load is not None
             and load[1] in {"mov.b", "mov.w", "mov.l"}
             and load[2] == f"@(r0,r9),{source_register}"
         )
-        if indexed_scene_load:
+        if direct_scene_load:
+            source = (int(direct_scene_load.group("offset")), load[0])
+            source_width = {"mov.b": 1, "mov.w": 2, "mov.l": 4}[load[1]]
+        elif indexed_scene_load:
             source_definition = rows.get(address - 4)
-            if (
-                source_definition is None
-                or source_definition[1] != "mov.l"
-                or not source_definition[2].endswith(",r0")
-                or source_definition[3] is None
-            ):
+            source_offset = None
+            if source_definition is not None and source_definition[2].endswith(",r0"):
+                if source_definition[1] == "mov":
+                    source_offset = signed_immediate(source_definition[2], "r0")
+                elif source_definition[1] == "mov.l":
+                    source_offset = source_definition[3]
+            if source_offset is None:
                 continue
-            source = (source_definition[3], source_definition[0])
+            source = (source_offset, source_definition[0])
             source_width = {"mov.b": 1, "mov.w": 2, "mov.l": 4}[load[1]]
         elif (
             load is not None
@@ -1833,7 +1942,7 @@ def frame_field_scene_writes(
                 continue
             source_address_register = "r5"
             addend_word = float_sequence[7][3]
-        if not indexed_scene_load:
+        if not indexed_scene_load and not direct_scene_load:
             source = _rooted_address_offset(
                 rows,
                 load[0],

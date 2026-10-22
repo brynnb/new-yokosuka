@@ -86,8 +86,8 @@ the temporary score advances with the cutscene transport. See
 
 ## Background Music Assignments
 
-`public/music/manifest.json` owns /play's background music. Until story
-progression is implemented, ordinary exploration uses explicit defaults:
+`public/music/manifest.json` owns /play's background music. **Free roam** uses
+the following explicit defaults, independently of saved Story progress:
 
 | Area | Music |
 | --- | --- |
@@ -111,7 +111,17 @@ An absent arcade assignment uses its existing stop-playback behavior, without
 muting sound effects or cabinet audio. BGM109 remains available under the
 `old-warehouse-district` track ID for the unchanged **21:00** temporary Nightfall
 cue; it is no longer the warehouse's exploration loop. Holiday behavior is
-unchanged.
+unchanged in Free roam.
+
+Story uses `StoryExplorationMusic` to select the original disc-specific FREE
+bank from the player's committed milestones. The choice restores on login and
+updates without restarting an unchanged track. Temporary cutscene/fight music
+keeps ownership and resumes the latest selection afterward. Story Nightfall is
+at **19:00** on the personal clock; Free roam retains **21:00**. Old Warehouse
+District uses its early stealth selection only in Story before meeting Chen.
+See [verified evening rules and the milestone mapping](../research/story-evening.md)
+for provenance, exceptions, and the manifest generator. These tracks reuse
+the audio viewer's existing immutable assets; no second audio mixer is added.
 
 The three exploration files are registered under `public/music/free-roam/` in
 the immutable runtime-asset manifest. FREE 1 reuses the existing FRE0100 render;

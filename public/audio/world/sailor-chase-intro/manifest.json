@@ -1,0 +1,797 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01CTS.AFS",
+      "sha256": "1ab83d84faf5fed5eb3db0dbf1aa5e229e957107a9da460a15b2115200c4effa"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_CTS.SND",
+      "sha256": "7a8a22298e29cd5648c9d9e007244b0e21e5a254d9b2e052f1511215bcebb374"
+    },
+    "authManifest": "play/assets/harbor/sailor-chase-intro/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-harbor-work.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01CTSA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SOUND/01CTSA001.aiff",
+      "nativeMember": "01CTSA001.str",
+      "speakerId": "AKIR",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "Original introduction requests 01CTSA001.str, absent from the pinned English 01CTS.AFS; no substituted voice or subtitle.",
+      "evidence": "docs/design/story-harbor-work.md#fifth-afternoon-sailor-chase"
+    },
+    {
+      "voiceId": "01CTSA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SOUND/01CTSA002.aiff",
+      "nativeMember": "01CTSA002.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 6144,
+      "nativeSha256": "f2fe3421be794534643c40a76c159bc736b97108325cc7d4267211eac4ea060e",
+      "speakerId": "AKIR",
+      "sourceText": "It's them=@",
+      "displayText": "It's them...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/sailor-chase-intro/voice/01CTSA002.wav",
+      "byteLength": 24364,
+      "sha256": "a6e73d75cd8b2c671a7d44e621006f8944d51db090a279f6a8224e6223314c92"
+    },
+    {
+      "voiceId": "01CTSA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SOUND/01CTSA003.aiff",
+      "nativeMember": "01CTSA003.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "abfdfff267bae279623a7d6f7e5936faa64fea48b4c84a15c93f864076342a37",
+      "speakerId": "AKIR",
+      "sourceText": "Gotta question=@",
+      "displayText": "Gotta question...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/sailor-chase-intro/voice/01CTSA003.wav",
+      "byteLength": 24364,
+      "sha256": "b7ca3c8ce7ad7eae1d0a57f7662506e337c42e8dbe4ccb73277647762265c275"
+    },
+    {
+      "voiceId": "01CTSA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SOUND/01CTSA004.aiff",
+      "nativeMember": "01CTSA004.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 10240,
+      "nativeSha256": "e001c9011b2dc5ac75eabab8f06bbb5a99bb20d5c5df1e1f3615bf1785cd4a1a",
+      "speakerId": "AKIR",
+      "sourceText": "you know about the Long Zha?",
+      "displayText": "you know about the Long Zha?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/sailor-chase-intro/voice/01CTSA004.wav",
+      "byteLength": 40748,
+      "sha256": "a99129b828ff8d2e4520f72c82d2c54cb63e5836f6c504f3f1db7580c9cfb73a"
+    },
+    {
+      "voiceId": "01CTSA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SOUND/01CTSA005.aiff",
+      "nativeMember": "01CTSA005.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "0930078e7a45ea1ceb46c34d41a32fd71b3447da2454a81486d92170b71d8419",
+      "speakerId": "AKIR",
+      "sourceText": "You know.",
+      "displayText": "You know.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/sailor-chase-intro/voice/01CTSA005.wav",
+      "byteLength": 16172,
+      "sha256": "f158ef8f35613352370a300836b4c81033167353bb323f772cea47060df34009"
+    },
+    {
+      "voiceId": "01CTSA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SOUND/01CTSA006.aiff",
+      "nativeMember": "01CTSA006.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 6144,
+      "nativeSha256": "5a1115bafc94c733f3241aec3ce30657b505446f69bb8fc45f0a2ab0b5f0db58",
+      "speakerId": "AKIR",
+      "sourceText": "Hey, wait!",
+      "displayText": "Hey, wait!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/sailor-chase-intro/voice/01CTSA006.wav",
+      "byteLength": 24364,
+      "sha256": "0be4839ad360d32d5fda58448b0d9e48d7ad6439114dd77f4f091a539ad73e83"
+    },
+    {
+      "voiceId": "01CTSB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SOUND/01CTSB001.aiff",
+      "nativeMember": "01CTSB001.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 12288,
+      "nativeSha256": "346260531e89e2409e1aaffb8a6ecd60e49c368acb4aefaf38d3b0983795f77e",
+      "speakerId": "TONY",
+      "sourceText": "Wha=@? What did you say?",
+      "displayText": "Wha...? What did you say?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/sailor-chase-intro/voice/01CTSB001.wav",
+      "byteLength": 48940,
+      "sha256": "8c0231ad2b4c1ee73fd18423a080572c5c13ada2182a1788993585b27b857952"
+    },
+    {
+      "voiceId": "01CTSB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SOUND/01CTSB002.aiff",
+      "nativeMember": "01CTSB002.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 4096,
+      "nativeSha256": "0b55b6e5890693864f3a66199dadd043db7064724bcabe6ffdab314aa7119d66",
+      "speakerId": "TONY",
+      "sourceText": "Hey=@",
+      "displayText": "Hey...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/sailor-chase-intro/voice/01CTSB002.wav",
+      "byteLength": 16172,
+      "sha256": "40fe07a6d9a5bca5377238725dca1a031abaa71633916c733b90ecee19a54dde"
+    },
+    {
+      "voiceId": "01CTSB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SOUND/01CTSB003.aiff",
+      "nativeMember": "01CTSB003.str",
+      "speakerId": "SMTH",
+      "sourceText": null,
+      "displayText": null,
+      "lipSync": null,
+      "unavailable": true,
+      "unavailableReason": "Original introduction requests 01CTSB003.str, absent from the pinned English 01CTS.AFS; no substituted voice or subtitle.",
+      "evidence": "docs/design/story-harbor-work.md#fifth-afternoon-sailor-chase"
+    },
+    {
+      "voiceId": "01CTSC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SOUND/01CTSC001.aiff",
+      "nativeMember": "01CTSC001.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 14336,
+      "nativeSha256": "e9ab764c74a7e854325c8f1aee9c21b7c4f9d268a1ea2f5ba7ebb4a035597f7c",
+      "speakerId": "SMTH",
+      "sourceText": "I don't know!",
+      "displayText": "I don't know!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 22
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/sailor-chase-intro/voice/01CTSC001.wav",
+      "byteLength": 57132,
+      "sha256": "6480afaefe544adaee3038866f7e275f0760132ecbf807d45ad4736c6c37de46"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/cloths2/cloths03.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040000.wav",
+      "byteLength": 14788,
+      "sha256": "dbaff45be9665ae74498ddbefe505f671f30307c6a358f47e711422e9c6f9d11"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/vehicle/fork_aidorinf.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040100.wav",
+      "byteLength": 50700,
+      "sha256": "5430dba3691857af0e811d7688aaeda9b059d6c861d792a688dca6ffdc910f4b",
+      "nativeSegments": [
+        {
+          "playbackId": 1,
+          "sampleId": 1,
+          "sampleRate": 16000,
+          "byteLength": 25372,
+          "sha256": "67ded163cb084f59d2d6956cea7a8d0658f41c6a3a354228f5cefca135a18f1d"
+        },
+        {
+          "playbackId": 1,
+          "sampleId": 1,
+          "sampleRate": 16000,
+          "byteLength": 25372,
+          "sha256": "67ded163cb084f59d2d6956cea7a8d0658f41c6a3a354228f5cefca135a18f1d"
+        }
+      ]
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/vehicle/FORK_ENGIN_TEISHI.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040200.wav",
+      "byteLength": 158828,
+      "sha256": "ecdc846f87dd00bcfe4a1c25277a2475e619ef9055f7d80e0ed3f6bacb7278f0",
+      "nativeSegments": [
+        {
+          "playbackId": 2,
+          "sampleId": 2,
+          "sampleRate": 16000,
+          "byteLength": 96132,
+          "sha256": "b08bda31d12e081a3bac66438152e48d01ac0b9e7539540ffd6fa038add3a13f"
+        },
+        {
+          "playbackId": 3,
+          "sampleId": 3,
+          "sampleRate": 16000,
+          "byteLength": 62740,
+          "sha256": "5280247c246dd72718b75ef1fd9fde745e9f0877fb8b9916e016f8322afc7620"
+        }
+      ]
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/vehicle/fork_ido.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040300.wav",
+      "byteLength": 408076,
+      "sha256": "c12a8db21ee8971f5e552952965d51878126e230076d5ed9a52532ec7b54f555",
+      "nativeSegments": [
+        {
+          "playbackId": 4,
+          "sampleId": 4,
+          "sampleRate": 16000,
+          "byteLength": 95916,
+          "sha256": "ac206112f29535bcf213465143630b40d91245e16178d20e27691b9127540a5c"
+        },
+        {
+          "playbackId": 5,
+          "sampleId": 5,
+          "sampleRate": 16000,
+          "byteLength": 96588,
+          "sha256": "c34f5910aa108f11081bccb1ab92e7e2a61fcacd493fda689368d4113828d433"
+        },
+        {
+          "playbackId": 6,
+          "sampleId": 6,
+          "sampleRate": 16000,
+          "byteLength": 96156,
+          "sha256": "dab884a927e23190a84503c245a30bd5ddf9f07d78749ae450ea1399d60b4b7e"
+        },
+        {
+          "playbackId": 7,
+          "sampleId": 7,
+          "sampleRate": 16000,
+          "byteLength": 119548,
+          "sha256": "144c8a2d0eb5cfc90c4aec88abb002259c61616254023cb8979d4ada8817f4ff"
+        }
+      ]
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/vehicle/fork_start.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040400.wav",
+      "byteLength": 236708,
+      "sha256": "db8b13bf79f4aa239db1c7b583ebcfd54ec2eae381b588391b7fc26e35b41087",
+      "nativeSegments": [
+        {
+          "playbackId": 8,
+          "sampleId": 8,
+          "sampleRate": 16000,
+          "byteLength": 96036,
+          "sha256": "d6c8b1efffd21c1d324848b52f42880b857f2250fada8317ee9c0e7d68b70579"
+        },
+        {
+          "playbackId": 9,
+          "sampleId": 9,
+          "sampleRate": 16000,
+          "byteLength": 96204,
+          "sha256": "9c9c7be43df7006b3a88bdc42dbab196f59d9cab7979616e76598406ca889587"
+        },
+        {
+          "playbackId": 10,
+          "sampleId": 10,
+          "sampleRate": 16000,
+          "byteLength": 44556,
+          "sha256": "0a34106f2bc1da0d7ebc0b63ca0aa1e3943fb1b2e5ee59f0946f722272ecb0bb"
+        }
+      ]
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/vehicle/fork_teisoku.aiff",
+      "playbackId": 11,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040500.wav",
+      "byteLength": 128292,
+      "sha256": "82502b32858a5ad15b81c67eee66ffdd40c15329cd4e72a73bd58386212f54cf"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/cloths2/furimuki_f01.aiff",
+      "playbackId": 12,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040600.wav",
+      "byteLength": 9348,
+      "sha256": "2026b716ba3115748b89ec3ac3b6041824b6ddbba78ee708f62af1fb8dc3756a"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 13,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040700.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 14,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040800.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 15,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040900.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 16,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040a00.wav",
+      "byteLength": 5412,
+      "sha256": "64fa0eff3320191bd9befe41d84a45f91d48ae9a9c821c8aac766ce9b3fcf3f3"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 17,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040b00.wav",
+      "byteLength": 6364,
+      "sha256": "a087e557bddc12e1ca7a20b8ad3ee5e15dfa88ad4531cbba9c0b85b9367c66af"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 18,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040c00.wav",
+      "byteLength": 4620,
+      "sha256": "b777d818c86e674e40a080c0aabb21e31a54b732828322cdb9b9288dd4184907"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 19,
+      "sampleId": 19,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040d00.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 20,
+      "sampleId": 20,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040e00.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/foot2/RYOASHITETSU6.aiff",
+      "playbackId": 21,
+      "sampleId": 21,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9040f00.wav",
+      "byteLength": 3620,
+      "sha256": "5ff6a5aac1f2bcc535b041ce5db581bca9ffc25565d84b005a6f365e6cdf8070"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/cloths2/R_mouhu_nageru.aiff",
+      "playbackId": 22,
+      "sampleId": 22,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9041000.wav",
+      "byteLength": 21612,
+      "sha256": "5c49cb5c012c4b62f58d0b81d8f68aa02b2734dd78710011d0c69a431d5a0988"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/foot/sneaker1.aiff",
+      "playbackId": 23,
+      "sampleId": 23,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9041100.wav",
+      "byteLength": 10964,
+      "sha256": "3db696efc3f22f883429c8558b9cd97102c30e9f4401b0d78a4cb82baaf2e2b7"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SE/foot/sneaker3.aiff",
+      "playbackId": 24,
+      "sampleId": 24,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/sailor-chase-intro/sfx/a9041200.wav",
+      "byteLength": 11188,
+      "sha256": "fef02cc6d21fef1cbee18ba5ee6e940b07c8b2a6f06b1d6655873f03702c6d6d"
+    }
+  ]
+}

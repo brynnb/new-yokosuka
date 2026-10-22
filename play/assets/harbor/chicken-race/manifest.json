@@ -1,0 +1,403 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_chicken_race.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA1.AUTH",
+        "path": "disc3/SCENE/03/MFSY/RACE.PKS",
+        "sourceSha256": "3be01b130f22a0b19f3318e0d833200c92ab8b3a488581bdabf62fcea44156a4",
+        "archiveMember": "SEQDATA1.AUTH",
+        "byteLength": 77068,
+        "sha256": "9052de6c18123a7881b49d97d970378ff1e4e266e8663880268ccb8ee097254d"
+      },
+      {
+        "name": "M_01CRA.MOTN",
+        "path": "disc3/SCENE/03/MFSY/RACE.PKS",
+        "sourceSha256": "3be01b130f22a0b19f3318e0d833200c92ab8b3a488581bdabf62fcea44156a4",
+        "archiveMember": "M_01CRA.MOTN",
+        "byteLength": 97464,
+        "sha256": "02cd266332de6bc6f78af5abbcf83e3ed6e2a07708022fd23277234014363142"
+      },
+      {
+        "name": "M_MBQC.MOTN",
+        "path": "disc3/SCENE/03/MFSY/RACE.PKS",
+        "sourceSha256": "3be01b130f22a0b19f3318e0d833200c92ab8b3a488581bdabf62fcea44156a4",
+        "archiveMember": "M_MBQC.MOTN",
+        "byteLength": 65132,
+        "sha256": "80fbaf6aa6d461af1585cc484ed56f083b87874990485e74d8dc2bfa2ae535d7"
+      },
+      {
+        "name": "BIKK5DYG.CHRM",
+        "path": "disc3/SCENE/03/MFSY/RACE.PKS",
+        "sourceSha256": "3be01b130f22a0b19f3318e0d833200c92ab8b3a488581bdabf62fcea44156a4",
+        "archiveMember": "BIKK5DYG.CHRM",
+        "byteLength": 78828,
+        "sha256": "d4ced6b05104608f73665361f7b890d93627cd4125b1e3aee962397e7dc47b92"
+      },
+      {
+        "name": "BIKS509G.CHRM",
+        "path": "disc3/SCENE/03/MFSY/RACE.PKS",
+        "sourceSha256": "3be01b130f22a0b19f3318e0d833200c92ab8b3a488581bdabf62fcea44156a4",
+        "archiveMember": "BIKS509G.CHRM",
+        "byteLength": 79140,
+        "sha256": "2a8e50af64c9d25d6b823ac129a5bdb4467b24eecfa28eff30ddf850b310e6dd"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-harbor-work.md#evening-chicken-race",
+    "resourceName": "RACE",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided evening encounter; local presentation slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/chicken-race/manifest.json",
+  "sceneObjects": {
+    "BIK1": {
+      "model": "BIKK5DYG",
+      "browserFilename": "BIKK5DYG.CHRM",
+      "assetPath": "play/assets/harbor/chicken-race/BIKK5DYG.CHRM",
+      "textureAssetPath": "play/assets/harbor/chicken-race/textures.bin"
+    },
+    "BIK2": {
+      "model": "BIKS509G",
+      "browserFilename": "BIKS509G.CHRM",
+      "assetPath": "play/assets/harbor/chicken-race/BIKS509G.CHRM",
+      "textureAssetPath": "play/assets/harbor/chicken-race/textures.bin"
+    },
+    "LINT": {
+      "model": "unmapped-original-light-reference",
+      "browserFilename": "RACE-LINT-reference",
+      "referenceOnly": true
+    },
+    "LPOS": {
+      "model": "unmapped-original-light-reference",
+      "browserFilename": "RACE-LPOS-reference",
+      "referenceOnly": true
+    },
+    "LGT1": {
+      "model": "unmapped-original-light-reference",
+      "browserFilename": "RACE-LGT1-reference",
+      "referenceOnly": true
+    },
+    "LGT2": {
+      "model": "unmapped-original-light-reference",
+      "browserFilename": "RACE-LGT2-reference",
+      "referenceOnly": true
+    },
+    "REF1": {
+      "model": "unmapped-original-light-reference",
+      "browserFilename": "RACE-REF1-reference",
+      "referenceOnly": true
+    },
+    "REF2": {
+      "model": "unmapped-original-light-reference",
+      "browserFilename": "RACE-REF2-reference",
+      "referenceOnly": true
+    }
+  },
+  "packageActors": {
+    "SYZU": {
+      "label": "Shozo Mizuki",
+      "modelCode": "KOG_L",
+      "browserFilename": "KOG_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/KOG_L.CHRM",
+      "textureAssetPath": "play/assets/characters/KOG_textures.bin"
+    },
+    "BIKA": {
+      "label": "Takashi Watanabe",
+      "modelCode": "MJA_L",
+      "browserFilename": "MJA_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/MJA_L.CHRM",
+      "textureAssetPath": "play/assets/characters/MJA_textures.bin"
+    },
+    "BIKB": {
+      "label": "Takahiro Iwami",
+      "modelCode": "MJB_L",
+      "browserFilename": "MJB_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/MJB_L.CHRM",
+      "textureAssetPath": "play/assets/characters/MJB_textures.bin"
+    }
+  },
+  "actorTags": [
+    "LINT",
+    "LPOS",
+    "BIK1",
+    "BIK2",
+    "SYZU",
+    "AKIR",
+    "LGT1",
+    "LGT2",
+    "BIKB",
+    "BIKA",
+    "REF1",
+    "REF2"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/chicken-race/M_01CRA.MOTN",
+      "byteLength": 97464,
+      "sha256": "02cd266332de6bc6f78af5abbcf83e3ed6e2a07708022fd23277234014363142"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/chicken-race/M_01CRA.MOTN",
+      "byteLength": 97464,
+      "sha256": "02cd266332de6bc6f78af5abbcf83e3ed6e2a07708022fd23277234014363142"
+    },
+    {
+      "path": "play/assets/harbor/chicken-race/SEQDATA1.AUTH",
+      "byteLength": 77068,
+      "sha256": "9052de6c18123a7881b49d97d970378ff1e4e266e8663880268ccb8ee097254d"
+    },
+    {
+      "path": "play/assets/harbor/chicken-race/M_MBQC.MOTN",
+      "byteLength": 65132,
+      "sha256": "80fbaf6aa6d461af1585cc484ed56f083b87874990485e74d8dc2bfa2ae535d7"
+    },
+    {
+      "path": "play/assets/harbor/chicken-race/BIKK5DYG.CHRM",
+      "byteLength": 78828,
+      "sha256": "d4ced6b05104608f73665361f7b890d93627cd4125b1e3aee962397e7dc47b92"
+    },
+    {
+      "path": "play/assets/harbor/chicken-race/BIKS509G.CHRM",
+      "byteLength": 79140,
+      "sha256": "2a8e50af64c9d25d6b823ac129a5bdb4467b24eecfa28eff30ddf850b310e6dd"
+    },
+    {
+      "path": "play/assets/harbor/chicken-race/textures.bin",
+      "byteLength": 508656,
+      "sha256": "586e0079994b75233dbdadedbe6d9050e0b3a694820c4b34a68f124cc13274a9"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "RACE/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 77068,
+      "sha256": "9052de6c18123a7881b49d97d970378ff1e4e266e8663880268ccb8ee097254d",
+      "durationFrames": 1270,
+      "durationSeconds": 42.349998474121094,
+      "frameCount": 54,
+      "commandCounts": {
+        "camera": 1,
+        "move": 12,
+        "motion": 20,
+        "effect": 10,
+        "voice": 14,
+        "sound": 25
+      },
+      "actors": [
+        "LINT",
+        "LPOS",
+        "BIK1",
+        "BIK2",
+        "SYZU",
+        "AKIR",
+        "LGT1",
+        "LGT2",
+        "BIKB",
+        "BIKA",
+        "REF1",
+        "REF2"
+      ],
+      "motions": [
+        {
+          "actorTag": "SYZU",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "JIJ_RNP_AT0_NIGERU_LP_CHIKENRACE0_0100",
+          "startFrame": 55,
+          "endFrame": 114
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_TASUKERU_HUROUSYA_CHIKENRACE0_0100",
+          "startFrame": 89,
+          "endFrame": 90
+        },
+        {
+          "actorTag": "BIKB",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "OTH_BKA_AT1_IKEIKEBAIKU_FUKAISPECIAL_A_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "BIKA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "OTH_BKB_AT2_IKEIKEBAIKU_FUKAISPECIAL_B_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "SYZU",
+          "frame": 61,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "JIJ_RNP_AT0_NIGERU_LP_CHIKENRACE0_0100",
+          "startFrame": 41,
+          "endFrame": 55
+        },
+        {
+          "actorTag": "SYZU",
+          "frame": 76,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "JIJ_RNP_AT0_NIGERU_LP_CHIKENRACE0_0100",
+          "startFrame": 41,
+          "endFrame": 55
+        },
+        {
+          "actorTag": "SYZU",
+          "frame": 91,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "JIJ_RNP_AT0_NIGERU_LP_CHIKENRACE0_0100",
+          "startFrame": 41,
+          "endFrame": 70
+        },
+        {
+          "actorTag": "SYZU",
+          "frame": 121,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "JIJ_RNP_AT01_NIGERU_YOKERU_CHIKENRACE0_0100",
+          "startFrame": 11,
+          "endFrame": 110
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 121,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_TASUKERU_HUROUSYA_CHIKENRACE0_0100",
+          "startFrame": 90,
+          "endFrame": 189
+        },
+        {
+          "actorTag": "SYZU",
+          "frame": 221,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "JIJ_RNP_AT1_TASUKERU_HUROUSYA_CHIKENRACE0_0100",
+          "startFrame": 46,
+          "endFrame": 885
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 221,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_TASUKERU_HUROUSYA_CHIKENRACE0_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "BIKB",
+          "frame": 221,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "OTH_BKA_AT1_OIKAKERU_HUROUSYA_CHIKENRACE0_0100",
+          "startFrame": 515,
+          "endFrame": 967
+        },
+        {
+          "actorTag": "BIKA",
+          "frame": 221,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "OTH_BKB_AT2_TOMARU_SPINTURN_CHIKENRACE0_A_0100",
+          "startFrame": 279,
+          "endFrame": 280
+        },
+        {
+          "actorTag": "BIKA",
+          "frame": 273,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "OTH_BKB_AT2_TOMARU_SPINTURN_CHIKENRACE0_A_0100",
+          "startFrame": 280,
+          "endFrame": 342
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 320,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_TASUKERU_HUROUSYA_CHIKENRACE0_0100",
+          "startFrame": 1,
+          "endFrame": 741
+        },
+        {
+          "actorTag": "BIKA",
+          "frame": 336,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "OTH_BKB_AT2_TOMARU_SPINTURN_CHIKENRACE0_B_0100",
+          "startFrame": 369,
+          "endFrame": 706
+        },
+        {
+          "actorTag": "BIKB",
+          "frame": 674,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "OTH_BKA_AT1_OIKAKERU_HUROUSYA_CHIKENRACE0_0100",
+          "startFrame": 878,
+          "endFrame": 1318
+        },
+        {
+          "actorTag": "BIKA",
+          "frame": 674,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "OTH_BKB_AT2_TOMARU_SPINTURN_CHIKENRACE0_B_0100",
+          "startFrame": 596,
+          "endFrame": 1036
+        },
+        {
+          "actorTag": "SYZU",
+          "frame": 1061,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "JIJ_RNP_AT1_TASUKERU_HUROUSYA_CHIKENRACE0_0100",
+          "startFrame": 699,
+          "endFrame": 908
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1061,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_TASUKERU_HUROUSYA_CHIKENRACE0_0100",
+          "startFrame": 353,
+          "endFrame": 562
+        }
+      ]
+    }
+  ]
+}

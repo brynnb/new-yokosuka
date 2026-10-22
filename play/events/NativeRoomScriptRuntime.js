@@ -6,7 +6,14 @@ import {
 } from "./NativeIndexedRecordRuntime.js";
 import {
   createNativeClockRecordState,
+  nativeClockInitializationFields,
 } from "./NativeClockRecordRuntime.js";
+import { nativeArrivalFields } from "./NativeAreaRequestRuntime.js";
+import { NativeWeatherControllerState, NativeWeatherSchedule } from "../world/NativeWeatherSchedule.js";
+import nativeWeatherCatalog from "../data/shenmue1-native-weather.json" with { type: "json" };
+import { createNativeTypedTableSemanticHandlers } from "./NativeProgramDataRuntime.js";
+import { NativePersistentScriptBitState } from "./NativePersistentScriptBitState.js";
+
 import {
   createNativeActorMhndSemanticHandlers,
 } from "./NativeActorMhndRuntime.js";
@@ -223,6 +230,12 @@ import {
   createNativeOperation0193SemanticHandlers,
   createNativeOperation0193State,
 } from "./NativeOperation0193Runtime.js";
+import {
+  createNativeOperation01c7SemanticHandlers,
+  createNativeOperation01c7State,
+} from "./NativeOperation01c7Runtime.js";
+
+const nativeWeatherSchedule = new NativeWeatherSchedule(nativeWeatherCatalog);
 
 function stopped(reason) {
   return { status: "stopped", reason };
@@ -316,6 +329,7 @@ export class NativeRoomScriptRuntime {
     operation019e = {},
     operation015c = {},
     operation0193 = {},
+    operation01c7 = {},
     momtVectorSlot = {},
     associatedRecord = {},
     actorField = {},
@@ -359,6 +373,12 @@ export class NativeRoomScriptRuntime {
       || createNativeOperation015cState();
     this.operation0193State = operation0193.state
       || createNativeOperation0193State();
+    // Saved global state is owned by the personal session, not by an area.
+    // Leave it unavailable until cold startup or a saved import is explicit.
+    this.ownedOperation01c7State = operation01c7.state
+      || createNativeOperation01c7State();
+    this.getOperation01c7State = operation01c7.getState
+      || (() => this.ownedOperation01c7State);
     this.presentationControllerAdapter =
       createNativePresentationControllerFamilyAdapter(
         presentationController,
@@ -369,6 +389,7 @@ export class NativeRoomScriptRuntime {
     this.clockRecordState = createNativeClockRecordState({
       readAuthoritativeRecord: clockRecord.readNativeClockRecord,
     });
+    this.weatherControllerState = new NativeWeatherControllerState(nativeWeatherSchedule);
     const presentationControllerContext = (
       this.presentationControllerAdapter.applyRouteCallback
         ? {
@@ -385,8 +406,17 @@ export class NativeRoomScriptRuntime {
       ...createNativeSceneFieldRuntimeContext(sceneState),
       ...context,
       ...presentationControllerContext,
+      applyNativeWeatherControl: detail => {
+        try {
+          return this.weatherControllerState.apply(detail, () => this.clockRecordState.read());
+        } catch (error) {
+          return stopped({ kind: "native-weather-control-unavailable", message: error.message });
+        }
+      },
     };
     this.handlers = {
+      ...createNativeTypedTableSemanticHandlers(),
+      ...createNativeOperation01c7SemanticHandlers(operation01c7),
       ...createNativeDebugFormatSemanticHandlers(),
       ...createNativeClockRecordSemanticHandlers({
         readNativeClockRecord: () => this.clockRecordState.read(),
@@ -556,13 +586,34 @@ export class NativeRoomScriptRuntime {
     };
   }
 
-  eventContext() {
+  get operation01c7State() {
+    return this.getOperation01c7State();
+  }
+
+  eventContext(operation01c7State = this.operation01c7State) {
     // Area activation replaces stateful record containers. Rebuild their
     // context view at each event boundary so a program invoked for a native
     // area different from the rendered host world never writes stale records.
+    const token = this.activeTransaction?.token;
     return {
       ...this.context,
-      ...createNativeSceneFieldRuntimeContext(this.sceneState),
+      ...createNativeSceneFieldRuntimeContext(this.sceneState, {
+        operation01c7State,
+      }),
+      initializeInteractionManager: detail => {
+        if (!token) throw new Error("interaction initialization requires an active room transaction");
+        const active = this.requireTransaction(token);
+        const bits = detail.persistentBits;
+        if (!(bits instanceof NativePersistentScriptBitState)) throw new Error("native persistent script bits are unavailable");
+        if (active.interactionBitOwner && active.interactionBitOwner !== bits) {
+          throw new Error("interaction initialization persistent owner changed during the transaction");
+        }
+        if (!active.interactionBitOwner) {
+          active.interactionBitOwner = bits;
+          active.interactionBitSnapshot = bits.bytes.slice();
+        }
+        return this.sceneState.initializeInteractionManager(detail);
+      },
     };
   }
 
@@ -673,6 +724,7 @@ export class NativeRoomScriptRuntime {
       this.#clearRecoveredOperationState();
     }
     this.sceneState.initializeRoomRuntimeState();
+    this.operation018aState.initializeRoomPool();
     applyNativeRoomScriptProfile(this.sceneState, nextArea);
     this.activeArea = nextArea;
     return true;
@@ -696,6 +748,30 @@ export class NativeRoomScriptRuntime {
     this.#clearRecoveredOperationState();
     this.activeArea = null;
     return true;
+  }
+
+  applyArrival(arrival, { clockLoaderControlDword = null } = {}) {
+    if (this.activeTransaction) throw new Error("cannot apply a native arrival during a transaction");
+    const fields = nativeArrivalFields(arrival);
+    if (arrival.area !== this.activeArea) throw new Error("native arrival does not match the active room");
+    // Validate every input before publishing any bytes. A missing loader word
+    // leaves clock control unavailable rather than inventing a cold load.
+    const clockFields = clockLoaderControlDword === null ? []
+      : nativeClockInitializationFields({ scene: arrival.scene, loaderControlDword: clockLoaderControlDword });
+    for (const field of [...fields, ...clockFields]) this.sceneState.writeNativeField(field);
+    return { arrival: { scene: arrival.scene, area: arrival.area, entry: arrival.entry }, clockInitialized: clockFields.length > 0 };
+  }
+
+  readWeatherState() {
+    return this.weatherControllerState.synchronize(
+      this.sceneState.nativeOperation0174GlobalDword,
+      () => this.clockRecordState.read(),
+    );
+  }
+
+  readWeatherEnvironment() {
+    this.readWeatherState();
+    return this.weatherControllerState.readEnvironment();
   }
 
   #clearRecoveredOperationState() {
@@ -735,12 +811,17 @@ export class NativeRoomScriptRuntime {
     };
     const snapshot = this.sceneState.snapshot();
     const clockRecordSnapshot = this.clockRecordState.snapshot();
+    const operation01c7State = this.operation01c7State;
+    const operation01c7Snapshot = operation01c7State?.snapshot();
+    const operation018aSnapshot = this.operation018aState.snapshot();
+    const weatherSnapshot = this.weatherControllerState.snapshot();
     const token = Symbol("native-room-script-transaction");
     let transactionHandlers;
     let programOwnership;
     let programOwnershipBegan = false;
     let external;
     try {
+      if (transactionDetail.program?.staticData) this.sceneState.nativeProgramDataMemory.prepare(transactionDetail.program.staticData);
       transactionHandlers = this.createHandlers?.({
         ...transactionDetail,
         sceneState: this.sceneState,
@@ -798,10 +879,17 @@ export class NativeRoomScriptRuntime {
           "native room-script transaction adapters must be synchronous",
         );
       }
+      if (operation01c7State !== this.operation01c7State) {
+        throw new Error("native saved-state owner changed during transaction setup");
+      }
       this.activeTransaction = {
         token,
         snapshot,
         clockRecordSnapshot,
+        operation01c7Snapshot,
+        operation018aSnapshot,
+        weatherSnapshot,
+        operation01c7State,
         external,
         programOwnership,
         programOwnershipOpen: programOwnershipBegan,
@@ -812,6 +900,21 @@ export class NativeRoomScriptRuntime {
       };
     } catch (error) {
       const cleanupErrors = [];
+      try {
+        operation01c7State?.restore(operation01c7Snapshot);
+      } catch (cleanupError) {
+        cleanupErrors.push(cleanupError);
+      }
+      try {
+        this.operation018aState.restore(operation018aSnapshot);
+      } catch (cleanupError) {
+        cleanupErrors.push(cleanupError);
+      }
+      try {
+        this.weatherControllerState.restore(weatherSnapshot);
+      } catch (cleanupError) {
+        cleanupErrors.push(cleanupError);
+      }
       try {
         this.sceneState.restore(snapshot);
       } catch (cleanupError) {
@@ -861,7 +964,7 @@ export class NativeRoomScriptRuntime {
       throw error;
     }
     return {
-      context: this.eventContext(),
+      context: this.eventContext(operation01c7State),
       handlers: {
         ...this.semanticHandlers(),
         ...transactionHandlers,
@@ -911,6 +1014,7 @@ export class NativeRoomScriptRuntime {
       ? active.aseqFrameClock.consume(deltaSeconds)
       : 1;
     for (let tick = 0; tick < nativeTicks; tick += 1) {
+      this.sceneState.updateInteractionManager();
       this.sceneState.advanceSceneEightChannelTransition();
       const activityUpdate = this.sceneState
         .advanceNativeOperation0050Activity();
@@ -948,6 +1052,9 @@ export class NativeRoomScriptRuntime {
 
   commitTransaction(token, detail = {}) {
     const active = this.requireTransaction(token);
+    if (active.operation01c7State !== this.operation01c7State) {
+      throw new Error("native room-script personal save changed during transaction");
+    }
     if (this.sceneState.readNativeOperation0050Activity()) {
       throw new Error("cannot commit while an AUTH activity is active");
     }
@@ -994,6 +1101,29 @@ export class NativeRoomScriptRuntime {
     const active = this.requireTransaction(token);
     const activity = this.sceneState.readNativeOperation0050Activity();
     const cleanupErrors = [];
+    try {
+      // Restore the exact captured save object, never a newly hydrated player.
+      if (active.interactionBitOwner) active.interactionBitOwner.bytes.set(active.interactionBitSnapshot);
+    } catch (error) {
+      cleanupErrors.push(error);
+    }
+    try {
+      this.weatherControllerState.restore(active.weatherSnapshot);
+    } catch (error) {
+      cleanupErrors.push(error);
+    }
+    try {
+      this.operation018aState.restore(active.operation018aSnapshot);
+    } catch (error) {
+      cleanupErrors.push(error);
+    }
+    try {
+      // The session may have hydrated another character/receipt. Restore only
+      // the owner this transaction captured, never whichever object is current.
+      active.operation01c7State?.restore(active.operation01c7Snapshot);
+    } catch (error) {
+      cleanupErrors.push(error);
+    }
     if (activity) {
       try {
         if (

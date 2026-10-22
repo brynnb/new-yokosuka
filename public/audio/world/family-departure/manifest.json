@@ -1,0 +1,562 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/A0180.AFS",
+      "sha256": "03ddc7938efbf2f207f138e7b6ca38c5f5b7296e9267e4b4ddc301fe30eff17d"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_KSTAB.SND",
+      "sha256": "a6084db822026733c6f89ac738b9d584d2aec2c624351fb6d5fb50620934799a"
+    },
+    "authManifest": "play/assets/hazuki/family-departure/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#family-departure"
+  },
+  "voices": [
+    {
+      "voiceId": "A0180A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SOUND/A0180A001.aiff",
+      "nativeMember": "A0180A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 2048,
+      "nativeSha256": "c97a71cdb1c994bd3a94922cc3ba583f684a419e57c138c4d80362c35c0a1062",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-departure/voice/A0180A001.wav",
+      "byteLength": 7980,
+      "sha256": "b68d2a53446cbe046280c70fa951ec48ea829a6c117128c3b6e58c6d335cab56"
+    },
+    {
+      "voiceId": "A0180A002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SOUND/A0180A002.aiff",
+      "nativeMember": "A0180A002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 16384,
+      "nativeSha256": "3058f2be3ca0cc022bd52d5b2102b26525b9870c72e4a67a3605115897ecb8b4",
+      "speakerId": "AKIR",
+      "sourceText": "Fuku-san=@",
+      "displayText": "Fuku-san...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 77
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-departure/voice/A0180A002.wav",
+      "byteLength": 65324,
+      "sha256": "84e4737b3e19c35603794a66b55886a8ee32c4dffbc0d1800693ee78d009d17c"
+    },
+    {
+      "voiceId": "A0180B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SOUND/A0180B001.aiff",
+      "nativeMember": "A0180B001.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 6144,
+      "nativeSha256": "dfc2fbb4194ca34fe62173179aafa23ff1924bb01f8481ea5bab294ee4ad2ded",
+      "speakerId": "FUKU",
+      "sourceText": "Ryo-san!",
+      "displayText": "Ryo-san!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-departure/voice/A0180B001.wav",
+      "byteLength": 24364,
+      "sha256": "de3252664fc8c8019ace887177d28fdb82944efc0110104fc54167da4e4a3286"
+    },
+    {
+      "voiceId": "A0180B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SOUND/A0180B002.aiff",
+      "nativeMember": "A0180B002.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 10240,
+      "nativeSha256": "ba901e08960b8b9ea9edf1831aebb7546722e1f522d32da58354dc37f961f1cc",
+      "speakerId": "FUKU",
+      "sourceText": "Here. It's for you=@",
+      "displayText": "Here. It's for you...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-departure/voice/A0180B002.wav",
+      "byteLength": 40748,
+      "sha256": "ae81c6ce02b19a08fb3b026492781b1ed08194fba384e949cc32ffa523c1ff74"
+    },
+    {
+      "voiceId": "A0180B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SOUND/A0180B003.aiff",
+      "nativeMember": "A0180B003.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 28672,
+      "nativeSha256": "3cd4789d5df83e0b54f7c285a9189acd1ec73658bb1e6ac7a917255e949be7fa",
+      "speakerId": "FUKU",
+      "sourceText": "From Ine-san and=@＆it's not much, but=@from me.",
+      "displayText": "From Ine-san and...\nit's not much, but...from me.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 30
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 39
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-departure/voice/A0180B003.wav",
+      "byteLength": 114476,
+      "sha256": "d13ab0e3c472b7899d4c97ddb75c42518b322518e24a0121d58b65689038ddf5"
+    },
+    {
+      "voiceId": "A0180B004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SOUND/A0180B004.aiff",
+      "nativeMember": "A0180B004.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 18432,
+      "nativeSha256": "3ab54832a953774a6aa2d3d3863f9280efb27a5b3ee05fda92d44aa7f67298a2",
+      "speakerId": "FUKU",
+      "sourceText": "Take care and＆come back in one piece.",
+      "displayText": "Take care and\ncome back in one piece.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 25
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 19
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-departure/voice/A0180B004.wav",
+      "byteLength": 73516,
+      "sha256": "94b98030b3bca9f0b852563cc0027d2f6bbb2ffc9995c761edfe3fe34a410d54"
+    },
+    {
+      "voiceId": "A0180B005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SOUND/A0180B005.aiff",
+      "nativeMember": "A0180B005.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 4096,
+      "nativeSha256": "97b4926faf217ffa552694b42b042a1fe8fcb1089fb80228a76885339c53de80",
+      "speakerId": "FUKU",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/family-departure/voice/A0180B005.wav",
+      "byteLength": 16172,
+      "sha256": "de0d2de30840ab3428f773596c9d46f3d792ea92077c3c7566a7cffa14c00d4a"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/cloths/Frictionocloth.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-departure/sfx/a9040000.wav",
+      "byteLength": 9340,
+      "sha256": "8dca84d251204794535b028bcfb7736f9fdf88b28b431333aef2f78f7c6746d6"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-departure/sfx/a9040100.wav",
+      "byteLength": 6332,
+      "sha256": "330bdb0e2cfc33ce4a4a2a365ebbaa61ff5fdd87ac1ba53ad2b002fc279fa35f"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-departure/sfx/a9040200.wav",
+      "byteLength": 6364,
+      "sha256": "6d29c9f2a7824dcf4d32f630d5666f9bf5b8017e74523b481b70fc3359d4f0ae"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-departure/sfx/a9040300.wav",
+      "byteLength": 4620,
+      "sha256": "37dfbfe8060355474f64f6251f91f7ed85ccdde6bad65ba3a187f476598be64a"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-departure/sfx/a9040300.wav",
+      "byteLength": 4620,
+      "sha256": "37dfbfe8060355474f64f6251f91f7ed85ccdde6bad65ba3a187f476598be64a"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-departure/sfx/a9040400.wav",
+      "byteLength": 6516,
+      "sha256": "7546d6348f402f78efd615445defe0ff65c759bb57ea162b2eb7e946fb10ae70"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-departure/sfx/a9040500.wav",
+      "byteLength": 5924,
+      "sha256": "68824e7cb06011362c8212303076969dd47171b5de9f23053502f4cc5ffb058f"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/door/slidedoor3.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-departure/sfx/a9040700.wav",
+      "byteLength": 70084,
+      "sha256": "8a846ddc10fa8d20866b73b231fef8195039e9354eed7c60a81a216e9fe6441d"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/door/slidedoor4.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-departure/sfx/a9040800.wav",
+      "byteLength": 41620,
+      "sha256": "041bcb3d9c49fe971df93715d11bb26e7e28a6f7f6ebfd7c9de62452079a4874"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/0180/SE/foot/Step2.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/family-departure/sfx/a9040900.wav",
+      "byteLength": 3548,
+      "sha256": "6432ed70987b71e94d77fb2ca055e7577a7642d0c7143e460c1e78ecb06ed055"
+    }
+  ]
+}

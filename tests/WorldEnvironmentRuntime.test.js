@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   WorldEnvironmentRuntime,
 } from "../play/world/WorldEnvironmentRuntime.js";
+import { ThirdPersonController } from "../src/ThirdPersonController.js";
 
 function createRuntime({ environment = {}, lighting = {} } = {}) {
   const calls = [];
@@ -47,8 +48,10 @@ function createRuntime({ environment = {}, lighting = {} } = {}) {
     setWorldDate: () => calls.push("date"),
     updateDebugClock: () => calls.push("debug"),
     showDayRollover: () => calls.push("rollover"),
-    getMovementLocked: () => false,
-    setMovementLocked: value => calls.push(["locked", value]),
+    acquireMovementLock: () => {
+      calls.push(["locked", true]);
+      return () => calls.push(["locked", false]);
+    },
     updateSceneLighting: () => calls.push("scene-lighting"),
     applyTimeOfDay: value => calls.push(["time", value]),
     updateModelVisibility: () => calls.push("visibility"),
@@ -82,6 +85,76 @@ test("environment synchronization applies changed time, season, and weather once
   ]);
 });
 
+test("native Story environment projects through shared lighting while cutscene and fixed worlds retain ownership", () => {
+  const { runtime } = createRuntime();
+  const applied = [];
+  runtime.applyTimeOfDayLighting = blend => applied.push(blend);
+  let reads = 0;
+  runtime.getNativeWeatherEnvironment = () => {
+    reads += 1;
+    return { lightingOverride: { dirDiffuse: [.9, .8, .7] }, sky: { imagePath: "/textures/sky/air61.png" } };
+  };
+  runtime.synchronize();
+  assert.deepEqual(applied.at(-1).lightingOverride, { dirDiffuse: [.9, .8, .7] });
+  assert.equal(applied.at(-1).skyTextureUrl, "/textures/sky/air61.png");
+  runtime.getCutsceneLightingPreset = () => 3;
+  runtime.getCutsceneLightingOverride = () => ({ dirIntensity: .1 });
+  runtime.synchronize();
+  assert.equal(reads, 1, "cutscene ownership does not sample/mutate the Story environment");
+  assert.equal(applied.at(-1).presetIndex, 3);
+  assert.deepEqual(applied.at(-1).lightingOverride, { dirIntensity: .1 });
+  assert.equal(applied.at(-1).skyTextureUrl, undefined);
+  runtime.getCutsceneLightingPreset = () => null;
+  for (const world of [{ id: "s2", assetFormat: "MT7" }, { id: "fixed", fixedWeather: "clear" }]) {
+    runtime.getWorld = () => world;
+    runtime.synchronize();
+    assert.equal(reads, 1);
+    assert.equal(applied.at(-1).lightingOverride, undefined);
+    assert.equal(applied.at(-1).skyTextureUrl, undefined);
+  }
+});
+
+test("native dry-volume ownership follows effective precipitation and clears in other worlds", () => {
+  const { runtime } = createRuntime();
+  const exclusions = [];
+  const rain = [{ vertices: [[2, 2], [0, 2], [0, 0], [2, 0]], lower: -1, upper: 3 }];
+  runtime.weather.setNativeExclusions = volumes => exclusions.push(volumes);
+  runtime.getNativeWeatherEnvironment = () => ({ precipitationExclusions: { rain, snow: [] } });
+  runtime.synchronize();
+  assert.deepEqual(exclusions.at(-1), rain);
+  runtime.getCutscenePrecipitation = () => "clear";
+  runtime.synchronize();
+  assert.deepEqual(exclusions.at(-1), []);
+  runtime.getCutscenePrecipitation = () => null;
+  runtime.getWorld = () => ({ id: "s2", assetFormat: "MT7" });
+  runtime.synchronize();
+  assert.deepEqual(exclusions.at(-1), []);
+});
+
+test("native story weather reuses shared presentation without changing lighting or indoor exposure", () => {
+  const { runtime, calls, sceneState } = createRuntime();
+  let channels = { cloud: 1, rain: 0, snow: 0 };
+  let world = { id: "interior", interior: true };
+  runtime.getNativeWeather = () => channels;
+  runtime.getWorld = () => world;
+  runtime.synchronize();
+  assert.equal(sceneState.currentWeather, "overcast");
+  assert.equal(sceneState.currentTimeOfDay, 2);
+  assert.deepEqual(calls.filter(c => Array.isArray(c) && c[0] === "weather").at(-1), ["weather", "clear"]);
+  channels = { cloud: 1, rain: 1, snow: 0 };
+  world = { id: "dobuita", interior: false };
+  runtime.synchronize();
+  assert.deepEqual(calls.filter(c => Array.isArray(c) && c[0] === "weather").at(-1), ["weather", "rain"]);
+  channels = { cloud: 0, rain: 0, snow: 0 };
+  world = { id: "fixed", fixedWeather: "snow" };
+  assert.equal(runtime.capture(world).environment.weather, "rain", "fixed worlds keep the clock's resolved policy");
+  world = { id: "s2", assetFormat: "MT7" };
+  assert.equal(runtime.capture(world).environment.weather, "rain", "S1 curves must not leak into S2 worlds");
+  runtime.getNativeWeather = () => null;
+  world = { id: "free-roam" };
+  assert.equal(runtime.capture(world).environment.weather, "rain", "uninitialized/free-roam keeps server weather");
+});
+
 test("shot lighting survives periodic clock updates and disappears when released", () => {
   const { runtime } = createRuntime();
   let index = 3;
@@ -107,6 +180,28 @@ test("day rollover temporarily owns and restores the movement lock", async () =>
     "rollover",
     ["locked", false],
   ]);
+});
+
+test("date-overlay completion cannot restore a stale lock over a completed or newer event", async () => {
+  for (const eventFirst of [true, false]) {
+    const { runtime } = createRuntime();
+    const player = Object.assign(Object.create(ThirdPersonController.prototype), {
+      movementLocked: false, manualMovementLocked: false, movementLockOwners: new Set(),
+      keys: new Set(), clearTouchMovement() {},
+    });
+    runtime.acquireMovementLock = () => player.acquireMovementLock();
+    let finish;
+    runtime.showDayRolloverOverlay = () => new Promise(resolve => { finish = resolve; });
+    const dateOverlay = runtime.showDayRollover(new Date("1986-12-05T08:30:00Z"));
+    const releaseEvent = player.acquireMovementLock();
+    if (eventFirst) releaseEvent();
+    finish(false);
+    await dateOverlay;
+    assert.equal(player.movementLocked, !eventFirst);
+    if (!eventFirst) releaseEvent();
+    assert.equal(player.movementLocked, false);
+    assert.equal(player.movementLockOwners.size, 0);
+  }
 });
 
 test("disposing the environment stops its synchronization timer", () => {

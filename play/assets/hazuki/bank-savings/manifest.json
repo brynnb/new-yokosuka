@@ -1,0 +1,160 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "01BNK.AUTH",
+        "path": "disc2/SCENE/02/JOMO/MAPINFO.BIN",
+        "sourceOffset": 659188,
+        "sourceSha256": "6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe",
+        "byteLength": 26476,
+        "sha256": "e6664ffb1698433742c5877e389fe8376455959ad4ffd0a1f54fad0126376101"
+      },
+      {
+        "name": "M_01BK.MOTN",
+        "path": "disc2/SCENE/02/JOMO/COMMON02.PKS",
+        "sourceSha256": "916aab45137cf340516a1cdd2ee61540e7c6562a1e92c5f932e9055ae0db3b89",
+        "archiveMember": "M_01BK.MOTN",
+        "byteLength": 10544,
+        "sha256": "5601ff6d9cebf5a6a2ad125cb5ab3d427e319a17bcc364718f148ddbcd61ae9e"
+      },
+      {
+        "name": "BNKT2DBG.MT5",
+        "path": "disc2/SCENE/02/JOMO/BNKT2DBG.MT5",
+        "byteLength": 57340,
+        "sha256": "1ba59f425eb7cd90f598a4571569c3eefd4fa530dab65c5876edc7f6283a72f5"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "01BNK",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/bank-savings/manifest.json",
+  "sceneObjects": {
+    "BANK": {
+      "model": "BNKT2DBG",
+      "browserFilename": "BNKT2DBG.MT5",
+      "assetPath": "play/assets/hazuki/bank-savings/BNKT2DBG.MT5",
+      "textureAssetPath": "play/assets/hazuki/bank-savings/textures.bin"
+    }
+  },
+  "packageActors": {},
+  "actorTags": [
+    "BANK",
+    "AKIR"
+  ],
+  "motionBanks": [
+    {
+      "bank": 24,
+      "path": "play/assets/hazuki/bank-savings/M_01BK.MOTN",
+      "byteLength": 10544,
+      "sha256": "5601ff6d9cebf5a6a2ad125cb5ab3d427e319a17bcc364718f148ddbcd61ae9e",
+      "sequenceIndexBase": 0
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/bank-savings/M_01BK.MOTN",
+      "byteLength": 10544,
+      "sha256": "5601ff6d9cebf5a6a2ad125cb5ab3d427e319a17bcc364718f148ddbcd61ae9e"
+    },
+    {
+      "path": "play/assets/hazuki/bank-savings/01BNK.AUTH",
+      "byteLength": 26476,
+      "sha256": "e6664ffb1698433742c5877e389fe8376455959ad4ffd0a1f54fad0126376101"
+    },
+    {
+      "path": "play/assets/hazuki/bank-savings/BNKT2DBG.MT5",
+      "byteLength": 57340,
+      "sha256": "1ba59f425eb7cd90f598a4571569c3eefd4fa530dab65c5876edc7f6283a72f5"
+    },
+    {
+      "path": "play/assets/hazuki/bank-savings/textures.bin",
+      "byteLength": 887856,
+      "sha256": "beb2e42435de652039a07464fab9b3b8c718e5352995c46ef7bca3f9ca054b52",
+      "source": {
+        "path": "disc2/SCENE/02/JOMO/MPK00.PKF",
+        "sha256": "6dd037556b29ba3731f0c1e9a3013ad5e84ec67a07b04f2185f5fb3338588888"
+      }
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "01BNK/01BNK.AUTH",
+      "archiveMember": "01BNK.AUTH",
+      "byteLength": 26476,
+      "sha256": "e6664ffb1698433742c5877e389fe8376455959ad4ffd0a1f54fad0126376101",
+      "durationFrames": 756,
+      "durationSeconds": 25.21666717529297,
+      "frameCount": 10,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 5,
+        "sound": 3,
+        "voice": 2
+      },
+      "actors": [
+        "BANK",
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 24,
+          "sequenceIndex": 1,
+          "motionName": "AKI_LETTER_TORU_0105",
+          "startFrame": 80,
+          "endFrame": 200
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 122,
+          "motionBank": 24,
+          "sequenceIndex": 2,
+          "motionName": "AKI_LETTER_YOMU_LP_0105",
+          "startFrame": 1,
+          "endFrame": 45
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 167,
+          "motionBank": 24,
+          "sequenceIndex": 3,
+          "motionName": "AKI_NAMIDAGUMU_KOTTOYA_0116",
+          "startFrame": 60,
+          "endFrame": 168
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 276,
+          "motionBank": 24,
+          "sequenceIndex": 2,
+          "motionName": "AKI_LETTER_YOMU_LP_0105",
+          "startFrame": 1,
+          "endFrame": 90
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 366,
+          "motionBank": 24,
+          "sequenceIndex": 3,
+          "motionName": "AKI_NAMIDAGUMU_KOTTOYA_0116",
+          "startFrame": 169,
+          "endFrame": 559
+        }
+      ]
+    }
+  ]
+}

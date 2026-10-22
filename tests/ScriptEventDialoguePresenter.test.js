@@ -20,7 +20,9 @@ function element() {
 function optionsElement() {
   const children = [];
   const document = {
+    addEventListener(){},removeEventListener(){},
     createElement: () => ({
+      dataset:{},
       listeners: {},
       addEventListener(type, listener) { this.listeners[type] = listener; },
       focus() { this.focused = true; },
@@ -35,6 +37,85 @@ function optionsElement() {
     querySelector() { return children.find(child => !child.disabled) || null; },
   };
 }
+
+test("challenge prompts own their tokens, touch buttons and timeout lifetime", async () => {
+  const calls=[];
+  const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options:optionsElement(),
+    onChallengeResponse:(...args)=>calls.push(args)});
+  const token="a".repeat(32);
+  presenter.showChallenge({id:"s1.heartbeats.alley",label:"Defend yourself",token,index:0,count:2,ready:false});
+  await Promise.resolve();assert.deepEqual(calls,[["challenge_ready",token]]);
+  presenter.showChallenge({id:"s1.heartbeats.alley",label:"Defend yourself",token,ready:true});
+  const stale=presenter.dom.options.children[0].listeners.click;
+  presenter.dom.options.children.find(b=>b.dataset.challengeButton==="B").listeners.click({detail:0});
+  assert.equal(calls.length,1); // No per-button network traffic.
+  presenter.dom.options.children.find(b=>b.dataset.challengeButton==="A").listeners.click({detail:0});
+  assert.deepEqual(calls.at(-1),["challenge_result",token,"success"]);
+  presenter.hide();stale();assert.equal(calls.length,2);
+  assert.equal(presenter.qte,null);
+});
+
+test("combat controls retain focus between snapshots and reject old-attempt clicks", () => {
+  const calls=[];
+  const root=element(),options=optionsElement();
+  const presenter=createScriptEventDialoguePresenter({root,speaker:element(),sourceText:element(),japaneseText:element(),options,
+    onCombatAction:action=>calls.push(action),onCombatGuard:guard=>calls.push(guard)});
+  const view={label:"Fight",token:"a".repeat(32),ready:true,actors:[{tag:"AKIR",health:100,maxHealth:100},{tag:"TONY",health:28}]};
+  presenter.showCombat(view);
+  const [punch,,,chord,guard]=options.children;
+  assert.equal(chord.textContent,"Punch + Kick");
+  chord.listeners.click();assert.deepEqual(calls.pop(),["hand","plus","leg"]);
+  presenter.showCombat({...view,sequence:2,practice:true,remainingMs:29500});
+  assert.match(presenter.dom.sourceText.textContent,/Practice · 30 seconds remaining/);
+  assert.doesNotMatch(presenter.dom.sourceText.textContent,/Opponents/);
+  assert.equal(options.children[0],punch);
+  punch.listeners.click();guard.listeners.pointerdown({pointerId:1});
+  assert.deepEqual(calls.slice(-2),["hand",true]);
+  presenter.hide();presenter.showCombat({...view,token:"b".repeat(32)});
+  const count=calls.length;
+  punch.listeners.click();guard.listeners.pointerup();
+  assert.equal(calls.length,count);
+  assert.equal(root.attributes.get("data-presentation"),"combat");
+  presenter.hide();assert.equal(root.attributes.get("data-presentation"),"dialogue");
+});
+
+test("directional QTEs share keyboard/touch routing and duplicate snapshots do not restart timing",()=>{
+  const calls=[],options=optionsElement();
+  const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options,
+    onChallengeResponse:(...args)=>calls.push(args)});
+  const prompt={id:"s1.tatq.charlie",label:"Defend yourself",token:"a".repeat(32),index:0,count:2,ready:true,button:"Left",deadlineMs:2000,serverTimeMs:0};
+  presenter.showChallenge(prompt);
+  assert.ok(options.children.some(b=>b.dataset.challengeButton==="Left"));
+  presenter.challengeKeyHandler({key:"ArrowLeft",repeat:false,preventDefault(){},stopImmediatePropagation(){}});
+  assert.equal(calls.length,0);assert.match(presenter.dom.sourceText.textContent,/Press A/);
+  const deadline=presenter.qte.active.deadline;
+  presenter.showChallenge(prompt);assert.equal(presenter.qte.active.index,1);assert.equal(presenter.qte.active.deadline,deadline);
+  const old=presenter.challengeKeyHandler;presenter.hide();old({key:"ArrowLeft"});
+  assert.equal(calls.length,0);
+  assert.throws(()=>presenter.showChallenge({...prompt,id:"not-registered"}),/Invalid challenge prompt/);
+  presenter.hide();
+});
+
+test("move lessons cannot silently fall back to QTE input",()=>{
+  const calls=[],options=optionsElement();
+  const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options,
+    onChallengeResponse:(...args)=>calls.push(args)});
+  const prompt={id:"s1.mend.swallow-flip",label:"Swallow Flip",token:"c".repeat(32),index:1,count:3,ready:true,button:"X",deadlineMs:2000,serverTimeMs:0};
+  assert.throws(()=>presenter.showChallenge(prompt),/Invalid challenge prompt/);
+  assert.equal(calls.length,0);
+});
+
+test("reinforcements show the authoritative defeat count, not ally health or model-pool size",()=>{
+  const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options:optionsElement()});
+  const actors=[{tag:"AKIR",health:63,maxHealth:100},{tag:"KISY",team:"ally",health:1},{tag:"R001",health:18},{tag:"STSI",inactive:true,health:110}];
+  const view={label:"Mad Angels",token:"a".repeat(32),ready:true,actors,totalOpponents:70,defeated:24,wave:4,waveCount:10,waveLabel:"Shingo Murasaki arrives",intro:true};
+  presenter.showCombat(view);
+  assert.match(presenter.dom.sourceText.textContent,/Defeated: 24\/70/);
+  assert.match(presenter.dom.sourceText.textContent,/Group 4\/10 — Shingo Murasaki arrives \(arriving\)/);
+  assert.doesNotMatch(presenter.dom.sourceText.textContent,/Opponents/);
+  presenter.showCombat({...view,totalOpponents:undefined});
+  assert.match(presenter.dom.sourceText.textContent,/Opponents: 1/);presenter.hide();
+});
 
 test("line presentation requires an explicit known speaker and permits optional voice", () => {
   assert.deepEqual(scriptEventLinePresentation({

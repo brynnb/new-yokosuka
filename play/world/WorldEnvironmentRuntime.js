@@ -1,3 +1,5 @@
+import { WORLD_WEATHER_NAMES } from "./WorldClock.js";
+
 export class WorldEnvironmentRuntime {
   constructor({
     clock,
@@ -15,14 +17,15 @@ export class WorldEnvironmentRuntime {
     setWorldDate,
     updateDebugClock,
     showDayRollover,
-    getMovementLocked,
-    setMovementLocked,
+    acquireMovementLock,
     updateSceneLighting,
     applyTimeOfDay,
     updateModelVisibility,
     updateMapLayer,
     applyTimeOfDayLighting,
     applyWaterTimeOfDay,
+    getNativeWeather = () => null,
+    getNativeWeatherEnvironment = () => null,
   }) {
     this.clock = clock;
     this.weather = weather;
@@ -39,14 +42,15 @@ export class WorldEnvironmentRuntime {
     this.setWorldDate = setWorldDate;
     this.updateDebugClock = updateDebugClock;
     this.showDayRolloverOverlay = showDayRollover;
-    this.getMovementLocked = getMovementLocked;
-    this.setMovementLocked = setMovementLocked;
+    this.acquireMovementLock = acquireMovementLock;
     this.updateSceneLighting = updateSceneLighting;
     this.applyTimeOfDay = applyTimeOfDay;
     this.updateModelVisibility = updateModelVisibility;
     this.updateMapLayer = updateMapLayer;
     this.applyTimeOfDayLighting = applyTimeOfDayLighting;
     this.applyWaterTimeOfDay = applyWaterTimeOfDay;
+    this.getNativeWeather = getNativeWeather;
+    this.getNativeWeatherEnvironment = getNativeWeatherEnvironment;
     this.lastCalendarDay = null;
     this.rolloverController = null;
     this.timer = null;
@@ -70,7 +74,19 @@ export class WorldEnvironmentRuntime {
   }
 
   capture(world) {
-    const environment = this.clock.environmentState(world);
+    let environment = this.clock.environmentState(world);
+    const nativeWeather = world?.assetFormat === "MT7" ? null : this.getNativeWeather();
+    if (nativeWeather && !world?.fixedWeather) {
+      // Reuse the established browser renderer's four weather categories.
+      // Native curves/controls are exact; continuous cloud opacity, native
+      // particle intensity and forecast sprites are not represented here yet.
+      const weather = nativeWeather.snow > 0 ? "snow"
+        : nativeWeather.rain > 0 ? "rain"
+          : nativeWeather.cloud > 0 ? "overcast" : "clear";
+      const exposed = world?.weatherExposure === "outdoor" || world?.interior !== true;
+      environment = { ...environment, weather, weatherIndex: WORLD_WEATHER_NAMES.indexOf(weather),
+        precipitation: exposed ? weather : "clear" };
+    }
     const seasonChanged =
       this.sceneState.currentSeason !== environment.seasonIndex;
     const weatherChanged = (
@@ -87,8 +103,7 @@ export class WorldEnvironmentRuntime {
     if (this.rolloverController || !this.getReady() || this.isSwitching()) return;
     const controller = new AbortController();
     this.rolloverController = controller;
-    const movementWasLocked = this.getMovementLocked();
-    this.setMovementLocked(true);
+    const releaseMovementLock = this.acquireMovementLock();
     try {
       await this.showDayRolloverOverlay(
         this.getWorld(),
@@ -98,8 +113,8 @@ export class WorldEnvironmentRuntime {
     } finally {
       if (this.rolloverController === controller) {
         this.rolloverController = null;
-        this.setMovementLocked(movementWasLocked);
       }
+      releaseMovementLock();
     }
   }
 
@@ -141,8 +156,12 @@ export class WorldEnvironmentRuntime {
     const { serverDate, date, blend: clockBlend } =
       this.clock.lightingState(world);
     const cutscenePreset = this.getCutsceneLightingPreset();
+    const nativeEnvironment = cutscenePreset !== null || this.isolatedStageOwners.size
+      || world?.assetFormat === "MT7" || world?.fixedWeather
+      ? null : this.getNativeWeatherEnvironment();
     const lightingBlend = cutscenePreset === null
-      ? clockBlend
+      ? nativeEnvironment ? { ...clockBlend, lightingOverride: nativeEnvironment.lightingOverride,
+        skyTextureUrl: nativeEnvironment.sky?.imagePath ?? null } : clockBlend
       : {
         fromIndex: cutscenePreset,
         toIndex: cutscenePreset,
@@ -176,7 +195,9 @@ export class WorldEnvironmentRuntime {
       this.updateMapLayer(date, presetChanged || seasonChanged);
       // Precipitation is separate from surface variants: a later shot can
       // retain settled snow on the ground without inheriting falling flakes.
-      this.weather.apply(this.getCutscenePrecipitation() ?? environment.precipitation);
+      const precipitation = this.getCutscenePrecipitation() ?? environment.precipitation;
+      this.weather.setNativeExclusions?.(nativeEnvironment?.precipitationExclusions?.[precipitation] ?? []);
+      this.weather.apply(precipitation);
       this.applyTimeOfDayLighting(lightingBlend);
       this.applyWaterTimeOfDay(this.getWater(), lightingBlend);
     }

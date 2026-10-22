@@ -1,0 +1,193 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA3.AUTH",
+        "path": "disc3/SCENE/03/MFSY/MARU_LET.PKS",
+        "sourceSha256": "49b859b07413108e9ed5726a28ad48ca91e723053602b1642e35e8a631287fa0",
+        "archiveMember": "SEQDATA3.AUTH",
+        "byteLength": 10052,
+        "sha256": "39dfef99802beba993b706223e78cca433932d46be7acf27515deecf53534c54"
+      },
+      {
+        "name": "M_01CAU.MOTN",
+        "path": "disc3/SCENE/03/MFSY/MARU_LET.PKS",
+        "sourceSha256": "49b859b07413108e9ed5726a28ad48ca91e723053602b1642e35e8a631287fa0",
+        "archiveMember": "M_01CAU.MOTN",
+        "byteLength": 134292,
+        "sha256": "df0d21b9acd83e3e1078b20ec49d0daa0db48d55bef753b31eaeda7415a2f8d5"
+      },
+      {
+        "name": "FUTS5KBG.CHRM",
+        "path": "disc3/SCENE/03/MFSY/MARU_LET.PKS",
+        "sourceSha256": "49b859b07413108e9ed5726a28ad48ca91e723053602b1642e35e8a631287fa0",
+        "archiveMember": "FUTS5KBG.CHRM",
+        "byteLength": 908,
+        "sha256": "2fcb9adea9c9bc825113ae3b9bb2183a5a43886dad853a7447e31d3acfce479c"
+      },
+      {
+        "name": "KMMS500G.CHRM",
+        "path": "disc3/SCENE/03/MFSY/MARU_LET.PKS",
+        "sourceSha256": "49b859b07413108e9ed5726a28ad48ca91e723053602b1642e35e8a631287fa0",
+        "archiveMember": "KMMS500G.CHRM",
+        "byteLength": 984,
+        "sha256": "2191aa792a8ec8c888b0808fc148fa4671ffd2bdda800a8fed4d01802550c80d"
+      },
+      {
+        "name": "MAPALP.MAPD",
+        "path": "disc3/SCENE/03/MFSY/ALPHA.PKS",
+        "sourceSha256": "d05201b595601a36e2da5df6cc5e817bf1c72927e76ab82d3318ca3cd71f099a",
+        "archiveMember": "MAPALP.MAPD",
+        "byteLength": 97724,
+        "sha256": "e7cc167b5d4791494806d221d8ffdd3ee08dac1d1b9b52a2737e76e8a07b1c81"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-harbor-work.md",
+    "resourceName": "MARU_LET",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/warning-letter/manifest.json",
+  "sceneObjects": {
+    "ROOM": {
+      "model": "MAPALP",
+      "browserFilename": "MAPALP.MAPD",
+      "assetPath": "play/assets/harbor/warning-letter/MAPALP.MAPD",
+      "textureAssetPath": "play/assets/harbor/warning-letter/alpha-textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "packageActors": {
+    "TMRA": {
+      "label": "Ryozo Yada",
+      "modelCode": "KWD_L",
+      "browserFilename": "KWD_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/KWD_L.CHRM",
+      "textureAssetPath": "play/assets/characters/KWD_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "TMRA"
+  ],
+  "motionBanks": [
+    {
+      "bank": 18,
+      "path": "play/assets/harbor/warning-letter/M_01CAU.MOTN",
+      "byteLength": 134292,
+      "sha256": "df0d21b9acd83e3e1078b20ec49d0daa0db48d55bef753b31eaeda7415a2f8d5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/warning-letter/M_01CAU.MOTN",
+      "byteLength": 134292,
+      "sha256": "df0d21b9acd83e3e1078b20ec49d0daa0db48d55bef753b31eaeda7415a2f8d5"
+    },
+    {
+      "path": "play/assets/harbor/warning-letter/SEQDATA3.AUTH",
+      "byteLength": 10052,
+      "sha256": "39dfef99802beba993b706223e78cca433932d46be7acf27515deecf53534c54"
+    },
+    {
+      "path": "play/assets/harbor/warning-letter/FUTS5KBG.CHRM",
+      "byteLength": 908,
+      "sha256": "2fcb9adea9c9bc825113ae3b9bb2183a5a43886dad853a7447e31d3acfce479c"
+    },
+    {
+      "path": "play/assets/harbor/warning-letter/KMMS500G.CHRM",
+      "byteLength": 984,
+      "sha256": "2191aa792a8ec8c888b0808fc148fa4671ffd2bdda800a8fed4d01802550c80d"
+    },
+    {
+      "path": "play/assets/harbor/warning-letter/MAPALP.MAPD",
+      "byteLength": 97724,
+      "sha256": "e7cc167b5d4791494806d221d8ffdd3ee08dac1d1b9b52a2737e76e8a07b1c81"
+    },
+    {
+      "path": "play/assets/harbor/warning-letter/alpha-textures.bin",
+      "byteLength": 430464,
+      "sha256": "c91ac800b9c7f60379ecae4f27e908e616becf18b9fb3b1542fb11b3fc4fba53"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "MARU_LET/SEQDATA3.AUTH",
+      "archiveMember": "SEQDATA3.AUTH",
+      "byteLength": 10052,
+      "sha256": "39dfef99802beba993b706223e78cca433932d46be7acf27515deecf53534c54",
+      "durationFrames": 1400,
+      "durationSeconds": 46.68333435058594,
+      "frameCount": 56,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2,
+        "effect": 10,
+        "sound": 35,
+        "voice": 13
+      },
+      "actors": [
+        "AKIR",
+        "TMRA"
+      ],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "ROOM",
+          "presented": true
+        }
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 18,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT1_MORAU_MEMO_KISYOUNOMEMO0_0100",
+          "startFrame": 71,
+          "endFrame": 1440
+        },
+        {
+          "actorTag": "TMRA",
+          "frame": 1,
+          "motionBank": 18,
+          "sequenceIndex": 4,
+          "motionName": "YKI_YAD_AT1_MORAU_MEMO_KISYOUNOMEMO0_0100",
+          "startFrame": 71,
+          "endFrame": 1440
+        }
+      ]
+    }
+  ]
+}

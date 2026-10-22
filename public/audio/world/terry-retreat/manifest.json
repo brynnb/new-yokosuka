@@ -1,0 +1,540 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01TLYB.AFS",
+      "sha256": "e8e2237cbad017b553e1403f3de03bcfb7a422e437e2d93e2d25b89815e0bef9"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_TERYB.SND",
+      "sha256": "b958790c04e40b331e1614db329ea848ce75d60e61e27740a3b1c2cfbe5d642e"
+    },
+    "authManifest": "play/assets/harbor/terry-retreat/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#night-confrontation"
+  },
+  "voices": [
+    {
+      "voiceId": "01TLYBA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SOUND/01TLYBA001.aiff",
+      "nativeMember": "01TLYBA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 10240,
+      "nativeSha256": "a3e0a757db035e86c3c8ac12be1aee99e2793c4feb084a7158497dfa5d6f4984",
+      "speakerId": "AKIR",
+      "sourceText": "That's low, Terry.",
+      "displayText": "That's low, Terry.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-retreat/voice/01TLYBA001.wav",
+      "byteLength": 40748,
+      "sha256": "3acff2f8b3bad7dd099dafb2043f7535ea41f8fe7fbb194359b0000eb773fa3a"
+    },
+    {
+      "voiceId": "01TLYBA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SOUND/01TLYBA002.aiff",
+      "nativeMember": "01TLYBA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 4096,
+      "nativeSha256": "943e54949c005249a6f48e7fb3f4a3c26de34b3f59cdc6e5b0fefd7ababd8bea",
+      "speakerId": "AKIR",
+      "sourceText": "Wait!",
+      "displayText": "Wait!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-retreat/voice/01TLYBA002.wav",
+      "byteLength": 16172,
+      "sha256": "3af5db12f4840d8576df4e447b52999faeb139b52c560de67c6933b446beae51"
+    },
+    {
+      "voiceId": "01TLYBB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SOUND/01TLYBB002.aiff",
+      "nativeMember": "01TLYBB002.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 38912,
+      "nativeSha256": "55d06b610198076e2a031c533751d967eecfb5533d07b904c2b86c9b5c59f6fb",
+      "speakerId": "TERY",
+      "sourceText": "Hah! You like me that much?＆Let me invite you to hell!",
+      "displayText": "Hah! You like me that much?\nLet me invite you to hell!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 26
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-retreat/voice/01TLYBB002.wav",
+      "byteLength": 155436,
+      "sha256": "23ab40e26c65a97ce0fb0d06b717ebf9886bdb3f185f06242730bb362ac88d26"
+    },
+    {
+      "voiceId": "01TLYBC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SOUND/01TLYBC001.aiff",
+      "nativeMember": "01TLYBC001.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 12288,
+      "nativeSha256": "ddd0e6cfb816cfb5c06e407beda581e3cbdf6151eaa5d9f8eb7ad965878ea22f",
+      "speakerId": "KISY",
+      "sourceText": "I will make you pay.",
+      "displayText": "I will make you pay.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 33
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/terry-retreat/voice/01TLYBC001.wav",
+      "byteLength": 48940,
+      "sha256": "75f599e6b207f92ff88e539057322944f9cb28c66eeac4d162032d75af79c50f"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/cloths2/cloths01.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040000.wav",
+      "byteLength": 20916,
+      "sha256": "9ba29a5ab2fe22c69473ae00e7b3089de123d7ee9f0de866cee5cbdadd59f9f2"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/cloths2/cloths02.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040100.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/cloths2/friction4.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040200.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040400.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/footconcrete/raryashi03.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040500.wav",
+      "byteLength": 8460,
+      "sha256": "b4b2eb101defbec225e76c30167bfba86df6c7652c6d94618a91a94094f52d5e"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/foot2/RENASHI1.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040600.wav",
+      "byteLength": 8492,
+      "sha256": "1ee47a0bf5d545b53b8ab965a997e306f3d27b03323373a9b0b1a7433cdf6f06"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040700.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040800.wav",
+      "byteLength": 5412,
+      "sha256": "64fa0eff3320191bd9befe41d84a45f91d48ae9a9c821c8aac766ce9b3fcf3f3"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040900.wav",
+      "byteLength": 6364,
+      "sha256": "a087e557bddc12e1ca7a20b8ad3ee5e15dfa88ad4531cbba9c0b85b9367c66af"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040a00.wav",
+      "byteLength": 4620,
+      "sha256": "b777d818c86e674e40a080c0aabb21e31a54b732828322cdb9b9288dd4184907"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 11,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040b00.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 12,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040c00.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/footconcrete/ryostop.aiff",
+      "playbackId": 13,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040d00.wav",
+      "byteLength": 5756,
+      "sha256": "05c07313de0f68551e883b8dc407d6e00f876ae71bc1feea96bd1fd1d031f6c2"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/footconcrete/ryotatisari02.aiff",
+      "playbackId": 14,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040e00.wav",
+      "byteLength": 10060,
+      "sha256": "12ef83aba4f98235b2e46028a285dfceccd4715ecf29d7768b2e75d76a30e134"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYB/SE/footconcrete/won07.aiff",
+      "playbackId": 15,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/terry-retreat/sfx/a9040f00.wav",
+      "byteLength": 3068,
+      "sha256": "9d8450210cecfa2e82a9b7032c1bb2e1fc1342f4c61c224cf1e249bbdd8183e0"
+    }
+  ]
+}

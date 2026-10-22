@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { NativeStoryRuntime } from "../play/scripts/NativeStoryRuntime.js";
+import { createNativeDialoguePersistence } from "../play/dialogue/NativeDialoguePersistence.js";
 
 function createRuntime() {
   const calls = [];
@@ -26,6 +27,7 @@ function createRuntime() {
     roomScripts: {
       sceneState,
       activateArea: area => calls.push(["activate", area]),
+      applyArrival: arrival => calls.push(["arrival", arrival]),
       deactivateArea: () => calls.push("deactivate"),
     },
     scriptedEvents: {
@@ -105,6 +107,13 @@ test("story world activation and clearing preserve subsystem order", () => {
   ]);
 });
 
+test("original arrival is installed before room composition, without inferring it from asset names", () => {
+  const { calls, runtime } = createRuntime();
+  const arrival = { scene: 1, area: "JOMO", entry: 1 };
+  runtime.activateWorld({ id: "interior", nativeArea: "JOMO", prefix: "S2_JOMO" }, [], null, { nativeArrival: arrival });
+  assert.deepEqual(calls.slice(0, 3), [["activate", "JOMO"], ["arrival", arrival], "compose"]);
+});
+
 test("automatic story updates receive one explicit native context", () => {
   const { calls, runtime } = createRuntime();
   runtime.updateAutomatic({
@@ -138,6 +147,24 @@ test("startup ownership spans scene loading gaps without stopping authored playb
   opening = false;
   assert.equal(runtime.ownsPlayerPresentation, false);
   assert.equal(runtime.presentationActive, false);
+  runtime.eventController.ownsPlayerPresentation = true;
+  assert.equal(runtime.ownsPlayerPresentation, true, "authored Yarn staging also owns the camera and actor pose");
   runtime.updateAutomatic({ world: { nativeArea: "JOMO" }, enabled: true });
   assert.equal(calls.at(-1)[1].enabled, true);
+});
+
+test("story runtime applies receipts and invalidates state on malformed receipts or disposal", t => {
+  t.mock.method(console, "error", () => {});
+  const { runtime, calls } = createRuntime();
+  runtime.dialoguePersistence = createNativeDialoguePersistence({ saveSnapshot: async () => assert.fail("unexpected save") });
+  const saved = runtime.dialoguePersistence.hydrate(null).toJSON();
+  saved.revision = 1;
+  assert.equal(runtime.applyScriptSettlement({ nativeDialogue: saved }), true);
+  assert.equal(runtime.dialoguePersistence.snapshot.revision, 1);
+  assert.equal(runtime.applyScriptSettlement({ nativeDialogue: { revision: 2 } }), false);
+  assert.equal(runtime.dialoguePersistence.snapshot, null);
+  assert.deepEqual(calls.at(-1), ["reset", "invalid-story-settlement"]);
+  runtime.applyDialogueState(saved);
+  runtime.dispose();
+  assert.equal(runtime.dialoguePersistence.snapshot, null);
 });

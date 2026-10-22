@@ -12,6 +12,7 @@ import { YOU_ARCADE_INTERACTIONS } from "../config/arcadeFixtures.js";
 import { MJQ_POOL_INTERACTION } from "../config/pool.js";
 import { VOID_RESET_HEIGHT } from "../config/locations.js";
 import { isPersistentPlayerWorld } from "../state/PlayerPersistence.js";
+import { effectiveAvatar } from "../account/PlayModeSession.js";
 import { bindShenmue2NativeDoors } from "./Shenmue2NativeDoors.js";
 import {
   createArcadeInteractionAnchors,
@@ -218,7 +219,7 @@ export class PlayWorldLifecycle {
     }
   }
 
-  async initializeLoadedWorld({ world, environment, loaded, signal }) {
+  async initializeLoadedWorld({ world, environment, loaded, signal, nativeArrival = null }) {
     if (this.playerRuntime.prepareWorld) await this.playerRuntime.prepareWorld(world, signal);
     this.worldRuntime.ensureLoadActive(signal);
     const controller = this.getController();
@@ -226,7 +227,7 @@ export class PlayWorldLifecycle {
     this.worldEnvironment.setWeatherOccluders(this.sceneState.currentMeshes);
     this.worldEnvironment.applyWeather(environment.precipitation);
     await this.nativeStoryRuntime.activateWorld(
-      world, this.sceneState.currentMeshes, signal,
+      world, this.sceneState.currentMeshes, signal, { nativeArrival },
     );
     this.worldRuntime.ensureLoadActive(signal);
     this.playerRuntime.syncFootwear();
@@ -292,7 +293,7 @@ export class PlayWorldLifecycle {
         ? null
         : this.worldRuntime.activeWorld.id,
       {
-        preserveTemporary: this.audio.ninePmMusicCue
+        preserveTemporary: this.audio.dailyMusicCue
           .isEligible(this.worldRuntime.activeWorld.id),
       },
     );
@@ -314,7 +315,12 @@ export class PlayWorldLifecycle {
   }
 
   syncCombat() {
-    const active = this.worldRuntime.activeWorld === this.worlds.mfbt;
+    // The same original streets now host authored Story fights. Exploration's
+    // local practice encounter must not run beside the server-owned encounter
+    // or display its controls over a story film. Mode changes re-sync via the
+    // existing WorldRuntime selection boundary, even when the map is unchanged.
+    const active = this.worldRuntime.activeWorld === this.worlds.mfbt
+      && this.accountSession?.character?.playMode !== "story";
     this.dom.app.classList.toggle("combat-mode", active);
     this.playerRuntime.combat?.setActive(active);
   }
@@ -381,6 +387,11 @@ export class PlayWorldLifecycle {
     if (!loaded) throw new Error(`Could not return to ${snapshot.world.label || snapshot.world.id}.`);
     // select() normally grounds travel arrivals. A preview must also preserve
     // an exact elevated/no-clip position, plus the player's independent camera.
+    this.restorePlayerPose(snapshot);
+  }
+
+  restorePlayerPose(snapshot) {
+    if(this.worldRuntime.activeWorld!==snapshot.world||this.playerRuntime.activeCharacterId!==snapshot.avatarId)throw new Error("Player pose return context changed");
     this.resetPlayer(this.vectorFromArray(snapshot.position), snapshot.yaw, {
       persist: false, snapToTerrain: false,
     });
@@ -394,6 +405,7 @@ export class PlayWorldLifecycle {
   async initialize({
     initialWorldOverride = null,
     initialPlacement = null,
+    initialNativeArrival = null,
     fetchServerState = true,
     persistInitialLocation = true,
     reveal = true,
@@ -409,7 +421,7 @@ export class PlayWorldLifecycle {
       ? serverSavedWorld
       : null;
     const savedAvatar = savedCharacter
-      ? this.characterById.get(savedCharacter.avatarId)
+      ? this.characterById.get(effectiveAvatar(savedCharacter))
       : null;
     const savedLocation = savedWorld ? {
       world: savedWorld,
@@ -453,6 +465,7 @@ export class PlayWorldLifecycle {
       persistLocation: false,
       reveal,
       loadingPresentation,
+      nativeArrival: initialNativeArrival ?? initialPlacement?.nativeArrival ?? null,
     });
     if (this.multiplayerRuntime.sessionReplaced) return;
     if (!loaded && !this.getController()) {

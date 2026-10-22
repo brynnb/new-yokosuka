@@ -1,15 +1,15 @@
 # World time, lighting, seasons, and variants
 
 This document is the canonical description of New Yokosuka's current world
-clock and its browser presentation on `main`. It covers the Shenmue I
+clock and its browser presentation. It covers the Shenmue I
 reconstruction. Shenmue II time, season, weather, and scene-variant behavior
 must remain game-specific until its original data and runtime rules are
 established.
 
-This public clock is deliberately not a player's Shenmue story timeline. The
-[MMO narrative adaptation policy](../design/shenmue1-narrative-adaptation.md)
-requires native story-date predicates to be converted into named personal
-narrative phases rather than evaluated against this synchronized calendar.
+Free roam uses the shared public clock. Story instead receives the player's
+saved personal calendar and pause state from server `internal/worldstate/personal.go`.
+Other players may therefore see different dates and weather. Named personal
+milestones drive Story progress; the public calendar must not advance them.
 
 The implementation deliberately separates three kinds of claim:
 
@@ -45,7 +45,7 @@ When prose disagrees with these files and their tests, the implementation is
 the authority for current New Yokosuka behavior. That does not automatically
 make every implementation value a proven original Shenmue constant.
 
-## Authoritative server clock
+## Authoritative Free roam server clock
 
 The Go server owns the shared calendar used by `/play`. `Clock.Snapshot()`
 publishes the server and game timestamps, active-day bounds, day progress,
@@ -142,9 +142,94 @@ also reports a discrete index chosen at each blend's midpoint.
 | 19:45–20:30 | Evening to night blend | Evening before 20:07:30, then night |
 | 20:30 onward | Night | Night |
 
-Sunset currently begins at 18:00 on every calendar date. Seasonal sunset times,
-continuous native weather, and story-controlled calendar restrictions are not
-implemented.
+These are the shared **Free roam** blend rules. `/play` additionally caps Free
+roam lighting at 19:45, retaining the evening preset afterward. Its sunset
+begins at 18:00 on every calendar date. Story uses the separate source-backed
+calendar presentation below; neither mode invents monthly sunset times.
+
+### Story calendar, evening and weather
+
+Story uses its saved full-day clock (00:00–24:00), including explicit sleep and
+scripted time transitions. Paused snapshots hold time; offline time does not
+advance it. The four-real-minutes-per-game-hour rate is unchanged.
+
+Unlike Free roam, Story does not use the 19:45 lighting cap. It samples the
+original calendar weather and WAIR light/sky tables through `WorldClock`, even
+when an authored event has not created a native weather owner. Clear-sky dusk
+starts at **16:30**, the night sky at **18:00**, and Nightfall music at **19:00**.
+Weather depends on the personal date; the recovered sky boundaries do not
+vary by month. Browser light intensity remains an approximation using the
+existing presets over source-table time anchors. See the
+[source verification and policy boundaries](../research/story-evening.md).
+
+### Native room weather controls
+
+S1 room operation `0x0176(1,0)` samples the original `SPRITE/WEATHER.BIN`
+cloud, rain and snow curves at the staged seven-byte native clock and clears
+the freeze flag. A nonzero second operand sets the freeze flag without changing
+the values. `0x0174(1,1)` enables subsequent clock-driven updates. These controls
+are session-owned and roll back with failed or cancelled room transactions.
+Unknown initial state is not treated as an authored clear-weather instruction.
+
+The catalog contains 414 `CLUD`, 298 `RAIN` and 153 `SNOW` packed words.
+The executable interpolates packed date integers, not elapsed minutes, using
+float32 arithmetic. The independently stored 143 `FCAS` words remain opaque.
+The auxiliary WIT4 curve is recovered separately from two executable words;
+both have zero intensity. It is not a reinterpretation of FCAS.
+Regenerate and validate the catalog from your own disc and the reviewed executable:
+
+```sh
+python3 -m tools.worlds.extract_shenmue1_weather
+python3 -m tools.worlds.extract_shenmue1_weather --check
+```
+
+`NativeWeatherSchedule` owns decoding and controller state;
+`WorldEnvironmentRuntime` reuses the normal weather renderer in Story mode.
+This is a categorical projection: nonzero snow selects snow, otherwise nonzero
+rain selects rain, otherwise nonzero cloud selects overcast. Fixed-weather
+scenes, free roam and MT7/S2 worlds retain their existing policies. Indoor
+precipitation is still suppressed. Native particle intensities,
+forecast sprites, explicit override modes and the original
+minute-ahead 120-tick smoothing are not implemented. This integration does not
+establish that every native weather-control route executes live. The authored
+Story calendar presentation above does not depend on those routes executing.
+
+Room operation `0x0175(1)` creates a session-owned 100-byte `WAIR` environment
+owner only when absent. It samples the clock and weather without unfreezing
+weather or replacing the WDAT date cache. Its four original clear/cloud/rain/snow
+tables contain forty 100-byte time-keyed records. `NativeWeatherEnvironment`
+decodes those records, reproduces their midnight wrap and packed-color
+interpolation, and selects the six original `SCROLL` sky resources. Sky updates
+retain the source threshold asymmetry and hysteresis. Freezing weather does not
+freeze WAIR's time-of-day clock when the global updater is enabled.
+
+Modes 2 and 27 release/reselect the owner; mode 15 writes the effects flag;
+modes 21/23/24/25 clear or enable the original global mask bits. The mask starts
+at the executable's `0x1fff`, is not recreated on each room load, and rolls back
+with the owner, channels and applied projection when a room transaction fails.
+Releasing WAIR does not reset already-applied global lighting or sky.
+
+The shared browser lighting path projects the authored direct-light RGB and
+selected primary sky PNG. The existing PNGs are verified pixel-for-pixel against
+their original disc textures. Browser light intensities/directions, weather
+attenuation and sky-dome geometry remain existing policies; this is not the full
+native solar/fog/particle renderer. The second cloud/rain texture strip and native
+sprite fade timing are not reproduced. Cutscene lighting and isolated stages
+retain ownership; MT7/S2, fixed-weather worlds and Free roam are unchanged.
+
+`0x0179(38)` supplies a four-vertex dry volume and lower/upper heights to existing
+kind-one `FIXC` weather fields. It is an exclusion, not an event trigger or a
+restriction on where rain may spawn. The field is owned separately from WAIR;
+its default factory flags and density are recovered from the executable.
+Authored writes replace the existing rain (both native layers), snow and splash
+component volume. Empty lists and missing components receive no delayed write.
+The original height padding is float word `0x3dcccccc`; Y boundaries are inclusive
+and X/Z boundaries use strictly negative float32 cross-products, retaining the
+authored winding. The browser uses the same predicate after mirroring native X,
+alongside its physical-roof collision test. Failed/cancelled room transactions
+restore the field; mode/world changes clear the renderer's previous exclusions.
+Native particle spawn/retry timing, the splash renderer and the separate second
+volume commands remain incomplete presentation capabilities.
 
 ### Visual presets
 
@@ -358,8 +443,8 @@ MAP-layer rules, and the world-state HTTP contract.
   applied.
 - Sunset does not vary by date or season.
 - Server-configured winter is not yet connected to `/play` rendering.
-- The original story-constrained calendar and weather system are not
-  reproduced. This is intentional for personal story progression; original
-  date predicates are narrative-authoring evidence, not public runtime gates.
+- The original story-constrained calendar is not yet reproduced. Source-backed
+  S1 cloud/rain/snow curves and refresh/freeze controls have a partial Story-mode
+  projection described above; native weather presentation is not fully reproduced.
 - Not every numbered MAP layer has a proven time, season, or story-state owner;
   unresolved layers must not be classified from appearance or proximity alone.

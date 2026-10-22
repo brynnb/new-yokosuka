@@ -14,6 +14,8 @@ export class SelectionMenus {
     onCutscene,
     onEmote,
     onCharacter,
+    onPlayMode,
+    onStoryWait,
     onSelectionCommitted,
   }) {
     this.initialState = {
@@ -25,6 +27,8 @@ export class SelectionMenus {
       onCutscene,
       onEmote,
       onCharacter,
+      onPlayMode,
+      onStoryWait,
       onSelectionCommitted,
     };
   }
@@ -73,4 +77,6 @@ export class SelectionMenus {
   setCharacterDisabled(characterDisabled) {
     useSidebarStore.setState({ characterDisabled });
   }
+
+  setPlayModeState(update) { useSidebarStore.setState(update); }
 }

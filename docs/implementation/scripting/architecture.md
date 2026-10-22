@@ -24,8 +24,14 @@ original assets and executable
   -> explicit completion, cancellation, or diagnostic stop
 ```
 
-The browser does not flatten an event into a list of visual effects. Native
-control flow and operation results determine ordering and branching.
+The retained native path does not flatten an event into a list of visual
+effects: its control flow and operation results determine ordering and
+branching. New connected Story progression instead uses walkthrough-guided,
+authored Yarn orchestration with original presentation assets. Native room
+controller reconstruction is not a prerequisite. See the current
+[Story event template and coverage](../../design/story-event-template.md).
+Both paths reuse shared presentation; a translated event has one authoritative
+settlement path, not two competing writable story systems.
 
 ## State model
 

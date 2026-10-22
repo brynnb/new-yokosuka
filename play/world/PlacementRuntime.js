@@ -212,21 +212,25 @@ export class PlacementRuntime {
             transition: objectTransition,
           });
         }
-        if (placement.runtime?.nativeStaticTransition === true) {
-          const staticDoorTransition = mapTransitionForDoor({
-            worldId,
-            objectTag: placement.runtime?.objectTag,
-            model,
-            doorSelector: placement.runtime?.doorSelector,
-          });
-          if (!staticDoorTransition) {
-            throw new Error(
-              `Missing static transition route for ${worldId}:${model}.`,
-            );
-          }
+        const doorTransition = mapTransitionForDoor({
+          worldId,
+          objectTag: placement.runtime?.objectTag,
+          model,
+          doorSelector: placement.runtime?.doorSelector,
+        });
+        if (placement.runtime?.nativeStaticTransition === true && !doorTransition) {
+          throw new Error(
+            `Missing static transition route for ${worldId}:${model}.`,
+          );
+        }
+        if (doorTransition) {
+          // Verified physical-door destinations apply to ordinary animated
+          // doors too. Requiring the proxy-only flag sends those entrances
+          // into old closed-check scripts whose dispatcher numbers are not
+          // physical selectors (Russiya/selector 1 exposed this mismatch).
           this.setMetadata(root, "interactiveMapTransition", {
             root,
-            transition: staticDoorTransition,
+            transition: doorTransition,
           });
         }
         const behavior = jomoObjectBehavior(

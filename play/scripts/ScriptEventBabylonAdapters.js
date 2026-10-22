@@ -14,12 +14,16 @@ export class ScriptEventBabylonAdapters {
     getPlayerPosition,
     beginCameraPresentation,
     abortCameraPresentation,
-    getMovementLocked,
-    setMovementLocked,
+    acquireMovementLock,
     startActivity,
     cancelActivity,
     telephoneRuntime = null,
     motionCueRuntime = null,
+    sceneStagingRuntime = null,
+    combatRuntime = null,
+    navigationRuntime = null,
+    drivingRuntime = null,
+    vehicleChallengeRuntime = null,
   } = {}) {
     if (
       typeof cameraRuntime?.beginTransaction !== "function"
@@ -29,8 +33,7 @@ export class ScriptEventBabylonAdapters {
       || typeof getPlayerPosition !== "function"
       || typeof beginCameraPresentation !== "function"
       || typeof abortCameraPresentation !== "function"
-      || typeof getMovementLocked !== "function"
-      || typeof setMovementLocked !== "function"
+      || typeof acquireMovementLock !== "function"
       || typeof startActivity !== "function"
       || typeof cancelActivity !== "function"
     ) {
@@ -54,8 +57,7 @@ export class ScriptEventBabylonAdapters {
     this.getPlayerPosition = getPlayerPosition;
     this.beginCameraPresentation = beginCameraPresentation;
     this.abortCameraPresentation = abortCameraPresentation;
-    this.getMovementLocked = getMovementLocked;
-    this.setMovementLocked = setMovementLocked;
+    this.acquireMovementLock = acquireMovementLock;
     this.startActivityAdapter = startActivity;
     this.cancelActivityAdapter = cancelActivity;
     if (
@@ -82,6 +84,11 @@ export class ScriptEventBabylonAdapters {
       throw new TypeError("Babylon script adapters received an incomplete motion-cue runtime");
     }
     this.motionCueRuntime = motionCueRuntime;
+    this.sceneStagingRuntime = sceneStagingRuntime;
+    this.combatRuntime=combatRuntime;
+    this.navigationRuntime=navigationRuntime;
+    this.drivingRuntime=drivingRuntime;
+    this.vehicleChallengeRuntime=vehicleChallengeRuntime;
   }
 
   adapter() {
@@ -109,6 +116,18 @@ export class ScriptEventBabylonAdapters {
       update: (transaction, deltaSeconds) => (
         this.update(transaction, deltaSeconds)
       ),
+      showCombat:(view,transaction)=>this.combatRuntime.show(view,transaction),
+      endCombat:transaction=>this.combatRuntime.finish(transaction),
+      showNavigation:(prompt,transaction)=>this.navigationRuntime.show(prompt,transaction),
+      endNavigation:transaction=>this.navigationRuntime.finish(transaction),
+      showDriving:(prompt,transaction)=>this.drivingRuntime.show(prompt,transaction),
+      endDriving:transaction=>this.drivingRuntime.finish(transaction),
+      showForkliftChallenge:(prompt,transaction)=>this.vehicleChallengeRuntime.show(prompt,transaction),
+      endForkliftChallenge:transaction=>this.vehicleChallengeRuntime.finish(transaction),
+      ownsPlayerPresentation: transaction => Boolean(transaction.cameraToken || this.combatRuntime?.active?.transaction===transaction
+        || this.navigationRuntime?.active?.transaction===transaction
+        || this.drivingRuntime?.active?.transaction===transaction
+        || this.sceneStagingRuntime?.active?.transaction === transaction),
       commit: transaction => this.commit(transaction),
       rollback: (transaction, reason) => this.rollback(transaction, reason),
     };
@@ -131,11 +150,8 @@ export class ScriptEventBabylonAdapters {
     const transaction = {
       area,
       actor,
-      actorFacingState: actor
-        ? this.scheduledActors.dialogueFacingState(actor.instanceId)
-        : null,
-      actorFacingRestored: false,
-      movementLocked: this.getMovementLocked(),
+      actorFacingStates: new Map(),
+      releaseMovementLock: this.acquireMovementLock(),
       cameraToken: null,
       playerMotionToken: null,
       playerXmptToken: null,
@@ -144,7 +160,6 @@ export class ScriptEventBabylonAdapters {
       pendingActivity: null,
       context: { ...context },
     };
-    this.setMovementLocked(true);
     return transaction;
   }
 
@@ -177,7 +192,9 @@ export class ScriptEventBabylonAdapters {
   }
 
   lookAtActor(request, transaction) {
-    const actor = transaction.actor;
+    const actor = transaction.actor?.actorCode === request.actorCode
+      ? transaction.actor
+      : this.scheduledActors.dialogueActor(request.actorCode);
     if (
       !actor
       || request.actorCode !== actor.actorCode
@@ -185,6 +202,12 @@ export class ScriptEventBabylonAdapters {
     ) return false;
     const target = this.getPlayerPosition();
     if (!finitePosition(target)) return false;
+    // Each participant retains its own prior facing. Restaurant and barber
+    // conversations can address both spouses; cancellation restores both.
+    if (!transaction.actorFacingStates.has(actor.instanceId)) {
+      transaction.actorFacingStates.set(actor.instanceId,
+        this.scheduledActors.dialogueFacingState(actor.instanceId));
+    }
     return this.scheduledActors.setDialogueFacingTarget(
       actor.instanceId,
       target,
@@ -196,13 +219,17 @@ export class ScriptEventBabylonAdapters {
   }
 
   clearActorLook(request, transaction) {
-    const actor = transaction.actor;
+    const actor = transaction.actor?.actorCode === request.actorCode
+      ? transaction.actor
+      : this.scheduledActors.dialogueActor(request.actorCode);
     if (!actor || request.actorCode !== actor.actorCode) return false;
-    this.restoreActorFacing(transaction);
-    return true;
+    return this.restoreActorFacing(transaction, actor.instanceId);
   }
 
   playSequence(sequence, transaction) {
+    if (sequence.kind === "scene-staging-start" || sequence.kind === "scene-staging-transition" || sequence.kind === "scene-staging-finish") {
+      return this.sceneStagingRuntime?.play(sequence, transaction) ?? false;
+    }
     if (
       sequence.kind === "actor-motion-cue-start"
       || sequence.kind === "actor-motion-cue-finish"
@@ -273,6 +300,11 @@ export class ScriptEventBabylonAdapters {
   }
 
   update(transaction, deltaSeconds) {
+    if(this.combatRuntime?.update(transaction,deltaSeconds)===false)return false;
+    if(this.navigationRuntime?.update(transaction,deltaSeconds)===false)return false;
+    if(this.drivingRuntime?.update(transaction,deltaSeconds)===false)return false;
+    if(this.vehicleChallengeRuntime?.update(transaction,deltaSeconds)===false)return false;
+    if (this.sceneStagingRuntime?.update(transaction, deltaSeconds) === false) return false;
     if (transaction.cameraToken) this.cameraRuntime.update(deltaSeconds);
     if (
       this.telephoneRuntime
@@ -282,7 +314,6 @@ export class ScriptEventBabylonAdapters {
       this.motionCueRuntime
       && this.motionCueRuntime.update(transaction, deltaSeconds) !== true
     ) return false;
-    this.setMovementLocked(true);
     const pending = transaction.pendingMotion;
     if (
       pending
@@ -297,13 +328,20 @@ export class ScriptEventBabylonAdapters {
   }
 
   commit(transaction) {
+    if(this.combatRuntime?.active?.transaction===transaction)throw new Error("Combat presentation has not released ownership");
+    if(this.navigationRuntime?.active?.transaction===transaction)throw new Error("Navigation presentation has not released ownership");
+    if(this.drivingRuntime?.active?.transaction===transaction)throw new Error("Driving presentation has not released ownership");
+    if(this.vehicleChallengeRuntime?.active?.transaction===transaction)throw new Error("Forklift challenge has not released ownership");
     if (transaction.pendingMotion || transaction.pendingActivity) {
       throw new Error("script presentation committed during an unfinished operation");
     }
     this.telephoneRuntime?.assertSettled(transaction);
     this.motionCueRuntime?.assertSettled(transaction);
-    this.restoreActorFacing(transaction);
+    if (this.sceneStagingRuntime?.active?.transaction === transaction) {
+      throw new Error("script presentation committed before scene staging cleanup");
+    }
     try {
+      this.restoreActorFacing(transaction);
       if (transaction.cameraToken) {
         this.cameraRuntime.commitTransaction(transaction.cameraToken);
       }
@@ -314,11 +352,30 @@ export class ScriptEventBabylonAdapters {
         ? this.playerMotionRuntime.commitTransaction(transaction.playerMotionToken)
         : true;
     } finally {
-      this.setMovementLocked(transaction.movementLocked);
+      transaction.releaseMovementLock();
     }
   }
 
   rollback(transaction) {
+    try {
+      return this.rollbackOwnedPresentation(transaction);
+    } finally {
+      transaction.releaseMovementLock();
+    }
+  }
+
+  rollbackOwnedPresentation(transaction) {
+    let sceneCleanupError = null;
+    try { this.combatRuntime?.finish(transaction); }
+    catch (error) { sceneCleanupError = error; }
+    try { this.navigationRuntime?.finish(transaction); }
+    catch (error) { sceneCleanupError ||= error; }
+    try { this.drivingRuntime?.finish(transaction); }
+    catch (error) { sceneCleanupError ||= error; }
+    try { this.vehicleChallengeRuntime?.finish(transaction); }
+    catch (error) { sceneCleanupError ||= error; }
+    try { this.sceneStagingRuntime?.cancel(transaction); }
+    catch (error) { sceneCleanupError ||= error; }
     this.telephoneRuntime?.cancel(transaction);
     this.motionCueRuntime?.cancel(transaction);
     if (transaction.pendingActivity) {
@@ -338,32 +395,30 @@ export class ScriptEventBabylonAdapters {
         this.cameraRuntime.rollbackTransaction(transaction.cameraToken);
       }
     } finally {
-      try {
-        if (transaction.playerXmptToken) {
-          this.playerXmptRuntime.rollbackTransaction(
-            transaction.playerXmptToken,
-          );
-        }
-        if (transaction.playerMotionToken) {
+      if (transaction.playerXmptToken) {
+        this.playerXmptRuntime.rollbackTransaction(
+          transaction.playerXmptToken,
+        );
+      }
+      if (transaction.playerMotionToken) {
         this.playerMotionRuntime.rollbackTransaction(
           transaction.playerMotionToken,
         );
-        }
-      } finally {
-        this.setMovementLocked(transaction.movementLocked);
       }
     }
+    if (sceneCleanupError) throw sceneCleanupError;
     return true;
   }
 
-  restoreActorFacing(transaction) {
-    if (!transaction.actor || transaction.actorFacingRestored) return false;
-    this.scheduledActors.restoreDialogueFacingState(
-      transaction.actor.instanceId,
-      transaction.actorFacingState,
-    );
-    transaction.actorFacingRestored = true;
-    return true;
+  restoreActorFacing(transaction, instanceId = null) {
+    let restored = false;
+    for (const [id, state] of transaction.actorFacingStates) {
+      if (instanceId && id !== instanceId) continue;
+      this.scheduledActors.restoreDialogueFacingState(id, state);
+      transaction.actorFacingStates.delete(id);
+      restored = true;
+    }
+    return restored;
   }
 }
 

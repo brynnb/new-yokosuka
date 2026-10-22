@@ -1,0 +1,27 @@
+-> Start the morning race
+    <<jump Race>>
+-> Leave it for now
+    <<jump Done>>
+===
+title: Race
+---
+<<start_challenge "s1.ma00.morning-race">>
+<<if challenge_result("s1.ma00.morning-race") == "success">>
+Ryo Hazuki: {{text:success}} #speaker:AKIR
+<<if game_hour() < 9>>
+<<advance_story_time "s1.work.race-end">>
+<<endif>>
+<<travel_story "{{destination}}">>
+{{effects}}
+<<jump Done>>
+<<else>>
+Ryo Hazuki: {{text:failure}} #speaker:AKIR
+-> Try again
+    <<jump Race>>
+-> Leave it for now
+    <<jump Done>>
+<<endif>>
+===
+title: Done
+---
+<<complete>>

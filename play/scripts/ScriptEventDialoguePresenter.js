@@ -1,5 +1,12 @@
 import { createGameAudio } from "../audio/MediaElementAudio.js";
 import { isAudioPermissionError } from "../audio/BrowserAudioPlayback.js";
+import { StoryQteRuntime } from "./StoryQteRuntime.js";
+import storyChallenges from "../data/story-challenges.json" with { type: "json" };
+
+// The original X is a punch, not our physical X-to-cancel shortcut. J matches
+// ordinary combat's punch control. Keep keyboard and touch on the same code.
+const CHALLENGE_KEYS = Object.freeze({A:"Enter",B:"Shift",X:"J",Left:"ArrowLeft",Right:"ArrowRight",Up:"ArrowUp",Down:"ArrowDown"});
+if(storyChallenges.buttonCodes.some(code=>!CHALLENGE_KEYS[code]))throw new Error("Unmapped story challenge button");
 import {
   createNativeDialogueVoiceManifest,
 } from "../dialogue/NativeDialogueVoiceManifest.js";
@@ -102,6 +109,13 @@ export class ScriptEventDialoguePresenter {
     audioSettings = null,
     onAdvance = () => {},
     onSelect = () => {},
+    onChallengeResponse = () => {},
+    qteSound = () => {},
+    qteOptions = {},
+    onCombatAction = () => {},
+    onCombatGuard = () => {},
+    onNavigationUse=()=>{},onNavigationHide=()=>{},onNavigationDirection=()=>{},
+    onDrivingControl=()=>{},
     onActiveChanged = () => {},
   } = {}) {
     this.dom = { root, speaker, sourceText, japaneseText, options };
@@ -114,6 +128,12 @@ export class ScriptEventDialoguePresenter {
     this.audioSettings = audioSettings;
     this.onAdvance = onAdvance;
     this.onSelect = onSelect;
+    this.onChallengeResponse = onChallengeResponse;
+    this.qteSound = qteSound;
+    this.qteOptions = qteOptions;
+    this.onCombatAction=onCombatAction;this.onCombatGuard=onCombatGuard;
+    Object.assign(this,{onNavigationUse,onNavigationHide,onNavigationDirection});
+    this.onDrivingControl=onDrivingControl;
     this.onActiveChanged = onActiveChanged;
     this.audio = null;
     this.active = false;
@@ -179,6 +199,90 @@ export class ScriptEventDialoguePresenter {
     }
     return true;
   }
+  showCombat(view) {
+    this.releaseAudio();this.active=true;
+    this.dom.root.setAttribute("data-presentation","combat");
+    this.dom.speaker.textContent=view.label.toUpperCase();
+    this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");
+    this.dom.japaneseText.hidden=true;this.onActiveChanged(true);
+    const player=view.actors.find(actor=>actor.tag==="AKIR");
+    const remaining=view.actors.filter(actor=>actor.tag!=="AKIR"&&actor.team!=="ally"&&!actor.inactive&&actor.health>0).length;
+    const battle=view.totalOpponents
+      ? `Health: ${player.health}/${player.maxHealth} · Defeated: ${view.defeated||0}/${view.totalOpponents}\nGroup ${view.wave}/${view.waveCount} — ${view.waveLabel}${view.intro?" (arriving)":""}`
+      : `Health: ${player.health}/${player.maxHealth} · Opponents: ${remaining}`;
+    this.dom.sourceText.textContent=view.training && view.ready ? view.training : view.ready
+      ? `${view.practice?`Practice · ${Math.ceil(view.remainingMs/1000)} seconds remaining`:battle}\nUse your movement/combat controls or the buttons below. Cancel to leave.`
+      : view.practice||view.training?"Preparing practice...":"Preparing the fight...";
+    if(this.combatToken===view.token)return true;
+    this.clearOptions();this.combatToken=view.token;
+    const current=()=>this.active&&this.combatToken===view.token;
+    for(const [label,action]of [...(view.training?[["Forward","up"],["Back","down"]]:[]),["Punch","hand"],["Kick","leg"],["Throw","throw"],["Punch + Kick",["hand","plus","leg"]]]) {
+      const button=this.dom.options.ownerDocument.createElement("button");button.type="button";button.className="dialogue-option";button.textContent=label;
+      button.addEventListener("click",()=>{
+        if(!current())return;
+        this.onCombatAction(action);this.dom.options.ownerDocument.querySelector?.("#renderCanvas")?.focus();
+      });
+      this.dom.options.append(button);
+    }
+    const guard=this.dom.options.ownerDocument.createElement("button");guard.type="button";guard.className="dialogue-option";guard.textContent="Guard (hold)";
+    guard.addEventListener("pointerdown",event=>{if(current()){guard.setPointerCapture?.(event.pointerId);this.onCombatGuard(true);}});
+    for(const name of ["pointerup","pointercancel","lostpointercapture"])guard.addEventListener(name,()=>{if(current())this.onCombatGuard(false);});
+    this.dom.options.append(guard);this.dom.options.hidden=false;return true;
+  }
+
+  showNavigation(prompt){
+    this.releaseAudio();this.active=true;this.dom.root.setAttribute("data-presentation","combat");
+    this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");this.dom.speaker.textContent=prompt.label;
+    const v=prompt.navigation;this.dom.sourceText.textContent=prompt.ready?`${Math.ceil(v.remainingMs/1000)}s · Alert ${Math.round(v.alert*100)}%\n${v.canUse?'Warehouse No.8 — use the door':v.canHide?'Cover nearby — hold Hide to crouch':'Avoid patrols; hide near walls and corners'}`:"Preparing patrols…";
+    this.dom.japaneseText.hidden=true;this.onActiveChanged(true);
+    if(this.navigationToken===prompt.token){this.navigationUseButton.disabled=!prompt.ready||!v.canUse;return true;}
+    this.clearOptions();this.navigationToken=prompt.token;
+    const current=()=>this.active&&this.navigationToken===prompt.token,document=this.dom.options.ownerDocument;
+    const focusWorld=()=>document.querySelector?.("#renderCanvas")?.focus();
+    const hold=(label,down,up)=>this.appendHeldOption(label,current,down,up);
+    for(const [label,x,z]of [["↑",0,1],["←",-1,0],["↓",0,-1],["→",1,0]])hold(label,()=>this.onNavigationDirection(x,z),()=>this.onNavigationDirection(0,0));
+    hold("Hide (hold)",()=>this.onNavigationHide(true),()=>this.onNavigationHide(false));
+    const use=document.createElement("button");use.type="button";use.className="dialogue-option";use.textContent="Enter door";use.disabled=!prompt.ready||!v.canUse;use.addEventListener("click",()=>{if(current()){this.onNavigationUse();focusWorld();}});this.dom.options.append(use);this.navigationUseButton=use;this.dom.options.hidden=false;return true;
+  }
+
+  showDriving(prompt){
+    this.releaseAudio();this.active=true;this.dom.root.setAttribute("data-presentation","combat");
+    this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");this.dom.speaker.textContent=prompt.label;
+    const v=prompt.driving;
+    this.dom.sourceText.textContent=prompt.ready?`${Math.ceil(v.remainingMs/1000)}s · ${Math.round(v.speed*3.6)} km/h · ${v.checkpoint} / ${v.count} checkpoints\nAccelerate with W, brake with S, steer with A / D. X cancels.${v.scraping?' Keep clear of the road edge.':''}`:"Preparing the motorcycle…";
+    this.dom.japaneseText.hidden=true;this.onActiveChanged(true);
+    if(this.drivingToken===prompt.token)return true;
+    this.clearOptions();this.drivingToken=prompt.token;
+    const current=()=>this.active&&this.drivingToken===prompt.token;
+    for(const [label,name]of [["Accelerate","throttle"],["Brake","brake"],["←","left"],["→","right"]])this.appendHeldOption(label,current,()=>this.onDrivingControl(name,true),()=>this.onDrivingControl(name,false));
+    this.dom.options.hidden=false;return true;
+  }
+
+  appendHeldOption(label,current,down,up){
+    const document=this.dom.options.ownerDocument,button=document.createElement("button");
+    button.type="button";button.className="dialogue-option";button.textContent=label;
+    button.addEventListener("pointerdown",event=>{if(current()){button.setPointerCapture?.(event.pointerId);down();}});
+    for(const name of ["pointerup","pointercancel","lostpointercapture"])button.addEventListener(name,()=>{if(current()){up();document.querySelector?.("#renderCanvas")?.focus();}});
+    this.dom.options.append(button);return button;
+  }
+
+  showDelivery(prompt){
+    this.releaseAudio();this.active=true;this.clearOptions();
+    this.dom.root.setAttribute("data-presentation","combat");this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");
+    this.dom.speaker.textContent=prompt.label;
+    const view=prompt.delivery;
+    this.dom.sourceText.textContent=prompt.ready?`${view.delivered} / ${view.required} crates delivered · ${Math.ceil(view.remainingMs/1000)}s\n${view.cargoId?'Lift a crate, carry it to the green area, then lower the forks and leave it upright.':'Return to the starting position for the next crate.'}`:"Preparing your forklift and crates…";
+    this.dom.japaneseText.hidden=true;this.dom.options.hidden=true;this.onActiveChanged(true);return true;
+  }
+
+  showRace(prompt){
+    this.releaseAudio();this.active=true;this.clearOptions();
+    this.dom.root.setAttribute("data-presentation","combat");this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");
+    this.dom.speaker.textContent=prompt.label;
+    const v=prompt.race;
+    this.dom.sourceText.textContent=prompt.ready?`Lap ${v.lap} / ${v.laps} · ${v.passed} checkpoints\nFollow the yellow arrows. Drive with your normal forklift controls. X cancels without completing the race.`:"Preparing your forklift…";
+    this.dom.japaneseText.hidden=true;this.dom.options.hidden=true;this.onActiveChanged(true);return true;
+  }
 
   showOptions(options) {
     if (!Array.isArray(options) || options.length === 0) {
@@ -218,7 +322,74 @@ export class ScriptEventDialoguePresenter {
     return true;
   }
 
+  showChallenge(prompt) {
+    const definition=storyChallenges.challenges.find(challenge=>challenge.id===prompt.id);
+    if(!definition || definition.kind || !/^[0-9a-f]{32}$/.test(prompt.token))throw new Error("Invalid challenge prompt");
+    // Poll/ready acknowledgements must not restart the local clock or erase a
+    // completed outcome while its result request is waiting for the network.
+    if(this.qteToken===prompt.token) {
+      if(prompt.id!==this.qteId)throw new Error("QTE attempt changed definition");
+      if(prompt.ready && !this.qte.active)this.qte.start(definition);
+      return true;
+    }
+    this.hide();
+    this.qteToken=prompt.token;this.qteId=prompt.id;
+    const requestId=++this.requestId;
+    const current=()=>this.active&&requestId===this.requestId;
+    this.active=true;
+    this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");
+    this.dom.speaker.textContent=prompt.label;
+    this.dom.sourceText.textContent="Get ready…";
+    this.dom.japaneseText.hidden=true;
+    this.onActiveChanged(true);
+    this.qte=new StoryQteRuntime({...this.qteOptions, sound:this.qteSound,
+      present:step=>{
+        this.dom.sourceText.textContent=`Press ${step.buttons.map(b=>`${b} (${CHALLENGE_KEYS[b]})`).join(" + ")} · ${step.index+1} / ${step.count}`;
+      },
+      finish:outcome=>{
+        if(!current())return;
+        this.dom.sourceText.textContent=outcome==="success"?"Correct!":"Missed — try again.";
+        this.dom.options.hidden=true;
+        this.onChallengeResponse("challenge_result",prompt.token,outcome);
+      }});
+    const document=this.dom.options.ownerDocument;
+    for(const buttonCode of storyChallenges.buttonCodes) {
+      const button=document.createElement("button");button.type="button";button.className="dialogue-option";
+      button.textContent=`${buttonCode} · ${CHALLENGE_KEYS[buttonCode]}`;button.dataset.challengeButton=buttonCode;
+      button.addEventListener("pointerdown",event=>{if(current()){event.preventDefault();button.setPointerCapture?.(event.pointerId);this.qte.press(buttonCode);}});
+      for(const name of ["pointerup","pointercancel","lostpointercapture"])button.addEventListener(name,()=>{if(current())this.qte.release(buttonCode);});
+      // Keyboard/screen-reader activation has no pointerdown.
+      button.addEventListener("click",event=>{if(current()&&event.detail===0){this.qte.press(buttonCode);this.qte.release(buttonCode);}});
+      this.dom.options.append(button);
+    }
+    this.dom.options.hidden=false;
+    this.challengeKeyHandler=event=>{
+      const code=storyChallenges.buttonCodes.find(code=>CHALLENGE_KEYS[code].toLowerCase()===event.key?.toLowerCase());
+      if(!code||event.repeat||!current())return;
+      event.preventDefault();event.stopImmediatePropagation();this.qte.press(code);
+    };
+    this.challengeKeyUpHandler=event=>{const code=storyChallenges.buttonCodes.find(c=>CHALLENGE_KEYS[c].toLowerCase()===event.key?.toLowerCase());if(code&&current())this.qte.release(code);};
+    // The challenge owns these keys before ordinary document-level shortcuts
+    // such as Enter-to-chat. Release this capture with the prompt's lifetime.
+    this.challengeKeyTarget=document.defaultView || document;
+    this.challengeKeyTarget.addEventListener("keydown",this.challengeKeyHandler,true);
+    this.challengeKeyTarget.addEventListener("keyup",this.challengeKeyUpHandler,true);
+    if(prompt.ready)this.qte.start(definition);
+    else queueMicrotask(()=>{if(current())this.onChallengeResponse("challenge_ready",prompt.token);});
+    return true;
+  }
+
   hide() {
+    this.combatToken=null;this.onCombatGuard?.(false);
+    this.navigationToken=null;this.onNavigationHide(false);this.onNavigationDirection(0,0);
+    this.drivingToken=null;for(const name of ["throttle","brake","left","right"])this.onDrivingControl(name,false);
+    this.dom.root.setAttribute("data-presentation","dialogue");
+    this.qte?.stop();this.qte=null;this.qteToken=null;this.qteId=null;
+    if(this.challengeKeyHandler)this.challengeKeyTarget.removeEventListener("keydown",this.challengeKeyHandler,true);
+    if(this.challengeKeyUpHandler)this.challengeKeyTarget.removeEventListener("keyup",this.challengeKeyUpHandler,true);
+    this.challengeKeyHandler=null;
+    this.challengeKeyUpHandler=null;
+    this.challengeKeyTarget=null;
     const wasActive = this.active;
     this.active = false;
     this.requestId += 1;

@@ -8,6 +8,7 @@ import { buildNativeAseqActivityPack, sha256 } from "../lib/NativeAseqActivityPa
 import { extractNativeAseqCallbackPresentation, extractNativeAseqHandInitialization } from "../lib/NativeAseqCallbackPresentation.mjs";
 import handEvidence from "../evidence/hazuki-dialogue-native-callback-ir.json" with { type: "json" };
 import { nativeAseqGoverningActivityFrame } from "../lib/NativeAseqScriptOwnership.mjs";
+import { extractNativeTexnPack } from "../lib/NativeTexnPack.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const sourceRoot = [
@@ -50,6 +51,10 @@ const exactFrame = (call, expected) => {
 };
 
 const outputDirectory = path.join(root, "play/assets/hazuki/tgma");
+const textureArchive = readFileSync(path.join(sourceRoot, "data/SCENE/01/JHD0/TGMA.PKF"));
+const textureArchiveHash = "820b77bb6e2c9d247d13f593a452ad7784b06196f79b042caff629b696d01fee";
+if (sha256(textureArchive) !== textureArchiveHash) throw new Error("TGMA texture archive changed");
+const texturePack = extractNativeTexnPack(textureArchive, "TGMA.PKF");
 const handSourceDirectory = path.join(sourceRoot, "data/SCENE/01/MODEL/HAND");
 const faceSourceDirectory = path.join(sourceRoot, "data/SCENE/01/MODEL/FACE");
 const fubPosePath = "play/assets/cutscenes/native-faces/fub-talk-poses.generated.json";
@@ -123,6 +128,18 @@ buildNativeAseqActivityPack({
   outputAssetPrefix: "play/assets/hazuki/tgma",
   manifestPath: path.join(outputDirectory, "manifest.json"),
   outputMembers: ["MALS509G.CHRM"],
+  generatedAssets: [{
+    assetPath: "play/assets/hazuki/tgma/TGMA_TEXTURES.BIN",
+    bytes: texturePack.bytes,
+    byteLength: 18480,
+    sha256: "d2665705353be90eeecff77153342d6722056cadb5242b4a3e7b32e494c386d8",
+    source: {
+      path: "extracted_files/data/SCENE/01/JHD0/TGMA.PKF",
+      sha256: textureArchiveHash,
+      recordOffsets: texturePack.entries.map(entry => entry.sourceOffset),
+      textureIds: texturePack.entries.map(entry => entry.id),
+    },
+  }],
   externalAssets: [
     ["FUB_HM.BIN", 9264, "4a6c85858467733b459eb40588ff3116fa31c1c4a364b442f0c1169e2cf2bf34"],
     ["FUB_TL.MT5", 162476, "5199fc2007a66d2f16256c722875090c9731a0e9f3314ce7487c749664650951"],
@@ -161,6 +178,7 @@ buildNativeAseqActivityPack({
     TEGS: {
       browserFilename: "MALS509G.CHRM",
       assetPath: "play/assets/hazuki/tgma/MALS509G.CHRM",
+      textureAssetPath: "play/assets/hazuki/tgma/TGMA_TEXTURES.BIN",
       attachments: [{
         activitySlot: 0,
         frame: exactFrame(0x2360a, 1),

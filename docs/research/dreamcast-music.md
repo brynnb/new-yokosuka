@@ -1,5 +1,9 @@
 # Dreamcast Music and Ambient-Bank Research
 
+For current Story selection and verified evening rules, see
+[Story evening and exploration music](story-evening.md). The representative
+area assignments below are historical evidence, not current playback policy.
+
 This document preserves research conclusions reviewed at commit `1a3af06`.
 Some per-file provenance is also present in `public/music/manifest.json`, but
 the interpretation and limitations below were not otherwise documented on

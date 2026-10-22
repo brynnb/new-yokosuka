@@ -1,0 +1,26 @@
+Ryo Hazuki: {{text:briefing}} #speaker:AKIR
+-> Face the attackers
+    <<jump Fight>>
+-> Leave it for now
+    <<jump Done>>
+===
+title: Fight
+---
+<<start_combat "s1.mfsy.workday-one-attack">>
+<<if combat_result("s1.mfsy.workday-one-attack") == "success">>
+Ryo Hazuki: {{text:success}} #speaker:AKIR
+<<if game_hour() < 17>>
+<<advance_story_time "s1.work.shift-end">>
+<<endif>>
+{{effects}}
+<<jump Done>>
+<<else>>
+-> Try again
+    <<jump Fight>>
+-> Leave it for now
+    <<jump Done>>
+<<endif>>
+===
+title: Done
+---
+<<complete>>

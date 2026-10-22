@@ -1,0 +1,84 @@
+{
+  "schema": "new-yokosuka-native-clock-initialization-evidence-v1",
+  "generatedBy": "tools/scripting/operations/extract_native_clock_record_operation_evidence.py --boot-only",
+  "source": {
+    "executable": "1ST_READ.BIN",
+    "runtimeBase": "0xc010000",
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c"
+  },
+  "verifiedRanges": {
+    "clockInitialize": {
+      "address": "0xc181cbe",
+      "length": 122,
+      "sha256": "986b0fcc06c7f629c479e19e05d0cf4626d23ed94f8db9b2e6f5ec41b9426b77"
+    },
+    "roomClockInitializeCall": {
+      "address": "0xc0f08b0",
+      "length": 12,
+      "sha256": "df7403c8fd5bc28f226998ba5790f0f11acec47f3f185026e28c342109f9cabf"
+    },
+    "roomClockLoaderField": {
+      "address": "0xc0f05a2",
+      "length": 6,
+      "sha256": "3032e11a11658d1b536cad781e5e94136b2cfcaa61da25fa7e17ef494d54493e"
+    },
+    "arrivalEntryQuery": {
+      "address": "0xc1649a8",
+      "length": 8,
+      "sha256": "f64c232d66f39fca1f1a485d355fd8f17434527ce525a6412d559f32f3147119"
+    },
+    "currentSceneQuery": {
+      "address": "0xc1649b0",
+      "length": 8,
+      "sha256": "d5f8c8a86a3a158d4969c987c7824a22d3072816fa98d080af32da4672d47a12"
+    }
+  },
+  "contract": {
+    "fields": {
+      "scene": "0xc20c3d8",
+      "loaderControl": "0xc20c3fc",
+      "gate": "0xc225251",
+      "advance": "0xc225250",
+      "entryQuery": "0xc20c3e0",
+      "sceneQuery": "0xc20c3d8"
+    },
+    "loaderGuard": "The room loader calls 0xc181cbe only when dword 0xc20c3fc equals zero. Nonzero preserves the previous clock control bytes.",
+    "gateZeroScenes": [
+      0,
+      80
+    ],
+    "gateOtherScenes": 1,
+    "advanceInitialValue": "copy of gate byte",
+    "fixedInitialBytes": [
+      {
+        "address": "0xc225252",
+        "width": 1,
+        "value": 0
+      },
+      {
+        "address": "0xc225254",
+        "width": 1,
+        "value": 0
+      },
+      {
+        "address": "0xc225255",
+        "width": 1,
+        "value": 30
+      }
+    ],
+    "scene80Byte": {
+      "address": "0xc225257",
+      "value": 1,
+      "otherScenes": 0
+    },
+    "queries": {
+      "0x0026": "entry dword unchanged",
+      "0x019c": "current scene dword unchanged"
+    }
+  },
+  "evidenceBoundary": [
+    "A source asset disc is not proof of the player's current scene or arrival entry.",
+    "The loader-control dword must be provided by the session/load owner; unknown is not zero.",
+    "This report covers control-byte initialization and the two arrival queries, not native timer registration, calendar bounds or authoritative server clock advancement."
+  ]
+}

@@ -10,6 +10,11 @@ import {
   nativeFloat32Word,
 } from "./NativeEventNumericRuntime.js";
 import { evaluateNativeFrameExpression } from "./NativeFrameExpression.js";
+import { exactNativeIntegerValue } from "./NativeIntegerExpression.js";
+
+// SH-4 cmp/eq compares register bits. Signed/unsigned JavaScript spellings
+// of the same VM word (notably -1 and 0xffffffff sentinels) are identical.
+function sameNativeWord(left, right) { return (left >>> 0) === (right >>> 0); }
 
 function transformedOperationResult(action, result) {
   const transform = action.resultTransform;
@@ -186,7 +191,10 @@ function stopped(state, kind, detail = {}) {
   };
 }
 
-function operationResultExpression(expression, results, readSceneField) {
+function operationResultExpression(expression, results, readSceneField, readFrameField) {
+  if (expression?.kind === "frame-field") {
+    return evaluateNativeFrameExpression(expression, readFrameField);
+  }
   if (["operation-result", "call-result"].includes(expression?.kind)) {
     const value = results?.[expression.callFileOffset];
     return Number.isInteger(value)
@@ -228,16 +236,18 @@ function operationResultExpression(expression, results, readSceneField) {
       expression.left,
       results,
       readSceneField,
+      readFrameField,
     );
     if (!left.resolved) return left;
     const right = operationResultExpression(
       expression.right,
       results,
       readSceneField,
+      readFrameField,
     );
     if (!right.resolved) return right;
     const matched = {
-      equal: () => left.value === right.value,
+      equal: () => sameNativeWord(left.value, right.value),
       "signed-greater-than": () => (left.value | 0) > (right.value | 0),
       "signed-greater-or-equal": () => (
         (left.value | 0) >= (right.value | 0)
@@ -256,6 +266,7 @@ function operationResultExpression(expression, results, readSceneField) {
       expression.operand,
       results,
       readSceneField,
+      readFrameField,
     );
     if (!operand.resolved) return operand;
     if (!Object.hasOwn(expression, "comparison")) {
@@ -269,7 +280,7 @@ function operationResultExpression(expression, results, readSceneField) {
     }
     return {
       resolved: true,
-      value: operand.value === expression.constant
+      value: sameNativeWord(operand.value, expression.constant)
         ? expression.trueValue
         : expression.falseValue,
     };
@@ -281,7 +292,7 @@ function operationResultExpression(expression, results, readSceneField) {
   ) {
     let value;
     for (const item of expression.operands) {
-      const operand = operationResultExpression(item, results, readSceneField);
+      const operand = operationResultExpression(item, results, readSceneField, readFrameField);
       if (!operand.resolved) return operand;
       value = value === undefined
         ? operand.value
@@ -298,12 +309,14 @@ function operationResultExpression(expression, results, readSceneField) {
       expression.left,
       results,
       readSceneField,
+      readFrameField,
     );
     if (!left.resolved) return left;
     const right = operationResultExpression(
       expression.right,
       results,
       readSceneField,
+      readFrameField,
     );
     if (!right.resolved) return right;
     return {
@@ -319,8 +332,11 @@ function operationResultExpression(expression, results, readSceneField) {
   };
 }
 
-function frameFieldExpression(expression, fields) {
-  return evaluateNativeFrameExpression(expression, offset => fields?.[offset]);
+function frameFieldExpression(expression, fields, operationResults) {
+  return evaluateNativeFrameExpression(
+    expression, offset => fields?.[offset], 0,
+    callFileOffset => operationResults?.[callFileOffset],
+  );
 }
 
 function yielded(state, request) {
@@ -489,8 +505,18 @@ export class NativeEventInterpreter {
       if (frame.actionIndex < actions.length) {
         const action = actions[frame.actionIndex];
         state.steps += 1;
-        if (action.kind === "engineOperation") {
+        if (action.kind === "engineOperation" || action.kind === "secondaryEngineOperation") {
+          // Both dispatchers return values through the same native calling
+          // convention. Room controllers also consume secondary results for
+          // candidate selection and branching; discarding them loses that state.
           if (action.adapterStatus !== "proven" || !action.semanticId) {
+            if (action.kind === "secondaryEngineOperation") {
+              return stopped(state, "unresolved-secondary-operation", {
+                operationHex: action.operationHex,
+                callFileOffset: action.callFileOffset,
+                dispatcher: action.dispatcher,
+              });
+            }
             return stopped(state, "unresolved-operation", {
               operationHex: action.operationHex,
               callFileOffset: action.callFileOffset,
@@ -531,6 +557,9 @@ export class NativeEventInterpreter {
               detail: result.reason,
             });
           }
+          // A loop can revisit the same source call. An unavailable return
+          // must not leave the previous iteration's word usable by arithmetic.
+          delete frame.operationResults[action.callFileOffset];
           if (Object.hasOwn(result || {}, "result")) {
             frame.operationResults[action.callFileOffset] = result.result;
             const transformed = transformedOperationResult(
@@ -592,40 +621,6 @@ export class NativeEventInterpreter {
           }
           continue;
         }
-        if (action.kind === "secondaryEngineOperation") {
-          if (action.adapterStatus !== "proven" || !action.semanticId) {
-            return stopped(state, "unresolved-secondary-operation", {
-              operationHex: action.operationHex,
-              callFileOffset: action.callFileOffset,
-              dispatcher: action.dispatcher,
-            });
-          }
-          const result = await this.executeOperation(action, {
-            ...context,
-            location: location(state),
-            functionDefinition: target.definition,
-            readFrameField: offset => frame.fields?.[offset],
-            writeFrameField: write => {
-              frame.fields[write.offset] = write.value;
-            },
-            readSceneField: offset => context.readSceneField?.({
-              offset,
-              width: 4,
-              signedLoad: false,
-            }),
-          });
-          if (result?.status === "stopped") {
-            return stopped(state, "operation-stopped", {
-              semanticId: action.semanticId,
-              detail: result.reason,
-            });
-          }
-          frame.actionIndex += 1;
-          if (result?.status === "yielded") {
-            return yielded(state, result.request);
-          }
-          continue;
-        }
         if (action.kind === "directCall") {
           const callee = this.functions.get(action.targetFileOffset);
           if (!callee) {
@@ -635,6 +630,7 @@ export class NativeEventInterpreter {
             });
           }
           frame.actionIndex += 1;
+          delete frame.operationResults[action.callFileOffset];
           state.frames.push({
             functionId: action.targetFileOffset,
             blockId: callee.definition.entryBlock,
@@ -762,6 +758,7 @@ export class NativeEventInterpreter {
           const evaluated = frameFieldExpression(
             action.expression,
             frame.fields,
+            frame.operationResults,
           );
           if (!evaluated.resolved) {
             return stopped(state, "frame-field-expression-input-missing", {
@@ -773,6 +770,24 @@ export class NativeEventInterpreter {
             ? 0xffffffff
             : (2 ** (action.width * 8)) - 1;
           frame.fields[action.offset] = (evaluated.value >>> 0) & mask;
+          frame.actionIndex += 1;
+          continue;
+        }
+        if (action.kind === "sceneFieldExpressionWrite") {
+          if (![1, 2, 4].includes(action.width) || !Number.isInteger(action.offset)
+            || typeof context.writeSceneField !== "function") {
+            return stopped(state, "scene-field-expression-write-invalid", { callFileOffset: action.callFileOffset });
+          }
+          const value = exactNativeIntegerValue(action.expression, {
+            readFrameField: offset => frame.fields?.[offset], readSceneField: context.readSceneField,
+          });
+          if (value === null) {
+            return stopped(state, "scene-field-expression-input-missing", {
+              callFileOffset: action.callFileOffset });
+          }
+          const mask = action.width === 4 ? 0xffffffff : (2 ** (action.width * 8)) - 1;
+          context.writeSceneField({ offset: action.offset, width: action.width, value: (value >>> 0) & mask,
+            source: { functionFileOffset: frame.functionId, callFileOffset: action.callFileOffset } });
           frame.actionIndex += 1;
           continue;
         }
@@ -1026,6 +1041,7 @@ export class NativeEventInterpreter {
               definition.expression,
               frame.operationResults,
               context.readSceneField || this.readSceneField,
+              offset => frame.fields?.[offset],
             );
             if (!evaluated.resolved) {
               return stopped(state, "unresolved-branch-predicate", {
@@ -1033,9 +1049,9 @@ export class NativeEventInterpreter {
                 detail: evaluated.reason,
               });
             }
-            comparisonMatched = evaluated.value === definition.constant;
+            comparisonMatched = sameNativeWord(evaluated.value, definition.constant);
           } else {
-            comparisonMatched = pending.result === definition.constant;
+            comparisonMatched = sameNativeWord(pending.result, definition.constant);
           }
           resolvedSuccessors.push(comparisonMatched
             ? pendingBranch.comparisonTrueSuccessor
@@ -1070,7 +1086,8 @@ export class NativeEventInterpreter {
         return stopped(state, "unresolved-control-transfer", { transfer });
       }
       const finished = state.frames.pop();
-      if (finished.callerResultTarget || finished.callerResultComparison) {
+      if (finished.callerResultTarget || finished.callerResultComparison
+        || (state.frames.length && target.definition.returnValue)) {
         const definition = target.definition.returnValue;
         if (!["frame-field", "frame-field-mask"].includes(definition?.kind)) {
           return stopped(state, "direct-call-result-unresolved", {
@@ -1088,6 +1105,7 @@ export class NativeEventInterpreter {
         if (!caller) {
           return stopped(state, "direct-call-result-caller-missing");
         }
+        caller.operationResults[finished.callerResultCallFileOffset] = value;
         if (finished.callerResultTarget?.kind === "frameField") {
           caller.fields[finished.callerResultTarget.offset] = value;
         } else if (finished.callerResultTarget?.kind === "sceneField") {
@@ -1105,7 +1123,6 @@ export class NativeEventInterpreter {
           return stopped(state, "direct-call-result-target-unresolved");
         }
         if (finished.callerResultComparison) {
-          caller.operationResults[finished.callerResultCallFileOffset] = value;
           caller.pendingOperationComparison = {
             definition: finished.callerResultComparison,
             result: value,

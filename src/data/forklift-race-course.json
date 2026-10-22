@@ -1,0 +1,14 @@
+{
+  "schema":"new-yokosuka-forklift-race-course-v1",
+  "laps":3,
+  "checkpoints":[
+    {"x":96,"z":107,"radius":14}, {"x":114,"z":82,"radius":14},
+    {"x":95,"z":50,"radius":14}, {"x":62,"z":50,"radius":14},
+    {"x":30,"z":65,"radius":14}, {"x":-8,"z":80,"radius":14},
+    {"x":-43,"z":96,"radius":14}, {"x":-48,"z":130,"radius":14},
+    {"x":-18,"z":158,"radius":14}, {"x":2,"z":140,"radius":13},
+    {"x":8,"z":112,"radius":13}, {"x":35,"z":105,"radius":13},
+    {"x":63,"z":106,"radius":12}
+  ],
+  "source":"Existing browser-space centerline from the original Disc 3 MA00 race: four AI forklift TASK positions sampled at 10 Hz. See client tools/evidence/ma00-forklift-race-course.json. Gate radii are authored tolerances, not original checkpoint volumes."
+}

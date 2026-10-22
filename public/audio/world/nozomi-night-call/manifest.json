@@ -1,0 +1,1682 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01GET.AFS",
+      "sha256": "094744020cc5e287d1bcad7b4f2e76643e502dca1b7bc76c8a42506724d9862e"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_FUKYU.SND",
+      "sha256": "ef51ec306c847c654388677b89f6cf67698287b51f11252c6f546486266476f7"
+    },
+    "authManifest": "play/assets/hazuki/nozomi-night-call/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-nozomi-rescue.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01GETA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETA002.aiff",
+      "nativeMember": "01GETA002.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "a32d0d7d6c14e9aa28beb2dad422b4b3057c401c329a6e56cae298f6e50f4082",
+      "speakerId": "AKIR",
+      "sourceText": "No=@",
+      "displayText": "No...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETA002.wav",
+      "byteLength": 16172,
+      "sha256": "61415ae6b8a473b001ea22d95dffcbe135a9b0ff8a1d1e25c9509ef3e464ce96"
+    },
+    {
+      "voiceId": "01GETA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETA003.aiff",
+      "nativeMember": "01GETA003.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "7a02c2255491b7e5b4c68dbe6d7b1abed474358152df229f4956007d351094e4",
+      "speakerId": "AKIR",
+      "sourceText": "Something happened to her?",
+      "displayText": "Something happened to her?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETA003.wav",
+      "byteLength": 24364,
+      "sha256": "215c31a37528198844b04f6913a9f02c75d30790cfedc0392ac25e6a0ead68e0"
+    },
+    {
+      "voiceId": "01GETA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETA004.aiff",
+      "nativeMember": "01GETA004.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "bf965e5c17d080800a188a9d8f96ea32bedc0d90e8db352aff495a28fa4669b9",
+      "speakerId": "AKIR",
+      "sourceText": "What?",
+      "displayText": "What?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETA004.wav",
+      "byteLength": 16172,
+      "sha256": "54416ce21c3181f33aa0c2a353719e016164fbf5bb1871e161cef135723c6f21"
+    },
+    {
+      "voiceId": "01GETA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETA005.aiff",
+      "nativeMember": "01GETA005.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 8192,
+      "nativeSha256": "ccb8a767ab65af3127d4c272a31ec4e98546deb4e8d43af65a41df2368dd4e12",
+      "speakerId": "AKIR",
+      "sourceText": "Hello. It's Ryo.",
+      "displayText": "Hello. It's Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETA005.wav",
+      "byteLength": 32556,
+      "sha256": "86728567416eec925040cdc4f9b207516baf7755a95cabe49865cee8a3107754"
+    },
+    {
+      "voiceId": "01GETA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETA006.aiff",
+      "nativeMember": "01GETA006.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 6144,
+      "nativeSha256": "6378ca1b89bc96487b01c28efadb1458c2741c22e497e8982ca8aa5a2bcc7f33",
+      "speakerId": "AKIR",
+      "sourceText": "Who is this?",
+      "displayText": "Who is this?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETA006.wav",
+      "byteLength": 24364,
+      "sha256": "0ff08a8cdf58ceadfa3d0f8a38b6cc8dd4423ede16c684c61de09c3d1f58ad8e"
+    },
+    {
+      "voiceId": "01GETA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETA007.aiff",
+      "nativeMember": "01GETA007.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 6144,
+      "nativeSha256": "bfdbf42df867c2f5ca4a56481a83a493ba0ffa84691a85c4a349efb8f0127a73",
+      "speakerId": "AKIR",
+      "sourceText": "Nozomi!",
+      "displayText": "Nozomi!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETA007.wav",
+      "byteLength": 24364,
+      "sha256": "5dda213ff4a9641f497dc316b8e01a5e2a501a7371ab6d5992d5317c83010bd7"
+    },
+    {
+      "voiceId": "01GETA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETA008.aiff",
+      "nativeMember": "01GETA008.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 10240,
+      "nativeSha256": "a64d41a288daa1424024efe1b8818054d809cec89334abec83e01e54e20ca4ad",
+      "speakerId": "AKIR",
+      "sourceText": "Don't you dare touch her!",
+      "displayText": "Don't you dare touch her!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETA008.wav",
+      "byteLength": 40748,
+      "sha256": "4e6cd3666ebe6c0a7efd2b4ce38ee3b3947806b4bd735e803b341156b05bb38d"
+    },
+    {
+      "voiceId": "01GETA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETA009.aiff",
+      "nativeMember": "01GETA009.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 12288,
+      "nativeSha256": "e4c9e18581660940d228e406240828adc641ffd434b7124ee82ed49d782b99d0",
+      "speakerId": "AKIR",
+      "sourceText": "Ine-san. I gotta go!",
+      "displayText": "Ine-san. I gotta go!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETA009.wav",
+      "byteLength": 48940,
+      "sha256": "fdce440d246e4a3df53ed956fa33bf9fcc39cb6a45f17276b1deafbb70545628"
+    },
+    {
+      "voiceId": "01GETB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETB002.aiff",
+      "nativeMember": "01GETB002.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 14336,
+      "nativeSha256": "d72144e7fee490535173cc6609d7a57f1772a7beb2ced1ed8ccbb43863b4e7e0",
+      "speakerId": "INE_",
+      "sourceText": "Were you just with Nozomi-san?",
+      "displayText": "Were you just with Nozomi-san?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETB002.wav",
+      "byteLength": 57132,
+      "sha256": "7b97cd2477925d4a7b15d4adf8e3fb5be4c3509499d06eb8223776427e3430fc"
+    },
+    {
+      "voiceId": "01GETB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETB003.aiff",
+      "nativeMember": "01GETB003.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 16384,
+      "nativeSha256": "f26c12c0a2a30a8e3c158a9429b4ee7fd0eb30ac9b80272f181d078b11763f15",
+      "speakerId": "INE_",
+      "sourceText": "Well, Aida-san just phoned=@",
+      "displayText": "Well, Aida-san just phoned...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETB003.wav",
+      "byteLength": 65324,
+      "sha256": "a42875e08e69434c1d80f617ebf2b7ee4185f1604fec2200dc84ef5251c1e148"
+    },
+    {
+      "voiceId": "01GETB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETB004.aiff",
+      "nativeMember": "01GETB004.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 22528,
+      "nativeSha256": "1c13d2600ecf1eafd285c61d48726e55458af20ca154b555f5876f213614d1ad",
+      "speakerId": "INE_",
+      "sourceText": "and it seems Nozomi-san＆hasn't come home=@",
+      "displayText": "and it seems Nozomi-san\nhasn't come home...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 24
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETB004.wav",
+      "byteLength": 89900,
+      "sha256": "cd4c59ff4f60c3b7c888dae2ce2dfee3009a02c99f69100b7aea5d79a73736b3"
+    },
+    {
+      "voiceId": "01GETB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETB005.aiff",
+      "nativeMember": "01GETB005.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 16384,
+      "nativeSha256": "dc1ad0d7f2c8ce270c74973faf660d79ce0f25c186b5cd4f1a3338442bc864b0",
+      "speakerId": "INE_",
+      "sourceText": "Nozomi-san said she was meeting you.",
+      "displayText": "Nozomi-san said she was meeting you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETB005.wav",
+      "byteLength": 65324,
+      "sha256": "3be8f8943fe09a65dc00949adbc895dce6eaf44efc7a035f1b6a1ebdf5d0048e"
+    },
+    {
+      "voiceId": "01GETB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETB006.aiff",
+      "nativeMember": "01GETB006.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 18432,
+      "nativeSha256": "8ed6f2ccaac8986b10006937659a41a050ea3c84e6789a9cdfb49e961ea4a83f",
+      "speakerId": "INE_",
+      "sourceText": "Aida-san said she＆can't reach Nozomi-san=@",
+      "displayText": "Aida-san said she\ncan't reach Nozomi-san...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETB006.wav",
+      "byteLength": 73516,
+      "sha256": "e514ee39623379e41ab61afffb9f05de8c9a691ba94bd048b3c4d17cc764ed02"
+    },
+    {
+      "voiceId": "01GETB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETB007.aiff",
+      "nativeMember": "01GETB007.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 6144,
+      "nativeSha256": "8d7e6a3b99ac9bd6d1562cb33c6a376a12debfd5032c400422ad07fc0f870ddc",
+      "speakerId": "INE_",
+      "sourceText": "Ryo-san=@",
+      "displayText": "Ryo-san...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETB007.wav",
+      "byteLength": 24364,
+      "sha256": "34faa249e64a77b8938fc71390e8801e6d94cc2dba526cb74c5a0bf8eb573366"
+    },
+    {
+      "voiceId": "01GETC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETC001.aiff",
+      "nativeMember": "01GETC001.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 22528,
+      "nativeSha256": "4c98c8e8a13fe095caf7cd3a0ad83b587e7dd781549402d67a6ef2191b3b271a",
+      "speakerId": "CHAI",
+      "sourceText": "Heeggh! Terry's waiting!",
+      "displayText": "Heeggh! Terry's waiting!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 48
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETC001.wav",
+      "byteLength": 89900,
+      "sha256": "4ab520160d2c0d36ab214dc1d60946e856b2933bda8cedb3930cd20cb92d4a77"
+    },
+    {
+      "voiceId": "01GETC002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETC002.aiff",
+      "nativeMember": "01GETC002.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 24576,
+      "nativeSha256": "604a3518ff733d355ed83391cd63dd68dc0b390da7aa01ed26c431fa58d9df61",
+      "speakerId": "CHAI",
+      "sourceText": "You meet us behind Warehouse No. 17.",
+      "displayText": "You meet us behind Warehouse No. 17.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 25
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETC002.wav",
+      "byteLength": 98092,
+      "sha256": "cb16da6f0feb70cc295a93db36f847131ca4b78c33e753efab557e8221d4f652"
+    },
+    {
+      "voiceId": "01GETC003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETC003.aiff",
+      "nativeMember": "01GETC003.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 38912,
+      "nativeSha256": "d3a2c7dc77bf9b3d24b154cfded75a3ff0a8a034f4c3d96f1a9d0bb849688f62",
+      "speakerId": "CHAI",
+      "sourceText": "If you don't show, I'll make her cry!＆Heeggh!",
+      "displayText": "If you don't show, I'll make her cry!\nHeeggh!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 28
+          },
+          {
+            "shape": 3,
+            "durationTicks": 25
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 42
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 35
+          },
+          {
+            "shape": 3,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETC003.wav",
+      "byteLength": 155436,
+      "sha256": "52d66179e2c8c775ce14b3df52c761b15f2cc58c9a8b598a36da7f370498294b"
+    },
+    {
+      "voiceId": "01GETC004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETC004.aiff",
+      "nativeMember": "01GETC004.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 65536,
+      "nativeSha256": "834209bab8857b3a30ebf160dd6bedd2c5978b98be1c859200f79cab72ba1dec",
+      "speakerId": "CHAI",
+      "sourceText": "I'll give you four hours, or else.＆Behind Warehouse No. 17! Heeggh, heeggh!",
+      "displayText": "I'll give you four hours, or else.\nBehind Warehouse No. 17! Heeggh, heeggh!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 25
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 27
+          },
+          {
+            "shape": 3,
+            "durationTicks": 28
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 50
+          },
+          {
+            "shape": 3,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETC004.wav",
+      "byteLength": 261932,
+      "sha256": "1e3a93b244117625aa6afc1cb5634d3f1b5d6bfa4efd5a22b6e934e54d302adb"
+    },
+    {
+      "voiceId": "01GETD001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SOUND/01GETD001.aiff",
+      "nativeMember": "01GETD001.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 16384,
+      "nativeSha256": "46afdc83bc86377b5065dad71ec83ae0081ba917df1225459e314d238c65b2c3",
+      "speakerId": "HRSK",
+      "sourceText": "Don't, Ryo! It's a trap!",
+      "displayText": "Don't, Ryo! It's a trap!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 35
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-night-call/voice/01GETD001.wav",
+      "byteLength": 65324,
+      "sha256": "5ac9ac28ab5caa9a12f28a226cf3a4a96fb71bc22089056f62de4307c465487c"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SE/smallobject/denwa2.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-night-call/sfx/a9040000.wav",
+      "byteLength": 122132,
+      "sha256": "f6070910e78b52e838449b5fa090e909754744f32e10392728e7f4c2bb604f3b"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-night-call/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-night-call/sfx/a9040200.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SE/footroom/ryoroom1.aiff",
+      "playbackId": 3,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-night-call/sfx/a9040300.wav",
+      "byteLength": 15756,
+      "sha256": "5f916667e2a0faf9816cb4b1a4ca61615d45a6028bf7039d6b7f7465cee5b1d9"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SE/footroom/ryoroom2.aiff",
+      "playbackId": 4,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-night-call/sfx/a9040400.wav",
+      "byteLength": 10884,
+      "sha256": "f4302b7b9e55d65f6d3ab6f63a8f1b4a200d7a2cfca8e63e9a29ab6bad1dde5b"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SE/footroom/ryoroom3.aiff",
+      "playbackId": 5,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-night-call/sfx/a9040500.wav",
+      "byteLength": 12276,
+      "sha256": "205e3268ee12efae7b4bfbb4304b95d09bfd824d80c6a1decd419042ae484c7d"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SE/footroom/ryoroom4.aiff",
+      "playbackId": 6,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-night-call/sfx/a9040600.wav",
+      "byteLength": 11628,
+      "sha256": "a72f1c3cd428d648763a0bff97a9abfe178acfe241e162cea1eed9da02845744"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SE/door/slidedoorcl02.aiff",
+      "playbackId": 7,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-night-call/sfx/a9040700.wav",
+      "byteLength": 70092,
+      "sha256": "42b225e3703821a6f2664ffc86be2427e6709889dbf60518a84e03ea913eb26d"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SE/smallobject/telbell1.aiff",
+      "playbackId": 9,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-night-call/sfx/a9040900.wav",
+      "byteLength": 45252,
+      "sha256": "e70ecde603fb32b95c21bbee6d85686ff377a5d0359fff6c388fadf6bb65db15"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01GET/SE/smallobject/Telphon.aiff",
+      "playbackId": 10,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-night-call/sfx/a9040a00.wav",
+      "byteLength": 9060,
+      "sha256": "d2fcd98a33f2cd919911db6b9c9b87af6628a091cd7ad610462fb5444a271473"
+    }
+  ]
+}

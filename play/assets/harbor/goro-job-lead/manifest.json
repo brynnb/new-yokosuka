@@ -1,0 +1,143 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA1.AUTH",
+        "path": "disc3/SCENE/03/MFSY/GOROCOOP.PKS",
+        "sourceSha256": "23073336078302cec958cdedb84443428f1e6f64ca2126e311fd5dd7ea9312a1",
+        "archiveMember": "SEQDATA1.AUTH",
+        "byteLength": 16692,
+        "sha256": "3bdb3fdead1b74f5373a89a3256dff2a70e2a3fa62ace1051b1076418aa29068"
+      },
+      {
+        "name": "M_01GOH.MOTN",
+        "path": "disc3/SCENE/03/MFSY/GOROCOOP.PKS",
+        "sourceSha256": "23073336078302cec958cdedb84443428f1e6f64ca2126e311fd5dd7ea9312a1",
+        "archiveMember": "M_01GOH.MOTN",
+        "byteLength": 171488,
+        "sha256": "f8fe48c30d9d6a2186221dc6566b352e6828cc3769bb8203644ac868db52c19a"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-harbor-work.md",
+    "resourceName": "GOROCOOP",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/goro-job-lead/manifest.json",
+  "sceneObjects": {},
+  "packageActors": {
+    "GORO": {
+      "label": "Goro Mihashi",
+      "modelCode": "KMB_L",
+      "browserFilename": "KMB_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/KMB_L.CHRM",
+      "textureAssetPath": "play/assets/characters/KMB_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "GORO"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/goro-job-lead/M_01GOH.MOTN",
+      "byteLength": 171488,
+      "sha256": "f8fe48c30d9d6a2186221dc6566b352e6828cc3769bb8203644ac868db52c19a"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/goro-job-lead/M_01GOH.MOTN",
+      "byteLength": 171488,
+      "sha256": "f8fe48c30d9d6a2186221dc6566b352e6828cc3769bb8203644ac868db52c19a"
+    },
+    {
+      "path": "play/assets/harbor/goro-job-lead/SEQDATA1.AUTH",
+      "byteLength": 16692,
+      "sha256": "3bdb3fdead1b74f5373a89a3256dff2a70e2a3fa62ace1051b1076418aa29068"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "GOROCOOP/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 16692,
+      "sha256": "3bdb3fdead1b74f5373a89a3256dff2a70e2a3fa62ace1051b1076418aa29068",
+      "durationFrames": 2330,
+      "durationSeconds": 77.68333435058594,
+      "frameCount": 86,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 5,
+        "effect": 20,
+        "sound": 40,
+        "voice": 23
+      },
+      "actors": [
+        "AKIR",
+        "GORO"
+      ],
+      "motions": [
+        {
+          "actorTag": "GORO",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "OTH_GOR_AT1_TANOMU_SIGOTOSAGASI_GOROKYOURYOKU0_0100",
+          "startFrame": 1,
+          "endFrame": 230
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 221,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_TANOMU_SIGOTOSAGASI_GOROKYOURYOKU1_0100",
+          "startFrame": 1,
+          "endFrame": 1516
+        },
+        {
+          "actorTag": "GORO",
+          "frame": 231,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "OTH_GOR_AT1_TANOMU_SIGOTOSAGASI_GOROKYOURYOKU0_0100",
+          "startFrame": 261,
+          "endFrame": 1744
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1691,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT2_MATU_OOTOBIRA_GOROKYOURYOKU_0100",
+          "startFrame": 21,
+          "endFrame": 674
+        },
+        {
+          "actorTag": "GORO",
+          "frame": 1691,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "OTH_GOR_AT2_MATU_OOTOBIRA_GOROKYOURYOKU_0100",
+          "startFrame": 21,
+          "endFrame": 586
+        }
+      ]
+    }
+  ]
+}

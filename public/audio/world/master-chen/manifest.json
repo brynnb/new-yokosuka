@@ -1,0 +1,4206 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_meeting_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/A0154.AFS",
+      "sha256": "d45fb726e2c90f5bd0c4c64e97de1f326bd26e8920606f58317a2da1efdc91b6"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_CHIDE.SND",
+      "sha256": "145dafb358c5cb796c1f529e95e861e83fa3f59bae4e1ac83c9d27a4f2ebaf71"
+    },
+    "authManifest": "play/assets/harbor/master-chen/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#master-chens-first-meeting"
+  },
+  "voices": [
+    {
+      "voiceId": "A0154A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A001.aiff",
+      "nativeMember": "A0154A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 2048,
+      "nativeSha256": "cc3d6863efc82074b73c77f3e498aca07e3e6ba981a9a247a7b6efa260c2754b",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A001.wav",
+      "byteLength": 7980,
+      "sha256": "aa2355ef3e12ed5dd8e8f07728d79861e420701b11b61c51c371296abd18b8c8"
+    },
+    {
+      "voiceId": "A0154A002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A002.aiff",
+      "nativeMember": "A0154A002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "42fe1bf8648709005431d0fcf40096499dbcd7fa36c1414cf9040164ae308866",
+      "speakerId": "AKIR",
+      "sourceText": "Master Chen?",
+      "displayText": "Master Chen?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A002.wav",
+      "byteLength": 32556,
+      "sha256": "10bf47e8cada4978ccc43a64950f79bd519317e12c5db5c211887e60cbf2a2ee"
+    },
+    {
+      "voiceId": "A0154A003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A003.aiff",
+      "nativeMember": "A0154A003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 12288,
+      "nativeSha256": "33171c3ad76b0bf8580178ba830ad8c88e81b76bee908d37bde0d81e2b4b205d",
+      "speakerId": "AKIR",
+      "sourceText": "Yes, Ryo Hazuki.",
+      "displayText": "Yes, Ryo Hazuki.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A003.wav",
+      "byteLength": 48940,
+      "sha256": "0501184e7ac3b29b25a12a813b94e8a500bbed185b06a65b533dd6d7397260c8"
+    },
+    {
+      "voiceId": "A0154A004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A004.aiff",
+      "nativeMember": "A0154A004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 28672,
+      "nativeSha256": "e9aa44555511831cba975a6d88deadb708ebc6d451caa5326097ff6b2e43326d",
+      "speakerId": "AKIR",
+      "sourceText": "This says, {If you ever need＆help, seek the aid of Master Chen.}",
+      "displayText": "This says, {If you ever need\nhelp, seek the aid of Master Chen.}",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A004.wav",
+      "byteLength": 114476,
+      "sha256": "382d84bf99c8991cddbb7b7e1ed3f874bc47c91bd23389db3c7f1e1ef1460c3f"
+    },
+    {
+      "voiceId": "A0154A005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A005.aiff",
+      "nativeMember": "A0154A005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 4096,
+      "nativeSha256": "ef17fe9d2368dbf87c4cca1db900f0f5493170fef31c4063cf681ec5ea3d3e84",
+      "speakerId": "AKIR",
+      "sourceText": "Sure.",
+      "displayText": "Sure.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A005.wav",
+      "byteLength": 16172,
+      "sha256": "5602d9fb2ec5ecccbba52051eb1047ef343a546109eaedbcc19b9145cc1ee324"
+    },
+    {
+      "voiceId": "A0154A006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A006.aiff",
+      "nativeMember": "A0154A006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 20480,
+      "nativeSha256": "f491da38f6cdb650f81ef24bf3ba0315ccb46ca4e1d61aa1361065ca565b5e1c",
+      "speakerId": "AKIR",
+      "sourceText": "This Zhu Yuan Da.＆How does he know my father?",
+      "displayText": "This Zhu Yuan Da.\nHow does he know my father?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A006.wav",
+      "byteLength": 81708,
+      "sha256": "3abe3f6ac4f2af0aa9c2d0f02d9b5d3ec514423a021643a8896d45ac474ce5a3"
+    },
+    {
+      "voiceId": "A0154A007",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A007.aiff",
+      "nativeMember": "A0154A007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 20480,
+      "nativeSha256": "bf2cdf3a91ae9f4c04c17e69f454b4ce8db672ee95c4525455a6473626ce00f1",
+      "speakerId": "AKIR",
+      "sourceText": "The mirror!＆The one that man stole=@",
+      "displayText": "The mirror!\nThe one that man stole...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 62
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A007.wav",
+      "byteLength": 81708,
+      "sha256": "2d43436f791d88c4bb93085b063881d4af48f6db568ad6105941837935aece29"
+    },
+    {
+      "voiceId": "A0154A008",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A008.aiff",
+      "nativeMember": "A0154A008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 22528,
+      "nativeSha256": "7403c818326170e8e13d3f1490b7d334ef6747bb3681dd8b1b42c52c4f508423",
+      "speakerId": "AKIR",
+      "sourceText": "Yes, the man who killed＆my father=@Lan Di.",
+      "displayText": "Yes, the man who killed\nmy father...Lan Di.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 37
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A008.wav",
+      "byteLength": 89900,
+      "sha256": "4e1b21b24a225600ac2f2a5066564ef8b1785e97489417d44911887e035a32a1"
+    },
+    {
+      "voiceId": "A0154A009",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A009.aiff",
+      "nativeMember": "A0154A009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 6144,
+      "nativeSha256": "0f479892340d886de99ebb969db879eabc43d5e98ad1e4da16ddd4fa82c37b34",
+      "speakerId": "AKIR",
+      "sourceText": "Do you know him?",
+      "displayText": "Do you know him?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A009.wav",
+      "byteLength": 24364,
+      "sha256": "fd95ef8e87b4b5da5e1d6629c211955db0f1fe5020672710949e8e3f6bfefc3b"
+    },
+    {
+      "voiceId": "A0154A010",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A010.aiff",
+      "nativeMember": "A0154A010.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 18432,
+      "nativeSha256": "b368b4d5740a3f46da62a2bd1c6302e7e73077d5a58fb924609ab5802dfd5862",
+      "speakerId": "AKIR",
+      "sourceText": "Yes=@he used a style＆I've never seen.",
+      "displayText": "Yes...he used a style\nI've never seen.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A010.wav",
+      "byteLength": 73516,
+      "sha256": "de744d9608fbd5cb2d0f5d13d5bea5c6b33dffb9868b6eeaba78bb88affa9587"
+    },
+    {
+      "voiceId": "A0154A011",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A011.aiff",
+      "nativeMember": "A0154A011.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 24576,
+      "nativeSha256": "e4864d37abce7559e7d860b2608ed9f85ea3b19d65f30cce38ee5fc04c87e429",
+      "speakerId": "AKIR",
+      "sourceText": "What does this mean?＆Please tell me why my father=@",
+      "displayText": "What does this mean?\nPlease tell me why my father...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 31
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A011.wav",
+      "byteLength": 98092,
+      "sha256": "34e96b148acff9aa8b349a6b617ea08f6c8c4e3f40574618ecf2a6b7fc857eeb"
+    },
+    {
+      "voiceId": "A0154A012",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A012.aiff",
+      "nativeMember": "A0154A012.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 4096,
+      "nativeSha256": "9b1574267f7b29b70add123e9a00248b0bfb4eae20673e380677082927592f5a",
+      "speakerId": "AKIR",
+      "sourceText": "Father!?",
+      "displayText": "Father!?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A012.wav",
+      "byteLength": 16172,
+      "sha256": "c79ea68a5892703bcf3bf38a28eb8a14963224ba1e9f8eb6802abc9bd26e2b49"
+    },
+    {
+      "voiceId": "A0154A013",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A013.aiff",
+      "nativeMember": "A0154A013.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 4096,
+      "nativeSha256": "262576d4652196e54b84f59da3073c84146cd4533829fd44a6f70b1d8f441a6f",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A013.wav",
+      "byteLength": 16172,
+      "sha256": "5dcec2419977b435b4a5a713458abf7600a8a845cecaa77c0ecdd40a011dc810"
+    },
+    {
+      "voiceId": "A0154A014",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A014.aiff",
+      "nativeMember": "A0154A014.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 26624,
+      "nativeSha256": "6a34767fe790d17be39d39cb18eea649846329d304853c1887e25ab97c8a1e19",
+      "speakerId": "AKIR",
+      "sourceText": "Y-yes. Made of stone=@a Dragon design=@=@",
+      "displayText": "Y-yes. Made of stone...a Dragon design......",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 27
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A014.wav",
+      "byteLength": 106284,
+      "sha256": "bae7898da7f8d93d612c5c388d716ec1f0b24eb9f061be75278302366ddbba6f"
+    },
+    {
+      "voiceId": "A0154A015",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A015.aiff",
+      "nativeMember": "A0154A015.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 6144,
+      "nativeSha256": "8cb736dc25de40af3dc4d24b668fe7c4f8c60b52e6e4aa551e6b7d1866066188",
+      "speakerId": "AKIR",
+      "sourceText": "Phoenix?",
+      "displayText": "Phoenix?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A015.wav",
+      "byteLength": 24364,
+      "sha256": "98d327dea9da8abb8437be2f01729d8ece89b047c469f6c80ce519ce384bd82b"
+    },
+    {
+      "voiceId": "A0154A016",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A016.aiff",
+      "nativeMember": "A0154A016.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 14336,
+      "nativeSha256": "9950650375a703ace1e4016434eaea1581769368daec7ca029bd911a7cfcd2e9",
+      "speakerId": "AKIR",
+      "sourceText": "That mirror=@my house?",
+      "displayText": "That mirror...my house?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A016.wav",
+      "byteLength": 57132,
+      "sha256": "36b098994dd9fb6b3b3d7a88a522e0e7b39df3207d341d2b53564c8415b4a6d5"
+    },
+    {
+      "voiceId": "A0154A017",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A017.aiff",
+      "nativeMember": "A0154A017.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 16384,
+      "nativeSha256": "673b5ac10f8c87f318a15a41640187d9906a018da6dace210976ee5a156be3f0",
+      "speakerId": "AKIR",
+      "sourceText": "Yes, when I do I'll return.",
+      "displayText": "Yes, when I do I'll return.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A017.wav",
+      "byteLength": 65324,
+      "sha256": "91349183b366a8c5a6042d8a4c3894f198a93aecc5184ed5adcf105470c16bab"
+    },
+    {
+      "voiceId": "A0154A018",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A018.aiff",
+      "nativeMember": "A0154A018.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 6144,
+      "nativeSha256": "ac0b7c07b66d86b2b7fe3c3a8b03ad3c3fdbf56f34a871b85b7ca52144d7418a",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 27
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A018.wav",
+      "byteLength": 24364,
+      "sha256": "bb88933642e7e9587b4ceae088b5ae4488514d4d158726920064681a3a8c7fe2"
+    },
+    {
+      "voiceId": "A0154A019",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A019.aiff",
+      "nativeMember": "A0154A019.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 2048,
+      "nativeSha256": "914cfd3ac9f02d757dc4da1dd030468f0ea8fbac2f525c04daf8e2295b2b7ca0",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A019.wav",
+      "byteLength": 7980,
+      "sha256": "857ef9f7d1153c9a79900a8c52f9695a090f25266d56428f2e523dada7ca1d82"
+    },
+    {
+      "voiceId": "A0154A020",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154A020.aiff",
+      "nativeMember": "A0154A020.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 4096,
+      "nativeSha256": "86eb75e8ee7e47c31aa801a37361c8e5603e74c2216561640bf82da06dc9c6d7",
+      "speakerId": "AKIR",
+      "sourceText": "Yes=@",
+      "displayText": "Yes...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154A020.wav",
+      "byteLength": 16172,
+      "sha256": "966f9e5bafbbf89724336a3a32c9b04f7a7994d2d6ff20e7b1d54eee212050af"
+    },
+    {
+      "voiceId": "A0154B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154B001.aiff",
+      "nativeMember": "A0154B001.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 6144,
+      "nativeSha256": "dca33bebdb5491bd0814e3ba19446ca2e225a2bd1b682b365f13653272bcc20d",
+      "speakerId": "KISY",
+      "sourceText": "Who's there?!",
+      "displayText": "Who's there?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154B001.wav",
+      "byteLength": 24364,
+      "sha256": "499ed3d4e86c798a836f46f3cade04c3813761beb35f1d45eaec28aa3916ea80"
+    },
+    {
+      "voiceId": "A0154B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154B002.aiff",
+      "nativeMember": "A0154B002.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 8192,
+      "nativeSha256": "a23c33c1c77bfa5ed014ee730c7af19698bc13c467b9327e0a148dc15e361818",
+      "speakerId": "KISY",
+      "sourceText": "Master Chen=@",
+      "displayText": "Master Chen...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154B002.wav",
+      "byteLength": 32556,
+      "sha256": "0e2f10bd88b26cfa53b99643dd9225ef66b6fd175703e8a051968eaed9a0afe9"
+    },
+    {
+      "voiceId": "A0154B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154B003.aiff",
+      "nativeMember": "A0154B003.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 16384,
+      "nativeSha256": "23013ff02f9382f9dcbdaed4177487c73a16652eded2d3510c86b04da5f58527",
+      "speakerId": "KISY",
+      "sourceText": "You needn't tell＆this boy anything father.",
+      "displayText": "You needn't tell\nthis boy anything father.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154B003.wav",
+      "byteLength": 65324,
+      "sha256": "4ee7784019bb9e46deb0dc6fabc422ca5e2189f1a5fef9509a6b97597e3ea518"
+    },
+    {
+      "voiceId": "A0154B004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154B004.aiff",
+      "nativeMember": "A0154B004.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 8192,
+      "nativeSha256": "6e551ebc88f0ac32aaea25d8e8f23d928773ccb238547c9c63ace01a28a7bae2",
+      "speakerId": "KISY",
+      "sourceText": "But, but=@",
+      "displayText": "But, but...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154B004.wav",
+      "byteLength": 32556,
+      "sha256": "35b9b60dd3a167a15448a17609f7ff60e2e5f6f09e926d3d89d8a30738a9a201"
+    },
+    {
+      "voiceId": "A0154B005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154B005.aiff",
+      "nativeMember": "A0154B005.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 8192,
+      "nativeSha256": "a85e0fd6f0aa29b69c8988efad409dd8c5d4f8f714ee740896f78e76ae664e9a",
+      "speakerId": "KISY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154B005.wav",
+      "byteLength": 32556,
+      "sha256": "f96f4987f4e43016c17375596411ce0a9ffb49c5b1d973aebfb2b4d9e6db7dd0"
+    },
+    {
+      "voiceId": "A0154C001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C001.aiff",
+      "nativeMember": "A0154C001.str",
+      "nativeIndex": 25,
+      "nativeByteLength": 10240,
+      "nativeSha256": "b5d6d39a47d4b6eae8cd710b8ea74866f6b9efecdfc511ba78ee0506d007aa48",
+      "speakerId": "TAIJ",
+      "sourceText": "Wait Gui Zhang.",
+      "displayText": "Wait Gui Zhang.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C001.wav",
+      "byteLength": 40748,
+      "sha256": "d3c3f56e73ddb2f7f3fbde673eacaba8e430f390c88621a6a34ea38969aa9a4b"
+    },
+    {
+      "voiceId": "A0154C002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C002.aiff",
+      "nativeMember": "A0154C002.str",
+      "nativeIndex": 26,
+      "nativeByteLength": 18432,
+      "nativeSha256": "a2f85b8f845e56165d5648f26eec3177d62280260daf448b52d610387d3ab23e",
+      "speakerId": "TAIJ",
+      "sourceText": "You are the young man who has called?",
+      "displayText": "You are the young man who has called?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C002.wav",
+      "byteLength": 73516,
+      "sha256": "487d4505dfc06d235457b6f11797d96fa86bc148bdb642a0a0f1b7f9f6281071"
+    },
+    {
+      "voiceId": "A0154C003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C003.aiff",
+      "nativeMember": "A0154C003.str",
+      "nativeIndex": 27,
+      "nativeByteLength": 12288,
+      "nativeSha256": "f86ebf8456a0acdc97e26f377ded143a2d45e2e50d8949732acb27755b2f2a27",
+      "speakerId": "TAIJ",
+      "sourceText": "May I look at the letter?",
+      "displayText": "May I look at the letter?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C003.wav",
+      "byteLength": 48940,
+      "sha256": "4ffdf04bc2a0d14d497302cd06c4d6476e3bb76efa733ba90aeaf6cc29e14bd6"
+    },
+    {
+      "voiceId": "A0154C004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C004.aiff",
+      "nativeMember": "A0154C004.str",
+      "nativeIndex": 28,
+      "nativeByteLength": 18432,
+      "nativeSha256": "5fc408a43e4be3928c0ea6fed6efca3caa6352c5c4ef239ec232eb124cd7e8d7",
+      "speakerId": "TAIJ",
+      "sourceText": "Yes, this is Zhu's handwriting.",
+      "displayText": "Yes, this is Zhu's handwriting.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 25
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C004.wav",
+      "byteLength": 73516,
+      "sha256": "c8c078175754316c39571887a62673b2b43df177974a4f8b83df51afad58a895"
+    },
+    {
+      "voiceId": "A0154C005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C005.aiff",
+      "nativeMember": "A0154C005.str",
+      "nativeIndex": 29,
+      "nativeByteLength": 26624,
+      "nativeSha256": "f447ed954824b2cf4dccaa7889296e8fd45fa4a4dbbd838fe9eeb257e716ec5f",
+      "speakerId": "TAIJ",
+      "sourceText": "But, it appears this letter＆arrived too late.",
+      "displayText": "But, it appears this letter\narrived too late.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 25
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C005.wav",
+      "byteLength": 106284,
+      "sha256": "1d08d93f490936d2601fb269f2022bd40334cb38facfbdbf50a792c4f15aaa50"
+    },
+    {
+      "voiceId": "A0154C006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C006.aiff",
+      "nativeMember": "A0154C006.str",
+      "nativeIndex": 30,
+      "nativeByteLength": 34816,
+      "nativeSha256": "843f3ea6867a524fad5c4a095fcbe3674076dc2179771383b3698f4c6af89a65",
+      "speakerId": "TAIJ",
+      "sourceText": "Zhu and your father brought back＆a certain mirror from China.",
+      "displayText": "Zhu and your father brought back\na certain mirror from China.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 20
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C006.wav",
+      "byteLength": 139052,
+      "sha256": "7929f970582fcd127eaa9c6c6559686edc64cacc8e2940c75d8c9ac945e1d367"
+    },
+    {
+      "voiceId": "A0154C007",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C007.aiff",
+      "nativeMember": "A0154C007.str",
+      "nativeIndex": 31,
+      "nativeByteLength": 10240,
+      "nativeSha256": "d085901d11de6b3b37a3d822108749b42d0878e706ea97cf9e2dd834b0a030d4",
+      "speakerId": "TAIJ",
+      "sourceText": "It was stolen? ",
+      "displayText": "It was stolen? ",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C007.wav",
+      "byteLength": 40748,
+      "sha256": "9bb4d3ccd73cfa9a5954c1a0790fc4f164a021c706e148915c4d1d1cf8e385e9"
+    },
+    {
+      "voiceId": "A0154C008",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C008.aiff",
+      "nativeMember": "A0154C008.str",
+      "nativeIndex": 32,
+      "nativeByteLength": 8192,
+      "nativeSha256": "68a194642ada5f7f2bbceb2d8409518ee41d451f4b3b7c4f3a4879234d839edb",
+      "speakerId": "TAIJ",
+      "sourceText": "Lan Di?",
+      "displayText": "Lan Di?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C008.wav",
+      "byteLength": 32556,
+      "sha256": "c93475855ab464bafbc9840a1d90997602fa4ce805c0ed683f942f0be6cbd8e9"
+    },
+    {
+      "voiceId": "A0154C009",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C009.aiff",
+      "nativeMember": "A0154C009.str",
+      "nativeIndex": 33,
+      "nativeByteLength": 14336,
+      "nativeSha256": "3b769bc174cb5b5ce0f36b3cd67d317e841995866e01f486f39f90d8230e792f",
+      "speakerId": "TAIJ",
+      "sourceText": "Well, I know of him=@",
+      "displayText": "Well, I know of him...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C009.wav",
+      "byteLength": 57132,
+      "sha256": "fb3cc65d76cbe6d63c6f9a34edc61f6046b7c307719dcb9d3a6549b5700e2b33"
+    },
+    {
+      "voiceId": "A0154C010",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C010.aiff",
+      "nativeMember": "A0154C010.str",
+      "nativeIndex": 34,
+      "nativeByteLength": 34816,
+      "nativeSha256": "fe5888bb74a352ede8dcf7cbc3213065ac8f3a30b067a144555c94e1cbbddd05",
+      "speakerId": "TAIJ",
+      "sourceText": "An organization called Chi You Men,＆its leader goes by that name.",
+      "displayText": "An organization called Chi You Men,\nits leader goes by that name.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 29
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 19
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C010.wav",
+      "byteLength": 139052,
+      "sha256": "19eb3763a25537feed3c510a7c4389ed41ced7f703f62b7a965d62f6f04fa7d6"
+    },
+    {
+      "voiceId": "A0154C011",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C011.aiff",
+      "nativeMember": "A0154C011.str",
+      "nativeIndex": 35,
+      "nativeByteLength": 22528,
+      "nativeSha256": "f77a6f113a9e6f6eb30b2ed263f4892dea6fc6f35866c6cb684e54a89e045f9c",
+      "speakerId": "TAIJ",
+      "sourceText": "I hear he's a master of＆a deadly martial art.",
+      "displayText": "I hear he's a master of\na deadly martial art.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C011.wav",
+      "byteLength": 89900,
+      "sha256": "d0cf395f13f4968fbf552b27a9af75f676eb9ef77518c07387761fca47b17215"
+    },
+    {
+      "voiceId": "A0154C012",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C012.aiff",
+      "nativeMember": "A0154C012.str",
+      "nativeIndex": 36,
+      "nativeByteLength": 18432,
+      "nativeSha256": "c7c9950caff5b5a48a034ba717539600ba2b9185b24993c73bc4dfe3a4fcb13c",
+      "speakerId": "TAIJ",
+      "sourceText": "I think we mean the same person.",
+      "displayText": "I think we mean the same person.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C012.wav",
+      "byteLength": 73516,
+      "sha256": "f2ee69d23825fb24996bc4c31fbdf5786cdb1e14da6ab84da097320d8eb4a21f"
+    },
+    {
+      "voiceId": "A0154C013",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C013.aiff",
+      "nativeMember": "A0154C013.str",
+      "nativeIndex": 37,
+      "nativeByteLength": 43008,
+      "nativeSha256": "9d5fea96c175b92f0936816d905d2d57834e24397a332a2ff9aa16cfa65e3640",
+      "speakerId": "TAIJ",
+      "sourceText": "No I'm bound by my promise to＆Zhu Yuan Da regarding this boy's father.",
+      "displayText": "No I'm bound by my promise to\nZhu Yuan Da regarding this boy's father.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C013.wav",
+      "byteLength": 171820,
+      "sha256": "91c90608262a7efd57e49212badbcd29d621031636975afe0f39b346e6764367"
+    },
+    {
+      "voiceId": "A0154C014",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C014.aiff",
+      "nativeMember": "A0154C014.str",
+      "nativeIndex": 38,
+      "nativeByteLength": 16384,
+      "nativeSha256": "be0d7c31afe31a45f8362167de88545add1594896c126f2382dae78b37dc8e00",
+      "speakerId": "TAIJ",
+      "sourceText": "Was only one mirror stolen?",
+      "displayText": "Was only one mirror stolen?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C014.wav",
+      "byteLength": 65324,
+      "sha256": "60c40ff77abe65883c88428400db816be959e7049761de35984a04fe90d333f3"
+    },
+    {
+      "voiceId": "A0154C015",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C015.aiff",
+      "nativeMember": "A0154C015.str",
+      "nativeIndex": 39,
+      "nativeByteLength": 20480,
+      "nativeSha256": "b0e51fc8af02e8fa846f05c031c8b2dcc9d6c40d4472ff1e576a40d40c7605cc",
+      "speakerId": "TAIJ",
+      "sourceText": "I'm asking if only one mirror was stolen?",
+      "displayText": "I'm asking if only one mirror was stolen?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C015.wav",
+      "byteLength": 81708,
+      "sha256": "3d69b1d3365923471e1d2892abbfd5a664b275694601e94396d7e44ea58bed0d"
+    },
+    {
+      "voiceId": "A0154C016",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C016.aiff",
+      "nativeMember": "A0154C016.str",
+      "nativeIndex": 40,
+      "nativeByteLength": 16384,
+      "nativeSha256": "e346142fefdd5d44a284986ab06b0e7bc60b11357bd481bdc6883657bb0ceb2f",
+      "speakerId": "TAIJ",
+      "sourceText": "If so, then there's one more.",
+      "displayText": "If so, then there's one more.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 19
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C016.wav",
+      "byteLength": 65324,
+      "sha256": "8e76cdf0730aa39f4d9f64fedcd64286b64648a4b0d68873f9cf5a980bb16d35"
+    },
+    {
+      "voiceId": "A0154C017",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C017.aiff",
+      "nativeMember": "A0154C017.str",
+      "nativeIndex": 41,
+      "nativeByteLength": 18432,
+      "nativeSha256": "665eb53c860aa9a58c64cdd86dda96d7c16a3660e0d483d72dfb93d80984d2f5",
+      "speakerId": "TAIJ",
+      "sourceText": "I believe, the Phoenix Mirror.",
+      "displayText": "I believe, the Phoenix Mirror.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C017.wav",
+      "byteLength": 73516,
+      "sha256": "d97598a366932dc8e1691b827b4e6452b20dfcccc2bfc5d1cc30616c411d0563"
+    },
+    {
+      "voiceId": "A0154C018",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C018.aiff",
+      "nativeMember": "A0154C018.str",
+      "nativeIndex": 42,
+      "nativeByteLength": 28672,
+      "nativeSha256": "52af8ba15ecbeb952df88860846c0ed7070ae5e2cf12ee33f287be830dd9cf3c",
+      "speakerId": "TAIJ",
+      "sourceText": "A mythical bird of Chinese legend＆=@that guards human life.",
+      "displayText": "A mythical bird of Chinese legend\n...that guards human life.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C018.wav",
+      "byteLength": 114476,
+      "sha256": "433018e35e21746af14a2aee495f341a6a26a5ebffd9518839ee547d118f73f7"
+    },
+    {
+      "voiceId": "A0154C019",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C019.aiff",
+      "nativeMember": "A0154C019.str",
+      "nativeIndex": 43,
+      "nativeByteLength": 24576,
+      "nativeSha256": "b5365000eef7330c5bab17130e8bc12a1b70230a53c7549dda2445a4ece80248",
+      "speakerId": "TAIJ",
+      "sourceText": "Perhaps=@find it, and then we'll talk!",
+      "displayText": "Perhaps...find it, and then we'll talk!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 42
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C019.wav",
+      "byteLength": 98092,
+      "sha256": "f1c50330870da1e787a344fc69dfcf44de9ddbc36eda2b0ba576cf4adb7b1f74"
+    },
+    {
+      "voiceId": "A0154C020",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C020.aiff",
+      "nativeMember": "A0154C020.str",
+      "nativeIndex": 44,
+      "nativeByteLength": 20480,
+      "nativeSha256": "e457c69f7779adc08a4d6eec6c3d0d990292b87587bf270e7ac391710117ee82",
+      "speakerId": "TAIJ",
+      "sourceText": "From now on,＆telephone beforehand.",
+      "displayText": "From now on,\ntelephone beforehand.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C020.wav",
+      "byteLength": 81708,
+      "sha256": "0b448f220f4acb11856da6b65adbf82eedc38945e9087cb821628213cb6b4ee3"
+    },
+    {
+      "voiceId": "A0154C021",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SOUND/A0154C021.aiff",
+      "nativeMember": "A0154C021.str",
+      "nativeIndex": 45,
+      "nativeByteLength": 16384,
+      "nativeSha256": "9f8e09150245ff78aa253225efff2fdedf00fc9a4e9c53b4eebd3fe1666b630d",
+      "speakerId": "TAIJ",
+      "sourceText": "And remember the password.",
+      "displayText": "And remember the password.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/master-chen/voice/A0154C021.wav",
+      "byteLength": 65324,
+      "sha256": "fe5f707f09acc0899b66d7dfcede64d40fdef3578e796e0eaff04ab82c29eb27"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/cloths2/friction4.aiff",
+      "playbackId": 2,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/master-chen/sfx/a9040200.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 5,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/master-chen/sfx/a9040500.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/smallobject/paper2.aiff",
+      "playbackId": 6,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/master-chen/sfx/a9040600.wav",
+      "byteLength": 48100,
+      "sha256": "3ee57119477ec4753e1433911f99fc001d66635c3a5e6e5ad61d3b3e4d24068c"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/smallobject/paper2eq.aiff",
+      "playbackId": 7,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/master-chen/sfx/a9040700.wav",
+      "byteLength": 17052,
+      "sha256": "5cd24e2df91f8c80e924904d2e1d4069c5f52710a37116cbedfc739c81e93477"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 8,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/master-chen/sfx/a9040800.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 9,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/master-chen/sfx/a9040900.wav",
+      "byteLength": 6364,
+      "sha256": "a087e557bddc12e1ca7a20b8ad3ee5e15dfa88ad4531cbba9c0b85b9367c66af"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 11,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/master-chen/sfx/a9040b00.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 12,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/master-chen/sfx/a9040c00.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/footiron/ryoashitetsu3.aiff",
+      "playbackId": 13,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/master-chen/sfx/a9040d00.wav",
+      "byteLength": 3964,
+      "sha256": "ba0924f6db6a9bb697644648c0c196d727131ac5f817eedbe8a464145101d2eb"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/footiron/ryoashitetsu8.aiff",
+      "playbackId": 17,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/master-chen/sfx/a9041100.wav",
+      "byteLength": 4700,
+      "sha256": "00431f1353cbf7cbe1a9ae08e011bb1baa7bc08cd0a229ea11aed1ac9a1093a2"
+    },
+    {
+      "commandHex": "a9041800",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/cloths2/R_mouhu_nageru.aiff",
+      "playbackId": 24,
+      "sampleId": 25,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/master-chen/sfx/a9041800.wav",
+      "byteLength": 21612,
+      "sha256": "5c49cb5c012c4b62f58d0b81d8f68aa02b2734dd78710011d0c69a431d5a0988"
+    },
+    {
+      "commandHex": "a9041a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/smallobject/dishcrash1.aiff",
+      "playbackId": 26,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/master-chen/sfx/a9041a00.wav",
+      "byteLength": 31596,
+      "sha256": "7b91c0c19b7ce587f58597af379b149c5283b9f89677f4d26a7bc1eb8d42783a"
+    },
+    {
+      "commandHex": "a9041b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/foot/Akirafoot1a.aiff",
+      "unavailable": true,
+      "unavailableReason": "Original AUTH reference is absent from the original MS08-requested A1_CHIDE sound bank; incidental effect omitted.",
+      "evidence": "disc2/SCENE/02/MS08/MAPINFO.BIN#A1_CHIDE.SND; SHA256 693131be8e2106c08975b75959780006dec6a79a981c910819f614b324e73e90"
+    },
+    {
+      "commandHex": "a9041f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/cloths2/furimuki_n01.aiff",
+      "unavailable": true,
+      "unavailableReason": "Original AUTH reference is absent from the original MS08-requested A1_CHIDE sound bank; incidental effect omitted.",
+      "evidence": "disc2/SCENE/02/MS08/MAPINFO.BIN#A1_CHIDE.SND; SHA256 693131be8e2106c08975b75959780006dec6a79a981c910819f614b324e73e90"
+    },
+    {
+      "commandHex": "a9042400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/smallobject/Swich2.aiff",
+      "unavailable": true,
+      "unavailableReason": "Original AUTH reference is absent from the original MS08-requested A1_CHIDE sound bank; incidental effect omitted.",
+      "evidence": "disc2/SCENE/02/MS08/MAPINFO.BIN#A1_CHIDE.SND; SHA256 693131be8e2106c08975b75959780006dec6a79a981c910819f614b324e73e90"
+    },
+    {
+      "commandHex": "a9042700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0154/SE/smallobject/latterpocket.aiff",
+      "unavailable": true,
+      "unavailableReason": "Original AUTH reference is absent from the original MS08-requested A1_CHIDE sound bank; incidental effect omitted.",
+      "evidence": "disc2/SCENE/02/MS08/MAPINFO.BIN#A1_CHIDE.SND; SHA256 693131be8e2106c08975b75959780006dec6a79a981c910819f614b324e73e90"
+    }
+  ]
+}

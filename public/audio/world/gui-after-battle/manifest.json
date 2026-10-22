@@ -1,0 +1,998 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01TLYE.AFS",
+      "sha256": "f68c745b022290722a7b248b4a77154ca13adfad750143cdbd8bfd9bebaac921"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_TLYE.SND",
+      "sha256": "1be0c960d6959c15290669be499fa55f9ec73e921f4229e30767bfff46a142de"
+    },
+    "authManifest": "play/assets/harbor/gui-after-battle/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#terry-and-the-last-night"
+  },
+  "voices": [
+    {
+      "voiceId": "01TLYEA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SOUND/01TLYEA001.aiff",
+      "nativeMember": "01TLYEA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 20480,
+      "nativeSha256": "be161cdfd142dd498404d6d533af6f148b7e93176a230afc9c07422860c3a616",
+      "speakerId": "AKIR",
+      "sourceText": "After all that, still didn't get Lan Di.",
+      "displayText": "After all that, still didn't get Lan Di.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 16
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 19
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-after-battle/voice/01TLYEA001.wav",
+      "byteLength": 81708,
+      "sha256": "01ca0fe0764baf3d02f6bc334d61ad53bf4a80458e33299bb0fd25b8186b81cc"
+    },
+    {
+      "voiceId": "01TLYEA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SOUND/01TLYEA002.aiff",
+      "nativeMember": "01TLYEA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 10240,
+      "nativeSha256": "6bb736430bee3e901f1b88d916b18525305ae164b1ad3c3f9ef858665cae3963",
+      "speakerId": "AKIR",
+      "sourceText": "Well I just can't give up.",
+      "displayText": "Well I just can't give up.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-after-battle/voice/01TLYEA002.wav",
+      "byteLength": 40748,
+      "sha256": "7fe5c3436aee4e3cb82e1be5f1d89eb3c94b647e53ab684afb49020759a40b97"
+    },
+    {
+      "voiceId": "01TLYEA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SOUND/01TLYEA003.aiff",
+      "nativeMember": "01TLYEA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 14336,
+      "nativeSha256": "0cab564285885678d692d7d795c4045863e96c897035917c7273147fc81e561f",
+      "speakerId": "AKIR",
+      "sourceText": "But=@how can I?",
+      "displayText": "But...how can I?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 45
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-after-battle/voice/01TLYEA003.wav",
+      "byteLength": 57132,
+      "sha256": "62a394349f745f0903e3135599154be9bd54b32592e025e18bee47bffa199efa"
+    },
+    {
+      "voiceId": "01TLYEA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SOUND/01TLYEA004.aiff",
+      "nativeMember": "01TLYEA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "3506caa889071839e7333a65926d667b0884176ba4a87a97160e629972c6d60e",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-after-battle/voice/01TLYEA004.wav",
+      "byteLength": 16172,
+      "sha256": "967710df1dd69e62687e2600b19cb3e79d121150b665f953cd0b06293a1dd811"
+    },
+    {
+      "voiceId": "01TLYEA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SOUND/01TLYEA005.aiff",
+      "nativeMember": "01TLYEA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 4096,
+      "nativeSha256": "8749fdcbb070246b6034200e335fcf4f05672e695ece08659b45ecac06fe1840",
+      "speakerId": "AKIR",
+      "sourceText": "Really?",
+      "displayText": "Really?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-after-battle/voice/01TLYEA005.wav",
+      "byteLength": 16172,
+      "sha256": "b09eb21e7b30b6f80ad7683e6ed652f4eed0b10fcfcd323bccc90ed6081ff21e"
+    },
+    {
+      "voiceId": "01TLYEA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SOUND/01TLYEA006.aiff",
+      "nativeMember": "01TLYEA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 4096,
+      "nativeSha256": "ec022ad69df524010e5d2be6219bfd87b74bb998ff9fa6c45beac97b22d879ec",
+      "speakerId": "AKIR",
+      "sourceText": "Gui Zhang.",
+      "displayText": "Gui Zhang.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-after-battle/voice/01TLYEA006.wav",
+      "byteLength": 16172,
+      "sha256": "688b7442bf358656f9ff94120fafb7d0fbd07241cd8e6ebd618a2b569179eaf2"
+    },
+    {
+      "voiceId": "01TLYEA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SOUND/01TLYEA007.aiff",
+      "nativeMember": "01TLYEA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 4096,
+      "nativeSha256": "f1dadd515e3081113151a4d79f94ed623d55e97468febdf79024d1270a546806",
+      "speakerId": "AKIR",
+      "sourceText": "Thank you.",
+      "displayText": "Thank you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-after-battle/voice/01TLYEA007.wav",
+      "byteLength": 16172,
+      "sha256": "65a8da6b4e8a9b871dd457c00e0e766020382159ec312eef432e025e6425635e"
+    },
+    {
+      "voiceId": "01TLYEB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SOUND/01TLYEB001.aiff",
+      "nativeMember": "01TLYEB001.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 10240,
+      "nativeSha256": "90252358fd93792dce2e28e5e1dc5835e1fe8cc4e47f849c43dcae8e4a9826b3",
+      "speakerId": "KISY",
+      "sourceText": "You're going after him?",
+      "displayText": "You're going after him?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-after-battle/voice/01TLYEB001.wav",
+      "byteLength": 40748,
+      "sha256": "c6708dbcdc34a606a9c1552c5650879e05ef5f57893c4670573b004db785d783"
+    },
+    {
+      "voiceId": "01TLYEB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SOUND/01TLYEB002.aiff",
+      "nativeMember": "01TLYEB002.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 10240,
+      "nativeSha256": "aa782534af82df4b0d2164b100fe3a08fe84b95f2a1549b1e3f61aa307f33752",
+      "speakerId": "KISY",
+      "sourceText": "I'll talk to my father.",
+      "displayText": "I'll talk to my father.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-after-battle/voice/01TLYEB002.wav",
+      "byteLength": 40748,
+      "sha256": "560f3863bbedd84216100cc2c0e4be9dc4b36283327460f57006a048ae931549"
+    },
+    {
+      "voiceId": "01TLYEB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SOUND/01TLYEB003.aiff",
+      "nativeMember": "01TLYEB003.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 16384,
+      "nativeSha256": "4f72184f4f44325e6f246021fd09f6b6cb37b62933d2f58d335e18269e2451e1",
+      "speakerId": "KISY",
+      "sourceText": "I'll ask my father to＆help you out.",
+      "displayText": "I'll ask my father to\nhelp you out.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-after-battle/voice/01TLYEB003.wav",
+      "byteLength": 65324,
+      "sha256": "1d9056e585e307a62bb6684ac0cf49878dcd9cc9a3e61bb39fcc86ee3e5076ad"
+    },
+    {
+      "voiceId": "01TLYEB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SOUND/01TLYEB004.aiff",
+      "nativeMember": "01TLYEB004.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 12288,
+      "nativeSha256": "0def7d9aff244c22f11283faaf9dba94847304f5611289216fece82318a70375",
+      "speakerId": "KISY",
+      "sourceText": "Contact me later, OK?",
+      "displayText": "Contact me later, OK?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-after-battle/voice/01TLYEB004.wav",
+      "byteLength": 48940,
+      "sha256": "b398796558975113a71fbb33c9026c1bae4efd82c6be495a42c2511a26011e46"
+    },
+    {
+      "voiceId": "01TLYEB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SOUND/01TLYEB005.aiff",
+      "nativeMember": "01TLYEB005.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 4096,
+      "nativeSha256": "996ddd884bb32d162bca311f9c996c9421e03233efa72d64f9d0a8886dda65f5",
+      "speakerId": "KISY",
+      "sourceText": "What?",
+      "displayText": "What?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-after-battle/voice/01TLYEB005.wav",
+      "byteLength": 16172,
+      "sha256": "82de0928484656554af368f3fcd3fffd65579a58e5fe2966880000cf70a8a9fd"
+    },
+    {
+      "voiceId": "01TLYEB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SOUND/01TLYEB006.aiff",
+      "nativeMember": "01TLYEB006.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 20480,
+      "nativeSha256": "c43ca7cc86154c325d49745e90977520f1f9375513c72fc02f72db20c45be893",
+      "speakerId": "KISY",
+      "sourceText": "No, that's my line.",
+      "displayText": "No, that's my line.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 79
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 22
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/gui-after-battle/voice/01TLYEB006.wav",
+      "byteLength": 81708,
+      "sha256": "66707b390f5bcc3875a160683833064caabbdf53957f3d570a3127b8b6498c5c"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-after-battle/sfx/a9040000.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-after-battle/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-after-battle/sfx/a9040200.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-after-battle/sfx/a9040300.wav",
+      "byteLength": 5412,
+      "sha256": "64fa0eff3320191bd9befe41d84a45f91d48ae9a9c821c8aac766ce9b3fcf3f3"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SE/foot2/RYOASHIKONKURI_3.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-after-battle/sfx/a9040400.wav",
+      "byteLength": 6364,
+      "sha256": "a087e557bddc12e1ca7a20b8ad3ee5e15dfa88ad4531cbba9c0b85b9367c66af"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-after-battle/sfx/a9040500.wav",
+      "byteLength": 4620,
+      "sha256": "6f4c18ad207b2edad97e77c07a2d9a938cb26bfcd2c8e6f4e884c15f4a87ecba"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-after-battle/sfx/a9040600.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-after-battle/sfx/a9040700.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SE/foot/sneaker1.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-after-battle/sfx/a9040800.wav",
+      "byteLength": 10964,
+      "sha256": "3db696efc3f22f883429c8558b9cd97102c30e9f4401b0d78a4cb82baaf2e2b7"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYE/SE/foot/sneaker3.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/gui-after-battle/sfx/a9040900.wav",
+      "byteLength": 11188,
+      "sha256": "fef02cc6d21fef1cbee18ba5ee6e940b07c8b2a6f06b1d6655873f03702c6d6d"
+    }
+  ]
+}

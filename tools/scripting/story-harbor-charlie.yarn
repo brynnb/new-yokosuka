@@ -1,0 +1,36 @@
+Ryo Hazuki: The bikers stopped here. Five thugs are blocking the way to Charlie. #speaker:AKIR
+-> Face the attackers
+    <<jump FirstWave>>
+-> Leave it for now
+    <<jump Done>>
+===
+title: FirstWave
+---
+<<start_combat "{{firstCombat}}">>
+<<if combat_result("{{firstCombat}}") == "success">>
+Ryo Hazuki: The others are down. Charlie is still standing. #speaker:AKIR
+<<jump SecondWave>>
+<<else>>
+-> Try again
+    <<jump FirstWave>>
+-> Leave it for now
+    <<jump Done>>
+<<endif>>
+===
+title: SecondWave
+---
+<<start_combat "{{secondCombat}}">>
+<<if combat_result("{{secondCombat}}") == "success">>
+{{completionActivities}}
+{{effects}}
+<<jump Done>>
+<<else>>
+-> Try again
+    <<jump SecondWave>>
+-> Leave it for now
+    <<jump Done>>
+<<endif>>
+===
+title: Done
+---
+<<complete>>

@@ -1,0 +1,1522 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01MIT.AFS",
+      "sha256": "9f79b1cdf1254a76197b36597a20d88e93be9cdb55c8a7501a9833620348106c"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/S1_SEKAI.SND",
+      "sha256": "3219ebe4f8454af793d7a27bbcb72fe3ea1525b28d5e3edc4fa3180d0c676357"
+    },
+    "authManifest": "play/assets/dobuita/global-airfare/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01MITA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA001.aiff",
+      "nativeMember": "01MITA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "987fef7d9c6d5a1e23dac826eff94222612ddbb7a6254d078b2e622f20c6c8b1",
+      "speakerId": "AKIR",
+      "sourceText": "Hello=@",
+      "displayText": "Hello...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITA001.wav",
+      "byteLength": 16172,
+      "sha256": "0010540a56379712a4847afc0bea01d4bee42fe24d166e34b47edecc91f28819"
+    },
+    {
+      "voiceId": "01MITA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA002.aiff",
+      "nativeMember": "01MITA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "6989511f35bfd86f14e4da85bc93696ce8fd7c7f04c7134005e24f2cc9a15c68",
+      "speakerId": "AKIR",
+      "sourceText": "Yes, to Hong Kong.",
+      "displayText": "Yes, to Hong Kong.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITA002.wav",
+      "byteLength": 32556,
+      "sha256": "f1ff7cc6bd1ed4cf5874bc750d17bac2da39590689f1109681d91a88195383bc"
+    },
+    {
+      "voiceId": "01MITA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA003.aiff",
+      "nativeMember": "01MITA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "fcd7963fc0e28ba0863e9304331f4ae1e374b01dea27a666ce7773a901db8a70",
+      "speakerId": "AKIR",
+      "sourceText": "Yes=@",
+      "displayText": "Yes...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITA003.wav",
+      "byteLength": 16172,
+      "sha256": "0a72fab4957e8ceb17e86eeaf3ec80738a17f9d117efe7dc00abcfda395fa105"
+    },
+    {
+      "voiceId": "01MITA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA004.aiff",
+      "nativeMember": "01MITA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "6430898fe456c191b1417637c402192e1aebe17e88f75c3ea0ba5f16f4514c58",
+      "speakerId": "AKIR",
+      "sourceText": "Wow=@",
+      "displayText": "Wow...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITA004.wav",
+      "byteLength": 16172,
+      "sha256": "f29325ae02a260b9188d8bc255e9008930017ac1d1f1480509aea517efb5df40"
+    },
+    {
+      "voiceId": "01MITA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA005.aiff",
+      "nativeMember": "01MITA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 14336,
+      "nativeSha256": "3905390b6e5a9364e18160a4aa6d012e4c8fd6a2c6c9e9830b0b80a89215d6d8",
+      "speakerId": "AKIR",
+      "sourceText": "Is there a cheaper one?＆A one-way fare?",
+      "displayText": "Is there a cheaper one?\nA one-way fare?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITA005.wav",
+      "byteLength": 57132,
+      "sha256": "9c4d94af695471cce21830438feb1637a39982964b1ac0976d964e3acc93523c"
+    },
+    {
+      "voiceId": "01MITA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA006.aiff",
+      "nativeMember": "01MITA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 6144,
+      "nativeSha256": "b67915e42022836fdebdd77fe2c21b8ab5934f6e315e93ef85aee69f37294927",
+      "speakerId": "AKIR",
+      "sourceText": "Really=@",
+      "displayText": "Really...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITA006.wav",
+      "byteLength": 24364,
+      "sha256": "c2ba2813cdb1954bc720b2751c128c9bc98eea273d65e201bcf7e2f68bcf8c28"
+    },
+    {
+      "voiceId": "01MITA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA007.aiff",
+      "nativeMember": "01MITA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 6144,
+      "nativeSha256": "6e7f943b3da8f8e05a239b9b07aaaea29c09e5d2b5f8a1ae7a31d116f3209c8e",
+      "speakerId": "AKIR",
+      "sourceText": "I'll come back.",
+      "displayText": "I'll come back.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITA007.wav",
+      "byteLength": 24364,
+      "sha256": "e3610212d6a8098787c5056734a286d43eea8e8d8e67b43a0865360998ce277c"
+    },
+    {
+      "voiceId": "01MITA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITA008.aiff",
+      "nativeMember": "01MITA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 8192,
+      "nativeSha256": "e4c8807076573144998639fee9480e69034a339eb809b3973bd2fee598fe0b69",
+      "speakerId": "AKIR",
+      "sourceText": "OK Thanks.",
+      "displayText": "OK Thanks.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITA008.wav",
+      "byteLength": 32556,
+      "sha256": "af6d30b1ab04e6344e7b4f40bbbc6badd6acff0ba0ac84830d87890d12dc6d57"
+    },
+    {
+      "voiceId": "01MITB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB001.aiff",
+      "nativeMember": "01MITB001.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 12288,
+      "nativeSha256": "c38ddea8ba688720705e641ab21cb176c7a5071e509c1f357c1301569525a3b2",
+      "speakerId": "SIND",
+      "sourceText": "Ahh, please come in.",
+      "displayText": "Ahh, please come in.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITB001.wav",
+      "byteLength": 48940,
+      "sha256": "3331860bf12f2173bfaa1bb155b114e6af696a3fbf76bab3020a72695ddadd3e"
+    },
+    {
+      "voiceId": "01MITB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB002.aiff",
+      "nativeMember": "01MITB002.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 6144,
+      "nativeSha256": "18990cc7deae95134309cd74a6eab3e37222fc260f5dfefb1d963f61d2164a29",
+      "speakerId": "SIND",
+      "sourceText": "A vacation?",
+      "displayText": "A vacation?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITB002.wav",
+      "byteLength": 24364,
+      "sha256": "725f96484a8b5d62dcc84ce13c742ca8555389c256d161f0c55e8efa7ff2a1d9"
+    },
+    {
+      "voiceId": "01MITB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB003.aiff",
+      "nativeMember": "01MITB003.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 6144,
+      "nativeSha256": "22928e0c1f39e2cd15f765a1ab26b99c1be5e72ff734fefeccdb981224a928d7",
+      "speakerId": "SIND",
+      "sourceText": "Hong Kong=@",
+      "displayText": "Hong Kong...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITB003.wav",
+      "byteLength": 24364,
+      "sha256": "6cb8161ec0db4a98737d57a8377f2b2cc833a8cbe325b457f0e2e183c0199ad2"
+    },
+    {
+      "voiceId": "01MITB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB004.aiff",
+      "nativeMember": "01MITB004.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 10240,
+      "nativeSha256": "45d96005841a28dc85ba17ba7183398b884468d8c76c4c1cd4d5ca302b82fc15",
+      "speakerId": "SIND",
+      "sourceText": "Well then, have a seat.",
+      "displayText": "Well then, have a seat.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITB004.wav",
+      "byteLength": 40748,
+      "sha256": "1c0f019ef9a43af1ba38bd1d4b7870cc8a7988ce6cb960c6a8bba7a283cc6229"
+    },
+    {
+      "voiceId": "01MITB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB005.aiff",
+      "nativeMember": "01MITB005.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 8192,
+      "nativeSha256": "cf403077242d55a422705af7a5ab733f311bbea9d10dead03eff4683c23104d8",
+      "speakerId": "SIND",
+      "sourceText": "Are you a student?",
+      "displayText": "Are you a student?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITB005.wav",
+      "byteLength": 32556,
+      "sha256": "33d11d0f1a3b41a2bf89e7ea0fca8754f3de007962039011d14ddafefb174124"
+    },
+    {
+      "voiceId": "01MITB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB006.aiff",
+      "nativeMember": "01MITB006.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 12288,
+      "nativeSha256": "20a42760e83a26142d59cc93cc76f7324896eeac9dbedecc769582e099f1e448",
+      "speakerId": "SIND",
+      "sourceText": "With a student discount about=@",
+      "displayText": "With a student discount about...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITB006.wav",
+      "byteLength": 48940,
+      "sha256": "fbb066c9f30a1814db91f98e12a375a7318118d6f400ba387be5687312254478"
+    },
+    {
+      "voiceId": "01MITB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB007.aiff",
+      "nativeMember": "01MITB007.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 14336,
+      "nativeSha256": "b36c3801fa1260ba33ecbfcf5e03acff17bf30ade473430fec46ae008116b914",
+      "speakerId": "SIND",
+      "sourceText": "220,000 Yen.",
+      "displayText": "220,000 Yen.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITB007.wav",
+      "byteLength": 57132,
+      "sha256": "cdd8f9c8dfcdc1e21147193e1f916e8a0152c32d9a74ac718d9a6e8ef2ed347c"
+    },
+    {
+      "voiceId": "01MITB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB008.aiff",
+      "nativeMember": "01MITB008.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 20480,
+      "nativeSha256": "7de98e499420a860ea919fd8ea4f7b440905eee278f9e232b6530bedc04bddb0",
+      "speakerId": "SIND",
+      "sourceText": "I'm afraid,＆we don't sell one-way tickets.",
+      "displayText": "I'm afraid,\nwe don't sell one-way tickets.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITB008.wav",
+      "byteLength": 81708,
+      "sha256": "e2d22289dc3a5cec5bfcdb418501c7ff559a3e09919880f4ee3950cca75073ec"
+    },
+    {
+      "voiceId": "01MITB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB009.aiff",
+      "nativeMember": "01MITB009.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 26624,
+      "nativeSha256": "bc09427c68f042edb6706333b53b7eead8c18cc288ef6bb294f1cfeee6f8ec59",
+      "speakerId": "SIND",
+      "sourceText": "The ticket alone's=@＆about 198,000=@",
+      "displayText": "The ticket alone's...\nabout 198,000...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 18
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 23
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITB009.wav",
+      "byteLength": 106284,
+      "sha256": "0a6e1150af88ecd7615d738d03036c532705a2ae0a9b0ba925e18fde41b1292f"
+    },
+    {
+      "voiceId": "01MITB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB010.aiff",
+      "nativeMember": "01MITB010.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 18432,
+      "nativeSha256": "5dc0100777301b4ee70d30be49b96e941b35476a69edf4e59222a371fbb88009",
+      "speakerId": "SIND",
+      "sourceText": "Here, why don't you take＆ this pamphlet with you.",
+      "displayText": "Here, why don't you take\n this pamphlet with you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 31
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITB010.wav",
+      "byteLength": 73516,
+      "sha256": "37d488acf33688a300361308a55df946fc359f22170ed97aa454360049dda220"
+    },
+    {
+      "voiceId": "01MITB011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB011.aiff",
+      "nativeMember": "01MITB011.str",
+      "nativeIndex": 25,
+      "nativeByteLength": 20480,
+      "nativeSha256": "aaf3146d33b65a5c9ffe437b32ee54c95e4b4cd9b183e34f0d669cca4a81871e",
+      "speakerId": "SIND",
+      "sourceText": "Think about it and if you're＆interested come back.",
+      "displayText": "Think about it and if you're\ninterested come back.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITB011.wav",
+      "byteLength": 81708,
+      "sha256": "a1e3fdb5e46eba218fdfb69640d6495fd23491ef15b317e0a5d39dc55703d7fe"
+    },
+    {
+      "voiceId": "01MITB019",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SOUND/01MITB019.aiff",
+      "nativeMember": "01MITB019.str",
+      "nativeIndex": 33,
+      "nativeByteLength": 6144,
+      "nativeSha256": "621f67b3577d6b54f1a88f05459986c92591f34e4c6adb21bd7e89b369ce8247",
+      "speakerId": "SIND",
+      "sourceText": "Please come again.",
+      "displayText": "Please come again.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/global-airfare/voice/01MITB019.wav",
+      "byteLength": 24364,
+      "sha256": "64c673be707f797367c784f672f36f95d36fb20a8b9d70c1acf431b64f3c9e8b"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-airfare/sfx/a9040000.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-airfare/sfx/a9040100.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/cloths2/cloths02.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-airfare/sfx/a9040200.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-airfare/sfx/a9040400.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-airfare/sfx/a9040500.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/smallobject/latterpocket.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-airfare/sfx/a9040600.wav",
+      "byteLength": 17836,
+      "sha256": "6b9cf45817403d65a5175c5a95d8f05e0c6cf46c3eaa5d614b77b0937b424315"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/smallobject/paper2eq.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-airfare/sfx/a9040700.wav",
+      "byteLength": 17052,
+      "sha256": "5cd24e2df91f8c80e924904d2e1d4069c5f52710a37116cbedfc739c81e93477"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MIT/SE/door/sekaidoor.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/global-airfare/sfx/a9040800.wav",
+      "byteLength": 45164,
+      "sha256": "a8c6673ab1a8b728c1a8f7eb46768ba36954e5fdc2d23d07de7e093a021a5bbf"
+    }
+  ]
+}

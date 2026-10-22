@@ -26,9 +26,21 @@ import {
 import {
   createTelephoneReceiverBabylonAdapter,
 } from "./TelephoneReceiverBabylonAdapter.js";
+import { AuthoredSceneStagingRuntime } from "./AuthoredSceneStagingRuntime.js";
+import { StoryCombatRuntime } from "./StoryCombatRuntime.js";
+import {StoryNavigationRuntime} from "./StoryNavigationRuntime.js";
+import {StoryDrivingRuntime} from "./StoryDrivingRuntime.js";
+import {StoryForkliftChallengeRuntime} from "./StoryForkliftChallengeRuntime.js";
+import {NativeAseqSceneObjectRuntime} from "../events/NativeAseqSceneObjectRuntime.js";
+import { createNativeAseqBabylonActors, createNativeAseqBabylonCamera } from "../events/NativeAseqBabylonPresentation.js";
+import { NativeAseqAttachedObjectRuntime } from "../events/NativeAseqAttachedObjectRuntime.js";
+import { createNativeCutsceneSceneObjectLoader } from "../cutscenes/NativeCutsceneSceneObjectLoader.js";
+import { fetchAssetBuffer } from "../../src/AssetCache.js";
+import { runtimeAssetUrl } from "../../src/RuntimeAssets.js";
 
 export function createScriptEventAssembly({
   nativeRuntime,
+  cutsceneDirector,
   getArea,
   dialoguePersistence,
   selectedObjectActionController,
@@ -36,17 +48,31 @@ export function createScriptEventAssembly({
   currentMeshes,
   renderMatrixByKey,
   animation,
+  playerRuntime,
+  getCharacter,
+  onCombatStateChanged,
   retargetCharacterMatrices,
   worldSounds,
+  menuSounds,
   roomScripts,
   playerXmptRuntime,
   playerMotionRuntime,
   cameraRuntime,
   scheduledActors,
   getPlayerPosition,
+  capturePlayerState,
+  restorePlayerState,
+  camera,
+  scene,
+  getPlayerModel,
+  syncPlayerTransform,
+  motionRuntime,
+  musicControls,
+  getController,
+  getForklifts,
+  getBinding,
   cameraPresentation,
-  getMovementLocked,
-  setMovementLocked,
+  acquireMovementLock,
   dom,
   dialogueAudio,
   setDialogueControlsActive,
@@ -57,11 +83,14 @@ export function createScriptEventAssembly({
 }) {
   const activityRunner = createNativeScriptActivityRunner({
     nativeRuntime,
+    cutsceneDirector,
     getArea,
     captureClientState: () => dialoguePersistence.captureWorkingState(),
     restoreClientState: snapshot => (
       dialoguePersistence.restoreWorkingState(snapshot)
     ),
+    capturePlayerState,
+    restorePlayerState,
     selectedObjectActionController,
   });
   const telephoneReceiver = createTelephoneReceiverBabylonAdapter({
@@ -108,9 +137,53 @@ export function createScriptEventAssembly({
     playerMotionRuntime,
     playSound,
   });
+  let controller;
+  const createAttachedObjects=(definitions,resolveActor,signal)=>new NativeAseqAttachedObjectRuntime({definitions,resolveActor,
+    instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})}),
+  });
+  const combatRuntime=new StoryCombatRuntime({
+    getCharacter,
+    scene, sounds: playerRuntime.combatSounds,
+    createCombatActors: (records, signal) => playerRuntime.combat.prepareStoryActors(records, playerRuntime.motionLibrary, signal),
+    onStateChanged: onCombatStateChanged,
+    onViewChanged: view => dialoguePresenter.showCombat(view),
+    actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,
+      preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
+    musicControls,getController,getBinding,capturePlayerState,restorePlayerState,
+    onIntent:(action,token,intent)=>action.startsWith("challenge_")
+      ? controller?.challengeResponse(action,token,intent?.outcome)
+      : controller?.combatResponse(action,token,intent),
+  });
+  const navigationRuntime=new StoryNavigationRuntime({
+    actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
+    motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,createAttachedObjects,
+    onIntent:(action,token,intent)=>controller?.navigationResponse(action,token,intent),
+  });
+  const vehicleChallengeRuntime=new StoryForkliftChallengeRuntime({scene,getForklifts,getController,capturePlayerState,restorePlayerState,acquireMovementLock,
+    onIntent:(action,token)=>controller?.challengeResponse(action,token)});
+  const createSceneObjects=(definitions,signal)=>new NativeAseqSceneObjectRuntime({definitions,
+    instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})})});
+  const drivingRuntime=new StoryDrivingRuntime({
+    actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
+    motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,createSceneObjects,
+    onIntent:(action,token,intent)=>controller?.drivingResponse(action,token,intent),
+  });
   const presentation = createScriptEventPresentationRuntime({
     adapters: createScriptEventBabylonAdapters({
       cameraRuntime,
+      combatRuntime,
+      navigationRuntime,
+      drivingRuntime,
+      vehicleChallengeRuntime,
+      sceneStagingRuntime: new AuthoredSceneStagingRuntime({
+        actors: createNativeAseqBabylonActors({ getPlayerModel, syncPlayerTransform,
+          scheduledActors, motionRuntime, preservePlayerOnComplete: false, playerYawOffsetRadians: Math.PI }),
+        camera: createNativeAseqBabylonCamera(camera), motionRuntime,
+        capturePlayerState, restorePlayerState,
+        createAttachedObjects,
+        createSceneObjects,
+        currentMeshes,
+      }),
       playerMotionRuntime,
       playerXmptRuntime,
       scheduledActors,
@@ -118,8 +191,7 @@ export function createScriptEventAssembly({
       getPlayerPosition,
       beginCameraPresentation: cameraPresentation.begin,
       abortCameraPresentation: cameraPresentation.abort,
-      getMovementLocked,
-      setMovementLocked,
+      acquireMovementLock,
       startActivity: (activity, context) => (
         activityRunner.start(activity, context)
       ),
@@ -128,7 +200,6 @@ export function createScriptEventAssembly({
       motionCueRuntime,
     }),
   });
-  let controller;
   const dialoguePresenter = createScriptEventDialoguePresenter({
     root: dom.dialogueOverlay,
     speaker: dom.dialogueSpeaker,
@@ -138,6 +209,16 @@ export function createScriptEventAssembly({
     audioSettings: dialogueAudio,
     onAdvance: () => controller?.advanceLine(),
     onSelect: optionId => controller?.selectOption(optionId),
+    onChallengeResponse: (action,token,outcome) => controller?.challengeResponse(action,token,outcome),
+    // Existing interface cues provide immediate local feedback. These are an
+    // explicit adaptation, not an identified original Dreamcast QTE sound bank.
+    qteSound: cue => menuSounds?.[{prompt:"move",correct:"confirm",wrong:"blocked"}[cue]](),
+    onCombatAction:action=>combatRuntime.action(action),
+    onCombatGuard:guard=>combatRuntime.setGuard(guard),
+    onNavigationUse:()=>navigationRuntime.use(),
+    onNavigationHide:hide=>navigationRuntime.hide(hide),
+    onNavigationDirection:(x,z)=>navigationRuntime.direction(x,z),
+    onDrivingControl:(name,value)=>drivingRuntime.control(name,value),
     onActiveChanged: setDialogueControlsActive,
   });
   controller = createScriptEventController({
@@ -151,6 +232,7 @@ export function createScriptEventAssembly({
     },
     presentation,
     dialogue: dialoguePresenter,
+    prepareStart: options => dialoguePersistence.beginServerEvent(options),
     onStarted: identity => {
       if (localDebug) console.info("[Script started]", identity);
     },
@@ -191,6 +273,7 @@ export function createScriptEventAssembly({
   });
 
   return {
+    combatRuntime,
     activityRunner,
     telephoneRuntime,
     motionCueRuntime,

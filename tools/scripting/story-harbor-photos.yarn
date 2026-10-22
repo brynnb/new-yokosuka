@@ -1,0 +1,18 @@
+<<start_activity "s1.mfsy.nozomi-photo-intro.scene">>
+-> Keep the photo standing apart
+    <<set $kept_apart = true>>
+    <<jump Ending>>
+-> Keep the photo standing together
+    <<set $kept_apart = false>>
+    <<jump Ending>>
+===
+title: Ending
+---
+<<start_activity "s1.mfsy.nozomi-photo-ending.scene">>
+<<if $kept_apart>>
+<<set_flag "story.s1.nozomi-photo.apart">>
+<<else>>
+<<set_flag "story.s1.nozomi-photo.together">>
+<<endif>>
+{{effects}}
+<<complete>>

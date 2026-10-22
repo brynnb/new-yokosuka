@@ -1,0 +1,1116 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/A0169.AFS",
+      "sha256": "f75f94816b8a8f011dbf372f57077596f45c21f382ed13816d80450672edb796"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_JYTEL.SND",
+      "sha256": "b36c631fd2911f0450652cbdddb1feaa608b01387f8b2b70a7abc69cddc9c2fe"
+    },
+    "authManifest": "play/assets/hazuki/jimmy-morning-call/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md"
+  },
+  "voices": [
+    {
+      "voiceId": "A0169A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SOUND/A0169A001.aiff",
+      "nativeMember": "A0169A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "f685f2ae5e8aea1e62ac2c702c0d05608ec931919ff8f1edd01227c79bfb329f",
+      "speakerId": "AKIR",
+      "sourceText": "Hello.",
+      "displayText": "Hello.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-morning-call/voice/A0169A001.wav",
+      "byteLength": 16172,
+      "sha256": "d5c90483804c7b4b9b6722528289e809c3bfcfd1dd0d851086840ed20f82a3e5"
+    },
+    {
+      "voiceId": "A0169A003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SOUND/A0169A003.aiff",
+      "nativeMember": "A0169A003.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 4096,
+      "nativeSha256": "60eb90944ddc259327e5e946de8d2eeee3dcdec3fb78453734fa14e8421d149b",
+      "speakerId": "AKIR",
+      "sourceText": "I'm going out.",
+      "displayText": "I'm going out.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-morning-call/voice/A0169A003.wav",
+      "byteLength": 16172,
+      "sha256": "0d2cca417082520a8829d85f1cabb1ec662a3810ec27b4c9bdf5f8b45c56c539"
+    },
+    {
+      "voiceId": "A0169A004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SOUND/A0169A004.aiff",
+      "nativeMember": "A0169A004.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 12288,
+      "nativeSha256": "2c61b904f0a6830f56af725bfc3d06183be019b08e7e633f3486907fd4ed245b",
+      "speakerId": "AKIR",
+      "sourceText": "The ticket=@to Hong Kong.",
+      "displayText": "The ticket...to Hong Kong.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-morning-call/voice/A0169A004.wav",
+      "byteLength": 48940,
+      "sha256": "ea6d37ac7f584742e9ccce0e78f5995bc10f7965e150b92c3c0967792f753521"
+    },
+    {
+      "voiceId": "A0169B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SOUND/A0169B001.aiff",
+      "nativeMember": "A0169B001.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 12288,
+      "nativeSha256": "864a580bf44169bfc128a02abb7d554b4508bb6d4e7af02343bd8708e59f3d3a",
+      "speakerId": "FUKU",
+      "sourceText": "Hello, Hazuki Dojo.",
+      "displayText": "Hello, Hazuki Dojo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-morning-call/voice/A0169B001.wav",
+      "byteLength": 48940,
+      "sha256": "1e1d522e65a23f7b5253d4ba0ff9ea5248df0bc0d1a16a6b74b2b4609b759a96"
+    },
+    {
+      "voiceId": "A0169B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SOUND/A0169B002.aiff",
+      "nativeMember": "A0169B002.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 20480,
+      "nativeSha256": "67db9d164fb8fc020ec5dd0dec56493f5c59ce49c85e4ad911d833cf289db1b3",
+      "speakerId": "FUKU",
+      "sourceText": "Huh? Asia Travel Co.?",
+      "displayText": "Huh? Asia Travel Co.?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 57
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-morning-call/voice/A0169B002.wav",
+      "byteLength": 81708,
+      "sha256": "c2706068eccaecc5402f5055cf31d8ce60f12c924fcefdf3601fd2384e2d5efd"
+    },
+    {
+      "voiceId": "A0169B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SOUND/A0169B003.aiff",
+      "nativeMember": "A0169B003.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 16384,
+      "nativeSha256": "70627b5f4495a962db66535c9cd68fb9935cbce86902630e7253267a4f2ec0d2",
+      "speakerId": "FUKU",
+      "sourceText": "OK, Just a moment=@Uh!",
+      "displayText": "OK, Just a moment...Uh!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-morning-call/voice/A0169B003.wav",
+      "byteLength": 65324,
+      "sha256": "c37b458dd1ca22a0b35c669160fc527e9f6d3155140ab3deac28aa1226911a14"
+    },
+    {
+      "voiceId": "A0169B007",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SOUND/A0169B007.aiff",
+      "nativeMember": "A0169B007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 14336,
+      "nativeSha256": "991ced7db5d20bc857e956bcae0ba633f5e51b464bdba1520a09527997f06a43",
+      "speakerId": "FUKU",
+      "sourceText": "Ryo-san, what was that phone call about?",
+      "displayText": "Ryo-san, what was that phone call about?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-morning-call/voice/A0169B007.wav",
+      "byteLength": 57132,
+      "sha256": "8f71796c0463724da641d4c9f2e83664032cb797f2dd0280f322cb6ab84e4c43"
+    },
+    {
+      "voiceId": "A0169B008",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SOUND/A0169B008.aiff",
+      "nativeMember": "A0169B008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 8192,
+      "nativeSha256": "abab693f1fbd54b12785f633bf42b3361e9acd31972faab4243b115406a87549",
+      "speakerId": "FUKU",
+      "sourceText": "Oh, I see.",
+      "displayText": "Oh, I see.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-morning-call/voice/A0169B008.wav",
+      "byteLength": 32556,
+      "sha256": "a40ff7b4be793e51f0529a253f9898c157b7ec521f306231fb392cab038ebbf7"
+    },
+    {
+      "voiceId": "A0169B009",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SOUND/A0169B009.aiff",
+      "nativeMember": "A0169B009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 10240,
+      "nativeSha256": "36ec0f3a840dbda93c7c6242adc7ef381a791e843b37fa5b705781289190ae60",
+      "speakerId": "FUKU",
+      "sourceText": "Oh=@OK.",
+      "displayText": "Oh...OK.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-morning-call/voice/A0169B009.wav",
+      "byteLength": 40748,
+      "sha256": "a8e037dc69a59f88f9e9a683ece5ad7ea7daefacd30d7867fbfcd866fcc49de9"
+    },
+    {
+      "voiceId": "A0169C004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SOUND/A0169C004.aiff",
+      "nativeMember": "A0169C004.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 24576,
+      "nativeSha256": "1571bd0d342ad69935904ee18703a7b53cd58cba5e1d980f76ddd43bcaed5492",
+      "speakerId": "JIMY",
+      "sourceText": "Please come to the YOU Arcade＆in Dobuita at noon.",
+      "displayText": "Please come to the YOU Arcade\nin Dobuita at noon.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 23
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-morning-call/voice/A0169C004.wav",
+      "byteLength": 98092,
+      "sha256": "07636200b44b11bcdb8fee56155e0d79cc72c42bd90cd230068fcc724a6c7d80"
+    },
+    {
+      "voiceId": "A0169C005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SOUND/A0169C005.aiff",
+      "nativeMember": "A0169C005.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 22528,
+      "nativeSha256": "615d094293886a23c20e45313dc70b4d8a46c9fda26ef03374ecf4c964787217",
+      "speakerId": "JIMY",
+      "sourceText": "It's Jimmy, from Asia Travel=@＆I've got your ticket.",
+      "displayText": "It's Jimmy, from Asia Travel...\nI've got your ticket.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 25
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-morning-call/voice/A0169C005.wav",
+      "byteLength": 89900,
+      "sha256": "551f7675914868775ba548c70dd476cff235ae5a619a9b8f14de2897f0a83903"
+    },
+    {
+      "voiceId": "A0169C006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SOUND/A0169C006.aiff",
+      "nativeMember": "A0169C006.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 14336,
+      "nativeSha256": "2c252ddebb509d986546d59ec3609ebb6efca36d5340f349a3907fe6e7503a6e",
+      "speakerId": "JIMY",
+      "sourceText": "I'd like for you to come＆and pick it up.",
+      "displayText": "I'd like for you to come\nand pick it up.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/jimmy-morning-call/voice/A0169C006.wav",
+      "byteLength": 57132,
+      "sha256": "0db29830d447efcbceee2a4eefc49416494fb48b9756d84158ceb053734875d5"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SE/foot2/GANASHI1.aiff",
+      "playbackId": 0,
+      "sampleId": 7,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/jimmy-morning-call/sfx/a9040000.wav",
+      "byteLength": 20116,
+      "sha256": "fd181c146fb58d7ee41e298a246684d434433403ca4fd8ee3d93640199422641"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SE/foot2/GANASHI2.aiff",
+      "playbackId": 1,
+      "sampleId": 8,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/jimmy-morning-call/sfx/a9040100.wav",
+      "byteLength": 11588,
+      "sha256": "6379ced8b7bdfcc7ce71159dbcdf7dee8aa12c23c40bd9e95d4bbd850d3f2110"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SE/foot2/GANASHI3.aiff",
+      "playbackId": 2,
+      "sampleId": 9,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/jimmy-morning-call/sfx/a9040200.wav",
+      "byteLength": 6492,
+      "sha256": "f275b09a0dd512d9369c5725db8352faeca4934e5cd7f6cbb575318434bc89aa"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 6,
+      "sampleId": 13,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/jimmy-morning-call/sfx/a9040600.wav",
+      "byteLength": 8124,
+      "sha256": "18b46acd1d53b45aec0dea0921436c6b35f7d72b6a7dc031066d146cdead5b98"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SE/smallobject/Telphon.aiff",
+      "playbackId": 7,
+      "sampleId": 19,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/jimmy-morning-call/sfx/a9040700.wav",
+      "byteLength": 12444,
+      "sha256": "aa9603b644e5b7ade12630c563d7c489e1ebca6f6555b74115d34150462a9bc7"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SE/smallobject/denwa2.aiff",
+      "playbackId": 8,
+      "sampleId": 2,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/jimmy-morning-call/sfx/a9040800.wav",
+      "byteLength": 130396,
+      "sha256": "2d24a33536ae2fe6bf980a36f7bc059b6679c4b8628c7759582d0f030c877167"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SE/cloths/Frictionocloth.aiff",
+      "playbackId": 10,
+      "sampleId": 4,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/jimmy-morning-call/sfx/a9040a00.wav",
+      "byteLength": 12828,
+      "sha256": "37bcf5487bb418bd8003855e1a774ad7fef863b41dc519a3698fca225f59efe6"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SE/door/slidedoor3.aiff",
+      "playbackId": 11,
+      "sampleId": 16,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/jimmy-morning-call/sfx/a9040b00.wav",
+      "byteLength": 96548,
+      "sha256": "e13c8fc727bdf34bb4fe213eaf7afacb6c597a8cee7906edcdb7e4bdd9173f60"
+    },
+    {
+      "commandHex": "a9040c00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SE/door/slidedoor4.aiff",
+      "playbackId": 12,
+      "sampleId": 17,
+      "sampleRate": 22050,
+      "asset": "public/audio/world/jimmy-morning-call/sfx/a9040c00.wav",
+      "byteLength": 57444,
+      "sha256": "f7122e24d1f7cddc7668f5425f8d9068b16edf8f5ae767593a975dde14f3a8bc"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 15,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-morning-call/sfx/a9040f00.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MON/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 15,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-morning-call/sfx/a9040f00.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 16,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-morning-call/sfx/a9041000.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0169/SE/cloths2/cl03.aiff",
+      "playbackId": 19,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/jimmy-morning-call/sfx/a9041300.wav",
+      "byteLength": 127604,
+      "sha256": "2c13979aaaf032ee706d0353819b385a7aca4f3d3d1a6b0e480c83e7a4162737"
+    }
+  ]
+}

@@ -7,6 +7,32 @@
   ],
   "secondaryOperations": [
     {
+      "operationId": 0,
+      "operationHex": "0x0000",
+      "argumentCount": 14,
+      "semanticId": "interaction-manager-initialize",
+      "handlerAddress": "0x0c15dbcc",
+      "argumentConstraints": [
+        {"index": 4, "kinds": ["scene-address"]},
+        {"index": 5, "kinds": ["scene-address"]},
+        {"index": 6, "kinds": ["scene-address"]},
+        {"index": 7, "kinds": ["scene-address"]},
+        {"index": 8, "kinds": ["scene-address"]},
+        {"index": 13, "kinds": ["scene-address"]}
+      ],
+      "provenBehavior": "Resumes the native interaction-manager task; binds six static inputs, six scene addresses and the resolved/raw owner; clears manager words 0x38/0x3c; initializes descriptor memory, persistent script bits, candidate scratch and sixteen runtime slots. The secondary VM result remains its pre-cleared zero. Task update modes one and two remain explicit runtime boundaries; mode zero exits without work.",
+      "sources": ["tools/scripting/extract_dialogue_native_interaction_manager.py", "tools/evidence/dialogue-native-interaction-manager.json"]
+    },
+    {
+      "operationId": 3,
+      "operationHex": "0x0003",
+      "argumentCount": 1,
+      "semanticId": "native-object-cpam-install",
+      "handlerAddress": "0x0c15f388",
+      "provenBehavior": "Resolves the sole object-name operand, resets native object float +0x48 to positive zero and installs a four-byte CPAM record with update callback 0x0c0f53ec. The secondary dispatcher pre-clears its VM result, and this void installer leaves it zero rather than returning its C allocation pointer. Browser record ownership is transaction-backed; native per-frame camera projection and its visual effect remain a separate boundary.",
+      "sources": ["tools/scripting/operations/extract_scene_object_creation_evidence.py", "tools/evidence/scene-object-creation-evidence.json"]
+    },
+    {
       "operationId": 1,
       "operationHex": "0x0001",
       "argumentCount": 1,
@@ -146,6 +172,25 @@
     }
   ],
   "operations": [
+    {
+      "operationId": 8,
+      "operationHex": "0x0008",
+      "argumentCount": 3,
+      "semanticId": "native-named-scene-object-create",
+      "handlerAddress": "0x0c17344a",
+      "argumentConstraints": [{"index": 0, "values": [0, 1, 2, 3]}, {"index": 1, "values": [0]}],
+      "provenBehavior": "Creates a CEWP task with selector categories 5/6/7/8, installs the exact CHID name binding and initializes direct position/orientation to zero, scale to one and dword 0x5c to 0x85. A zero requested name uses a shared modulo-1000 counter and collision-checked space-prefixed three-digit name. Returns that four-byte name, not an allocated pointer. This proven form has no motion attachment; model-data installation and browser instantiation remain separate boundaries.",
+      "sources": ["tools/scripting/operations/extract_scene_object_creation_evidence.py", "tools/evidence/scene-object-creation-evidence.json"]
+    },
+    {
+      "operationId": 245,
+      "operationHex": "0x00f5",
+      "argumentCount": 2,
+      "semanticId": "actor-step-packed-byte-write",
+      "handlerAddress": "0x0c16b3e0",
+      "provenBehavior": "Resolves the actor's STEP record. Argument one's second byte selects offset +1 (mode 0) or +2 (mode 1); its low byte is written. Other modes and missing actors/records are native no-ops. The enable and fallback surface bytes are consumed by the original footstep callback.",
+      "sources": ["tools/evidence/actor-step-operation-evidence.json"]
+    },
     {
       "operationId": 110,
       "operationHex": "0x006e",
@@ -3451,6 +3496,7 @@
       "operationHex": "0x0084",
       "argumentCount": 3,
       "semanticId": "native-motion-resource-request",
+      "staticStringArgumentIndices": [2],
       "handlerAddress": "0x0c165fd2",
       "argumentConstraints": [
         {
@@ -3535,10 +3581,10 @@
       "operationHex": "0x009a",
       "semanticId": "typed-indexed-table-access",
       "handlerAddress": "0x0c1737b4",
-      "provenBehavior": "Reads or writes byte, word, dword, or float elements selected by the native descriptor's base, type, and index fields.",
+      "provenBehavior": "Arguments zero through two are a memory base, mode and element index, not a descriptor struct. Read modes 1/2/4/5/8 load unsigned byte/word/raw dword/float bits/module-relative pointer; writes 11/12/14/15/18 store the low byte/word/raw dword/float bits/raw dword from argument three. Index scaling wraps at 32 bits. The primary dispatcher pre-clears its return cell, so writes and unsupported switch modes return zero. The browser operates on declared source-owned module data; unowned heap/frame aliases remain explicit unsupported inputs.",
       "sources": [
-        "tools/ghidra/LabelShenmueRuntimeAnchors.py",
-        "tools/evidence/d000-operation-handlers.json"
+        "tools/scripting/operations/extract_typed_table_access_evidence.py",
+        "tools/evidence/typed-table-access-evidence.json"
       ]
     },
     {
@@ -3690,6 +3736,7 @@
       "operationHex": "0x00dd",
       "argumentCount": 3,
       "semanticId": "native-hand-motion-resource-request",
+      "staticStringArgumentIndices": [2],
       "handlerAddress": "0x0c165128",
       "argumentConstraints": [
         { "index": 0, "kinds": ["constant"] },
@@ -5450,10 +5497,12 @@
       "argumentConstraints": [
         { "index": 0, "values": [1, 2, 27] }
       ],
-      "provenBehavior": "Dispatches the exact zero-operand presentation-controller routes selected by modes one, two, and twenty-seven.",
+      "provenBehavior": "Mode one creates the session-owned 100-byte WAIR environment controller if absent, reads the native clock and WDAT channels, samples four original lighting tables and selects the original SCROLL sky resource; it does not unfreeze weather or replace the date cache. Mode two releases only an existing WAIR owner and clears the effects flag. Mode twenty-seven reselects sky from an existing owner's clock/channels. Browser light-color/primary-sky projection is partial, not the full native solar/fog/particle renderer.",
       "sources": [
         "tools/scripting/operations/extract_native_presentation_controller_family_evidence.py",
-        "tools/evidence/native-presentation-controller-family-evidence.json"
+        "tools/evidence/native-presentation-controller-family-evidence.json",
+        "tools/worlds/extract_shenmue1_weather.py",
+        "play/data/shenmue1-native-weather.json"
       ]
     },
     {
@@ -5465,10 +5514,12 @@
       "argumentConstraints": [
         { "index": 0, "values": [15, 21, 23, 24, 25] }
       ],
-      "provenBehavior": "Dispatches the exact one-word presentation-controller routes selected by modes fifteen, twenty-one, twenty-three, twenty-four, and twenty-five.",
+      "provenBehavior": "Mode fifteen writes the effects synchronization flag word. Mode twenty-one clears supplied bits of the session-global environment mask. Modes twenty-three, twenty-four and twenty-five respectively enable/disable masks 0x0780, 0x1800 and 12 according to a truthy word. The native session initializer sets that mask to 0x1fff; room loading does not recreate it.",
       "sources": [
         "tools/scripting/operations/extract_native_presentation_controller_family_evidence.py",
-        "tools/evidence/native-presentation-controller-family-evidence.json"
+        "tools/evidence/native-presentation-controller-family-evidence.json",
+        "tools/worlds/extract_shenmue1_weather.py",
+        "play/data/shenmue1-native-weather.json"
       ]
     },
     {
@@ -5480,10 +5531,12 @@
       "argumentConstraints": [
         { "index": 0, "values": [1] }
       ],
-      "provenBehavior": "Dispatches the exact mode-one presentation-controller route and its authored word.",
+      "provenBehavior": "Mode one with a zero word clears the frozen flag, samples WDAT using the native clock, refreshes cloud/rain/snow/auxiliary channels and caches the clock. A nonzero word sets the frozen flag without sampling or clearing channels. The auxiliary WIT4 curve is two zero-intensity executable records, not the FCAS forecast table. Forecast-owner construction remains an explicit gap.",
       "sources": [
         "tools/scripting/operations/extract_native_presentation_controller_family_evidence.py",
-        "tools/evidence/native-presentation-controller-family-evidence.json"
+        "tools/evidence/native-presentation-controller-family-evidence.json",
+        "tools/worlds/extract_shenmue1_weather.py",
+        "play/data/shenmue1-native-weather.json"
       ]
     },
     {
@@ -5645,10 +5698,12 @@
       "argumentConstraints": [
         { "index": 0, "values": [38] }
       ],
-      "provenBehavior": "Dispatches mode thirty-eight's ten float words as four exact two-float groups plus two scalar float words to helpers 0x0c1bb738, 0x0c1bba4a, and 0x0c1bbd6c in that order.",
+      "provenBehavior": "Mode thirty-eight replaces the first precipitation exclusion volume on existing kind-one FIXC field components: both rain layers, snow and splash. Four two-float X/Z vertices retain authored winding. Lower/upper Y receive the executable's exact padding word 0x3dcccccc; native exclusion uses inclusive Y and four strictly negative float32 cross-products. Empty lists and absent components are native no-ops. The browser projects this onto its existing rain/snow renderer with mirrored native X; native particle generation, splash rendering and secondary exclusion commands remain separate capabilities.",
       "sources": [
         "tools/scripting/operations/extract_native_presentation_controller_family_evidence.py",
-        "tools/evidence/native-presentation-controller-family-evidence.json"
+        "tools/evidence/native-presentation-controller-family-evidence.json",
+        "tools/worlds/extract_shenmue1_weather.py",
+        "play/data/shenmue1-native-weather.json"
       ]
     },
     {
@@ -6052,7 +6107,7 @@
         { "index": 0, "values": [0] },
         { "index": 1, "values": [23976] }
       ],
-      "provenBehavior": "Allocates the fixed 0x09a0-byte primary controller owner with unit count 25 and record selector 0x5da8, initializes sixteen 44-byte slots with selector 0x28a0, and registers controller one for slots one through sixteen.",
+      "provenBehavior": "Sends opaque controller commands (0x09a0,1,25) and (0x5da8,0,0); activates the preallocated AMB1 pool, registers controller one for slots one through sixteen with command 0x28a0, and clears only record words +32/+36/+40 while preserving authored +0 through +28.",
       "sources": [
         "tools/scripting/operations/extract_operation_018a_evidence.py",
         "tools/evidence/operation-018a-evidence.json"
@@ -6068,7 +6123,7 @@
         { "index": 0, "values": [1] },
         { "index": 1, "values": [24232] }
       ],
-      "provenBehavior": "Allocates the fixed 0x09a0-byte secondary controller owner with unit count 50 and record selector 0x5ea8, registers controller three for slots three through one, and sets its initialized marker.",
+      "provenBehavior": "Sends opaque controller commands (0x09a0,1,50) and (0x5ea8,0,0), registers controller three for slots three through one, and sets its initialized marker. These commands are not allocation sizes or unit counts.",
       "sources": [
         "tools/scripting/operations/extract_operation_018a_evidence.py",
         "tools/evidence/operation-018a-evidence.json"
@@ -6101,6 +6156,28 @@
         { "index": 1, "kinds": ["frame-field"] }
       ],
       "provenBehavior": "Writes one to the selected primary slot's record word zero only when that slot's resource word at offset +8 is non-null; a null resource is an exact native no-op.",
+      "sources": [
+        "tools/scripting/operations/extract_operation_018a_evidence.py",
+        "tools/evidence/operation-018a-evidence.json"
+      ]
+    },
+    {
+      "operationId": 395,
+      "operationHex": "0x018b",
+      "argumentCount": 8,
+      "semanticId": "native-operation-018b-primary-record-write",
+      "handlerAddress": "0x0c16b1de",
+      "argumentConstraints": [
+        { "index": 0, "kinds": ["constant"], "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] },
+        { "index": 1, "kinds": ["constant"] },
+        { "index": 2, "kinds": ["static-pointer"] },
+        { "index": 3, "kinds": ["constant"] },
+        { "index": 4, "kinds": ["constant"] },
+        { "index": 5, "kinds": ["constant"] },
+        { "index": 6, "kinds": ["constant"] },
+        { "index": 7, "kinds": ["static-pointer"] }
+      ],
+      "provenBehavior": "Uses the preallocated AMB1 owner plus (argument0-1)*44. Writes record word +0=1, arguments 1/2 to +4/+8, raw float32 arguments 3/4/5 to +12/+16/+20, and arguments 6/7 to +24/+28. Preserves words +32/+36/+40; this operation does not activate the pool or play audio.",
       "sources": [
         "tools/scripting/operations/extract_operation_018a_evidence.py",
         "tools/evidence/operation-018a-evidence.json"
@@ -6538,13 +6615,25 @@
     {
       "operationId": 412,
       "operationHex": "0x019c",
+      "argumentCount": 0,
       "semanticId": "current-scene-query",
       "handlerAddress": "0x0c1649b0",
       "provenBehavior": "Returns the current scene/disc number used by native transition callbacks.",
       "sources": [
+        "tools/evidence/native-clock-initialization-evidence.json",
         "docs/research/shenmue1/map-transition-trace.md",
         "tools/evidence/map-transition-catalog.json"
       ]
+    },
+    {
+      "operationId": 418,
+      "operationHex": "0x01a2",
+      "argumentCount": 1,
+      "semanticId": "interaction-manager-pending-owner-clear",
+      "handlerAddress": "0x0c15a82e",
+      "argumentConstraints": [{ "index": 0, "values": [0] }],
+      "provenBehavior": "Mode zero clears the pending-owner dword at 0x0c224010 and publishes zero through the native integer result writer. It does not cancel the former task or reset descriptor and slot tables; nonzero launch/poll modes remain unsupported.",
+      "sources": ["tools/scripting/extract_dialogue_native_interaction_manager.py", "tools/evidence/dialogue-native-interaction-manager.json"]
     },
     {
       "operationId": 414,

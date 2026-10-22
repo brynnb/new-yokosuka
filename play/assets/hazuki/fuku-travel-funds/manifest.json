@@ -1,0 +1,204 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "01MON.AUTH",
+        "path": "disc2/SCENE/02/JOMO/MAPINFO.BIN",
+        "sourceOffset": 693640,
+        "sourceSha256": "6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe",
+        "byteLength": 34804,
+        "sha256": "bbcf4e63e836d54ceec791425a9bcea19a960e43e7d7aa4ce3a2d5d7c1940bac"
+      },
+      {
+        "name": "M_01MO.MOTN",
+        "path": "disc2/SCENE/02/JOMO/COMMON02.PKS",
+        "sourceSha256": "916aab45137cf340516a1cdd2ee61540e7c6562a1e92c5f932e9055ae0db3b89",
+        "archiveMember": "M_01MO.MOTN",
+        "byteLength": 45496,
+        "sha256": "e3c709dcb3be13f67f99a6e832b2c11eaa3a3471c0c08f885ce5ed3a8c4cc224"
+      },
+      {
+        "name": "OKAK301G.MT5",
+        "path": "disc2/SCENE/02/JOMO/OKAK301G.MT5",
+        "byteLength": 31056,
+        "sha256": "1a0b55b541b6a270ce4acc220e31fcf61cebc6774e36e2f4855d107992e828ef"
+      },
+      {
+        "name": "TIRS701G.MT5",
+        "path": "disc2/SCENE/02/JOMO/TIRS701G.MT5",
+        "byteLength": 68928,
+        "sha256": "ed04bb8b23c40878b276f960ca4033f3f6362224485b0cc6c6440eec97ad4459"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "01MON",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/fuku-travel-funds/manifest.json",
+  "sceneObjects": {
+    "PIG_": {
+      "model": "BTAS500G",
+      "browserFilename": "S1_JOMO_BTAS500G.MT5",
+      "objectTag": "PIG_"
+    },
+    "COIN": {
+      "model": "OKAK301G.MT5",
+      "browserFilename": "OKAK301G.MT5",
+      "assetPath": "play/assets/hazuki/fuku-travel-funds/OKAK301G.MT5",
+      "textureAssetPath": "play/assets/hazuki/fuku-travel-funds/textures.bin"
+    },
+    "PANF": {
+      "model": "TIRS701G.MT5",
+      "browserFilename": "TIRS701G.MT5",
+      "assetPath": "play/assets/hazuki/fuku-travel-funds/TIRS701G.MT5",
+      "textureAssetPath": "play/assets/hazuki/fuku-travel-funds/textures.bin"
+    }
+  },
+  "packageActors": {
+    "FUKU": {
+      "label": "Masayuki Fukuhara",
+      "modelCode": "FUK_M",
+      "browserFilename": "FUK_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/FUK_M.CHRM",
+      "textureAssetPath": "play/assets/characters/FUK_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "FUKU",
+    "PIG_",
+    "COIN",
+    "PANF"
+  ],
+  "motionBanks": [
+    {
+      "bank": 25,
+      "path": "play/assets/hazuki/fuku-travel-funds/M_01MO.MOTN",
+      "byteLength": 45496,
+      "sha256": "e3c709dcb3be13f67f99a6e832b2c11eaa3a3471c0c08f885ce5ed3a8c4cc224",
+      "sequenceIndexBase": 96
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/fuku-travel-funds/M_01MO.MOTN",
+      "byteLength": 45496,
+      "sha256": "e3c709dcb3be13f67f99a6e832b2c11eaa3a3471c0c08f885ce5ed3a8c4cc224"
+    },
+    {
+      "path": "play/assets/hazuki/fuku-travel-funds/01MON.AUTH",
+      "byteLength": 34804,
+      "sha256": "bbcf4e63e836d54ceec791425a9bcea19a960e43e7d7aa4ce3a2d5d7c1940bac"
+    },
+    {
+      "path": "play/assets/hazuki/fuku-travel-funds/OKAK301G.MT5",
+      "byteLength": 31056,
+      "sha256": "1a0b55b541b6a270ce4acc220e31fcf61cebc6774e36e2f4855d107992e828ef"
+    },
+    {
+      "path": "play/assets/hazuki/fuku-travel-funds/TIRS701G.MT5",
+      "byteLength": 68928,
+      "sha256": "ed04bb8b23c40878b276f960ca4033f3f6362224485b0cc6c6440eec97ad4459"
+    },
+    {
+      "path": "play/assets/hazuki/fuku-travel-funds/textures.bin",
+      "byteLength": 86128,
+      "sha256": "3c57f1ab4984d1bfb1a509a922f6d78cac33982c81dc5fe7ff0db26bacefe530"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "01MON/01MON.AUTH",
+      "archiveMember": "01MON.AUTH",
+      "byteLength": 34804,
+      "sha256": "bbcf4e63e836d54ceec791425a9bcea19a960e43e7d7aa4ce3a2d5d7c1940bac",
+      "durationFrames": 2660,
+      "durationSeconds": 89.33333587646484,
+      "frameCount": 90,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5,
+        "motion": 6,
+        "effect": 19,
+        "voice": 22,
+        "sound": 47
+      },
+      "actors": [
+        "AKIR",
+        "FUKU",
+        "PIG_",
+        "COIN",
+        "PANF"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 96,
+          "motionName": "AKI_TALK_MORAU_CHOKINBAKO_0100",
+          "startFrame": 131,
+          "endFrame": 1277
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 97,
+          "motionName": "IWA_FUK_TALK_MORAU_CHOKINBAKO_0100",
+          "startFrame": 131,
+          "endFrame": 1277
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1148,
+          "motionBank": 25,
+          "sequenceIndex": 96,
+          "motionName": "AKI_TALK_MORAU_CHOKINBAKO_0100",
+          "startFrame": 1268,
+          "endFrame": 2785
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 1148,
+          "motionBank": 25,
+          "sequenceIndex": 97,
+          "motionName": "IWA_FUK_TALK_MORAU_CHOKINBAKO_0100",
+          "startFrame": 1268,
+          "endFrame": 2482
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 2363,
+          "motionBank": 25,
+          "sequenceIndex": 97,
+          "motionName": "IWA_FUK_TALK_MORAU_CHOKINBAKO_0100",
+          "startFrame": 2553,
+          "endFrame": 2691
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 2502,
+          "motionBank": 25,
+          "sequenceIndex": 97,
+          "motionName": "IWA_FUK_TALK_MORAU_CHOKINBAKO_0100",
+          "startFrame": 2448,
+          "endFrame": 2800
+        }
+      ]
+    }
+  ]
+}

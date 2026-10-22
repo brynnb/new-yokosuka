@@ -441,7 +441,8 @@ def event_cameras(
     }
 
 
-def static_strings(route: dict[str, Any]) -> list[dict[str, Any]]:
+def static_strings(route: dict[str, Any], source_map: dict[str, Any] | None = None,
+                   functions: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
     result = []
     pointers: set[int] = set()
     for item in route.get("staticStrings", []):
@@ -468,6 +469,29 @@ def static_strings(route: dict[str, Any]) -> list[dict[str, Any]]:
             "value": value,
             "sourceFileOffset": source_offset,
         })
+    referenced = {
+        argument["value"]: argument["staticString"]
+        for function in functions or []
+        for block in function.get("blocks", [])
+        for action in block.get("actions", [])
+        for argument in action.get("arguments", [])
+        if argument.get("kind") == "static-pointer" and "staticString" in argument
+    }
+    by_pointer = {item["pointer"]: item for item in result}
+    source_entries = static_strings({"id": route["id"], "staticStrings": (source_map or {}).get("staticStrings", [])}) if source_map else []
+    source_by_pointer = {item["pointer"]: item for item in source_entries}
+    for pointer, value in referenced.items():
+        if source_map and source_by_pointer.get(pointer, {}).get("value") != value:
+            raise ValueError(f"{route['id']}: recovered static string is missing or inconsistent at {pointer}")
+    for item in source_entries:
+        if item["pointer"] not in referenced:
+            continue
+        previous = by_pointer.get(item["pointer"])
+        if previous and previous["value"] != item["value"]:
+            raise ValueError(f"{route['id']}: declared static string conflicts with MAPINFO at {item['pointer']}")
+        by_pointer[item["pointer"]] = item
+    if source_map:
+        return [by_pointer[pointer] for pointer in sorted(by_pointer)]
     return result
 
 
@@ -803,7 +827,13 @@ def build_pack(
         if not route_id or route_id in route_ids:
             raise ValueError(f"native event route is missing or duplicated: {route_id}")
         route_ids.add(route_id)
+        runtime_scope = route.get("runtimeScope", "runtime")
+        if runtime_scope not in {"runtime", "research"}:
+            raise ValueError(f"{route_id}: unsupported runtime publication scope")
         source_map = unique_map(event_ir, route)
+        if (route.get("selector", {}).get("kind") == "room-initialization"
+                and route["entryFunction"] != source_map.get("entryFunction")):
+            raise ValueError(f"{route_id}: room initialization must use the original SCN3 root")
         gate_entries = [
             event.get("gateEntryFunction")
             for event in route.get("automaticEvents", [])
@@ -835,7 +865,7 @@ def build_pack(
         automatic = automatic_events(route, functions)
         controllers = room_controllers(route, functions)
         camera_records = event_cameras(route, camera_catalog_loader)
-        strings = static_strings(route)
+        strings = static_strings(route, source_map, functions)
         vectors = static_vectors(route)
         blocks = [
             block
@@ -853,10 +883,13 @@ def build_pack(
         operation_013e_bindings = operation_013e_static_bindings(functions)
         programs.append({
             "id": route_id,
+            **({"runtimeScope": runtime_scope} if runtime_scope == "research" else {}),
             "disc": route["disc"],
             "area": route["area"],
             "mapinfoSha256": source_map["mapinfoSha256"],
             "entryFunction": route["entryFunction"],
+            **({"staticData": source_map["staticData"]} if source_map.get("staticData") else {}),
+            **({"selector": route["selector"]} if route.get("selector") else {}),
             **({"directEntries": direct_entries} if direct_entries else {}),
             **({"directEntryState": entry_state} if entry_state else {}),
             "scriptedInteractions": interactions,
@@ -924,6 +957,35 @@ def build_pack(
             if key not in {"schema", "compile"}
         })
 
+    append_activity_previews(programs, activity_preview_programs)
+
+    return {
+        "schema": "new-yokosuka-native-event-program-pack-v1",
+        "generatedFrom": {
+            "nativeEventIrSha256": event_ir_sha256,
+            "sourceScope": event_ir.get("summary", {}).get("sourceScope"),
+        },
+        "evidenceBoundary": [
+            "Each program is an exact same-MAPINFO static closure from its declared entry.",
+            "Direct-call and child-coroutine targets are retained without inlining or reordering.",
+            "Runtime-interface calls, continuation transfers, unresolved operations, and unknown operands remain explicit stop or yield boundaries.",
+            "Interaction routes distinguish exact control entries from explicitly declared, statically reachable dialogue entries; no descendant is selected by inference.",
+            "Automatic event routes retain separate exact gate and control entries plus the required native gate return value.",
+            "Persistent room-controller declarations preserve exact launch, poll, and dispatch ownership without treating unresolved controller operations as executable.",
+            "Route declarations identify exact native entries; they do not assign inferred gameplay meaning.",
+        ],
+        "programs": programs,
+    }
+
+
+ACTIVITY_PREVIEW_KINDS = frozenset({
+    "single-auth-activity-v1", "exact-auth-activity-sequence-v1",
+})
+
+
+def append_activity_previews(programs, activity_preview_programs):
+    """Share validation between full compilation and authored-only refreshes."""
+    route_ids = {program["id"] for program in programs}
     for program in activity_preview_programs:
         program_id = program.get("id")
         preview = program.get("preview")
@@ -979,23 +1041,19 @@ def build_pack(
         route_ids.add(program_id)
         programs.append(program)
 
-    return {
-        "schema": "new-yokosuka-native-event-program-pack-v1",
-        "generatedFrom": {
-            "nativeEventIrSha256": event_ir_sha256,
-            "sourceScope": event_ir.get("summary", {}).get("sourceScope"),
-        },
-        "evidenceBoundary": [
-            "Each program is an exact same-MAPINFO static closure from its declared entry.",
-            "Direct-call and child-coroutine targets are retained without inlining or reordering.",
-            "Runtime-interface calls, continuation transfers, unresolved operations, and unknown operands remain explicit stop or yield boundaries.",
-            "Interaction routes distinguish exact control entries from explicitly declared, statically reachable dialogue entries; no descendant is selected by inference.",
-            "Automatic event routes retain separate exact gate and control entries plus the required native gate return value.",
-            "Persistent room-controller declarations preserve exact launch, poll, and dispatch ownership without treating unresolved controller operations as executable.",
-            "Route declarations identify exact native entries; they do not assign inferred gameplay meaning.",
-        ],
-        "programs": programs,
-    }
+
+def refresh_activity_previews(report, activity_preview_programs):
+    """Replace only compiled AUTH selections; never recompile native research.
+
+    This explicitly leaves native routes/closures and their source receipt
+    untouched. Changes to those inputs still require ordinary full compilation.
+    """
+    if report.get("schema") != "new-yokosuka-native-event-program-pack-v1":
+        raise ValueError("unsupported existing native event program pack")
+    programs = [program for program in report["programs"]
+                if (program.get("preview") or {}).get("kind") not in ACTIVITY_PREVIEW_KINDS]
+    append_activity_previews(programs, activity_preview_programs)
+    return {**report, "programs": programs}
 
 
 RUNTIME_DESCRIPTOR_FIELDS = (
@@ -1042,6 +1100,13 @@ def build_runtime_index(
     descriptors = []
     camera_records_by_area: dict[str, dict[int, dict[str, Any]]] = {}
     for program in program_pack.get("programs", []):
+        scope = program.get("runtimeScope", "runtime")
+        if scope not in {"runtime", "research"}:
+            raise ValueError("unsupported runtime publication scope")
+        # Retain recovered controller research in the offline pack, never in
+        # production discovery metadata or fetchable executable closures.
+        if scope == "research":
+            continue
         program_id = program.get("id")
         area = program.get("area")
         if not isinstance(program_id, str) or not isinstance(area, str):
@@ -1121,6 +1186,8 @@ def main() -> None:
     parser.add_argument("--event-ir", type=Path, default=DEFAULT_IR)
     parser.add_argument("--routes", type=Path, default=DEFAULT_ROUTES)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--refresh-activity-previews", action="store_true",
+                        help="refresh only compiled AUTH selections in the existing output; native routes/IR remain unchanged")
     parser.add_argument(
         "--runtime-index",
         type=Path,
@@ -1151,7 +1218,8 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    report = build_pack(
+    previews = tuple(json.loads(args.activity_preview_programs.read_text())["programs"])
+    report = refresh_activity_previews(json.loads(args.output.read_text()), previews) if args.refresh_activity_previews else build_pack(
         json.loads(args.event_ir.read_text()),
         json.loads(args.routes.read_text()),
         event_ir_sha256=sha256(args.event_ir),
@@ -1162,9 +1230,7 @@ def main() -> None:
             json.loads(path.read_text())
             for path in args.compiled_program
         ),
-        activity_preview_programs=tuple(
-            json.loads(args.activity_preview_programs.read_text())["programs"]
-        ),
+        activity_preview_programs=previews,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(

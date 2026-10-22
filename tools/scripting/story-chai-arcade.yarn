@@ -1,0 +1,24 @@
+<<start_activity "s1.dgct.chai-intro.scene">>
+<<jump Fight>>
+===
+title: Fight
+---
+<<start_combat "s1.dgct.chai-arcade">>
+<<if combat_result("s1.dgct.chai-arcade") == "success">>
+<<start_activity "s1.dgct.chai-victory.scene">>
+<<set_flag "story.s1.chai-arcade.won">>
+{{effects}}
+<<complete>>
+<<elseif combat_result("s1.dgct.chai-arcade") == "defeated">>
+<<start_activity "s1.dgct.chai-rescue.scene">>
+<<advance_story_time "s1.wait.morning">>
+<<travel_story "s1.home.bedroom-morning">>
+<<set_flag "story.s1.chai-arcade.lost">>
+{{effects}}
+<<complete>>
+<<else>>
+-> Try again
+    <<jump Fight>>
+-> Leave it for now
+    <<jump Done>>
+<<endif>>

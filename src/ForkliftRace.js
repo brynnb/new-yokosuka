@@ -1,23 +1,8 @@
-export const FORKLIFT_RACE_LAPS = 3;
+import course from "./data/forklift-race-course.json" with { type: "json" };
 
-// Browser-space centerline recovered from the native Disc 3 race by sampling
-// the four AI forklift TASK positions at 10 Hz for all three laps. These
-// ordered gates follow the authored course while allowing normal racing lines.
-export const FORKLIFT_RACE_CHECKPOINTS = Object.freeze([
-  Object.freeze({ x: 96, z: 107, radius: 14 }),
-  Object.freeze({ x: 114, z: 82, radius: 14 }),
-  Object.freeze({ x: 95, z: 50, radius: 14 }),
-  Object.freeze({ x: 62, z: 50, radius: 14 }),
-  Object.freeze({ x: 30, z: 65, radius: 14 }),
-  Object.freeze({ x: -8, z: 80, radius: 14 }),
-  Object.freeze({ x: -43, z: 96, radius: 14 }),
-  Object.freeze({ x: -48, z: 130, radius: 14 }),
-  Object.freeze({ x: -18, z: 158, radius: 14 }),
-  Object.freeze({ x: 2, z: 140, radius: 13 }),
-  Object.freeze({ x: 8, z: 112, radius: 13 }),
-  Object.freeze({ x: 35, z: 105, radius: 13 }),
-  Object.freeze({ x: 63, z: 106, radius: 12 }),
-]);
+// One source for exploration presentation and authoritative Story observations.
+export const FORKLIFT_RACE_LAPS = course.laps;
+export const FORKLIFT_RACE_CHECKPOINTS = Object.freeze(course.checkpoints.map(gate=>Object.freeze({...gate})));
 
 const STORAGE_KEY = "new-yokosuka.forklift-race.best-ms.v1";
 

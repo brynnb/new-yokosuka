@@ -153,6 +153,13 @@ export class NativeScriptedEventRuntime {
     this.automaticPoll = null;
   }
 
+  get busy() {
+    // Terminal status describes the last result, not ownership. In particular
+    // natural completion retains "complete" after releasing current; it must
+    // not permanently suppress the next authored Story entry.
+    return Boolean(this.current || this.pendingStart || this.automaticPoll);
+  }
+
   onSettled(listener) {
     if (typeof listener !== "function") {
       throw new TypeError("native event settlement listener must be a function");

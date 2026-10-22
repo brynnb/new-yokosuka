@@ -20,6 +20,8 @@ export class NativeStoryRuntime {
     getActivityRunner,
     sendDiagnostic,
     isStartupPresentationActive = () => false,
+    storyRegions = null,
+    storyObjects = null,
   }) {
     this.dialoguePersistence = dialoguePersistence;
     this.dialogueOverlay = dialogueOverlay;
@@ -41,20 +43,25 @@ export class NativeStoryRuntime {
     this.getActivityRunner = getActivityRunner;
     this.sendDiagnostic = sendDiagnostic;
     this.isStartupPresentationActive = isStartupPresentationActive;
+    this.storyRegions = storyRegions;
+    this.storyObjects = storyObjects;
     this.diagnosticElapsed = 0;
   }
 
   get ownsPlayerPresentation() {
-    return this.isStartupPresentationActive() || this.cutscenes.ownsPlayerPresentation;
+    return Boolean(this.isStartupPresentationActive() || this.cutscenes.ownsPlayerPresentation
+      || this.eventController.ownsPlayerPresentation);
   }
 
   get presentationActive() {
     return Boolean(this.isStartupPresentationActive()
+      || this.eventController.ownsPlayerPresentation
       || this.cutscenes.active || this.getActivityRunner()?.active);
   }
 
-  activateWorld(world, meshes, signal) {
+  activateWorld(world, meshes, signal, { nativeArrival = null } = {}) {
     this.roomScripts.activateArea(world.nativeArea);
+    if (nativeArrival) this.roomScripts.applyArrival(nativeArrival);
     const composition = this.getRoomComposition();
     this.composeRoomScene(this.roomScripts.sceneState, composition);
     for (const resource of composition.resources) {
@@ -65,6 +72,7 @@ export class NativeStoryRuntime {
       this.mapClipState.load(world, meshes),
     );
     this.mapRenderPreparation.load(world, meshes);
+    this.storyObjects?.load(world.nativeArea, meshes);
     return this.sceneLighting.create(world, { signal });
   }
 
@@ -72,7 +80,9 @@ export class NativeStoryRuntime {
     this.cutscenes.stop("world-change");
     this.dialogueOverlay.stop("world-change");
     this.automaticEvents.leaveArea();
+    this.storyRegions?.reset();
     this.eventController.reset("world-change");
+    this.storyObjects?.clear();
     this.scriptedEvents.cancel("world-change");
     this.scriptedEvents.resetRoomControllers();
     this.roomScripts.deactivateArea();
@@ -98,6 +108,10 @@ export class NativeStoryRuntime {
   updateScriptedEvents(deltaSeconds) { this.scriptedEvents.update(deltaSeconds); }
 
   updateAutomatic({ world, enabled, playerPosition, playerYaw }) {
+    // An owned tableau may temporarily expose a recess. Reapply durable
+    // presentation after cleanup, never over an in-flight preview.
+    if (!this.presentationActive) this.storyObjects?.update();
+    this.storyRegions?.update({ area: world.nativeArea, worldId: world.id, enabled: enabled && !this.isStartupPresentationActive(), playerPosition });
     const gameplayState = this.getGameplayState();
     this.automaticEvents.update({
       area: world.nativeArea,
@@ -127,6 +141,7 @@ export class NativeStoryRuntime {
   }
 
   resetAfterDisconnect() {
+    this.storyRegions?.reset();
     this.dialogueOverlay.stop("disconnect");
     this.eventController.reset("disconnect");
     this.dialoguePersistence.clear();
@@ -137,9 +152,25 @@ export class NativeStoryRuntime {
     else this.dialoguePersistence.clear();
   }
 
+  applyScriptSettlement(state) {
+    if (!state?.nativeDialogue) return false;
+    try {
+      return this.dialoguePersistence.acceptServerSnapshot(state.nativeDialogue);
+    } catch (error) {
+      // Never continue story decisions from a malformed/ambiguous receipt.
+      // A fresh welcome loads the durable snapshot even if the reply was lost.
+      this.eventController.reset("invalid-story-settlement");
+      this.dialoguePersistence.clear();
+      console.error("Story settlement could not be applied; reconnect required:", error);
+      return false;
+    }
+  }
+
   dispose() {
     this.cutscenes.dispose();
     this.dialogueOverlay.dispose();
     this.eventController.reset("disposed");
+    this.storyObjects?.clear();
+    this.dialoguePersistence.clear();
   }
 }

@@ -61,9 +61,12 @@ function normalizeVariant(actorTag, value, common = value) {
 
 /** Owns exact character bodies supplied by a cutscene archive, not world NPCs. */
 export class NativeAseqPackageActorRuntime {
-  constructor({ definitions, instantiate } = {}) {
+  constructor({ definitions, instantiate, acquireScheduledSuppression = null } = {}) {
     if (!definitions || Array.isArray(definitions) || typeof instantiate !== "function") {
       throw new TypeError("AUTH package actors require definitions and an instantiator");
+    }
+    if (acquireScheduledSuppression !== null && typeof acquireScheduledSuppression !== "function") {
+      throw new TypeError("AUTH scheduled suppression requires an ownership adapter");
     }
     this.definitions = new Map(Object.entries(definitions).map(([key, value]) => {
       const actorTag = key.toUpperCase();
@@ -138,6 +141,8 @@ export class NativeAseqPackageActorRuntime {
     }
     this.actorTags = new Set(this.definitions.keys());
     this.instantiate = instantiate;
+    this.acquireScheduledSuppression=acquireScheduledSuppression;
+    this.suppressionReleases=new Map();
     this.records = new Map();
     this.variantRecords = new Map();
     this.worldRoots = [];
@@ -230,14 +235,15 @@ export class NativeAseqPackageActorRuntime {
     });
     this.active = {
       owner,
-      worldVisibility: this.program ? [] : this.#hideWorldRoots(new Set(tags)),
       selectedRecords: new Map(records.map(record => [record.actorCode, record])),
       snapshots: new Map(tags.flatMap(actorTag => (
         [...this.variantRecords.get(actorTag).values()]
           .map(record => [record, captureRoot(record.root)])
       ))),
+      worldVisibility: this.program ? [] : this.#hideWorldRoots(new Set(tags),owner),
     };
-    for (const record of records) record.root.setEnabled(true);
+    try{for(const record of records)record.root.setEnabled(true);}
+    catch(error){try{this.end(owner,"failed");}catch(cleanup){throw new AggregateError([error,cleanup],"Package actor preparation cleanup failed");}throw error;}
     return records;
   }
 
@@ -257,13 +263,13 @@ export class NativeAseqPackageActorRuntime {
     }
     this.program = {
       owner,
-      worldVisibility: this.#hideWorldRoots(this.actorTags),
       selectedRecords: new Map(this.records),
       snapshots: new Map(
         [...this.variantRecords.values()]
           .flatMap(variants => [...variants.values()])
           .map(record => [record, captureRoot(record.root)]),
       ),
+      worldVisibility: this.#hideWorldRoots(this.actorTags,owner),
     };
     return records;
   }
@@ -290,19 +296,18 @@ export class NativeAseqPackageActorRuntime {
 
   end(owner, reason = "stopped") {
     if (this.active?.owner !== owner) return false;
+    const active=this.active;this.active=null;
     const preserve = Boolean(
       this.program && (reason === "complete" || reason === "replaced"),
     );
-    if (!preserve) {
-      for (const [record, snapshot] of this.active.snapshots) {
+    try{if (!preserve) {
+      for (const [record, snapshot] of active.snapshots) {
         restoreRoot(record.root, snapshot);
       }
-      for (const [actorTag, record] of this.active.selectedRecords) {
+      for (const [actorTag, record] of active.selectedRecords) {
         this.records.set(actorTag, record);
       }
-    }
-    for (const [root, enabled] of this.active.worldVisibility) root.setEnabled(enabled);
-    this.active = null;
+    }}finally{this.#restoreWorldRoots(owner,active.worldVisibility);}
     return true;
   }
 
@@ -311,12 +316,12 @@ export class NativeAseqPackageActorRuntime {
     if (this.active) {
       throw new Error("AUTH package-actor program cannot end during activity ownership");
     }
-    for (const [record, snapshot] of this.program.snapshots) {
+    const program=this.program;this.program=null;
+    try{for (const [record, snapshot] of program.snapshots) {
       restoreRoot(record.root, snapshot);
     }
-    this.records = new Map(this.program.selectedRecords);
-    for (const [root, enabled] of this.program.worldVisibility) root.setEnabled(enabled);
-    this.program = null;
+    this.records = new Map(program.selectedRecords);
+    }finally{this.#restoreWorldRoots(owner,program.worldVisibility);}
     return true;
   }
 
@@ -331,12 +336,24 @@ export class NativeAseqPackageActorRuntime {
     this.worldRoots = [];
   }
 
-  #hideWorldRoots(tags) {
-    return this.worldRoots.filter(root => tags.has(root.metadata.runtimeObject.objectTag)).map(root => {
-      const enabled = root.isEnabled();
-      root.setEnabled(false);
-      return [root, enabled];
-    });
+  #hideWorldRoots(tags,owner) {
+    const release=this.acquireScheduledSuppression?.(owner,[...tags]);
+    if(release)this.suppressionReleases.set(owner,release);
+    const snapshots=[];
+    try{
+      for(const root of this.worldRoots.filter(root=>tags.has(root.metadata.runtimeObject.objectTag))){
+        snapshots.push([root,root.isEnabled()]);root.setEnabled(false);
+      }
+      return snapshots;
+    }catch(error){this.#restoreWorldRoots(owner,snapshots);throw error;}
+  }
+
+  #restoreWorldRoots(owner,snapshots) {
+    const errors=[];
+    for(const [root,enabled]of snapshots)try{if(!root.isDisposed?.())root.setEnabled(enabled);}catch(error){errors.push(error);}
+    const release=this.suppressionReleases.get(owner);this.suppressionReleases.delete(owner);
+    try{release?.();}catch(error){errors.push(error);}
+    if(errors.length)throw new AggregateError(errors,"Package actor visibility cleanup failed");
   }
 }
 

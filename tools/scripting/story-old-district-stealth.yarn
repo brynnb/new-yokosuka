@@ -1,0 +1,28 @@
+<<play_sequence "{{staging}}.start">>
+{{voice:E1006A014}}
+<<play_sequence "{{staging}}.finish">>
+<<jump Sneak>>
+===
+title: Sneak
+---
+<<start_challenge "s1.mksg.patrols">>
+<<if challenge_result("s1.mksg.patrols") == "interrupted">>
+-> Try again
+    <<jump Sneak>>
+-> Leave it for now
+    <<complete>>
+<<elseif challenge_result("s1.mksg.patrols") != "success">>
+<<play_sequence "s1.mksg.caught.start">>
+{{voice:E1006E009}}
+<<play_sequence "s1.mksg.caught.finish">>
+<<increment_progress "story.s1.old-district.caught-count" 1>>
+<<advance_story_time "s1.wait.morning">>
+<<travel_story "s1.harbor.old-district-gate">>
+<<clear_flag "story.s1.old-district-entry.completed">>
+<<clear_flag "story.s1.old-district-day-gate.completed">>
+<<complete>>
+<<else>>
+<<travel_story "s1.harbor.old-eight-interior">>
+{{effects}}
+<<complete>>
+<<endif>>

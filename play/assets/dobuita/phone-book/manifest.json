@@ -1,0 +1,221 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_phone_book_activity_pack.mjs",
+  "source": {
+    "disc": 1,
+    "path": "extracted_files/data/SCENE/01/D000/AUTH.PKS",
+    "sha256": "41a3323364259c806467b49be3cb7e1fdbf031517efb7b2e7c57527aed1e8b7c",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "DENS502G.CHRM",
+        "byteLength": 2196,
+        "sha256": "bc68d76e1f0a53f2bb9a5c63eabf4dfa7b9bb15e3c5096c40673074a9ee67bde"
+      },
+      {
+        "name": "M_01TE.MOTN",
+        "byteLength": 135728,
+        "sha256": "6fe13710cb2cc8ecb8dbcb107ce3befd328b481db1d1e8ddb405a7c7578b6451"
+      },
+      {
+        "name": "SEQDATA0.AUTH",
+        "byteLength": 3404,
+        "sha256": "cded8b9c546b7ea3a4a4e0c3dbff9c3bfb31c2a9c3abc263e05414c352409c60"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/d000-phone-book-audio.json",
+    "resourceName": "01TEL",
+    "variant": "",
+    "selectionRule": "Exact 01TEL/SEQDATA0.AUTH presentation selected by the authored directory event; normalized slot zero, not execution of the native room controller."
+  },
+  "audioManifest": "public/audio/world/phone-book/manifest.json",
+  "sceneObjects": {
+    "TBK1": {
+      "model": "DENS501G.CHRM",
+      "browserFilename": "S1_D000_OMG_DENS501G.MT5"
+    }
+  },
+  "attachedObjects": {
+    "TBK1": {
+      "sceneObject": true,
+      "browserFilename": "S1_D000_OMG_DENS501G.MT5",
+      "attachments": [
+        {
+          "activitySlot": 0,
+          "frame": 59,
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.09839999675750732,
+            0,
+            -0.10700000077486038
+          ],
+          "rotationRaw": [
+            15655,
+            52428,
+            30401
+          ],
+          "activityId": "01TEL/SEQDATA0.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 856,
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.09839999675750732,
+            0,
+            -0.10700000077486038
+          ],
+          "rotationRaw": [
+            15655,
+            52428,
+            30401
+          ],
+          "activityId": "01TEL/SEQDATA0.AUTH"
+        }
+      ],
+      "presentation": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "visible": true,
+          "activityId": "01TEL/SEQDATA0.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 189,
+          "visible": false,
+          "activityId": "01TEL/SEQDATA0.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 856,
+          "visible": true,
+          "activityId": "01TEL/SEQDATA0.AUTH"
+        }
+      ]
+    },
+    "TBK3": {
+      "browserFilename": "DENS502G.CHRM",
+      "assetPath": "play/assets/dobuita/phone-book/DENS502G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/phone-book/book-textures.bin",
+      "attachments": [
+        {
+          "activitySlot": 0,
+          "frame": 189,
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.20329999923706055,
+            0.014000000432133675,
+            0.052000001072883606
+          ],
+          "rotationRaw": [
+            47332,
+            38226,
+            22748
+          ],
+          "activityId": "01TEL/SEQDATA0.AUTH"
+        }
+      ],
+      "presentation": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "visible": false,
+          "activityId": "01TEL/SEQDATA0.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 189,
+          "visible": true,
+          "activityId": "01TEL/SEQDATA0.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 856,
+          "visible": false,
+          "activityId": "01TEL/SEQDATA0.AUTH"
+        }
+      ]
+    }
+  },
+  "actorTags": [
+    "AKIR"
+  ],
+  "motionBanks": [
+    {
+      "bank": 20,
+      "path": "play/assets/dobuita/phone-book/M_01TE.MOTN",
+      "byteLength": 135728,
+      "sha256": "6fe13710cb2cc8ecb8dbcb107ce3befd328b481db1d1e8ddb405a7c7578b6451"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/phone-book/M_01TE.MOTN",
+      "byteLength": 135728,
+      "sha256": "6fe13710cb2cc8ecb8dbcb107ce3befd328b481db1d1e8ddb405a7c7578b6451"
+    },
+    {
+      "path": "play/assets/dobuita/phone-book/SEQDATA0.AUTH",
+      "byteLength": 3404,
+      "sha256": "cded8b9c546b7ea3a4a4e0c3dbff9c3bfb31c2a9c3abc263e05414c352409c60"
+    },
+    {
+      "path": "play/assets/dobuita/phone-book/DENS502G.CHRM",
+      "byteLength": 2196,
+      "sha256": "bc68d76e1f0a53f2bb9a5c63eabf4dfa7b9bb15e3c5096c40673074a9ee67bde"
+    },
+    {
+      "path": "play/assets/dobuita/phone-book/book-textures.bin",
+      "byteLength": 21600,
+      "sha256": "99c8f494c35d75ca84b98cbd733aecb153177407d7e16e92a16ff76276e6d75b",
+      "source": {
+        "path": "disc1/SCENE/01/D000/AUTH.PKF",
+        "sha256": "139591cf3a0b77b6b5361db7aa3aa93b80189371218a0f5cb0263a86175e7c91"
+      }
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot",
+        "activityId": "01TEL/SEQDATA0.AUTH"
+      },
+      "activityId": "01TEL/SEQDATA0.AUTH",
+      "archiveMember": "SEQDATA0.AUTH",
+      "byteLength": 3404,
+      "sha256": "cded8b9c546b7ea3a4a4e0c3dbff9c3bfb31c2a9c3abc263e05414c352409c60",
+      "durationFrames": 890,
+      "durationSeconds": 30.5,
+      "frameCount": 11,
+      "commandCounts": {
+        "camera": 1,
+        "move": 1,
+        "motion": 1,
+        "sound": 7,
+        "voice": 3
+      },
+      "actors": [
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 20,
+          "sequenceIndex": 23,
+          "motionName": "AKI_SIRABERU_DENWATYOU_ETC_TABACOYA_0100",
+          "startFrame": 18,
+          "endFrame": 925
+        }
+      ]
+    }
+  ],
+  "presentationAdaptation": "Original AUTH body/camera/voice/sound timeline and book-local transforms. Authored adaptation: the opened book uses the whole movie's right reading hand (control 18), not the standalone LOOK loop's left hand (control 12); closed/open swaps use the sound cues 59, 189 and 856. Exact page/finger/room-callback choreography is not claimed."
+}

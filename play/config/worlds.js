@@ -1,5 +1,7 @@
 import * as BABYLON from "@babylonjs/core";
 import shenmue2Exploration from '../data/shenmue2-exploration-worlds.json' with { type: 'json' };
+import storyDestinations from "../data/story-destinations.json" with {type: "json"};
+import authoredStoryObjects from "../data/authored-story-objects.json" with {type: "json"};
 import shenmue2BoundaryTransitions, {
   SHENMUE2_TRAVERSABLE_WORLD_DATA,
 } from "../../src/Shenmue2BoundaryTransitionData.js";
@@ -101,6 +103,11 @@ import {
   CINEMA_TRANSITION_INTERACTIONS,
   CINEMA_WORLD_SCALE,
 } from "./cinema.js";
+
+const basementArrival = storyDestinations.destinations.find(destination => destination.id === "s1.home.basement-entry");
+if (!basementArrival) throw Error("Missing reviewed Hazuki basement arrival");
+const voyageArrival=storyDestinations.destinations.find(destination=>destination.id==="s1.departure.ship-deck");
+if(!voyageArrival)throw Error("Missing reviewed shipboard Story checkpoint");
 
 function hasRuntimePlacement(position) {
   return !(
@@ -214,7 +221,7 @@ const DOBUITA_INTERIOR_LABELS = Object.freeze({
   DGCT: Object.freeze(["YOU Arcade", "ゲームセンター"]),
   GMCT: Object.freeze(["YOU Arcade", "ゲームセンター"]),
   DKPA: Object.freeze(["Nana's Karaoke Bar", "カラオケパブ ナナ"]),
-  DKTY: Object.freeze(["Antique Shop", "骨董屋"]),
+  DKTY: Object.freeze(["Bunkado Antiques", "骨董屋"]),
   DMAJ: Object.freeze(["Daisangen Mahjong Parlor", "大三元"]),
   DSKI: Object.freeze(["Global Travel Agency", "世界旅行社"]),
   DTKY: Object.freeze(["Maeda Barber Shop", "理容マエダ"]),
@@ -627,6 +634,21 @@ export const WORLDS = Object.freeze({
     includeFile: includeHazukiExteriorMapFile,
     placements: placements.exterior,
   }),
+  ydb1: Object.freeze({
+    id: "ydb1",
+    label: "Hazuki Residence Basement",
+    japaneseLabel: "芭月家地下室",
+    interior: true,
+    nativeArea: "YDB1",
+    prefix: "S2_YDB1",
+    spawn: new BABYLON.Vector3(...basementArrival.position),
+    yaw: basementArrival.yaw,
+    terrainMaxHeight: 1.4,
+    // Original MPK00 supplies the room and its furniture layer. Do not load
+    // each archive member at origin: most props need separate owner placement.
+    includeFile: filename => /^S2_YDB1_MAP(?:01)?\.MT5$/i.test(filename),
+    placements: Object.freeze(authoredStoryObjects.placements.filter(placement => placement.area === "YDB1")),
+  }),
   interior: Object.freeze({
     id: "interior",
     label: "Hazuki Residence Interior",
@@ -857,6 +879,50 @@ export const WORLDS = Object.freeze({
     includeFile: includeNewYokosukaHarborMapFile,
     timedMapLayers: timedMapLayersForSource("MFSY"),
     placements: placements.mfsy,
+  }),
+  tery: Object.freeze({
+    id:"tery",label:"Mad Angels Warehouse",japaneseLabel:"倉庫",nativeArea:"TERY",interior:true,
+    prefix:"S3_TERY",spawn:new BABYLON.Vector3(-16,0,-24),yaw:0,
+    // Original warehouse structures and ground, not the broad harbor or its
+    // alternate ground layer. The entrance/formation is authored Story staging.
+    includeFile:filename=>/^S3_TERY_MAP(17|18|19)\.MT5$/.test(filename),
+    placements:Object.freeze([]),
+  }),
+  mend: Object.freeze({
+    id:"mend",label:"Harbor Departure",japaneseLabel:"出港",nativeArea:"MEND",
+    nativePointLightingArea:nativeLightingArea("MEND"),waterHeight:sceneWaterHeight("MEND"),
+    prefix:"S3_MEND",spawn:new BABYLON.Vector3(-67.06890869140625,0,30.146678924560547),yaw:6.775592607458659,
+    // Original MAP.PKS scenery plus the room's base MAP. MAP03/04 are
+    // alternate ground layers; use the daytime one for this authored chapter.
+    // TRAP/ENDMAP layers belong to later staging, not the ordinary lesson floor.
+    includeFile:filename=>/^S3_MEND_MAP(?:01|02|03|05|06|08|11|12)?\.MT5$/.test(filename),
+    placements:Object.freeze([]),
+  }),
+  "s1-voyage":Object.freeze({
+    id:"s1-voyage",label:"Voyage to Hong Kong",japaneseLabel:"香港への船旅",nativeArea:"MEND",
+    prefix:"S3_MEND",spawn:BABYLON.Vector3.FromArray(voyageArrival.position),yaw:voyageArrival.yaw,
+    // The original ship is the entire world, frozen in its own local frame.
+    // Native dock COLI is in a different frame and must not be reused here.
+    customWorldGeometry:true,waterHeight:-0.20000004768371582,
+    includeFile:filename=>filename==="S3_MEND_B05K206G.MT5",placements:Object.freeze([]),
+  }),
+  "nbik-home":Object.freeze({
+    id:"nbik-home",label:"Nozomi's Ride Home",japaneseLabel:"帰り道",nativeArea:"NBIK",
+    prefix:"S3_NBIK",spawn:new BABYLON.Vector3(-133.34780883789062,0,26.650836944580078),yaw:Math.PI,
+    // The film uses both original harbor scenery and the long road. Keep the
+    // driving challenge's MAP17-only world separate from this cinematic layout.
+    // Harbor-layer choices are authored; NBIK's native layer controller is not.
+    includeFile:filename=>/^S3_NBIK_MAP(?:0[1-8]|1[0-4]|17|18)?\.MT5$/.test(filename),
+    timedMapLayers:Object.freeze({modelPrefix:"S3_NBIK",dayEveningPairs:[[2,4],[8,6],[12,14]],nightOnlyLayers:[13]}),
+    placements:Object.freeze([]),
+  }),
+  nbik: Object.freeze({
+    id:"nbik",label:"Motorcycle Route",japaneseLabel:"バイク",nativeArea:"NBIK",
+    prefix:"S3_NBIK",spawn:new BABYLON.Vector3(18,0,-66),yaw:Math.PI,
+    // MAP17 contains the original main road, ramps and roadside scenery.
+    // Other NBIK layers include unrelated harbor/alternate surfaces.
+    includeFile:filename=>filename==="S3_NBIK_MAP17.MT5",
+    placements:Object.freeze([]),
   }),
   ma00race: Object.freeze({
     id: "ma00race",

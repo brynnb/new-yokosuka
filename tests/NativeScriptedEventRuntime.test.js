@@ -64,6 +64,7 @@ for (const cancel of [false, true]) {
       beforeComplete: () => new Promise(resolve => { black = resolve; }),
     });
     assert.equal(result.status, "yielded");
+    assert.equal(runtime.busy, true);
     const complete = runtime.resumeDialogue();
     await new Promise(resolve => setImmediate(resolve));
     assert.equal(typeof black, "function");
@@ -72,6 +73,8 @@ for (const cancel of [false, true]) {
     black();
     await complete;
     assert.deepEqual(calls, cancel ? ["rollback"] : ["commit"]);
+    assert.equal(runtime.busy, false);
+    assert.equal(runtime.status, cancel ? "idle" : "complete");
   });
 }
 
@@ -310,6 +313,7 @@ test("asynchronous execution preparation reserves ownership and rolls back after
   await preparing;
   assert.equal(runtime.status, "preparing");
   assert.equal(runtime.current, null);
+  assert.equal(runtime.busy, true);
 
   const competing = await runtime.startActorInteraction({
     area: "D000",
@@ -320,6 +324,7 @@ test("asynchronous execution preparation reserves ownership and rolls back after
   assert.equal(runtime.cancel("world-change"), true);
   assert.equal(runtime.cancel("duplicate"), false);
   assert.equal(runtime.status, "stopping");
+  assert.equal(runtime.busy, true, "cancelled preparation retains ownership until rollback finishes");
   const replacementBeforeCleanup = await runtime.startActorInteraction({
     area: "D000",
     actorCode: "HATO",
@@ -351,6 +356,7 @@ test("asynchronous execution preparation reserves ownership and rolls back after
   assert.deepEqual(starts, []);
   assert.equal(runtime.status, "idle");
   assert.equal(runtime.current, null);
+  assert.equal(runtime.busy, false);
   assert.deepEqual(settlements, [{
     kind: "cancelled",
     result: cancelled,

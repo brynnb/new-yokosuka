@@ -1,0 +1,142 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "A0169.AUTH",
+        "path": "disc2/SCENE/02/JOMO/MAPINFO.BIN",
+        "sourceOffset": 645084,
+        "sourceSha256": "6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe",
+        "byteLength": 7456,
+        "sha256": "b113abdfdc1eb09823a1f80f17ea26e697afffe042b300ac656e4d9f53372a1d"
+      },
+      {
+        "name": "M_0169.MOTN",
+        "path": "disc2/SCENE/02/JOMO/COMMON02.PKS",
+        "sourceSha256": "916aab45137cf340516a1cdd2ee61540e7c6562a1e92c5f932e9055ae0db3b89",
+        "archiveMember": "M_0169.MOTN",
+        "byteLength": 181132,
+        "sha256": "091fa20c78398a3e3756ee21ffc0a26425ea6e3ecffcc316122a31f41fae3d7f"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "A0169",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/jimmy-morning-call/manifest.json",
+  "sceneObjects": {
+    "TEL_": {
+      "model": "TELS514G",
+      "browserFilename": "S1_JOMO_TELS514G.MT5",
+      "objectTag": "TEL_"
+    }
+  },
+  "packageActors": {
+    "FUKU": {
+      "label": "Masayuki Fukuhara",
+      "modelCode": "FUK_M",
+      "browserFilename": "FUK_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/FUK_M.CHRM",
+      "textureAssetPath": "play/assets/characters/FUK_textures.bin"
+    }
+  },
+  "actorTags": [
+    "TEL_",
+    "FUKU",
+    "AKIR"
+  ],
+  "motionBanks": [
+    {
+      "bank": 19,
+      "path": "play/assets/hazuki/jimmy-morning-call/M_0169.MOTN",
+      "byteLength": 181132,
+      "sha256": "091fa20c78398a3e3756ee21ffc0a26425ea6e3ecffcc316122a31f41fae3d7f",
+      "sequenceIndexBase": 0
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/jimmy-morning-call/M_0169.MOTN",
+      "byteLength": 181132,
+      "sha256": "091fa20c78398a3e3756ee21ffc0a26425ea6e3ecffcc316122a31f41fae3d7f"
+    },
+    {
+      "path": "play/assets/hazuki/jimmy-morning-call/A0169.AUTH",
+      "byteLength": 7456,
+      "sha256": "b113abdfdc1eb09823a1f80f17ea26e697afffe042b300ac656e4d9f53372a1d"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "A0169/A0169.AUTH",
+      "archiveMember": "A0169.AUTH",
+      "byteLength": 7456,
+      "sha256": "b113abdfdc1eb09823a1f80f17ea26e697afffe042b300ac656e4d9f53372a1d",
+      "durationFrames": 1600,
+      "durationSeconds": 60,
+      "frameCount": 34,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "sound": 18,
+        "motion": 4,
+        "voice": 12
+      },
+      "actors": [
+        "TEL_",
+        "FUKU",
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "FUKU",
+          "frame": 90,
+          "motionBank": 19,
+          "sequenceIndex": 2,
+          "motionName": "OTH_FUKU_JOUDANJANAI_HANTAI_0148",
+          "startFrame": 1,
+          "endFrame": 1046
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 385,
+          "motionBank": 19,
+          "sequenceIndex": 6,
+          "motionName": "AKI_JOUDANJANAI_HANTAI_0148",
+          "startFrame": 1,
+          "endFrame": 751
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 1136,
+          "motionBank": 19,
+          "sequenceIndex": 8,
+          "motionName": "OTH_FUK_AT1_TICKET_HONGKONG_JIMMYDENWA0_0100",
+          "startFrame": 31,
+          "endFrame": 468
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1136,
+          "motionBank": 19,
+          "sequenceIndex": 4,
+          "motionName": "AKI_AT1_TICKET_HONGKONG_JIMMYDENWA0_0100",
+          "startFrame": 31,
+          "endFrame": 468
+        }
+      ]
+    }
+  ]
+}

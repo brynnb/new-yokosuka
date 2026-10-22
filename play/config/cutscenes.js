@@ -485,11 +485,11 @@ const CUTSCENE_DEFINITIONS = [
   },
   {
     "id": "S1-TGMA-01",
-    "label": "Fuku-san's Letter",
+    "label": "Fuku-san — The Chinese Letter",
     "worldId": "exterior",
     "packageId": "tgma",
     "areaLabel": "Hazuki Residence Grounds",
-    "description": "Fuku-san speaks with Ryo and gives him a letter from Ine-san.",
+    "description": "Fuku-san asks Ryo about the Chinese letter he received from Ine-san.",
     "program": {
       "programId": "preview-s1-tgma-01",
       "entryFunction": "$activity-preview",

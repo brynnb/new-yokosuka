@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import * as BABYLON from "@babylonjs/core";
+import {runtimeAssetUrl} from "../src/RuntimeAssets.js";
+import {scheduledActorStoryVisible} from "../src/ScheduledActorPresentation.js";
 import { clearWorldSceneAssets } from "../src/rendering/SceneResources.js";
 import {
   createScheduledActorOcclusionProxy,
@@ -29,6 +31,23 @@ import {
   setScheduledActorOcclusionCulled,
   updateScheduledActorDebugSelectionProxy,
 } from "../play/characters/ScheduledActorRuntime.js";
+
+test("archive-owned actor prefetch and assembly use the same registered model/texture pair",async()=>{
+  const runtime=Object.create(ScheduledActorRuntime.prototype),requests=[];
+  runtime.bundledCharacterAsset=()=>{throw Error("unexpected global character lookup");};
+  runtime.fetchArrayBuffer=async(url,options)=>{requests.push([url,options]);return new ArrayBuffer(0);};
+  const definition={actorCode:"DEB1",modelCode:"BTH_L",assetPath:"play/assets/harbor/mark-after-work-intro/BTH_L.CHRM",textureAssetPath:"play/assets/harbor/mark-after-work-intro/character-textures.bin"};
+  const expected={modelUrl:runtimeAssetUrl(definition.assetPath),texturePackUrl:runtimeAssetUrl(definition.textureAssetPath)};
+  // The default assembly record is deliberately compact; its source remains
+  // on the authoritative actor definition rather than getting guessed again.
+  assert.deepEqual(runtime.modelAssetUrls(definition,{modelCode:"BTH_L",isDefault:true}),expected);
+  const signal=new AbortController().signal;await runtime.prefetchModel(definition,"BTH_L",signal,1);
+  assert.deepEqual(requests,Object.values(expected).map(url=>[url,{signal,priority:1}]));
+  assert.throws(()=>runtime.modelAssetUrls({...definition,textureAssetPath:undefined},{modelCode:"BTH_L"}),/Incomplete actor/);
+  assert.throws(()=>runtime.modelAssetUrls({...definition,assetPath:"play/assets/not-registered.CHRM"},{modelCode:"BTH_L"}),/Unregistered runtime asset/);
+  runtime.bundledCharacterAsset=(_assets,name,directory="characters")=>`${directory}/${name}`;
+  assert.deepEqual(runtime.modelAssetUrls(definition,{modelCode:"OTHER_M",textureFile:"other.bin"}),{modelUrl:"characters/OTHER_M.CHRM",texturePackUrl:"characters/other.bin"});
+});
 
 async function activityStreamingHarness(t, { network = new Map(), beforeBuild = null } = {}) {
   const engine = new BABYLON.NullEngine();
@@ -74,6 +93,37 @@ test("script preparation loads only its absent resident and preserves world visi
   assert.equal(built[0].root.isEnabled(), false);
   await runtime.prepareActivityActors(["ONE"]);
   assert.equal(built.length, 1, "replays reuse the resident cache");
+});
+
+test("cinematic replacements suppress every ambient variant until the lease releases",async t=>{
+  const {runtime}=await activityStreamingHarness(t);
+  await runtime.prepareActivityActors(["ONE","TWO"]);
+  const entry=runtime.entries.find(e=>e.definition.actorCode==="ONE"),other=runtime.entries.find(e=>e.definition.actorCode==="TWO");
+  entry.root.setEnabled(true);other.root.setEnabled(true);
+  for(const reason of ["complete","cancelled","world-clear"]){
+    const owner={},release=runtime.acquireActivityActorSuppression(owner,["ONE","ABSENT"]);
+    assert.equal(entry.root.isEnabled(),false);assert.equal(other.root.isEnabled(),true);
+    runtime.updateEntry(entry,0);assert.equal(entry.root.isEnabled(),false);
+    assert.throws(()=>runtime.beginActivityActors({},["ONE"]),/replaced/);
+    assert.throws(()=>runtime.acquireActivityActorSuppression({},["ONE"]),/conflicts/);
+    if(reason==="world-clear")runtime.clear();else assert.equal(release(),true);
+    assert.equal(release(),false);assert.equal(entry.root.isEnabled(),true);assert.equal(runtime.activityActorSuppressions.size,0);
+  }
+});
+
+test("saved personal actor absence is reversible, per viewer, and does not hide another NPC or an owned film",async t=>{
+  const a={playMode:"story",storyFlags:{"story.s1.tom-farewell.completed":true}},b={playMode:"story",storyFlags:{}};
+  assert.equal(scheduledActorStoryVisible({actorCode:"TOM_"},a),false);
+  for(const [definition,character] of [[{actorCode:"TOM_"},b],[{actorCode:"TOMH"},a],[{actorCode:"TOM_",activityOnly:true},a],[{actorCode:"TOM_"},{...a,playMode:"free_roam"}]])assert.equal(scheduledActorStoryVisible(definition,character),true);
+  const network=new Map([["ONE",{worldId:"dobuita",x:0,y:0,z:0,yaw:0}]]),{runtime}=await activityStreamingHarness(t,{network});
+  await runtime.prepareActivityActors(["ONE"]);const entry=runtime.entries.find(e=>e.definition.actorCode==="ONE");
+  entry.definition={...entry.definition,actorCode:"TOM_",instanceId:"ONE"};
+  let viewer=a;runtime.isActorPresent=definition=>scheduledActorStoryVisible(definition,viewer);
+  runtime.updateEntry(entry,0);assert.equal(entry.root.isEnabled(),false);
+  viewer=b;runtime.updateEntry(entry,0);assert.equal(entry.root.isEnabled(),true);
+  viewer=a;const owner={};runtime.beginActivityActors(owner,["TOM_"]);runtime.updateEntry(entry,0);
+  assert.equal(entry.root.isEnabled(),true);runtime.endActivityActors(owner);runtime.updateEntry(entry,0);
+  assert.equal(entry.root.isEnabled(),false);
 });
 
 test("script preparation preserves the resident's active authored variant", async t => {
@@ -224,19 +274,24 @@ test("clearing a world disposes a late actor instead of attaching it to the next
   } finally { scene.dispose(); engine.dispose(); }
 });
 
-test("scheduled FACE yaw uses the browser actor-to-target direction", () => {
+test("scheduled FACE yaw points the model's local -Z toward the browser target", () => {
   assert.equal(
     scheduledActorFacingYaw([1, 0, 2], [1, 1.5, 6]),
-    0,
+    Math.PI,
   );
   assert.equal(
     scheduledActorFacingYaw([1, 0, 2], [4, 1.5, 2]),
-    Math.PI / 2,
+    3 * Math.PI / 2,
   );
   assert.equal(
     scheduledActorFacingYaw([1, 0, 2], [1, 1.5, 2]),
     null,
   );
+  for (const target of [[0, 0, 1], [1, 0, 0], [0, 0, -1], [-1, 0, 0]]) {
+    const yaw = scheduledActorFacingYaw([0, 0, 0], target);
+    const forward = BABYLON.Vector3.TransformNormal(new BABYLON.Vector3(0, 0, -1), BABYLON.Matrix.RotationY(yaw));
+    assert.ok(BABYLON.Vector3.Dot(forward, BABYLON.Vector3.FromArray(target)) > 0.999);
+  }
 });
 
 test("scheduled actor objects resolve from the active world's source registry", () => {
@@ -463,6 +518,14 @@ test("scheduled actor selection exposes its actor root for interaction", () => {
 
   assert.equal(selection.actorCode, "HATO");
   assert.equal(selection.root, actorRoot);
+});
+
+test("NPC proxy fallback cannot steal a direct world interaction",()=>{
+  for(const key of ["interactiveInspectable","interactiveDrawer","interactiveVendingMachine","interactiveMapTransition"]){
+    let repicks=0;const root={metadata:{[key]:{}},parent:null};
+    const result=pickScheduledActorSelection({pick(){repicks++;throw Error("proxy stole the object");}},null,10,20,{hit:true,pickedMesh:{parent:root}});
+    assert.equal(result,null);assert.equal(repicks,0);
+  }
 });
 
 test("scheduled actor debug boxes follow animated rig bounds", () => {
@@ -1241,7 +1304,7 @@ test("scheduled actors apply only activated dialogue FACE targets", () => {
     { activate: true },
   ), true);
   runtime.update(0);
-  assert.equal(root.rotation.y, 0);
+  assert.equal(root.rotation.y, Math.PI);
 
   assert.equal(runtime.clearDialogueFacingTarget("AKSK:example"), true);
   runtime.update(0);
@@ -1253,5 +1316,5 @@ test("scheduled actors apply only activated dialogue FACE targets", () => {
     { activate: true },
   ), true);
   runtime.update(0);
-  assert.equal(root.rotation.y, Math.PI / 2);
+  assert.equal(root.rotation.y, 3 * Math.PI / 2);
 });

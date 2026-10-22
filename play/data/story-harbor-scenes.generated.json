@@ -1,0 +1,149 @@
+{
+  "schema": "new-yokosuka-authored-story-scenes-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_chicken_race.mjs",
+  "motionBanks": {
+    "chickenRace": "play/assets/harbor/chicken-race/M_MBQC.MOTN"
+  },
+  "scenes": [
+    {
+      "id": "s1.mfsy.chicken-race",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Original riding clips and motorcycles from RACE.PKS. Held side-by-side quay staging and camera are authored; the original moving course, dismount and fall into the sea are not reconstructed.",
+      "actorDefinitions": [
+        {
+          "actorCode": "SYZU",
+          "label": "Shozo Mizuki",
+          "modelCode": "KOG_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "BIKA",
+          "label": "Takashi Watanabe",
+          "modelCode": "MJA_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "BIKB",
+          "label": "Takahiro Iwami",
+          "modelCode": "MJB_L",
+          "activityOnly": true
+        }
+      ],
+      "actors": [
+        {
+          "tag": "AKIR",
+          "pose": {
+            "x": -12,
+            "y": 0.286,
+            "z": 80,
+            "rotationX": 0,
+            "rotationY": -90,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "chickenRace",
+            "name": "AKI_NORU_BIKE_LP_QTE",
+            "loop": true
+          }
+        },
+        {
+          "tag": "BIKB",
+          "pose": {
+            "x": -12,
+            "y": 0.286,
+            "z": 77,
+            "rotationX": 0,
+            "rotationY": -90,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "chickenRace",
+            "name": "OTH_TKA_NORU_BIKE_LP_QTE",
+            "loop": true
+          }
+        },
+        {
+          "tag": "SYZU",
+          "pose": {
+            "x": -10,
+            "y": 0,
+            "z": 74,
+            "rotationX": 0,
+            "rotationY": 0,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "free",
+            "name": "AKI_AKI_STAND_LP",
+            "loop": true
+          }
+        }
+      ],
+      "camera": {
+        "positionX": -8,
+        "positionY": 2.2,
+        "positionZ": 83,
+        "targetX": -12,
+        "targetY": 1,
+        "targetZ": 78.5,
+        "roll": 0,
+        "perspective": 60
+      },
+      "sceneObjects": {
+        "BIK1": {
+          "model": "BIKK5DYG",
+          "browserFilename": "BIKK5DYG.CHRM",
+          "assetPath": "play/assets/harbor/chicken-race/BIKK5DYG.CHRM",
+          "textureAssetPath": "play/assets/harbor/chicken-race/textures.bin",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              -12,
+              0,
+              80
+            ],
+            "rotationDegrees": [
+              0,
+              -90,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        "BIK2": {
+          "model": "BIKS509G",
+          "browserFilename": "BIKS509G.CHRM",
+          "assetPath": "play/assets/harbor/chicken-race/BIKS509G.CHRM",
+          "textureAssetPath": "play/assets/harbor/chicken-race/textures.bin",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              -12,
+              0,
+              77
+            ],
+            "rotationDegrees": [
+              0,
+              -90,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

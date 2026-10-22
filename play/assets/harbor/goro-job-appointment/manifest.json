@@ -1,0 +1,186 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA0.AUTH",
+        "path": "disc3/SCENE/03/MFSY/MGOR.PKS",
+        "sourceSha256": "7feb53502a9325de4ffaa6539d38b9d2d7adb4d431285339035fa25057ca8ee6",
+        "archiveMember": "SEQDATA0.AUTH",
+        "byteLength": 16880,
+        "sha256": "495d6cf7a33bf999e4bbbb7ce92935c1e4ae93759f7f54956f9e840a4ff19eaf"
+      },
+      {
+        "name": "M_01GOR.MOTN",
+        "path": "disc3/SCENE/03/MFSY/MGOR.PKS",
+        "sourceSha256": "7feb53502a9325de4ffaa6539d38b9d2d7adb4d431285339035fa25057ca8ee6",
+        "archiveMember": "M_01GOR.MOTN",
+        "byteLength": 362116,
+        "sha256": "6d64decbed48c906d074b4ea98d58b7959417a1125955bdb2977127c1c95849d"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-harbor-work.md",
+    "resourceName": "MGOR",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/goro-job-appointment/manifest.json",
+  "sceneObjects": {
+    "DOOR": {
+      "model": "unmapped-original-reference",
+      "browserFilename": "MGOR-DOOR-reference",
+      "referenceOnly": true
+    },
+    "HAKO": {
+      "model": "unmapped-original-reference",
+      "browserFilename": "MGOR-HAKO-reference",
+      "referenceOnly": true
+    }
+  },
+  "packageActors": {
+    "HINA": {
+      "label": "Mai Sawano",
+      "modelCode": "MIB_L",
+      "browserFilename": "MIB_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/MIB_L.CHRM",
+      "textureAssetPath": "play/assets/characters/MIB_textures.bin"
+    },
+    "GORO": {
+      "label": "Goro Mihashi",
+      "modelCode": "KMB_L",
+      "browserFilename": "KMB_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/KMB_L.CHRM",
+      "textureAssetPath": "play/assets/characters/KMB_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "HINA",
+    "GORO",
+    "DOOR",
+    "HAKO"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/goro-job-appointment/M_01GOR.MOTN",
+      "byteLength": 362116,
+      "sha256": "6d64decbed48c906d074b4ea98d58b7959417a1125955bdb2977127c1c95849d"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/goro-job-appointment/M_01GOR.MOTN",
+      "byteLength": 362116,
+      "sha256": "6d64decbed48c906d074b4ea98d58b7959417a1125955bdb2977127c1c95849d"
+    },
+    {
+      "path": "play/assets/harbor/goro-job-appointment/SEQDATA0.AUTH",
+      "byteLength": 16880,
+      "sha256": "495d6cf7a33bf999e4bbbb7ce92935c1e4ae93759f7f54956f9e840a4ff19eaf"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "MGOR/SEQDATA0.AUTH",
+      "archiveMember": "SEQDATA0.AUTH",
+      "byteLength": 16880,
+      "sha256": "495d6cf7a33bf999e4bbbb7ce92935c1e4ae93759f7f54956f9e840a4ff19eaf",
+      "durationFrames": 1960,
+      "durationSeconds": 66.66666412353516,
+      "frameCount": 77,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5,
+        "motion": 7,
+        "sound": 49,
+        "voice": 22
+      },
+      "actors": [
+        "AKIR",
+        "HINA",
+        "GORO",
+        "DOOR",
+        "HAKO"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "AKI_AT1_RR_MITUKETEMORAU_SIGOTO_GOROARUBAITO_0100",
+          "startFrame": 151,
+          "endFrame": 2067
+        },
+        {
+          "actorTag": "GORO",
+          "frame": 22,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "OTH_GOR_AT1_R_RUN_TOUJOU_GOROARUBAITO_0100",
+          "startFrame": 1,
+          "endFrame": 137
+        },
+        {
+          "actorTag": "GORO",
+          "frame": 160,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "OTH_GOR_AT1_RR_MITUKERU_SIGOTO_GOROARUBAITO_0100",
+          "startFrame": 253,
+          "endFrame": 1322
+        },
+        {
+          "actorTag": "GORO",
+          "frame": 251,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "OTH_GOR_AT1_RR_MITUKERU_SIGOTO_GOROARUBAITO_0100",
+          "startFrame": 316,
+          "endFrame": 1922
+        },
+        {
+          "actorTag": "HINA",
+          "frame": 500,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "SIN_MAI_AT1_RR_MITUKERU_SIGOTO_GOROARUBAITO_0100",
+          "startFrame": 561,
+          "endFrame": 1925
+        },
+        {
+          "actorTag": "HINA",
+          "frame": 1636,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "SIN_MAI_AT1_RR_MITUKERU_SIGOTO_GOROARUBAITO_0100",
+          "startFrame": 1611,
+          "endFrame": 1925
+        },
+        {
+          "actorTag": "GORO",
+          "frame": 1636,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "OTH_GOR_AT1_RR_MITUKERU_SIGOTO_GOROARUBAITO_0100",
+          "startFrame": 1606,
+          "endFrame": 1922
+        }
+      ]
+    }
+  ]
+}

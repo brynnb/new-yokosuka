@@ -1,0 +1,186 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_jimmy_chase_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA2.AUTH",
+        "path": "disc2/SCENE/02/D000/CTERMO1.PKS",
+        "sourceSha256": "af1eaba80d5e541628a7c857580da821cda22ccf6d7476e2876e83287c2bdc6f",
+        "archiveMember": "SEQDATA2.AUTH",
+        "byteLength": 6856,
+        "sha256": "32f9be51b3af5e29119d94296d4fbfa98a712a37be816786b2bc7325bbc831cb"
+      },
+      {
+        "name": "M_01JIM.MOTN",
+        "path": "disc2/SCENE/02/D000/CTERMO3.PKS",
+        "sourceSha256": "715a5ee482da7b4b6ef93e61e42eb3ce1006e69d8d958dd7e508c8daacc789aa",
+        "archiveMember": "M_01JIM.MOTN",
+        "byteLength": 109636,
+        "sha256": "4dbcbb542acb25fc897a82581ec2203bb3ea6caa611d7392c2bc657f2545583c"
+      },
+      {
+        "name": "MOTION.BIN",
+        "path": "canonical raw MOTION.BIN",
+        "byteLength": 1826804,
+        "sha256": "aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23"
+      },
+      {
+        "name": "C85N305G.CHRM",
+        "path": "disc2/SCENE/02/D000/CTERBASE.PKS",
+        "sourceSha256": "786c76f3846f2faf179afeb55c8ff0143e3214d7d6d05dfefb396fac794e6257",
+        "archiveMember": "C85N305G.CHRM",
+        "byteLength": 23332,
+        "sha256": "980c521aa023467867024ecdc5411b7780e25ed5ce794d4f180f2ba7b1403c46"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md#jimmy-chase-and-interrogation",
+    "resourceName": "CTERMO1",
+    "variant": "",
+    "selectionRule": "Reviewed authored chapter order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/jimmy-escaped/manifest.json",
+  "sceneObjects": {
+    "CAR_": {
+      "model": "C85N305G",
+      "browserFilename": "C85N305G.CHRM",
+      "assetPath": "play/assets/dobuita/jimmy-escaped/C85N305G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/jimmy-escaped/textures.bin"
+    }
+  },
+  "packageActors": {
+    "JIMY": {
+      "label": "Jimmy Yan",
+      "modelCode": "JIM_M",
+      "browserFilename": "JIM_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/JIM_M.CHRM",
+      "textureAssetPath": "play/assets/characters/JIM_textures.bin"
+    }
+  },
+  "actorTags": [
+    "CAR_",
+    "JIMY",
+    "AKIR"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/dobuita/jimmy-escaped/M_01JIM.MOTN",
+      "byteLength": 109636,
+      "sha256": "4dbcbb542acb25fc897a82581ec2203bb3ea6caa611d7392c2bc657f2545583c"
+    },
+    {
+      "bank": 0,
+      "path": "play/assets/dobuita/jimmy-escaped/MOTION.BIN",
+      "byteLength": 1826804,
+      "sha256": "aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/jimmy-escaped/M_01JIM.MOTN",
+      "byteLength": 109636,
+      "sha256": "4dbcbb542acb25fc897a82581ec2203bb3ea6caa611d7392c2bc657f2545583c"
+    },
+    {
+      "path": "play/assets/dobuita/jimmy-escaped/MOTION.BIN",
+      "byteLength": 1826804,
+      "sha256": "aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23"
+    },
+    {
+      "path": "play/assets/dobuita/jimmy-escaped/SEQDATA2.AUTH",
+      "byteLength": 6856,
+      "sha256": "32f9be51b3af5e29119d94296d4fbfa98a712a37be816786b2bc7325bbc831cb"
+    },
+    {
+      "path": "play/assets/dobuita/jimmy-escaped/C85N305G.CHRM",
+      "byteLength": 23332,
+      "sha256": "980c521aa023467867024ecdc5411b7780e25ed5ce794d4f180f2ba7b1403c46"
+    },
+    {
+      "path": "play/assets/dobuita/jimmy-escaped/textures.bin",
+      "byteLength": 400208,
+      "sha256": "f16149b0b50931e77bc8af5944f3891b2a2cd565b1824f00bd0dfa1cb05de378"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "CTERMO1/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 6856,
+      "sha256": "32f9be51b3af5e29119d94296d4fbfa98a712a37be816786b2bc7325bbc831cb",
+      "durationFrames": 310,
+      "durationSeconds": 44.56666564941406,
+      "frameCount": 19,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 5,
+        "sound": 14,
+        "voice": 2
+      },
+      "actors": [
+        "CAR_",
+        "JIMY",
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "JIMY",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "YKI_JIM_AT_QNG_NIGERARERU_CHASEJIMMY_QTE_0100",
+          "startFrame": 75,
+          "endFrame": 109
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 0,
+          "sequenceIndex": 64,
+          "motionName": "AKI_AKI_RUN_LP",
+          "startFrame": 1,
+          "endFrame": 19
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 19,
+          "motionBank": 0,
+          "sequenceIndex": 64,
+          "motionName": "AKI_AKI_RUN_LP",
+          "startFrame": 1,
+          "endFrame": 19
+        },
+        {
+          "actorTag": "JIMY",
+          "frame": 31,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "YKI_JIM_AT_QNG_NIGERARERU_CHASEJIMMY_QTE_0100",
+          "startFrame": 80,
+          "endFrame": 109
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 31,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT_QNG_NIGERARERU_CHASEJIMMY_QTE_0100",
+          "startFrame": 1,
+          "endFrame": 308
+        }
+      ]
+    }
+  ]
+}

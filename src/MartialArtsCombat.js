@@ -837,11 +837,14 @@ export function createCombatant(options = {}) {
   return {
     id: String(options.id || "combatant"),
     team: String(options.team || "neutral"),
+    targetId: options.targetId || null,
     x: Number(options.x) || 0,
     z: Number(options.z) || 0,
     yaw: Number(options.yaw) || 0,
     radius: Math.max(0.05, Number(options.radius) || DEFAULT_COMBATANT.radius),
     maxHealth: maximum,
+    minimumHealth: Math.max(0, Math.min(maximum, Number(options.minimumHealth) || 0)),
+    damageScale: Number.isFinite(options.damageScale) ? Math.max(0, options.damageScale) : 1,
     health: clamp(
       Number.isFinite(options.health) ? options.health : maximum,
       0,
@@ -855,6 +858,7 @@ export function createCombatant(options = {}) {
     knockdown: 0,
     invulnerability: 0,
     proficiency: Math.max(0, Number(options.proficiency) || 0),
+    allowedMoveIds: options.allowedMoveIds == null ? null : new Set(options.allowedMoveIds),
     commandQueue: [],
     commandIdleTicks: 0,
     commandOverrides: { ...(options.commandOverrides || {}) },
@@ -1010,15 +1014,16 @@ export function selectQueuedMove(
   { position = "front", opponent = null } = {},
 ) {
   if (!canAct(combatant)) return null;
+  const availableMoves = Object.values(moves).filter(move => combatMoveAvailable(combatant, move));
   const batchedString = combatant.commandQueue.length > 1
     && matchingStrings(combatant.commandQueue).length > 0;
   const stringBase = batchedString
-    ? Object.values(moves).find((candidate) => (
+    ? availableMoves.find((candidate) => (
       candidate.input.length === 1
       && candidate.input[0] === combatant.commandQueue[0]
     ))
     : null;
-  const matches = Object.values(moves)
+  const matches = availableMoves
     .flatMap((move) => [
       move.input,
       ...(move.inputAliases || []),
@@ -1043,7 +1048,7 @@ export function selectQueuedMove(
   // command-buffer window. Do not collapse a temporarily ineligible full
   // counter command into its ordinary one-button suffix (for Swallow Flip,
   // that would incorrectly turn S J K into Crescent Kick).
-  const bufferedCounter = Object.values(moves).find((candidate) => (
+  const bufferedCounter = availableMoves.find((candidate) => (
     candidate.counterCondition
     && [candidate.input, ...(candidate.inputAliases || [])].some(
       (input) => commandEndsWith(combatant.commandQueue, input),
@@ -1058,7 +1063,7 @@ export function selectQueuedMove(
     ? { move: stringBase, matchedInput: stringBase.input }
     : matches[0] || null;
   const move = selected?.move || null;
-  const longerCandidate = move && Object.values(moves).some((candidate) => (
+  const longerCandidate = move && availableMoves.some((candidate) => (
     [candidate.input, ...(candidate.inputAliases || [])].some((input) => (
       input.length > combatant.commandQueue.length
       && commandIsPrefix(combatant.commandQueue, input)
@@ -1104,16 +1109,21 @@ export function setCombatCommandOverride(
   moves = MARTIAL_ARTS_MOVES,
 ) {
   const move = moves[moveId];
-  if (!combatant || !move) return false;
+  if (!combatMoveAvailable(combatant, move)) return false;
   combatant.commandOverrides[combatCommandKey(move.input)] = move.id;
   return true;
+}
+
+export function combatMoveAvailable(combatant, move) {
+  return Boolean(combatant && move && (combatant.allowedMoveIds === null || combatant.allowedMoveIds.has(move.id)));
 }
 
 export function startCombatMove(combatant, move, {
   lockedTargetId = null,
   defender = null,
+  enemyVariant = combatant.team === "enemy",
 } = {}) {
-  if (!canAct(combatant) || !move) return false;
+  if (!canAct(combatant) || !combatMoveAvailable(combatant, move)) return false;
   combatant.guardHeld = false;
   combatant.action = {
     moveId: move.id,
@@ -1122,7 +1132,9 @@ export function startCombatMove(combatant, move, {
       move.highProficiencyAnimation
       && combatant.proficiency >= move.highProficiencyThreshold
     ),
-    enemyVariant: combatant.team === "enemy",
+    // Animation roles are independent of allegiance: an AI ally uses the
+    // opponent motion bank too, including its paired-victim timings.
+    enemyVariant,
     connected: new Set(),
     nextFollowupId: combatant.pendingInitialFollowupId
       || move.initialFollowupId
@@ -1349,7 +1361,7 @@ export function strikeCanConnect(attacker, defender, move) {
 
 export function applyCombatHit(attacker, defender, move) {
   const guarded = move.kind !== "throw" && isGuarding(defender);
-  const damage = guarded ? move.guardDamage : move.damage;
+  const damage = Math.round((guarded ? move.guardDamage : move.damage) * (attacker.damageScale ?? 1));
   const victimDuration = attacker.action?.enemyVariant
     ? move.enemyVictimDuration || move.victimDuration
     : attacker.action?.highProficiency
@@ -1360,7 +1372,7 @@ export function applyCombatHit(attacker, defender, move) {
     : move.synchronizedVictim && victimDuration
       ? Math.max(1, victimDuration - (attacker.action?.tick || 0))
       : victimDuration || move.hitStun;
-  defender.health = clamp(defender.health - damage, 0, defender.maxHealth);
+  defender.health = clamp(defender.health - damage, defender.minimumHealth || 0, defender.maxHealth);
   defender.guardStun = guarded ? move.guardStun : 0;
   defender.hitStun = hitStun;
   defender.knockdown = !guarded && move.knockdown
@@ -1478,7 +1490,13 @@ export class MartialArtsCombat {
   }
 
   startQueuedMove(combatant) {
-    const opponent = this.nearestOpponent(combatant);
+    // Selection steers commands/throws, not strike collision: wide strikes
+    // still test every opponent. Once a paired move starts its recipient is
+    // locked by the action, independent of subsequent selection changes.
+    const selected = this.combatants.get(combatant.targetId);
+    const opponent = selected && selected.team !== combatant.team && !selected.defeated
+      ? selected
+      : this.nearestOpponent(combatant);
     const queued = selectQueuedMove(combatant, this.moves, {
       position: opponentPosition(combatant, opponent),
       opponent,

@@ -1,4 +1,6 @@
 import { runtimeAssetGroup, runtimeAssetUrl } from "../../src/RuntimeAssets.js";
+import storyCombat from "../data/story-combat.json" with { type: "json" };
+import storyNavigation from "../data/story-navigation.json" with {type:"json"};
 import { scheduledActorsForWorld } from "../../src/PlayScheduledActors.js";
 import {
   composeScheduledActorDefinitions,
@@ -26,6 +28,7 @@ import {
   ScheduledActorMotionRuntime,
 } from "./ScheduledActorMotionRuntime.js";
 import ma00RaceManifest from "../data/ma00-race-scheduled-actors.json";
+import authoredScenes from "../scripts/AuthoredSceneCatalog.js";
 const scheduledMbasMotionUrl = runtimeAssetUrl("play/assets/scheduled-actors/M_MBAS.BIN");
 const scheduledMobjMotionUrl = runtimeAssetUrl("play/assets/scheduled-actors/M_MOBJ.BIN");
 const shenmue2NpcMotionUrl = runtimeAssetUrl("play/assets/shenmue2-motion/NPC.MOT");
@@ -52,6 +55,7 @@ export class PlayCharacterAssembly {
     getGameDate,
     getCameraOcclusionTarget,
     getCameraFadeEnabled,
+    isActorPresent,
     networkState,
     localDebug,
     remoteAvatar,
@@ -72,7 +76,9 @@ export class PlayCharacterAssembly {
       bankUrls: {
         mbas: scheduledMbasMotionUrl,
         free: "/motion/MOTION.BIN",
+        fight: "/motion/M_FGT1.BIN",
         mobj: scheduledMobjMotionUrl,
+        ...Object.fromEntries(Object.entries(authoredScenes.motionBanks||{}).map(([name,path])=>[name,runtimeAssetUrl(path)])),
         s2Npc: shenmue2NpcMotionUrl,
         s2NpcTable: shenmue2NpcTableMotionUrl,
         s2Motion: shenmue2MotionUrl,
@@ -103,6 +109,7 @@ export class PlayCharacterAssembly {
       // Cinematics can borrow an ordinary gameplay world (for example CATA1
       // in Yamanose); map classification alone does not describe camera ownership.
       getCameraFadeEnabled: () => !getWorld().cutsceneOnly && getCameraFadeEnabled?.() !== false,
+      isActorPresent,
       networkState,
       motionRuntime: this.motionRuntime,
       debugPickable: localDebug,
@@ -125,11 +132,18 @@ export class PlayCharacterAssembly {
     const actors = await scheduledActorsForWorld(world.id);
     const activityActors = nativeCutscenePackageRegistry
       .actorDefinitionsForWorld(world.id);
-    if (world.id !== "ma00race" && activityActors.length === 0) return actors;
+    const authoredActors = authoredScenes.scenes.filter(scene => scene.worldId === world.id)
+      .flatMap(scene => scene.actorDefinitions);
+    const combatActors=storyCombat.encounters.filter(encounter=>encounter.worldId===world.id).flatMap(encounter=>encounter.actorDefinitions);
+    const navigationActors=storyNavigation.challenges.filter(d=>d.worldId===world.id).flatMap(d=>d.guards.map(g=>({actorCode:g.tag,modelCode:g.modelCode,label:g.label,activityOnly:true})));
+    if (world.id !== "ma00race" && activityActors.length === 0 && authoredActors.length === 0 && combatActors.length===0&&navigationActors.length===0) return actors;
     return composeScheduledActorDefinitions([
       actors,
       world.id === "ma00race" ? ma00RaceManifest.actors : [],
       activityActors,
+      authoredActors,
+      combatActors,
+      navigationActors,
     ], {
       worldId: world.id,
       localObjectModelRequirements:

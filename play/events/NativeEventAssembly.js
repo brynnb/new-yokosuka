@@ -158,6 +158,7 @@ export function createNativePlayerSceneAssembly({
 }
 
 export function createNativeRoomScriptAssembly({
+  dialoguePersistence,
   scheduledActors,
   currentGameDate,
   sceneResourceRegistry,
@@ -181,6 +182,9 @@ export function createNativeRoomScriptAssembly({
   let roomScripts;
   roomScripts = createNativeRoomScriptRuntime({
     randomFloat,
+    operation01c7: {
+      getState: () => dialoguePersistence.gameplayState()?.operation01c7State ?? null,
+    },
     actorField: {
       resolveActorFieldState: ({ actorTag }) => ({
         actorAvailable: actorTag === "AKIR"
@@ -282,7 +286,7 @@ export function createNativeRoomScriptAssembly({
       }),
       freeConversationState,
     },
-    transaction: createTransactionAdapter({
+    transaction: createNativeSceneTransactionAdapter({
       getRoomScripts: () => roomScripts,
       eventCamera,
       playerMotion,
@@ -298,7 +302,7 @@ export function createNativeRoomScriptAssembly({
   return roomScripts;
 }
 
-function createTransactionAdapter({
+export function createNativeSceneTransactionAdapter({
   getRoomScripts,
   eventCamera,
   playerMotion,
@@ -330,8 +334,10 @@ function createTransactionAdapter({
         renderPreparationTransaction = mapRenderPreparationState
           .beginTransaction();
         musicTransaction = roomMusic.beginTransaction();
-        const movementLocked = Boolean(getController()?.movementLocked);
-        getController()?.setMovementLocked(true);
+        // This may be nested inside Yarn/cutscene ownership. Snapshotting the
+        // derived boolean would re-create a manual lock when those owners
+        // release first (notably cancellation of a multi-shot Story film).
+        const releaseMovementLock = getController()?.acquireMovementLock();
         return {
           eventCamera: eventCameraTransaction,
           playerMotion: motionTransaction,
@@ -339,7 +345,7 @@ function createTransactionAdapter({
           nativeMapClip: mapClipTransaction,
           nativeMapRenderPreparation: renderPreparationTransaction,
           nativeMusic: musicTransaction,
-          movementLocked,
+          releaseMovementLock,
         };
       } catch (error) {
         if (musicTransaction) roomMusic.endTransaction(musicTransaction);
@@ -366,7 +372,6 @@ function createTransactionAdapter({
       }
     },
     update: ({ external, deltaSeconds }) => {
-      getController()?.setMovementLocked(true);
       const roomScripts = getRoomScripts();
       const authActivity = roomScripts.sceneState
         .readNativeOperation0050Activity();
@@ -397,7 +402,7 @@ function createTransactionAdapter({
         }
         return true;
       } finally {
-        getController()?.setMovementLocked(external.movementLocked);
+        external.releaseMovementLock?.();
       }
     },
     rollback: ({ external }) => {
@@ -425,7 +430,7 @@ function createTransactionAdapter({
                   );
                 }
               } finally {
-                getController()?.setMovementLocked(external.movementLocked);
+                external.releaseMovementLock?.();
               }
             }
           }

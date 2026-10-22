@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Project exact native warp evidence into browser-consumable transitions.
 
-This generator deliberately does no spatial matching.  Dobuita doors are
-joined by the native door selector, and destination placement comes only from
-the native Entry parser evidence.  Destinations whose MAPINFO contains no
-matching player Entry are retained as unsupported rather than assigned an
-invented origin.
+Direct routes retain their native selectors and Entry evidence. Storefronts
+are also joined through each interior's exact return Entry to the nearby
+physical Dobuita door. Original live AKIR CHRS arrivals take precedence over
+an explicitly labeled door-offset approximation when no Entry is serialized.
+Unsupported direct routes remain separate from those reviewed reverse edges.
 """
 
 from __future__ import annotations
@@ -474,6 +474,7 @@ def reverse_matched_d000_transition(
     return_transition: dict,
     authored_inbound_spawns: dict,
     door_candidates: list[dict],
+    default_inbound_spawns: dict | None = None,
 ) -> dict | None:
     """Recover an inbound storefront edge from its exact reverse edge.
 
@@ -513,9 +514,14 @@ def reverse_matched_d000_transition(
     authored_spawn = authored_inbound_spawns.get(
         (source_scene, source_area, 0)
     )
+    # Some ordinary rooms serialize a live AKIR CHRS placement instead of
+    # Entry records. Prefer that original arrival over guessing which side of
+    # the return door is inside (DBHB's door offset put Ryo outside its wall).
+    default_spawn = (default_inbound_spawns or {}).get((source_scene, source_area))
     browser_spawn = (
         authored_spawn
         if authored_spawn is not None
+        else default_spawn if default_spawn is not None
         else derived_interior_spawn(return_transition)
     )
     # You Arcade has a separately tuned arrival. The generated storefront
@@ -538,7 +544,7 @@ def reverse_matched_d000_transition(
             "worldId": browser_world_id(source_area),
             "scene": source_scene,
             "area": source_area,
-            "entry": 0 if authored_spawn is not None else None,
+            "entry": 0 if authored_spawn is not None or default_spawn is not None else None,
             "browserSpawn": browser_spawn,
         },
         "supported": True,
@@ -559,6 +565,8 @@ def reverse_matched_d000_transition(
             "destinationPlacement": (
                 "authored Entry 0"
                 if authored_spawn is not None
+                else "original live AKIR CHRS placement"
+                if default_spawn is not None
                 else "derived from exact reverse interior door transform"
             ),
         },
@@ -650,6 +658,16 @@ def main() -> None:
         for transition in transitions
         if transition["destination"]["browserSpawn"] is not None
     }
+    default_inbound_spawns = {
+        (record["scene"], record["area"]): {
+            **record["defaultPlayerPlacement"]["browserProjection"],
+            "sourceKind": record["defaultPlayerPlacement"]["sourceKind"],
+            "recordOffset": record["defaultPlayerPlacement"]["recordOffset"],
+            "sourceSha256": record["sourceSha256"],
+        }
+        for record in entry_report["maps"]
+        if record.get("defaultPlayerPlacement") is not None
+    }
     reverse_matched_d000_transitions = [
         transition
         for transition in (
@@ -657,6 +675,7 @@ def main() -> None:
                 return_transition,
                 authored_inbound_spawns,
                 door_candidates,
+                default_inbound_spawns,
             )
             for return_transition in all_exact_door_transitions
         )
@@ -747,8 +766,9 @@ def main() -> None:
             "D000 storefronts are associated by each interior's exact reverse "
             "D000 Entry rather than equating coroutine dispatch ordinals with "
             "logical door selectors. Destinations without an authored player "
-            "Entry use the exact reverse interior door transform plus a fixed "
-            "inward offset. "
+            "Entry use the original live AKIR CHRS placement when available; "
+            "otherwise they use the exact reverse interior door transform plus "
+            "a fixed inward offset. Facing away from the exit is an adaptation. "
             "Interior return-door roots are exact native door-controller records; "
             "they remain non-interactive until the native Door Box dimensions "
             "are decoded."

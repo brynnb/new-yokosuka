@@ -20,7 +20,7 @@ test("browser transitions retain native Dobuita selectors and exact entries", ()
     canonicalExactDoorWithEntryPlacementCount: 25,
     canonicalExactDoorWithResolvedModelCount: 25,
     reverseMatchedD000TransitionCount: 22,
-    reverseMatchedD000DerivedSpawnCount: 10,
+    reverseMatchedD000DerivedSpawnCount: 6,
     nativeVolumeTransitionCount: 25,
     runtimeDisc1NativeVolumeTransitionCount: 8,
     runtimeDisc1NativeVolumeWithEntryPlacementCount: 7,
@@ -146,4 +146,15 @@ test("interior returns use native controller roots and D000 Entry placement", ()
     "S1_DYKZ_DR02_020.MT5",
     "S1_DYKZ_DR02_024.MT5",
   ]);
+});
+test("reverse storefront arrivals prefer original live CHRS placements over guessed door sides", () => {
+  for (const area of ["DAZA", "DBHB", "DCBN", "DRSA"]) {
+    const transition = report.reverseMatchedD000Transitions.find(item => item.destination.area === area);
+    assert.equal(transition.evidence.destinationPlacement, "original live AKIR CHRS placement");
+    assert.equal(transition.destination.browserSpawn.sourceKind, "CHRS Character AKIR");
+  }
+  const bar = report.reverseMatchedD000Transitions.find(item => item.destination.area === "DBHB");
+  assert.deepEqual(bar.destination.browserSpawn.position, [-0.6800000071525574, 0, -7.320000171661377]);
+  assert.equal(bar.destination.browserSpawn.recordOffset, "0x24530");
+  assert.equal(bar.destination.browserSpawn.yawRadians, 0);
 });

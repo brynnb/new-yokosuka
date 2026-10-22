@@ -1,0 +1,11 @@
+{{completionActivities}}
+// The original arrival is 05:56. Choose the next occurrence so late/retried
+// personal saves never rewind their calendar or become permanently ineligible.
+<<if game_hour() < 5.933333333333333>>
+<<advance_story_time "s1.nozomi.dawn">>
+<<else>>
+<<advance_story_time "s1.nozomi.next-dawn">>
+<<endif>>
+<<travel_story "s1.home.bedroom-morning">>
+{{effects}}
+<<complete>>

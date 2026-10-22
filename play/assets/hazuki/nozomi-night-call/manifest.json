@@ -1,0 +1,170 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "01GET.AUTH",
+        "path": "disc3/SCENE/03/JOMO/MAPINFO.BIN",
+        "sourceOffset": 715152,
+        "sourceSha256": "43c613a944cc021e26793193826cf6e7dde57cd5f55ce1bfa9c1e41ce33c9c89",
+        "byteLength": 9480,
+        "sha256": "42959eb45297b6dfc93906cf1403b4a4a0d10f7a9d98399973094e650ba9f78f"
+      },
+      {
+        "name": "M_01GT.MOTN",
+        "path": "disc3/SCENE/03/JOMO/COMMON03.PKS",
+        "sourceSha256": "4df506b3994e111f1bc105a4485a22b19abcdf9cb6a1a02b2e0fab3f049cf136",
+        "archiveMember": "M_01GT.MOTN",
+        "byteLength": 33268,
+        "sha256": "d5fa591c1fadad7e1a4391390d57452c51ec69d5badaa598f1af54d3b55b618a"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-nozomi-rescue.md",
+    "resourceName": "01GET",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/nozomi-night-call/manifest.json",
+  "sceneObjects": {
+    "TEL_": {
+      "model": "TELS514G",
+      "browserFilename": "S1_JOMO_TELS514G.MT5",
+      "objectTag": "TEL_"
+    }
+  },
+  "packageActors": {
+    "INE_": {
+      "label": "Ine-san",
+      "modelCode": "INE_M",
+      "browserFilename": "INE_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/INE_M.CHRM",
+      "textureAssetPath": "play/assets/INE_textures.bin"
+    }
+  },
+  "actorTags": [
+    "TEL_",
+    "INE_",
+    "AKIR"
+  ],
+  "motionBanks": [
+    {
+      "bank": 25,
+      "path": "play/assets/hazuki/nozomi-night-call/M_01GT.MOTN",
+      "byteLength": 33268,
+      "sha256": "d5fa591c1fadad7e1a4391390d57452c51ec69d5badaa598f1af54d3b55b618a",
+      "sequenceIndexBase": 32
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/nozomi-night-call/M_01GT.MOTN",
+      "byteLength": 33268,
+      "sha256": "d5fa591c1fadad7e1a4391390d57452c51ec69d5badaa598f1af54d3b55b618a"
+    },
+    {
+      "path": "play/assets/hazuki/nozomi-night-call/01GET.AUTH",
+      "byteLength": 9480,
+      "sha256": "42959eb45297b6dfc93906cf1403b4a4a0d10f7a9d98399973094e650ba9f78f"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "01GET/01GET.AUTH",
+      "archiveMember": "01GET.AUTH",
+      "byteLength": 9480,
+      "sha256": "42959eb45297b6dfc93906cf1403b4a4a0d10f7a9d98399973094e650ba9f78f",
+      "durationFrames": 2265,
+      "durationSeconds": 79.33331298828125,
+      "frameCount": 45,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 7,
+        "voice": 19,
+        "effect": 8,
+        "sound": 13
+      },
+      "actors": [
+        "TEL_",
+        "INE_",
+        "AKIR"
+      ],
+      "motions": [
+        {
+          "actorTag": "INE_",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 33,
+          "motionName": "JIJ_INE_AT1_HUKUHARA_YUUKAI_0100",
+          "startFrame": 156,
+          "endFrame": 380
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 32,
+          "motionName": "AKI_AT1_HUKUHARA_YUUKAI_0100",
+          "startFrame": 156,
+          "endFrame": 380
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 457,
+          "motionBank": 25,
+          "sequenceIndex": 32,
+          "motionName": "AKI_AT1_HUKUHARA_YUUKAI_0100",
+          "startFrame": 286,
+          "endFrame": 827
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 506,
+          "motionBank": 25,
+          "sequenceIndex": 33,
+          "motionName": "JIJ_INE_AT1_HUKUHARA_YUUKAI_0100",
+          "startFrame": 381,
+          "endFrame": 1499
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 998,
+          "motionBank": 25,
+          "sequenceIndex": 32,
+          "motionName": "AKI_AT1_HUKUHARA_YUUKAI_0100",
+          "startFrame": 804,
+          "endFrame": 1430
+        },
+        {
+          "actorTag": "INE_",
+          "frame": 1625,
+          "motionBank": 25,
+          "sequenceIndex": 33,
+          "motionName": "JIJ_INE_AT1_HUKUHARA_YUUKAI_0100",
+          "startFrame": 1370,
+          "endFrame": 2036
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1626,
+          "motionBank": 25,
+          "sequenceIndex": 32,
+          "motionName": "AKI_AT1_HUKUHARA_YUUKAI_0100",
+          "startFrame": 1332,
+          "endFrame": 1914
+        }
+      ]
+    }
+  ]
+}

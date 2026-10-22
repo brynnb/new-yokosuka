@@ -266,3 +266,30 @@ test("the typed adapter is shared by every family handler", async () => {
     /adapter has an invalid type/,
   );
 });
+
+test("controller adapters cannot turn rejection or failure into successful continuation", async () => {
+  const failure = { status: "stopped", reason: { kind: "weather-table-unavailable" } };
+  for (const [operation, mode, words] of [["0176", 1, [1, 0]], ["0178", 1, [1, 8192]]]) {
+    assert.deepEqual(await executionContext(operation, mode, words, () => failure), failure);
+    assert.equal((await executionContext(operation, mode, words, () => false)).status, "stopped");
+    assert.equal((await executionContext(operation, mode, words, () => null)).status, "stopped");
+    assert.equal((await executionContext(operation, mode, words, () => ({ applied: false }))).status, "stopped");
+  }
+  // A native null-owner no-op is distinct from a rejected browser operation.
+  assert.equal((await executionContext("0179", 12, [12], () => (
+    { applied: false, nativeNoOp: true }
+  ))).status, "continued");
+  const error = new DOMException("World left", "AbortError");
+  await assert.rejects(executionContext("0176", 1, [1, 0], async () => { throw error; }), e => e === error);
+});
+
+test("non-word controller arguments never reach presentation", async () => {
+  let calls = 0;
+  for (const word of [undefined, NaN, Infinity, 1.5, -0x80000001, 0x100000000]) {
+    assert.equal((await executionContext("0176", 1, [1, word], () => {
+      calls += 1;
+      return { mutation: true };
+    })).status, "stopped");
+  }
+  assert.equal(calls, 0);
+});

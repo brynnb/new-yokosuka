@@ -73,6 +73,20 @@ function restoreRoot(root, snapshot) {
   root.computeWorldMatrix?.(true);
 }
 
+function captureExploration(root) {
+  return {
+    ...captureRoot(root),
+    leased: true,
+    nodes: [root, ...root.getDescendants(false)].map(node => ({
+      node,
+      metadata: node.metadata,
+      isPickable: node.isPickable,
+      checkCollisions: node.checkCollisions,
+      frozen: Boolean(node.isWorldMatrixFrozen),
+    })),
+  };
+}
+
 function prepareRoot(root, actorTag) {
   for (const node of [root, ...root.getDescendants(false)]) {
     markWorldMeshDynamic(node);
@@ -129,6 +143,8 @@ export class NativeAseqSceneObjectRuntime {
       }
       return [normalized, Object.freeze({
         actorTag: normalized,
+        referenceOnly: value?.referenceOnly === true,
+        objectTag: value?.objectTag ? requireText(value.objectTag, `${normalized} world object tag`) : null,
         model: requireText(value?.model, `${normalized} model`),
         browserFilename: requireText(
           value?.browserFilename,
@@ -171,10 +187,11 @@ export class NativeAseqSceneObjectRuntime {
     }
     this.clear();
     for (const [actorTag, definition] of this.definitions) {
-      let matches = roots.filter(root => (
+      let matches = definition.referenceOnly ? [] : roots.filter(root => (
         root?._filename?.toUpperCase() === definition.browserFilename.toUpperCase()
+        && (!definition.objectTag || root.metadata?.runtimeObject?.objectTag === definition.objectTag)
       ));
-      if (matches.length === 0 && definition.assetPath) {
+      if (matches.length === 0 && (definition.assetPath || definition.referenceOnly)) {
         if (typeof this.instantiateAsset !== "function") {
           throw new Error(`AUTH scene object ${actorTag} has no package asset loader`);
         }
@@ -194,10 +211,12 @@ export class NativeAseqSceneObjectRuntime {
         );
       }
       const root = matches[0];
-      // Borrowed travel targets belong to exploration outside this package.
-      // Capture before prepareRoot hides them for authored presentation.
-      const explorationSnapshot = root.metadata?.interactiveMapTransition
-        && !this.ownedRoots.has(root) ? captureRoot(root) : null;
+      // Interactive targets and explicitly selected logical world placements
+      // belong to exploration. Legacy cinematic/composite roots are different:
+      // their program owns visibility and must still leave them hidden.
+      const explorationSnapshot = !this.ownedRoots.has(root)
+        && (definition.objectTag || Object.keys(root.metadata || {}).some(key => key.startsWith("interactive")))
+        ? captureExploration(root) : null;
       prepareRoot(root, actorTag);
       this.objects.set(actorTag, Object.freeze({
         actorCode: actorTag,
@@ -213,6 +232,12 @@ export class NativeAseqSceneObjectRuntime {
   prepareActivity(activity) {
     if (this.active) {
       throw new Error("AUTH scene-object state cannot change during ownership");
+    }
+    for (const [actorTag, record] of this.objects) {
+      if (record.explorationSnapshot && !record.explorationSnapshot.leased) {
+        Object.assign(record.explorationSnapshot, captureExploration(record.root));
+        prepareRoot(record.root, actorTag);
+      }
     }
     if (this.persistentActorTags.size === 0) return true;
     if (!activity?.activityId || !Array.isArray(activity.nativeSceneObjectStates)) {
@@ -334,6 +359,21 @@ export class NativeAseqSceneObjectRuntime {
     return true;
   }
 
+  applyTransform(owner, actorTag, pose) {
+    if (this.active?.owner !== owner || !this.active.snapshots.has(actorTag)
+      || ![pose?.x, pose?.y, pose?.z, pose?.rotationX, pose?.rotationY, pose?.rotationZ].every(Number.isFinite)) return false;
+    const root = this.objects.get(actorTag)?.root;
+    if (!root) return false;
+    // Authored movement uses the same native coordinates as AUTH. Preserve
+    // the leased entry scale; a movement curve does not contain scale channels.
+    applyGeneratedPresentation(root, {
+      position: [pose.x, pose.y, pose.z],
+      rotationDegrees: [pose.rotationX, pose.rotationY, pose.rotationZ],
+      scale: vectorSnapshot(root.scaling, "movement scale"),
+    });
+    return this.activate(owner, actorTag);
+  }
+
   applyStateCue(cue) {
     const record = this.objects.get(cue?.actorTag);
     if (!record || !this.active?.snapshots.has(cue.actorTag)) {
@@ -374,12 +414,39 @@ export class NativeAseqSceneObjectRuntime {
     return true;
   }
 
+  releaseStandaloneObjects() {
+    // Continuous room programs retain their props across AUTH subleases.
+    // Ordinary scenes release the borrow without discarding cached assets.
+    if (this.active || this.program) return false;
+    for (const record of this.objects.values()) {
+      const snapshot = record.explorationSnapshot;
+      // prepareActivity enables room fixtures before AUTH takes its sublease.
+      // Its snapshot therefore still has them enabled at the end. Keep warm
+      // assets cached, but never leave a standalone film's room in gameplay.
+      // An outer native program deliberately retains them between activities.
+      if (!snapshot && this.persistentActorTags.has(record.actorCode)) {
+        record.root.setEnabled(false);
+      }
+      if (!snapshot?.leased) continue;
+      restoreRoot(record.root, snapshot);
+      for (const state of snapshot.nodes) {
+        state.node.metadata = state.metadata;
+        state.node.isPickable = state.isPickable;
+        state.node.checkCollisions = state.checkCollisions;
+        state.node.computeWorldMatrix?.(true);
+        if (state.frozen) state.node.freezeWorldMatrix?.();
+      }
+      snapshot.leased = false;
+    }
+    return true;
+  }
+
   clear() {
     if (this.active) this.end(this.active.owner);
     if (this.program) this.endProgram(this.program.owner);
+    this.releaseStandaloneObjects();
     for (const record of this.objects.values()) {
-      if (record.explorationSnapshot) restoreRoot(record.root, record.explorationSnapshot);
-      else record.root.setEnabled(false);
+      if (!record.explorationSnapshot) record.root.setEnabled(false);
     }
     this.objects.clear();
     for (const root of this.ownedRoots) root.dispose?.();

@@ -1,0 +1,1472 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/A0184C.AFS",
+      "sha256": "857f3a7e3df67fbfcfcf464fcae753613cdb81c97fcfb8042568e5e66c89627d"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_MOMOR.SND",
+      "sha256": "ac1ff0499b2c24bc4439f78b17c09b6f5ee066f40ab4b2ba76acaa72eb567109"
+    },
+    "authManifest": "play/assets/harbor/chen-introduction-letter/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#chens-introduction-letter"
+  },
+  "voices": [
+    {
+      "voiceId": "A0184CA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184CA001.aiff",
+      "nativeMember": "A0184CA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "0144666c685b05470182217031a23993fc6e66e36ed49d6526430f90a7419467",
+      "speakerId": "AKIR",
+      "sourceText": "Gui Zhang!",
+      "displayText": "Gui Zhang!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chen-introduction-letter/voice/A0184CA001.wav",
+      "byteLength": 16172,
+      "sha256": "424d097348709a590423538e08898401a2f02b0c3c16f2283f92ab8ae07b839c"
+    },
+    {
+      "voiceId": "A0184CA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184CA002.aiff",
+      "nativeMember": "A0184CA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "b320c9919c2430e11c17c5ccf1f1fbaf2e94b7bb679a00a8b984de7a93337029",
+      "speakerId": "AKIR",
+      "sourceText": "It's my fault=@",
+      "displayText": "It's my fault...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/chen-introduction-letter/voice/A0184CA002.wav",
+      "byteLength": 24364,
+      "sha256": "27ed80cc08226dbd27cc207911de026af03f1784c30b7ad48fcab5a3a04713cf"
+    },
+    {
+      "voiceId": "A0184CA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184CA003.aiff",
+      "nativeMember": "A0184CA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "063e516f2cdef6ddca13c835d1a99f2ded2adcc9ea53ddcdf94bc4367200bb22",
+      "speakerId": "AKIR",
+      "sourceText": "Gui Zhang.",
+      "displayText": "Gui Zhang.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chen-introduction-letter/voice/A0184CA003.wav",
+      "byteLength": 16172,
+      "sha256": "47ffc1fd4563d3c2c4b8aa3cc2ce7e9782180f14830a8032e2aa388f4740b06f"
+    },
+    {
+      "voiceId": "A0184CA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184CA004.aiff",
+      "nativeMember": "A0184CA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 8192,
+      "nativeSha256": "4ddc62a3fbfb30080091ae39842350a095121e35fc9528c3a7785a4185e79c3f",
+      "speakerId": "AKIR",
+      "sourceText": "Thank you very much.",
+      "displayText": "Thank you very much.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/chen-introduction-letter/voice/A0184CA004.wav",
+      "byteLength": 32556,
+      "sha256": "a943e46a34cc7f8554fe91527daa5506f4d98f1d0b8dc9da914dcda06977e292"
+    },
+    {
+      "voiceId": "A0184CC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184CC001.aiff",
+      "nativeMember": "A0184CC001.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 34816,
+      "nativeSha256": "f3d76a89b93dac9207cde5614f960825f8dd7330c8f728cac397bc47769b69f6",
+      "speakerId": "KISY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 35
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 34
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 27
+          }
+        ]
+      },
+      "asset": "public/audio/world/chen-introduction-letter/voice/A0184CC001.wav",
+      "byteLength": 139052,
+      "sha256": "a8b91e7ea8ff8d53e5510dad31d0990259e26786c2e79eb4b1e398bdbf62913d"
+    },
+    {
+      "voiceId": "A0184CC002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184CC002.aiff",
+      "nativeMember": "A0184CC002.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 45056,
+      "nativeSha256": "0483a7387e6d3278b1e97ef27da29770eb5e531101673393f5c42f89fa7b5ae3",
+      "speakerId": "KISY",
+      "sourceText": "D-don't worry=@this injury＆will heal soon. Go on ahead.",
+      "displayText": "D-don't worry...this injury\nwill heal soon. Go on ahead.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 26
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 29
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 30
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 40
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chen-introduction-letter/voice/A0184CC002.wav",
+      "byteLength": 180012,
+      "sha256": "b8c2f4547637a0b7f580ab6523b9970cdf48a68678e9ee5f7fc4bbc9e393e84d"
+    },
+    {
+      "voiceId": "A0184CD001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184CD001.aiff",
+      "nativeMember": "A0184CD001.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 16384,
+      "nativeSha256": "e570cf87f6717bad55bab728c6a3639aefed515404be96be1b4777212a879c09",
+      "speakerId": "TAIJ",
+      "sourceText": "You can not travel injured.",
+      "displayText": "You can not travel injured.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/chen-introduction-letter/voice/A0184CD001.wav",
+      "byteLength": 65324,
+      "sha256": "15a759f34f528366149c5e3f3546835990d6d42dab6a5c59e1650bb5aec81087"
+    },
+    {
+      "voiceId": "A0184CD002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184CD002.aiff",
+      "nativeMember": "A0184CD002.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 16384,
+      "nativeSha256": "c92bdadc0d4ba48161a9e1454556fc04bc6d5fbe3c4b1c324a5e6103e2afc032",
+      "speakerId": "TAIJ",
+      "sourceText": "Don't worry about my son.",
+      "displayText": "Don't worry about my son.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 19
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          }
+        ]
+      },
+      "asset": "public/audio/world/chen-introduction-letter/voice/A0184CD002.wav",
+      "byteLength": 65324,
+      "sha256": "908cd5e26b251660d16e284197e45c55ba2a44ac5fcad021744af4055750414b"
+    },
+    {
+      "voiceId": "A0184CD003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184CD003.aiff",
+      "nativeMember": "A0184CD003.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 32768,
+      "nativeSha256": "72321193814d49b2a3de47c75b36ddb001d7f09e92753bc188cddc8fc5a4e53a",
+      "speakerId": "TAIJ",
+      "sourceText": "At the moment, I don't know＆where Zhu Yuan Da is.",
+      "displayText": "At the moment, I don't know\nwhere Zhu Yuan Da is.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 21
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          }
+        ]
+      },
+      "asset": "public/audio/world/chen-introduction-letter/voice/A0184CD003.wav",
+      "byteLength": 130860,
+      "sha256": "b2923cf22e73d81385a9bc614fe2721dfe4e483dab66a58b0928885adeaf269a"
+    },
+    {
+      "voiceId": "A0184CD004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184CD004.aiff",
+      "nativeMember": "A0184CD004.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 36864,
+      "nativeSha256": "0df8bb0767810d3130f65510b5913cd9ce577c5e5d8bd5bc0c7306e7c8aaf9bc",
+      "speakerId": "TAIJ",
+      "sourceText": "Instead, I will introduce you to＆someone I know can be trusted.",
+      "displayText": "Instead, I will introduce you to\nsomeone I know can be trusted.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 31
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 22
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/chen-introduction-letter/voice/A0184CD004.wav",
+      "byteLength": 147244,
+      "sha256": "f7aafd2e6bf647f9e9e50b63f08746ca58355e16c8af3013932e72b51a04c0a9"
+    },
+    {
+      "voiceId": "A0184CD005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/A0184CD005.aiff",
+      "nativeMember": "A0184CD005.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 49152,
+      "nativeSha256": "7cec4f784084bbe864a1b269154d2a44a41f4ed19ab6002a744ad3a73e039747",
+      "speakerId": "TAIJ",
+      "sourceText": "Tao Li Shao=@one of Hong Kong's elder＆masters. The address is in there.",
+      "displayText": "Tao Li Shao...one of Hong Kong's elder\nmasters. The address is in there.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 20
+          },
+          {
+            "shape": 0,
+            "durationTicks": 25
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 37
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chen-introduction-letter/voice/A0184CD005.wav",
+      "byteLength": 196396,
+      "sha256": "0c7e73381b47d7f4582faeb41ededa72c1ceb16de10db7fe61a589cafae22407"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/cloths2/cl03.aiff",
+      "playbackId": 3,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9040300.wav",
+      "byteLength": 127604,
+      "sha256": "2c13979aaaf032ee706d0353819b385a7aca4f3d3d1a6b0e480c83e7a4162737"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/cloths2/cloths02.aiff",
+      "playbackId": 6,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9040600.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/cloths2/friction4.aiff",
+      "playbackId": 7,
+      "sampleId": 12,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9040700.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 9,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9040900.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FUK/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 10,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9040a00.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 13,
+      "sampleId": 26,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9040d00.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040d00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FUK/SE/foot2/RYOASHIKONKURI_1.aiff",
+      "playbackId": 13,
+      "sampleId": 26,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9040d00.wav",
+      "byteLength": 6332,
+      "sha256": "bc848737a2f00cbf54692351ab73b4c275e2423c0af36a626661648f0f2a6338"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FUK/SE/foot2/RYOASHIKONKURI_2.aiff",
+      "playbackId": 14,
+      "sampleId": 27,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9040e00.wav",
+      "byteLength": 5412,
+      "sha256": "64fa0eff3320191bd9befe41d84a45f91d48ae9a9c821c8aac766ce9b3fcf3f3"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 15,
+      "sampleId": 28,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9040f00.wav",
+      "byteLength": 4620,
+      "sha256": "b777d818c86e674e40a080c0aabb21e31a54b732828322cdb9b9288dd4184907"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FUK/SE/foot2/RYOASHIKONKURI_4.aiff",
+      "playbackId": 15,
+      "sampleId": 28,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9040f00.wav",
+      "byteLength": 4620,
+      "sha256": "b777d818c86e674e40a080c0aabb21e31a54b732828322cdb9b9288dd4184907"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 16,
+      "sampleId": 29,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9041000.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FUK/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 16,
+      "sampleId": 29,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9041000.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 17,
+      "sampleId": 30,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9041100.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/cloths/bagcatch.aiff",
+      "playbackId": 18,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9041200.wav",
+      "byteLength": 10860,
+      "sha256": "4cb1c00716b6d44507bfe8008f71f0e2044a9024350258795c399184adab87e0"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/cloths2/cloths03.aiff",
+      "playbackId": 19,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9041300.wav",
+      "byteLength": 14788,
+      "sha256": "dbaff45be9665ae74498ddbefe505f671f30307c6a358f47e711422e9c6f9d11"
+    },
+    {
+      "commandHex": "a9041400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/cloths2/friction2.aiff",
+      "playbackId": 20,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9041400.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9041500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/smallobject/paper2.aiff",
+      "playbackId": 21,
+      "sampleId": 20,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9041500.wav",
+      "byteLength": 48100,
+      "sha256": "3ee57119477ec4753e1433911f99fc001d66635c3a5e6e5ad61d3b3e4d24068c"
+    },
+    {
+      "commandHex": "a9041600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/foot2/RENASHI1.aiff",
+      "playbackId": 22,
+      "sampleId": 23,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9041600.wav",
+      "byteLength": 8492,
+      "sha256": "1ee47a0bf5d545b53b8ab965a997e306f3d27b03323373a9b0b1a7433cdf6f06"
+    },
+    {
+      "commandHex": "a9041700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 23,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9041700.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9042500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/smallobject/paper4eq.aiff",
+      "playbackId": 37,
+      "sampleId": 21,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9042500.wav",
+      "byteLength": 18300,
+      "sha256": "cc0df85987615370ed138b58acaa011b2c0b837be3a636a51603e3b8969bd152"
+    },
+    {
+      "commandHex": "a9042600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0184/SE/body/water1.aiff",
+      "playbackId": 38,
+      "sampleId": 38,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chen-introduction-letter/sfx/a9042600.wav",
+      "byteLength": 85868,
+      "sha256": "ff7a475a3da42d6b9c28f1c52b2c782b40d3bb31b07f68424598ba7ccd9f4c63"
+    }
+  ]
+}

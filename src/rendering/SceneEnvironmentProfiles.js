@@ -10,7 +10,7 @@ export function nativeLightingArea(area) {
 
 // Existing harbor water plane policy, shared by both consumers.
 export function sceneWaterHeight(area) {
-  return ["MFSY", "MKSG", "MFBT", "MA00"].includes(area) ? -2 : undefined;
+  return ["MFSY", "MKSG", "MFBT", "MA00", "MEND"].includes(area) ? -2 : undefined;
 }
 
 export function sceneEnvironmentProfile({area, prefix, game, interior = false}) {

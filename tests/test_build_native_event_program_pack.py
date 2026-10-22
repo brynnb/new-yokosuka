@@ -10,6 +10,7 @@ from tools.scripting.build_native_event_program_pack import (  # noqa: E402
     automatic_events,
     build_pack,
     build_runtime_index,
+    refresh_activity_previews,
     event_cameras,
     room_controllers,
     scripted_interactions,
@@ -34,6 +35,32 @@ def function(function_id, actions=()):
 
 
 class BuildNativeEventProgramPackTest(unittest.TestCase):
+    def test_authored_refresh_preserves_native_programs_and_receipt(self):
+        native={"id":"native", "functions":[function("0x100")]}
+        preview={"id":"old", "entryFunction":"$activity-sequence", "functions":[{"id":"$activity-sequence"}],
+                 "preview":{"kind":"exact-auth-activity-sequence-v1", "packageId":"pack", "worldId":"mend", "activities":[{"slot":0,"activityId":"END/SEQDATA1.AUTH","binding":{"kind":"map-embedded-slot"}}]}}
+        pack={"schema":"new-yokosuka-native-event-program-pack-v1", "generatedFrom":{"nativeEventIrSha256":"unchanged"}, "programs":[native, preview]}
+        new={**preview,"id":"new"}
+        result=refresh_activity_previews(pack,[new])
+        self.assertEqual(result["generatedFrom"],pack["generatedFrom"])
+        self.assertIs(result["programs"][0],native)
+        self.assertEqual(result["programs"],[native,new])
+        self.assertEqual(pack["programs"],[native,preview])
+        for invalid in [{**new,"id":"native"}, {**new,"entryFunction":"0x100"}]:
+            with self.assertRaisesRegex(ValueError,"invalid or duplicated"):
+                refresh_activity_previews(pack,[invalid])
+
+    def test_research_programs_stay_in_offline_pack_not_runtime_assets(self):
+        record = {"id": "research-room-init", "area": "JOMO", "runtimeScope": "research",
+                  "functions": [function("0x100")]}
+        pack = {"schema": "new-yokosuka-native-event-program-pack-v1", "programs": [record]}
+        index, assets = build_runtime_index(pack)
+        self.assertEqual(index["programs"], [])
+        self.assertEqual(assets, {})
+        self.assertEqual(pack["programs"], [record])
+        with self.assertRaisesRegex(ValueError, "publication scope"):
+            build_runtime_index({**pack, "programs": [{**record, "runtimeScope": "typo"}]})
+
     def setUp(self):
         self.source_map = {
             "disc": 1,
@@ -79,6 +106,19 @@ class BuildNativeEventProgramPackTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "invalid or duplicated"):
             static_strings(route)
 
+    def test_source_strings_follow_only_the_selected_closure_and_reject_manual_conflicts(self):
+        strings = [{"pointer": 4, "value": "M_MOBJ.BIN", "sourceFileOffset": "0x4"},
+                   {"pointer": 20, "value": "unrelated", "sourceFileOffset": "0x14"}]
+        functions = [function("0x100", [{"kind": "engineOperation", "arguments": [
+            {"kind": "static-pointer", "value": 4, "staticString": "M_MOBJ.BIN"}]}])]
+        route = {"id": "test"}
+        self.assertEqual(static_strings(route, {"staticStrings": strings}, functions), [strings[0]])
+        route["staticStrings"] = [{**strings[0], "value": "WRONG.BIN"}]
+        with self.assertRaisesRegex(ValueError, "conflicts with MAPINFO"):
+            static_strings(route, {"staticStrings": strings}, functions)
+        with self.assertRaisesRegex(ValueError, "missing or inconsistent"):
+            static_strings({"id": "test"}, {"staticStrings": []}, functions)
+
     def test_static_vectors_preserve_exact_three_word_data(self):
         route = {
             "id": "test",
@@ -106,6 +146,22 @@ class BuildNativeEventProgramPackTest(unittest.TestCase):
             edges,
             {"directCall": 2, "childCoroutineLaunch": 1},
         )
+
+    def test_room_initialization_identity_requires_the_original_scn3_root(self):
+        route = {"id": "startup", "disc": 1, "area": "TEST", "entryFunction": "0x100",
+                 "selector": {"kind": "room-initialization"}}
+        self.source_map["staticData"] = {"schema": "new-yokosuka-native-program-data-v1", "data": "source-pool-fixture"}
+        ir = {"schema": "new-yokosuka-native-event-ir-v1", "maps": [self.source_map]}
+        manifest = {"schema": "new-yokosuka-native-event-program-routes-v1", "routes": [route]}
+        built = build_pack(ir, manifest)
+        self.assertEqual(built["programs"][0]["selector"], route["selector"])
+        self.assertEqual(built["programs"][0]["staticData"], self.source_map["staticData"])
+        index, _ = build_runtime_index(built)
+        self.assertEqual(index["programs"][0]["selector"], route["selector"])
+        self.assertNotIn("staticData", index["programs"][0], "large source data stays in the fetched program, not Vite's index")
+        route["entryFunction"] = "0x200"
+        with self.assertRaisesRegex(ValueError, "original SCN3 root"):
+            build_pack(ir, manifest)
 
     def test_closure_keeps_every_bounded_typed_table_child_target(self):
         self.source_map["functions"][0]["blocks"][0]["actions"][1] = {

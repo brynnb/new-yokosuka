@@ -1,5 +1,24 @@
 const RECORD_SIZE = 7;
 
+// 0xc181cbe's byte initialization and its room-loader guard are pinned in
+// native-clock-initialization-evidence.json. Unknown loader state is not zero.
+// This models native control bytes; it does not advance the server's clock.
+export function nativeClockInitializationFields({ scene, loaderControlDword }) {
+  if (![scene, loaderControlDword].every(value => (
+    Number.isInteger(value) && value >= 0 && value <= 0xffffffff
+  ))) throw new TypeError("native clock initialization requires exact scene and loader control words");
+  if (loaderControlDword !== 0) return [];
+  const gate = scene === 0 || scene === 80 ? 0 : 1;
+  return [
+    { offset: 0x0c225252, width: 1, value: 0 },
+    { offset: 0x0c225254, width: 1, value: 0 },
+    { offset: 0x0c225255, width: 1, value: 30 },
+    { offset: 0x0c225257, width: 1, value: scene === 80 ? 1 : 0 },
+    { offset: 0x0c225251, width: 1, value: gate },
+    { offset: 0x0c225250, width: 1, value: gate },
+  ];
+}
+
 export function nativeClockRecordFromGameDate(gameDate) {
   if (!(gameDate instanceof Date) || !Number.isFinite(gameDate.getTime())) {
     throw new TypeError("native clock record requires a valid game date");

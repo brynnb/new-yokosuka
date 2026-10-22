@@ -92,13 +92,17 @@ export class PlayMusicDirector {
         );
       }
     }
+    for (const [selection, track] of Object.entries(manifest.selections ?? {})) {
+      if (!manifest.tracks[track]) throw new Error(`Music selection ${selection} references missing track ${track}.`);
+    }
     this.manifest = manifest;
     this.#syncWorld();
     this.#emitState();
   }
 
-  setWorld(worldId, { preserveTemporary = false } = {}) {
+  setWorld(worldId, { preserveTemporary = false, selection } = {}) {
     this.worldId = worldId;
+    this.selection = selection;
     this.#syncWorld({ interruptTemporary: !preserveTemporary });
     this.#emitState();
   }
@@ -237,7 +241,7 @@ export class PlayMusicDirector {
   }
 
   getState() {
-    const assignment = this.manifest?.worlds?.[this.worldId] || null;
+    const assignment = this.#worldAssignment();
     const trackId = this.current?.trackId || assignment?.track || null;
     const track = trackId
       ? this.manifest.tracks[trackId]
@@ -253,6 +257,7 @@ export class PlayMusicDirector {
       label: track?.label || "Music unavailable",
       playing: Boolean(this.current),
       playbackPaused: this.playbackPaused,
+      temporary: Boolean(this.current?.temporary),
     };
   }
 
@@ -274,6 +279,17 @@ export class PlayMusicDirector {
     }
   }
 
+  #worldAssignment() {
+    const base = this.manifest?.worlds?.[this.worldId];
+    if (this.selection === undefined) return base;
+    const track = this.manifest?.selections?.[this.selection];
+    if (!this.manifest) return null;
+    if (!track || !this.manifest.tracks[track]) {
+      throw new Error(`Music selection ${this.selection} is missing from the manifest.`);
+    }
+    return { ...base, track };
+  }
+
   #syncWorld({ interruptTemporary = false } = {}) {
     if (!this.worldId) {
       this.#stopPlayback();
@@ -281,7 +297,7 @@ export class PlayMusicDirector {
     }
     if (!this.unlocked || !this.manifest) return;
     if (this.current?.temporary && !interruptTemporary) return;
-    const assignment = this.manifest.worlds[this.worldId];
+    const assignment = this.#worldAssignment();
     if (!assignment) {
       this.#stopPlayback();
       return;

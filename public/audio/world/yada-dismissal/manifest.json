@@ -1,0 +1,1158 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01KUB.AFS",
+      "sha256": "c7f5d9c7eba61af610ca0a599cca706a988d123594219ddafbce056ccd13ce06"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_KUBI.SND",
+      "sha256": "7573286f022f6eaf283b1e4f5e780a613a9b84fec71f2b2d8a6b4ec2e7c75495"
+    },
+    "authManifest": "play/assets/harbor/yada-dismissal/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01KUBA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBA001.aiff",
+      "nativeMember": "01KUBA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "46c8ba534696c066ab28c8993caf75e8cb6bcd9912f213f5ca07061ba735cedb",
+      "speakerId": "AKIR",
+      "sourceText": "Sure=@",
+      "displayText": "Sure...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBA001.wav",
+      "byteLength": 16172,
+      "sha256": "5cd89ca7b79593a5988d5931d1fc8cd663e690eb26cf3d64b8c17e9fbf423718"
+    },
+    {
+      "voiceId": "01KUBA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBA002.aiff",
+      "nativeMember": "01KUBA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "8c4ac0940d75ab042abcf1e5aad9b5df161738b5b3633d4f973c5429c613bc95",
+      "speakerId": "AKIR",
+      "sourceText": "Am I fired?",
+      "displayText": "Am I fired?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBA002.wav",
+      "byteLength": 24364,
+      "sha256": "dab71bf231cb7f817142dbbe090603dfbb09ccd9bdebe05e0456236471767978"
+    },
+    {
+      "voiceId": "01KUBA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBA003.aiff",
+      "nativeMember": "01KUBA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "68dbebb9c04be6c2c6d11d2f3f71dacb4523350e38c4dd9b13f5e1ff1d8c4c0d",
+      "speakerId": "AKIR",
+      "sourceText": "Why?",
+      "displayText": "Why?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBA003.wav",
+      "byteLength": 16172,
+      "sha256": "c77ec561a1fd6e844d19aa8d6a5426545022430d763ab01b9e854fffcfdedab2"
+    },
+    {
+      "voiceId": "01KUBA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBA004.aiff",
+      "nativeMember": "01KUBA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "103beab687ea06621afd604f7e72e8abd8869559e7c27a13c1534d49b5946e8f",
+      "speakerId": "AKIR",
+      "sourceText": "And?",
+      "displayText": "And?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBA004.wav",
+      "byteLength": 16172,
+      "sha256": "e847dec66922776c563ed41bed60575e3a239ab8567b0ccfd0925c75aca7bc33"
+    },
+    {
+      "voiceId": "01KUBA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBA005.aiff",
+      "nativeMember": "01KUBA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 12288,
+      "nativeSha256": "718d5ffe80058d123c96dceeba18a5216dedb4548144d00590b4fc2bff250488",
+      "speakerId": "AKIR",
+      "sourceText": "Yes, I understand.",
+      "displayText": "Yes, I understand.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 32
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBA005.wav",
+      "byteLength": 48940,
+      "sha256": "a989d5aa09287a53fbd3ac7faa5374436fcf69beac4212852b4528faa9d0aff2"
+    },
+    {
+      "voiceId": "01KUBA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBA006.aiff",
+      "nativeMember": "01KUBA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 8192,
+      "nativeSha256": "1b7ea35d5a62625e16a8ce98fe2535c495879639ba95de80340249698fc8aa63",
+      "speakerId": "AKIR",
+      "sourceText": "Thank you for everything.",
+      "displayText": "Thank you for everything.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBA006.wav",
+      "byteLength": 32556,
+      "sha256": "b61a75f4b8e8f03ab0f836dfeb0acd66424277fcc332caaac1e63dcc74cbedd4"
+    },
+    {
+      "voiceId": "01KUBB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBB001.aiff",
+      "nativeMember": "01KUBB001.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 10240,
+      "nativeSha256": "5afeaaf740b285edd2944eef0966a081b547168484d55aa8133bddc11d820434",
+      "speakerId": "TMRA",
+      "sourceText": "Young man, have a seat=@",
+      "displayText": "Young man, have a seat...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBB001.wav",
+      "byteLength": 40748,
+      "sha256": "daa62505e7d9dc0962cf844c7f6a0a5edf74d94c7d062b1141b02a0bb09c04aa"
+    },
+    {
+      "voiceId": "01KUBB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBB002.aiff",
+      "nativeMember": "01KUBB002.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 24576,
+      "nativeSha256": "ccc4454c1f8508dae475e24d19915e764ce989f272ee2e8e457c909a8080214e",
+      "speakerId": "TMRA",
+      "sourceText": "I'm sorry, but I'm gonna have to＆ask you to resign=@",
+      "displayText": "I'm sorry, but I'm gonna have to\nask you to resign...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 46
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBB002.wav",
+      "byteLength": 98092,
+      "sha256": "95859ec2db64db4b1e554cb285eb1608bd99aa1f46089adfb8c32b9412d8ec35"
+    },
+    {
+      "voiceId": "01KUBB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBB003.aiff",
+      "nativeMember": "01KUBB003.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 12288,
+      "nativeSha256": "29b11c91c9b3f4d77cd2477b523ee7a315136a21c2e5afec601a5da541d298b2",
+      "speakerId": "TMRA",
+      "sourceText": "Yeah, I'm afraid so.",
+      "displayText": "Yeah, I'm afraid so.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 39
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBB003.wav",
+      "byteLength": 48940,
+      "sha256": "b1f034dcf71db848a096dd1b4b3f2676536a064b9175093541e83ce8a7a60373"
+    },
+    {
+      "voiceId": "01KUBB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBB004.aiff",
+      "nativeMember": "01KUBB004.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 24576,
+      "nativeSha256": "8981d2c1234a76e384ab3022a91634e9f1c16af9421e8d0942335f97a1bd96fb",
+      "speakerId": "TMRA",
+      "sourceText": "You see there's been a mess a'＆trouble since you started.",
+      "displayText": "You see there's been a mess a'\ntrouble since you started.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 29
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBB004.wav",
+      "byteLength": 98092,
+      "sha256": "26a80cac8b2eb1db1b9706ec48e866e33a7868d949258338a791863d838654f3"
+    },
+    {
+      "voiceId": "01KUBB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBB005.aiff",
+      "nativeMember": "01KUBB005.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 26624,
+      "nativeSha256": "78fbf962364c952ef59c8c3a12b15367e98eba34aff0ed8953f55891f05adadf",
+      "speakerId": "TMRA",
+      "sourceText": "Now, I know it ain't all＆your fault. But=@ well=@",
+      "displayText": "Now, I know it ain't all\nyour fault. But... well...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBB005.wav",
+      "byteLength": 106284,
+      "sha256": "29eaffbc9920fcdb0dc61acd4699643026870080e6a350ea85d69466e6301d85"
+    },
+    {
+      "voiceId": "01KUBB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBB006.aiff",
+      "nativeMember": "01KUBB006.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 26624,
+      "nativeSha256": "5778b7bf76b33161464b81f378bae186dead448573b351c3d8dcf6cb65425944",
+      "speakerId": "TMRA",
+      "sourceText": "when trouble starts affecting＆my company=@that's a problem.",
+      "displayText": "when trouble starts affecting\nmy company...that's a problem.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBB006.wav",
+      "byteLength": 106284,
+      "sha256": "b132d501a76ce2d4d9dee649cdd50f0166bad83be2fe9370ed8a16af26bf3833"
+    },
+    {
+      "voiceId": "01KUBB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBB007.aiff",
+      "nativeMember": "01KUBB007.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 8192,
+      "nativeSha256": "b97142ebad4a715b9d22789ae7c06f6f3e3052e0c8d75596b7c1925931c46edf",
+      "speakerId": "TMRA",
+      "sourceText": "You know what I mean?",
+      "displayText": "You know what I mean?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBB007.wav",
+      "byteLength": 32556,
+      "sha256": "bf5034dd67783892b0bf0f82d1971345b5aec7ebc4a3e5e4b2fe8ac8c4549d63"
+    },
+    {
+      "voiceId": "01KUBB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SOUND/01KUBB008.aiff",
+      "nativeMember": "01KUBB008.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 2048,
+      "nativeSha256": "a1949bc53dbf0678fba62d89657be7bdbbb5c377c414061c79b89a7c0634df59",
+      "speakerId": "TMRA",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yada-dismissal/voice/01KUBB008.wav",
+      "byteLength": 7980,
+      "sha256": "3305f6b4a058685c50fc2123e4650035cc4f3132005b6dd8ef26b34b45e6baeb"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SE/cloths2/chairkyu.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-dismissal/sfx/a9040000.wav",
+      "byteLength": 16324,
+      "sha256": "3d43f948cee05351464ba5bff8bf67843b5b0b2eafabf6a0f56b9779b3f563db"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SE/cloths2/friction4.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-dismissal/sfx/a9040100.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-dismissal/sfx/a9040200.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SE/foot/sneaker1.aiff",
+      "playbackId": 3,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-dismissal/sfx/a9040300.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SE/foot/sneaker5.aiff",
+      "playbackId": 4,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-dismissal/sfx/a9040400.wav",
+      "byteLength": 10804,
+      "sha256": "0334446f014be77a677e0e4e97f7e1604c7dc5b356bef53103d39acc9081f9e1"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SE/door/woodclose2.aiff",
+      "playbackId": 5,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-dismissal/sfx/a9040500.wav",
+      "byteLength": 22244,
+      "sha256": "08b6668aad9b4025f421e129ba00b8b4a633e12b043634d70cb6c17ccc5a4f5d"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SE/door/woodopen1.aiff",
+      "playbackId": 6,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-dismissal/sfx/a9040600.wav",
+      "byteLength": 43948,
+      "sha256": "616707e7b803f459d2218eed0f4149bb1b2a198f955b3ad4ec2f3e91a4b6b854"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01KUB/SE/smallobject/kettleloop.aiff",
+      "playbackId": 7,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yada-dismissal/sfx/a9040700.wav",
+      "byteLength": 109108,
+      "sha256": "19081a23c426114a834162116551cd40951a39682d0ba1480984bf68680c4eb8"
+    }
+  ]
+}

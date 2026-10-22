@@ -1,0 +1,208 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "SEQDATA0.AUTH",
+        "path": "disc3/SCENE/03/MFBT/TERY.PKS",
+        "sourceSha256": "108f7026e765552e93a8b3d6974d60a682aba59390cb9933b4bdfa313c9edc07",
+        "archiveMember": "SEQDATA0.AUTH",
+        "byteLength": 92460,
+        "sha256": "ccab076f95dbadbd76d4f34560a4f1975325d9a2dbb281732de07af6f49c8055"
+      },
+      {
+        "name": "M_01TLY.MOTN",
+        "path": "disc3/SCENE/03/MFBT/TERY.PKS",
+        "sourceSha256": "108f7026e765552e93a8b3d6974d60a682aba59390cb9933b4bdfa313c9edc07",
+        "archiveMember": "M_01TLY.MOTN",
+        "byteLength": 470032,
+        "sha256": "b30c418a71fd6052b569d24f0f2b1132e9e780a364686177da26c61518815a21"
+      },
+      {
+        "name": "PIPS501G.CHRM",
+        "path": "disc3/SCENE/03/MFBT/TERY.PKS",
+        "sourceSha256": "108f7026e765552e93a8b3d6974d60a682aba59390cb9933b4bdfa313c9edc07",
+        "archiveMember": "PIPS501G.CHRM",
+        "byteLength": 1332,
+        "sha256": "d9a20753a2a6eee2dce61e5f8da54dd58f782d99fdafdb9ad5678fa2ae27c677"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-final-day.md#terry-and-the-last-night",
+    "resourceName": "TERY",
+    "variant": "",
+    "selectionRule": "Walkthrough-guided post-battle sequence. Yarn independently owns the A challenge, acknowledged interrogation, pier discussion and home return; these original films cannot award those outcomes themselves."
+  },
+  "audioManifest": "public/audio/world/terry-final-intro/manifest.json",
+  "sceneObjects": {
+    "PIPE": {
+      "model": "PIPS501G",
+      "browserFilename": "PIPS501G.CHRM",
+      "assetPath": "play/assets/harbor/terry-final-intro/PIPS501G.CHRM",
+      "textureAssetPath": "play/assets/harbor/terry-final-intro/textures.bin",
+      "sourceBinding": {
+        "kind": "authored-package-prop-association",
+        "evidence": "docs/design/story-final-day.md#terry-and-the-last-night"
+      }
+    }
+  },
+  "packageActors": {
+    "KISY": {
+      "label": "Chen Gui Zhang",
+      "modelCode": "KIS_M",
+      "browserFilename": "KIS_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/harbor/master-chen/KIS_M.CHRM",
+      "textureAssetPath": "play/assets/harbor/master-chen/textures.bin"
+    },
+    "TERY": {
+      "label": "Terry Ryan",
+      "modelCode": "ACS_M",
+      "browserFilename": "ACS_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/harbor/nozomi-rescue/ACS_M.CHRM",
+      "textureAssetPath": "play/assets/harbor/nozomi-rescue/TER2-textures.bin",
+      "sourceBinding": {
+        "kind": "authored-package-model-association",
+        "archiveMember": "ACS_M.CHRM",
+        "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+      }
+    }
+  },
+  "actorTags": [
+    "PIPE",
+    "AKIR",
+    "KISY",
+    "TERY"
+  ],
+  "motionBanks": [
+    {
+      "bank": 25,
+      "path": "play/assets/harbor/terry-final-intro/M_01TLY.MOTN",
+      "byteLength": 470032,
+      "sha256": "b30c418a71fd6052b569d24f0f2b1132e9e780a364686177da26c61518815a21"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/terry-final-intro/M_01TLY.MOTN",
+      "byteLength": 470032,
+      "sha256": "b30c418a71fd6052b569d24f0f2b1132e9e780a364686177da26c61518815a21"
+    },
+    {
+      "path": "play/assets/harbor/terry-final-intro/SEQDATA0.AUTH",
+      "byteLength": 92460,
+      "sha256": "ccab076f95dbadbd76d4f34560a4f1975325d9a2dbb281732de07af6f49c8055"
+    },
+    {
+      "path": "play/assets/harbor/terry-final-intro/PIPS501G.CHRM",
+      "byteLength": 1332,
+      "sha256": "d9a20753a2a6eee2dce61e5f8da54dd58f782d99fdafdb9ad5678fa2ae27c677"
+    },
+    {
+      "path": "play/assets/harbor/terry-final-intro/textures.bin",
+      "byteLength": 3120,
+      "sha256": "846d9eb8d9d3a5482d7034e92a22ef8878027b63b3eca2352ef3071214987a5b"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "TERY/SEQDATA0.AUTH",
+      "archiveMember": "SEQDATA0.AUTH",
+      "byteLength": 92460,
+      "sha256": "ccab076f95dbadbd76d4f34560a4f1975325d9a2dbb281732de07af6f49c8055",
+      "durationFrames": 575,
+      "durationSeconds": 19.183332443237305,
+      "frameCount": 52,
+      "commandCounts": {
+        "camera": 1,
+        "move": 4,
+        "motion": 7,
+        "effect": 13,
+        "sound": 36,
+        "voice": 4
+      },
+      "actors": [
+        "PIPE",
+        "AKIR",
+        "KISY",
+        "TERY"
+      ],
+      "motions": [
+        {
+          "actorTag": "TERY",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 7,
+          "motionName": "OTH_TLY_AT1_SAGATTEIRO_KISVSTLY_0100",
+          "startFrame": 53,
+          "endFrame": 310
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 165,
+          "motionBank": 25,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_TOMERARERU_SAGATTEIRO_KISVSTLY_0100",
+          "startFrame": 1,
+          "endFrame": 223
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 165,
+          "motionBank": 25,
+          "sequenceIndex": 5,
+          "motionName": "OTH_KIS_AT1_SAGATTEIRO_KISVSTLY_0100",
+          "startFrame": 1,
+          "endFrame": 223
+        },
+        {
+          "actorTag": "TERY",
+          "frame": 259,
+          "motionBank": 25,
+          "sequenceIndex": 7,
+          "motionName": "OTH_TLY_AT1_SAGATTEIRO_KISVSTLY_0100",
+          "startFrame": 251,
+          "endFrame": 464
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 388,
+          "motionBank": 25,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_TOMERARERU_SAGATTEIRO_KISVSTLY_0100",
+          "startFrame": 159,
+          "endFrame": 346
+        },
+        {
+          "actorTag": "KISY",
+          "frame": 388,
+          "motionBank": 25,
+          "sequenceIndex": 5,
+          "motionName": "OTH_KIS_AT1_SAGATTEIRO_KISVSTLY_0100",
+          "startFrame": 159,
+          "endFrame": 346
+        },
+        {
+          "actorTag": "TERY",
+          "frame": 473,
+          "motionBank": 25,
+          "sequenceIndex": 7,
+          "motionName": "OTH_TLY_AT1_SAGATTEIRO_KISVSTLY_0100",
+          "startFrame": 460,
+          "endFrame": 562
+        }
+      ]
+    }
+  ]
+}

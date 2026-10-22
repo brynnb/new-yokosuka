@@ -1,0 +1,22 @@
+{
+  "schema":"new-yokosuka-story-navigation-source-v1",
+  "challenges":[{
+    "id":"s1.mksg.patrols","area":"MKSG","worldId":"mksg","disc":2,
+    "sourceSha256":"8c26c6de22132f8b42a450b31fb3ad4f0a954948e794419319528ac63ce790ae",
+    "field":"0000","bounds":[-8,72,-80,4],"player":[17,0,-15],"goal":[22.500490188598633,0,-61.69995880126953],
+    "radius":0.28,"speed":2.3,"sprintSpeed":3.5,"useRadius":1.4,"coverRadius":0.8,
+    "timeoutMs":240000,"detectionMs":550,"viewDistance":9,"hideViewDistance":4,"viewAngle":100,
+    "guards":[
+      {"tag":"KEBB","label":"Yasutomo Miyagi","modelCode":"KVB_L","route":[[18,-22.9],[38,-22.9]],"speed":1.3,"phase":0},
+      {"tag":"KEBC","label":"Yoshio Yamagata","modelCode":"KVC_L","route":[[26,-28],[26,-51]],"speed":1.25,"phase":7},
+      {"tag":"KEBD","label":"Hirotaka Chiba","modelCode":"KVD_L","route":[[17,-54],[27,-54]],"speed":1.15,"phase":0}
+    ],
+    "attachedObjects":{"FLAS":{
+      "browserFilename":"KAIS500G.CHRM",
+      "assetPath":"play/assets/harbor/old-district-entry/KAIS500G.CHRM",
+      "textureAssetPath":"play/assets/harbor/old-district-entry/EVENT.PKF",
+      "attachments":[{"activityId":"s1.mksg.patrols","frame":0,"parentActorTag":"AKIR","controlId":18,"translation":[0,0,0],"rotationRaw":[0,0,0]}]
+    }},
+    "provenance":"Original MKSG COLI geometry and default player placement; Warehouse No.8 goal uses the existing dor3 topology association. Three patrol paths, movement/detection balance and cover behavior are authored adaptations, not recovered guard AI. Movement, detection and door-use success are server owned."
+  }]
+}

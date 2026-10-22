@@ -1,0 +1,15 @@
+-> Discuss the trip with Fuku-san
+    <<jump Advice>>
+-> Leave it for now
+    <<complete>>
+===
+title: Advice
+---
+<<play_sequence "{{staging}}.start">>
+{{voice:F1004A124}}
+{{voice:F1004B141}}
+{{voice:F1004B146}}
+<<play_sequence "{{staging}}.finish">>
+<<start_activity "s1.jomo.travel-family.scene">>
+{{effects}}
+<<complete>>

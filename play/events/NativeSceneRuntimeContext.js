@@ -10,8 +10,10 @@ export function createNativeSceneFieldRuntimeContext(
     throw new TypeError("native scene gameplay state is required");
   }
   return {
+    getNativeProgramDataMemory: () => sceneState.nativeProgramDataMemory,
     ...(operation01c7State
       ? {
+          readNativeOperation01c7Record: () => operation01c7State.readRecordBytes(),
           queryNativeOperation01c7Status: () => (
             operation01c7State.queryStatus()
           ),
@@ -62,7 +64,12 @@ export function createNativeSceneFieldRuntimeContext(
         ? { offset: descriptor, width: 4 }
         : descriptor,
     ),
+    readNativeFixedGlobalDword: ({ address }) => sceneState.readNativeField({
+      offset: address, width: 4, signedLoad: true,
+    }),
     writeSceneField: descriptor => sceneState.writeNativeField(descriptor),
+    createNamedSceneObject: detail => sceneState.createNamedSceneObject(detail),
+    installSceneObjectCameraParameters: detail => sceneState.installSceneObjectCameraParameters(detail),
     planGlobalControllerInitialize: value => (
       sceneState.planGlobalControllerInitialize(value)
     ),
@@ -350,6 +357,9 @@ export function createNativeSceneFieldRuntimeContext(
     ),
     applyActorFigpByte10: detail => (
       sceneState.applyActorFigpByte10(detail)
+    ),
+    applyActorStepPackedByte: detail => (
+      sceneState.associatedRecords.applyStepPackedByte(detail)
     ),
     applyResolvedObjectFigpBytePair: detail => (
       sceneState.applyObjectFigpBytePair(detail)

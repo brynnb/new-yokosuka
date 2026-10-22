@@ -1,0 +1,2740 @@
+{
+  "schema": "new-yokosuka-authored-story-combat-v1",
+  "encounters": [
+    {
+      "id": "s1.mfsy.tornado-kick",
+      "label": "Learn the Tornado Kick",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Original demonstration-end placement and Tom model. Shared combat input, both kick stages and free retries replace the former timed QTE. Coach remains passive; completion requires the second kick to finish, not hitting Tom. No claim of reconstructed native lesson controller.",
+      "sourceScene": "s1.mfsy.tom-practice",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 106.10316467285156,
+          "y": 0,
+          "z": 14.71333122253418,
+          "health": 100
+        },
+        {
+          "tag": "TOM_",
+          "x": 109.10472106933594,
+          "y": 0,
+          "z": 15.809377670288086,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "TOM_",
+          "label": "Tom Johnson",
+          "modelCode": "AMG_L",
+          "browserFilename": "AMG_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/tom-lunch-invitation/AMG_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/tom-lunch-invitation/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "AMG_L.CHRM",
+            "evidence": "docs/design/story-final-day.md"
+          },
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 104.10316467285156,
+        "maxX": 111.10472106933594,
+        "minZ": 12.71333122253418,
+        "maxZ": 17.809377670288086
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 0,
+      "maxAttackers": 0,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "tornadoKick",
+        "completionMoveId": "tornadoKickFinish",
+        "requiresContact": false,
+        "instruction": "Perform both kicks. You do not need to hit Tom."
+      }
+    },
+    {
+      "id": "s1.mend.swallow-flip",
+      "label": "Learn the Swallow Flip",
+      "area": "MEND",
+      "worldId": "mend",
+      "provenance": "Original lesson-end Ryo/Gui Zhang placement and models. Shared combat counter and paired throw; predictable repeated practice punches and nonlethal health are authored teaching rules. No synthetic QTE or mastery for typing a sequence without countering.",
+      "sourceScene": "s1.mend.swallow-ready",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -66.8665771484375,
+          "y": 0,
+          "z": 30.502756118774414,
+          "health": 100
+        },
+        {
+          "tag": "KISY",
+          "x": -64.84970092773438,
+          "y": 0,
+          "z": 31.348831176757812,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "KISY",
+          "label": "Chen Gui Zhang",
+          "modelCode": "KIS_M",
+          "browserFilename": "KIS_M.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/master-chen/KIS_M.CHRM",
+          "textureAssetPath": "play/assets/harbor/master-chen/textures.bin",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -68.8665771484375,
+        "maxX": -62.849700927734375,
+        "minZ": 28.502756118774414,
+        "maxZ": 33.34883117675781
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "swallowFlip",
+        "completionMoveId": "swallowFlipThrow",
+        "requiresContact": true,
+        "attackMoveId": "tigerKnuckle",
+        "instruction": "Counter Gui Zhang's approaching punch, then complete the flip. He will keep trying; mistakes cannot kill you."
+      }
+    },
+    {
+      "id": "s1.mend.final-chai",
+      "label": "Defeat Chai at the harbor",
+      "area": "MEND",
+      "worldId": "mend",
+      "provenance": "GameSpot p65 requires actual one-on-one victory; defeat retries, unlike the earlier arcade encounter. Original CHAIAUTH3 ending positions and byte-identical original MEND/CHA_M body. Shared basic moves/AI, 100/160 health, speed and arena padding are authored balance, not Chai's native low-kick/leaping moveset. Actual knockout plus acknowledged interrogation alone save victory/arrival; no later counter, letter or ship outcome.",
+      "sourceActivity": "play/assets/harbor/final-chai-intro/SEQDATA3.AUTH",
+      "sha256": "c7f0ba65895b097996708dfd0f294d8fbf2f62c0dfa5196987e7d956dd4687b4",
+      "sourcePackage": "play/assets/harbor/final-chai-intro/manifest.json",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -69.84626007080078,
+          "y": 0,
+          "z": 29.35186767578125,
+          "health": 100
+        },
+        {
+          "tag": "CHAI",
+          "x": -67.24656677246094,
+          "y": 0,
+          "z": 28.831228256225586,
+          "health": 160
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "CHAI",
+          "label": "Chai",
+          "modelCode": "CHA_M",
+          "browserFilename": "CHA_M.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/characters/CHA_M.CHRM",
+          "textureAssetPath": "play/assets/characters/CHA_textures.bin",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -71.64626007080078,
+        "maxX": -65.44656677246094,
+        "minZ": 27.031228256225585,
+        "maxZ": 31.15186767578125
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.6,
+      "maxAttackers": 1,
+      "timeoutMs": 240000,
+      "musicTrack": "bgm032"
+    },
+    {
+      "id": "s1.mfbt.seventy-man",
+      "label": "Ryo and Gui Zhang against the Mad Angels",
+      "area": "MFBT",
+      "worldId": "mfbt",
+      "provenance": "GameSpot pp64-65:70 actual opponents including3 stronger bosses, with Gui Zhang alongside Ryo. Original MFBT bodies and moves, named bosses per project character table. Authored10-cohort reinforcements reuse13 prepared model slots rather than rendering70 full rigs. Positions, health/balance, nonlethal ally, short boss arrival framing and basic shared AI are adaptations, not reconstructed original battle scripts. Each of67 ordinary opponents and3 bosses requires client-simulated knockout. Only the enclosing Yarn event can save victory; no counter, movie acknowledgement or cleared partial cohort grants it.",
+      "sourceScene": "s1.mfbt.seventy-man",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -23.4,
+          "y": 0,
+          "z": 65.8,
+          "health": 100
+        },
+        {
+          "tag": "KISY",
+          "x": -21.799999999999997,
+          "y": 0,
+          "z": 65.8,
+          "health": 100,
+          "team": "ally"
+        },
+        {
+          "tag": "R001",
+          "x": -23.4,
+          "y": 0,
+          "z": 61.8,
+          "health": 18
+        },
+        {
+          "tag": "R002",
+          "x": -20.4,
+          "y": 0,
+          "z": 62.8,
+          "health": 18
+        },
+        {
+          "tag": "R003",
+          "x": -26.4,
+          "y": 0,
+          "z": 62.8,
+          "health": 18
+        },
+        {
+          "tag": "R004",
+          "x": -19.4,
+          "y": 0,
+          "z": 66.8,
+          "health": 18
+        },
+        {
+          "tag": "R005",
+          "x": -27.4,
+          "y": 0,
+          "z": 66.8,
+          "health": 18
+        },
+        {
+          "tag": "R006",
+          "x": -20.4,
+          "y": 0,
+          "z": 69.8,
+          "health": 18
+        },
+        {
+          "tag": "R007",
+          "x": -26.4,
+          "y": 0,
+          "z": 69.8,
+          "health": 18
+        },
+        {
+          "tag": "R008",
+          "x": -23.4,
+          "y": 0,
+          "z": 70.8,
+          "health": 18
+        },
+        {
+          "tag": "MRSK",
+          "x": -23.4,
+          "y": 0,
+          "z": 60.8,
+          "health": 72,
+          "damageScale": 1.25
+        },
+        {
+          "tag": "PEDR",
+          "x": -21.4,
+          "y": 0,
+          "z": 60.8,
+          "health": 90,
+          "damageScale": 1.5
+        },
+        {
+          "tag": "STSI",
+          "x": -25.4,
+          "y": 0,
+          "z": 60.8,
+          "health": 110,
+          "damageScale": 1.75
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "KISY",
+          "label": "Chen Gui Zhang",
+          "modelCode": "KIS_M",
+          "browserFilename": "KIS_M.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/master-chen/KIS_M.CHRM",
+          "textureAssetPath": "play/assets/harbor/master-chen/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R001",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTA_S",
+          "browserFilename": "BTA_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTA_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R002",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTH_S",
+          "browserFilename": "BTH_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTH_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R003",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTK_S",
+          "browserFilename": "BTK_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTK_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R004",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTM_S",
+          "browserFilename": "BTM_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTM_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R005",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTN_S",
+          "browserFilename": "BTN_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTN_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R006",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTO_S",
+          "browserFilename": "BTO_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTO_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R007",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTP_S",
+          "browserFilename": "BTP_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTP_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "R008",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTC_S",
+          "browserFilename": "BTC_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/seventy-man/BTC_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/seventy-man/BTC_S-textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "MRSK",
+          "label": "Shingo Murasaki",
+          "modelCode": "PPL_L",
+          "browserFilename": "PPL_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/characters/PPL_L.CHRM",
+          "textureAssetPath": "play/assets/characters/PPL_textures.bin",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "PEDR",
+          "label": "Mad Angels fighter",
+          "modelCode": "JNC_L",
+          "browserFilename": "JNC_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/JNC_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TER2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "JNC_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "STSI",
+          "label": "Satoshi Nagata",
+          "modelCode": "KMA_L",
+          "browserFilename": "KMA_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/KMA_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TER2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "KMA_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -29.4,
+        "maxX": -17.4,
+        "minZ": 58.8,
+        "maxZ": 72.8
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2,
+      "maxAttackers": 2,
+      "timeoutMs": 900000,
+      "waves": [
+        {
+          "label": "Mad Angels",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "Reinforcements",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "More Mad Angels",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "Shingo Murasaki arrives",
+          "bossTag": "MRSK",
+          "introMs": 1800,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "MRSK",
+              "x": -23.4,
+              "y": 0,
+              "z": 60.8,
+              "health": 72,
+              "damageScale": 1.25
+            }
+          ]
+        },
+        {
+          "label": "The next group",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "Hold the line",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "Pedro Warren arrives",
+          "bossTag": "PEDR",
+          "introMs": 1800,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "PEDR",
+              "x": -21.4,
+              "y": 0,
+              "z": 60.8,
+              "health": 90,
+              "damageScale": 1.5
+            }
+          ]
+        },
+        {
+          "label": "More reinforcements",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "The last group",
+          "introMs": 0,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "R002",
+              "x": -20.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R003",
+              "x": -26.4,
+              "y": 0,
+              "z": 62.8,
+              "health": 18
+            },
+            {
+              "tag": "R004",
+              "x": -19.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R005",
+              "x": -27.4,
+              "y": 0,
+              "z": 66.8,
+              "health": 18
+            },
+            {
+              "tag": "R006",
+              "x": -20.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R007",
+              "x": -26.4,
+              "y": 0,
+              "z": 69.8,
+              "health": 18
+            },
+            {
+              "tag": "R008",
+              "x": -23.4,
+              "y": 0,
+              "z": 70.8,
+              "health": 18
+            }
+          ]
+        },
+        {
+          "label": "Satoshi Nagata arrives",
+          "bossTag": "STSI",
+          "introMs": 1800,
+          "actors": [
+            {
+              "tag": "R001",
+              "x": -23.4,
+              "y": 0,
+              "z": 61.8,
+              "health": 18
+            },
+            {
+              "tag": "STSI",
+              "x": -25.4,
+              "y": 0,
+              "z": 60.8,
+              "health": 110,
+              "damageScale": 1.75
+            }
+          ]
+        }
+      ],
+      "waveDelayMs": 1200,
+      "musicTrack": "bgm120"
+    },
+    {
+      "id": "s1.mfbt.final-spar",
+      "label": "Spar with Gui Zhang",
+      "area": "MFBT",
+      "worldId": "mfbt",
+      "provenance": "GameSpot p63 explicitly says no winning/losing outcome. Original TLYA ending positions and byte-identical original MFBT EVHUM/KIS_M body reused from the reviewed Chen pack. Thirty seconds of client-timed nonlethal fighting, shared moves/basic AI and arena padding are authored. Result is practiced, not Gui Zhang defeated, movie-completion victory or70-man victory.",
+      "sourceActivity": "play/assets/harbor/final-confrontation/SEQDATA1.AUTH",
+      "sha256": "a288a7c666a0c07de748bc4fef6dca4395e0744822dc303d80200ecf6ce09bc9",
+      "sourcePackage": "play/assets/harbor/final-confrontation/manifest.json",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 6.073915004730225,
+          "y": 0,
+          "z": 82.73536682128906,
+          "health": 100
+        },
+        {
+          "tag": "KISY",
+          "x": 3.121196985244751,
+          "y": 0,
+          "z": 83.36587524414062,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "KISY",
+          "label": "Chen Gui Zhang",
+          "modelCode": "KIS_M",
+          "browserFilename": "KIS_M.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/master-chen/KIS_M.CHRM",
+          "textureAssetPath": "play/assets/harbor/master-chen/textures.bin",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 1.321196985244751,
+        "maxX": 7.873915004730224,
+        "minZ": 80.93536682128907,
+        "maxZ": 85.16587524414062
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 120000,
+      "practiceDurationMs": 30000
+    },
+    {
+      "id": "s1.mfsy.nozomi-guards",
+      "label": "Get past the warehouse guards",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "GameSpot pp62-63 establishes the outside battle before the warehouse battle. Use six distinct original TERYB1 bodies in an authored open-alley formation, not a claim of recovered native roster/spawns. Shared combat and adapted health/AI, two active attackers; all six require actual defeat. Saves no rescue or deal.",
+      "sourceScene": "s1.mfsy.nozomi-guards",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -92,
+          "y": 0,
+          "z": 25,
+          "health": 100
+        },
+        {
+          "tag": "NR01",
+          "x": -89,
+          "y": 0,
+          "z": 21,
+          "health": 28
+        },
+        {
+          "tag": "NR02",
+          "x": -94,
+          "y": 0,
+          "z": 20,
+          "health": 28
+        },
+        {
+          "tag": "NR03",
+          "x": -97,
+          "y": 0,
+          "z": 22,
+          "health": 28
+        },
+        {
+          "tag": "NR04",
+          "x": -90,
+          "y": 0,
+          "z": 18,
+          "health": 28
+        },
+        {
+          "tag": "NR05",
+          "x": -95,
+          "y": 0,
+          "z": 18,
+          "health": 28
+        },
+        {
+          "tag": "NR06",
+          "x": -92,
+          "y": 0,
+          "z": 16,
+          "health": 28
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "NR01",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTA_L",
+          "browserFilename": "BTA_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTA_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB1-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTA_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR02",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTB_L",
+          "browserFilename": "BTB_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTB_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB1-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTB_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR03",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTC_L",
+          "browserFilename": "BTC_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTC_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB1-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTC_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR04",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTD_L",
+          "browserFilename": "BTD_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTD_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB1-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTD_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR05",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTE_L",
+          "browserFilename": "BTE_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTE_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB1-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTE_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR06",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTF_L",
+          "browserFilename": "BTF_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTF_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB1-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTF_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -98.5,
+        "maxX": -87.5,
+        "minZ": 14.5,
+        "maxZ": 26.5
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000
+    },
+    {
+      "id": "s1.tery.nozomi-guards",
+      "label": "Clear the warehouse",
+      "area": "TERY",
+      "worldId": "tery",
+      "provenance": "Original TERYB2 contains these seven distinct low-detail bodies. Authored formation in the original warehouse, shared combat and adapted health/AI, two active attackers; not a recovered native roster/moveset. All seven require actual defeat. Independent saved victory cannot grant the later hostage deal.",
+      "sourceScene": "s1.tery.nozomi-guards",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -16,
+          "y": 0,
+          "z": -24,
+          "health": 100
+        },
+        {
+          "tag": "NR11",
+          "x": -12,
+          "y": 0,
+          "z": -20,
+          "health": 28
+        },
+        {
+          "tag": "NR12",
+          "x": -16,
+          "y": 0,
+          "z": -19,
+          "health": 28
+        },
+        {
+          "tag": "NR13",
+          "x": -20,
+          "y": 0,
+          "z": -20,
+          "health": 28
+        },
+        {
+          "tag": "NR14",
+          "x": -22,
+          "y": 0,
+          "z": -16,
+          "health": 28
+        },
+        {
+          "tag": "NR15",
+          "x": -10,
+          "y": 0,
+          "z": -16,
+          "health": 28
+        },
+        {
+          "tag": "NR16",
+          "x": -14,
+          "y": 0,
+          "z": -13,
+          "health": 28
+        },
+        {
+          "tag": "NR17",
+          "x": -18,
+          "y": 0,
+          "z": -13,
+          "health": 28
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "NR11",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTG_L",
+          "browserFilename": "BTG_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTG_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTG_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR12",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTH_L",
+          "browserFilename": "BTH_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTH_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTH_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR13",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTI_L",
+          "browserFilename": "BTI_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTI_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTI_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR14",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTJ_L",
+          "browserFilename": "BTJ_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTJ_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTJ_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR15",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTK_L",
+          "browserFilename": "BTK_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTK_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTK_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR16",
+          "label": "Mad Angels fighter",
+          "modelCode": "BTM_L",
+          "browserFilename": "BTM_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/BTM_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTM_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NR17",
+          "label": "Mad Angels fighter",
+          "modelCode": "OKA_L",
+          "browserFilename": "OKA_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/nozomi-rescue/OKA_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/nozomi-rescue/TERYB2-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "OKA_L.CHRM",
+            "evidence": "docs/design/story-nozomi-rescue.md#warehouse-battles-and-terrys-deal"
+          },
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -23.5,
+        "maxX": -8.5,
+        "minZ": -25.5,
+        "maxZ": -11.5
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000
+    },
+    {
+      "id": "s1.mfsy.biker-thugs",
+      "label": "Get past the five bikers",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "GameSpot p57 five-thug battle after twelve-input chase. Original BAT_MBQC low-detail biker models plus two explicit reviewed thug donors. Authored open-alley formation near original interrogation, basic moves/AI and balance, two simultaneous attackers; all five must actually be defeated. No movie-completion victory or reward.",
+      "sourceScene": "s1.mfsy.biker-thugs",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -92,
+          "y": 0,
+          "z": 25,
+          "health": 100
+        },
+        {
+          "tag": "BTK_",
+          "x": -89,
+          "y": 0,
+          "z": 21,
+          "health": 28
+        },
+        {
+          "tag": "BTH_",
+          "x": -94,
+          "y": 0,
+          "z": 20,
+          "health": 28
+        },
+        {
+          "tag": "BTA_",
+          "x": -97,
+          "y": 0,
+          "z": 22,
+          "health": 36
+        },
+        {
+          "tag": "MRSK",
+          "x": -90,
+          "y": 0,
+          "z": 18,
+          "health": 28
+        },
+        {
+          "tag": "OKYS",
+          "x": -95,
+          "y": 0,
+          "z": 18,
+          "health": 28
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "BTK_",
+          "label": "Mad Angels biker",
+          "modelCode": "BTK_S",
+          "browserFilename": "BTK_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/BTK_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTK_S.CHRM",
+            "evidence": "docs/design/story-harbor-work.md"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "BTH_",
+          "label": "Mad Angels biker",
+          "modelCode": "BTH_S",
+          "browserFilename": "BTH_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/BTH_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTH_S.CHRM",
+            "evidence": "docs/design/story-harbor-work.md"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "BTA_",
+          "label": "Mad Angels biker",
+          "modelCode": "BTA_S",
+          "browserFilename": "BTA_S.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/BTA_S.CHRM",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTA_S.CHRM",
+            "evidence": "docs/design/story-harbor-work.md"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "MRSK",
+          "label": "Shingo Murasaki",
+          "modelCode": "PPL_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "OKYS",
+          "label": "Minoru Okayasu",
+          "modelCode": "OKA_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -98.5,
+        "maxX": -87.5,
+        "minZ": 16.5,
+        "maxZ": 26.5
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000
+    },
+    {
+      "id": "s1.mfsy.charlie-harbor",
+      "label": "Face Charlie",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "GameSpot p57: fight Charlie after the five thugs. Original CHRL/BIK_L from the exact interrogation cast, explicit separated standing formation rather than cinematic intimidation poses. Shared basic combat, 160 health, full-health fresh player attempt and faster opponent are declared balance adaptations, not Charlie's original moveset. Winning alone cannot grant the clue; original interrogation must finish or be explicitly skipped.",
+      "placement": {
+        "position": [
+          -92,
+          0,
+          25
+        ],
+        "yaw": 0
+      },
+      "formation": {
+        "AKIR": [
+          0,
+          0,
+          0
+        ],
+        "CHRL": [
+          0,
+          0,
+          -3
+        ]
+      },
+      "sourceActivity": "play/assets/harbor/charlie-harbor-interrogation/SEQDATA0.AUTH",
+      "sha256": "67970ac5c77f5493da141b9ad73e120de57aa7f993c85dbd5d03165de1ea5382",
+      "sourcePackage": "play/assets/harbor/charlie-harbor-interrogation/manifest.json",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -92,
+          "y": 0,
+          "z": 25,
+          "health": 100
+        },
+        {
+          "tag": "CHRL",
+          "x": -92,
+          "y": 0,
+          "z": 22,
+          "health": 160
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "CHRL",
+          "label": "Charlie Grant",
+          "modelCode": "BIK_L",
+          "browserFilename": "BIK_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/characters/BIK_L.CHRM",
+          "textureAssetPath": "play/assets/characters/BIK_textures.bin",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -94,
+        "maxX": -90,
+        "minZ": 20,
+        "maxZ": 27
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.5,
+      "maxAttackers": 1,
+      "timeoutMs": 180000
+    },
+    {
+      "id": "s1.mfsy.mark-after-work",
+      "label": "Protect Mark at Warehouse No. 17",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "GameSpot p56 confirms the Warehouse17 rescue and Mark's brother/ChiYouMen clue. BOKOMARK introduction supplies five visible thugs; using all five as the fight roster is authored, not a recovered native free-battle roster. Reuse the exact cinematic package's original models; DEB1/BTH and DEB2/BTN associations are reviewed authored choices. Explicit floor-level formation near the original cast instead of Ryo's off-shot y=-2, two simultaneous attackers and shared basic moves/AI are adaptations. No reward or victory from the films.",
+      "placement": {
+        "position": [
+          -91,
+          0,
+          33
+        ],
+        "yaw": 0
+      },
+      "formation": {
+        "AKIR": [
+          0,
+          0,
+          0
+        ],
+        "DEB1": [
+          3,
+          0,
+          -6
+        ],
+        "DEB2": [
+          -2,
+          0,
+          -6
+        ],
+        "MRSK": [
+          1.5,
+          0,
+          -4
+        ],
+        "OKYS": [
+          -1,
+          0,
+          -4
+        ],
+        "BTC_": [
+          0,
+          0,
+          -7
+        ]
+      },
+      "sourceActivity": "play/assets/harbor/mark-after-work-intro/SEQDATA2.AUTH",
+      "sha256": "5e0eb0f982f22c53a3028d73a4912d6cac3643156159c4564a7e8339ef058367",
+      "sourcePackage": "play/assets/harbor/mark-after-work-intro/manifest.json",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -91,
+          "y": 0,
+          "z": 33,
+          "health": 100
+        },
+        {
+          "tag": "DEB1",
+          "x": -88,
+          "y": 0,
+          "z": 27,
+          "health": 28
+        },
+        {
+          "tag": "DEB2",
+          "x": -93,
+          "y": 0,
+          "z": 27,
+          "health": 28
+        },
+        {
+          "tag": "MRSK",
+          "x": -89.5,
+          "y": 0,
+          "z": 29,
+          "health": 36
+        },
+        {
+          "tag": "OKYS",
+          "x": -92,
+          "y": 0,
+          "z": 29,
+          "health": 28
+        },
+        {
+          "tag": "BTC_",
+          "x": -91,
+          "y": 0,
+          "z": 26,
+          "health": 28
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "DEB1",
+          "label": "Mad Angels thug",
+          "modelCode": "BTH_L",
+          "browserFilename": "BTH_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/mark-after-work-intro/BTH_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/mark-after-work-intro/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTH_L.CHRM",
+            "evidence": "docs/design/story-harbor-work.md"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "DEB2",
+          "label": "Mad Angels thug",
+          "modelCode": "BTN_L",
+          "browserFilename": "BTN_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/mark-after-work-intro/BTN_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/mark-after-work-intro/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTN_L.CHRM",
+            "evidence": "docs/design/story-harbor-work.md"
+          },
+          "activityOnly": true
+        },
+        {
+          "actorCode": "MRSK",
+          "label": "Shingo Murasaki",
+          "modelCode": "PPL_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "OKYS",
+          "label": "Minoru Okayasu",
+          "modelCode": "OKA_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "BTC_",
+          "label": "Mad Angels thug",
+          "modelCode": "BTC_L",
+          "browserFilename": "BTC_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/mark-after-work-intro/BTC_L.CHRM",
+          "textureAssetPath": "play/assets/harbor/mark-after-work-intro/character-textures.bin",
+          "sourceBinding": {
+            "kind": "authored-package-model-association",
+            "archiveMember": "BTC_L.CHRM",
+            "evidence": "docs/design/story-harbor-work.md"
+          },
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -94.5,
+        "maxX": -86.5,
+        "minZ": 24.5,
+        "maxZ": 34.5
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000
+    },
+    {
+      "id": "s1.mfsy.workday-two-wave-one",
+      "label": "Warehouse ambush — first wave",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "GameSpot p56: five opponents, then four with replenished health. Authored outdoor dispatch encounter instead of original Warehouse3 room/door/crate trap. Original DRAUTH models are explicit donors, not recovered harbor attacker identities. Explicit corridor formation replaces cinematic grab poses. Two concurrent close attackers balance simplified controls across realistic input rates; all five must still be defeated. Shared original motions, no movie-completion victory.",
+      "placement": {
+        "position": [
+          -15.821,
+          0,
+          118.673
+        ],
+        "yaw": 0
+      },
+      "formation": {
+        "AKIR": [
+          0,
+          0,
+          0
+        ],
+        "SMTH": [
+          2.5,
+          0,
+          -1.5
+        ],
+        "HARY": [
+          3,
+          0,
+          1.5
+        ],
+        "TONY": [
+          5,
+          0,
+          -1
+        ],
+        "SERA": [
+          3.5,
+          0,
+          0
+        ],
+        "JONZ": [
+          5,
+          0,
+          1
+        ]
+      },
+      "actorWorldId": "dobuita",
+      "sourceActivity": "play/assets/dobuita/drauth/SEQDATA2.AUTH",
+      "sha256": "a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -15.821,
+          "y": 0,
+          "z": 118.673,
+          "health": 100
+        },
+        {
+          "tag": "SMTH",
+          "x": -13.321,
+          "y": 0,
+          "z": 117.173,
+          "health": 28
+        },
+        {
+          "tag": "HARY",
+          "x": -12.821,
+          "y": 0,
+          "z": 120.173,
+          "health": 18
+        },
+        {
+          "tag": "TONY",
+          "x": -10.821,
+          "y": 0,
+          "z": 117.673,
+          "health": 28
+        },
+        {
+          "tag": "SERA",
+          "x": -12.321,
+          "y": 0,
+          "z": 118.673,
+          "health": 36
+        },
+        {
+          "tag": "JONZ",
+          "x": -10.821,
+          "y": 0,
+          "z": 119.673,
+          "health": 18
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "SMTH",
+          "label": "Smith Bradley",
+          "modelCode": "GIB_M",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "HARY",
+          "label": "Harry Thompson",
+          "modelCode": "GIE_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "TONY",
+          "label": "Tony Abrams",
+          "modelCode": "GIJ_M",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "SERA",
+          "label": "Takeshi Sera",
+          "modelCode": "TUW_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "JONZ",
+          "label": "Jones Henders",
+          "modelCode": "GIF_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -17.320999999999998,
+        "maxX": -9.321,
+        "minZ": 115.673,
+        "maxZ": 121.673
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000
+    },
+    {
+      "id": "s1.mfsy.workday-two-wave-two",
+      "label": "Warehouse ambush — second wave",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Four-opponent second wave after the actual first victory. A new ordinary combat attempt starts Ryo at full health as the guide specifies; original donor models, explicit open-corridor formation and basic moves/AI are adaptations. Cinematic grab poses are not combat starts. Both waves must be won before the clue can settle; cancellation or defeat never grants it.",
+      "placement": {
+        "position": [
+          -15.821,
+          0,
+          118.673
+        ],
+        "yaw": 0
+      },
+      "formation": {
+        "AKIR": [
+          0,
+          0,
+          0
+        ],
+        "SMTH": [
+          2.5,
+          0,
+          -1.5
+        ],
+        "HARY": [
+          3,
+          0,
+          1.5
+        ],
+        "TONY": [
+          5,
+          0,
+          -1
+        ],
+        "SERA": [
+          3.5,
+          0,
+          0
+        ]
+      },
+      "actorWorldId": "dobuita",
+      "sourceActivity": "play/assets/dobuita/drauth/SEQDATA2.AUTH",
+      "sha256": "a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -15.821,
+          "y": 0,
+          "z": 118.673,
+          "health": 100
+        },
+        {
+          "tag": "SMTH",
+          "x": -13.321,
+          "y": 0,
+          "z": 117.173,
+          "health": 28
+        },
+        {
+          "tag": "HARY",
+          "x": -12.821,
+          "y": 0,
+          "z": 120.173,
+          "health": 18
+        },
+        {
+          "tag": "TONY",
+          "x": -10.821,
+          "y": 0,
+          "z": 117.673,
+          "health": 28
+        },
+        {
+          "tag": "SERA",
+          "x": -12.321,
+          "y": 0,
+          "z": 118.673,
+          "health": 36
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "SMTH",
+          "label": "Smith Bradley",
+          "modelCode": "GIB_M",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "HARY",
+          "label": "Harry Thompson",
+          "modelCode": "GIE_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "TONY",
+          "label": "Tony Abrams",
+          "modelCode": "GIJ_M",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "SERA",
+          "label": "Takeshi Sera",
+          "modelCode": "TUW_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -17.320999999999998,
+        "maxX": -9.321,
+        "minZ": 115.673,
+        "maxZ": 121.673
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000
+    },
+    {
+      "id": "s1.mfsy.workday-one-attack",
+      "label": "Get past the attackers",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Authored first-afternoon three-opponent encounter, not recovered original staging or exact attacker identities. Reuse the existing original-asset three-fighter cast/formation, rigidly relocated along the rendered loading corridor. Same shared moves and basic AI; no wage or automatic victory from this definition.",
+      "placement": {
+        "position": [
+          -15.821,
+          0,
+          118.673
+        ],
+        "yaw": 1.3021669961391247
+      },
+      "sourceScene": "s1.mfsy.mark-lunch-combat",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -15.821,
+          "y": 0,
+          "z": 118.673,
+          "health": 100
+        },
+        {
+          "tag": "MRSK",
+          "x": -13.43952768520007,
+          "y": 0,
+          "z": 119.746896228035,
+          "health": 36
+        },
+        {
+          "tag": "OKYS",
+          "x": -14.895527491972599,
+          "y": 0,
+          "z": 121.1430999169689,
+          "health": 28
+        },
+        {
+          "tag": "THG3",
+          "x": -12.86496280168944,
+          "y": 0,
+          "z": 117.29078695764369,
+          "health": 28
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "MRSK",
+          "label": "Shingo Murasaki",
+          "modelCode": "PPL_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "OKYS",
+          "label": "Minoru Okayasu",
+          "modelCode": "OKA_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "THG3",
+          "label": "Harbor thug",
+          "modelCode": "KMD_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -17.320999999999998,
+        "maxX": -11.36496280168944,
+        "minZ": 115.79078695764369,
+        "maxZ": 122.6430999169689
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 3,
+      "timeoutMs": 180000
+    },
+    {
+      "id": "s1.mfsy.mark-lunch",
+      "label": "Protect Mark",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "GameSpot printed p54: three-opponent noon rescue, retry until victorious, then Mark explains Chen/Mad Angels rivalry. Original MIZUMARK aftermath supplies Ryo/MRSK/OKYS placement; an anonymous third fighter borrows existing KMD_L rather than claiming an unrecovered identity. Shared moves/basic AI, health, speeds, arena bounds and third placement are adaptations. Film completion cannot win this fight.",
+      "sourceScene": "s1.mfsy.mark-lunch-combat",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 30.28279685974121,
+          "y": 0,
+          "z": 57.6168327331543,
+          "health": 100
+        },
+        {
+          "tag": "MRSK",
+          "x": 29.87948226928711,
+          "y": 0,
+          "z": 60.19791793823242,
+          "health": 36
+        },
+        {
+          "tag": "OKYS",
+          "x": 28.146915435791016,
+          "y": 0,
+          "z": 59.164703369140625,
+          "health": 28
+        },
+        {
+          "tag": "THG3",
+          "x": 32.4,
+          "y": 0,
+          "z": 60.1,
+          "health": 28
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "MRSK",
+          "label": "Shingo Murasaki",
+          "modelCode": "PPL_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "OKYS",
+          "label": "Minoru Okayasu",
+          "modelCode": "OKA_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "THG3",
+          "label": "Harbor thug",
+          "modelCode": "KMD_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 26.646915435791016,
+        "maxX": 33.9,
+        "minZ": 56.1168327331543,
+        "maxZ": 61.69791793823242
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 3,
+      "timeoutMs": 180000
+    },
+    {
+      "id": "s1.dgct.chai-arcade",
+      "label": "Face Chai",
+      "area": "DGCT",
+      "worldId": "arcade",
+      "provenance": "Original GMCT introduction ending supplies Ryo/Chai poses. GameSpot pp46-47 confirms that actual win and defeat both progress, with next-day recovery only on defeat. Shared basic moves/AI, 100/120 health, speeds, compact rectangular floor bounds and generic reactions are authored adaptations, not Chai's original low-kick moveset or free-battle engine.",
+      "sourceActivity": "play/assets/dobuita/chai-intro/A0172.AUTH",
+      "sha256": "01e36d04c63cc52eb2399b17f652ed583308bcbbc873abddc85c9dc7b2865b00",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -3.164494037628174,
+          "y": 0,
+          "z": -4.150172233581543,
+          "health": 100
+        },
+        {
+          "tag": "CHAI",
+          "x": -3.951143980026245,
+          "y": -0.020400000736117363,
+          "z": -3.3221399784088135,
+          "health": 120
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "CHAI",
+          "label": "Chai",
+          "modelCode": "CHA_M",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -4.751143980026245,
+        "maxX": -2.364494037628174,
+        "minZ": -4.950172233581543,
+        "maxZ": -2.5221399784088137
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 2.6,
+      "maxAttackers": 1,
+      "timeoutMs": 180000
+    },
+    {
+      "id": "s1.jd00.gui-zhang-first",
+      "label": "Face Gui Zhang",
+      "area": "JD00",
+      "worldId": "sakuragaoka",
+      "provenance": "Original KSBT introduction's ending positions and exact KISY/KIS_M mapping from chars.csv/HUMANS. Contemporary GameSpot guide p37: brief free battle that cannot be lost. Thirty seconds of client-timed nonlethal fighting, shared moves/basic AI, arena padding and health/speed are authored adaptations. Outcome is practiced, not a defeat or a movie-completion victory.",
+      "sourceActivity": "play/assets/sakuragaoka/gui-zhang/SEQDATA0.AUTH",
+      "sha256": "146b689bcb27206dfcbd4648e34096dfcad5a4b304ba841d58685d264c06c516",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 9.221811294555664,
+          "y": 0,
+          "z": 25.10110855102539,
+          "health": 100
+        },
+        {
+          "tag": "KISY",
+          "x": 5.160873889923096,
+          "y": 0,
+          "z": 22.554590225219727,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "KISY",
+          "label": "Chen Gui Zhang",
+          "modelCode": "KIS_M",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 3.360873889923096,
+        "maxX": 11.021811294555665,
+        "minZ": 20.754590225219726,
+        "maxZ": 26.90110855102539
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 120000,
+      "practiceDurationMs": 30000
+    },
+    {
+      "id": "s1.jd00.gao-rescue",
+      "label": "Save Gao Wen",
+      "area": "JD00",
+      "worldId": "sakuragaoka",
+      "provenance": "Three opponents and subsequent A QTE: GameSpot Dreamcast guide. Fighter models from original Disc 1 full MT5s, identities corroborated by the character inventory and JD00 EN_HAMA/EN_HATA/EN_RYOU files. Authored roadside poses, rectangular arena, health/speed/basic AI are adaptations, not recovered construction-lot transforms or the native free-battle engine.",
+      "sourceScene": "s1.jd00.gao-introduction",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -8,
+          "y": 0,
+          "z": 22,
+          "health": 100
+        },
+        {
+          "tag": "TDSI",
+          "x": -7,
+          "y": 0,
+          "z": 20.5,
+          "health": 36
+        },
+        {
+          "tag": "HTNK",
+          "x": -9.5,
+          "y": 0,
+          "z": 20.5,
+          "health": 32
+        },
+        {
+          "tag": "OKYS",
+          "x": -10,
+          "y": 0,
+          "z": 21.8,
+          "health": 28
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "TDSI",
+          "label": "Tadashi Hama",
+          "modelCode": "KMD_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "HTNK",
+          "label": "Yoshihide Hatanaka",
+          "modelCode": "KAZ_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "OKYS",
+          "label": "Minoru Okayasu",
+          "modelCode": "OKA_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -11.5,
+        "maxX": -5.5,
+        "minZ": 19,
+        "maxZ": 23.5
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 3,
+      "timeoutMs": 180000
+    },
+    {
+      "id": "s1.d000.parking-lot",
+      "label": "Escape the ambush",
+      "area": "D000",
+      "worldId": "dobuita",
+      "provenance": "Original DRAUTH trap cast and AMOV positions; five opponents and at most three simultaneous attackers corroborated by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Two simultaneous close attackers balance the simplified controls, consistently with other authored crowds; all five must be defeated. Shared practice moves, health/speed, spacing, arena padding and strict restart are adaptations, not the original free-battle engine.",
+      "sourceActivity": "play/assets/dobuita/drauth/SEQDATA2.AUTH",
+      "sha256": "a410bfb4d1a82db5bf09cdb05398ad55fc078fe3f31126033f6c20b52e7c83da",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -35.639862060546875,
+          "y": 0.07831700146198273,
+          "z": 21.82711410522461,
+          "health": 100
+        },
+        {
+          "tag": "SMTH",
+          "x": -35.32868194580078,
+          "y": 0.014113999903202057,
+          "z": 21.820791244506836,
+          "health": 28
+        },
+        {
+          "tag": "HARY",
+          "x": -37.41405487060547,
+          "y": 0.0423629991710186,
+          "z": 18.12541961669922,
+          "health": 18
+        },
+        {
+          "tag": "TONY",
+          "x": -35.89595413208008,
+          "y": 0.09539499878883362,
+          "z": 16.053421020507812,
+          "health": 28
+        },
+        {
+          "tag": "SERA",
+          "x": -35.149253845214844,
+          "y": 0.04264499992132187,
+          "z": 21.630762100219727,
+          "health": 36
+        },
+        {
+          "tag": "JONZ",
+          "x": -32.876338958740234,
+          "y": 0.05223200097680092,
+          "z": 19.73839569091797,
+          "health": 18
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "SMTH",
+          "label": "Smith Bradley",
+          "modelCode": "GIB_M",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "HARY",
+          "label": "Harry Thompson",
+          "modelCode": "GIE_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "TONY",
+          "label": "Tony Abrams",
+          "modelCode": "GIJ_M",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "SERA",
+          "label": "Takeshi Sera",
+          "modelCode": "TUW_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "JONZ",
+          "label": "Jones Henders",
+          "modelCode": "GIF_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -38.91405487060547,
+        "maxX": -31.376338958740234,
+        "minZ": 14.553421020507812,
+        "maxZ": 23.32711410522461
+      },
+      "playerSpeed": 3.2,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000
+    },
+    {
+      "id": "s1.jhd0.fuku-practice",
+      "label": "Practice with Fuku-san",
+      "area": "JHD0",
+      "worldId": "exterior",
+      "provenance": "KAKG dialogue's original Ryo/Fuku positions and existing combat moves. The GameSpot 2000 walkthrough describes a spar that ends automatically before Ine-san's letter. Thirty seconds of client-timed, nonlethal practice, shared basic AI/moves and arena padding are adaptations; this result is practiced, never an ambush victory.",
+      "sourceActivity": "play/assets/hazuki/kakg/SEQDATK2.AUTH",
+      "sha256": "5b42a5329495c02803ac6e0cec1054921048088c47ed45f9efb1e0b046066267",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 6.90109920501709,
+          "y": 0.9601140022277832,
+          "z": -24.015302658081055,
+          "health": 100
+        },
+        {
+          "tag": "FUKU",
+          "x": 7.263717174530029,
+          "y": 0.969336986541748,
+          "z": -22.437179565429688,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "FUKU",
+          "label": "Masayuki Fukuhara",
+          "modelCode": "FUK_M",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 5.70109920501709,
+        "maxX": 8.463717174530029,
+        "minZ": -25.215302658081054,
+        "maxZ": -21.237179565429688
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 120000,
+      "practiceDurationMs": 30000
+    },
+    {
+      "id": "s1.jhd0.pit-blow",
+      "label": "Learn Pit Blow",
+      "area": "JHD0",
+      "worldId": "exterior",
+      "provenance": "Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.",
+      "authoredStaging": true,
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 6.9,
+          "y": 0.96,
+          "z": -24,
+          "health": 100
+        },
+        {
+          "tag": "FUKU",
+          "x": 6.9,
+          "y": 0.96,
+          "z": -22.6,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "FUKU",
+          "label": "Masayuki Fukuhara",
+          "modelCode": "FUK_M",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 5.7,
+        "maxX": 8.1,
+        "minZ": -25.2,
+        "maxZ": -21.400000000000002
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 0,
+      "maxAttackers": 0,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "pitBlow",
+        "completionMoveId": "pitBlow",
+        "requiresContact": false,
+        "instruction": "Complete Pit Blow. You do not need to hit your partner."
+      }
+    },
+    {
+      "id": "s1.d000.double-blow",
+      "label": "Learn Double Blow",
+      "area": "D000",
+      "worldId": "dobuita",
+      "provenance": "Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.",
+      "authoredStaging": true,
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -12,
+          "y": 0,
+          "z": -3.4,
+          "health": 100
+        },
+        {
+          "tag": "YAMA",
+          "x": -12,
+          "y": 0,
+          "z": -2,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "YAMA",
+          "label": "Shigeo Yamagishi",
+          "modelCode": "YMG_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -13.2,
+        "maxX": -10.8,
+        "minZ": -4.6,
+        "maxZ": -0.8
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 0,
+      "maxAttackers": 0,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "doubleBlow",
+        "completionMoveId": "doubleBlow",
+        "requiresContact": false,
+        "instruction": "Complete Double Blow. You do not need to hit your partner."
+      }
+    },
+    {
+      "id": "s1.mfsy.swallow-dive",
+      "label": "Learn Swallow Dive",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.",
+      "authoredStaging": true,
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 25,
+          "y": 0,
+          "z": 70,
+          "health": 100
+        },
+        {
+          "tag": "KISY",
+          "x": 23.6,
+          "y": 0,
+          "z": 70,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "KISY",
+          "label": "Chen Gui Zhang",
+          "modelCode": "KIS_M",
+          "browserFilename": "KIS_M.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/harbor/master-chen/KIS_M.CHRM",
+          "textureAssetPath": "play/assets/harbor/master-chen/textures.bin",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 22.400000000000002,
+        "maxX": 26.2,
+        "minZ": 68.8,
+        "maxZ": 71.2
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 0,
+      "maxAttackers": 0,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "swallowDive",
+        "completionMoveId": "swallowDive",
+        "requiresContact": false,
+        "instruction": "Complete Swallow Dive. You do not need to hit your partner."
+      }
+    },
+    {
+      "id": "s1.mfsy.shadow-step",
+      "label": "Learn Shadow Step",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.",
+      "authoredStaging": true,
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 91.5,
+          "y": 0,
+          "z": 50.3,
+          "health": 100
+        },
+        {
+          "tag": "SYZU",
+          "x": 91.5,
+          "y": 0,
+          "z": 51.699999999999996,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "SYZU",
+          "label": "Shozo Mizuki",
+          "modelCode": "KOG_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 90.3,
+        "maxX": 92.7,
+        "minZ": 49.099999999999994,
+        "maxZ": 52.9
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "shadowStep",
+        "completionMoveId": "shadowStep",
+        "requiresContact": true,
+        "attackMoveId": "tigerKnuckle",
+        "instruction": "Counter the approaching punch. Your partner will keep trying; mistakes cannot kill you."
+      }
+    },
+    {
+      "id": "s1.mfsy.shadow-blade",
+      "label": "Learn Shadow Blade",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.",
+      "authoredStaging": true,
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 78.4,
+          "y": 0,
+          "z": 39.8,
+          "health": 100
+        },
+        {
+          "tag": "SYZU",
+          "x": 78.4,
+          "y": 0,
+          "z": 41.199999999999996,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "SYZU",
+          "label": "Shozo Mizuki",
+          "modelCode": "KOG_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 77.2,
+        "maxX": 79.60000000000001,
+        "minZ": 38.599999999999994,
+        "maxZ": 42.4
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "shadowBlade",
+        "completionMoveId": "shadowBlade",
+        "requiresContact": true,
+        "attackMoveId": "tigerKnuckle",
+        "instruction": "Counter the approaching punch. Your partner will keep trying; mistakes cannot kill you."
+      }
+    },
+    {
+      "id": "s1.mfsy.cross-charge",
+      "label": "Learn Cross Charge",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "provenance": "Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.",
+      "authoredStaging": true,
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": 78.4,
+          "y": 0,
+          "z": 39.8,
+          "health": 100
+        },
+        {
+          "tag": "SYZU",
+          "x": 78.4,
+          "y": 0,
+          "z": 41.199999999999996,
+          "health": 100
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "SYZU",
+          "label": "Shozo Mizuki",
+          "modelCode": "KOG_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": 77.2,
+        "maxX": 79.60000000000001,
+        "minZ": 38.599999999999994,
+        "maxZ": 42.4
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 1.6,
+      "maxAttackers": 1,
+      "timeoutMs": 0,
+      "training": {
+        "moveId": "crossCharge",
+        "completionMoveId": "crossCharge",
+        "requiresContact": true,
+        "attackMoveId": "tigerKnuckle",
+        "instruction": "Counter the approaching punch. Your partner will keep trying; mistakes cannot kill you."
+      }
+    }
+  ]
+}

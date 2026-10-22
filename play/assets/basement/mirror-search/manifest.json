@@ -1,0 +1,60 @@
+{
+  "schema": "new-yokosuka-authored-story-assets-v1",
+  "generatedBy": "tools/cutscenes/build_basement_story_assets.mjs",
+  "source": {
+    "disc": 2,
+    "path": "disc2/SCENE/02/YDB1/MPK00.PKS",
+    "sha256": "494c0fe00feebe7797e7b663bc62f989cffab2e8f83d18969bc755113909657c"
+  },
+  "textureSource": {
+    "path": "disc2/SCENE/02/YDB1/MPK00.PKF",
+    "sha256": "45f0e55e465e8e9ff1eeb72827d77b0a1b355b273fac22cec091722459d3b981",
+    "extraction": "tools/assets/sync_models.py:extract_texn_with_ids",
+    "textureCount": 148
+  },
+  "outputs": [
+    {
+      "path": "play/assets/basement/mirror-search/M_0138.MOTN",
+      "byteLength": 460796,
+      "sha256": "b87b57426d1d3e7dafb340b3086c381e85862d401008f14902bbd822d3ed327e"
+    },
+    {
+      "path": "play/assets/basement/mirror-search/ONOS500G.CHRM",
+      "byteLength": 1900,
+      "sha256": "c4cc7dca0e7194d3734bda8f34bd0b771f84fd342a32c82d611c3d3feddac147"
+    },
+    {
+      "path": "play/assets/basement/mirror-search/PNX02M1G.CHRM",
+      "byteLength": 5908,
+      "sha256": "b8abb8ddad33c16097a60085f91f40fb82f5a175132cabc0101104ae54c81bb0"
+    },
+    {
+      "path": "play/assets/basement/mirror-search/textures.bin",
+      "byteLength": 2195520,
+      "sha256": "ba534504cd5caa11733db03850dd6a43cad95a967184c9dc0916384a3bf2d6f8"
+    }
+  ],
+  "sequences": [
+    {
+      "index": 38,
+      "name": "AKI_HIKU_TANA_0138",
+      "durationFrames": 400
+    },
+    {
+      "index": 67,
+      "name": "AKI_TORU_ONO_TIKATANSAKU_FE",
+      "durationFrames": 220
+    },
+    {
+      "index": 11,
+      "name": "AKI_KABEKOWA_ONO_TIKA_FE",
+      "durationFrames": 120
+    },
+    {
+      "index": 49,
+      "name": "AKI_TORU_HOUOUKYOU_TIKATANSAKU",
+      "durationFrames": 644
+    }
+  ],
+  "adaptation": "Original selected motions and props. Positions, camera, grips and instantaneous shelf/wall presentation are authored; light-source puzzles and exact debris/hand choreography are omitted. Yarn owns genuine item prerequisites and atomic progression, not motion completion alone."
+}

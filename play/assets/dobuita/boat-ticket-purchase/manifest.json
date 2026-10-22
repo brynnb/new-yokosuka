@@ -1,0 +1,216 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "01ETU.AUTH",
+        "path": "disc2/SCENE/02/ARAR/MAPINFO.BIN",
+        "sourceOffset": 146428,
+        "sourceSha256": "e5adb7020c8c0704316adc482881b77ce9660f59c97f946ab2735e8ac9612c98",
+        "byteLength": 50212,
+        "sha256": "676014994eafde1eedec3bd526d98989edae51c0ac13dc60ca462d31c8f8b7ea"
+      },
+      {
+        "name": "M_01ETU.BIN",
+        "path": "disc2/SCENE/02/ARAR/M_01ETU.BIN",
+        "byteLength": 80996,
+        "sha256": "6e069dd760bff2dd8c8815865f2dfcef58ebe3898cc36e9c77205d27e329759d"
+      },
+      {
+        "name": "ARP3H01G.MT5",
+        "path": "disc2/SCENE/02/ARAR/ARP3H01G.MT5",
+        "byteLength": 7488,
+        "sha256": "e61709183d8858a2d9df8c8c34cd60dac6d682f1ab9ef9787ab13a1e37f9b3f1"
+      },
+      {
+        "name": "OSAS5LOG.MT5",
+        "path": "disc2/SCENE/02/ARAR/OSAS5LOG.MT5",
+        "byteLength": 4080,
+        "sha256": "f65cb8e739c629e76dcf2d6c40b56761649399bf71925b77838973912d27df8a"
+      },
+      {
+        "name": "SAFS500G.MT5",
+        "path": "disc2/SCENE/02/ARAR/SAFS500G.MT5",
+        "byteLength": 7868,
+        "sha256": "7294b11ed28f87f045eeaf508cdfe1c2957abc3750d5b2a49ae9de47806aa493"
+      },
+      {
+        "name": "UKES500G.MT5",
+        "path": "disc2/SCENE/02/ARAR/UKES500G.MT5",
+        "byteLength": 3936,
+        "sha256": "d9be08984129dcf4610de1ab09ccd772f6658c6fac2e104ec4bf76f18ae8a6d1"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "01ETU",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/boat-ticket-purchase/manifest.json",
+  "sceneObjects": {
+    "INF3": {
+      "model": "ARP3H01G.MT5",
+      "browserFilename": "ARP3H01G.MT5",
+      "assetPath": "play/assets/dobuita/boat-ticket-purchase/ARP3H01G.MT5",
+      "textureAssetPath": "play/assets/dobuita/boat-ticket-purchase/textures.bin",
+      "sourceBinding": {
+        "mapInfoChrsOffset": 198336,
+        "characterRecordOffset": 1444,
+        "defImageRecordOffset": 1404
+      }
+    },
+    "MONY": {
+      "model": "OSAS5LOG.MT5",
+      "browserFilename": "OSAS5LOG.MT5",
+      "assetPath": "play/assets/dobuita/boat-ticket-purchase/OSAS5LOG.MT5",
+      "textureAssetPath": "play/assets/dobuita/boat-ticket-purchase/textures.bin",
+      "sourceBinding": {
+        "mapInfoChrsOffset": 198336,
+        "characterRecordOffset": 1620,
+        "defImageRecordOffset": 1580
+      }
+    },
+    "PURS": {
+      "model": "SAFS500G.MT5",
+      "browserFilename": "SAFS500G.MT5",
+      "assetPath": "play/assets/dobuita/boat-ticket-purchase/SAFS500G.MT5",
+      "textureAssetPath": "play/assets/dobuita/boat-ticket-purchase/textures.bin",
+      "sourceBinding": {
+        "mapInfoChrsOffset": 198336,
+        "characterRecordOffset": 1708,
+        "defImageRecordOffset": 1668
+      }
+    },
+    "TRAY": {
+      "model": "UKES500G.MT5",
+      "browserFilename": "UKES500G.MT5",
+      "assetPath": "play/assets/dobuita/boat-ticket-purchase/UKES500G.MT5",
+      "textureAssetPath": "play/assets/dobuita/boat-ticket-purchase/textures.bin",
+      "sourceBinding": {
+        "mapInfoChrsOffset": 198336,
+        "characterRecordOffset": 1532,
+        "defImageRecordOffset": 1492
+      }
+    }
+  },
+  "packageActors": {
+    "ETKO": {
+      "label": "Etsuko Sekine",
+      "modelCode": "JOJ_L",
+      "browserFilename": "JOJ_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/JOJ_L.CHRM",
+      "textureAssetPath": "play/assets/characters/JOJ_textures.bin"
+    }
+  },
+  "actorTags": [
+    "INF3",
+    "MONY",
+    "PURS",
+    "TRAY",
+    "AKIR",
+    "ETKO"
+  ],
+  "motionBanks": [
+    {
+      "bank": 48,
+      "path": "play/assets/dobuita/boat-ticket-purchase/M_01ETU.BIN",
+      "byteLength": 80996,
+      "sha256": "6e069dd760bff2dd8c8815865f2dfcef58ebe3898cc36e9c77205d27e329759d",
+      "sequenceIndexBase": 0
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/boat-ticket-purchase/M_01ETU.BIN",
+      "byteLength": 80996,
+      "sha256": "6e069dd760bff2dd8c8815865f2dfcef58ebe3898cc36e9c77205d27e329759d"
+    },
+    {
+      "path": "play/assets/dobuita/boat-ticket-purchase/01ETU.AUTH",
+      "byteLength": 50212,
+      "sha256": "676014994eafde1eedec3bd526d98989edae51c0ac13dc60ca462d31c8f8b7ea"
+    },
+    {
+      "path": "play/assets/dobuita/boat-ticket-purchase/ARP3H01G.MT5",
+      "byteLength": 7488,
+      "sha256": "e61709183d8858a2d9df8c8c34cd60dac6d682f1ab9ef9787ab13a1e37f9b3f1"
+    },
+    {
+      "path": "play/assets/dobuita/boat-ticket-purchase/OSAS5LOG.MT5",
+      "byteLength": 4080,
+      "sha256": "f65cb8e739c629e76dcf2d6c40b56761649399bf71925b77838973912d27df8a"
+    },
+    {
+      "path": "play/assets/dobuita/boat-ticket-purchase/SAFS500G.MT5",
+      "byteLength": 7868,
+      "sha256": "7294b11ed28f87f045eeaf508cdfe1c2957abc3750d5b2a49ae9de47806aa493"
+    },
+    {
+      "path": "play/assets/dobuita/boat-ticket-purchase/UKES500G.MT5",
+      "byteLength": 3936,
+      "sha256": "d9be08984129dcf4610de1ab09ccd772f6658c6fac2e104ec4bf76f18ae8a6d1"
+    },
+    {
+      "path": "play/assets/dobuita/boat-ticket-purchase/textures.bin",
+      "byteLength": 18544,
+      "sha256": "2a52fa4421b7adb64f686b8596df928b59662401a023d145133d6f3a7cc5cda0"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "01ETU/01ETU.AUTH",
+      "archiveMember": "01ETU.AUTH",
+      "byteLength": 50212,
+      "sha256": "676014994eafde1eedec3bd526d98989edae51c0ac13dc60ca462d31c8f8b7ea",
+      "durationFrames": 1998,
+      "durationSeconds": 70.96666717529297,
+      "frameCount": 59,
+      "commandCounts": {
+        "camera": 1,
+        "move": 6,
+        "motion": 2,
+        "sound": 38,
+        "voice": 19
+      },
+      "actors": [
+        "INF3",
+        "MONY",
+        "PURS",
+        "TRAY",
+        "AKIR",
+        "ETKO"
+      ],
+      "motions": [
+        {
+          "actorTag": "ETKO",
+          "frame": 1,
+          "motionBank": 48,
+          "sequenceIndex": 3,
+          "motionName": "SYP_ETU_AT2_TALK_ETUKO_ASIATRAVEL_0100",
+          "startFrame": 1,
+          "endFrame": 1998
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 166,
+          "motionBank": 48,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT2_TALK_ETUKO_ASIATRAVEL_0100",
+          "startFrame": 1,
+          "endFrame": 1744
+        }
+      ]
+    }
+  ]
+}

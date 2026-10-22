@@ -1,0 +1,1148 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_job_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01TLYA.AFS",
+      "sha256": "14506134c2267315e09eaee30a1de8bd0f365eb7535bafe323c342a43755765f"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_KBTMM.SND",
+      "sha256": "8fd00ade815b64fa4babad37b74cfe4b67f413d1c169592895e02185244173bd"
+    },
+    "authManifest": "play/assets/harbor/final-confrontation/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-final-day.md#night-confrontation"
+  },
+  "voices": [
+    {
+      "voiceId": "01TLYAA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAA001.aiff",
+      "nativeMember": "01TLYAA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "820a078e6b31829efad2e0c64bc9f3e4c567be1bc480e0e828336f97c72b8636",
+      "speakerId": "AKIR",
+      "sourceText": "I'm here.",
+      "displayText": "I'm here.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAA001.wav",
+      "byteLength": 16172,
+      "sha256": "403d8a801ada2ddb4cd0ac820161fbc7d534a817f7b0639e7a0a279f92498cff"
+    },
+    {
+      "voiceId": "01TLYAA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAA002.aiff",
+      "nativeMember": "01TLYAA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 10240,
+      "nativeSha256": "f71659809c81eda05744c436e892e970e11537b566d80f2fc5de17f59930e0dd",
+      "speakerId": "AKIR",
+      "sourceText": "Is Gui Zhang coming here?",
+      "displayText": "Is Gui Zhang coming here?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAA002.wav",
+      "byteLength": 40748,
+      "sha256": "5cc74387da70f6e6e0cc763c8afc74099342778e0fad8184fa9a4353802ed34c"
+    },
+    {
+      "voiceId": "01TLYAA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAA003.aiff",
+      "nativeMember": "01TLYAA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 6144,
+      "nativeSha256": "f937773be05653be75eceef12af49dd9eece964993ebbc90d4508ffe72460613",
+      "speakerId": "AKIR",
+      "sourceText": "Here he comes.",
+      "displayText": "Here he comes.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAA003.wav",
+      "byteLength": 24364,
+      "sha256": "68409e1ec7108bdb67a623794faa478904b0de10dfb6cedca11e96c3979fd253"
+    },
+    {
+      "voiceId": "01TLYAA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAA004.aiff",
+      "nativeMember": "01TLYAA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 16384,
+      "nativeSha256": "9ad629984c4cc393349465d314e7fad9a4b8d89a0141bf177fc62c7fd30e0ce6",
+      "speakerId": "AKIR",
+      "sourceText": "Gui Zhang=@I wanna fight you.",
+      "displayText": "Gui Zhang...I wanna fight you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 39
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAA004.wav",
+      "byteLength": 65324,
+      "sha256": "360e5589b3e98d4b3920881923372a90d6e6799665a0458214141e0f61458b60"
+    },
+    {
+      "voiceId": "01TLYAA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAA005.aiff",
+      "nativeMember": "01TLYAA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 4096,
+      "nativeSha256": "6f7cd8ad348cb0f93a3585ca88efd0a304fd3c1579e9fd7591ac42bbeb657a7d",
+      "speakerId": "AKIR",
+      "sourceText": "Ready!",
+      "displayText": "Ready!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAA005.wav",
+      "byteLength": 16172,
+      "sha256": "2b16b6630006149d0ae05cceb823720a4781b7ff6e069f4ba729bbbb6364eccc"
+    },
+    {
+      "voiceId": "01TLYAA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAA006.aiff",
+      "nativeMember": "01TLYAA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 4096,
+      "nativeSha256": "3c8abe660e61a37a4826026609a3057392c6f435220c28edb0a2dbe86c369a3b",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAA006.wav",
+      "byteLength": 16172,
+      "sha256": "3fac7bb07f2046824cb0de89b7873d85eace2cd0d2dc7dfcda1d81f8a5270ce1"
+    },
+    {
+      "voiceId": "01TLYAB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAB001.aiff",
+      "nativeMember": "01TLYAB001.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 18432,
+      "nativeSha256": "5e819417a6bf6846513e70571e540f1e12fbc4d5c7e45834f58ffe5492630871",
+      "speakerId": "STSI",
+      "sourceText": "You sure got guts coming here.",
+      "displayText": "You sure got guts coming here.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 22
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAB001.wav",
+      "byteLength": 73516,
+      "sha256": "2d3a7c30d7294c92510e45a508d6badaee382ff4963aad198f48b2607a85c56b"
+    },
+    {
+      "voiceId": "01TLYAB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAB002.aiff",
+      "nativeMember": "01TLYAB002.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 12288,
+      "nativeSha256": "f20e68ab5c053a436fe9a5ff04d5981c8f0995edfe48fdb06d11334c298c57b5",
+      "speakerId": "STSI",
+      "sourceText": "This way. Follow me.",
+      "displayText": "This way. Follow me.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAB002.wav",
+      "byteLength": 48940,
+      "sha256": "d198f956516d510dc88fd393caef3959ac2ad5cce439012874a8cbfd6ff8af59"
+    },
+    {
+      "voiceId": "01TLYAB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAB003.aiff",
+      "nativeMember": "01TLYAB003.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 8192,
+      "nativeSha256": "1a6b3c922a56ae748ce7f917643a00d5641583bcc21f4c7726744beb6604d011",
+      "speakerId": "STSI",
+      "sourceText": "Wait here.",
+      "displayText": "Wait here.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 22
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAB003.wav",
+      "byteLength": 32556,
+      "sha256": "4f00574e8f40dfe3fdf411eb127860c4737a30ecc2f16141f68b2736c3735ae8"
+    },
+    {
+      "voiceId": "01TLYAB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAB004.aiff",
+      "nativeMember": "01TLYAB004.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 22528,
+      "nativeSha256": "f7c72ecb3331aa9ea72910d1713ff2660c869765e24be4cb29d21b0ee897e6bd",
+      "speakerId": "STSI",
+      "sourceText": "He passes through here＆on his way home from work.",
+      "displayText": "He passes through here\non his way home from work.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAB004.wav",
+      "byteLength": 89900,
+      "sha256": "b5435ebc8351068d0af4a06bf649427250bc34fa1e0e6b710b408f54cc99acc3"
+    },
+    {
+      "voiceId": "01TLYAB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAB005.aiff",
+      "nativeMember": "01TLYAB005.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 8192,
+      "nativeSha256": "6a9b414e0c0332b3d67928fce83bb9f91ec53a9dfb1b51ebca7d8c475cf0345a",
+      "speakerId": "STSI",
+      "sourceText": "I'm out of here.",
+      "displayText": "I'm out of here.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAB005.wav",
+      "byteLength": 32556,
+      "sha256": "ac962c064138a655c4d9c988a047790f0cd6c84a8d6c71f71c4df0c4debbfd76"
+    },
+    {
+      "voiceId": "01TLYAC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAC001.aiff",
+      "nativeMember": "01TLYAC001.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 14336,
+      "nativeSha256": "e5ac0ffb4d8f368097a23740b95b188edf23324417f0ebc95cd76e6f44b0655a",
+      "speakerId": "KISY",
+      "sourceText": "Hazuki, why are you here?",
+      "displayText": "Hazuki, why are you here?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 28
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAC001.wav",
+      "byteLength": 57132,
+      "sha256": "d46d26d9b4d63df64d4cfdfa57b1a40e60c347e186566eb2e4eb91441cd7951e"
+    },
+    {
+      "voiceId": "01TLYAC002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAC002.aiff",
+      "nativeMember": "01TLYAC002.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 4096,
+      "nativeSha256": "96e31cc4c546c65ced098b00b39bfb1ef53f30bc55843033f21e21fa2348a268",
+      "speakerId": "KISY",
+      "sourceText": "What?",
+      "displayText": "What?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAC002.wav",
+      "byteLength": 16172,
+      "sha256": "a751738f451eecc54a8f6ef9011e82ee9520ef5bfac116c629952c8ea56e4385"
+    },
+    {
+      "voiceId": "01TLYAC003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAC003.aiff",
+      "nativeMember": "01TLYAC003.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 10240,
+      "nativeSha256": "6cd365ac70d85b3fac8569687f27e20ac23a8c72144737ecb21d5b35ef9e7e3f",
+      "speakerId": "KISY",
+      "sourceText": "What are you talking about? ",
+      "displayText": "What are you talking about? ",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAC003.wav",
+      "byteLength": 40748,
+      "sha256": "55e873a8bda555c45c4bd8c621f181f8827c60ab53813342660b2b5aeebf2133"
+    },
+    {
+      "voiceId": "01TLYAC004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAC004.aiff",
+      "nativeMember": "01TLYAC004.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 6144,
+      "nativeSha256": "22daf0f068fcf61993ed395449694b4d2f32d7c0ddee6bae1ee3e7fc56bccf3a",
+      "speakerId": "KISY",
+      "sourceText": "What?!",
+      "displayText": "What?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAC004.wav",
+      "byteLength": 24364,
+      "sha256": "3dd3c09a515af695813a34d80915e388468e7880024a34c3029306703cbff14f"
+    },
+    {
+      "voiceId": "01TLYAC005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SOUND/01TLYAC005.aiff",
+      "nativeMember": "01TLYAC005.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 6144,
+      "nativeSha256": "b565bb9609e05427b7c8a931fdaf7082868d4fe1fbfdb70ab19826ff49423b75",
+      "speakerId": "KISY",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 26
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/final-confrontation/voice/01TLYAC005.wav",
+      "byteLength": 24364,
+      "sha256": "af599ed53198b42c69c7c1416270971e073fdf32fe163bbf30d86524c2ce3bdb"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SE/cloths2/furimuki_f01.aiff",
+      "playbackId": 0,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-confrontation/sfx/a9040000.wav",
+      "byteLength": 9348,
+      "sha256": "2026b716ba3115748b89ec3ac3b6041824b6ddbba78ee708f62af1fb8dc3756a"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 1,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-confrontation/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 2,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-confrontation/sfx/a9040200.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 3,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-confrontation/sfx/a9040300.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 4,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-confrontation/sfx/a9040400.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 5,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-confrontation/sfx/a9040500.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 6,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-confrontation/sfx/a9040600.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SE/foot/sneaker1.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-confrontation/sfx/a9040700.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01TLYA/SE/foot/sneaker5.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/final-confrontation/sfx/a9040800.wav",
+      "byteLength": 10804,
+      "sha256": "0334446f014be77a677e0e4e97f7e1604c7dc5b356bef53103d39acc9081f9e1"
+    }
+  ]
+}

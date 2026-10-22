@@ -24,6 +24,146 @@ function action(semanticId, arguments_) {
   };
 }
 
+test("created scene objects and generated-name counter commit or roll back with their room", async () => {
+  const room = createNativeRoomScriptRuntime();
+  room.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({ handlers: room.semanticHandlers() });
+  const run = name => execute(action("native-named-scene-object-create", [1, 0, name]), room.eventContext());
+  const attempt = room.beginTransaction({ area: "JOMO" });
+  assert.equal((await run(0)).result, 0x30303020);
+  assert.equal((await execute({ ...action("native-object-cpam-install", [0x30303020]), kind: "secondaryEngineOperation" },
+    room.eventContext())).result, 0);
+  assert.equal(room.sceneState.objectVectorState.cameraParameterRecords.size, 1);
+  assert.equal(room.sceneState.objectVectorState.nativeObjectNameCounter, 1);
+  attempt.rollback({ reason: "cancelled" });
+  assert.equal(room.sceneState.objectVectorState.nativeObjectNameCounter, 0);
+  assert.equal(room.sceneState.objectVectorState.createdObjects.size, 0);
+  assert.equal(room.sceneState.objectVectorState.cameraParameterRecords.size, 0);
+  const committed = room.beginTransaction({ area: "JOMO" });
+  await run(0);
+  committed.commit();
+  room.activateArea("JHD0");
+  assert.equal(room.sceneState.objectVectorState.createdObjects.size, 0);
+  assert.equal(room.sceneState.objectVectorState.nativeObjectNameCounter, 1);
+  assert.equal((await run(0)).result, 0x31303020);
+});
+
+test("source weather controls share staged clock, native enable state, and transaction rollback", async () => {
+  let clock = [86, 12, 3, 3, 1, 30, 0];
+  const room = createNativeRoomScriptRuntime({ clockRecord: { readNativeClockRecord: () => clock } });
+  room.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({ handlers: room.semanticHandlers() });
+  const run = (id, values) => execute(action(id, values), room.eventContext());
+  await run("native-operation-0174-global-dword-write", [1, 1]);
+  assert.equal((await run("native-operation-0176-control", [1, 0])).status, "continued");
+  assert.equal(room.readWeatherState().cloud, 1);
+  const before = room.weatherControllerState.snapshot();
+  const transaction = room.beginTransaction({ area: "JOMO" });
+  room.clockRecordState.write([86, 12, 3, 3, 8, 55, 0]);
+  assert.equal((await run("native-operation-0176-control", [1, 0])).status, "continued");
+  assert.equal(room.readWeatherState().cloud, 0);
+  transaction.rollback({ reason: "cancelled" });
+  assert.deepEqual(room.weatherControllerState.snapshot(), before);
+  assert.equal(room.readWeatherState().cloud, 1);
+  await run("native-operation-0176-control", [1, 1]);
+  clock = [86, 12, 3, 3, 8, 55, 0];
+  assert.equal(room.readWeatherState().cloud, 1, "frozen weather ignores advancing authoritative time");
+  assert.equal((await run("native-operation-0176-control", [1, 0])).status, "continued");
+  const committed = room.beginTransaction({ area: "JOMO" });
+  await run("native-operation-0176-control", [1, 1]);
+  committed.commit();
+  assert.equal(room.weatherControllerState.snapshot().frozen, 1);
+  room.activateArea("JHD0");
+  assert.equal(room.weatherControllerState.snapshot().frozen, 1, "weather controls are session-owned, not newly zeroed in every room");
+});
+
+test("weather source failure and failed room setup preserve the previous owner state", async () => {
+  const missing = createNativeRoomScriptRuntime();
+  missing.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({ handlers: missing.semanticHandlers() });
+  const before = missing.weatherControllerState.snapshot();
+  assert.equal((await execute(action("native-operation-0176-control", [1, 0]), missing.eventContext())).status, "stopped");
+  assert.deepEqual(missing.weatherControllerState.snapshot(), before);
+  let room;
+  room = createNativeRoomScriptRuntime({
+    clockRecord: { readNativeClockRecord: () => [86, 12, 3, 3, 8, 55, 0] },
+    transaction: { begin() {
+      room.weatherControllerState.apply({ operationId: 0x0176, mode: 1, truthyBranch: false },
+        () => room.clockRecordState.read());
+      throw Error("setup rejected");
+    } },
+  });
+  room.activateArea("JOMO");
+  const cold = room.weatherControllerState.snapshot();
+  assert.throws(() => room.beginTransaction({ area: "JOMO" }), /setup rejected/);
+  assert.deepEqual(room.weatherControllerState.snapshot(), cold);
+});
+
+test("original WAIR controls use the shared presentation route and roll back with a room transaction", async () => {
+  const room = createNativeRoomScriptRuntime({ clockRecord: { readNativeClockRecord: () => [86, 12, 3, 3, 8, 55, 0] } });
+  room.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({ handlers: room.semanticHandlers() });
+  const run = values => execute(action("native-operation-0175-control", values), room.eventContext());
+  const cold = room.weatherControllerState.snapshot();
+  const attempt = room.beginTransaction({ area: "JOMO" });
+  assert.equal((await run([1])).status, "continued");
+  assert.equal(room.readWeatherEnvironment().sky.resource, "SPRITE/SCROLL61.SPR");
+  assert.equal((await run([23, 0])).status, "continued");
+  assert.equal(room.weatherControllerState.environmentMask & 0x780, 0);
+  assert.equal((await execute(action("native-operation-0179-control", [38,
+    ...[[2, 2], [0, 2], [0, 0], [2, 0]].flat().map(nativeFloat32Word),
+    ...[-1, 3.3].map(nativeFloat32Word)]), room.eventContext())).status, "continued");
+  assert.equal(room.readWeatherEnvironment().precipitationExclusions.rain.length, 1);
+  attempt.rollback({ reason: "cancelled" });
+  assert.deepEqual(room.weatherControllerState.snapshot(), cold);
+  assert.equal(room.readWeatherEnvironment(), null);
+  const committed = room.beginTransaction({ area: "JOMO" });
+  await run([1]);
+  committed.commit();
+  const owner = room.weatherControllerState.snapshot();
+  const teardown = room.beginTransaction({ area: "JOMO" });
+  await run([2]);
+  assert.equal(room.weatherControllerState.environmentOwner, null);
+  teardown.rollback({ reason: "world-change" });
+  assert.deepEqual(room.weatherControllerState.snapshot(), owner);
+  room.activateArea("JHD0");
+  assert.deepEqual(room.weatherControllerState.snapshot(), owner, "WAIR is session-owned across rooms");
+});
+
+test("native arrival queries and clock-control writes share room transaction ownership", async () => {
+  const room = createNativeRoomScriptRuntime();
+  room.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({ handlers: room.semanticHandlers() });
+  const run = (id, values = []) => execute(action(id, values), room.eventContext());
+  assert.equal((await run("current-scene-query")).status, "stopped");
+  assert.equal((await run("native-fixed-global-dword-query")).status, "stopped");
+  room.applyArrival({ scene: 1, area: "JOMO", entry: 1 });
+  assert.deepEqual(await run("current-scene-query"), { result: 1 });
+  assert.deepEqual(await run("native-fixed-global-dword-query"), { result: 1 });
+  assert.equal((await run("conditional-global-byte-write", [0])).status, "stopped");
+  room.applyArrival({ scene: 1, area: "JOMO", entry: 1 }, { clockLoaderControlDword: 0 });
+  const readAdvance = () => room.sceneState.readNativeField({ offset: 0x0c225250, width: 1 });
+  assert.equal(readAdvance(), 1);
+  const transaction = room.beginTransaction({ area: "JOMO" });
+  assert.equal((await run("conditional-global-byte-write", [0])).status, "continued");
+  assert.equal(readAdvance(), 0);
+  assert.throws(() => room.applyArrival({ scene: 1, area: "JOMO", entry: 0 }), /during a transaction/);
+  transaction.rollback({ reason: "cancelled" });
+  assert.equal(readAdvance(), 1);
+  // The original loader's nonzero guard preserves an existing paused clock.
+  await run("conditional-global-byte-write", [0]);
+  room.applyArrival({ scene: 2, area: "JOMO", entry: 0 }, { clockLoaderControlDword: 1 });
+  assert.equal(readAdvance(), 0);
+  assert.deepEqual(await run("current-scene-query"), { result: 2 });
+  assert.deepEqual(await run("native-fixed-global-dword-query"), { result: 0 });
+  const snapshot = room.sceneState.snapshot();
+  assert.throws(() => room.applyArrival({ scene: 3, area: "JOMO", entry: 1 }, { clockLoaderControlDword: NaN }), /exact scene and loader/);
+  assert.deepEqual(room.sceneState.snapshot(), snapshot);
+  assert.throws(() => room.applyArrival({ scene: 3, area: "D000", entry: 0 }), /active room/);
+  room.activateArea("JHD0");
+  assert.equal((await run("native-fixed-global-dword-query")).status, "stopped");
+});
+
 function proceduralCreateAction() {
   return {
     kind: "engineOperation",
@@ -58,6 +198,50 @@ test("room event contexts follow state replaced by native-area activation", () =
     activeContext.nativeOperation013eState,
     runtime.sceneState.nativeOperation013eState,
   );
+});
+
+test("01c7 saved global parameters survive room changes and roll back failed events", async () => {
+  const runtime = createNativeRoomScriptRuntime();
+  const state = runtime.operation01c7State;
+  runtime.activateArea("JOMO");
+  const execute = createNativeEventOperationExecutor({ handlers: runtime.semanticHandlers() });
+  const read = () => execute(action("native-operation-01c7-control", [3, 0, 2]),
+    runtime.eventContext());
+  assert.equal((await read()).reason, "native-operation-01c7-parameter-state-unavailable");
+  state.initializeColdState();
+  const original = state.snapshot();
+  let transaction = runtime.beginTransaction({ area: "JOMO" });
+  await execute(action("native-operation-01c7-control", [3, 1, 2, 1]), transaction.context);
+  state.markLoaded();
+  state.writeBooleanDword(1);
+  transaction.rollback({ reason: "cancelled" });
+  assert.deepEqual(state.snapshot(), original);
+
+  transaction = runtime.beginTransaction({ area: "JOMO" });
+  await execute(action("native-operation-01c7-control", [3, 1, 2, 1]), transaction.context);
+  transaction.commit();
+  runtime.activateArea("D000");
+  assert.equal((await read()).result, 1);
+  runtime.deactivateArea();
+  runtime.activateArea("JOMO");
+  assert.equal((await read()).result, 1);
+});
+
+test("room transaction begin failure restores saved globals before propagating the error", () => {
+  let runtime;
+  runtime = createNativeRoomScriptRuntime({
+    transaction: {
+      begin() {
+        runtime.operation01c7State.writeParameterByte(2, 255);
+        throw new Error("presentation setup failed");
+      },
+    },
+  });
+  runtime.operation01c7State.initializeColdState();
+  runtime.activateArea("JOMO");
+  assert.throws(() => runtime.beginTransaction({ area: "JOMO" }), /presentation setup failed/);
+  assert.equal(runtime.operation01c7State.readParameterByte(2), 0);
+  assert.equal(runtime.activeTransaction, null);
 });
 
 test("room script runtime composes exact stateful operation families", async () => {
@@ -152,6 +336,31 @@ test("room script area owns and clears operation 0x018a controller slots", async
   assert.equal(runtime.operation018aState.snapshot().primary.slots[15].word36, 127);
   runtime.deactivateArea("D000");
   assert.equal(runtime.operation018aState.snapshot().primary, null);
+});
+
+test("room-owned AMB1 records survive commit and restore on cancellation or setup failure", async () => {
+  const room = createNativeRoomScriptRuntime();
+  room.activateArea("JOMO");
+  const write = action("native-operation-018b-primary-record-write", [1, 0, 0x92ffc, 0x3f333333, 0x40400000, 0x3f333333, 0, 0x93008]);
+  for (const index of [2, 7]) write.arguments[index].kind = "static-pointer";
+  const execute = createNativeEventOperationExecutor({ handlers: room.semanticHandlers() });
+  const initial = room.operation018aState.snapshot();
+  assert.equal(initial.primary.active, false);
+  const cancelled = room.beginTransaction({ area: "JOMO" });
+  await execute(write, cancelled.context);
+  await execute(action("native-operation-018a-primary-initialize", [0, 0x5da8]), cancelled.context);
+  cancelled.rollback({ reason: "cancelled" });
+  assert.deepEqual(room.operation018aState.snapshot(), initial);
+  const committed = room.beginTransaction({ area: "JOMO" });
+  await execute(write, committed.context);
+  committed.commit();
+  assert.equal(room.operation018aState.snapshot().primary.slots[0].recordWord0, 1);
+  const saved = room.operation018aState.snapshot();
+  room.createHandlers = () => { room.operation018aState.clear(); throw new Error("setup rejected"); };
+  assert.throws(() => room.beginTransaction({ area: "JOMO" }), /setup rejected/);
+  assert.deepEqual(room.operation018aState.snapshot(), saved);
+  room.activateArea("JHD0");
+  assert.deepEqual(room.operation018aState.snapshot(), initial, "another room gets its own zeroed pool");
 });
 
 test("room script context shares one typed presentation-controller adapter", async () => {

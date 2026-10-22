@@ -5,8 +5,10 @@ import {
 // Canonical names for authored subtitle participants that are not represented
 // by a labeled scheduled-actor resource. These identities are corroborated by
 // their Japanese speaker labels and conversation context in the extracted SRF
-// subtitles.
+// subtitles. PHON is a neutral authored role for untagged original telephone
+// voices, not a recovered actor identity or a claim about who answered.
 export const NATIVE_DIALOGUE_SPEAKER_LABELS = Object.freeze({
+  CHRL: "Charlie",
   AKIR: "Ryo Hazuki",
   UNO_: "Tao Duo Ji",
   RNKT: "Tao Lin Xia",
@@ -21,8 +23,14 @@ export const NATIVE_DIALOGUE_SPEAKER_LABELS = Object.freeze({
   JOE_: "Jou Higuchi",
   RBRT: "Robert Wells",
   HARY: "Harry Thompson",
+  TONY: "Tony Abrams",
+  SMTH: "Smith Bradley",
   JONZ: "Jones Henders",
   DOOR: "Voice Behind Door",
+  PHON: "Voice on Telephone",
+  // Native SRF uses "damy" as an unidentified offscreen speaker. Do not
+  // invent a named person (for example, the Ito-house voice in 01BIKE).
+  DAMY: "Voice",
 });
 
 const GENERIC_JAPANESE_SPEAKER_LABELS = Object.freeze({

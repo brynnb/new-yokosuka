@@ -1,0 +1,31 @@
+-> Show Master Chen the Phoenix Mirror
+    <<jump Meeting>>
+-> Leave it for now
+    <<complete>>
+===
+title: Meeting
+---
+<<start_activity "s1.ms08.mirror-meeting.explanation">>
+<<start_activity "s1.ms08.mirror-meeting.theft-start">>
+<<start_activity "s1.ms08.mirror-meeting.pursuit">>
+<<start_activity "s1.ms08.mirror-meeting.scaffolding">>
+<<start_activity "s1.ms08.mirror-meeting.crane">>
+<<jump SaveMirror>>
+===
+title: SaveMirror
+---
+<<play_sequence "{{staging}}.start">>
+<<start_challenge "s1.ms08.save-mirror">>
+<<play_sequence "{{staging}}.finish">>
+<<if challenge_result("s1.ms08.save-mirror") != "success">>
+<<start_activity "s1.ms08.mirror-meeting.failure">>
+-> Try again
+    <<jump SaveMirror>>
+-> Leave it for now
+    <<complete>>
+<<else>>
+<<start_activity "s1.ms08.mirror-meeting.save-mirror">>
+<<start_activity "s1.ms08.mirror-meeting.hong-kong">>
+{{effects}}
+<<complete>>
+<<endif>>

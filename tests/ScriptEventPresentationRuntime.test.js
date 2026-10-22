@@ -1,5 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import {readFileSync} from "node:fs";
+import {runtimeAssetUrl} from "../src/RuntimeAssets.js";
+import {NativeAseqActivityCatalog} from "../play/events/NativeAseqActivityRuntime.js";
+import authoredScenes from "../play/scripts/AuthoredSceneCatalog.js";
+import {evaluateAuthActor} from "../src/AuthMovement.js";
 
 import {
   createScriptEventPresentationCatalog,
@@ -19,6 +24,219 @@ function command(name, ...values) {
     })),
   };
 }
+
+test("Naoyuki's borrowing film preserves original cast/props without claiming ride victory",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.jd00.nozomi-motorcycle.scene");
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/sakuragaoka/nozomi-motorcycle/manifest.json",import.meta.url)));
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/nozomi-motorcycle/manifest.json",import.meta.url)));
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.cutscene.activity.binding.activityId,"BIKE/SEQDATA1.AUTH");
+  assert.equal(activity.cutscene.worldId,"sakuragaoka");assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  assert.equal(manifest.activities[0].durationFrames,1640);assert.equal(manifest.motionBanks[0].bank,16);
+  assert.equal(manifest.packageActors.ITOH.modelCode,"RFB_L");assert.notEqual(manifest.packageActors.ITOH.modelCode,"YKG_M");
+  for(const tag of ["BIKE","HELM"])assert.ok(runtimeAssetUrl(manifest.sceneObjects[tag].assetPath));
+  for(const tag of ["HIKA","TAIL","SUJI"])assert.equal(manifest.sceneObjects[tag].referenceOnly,true);
+  assert.equal(audio.voices.length,13);assert.equal(audio.sounds.length,16);assert.ok([...audio.voices,...audio.sounds].every(v=>!v.unavailable));
+  assert.ok(audio.voices.some(v=>v.speakerId==="ITOH"&&v.displayText==="My motorcycle? Sure."));
+  const music=JSON.parse(readFileSync(new URL("../public/music/manifest.json",import.meta.url)));
+  assert.equal(music.tracks.bgm200.source.bankSha256,"33e03d8688b0714d16e3f987a054dcbafc52722fe69c69429531516bfa7fab9e");
+});
+
+test("Nozomi's call uses the complete original English alternate and existing telephone",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.jomo.nozomi-night-call.scene");
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/hazuki/nozomi-night-call/manifest.json",import.meta.url)));
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/nozomi-night-call/manifest.json",import.meta.url)));
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.cutscene.activity.binding.activityId,"01GET/01GET.AUTH");
+  assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  assert.equal(manifest.source.disc,3);assert.equal(manifest.activities[0].durationFrames,2265);
+  assert.equal(manifest.motionBanks[0].bank,25);assert.equal(manifest.motionBanks[0].sequenceIndexBase,32);
+  assert.deepEqual(manifest.actorTags,["TEL_","INE_","AKIR"]);
+  assert.equal(manifest.sceneObjects.TEL_.objectTag,"TEL_");assert.equal(manifest.packageActors.INE_.modelCode,"INE_M");
+  assert.equal(audio.voices.length,19);assert.equal(audio.sounds.length,10);
+  assert.ok([...audio.voices,...audio.sounds].every(v=>!v.unavailable));
+  assert.ok(audio.voices.some(v=>v.speakerId==="CHAI"&&v.displayText.includes("Warehouse No. 17")));
+  assert.ok(audio.voices.some(v=>v.speakerId==="HRSK"&&v.displayText.includes("trap")));
+  assert.ok(audio.voices.every(v=>!/^01GET[AB]001$/i.test(v.voiceId)));
+  const music=JSON.parse(readFileSync(new URL("../public/music/manifest.json",import.meta.url)));
+  assert.equal(music.tracks.bgm063.source.bankSha256,"10dd803ed6c835cfc54967205bcae9e9c7eed0ba9380a9d5e52c9d49f084c879");
+  assert.match(music.tracks.bgm063.url,/bgm063-/);
+});
+
+test("harbor biker beats move the original motorcycle with Charlie, and only borrow interrogation presentation",()=>{
+  const scenes=authoredScenes.scenes.filter(s=>s.id.startsWith("s1.mfsy.biker-chase.beat-"));
+  assert.equal(scenes.length,12);
+  for(const [i,s]of scenes.entries()){
+    assert.equal(s.continuesPrevious,i>0);assert.equal(s.continuationGroup,"s1.mfsy.biker-chase");
+    assert.deepEqual(s.sceneObjects,scenes[0].sceneObjects);
+    const rider=s.actors.find(a=>a.tag==="CHRL");assert.equal(rider.motion.name,"OTH_TKA_NORU_BIKE_LP_QTE");
+    for(const time of [0,s.durationSeconds/2,s.durationSeconds,s.durationSeconds+10]){
+      const r=evaluateAuthActor(rider.movement,time),bike=evaluateAuthActor(s.sceneObjectTracks.BIK1,time);
+      assert.equal(r.x,bike.x);assert.equal(r.z,bike.z);assert.equal(r.rotationY,bike.rotationY);assert.ok(Math.abs(r.y-bike.y-.286)<1e-6);
+    }
+  }
+  const activity=createScriptEventPresentationCatalog().activity("s1.mfsy.charlie-harbor-interrogation.scene");
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/harbor/charlie-harbor-interrogation/manifest.json",import.meta.url)));
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/charlie-harbor-interrogation/manifest.json",import.meta.url)));
+  assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  assert.equal(manifest.activities[0].durationFrames,1560);assert.equal(audio.voices.length,12);
+  assert.ok([...audio.voices,...audio.sounds].every(s=>!s.unavailable));
+});
+
+test("Nozomi's photo films retain original timing/cast without owning choice or notebook settlement",()=>{
+  for(const [part,file,frames,voices]of [["intro","SEQDATA1.AUTH",1220,7],["ending","SEQDATA2.AUTH",1940,17]]){
+    const activity=createScriptEventPresentationCatalog().activity(`s1.mfsy.nozomi-photo-${part}.scene`);
+    const manifest=JSON.parse(readFileSync(new URL(`../play/assets/harbor/nozomi-photo-${part}/manifest.json`,import.meta.url)));
+    const audio=JSON.parse(readFileSync(new URL(`../public/audio/world/nozomi-photo-${part}/manifest.json`,import.meta.url)));
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.activity.binding.activityId,`NZMPHOTO/${file}`);
+    assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+    assert.equal(manifest.activities[0].durationFrames,frames);assert.equal(manifest.motionBanks[0].bank,16);
+    assert.equal(manifest.packageActors.TJMA.modelCode,"RFD_L");assert.equal(manifest.packageActors.HRSK.modelCode,"NZM_L");
+    for(const actor of Object.values(manifest.packageActors))for(const asset of [actor.assetPath,actor.textureAssetPath])assert.ok(runtimeAssetUrl(asset));
+    assert.equal(audio.voices.length,voices);assert.ok(audio.voices.every(v=>!v.unavailable));
+    assert.ok(audio.sounds.every(v=>!v.unavailable));
+    if(part==="intro")assert.ok(["BLC0","BLC1"].every(tag=>manifest.sceneObjects[tag].referenceOnly));
+  }
+});
+
+test("Goro's trap borrows original films and fighters, not the archive's Ryo reference body",()=>{
+  const intro=authoredScenes.scenes.find(s=>s.id==="s1.mfsy.goro-trap.intro");
+  assert.equal(intro.actorDefinitions.find(d=>d.actorCode==="BKG_").modelCode,"GIJ_M");
+  assert.equal(intro.actorDefinitions.find(d=>d.actorCode==="BKH_").modelCode,"GIB_M");
+  assert.ok(intro.actorDefinitions.every(d=>d.modelCode!=="YKB_M"));
+  for(const [id,activityId,frames]of [["goro-trap-aftermath","MB9Q/SEQDATA1.AUTH",880],["mark-long-zha","RYUSATSU/SEQDATA1.AUTH",1000]]){
+    const activity=createScriptEventPresentationCatalog().activity(`s1.mfsy.${id}.scene`),manifest=JSON.parse(readFileSync(new URL(`../play/assets/harbor/${id}/manifest.json`,import.meta.url)));
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.activity.binding.activityId,activityId);assert.equal(manifest.activities[0].durationFrames,frames);
+    assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  }
+});
+
+test("Goro and Mai's announcement retains the original cast, binding and declared AUTH ending",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.mfsy.goro-mai-marriage.scene"),manifest=JSON.parse(readFileSync(new URL("../play/assets/harbor/goro-mai-marriage/manifest.json",import.meta.url))),audio=JSON.parse(readFileSync(new URL("../public/audio/world/goro-mai-marriage/manifest.json",import.meta.url)));
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.cutscene.activity.binding.activityId,"GOROKEKN/SEQDATA0.AUTH");assert.equal(manifest.activities[0].durationFrames,1234);
+  assert.deepEqual(manifest.actorTags,["HINA","AKIR","GORO"]);assert.equal(audio.voices.length,12);assert.ok(audio.voices.every(v=>!v.unavailable));
+  assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+});
+
+test("Gui Zhang's warning uses the original Alpha room, bank18, exact English voices and native music",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.mfsy.warning-letter.scene");
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/harbor/warning-letter/manifest.json",import.meta.url)));
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/warning-letter/manifest.json",import.meta.url)));
+  const music=JSON.parse(readFileSync(new URL("../public/music/manifest.json",import.meta.url))).tracks.bgm119;
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.cutscene.activity.binding.activityId,"MARU_LET/SEQDATA3.AUTH");
+  assert.equal(manifest.activities[0].durationFrames,1400);assert.deepEqual(manifest.actorTags,["AKIR","TMRA"]);
+  assert.equal(manifest.sceneObjects.ROOM.model,"MAPALP");
+  assert.equal(audio.voices.length,13);assert.equal(audio.sounds.length,21);assert.ok([...audio.voices,...audio.sounds].every(v=>!v.unavailable));
+  assert.equal(manifest.motionBanks[0].bank,18);
+  assert.equal(audio.sources.stream.path,"disc3/SCENE/03/STREAM/01CAUA.AFS");
+  assert.equal(audio.sources.soundBank.path,"disc3/SCENE/03/SOUND/A1_CAV.SND");
+  assert.equal(music.source.bankSha256,"48e854a5c8681536f015195da0630fa8e90307404a2e9b70a93b335fdbccebcf");
+  assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+});
+
+test("Chen's post-letter scene keeps its distinct archive, original bank/cast and shared original bodies",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.ms08.chen-warning.scene");
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/harbor/chen-warning/manifest.json",import.meta.url)));
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/chen-warning/manifest.json",import.meta.url)));
+  assert.equal(activity.area,"MS08");assert.equal(activity.cutscene.worldId,"ms08");
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.cutscene.activity.binding.activityId,"MS08/SEQDATA5.AUTH");
+  assert.equal(manifest.activities[0].durationFrames,4120);assert.equal(manifest.motionBanks[0].bank,16);
+  assert.deepEqual(manifest.actorTags,["HAK0","AKIR","KISY","TAIJ"]);
+  assert.equal(manifest.packageActors.TAIJ.assetPath,"play/assets/harbor/master-chen/SYU_M.CHRM");
+  assert.equal(manifest.packageActors.KISY.assetPath,"play/assets/harbor/master-chen/KIS_M.CHRM");
+  assert.equal(audio.sources.stream.path,"disc3/SCENE/03/STREAM/01CAU.AFS");
+  assert.equal(audio.sources.soundBank.path,"disc3/SCENE/03/SOUND/A1_CHINA.SND");
+  assert.equal(audio.voices.length,28);assert.equal(audio.sounds.length,11);assert.ok([...audio.voices,...audio.sounds].every(v=>!v.unavailable));
+  assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+});
+
+test("sailor chase films preserve original branch bindings and forbid presentation rewards",()=>{
+  for(const [part,file,actors,frames]of [["intro","SEQDATA0.AUTH",["FORK","AKIR","SMTH","TONY"],1140],["tony","SEQDATA1.AUTH",["AKIR","TONY"],1500],["smith","SEQDATA0.AUTH",["AKIR","SMTH"],1500]]){
+    const activity=createScriptEventPresentationCatalog().activity(`s1.mfsy.sailor-chase-${part}.scene`);
+    const manifest=JSON.parse(readFileSync(new URL(`../play/assets/harbor/sailor-chase-${part}/manifest.json`,import.meta.url)));
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.activity.binding.activityId,`${part==="intro"?"PK_CTS":"PK_CTS2"}/${file}`);
+    assert.deepEqual(manifest.actorTags,actors);assert.equal(manifest.activities[0].durationFrames,frames);
+    assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  }
+});
+
+test("coworker lunch borrows the original silent film without owning the batch result",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.mfsy.workday-lunch.scene");
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/harbor/workday-lunch/manifest.json",import.meta.url)));
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  assert.equal(manifest.activities[0].durationFrames,450);assert.equal(manifest.audioManifest,undefined);
+  assert.deepEqual(Object.keys(manifest.packageActors).sort(),["HTSI","MARK","TAKE","TYMK","YOHI"]);
+  assert.equal(Object.keys(manifest.sceneObjects).length,12);
+});
+
+test("Warehouse17 films retain bank21 and cannot save the brother clue themselves",()=>{
+  for(const [id,file,frames]of [["mark-after-work-intro","SEQDATA2.AUTH",520],["mark-after-work-aftermath","SEQDATA3.AUTH",700],["mark-brother-explanation","SEQDATA4.AUTH",1961]]){
+    const activity=createScriptEventPresentationCatalog().activity(`s1.mfsy.${id}.scene`),manifest=JSON.parse(readFileSync(new URL(`../play/assets/harbor/${id}/manifest.json`,import.meta.url)));
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.activity.binding.activityId,`BOKOMARK/${file}`);
+    assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+    assert.equal(manifest.activities[0].durationFrames,frames);assert.equal(manifest.motionBanks[0].bank,21);
+  }
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/mark-after-work-intro/manifest.json",import.meta.url)));
+  assert.deepEqual(audio.voices.filter(v=>v.unavailable).map(v=>v.nativeMember),["01MKBD003.str","01MKBD004.str"]);
+  assert.deepEqual(audio.sounds.filter(v=>v.unavailable).map(v=>v.commandHex),["a9041c00"]);
+});
+
+test("Mark's lunch films retain original bindings and cannot settle the rescue themselves",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  for(const [part,resource] of [["intro","SEQDATA1.AUTH"],["aftermath","SEQDATA2.AUTH"]]){
+    const activity=catalog.activity(`s1.mfsy.mark-lunch-${part}.scene`);
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.activity.binding.activityId,`MIZUMARK/${resource}`);
+    const manifest=JSON.parse(readFileSync(new URL(`../play/assets/harbor/mark-lunch-${part}/manifest.json`,import.meta.url)));
+    assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+    assert.equal(manifest.packageActors.MARK.modelCode,"GIC_L");
+    assert.equal(manifest.packageActors.MRSK.modelCode,"PPL_L");assert.equal(manifest.packageActors.OKYS.modelCode,"OKA_L");
+  }
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/mark-lunch-intro/manifest.json",import.meta.url)));
+  const missing=audio.sounds.filter(s=>s.unavailable);
+  assert.equal(missing.length,1);assert.equal(missing[0].commandHex,"a9041500");assert.match(missing[0].sourcePath,/\/body\/ikepocha\.aiff$/);
+});
+
+test("payday borrows original salary motions and Goro's warning without presentation-side rewards",()=>{
+  const scene=authoredScenes.scenes.find(s=>s.id==="s1.mfsy.payday");
+  assert.equal(scene.waitForMotions,true);assert.deepEqual(scene.actors.map(a=>a.tag),["AKIR","TMRA"]);
+  assert.ok(scene.actors.every(a=>a.motion.bank==="harborPay"&&a.motion.loop===false));
+  assert.equal(scene.sceneObjects.ROOM.assetPath,"play/assets/harbor/yada-job-interview/MAPALP.MAPD");
+  const film=createScriptEventPresentationCatalog().activity("s1.mfsy.after-work-goro.scene");
+  assert.equal(film.durableEffects,"forbidden");assert.equal(film.returnPlayerState,true);
+  assert.equal(film.cutscene.activity.binding.activityId,"GOROMA/SEQDATA2.AUTH");
+});
+
+test("Jimmy films retain exact source bindings and running beats form one continuous owned route",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  for(const [part,area,resource]of [["jimmy-knock","d000","CTERMO1/SEQDATA3.AUTH"],["jimmy-caught","d000","CTERMO1/SEQDATA1.AUTH"],["jimmy-escaped","d000","CTERMO1/SEQDATA2.AUTH"],["jimmy-interrogation","daza","A0174/A0174.AUTH"]]){
+    const activity=catalog.activity(`s1.${area}.${part}.scene`);
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.activity.binding.activityId,resource);
+    const manifest=JSON.parse(readFileSync(new URL(`../play/assets/dobuita/${part}/manifest.json`,import.meta.url)));
+    assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  }
+  const beats=authoredScenes.scenes.filter(s=>s.continuationGroup==="s1.d000.jimmy-chase");
+  assert.equal(beats.length,13);
+  for(let i=0;i<beats.length;i++){
+    const scene=beats[i];assert.equal(catalog.sequence(`${scene.id}.start`).kind,i?"scene-staging-transition":"scene-staging-start");
+    assert.deepEqual(scene.actors.map(a=>a.tag),["AKIR","JIMY"]);
+    for(const actor of scene.actors){
+      const end=evaluateAuthActor(actor.movement,scene.durationSeconds);
+      if(i<beats.length-1)for(const key of ["x","y","z"])assert.ok(Math.abs(end[key]-beats[i+1].actors.find(a=>a.tag===actor.tag).pose[key])<1e-8,`${scene.id}/${actor.tag}/${key}`);
+      assert.equal(actor.endMotion.name,"AKI_AKI_STAND_LP");
+    }
+  }
+});
 
 function harness() {
   const calls = [];
@@ -62,6 +280,145 @@ test("catalog exposes only exact reviewed presentation and activity records", ()
     programId: "disc1-d000-phone-book-0x6a49c",
     source: "D000 persistent owner 0x69b14 > TBK1 > 0x6a49c",
   });
+});
+
+test("mirror follow-up borrows original HOUO/MS8A without allowing cinematics to save or win",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  const fuku=catalog.activity("s1.jhd0.fuku-phoenix-mirror.scene");
+  assert.equal(fuku.cutscene.packageId,"houo");
+  assert.deepEqual(fuku.cutscene.activity,{slot:9,binding:{primaryPointer:394211,secondaryPointer:394224}});
+  for(const [part,slot]of [["explanation",6],["theft-start",0],["pursuit",1],["scaffolding",2],["crane",3],["failure",4],["save-mirror",5],["hong-kong",7]]){
+    const activity=catalog.activity(`s1.ms08.mirror-meeting.${part}`);
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.packageId,"mirror-meeting");assert.equal(activity.cutscene.activity.slot,slot);
+  }
+  assert.equal(catalog.sequence("s1.ms08.save-mirror.start").scene.id,"s1.ms08.save-mirror");
+});
+
+test("home cinematics cannot grant savings or advance the personal calendar themselves",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  for(const [part,resource,area] of [["jimmy-morning-call","A0169","jomo"],["post-chen-home","A0160","jomo"],["bank-savings","01BNK","jomo"],["travel-family","01EAR","jomo"],
+    ["fuku-travel-funds","01MON","jomo"],["global-airfare","01MIT","dski"],["asia-airfare","01ETU","daza"],
+    ["global-boat","01MIT","dski"],["boat-ticket-purchase","01ETU","daza"],["boat-ticket-collection","A0165","daza"]]){
+    const activity=catalog.activity(`s1.${area}.${part}.scene`);
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.cutscene.packageId,part);
+    assert.deepEqual(activity.cutscene.activity,{slot:0,binding:{kind:"map-embedded-slot",activityId:`${resource}/${resource}.AUTH`}});
+    const manifest=JSON.parse(readFileSync(new URL(`../play/assets/${area==="jomo"?"hazuki":"dobuita"}/${part}/manifest.json`,import.meta.url)));
+    assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  }
+  assert.deepEqual(catalog.activity("s1.jomo.mirror-dream.scene").cutscene.activity,
+    {slot:51,binding:{primaryPointer:614200,secondaryPointer:614213}});
+  const phoenix=catalog.activity("s1.jomo.phoenix-vision.scene");
+  assert.equal(phoenix.durableEffects,"forbidden");assert.equal(phoenix.returnPlayerState,true);
+  assert.deepEqual(phoenix.cutscene.activity,{slot:50,binding:{primaryPointer:614163,secondaryPointer:614176}});
+  assert.equal(new NativeAseqActivityCatalog(JSON.parse(readFileSync(new URL("../play/assets/hazuki/kkya/manifest.json",import.meta.url)))).has(phoenix.cutscene.activity),true);
+  const snow=catalog.activity("s1.jomo.snow-dream.scene");
+  assert.equal(snow.durableEffects,"forbidden");assert.equal(snow.returnPlayerState,true);
+  assert.equal(new NativeAseqActivityCatalog(JSON.parse(readFileSync(new URL("../play/assets/hazuki/kkyc/manifest.json",import.meta.url)))).has(snow.cutscene.activity),true);
+  const lanDi=catalog.activity("s1.jomo.lan-di-dream.scene"),lanDiManifest=JSON.parse(readFileSync(new URL("../play/assets/hazuki/kkyf/manifest.json",import.meta.url)));
+  assert.equal(lanDi.durableEffects,"forbidden");assert.equal(lanDi.returnPlayerState,true);
+  assert.deepEqual(lanDi.cutscene.activity,{slot:55,binding:{primaryPointer:614348,secondaryPointer:614361}});
+  assert.equal(new NativeAseqActivityCatalog(lanDiManifest).has(lanDi.cutscene.activity),true);
+  assert.equal(lanDiManifest.packageActors.SORY.modelCode,"KOK_M");assert.equal(lanDiManifest.sceneObjects.RYMR.model,"DRGS502G");
+  assert.equal(catalog.sequence("s1.jomo.fuku-travel-advice.start").scene.actors[1].tag,"FUKU");
+});
+
+test("Chai cinematics retain exact source bindings and cannot decide the fight",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  for(const [id,resource,cast]of [["chai-intro","A0172",["AKIR","CHAI"]],["chai-victory","A0172",["DOOR","SLOT","AKIR","CHAI","NITO"]],["chai-rescue","A0172A",["DOOR","SLOT","AKIR","CHAI","FUKU"]]]){
+    const activity=catalog.activity(`s1.dgct.${id}.scene`),manifest=JSON.parse(readFileSync(new URL(`../play/assets/dobuita/${id}/manifest.json`,import.meta.url)));
+    assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);assert.equal(activity.cutscene.worldId,"arcade");
+    assert.deepEqual(manifest.activities[0].actors,cast);assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+    assert.equal(manifest.packageActors.CHAI.modelCode,"CHA_M");
+    assert.equal(activity.cutscene.activity.binding.activityId,`${resource}/${resource}.AUTH`);
+    for(const [tag,prop]of Object.entries(manifest.sceneObjects||{})){
+      assert.equal(prop.model,tag==="DOOR"?"DR17_001":"GAMT101G");assert.equal(prop.referenceOnly,true);
+      assert.ok(Number.isInteger(prop.sourceBinding.defImageRecordOffset));
+    }
+  }
+});
+
+test("Asia props use original CHRS model bindings instead of semantic filename guesses",()=>{
+  for(const [id,expected]of [["asia-airfare",{INF1:"TIRT230G.MT5",INF2:"TIRS703G.MT5",MAGA:"ZSR3H03G.MT5"}],
+    ["boat-ticket-purchase",{INF3:"ARP3H01G.MT5",MONY:"OSAS5LOG.MT5",PURS:"SAFS500G.MT5",TRAY:"UKES500G.MT5"}]]){
+    const m=JSON.parse(readFileSync(new URL(`../play/assets/dobuita/${id}/manifest.json`,import.meta.url)));
+    assert.deepEqual(Object.fromEntries(Object.entries(m.sceneObjects).map(([tag,value])=>[tag,value.browserFilename])),expected);
+    for(const value of Object.values(m.sceneObjects))assert.ok(Number.isInteger(value.sourceBinding.defImageRecordOffset));
+  }
+});
+
+test("letter translation borrows the exact TOKI presentation in the normal shop",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.drsa.xia-letter-translation.scene");
+  assert.equal(activity.area,"DRSA");assert.equal(activity.durableEffects,"forbidden");
+  assert.equal(activity.returnPlayerState,true);assert.equal(activity.cutscene.packageId,"toki");
+  assert.deepEqual(activity.cutscene.activity,{slot:0,binding:{primaryPointer:0x34f7,secondaryPointer:0x3504}});
+});
+
+test("family-crest presentation borrows the embedded scene without awarding a mirror",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  const activity=catalog.activity("s1.jomo.ine-family-crest.scene");
+  assert.equal(activity.area,"JOMO");assert.equal(activity.durableEffects,"forbidden");
+  assert.equal(activity.returnPlayerState,true);assert.equal(activity.cutscene.packageId,"family-crest");
+  assert.equal(activity.cutscene.activity.binding.activityId,"01136/CREST.AUTH");
+  assert.equal(catalog.sequence("s1.jomo.fuku-handguard-home.start").scene.actorDefinitions[0].modelCode,"FUK_M");
+});
+
+test("the optional Nozomi encounter reuses the original YBHN presentation without native effects", () => {
+  const activity = createScriptEventPresentationCatalog().activity("s1.d000.nozomi-after-parlor.scene");
+  assert.equal(activity.area, "D000");
+  assert.equal(activity.durableEffects, "forbidden");
+  assert.equal(activity.returnPlayerState, true);
+  assert.equal(activity.cutscene.packageId, "ybhn");
+  assert.deepEqual(activity.cutscene.activity, {
+    slot: 27, binding: { primaryPointer: 0xaf8ae, secondaryPointer: 0xaf8bb },
+  });
+});
+
+test("Fuku's gate conversation borrows TGMA without granting another letter", () => {
+  const activity=createScriptEventPresentationCatalog().activity("s1.jhd0.fuku-letter-gate.scene");
+  assert.equal(activity.area,"JHD0");
+  assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.durableEffects,"forbidden");
+  assert.equal(activity.cutscene.packageId,"tgma");
+  assert.deepEqual(activity.cutscene.activity,{slot:0,binding:{primaryPointer:0x601b8,secondaryPointer:0x601bd}});
+});
+
+test("family mirror conversations share presentation ownership without durable effects",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  for(const [id,packageId,slot] of [
+    ["family-fuku.approach","family-fuku",0],
+    ["family-fuku.conversation","family-fuku",1],
+    ["family-ine.conversation","family-ine",0],
+  ]){
+    const activity=catalog.activity(`s1.jhd0.${id}`);
+    assert.equal(activity.area,"JHD0");
+    assert.equal(activity.returnPlayerState,true);
+    assert.equal(activity.durableEffects,"forbidden");
+    assert.equal(activity.cutscene.worldId,"exterior");
+    assert.equal(activity.cutscene.packageId,packageId);
+    assert.deepEqual(activity.cutscene.activity,{slot,binding:{primaryPointer:0,secondaryPointer:0}});
+  }
+});
+
+test("Bunkado handover owns original presentation, not inventory settlement",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  for(const [part,slot] of [["arrival",0],["remembrance",1],["phoenix-question",2]]){
+    const activity=catalog.activity(`s1.dkty.handguard.${part}`);
+    assert.equal(activity.area,"DKTY");assert.equal(activity.durableEffects,"forbidden");
+    assert.equal(activity.returnPlayerState,true);assert.equal(activity.cutscene.packageId,"bunkado-handguard");
+    assert.deepEqual(activity.cutscene.activity,{slot,binding:{primaryPointer:0,secondaryPointer:0}});
+  }
+});
+
+test("Gui Zhang's movies cannot award combat completion",()=>{
+  const catalog=createScriptEventPresentationCatalog();
+  for(const [part,slot] of [["introduction",0],["bodyguard",1]]){
+    const activity=catalog.activity(`s1.jd00.gui-zhang.${part}`);
+    assert.equal(activity.area,"JD00");assert.equal(activity.durableEffects,"forbidden");
+    assert.equal(activity.returnPlayerState,true);assert.equal(activity.cutscene.packageId,"gui-zhang-street");
+    assert.deepEqual(activity.cutscene.activity,{slot,binding:{primaryPointer:0,secondaryPointer:0}});
+  }
 });
 
 test("runtime dispatches Hato commands through an owned transaction", async () => {

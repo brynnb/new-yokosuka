@@ -10,6 +10,7 @@ import { pickArcadeInteraction } from "../arcade/ArcadePicking.js";
 import { isDirectShenmue2DoorPick } from "../world/Shenmue2NativeDoors.js";
 import { isNativeLayerDoorBlocker } from "../world/TimedTransitionAccess.js";
 import { logicalDoorScriptObject } from "./DoorInteractions.js";
+import {containerInteractionAllowed} from "../../src/JomoContainerOwnership.js";
 
 const INTERACTION_DISTANCE = 10;
 
@@ -32,6 +33,7 @@ export class WorldInteractionDispatcher {
     poolRuntime,
     scene,
     scriptedInteractions,
+    storyObjects = null,
     travelTransitions,
     worldMapLayerState,
   }) {
@@ -49,6 +51,7 @@ export class WorldInteractionDispatcher {
       poolRuntime,
       scene,
       scriptedInteractions,
+      storyObjects,
       travelTransitions,
       worldMapLayerState,
     });
@@ -185,6 +188,11 @@ export class WorldInteractionDispatcher {
       this.camera,
     );
     const metadata = interactionPick?.pickedMesh?.metadata || {};
+    const surface = this.storyObjects?.pickSurface(interactionPick);
+    if (surface) {
+      if (horizontalDistance(this.getActorPosition(), surface.position) <= INTERACTION_DISTANCE) this.activateInspectable(surface);
+      return;
+    }
     const door = metadata.interactiveDoor;
     if (this.doorIsBlocked(interactionPick, door)) return;
     if (!isDirectShenmue2DoorPick(door, pointerInfo.pickInfo)) return;
@@ -206,8 +214,10 @@ export class WorldInteractionDispatcher {
 
   isInteractiveMesh(mesh) {
     const metadata = mesh.metadata;
+    if(metadata?.interactiveInspectable && !containerInteractionAllowed(metadata.interactiveInspectable.root))return false;
     return Boolean(
-      metadata?.interactiveDrawer
+      this.storyObjects?.isSurfaceMesh(mesh)
+      || metadata?.interactiveDrawer
       || metadata?.interactiveDoor
       || metadata?.interactiveClock
       || metadata?.interactiveInspectable
@@ -309,6 +319,7 @@ export class WorldInteractionDispatcher {
     if (horizontalDistance(this.getActorPosition(), position)
       > INTERACTION_DISTANCE) return;
     if (targets.mapTransition) {
+      if (this.scriptedInteractions.startMapTransition?.(targets.mapTransition)) return;
       if (targets.door) {
         this.travelTransitions.beginDoor(
           targets.door,

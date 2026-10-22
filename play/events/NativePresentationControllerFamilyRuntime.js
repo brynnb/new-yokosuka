@@ -174,7 +174,11 @@ function routeDetail(operationId, readArgument) {
 
   const argumentWords = [];
   for (let index = 0; index < route.argumentCount; index += 1) {
-    argumentWords.push(readArgument(index));
+    const word = readArgument(index);
+    if (!Number.isInteger(word) || word < -0x80000000 || word > 0xffffffff) {
+      throw new RangeError(`native controller argument ${index} must be a 32-bit word`);
+    }
+    argumentWords.push(word);
   }
   const truthyBranch = route.branchWord === undefined
     ? undefined
@@ -232,6 +236,7 @@ function createHandler(operationId, applyNativePresentationControllerRoute) {
     const applyRoute = (
       applyNativePresentationControllerRoute
       || context.applyNativePresentationControllerRoute
+      || ([0x0175, 0x0176, 0x0179].includes(operationId) ? context.applyNativeWeatherControl : undefined)
     );
     if (typeof applyRoute !== "function") {
       return {
@@ -240,6 +245,13 @@ function createHandler(operationId, applyNativePresentationControllerRoute) {
       };
     }
     const response = await applyRoute(detail);
+    // A failed renderer operation is not a successful native mutation. Keep
+    // its exact stop reason so the owning room transaction can unwind it.
+    if (response?.status === "stopped") return response;
+    if (response === false || response === null
+      || (response?.applied === false && response.nativeNoOp !== true)) {
+      return { status: "stopped", reason: "native-presentation-controller-application-rejected" };
+    }
     if (detail.returnsHandle) {
       const result = Number.isInteger(response)
         ? response

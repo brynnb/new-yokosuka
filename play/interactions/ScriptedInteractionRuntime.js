@@ -1,6 +1,11 @@
 import { hasNativeDialogueSelector } from "../dialogue/NativeDialogueSelector.js";
 import { isWithinDialogueRange } from "../dialogue/DialogueProximity.js";
 import { playerWorldInteractionAllowed } from "./PlayerWorldInteractionPolicy.js";
+import authoredStoryTalks from "../data/authored-story-talks.json" with { type: "json" };
+import {containerInteractionAllowed} from "../../src/JomoContainerOwnership.js";
+
+const SERVER_OWNED_STORY_TALKS = new Set(authoredStoryTalks.talks.map(talk => `${talk.area}:${talk.actor}`));
+const SERVER_OWNED_STORY_OBJECTS = new Set(authoredStoryTalks.objects.map(object => `${object.area}:${object.object}`));
 
 const FALLBACK_SCRIPT_CODES = new Set([
   "no_script",
@@ -153,6 +158,8 @@ export class ScriptedInteractionRuntime {
       this.transientNotice.show("Finish the current conversation first.");
       return;
     }
+    const serverOwnedStoryTalk = this.accountSession.character?.playMode === "story"
+      && SERVER_OWNED_STORY_TALKS.has(`${this.getWorld().nativeArea}:${npcSelection.actorCode}`);
     this.getMultiplayerClient()?.forcePresence();
     try {
       const result = await this.scriptEventController.start({
@@ -164,18 +171,26 @@ export class ScriptedInteractionRuntime {
         actorInstanceId: npcSelection.id,
       });
       if (!this.canStart()) return;
+      if (serverOwnedStoryTalk && result.outcome === "declined") {
+        this.transientNotice.show("This conversation is not available right now. Check your notebook for the next lead.");
+        return;
+      }
       if (
         result.outcome === "declined"
         || (result.outcome === "rejected"
           && FALLBACK_SCRIPT_CODES.has(result.error.code))
-      ) this.startNativeNpc(npcSelection);
+      ) {
+        if (serverOwnedStoryTalk) this.transientNotice.show("This conversation is unavailable. Please try again when connected.");
+        else this.startNativeNpc(npcSelection);
+      }
       else if (result.outcome === "rejected") {
         this.transientNotice.show(result.error.message);
       }
     } catch (error) {
       if (!this.canStart()) return;
       if (error?.code === "connection_unavailable") {
-        this.startNativeNpc(npcSelection);
+        if (serverOwnedStoryTalk) this.transientNotice.show("This conversation is unavailable. Please try again when connected.");
+        else this.startNativeNpc(npcSelection);
       } else if (![
         "start_cancelled",
         "start_interrupted",
@@ -218,11 +233,19 @@ export class ScriptedInteractionRuntime {
 
   async startObject({ objectSelector, objectTag, root, fallback }) {
     if (!this.canStart()) return;
+    // Contained objects may be picked through an opaque drawer by an
+    // interaction-only ray. Keep normal inspection behind its actual opening;
+    // do not change native room state or grant a quest item from this check.
+    if(!containerInteractionAllowed(root)){
+      this.transientNotice.show("Open the drawer first.");return;
+    }
     if (this.scriptEventController.status !== "idle") {
       this.transientNotice.show("Finish the current interaction first.");
       return;
     }
     this.getMultiplayerClient()?.forcePresence();
+    const serverOwnedStoryObject = this.accountSession.character?.playMode === "story"
+      && SERVER_OWNED_STORY_OBJECTS.has(`${this.getWorld().nativeArea}:${objectSelector}`);
     const context = {
       area: this.getWorld().nativeArea,
       objectTag,
@@ -239,13 +262,19 @@ export class ScriptedInteractionRuntime {
         result.outcome === "declined"
         || (result.outcome === "rejected"
           && FALLBACK_SCRIPT_CODES.has(result.error.code))
-      ) fallback();
+      ) {
+        if (serverOwnedStoryObject) this.transientNotice.show("This story interaction is not available right now. Check your notebook for the next lead.");
+        else fallback();
+      }
       else if (result.outcome === "rejected") {
         this.transientNotice.show(result.error.message);
       }
     } catch (error) {
       if (!this.canStart()) return;
-      if (error?.code === "connection_unavailable") fallback();
+      if (error?.code === "connection_unavailable") {
+        if (serverOwnedStoryObject) this.transientNotice.show("This story interaction is unavailable. Please try again when connected.");
+        else fallback();
+      }
       else if (![
         "start_cancelled",
         "start_interrupted",
@@ -254,5 +283,13 @@ export class ScriptedInteractionRuntime {
         this.transientNotice.show("This interaction is unavailable right now.");
       }
     }
+  }
+
+  startMapTransition({ transition, root }) {
+    const objectTag = transition?.source?.objectTag;
+    if (this.accountSession.character?.playMode !== "story"
+      || !SERVER_OWNED_STORY_OBJECTS.has(`${this.getWorld().nativeArea}:${objectTag}`)) return false;
+    void this.startObject({ objectSelector:objectTag, objectTag, root, fallback:()=>{} });
+    return true;
   }
 }

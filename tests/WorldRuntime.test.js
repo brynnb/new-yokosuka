@@ -61,6 +61,29 @@ function createRuntime(overrides = {}) {
   return { controller, log, runtime };
 }
 
+test("world loading carries exact door arrivals, including re-entry into the same world", async () => {
+  const arrivals = [];
+  const { runtime } = createRuntime({ initializeWorld: detail => arrivals.push(detail.nativeArrival) });
+  const destination = { scene: 1, area: "JOMO", entry: 1 };
+  await runtime.select(world("next"), { transition: { destination } });
+  assert.deepEqual(arrivals, [destination]);
+  const second = { scene: 2, area: "JOMO", entry: 0 };
+  await runtime.select(runtime.activeWorld, { transition: { destination: second } });
+  assert.deepEqual(arrivals, [destination, second]);
+  await runtime.initialize(world("initial"), { nativeArrival: destination });
+  assert.deepEqual(arrivals.at(-1), destination);
+  await runtime.select(world("next"), { transition: { destination: { disc: 2, area: "AK00" } } });
+  assert.equal(arrivals.at(-1), null, "S2 disc metadata must not be reinterpreted as an S1 arrival");
+  await runtime.select(world("bus"), { transition: { destination: {scene:2,area:"MFSY",entry:null,browserSpawn:{position:[130.5,0,140.6],yaw:Math.PI}} } });
+  assert.equal(arrivals.at(-1),null,"explicit browser-only travel must not invent a native entry word");
+});
+
+test("failed world reveal cannot remain ready for gameplay",async()=>{
+  const {runtime}=createRuntime({finishLoading:async()=>{throw Error("reveal failed");}});
+  assert.equal(await runtime.select(world("next")),false);
+  assert.equal(runtime.ready,false);
+});
+
 test("world selection owns clear-load-initialize-reveal ordering and state", async () => {
   const { log, runtime } = createRuntime();
   const next = world("next");

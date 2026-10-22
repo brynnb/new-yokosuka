@@ -4,6 +4,37 @@ import * as BABYLON from "@babylonjs/core";
 
 import { WorldWeatherRuntime } from "../play/world/WorldWeatherRuntime.js";
 
+test("native dry volumes use mirrored X, survive precipitation changes, and replace atomically", () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  const runtime = new WorldWeatherRuntime({ scene });
+  const volume = { vertices: [[2, 2], [0, 2], [0, 0], [2, 0]], lower: -1, upper: 3 };
+  try {
+    runtime.setNativeExclusions([volume]);
+    assert.equal(runtime.excludedByNativeVolume(new BABYLON.Vector3(-1, 0, 1)), true);
+    assert.equal(runtime.excludedByNativeVolume(new BABYLON.Vector3(1, 0, 1)), false);
+    assert.equal(runtime.excludedByNativeVolume(new BABYLON.Vector3(-1, 4, 1)), false);
+    assert.throws(() => runtime.setNativeExclusions([{ ...volume, lower: NaN }]));
+    assert.equal(runtime.excludedByNativeVolume(new BABYLON.Vector3(-1, 0, 1)), true);
+    runtime.apply("rain");
+    const inside = runtime.particles.particles[0];
+    inside.position.set(-1, 1, 1);
+    inside.direction.set(0, 0, 0);
+    inside.age = 0;
+    runtime.particles.updateFunction([inside]);
+    assert.equal(inside.color.a, 0);
+    assert.equal(inside.age, inside.lifeTime);
+    runtime.apply("clear");
+    assert.equal(runtime.excludedByNativeVolume(new BABYLON.Vector3(-1, 0, 1)), true,
+      "clear weather does not discard authored controller state");
+    runtime.setNativeExclusions([]);
+    assert.equal(runtime.excludedByNativeVolume(new BABYLON.Vector3(-1, 0, 1)), false,
+      "the next world/mode can explicitly release its native policy");
+  } finally {
+    runtime.dispose(); scene.dispose(); engine.dispose();
+  }
+});
+
 test("world weather owns precipitation and follows the active camera", () => {
   const engine = new BABYLON.NullEngine();
   const scene = new BABYLON.Scene(engine);

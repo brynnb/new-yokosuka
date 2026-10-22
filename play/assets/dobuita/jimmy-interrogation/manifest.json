@@ -1,0 +1,113 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_jimmy_chase_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "A0174.AUTH",
+        "path": "disc2/SCENE/02/ARAR/MAPINFO.BIN",
+        "sourceOffset": 43628,
+        "sourceSha256": "e5adb7020c8c0704316adc482881b77ce9660f59c97f946ab2735e8ac9612c98",
+        "byteLength": 17424,
+        "sha256": "be90144b021082280a7fba68f69870fafd332e6df3c4061603d5119dc873cb1f"
+      },
+      {
+        "name": "M_0174.BIN",
+        "path": "disc2/SCENE/02/ARAR/M_0174.BIN",
+        "byteLength": 186068,
+        "sha256": "6c2f1612abd7a177b5683bb68c8b5a4f14e01bf4a559516f48dffa49729b83ba"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md#jimmy-chase-and-interrogation",
+    "resourceName": "A0174",
+    "variant": "",
+    "selectionRule": "Reviewed authored chapter order; normalized local slot, not native owner selection."
+  },
+  "audioManifest": "public/audio/world/jimmy-interrogation/manifest.json",
+  "sceneObjects": {},
+  "packageActors": {
+    "JIMY": {
+      "label": "Jimmy Yan",
+      "modelCode": "JIM_M",
+      "browserFilename": "JIM_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/JIM_M.CHRM",
+      "textureAssetPath": "play/assets/characters/JIM_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "JIMY"
+  ],
+  "motionBanks": [
+    {
+      "bank": 32,
+      "path": "play/assets/dobuita/jimmy-interrogation/M_0174.BIN",
+      "byteLength": 186068,
+      "sha256": "6c2f1612abd7a177b5683bb68c8b5a4f14e01bf4a559516f48dffa49729b83ba"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/jimmy-interrogation/M_0174.BIN",
+      "byteLength": 186068,
+      "sha256": "6c2f1612abd7a177b5683bb68c8b5a4f14e01bf4a559516f48dffa49729b83ba"
+    },
+    {
+      "path": "play/assets/dobuita/jimmy-interrogation/A0174.AUTH",
+      "byteLength": 17424,
+      "sha256": "be90144b021082280a7fba68f69870fafd332e6df3c4061603d5119dc873cb1f"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "A0174/A0174.AUTH",
+      "archiveMember": "A0174.AUTH",
+      "byteLength": 17424,
+      "sha256": "be90144b021082280a7fba68f69870fafd332e6df3c4061603d5119dc873cb1f",
+      "durationFrames": 2005,
+      "durationSeconds": 67.79999542236328,
+      "frameCount": 88,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2,
+        "sound": 64,
+        "voice": 25
+      },
+      "actors": [
+        "AKIR",
+        "JIMY"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 32,
+          "sequenceIndex": 14,
+          "motionName": "AKI_AT1_AYAMARU_JIMHIRAAYAMARI_0100",
+          "startFrame": 193,
+          "endFrame": 2166
+        },
+        {
+          "actorTag": "JIMY",
+          "frame": 1,
+          "motionBank": 32,
+          "sequenceIndex": 15,
+          "motionName": "YKI_JIM_AT1_AYAMARU_JIMHIRAAYAMARI_0100",
+          "startFrame": 193,
+          "endFrame": 2166
+        }
+      ]
+    }
+  ]
+}

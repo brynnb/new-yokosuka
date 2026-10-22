@@ -154,6 +154,7 @@ export class MultiplayerClient {
     this.socket = null;
     this.connected = false;
     this.welcomed = false;
+    this.welcomeOwner = null;
     this.intentionalClose = false;
     this.reconnectTimer = null;
     this.reconnectAttempt = 0;
@@ -162,6 +163,7 @@ export class MultiplayerClient {
     this.lastSentPresence = null;
     this.lastSentAt = -Infinity;
     this.sequence = 0;
+    this.appliedStoryArrivalRevision = 0;
     this.pendingPurchases = new Map();
     this.pendingTransitions = new Map();
     this.pendingTransitionCommits = new Map();
@@ -190,6 +192,8 @@ export class MultiplayerClient {
       return;
     }
     this.socket = socket;
+    this.welcomed = false;
+    this.welcomeOwner = null;
     socket.addEventListener("open", () => {
       if (socket !== this.socket) return;
       this.connected = true;
@@ -205,6 +209,7 @@ export class MultiplayerClient {
       this.socket = null;
       this.connected = false;
       this.welcomed = false;
+      this.welcomeOwner = null;
       this.identity = null;
       this.lastSentPresence = null;
       this.rejectPendingPurchases(
@@ -384,7 +389,7 @@ export class MultiplayerClient {
   advanceScriptEvent(
     runId,
     action,
-    { optionId = null, requestId = crypto.randomUUID() } = {},
+    { optionId = null, requestId = crypto.randomUUID(), challengeToken = null, challengeOutcome = null, combatToken=null, combat=null,navigation=null,driving=null } = {},
   ) {
     if (!this.canSend() || !Number.isSafeInteger(runId) || runId <= 0) {
       return false;
@@ -396,6 +401,12 @@ export class MultiplayerClient {
       runId,
       action: String(action || ""),
       ...(optionId === null ? {} : { optionId }),
+      ...(challengeToken === null ? {} : { challengeToken }),
+      ...(challengeOutcome === null ? {} : { challengeOutcome }),
+      ...(combatToken===null?{}:{combatToken}),
+      ...(combat===null?{}:{combat}),
+      ...(navigation===null?{}:{navigation}),
+      ...(driving===null?{}:{driving}),
     });
   }
 
@@ -651,6 +662,7 @@ export class MultiplayerClient {
     this.socket = null;
     this.connected = false;
     this.welcomed = false;
+    this.welcomeOwner = null;
   }
 
   canSend() {
@@ -661,6 +673,12 @@ export class MultiplayerClient {
     );
   }
 
+  setAppliedStoryArrivalRevision(revision) {
+    if (!Number.isSafeInteger(revision) || revision <= 0 || revision < this.appliedStoryArrivalRevision) return false;
+    this.appliedStoryArrivalRevision = revision;
+    return true;
+  }
+
   sendPresence(now) {
     this.sequence += 1;
     const state = this.latestPresence;
@@ -669,6 +687,7 @@ export class MultiplayerClient {
       type: "presence",
       ...state,
       sequence: this.sequence,
+      ...(this.appliedStoryArrivalRevision > 0 ? {storyArrivalRevision:this.appliedStoryArrivalRevision} : {}),
     });
     if (sent) {
       this.lastSentPresence = { ...state };
@@ -709,25 +728,38 @@ export class MultiplayerClient {
     switch (message.type) {
       case "welcome":
         this.identity = message.self || null;
-        this.welcomed = true;
+        this.welcomed = false;
         {
-          const welcomeResult = this.callbacks.onWelcome?.(
-            message.self,
-            message.worldState,
-            message.connectedClients,
-            message.character || null,
-            message.inventory || [],
-            message.dialogueState || null,
-            message.chatHistory || [],
-          );
-          if (welcomeResult?.then) {
-            Promise.resolve(welcomeResult).then(
-              () => this.forcePresence(),
-              () => this.forcePresence(),
-            );
-          } else {
+          const socket = this.socket, owner = {};
+          this.welcomeOwner = owner;
+          const ownsWelcome = () => this.welcomeOwner === owner && this.socket === socket && !this.intentionalClose;
+          const ready = () => {
+            if (!ownsWelcome()) return;
+            this.welcomed = true;
             this.forcePresence();
-          }
+          };
+          const failed = error => {
+            if (!ownsWelcome()) return;
+            console.error("Multiplayer saved state could not be restored:", error);
+            // Retry the saved state through the existing reconnect backoff.
+            // Never publish a cached pre-arrival pose on restoration failure.
+            socket?.close(4001, "saved state restoration failed");
+          };
+          try {
+            const welcomeResult = this.callbacks.onWelcome?.(
+              message.self,
+              message.worldState,
+              message.connectedClients,
+              message.character || null,
+              message.inventory || [],
+              message.dialogueState || null,
+              message.chatHistory || [],
+            );
+            // Restoring a different world can be asynchronous. Hold all sends,
+            // not just forcePresence, until the saved pose has been applied.
+            if (welcomeResult?.then) Promise.resolve(welcomeResult).then(ready, failed);
+            else ready();
+          } catch (error) { failed(error); }
         }
         break;
       case "session_replaced":
@@ -741,7 +773,9 @@ export class MultiplayerClient {
           message.message
           || "This character was opened in another browser or tab.",
         );
-        this.socket?.close(1008, "session replaced");
+        // Browsers may send only 1000 or application codes (3000-4999).
+        // 1008 is valid from the server, but throws from WebSocket.close().
+        this.socket?.close(1000, "session replaced");
         break;
       case "client_count":
         this.callbacks.onClientCount?.(message.connectedClients);
@@ -862,6 +896,9 @@ export class MultiplayerClient {
       }
       case "script_event_yield":
         this.callbacks.onScriptEventYield?.(message);
+        break;
+      case "script_event_committed":
+        this.callbacks.onScriptEventCommitted?.(message);
         break;
       case "script_event_rejected":
         this.callbacks.onScriptEventRejected?.(message);
