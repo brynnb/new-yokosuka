@@ -552,58 +552,6 @@ export function nativeCollisionPositionClear(
         ));
 }
 
-export function nativeCollisionRecoveryPathClear(
-    meshes,
-    startPosition,
-    endPosition,
-    playerRadius,
-    margin = 0,
-    epsilon = 1e-4,
-) {
-    const start = [startPosition.x, startPosition.z];
-    const end = [endPosition.x, endPosition.z];
-    const clearance = Math.max(0, playerRadius + margin);
-    const finiteHeights = [startPosition.y, endPosition.y]
-        .filter(Number.isFinite);
-    const lowerY = finiteHeights.length > 0
-        ? Math.min(...finiteHeights) - NATIVE_COLLISION_VERTICAL_EPSILON
-        : null;
-    const upperY = finiteHeights.length > 0
-        ? Math.max(...finiteHeights) + NATIVE_COLLISION_PLAYER_HEIGHT
-            + NATIVE_COLLISION_VERTICAL_EPSILON
-        : null;
-    const segments = activeNativeCollisionSegments(meshes, lowerY, upperY);
-    const contacts = new Set();
-
-    for (const segment of segments) {
-        if (
-            pointSegmentDistanceSquared2d(start, ...segment)
-            < Math.max(0, clearance - epsilon) ** 2
-        ) contacts.add(segment);
-        if (
-            pointSegmentDistanceSquared2d(end, ...segment)
-            < clearance ** 2
-        ) return false;
-    }
-
-    // A recovery may leave boundaries already intersecting the player, but it
-    // may not tunnel through any other authored boundary on the way out.
-    const sweptClearanceSquared = Math.max(0, clearance - epsilon) ** 2;
-    return segments.every((segment) => {
-        const sweptDistanceSquared = segmentDistanceSquared2d(
-            start,
-            end,
-            ...segment,
-        );
-        if (contacts.has(segment)) {
-            // The path may begin within the player's radial clearance, but
-            // its center may never cross the contacted boundary itself.
-            return sweptDistanceSquared > epsilon ** 2;
-        }
-        return sweptDistanceSquared >= sweptClearanceSquared;
-    });
-}
-
 export function nativeCollisionDisplacementAllowed(
     meshes,
     position,

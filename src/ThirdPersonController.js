@@ -21,7 +21,6 @@ import {
     nativeCollisionDisplacementAllowed,
     nativeCollisionEscapeAllowed,
     nativeCollisionPositionClear,
-    nativeCollisionRecoveryPathClear,
     nearestWalkableRaySurface,
     normalizedTouchInput,
     orbitPitch,
@@ -36,6 +35,11 @@ import {
     resolveCameraPosition as resolveThirdPersonCameraPosition,
     updateControllerCamera,
 } from "./ThirdPersonCamera.js";
+import {
+    RECOVERY_MINIMUM_DISTANCE,
+    RECOVERY_REPEAT_WINDOW_MS,
+    recoveryVolumeClear,
+} from "./PlayerRecoveryCollision.js";
 
 // Shenmue collision boundaries and some extracted visual meshes contain
 // opposite-winding copies of the same face. Have Babylon choose the face
@@ -102,6 +106,7 @@ export class ThirdPersonController {
         this.listeners = [];
         this.safePositionHistory = [];
         this.safePositionSampleSeconds = 0;
+        this.lastRecoveryRequestAt = null;
 
         this.scene.collisionsEnabled = true;
         this.collider = BABYLON.MeshBuilder.CreateCylinder(
@@ -698,8 +703,7 @@ export class ThirdPersonController {
     recoveryCandidateAt(x, z, referenceY, {
         constrainHeight = true,
     } = {}) {
-        const horizontal = { x, y: referenceY, z };
-        if (!this.nativeCollisionPositionClear(horizontal)) return null;
+        if (![x, z, referenceY].every(Number.isFinite)) return null;
         const terrain = this.sampleTerrain(x, z, referenceY);
         if (!terrain || !Number.isFinite(terrain.height)) return null;
         if (
@@ -710,7 +714,22 @@ export class ThirdPersonController {
             )
         ) return null;
         const position = new BABYLON.Vector3(x, terrain.height, z);
-        return this.recoveryHeadroomClear(position) ? position : null;
+        // Validate at the resolved floor height, and include visual props even
+        // when native wall geometry owns normal horizontal movement.
+        const candidates = this.raycastIndex
+            ? this.raycastIndex.candidatesForBounds(position, position, this.options.playerRadius + 0.035)
+            : this.scene.meshes;
+        if (!recoveryVolumeClear(candidates, position, this.options, this.collider)) return null;
+        // Center-only support can put the player on the edge of a void. Sample
+        // the footprint too, using the same terrain/step rules as walking.
+        const radius = this.options.playerRadius;
+        for (const [dx, dz] of [[radius, 0], [-radius, 0], [0, radius], [0, -radius]]) {
+            const support = this.sampleTerrain(x + dx, z + dz, terrain.height);
+            if (!support || !Number.isFinite(support.height)
+                || support.height > terrain.height + this.options.maxStepUp
+                || support.height < terrain.height - this.options.maxDrop) return null;
+        }
+        return position;
     }
 
     recordSafePosition(deltaSeconds = 0, force = false) {
@@ -742,6 +761,7 @@ export class ThirdPersonController {
     }
 
     applyRecoveryPosition(position) {
+        this.cancelApproach();
         this.keys.clear();
         this.clearTouchMovement();
         this.autoRun = false;
@@ -757,63 +777,19 @@ export class ThirdPersonController {
         this.updateCamera(1);
     }
 
-    recoverFromCollision({ fallbackPosition = null } = {}) {
+    recoverFromCollision({ fallbackPosition = null, now = performance.now() } = {}) {
         const origin = this.collider.position.clone();
-        const currentlyClear = this.nativeCollisionPositionClear(origin);
-        const latestSafe = this.safePositionHistory.at(-1);
-        const preferredAngle = latestSafe
-            ? Math.atan2(latestSafe.z - origin.z, latestSafe.x - origin.x)
-            : 0;
+        const repeated = Number.isFinite(this.lastRecoveryRequestAt)
+            && now >= this.lastRecoveryRequestAt
+            && now - this.lastRecoveryRequestAt < RECOVERY_REPEAT_WINDOW_MS;
+        this.lastRecoveryRequestAt = now;
 
-        // When the player cylinder intersects an authored boundary, search
-        // outwards in tight rings. The first valid ring is the nearest known
-        // recovery distance; candidates may leave current contacts but may
-        // never tunnel through a different boundary.
-        if (!currentlyClear) {
-            const radialStep = 0.08;
-            const maxDistance = 2.5;
-            for (
-                let radius = radialStep;
-                radius <= maxDistance + 1e-6;
-                radius += radialStep
-            ) {
-                const samples = Math.max(
-                    16,
-                    Math.ceil((Math.PI * 2 * radius) / radialStep),
-                );
-                for (let index = 0; index < samples; index += 1) {
-                    const alternatingIndex = index === 0
-                        ? 0
-                        : Math.ceil(index / 2) * (index % 2 ? 1 : -1);
-                    const angle = preferredAngle
-                        + alternatingIndex * (Math.PI * 2 / samples);
-                    const candidate = this.recoveryCandidateAt(
-                        origin.x + Math.cos(angle) * radius,
-                        origin.z + Math.sin(angle) * radius,
-                        origin.y,
-                    );
-                    if (
-                        !candidate
-                        || !nativeCollisionRecoveryPathClear(
-                            this.collisionCandidates(origin, candidate, this.options.playerRadius + 0.035),
-                            origin,
-                            candidate,
-                            this.options.playerRadius,
-                            0.035,
-                        )
-                    ) continue;
-                    this.applyRecoveryPosition(candidate);
-                    return { recovered: true, source: "nearby" };
-                }
-            }
-        }
-
-        // A short history is more reliable than guessing which side of a
-        // closed boundary represents playable space. It is reset at every
-        // world load, so this cannot send the player to a different map.
-        for (let index = this.safePositionHistory.length - 1; index >= 0; index -= 1) {
+        // /stuck is a deliberate teleport, not wall sliding. Prefer a previous
+        // walking position well away from the trap; do not require a clear
+        // path from inside the obstacle. A repeat request means that failed.
+        for (let index = this.safePositionHistory.length - 1; !repeated && index >= 0; index -= 1) {
             const saved = this.safePositionHistory[index];
-            if (BABYLON.Vector3.DistanceSquared(saved, origin) < 0.16) continue;
+            if (Math.hypot(saved.x - origin.x, saved.z - origin.z) < RECOVERY_MINIMUM_DISTANCE) continue;
             const candidate = this.recoveryCandidateAt(
                 saved.x,
                 saved.z,
@@ -831,10 +807,14 @@ export class ThirdPersonController {
                 fallbackPosition.z,
                 fallbackPosition.y,
                 { constrainHeight: false },
-            ) || fallbackPosition.clone();
-            this.applyRecoveryPosition(candidate);
-            this.snapToTerrain(true);
-            return { recovered: true, source: "world-spawn" };
+            );
+            if (candidate) {
+                this.applyRecoveryPosition(candidate);
+                return { recovered: true, source: "world-spawn" };
+            }
+            // A spawn can be obstructed by current doors/vehicles. Never claim
+            // success by teleporting to a position that failed validation.
+            return { recovered: false, source: "blocked-spawn" };
         }
 
         return { recovered: false, source: "none" };
@@ -1556,6 +1536,7 @@ export class ThirdPersonController {
         this.clearTouchMovement();
         this.safePositionHistory = [];
         this.safePositionSampleSeconds = 0;
+        this.lastRecoveryRequestAt = null;
         this.collider.position.copyFrom(position);
         this.airborne = false;
         this.verticalVelocity = 0;

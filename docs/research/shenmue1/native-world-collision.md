@@ -98,17 +98,26 @@ map-specific positions.
 
 The chat `/stuck` command is a separate, explicit recovery action. The
 controller remembers a short history of grounded positions whose full player
-radius clears every active native boundary. If the current cylinder overlaps
-a boundary, the command first searches expanding eight-centimetre rings for
-the nearest position that has walkable terrain, enough headroom, full radial
-clearance, and a path that does not cross another boundary. Candidate order is
-biased toward the last known safe position rather than an arbitrary side of
-the wall.
+radius clears every active native boundary. The command first tries the newest
+saved position at least **three metres horizontally** from the current position,
+instead of making small corrections that can leave the player in the same trap.
 
-If no nearby candidate passes all checks, recovery uses the newest still-valid
-position in the current world's safe history. The world's authored spawn is
-the final fallback. Successful recovery immediately publishes the corrected
-position to multiplayer peers. The command never enables no-clip; production
+Every destination is revalidated against current native boundaries and nearby
+world/prop triangles over the player's full width and height, with the ordinary
+step/slope allowance at the feet. Footprint terrain samples reject unsupported
+edges. This uses the existing spatial index and includes visual props even when
+native boundaries own ordinary movement. Closed prop meshes also reject enclosed
+destinations; open walls and room shells are not interpreted as filled solids.
+It does not change walking collision or the existing history size/sample rate.
+
+The world's authored spawn is the fallback when no saved position qualifies.
+Repeating `/stuck` within **30 seconds** skips history and goes straight to that
+spawn. Both history and the repeat timer reset with the controller on world
+entry. Recovery is a teleport to a previously visited position or the entrance,
+so it does not require a walkable path out of the current trap. An invalid spawn
+produces an explicit failure without moving the player. Successful recovery
+immediately publishes the corrected position to multiplayer peers. The command
+never enables no-clip; production
 clients cannot enable the local-development no-clip mode.
 
 ## Code 10 stair-flight boundaries

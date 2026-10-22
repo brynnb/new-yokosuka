@@ -101,3 +101,29 @@ test("multiplayer warp refuses unavailable and mounted player states", () => {
   }).adapter;
   assert.equal(mounted.warp([1, 2, 3]).warped, false);
 });
+
+test("stuck publishes only successful recovery and reports an obstructed entrance", () => {
+  const { adapter, calls } = createAdapter();
+  adapter.playerRuntime.controller.recoverFromCollision = ({ fallbackPosition }) => {
+    assert.equal(fallbackPosition, adapter.worldRuntime.spawn);
+    return { recovered: true, source: "recent-safe" };
+  };
+  assert.match(adapter.callbacks().onStuck().message, /Use \/stuck again/);
+  assert.deepEqual(calls, ["dirty", ["publish", true]]);
+  calls.length = 0;
+  adapter.playerRuntime.controller.recoverFromCollision = () => ({ recovered: false, source: "blocked-spawn" });
+  assert.match(adapter.callbacks().onStuck().message, /entrance is obstructed/);
+  assert.deepEqual(calls, []);
+});
+
+test("stuck refuses loading, world switching, and driving without attempting recovery", () => {
+  for (const state of ["loading", "switching", "driving"]) {
+    const { adapter, calls } = createAdapter();
+    adapter.playerRuntime.controller.recoverFromCollision = () => assert.fail("must not recover");
+    if (state === "loading") adapter.worldRuntime.ready = false;
+    if (state === "switching") adapter.worldRuntime.switching = true;
+    if (state === "driving") adapter.forkliftAssembly.mode.driving = true;
+    assert.equal(adapter.callbacks().onStuck().recovered, false);
+    assert.deepEqual(calls, []);
+  }
+});

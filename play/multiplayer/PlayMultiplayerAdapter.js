@@ -137,7 +137,7 @@ export class PlayMultiplayerAdapter {
 
   recoverFromCollision() {
     const controller = this.playerRuntime.controller;
-    if (!controller) {
+    if (!controller || !this.worldRuntime.ready || this.worldRuntime.switching) {
       return { recovered: false, message: "The world is still loading." };
     }
     if (this.forkliftAssembly.mode.driving) {
@@ -154,9 +154,9 @@ export class PlayMultiplayerAdapter {
       this.multiplayerRuntime.publishPresence(true);
     }
     const messages = {
-      nearby: "Moved you to the nearest clear position.",
-      "recent-safe": "Moved you back to your last safe position.",
+      "recent-safe": "Moved you back to an earlier clear position. Still stuck? Use /stuck again to return to this area's entrance.",
       "world-spawn": "Moved you back to this area's entrance.",
+      "blocked-spawn": "This area's entrance is obstructed or has no safe ground. Please try /stuck again in a moment.",
     };
     return { ...result, message: messages[result.source] };
   }

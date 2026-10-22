@@ -26,7 +26,6 @@ import {
     nativeCollisionDisplacementAllowed,
     nativeCollisionEscapeAllowed,
     nativeCollisionPositionClear,
-    nativeCollisionRecoveryPathClear,
     nearestWalkableRaySurface,
     normalizedTouchInput,
     orbitPitch,
@@ -760,7 +759,7 @@ test("native collision permits only movement out of existing penetration", () =>
     ), false);
 });
 
-test("native collision recovery validates endpoints and prevents tunneling", () => {
+test("native collision validates positions and ordinary movement cannot tunnel", () => {
     const nativeWall = (segments) => ({
         checkCollisions: true,
         isEnabled: () => true,
@@ -771,30 +770,11 @@ test("native collision recovery validates endpoints and prevents tunneling", () 
         },
     });
     const wall = nativeWall([[[0, -2], [0, 2]]]);
-    const secondWall = nativeWall([[[-0.65, -2], [-0.65, 2]]]);
     const penetrating = new BABYLON.Vector3(-0.23, 0, 0);
     const clear = new BABYLON.Vector3(-0.32, 0, 0);
 
     assert.equal(nativeCollisionPositionClear([wall], penetrating, 0.24), false);
     assert.equal(nativeCollisionPositionClear([wall], clear, 0.24), true);
-    assert.equal(nativeCollisionRecoveryPathClear(
-        [wall],
-        penetrating,
-        clear,
-        0.24,
-    ), true);
-    assert.equal(nativeCollisionRecoveryPathClear(
-        [wall, secondWall],
-        penetrating,
-        new BABYLON.Vector3(-0.95, 0, 0),
-        0.24,
-    ), false);
-    assert.equal(nativeCollisionRecoveryPathClear(
-        [wall],
-        penetrating,
-        new BABYLON.Vector3(0.32, 0, 0),
-        0.24,
-    ), false);
     assert.equal(nativeCollisionDisplacementAllowed(
         [wall],
         new BABYLON.Vector3(-0.4, 0, 0),
