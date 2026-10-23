@@ -32,6 +32,14 @@ incoming strike. They are nonlethal and have no time limit. Buying or finding a
 scroll only grants the item: choose **Read** in Inventory to learn it. The item
 remains owned, and a learned scroll cannot be purchased twice.
 
+Optional entry offers use priorities 100–108, below the required Story routes'
+200-series band. When several eligible volumes overlap, the shared entry
+dispatcher issues one request and holds the approach position while awaiting
+the server. Its presentation takes over the movement lock; rejection, timeout
+and cancellation release it. A pickup volume that starts earlier can still
+offer before the main conversation becomes eligible. Decline it normally and
+continue walking; no scroll or learned flag is silently granted or suppressed.
+
 Pit Blow replaces Elbow Slam, Double Blow replaces TwinHandWaves, Swallow Dive
 replaces Side Reaper Kick, and Tornado Kick replaces Against Cascade in Story's
 move list. Practice retains both variants. The unidentified `nothingSkill`
@@ -88,3 +96,6 @@ Use an earned Story character that has not collected Twin Blades, or select
 Shadow Reaper with `NEW_YOKOSUKA_SCROLL_MOVE_ID=shadowReaper`. This checks the
 actual pickup choices, Read request, retained item and Story/Free roam round trip
 without granting a prerequisite or learning flag through the test fixture.
+The October 23 connected home continuation also passes Twin Blades pickup,
+Read, retained item and the Story/Free roam round trip after Fuku's travel
+discussion, with the new entry priorities and request ownership active.

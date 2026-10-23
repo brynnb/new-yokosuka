@@ -97,9 +97,12 @@ export class ScriptAutomaticEventRuntime {
         && NATIVE_FALLBACK_CODES.has(result.error?.code)
       ) {
         await this.fallbackToNative({ area, context, reason: result.error.code });
-      } else if (result?.outcome === "rejected") {
+      } else if (result?.outcome === "rejected" && result.error?.code !== "automatic_already_dispatched") {
         this.onError(result.error || new Error("automatic script event was rejected"));
       }
+      // A private cinematic can reload the same browser room without a new
+      // server room entry. Its duplicate-dispatch receipt is terminal and
+      // expected, not an error or permission to run native fallback effects.
       // A declined result still proves that a published server candidate owned
       // this room-entry dispatch and deliberately passed it. Running the native
       // route as well would duplicate its gate effects.

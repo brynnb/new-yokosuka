@@ -23,7 +23,7 @@ native bank-account computation.
 | Eligibility | Story Ryo, completed opening and mirror meeting, genuinely owned Phoenix Mirror. Saved home update gates sleep/withdrawal; saved withdrawal gates the bedroom discussion. The server independently checks accepted player bounds. |
 | Sequence / timing | Original embedded A0160 update (~21.68 s); existing KKYB two-mirrors/hawk vision (~30 s), then original 01BNK bankbook scene (~25.22 s). Three original HUMANS travel-agency lines use held bedroom staging; original 01EAR kitchen discussion (~82.25 s) follows. |
 | Cast / props | Original Ryo and Fuku; Ine joins the kitchen scene. Original `$BNKT2DBG.MT5` bankbook is named directly by the JOMO bank-scene resource cluster. Its original AMOV supplies the book trajectory; no duplicate hand-attached prop or guessed substitute. Actor ownership suppresses overlapping personal ambient copies and releases on cleanup. |
-| Dialogue / audio / cameras | Original A0160, 01BNK and 01EAR AUTH camera/body/voice/SFX tracks. F1004A124/B141/B146 are coherent original FUKU HUMANS lines, not newly voiced dialogue. Lead-in poses/camera borrow A0160's first frame; holding them through those lines is an adaptation. Music for the home scenes and detailed hand/face callbacks are not reconstructed; the existing KKYB package retains its source-associated dream music. |
+| Dialogue / audio / cameras | Original A0160, 01BNK and 01EAR AUTH camera/body/voice/SFX tracks, speech deformation and recovered hand/expression callbacks. F1004A124/B141/B146 are coherent original FUKU HUMANS lines, not newly voiced dialogue. Lead-in poses/camera borrow A0160's first frame; holding them through those lines is an adaptation. Home-scene music and callback gaze/head tracking remain omitted; the existing KKYB package retains its source-associated dream music. |
 | Weather / personal time | Preserve ordinary personal weather/season for the house. The dream isolates its original presentation stage. Only successful dream-plus-bank completion advances to the next personal day at 08:30 and restores the established bedside arrival. No public clock mutation. |
 | Effects / notebook | Home update saves its own milestone/page. Dream, withdrawal milestone/page, one ¥36,502 grant, next-day clock and bedside arrival commit together. The family discussion adds only its milestone and travel-agency notebook clue. It cannot give funds again. Existing shared economy rules remain authoritative across play modes. |
 | Exit / controls | Home update and advice restore prior gameplay pose/camera/controls in JOMO. Completed sleep returns to the existing supported Ryo bedside spawn. The next objective is checking Global Travel or Asia Travel in Dobuita. |
@@ -60,6 +60,36 @@ records extracted from original JOMO `MPK00.PKF`. Binary output remains ignored;
 manifests and immutable runtime-asset metadata are tracked. Publication remains
 a separate authorized release step.
 
+### Original home presentation callbacks
+
+The [retained original callback evidence](../../tools/evidence/home-ticket-callback-ir.json)
+comes from Disc 2 JOMO MAPINFO, SHA-256
+`6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe`.
+The generator verifies each owner's coroutine launch and original SCEX slot,
+then uses the shared hand, expression and object compilers:
+
+| Scene | Owner | Callback | Original slot |
+| --- | --- | --- | --- |
+| Home update | `0x706a0` | `0x70b18` | 19 |
+| Bankbook | `0x70d24` | `0x71190` | 10 |
+| Kitchen discussion | `0x730dc` | `0x7353c` | 17 |
+| Fuku's contribution | `0x718e8` | `0x71f20` | 13 |
+
+Slots count empty eight-byte TRCK records too; dropping them selects the wrong
+callback. Shared OP00 hand assets are reused only after verifying byte identity
+against the Disc 2 originals. The FACE installer clamps its signed 16-bit
+duration to at least one tick, so zero-duration expression setup is valid.
+The shared compiler now follows that source rule rather than rejecting it.
+
+The bankbook keeps its original AUTH trajectory. Its original node `152` opens
+at frame 270 (rotation `[-23718,0,0]`) and closes at 665. No guessed wrist
+attachment is added. `PIG_` attaches to Fuku's right controller `18` at frame
+345, transfers to Ryo's left controller `12` at 890, and returns to original
+world motion at 1134. The original later motion parks the intact model below
+the floor. Breaking debris is still omitted. FACE gaze and LKPT head tracking
+are retained in the evidence but deliberately not assigned inferred targets;
+the family scene's terminal expression reset is covered by actor cleanup.
+
 ### Verification
 
 The real Yarn/compiler/PostgreSQL earned-chain test passes through these
@@ -75,9 +105,30 @@ and bank cancellation without funds/day jump; natural dream/bank ending with
 one ¥36,502 award and next-day bedside arrival; actual bedroom-door click and
 normal supported entry, advice decline/cancel/retry, original kitchen ending,
 notebook, restored controls and reload without replay or another payment.
-Inspected captures show Ryo/Fuku, the original Sumitomo bankbook and original
-camera/subtitle presentation. Audio fidelity was not assessed by listening;
-the exact hand/face callbacks and every kitchen shot were not visually audited.
+The October 23 presentation recheck plays all four home-update, two bankbook
+and 28 kitchen recordings naturally. Rendered mouth controls and face vertices
+change for both home-update speakers, Ryo at the bankbook, and all three kitchen
+speakers. Reviewed shots show the opening Sumitomo book and detailed hands;
+native and diagnostic kitchen/home captures were inspected. Every gesture,
+gaze, expression and shot is not certified, and audio fidelity was not assessed
+by listening.
+
+The connected recheck starts from an isolated save with the earlier mirror
+prerequisites, then earns home update, dream/withdrawal and family advice across
+saved interruptions. It rechecks decline/cancel/retry, the one ¥36,502 award,
+next-day 08:30 arrival, notebook, controls and reload. This is not a fresh
+uninterrupted full-game playthrough.
+
+This check exposed two shared entry problems: optional lessons/pickups had
+higher priority than required Story routes, and movement continued during the
+server's event-selection request. Optional entry offers now use the lower
+100-series priority band. The region runtime latches all simultaneously eligible
+overlapping bounds and holds a scoped movement lock until the presentation
+takes ownership or the request terminates. Focused tests cover rejection,
+cancellation, timeout, reset and safe retry. Same-room cinematic reloads treat
+the server's already-dispatched automatic-event receipt as expected, without
+running native fallback effects. The scroll's distinct earlier approach can
+still offer normally; the connected test declines it through the actual UI.
 
 The first room-entry check aimed at the moving leaf's old center, too near its
 partly stacked edge for Ryo's radius. The shared test helper now derives the
@@ -98,7 +149,7 @@ the latter explicitly permits either agency visit before Fuku's help.
 | Cast / assets | Ryo and Satoshi Shinoda (`SIND`, SND_L) at Global; Ryo and Etsuko Sekine (`ETKO`, the existing DAZA JOJ_L model) at Asia; Ryo and Fuku (`FUK_M`) at home. Original AUTH body, camera, prop movement and speech tracks. |
 | Sequence / choices | Ask for fares or leave. Global quotes ¥198,000 for the ticket alone; Asia quotes ¥158,000. Each successful scene grants its own flyer and a shared airfare milestone. Either permits Fuku's original piggy-bank scene and his ¥39,634 contribution. No air ticket is purchased. |
 | Timing / audio | Global `01MIT` lasts about 50.43 s with 20 voices and 8 effects; Asia `01ETU` about 70.98 s with 19/10; home `01MON` about 89.33 s with 22/19. Durations include the original movement/camera tail. No challenge or movie-implied victory. |
-| Props / approximation | Ledger, pen and flyer roles at Global are reviewed role-based assignments, not recovered callback bindings. Asia's props now use the original CHRS image table (see below), replacing earlier inferred assignments. Original movement supplies trajectories. Global's cinematic door actor is transform-only: exploration keeps the real doorway. The intact home piggy bank uses its original trajectory; breaking debris and exact finger callbacks are omitted. |
+| Props / approximation | Ledger, pen and flyer roles at Global are reviewed role-based assignments, not recovered callback bindings. Asia's props use the original CHRS image table (see below). Original movement supplies trajectories. Global's cinematic door actor is transform-only: exploration keeps the real doorway. The home piggy bank uses its original hand transfers and world trajectory, with recovered detailed hand poses/components. Breaking debris remains omitted. |
 | Personal environment | Preserve ordinary personal calendar, weather and lighting. Shop hours use personal time. Quotes and contribution do not advance the day or alter the public clock. |
 | Effects / notebook | Grant the Hong Kong Flyer and Bargain Flyer separately, each once. Fuku's milestone, notebook clue and ¥39,634 commit together. Quotes cannot grant money. New flyers currently have text-only inventory slots, not invented or misidentified artwork. |
 | Exit / recovery | Restore the prior exploration pose, camera and controls in the current room. Leave, preparation failure, timeout and cancellation grant nothing. Stale acknowledgements cannot settle a cancelled run. Explicit skip of a noninteractive movie uses the same one-time server settlement. Reload reads committed outcomes. |
@@ -141,11 +192,17 @@ Connected rendered continuation (`NEW_YOKOSUKA_AGENCY_E2E=true`) passes across
 earned-save interruptions: real physical door 60 at Global and door 25 at Asia,
 leave/cancel/retry and natural quote endings, actual Fuku bedroom-door entry,
 contribution cancellation/retry and natural ending, one payment and independent
-flyers, restored controls, and saved reload without replay/payment. Captures
-visibly confirm the original Global cast, Fuku's flyer/piggy-bank presentation,
-and the Asia cast/camera in DAZA. They do not verify every shot, exact hand
-callbacks or audio fidelity by listening. Flyer artwork in the inventory itself
-has not been added or visually checked.
+flyers, restored controls, and saved reload without replay/payment. The October
+23 rerun passes this chain after the newly reviewed home events and ordinary
+Twin Blades pickup/Read/mode round trip. Fuku's contribution increases the save
+from ¥38,502 to ¥78,136 exactly once. Reviewed captures show the original Global
+cast, piggy bank in Fuku's hands and its transfer to Ryo, and the Asia cast/camera
+in DAZA. A separate full/cancel presentation recheck plays all 22 contribution
+recordings, verifies attachment ownership/release and restores avatar, pose,
+view and controls without progress changes. Contribution-specific facial
+deformation was not instrumented in that pass. Every shot, finger contact and
+audio fidelity by listening remain unverified; flyer inventory artwork is not
+added or visually checked.
 
 The first rendered continuation exposed a dispatch error: reusing the earlier
 advice region also reused its completed-event gate, so the contribution never
@@ -156,9 +213,9 @@ collision or door rule was changed.
 
 ## Remaining ticket progression
 
-The next-morning call and arcade Chai fight are implemented below. The resulting
-Asia Travel confrontation/chase remains missing connected content. A payment,
-promise, call or completed introduction is not a fight or chase success.
+The next-morning call, arcade Chai fight and connected Asia Travel chase are
+implemented below, with their individual fidelity and verification limits.
+A payment, promise, call or completed introduction is not a fight or chase success.
 
 The `01MON` piggy-bank subtitle states ¥39,634; the same integer occurs in
 JOMO MAPINFO at `0x71a44`. That exact amount is used by the authored settlement,

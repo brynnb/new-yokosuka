@@ -68,6 +68,13 @@ test("native automatic events run only after an explicit server absence", async 
   assert.equal(rejected.errors[0].code, "ambiguous_trigger");
 });
 
+test("same-room cinematic reload accepts the server's already-dispatched receipt without fallback or an error", async()=>{
+  const h=harness(async()=>({outcome:"rejected",error:{code:"automatic_already_dispatched"}}));
+  assert.equal(h.runtime.update({area:"JOMO"}),true);await h.runtime.pending;
+  assert.equal(h.runtime.update({area:"JOMO"}),false);
+  assert.equal(h.starts.length,1);assert.deepEqual(h.native,[]);assert.deepEqual(h.errors,[]);
+});
+
 test("a disconnected server delegates the room-entry dispatch to native", async () => {
   const error = Object.assign(new Error("offline"), {
     code: "connection_unavailable",

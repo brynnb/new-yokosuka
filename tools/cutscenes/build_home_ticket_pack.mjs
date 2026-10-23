@@ -9,11 +9,71 @@ import {buildNativeAseqAudioPack,registerNativeAseqMusic} from "../lib/NativeAse
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
 import {addNativeAseqStageAssets} from "../lib/NativeAseqStageAssets.mjs";
 import {parseChrtSceneObjectBindings} from "../lib/chrt_scene_object_bindings.js";
+import {extractNativeAseqCallbackPresentation} from "../lib/NativeAseqCallbackPresentation.mjs";
+import {extractNativeAseqCallbackObjectPresentation} from "../lib/NativeAseqCallbackObjectPresentation.mjs";
 
 const root=path.resolve(import.meta.dirname,"../..");
 const mapHash="6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe";
 const commonHash="916aab45137cf340516a1cdd2ee61540e7c6562a1e92c5f932e9055ae0db3b89";
 const evidence="docs/design/story-ticket-journey.md";
+// Native slots include empty TRCK records. Package-local slot zero remains
+// separate from these original owner/callback identities.
+const homeCallbacks={
+  "post-chen-home":{owner:"0x706a0",callback:"0x70b18",slot:19},
+  "bank-savings":{owner:"0x70d24",callback:"0x71190",slot:10},
+  "travel-family":{owner:"0x730dc",callback:"0x7353c",slot:17},
+  "fuku-travel-funds":{owner:"0x718e8",callback:"0x71f20",slot:13},
+};
+function homePresentation(profile,mapSource,source,props){
+  const binding=homeCallbacks[profile.id];
+  if(!binding)return {};
+  const bytes=fs.readFileSync(mapSource),ir=JSON.parse(fs.readFileSync(path.join(root,"tools/evidence/home-ticket-callback-ir.json")));
+  if(sha256(bytes)!==ir.source.mapinfoSha256)throw Error("Changed original home callback source");
+  const functions=[ir.function,...ir.supportingFunctions],owner=functions.find(f=>f.id===binding.owner);
+  const actions=owner.blocks.flatMap(b=>b.actions);
+  if(!actions.some(a=>a.kind==="childCoroutineLaunch"&&a.targetFileOffset===binding.callback)
+    ||!actions.some(a=>a.operationHex==="0x0050"&&a.arguments[0]?.value===binding.slot))throw Error("Changed home callback ownership");
+  const scex=bytes.indexOf("SCEX"),tracks=[];
+  if(scex<0)throw Error("Missing native home SCEX table");
+  for(let at=scex+8;at<scex+bytes.readUInt32LE(scex+4);){
+    const size=bytes.readUInt32LE(at+4);
+    if(bytes.toString("ascii",at,at+4)!=="TRCK"||size<8||at+size>bytes.length)throw Error("Changed native home TRCK table");
+    tracks.push(at);at+=size;
+  }
+  if(tracks[binding.slot]!==profile.offset)throw Error("Home callback selects another AUTH");
+  const nativeFunction=functions.find(f=>f.id===binding.callback);
+  // Compile finite hands and expressions only. FACE eye-target requests and
+  // LKPT head tracking are separate channels, retained in the source evidence
+  // but not assigned guessed timings/targets by this package adapter.
+  const input={bytes,callbackFunction:Number(binding.callback),nativeFunction,activitySlot:0,durationFrames:profile.frames};
+  const presentation=extractNativeAseqCallbackPresentation({...input,durationFrames:profile.frames+1,
+    nativeFunction:{...nativeFunction,blocks:nativeFunction.blocks.map(b=>({...b,
+      actions:b.actions.filter(a=>a.semanticId!=="resolved-object-face-record-request"),
+    }))},
+  });
+  // The family callback explicitly resets FACE at the terminal frame. Our
+  // actor lease releases the entire face there; it is not an extra movie shot.
+  const cues=Object.fromEntries(Object.entries(presentation).map(([key,value])=>
+    [key,Array.isArray(value)?value.filter(c=>c.frame===undefined||c.frame<profile.frames):value]));
+  const objects=extractNativeAseqCallbackObjectPresentation({...input,objectTags:Object.keys(props)});
+  const attachedObjects=Object.fromEntries(Object.entries(props).flatMap(([tag,prop])=>{
+    const grips=objects.attachedObjectCues.filter(c=>c.objectTag===tag),nodes=objects.nodeTransformCues.filter(c=>c.objectTag===tag);
+    if(!grips.length&&!nodes.length)return [];
+    return [[tag,{...prop,sceneObject:true,
+      attachments:grips.filter((c,i)=>grips.findLastIndex(v=>v.frame===c.frame)===i),nodeTransforms:nodes}]];
+  }));
+  const inventory=JSON.parse(fs.readFileSync(path.join(root,"play/assets/introduction/op00/asset-inventory.generated.json")));
+  const handTags=new Set([...cues.nativeHandPoseCues,...cues.nativeHandComponentCues,...cues.nativeBodyHandPoseCues].map(c=>c.actorTag));
+  const handAssets=Object.fromEntries([...handTags].map(tag=>{
+    const hand=inventory.handAssets[tag];if(!hand)throw Error(`Missing original home hands: ${tag}`);
+    for(const record of [hand.left.model,hand.right.model,hand.rig]){
+      const original=fs.readFileSync(path.join(source,"MODEL/HAND",path.basename(record.path)));
+      if(sha256(original)!==record.sha256)throw Error(`Home hand differs from shared OP00 asset: ${record.path}`);
+    }
+    return [tag,hand];
+  }));
+  return {cues,attachedObjects,...(handTags.size?{handAssets}:{}),nativeHandPoseTables:cues.nativeHandPoseTables};
+}
 const actor=(label,code)=>{
   const prefix=code==="INE_M"?"play/assets":"play/assets/characters";
   return {label,modelCode:code,browserFilename:`${code}.CHRM`,assetFormat:"MT5",characterScale:1,
@@ -170,12 +230,15 @@ for(const p of selectedProfiles){
     }
   }
   if(textureSources.length)generatedAssets.push({assetPath:`${prefix}/textures.bin`,bytes:Buffer.concat(textureSources.map(file=>extractNativeTexnPack(fs.readFileSync(file),file).bytes))});
+  const {cues:callbackCues,...callbackResources}=homePresentation(p,mapSource,source,props);
   const manifest=buildNativeAseqActivityPack({generatedBy:"tools/cutscenes/build_home_ticket_pack.mjs",resourceName:p.resource,disc,
     sourceMembers:members,expectedMembers:members,bindingEvidence:p.evidence||evidence,
-    selectionRule:"Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector.",
+    selectionRule:`Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector.${homeCallbacks[p.id]?` Original owner ${homeCallbacks[p.id].owner} selects native slot ${homeCallbacks[p.id].slot} with callback ${homeCallbacks[p.id].callback}; hands, FACE expressions and prop grips/hinges use that callback. FACE gaze and LKPT tracking remain omitted.`:""}`,
+    ...callbackResources,
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),audioManifest:`${audioPrefix}/manifest.json`,
     motionBanks:[{bank:p.bank,member:p.motion,parseOptions:{sequenceIndexBase:p.base}}],
     activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:`${p.resource}.AUTH`,actors:p.actors,durationFrames:p.frames,
+      ...callbackCues,
       ...(p.stage?{browserMapVisibility:[],browserIsolatedStage:true,browserLightingPresetIndex:0,nativeSceneObjectStates:stageStates}:{})}],
     packageActors:Object.fromEntries(Object.entries(characters).filter(([tag])=>p.actors.includes(tag)).map(([tag,[label,code]])=>[tag,actor(label,code)])),
     ...(Object.keys(props).length?{sceneObjects:props,outputMembers,generatedAssets}:{}),

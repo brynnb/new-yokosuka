@@ -956,6 +956,7 @@ function createPlayRuntime() {
     storyObjects: new StoryObjectPresentation({getCharacter: () => accountSession.character}),
     storyRegions: new StoryRegionRuntime({ controller: scriptEventController,
       getCharacter: () => accountSession.character,
+      acquireMovementLock: () => controller.acquireMovementLock(),
       getGameDate: currentServerGameDate,
       publishPresence: () => { multiplayerRuntime.markPresenceDirty(); return multiplayerRuntime.publishPresence(true); },
       onError: error => { console.warn("Story region did not start:", error); transientNotice.show("This story scene could not start. Leave the area and approach again to retry."); },

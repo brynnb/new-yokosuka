@@ -4,11 +4,12 @@ import catalog from "../data/story-regions.json" with { type: "json" };
  * eligibility. No native-room fallback is permitted for this dispatch family.
  */
 export class StoryRegionRuntime {
-  constructor({ controller, getCharacter, getGameDate = () => null, publishPresence, onError = console.error, regions = catalog.regions }) {
+  constructor({ controller, getCharacter, getGameDate = () => null, publishPresence, acquireMovementLock = () => () => {}, onError = console.error, regions = catalog.regions }) {
     this.controller = controller;
     this.getCharacter = getCharacter;
     this.getGameDate = getGameDate;
     this.publishPresence = publishPresence;
+    this.acquireMovementLock = acquireMovementLock;
     this.onError = onError;
     this.regions = regions;
     for(const region of regions)if(region.hours&&(!Array.isArray(region.hours)||region.hours.length!==2
@@ -43,6 +44,7 @@ export class StoryRegionRuntime {
       for(const region of this.regions)if(region.recheckOnDayChange)this.inside.delete(region.id);
       this.calendarDay=calendarDay;
     }
+    const entered=[];
     for (const region of this.regions) {
       // Use-only bounds authorize a selected world object on the server; merely
       // walking nearby must not start its interaction or consume entry dispatch.
@@ -62,16 +64,31 @@ export class StoryRegionRuntime {
       if (this.inside.has(region.id) || (!region.repeatable && character.storyFlags?.[region.completedFlag])
         || (region.requiredFlags || []).some(flag => character.storyFlags?.[flag] !== true)
         || (region.excludedFlags || []).some(flag => character.storyFlags?.[flag] === true)) continue;
-      // Welcome restoration can still be pending. A request sent without its
-      // current position is rejected and must not consume this entry latch.
-      if (this.publishPresence() !== true) return false;
-      this.inside.add(region.id);
-      const generation = this.generation;
+      entered.push(region.id);
+    }
+    if(!entered.length)return false;
+    // All overlapping bounds share one server-arbitrated "enter" selector.
+    // Latching only the first would issue another offer as soon as the chosen
+    // scene returned, even though the player had never left the same approach.
+    // Ineligible bounds are not latched: earning a prerequisite still unlocks
+    // their event without requiring a manufactured exit.
+    if (this.publishPresence() !== true) return false;
+    // The accepted position must remain the approach while native state is
+    // flushed and the server chooses its event. Otherwise a walking player can
+    // cross several volumes before the eventual dialogue acquires its lock.
+    // The presentation takes its own lease before start() resolves; all other
+    // outcomes release this request-only lease, including cancellation/timeouts.
+    const releaseMovement = this.acquireMovementLock();
+    for(const id of entered)this.inside.add(id);
+    const generation = this.generation;
+    try {
       void this.controller.start({ kind: "enter" }, { area }).then(result => {
         if (generation === this.generation && result?.outcome === "rejected") this.onError(result.error);
-      }).catch(error => { if (generation === this.generation) this.onError(error); });
-      return true;
+      }).catch(error => { if (generation === this.generation) this.onError(error); }).finally(releaseMovement);
+    } catch(error) {
+      releaseMovement();
+      this.onError(error);
     }
-    return false;
+    return true;
   }
 }

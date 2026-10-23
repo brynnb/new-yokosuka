@@ -14,6 +14,41 @@ import { extractNativeAseqCallbackObjectPresentation } from "../tools/lib/Native
 
 const tattooMap = path.resolve(process.env.SHENMUE_DISC1_EXTRACTED_ROOT || "extracted_files", "data/SCENE/01/TATQ/MAPINFO.BIN");
 const mirrorMap = path.resolve(process.env.SHENMUE_DISC2_EXTRACTED_ROOT || "extracted_disc2_v2", "data/SCENE/02/MS8A/MAPINFO.BIN");
+const homeMap = path.resolve(process.env.SHENMUE_DISC2_EXTRACTED_ROOT || "extracted_disc2_v2", "data/SCENE/02/JOMO/MAPINFO.BIN");
+test("home callbacks compile native hands, expression durations, bankbook hinge and piggy-bank transfer", {
+  skip: !fs.existsSync(homeMap) && "requires original Disc 2 JOMO extraction",
+}, () => {
+  const read=file=>JSON.parse(fs.readFileSync(new URL(file,import.meta.url)));
+  const evidence=read("../tools/evidence/home-ticket-callback-ir.json"),bytes=fs.readFileSync(homeMap);
+  assert.equal(createHash("sha256").update(bytes).digest("hex"),evidence.source.mapinfoSha256);
+  const functions=[evidence.function,...evidence.supportingFunctions];
+  for(const [name,id]of [["post-chen-home","0x70b18"],["bank-savings","0x71190"],["travel-family","0x7353c"],["fuku-travel-funds","0x71f20"]]){
+    const manifest=read(`../play/assets/hazuki/${name}/manifest.json`),activity=manifest.activities[0];
+    const fn=functions.find(f=>f.id===id),input={bytes,nativeFunction:fn,callbackFunction:Number(id)};
+    const hands=extractNativeAseqCallbackHandPresentation(input);
+    assert.deepEqual(hands.nativeHandComponentLimitations,[]);
+    for(const key of ["nativeHandPoseCues","nativeBodyHandPoseCues","nativeHandComponentCues"])
+      assert.deepEqual(activity[key],hands[key].filter(c=>c.frame<activity.durationFrames));
+    const faceFn={...fn,blocks:fn.blocks.map(b=>({...b,actions:b.actions.filter(a=>a.semanticId!=="resolved-object-face-record-request")}))};
+    const presentation=extractNativeAseqCallbackPresentation({...input,nativeFunction:faceFn,durationFrames:activity.durationFrames+1});
+    assert.deepEqual(activity.nativeFaceClipCues,presentation.nativeFaceClipCues.filter(c=>c.frame<activity.durationFrames));
+    assert.equal(activity.nativeFaceClipCues.every(c=>c.durationNativeTicks>=1),true);
+    if(name==="post-chen-home"){
+      assert.deepEqual(activity.nativeFaceClipCues.map(c=>[c.frame,c.actorTag,c.durationNativeTicks]),[[0,"AKIR",1],[0,"FUKU",1],[250,"FUKU",10]]);
+      const changed=structuredClone(faceFn);
+      changed.blocks.flatMap(b=>b.actions).find(a=>a.semanticId==="actor-face-clip-control-write").arguments[3].value=0xffff;
+      assert.equal(extractNativeAseqCallbackPresentation({...input,nativeFunction:changed,durationFrames:651}).nativeFaceClipCues[0].durationNativeTicks,1);
+    }
+  }
+  const bank=read("../play/assets/hazuki/bank-savings/manifest.json");
+  assert.deepEqual(bank.attachedObjects.BANK.attachments,[],"AUTH, not a guessed wrist grip, owns the book trajectory");
+  assert.deepEqual(bank.attachedObjects.BANK.nodeTransforms.map(c=>[c.frame,c.nodeKey,c.rotationRaw]),[[0,152,[0,0,0]],[270,152,[-23718,0,0]],[665,152,[0,0,0]]]);
+  const funds=read("../play/assets/hazuki/fuku-travel-funds/manifest.json");
+  assert.deepEqual(funds.attachedObjects.PIG_.attachments.map(c=>[c.frame,c.action,c.parentActorTag,c.controlId]),[[345,"attach","FUKU",18],[890,"attach","AKIR",12],[1134,"detach",undefined,undefined]]);
+  assert.equal(funds.sceneObjects.PIG_.objectTag,"PIG_");
+  assert.deepEqual(Object.keys(funds.handAssets).sort(),["AKIR","FUKU"]);
+});
+
 test("mirror callbacks retain original hands and grips without the guessed permanent attachment", {
   skip: !fs.existsSync(mirrorMap) && "requires original Disc 2 MS8A extraction",
 }, () => {
@@ -175,6 +210,22 @@ test("the combined presentation extractor does not discard body-hand commands", 
         arguments: [{ kind: "constant", ascii: "INE_" }, ...[2, 8, 16].map(value => ({ kind: "constant", value }))] }] }] } });
   assert.deepEqual(presentation.nativeBodyHandPoseCues.map(cue => [cue.frame, cue.actorTag, cue.channel, cue.targetIndex]),
     [[0, "INE_", 2, 8]]);
+});
+
+test("FACE duration uses the original signed-low16 minimum-one clamp without requiring disc fixtures",()=>{
+  const bytes=Buffer.alloc(0x100);
+  // Minimal generated SH-4 callback with a timer comparison against frame 5.
+  [0x2de6,0x4d22,0x7de0,0x6ed3,0x54e3,0xe505,0x3450,0x344a,0x6043,0x8800,0x8b02,0xd10f,0x0123]
+    .forEach((word,index)=>bytes.writeUInt16LE(word,index*2));
+  bytes.writeUInt32LE(0x40-28,0x54);
+  for(const [duration,expected]of [[0,1],[1,1],[10,10],[0xffff,1],[0x1000a,10]]){
+    const presentation=extractNativeAseqCallbackPresentation({bytes,callbackFunction:0,durationFrames:30,
+      nativeFunction:{id:"0x0",entryBlock:"0x0",blocks:[{id:"0x0",successors:[],actions:[{
+        kind:"engineOperation",semanticId:"actor-face-clip-control-write",callFileOffset:"0x28",
+        arguments:[{kind:"constant",ascii:"FUKU"},...[0,0,duration].map(value=>({kind:"constant",value}))],
+      }]}]}});
+    assert.equal(presentation.nativeFaceClipCues[0].durationNativeTicks,expected);
+  }
 });
 
 test("native callback presentation rejects a hand pose without static vectors", () => {

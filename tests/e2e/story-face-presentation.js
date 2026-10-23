@@ -2,6 +2,15 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  home: [
+    ["s1.jomo.post-chen-home.scene","interior","JOMO",{AKIR:"YKC",FUKU:"FUK"},{natural:true,frames:[350,550]}],
+    ["s1.jomo.bank-savings.scene","interior","JOMO",{AKIR:"YKC"},{natural:true,openingFrames:[180],frames:[330,690],objects:["BANK"]}],
+    ["s1.jomo.travel-family.scene","interior","JOMO",{AKIR:"YKC",INE_:"INE",FUKU:"FUK"},{natural:true,frames:[1100,1900,2350]}],
+    ...[false,true].map(natural=>["s1.jomo.fuku-travel-funds.scene","interior","JOMO",{}, {
+      label:natural?"complete":"cancel",natural,frames:natural?[380,700,925,1160,1600,2400]:[380],objects:["PIG_"],
+      prop:{tag:"PIG_",shown:[0,2660],attachments:[[345,"attach","FUKU"],[890,"attach","AKIR"],[1134,"detach"]],closeup:true},
+    }]),
+  ],
   mirror: [
     ...[false,true].map(natural=>["s1.ms08.mirror-meeting.explanation","ms08","MS08",{}, {
       label:natural?"complete":"cancel",natural,frames:natural?[100,750,1200,2250]:[750],objects:["KAGA"],

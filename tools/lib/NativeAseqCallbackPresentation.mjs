@@ -636,10 +636,13 @@ export function extractNativeAseqCallbackPresentation({
           operation.arguments[2],
           `${operation.callFileOffset} FACE selector`,
         ),
-        durationNativeTicks: exactConstant(
+        // FACE installer 0x0c0bc688 clamps signed-low16(argument3) to
+        // at least one. Authored zero-duration expressions are valid setup,
+        // not malformed cues (see face-clip-control-operation-evidence.json).
+        durationNativeTicks: Math.max(1, (exactConstant(
           operation.arguments[3],
           `${operation.callFileOffset} FACE duration`,
-        ),
+        ) << 16) >> 16),
         callFileOffset: operation.callFileOffset,
       });
       if (

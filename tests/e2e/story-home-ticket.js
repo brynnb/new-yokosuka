@@ -112,6 +112,10 @@ export async function verifyAgencyQuotesAndFunds(page,testInfo,character,enterIn
     await page.evaluate(position=>{const l=window.storyProbe.lifecycle;l.resetPlayer(l.vectorFromArray(position),0,{persist:false});},position);await options();
   };
   const unchanged=async(before,flag)=>{const s=await saved();expect(s.character.storyFlags[flag]).not.toBe(true);expect(s.character.yen).toBe(before.character.yen);expect(s.inventory).toEqual(before.inventory);};
+  // World-ready precedes its one-time entry dispatch. Waiting must not race
+  // that request: the real UI correctly refuses to interrupt an active event.
+  await page.waitForFunction(()=>window.storyProbe.automatic?.attempted&&!window.storyProbe.automatic.pending);
+  await idle();
   const clock=new Date((await saved()).character.storyTimeMs);
   if(clock.getUTCHours()<10){
     await page.locator("#story-wait-button").click();await page.getByRole("option",{name:"Wait until 10 a.m.",exact:true}).click();
@@ -170,10 +174,27 @@ export async function verifyHomeTicketPreparation(page,testInfo,character){
   const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await noErrors();};
   const scene=async id=>{await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===id||window.storyProbe.sceneErrors.length,id,{timeout:70_000});await noErrors();};
-  const approach=async(position,yaw,label)=>{
+  const approach=async(position,yaw,label,optionalScroll=false)=>{
     await page.evaluate(({position,yaw})=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray(position),yaw,{persist:false});c.setFirstPerson(true);c.cameraYaw=yaw;c.cameraPitch=0;c.updateCamera(1);},{position,yaw});
     await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
-    try{await page.waitForFunction(()=>window.storyProbe.regions.controller.status==="options"||window.storyProbe.sceneErrors.length,null,{timeout:15_000});}
+    try{
+      await page.waitForFunction(allowLine=>window.storyProbe.regions.controller.status==="options"
+        ||(allowLine&&window.storyProbe.regions.controller.status==="line")||window.storyProbe.sceneErrors.length,optionalScroll,{timeout:15_000});
+      await page.keyboard.up("KeyW");
+      if(optionalScroll&&await page.evaluate(()=>window.storyProbe.regions.controller.status==="line")){
+        // The optional pickup begins nearer the door than the main conversation.
+        // Decline it normally, then walk toward Fuku's approach; don't hide the
+        // competing dispatcher or pre-grant the scroll to simplify this check.
+        await expect(page.getByText("There is a move scroll here in Fuku-san's room.",{exact:true})).toBeVisible();
+        await page.keyboard.press("Space");await page.getByRole("button",{name:"Leave it here",exact:true}).click();await idle();
+        await page.evaluate(()=>{
+          const p=window.storyProbe,c=p.lifecycle.getController(),r=p.regions.regions.find(r=>r.id==="s1.jomo.fuku-travel-advice");
+          c.cameraYaw=Math.atan2(c.collider.position.x-(r.min[0]+r.max[0])/2,c.collider.position.z-(r.min[2]+r.max[2])/2);c.updateCamera(1);
+        });
+        await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+        await page.waitForFunction(()=>window.storyProbe.regions.controller.status==="options"||window.storyProbe.sceneErrors.length,null,{timeout:15_000});
+      }
+    }
     catch(error){console.info("Story approach blocked",JSON.stringify(await page.evaluate(()=>{
       const l=window.storyProbe.lifecycle,c=l.getController(),p=c.collider.position;
       return{position:p.asArray(),status:window.storyProbe.regions.controller.status,
@@ -219,7 +240,7 @@ export async function verifyHomeTicketPreparation(page,testInfo,character){
   if(!(await saved()).character.storyFlags["story.s1.fuku-travel-advice.completed"]){
     const door=await openStoryRoomDoor(page,{tag:"dor1",position:[-21.9,0,1]});
     expect(door.gapCenter).toBeTruthy();
-    const label="Discuss the trip with Fuku-san",fukuApproach=()=>approach([door.gapCenter[0],0,1.2],0,label);
+    const label="Discuss the trip with Fuku-san",fukuApproach=()=>approach([door.gapCenter[0],0,1.2],0,label,true);
     await fukuApproach();await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();
     await fukuApproach();await page.getByRole("button",{name:label,exact:true}).click();
     await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.jomo.fuku-travel-advice");
@@ -234,7 +255,19 @@ export async function verifyHomeTicketPreparation(page,testInfo,character){
   const final=await saved();expect(final.character.yen).toBe(expectedYen);expect(final.inventory).toEqual(initial.inventory);expect(final.character.storyFlags["notebook.s1.travel-agencies"]).toBe(true);
   await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
   await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
-  await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();
+  await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);
+  // Reload is a genuine new room entry. Once the required conversation is
+  // complete, its overlapping uncollected scroll can legitimately offer next.
+  // Decline through the real UI; don't seed its flag or hide its dispatcher.
+  const inScrollApproach=await page.evaluate(()=>{
+    const p=window.storyProbe,r=p.regions.regions.find(r=>r.id==="s1.jomo.twin-blades-scroll");
+    return r&&p.lifecycle.getController().collider.position.asArray().every((v,i)=>v>=r.min[i]&&v<=r.max[i]);
+  });
+  if(inScrollApproach&&!final.character.storyFlags["story.s1.twin-blades-scroll.completed"]){
+    await expect(page.getByText("There is a move scroll here in Fuku-san's room.",{exact:true})).toBeVisible();
+    await page.keyboard.press("Space");await page.getByRole("button",{name:"Leave it here",exact:true}).click();
+  }
+  await idle();
   expect(await page.evaluate(()=>window.storyProbe.starts.some(id=>["story-s1-post-chen-home","story-s1-mirror-dream","story-s1-bank-savings","story-s1-travel-family"].includes(id)))).toBe(false);
   expect((await saved()).character.yen).toBe(expectedYen);await page.screenshot({path:testInfo.outputPath("home-ticket-saved-reload.png")});
 }

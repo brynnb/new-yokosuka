@@ -1,6 +1,63 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { StoryRegionRuntime } from "../play/scripts/StoryRegionRuntime.js";
+import {moveLearningRoutes} from "../tools/scripting/story-move-learning.mjs";
+import investigation from "../tools/scripting/story-investigation.json" with {type:"json"};
+import {createScriptEventController} from "../play/scripts/ScriptEventController.js";
+
+test("entry movement is held through the real request boundary and handed off or released on every outcome",async()=>{
+  for(const outcome of ["line","declined","rejected","cancelled","reset","timeout"]){
+    const locks=new Set(),errors=[];let requestId;
+    const acquire=()=>{const owner={};locks.add(owner);return()=>locks.delete(owner);};
+    let releasePresentation;
+    const controller=createScriptEventController({
+      requestTimeoutMs:outcome==="timeout"?10:1000,
+      client:{startScriptEvent:(_selector,id)=>{requestId=id;return true;},advanceScriptEvent:()=>true},
+      presentation:{begin:()=>{releasePresentation=acquire();},execute:async()=>true,rollback:()=>releasePresentation?.()},
+      dialogue:{show(){},showOptions(){},hide(){}},
+    });
+    const runtime=new StoryRegionRuntime({controller,acquireMovementLock:acquire,onError:e=>errors.push(e),
+      getCharacter:()=>({id:1,playMode:"story",openingCompleted:true}),publishPresence:()=>true,
+      regions:[{id:"approach",area:"TEST",min:[0,0,0],max:[2,2,2]}]});
+    assert.equal(runtime.update({area:"TEST",enabled:true,playerPosition:[1,1,1]}),true);
+    assert.equal(locks.size,1,`${outcome}: held before server response`);
+    if(outcome==="rejected")controller.handleRejected({requestId,code:"ineligible"});
+    else if(outcome==="cancelled")controller.cancel();
+    else if(outcome==="reset"){runtime.reset();controller.reset();}
+    else if(outcome==="timeout")await new Promise(resolve=>setTimeout(resolve,25));
+    else await controller.handleYield({requestId,runId:1,event:{type:outcome},line:{text:"Hello"}});
+    await new Promise(resolve=>setImmediate(resolve));
+    assert.equal(locks.size,outcome==="line"?1:0,`${outcome}: only accepted presentation retains movement`);
+    if(outcome==="line"){controller.reset();assert.equal(locks.size,0);}
+    if(["line","declined","reset"].includes(outcome))assert.deepEqual(errors,[]);
+    else assert.equal(errors.length,1);
+  }
+});
+
+test("optional entry offers never preempt an eligible main-story route",()=>{
+  const main=investigation.routes.filter(r=>r.trigger==="enter");
+  for(const optional of moveLearningRoutes.filter(r=>r.trigger==="enter")){
+    for(const story of main.filter(r=>r.area===optional.area))
+      assert.ok(optional.priority<(story.priority??200),`${optional.id} must yield to ${story.id}`);
+  }
+});
+
+test("overlapping entry bounds share one offer but later eligibility and real re-entry still work",()=>{
+  const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{}};
+  const controller={status:"idle",start:async()=>{controller.status="options";starts++;}};
+  let starts=0,published=false;
+  const bounds={area:"TEST",min:[0,0,0],max:[2,2,2]};
+  const runtime=new StoryRegionRuntime({controller,getCharacter:()=>character,publishPresence:()=>published,
+    regions:[{...bounds,id:"story"},{...bounds,id:"optional"},{...bounds,id:"later",requiredFlags:["eligible"]}]});
+  const frame={area:"TEST",worldId:"test",enabled:true,playerPosition:[1,1,1]};
+  assert.equal(runtime.update(frame),false);assert.equal(runtime.inside.size,0);
+  published=true;assert.equal(runtime.update(frame),true);
+  assert.deepEqual([...runtime.inside],["story","optional"]);
+  controller.status="idle";assert.equal(runtime.update(frame),false);assert.equal(starts,1);
+  character.storyFlags.eligible=true;assert.equal(runtime.update(frame),true);assert.equal(starts,2);
+  controller.status="idle";runtime.update({...frame,playerPosition:[4,1,1]});
+  assert.equal(runtime.update(frame),true);assert.equal(starts,3);
+});
 
 test("an entry waits for published presence without consuming its trigger while welcome is pending", () => {
   let online = false, starts = 0;

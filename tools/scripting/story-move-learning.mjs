@@ -30,8 +30,12 @@ const lessons = [
   {moveId:'crossCharge', area:'MFSY', worldId:'mfsy', teacher:shozo, position:[78.4,0,39.8], requires:['story.s1.workday-four-payday.completed',learned('shadowBlade')], hours:[17.5,23.5]},
 ];
 const provenance='Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.';
+// Required Story routes use the 200+ priority band. Optional entry offers
+// must not steal the same room/teacher approach (e.g. Twin Blades vs Fuku's
+// travel discussion). Their own distinct priorities still disambiguate gates.
+const optionalEntryPriority=100;
 const routeBase=(id,area,worldId,requiredFlags=[])=>({id,area,actor:'AKIR',presentActors:[],trigger:'enter',
-  priority:600,requiredFlags,completedFlag:`story.s1.${id}.completed`,effects:[],voiceIds:[],nativeSources,provenance,
+  priority:optionalEntryPriority,requiredFlags,completedFlag:`story.s1.${id}.completed`,effects:[],voiceIds:[],nativeSources,provenance,
   summary:'Optional move learning through acknowledged personal Story events. Decline/cancel does not teach or grant items.'});
 const regions=[];
 function region(route,worldId,position,radius=1.5){
@@ -54,7 +58,7 @@ export const moveLearningEncounters=lessons.map((lesson,index)=>{
 });
 export const moveLearningRoutes=lessons.map((lesson,index)=>{
   const m=move(lesson.moveId),route=routeBase(m.slug,lesson.area,lesson.worldId,lesson.requires);
-  Object.assign(route,{priority:600+index,title:`${m.teacher} — ${m.name}`,hours:lesson.hours,
+  Object.assign(route,{priority:optionalEntryPriority+index,title:`${m.teacher} — ${m.name}`,hours:lesson.hours,
     effects:[learned(m.id)],challenge:moveLearningEncounters[index].id,yarnTemplate:'story-move-lesson.yarn',
     authoredText:{prompt:`I can practice ${m.name} with ${m.teacher} here.`,receipt:`I've learned ${m.name}.`}});
   region(route,lesson.worldId,lesson.position);
@@ -67,7 +71,7 @@ for(const [id,area,worldId,position,requires] of [
   ['stabArmor','YDB1','ydb1',[-6.2,0,3],['story.s1.basement-visited']],
 ]){
   const m=move(id),route=routeBase(`${m.slug}-scroll`,area,worldId,requires);
-  Object.assign(route,{priority:620+moveLearningRoutes.length,title:`${m.location} — move scroll`,items:[{key:m.itemKey,quantity:1}],
+  Object.assign(route,{priority:optionalEntryPriority+moveLearningRoutes.length,title:`${m.location} — move scroll`,items:[{key:m.itemKey,quantity:1}],
     yarnTemplate:'story-scroll-pickup.yarn',authoredText:{prompt:`There is a move scroll here in ${m.location}.`,
       receipt:id==='stabArmor'?'This scroll is in Chinese. I should ask Master Chen to translate it.':`The ${m.name} scroll. I can read it in my inventory to learn the move.`}});
   region(route,worldId,position,.9);moveLearningRoutes.push(route);
