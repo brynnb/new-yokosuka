@@ -270,7 +270,7 @@ does not establish working mouth animation or envelope presentation.
 | --- | --- |
 | Opening → bedside → first allowance → saved continuation | Rendered/full-stack verified, including explicit intro skips, natural allowance completion, one-time payment and reload. |
 | First dojo visit → men-in-black notebook objective | Connected browser/full-stack progression and notebook verified; server gate/cancellation/settlement tested. Authored two-person lead-in rendered; held poses remain an approximation. |
-| Yamanose kitten / first black-car lead | Connected rendered approach, introduction skip, food choice, natural fish ending and saved notebook verified. Real server/compiler tests cover both food settlements, cancellation/retry and clue isolation. Tofu visuals and prop fidelity remain unverified. |
+| Yamanose kitten / first black-car lead | Connected fish run uses an explicit introduction skip; connected tofu run completes the full introduction and branch naturally, saves only the shared clue and reloads without replay. All three clips complete in the separate presentation check, with reviewed hand/food captures. Exact full prop/finger fidelity remains unverified. |
 | Sumiya / Yamagishi → Nozomi → Tom | Connected browser clicks, original voices with changing rendered mouth buffers, saved clues and restored controls verified for all four. Yamagishi/Nozomi use their exact detailed faces; Sumiya/Tom use original embedded mouth targets. Real server/compiler tests cover cancellation/retry, personal eligibility, NPC presence, Yamagishi hours and cross-character isolation. Conversation-specific gestures and original camera timing remain approximations. |
 | Three Blades → Liu family → Liu Senior's sailors lead | Connected browser continuation verified through Ajiichi, daytime referrals, Liu Barber and Liu Senior. The nighttime cook/Yong/Wu referral is now also rendered and connected; all referrals converge on the same Liu clue. |
 | Nighttime sailors → Heartbeats alley | Personal waiting, Saijo's voiced lead and failure/retry/success verified in the browser. Client-timed prompts now stage the original first counter/fall; the second defense and detailed impact audio remain unfinished. |
@@ -381,10 +381,12 @@ proof of the later kitten systems.
 
 Use `NEW_YOKOSUKA_KITTEN_E2E=true` with `NEW_YOKOSUKA_DOJO_E2E=true` to extend
 the allowance browser check. It loads Yamanose normally, resets near the shrine
-to bound test duration, walks into the event, skips the introduction explicitly,
-chooses fish, waits for natural branch completion, and checks saved clues and
-the notebook. It does not prove the entire walking route between zones or the
-tofu branch's rendered appearance.
+to bound test duration, walks into the event, and checks the selected branch,
+saved clues and notebook. The default explicitly skips the introduction and
+chooses fish. Set `NEW_YOKOSUKA_KITTEN_NATURAL_INTRO=true` to wait for the full
+introduction and `NEW_YOKOSUKA_KITTEN_FOOD=tofu` for the alternate choice. The
+test also reloads and checks retained progress, no replay and restored controls.
+It does not prove the entire walking route between zones.
 
 The October 22 rerun passed the connected allowance/reload, dojo and kitten
 sequence in four minutes with one hardware-rendered browser. Before skipping
@@ -394,14 +396,26 @@ fish-only clue early, and the fish ending restores movement without playing or
 crediting the incompatible tofu branch. This is integration coverage plus a
 speech sample, not a complete visual review of the fish/kitten handover.
 
-The connected local run passed with Ryo and Megumi visible, a real food-choice
-panel, and the earned ninth notebook page. The current handoff visibly returns
-to the gameplay camera for the choice before the selected clip starts; seamless
-interstitial presentation is follow-up polish. The early fish-shot capture does
-not establish that the fish/kitten props animate correctly throughout. Keep that
-separate from the verified server outcome and do not call this a frame-faithful
-recreation. The test uses the authoritative isolated server and local assets;
-these events and audio have not been published to production.
+The October 23 connected tofu run earns allowance and dojo progress first,
+plays the full 3,150-frame introduction, presents the real food-choice panel,
+and completes only the 1,370-frame tofu ending. It saves the shared black-car
+clue but not the fish-only Yamagishi clue, leaves money unchanged, restores
+movement and reloads without replay or extra notebook pages. Megumi's speech,
+the choice panel, held tofu and saved notebook were captured and reviewed.
+
+A separate `cutscene-hands.spec.js` run plays all three clips (including the
+2,391-frame fish ending), checks original hand poses and shared fish attachment
+ownership, then replays and cancels without leaking presentation leases. Reviewed
+captures show the early introduction, fish grip, held tofu, subsequent empty
+hand and late tofu scene. This selector deliberately concatenates both alternate
+endings for inspection; the connected Story test is the branch-isolation proof.
+No additional rendering change was needed for these checks.
+
+The current handoff visibly returns to the gameplay camera for the choice
+before the selected clip starts; seamless interstitial presentation is follow-up
+polish. Sampled hand/food shots are not a frame-by-frame kitten, prop, finger or
+audio-fidelity sign-off. Tests use the isolated server and local assets; these
+events and audio have not been published to production.
 
 ## Early black-car investigation
 

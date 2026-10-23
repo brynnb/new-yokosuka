@@ -824,6 +824,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     expect((await (await page.request.get(`/api/characters/${character.id}/state`)).json()).character.storyFlags["notebook.s1.men-in-black"]).toBe(true);
     expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
     if (process.env.NEW_YOKOSUKA_KITTEN_E2E === "true") {
+      const food = process.env.NEW_YOKOSUKA_KITTEN_FOOD || "fish";
+      expect(["fish", "tofu"]).toContain(food);
+      const naturalIntroduction = process.env.NEW_YOKOSUKA_KITTEN_NATURAL_INTRO === "true";
       await page.evaluate(async () => {
         const life = window.storyProbe.lifecycle;
         await life.travelToWorld("yamanose");
@@ -865,31 +868,49 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       console.info("Megumi rendered generic mouth:", JSON.stringify(mouth));
       expect(mouth.renderedFrames).toBeGreaterThan(2);
       expect(mouth.mouthStates).toBeGreaterThan(2);
-      // A permitted scene skip must lead to a real choice, not automatically
-      // award the fish-only witness clue or play both incompatible endings.
-      await page.keyboard.press("KeyX");
+      // Either a natural ending or an explicit skip must lead to the real
+      // choice, without awarding a branch-specific clue before the choice.
+      if (naturalIntroduction) {
+        await page.waitForFunction(() => !window.storyProbe.director.active, null, { timeout: 120_000 });
+      } else await page.keyboard.press("KeyX");
       await expect(page.getByRole("button", { name: "Dried fish", exact: true })).toBeVisible();
       const beforeChoice = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
       expect(beforeChoice.character.storyFlags["notebook.s1.yamagishi-witness"]).not.toBe(true);
       await page.screenshot({ path: testInfo.outputPath("first-kitten-food-choice.png") });
-      await page.getByRole("button", { name: "Dried fish", exact: true }).click();
-      await page.waitForFunction(() => window.storyProbe.director?.activeCutscene?.cutscene.id === "story-s1-first-kitten-fish", null, { timeout: 60_000 });
+      await page.getByRole("button", { name: food === "fish" ? "Dried fish" : "Tofu", exact: true }).click();
+      await page.waitForFunction(food => window.storyProbe.director?.activeCutscene?.cutscene.id === `story-s1-first-kitten-${food}`, food, { timeout: 60_000 });
       await page.waitForTimeout(3000);
-      await page.screenshot({ path: testInfo.outputPath("first-kitten-fish.png") });
+      await page.screenshot({ path: testInfo.outputPath(`first-kitten-${food}.png`) });
       await page.waitForFunction(() => !window.storyProbe.director.active, null, { timeout: 120_000 });
       await expect.poll(() => page.evaluate(() => window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.first-kitten.completed"])).toBe(true);
       const final = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
       expect(final.character.storyFlags["notebook.s1.black-car"]).toBe(true);
-      expect(final.character.storyFlags["notebook.s1.yamagishi-witness"]).toBe(true);
+      expect(Boolean(final.character.storyFlags["notebook.s1.yamagishi-witness"])).toBe(food === "fish");
       expect(final.character.yen).toBe(character.yen + 500);
-      expect(await page.evaluate(() => window.storyProbe.starts.some(id => id === "story-s1-first-kitten-tofu"))).toBe(false);
+      expect(await page.evaluate(food => window.storyProbe.starts.some(id =>
+        id === `story-s1-first-kitten-${food === "fish" ? "tofu" : "fish"}`), food)).toBe(false);
       expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
       await page.locator("button").filter({ hasText: /^Notebook$/ }).click();
       await page.locator("#journal-next").click();
-      await page.locator("#journal-next").click();
-      await expect(page.getByText(/Visit him at home in Sakuragaoka/)).toBeVisible();
+      if (food === "fish") {
+        await page.locator("#journal-next").click();
+        await expect(page.getByText(/Visit him at home in Sakuragaoka/)).toBeVisible();
+      } else {
+        await expect(page.getByText(/Visit him at home in Sakuragaoka/)).toHaveCount(0);
+        await expect(page.locator("#journal-next")).toBeDisabled();
+      }
       await page.screenshot({ path: testInfo.outputPath("first-kitten-notebook.png") });
       await page.locator("#journal-close").click();
+      await page.reload(); await page.keyboard.press("Enter");
+      await page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" }).click();
+      await page.locator(".character-slot-button:not(.empty)").first().click();
+      await page.locator("button").filter({ hasText: /^Enter World$/ }).click();
+      await page.waitForFunction(() => window.storyProbe.ready, null, { timeout: 120_000 });
+      const reloaded = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+      expect(reloaded.character.storyFlags).toEqual(final.character.storyFlags);
+      expect(reloaded.character.yen).toBe(final.character.yen);
+      expect(await page.evaluate(() => window.storyProbe.starts)).toEqual([]);
+      expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
       if (process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true") {
         await continueWitnesses(page, testInfo, character, character.yen + 500);
       }
