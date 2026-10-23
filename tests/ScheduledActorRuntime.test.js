@@ -796,6 +796,65 @@ test("distant NPCs keep current network movement and animation time between pose
   assert.equal(samples.length, 6, "return from a cutscene immediately refreshes the gameplay pose");
 });
 
+test("authored dialogue owns the source idle and releases work props without changing the schedule", t => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  t.after(() => { scene.dispose(); engine.dispose(); });
+  const root = new BABYLON.TransformNode("actor", scene);
+  root.metadata = { scheduledActorGroundOffset: 0 };
+  const renderRoot = new BABYLON.TransformNode("body", scene);
+  renderRoot.parent = root;
+  const model = { root, renderRoot, standingRenderPosition: renderRoot.position.clone() };
+  const snapshot = { worldId: "dtky", x: 2, y: 0, z: 3, yaw: 0, mode: "idle",
+    operation: 0x1a, motionStateId: 33080, visual: { actionControllerId: 33080 } };
+  const samples = [], props = [];
+  const runtime = new ScheduledActorRuntime({
+    scene, state: { currentMeshes: [root] }, getActiveWorldId: () => "dtky",
+    networkState: { stateFor: () => snapshot },
+    motionRuntime: { apply: (_model, state) => { samples.push(state); return false; } },
+  });
+  const entry = {
+    definition: { actorCode: "MADA", authoritative: true, nativeDefaultMotionStateId: 33091 },
+    root, defaultModel: model, models: new Map([[null, model]]), modelRoots: new Map([[null, root]]),
+  };
+  runtime.entries = [entry];
+  runtime.updateLocalObjects = () => props.push("schedule");
+  runtime.releaseLocalObjects = () => props.push("release");
+  const frame = () => runtime.updateEntry(entry, 1 / 60);
+  runtime.setDialogueFacingTarget("MADA", [4, 0, 5], { activate: true });
+  const originalFacing = runtime.dialogueFacingState("MADA");
+  frame();
+  assert.equal(samples.at(-1).motionStateId, 33080, "native FACE alone retains work motion");
+  assert.equal(props.at(-1), "schedule");
+  runtime.setDialogueFacingTarget("MADA", [4, 0, 5], { activate: true, useDefaultIdle: true });
+  frame();
+  assert.equal(samples.at(-1).motionStateId, 33091);
+  assert.equal(samples.at(-1).actionControllerId, 0, "a retained work layer must not override the idle");
+  assert.equal(props.at(-1), "release");
+  assert.deepEqual(root.position.asArray(), [2, 0, 3]);
+  assert.equal(snapshot.motionStateId, 33080);
+  assert.equal(snapshot.visual.actionControllerId, 33080);
+  snapshot.mode = "walking";
+  snapshot.operation = 1;
+  frame();
+  assert.equal(samples.at(-1).moving, true, "standing dialogue must not make a moving resident slide");
+  assert.equal(samples.at(-1).actionControllerId, 33080);
+  assert.equal(props.at(-1), "schedule");
+  snapshot.mode = "idle";
+  snapshot.operation = 0x1a;
+  runtime.restoreDialogueFacingState("MADA", originalFacing);
+  frame();
+  assert.equal(samples.at(-1).motionStateId, 33080);
+  assert.equal(props.at(-1), "schedule");
+  runtime.clearDialogueFacingTarget("MADA");
+  frame();
+  assert.equal(samples.at(-1).motionStateId, 33080);
+  entry.definition.nativeDefaultMotionStateId = 0;
+  assert.throws(() => runtime.setDialogueFacingTarget("MADA", [4, 0, 5],
+    { activate: true, useDefaultIdle: true }), /No original default idle/);
+  assert.equal(runtime.dialogueFacingState("MADA"), null);
+});
+
 test("NPC root translation stays with the retained pose between animation samples", t => {
   const engine = new BABYLON.NullEngine();
   const scene = new BABYLON.Scene(engine);

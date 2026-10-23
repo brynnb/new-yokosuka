@@ -50,8 +50,8 @@ function harness({
       else facing.delete(id);
       return true;
     },
-    setDialogueFacingTarget: (id, target) => {
-      calls.push(["facing-set", id, target]);
+    setDialogueFacingTarget: (id, target, options) => {
+      calls.push(["facing-set", id, target, options]);
       facing.set(id, { target: [...target], active: true });
       return true;
     },
@@ -242,6 +242,8 @@ for (const ending of ["commit", "rollback"]) test(`multi-participant conversatio
     assert.equal(h.adapters.lookAtActor({ actorCode, targetActorCode: "AKIR" }, owner), true);
   }
   assert.equal(h.facing.has("wife-1"), true);
+  assert.equal(h.calls.filter(([name]) => name === "facing-set")
+    .every(call => call[3]?.useDefaultIdle === true), true);
   assert.equal(h.adapters.clearActorLook({ actorCode: "HATO" }, owner), true);
   assert.equal(h.facing.has("wife-1"), true, "clearing one participant must retain the other");
   assert.equal(h.adapters[ending](owner), true);

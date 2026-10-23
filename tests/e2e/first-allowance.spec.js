@@ -984,6 +984,18 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
         const audio = window.storyProbe.dialogue?.audio;
         return audio && !audio.paused && audio.currentTime > 0;
       }, null, { timeout: 15_000 });
+      const talkActors = spouse ? [actor, spouse] : [actor];
+      await expect.poll(() => page.evaluate(async codes => {
+        const { scheduledActorMotionSelection } = await import('/play/characters/ScheduledActorMotionRuntime.js');
+        const runtime = window.storyProbe.lifecycle.scheduledActors;
+        return codes.every(code => {
+          const entry = runtime.entries.find(entry => entry.definition.actorCode === code);
+          const motionId = entry.definition.nativeDefaultMotionStateId;
+          const motion = scheduledActorMotionSelection({motionStateId:motionId});
+          return runtime.dialogueFacingState(entry.definition.instanceId)?.defaultIdleMotionId === motionId
+            && entry.motionKey?.includes(`:${motion.bank}:${motion.name}:`);
+        });
+      }, talkActors)).toBe(true);
       await verifyObservedStoryDialogueFace(page, testInfo, `${actor}-dialogue-${ending}`);
       if (spouse) {
         // Ordinary talks retain the gameplay view, not a cinematic camera.
@@ -1017,6 +1029,17 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
       expect(restored.facing).toEqual(before.facing);
       expect(restored.view).toEqual(view);
       restored.position.forEach((value,i) => expect(value).toBeCloseTo(before.position[i],3));
+      await expect.poll(() => page.evaluate(async codes => {
+        const { scheduledActorMotionSelection } = await import('/play/characters/ScheduledActorMotionRuntime.js');
+        const runtime = window.storyProbe.lifecycle.scheduledActors;
+        return codes.every(code => {
+          const entry = runtime.entries.find(entry => entry.definition.actorCode === code);
+          const state = runtime.networkState.stateFor(entry.definition.instanceId);
+          const motion = scheduledActorMotionSelection({...state.visual, operation:state.operation,
+            moving:state.mode === 'walking', movementMode:state.movementMode, motionStateId:state.motionStateId});
+          return motion && entry.motionKey?.includes(`:${motion.bank}:${motion.name}:`);
+        });
+      }, talkActors)).toBe(true);
       if (actor === "KYUR" && ending === "complete") {
         const snapshot = await (await page.request.get(`/api/characters/${character.id}/dialogue`)).json();
         expect(Buffer.from(snapshot.state.banks[2], "base64")[8] & 2).toBe(2);

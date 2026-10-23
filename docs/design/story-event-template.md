@@ -526,8 +526,8 @@ clues. Alternate referrals unlock one stable notebook page, not duplicate pages.
 sections 1.05–1.07 and scenes 1-17–1-19 corroborate the sequence, the spouses'
 roles and the business hours. Original message text, speaker IDs and voice
 references come from HUMANS.AFS, with hashes in each generated import.
-Question sequences are condensed; gameplay cameras and ambient gestures are
-retained instead of claiming the original conversation direction. The cook
+Question sequences are condensed; gameplay cameras and each resident's original
+default idle replace unrecovered conversation direction and gestures. The cook
 route through Manpukuken and Yong/Wu is now connected as described below. The shop's
 original phase-dependent closure is not newly implemented by these talks.
 
@@ -568,12 +568,16 @@ seeded into disposable local characters; this is not a fresh uninterrupted
 opening-to-sailors playthrough.
 
 Original mouth deformation is observed over rendered frames for all seven
-speakers. Reviewed speaking captures now include Tao and Lin Xia, Itoi, Liu Ji
-You and Liu En Ling, and Liu Senior. The test uses real right-drag to frame each
-spouse, retaining that player-chosen view afterward. Maeda's working pose still
-points his face downward: moving mouth data is not a clear facial-fidelity
-certificate. Dedicated conversation gestures and original camera direction
-remain unimplemented; several shopkeepers keep empty-handed work motions.
+speakers. Reviewed speaking captures now include Tao and Lin Xia, Itoi, Maeda,
+Liu Ji You and Liu En Ling, and Liu Senior. The test uses real right-drag to
+frame each spouse, retaining that player-chosen view afterward. A shared
+stationary-talk override now uses each actor's source default idle instead of
+retaining mopping/cooking/leaning motions. Maeda now stands upright with his
+face visible. The browser check asserts the default motion during speech and
+the live scheduled motion after completion or cancellation. Its recheck resumed
+from earned Tao progress after the browser runner lost its channel; no earned
+flags were reset. Dedicated conversation gestures, work-prop put-down/pick-up
+transitions and original camera direction remain unimplemented.
 
 The shared test approach uses supported-ground/clearance and sightline checks,
 then waits for the target's body to render after aiming. A separate completed-

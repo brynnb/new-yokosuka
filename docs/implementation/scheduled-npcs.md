@@ -61,6 +61,30 @@ whereas the box-only pick selects Lin Xia. Tests must wait for a rendered body
 after turning the camera, since frustum/occlusion visibility updates are not
 synchronous with setting camera angles.
 
+### Translated conversation posture
+
+Authored `look_at_actor` commands explicitly request the resident's
+`nativeDefaultMotionStateId` while facing the player. The compact world shards
+retain that original actor-definition field, and their existing motion
+requirements already preload its sequence. For example, Maeda's scheduled
+`OTH_SOJI_MOP_LP_F` (33080) becomes his own `OTH_TATI_2_LP_F` (33091), rather
+than a guessed Ryo animation. The source and lifecycle interpretation are in
+[`scheduled-actor-default-idle-evidence.json`](../../tools/evidence/scheduled-actor-default-idle-evidence.json).
+
+This is a declared adaptation for translated conversations, not recovery of
+their original gestures. Native dialogue FACE commands retain their existing
+motion semantics. Moving actors and vehicle-owned poses are not replaced with
+standing idles; this override does not own route placement. Stationary work
+layers and attached work objects are suspended, then the live schedule resumes
+on completion, cancellation or rollback. Missing default-motion data fails
+explicitly instead of substituting an unrelated animation. A cinematic actor
+lease still takes precedence over all ambient updates.
+
+The Three Blades/Liu-family browser recheck verifies all seven speakers' new
+poses and moving mouths, return to scheduled motion, cancellation/retry and
+saved progress. Other translated talks use the same rule but still need their
+individual rendered rechecks; resolved motion metadata alone is not visual QA.
+
 ## Presentation cost and lifetime
 
 The runtime retains GPU skinning and cached motion clips. Actor-level frustum

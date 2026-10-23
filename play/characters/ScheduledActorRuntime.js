@@ -1532,7 +1532,7 @@ export class ScheduledActorRuntime {
   setDialogueFacingTarget(
     instanceId,
     target,
-    { activate = false, source = null } = {},
+    { activate = false, source = null, useDefaultIdle = false } = {},
   ) {
     if (typeof instanceId !== "string" || !instanceId) {
       throw new TypeError("scheduled actor FACE target requires an instance ID");
@@ -1546,18 +1546,23 @@ export class ScheduledActorRuntime {
         "scheduled actor FACE target requires three finite coordinates",
       );
     }
-    const entryExists = this.entries.some(
+    const entry = this.entries.find(
       entry => (
         (entry.definition.instanceId || entry.definition.actorCode)
         === instanceId
       ),
     );
-    if (!entryExists) return false;
+    if (!entry) return false;
+    const defaultIdleMotionId = entry.definition.nativeDefaultMotionStateId;
+    if (useDefaultIdle && !scheduledActorMotionSelection({ motionStateId: defaultIdleMotionId })) {
+      throw new Error(`No original default idle for dialogue actor ${instanceId}`);
+    }
     const previous = this.dialogueFacingTargets.get(instanceId);
     this.dialogueFacingTargets.set(instanceId, {
       target: [...target],
       offset: null,
       active: Boolean(activate || previous?.active),
+      ...(useDefaultIdle ? { defaultIdleMotionId } : {}),
       source: source ? { ...source } : null,
     });
     return true;
@@ -2574,9 +2579,20 @@ export class ScheduledActorRuntime {
         entry.visualYaw = dialogueYaw;
       }
     }
+    // Translated conversations explicitly opt into the actor's original idle.
+    // FACE alone only turns a native actor: it must not silently rewrite a
+    // native script's motion. Exact conversation gestures remain separate.
+    // Do not replace a moving or vehicle-owned pose with a standing animation.
+    // Dialogue facing does not own the authoritative route/vehicle position.
+    const dialogueIdle = dialogueFacing?.active && !routeState?.moving
+      && !secondaryObjectActive && dialogueFacing.defaultIdleMotionId;
+    const motionState = dialogueIdle
+      ? { ...routeState, operation: 2, moving: false, actionControllerId: 0,
+          motionStateId: dialogueIdle }
+      : routeState;
     const motion = model?.characterAssetFormat === "MT7"
-      ? scheduledActorShenmue2MotionSelection(model, routeState)
-      : scheduledActorMotionSelection(routeState);
+      ? scheduledActorShenmue2MotionSelection(model, motionState)
+      : scheduledActorMotionSelection(motionState);
     const modelCode = scheduledActorModelCode(definition, routeState);
     const motionKey = motion
       ? `${modelCode || "default"}:${motion.bank}:${motion.name}:${motion.playbackRate || 1}`
@@ -2602,7 +2618,7 @@ export class ScheduledActorRuntime {
     const applied = poseSeconds !== null
       ? this.motionRuntime?.apply(
         model,
-        routeState,
+        motionState,
         entry.motionElapsedSeconds,
       )
       : false;
@@ -2648,7 +2664,10 @@ export class ScheduledActorRuntime {
       }
       entry.groundedMotionKey = motionKey;
     }
-    this.updateLocalObjects(entry, root, model, routeState);
+    // Work props must not remain attached to a standing conversation pose.
+    // The untouched schedule reattaches them when this scoped override ends.
+    if (dialogueIdle) this.releaseLocalObjects(entry);
+    else this.updateLocalObjects(entry, root, model, routeState);
     root.computeWorldMatrix(true);
     if (
       poseSeconds !== null

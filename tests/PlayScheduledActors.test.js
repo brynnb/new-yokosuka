@@ -28,6 +28,7 @@ const ACTOR_RENDER_FIELDS = [
   "label",
   "modelCode",
   "modelOverrides",
+  "nativeDefaultMotionStateId",
   "routes",
   "textureFile",
 ];

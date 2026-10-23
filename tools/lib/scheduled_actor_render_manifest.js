@@ -91,6 +91,7 @@ function renderActor(actor) {
     actorCode: actor.actorCode,
     label: actor.label,
     modelCode: actor.modelCode,
+    nativeDefaultMotionStateId: actor.nativeDefaultMotionStateId,
     textureFile: actor.textureFile,
     modelOverrides: (actor.modelOverrides || []).map((override) => ({
       modelCode: override.modelCode,

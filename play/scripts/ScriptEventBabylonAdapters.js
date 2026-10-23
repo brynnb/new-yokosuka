@@ -213,6 +213,7 @@ export class ScriptEventBabylonAdapters {
       target,
       {
         activate: true,
+        useDefaultIdle: true,
         source: { kind: "database-script", targetActorCode: "AKIR" },
       },
     );
