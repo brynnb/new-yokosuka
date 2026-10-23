@@ -108,6 +108,34 @@
   display: none;
 }
 
+/* QTEs share the dialogue surface but leave the action visible. Only the
+   current cue's buttons are shown; combinations remain simultaneously usable. */
+.dialogue-overlay[data-presentation="qte"] .dialogue-panel {
+  width: min(420px, 100%);
+}
+
+.dialogue-overlay[data-presentation="qte"] .dialogue-source {
+  font-size: clamp(16px, 1.7vw, 20px);
+}
+
+.dialogue-overlay[data-presentation="qte"] .dialogue-options:not([hidden]) {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.dialogue-overlay[data-presentation="qte"] .dialogue-option {
+  width: auto;
+  min-height: 48px;
+  min-width: 76px;
+  text-align: center;
+  font-weight: 700;
+  touch-action: none;
+}
+
+.dialogue-option[hidden] { display: none; }
+
 /* Keep the shared dialogue panel compact while it acts as combat controls. */
 .dialogue-overlay[data-presentation="combat"] .dialogue-options {
   grid-template-columns: repeat(4, minmax(0, 1fr));

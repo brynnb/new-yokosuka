@@ -595,6 +595,14 @@ Yarn/PostgreSQL tests cover cancellation, repeat, stale checkpoints and other
 characters; realtime tests cover private receipts and stale-mode rejection.
 Use `NEW_YOKOSUKA_NIGHT_STORY_E2E=true` with a saved connected test character.
 
+The 2026-10-22 presentation pass also verified Wu's `SSI_L` and Saijo's
+`BAU_L` mouths changing over rendered frames during original speech, with
+reviewed captures and restored controls. Junko's talk completed naturally and
+saved its clue, but that capture clipped her face; her mouth presentation and
+Yong's speaking lines still need a framed recheck. The test now aims at the
+upper body rather than centering the chest. Skipped remaining lines do not
+constitute verification of their gestures or natural timing.
+
 ## Heartbeats alley: staged introduction and defensive challenge
 
 Event: `d000-heartbeats-alley`; personal Story mode with the opening and sailors
@@ -615,10 +623,12 @@ weather override is added beyond the nighttime gate.
 Then the shared prompt presenter requests B followed by A, matching the
 [original guide's winning order](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf).
 Desktop mapping is Shift/Enter; onscreen A/B buttons also work. Two-second
-windows and restarting on any miss are declared adaptations. The server
-starts timing only after readiness, issues a fresh token per prompt, checks
-receipt time and order, ignores an old token and rejects ordinary Continue as
-a way to bypass input. Movies and explicit scene skips cannot award success.
+windows and restarting on any miss are declared adaptations. The browser
+starts timing after readiness and judges input locally. The server checks the
+owned attempt token and readiness before accepting one result; it does not
+time individual inputs. Stale tokens, movies and explicit scene skips cannot
+award success. The shared compact QTE surface shows only the current button
+or combination, rather than obscuring the scene with every possible control.
 
 Failure offers retry or departure and grants no flag. Correct inputs settle
 `story.s1.heartbeats-alley.completed` once through Yarn; no item, money or HP
@@ -627,6 +637,18 @@ must leave the attempt retryable. The browser failure/retry/success check uses
 ordinary walking into the region and keyboard responses, then verifies the
 durable flag and unlocked movement. It starts near the entrance to bound travel.
 Use `NEW_YOKOSUKA_ALLEY_QTE_E2E=true` with the connected saved fixture.
+
+The 2026-10-22 run passed input outcomes but exposed an unsupported test start
+at `(124.56, -1.8, 67.4)`. Its blank below-map captures are **not** visual
+verification. The test now finds a collision-validated path across the region
+boundary and waits for an actual AUTH frame before capturing. A separate
+`NEW_YOKOSUKA_ALLEY_PRESENTATION_E2E=true` review on an already-earned save
+verified that walk, then replayed only the real activity adapter: original
+Ryo/attackers, alley, camera shots and beer prop were visible, both parts
+completed naturally, player position/controls restored and saved flags/money
+were unchanged. This does not re-prove fresh eligibility or every facial/grip
+detail. The original `YQ14/M_YQ14.BIN` includes paired success/failure motions;
+mapping them to the defensive inputs remains work, not completed choreography.
 
 Current presentation limits: prompts follow the original beer staging after
 returning to the gameplay camera. The original defensive choreography,
@@ -645,7 +667,7 @@ the investigation content catalog into ordinary Yarn, not a new quest system.
 | Player / cast / props | Lock input and borrow Ryo, Hato and three original actor models: Sera (`TUW_L`), Jones (`GIF_L`) and Harry (`GIE_L`). The authored scene places Ryo near the original arrival and holds standing loops. No separate drink, weapon or thrown-object prop is animated. |
 | Sequence / dialogue | Original `E1030` welcome, sailors question, mockery and confrontation; then a real defensive QTE; only after winning, Hato names Charlie and describes his motorcycle, clothes and tattoo. The 25 selected original voice/subtitle lines are condensed into authored order. |
 | Camera / timing / audio | One authored room shot; original voices advance on their audio ending or supported Space input. The scene remains owned across the challenge. No invented music identity or exact native fight timing. Preserve existing room sound, weather and lighting. |
-| Challenge | Four timed inputs, B/A/B/A, through the same server-validated prompt system as the alley. Shift/Enter or onscreen buttons. Readiness starts timing; old tokens, movie completion and Continue cannot win. Two seconds per input and strict restart are adaptations. |
+| Challenge | Four client-timed inputs, B/A/B/A, through the same prompt system as the alley. Shift/Enter or onscreen buttons. The server accepts one result for the owned, ready attempt; old tokens, movie completion and Continue cannot win. Two seconds per input and strict restart are adaptations. |
 | Effects | Atomically set `story.s1.heartbeats-bar.completed` and `notebook.s1.charlie` after successful input and completed clue dialogue. No currency, item, HP or speculative native-bit effect. |
 | Exit / retry / skip | Restore the exact prior room position, avatar visibility, camera mode and controls. Stay inside Heartbeats; the original forced ejection is not implemented. Space may advance voice lines but not prompts. Wrong/late input offers retry or leaving without progress. X/cancellation, failed preparation or disconnect settle no clue. Re-enter a cancelled event to retry; a completed event does not replay. |
 
@@ -680,6 +702,13 @@ show Ryo and the three encounter actors; they do not prove fight choreography
 or natural timing of every voice line. Real Yarn/PostgreSQL checks additionally
 cover missing prerequisites/Hato, opening hours, cancelled preparation,
 cancel-after-win, clue settlement, repeat and cross-character isolation.
+
+The 2026-10-22 connected recheck passed those browser steps and reviewed the
+standing cast and door approach. This still does not verify facial motion for
+every staged speaker, nor supply the missing bar-fight choreography. Separate
+desktop/phone browser checks exercise the shared compact QTE, pointer/key
+success, wrong input, timeout and return to normal dialogue; their clock is
+controlled for deterministic layout captures, not evidence of original timing.
 
 The inquiries below continue this clue. The parking-lot ambush continues their
 evening lead; the same-night tattoo-parlour visit is connected. Charlie's later

@@ -349,13 +349,20 @@ export class ScriptEventDialoguePresenter {
     const current=()=>this.active&&requestId===this.requestId;
     this.active=true;
     this.dom.root.hidden=false;this.dom.root.setAttribute("aria-hidden","false");
+    this.dom.root.setAttribute("data-presentation","qte");
     this.dom.speaker.textContent=prompt.label;
     this.dom.sourceText.textContent="Get ready…";
     this.dom.japaneseText.hidden=true;
     this.onActiveChanged(true);
+    const buttons=[];
     this.qte=new StoryQteRuntime({...this.qteOptions, sound:this.qteSound,
       present:step=>{
         this.dom.sourceText.textContent=`Press ${step.buttons.map(b=>`${b} (${CHALLENGE_KEYS[b]})`).join(" + ")} · ${step.index+1} / ${step.count}`;
+        // A QTE is a cue, not a dialogue-choice menu. Retain the same touch
+        // nodes (and pointer capture) across steps, showing only this cue.
+        // Keyboard routing still accepts every code so a wrong input fails.
+        for(const button of buttons)button.hidden=!step.buttons.includes(button.dataset.challengeButton);
+        this.dom.options.hidden=false;
       },
       finish:outcome=>{
         if(!current())return;
@@ -366,14 +373,16 @@ export class ScriptEventDialoguePresenter {
     const document=this.dom.options.ownerDocument;
     for(const buttonCode of storyChallenges.buttonCodes) {
       const button=document.createElement("button");button.type="button";button.className="dialogue-option";
+      button.hidden=true;
       button.textContent=`${buttonCode} · ${CHALLENGE_KEYS[buttonCode]}`;button.dataset.challengeButton=buttonCode;
       button.addEventListener("pointerdown",event=>{if(current()){event.preventDefault();button.setPointerCapture?.(event.pointerId);this.qte.press(buttonCode);}});
       for(const name of ["pointerup","pointercancel","lostpointercapture"])button.addEventListener(name,()=>{if(current())this.qte.release(buttonCode);});
       // Keyboard/screen-reader activation has no pointerdown.
       button.addEventListener("click",event=>{if(current()&&event.detail===0){this.qte.press(buttonCode);this.qte.release(buttonCode);}});
       this.dom.options.append(button);
+      buttons.push(button);
     }
-    this.dom.options.hidden=false;
+    this.dom.options.hidden=true;
     this.challengeKeyHandler=event=>{
       const code=storyChallenges.buttonCodes.find(code=>CHALLENGE_KEYS[code].toLowerCase()===event.key?.toLowerCase());
       if(!code||event.repeat||!current())return;

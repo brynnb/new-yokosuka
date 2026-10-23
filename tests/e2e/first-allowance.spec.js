@@ -29,6 +29,7 @@ import {verifyFamilyDeparture} from "./story-family-departure.js";
 import {verifySwallowFlip,verifySwallowPresentation,verifyFinalChai,verifyFinalChaiPresentation,verifyIntroductionLetter,verifyEarnedIntroductionLetter,verifyNozomiAmulet,verifyShipDeparture} from "./story-final-departure.js";
 import {useStoryInspectable} from "./story-object-input.js";
 import {verifySavedScrollLearning} from "./story-move-learning.js";
+import {placeAtHeartbeatsApproach,reviewHeartbeatsPresentation} from "./story-heartbeats-presentation.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
@@ -543,6 +544,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
       return;
     }
+    if(process.env.NEW_YOKOSUKA_ALLEY_PRESENTATION_E2E === "true") {
+      await reviewHeartbeatsPresentation(page,testInfo,character);
+      expect(errors).toEqual([]);
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_BAR_QTE_E2E === "true") {
       await verifyBarQte(page, testInfo, character);
       expect(errors).toEqual([]);
@@ -879,17 +886,7 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
       const audio = window.storyProbe.dialogue?.audio;
       return audio && !audio.paused && audio.currentTime > 0;
     }, null, { timeout: 15_000 });
-    await page.waitForFunction(() => window.storyDialogueFaceSample.vertices.size > 2, null, { timeout: 60_000 });
-    await page.screenshot({ path: testInfo.outputPath(`${actor}-dialogue.png`) });
-    const faceSample = await page.evaluate(() => {
-      window.stopStoryDialogueFaceProbe();
-      const s = window.storyDialogueFaceSample;
-      return { actor: s.actor, model: s.model, kind: s.kind, frames: s.frames, vertices: s.vertices.size, mouths: s.mouths.size };
-    });
-    await testInfo.attach(`${actor}-rendered-face`, { body: JSON.stringify(faceSample, null, 2), contentType: "application/json" });
-    console.info("Story dialogue rendered face:", JSON.stringify(faceSample));
-    expect(faceSample.frames).toBeGreaterThan(2);
-    expect(faceSample.mouths).toBeGreaterThan(2);
+    await verifyObservedStoryDialogueFace(page, testInfo, `${actor}-dialogue`);
     // The resident's original voice and mouth really play; advance remaining lines
     // with the supported Space control to keep this smoke test bounded.
     for (let line = 0; line < 100; line++) {
@@ -928,15 +925,17 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
 async function observeStoryDialogueFace(page, actor) {
   await page.evaluate(actor => {
     const scene = window.storyProbe.lifecycle.scene;
-    const sample = window.storyDialogueFaceSample = { actor, frames: 0, vertices: new Set(), mouths: new Set() };
+    const sample = window.storyDialogueFaceSample = { actor, frames: 0, candidateFrames: 0, offscreenFrames: 0, missingBindingFrames: 0, vertices: new Set(), mouths: new Set() };
     const observer = scene.onAfterRenderObservable.add(() => {
       const owner = window.storyProbe.dialogue?.facialPresentation?.active;
       if (owner?.tag !== actor || !owner.ready || owner.audio.paused || owner.audio.currentTime <= 0) return;
+      sample.candidateFrames++;
+      sample.model = owner.model.modelCode;
       const detailed = owner.faces.active?.faces.get(actor);
       const generic = owner.faces.active?.genericFaces.get(actor);
       const meshes = detailed?.entry.primaryMeshes || generic?.speech.controller.binding.meshes.map(record => record.mesh);
-      if (!meshes?.some(mesh => mesh.isEnabled() && scene.isActiveMesh(mesh))) return;
-      sample.model = owner.model.modelCode;
+      if (!meshes?.length) { sample.missingBindingFrames++; return; }
+      if (!meshes.some(mesh => mesh.isEnabled() && scene.isActiveMesh(mesh))) { sample.offscreenFrames++; return; }
       sample.kind = detailed ? "detailed" : "generic";
       sample.frames++;
       sample.mouths.add(detailed ? JSON.stringify(Array.from(detailed.mouth.current)) : generic.speech.controller.weight);
@@ -954,6 +953,24 @@ async function observeStoryDialogueFace(page, actor) {
     });
     window.stopStoryDialogueFaceProbe = () => scene.onAfterRenderObservable.remove(observer);
   }, actor);
+}
+
+async function verifyObservedStoryDialogueFace(page, testInfo, name) {
+  let failure;
+  try { await page.waitForFunction(() => window.storyDialogueFaceSample.vertices.size > 2, null, { timeout: 60_000 }); }
+  catch (error) { failure = error; }
+  await page.screenshot({ path: testInfo.outputPath(`${name}.png`) });
+  const sample = await page.evaluate(() => {
+    window.stopStoryDialogueFaceProbe();
+    const s = window.storyDialogueFaceSample;
+    return { actor: s.actor, model: s.model, kind: s.kind, frames: s.frames, candidateFrames: s.candidateFrames,
+      offscreenFrames: s.offscreenFrames, missingBindingFrames: s.missingBindingFrames, vertices: s.vertices.size, mouths: s.mouths.size };
+  });
+  await testInfo.attach(`${name}-rendered-face`, { body: JSON.stringify(sample, null, 2), contentType: "application/json" });
+  console.info("Story dialogue rendered face:", JSON.stringify(sample));
+  if (failure) throw failure;
+  expect(sample.frames).toBeGreaterThan(2);
+  expect(sample.mouths).toBeGreaterThan(2);
 }
 
 async function residentClickPoint(page, actor) {
@@ -991,6 +1008,9 @@ async function residentClickPoint(page, actor) {
     if (!model?.renderRoot) throw new Error(`No visible body for ${actor}`);
     const bounds = model.renderRoot.getHierarchyBoundingVectors(true);
     const point = bounds.min.add(bounds.max).scale(.5);
+    // Frame and click the upper body, keeping the mouth inside the viewport
+    // for tall residents instead of centering the chest and clipping the face.
+    point.y = bounds.min.y + (bounds.max.y - bounds.min.y) * .8;
     // Walking residents can move between positioning the player and clicking.
     // Aim at the current rendered body, not a stale root + guessed head height.
     const controller = life.getController(), position = controller.collider.position;
@@ -1028,12 +1048,15 @@ async function continueNightWitnesses(page,testInfo,character) {
     await expect.poll(async()=>new Date((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).worldState.gameTimeMs).getUTCHours()).toBe(19);
   }
   for(const [actor,world,flag] of [["JUKY","drme","notebook.s1.yong-wu"],["GRKN","dbyo","story.s1.yong-wu-liu-referral.completed"],["SAJO","dbyo","notebook.s1.heartbeats"]]) {
+    if (character.storyFlags?.[flag]) continue;
     await page.evaluate(async world=>{await window.storyProbe.lifecycle.travelToWorld(world);},world);
     await page.waitForFunction(actor=>window.storyProbe.lifecycle.scheduledActors.dialogueActor(actor),actor,{timeout:60_000});
-    const point=await residentClickPoint(page,actor);await page.mouse.click(point.x,point.y);
+    const point=await residentClickPoint(page,actor);
+    await observeStoryDialogueFace(page,actor);
+    await page.mouse.click(point.x,point.y);
     await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
     await page.waitForFunction(()=>{const a=window.storyProbe.dialogue?.audio;return a&&!a.paused&&a.currentTime>0;},null,{timeout:15_000});
-    await page.screenshot({path:testInfo.outputPath(`${actor}-night-dialogue.png`)});
+    await verifyObservedStoryDialogueFace(page,testInfo,`${actor}-night-dialogue`);
     for(let line=0;line<100;line++){if(await page.evaluate(flag=>!!window.storyProbe.regions.getCharacter()?.storyFlags?.[flag],flag))break;await page.keyboard.press("Space");await page.waitForTimeout(250);}
     await expect.poll(()=>page.evaluate(flag=>window.storyProbe.regions.getCharacter()?.storyFlags?.[flag],flag)).toBe(true);
     expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
@@ -1062,11 +1085,12 @@ async function verifyAlleyQte(page,testInfo,character) {
     await page.getByRole("button",{name:"Wait until 7 p.m.",exact:true}).click();
     await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
   }
-  await page.evaluate(async()=>{const life=window.storyProbe.lifecycle;await life.travelToWorld("dobuita");life.resetPlayer(life.vectorFromArray([124.56,-1.8,67.4]),Math.PI,{persist:false});});
+  await placeAtHeartbeatsApproach(page);
   await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
   try{await page.waitForFunction(()=>window.storyProbe.starts.includes("story-s1-heartbeats-introduction")||window.storyProbe.sceneErrors.length,null,{timeout:20_000});}
   finally{await page.keyboard.up("KeyW");}
   expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.runtime?.playback?.active?.frame>=15,null,{timeout:60_000});
   await page.screenshot({path:testInfo.outputPath("heartbeats-alley-introduction.png")});
   await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready,null,{timeout:90_000});
   await page.screenshot({path:testInfo.outputPath("heartbeats-alley-prompt.png")});
@@ -1192,6 +1216,7 @@ async function enterInteriorDoor(page,{world,filename,doorSelector,position,yaw=
         transition:pick?.pickedMesh?.metadata?.interactiveMapTransition?.transition?.id };
     },{filename,doorSelector});
     console.info("Door pick",point);
+    await page.screenshot({path:test.info().outputPath(`${world}-door-approach.png`)});
     expect(point.x).toBeGreaterThan(280);expect(point.x).toBeLessThan(1025);
     expect(point.y).toBeGreaterThan(0);expect(point.y).toBeLessThan(720);
     if(Number.isInteger(doorSelector))expect(point.pickedSelector).toBe(doorSelector);

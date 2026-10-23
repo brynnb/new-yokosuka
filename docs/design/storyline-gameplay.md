@@ -626,6 +626,12 @@ voices and an authored held cast, then settles the Charlie clue. Other authored
 S1 QTEs use this catalog too. Prompt windows and some combinations remain
 documented approximations of the original game.
 
+The prompt uses a compact variant of the shared dialogue surface, displaying
+only the current required button(s) with their keyboard equivalents. Touch
+buttons retain their pointer ownership across steps; wrong keyboard input still
+fails. Desktop and phone layout/input checks are separate from the connected
+scene checks and do not establish original fight choreography.
+
 The parking-lot ambush extends the same event ownership with `start_combat` and
 `combat_result`. The client simulates movement, health, full Practice moves and
 opponent decisions, and reports a trusted personal outcome. The server validates
