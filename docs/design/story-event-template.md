@@ -734,6 +734,15 @@ completed naturally, player position/controls restored and saved flags/money
 were unchanged. This does not re-prove fresh eligibility or every facial/grip
 detail.
 
+A 2026-10-23 presentation-only recheck (`NEW_YOKOSUKA_STORY_FACES_E2E=true`,
+`NEW_YOKOSUKA_STORY_FACE_SET=alley`) cancelled the beer scene and replayed it to
+natural completion. Both original recordings played with changing mouth
+vertices; Tony's speaking face and the moving bottle are visible in reviewed
+captures. Ryo's original speaking shot faces his back and the diagnostic
+close-up was occluded by another actor, so his visible mouth/grip fidelity is
+still unverified. Both runs restored avatar, position, camera mode and controls,
+released actor leases and left saved flags, yen and inventory unchanged.
+
 The first defensive exchange now uses original `YQ14/M_YQ14.BIN` (88,464 bytes,
 SHA-256 `ff7984a495727a5f9c89eb82cc1fa0e8ca8f08b9510e40abe46d970965d15f6e`).
 `AKI_KERI_SEIKOU_1QTE` / `TKA_KERI_SEIKOU_1QTE` show the counter and the
@@ -753,6 +762,12 @@ assignment and the held prompt are reviewed adaptations, **not** a recovered
 native QTE controller. Matching clip names did not prove the input decision
 tree: `HANGEKI` starts in the `KERI_SIPPAI` ending posture, and finisher clips
 have different timing. They are not silently assigned to Smith's second input.
+The original YQ14 MAPINFO SCN3 entry at `0x56613` is a legacy instruction
+stream (`encodingMarker: 0x00000100`), not a native SH-4 callback. The existing
+container evidence classifies it accordingly and the native IR has zero
+functions. The older speculative bytecode decoder does not yet prove its
+branch/motion selection; completing that decoder is a separate research task,
+not a reason to assign a finisher from its filename alone.
 
 On 2026-10-23 an isolated character seeded from previously earned prerequisites
 walked the supported approach, played the introduction, failed the first

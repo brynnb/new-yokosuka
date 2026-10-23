@@ -2,6 +2,12 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  alley: [
+    ...[false,true].map(natural=>["s1.heartbeats.alley.beer","dobuita","D000",{AKIR:"YKC",TONY:"GIJ"},{
+      label:natural?"complete":"cancel",natural,openingFrames:[60],frames:natural?[320,400]:[300],objects:["BIN_"],
+      ...(natural?{voiceCounts:{A01114:2}}:{}),
+    }]),
+  ],
   introduction: [
     ...[false,true].map(natural=>["s1.mend.chen-introduction-letter.scene","mend","MEND",{TAIJ:"SYU",AKIR:"YKC"},{
       label:natural?"complete":"cancel",natural,frames:natural?[900,1150,1300,1650,1800]:[900],objects:["FUTO"],
