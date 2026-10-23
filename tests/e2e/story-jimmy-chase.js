@@ -41,8 +41,9 @@ export async function verifyJimmyChase(page,testInfo,character){
     await approach();await page.getByRole("button",{name:"Knock at Asia Travel",exact:true}).click();await scene("jimmy-knock");await page.keyboard.press("KeyX");
     const prompt=async(button,beat)=>{
       await page.waitForFunction(({button,beat})=>{
-        const p=window.storyProbe.regions.controller.active?.challengePrompt,s=window.storyProbe.authoredScene?.active?.scene;
-        return p?.ready&&p.button===button&&s?.id===`s1.d000.jimmy-chase.beat-${String(beat).padStart(2,"0")}`||window.storyProbe.sceneErrors.length;
+        const c=window.storyProbe.regions.controller,p=c.active?.challengePrompt,q=c.dialogue.qte?.active,s=window.storyProbe.authoredScene?.active?.scene;
+        return p?.ready&&!q?.outcome&&q?.steps[q.index]?.buttons[0]===button
+          &&s?.id===`s1.d000.jimmy-chase.beat-${String(beat).padStart(2,"0")}`||window.storyProbe.sceneErrors.length;
       },{button,beat},{timeout:60_000});await noErrors();
     };
     await prompt("Left",1);await page.keyboard.press("ArrowRight");await scene("jimmy-escaped");

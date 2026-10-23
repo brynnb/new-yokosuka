@@ -28,6 +28,14 @@
         "archiveMember": "MAPALP.MAPD",
         "byteLength": 97724,
         "sha256": "e7cc167b5d4791494806d221d8ffdd3ee08dac1d1b9b52a2737e76e8a07b1c81"
+      },
+      {
+        "name": "DR02_021.CHRM",
+        "path": "disc3/SCENE/03/MFSY/MARU.PKS",
+        "sourceSha256": "a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
+        "archiveMember": "DR02_021.CHRM",
+        "byteLength": 2044,
+        "sha256": "31954c649c174054dcdb00f22d683ecf4f7866a197ee15f3176ef4a57e410da6"
       }
     ]
   },
@@ -40,9 +48,22 @@
   "audioManifest": "public/audio/world/yada-job-interview/manifest.json",
   "sceneObjects": {
     "DOOR": {
-      "model": "unmapped-original-reference",
-      "browserFilename": "MARU-DOOR-reference",
-      "referenceOnly": true
+      "browserFilename": "DR02_021.CHRM",
+      "assetPath": "play/assets/harbor/yada-job-interview/DR02_021.CHRM",
+      "textureAssetPath": "play/assets/harbor/yada-job-interview/textures.bin",
+      "sourceBinding": {
+        "actorTag": "DOOR",
+        "image": "JIMUSYO_DOOR",
+        "model": "DR02_021",
+        "characterRecordOffset": 528,
+        "imagePropertyOffset": 568,
+        "defImageRecordOffset": 488,
+        "presentation": null,
+        "archive": "disc3/SCENE/03/MFSY/MARU.PKF",
+        "archiveSha256": "faadd8aecb7e224885eb12d3cbc731215eb64ffb4648649c61c7a9a9272bd280",
+        "member": "CHARA.CHRT"
+      },
+      "model": "DR02_021"
     },
     "ROOM": {
       "model": "MAPALP",
@@ -112,9 +133,19 @@
       "sha256": "e7cc167b5d4791494806d221d8ffdd3ee08dac1d1b9b52a2737e76e8a07b1c81"
     },
     {
+      "path": "play/assets/harbor/yada-job-interview/DR02_021.CHRM",
+      "byteLength": 2044,
+      "sha256": "31954c649c174054dcdb00f22d683ecf4f7866a197ee15f3176ef4a57e410da6"
+    },
+    {
       "path": "play/assets/harbor/yada-job-interview/alpha-textures.bin",
       "byteLength": 430464,
       "sha256": "c91ac800b9c7f60379ecae4f27e908e616becf18b9fb3b1542fb11b3fc4fba53"
+    },
+    {
+      "path": "play/assets/harbor/yada-job-interview/textures.bin",
+      "byteLength": 281392,
+      "sha256": "369528f584f6c5a04adb3214f2e26b7a1930b823bbf4a5f6f62130838e6185b1"
     }
   ],
   "activities": [

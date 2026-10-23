@@ -48,11 +48,29 @@ cleanup releases it after the film or cancellation. No extra permanent map
 or second travel system is introduced.
 
 GORO, HINA, TMRA and MARK use their existing scheduled character models.
-MARU's original SGG_L/SGJ_L worker models supply ETC1/ETC2, and FOKS502G supplies
-the forklift. Their exact tag associations are authored choices requiring
-rendered inspection. DOOR and HAKO remain explicit unmapped references;
-moving door/crate geometry is not claimed. Activation volumes are authored
+MARU's original `CHARA.CHRT` associates `ETC1` with `SGJ_L`, `ETC2` with
+`SGG_L`, `FORK` with `FOKS502G`, and `DOOR` with `DR02_021`. The compiler now
+reads these associations instead of guessing from archive order; the workers
+were previously swapped and the available office door was left virtual.
+Its AUTH movement drives the real door through the shared scene-object lease.
+Source archive hashes and character/image offsets are retained in manifests.
+The Goro appointment's `DOOR` and `HAKO` remain unmapped references, unlike
+the recovered interview door. Activation volumes are authored
 around original actor poses and the Alpha entrance, not recovered EVNT regions.
+
+A 2026-10-23 GPU-rendered presentation recheck passes cancellation/replay and
+natural endings for Yada's interview and Mark's introduction. The exact worker
+models, moving forklift, office door and changing Ryo/Yada/Mark speech meshes
+render; all 24 original voice recordings play. Avatar, pose, view, controls,
+money, inventory and flags restore without rewards. This presentation-only
+check is separate from the connected hiring evidence below.
+
+Remaining visible defect: the leased Alpha room overlaps resident harbor
+scenery, producing floor depth flicker. Resident `KYMA` (Azusa Kayama,
+`SHE_L`) at approximately `[25.56, 0, 74.37]` also occupies Ryo's entrance shot.
+The room needs shared environment/actor isolation with reversible ownership,
+not an offset floor or a permanent removal of that resident. The same problem
+appears in Yada's dismissal and should be checked in the other leased-room films.
 
 ## Coverage and remaining work
 

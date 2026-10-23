@@ -22,12 +22,12 @@
         "sha256": "4dbcbb542acb25fc897a82581ec2203bb3ea6caa611d7392c2bc657f2545583c"
       },
       {
-        "name": "C85N305G.CHRM",
+        "name": "CARO101G.CHRM",
         "path": "disc2/SCENE/02/D000/CTERBASE.PKS",
         "sourceSha256": "786c76f3846f2faf179afeb55c8ff0143e3214d7d6d05dfefb396fac794e6257",
-        "archiveMember": "C85N305G.CHRM",
-        "byteLength": 23332,
-        "sha256": "980c521aa023467867024ecdc5411b7780e25ed5ce794d4f180f2ba7b1403c46"
+        "archiveMember": "CARO101G.CHRM",
+        "byteLength": 12064,
+        "sha256": "d7fd2643124c2bef50e41b52494b2a2886ac6dac3a846c366a623816bdb25046"
       }
     ]
   },
@@ -40,10 +40,22 @@
   "audioManifest": "public/audio/world/jimmy-caught/manifest.json",
   "sceneObjects": {
     "CAR_": {
-      "model": "C85N305G",
-      "browserFilename": "C85N305G.CHRM",
-      "assetPath": "play/assets/dobuita/jimmy-caught/C85N305G.CHRM",
-      "textureAssetPath": "play/assets/dobuita/jimmy-caught/textures.bin"
+      "model": "CARO101G",
+      "browserFilename": "CARO101G.CHRM",
+      "assetPath": "play/assets/dobuita/jimmy-caught/CARO101G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/jimmy-caught/textures.bin",
+      "sourceBinding": {
+        "actorTag": "CAR_",
+        "image": "CAR",
+        "model": "CARO101G",
+        "characterRecordOffset": 2068,
+        "imagePropertyOffset": 2076,
+        "defImageRecordOffset": 2028,
+        "presentation": null,
+        "archive": "disc2/SCENE/02/D000/CTERBASE.PKF",
+        "archiveSha256": "0f9028c137fa4df057fad9b8e3e06f09ba98dfc82917977e7ef63ad29010551f",
+        "member": "CHARA.CHRT"
+      }
     }
   },
   "packageActors": {
@@ -82,9 +94,9 @@
       "sha256": "9d7f3031ca8a4af6b63450db3e056f537a18a9d6e883a5a0edb6737974dc1f68"
     },
     {
-      "path": "play/assets/dobuita/jimmy-caught/C85N305G.CHRM",
-      "byteLength": 23332,
-      "sha256": "980c521aa023467867024ecdc5411b7780e25ed5ce794d4f180f2ba7b1403c46"
+      "path": "play/assets/dobuita/jimmy-caught/CARO101G.CHRM",
+      "byteLength": 12064,
+      "sha256": "d7fd2643124c2bef50e41b52494b2a2886ac6dac3a846c366a623816bdb25046"
     },
     {
       "path": "play/assets/dobuita/jimmy-caught/textures.bin",

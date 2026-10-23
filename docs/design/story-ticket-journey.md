@@ -542,11 +542,14 @@ actor/camera lease continues between beats, with ordinary running followed by
 standing at each two-second input window. The corridor, follow camera,
 held input beats and generic biped motion are adaptations; exact original
 obstacles and stunt animations are not claimed. Door references DOR1/DOR2
-remain virtual rather than guessing a moving-world-door binding. CAR_ uses
-the original C85N305G covered delivery truck as an explicit authored choice,
-not a recovered native actor/model association.
+remain virtual rather than guessing a moving-world-door binding. `CAR_` now
+resolves to `CARO101G` through the original `CTERBASE.PKF/CHARA.CHRT` record
+(character offset 2068, image offset 2076, definition offset 2028).
+The earlier guessed `C85N305G` truck actually belongs to `CAR4`. Both capture
+and escape now package the exact `CAR_` model; the pinned source archive and
+record offsets are retained in each manifest.
 
-Only all thirteen real server-timed inputs and the acknowledged capture film
+Only all thirteen real client-timed inputs and the acknowledged capture film
 settle `story.s1.jimmy-chase.completed` and the office destination together.
 Wrong inputs/timeouts show the escape film and permit a fresh attempt. Stale
 prompt tokens, leaving and cancellation grant no progress. The original
@@ -573,5 +576,17 @@ passed against the isolated PostgreSQL server: decline, opening cancellation,
 escape/retry, both complete road attempts, capture cancellation, saved DAZA
 return, interrogation cancellation/reload, original actor/dialogue captures,
 saved notebook and no replay after reload. Money and inventory were unchanged.
+
+The 2026-10-23 rendered follow-up completes all four original films, checks
+opening cancellation/replay, changing Ryo/Jimmy speech geometry, all 39 available
+recordings and restored avatar/location/camera/controls without progress grants.
+After replacing the vehicle, the connected chase test also passes on the
+newly earned Chai-win save, including actual keyboard input, failed chase,
+cancelled capture, interrogation cancellation/reload and saved harbor-job clue.
+The keyboard test observes the client's current QTE step rather than the
+obsolete server `button` field. Earlier mirror prerequisites on this isolated
+save were seeded; this is not an uninterrupted new-character playthrough.
+The Asia Travel opening still shows a closed resident door in front of Jimmy:
+the missing DOR1/DOR2 association remains a visible defect, not verified fidelity.
 Rendered road captures show Ryo and Jimmy; truck and interrogation scenes were
 inspected. Exhaustive audio/stunt/door fidelity is not claimed.

@@ -184,6 +184,7 @@ const profiles=[
     actorModels:{TOM_:["Tom Johnson","AMG_L"]},actorTextureHash:"8d7e24d502b2e6cb17c043e6e8ddf0641bc948ca259ae1e657e3d24241b1fcd8",
     stream:"01TOMA",streamHash:"beee7fd3fe15645298fd1ea0c74dc6d8f7b30308209b16e15f2ff40c578f9d20",sound:"A1_TOMNA.SND",soundHash:"f05e0870a7def1a11cd1059e0e012bb5131071b533a3aed7b419d4620314c233"},
   {id:"yada-dismissal",evidence:"docs/design/story-final-day.md",archive:"MARU_KUB",auth:"SEQDATA2.AUTH",motion:"M_01KUB.MOTN",bank:17,frames:1720,actors:["DOOR","AKIR","TMRA"],room:alphaRoom,
+    chrtModels:{props:["DOOR"],textureHash:"e1a56ca65b14bcca4393f7a71b856fcfa5b2a97ce9e98650b86b9e7305b19e1b"},
     stream:"01KUB",streamHash:"c7f5d9c7eba61af610ca0a599cca706a988d123594219ddafbce056ccd13ce06",sound:"A1_KUBI.SND",soundHash:"7573286f022f6eaf283b1e4f5e780a613a9b84fec71f2b2d8a6b4ec2e7c75495"},
   {id:"nozomi-motorcycle",directory:"sakuragaoka",evidence:"docs/design/story-nozomi-rescue.md",archive:"JD00/BIKE",resourceName:"BIKE",auth:"SEQDATA1.AUTH",motion:"M_01BIKE.MOTN",frames:1640,
     selectionRule:"Walkthrough-guided nighttime motorcycle handoff; normalized local slot, not a native owner selection or driving result.",
@@ -257,9 +258,10 @@ const profiles=[
     stream:"01GOHA",streamHash:"018d20a6b303b790e3dff9f1b872c776b974d3857e75f8b438e5742870e5721a",sound:"A1_GOH.SND",soundHash:"5537070981a30cb231cf7fd646735bda7cb8b201ef09ab023f9a4bd8b68a6908"},
   {id:"goro-job-appointment",archive:"MGOR",auth:"SEQDATA0.AUTH",motion:"M_01GOR.MOTN",frames:1960,actors:["AKIR","HINA","GORO","DOOR","HAKO"],
     stream:"01GORA",streamHash:"5ab0691cb71108cf8630d7395d67448989a5e40edbd250852d957eb7a855074a",sound:"A1_GOROU.SND",soundHash:"25a7de8fc75c0b9ea03d0015aef36fa8253230d6d965fad226af5ce3311f543e"},
-  {id:"yada-job-interview",archive:"MARU",auth:"SEQDATA0.AUTH",motion:"M_01MAK.MOTN",frames:830,actors:["AKIR","TMRA","DOOR"],room:alphaRoom},
+  {id:"yada-job-interview",archive:"MARU",auth:"SEQDATA0.AUTH",motion:"M_01MAK.MOTN",frames:830,actors:["AKIR","TMRA","DOOR"],room:alphaRoom,
+    chrtModels:{props:["DOOR"],textureHash:"faadd8aecb7e224885eb12d3cbc731215eb64ffb4648649c61c7a9a9272bd280"}},
   {id:"mark-job-introduction",archive:"MARU",auth:"SEQDATA1.AUTH",motion:"M_01MAK.MOTN",frames:1934,actors:["FORK","AKIR","TMRA","ETC2","ETC1","MARK"],
-    props:{FORK:"FOKS502G"},propTextureHash:"faadd8aecb7e224885eb12d3cbc731215eb64ffb4648649c61c7a9a9272bd280"},
+    chrtModels:{actors:{ETC1:"Harbor worker",ETC2:"Harbor worker"},props:["FORK"],textureHash:"faadd8aecb7e224885eb12d3cbc731215eb64ffb4648649c61c7a9a9272bd280"}},
   {id:"mark-lunch-intro",archive:"MIZUMARK",auth:"SEQDATA1.AUTH",motion:"M_01MAD.MOTN",frames:1120,actors:["BENB","AKIR","MRSK","MARK","OKYS"],
     props:{BENB:"BNMS301G"},propTextureHash:"92687965dcded1c555ecaf72a29f00086781de3dbfc1da3be0be148d5b9f5fda",
     // The original bank ends at a9041400. Do not alias this missing effect to
@@ -383,12 +385,25 @@ for(const p of selected){
   }
   const stageStates=p.stage?addNativeAseqStageAssets({stage:p.stage,sourceDirectory:path.join(source,path.dirname(archiveStem(p.archive))),sourceManifestPrefix:`disc3/SCENE/03/${path.dirname(archiveStem(p.archive))}`,assetPrefix:prefix,members,outputMembers,sceneObjects,generatedAssets}):[];
   const propTextureAssetPath=p.props?texture(p.propArchive||p.archive,p.propTextureHash,"textures.bin"):null;
-  if(p.id==="mark-job-introduction"){
-    const textureAssetPath=propTextureAssetPath;
-    // Original MARU props/cast; the ETC1/ETC2 model association is authored.
-    for(const [tag,model] of [["ETC1","SGG_L"],["ETC2","SGJ_L"]]){
-      outputMembers.push(member("MARU",`${model}.CHRM`));
-      packageActors[tag]={label:"Harbor worker",modelCode:model,browserFilename:`${model}.CHRM`,assetFormat:"MT5",characterScale:1,assetPath:`${prefix}/${model}.CHRM`,textureAssetPath};
+  if(p.chrtModels){
+    // Recover both bodies and props from the same original character table.
+    // Alphabetical model order previously swapped MARU's two workers, while
+    // treating every DOOR as unmapped discarded an available animated model.
+    const textureAssetPath=texture(p.archive,p.chrtModels.textureHash,"textures.bin");
+    const bytes=fs.readFileSync(path.join(source,`${archiveStem(p.archive)}.PKF`));
+    const chrt=parseIpacActivityArchive(bytes).members.find(m=>m.name==="CHARA.CHRT");
+    if(!chrt)throw Error(`Missing original character table for ${p.id}`);
+    const bindings=parseChrtSceneObjectBindings(chrt.bytes);
+    for(const tag of [...Object.keys(p.chrtModels.actors||{}),...p.chrtModels.props||[]]){
+      if(!p.actors.includes(tag))throw Error(`Unused original character binding ${p.id}/${tag}`);
+      const matches=bindings.filter(b=>b.actorTag===tag);
+      if(matches.length!==1)throw Error(`Missing or ambiguous original character binding ${p.id}/${tag}`);
+      const binding=matches[0],model=binding.model,filename=member(p.archive,`${model}.CHRM`);
+      outputMembers.push(filename);
+      const asset={browserFilename:filename,assetPath:`${prefix}/${filename}`,textureAssetPath,
+        sourceBinding:{...binding,archive:`disc3/SCENE/03/${archiveStem(p.archive)}.PKF`,archiveSha256:p.chrtModels.textureHash,member:"CHARA.CHRT"}};
+      if(p.chrtModels.actors?.[tag])packageActors[tag]={...asset,label:p.chrtModels.actors[tag],modelCode:model,assetFormat:"MT5",characterScale:1};
+      else sceneObjects[tag]={...asset,model};
     }
   }
   for(const [tag,model]of Object.entries(p.props||{})){

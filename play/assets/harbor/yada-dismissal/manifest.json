@@ -28,6 +28,14 @@
         "archiveMember": "MAPALP.MAPD",
         "byteLength": 97724,
         "sha256": "e7cc167b5d4791494806d221d8ffdd3ee08dac1d1b9b52a2737e76e8a07b1c81"
+      },
+      {
+        "name": "DR02_001.CHRM",
+        "path": "disc3/SCENE/03/MFSY/MARU_KUB.PKS",
+        "sourceSha256": "ffc7a9549dca0d9fe6f683f7884e8239a511bfc74f5d8cac7281962674552cb5",
+        "archiveMember": "DR02_001.CHRM",
+        "byteLength": 1972,
+        "sha256": "cfcb1771f51be886548f56e20074d8a602b0064a99e1b9395172009694558814"
       }
     ]
   },
@@ -40,9 +48,22 @@
   "audioManifest": "public/audio/world/yada-dismissal/manifest.json",
   "sceneObjects": {
     "DOOR": {
-      "model": "unmapped-original-reference",
-      "browserFilename": "MARU_KUB-DOOR-reference",
-      "referenceOnly": true
+      "browserFilename": "DR02_001.CHRM",
+      "assetPath": "play/assets/harbor/yada-dismissal/DR02_001.CHRM",
+      "textureAssetPath": "play/assets/harbor/yada-dismissal/textures.bin",
+      "sourceBinding": {
+        "actorTag": "DOOR",
+        "image": "JIMUSYO_DOOR",
+        "model": "DR02_001",
+        "characterRecordOffset": 48,
+        "imagePropertyOffset": 88,
+        "defImageRecordOffset": 8,
+        "presentation": null,
+        "archive": "disc3/SCENE/03/MFSY/MARU_KUB.PKF",
+        "archiveSha256": "e1a56ca65b14bcca4393f7a71b856fcfa5b2a97ce9e98650b86b9e7305b19e1b",
+        "member": "CHARA.CHRT"
+      },
+      "model": "DR02_001"
     },
     "ROOM": {
       "model": "MAPALP",
@@ -112,9 +133,19 @@
       "sha256": "e7cc167b5d4791494806d221d8ffdd3ee08dac1d1b9b52a2737e76e8a07b1c81"
     },
     {
+      "path": "play/assets/harbor/yada-dismissal/DR02_001.CHRM",
+      "byteLength": 1972,
+      "sha256": "cfcb1771f51be886548f56e20074d8a602b0064a99e1b9395172009694558814"
+    },
+    {
       "path": "play/assets/harbor/yada-dismissal/alpha-textures.bin",
       "byteLength": 430464,
       "sha256": "c91ac800b9c7f60379ecae4f27e908e616becf18b9fb3b1542fb11b3fc4fba53"
+    },
+    {
+      "path": "play/assets/harbor/yada-dismissal/textures.bin",
+      "byteLength": 9312,
+      "sha256": "60d2202b85b64c96439e7c8f6bd6c7ffcf3ee83ea35e495fda4b4fbcdfa74d68"
     }
   ],
   "activities": [

@@ -4,9 +4,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import {execFileSync} from "node:child_process";
-import {buildNativeAseqActivityPack,sha256} from "../lib/NativeAseqActivityPack.mjs";
+import {buildNativeAseqActivityPack,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
 import {buildNativeAseqAudioPack} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
+import {parseChrtSceneObjectBindings} from "../lib/chrt_scene_object_bindings.js";
 
 const root=path.resolve(import.meta.dirname,"../..");
 const source=(disc,relative)=>path.join(process.env[`SHENMUE_DISC${disc}_EXTRACTED_ROOT`]||path.join(root,`extracted_disc${disc}_v2`),`data/SCENE/0${disc}`,relative);
@@ -42,13 +43,23 @@ for(const p of profiles){
   const props=Object.fromEntries(p.actors.filter(t=>["DOR1","DOR2"].includes(t)).map(tag=>[tag,{model:"unmapped-original-door-reference",browserFilename:`CTERMO1-${tag}-reference`,referenceOnly:true}]));
   const outputMembers=[],generatedAssets=[];
   if(p.actors.includes("CAR_")){
-    // Authored vehicle choice from the original CTERBASE prop collection;
-    // no recovered CAR_ -> model association is claimed. Inspect the render.
-    const model="C85N305G.CHRM";
-    members.push({name:model,sourcePath:source(2,"D000/CTERBASE.PKS"),sourceManifestPath:"disc2/SCENE/02/D000/CTERBASE.PKS",archiveMember:model,sourceSha256:"786c76f3846f2faf179afeb55c8ff0143e3214d7d6d05dfefb396fac794e6257",byteLength:23332,sha256:"980c521aa023467867024ecdc5411b7780e25ed5ce794d4f180f2ba7b1403c46"});
-    outputMembers.push(model);props.CAR_={model:"C85N305G",browserFilename:model,assetPath:`${prefix}/${model}`,textureAssetPath:`${prefix}/textures.bin`};
     const textures=fs.readFileSync(source(2,"D000/CTERBASE.PKF"));
     if(sha256(textures)!=="0f9028c137fa4df057fad9b8e3e06f09ba98dfc82917977e7ef63ad29010551f")throw Error("Changed original chase vehicle textures");
+    // CTERBASE contains several vehicles. Only its serialized CAR_ binding
+    // belongs to this AUTH actor; a plausible-looking truck is not evidence.
+    const chrt=parseIpacActivityArchive(textures).members.find(m=>m.name==="CHARA.CHRT");
+    if(!chrt)throw Error("Missing original CTERBASE character table");
+    const bindings=parseChrtSceneObjectBindings(chrt.bytes).filter(b=>b.actorTag==="CAR_");
+    if(bindings.length!==1)throw Error("Missing or ambiguous original CAR_ binding");
+    const binding=bindings[0],model=`${binding.model}.CHRM`;
+    const archive=fs.readFileSync(source(2,"D000/CTERBASE.PKS"));
+    const archiveHash="786c76f3846f2faf179afeb55c8ff0143e3214d7d6d05dfefb396fac794e6257";
+    if(sha256(archive)!==archiveHash)throw Error("Changed original chase vehicles");
+    const entry=parseIpacActivityArchive(archive).members.find(m=>m.name===model);
+    if(!entry)throw Error(`Missing original chase vehicle ${model}`);
+    members.push({name:model,sourcePath:source(2,"D000/CTERBASE.PKS"),sourceManifestPath:"disc2/SCENE/02/D000/CTERBASE.PKS",archiveMember:model,sourceSha256:archiveHash,byteLength:entry.bytes.length,sha256:sha256(entry.bytes)});
+    outputMembers.push(model);props.CAR_={model:binding.model,browserFilename:model,assetPath:`${prefix}/${model}`,textureAssetPath:`${prefix}/textures.bin`,
+      sourceBinding:{...binding,archive:"disc2/SCENE/02/D000/CTERBASE.PKF",archiveSha256:sha256(textures),member:"CHARA.CHRT"}};
     generatedAssets.push({assetPath:`${prefix}/textures.bin`,bytes:extractNativeTexnPack(textures,"CTERBASE.PKF").bytes});
   }
   const manifest=buildNativeAseqActivityPack({generatedBy:"tools/cutscenes/build_jimmy_chase_pack.mjs",resourceName:interrogation?"A0174":"CTERMO1",disc:2,

@@ -75,6 +75,43 @@ test("native image redefinition does not retroactively replace earlier DJAZ prop
     [["R_QW","CYUW1H1G"],["B_QW","CYUW1H1G"],["BU05","CYUW101G"]]);
 });
 
+test("chase vehicles and hiring actors use original CHRT associations, not archive order", () => {
+  for (const [archive, digest, packages] of [
+    ["disc2/SCENE/02/D000/CTERBASE", "0f9028c137fa4df057fad9b8e3e06f09ba98dfc82917977e7ef63ad29010551f", [
+      ["dobuita/jimmy-caught", { CAR_: "CARO101G" }],
+      ["dobuita/jimmy-escaped", { CAR_: "CARO101G" }],
+    ]],
+    ["disc3/SCENE/03/MFSY/MARU", "faadd8aecb7e224885eb12d3cbc731215eb64ffb4648649c61c7a9a9272bd280", [
+      ["harbor/yada-job-interview", { DOOR: "DR02_021" }],
+      ["harbor/mark-job-introduction", { ETC1: "SGJ_L", ETC2: "SGG_L", FORK: "FOKS502G" }],
+    ]],
+    ["disc3/SCENE/03/MFSY/MARU_KUB", "e1a56ca65b14bcca4393f7a71b856fcfa5b2a97ce9e98650b86b9e7305b19e1b", [
+      ["harbor/yada-dismissal", { DOOR: "DR02_001" }],
+    ]],
+  ]) {
+    const source = archive.replace(/^disc([23])\//, "extracted_disc$1_v2/data/");
+    const bytes = readFileSync(`${source}.PKF`);
+    assert.equal(sha256(bytes), digest);
+    const bindings = parseChrtSceneObjectBindings(parseIpacActivityArchive(bytes).members.find(m => m.name === "CHARA.CHRT").bytes);
+    const models = parseIpacActivityArchive(readFileSync(`${source}.PKS`)).members;
+    for (const [id, expected] of packages) {
+      const manifest = JSON.parse(readFileSync(`play/assets/${id}/manifest.json`));
+      for (const [tag, model] of Object.entries(expected)) {
+        const asset = manifest.packageActors?.[tag] || manifest.sceneObjects[tag];
+        assert.equal(asset.modelCode || asset.model, model);
+        assert.notEqual(asset.referenceOnly, true);
+        assert.deepEqual(asset.sourceBinding, { ...bindings.find(b => b.actorTag === tag),
+          archive: `${archive}.PKF`, archiveSha256: digest, member: "CHARA.CHRT" });
+        const original = models.find(m => m.name === asset.browserFilename);
+        assert.ok(original, `original model for ${id}/${tag}`);
+        assert.deepEqual(readFileSync(asset.assetPath), original.bytes);
+        assert.ok(manifest.outputs.some(output => output.path === asset.assetPath));
+      }
+      assert.ok(!manifest.outputs.some(output => output.path.endsWith("/C85N305G.CHRM")));
+    }
+  }
+});
+
 for (const imageProperty of ["Image", "IMAGE"]) {
   for (const uppercase of [false, true]) {
     test(`CHRT accepts ${imageProperty} with uppercase keywords: ${uppercase}`, () => {

@@ -2,6 +2,38 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  dismissal: [
+    ...[false,true].map(natural=>["s1.mfsy.yada-dismissal.scene","mfsy","MFSY",{}, {
+      label:natural?"complete":"cancel",natural,frames:natural?[90,300,650,1000,1600]:[300],
+      objects:["DOOR"],observeActors:{AKIR:"YKC",TMRA:"KWD_L"},
+    }]),
+  ],
+  hiring: [
+    ...[false,true].map(natural=>["s1.mfsy.yada-job-interview.scene","mfsy","MFSY",{}, {
+      label:natural?"complete":"cancel",natural,frames:natural?[90,300,650,800]:[300],
+      objects:["DOOR"],observeActors:{AKIR:"YKC",TMRA:"KWD_L"},
+    }]),
+    ...[false,true].map(natural=>["s1.mfsy.mark-job-introduction.scene","mfsy","MFSY",{}, {
+      label:natural?"complete":"cancel",natural,frames:natural?[180,500,1000,1600,1900]:[500],
+      // Mark's speech begins after this cancellation point; verify it on the full run.
+      objects:["FORK"],observeActors:{AKIR:"YKC",TMRA:"KWD_L",...(natural?{MARK:"GIC_L"}:{})},
+    }]),
+  ],
+  chase: [
+    ...[false,true].map(natural=>["s1.d000.jimmy-knock.scene","dobuita","D000",{}, {
+      label:natural?"complete":"cancel",natural,frames:natural?[90,180,350,500]:[220],
+      ...(natural?{observeActors:{AKIR:"YKC",JIMY:"JIM"},voiceCounts:{"01JIMB":6}}:{}),
+    }]),
+    ["s1.d000.jimmy-caught.scene","dobuita","D000",{JIMY:"JIM"},{
+      natural:true,frames:[450,620],objects:["CAR_"],voiceCounts:{"01JIM":6},
+    }],
+    ["s1.d000.jimmy-escaped.scene","dobuita","D000",{}, {
+      natural:true,frames:[100,220,300],objects:["CAR_"],voiceCounts:{"01JIM":2},
+    }],
+    ["s1.daza.jimmy-interrogation.scene","daza","DAZA",{}, {
+      natural:true,frames:[150,450,850,1250,1800],observeActors:{AKIR:"YKC",JIMY:"JIM"},voiceCounts:{A0174:25},
+    }],
+  ],
   arcade: [
     ...[false,true].map(natural=>["s1.dgct.chai-intro.scene","arcade","DGCT",{}, {
       label:natural?"complete":"cancel",natural,frames:natural?[180,430,700,1050,1500,1950]:[430],
@@ -170,9 +202,10 @@ export async function reviewStoryFaces(page, testInfo, character) {
             }
             for (const [tag, object] of new Map([...runtime.sceneObjects?.objects || [],...runtime.attachedObjects?.objects || []])) {
               if (!object.root.getChildMeshes().some(mesh => mesh.isEnabled() && scene.isActiveMesh(mesh))) continue;
-              const sample = review.objects[tag] ||= { frames: 0, positions: new Set() };
+              const sample = review.objects[tag] ||= { frames: 0, positions: new Set(), rotations: new Set() };
               sample.frames++;
               sample.positions.add(JSON.stringify(object.root.getAbsolutePosition().asArray()));
+              sample.rotations.add(JSON.stringify(object.root.rotationQuaternion?.asArray()||object.root.rotation.asArray()));
             }
           }
           for (const [tag, face] of runtime?.presentation.faces?.active?.faces || []) {
@@ -361,7 +394,7 @@ export async function reviewStoryFaces(page, testInfo, character) {
           return { error: r.error, frame: r.frame, done: r.done, voices: [...r.voices], voiceIds: [...r.voiceIds],
             samples: Object.fromEntries(Object.entries(r.samples).map(([tag, s]) => [tag,
               { code: s.code, firstFrame: s.firstFrame, frames: s.frames, mouths: s.mouths.size, vertices: s.vertices.size, audio: s.audio.size }])),
-            objects: Object.fromEntries(Object.entries(r.objects).map(([tag, s]) => [tag, { frames: s.frames, positions: s.positions.size }])) };
+            objects: Object.fromEntries(Object.entries(r.objects).map(([tag, s]) => [tag, { frames: s.frames, positions: s.positions.size,rotations:s.rotations.size }])) };
         });
         await writeFile(testInfo.outputPath(`${label}-review.json`), JSON.stringify(review));
         console.info(`Story review ${id}`, JSON.stringify(review));

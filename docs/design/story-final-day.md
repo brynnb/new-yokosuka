@@ -12,7 +12,8 @@ or training success. Original controller reconstruction is not a prerequisite.
 All three presentations use the existing Disc3 chapter pack builder and shared
 AUTH player. Archive hashes pin original source identity; actors, motions,
 cameras and available audio remain original. Model/prop associations are
-declared authoring decisions, not recovered native controller dispatch.
+declared authoring decisions unless a manifest records an original CHRT binding;
+these do not imply recovered native controller dispatch.
 
 | Event | Original source | Important retained data |
 | --- | --- | --- |
@@ -32,7 +33,7 @@ publication is implied by local generation.
 | --- | --- | --- | --- |
 | Personal prerequisites | Story Ryo, completed opening and independently saved final-morning rest. | Saved meditation. | Saved lunch invitation. |
 | Location / trigger | Walk into the established dojo-floor volume in `JHD0` / Hazuki Grounds, then choose **Meditate** or **Not yet**. | Arrival/approach around original TOMOGORI Ryo browser `[106.778,0,14.119]`; **Talk with Tom** / **Leave it for now**. | Existing tested Alpha doorway approach `[25,0,71]`; **Speak with Yada** / **Leave it for now**. |
-| Cast / props | Ryo, original Iwao body, original sword and scabbard; prop associations are authored from archive identity. | Ryo and original archive-local Tom body. | Ryo, existing Yada body, original Alpha room leased for presentation. The door remains an original reference without separate moving geometry. |
+| Cast / props | Ryo, original Iwao body, original sword and scabbard; prop associations are authored from archive identity. | Ryo and original archive-local Tom body. | Ryo, existing Yada body, original Alpha room and original `DR02_001` door leased for presentation. The model comes from `MARU_KUB.PKF/CHARA.CHRT`; AUTH controls its rotation. |
 | Sequence / audio / camera | Original 1,150-frame ASEQ and 39.2-second movement/camera coverage, 17 original effects, no voice commands. | Original 23.78-second camera/motion, seven original English voices and ten effects. | Original 57.35-second camera/motion, fourteen original English voices and eight effects. |
 | Time / weather | Preserve weather. On acknowledgement, advance to 10:15 only if earlier; otherwise preserve current date/time. Transfer to original Tom approach. | Keep personal clock/weather. Acknowledgement transfers to the tested exterior Alpha approach; original automatic walking is condensed to saved travel. | Keep personal clock/weather. Restore exterior approach; do not strand Ryo inside unloaded room geometry. |
 | Challenge / outcome | No challenge or invented insight flag. Save only meditation and reviewed travel/time. | Save only invitation and lunch-promise notebook page. No actual lunch, training or farewell result. | Save only dismissal and its notebook page. No salary, compensation, inventory grant or farewell result. |
@@ -42,8 +43,15 @@ The original automatic morning routing is deliberately condensed. A late or
 reconnected personal save is not locked out by a missed 10:15 appointment and
 does not jump to the following day just to reach it. No original calendar bit,
 native controller state, weather or unrelated NPC schedule is fabricated.
-Incidental ghost compositing, separate door callbacks and soundtrack selection
+Incidental ghost compositing and soundtrack selection
 are not reconstructed by this chapter.
+
+The 2026-10-23 dismissal presentation check passes cancellation, replay and
+natural ending with all 14 English recordings, changing Ryo/Yada mouth geometry
+and 47 sampled door rotations. Native shots were inspected and the previous
+avatar/pose/view/controls and saved progress were restored. This does not rerun
+the final-day progression chain. Alpha-room floor overlap and a resident in the
+entrance shot remain visible; see the shared [room-isolation gap](story-harbor-work.md#original-assets-and-declared-adaptations).
 
 ## Tom's lesson and farewell
 
@@ -670,8 +678,9 @@ without changing earned flags. It does not count as another narrative win.
 
 Presentation limits remain explicit: the morning dojo lighting is dark and
 the vision uses ordinary original actor presentation rather than reconstructed
-ghost compositing. Detailed room-door callbacks and soundtrack selection are
-not claimed. No replacement speech or missing-voice alias was needed: all 21
+ghost compositing. The later CHRT-backed dismissal door review above supersedes
+the old missing-door limitation; soundtrack selection is not claimed.
+No replacement speech or missing-voice alias was needed: all 21
 requested English voices and 35 effects resolve. No assets have been uploaded.
 
 Compiler/engine tests cover lesson eligibility, refusal, cancellation at each

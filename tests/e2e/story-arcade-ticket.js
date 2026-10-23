@@ -15,6 +15,13 @@ export async function verifyChaiArcade(page,testInfo,character,enterInteriorDoor
   };
   const scene=async id=>{await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===`story-s1-${id}`||window.storyProbe.sceneErrors.length,id,{timeout:90_000});await noErrors();};
   const unchanged=async()=>{const s=await saved();expect(s.character.storyFlags["story.s1.chai-arcade.completed"]).not.toBe(true);expect(s.character.storyFlags["notebook.s1.chai-asia-travel"]).not.toBe(true);expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory).toEqual(initial.inventory);};
+  // A presentation review may leave this earned save inside You Arcade.
+  // Waiting until noon there legitimately starts the ambush immediately.
+  // Begin outside before testing the physical entrance, preserving all earned
+  // flags/calendar state and cancelling any admitted scene through its owner.
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-chai-entrance-setup"));
+  await idle();await unchanged();
+  await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld("dobuita"));await idle();
   if(new Date(initial.character.storyTimeMs).getUTCHours()<12){
     await page.locator("#story-wait-button").click();await page.getByRole("option",{name:"Wait until 1 p.m.",exact:true}).click();
     await page.getByRole("button",{name:"Wait until 1 p.m.",exact:true}).click();await idle();

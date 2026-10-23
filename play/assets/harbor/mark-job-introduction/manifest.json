@@ -22,20 +22,20 @@
         "sha256": "44e0a87c697e69f427fd28bf93d58278a7176388b0392ccbb6673b0a91d22bfe"
       },
       {
-        "name": "SGG_L.CHRM",
-        "path": "disc3/SCENE/03/MFSY/MARU.PKS",
-        "sourceSha256": "a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
-        "archiveMember": "SGG_L.CHRM",
-        "byteLength": 32428,
-        "sha256": "5110c718ac7594e5f39ca7dd4cee4374d644914e8b2decc875e03f897fcf1e53"
-      },
-      {
         "name": "SGJ_L.CHRM",
         "path": "disc3/SCENE/03/MFSY/MARU.PKS",
         "sourceSha256": "a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
         "archiveMember": "SGJ_L.CHRM",
         "byteLength": 45776,
         "sha256": "a2b919018dcc6884c22b812d5a1845ab031010a24bfd2a060586c3bbd3d9bb93"
+      },
+      {
+        "name": "SGG_L.CHRM",
+        "path": "disc3/SCENE/03/MFSY/MARU.PKS",
+        "sourceSha256": "a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b",
+        "archiveMember": "SGG_L.CHRM",
+        "byteLength": 32428,
+        "sha256": "5110c718ac7594e5f39ca7dd4cee4374d644914e8b2decc875e03f897fcf1e53"
       },
       {
         "name": "FOKS502G.CHRM",
@@ -56,10 +56,22 @@
   "audioManifest": "public/audio/world/mark-job-introduction/manifest.json",
   "sceneObjects": {
     "FORK": {
-      "model": "FOKS502G",
       "browserFilename": "FOKS502G.CHRM",
       "assetPath": "play/assets/harbor/mark-job-introduction/FOKS502G.CHRM",
-      "textureAssetPath": "play/assets/harbor/mark-job-introduction/textures.bin"
+      "textureAssetPath": "play/assets/harbor/mark-job-introduction/textures.bin",
+      "sourceBinding": {
+        "actorTag": "FORK",
+        "image": "FOKS501G",
+        "model": "FOKS502G",
+        "characterRecordOffset": 328,
+        "imagePropertyOffset": 356,
+        "defImageRecordOffset": 288,
+        "presentation": null,
+        "archive": "disc3/SCENE/03/MFSY/MARU.PKF",
+        "archiveSha256": "faadd8aecb7e224885eb12d3cbc731215eb64ffb4648649c61c7a9a9272bd280",
+        "member": "CHARA.CHRT"
+      },
+      "model": "FOKS502G"
     }
   },
   "packageActors": {
@@ -82,22 +94,46 @@
       "textureAssetPath": "play/assets/characters/GIC_textures.bin"
     },
     "ETC1": {
-      "label": "Harbor worker",
-      "modelCode": "SGG_L",
-      "browserFilename": "SGG_L.CHRM",
-      "assetFormat": "MT5",
-      "characterScale": 1,
-      "assetPath": "play/assets/harbor/mark-job-introduction/SGG_L.CHRM",
-      "textureAssetPath": "play/assets/harbor/mark-job-introduction/textures.bin"
-    },
-    "ETC2": {
+      "browserFilename": "SGJ_L.CHRM",
+      "assetPath": "play/assets/harbor/mark-job-introduction/SGJ_L.CHRM",
+      "textureAssetPath": "play/assets/harbor/mark-job-introduction/textures.bin",
+      "sourceBinding": {
+        "actorTag": "ETC1",
+        "image": "SGJ_L",
+        "model": "SGJ_L",
+        "characterRecordOffset": 48,
+        "imagePropertyOffset": 76,
+        "defImageRecordOffset": 8,
+        "presentation": null,
+        "archive": "disc3/SCENE/03/MFSY/MARU.PKF",
+        "archiveSha256": "faadd8aecb7e224885eb12d3cbc731215eb64ffb4648649c61c7a9a9272bd280",
+        "member": "CHARA.CHRT"
+      },
       "label": "Harbor worker",
       "modelCode": "SGJ_L",
-      "browserFilename": "SGJ_L.CHRM",
       "assetFormat": "MT5",
-      "characterScale": 1,
-      "assetPath": "play/assets/harbor/mark-job-introduction/SGJ_L.CHRM",
-      "textureAssetPath": "play/assets/harbor/mark-job-introduction/textures.bin"
+      "characterScale": 1
+    },
+    "ETC2": {
+      "browserFilename": "SGG_L.CHRM",
+      "assetPath": "play/assets/harbor/mark-job-introduction/SGG_L.CHRM",
+      "textureAssetPath": "play/assets/harbor/mark-job-introduction/textures.bin",
+      "sourceBinding": {
+        "actorTag": "ETC2",
+        "image": "SGG_L",
+        "model": "SGG_L",
+        "characterRecordOffset": 188,
+        "imagePropertyOffset": 216,
+        "defImageRecordOffset": 148,
+        "presentation": null,
+        "archive": "disc3/SCENE/03/MFSY/MARU.PKF",
+        "archiveSha256": "faadd8aecb7e224885eb12d3cbc731215eb64ffb4648649c61c7a9a9272bd280",
+        "member": "CHARA.CHRT"
+      },
+      "label": "Harbor worker",
+      "modelCode": "SGG_L",
+      "assetFormat": "MT5",
+      "characterScale": 1
     }
   },
   "actorTags": [
@@ -128,14 +164,14 @@
       "sha256": "c5f33773b5d82df59558f9e06bcf033c9ff6ef49214797de31338f836d2c8981"
     },
     {
-      "path": "play/assets/harbor/mark-job-introduction/SGG_L.CHRM",
-      "byteLength": 32428,
-      "sha256": "5110c718ac7594e5f39ca7dd4cee4374d644914e8b2decc875e03f897fcf1e53"
-    },
-    {
       "path": "play/assets/harbor/mark-job-introduction/SGJ_L.CHRM",
       "byteLength": 45776,
       "sha256": "a2b919018dcc6884c22b812d5a1845ab031010a24bfd2a060586c3bbd3d9bb93"
+    },
+    {
+      "path": "play/assets/harbor/mark-job-introduction/SGG_L.CHRM",
+      "byteLength": 32428,
+      "sha256": "5110c718ac7594e5f39ca7dd4cee4374d644914e8b2decc875e03f897fcf1e53"
     },
     {
       "path": "play/assets/harbor/mark-job-introduction/FOKS502G.CHRM",
