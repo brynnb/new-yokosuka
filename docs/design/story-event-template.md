@@ -1116,6 +1116,13 @@ ineligible players, actor presence, hours, later-day exclusion, cancellation,
 repeat protection, unchanged economy and clue/date settlement. The shared wait
 menu now includes a confirmed/cancellable 14:00 target for the coming encounter.
 
+The 2026-10-23 connected continuation passed directly from the new keyboard
+ambush victory, without inserting tattoo prerequisites. Both location talks,
+door entry, cancelled visit/re-entry, notebook and saved reload passed. The
+same save then used the normal wait menu for the next-day Charlie encounter.
+This connects the earned events across saves; the earlier investigation
+checkpoint was copied into an isolated fixture and exterior travel shortened.
+
 The rendered visit exposed an ownership bug: ordinary GPU occlusion had disabled
 the artist's render hierarchy while his placement remained enabled. Activity
 ownership now temporarily clears ambient occlusion and camera fading, then
@@ -1193,6 +1200,14 @@ later-day first arrival without the optional artist flag, cancellation before
 and after winning, atomic day/clue settlement, repeat protection and another
 character's isolation. The remaining challenge/ending choreography and mobile
 controller/gamepad input have not been visually verified.
+
+The 2026-10-23 continuation from the newly earned ambush/first-visit save also
+passed intro cancellation/re-entry, wrong-input retry, Left/A success,
+appointment settlement and reload without replay. Saved day ordinals are
+`6185` for the ambush/first visit and `6186` for Charlie, with unchanged money
+and persistent HP. Reviewed captures show the original animated introduction,
+the still-authored standing challenge/aftermath and the appointment notebook;
+successful progression does not certify the missing action choreography.
 
 2026-10-23 rendered recheck: `NEW_YOKOSUKA_TATTOO_PRESENTATION_E2E=true`
 played the complete introduction and captured frames 200/480/900/1120/1200/1360/1650.
