@@ -1310,6 +1310,11 @@ Nozomi pair has 299. Read the HRCM geometry count and validate both hands
 against that family's HM rig. The harbor pack builder uses the shared hand
 and attached-object systems for the [amulet handover](../design/story-final-day.md#nozomis-amulet-memory),
 including source-derived initialization, timed poses and wrist transfer.
+The [introduction letter](../design/story-final-day.md#chens-introduction-letter)
+uses the same path with archive-local SYU/KIS hands, body-only Chai and the
+original FUTO envelope. Preserve initializer/callback ordering across both
+detailed and body-hand cues; their separate arrays do not imply separate
+source execution orders.
 
 Selection must come from the event runtime or another exact binding, not from
 finding a similarly named hand inside a room package. OP00 contains resources

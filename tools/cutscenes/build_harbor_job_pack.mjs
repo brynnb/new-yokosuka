@@ -87,7 +87,7 @@ const profiles=[
     sound:"A1_END.SND",soundHash:"a8a5aa0c742a92be74939a3b2fce1010cbf0220576950faf438cf2dd73d0fb75",
     selectionRule:"Authored selection of original ENDAUTH1/7/8/9 departure shots, not every alternative in archive order. Original moving ship, Ryo and Chen use original camera/motion. Shared isolated stage replaces the resident dock hull, selecting MAP03 over alternate MAP04. KAM1 has original root movement but no decoded wing loop. Only acknowledged final shot permits ordinary Yarn to save the shipboard checkpoint; no S2 outcome."},
   {id:"nozomi-amulet",archive:"MEND/NZOM",resourceName:"NZOM",evidence:"docs/design/story-final-day.md#nozomis-amulet-memory",auth:"SEQDATA0.AUTH",frames:4187,motion:"M_01JN.MOTN",bank:21,actors:["AKIR","HRSK"],
-    callback:{evidence:"tools/evidence/nzom-native-callback-ir.json",map:"MEND/MAPINFO.BIN",initializer:"0x9b6c",props:["OMAM"]},
+    callback:{evidence:"tools/evidence/nzom-native-callback-ir.json",map:"MEND/MAPINFO.BIN",initializer:"0x9b6c",props:["OMAM"],textureHash:"2be31a8cac926c808abfc7168326f9bb90cb04f81746fabfc74640e8cc3b8633"},
     originalHands:{HRSK:"NZM"},
     actorModels:{HRSK:["Nozomi Harasaki","NZM_M"]},actorTextureHash:"2be31a8cac926c808abfc7168326f9bb90cb04f81746fabfc74640e8cc3b8633",
     stage:{archive:"NZOM.PKS",sha256:"94bbe7abd363493e3789aab1af4f464ed396d5bf1cb6ebd81f70cc0d7e986cb1",textures:"NZOM.PKF",textureHash:"2be31a8cac926c808abfc7168326f9bb90cb04f81746fabfc74640e8cc3b8633",maps:["MAP"]},
@@ -96,10 +96,12 @@ const profiles=[
     selectionRule:"Original Nozomi amulet farewell remembered before the separately acknowledged ship departure. Shared isolated-stage lease borrows original scenery, body, motions, camera and speech. Original callback supplies amulet handover and hand poses. Recollection at the quay, daytime staging and BGM070 entry cue are authored; per-frame face-gaze callbacks remain unreconstructed. Yarn alone settles the amulet and notebook, not the ship or S2."},
   {...finalChaiSource,id:"chen-introduction-letter",auth:"SEQDATA4.AUTH",frames:2638,actors:["BAG0","AKIR","CHAI","KISY","TAIJ"],
     evidence:"docs/design/story-final-day.md#chens-introduction-letter",
+    callback:{evidence:"tools/evidence/chen-letter-native-callback-ir.json",map:"MEND/MAPINFO.BIN",initializer:"0x65b4",props:["FUTO"],textureHash:"d1d8e8205e9037489c8725184d4a8b93ce8f7fbe245fedeb248c3078632420c4"},
+    originalHands:{KISY:"KIS",TAIJ:"SYU"},handArchive:"MEND/MODELS",bodyHands:["CHAI"],
     props:{BAG0:"RBGS5M2G"},propArchive:"MEND/MODELS",propTextureHash:"e109ad0455b02d68ebf8eb7853e294fab21769f17f906f2b8bf50ad08f7d55f1",authoredPropBindings:true,
     stream:"A0184C",streamHash:"857f3a7e3df67fbfcfcf464fcae753613cdb81c97fcfb8042568e5e66c89627d",
     music:{id:"bgm067",sourceId:"768f96d18e58ac3d318f16346117d8bca582c1b3c69c23ac85673216d8be262f",bankHash:"9f33256035430de3810371027603ed95b03e8d3d373d8f25bf0667da098b1695",label:"Master Chen's introduction letter"},
-    selectionRule:"Original post-counter conversation confirms Gui Zhang's injury and Tao Li Shao introduction. Existing Yarn independently grants one letter and notebook only after acknowledgement. BGM067 belongs to the original resource cluster; its film-entry cue and bag-model association are authored. Detailed envelope hand callbacks are not reconstructed. No ship or S2 outcome."},
+    selectionRule:"Original post-counter conversation confirms Gui Zhang's injury and Tao Li Shao introduction. Original CHRT envelope binding, timed handover and hand poses use the shared presentation systems. Existing Yarn independently grants one letter and notebook only after acknowledgement. BGM067 belongs to the original resource cluster; its film-entry cue and bag-model association are authored. Per-frame facial/lighting callbacks remain incomplete. No ship or S2 outcome."},
   {...finalChaiSource,id:"final-chai-intro",auth:"SEQDATA3.AUTH",frames:772,actors:["AKIR","CHAI","KISY","TAIJ","TKOT"],
     props:{TKOT:"TEKS500G"},propArchive:"MEND/MODELS",propTextureHash:"e109ad0455b02d68ebf8eb7853e294fab21769f17f906f2b8bf50ad08f7d55f1",authoredPropBindings:true,
     stream:"A0184",streamHash:"ad893719cdbca6689d7dbe1d9d82a6c98b37ffe5d90c44315bd2e0030c3bd229",additionalStreams:[{stream:"A0184B",sha256:"8d7cfa6fe566dc87816613c04f6e1d15c89d5f5bc3dc112510782a8884dcb644"}],
@@ -411,11 +413,14 @@ for(const p of selected){
     callbackPresentation={...hands,nativeHandPoseTables:{...setup.nativeHandPoseTables,...hands.nativeHandPoseTables},
       nativeHandPoseCues:[...setup.nativeHandPoseCues,
         ...hands.nativeHandPoseCues.map(cue=>({...cue,sourceOrder:setupCount+cue.sourceOrder}))],
-      nativeBodyHandPoseCues:[...setup.nativeBodyHandPoseCues,...hands.nativeBodyHandPoseCues],
+      nativeBodyHandPoseCues:[...setup.nativeBodyHandPoseCues,
+        ...hands.nativeBodyHandPoseCues.map(cue=>({...cue,sourceOrder:setupCount+cue.sourceOrder}))],
       nativeHandComponentCues:hands.nativeHandComponentCues.map(cue=>({...cue,sourceOrder:setupCount+cue.sourceOrder}))};
     const objects=extractNativeAseqCallbackObjectPresentation({...input,objectTags:p.callback.props});
     const textureBytes=fs.readFileSync(path.join(source,`${archiveStem(p.archive)}.PKF`));
-    if(sha256(textureBytes)!==p.actorTextureHash)throw Error(`Changed callback prop textures for ${p.id}`);
+    if(sha256(textureBytes)!==p.callback.textureHash)throw Error(`Changed callback prop textures for ${p.id}`);
+    const textureAssetPath=p.actorModels&&p.actorTextureHash===p.callback.textureHash
+      ?`${prefix}/character-textures.bin`:texture(p.archive,p.callback.textureHash,"callback-textures.bin");
     const bindings=parseChrtSceneObjectBindings(parseIpacActivityArchive(textureBytes).members.find(m=>m.name==="CHARA.CHRT").bytes);
     attachedObjects={};
     for(const tag of p.callback.props){
@@ -425,7 +430,7 @@ for(const p of selected){
       const effects=extractNativeAseqCallbackStageEffects({...input,supportingFunctions:[],source:cb.source,
         nativeFunction:{...cb.function,blocks:cb.function.blocks.map(block=>({...block,actions:block.actions.filter(a=>a.arguments?.[0]?.ascii===tag)}))}});
       const cues=objects.attachedObjectCues.filter(c=>c.objectTag===tag);
-      attachedObjects[tag]={browserFilename:filename,assetPath:`${prefix}/${filename}`,textureAssetPath:`${prefix}/character-textures.bin`,source:binding,
+      attachedObjects[tag]={browserFilename:filename,assetPath:`${prefix}/${filename}`,textureAssetPath,source:binding,
         // Native detach/rebind at one frame has one final render pose.
         attachments:cues.filter((c,i)=>cues.findLastIndex(next=>next.frame===c.frame)===i),
         presentation:effects.programPresentationCues.frames.flatMap(({frame,cues})=>cues.map(cue=>({activitySlot:0,frame,visible:cue.presented,source:cue.source}))),
@@ -433,12 +438,16 @@ for(const p of selected){
     }
   }
   if(p.originalHands){
-    const archive=parseIpacActivityArchive(fs.readFileSync(path.join(source,`${archiveStem(p.archive)}.PKS`)));
-    const texture=generatedAssets.find(a=>a.assetPath===`${prefix}/character-textures.bin`);
+    const handArchive=p.handArchive||p.archive;
+    const archive=parseIpacActivityArchive(fs.readFileSync(path.join(source,`${archiveStem(handArchive)}.PKS`)));
+    const texturePath=handArchive===(p.propArchive||p.archive)&&propTextureAssetPath
+      ?propTextureAssetPath:`${prefix}/character-textures.bin`;
+    const texture=generatedAssets.find(a=>a.assetPath===texturePath);
+    if(!texture)throw Error(`No original hand textures for ${p.id}/${handArchive}`);
     handAssets={};
     for(const [tag,code]of Object.entries(p.originalHands)){
       const record=filename=>{
-        outputMembers.push(member(p.archive,filename));
+        outputMembers.push(member(handArchive,filename));
         const item=archive.members.find(m=>m.name===filename);
         return {path:`${prefix}/${filename}`,byteLength:item.bytes.length,sha256:sha256(item.bytes)};
       };
@@ -454,6 +463,10 @@ for(const p of selected){
         rig:{...rig,vertexCount:layout.vertexCount,transformNodeCount:layout.transformNodeCount,pointerOffsets:layout.pointerOffsets},
         texturePack:{path:texture.assetPath,byteLength:texture.bytes.length,sha256:sha256(texture.bytes)}};
     }
+  }
+  for(const actorTag of p.bodyHands||[]){
+    if(callbackPresentation.nativeHandPoseCues?.some(c=>c.actorTag===actorTag))throw Error(`Detailed HAND request for body-only ${actorTag}`);
+    (handAssets||={})[actorTag]={actorTag,mode:"body-only",bodyModelCode:packageActors[actorTag].modelCode,bodyHandRenderKeys:{left:-66,right:-65}};
   }
   const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:p.resourceName||p.archive,disc:3,sourceMembers:members,expectedMembers:members,
     bindingEvidence:evidence,selectionRule:p.selectionRule||"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",

@@ -435,7 +435,7 @@ Connected earned-save gameplay is rendered and verified.
 | Field | Letter event |
 | --- | --- |
 | Location / prerequisites | Verified MEND waterfront approach, after the separately saved final Chai counter. Story Ryo, opening complete; no exact-hour/date lockout. Confirm **Speak with Master Chen** or **Not yet**. |
-| Original sequence | `CHAIAUTH/SEQDATA4.AUTH`, 2,638 frames, SHA256 `800404401da84f36fe6c1db6a71e635f49adfd433a9ac902d7b0fe00d316425c`; shared `M_0184.MOTN` bank16. Original Chen, injured Gui Zhang, Ryo, receding Chai and bag movement/cameras. The model association for BAG0 is authored; envelope hand callbacks are not reconstructed. |
+| Original sequence | `CHAIAUTH/SEQDATA4.AUTH`, 2,638 frames, SHA256 `800404401da84f36fe6c1db6a71e635f49adfd433a9ac902d7b0fe00d316425c`; shared `M_0184.MOTN` bank16. Original Chen, injured Gui Zhang, Ryo, receding Chai and bag movement/cameras. The model association for BAG0 is authored; the envelope and detailed grips now use original CHRT/callback data. |
 | Dialogue / audio | All eleven requested `A0184C` English records, including an empty-subtitle voice, and original `A1_MOMOR` effects. Dialogue names Tao Li Shao and an enclosed address; no address is invented. BGM067 appears in the original MEND resource cluster; its film-entry cue is authored. |
 | Time / environment / challenge | Preserve personal calendar, weather and the shared MEND scenery/water. No challenge: original conversation playback is not a battle or ship result. |
 | Settlement | Acknowledged natural completion or supported explicit skip atomically grants one `letter_of_introduction`, `story.s1.chen-introduction-letter.completed` and `notebook.s1.tao-li-shao`. Distinct from Iwao's earlier Chinese letter. No currency, time jump, destination or ship/S2 outcome. |
@@ -457,10 +457,10 @@ advanced. Database inspection independently finds exactly one letter-grant
 economy record. Controls return on the tested waterfront floor with no replay,
 ship or S2 outcome. The earned save is backed up independently.
 
-Reviewed captures show Chen and Ryo in the original Tao Li Shao shot, its
+The earlier connected run's captures show Chen and Ryo in the original Tao Li Shao shot, its
 original subtitle, the named inventory entry and restored dock gameplay.
-They do not establish an envelope mesh, exact finger contact or every injured
-Gui Zhang shot. The first browser run completed the narrative but failed on
+They predate the envelope restoration below and do not establish exact finger
+contact or every injured Gui Zhang shot. The first browser run completed the narrative but failed on
 role-based Inventory discovery; a short completed-save check and the full
 rerun use the actual existing button ID. This is the documented persistent
 [Settings accessibility limitation](../implementation/README.md#settings-input-and-modal-lifetime-limitation),
@@ -468,6 +468,30 @@ not a letter save or movement-lock failure. No global ARIA override or Settings
 input remount was added. Ten focused asset tests and the real compiler/engine
 checks cover original identities, all available speech, admission, decline,
 cancellation and the exact one-letter/two-flag acknowledgement.
+
+The 2026-10-23 presentation-only recheck adds the original `FUTO` envelope,
+bound by `CHAIAUTH.PKF` CHRT record 48 to `FUTHI02G.CHRM`. MEND callback
+`0x40a0` starts native ASEQ slot 4 and attaches it to Chen's right controller
+18 at frame 878, transfers it to Ryo's right controller 18 at 1228, and
+releases it at 1758. As with other package-only props, the shared runtime
+hides it after release; this does not model a persistent item inside clothing.
+The native offsets/rotations, 23 detailed-hand poses, ten component rotations
+and three entry body-hand requests are translated through the existing systems.
+Chen and Gui Zhang use the original `SYU`/`KIS` hands and HM rigs in
+`MEND/MODELS`; Chai only requests the body-hand controller, not detailed shells.
+Ryo uses the established YKB binding. Native source is retained in
+`tools/evidence/chen-letter-native-callback-ir.json`, extracted from disc 3
+MEND entry `0x153a0`, callback `0x40a0` with `--include-call-closure`.
+
+The 2.1-minute hardware-browser check (`NEW_YOKOSUKA_STORY_FACE_SET=introduction`)
+cancelled after the first attachment, replayed all 2,638 frames naturally,
+and verified restored avatar/position/view/controls, released actor ownership
+and unchanged saved flags/inventory/money. Native and diagnostic captures show
+the textured envelope first in Chen's grip and then Ryo's; it is absent after
+release. Both tested speakers deform during speech and all eleven original
+voice IDs actually play. This does not reverify earned route admission or
+settlement, every Gui Zhang shot, exact finger contact or original lighting.
+Per-frame facial and environmental callbacks remain incomplete.
 
 ## Nozomi's amulet memory
 

@@ -2,6 +2,12 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  introduction: [
+    ...[false,true].map(natural=>["s1.mend.chen-introduction-letter.scene","mend","MEND",{TAIJ:"SYU",AKIR:"YKC"},{
+      label:natural?"complete":"cancel",natural,frames:natural?[900,1150,1300,1650,1800]:[900],objects:["FUTO"],
+      prop:{tag:"FUTO",shown:[878,1758],attachments:[[878,"attach","TAIJ"],[1228,"attach","AKIR"],[1758,"detach"]],closeup:true},
+    }]),
+  ],
   amulet: [
     ...[false,true].map(natural=>["s1.mend.nozomi-amulet.scene","mend","MEND",{HRSK:"NZM",AKIR:"YKC"},{
       label:natural?"complete":"cancel",natural,frames:natural?[1500,1620,2080,2160,2400]:[1620],objects:["OMAM"],

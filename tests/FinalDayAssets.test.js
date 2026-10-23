@@ -99,6 +99,27 @@ test("Chen's introduction retains the original injury/farewell and all available
   for(const asset of [...m.outputs,...audio.voices,...audio.sounds]){const b=fs.readFileSync(new URL(`../${asset.path||asset.asset}`,import.meta.url));assert.equal(b.length,asset.byteLength);assert.equal(createHash("sha256").update(b).digest("hex"),asset.sha256);}
 });
 
+test("Chen's envelope preserves source binding, transfer timing and hand families",()=>{
+  const m=read("play/assets/harbor/chen-introduction-letter/manifest.json"),cb=read("tools/evidence/chen-letter-native-callback-ir.json");
+  const bytes=fs.readFileSync("extracted_disc3_v2/data/SCENE/03/MEND/MAPINFO.BIN");
+  assert.equal(createHash("sha256").update(bytes).digest("hex"),cb.source.mapinfoSha256);
+  const input={bytes,nativeFunction:cb.function,callbackFunction:0x40a0,durationFrames:2638,activitySlot:0};
+  const original=extractNativeAseqCallbackObjectPresentation({...input,objectTags:["FUTO"]});
+  assert.deepEqual(original.attachedObjectCues.map(c=>[c.frame,c.action,c.parentActorTag,c.controlId]),
+    [[878,"attach","TAIJ",18],[1228,"attach","AKIR",18],[1758,"detach",undefined,undefined]]);
+  const prop=m.attachedObjects.FUTO;
+  assert.equal(prop.source.model,"FUTHI02G");assert.equal(prop.source.characterRecordOffset,48);
+  assert.deepEqual(prop.attachments.map(({activityId,...c})=>c),original.attachedObjectCues);
+  assert.equal(m.handAssets.TAIJ.bodyModelCode,"SYU_M");assert.equal(m.handAssets.KISY.bodyModelCode,"KIS_M");
+  assert.equal(m.handAssets.CHAI.mode,"body-only");
+  const hands=extractNativeAseqCallbackHandPresentation(input),activity=m.activities[0];
+  assert.equal(activity.nativeHandPoseCues.length,23);assert.equal(activity.nativeHandComponentCues.length,10);
+  assert.deepEqual(activity.nativeHandPoseCues.map(({sourceOrder,...c})=>c),hands.nativeHandPoseCues.map(({sourceOrder,...c})=>c));
+  assert.deepEqual(m.nativeHandPoseTables,hands.nativeHandPoseTables);
+  const all=[...activity.nativeHandPoseCues,...activity.nativeBodyHandPoseCues,...activity.nativeHandComponentCues];
+  assert.equal(new Set(all.map(c=>c.sourceOrder)).size,all.length,"initializer and callback preserve one source order");
+});
+
 test("final morning reuses three original films and distinct original actor bodies",()=>{
   const catalog=new ScriptEventPresentationCatalog();
   for(const [id,area,world,dir,frames,voices,effects] of [
