@@ -46,6 +46,14 @@ export async function reviewTattooIntroduction(page, testInfo, character) {
         expect(await page.evaluate(()=>window.storyProbe.tattooReview.error)).toBeNull();
         await page.screenshot({path:testInfo.outputPath(`tattoo-${cancel?"cancel":"full"}-${frame}.png`)});
         if(!cancel&&frame===200){
+          const hands = await page.evaluate(() => {
+            const h=window.storyProbe.director.activeCutscene.packageRuntime.presentation.hands.active.hands;
+            return [["HORS","right"],["TONY","left"]].map(([tag,side])=>{
+              const s=h.get(tag)?.sides[side];
+              return {tag,side,detailed:s?.detailedActive,posed:s?.side.pose.current.some(v=>v!==0)};
+            });
+          });
+          expect(hands).toEqual([{tag:"HORS",side:"right",detailed:true,posed:true},{tag:"TONY",side:"left",detailed:true,posed:true}]);
           await page.evaluate(()=>{
             const p=window.storyProbe,r=p.director.activeCutscene.packageRuntime,root=r.attachedObjects.objects.get("ITEM").root;
             const scene=p.lifecycle.scene,camera=scene.activeCamera,position=camera.position.clone(),target=camera.getTarget().clone();
@@ -58,6 +66,17 @@ export async function reviewTattooIntroduction(page, testInfo, character) {
             await page.waitForFunction(()=>window.storyProbe.tattooReview.toolCloseupFrames>=2);
             await page.screenshot({path:testInfo.outputPath("diagnostic-tattoo-tool.png")});
           }finally{await page.evaluate(()=>window.storyProbe.tattooReview.restoreToolCamera());}
+          for (const [actor,side] of [["HORS","right"],["TONY","left"]]) {
+            await page.evaluate(async({actor,side})=>{
+              const {frameCutsceneSurface}=await import("/tests/e2e/cutscene-surface-framing.js");
+              const p=window.storyProbe;p.tattooReview.closeupFrames=0;
+              p.tattooReview.restoreCamera=frameCutsceneSurface(p.director.activeCutscene.packageRuntime,"hand",actor,side,()=>p.tattooReview.closeupFrames++);
+            },{actor,side});
+            try {
+              await page.waitForFunction(()=>window.storyProbe.tattooReview.closeupFrames>=2);
+              await page.screenshot({path:testInfo.outputPath(`diagnostic-tattoo-${actor}-${side}-hand.png`)});
+            } finally {await page.evaluate(()=>window.storyProbe.tattooReview.restoreCamera());}
+          }
         }
         if(!cancel&&frame===1360){
           await page.evaluate(async()=>{

@@ -6,9 +6,29 @@ import { createHash } from "node:crypto";
 
 import {
   extractNativeAseqCallbackPresentation,
+  extractNativeAseqCallbackHandPresentation,
   extractNativeHandPoseOperation,
 } from "../tools/lib/NativeAseqCallbackPresentation.mjs";
 import { extractNativeAseqCallbackObjectPresentation } from "../tools/lib/NativeAseqCallbackObjectPresentation.mjs";
+
+const tattooMap = path.resolve(process.env.SHENMUE_DISC1_EXTRACTED_ROOT || "extracted_files", "data/SCENE/01/TATQ/MAPINFO.BIN");
+test("tattoo introduction retains original detailed grips and later body-hand request", {
+  skip: !fs.existsSync(tattooMap) && "requires original Disc 1 TATQ extraction",
+}, () => {
+  const read = file => JSON.parse(fs.readFileSync(new URL(file, import.meta.url)));
+  const cb = read("../tools/evidence/tatq-introduction-callback-ir.json"), bytes = fs.readFileSync(tattooMap);
+  assert.equal(createHash("sha256").update(bytes).digest("hex"), cb.source.mapinfoSha256);
+  const hands = extractNativeAseqCallbackHandPresentation({ bytes, nativeFunction: cb.function,
+    callbackFunction: 0x19fb4, activitySlot: 0, durationFrames: 1780 });
+  assert.deepEqual(hands.nativeHandPoseCues.map(c => [c.frame,c.actorTag,c.side,c.poseTableOffset]),
+    [[1,"HORS","left","0x2376c"],[1,"HORS","right","0x23850"],[1,"TONY","left","0x2376c"]]);
+  assert.deepEqual(hands.nativeBodyHandPoseCues.map(c => [c.frame,c.actorTag,c.channel,c.targetIndex]), [[60,"HORS",0,3]]);
+  const manifest = read("../play/assets/dobuita/tattoo-introduction/manifest.json");
+  for (const key of ["nativeHandPoseCues","nativeBodyHandPoseCues","nativeHandComponentCues"])
+    assert.deepEqual(manifest.activities[0][key], hands[key]);
+  assert.deepEqual(manifest.nativeHandPoseTables, hands.nativeHandPoseTables);
+  assert.deepEqual(Object.keys(manifest.handAssets).sort(), ["HORS","TONY"]);
+});
 
 const allowanceMap = path.resolve(process.env.SHENMUE_DISC1_EXTRACTED_ROOT || "extracted_files", "data/SCENE/01/JOMO/MAPINFO.BIN");
 test("original allowance callback recovers indexed-clock handover without a frame override", {

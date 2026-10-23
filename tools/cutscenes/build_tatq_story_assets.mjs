@@ -3,11 +3,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import {execFileSync} from "node:child_process";
-import { buildNativeAseqActivityPack, parseIpacActivityArchive, sha256 } from "../lib/NativeAseqActivityPack.mjs";
+import { buildNativeAseqActivityPack, describeNativeAseqHandAssets, parseIpacActivityArchive, sha256 } from "../lib/NativeAseqActivityPack.mjs";
 import { buildNativeAseqAudioPack } from "../lib/NativeAseqAudioPack.mjs";
 import { parseChrtSceneObjectBindings } from "../lib/chrt_scene_object_bindings.js";
 import { extractNativeTexnPack } from "../lib/NativeTexnPack.mjs";
 import { extractNativeAseqCallbackObjectPresentation } from "../lib/NativeAseqCallbackObjectPresentation.mjs";
+import { extractNativeAseqCallbackHandPresentation } from "../lib/NativeAseqCallbackPresentation.mjs";
 
 const root=path.resolve(import.meta.dirname,"../..");
 const sourceRoot=process.env.SHENMUE_DISC1_EXTRACTED_ROOT||path.join(root,"extracted_files");
@@ -34,13 +35,29 @@ const mapPath=sourcePath("TATQ/MAPINFO.BIN");
 const mapHash="33fc374132d53ed955a4a1704350582afd122b4e86635867808d4c312e6bc4a6";
 const callback=JSON.parse(fs.readFileSync(path.join(root,"tools/evidence/tatq-introduction-callback-ir.json")));
 if(callback.source.mapinfoSha256!==mapHash||callback.source.callbackFunction!=="0x19fb4")throw Error("Changed TATQ introduction callback");
-const objects=extractNativeAseqCallbackObjectPresentation({bytes:fs.readFileSync(mapPath),callbackFunction:0x19fb4,nativeFunction:callback.function,durationFrames:1780});
+const callbackInput={bytes:fs.readFileSync(mapPath),callbackFunction:0x19fb4,nativeFunction:callback.function,activitySlot:0,durationFrames:1780};
+const objects=extractNativeAseqCallbackObjectPresentation(callbackInput);
+const hands=extractNativeAseqCallbackHandPresentation(callbackInput);
 const roomPath=sourcePath("TATQ/MPK00.PKS");
 const room=fs.readFileSync(roomPath),roomTextures=fs.readFileSync(sourcePath("TATQ/MPK00.PKF"));
 if(sha256(room)!=="a70837006eca15f7c6d3e79a5fb4f8ebe53a1b1e4ef6b7f97cc806d55d114e03"
   ||sha256(roomTextures)!=="638db6f31e023109852b747ff921a14e3c532001c8ed13d3e3fb1b6885b1c1e0")throw Error("Changed TATQ room source");
 const prefix="play/assets/dobuita/tattoo-introduction",audioPrefix="public/audio/world/tattoo-introduction";
 const directory=path.join(root,prefix);
+const handFiles=[];
+const handAssets=Object.fromEntries([
+  ["HORS","TAT",["85156d22c467a6bc1f5493253930fdbbf21c96c4219d6588dd34130c583487b9","fa6bf1912c6923c8acad29adcef4a4f2c7e6a539243f166defad46fe65e89a6a","63ddfc53a7397ff87b5909d60ff9be3804099ff842828d465bb4a4ffc04859bd"]],
+  ["TONY","GIJ",["bf14ace42223e4524a58551c74e9be9dcc8911dbad566b8c68ef0ab75a1d50c8","622c0f9a9c7f33b65af9eff47006d9246ab5e0c2f8526834ea7b14918bdd56b6","bd81f3033c0be237e5f52aa1976166e1376dd1c8c2b3ec66948f25d08fbc9729"]],
+].map(([actorTag,code,hashes])=>{
+  const files=["TL.MT5","TR.MT5","HM.BIN"].map((suffix,index)=>{
+    const filename=`${code}_${suffix}`,file=sourcePath(`MODEL/HAND/${filename}`),bytes=fs.readFileSync(file);
+    if(sha256(bytes)!==hashes[index])throw Error(`Changed original TATQ hand ${filename}`);
+    const assetPath=`${prefix}/${filename}`;
+    handFiles.push({sourcePath:file,assetPath,byteLength:bytes.length,sha256:hashes[index]});
+    return {bytes,path:assetPath,sourcePath:`disc1/SCENE/01/MODEL/HAND/${filename}`};
+  });
+  return [actorTag,describeNativeAseqHandAssets({actorTag,handCode:code,bodyModelCode:`${code}_M`,left:files[0],right:files[1],rig:files[2]})];
+}));
 const sourceMembers=[
   {name:"INTRO.AUTH",sourcePath:mapPath,sourceManifestPath:"disc1/SCENE/01/TATQ/MAPINFO.BIN",sourceSha256:mapHash,
     sourceOffset:0x23ce4,byteLength:13048,sha256:"df894f627509cdaae4b07fd61ff594848c52a14763fe91c5795bd2ff39d36bd6"},
@@ -64,10 +81,11 @@ const manifest=buildNativeAseqActivityPack({
   selectionRule:"Exact first embedded TRCK at 0x23ce4 (slot 0). Controller 0x19044 launches callback 0x19fb4 before starting slot 0; only this introduction is enabled here.",
   bindingEvidence:"docs/design/story-event-template.md#charlie-confrontation-and-the-cartel-appointment",
   outputDirectory:directory,outputAssetPrefix:prefix,manifestPath:path.join(directory,"manifest.json"),audioManifest:`${audioPrefix}/manifest.json`,
-  activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:"INTRO.AUTH",durationFrames:1780,actors:["KTE1","AKIR","DOOR","ISU1","ISU2","NIFE","HORS","TONY","SMTH"]}],
+  activities:[{...hands,slot:0,binding:{kind:"map-embedded-slot"},file:"INTRO.AUTH",durationFrames:1780,actors:["KTE1","AKIR","DOOR","ISU1","ISU2","NIFE","HORS","TONY","SMTH"]}],
+  handAssets,nativeHandPoseTables:hands.nativeHandPoseTables,
   motionBanks:[{bank:16,member:"M_0136.MOTN"}],
-  externalAssets:props.map(({member,fromRoom})=>({sourcePath:fromRoom?roomPath:sourcePath("TATQ/QTE.PKS"),archiveMember:member.name,
-    sourceSha256:sha256(fromRoom?room:source),assetPath:`${prefix}/${member.name}`,byteLength:member.bytes.length,sha256:sha256(member.bytes)})),
+  externalAssets:[...handFiles,...props.map(({member,fromRoom})=>({sourcePath:fromRoom?roomPath:sourcePath("TATQ/QTE.PKS"),archiveMember:member.name,
+    sourceSha256:sha256(fromRoom?room:source),assetPath:`${prefix}/${member.name}`,byteLength:member.bytes.length,sha256:sha256(member.bytes)}))],
   generatedAssets:[{assetPath:`${prefix}/room-textures.bin`,bytes:extractNativeTexnPack(roomTextures).bytes},
     {assetPath:`${prefix}/qte-textures.bin`,bytes:textures.bytes}],
   sceneObjects:Object.fromEntries(props.filter(p=>p.tag!=="ITEM").map(({tag,binding,member,fromRoom})=>[tag,{
@@ -96,7 +114,10 @@ if(process.argv.includes("--audio")){
     dtpkDump:process.env.DTPK_DUMP||path.join(root,".disc-work/pool-audio/dtpkdump/DTPKDump.py"),
     vgmstream:process.env.VGMSTREAM_CLI,python:process.env.DTPK_PYTHON||"python3",
   });
-  execFileSync(process.execPath,["tools/runtime-assets.mjs","update",`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path),
+  execFileSync(process.execPath,["tools/runtime-assets.mjs","update",
     `${audioPrefix}/manifest.json`,...[...audio.voices,...audio.sounds].filter(a=>a.asset&&!a.unavailable).map(a=>a.asset)],{cwd:root,stdio:"inherit"});
 }
+// Presentation-only changes must register their manifest/models even when
+// audio was already built; otherwise the browser receives stale asset hashes.
+execFileSync(process.execPath,["tools/runtime-assets.mjs","update",`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path)],{cwd:root,stdio:"inherit"});
 console.log("Built original tattoo-parlor introduction; interactive QTE and settlement unchanged.");

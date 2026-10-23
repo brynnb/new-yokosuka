@@ -5,12 +5,27 @@ import test from "node:test";
 
 import {
   buildNativeAseqActivityPack,
+  describeNativeAseqHandAssets,
   parseIpacActivityArchive,
   sha256,
 } from "../tools/lib/NativeAseqActivityPack.mjs";
 
 const archivePath = "extracted_files/data/SCENE/01/D000/YQ14.PKS";
 const sharedMotionPath = "play/assets/dobuita/yq14/M_01114.MOTN";
+
+test("HAND asset descriptors derive original mesh keys and rig layout", () => {
+  const manifest = JSON.parse(fs.readFileSync("play/assets/dobuita/tattoo-introduction/manifest.json"));
+  const actor = manifest.handAssets.HORS;
+  const input = { actorTag: "HORS", bodyModelCode: "TAT_M", handCode: "TAT" };
+  for (const [key, metadata] of [["left",actor.left.model],["right",actor.right.model],["rig",actor.rig]]) {
+    input[key] = { path: metadata.path, sourcePath: metadata.sourcePath,
+      bytes: fs.readFileSync(metadata.sourcePath.replace("disc1/", "extracted_files/data/")) };
+  }
+  assert.deepEqual(describeNativeAseqHandAssets(input), actor);
+  const wrong = Buffer.from(input.right.bytes);
+  wrong.writeUInt32LE(299, wrong.readUInt32LE(wrong.readUInt32LE(8) + 4) + 8);
+  assert.throws(() => describeNativeAseqHandAssets({ ...input,right:{...input.right,bytes:wrong} }), /HAND vertex counts differ/);
+});
 
 const expectedMembers = Object.freeze([
   ["BINS501G.CHRM", 2132, "77bc11a2d715a76838a2df1f98a16f498a95c2319867515d1a88428ee50e8e4d"],

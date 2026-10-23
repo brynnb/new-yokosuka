@@ -14,6 +14,7 @@ import {
   resolveAuthMotions,
 } from "../../src/AuthSequence.js";
 import { MotnLoader } from "../../src/MotnLoader.js";
+import { parseNativeHandRig } from "../../src/NativeHandRig.js";
 
 const MANIFEST_SCHEMA = "new-yokosuka-aseq-activity-pack-v1";
 
@@ -38,6 +39,31 @@ export function compileNativeAseqAttachedObjects(definitions, activities) {
 
 export function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");
+}
+
+// Both packed CHRM hands and global MT5 hands carry the original root render
+// key and vertex count. Derive those rather than copying another actor's rig
+// layout: e.g. Nozomi has 299 vertices, while the common male rig has 306.
+export function describeNativeAseqHandAssets({ actorTag, bodyModelCode, handCode,
+  left, right, rig, texturePack,
+}) {
+  const model = asset => {
+    const { bytes, ...metadata } = asset;
+    const root = bytes.readUInt32LE(8), mesh = bytes.readUInt32LE(root + 4);
+    return { rootRenderKey: bytes.readInt16LE(root), vertexCount: bytes.readUInt32LE(mesh + 8),
+      model: { ...metadata, byteLength: bytes.length, sha256: sha256(bytes) } };
+  };
+  const l = model(left), r = model(right);
+  if (l.vertexCount !== r.vertexCount) throw Error(`${actorTag} HAND vertex counts differ`);
+  const layout = parseNativeHandRig(rig.bytes, { vertexCount: l.vertexCount });
+  const { bytes, ...rigMetadata } = rig;
+  return { actorTag, bodyModelCode, handCode, bodyHandRenderKeys: { left: -66, right: -65 },
+    left: { rootRenderKey: l.rootRenderKey, model: l.model },
+    right: { rootRenderKey: r.rootRenderKey, model: r.model },
+    rig: { ...rigMetadata, byteLength: bytes.length, sha256: sha256(bytes),
+      vertexCount: layout.vertexCount, transformNodeCount: layout.transformNodeCount, pointerOffsets: layout.pointerOffsets },
+    ...(texturePack ? { texturePack } : {}),
+  };
 }
 
 function sourceBytes(input) {

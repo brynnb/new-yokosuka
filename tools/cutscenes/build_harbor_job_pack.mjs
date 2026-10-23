@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import {execFileSync} from "node:child_process";
-import {buildNativeAseqActivityPack,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
+import {buildNativeAseqActivityPack,describeNativeAseqHandAssets,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
 import {buildNativeAseqAudioPack,registerNativeAseqMusic} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
 import {addNativeAseqStageAssets} from "../lib/NativeAseqStageAssets.mjs";
@@ -13,7 +13,6 @@ import {runtimeAssetUrl} from "../../src/RuntimeAssets.js";
 import {parseChrtSceneObjectBindings} from "../lib/chrt_scene_object_bindings.js";
 import {extractNativeAseqCallbackObjectPresentation} from "../lib/NativeAseqCallbackObjectPresentation.mjs";
 import {extractNativeAseqCallbackHandPresentation,extractNativeAseqHandInitialization,extractNativeAseqCallbackStageEffects} from "../lib/NativeAseqCallbackPresentation.mjs";
-import {parseNativeHandRig} from "../../src/NativeHandRig.js";
 
 const root=path.resolve(import.meta.dirname,"../..");
 const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,"extracted_disc3_v2"),"data/SCENE/03");
@@ -449,19 +448,11 @@ for(const p of selected){
       const record=filename=>{
         outputMembers.push(member(handArchive,filename));
         const item=archive.members.find(m=>m.name===filename);
-        return {path:`${prefix}/${filename}`,byteLength:item.bytes.length,sha256:sha256(item.bytes)};
+        return {path:`${prefix}/${filename}`,bytes:item.bytes};
       };
       const left=record(`${code}_TL.CHRM`),right=record(`${code}_TR.CHRM`),rig=record(`${code}_HM.BIN`);
-      const model=side=>archive.members.find(m=>`${prefix}/${m.name}`===side.path).bytes;
-      const leftBytes=model(left),rightBytes=model(right);
-      const rootKey=b=>b.readInt16LE(b.readUInt32LE(8));
-      const vertices=b=>b.readUInt32LE(b.readUInt32LE(b.readUInt32LE(8)+4)+8);
-      if(vertices(leftBytes)!==vertices(rightBytes))throw Error(`${tag} HAND vertex counts differ`);
-      const layout=parseNativeHandRig(model(rig),{vertexCount:vertices(leftBytes)});
-      handAssets[tag]={actorTag:tag,bodyModelCode:packageActors[tag].modelCode,handCode:code,bodyHandRenderKeys:{left:-66,right:-65},
-        left:{rootRenderKey:rootKey(leftBytes),model:left},right:{rootRenderKey:rootKey(rightBytes),model:right},
-        rig:{...rig,vertexCount:layout.vertexCount,transformNodeCount:layout.transformNodeCount,pointerOffsets:layout.pointerOffsets},
-        texturePack:{path:texture.assetPath,byteLength:texture.bytes.length,sha256:sha256(texture.bytes)}};
+      handAssets[tag]=describeNativeAseqHandAssets({actorTag:tag,bodyModelCode:packageActors[tag].modelCode,handCode:code,left,right,rig,
+        texturePack:{path:texture.assetPath,byteLength:texture.bytes.length,sha256:sha256(texture.bytes)}});
     }
   }
   for(const actorTag of p.bodyHands||[]){
