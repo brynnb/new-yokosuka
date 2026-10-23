@@ -2,6 +2,12 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  amulet: [
+    ...[false,true].map(natural=>["s1.mend.nozomi-amulet.scene","mend","MEND",{HRSK:"NZM",AKIR:"YKC"},{
+      label:natural?"complete":"cancel",natural,frames:natural?[1500,1620,2080,2160,2400]:[1620],objects:["OMAM"],
+      prop:{tag:"OMAM",shown:[1540,4187],attachments:[[1540,"attach","HRSK"],[2139,"attach","AKIR"]],closeup:true},
+    }]),
+  ],
   ticket: [
     ...[false, true].map(natural => ["s1.daza.boat-ticket-collection.scene", "daza", "DAZA", { KJHS: "TPL_L" }, {
       label: natural ? "complete" : "cancel", natural, frames: [],
@@ -82,7 +88,7 @@ export async function reviewStoryFaces(page, testInfo, character) {
                 review.voiceIds.add(voice.command.audio.voiceId);
               }
             }
-            for (const [tag, object] of runtime.sceneObjects?.objects || []) {
+            for (const [tag, object] of new Map([...runtime.sceneObjects?.objects || [],...runtime.attachedObjects?.objects || []])) {
               if (!object.root.getChildMeshes().some(mesh => mesh.isEnabled() && scene.isActiveMesh(mesh))) continue;
               const sample = review.objects[tag] ||= { frames: 0, positions: new Set() };
               sample.frames++;
@@ -177,16 +183,32 @@ export async function reviewStoryFaces(page, testInfo, character) {
           if (options.prop && !state.done) {
             const prop = await page.evaluate(tag => {
               const p = window.storyProbe, r = p.director.activeCutscene.packageRuntime;
-              const root = r.sceneObjects.objects.get(tag).root;
+              const root = (r.sceneObjects.objects.get(tag)||r.attachedObjects.objects.get(tag)).root;
               const frame = r.activityRuntime.active.currentFrame;
               const binding = r.attachedObjects.active.bindings.filter(b=>b.actorTag===tag&&b.frame<=frame).at(-1);
               return { frame, enabled: root.isEnabled(), action: binding?.action || null,
-                parent: binding?.parentActorTag, position: root.getAbsolutePosition().asArray() };
+                parent: binding?.parentActorTag,controlId:binding?.controlId,position: root.getAbsolutePosition().asArray() };
             }, options.prop.tag);
             console.info(`${label} prop`, JSON.stringify(prop));
             expect(prop.enabled).toBe(prop.frame >= options.prop.shown[0] && prop.frame < options.prop.shown[1]);
-            expect(prop.action).toBe(prop.frame < options.prop.shown[0] ? null : prop.frame < options.prop.detach ? "attach" : "detach");
-            if (prop.action === "attach") expect(prop.parent).toBe(options.prop.parent);
+            const timeline=options.prop.attachments||[[options.prop.shown[0],"attach",options.prop.parent],[options.prop.detach,"detach"]];
+            const expected=timeline.filter(([frame])=>frame<=prop.frame).at(-1);
+            expect(prop.action).toBe(expected?.[1]||null);
+            if(prop.action==="attach")expect(prop.parent).toBe(expected[2]);
+            if(options.prop.closeup&&prop.enabled&&prop.action==="attach"){
+              await page.evaluate(async ({parent,controlId})=>{
+                const {frameCutsceneSurface}=await import("/tests/e2e/cutscene-surface-framing.js");
+                const p=window.storyProbe,r=p.director.activeCutscene.packageRuntime;
+                const side=controlId===12?"left":"right";
+                if(!r.presentation.hands.active.hands.get(parent).sides[side].detailedActive)throw Error("Missing detailed hand during transfer");
+                p.faceReview.closeupFrames=0;
+                p.faceReview.restoreCamera=frameCutsceneSurface(r,"hand",parent,side,()=>p.faceReview.closeupFrames++);
+              },prop);
+              try{
+                await page.waitForFunction(()=>window.storyProbe.faceReview.closeupFrames>=2);
+                await page.screenshot({path:testInfo.outputPath(`diagnostic-${label}-prop-${frame}-${prop.parent}.png`)});
+              }finally{await page.evaluate(()=>window.storyProbe.faceReview.restoreCamera());}
+            }
           }
         }
         if (options.natural) {

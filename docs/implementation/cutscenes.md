@@ -1273,7 +1273,7 @@ buffer updatable must also preserve the rig's animated culling bounds.
 Shenmue I character bodies contain low-detail left and right hand nodes at
 signed render keys `-66` (`-0x42`) and `-65` (`-0x41`). Close presentation can
 instantiate separate `MODEL/HAND/<code>_TL.MT5` and `_TR.MT5` resources. These
-are not alternate complete bodies: each model has one 306-vertex hand rooted
+are not alternate complete bodies: each model has one hand rooted
 in wrist-local coordinates. The original HAND consumer `0x0c0de682` resolves
 MOMT controller type `12` for the left hand and `18` for the right, then applies
 the detailed-hand component correction. Use those live controller matrices,
@@ -1303,6 +1303,13 @@ triangles are oriented to their normals, then rendered clockwise and
 one-sided. Hand overlays are not pickable, collidable, or camera blockers.
 Rebind the authored references when a later AUTH activity reacquires the same
 hand; the preceding finger pose must not change which body surface it owns.
+
+The hand vertex count belongs to the original model/rig pair, not a global
+constant: the opening's YKB/INE pairs have 306 vertices, while NZOM's original
+Nozomi pair has 299. Read the HRCM geometry count and validate both hands
+against that family's HM rig. The harbor pack builder uses the shared hand
+and attached-object systems for the [amulet handover](../design/story-final-day.md#nozomis-amulet-memory),
+including source-derived initialization, timed poses and wrist transfer.
 
 Selection must come from the event runtime or another exact binding, not from
 finding a similarly named hand inside a room package. OP00 contains resources

@@ -10,6 +10,10 @@ import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
 import {addNativeAseqStageAssets} from "../lib/NativeAseqStageAssets.mjs";
 import {parseAuthSequence} from "../../src/AuthSequence.js";
 import {runtimeAssetUrl} from "../../src/RuntimeAssets.js";
+import {parseChrtSceneObjectBindings} from "../lib/chrt_scene_object_bindings.js";
+import {extractNativeAseqCallbackObjectPresentation} from "../lib/NativeAseqCallbackObjectPresentation.mjs";
+import {extractNativeAseqCallbackHandPresentation,extractNativeAseqHandInitialization,extractNativeAseqCallbackStageEffects} from "../lib/NativeAseqCallbackPresentation.mjs";
+import {parseNativeHandRig} from "../../src/NativeHandRig.js";
 
 const root=path.resolve(import.meta.dirname,"../..");
 const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,"extracted_disc3_v2"),"data/SCENE/03");
@@ -83,11 +87,13 @@ const profiles=[
     sound:"A1_END.SND",soundHash:"a8a5aa0c742a92be74939a3b2fce1010cbf0220576950faf438cf2dd73d0fb75",
     selectionRule:"Authored selection of original ENDAUTH1/7/8/9 departure shots, not every alternative in archive order. Original moving ship, Ryo and Chen use original camera/motion. Shared isolated stage replaces the resident dock hull, selecting MAP03 over alternate MAP04. KAM1 has original root movement but no decoded wing loop. Only acknowledged final shot permits ordinary Yarn to save the shipboard checkpoint; no S2 outcome."},
   {id:"nozomi-amulet",archive:"MEND/NZOM",resourceName:"NZOM",evidence:"docs/design/story-final-day.md#nozomis-amulet-memory",auth:"SEQDATA0.AUTH",frames:4187,motion:"M_01JN.MOTN",bank:21,actors:["AKIR","HRSK"],
+    callback:{evidence:"tools/evidence/nzom-native-callback-ir.json",map:"MEND/MAPINFO.BIN",initializer:"0x9b6c",props:["OMAM"]},
+    originalHands:{HRSK:"NZM"},
     actorModels:{HRSK:["Nozomi Harasaki","NZM_M"]},actorTextureHash:"2be31a8cac926c808abfc7168326f9bb90cb04f81746fabfc74640e8cc3b8633",
     stage:{archive:"NZOM.PKS",sha256:"94bbe7abd363493e3789aab1af4f464ed396d5bf1cb6ebd81f70cc0d7e986cb1",textures:"NZOM.PKF",textureHash:"2be31a8cac926c808abfc7168326f9bb90cb04f81746fabfc74640e8cc3b8633",maps:["MAP"]},
     stream:"01JIN",streamHash:"afde2e66540afae38d1446da0d75fe631f0c8e9f45fd6c3d7617482b0507d12b",sound:"A1_NOOMA.SND",soundHash:"f3f201aad241ac76c252da929a9bbfffcb79d26bd6186f36abf06bc491bbc47f",
     music:{id:"bgm070",sourceId:"0ab6fbfdb3ef1c1a08791ffecbe9620d2e6da882f6f7dad181722ee2f5e0b8f2",bankHash:"3bf2397f3f58b598d28e9b27bbed991aae6bb19b536a2ff160a56afd753a996f",label:"Nozomi's farewell amulet"},
-    selectionRule:"Original Nozomi amulet farewell remembered before the separately acknowledged ship departure. Shared isolated-stage lease borrows its own original scenery, body, motions, camera and speech. Recollection at the quay, daytime staging and BGM070 entry cue are authored; original envelope/amulet hand callbacks are not reconstructed. Yarn alone settles the amulet and notebook, not the ship or S2."},
+    selectionRule:"Original Nozomi amulet farewell remembered before the separately acknowledged ship departure. Shared isolated-stage lease borrows original scenery, body, motions, camera and speech. Original callback supplies amulet handover and hand poses. Recollection at the quay, daytime staging and BGM070 entry cue are authored; per-frame face-gaze callbacks remain unreconstructed. Yarn alone settles the amulet and notebook, not the ship or S2."},
   {...finalChaiSource,id:"chen-introduction-letter",auth:"SEQDATA4.AUTH",frames:2638,actors:["BAG0","AKIR","CHAI","KISY","TAIJ"],
     evidence:"docs/design/story-final-day.md#chens-introduction-letter",
     props:{BAG0:"RBGS5M2G"},propArchive:"MEND/MODELS",propTextureHash:"e109ad0455b02d68ebf8eb7853e294fab21769f17f906f2b8bf50ad08f7d55f1",authoredPropBindings:true,
@@ -390,13 +396,73 @@ for(const p of selected){
       ...(p.referenceActors?.includes(tag)?{referenceOnly:true}:{}),
       ...(p.authoredPropBindings?{sourceBinding:{kind:"authored-package-prop-association",evidence}}:{})};
   }
+  let callbackPresentation={},attachedObjects,handAssets;
+  if(p.callback){
+    if(activities.length!==1)throw Error("Callback profile requires one explicit activity");
+    const cb=JSON.parse(fs.readFileSync(path.join(root,p.callback.evidence))),bytes=fs.readFileSync(path.join(source,p.callback.map));
+    if(sha256(bytes)!==cb.source.mapinfoSha256)throw Error(`Changed native callback source for ${p.id}`);
+    const input={bytes,nativeFunction:cb.function,callbackFunction:Number.parseInt(cb.function.id,16),activitySlot:0,durationFrames:p.frames};
+    const hands=extractNativeAseqCallbackHandPresentation(input);
+    const setup=extractNativeAseqHandInitialization({bytes,activitySlot:0,includeSourceOrder:true,functions:cb.supportingFunctions,
+      nativeFunction:cb.supportingFunctions.find(f=>f.id===p.callback.initializer)});
+    // Source setup precedes callback overrides, including four frame-zero
+    // grips. Per-frame gaze is independent and is deliberately not guessed.
+    const setupCount=setup.nativeHandPoseCues.length+setup.nativeBodyHandPoseCues.length;
+    callbackPresentation={...hands,nativeHandPoseTables:{...setup.nativeHandPoseTables,...hands.nativeHandPoseTables},
+      nativeHandPoseCues:[...setup.nativeHandPoseCues,
+        ...hands.nativeHandPoseCues.map(cue=>({...cue,sourceOrder:setupCount+cue.sourceOrder}))],
+      nativeBodyHandPoseCues:[...setup.nativeBodyHandPoseCues,...hands.nativeBodyHandPoseCues],
+      nativeHandComponentCues:hands.nativeHandComponentCues.map(cue=>({...cue,sourceOrder:setupCount+cue.sourceOrder}))};
+    const objects=extractNativeAseqCallbackObjectPresentation({...input,objectTags:p.callback.props});
+    const textureBytes=fs.readFileSync(path.join(source,`${archiveStem(p.archive)}.PKF`));
+    if(sha256(textureBytes)!==p.actorTextureHash)throw Error(`Changed callback prop textures for ${p.id}`);
+    const bindings=parseChrtSceneObjectBindings(parseIpacActivityArchive(textureBytes).members.find(m=>m.name==="CHARA.CHRT").bytes);
+    attachedObjects={};
+    for(const tag of p.callback.props){
+      const binding=bindings.find(b=>b.actorTag===tag);
+      if(!binding)throw Error(`No original CHRT model for ${p.id}/${tag}`);
+      const filename=member(p.archive,`${binding.model}.CHRM`);outputMembers.push(filename);
+      const effects=extractNativeAseqCallbackStageEffects({...input,supportingFunctions:[],source:cb.source,
+        nativeFunction:{...cb.function,blocks:cb.function.blocks.map(block=>({...block,actions:block.actions.filter(a=>a.arguments?.[0]?.ascii===tag)}))}});
+      const cues=objects.attachedObjectCues.filter(c=>c.objectTag===tag);
+      attachedObjects[tag]={browserFilename:filename,assetPath:`${prefix}/${filename}`,textureAssetPath:`${prefix}/character-textures.bin`,source:binding,
+        // Native detach/rebind at one frame has one final render pose.
+        attachments:cues.filter((c,i)=>cues.findLastIndex(next=>next.frame===c.frame)===i),
+        presentation:effects.programPresentationCues.frames.flatMap(({frame,cues})=>cues.map(cue=>({activitySlot:0,frame,visible:cue.presented,source:cue.source}))),
+        nodeTransforms:objects.nodeTransformCues.filter(c=>c.objectTag===tag)};
+    }
+  }
+  if(p.originalHands){
+    const archive=parseIpacActivityArchive(fs.readFileSync(path.join(source,`${archiveStem(p.archive)}.PKS`)));
+    const texture=generatedAssets.find(a=>a.assetPath===`${prefix}/character-textures.bin`);
+    handAssets={};
+    for(const [tag,code]of Object.entries(p.originalHands)){
+      const record=filename=>{
+        outputMembers.push(member(p.archive,filename));
+        const item=archive.members.find(m=>m.name===filename);
+        return {path:`${prefix}/${filename}`,byteLength:item.bytes.length,sha256:sha256(item.bytes)};
+      };
+      const left=record(`${code}_TL.CHRM`),right=record(`${code}_TR.CHRM`),rig=record(`${code}_HM.BIN`);
+      const model=side=>archive.members.find(m=>`${prefix}/${m.name}`===side.path).bytes;
+      const leftBytes=model(left),rightBytes=model(right);
+      const rootKey=b=>b.readInt16LE(b.readUInt32LE(8));
+      const vertices=b=>b.readUInt32LE(b.readUInt32LE(b.readUInt32LE(8)+4)+8);
+      if(vertices(leftBytes)!==vertices(rightBytes))throw Error(`${tag} HAND vertex counts differ`);
+      const layout=parseNativeHandRig(model(rig),{vertexCount:vertices(leftBytes)});
+      handAssets[tag]={actorTag:tag,bodyModelCode:packageActors[tag].modelCode,handCode:code,bodyHandRenderKeys:{left:-66,right:-65},
+        left:{rootRenderKey:rootKey(leftBytes),model:left},right:{rootRenderKey:rootKey(rightBytes),model:right},
+        rig:{...rig,vertexCount:layout.vertexCount,transformNodeCount:layout.transformNodeCount,pointerOffsets:layout.pointerOffsets},
+        texturePack:{path:texture.assetPath,byteLength:texture.bytes.length,sha256:sha256(texture.bytes)}};
+    }
+  }
   const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:p.resourceName||p.archive,disc:3,sourceMembers:members,expectedMembers:members,
     bindingEvidence:evidence,selectionRule:p.selectionRule||"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),...(p.silent?{}:{audioManifest:`${audioPrefix}/manifest.json`}),
-    motionBanks:[{bank:p.bank??16,member:p.motion,...(p.motionParseOptions?{parseOptions:p.motionParseOptions}:{})},...(p.extraMotionBanks||[])],activities:activities.map((activity,slot)=>({...activity,slot,binding:{kind:"map-embedded-slot"},
+    motionBanks:[{bank:p.bank??16,member:p.motion,...(p.motionParseOptions?{parseOptions:p.motionParseOptions}:{})},...(p.extraMotionBanks||[])],activities:activities.map((activity,slot)=>({...activity,...callbackPresentation,slot,binding:{kind:"map-embedded-slot"},
       ...(p.stage?{browserMapVisibility:[],browserIsolatedStage:true,browserLightingPresetIndex:0}:{}),
       ...(Object.values(sceneObjects).some(o=>o.lifecycle?.kind==="room-script-persistent")?{nativeSceneObjectStates:[...(p.room?[{actorTag:"ROOM",presented:true}]:[]),...stageStates]}:{})})),
     packageActors,sceneObjects,outputMembers:[...new Set(outputMembers)],generatedAssets,
+    ...(attachedObjects?{attachedObjects,handAssets,nativeHandPoseTables:callbackPresentation.nativeHandPoseTables}:{}),
   });
   runtimePaths.push(`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path));
   if(p.sequenceProgram){

@@ -436,8 +436,10 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     // don't infer their directory or file extension from the gameplay world.
     assets:Object.freeze({...Object.fromEntries([...manifest.outputs.map(asset=>asset.path),...(manifest.motionBanks||[]).map(bank=>bank.path)].map(path=>[path,runtimeAssetUrl(path)])),
       ...Object.fromEntries(Object.values(manifest.packageActors||{}).flatMap(actor=>[actor.assetPath,actor.textureAssetPath].filter(Boolean)).map(path=>[path,runtimeAssetUrl(path)])),
-      ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
-    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
+      ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,
+      ...(manifest.handAssets?op00HandAssets:{})}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR}),
+      ...(manifest.handAssets?{handAssets:{AKIR:op00AssetInventory.handAssets.AKIR,...manifest.handAssets}}:{})}),
     environment:Object.freeze({packageActors:manifest.packageActors,...(manifest.sceneObjects?{sceneObjects:manifest.sceneObjects}:{}),
       ...(manifest.attachedObjects?{attachedObjects:manifest.attachedObjects}:{}),
       ...(manifest.activities.some(activity=>activity.browserIsolatedStage)?{isolatedStage:true}:{}),

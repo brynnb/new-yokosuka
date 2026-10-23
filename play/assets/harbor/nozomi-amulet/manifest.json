@@ -36,6 +36,38 @@
         "archiveMember": "MAP.MAPM",
         "byteLength": 230196,
         "sha256": "b845a3749e811c0b2c883acdb7a9174839e9c06bfb665a4bbba06e779cf111fc"
+      },
+      {
+        "name": "OMMS301G.CHRM",
+        "path": "disc3/SCENE/03/MEND/NZOM.PKS",
+        "sourceSha256": "94bbe7abd363493e3789aab1af4f464ed396d5bf1cb6ebd81f70cc0d7e986cb1",
+        "archiveMember": "OMMS301G.CHRM",
+        "byteLength": 1892,
+        "sha256": "a5a873abc4066e6a28db0d7c1bfe95a3b1e124ad39144db261c8a25fb7d69701"
+      },
+      {
+        "name": "NZM_TL.CHRM",
+        "path": "disc3/SCENE/03/MEND/NZOM.PKS",
+        "sourceSha256": "94bbe7abd363493e3789aab1af4f464ed396d5bf1cb6ebd81f70cc0d7e986cb1",
+        "archiveMember": "NZM_TL.CHRM",
+        "byteLength": 12652,
+        "sha256": "a4821ae7050cebcc33751e55e8468384af6874857a4047d4fea6e093be316676"
+      },
+      {
+        "name": "NZM_TR.CHRM",
+        "path": "disc3/SCENE/03/MEND/NZOM.PKS",
+        "sourceSha256": "94bbe7abd363493e3789aab1af4f464ed396d5bf1cb6ebd81f70cc0d7e986cb1",
+        "archiveMember": "NZM_TR.CHRM",
+        "byteLength": 12740,
+        "sha256": "e03eb0a4ccc137f4467fbc7ab901cab20d6c2d3d27c9c8a26f49bab4f89ff8ca"
+      },
+      {
+        "name": "NZM_HM.BIN",
+        "path": "disc3/SCENE/03/MEND/NZOM.PKS",
+        "sourceSha256": "94bbe7abd363493e3789aab1af4f464ed396d5bf1cb6ebd81f70cc0d7e986cb1",
+        "archiveMember": "NZM_HM.BIN",
+        "byteLength": 8608,
+        "sha256": "d2df197f87e38cf83ee3a44015f376503cb4702819824d5f057405e34fcf64e6"
       }
     ]
   },
@@ -43,7 +75,7 @@
     "evidence": "docs/design/story-final-day.md#nozomis-amulet-memory",
     "resourceName": "NZOM",
     "variant": "",
-    "selectionRule": "Original Nozomi amulet farewell remembered before the separately acknowledged ship departure. Shared isolated-stage lease borrows its own original scenery, body, motions, camera and speech. Recollection at the quay, daytime staging and BGM070 entry cue are authored; original envelope/amulet hand callbacks are not reconstructed. Yarn alone settles the amulet and notebook, not the ship or S2."
+    "selectionRule": "Original Nozomi amulet farewell remembered before the separately acknowledged ship departure. Shared isolated-stage lease borrows original scenery, body, motions, camera and speech. Original callback supplies amulet handover and hand poses. Recollection at the quay, daytime staging and BGM070 entry cue are authored; per-frame face-gaze callbacks remain unreconstructed. Yarn alone settles the amulet and notebook, not the ship or S2."
   },
   "audioManifest": "public/audio/world/nozomi-amulet/manifest.json",
   "sceneObjects": {
@@ -90,6 +122,648 @@
       }
     }
   },
+  "attachedObjects": {
+    "OMAM": {
+      "browserFilename": "OMMS301G.CHRM",
+      "assetPath": "play/assets/harbor/nozomi-amulet/OMMS301G.CHRM",
+      "textureAssetPath": "play/assets/harbor/nozomi-amulet/character-textures.bin",
+      "source": {
+        "actorTag": "OMAM",
+        "image": "OMMS301G",
+        "model": "OMMS301G",
+        "characterRecordOffset": 224,
+        "imagePropertyOffset": 252,
+        "defImageRecordOffset": 184,
+        "presentation": null
+      },
+      "attachments": [
+        {
+          "objectTag": "OMAM",
+          "activitySlot": 0,
+          "frame": 1540,
+          "action": "attach",
+          "parentActorTag": "HRSK",
+          "controlId": 12,
+          "translation": [
+            0.06800000369548798,
+            -0.03200000151991844,
+            0.006000000052154064
+          ],
+          "rotationRaw": [
+            34213,
+            6003,
+            18743
+          ],
+          "callFileOffset": "0xa592",
+          "activityId": "NZOM/SEQDATA0.AUTH"
+        },
+        {
+          "objectTag": "OMAM",
+          "activitySlot": 0,
+          "frame": 2139,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.09700000286102295,
+            0.027000000700354576,
+            -0.017999999225139618
+          ],
+          "rotationRaw": [
+            34395,
+            50792,
+            17649
+          ],
+          "callFileOffset": "0xa8fe",
+          "activityId": "NZOM/SEQDATA0.AUTH"
+        }
+      ],
+      "presentation": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "visible": false,
+          "source": {
+            "path": ".disc-work/dialogue/native-event-ir.json",
+            "sha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0",
+            "disc": 3,
+            "area": "MEND",
+            "mapinfoSha256": "744ade8c33623818e98032dac5bc0a8284e4be1f773ac3e88c74c7d848cd7329",
+            "mapEntryFunction": "0x153a0",
+            "callbackFunction": "0xa0fc",
+            "callFileOffset": "0xa1de"
+          },
+          "activityId": "NZOM/SEQDATA0.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1540,
+          "visible": true,
+          "source": {
+            "path": ".disc-work/dialogue/native-event-ir.json",
+            "sha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0",
+            "disc": 3,
+            "area": "MEND",
+            "mapinfoSha256": "744ade8c33623818e98032dac5bc0a8284e4be1f773ac3e88c74c7d848cd7329",
+            "mapEntryFunction": "0x153a0",
+            "callbackFunction": "0xa0fc",
+            "callFileOffset": "0xa522"
+          },
+          "activityId": "NZOM/SEQDATA0.AUTH"
+        }
+      ],
+      "nodeTransforms": []
+    }
+  },
+  "handAssets": {
+    "HRSK": {
+      "actorTag": "HRSK",
+      "bodyModelCode": "NZM_M",
+      "handCode": "NZM",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/harbor/nozomi-amulet/NZM_TL.CHRM",
+          "byteLength": 12652,
+          "sha256": "a4821ae7050cebcc33751e55e8468384af6874857a4047d4fea6e093be316676"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/harbor/nozomi-amulet/NZM_TR.CHRM",
+          "byteLength": 12740,
+          "sha256": "e03eb0a4ccc137f4467fbc7ab901cab20d6c2d3d27c9c8a26f49bab4f89ff8ca"
+        }
+      },
+      "rig": {
+        "path": "play/assets/harbor/nozomi-amulet/NZM_HM.BIN",
+        "byteLength": 8608,
+        "sha256": "d2df197f87e38cf83ee3a44015f376503cb4702819824d5f057405e34fcf64e6",
+        "vertexCount": 299,
+        "transformNodeCount": 71,
+        "pointerOffsets": [
+          24,
+          168,
+          8304,
+          5848,
+          6344,
+          8608
+        ]
+      },
+      "texturePack": {
+        "path": "play/assets/harbor/nozomi-amulet/character-textures.bin",
+        "byteLength": 979376,
+        "sha256": "37b73bd90d6c8eb070a105785517575471b01f6674916159b17e0db4c8b4f993"
+      }
+    }
+  },
+  "nativeHandPoseTables": {
+    "0x35570": {
+      "sourceMapinfoOffset": "0x35570",
+      "vectors": [
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          -2366
+        ],
+        [
+          -4369,
+          1820,
+          -546
+        ],
+        [
+          0,
+          0,
+          -5279
+        ],
+        [
+          0,
+          0,
+          -6007
+        ],
+        [
+          0,
+          0,
+          -2912
+        ],
+        [
+          0,
+          0,
+          -910
+        ],
+        [
+          0,
+          0,
+          -6553
+        ],
+        [
+          0,
+          0,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          -182
+        ],
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          0,
+          -6007
+        ],
+        [
+          0,
+          0,
+          -2366
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -5643
+        ],
+        [
+          0,
+          0,
+          -4733
+        ],
+        [
+          0,
+          0,
+          -2366
+        ],
+        [
+          -1456,
+          0,
+          728
+        ]
+      ]
+    },
+    "0x353a8": {
+      "sourceMapinfoOffset": "0x353a8",
+      "vectors": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -2002,
+          -1274
+        ],
+        [
+          0,
+          -1820,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "0x352c4": {
+      "sourceMapinfoOffset": "0x352c4",
+      "vectors": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -2548,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "0x351e0": {
+      "sourceMapinfoOffset": "0x351e0",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2366,
+          -1638
+        ],
+        [
+          0,
+          -910,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -3640
+        ],
+        [
+          0,
+          0,
+          -2366
+        ],
+        [
+          0,
+          0,
+          -1456
+        ],
+        [
+          0,
+          -182,
+          1638
+        ],
+        [
+          0,
+          0,
+          -910
+        ],
+        [
+          0,
+          0,
+          -2730
+        ],
+        [
+          0,
+          0,
+          -1274
+        ],
+        [
+          0,
+          0,
+          1820
+        ],
+        [
+          0,
+          182,
+          -2730
+        ],
+        [
+          0,
+          0,
+          -1820
+        ],
+        [
+          0,
+          0,
+          -1274
+        ],
+        [
+          0,
+          182,
+          2184
+        ],
+        [
+          0,
+          -728,
+          -3094
+        ],
+        [
+          0,
+          -910,
+          -2548
+        ],
+        [
+          0,
+          910,
+          -1456
+        ],
+        [
+          -546,
+          910,
+          2366
+        ]
+      ]
+    },
+    "0x3548c": {
+      "sourceMapinfoOffset": "0x3548c",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -3094,
+          -4551
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          728,
+          -11650
+        ],
+        [
+          0,
+          0,
+          -11104
+        ],
+        [
+          0,
+          0,
+          -4733
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -13289
+        ],
+        [
+          0,
+          364,
+          -18750
+        ],
+        [
+          0,
+          0,
+          -8009
+        ],
+        [
+          0,
+          0,
+          1456
+        ],
+        [
+          0,
+          -546,
+          -11832
+        ],
+        [
+          0,
+          0,
+          -17476
+        ],
+        [
+          0,
+          0,
+          -9648
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -13653
+        ],
+        [
+          0,
+          -1820,
+          -15837
+        ],
+        [
+          0,
+          -2366,
+          -9648
+        ],
+        [
+          0,
+          728,
+          1638
+        ]
+      ]
+    }
+  },
   "actorTags": [
     "AKIR",
     "HRSK"
@@ -122,6 +796,26 @@
       "path": "play/assets/harbor/nozomi-amulet/MAP.MAPM",
       "byteLength": 230196,
       "sha256": "b845a3749e811c0b2c883acdb7a9174839e9c06bfb665a4bbba06e779cf111fc"
+    },
+    {
+      "path": "play/assets/harbor/nozomi-amulet/OMMS301G.CHRM",
+      "byteLength": 1892,
+      "sha256": "a5a873abc4066e6a28db0d7c1bfe95a3b1e124ad39144db261c8a25fb7d69701"
+    },
+    {
+      "path": "play/assets/harbor/nozomi-amulet/NZM_TL.CHRM",
+      "byteLength": 12652,
+      "sha256": "a4821ae7050cebcc33751e55e8468384af6874857a4047d4fea6e093be316676"
+    },
+    {
+      "path": "play/assets/harbor/nozomi-amulet/NZM_TR.CHRM",
+      "byteLength": 12740,
+      "sha256": "e03eb0a4ccc137f4467fbc7ab901cab20d6c2d3d27c9c8a26f49bab4f89ff8ca"
+    },
+    {
+      "path": "play/assets/harbor/nozomi-amulet/NZM_HM.BIN",
+      "byteLength": 8608,
+      "sha256": "d2df197f87e38cf83ee3a44015f376503cb4702819824d5f057405e34fcf64e6"
     },
     {
       "path": "play/assets/harbor/nozomi-amulet/character-textures.bin",
@@ -166,6 +860,309 @@
       "browserMapVisibility": [],
       "browserIsolatedStage": true,
       "browserLightingPresetIndex": 0,
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x35570",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x9ee6",
+          "sourceFunction": "0x9d68",
+          "ownerCallFileOffset": "0x9b7a",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x35570",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x9f06",
+          "sourceFunction": "0x9d68",
+          "ownerCallFileOffset": "0x9b7a",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x35570",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x9ee6",
+          "sourceFunction": "0x9d68",
+          "ownerCallFileOffset": "0x9b86",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x35570",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x9f06",
+          "sourceFunction": "0x9d68",
+          "ownerCallFileOffset": "0x9b86",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x353a8",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0xa24a",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x352c4",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0xa26a",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x35570",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0xa31a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x35570",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0xa33a",
+          "sourceOrder": 9
+        },
+        {
+          "activitySlot": 0,
+          "frame": 640,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x35570",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0xa476",
+          "sourceOrder": 10
+        },
+        {
+          "activitySlot": 0,
+          "frame": 640,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x35570",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0xa496",
+          "sourceOrder": 11
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1540,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x351e0",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0xa5fe",
+          "sourceOrder": 14
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1540,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x351e0",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0xa61e",
+          "sourceOrder": 15
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2132,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x3548c",
+          "durationNativeTicks": 20,
+          "callFileOffset": "0xa806",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2250,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x35570",
+          "durationNativeTicks": 20,
+          "callFileOffset": "0xa972",
+          "sourceOrder": 21
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2250,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x35570",
+          "durationNativeTicks": 20,
+          "callFileOffset": "0xa992",
+          "sourceOrder": 22
+        }
+      ],
+      "nativeBodyHandPoseCues": [],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            1820,
+            -546,
+            182
+          ],
+          "callFileOffset": "0xa288",
+          "sourceOrder": 6
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            -1820,
+            -182
+          ],
+          "callFileOffset": "0xa2a6",
+          "sourceOrder": 7
+        },
+        {
+          "activitySlot": 0,
+          "frame": 640,
+          "actorTag": "HRSK",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0xa4b4",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 640,
+          "actorTag": "HRSK",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0xa4d2",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1540,
+          "actorTag": "HRSK",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -8374,
+            728,
+            -1456
+          ],
+          "callFileOffset": "0xa63c",
+          "sourceOrder": 16
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1540,
+          "actorTag": "HRSK",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            12379,
+            1820,
+            728
+          ],
+          "callFileOffset": "0xa65a",
+          "sourceOrder": 17
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2089,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -5643,
+            2912,
+            -6371
+          ],
+          "callFileOffset": "0xa70a",
+          "sourceOrder": 18
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2139,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0xa87e",
+          "sourceOrder": 20
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2250,
+          "actorTag": "HRSK",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0xa9fc",
+          "sourceOrder": 23
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2250,
+          "actorTag": "HRSK",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0xaa1a",
+          "sourceOrder": 24
+        }
+      ],
       "nativeSceneObjectStates": [
         {
           "actorTag": "RM00",

@@ -13,6 +13,48 @@ ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_IR = ROOT / ".disc-work/dialogue/native-event-ir.json"
 
 
+def read_native_map(path: Path, disc: int, area: str, entry: str) -> dict:
+    """Read one map from the canonical pretty-printed IR without loading 850+ MiB.
+
+    The compiler writes the top-level maps array with indent=2. JSONDecoder
+    handles each complete record (including escaped braces/strings); formatting
+    is used only to locate the top-level array, never to split its records.
+    """
+    with path.open(encoding="utf-8") as stream:
+        for line in stream:
+            if line.rstrip() == '  "maps": [':
+                break
+        else:
+            raise RuntimeError("canonical native IR maps array is absent")
+        decoder = json.JSONDecoder()
+        buffer = ""
+        eof = False
+        while True:
+            buffer = buffer.lstrip()
+            if buffer.startswith(","):
+                buffer = buffer[1:].lstrip()
+            if buffer.startswith("]"):
+                break
+            if buffer:
+                try:
+                    value, end = decoder.raw_decode(buffer)
+                except json.JSONDecodeError:
+                    if eof:
+                        raise
+                else:
+                    if (value["disc"] == disc and value["area"] == area.upper()
+                            and value["entryFunction"] == entry.lower()):
+                        return value
+                    buffer = buffer[end:]
+                    continue
+            if eof:
+                raise RuntimeError("native IR maps array is truncated")
+            chunk = stream.read(1024 * 1024)
+            eof = not chunk
+            buffer += chunk
+    raise RuntimeError("requested native map entry is absent from the IR")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--disc", required=True, type=int)
@@ -29,15 +71,9 @@ def main() -> int:
     args = parser.parse_args()
     args.input = args.input.resolve()
 
-    input_bytes = args.input.read_bytes()
-    native_ir = json.loads(input_bytes)
-    native_map = next((entry for entry in native_ir["maps"] if (
-        entry["disc"] == args.disc
-        and entry["area"] == args.area.upper()
-        and entry["entryFunction"] == args.map_entry.lower()
-    )), None)
-    if native_map is None:
-        raise RuntimeError("requested native map entry is absent from the IR")
+    native_map = read_native_map(args.input, args.disc, args.area, args.map_entry)
+    with args.input.open("rb") as stream:
+        input_sha256 = hashlib.file_digest(stream, "sha256").hexdigest()
     callback = next((entry for entry in native_map["functions"] if (
         entry["id"] == args.callback.lower()
     )), None)
@@ -49,7 +85,7 @@ def main() -> int:
         "generatedBy": "tools/cutscenes/extract_native_aseq_callback_ir.py",
         "source": {
             "path": str(args.input.relative_to(ROOT)),
-            "sha256": hashlib.sha256(input_bytes).hexdigest(),
+            "sha256": input_sha256,
             "disc": args.disc,
             "area": args.area.upper(),
             "mapinfoSha256": native_map["mapinfoSha256"],

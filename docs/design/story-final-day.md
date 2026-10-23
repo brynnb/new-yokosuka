@@ -478,7 +478,7 @@ Connected earned-save gameplay is rendered and verified.
 | Location / prerequisites | The tested MEND waterfront approach after the independently saved introduction letter, with actual possession of that letter. Story Ryo and opening complete; no time/date lockout. Confirm **Remember Nozomi's farewell** or **Not yet**. |
 | Original presentation | `MEND/NZOM.PKS`, original `SEQDATA0.AUTH` (4,187 frames), `M_01JN.MOTN` bank21 and archive-local `NZM_M` Nozomi. Its original `MAP.MAPM` and textures are temporary room fixtures; the existing isolated-stage lease hides/restores the resident dock. No second world loader or substitute street is added. |
 | Dialogue / audio / camera | All 27 original English `01JIN` voice records, seven unique original A1_NOOMA effects and original motion/camera timing. Dialogue explicitly gives the amulet and discusses Hong Kong and Canada. The MEND resource cluster names BGM070; beginning it at film entry is authored cue timing. |
-| Time / environment / staging | Remember the farewell before the separate ship ending rather than at the original departure's flashback point. This is an explicit staging adaptation, not an earlier-calendar visit or a recovered trigger. Preserve personal date/weather/time; the temporary scene uses the established daytime light preset. Detailed amulet/envelope meshes, finger contact, facial callbacks and exact historical lighting are not reconstructed. |
+| Time / environment / staging | Remember the farewell before the separate ship ending rather than at the original departure's flashback point. This is an explicit staging adaptation, not an earlier-calendar visit or a recovered trigger. Preserve personal date/weather/time; the temporary scene uses the established daytime light preset. The original amulet, handover and detailed hand poses are restored; exact finger contact, per-frame face-gaze callbacks and historical lighting are not fully verified/reconstructed. |
 | Challenge / settlement | No challenge. Only acknowledged natural ending or supported explicit skip saves `story.s1.nozomi-amulet.completed`, `notebook.s1.nozomi-amulet` and one `nozomi_amulet` through existing atomic inventory settlement. Do not replace/duplicate the introduction letter or award money, time, travel, ship or S2 progress. |
 | Exit / cancellation / replay | Restore the prior dock, avatar pose/camera and controls. Cancelled/failed preparation or playback grants no amulet and permits retry. Already earned letter and battle/counter saves survive. Completed re-entry/reload cannot replay or grant another amulet. No dedicated inventory icon is claimed. |
 
@@ -498,16 +498,40 @@ record, no departure flag and quantity one for both letters and the amulet.
 Controls return on the tested dock floor; temporary shrine scenery does not
 remain after cancellation or completion. The earned save is backed up separately.
 
-Reviewed captures show Nozomi's archive-local body at the original shrine,
+That earlier connected run's captures show Nozomi's archive-local body at the original shrine,
 Ryo/Nozomi in the handover gesture, restored dock after cancellation, the named
-inventory possession and restored gameplay after reload. The actual amulet
-mesh is not present in the handover capture; hand-object/facial callbacks,
-historical lighting and a dedicated inventory icon remain explicit fidelity
-limits. Neither rendered gesture nor movie completion can count as ship
+inventory possession and restored gameplay after reload. Its handover capture
+predates the amulet/hand-pose restoration below. Neither rendered gesture nor movie completion can count as ship
 departure. Compiler/engine tests share the earlier keepsake boundary and require
 the independently earned letter flag and actual letter possession, then the
 exact one-item/two-flag acknowledgement. Cancellation grants nothing and keeps
 the letter. No new state store or native-controller reconstruction was added.
+
+The 2026-10-23 presentation-only recheck restores `OMAM` from the original
+`NZOM.PKF` CHRT binding to `OMMS301G.CHRM`, not a guessed inventory substitute.
+Hash-pinned MEND callback `0xa0fc`, launched by owner `0x99e0`, hides it at
+entry, shows/attaches it to Nozomi's left controller 12 at frame 1540, and
+transfers it to Ryo's right controller 18 at frame 2139. Native translations
+and rotations feed the existing attached-object system. Initializer `0x9b6c`
+and the callback provide 15 detailed-hand poses and ten component rotations.
+Nozomi uses the archive's original `NZM_TL/TR` and 299-vertex `NZM_HM` rig;
+Ryo retains the established YKB hand binding. No scene-specific runtime was
+introduced. The selected original IR is retained in
+`tools/evidence/nzom-native-callback-ir.json`; regenerate it with
+`tools/cutscenes/extract_native_aseq_callback_ir.py` using disc 3, MEND entry
+`0x153a0`, callback `0xa0fc`, supporting functions `0x99e0`/`0x9b6c` and
+`--include-call-closure` before running the pack builder.
+
+The 3.4-minute hardware-browser review (`NEW_YOKOSUKA_STORY_FACE_SET=amulet`)
+cancelled after the first attachment, replayed all 4,187 frames naturally,
+and checked restoration of scenery, avatar, camera, controls and unchanged
+saved progress/rewards. Original shots at frames 2080 and 2162 show the
+textured amulet first in Nozomi's hands and then in Ryo's; frame 2402 shows
+Ryo holding it near his face. Both speakers' speech vertices advance during
+audio. This recheck does not repeat earned admission or reward settlement.
+Dynamic face-gaze operation `0xa74e` has no single recovered ASEQ frame range
+and remains untranslated; exact lighting, all finger contacts and a dedicated
+inventory icon remain fidelity limits.
 
 ## Boarding and sailing
 

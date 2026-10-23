@@ -8,6 +8,8 @@ import {MotnLoader} from "../src/MotnLoader.js";
 import {Mt5Loader} from "../src/Mt5Loader.js";
 import * as BABYLON from "@babylonjs/core";
 import {parseIpacActivityArchive} from "../tools/lib/NativeAseqActivityPack.mjs";
+import {extractNativeAseqCallbackObjectPresentation} from "../tools/lib/NativeAseqCallbackObjectPresentation.mjs";
+import {extractNativeAseqCallbackHandPresentation} from "../tools/lib/NativeAseqCallbackPresentation.mjs";
 import {parseAuthCamera,evaluateAuthCamera} from "../src/AuthCamera.js";
 import {parseAuthMovement,evaluateAuthActor} from "../src/AuthMovement.js";
 import {WORLDS} from "../play/config/worlds.js";
@@ -62,6 +64,27 @@ test("Nozomi's amulet memory leases its own original scenery and uses the archiv
   assert.equal(audio.voices.length,27);assert.equal(audio.sounds.length,7);assert.deepEqual(audio.voices.filter(v=>v.unavailable),[]);
   assert.equal(audio.voices.find(v=>v.voiceId==="01JINB009").displayText,"Here, take this amulet.");
   for(const asset of [...m.outputs,...audio.voices,...audio.sounds]){const b=fs.readFileSync(new URL(`../${asset.path||asset.asset}`,import.meta.url));assert.equal(b.length,asset.byteLength);assert.equal(createHash("sha256").update(b).digest("hex"),asset.sha256);}
+});
+
+test("Nozomi's amulet uses original handover timing and native grips",()=>{
+  const m=read("play/assets/harbor/nozomi-amulet/manifest.json");
+  const cb=read("tools/evidence/nzom-native-callback-ir.json");
+  const bytes=fs.readFileSync("extracted_disc3_v2/data/SCENE/03/MEND/MAPINFO.BIN");
+  assert.equal(createHash("sha256").update(bytes).digest("hex"),cb.source.mapinfoSha256);
+  const input={bytes,nativeFunction:cb.function,callbackFunction:0xa0fc,durationFrames:4187,activitySlot:0};
+  const original=extractNativeAseqCallbackObjectPresentation({...input,objectTags:["OMAM"]});
+  assert.deepEqual(original.attachedObjectCues.map(c=>[c.frame,c.action,c.parentActorTag,c.controlId]),
+    [[1540,"attach","HRSK",12],[2139,"detach",undefined,undefined],[2139,"attach","AKIR",18]]);
+  const prop=m.attachedObjects.OMAM;
+  assert.equal(prop.source.model,"OMMS301G");assert.equal(prop.source.characterRecordOffset,224);
+  assert.deepEqual(prop.attachments.map(({activityId,...c})=>c),[original.attachedObjectCues[0],original.attachedObjectCues[2]]);
+  assert.deepEqual(prop.presentation.map(c=>[c.frame,c.visible]),[[0,false],[1540,true]]);
+  const hands=extractNativeAseqCallbackHandPresentation(input);
+  const activity=m.activities[0];
+  assert.equal(activity.nativeHandPoseCues.length,15);assert.equal(activity.nativeHandComponentCues.length,10);
+  assert.deepEqual(activity.nativeHandPoseCues.slice(4).map(({sourceOrder,...c})=>c),hands.nativeHandPoseCues.map(({sourceOrder,...c})=>c));
+  assert.deepEqual(m.nativeHandPoseTables,hands.nativeHandPoseTables);
+  assert.equal(m.handAssets.HRSK.bodyModelCode,"NZM_M");assert.equal(m.handAssets.HRSK.rig.vertexCount,299);
 });
 
 test("Chen's introduction retains the original injury/farewell and all available speech",()=>{
