@@ -1148,16 +1148,35 @@ up to the ongoing line. Ending/skipping restores the original closed patch.
 Actors without either proven structure remain unanimated and visible in the
 audit rather than receiving invented jaw motion.
 
-The 2026-10-22 local corpus check found 51 authored generic-mouth bindings
+The 2026-10-23 local corpus check found 62 authored generic-mouth bindings
 among 87 on-stage speaker appearances without a detailed FACE across the 107
-packages. The remaining 36 appearances need separate facial-resource work;
-these counts describe structural coverage, not 51 reviewed performances.
+packages. The remaining 25 appearances need separate facial-resource work;
+these counts describe structural coverage, not 62 reviewed performances.
 The short rendered test in `tests/e2e/cutscene-faces.spec.js` checks Megumi's
 visible mouth buffers and poses while her original voice plays, then verifies
 cancelled settlement and released facial ownership. Full Story trigger/choice
 coverage is separate from this preview check. Its audio probe samples the
 logical playback clips directly: the pooled backend does not forward every
 HTML audio progress event, so event-only sampling can falsely report a stall.
+
+Match the closed source within original coordinate rounding, not bit identity.
+The 2026-10-23 scan of 247 local `characters/*_(L|M).CHRM` bodies found 17 whose
+otherwise matching closed-pose copies differ by about `1e-6` (maximum observed
+float32 delta `1.0132789611816406e-6`). `GenericFaceMorph` admits `1.1e-6`, still
+requiring one destination, exactly two equally sized sources, one unique closed
+match and a distinct open shape. This raised structural bindings from 212 to
+229 without losing an existing binding. Larger differences in `SMT_L`, `THK_L`,
+`TPL_L` and `SNT_L` remain unresolved; do not turn this into nearest-shape
+selection. The differences are present before GPU preparation as well.
+
+Kurita's `KZM_L.CHRM` (SHA-256
+`80ae32b38230231d1e4dd7925bbcb68272d3823bb46f32f67ec4a19739a1dfda`)
+exposed this through a real voiced Charlie-inquiry conversation. Its corrected
+mouth was checked over rendered frames with a reviewed speaking capture, then
+the clue, controls and saved reload were verified. Focused tests cover all 17
+newly admitted bodies, exact prepared closed-pose restoration, repeated speech,
+detached-source suppression and unchanged rig culling bounds. This is not
+visual verification of all 17 characters or every line they speak.
 
 The mouth targets use node-local coordinates, while prepared GPU meshes use
 bind-world coordinates. Apply the authored open-minus-closed displacement in

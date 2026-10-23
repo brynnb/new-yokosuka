@@ -76,7 +76,10 @@ test("generic NPC mouths use the authored attached and detached -68 targets", as
 test("production NPC mouths survive preparation and repeated dialogue", async () => {
   const engine = new BABYLON.NullEngine();
   try {
-    for (const modelCode of ["GKA_L", "FUK_M", "SIA_L", "RFD_L"]) {
+    // These source copies differ by one original coordinate step. All use
+    // the same structural matcher, not model-specific mouth overrides.
+    const roundedCopies = ["BGA_L", "CHA_M", "HJB_L", "HPI_L", "HSA_L", "HSB_L", "HTR_L", "JEA_L", "JME_L", "KVI_L", "KZM_L", "MAL_L", "OYB_L", "SHY_L", "SND_L", "TTY_L", "YAM_L"];
+    for (const modelCode of ["GKA_L", "FUK_M", "SIA_L", "RFD_L", ...roundedCopies]) {
       const scene = new BABYLON.Scene(engine);
       try {
         const source = readFileSync(`play/assets/characters/${modelCode}.CHRM`);
@@ -139,4 +142,29 @@ test("production NPC mouths survive preparation and repeated dialogue", async ()
   } finally {
     engine.dispose();
   }
+});
+
+test("generic mouth rounding does not select ambiguous or materially different shapes", async () => {
+  const engine = new BABYLON.NullEngine();
+  try {
+    for (const code of ["KZM_L", "SMT_L", "THK_L", "TPL_L", "SNT_L"]) {
+      const scene = new BABYLON.Scene(engine);
+      try {
+        const bytes = readFileSync(`play/assets/characters/${code}.CHRM`);
+        const model = await loadNativeCharacterModel({ scene, sourceFilename: `${code}.CHRM`,
+          modelBuffer: bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) });
+        if (code !== "KZM_L") {
+          assert.equal(resolveGenericFaceMorph(model), null, `${code}: larger source mismatch remains unresolved`);
+          continue;
+        }
+        const binding = resolveGenericFaceMorph(model);
+        assert.ok(binding);
+        for (let i = 0; i < binding.open.model.nbVertex; i++) {
+          model.loader.globalVertices[binding.open.model.vertexBase + i].pos =
+            [...model.loader.globalVertices[binding.closed.model.vertexBase + i].pos];
+        }
+        assert.equal(resolveGenericFaceMorph(model), null, "two matching sources do not identify an open pose");
+      } finally { scene.dispose(); }
+    }
+  } finally { engine.dispose(); }
 });

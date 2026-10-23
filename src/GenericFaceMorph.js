@@ -2,7 +2,11 @@ import * as BABYLON from "@babylonjs/core";
 import { transformRowVector } from "./Mt5Transform.js";
 
 const FACE_PATCH_RENDER_KEY = -0x44;
-const POSITION_EPSILON = 1e-7;
+// Original closed-pose copies are not always bit-identical: 17 of the 247
+// local S1 bodies differ by one 1e-6 coordinate step (at most 1.014e-6 after
+// float32 storage). Keep a small rounding margin, not a nearest-shape guess:
+// the closed source must still be unique and the open source must differ.
+const POSITION_EPSILON = 1.1e-6;
 
 function signedRenderKey(node) {
   const low = Number(node?.flag) & 0xffff;
@@ -40,8 +44,8 @@ function patchMeshes(node) {
 /**
  * Resolve the native generic-character mouth structure without model names.
  * One attached -68 patch is the render destination. Exactly two detached -68
- * models are authored sources; the source identical to the destination is the
- * closed pose, and the other is the open pose.
+ * models are authored sources; the source matching the destination within
+ * original coordinate rounding is the closed pose, and the other is open.
  */
 export function resolveGenericFaceMorph(model) {
   const loader = model?.loader;

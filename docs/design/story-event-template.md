@@ -234,7 +234,7 @@ does not establish working mouth animation or envelope presentation.
 | Yamanose kitten / first black-car lead | Connected rendered approach, introduction skip, food choice, natural fish ending and saved notebook verified. Real server/compiler tests cover both food settlements, cancellation/retry and clue isolation. Tofu visuals and prop fidelity remain unverified. |
 | Sumiya / Yamagishi → Nozomi → Tom | Connected browser clicks, original voices with changing rendered mouth buffers, saved clues and restored controls verified for all four. Yamagishi/Nozomi use their exact detailed faces; Sumiya/Tom use original embedded mouth targets. Real server/compiler tests cover cancellation/retry, personal eligibility, NPC presence, Yamagishi hours and cross-character isolation. Conversation-specific gestures and original camera timing remain approximations. |
 | Three Blades → Liu family → Liu Senior's sailors lead | Connected browser continuation verified through Ajiichi, daytime referrals, Liu Barber and Liu Senior. The nighttime cook/Yong/Wu referral is now also rendered and connected; all referrals converge on the same Liu clue. |
-| Nighttime sailors → Heartbeats alley | Personal waiting, Saijo's voiced lead and the alley's failure/retry/success path verified in the browser. Timed input is server-validated; defensive choreography remains approximate. |
+| Nighttime sailors → Heartbeats alley | Personal waiting, Saijo's voiced lead and failure/retry/success verified in the browser. Client-timed prompts now stage the original first counter/fall; the second defense and detailed impact audio remain unfinished. |
 | Heartbeats interior → Charlie notebook lead | Connected real-door/browser check verifies voiced lead-in, failed QTE/retry, successful B,A,B,A inputs, clue settlement, restored Ryo/camera/controls and no replay on re-entry. Rendered cast uses held standing poses; attack choreography is not implemented. |
 | Charlie inquiries: Ono → jacket shops; optional Kinuyo → Nagai office → shopkeepers | Seven connected, rendered original-voiced talks and notebook leads verified after the bar-earned checkpoint, including personal daytime waiting, unlocked controls and reload. |
 | Arcade-area ambush → tattoo-parlour lead | Connected rendered introduction/trap, real five-opponent fight, loss/retry, original interrogation and saved notebook verified. Server/compiler/PostgreSQL tests cover calendar/region gates, cancellation, timeout, pre-clue rollback and personal settlement. Combat balance and interrogation staging are adapted. |
@@ -746,9 +746,21 @@ desktop/phone browser checks exercise the shared compact QTE, pointer/key
 success, wrong input, timeout and return to normal dialogue; their clock is
 controlled for deterministic layout captures, not evidence of original timing.
 
+The 2026-10-23 source check located the fight-specific room in `DHQB`, separate
+from the ordinary `DBHB` interior. Original `DHQB/MPK00.PKS` (654,588 bytes,
+SHA-256 `9252217af74608f215f1b90bd8460cd9182840b1758094e109520572c028f3a2`)
+contains `M_DHQB.MOTN` (321,216 bytes,
+SHA-256 `b53970dc8443c01cdbb02daf4d15b959746aa5729c8919f126df22d7d2c8359b`):
+62 complete motion clips including milk dialogue, counter/table interactions,
+successful defenses and failed reactions. It also contains `DYNAMICS.DYNM`
+and separate bar objects. These assets are **not yet connected or visually
+verified**. Clip names alone do not establish actor assignment, placement,
+prop movement or the original branch/timing sequence; do not substitute the
+normal room's static furniture for moving/breaking fight props without review.
+
 The inquiries below continue this clue. The parking-lot ambush continues their
-evening lead; the same-night tattoo-parlour visit is connected. Charlie's later
-confrontation and Chinese-letter progression remain missing.
+evening lead; the same-night tattoo-parlour visit, later Charlie confrontation
+and Chinese-letter progression are connected and documented below.
 
 ## Searching for Charlie: daytime inquiries
 
@@ -802,9 +814,9 @@ implement sleeping, curfew or daily allowance collection.
 
 ### Verification and input ownership
 
-`NEW_YOKOSUKA_CHARLIE_INQUIRIES_E2E=true` resumes a character that earned the
-bar clue in the earlier browser flow. It advances the actual personal clock,
-clicks all seven rendered residents, observes initial voice playback, advances
+`NEW_YOKOSUKA_CHARLIE_INQUIRIES_E2E=true` resumes the bar-clue checkpoint.
+It advances the actual personal clock, clicks all seven rendered residents,
+observes mouth movement across rendered frames during initial voice playback, advances
 the remaining lines with supported Space input, checks notebook leads and
 unchanged money, then reloads the saved Ryo, office location, date and progress.
 Travel is shortened by placing the test player near the real scheduled residents;
@@ -812,6 +824,22 @@ this is not proof of walking every route or listening to every recorded line.
 Real PostgreSQL/Yarn tests separately cover gates, closing times, missing
 participants, cancellation/retry, repeated settlement and other-character
 isolation.
+
+The 2026-10-23 facial recheck passed all seven conversations and reviewed their
+speaking captures. It used an isolated presentation fixture copied from the
+earlier earned bar checkpoint, with these inquiry flags unset; it is not a fresh
+opening-to-office playthrough. Kurita's `KZM_L` exposed a shared structural-mouth
+matcher that rejected original closed-pose copies differing by about `0.000001`.
+The corpus-backed rounding correction in `GenericFaceMorph` also admits 16
+other bodies, without borrowing faces or choosing a nearest shape. Those other
+bodies have geometry tests, not 16 additional rendered performances.
+
+The test approaches now require both supported footing and a clear sightline
+to the actual upper body. Review uses 13:00, when Nagai Industries is open and
+Ono is outside: his original 10:00 schedule first waits inside for 120 game
+seconds before walking out. Do not remove that wait or click through the shop
+wall to make an immediate 10:00 test pass. Ono retains his crouched work pose;
+original conversation-facing reactions and gestures remain unreviewed.
 
 The browser check exposed overlapping input locks: a talk could save the date
 overlay's `movementLocked=true` and restore that obsolete boolean on exit.
@@ -940,7 +968,7 @@ higher priority than the same-night artist conversation.
 | Characters / setup | Hold Ryo, Takashiro, Tony and Smith for the introduction, then switch to Ryo/Charlie. Reuse shared actor ownership, model loading, camera and input locks. An owned out-of-shot HORS is hidden during the confrontation and restored afterward. |
 | Dialogue / timing | Eleven original A0136A voice/subtitle pairs cover the frightened sailors and artist's directions. Then a real Left/A QTE; only winning reaches thirteen selected original A0136 lines and the next-day 3 p.m. appointment. Voice endings or supported Space advance conversation lines; Space cannot answer a challenge. |
 | Presentation / props | Original AUTH records at MAPINFO `0x23ce4` and `0x281e0` anchor actor positions. Cameras and standing holds are authored. Curtain interaction, a rendered knife, dodging, throwing and arm-grab choreography remain omitted; this is not an exact original QTE presentation. No new gameplay item is granted. |
-| Challenge | Closed server catalog `s1.tatq.charlie`, Left then A. Keyboard uses ArrowLeft then Enter; touch buttons use the same prompt tokens. Two-second server windows and strict restart are adaptations. Wrong input/timeout offers retry or leave; ordinary Continue or a client win claim cannot succeed. |
+| Challenge | Closed catalog `s1.tatq.charlie`, Left then A. Keyboard uses ArrowLeft then Enter; touch buttons use the same client runtime. Two-second client windows and strict restart are adaptations. Wrong input/timeout offers retry or leave. The server accepts the trusted final client result for the current ready attempt; ordinary Continue, movie completion and stale tokens cannot succeed. |
 | Calendar / environment | Preserve personal weather, season and ordinary room music/ambience; no forced lighting or date jump. Event ownership pauses the personal clock. Record the successful conversation's personal day, rather than resetting the public world time. |
 | Settlement / exit | After scene cleanup, atomically commit `story.s1.charlie-tattoo-confrontation.completed`, `notebook.s1.charlie-cartel-appointment` and `story.s1.charlie-parlor.day`. Appointment eligibility can derive the following day from that ordinal. Restore exact room-entry avatar/location/facing/camera and controls. Money, persistent HP and experience stay unchanged. |
 | Skip / failure / replay | Space skips lines but never the QTE. Cancellation, failed preparation and unfinished post-win conversation grant no appointment or partial date. Completed encounters do not replay; reconnect reads the committed state. Failed attempts remain retryable. |

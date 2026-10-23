@@ -983,14 +983,21 @@ async function verifyObservedStoryDialogueFace(page, testInfo, name) {
 async function residentClickPoint(page, actor) {
   // Bound travel time without fabricating a talk result: position by the
   // real scheduled NPC, then project its visible mesh for a normal click.
-  await page.evaluate(actor => {
+  await page.evaluate(async actor => {
+    const { Ray } = await import('/node_modules/@babylonjs/core/Culling/ray.js');
     const life = window.storyProbe.lifecycle;
     const [x, y, z] = life.scheduledActors.dialogueActor(actor).position;
     const controller = life.getController();
+    const model = life.scheduledActors.dialogueActorModel(actor);
+    if (!model?.renderRoot) throw new Error(`No visible body for ${actor}`);
+    const bounds = model.renderRoot.getHierarchyBoundingVectors(true);
+    const target = bounds.min.add(bounds.max).scale(.5);
+    target.y = bounds.min.y + (bounds.max.y - bounds.min.y) * .8;
     // A fixed +Z offset can be outside a narrow shop and drop below its floor.
     // Use the game's existing ground/volume validation, not no-clip or a
     // per-shop camera override. This bounds travel without inventing footing.
     let approach;
+    const blockers = [];
     for (const distance of [2, 2.5, 3]) {
       for (let step = 0; step < 16; step++) {
         const angle = step * Math.PI / 8;
@@ -998,11 +1005,25 @@ async function residentClickPoint(page, actor) {
         // grounded pose. This teleport accepts a lower real floor but still
         // requires full support and a clear standing volume there.
         approach = controller.recoveryCandidateAt(x + Math.sin(angle) * distance, z + Math.cos(angle) * distance, y, { constrainHeight: false });
-        if (approach) break;
+        if (!approach) continue;
+        // A valid standing volume can be behind a shop wall. Require the
+        // visible body's sightline too; an NPC proxy alone can be picked
+        // through scenery and cannot prove a rendered conversation.
+        const eye = approach.clone(); eye.y += controller.options.firstPersonHeadHeight;
+        const offset = target.subtract(eye), distanceToActor = offset.length();
+        const ray = new Ray(eye, offset.scale(1 / distanceToActor), Math.max(0, distanceToActor - .25));
+        const blocked = life.scene.pickWithRay(ray, mesh => {
+          if (!mesh.isEnabled() || !mesh.isVisible || !mesh.isPickable || mesh.isDescendantOf(controller.actorRoot)) return false;
+          for (let parent = mesh; parent; parent = parent.parent) if (parent.metadata?.scheduledActorInstanceId) return false;
+          return true;
+        });
+        if (!blocked?.hit) break;
+        if (blockers.length < 6) blockers.push({position:approach.asArray(),mesh:blocked.pickedMesh?.name,distance:blocked.distance,material:blocked.pickedMesh?.material?.name});
+        approach = null;
       }
       if (approach) break;
     }
-    if (!approach) throw new Error(`No supported test approach for ${actor} near ${[x, y, z]}`);
+    if (!approach) throw new Error(`No visible supported test approach for ${actor}: ${JSON.stringify({position:[x,y,z],target:target.asArray(),bounds:[bounds.min.asArray(),bounds.max.asArray()],blockers})}`);
     life.resetPlayer(approach, Math.PI, { persist: false });
     controller.setFirstPerson(true);
     controller.cameraYaw = 0;
@@ -1282,7 +1303,10 @@ async function verifyCharlieInquiries(page, testInfo, character) {
   // Resume the bar-earned clue, then advance the real personal clock. No
   // fabricated flags, NPC routes or script completion replies are injected.
   await waitUntil("Wait until tomorrow morning", 8);
-  await waitUntil("Wait until 10 a.m.", 10);
+  // Ono's original 10:00 journey waits inside for 120 game-seconds before
+  // walking out. Review during ordinary afternoon business, when the optional
+  // Nagai office is open too; do not force actors through their shop walls.
+  await waitUntil("Wait until 1 p.m.", 13);
   const talks = [
     ["ONO_", "dobuita", "story.s1.ono-charlie-jackets.completed"],
     ["TURU", "dobuita", "story.s1.tsuruoka-charlie-evening.completed"],
@@ -1293,7 +1317,6 @@ async function verifyCharlieInquiries(page, testInfo, character) {
     ["TOSK", "dykz", "story.s1.toshiki-charlie-hangouts.completed"],
   ];
   for (const [actor, world, flag] of talks) {
-    if (actor === "NGAI") await waitUntil("Wait until 1 p.m.", 13);
     if (character.storyFlags[flag]) continue;
     await page.evaluate(async world => { await window.storyProbe.lifecycle.travelToWorld(world); }, world);
     await page.waitForFunction(actor => window.storyProbe.lifecycle.scheduledActors.dialogueActor(actor), actor, { timeout: 60_000 });
@@ -1301,6 +1324,7 @@ async function verifyCharlieInquiries(page, testInfo, character) {
     expect(point.x).toBeGreaterThan(280);
     expect(point.x).toBeLessThan(1025);
     await page.screenshot({ path: testInfo.outputPath(`charlie-${actor}-before-talk.png`) });
+    await observeStoryDialogueFace(page, actor);
     await page.mouse.click(point.x, point.y);
     await page.waitForFunction(() => window.storyProbe.dialogue?.active || window.storyProbe.sceneErrors.length);
     expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
@@ -1308,7 +1332,7 @@ async function verifyCharlieInquiries(page, testInfo, character) {
       const audio = window.storyProbe.dialogue?.audio;
       return audio && !audio.paused && audio.currentTime > 0;
     }, null, { timeout: 15_000 });
-    await page.screenshot({ path: testInfo.outputPath(`charlie-${actor}-voiced.png`) });
+    await verifyObservedStoryDialogueFace(page, testInfo, `charlie-${actor}-voiced`);
     for (let i = 0; i < 30 && !await page.evaluate(flag => window.storyProbe.regions.getCharacter()?.storyFlags?.[flag], flag); i++) {
       await page.keyboard.press("Space"); await page.waitForTimeout(180);
     }
