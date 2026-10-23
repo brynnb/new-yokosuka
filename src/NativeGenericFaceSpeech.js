@@ -26,6 +26,11 @@ export class NativeGenericFaceSpeech {
       this.controller.advanceTick();
       this.player.advance(1);
       this.#syncCue();
+      // Native 0x0c0ac3c0 restores the body's original vertex pointer after
+      // the final closing transition. The closed speech target can differ
+      // from that resting body (notably TPL_L and MIB_L).
+      if (!this.player.active && this.controller.transitionTicksRemaining === 0
+        && this.controller.poseAmount !== 0) this.controller.reset();
       this.frame += 1;
     }
   }

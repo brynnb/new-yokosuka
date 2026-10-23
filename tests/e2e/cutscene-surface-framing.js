@@ -1,7 +1,12 @@
 // Browser-side diagnostic only. A close-up checks mesh fit, not authored shots.
 export function frameCutsceneSurface(runtime, kind, actorTag, sideName, onFrame) {
-  const entry = kind === "face" ? runtime.presentation.faces.entries.get(actorTag)
+  let entry = kind === "face" ? runtime.presentation.faces.entries.get(actorTag)
     : runtime.presentation.hands.active.hands.get(actorTag).sides[sideName].side;
+  if (!entry && kind === "face") {
+    const face = runtime.presentation.faces.active.genericFaces.get(actorTag);
+    entry = { root: face.actor.model.renderRoot, loader: face.actor.model.loader,
+      primaryNode: face.speech.controller.binding.destination };
+  }
   const root = entry.root, scene = root.getScene(), camera = scene.activeCamera;
   const matrix = root._mt5CharacterWorldMatrices.get(entry.primaryNode.addr);
   const content = entry.loader.characterContentRoot(root).computeWorldMatrix(true).asArray();

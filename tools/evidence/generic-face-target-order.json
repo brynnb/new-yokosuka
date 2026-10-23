@@ -1,0 +1,116 @@
+{
+  "schema": "new-yokosuka-generic-face-target-order-v1",
+  "producer": "tools/animation/audit_generic_face_targets.mjs",
+  "source": {
+    "executable": ".disc-work/exact/1ST_READ.BIN",
+    "sha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "functions": [
+      {
+        "name": "selectSourceChild",
+        "address": "0xc0ac83c",
+        "length": 130,
+        "sha256": "7377848f12665d867e30a0f3aeca73b1aadca304ee2d82f148ffa5de92d488fb"
+      },
+      {
+        "name": "restoreOriginalVertices",
+        "address": "0xc0ac3c0",
+        "length": 86,
+        "sha256": "20dd26f3fb651b8ba60e371a20f1087ccb522ec390221d0d0b176f6130dacb71"
+      },
+      {
+        "name": "beginTargetTransition",
+        "address": "0xc0ac416",
+        "length": 256,
+        "sha256": "738f8300f0d559a8a4700309c150118effec5a2ec2787b43aa74bd7a173f45e5"
+      },
+      {
+        "name": "genericSpeechUpdate",
+        "address": "0xc0ac8e2",
+        "length": 510,
+        "sha256": "8a0793422faf9b9e459a4a5c96f8c94794f29ba6026c19282df49ab28fe978cd"
+      }
+    ]
+  },
+  "interpretation": [
+    "SH-4 selector 0x0c0ac83c takes child zero at node +0x2c, then follows +0x30 siblings by the requested index. Runtime pointers correspond to HRCM child/sibling offsets 44/48.",
+    "0x0c0ac8e2 selects marker -67 and source index 0 for silence/closing; speech alternates indices 0 and 1. It finds the attached destination by marker -68 independently. No coordinate-similarity search occurs.",
+    "0x0c0ac416 reads the selected node's model +4 vertex pointer and blends current destination vertices toward those source positions; 0x0c0ac3c0 restores the saved original destination vertex pointer at completion.",
+    "The browser supports an unambiguous two-child source container. More complex/malformed structures remain unresolved. Prepared bind-space welding is preserved by transforming source-minus-destination displacements.",
+    "Corpus counts are structural coverage, not rendered verification. Original binary functions were cross-checked against the existing SH-4 instruction listing, not assumed from decompiled floating-point pseudocode."
+  ],
+  "corpus": {
+    "bodies": 247,
+    "nativePairs": 233,
+    "restMatchesFirst": 228,
+    "restMatchesSecond": 1,
+    "restMatchesNeither": 4,
+    "exceptions": [
+      {
+        "file": "MIB_L.CHRM",
+        "sha256": "d4289d3e2b2a32a94b1786b0968c4bc7ab546b769a21731453b59771fe67610c",
+        "vertices": 60,
+        "destination": 50640,
+        "closed": 52560,
+        "open": 52624,
+        "maximumRestToClosedDifference": 0.004547998309135437,
+        "maximumRestToOpenDifference": 0
+      },
+      {
+        "file": "SMT_L.CHRM",
+        "sha256": "5f13c532905f4979cf78f7f657541671bb16a2a5a992452621c821cdec247701",
+        "vertices": 45,
+        "destination": 29128,
+        "closed": 30984,
+        "open": 31048,
+        "maximumRestToClosedDifference": 0.000043001025915145874,
+        "maximumRestToOpenDifference": 0.009194999933242798
+      },
+      {
+        "file": "SNT_L.CHRM",
+        "sha256": "e4fee63c0fa7d9b573508655aeed378f0fb7cf83f5248bf7818bc416f0a4895f",
+        "vertices": 89,
+        "destination": 34672,
+        "closed": 34800,
+        "open": 34864,
+        "maximumRestToClosedDifference": 0.0015910044312477112,
+        "maximumRestToOpenDifference": 0.0036059999838471413
+      },
+      {
+        "file": "THK_L.CHRM",
+        "sha256": "ffd4e85f95a8349b25ecfd3a73442d778c0bf51c4089b0e5e6ef17a304059774",
+        "vertices": 39,
+        "destination": 32864,
+        "closed": 33056,
+        "open": 33120,
+        "maximumRestToClosedDifference": 0.00011499971151351929,
+        "maximumRestToOpenDifference": 0.0075980015099048615
+      },
+      {
+        "file": "TPL_L.CHRM",
+        "sha256": "86f7519a9991282e830b5882b3b7883c118574047cf684bd6a6a4a669e079811",
+        "vertices": 41,
+        "destination": 32512,
+        "closed": 34304,
+        "open": 34368,
+        "maximumRestToClosedDifference": 0.004414000548422337,
+        "maximumRestToOpenDifference": 0.00614200159907341
+      }
+    ],
+    "withoutPair": [
+      "BIS_L.CHRM",
+      "CT3_M.CHRM",
+      "CT4_M.CHRM",
+      "CT5_M.CHRM",
+      "DG2_M.CHRM",
+      "DG3_M.CHRM",
+      "INE_M.CHRM",
+      "IWA_M.CHRM",
+      "JIM_M.CHRM",
+      "KIS_M.CHRM",
+      "KOK_M.CHRM",
+      "NZM_L.CHRM",
+      "SYU_M.CHRM",
+      "TJH_L.CHRM"
+    ]
+  }
+}

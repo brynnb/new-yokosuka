@@ -14,13 +14,13 @@ const descriptor = nativeLipSyncDescriptor([
   { shape: 3, durationTicks: 60 },
 ]);
 
-async function withMegumi(run) {
+async function withMegumi(run, code = "SIA_L") {
   const engine = new BABYLON.NullEngine();
   const scene = new BABYLON.Scene(engine);
   try {
-    const bytes = readFileSync("play/assets/characters/SIA_L.CHRM");
+    const bytes = readFileSync(`play/assets/characters/${code}.CHRM`);
     const model = await loadNativeCharacterModel({
-      scene, sourceFilename: "SIA_L.CHRM",
+      scene, sourceFilename: `${code}.CHRM`,
       modelBuffer: bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
     });
     const binding = resolveGenericFaceMorph(model);
@@ -62,6 +62,22 @@ test("shared generic speech reconstructs forward/rewound cues and restores the m
   assert.equal(speech.start(nativeLipSyncDescriptor([])), false);
   assert.deepEqual(positions(), closed);
 }));
+
+test("source-ordered speech restores a distinct rest body after natural completion and cancellation", async () => {
+  for (const code of ["TPL_L", "MIB_L"]) await withMegumi(({binding, positions}) => {
+    const rest = positions(), speech = new NativeGenericFaceSpeech(binding);
+    speech.start(descriptor);
+    speech.seekFrame(46);
+    assert.deepEqual(positions(), Array.from(binding.meshes[0].closedPositions));
+    assert.notDeepEqual(positions(), rest, `${code}: source-zero silence is not the resting body`);
+    speech.seekFrame(4);
+    assert.deepEqual(positions(), Array.from(binding.meshes[0].openPositions));
+    speech.seekFrame(100);
+    assert.deepEqual(positions(), rest, "the final closing transition releases the original vertices");
+    speech.start(descriptor); speech.seekFrame(3); speech.stop();
+    assert.deepEqual(positions(), rest, "cancelled partial transitions cannot change the next binding");
+  }, code);
+});
 
 test("AUTH uses generic mouths without FACE assets, following voice time across shots", () => withMegumi(async ({ scene, model, positions }) => {
   const faces = createNativeAseqFacialPresentation({

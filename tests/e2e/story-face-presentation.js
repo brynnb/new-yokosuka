@@ -2,6 +2,11 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  ticket: [
+    ...[false, true].map(natural => ["s1.daza.boat-ticket-collection.scene", "daza", "DAZA", { KJHS: "TPL_L" }, {
+      label: natural ? "complete" : "cancel", natural, frames: [],
+    }]),
+  ],
   portraits: [
     ["s1.ms08.master-chen.arrival", "ms08", "MS08", { KISY: "KIS", TAIJ: "SYU" }],
     ["s1.d000.jimmy-caught.scene", "dobuita", "D000", { JIMY: "JIM" }],
@@ -102,6 +107,17 @@ export async function reviewStoryFaces(page, testInfo, character) {
                   : Array.from(positions.slice(index * 3, index * 3 + 3));
               });
             })));
+          }
+          for (const [tag, face] of runtime?.presentation.faces?.active?.genericFaces || []) {
+            if (!actors[tag] || !face.voiceCue || face.voiceCue.positionSeconds <= 0) continue;
+            const meshes = face.speech.controller.binding.meshes.map(record => record.mesh);
+            if (!meshes.some(mesh => mesh.isEnabled() && scene.isActiveMesh(mesh))) continue;
+            const sample = review.samples[tag] ||= { code: face.actor.model.modelCode, firstFrame: review.frame,
+              frames: 0, vertices: new Set(), mouths: new Set(), audio: new Set() };
+            sample.frames++;
+            sample.audio.add(face.voiceCue.positionSeconds);
+            sample.mouths.add(face.speech.controller.weight);
+            sample.vertices.add(JSON.stringify(meshes.flatMap(mesh => Array.from(mesh.getVerticesData("position")))));
           }
         });
         review.stopProbe = () => scene.onAfterRenderObservable.remove(observer);

@@ -2,10 +2,8 @@ import * as BABYLON from "@babylonjs/core";
 import { transformRowVector } from "./Mt5Transform.js";
 
 const FACE_PATCH_RENDER_KEY = -0x44;
-// Original closed-pose copies are not always bit-identical: 17 of the 247
-// local S1 bodies differ by one 1e-6 coordinate step (at most 1.014e-6 after
-// float32 storage). Keep a small rounding margin, not a nearest-shape guess:
-// the closed source must still be unique and the open source must differ.
+const FACE_SOURCE_RENDER_KEY = -0x43;
+// Only used to reject indistinguishable targets, never to select their order.
 const POSITION_EPSILON = 1.1e-6;
 
 function signedRenderKey(node) {
@@ -44,8 +42,9 @@ function patchMeshes(node) {
 /**
  * Resolve the native generic-character mouth structure without model names.
  * One attached -68 patch is the render destination. Exactly two detached -68
- * models are authored sources; the source matching the destination within
- * original coordinate rounding is the closed pose, and the other is open.
+ * models are authored sources: child zero of their -67 container is closed,
+ * its next sibling is open (native selector 0x0c0ac83c). The resting body may
+ * differ from BOTH sources; geometry similarity cannot identify their roles.
  */
 export function resolveGenericFaceMorph(model) {
   const loader = model?.loader;
@@ -65,44 +64,46 @@ export function resolveGenericFaceMorph(model) {
   if (sources.some(node => node.model.nbVertex !== destination.model.nbVertex)) {
     return null;
   }
-  const matching = sources.filter(node => positionsMatch(
-    loader,
-    destination.model,
-    node.model,
+  const containers = root._mt5Nodes.filter(node => (
+    signedRenderKey(node) === FACE_SOURCE_RENDER_KEY
+    && sources.some(source => source.addr === node.child)
   ));
-  if (matching.length !== 1) return null;
-  const closed = matching[0];
-  const open = sources.find(node => node !== closed);
-  if (!open || positionsMatch(loader, closed.model, open.model)) return null;
+  if (containers.length !== 1) return null;
+  const closed = sources.find(node => node.addr === containers[0].child);
+  const open = sources.find(node => node.addr === closed.sibling);
+  if (!open || open === closed || open.sibling || closed.child || open.child
+    || positionsMatch(loader, closed.model, open.model)) return null;
 
   const baked = root._mt5CharacterRigBaked === true;
   const bindMatrix = baked ? loader.sourceWorldMatrixForNode(destination) : null;
   const sourceField = baked ? "sourcePos" : "pos";
   const meshes = patchMeshes(destination).map((mesh) => {
     const original = mesh.getVerticesData(BABYLON.VertexBuffer.PositionKind);
+    const restPositions = Float32Array.from(original);
     const closedPositions = Float32Array.from(original);
     const openPositions = Float32Array.from(original);
     for (let index = 0; index < mesh._mt5SourceVertexIndices.length; index += 1) {
       const sourceIndex = mesh._mt5SourceVertexIndices[index];
       const localIndex = sourceIndex - destination.model.vertexBase;
       if (localIndex < 0 || localIndex >= destination.model.nbVertex) continue;
+      const restPosition = sourcePosition(loader, destination.model, localIndex, sourceField);
       const closedPosition = sourcePosition(loader, closed.model, localIndex, sourceField);
       const openPosition = sourcePosition(loader, open.model, localIndex, sourceField);
-      if (!closedPosition || !openPosition) return null;
+      if (!restPosition || !closedPosition || !openPosition) return null;
       // The GPU rig's vertex buffer is already in bind-world space (and may
       // have welded boundary vertices). Raw morph targets are node-local.
-      // Preserve the prepared closed mesh and transform only the authored
+      // Preserve the prepared rest mesh and transform each target's authored
       // displacement into its buffer space. Writing raw target positions here
       // tears the mouth away from the face, including when speech is stopped.
-      const sourceDelta = openPosition.map((value, axis) => value - closedPosition[axis]);
-      const delta = bindMatrix ? transformRowVector(sourceDelta, bindMatrix) : sourceDelta;
-      for (let axis = 0; axis < 3; axis += 1) {
-        openPositions[index * 3 + axis] += delta[axis];
+      for (const [target, positions] of [[closedPosition, closedPositions], [openPosition, openPositions]]) {
+        const sourceDelta = target.map((value, axis) => value - restPosition[axis]);
+        const delta = bindMatrix ? transformRowVector(sourceDelta, bindMatrix) : sourceDelta;
+        for (let axis = 0; axis < 3; axis += 1) positions[index * 3 + axis] += delta[axis];
       }
     }
-    return Object.freeze({ mesh, closedPositions, openPositions });
+    return Object.freeze({ mesh, restPositions, closedPositions, openPositions });
   });
-  if (meshes.length === 0) return null;
+  if (meshes.length === 0 || meshes.some(record => !record)) return null;
   return Object.freeze({
     destination,
     closed,
@@ -130,7 +131,7 @@ export class GenericFaceMorphController {
         const maximum = bounds.maximum.clone();
         record.mesh.setVerticesData(
           BABYLON.VertexBuffer.PositionKind,
-          record.closedPositions,
+          record.restPositions,
           true,
         );
         record.mesh.getBoundingInfo().reConstruct(
@@ -139,6 +140,7 @@ export class GenericFaceMorphController {
       }
     }
     this.weight = 0;
+    this.poseAmount = 0;
     this.targetWeight = 0;
     this.transitionTicksRemaining = 0;
     this.apply();
@@ -157,6 +159,9 @@ export class GenericFaceMorphController {
     this.weight += (
       this.targetWeight - this.weight
     ) / this.transitionTicksRemaining;
+    // Start at the original body, then blend toward source 0 or 1. Later
+    // transitions begin at the current pose, including an interrupted blend.
+    this.poseAmount += (1 - this.poseAmount) / this.transitionTicksRemaining;
     this.transitionTicksRemaining -= 1;
     if (this.transitionTicksRemaining === 0) this.weight = this.targetWeight;
     this.apply();
@@ -165,6 +170,7 @@ export class GenericFaceMorphController {
 
   reset() {
     this.weight = 0;
+    this.poseAmount = 0;
     this.targetWeight = 0;
     this.transitionTicksRemaining = 0;
     this.apply();
@@ -173,9 +179,15 @@ export class GenericFaceMorphController {
   apply() {
     const weight = this.weight;
     for (const record of this.binding.meshes) {
-      const positions = new Float32Array(record.closedPositions.length);
-      for (let index = 0; index < positions.length; index += 1) {
-        positions[index] = record.closedPositions[index]
+      // Like the native final tick, copy exact endpoints instead of retaining
+      // subtraction-rounding residue from the interpolation expression.
+      const endpoint = this.poseAmount === 0 ? record.restPositions
+        : this.poseAmount === 1 && weight === 0 ? record.closedPositions
+          : this.poseAmount === 1 && weight === 1 ? record.openPositions : null;
+      const positions = endpoint ? Float32Array.from(endpoint) : new Float32Array(record.restPositions.length);
+      for (let index = 0; !endpoint && index < positions.length; index += 1) {
+        positions[index] = record.restPositions[index]
+          + (record.closedPositions[index] - record.restPositions[index]) * this.poseAmount
           + (record.openPositions[index] - record.closedPositions[index]) * weight;
       }
       record.mesh.updateVerticesData(

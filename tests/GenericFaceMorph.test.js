@@ -79,7 +79,7 @@ test("production NPC mouths survive preparation and repeated dialogue", async ()
     // These source copies differ by one original coordinate step. All use
     // the same structural matcher, not model-specific mouth overrides.
     const roundedCopies = ["BGA_L", "CHA_M", "HJB_L", "HPI_L", "HSA_L", "HSB_L", "HTR_L", "JEA_L", "JME_L", "KVI_L", "KZM_L", "MAL_L", "OYB_L", "SHY_L", "SND_L", "TTY_L", "YAM_L"];
-    for (const modelCode of ["GKA_L", "FUK_M", "SIA_L", "RFD_L", ...roundedCopies]) {
+    for (const modelCode of ["GKA_L", "FUK_M", "SIA_L", "RFD_L", "SMT_L", "THK_L", "TPL_L", "SNT_L", "MIB_L", ...roundedCopies]) {
       const scene = new BABYLON.Scene(engine);
       try {
         const source = readFileSync(`play/assets/characters/${modelCode}.CHRM`);
@@ -127,7 +127,12 @@ test("production NPC mouths survive preparation and repeated dialogue", async ()
           ...mesh.getBoundingInfo().maximum.asArray(),
         ], boundsBefore, `${modelCode}: speech preserves rig culling bounds`);
         faces.update(4 / 30);
-        assert.notDeepEqual(positions(), closed);
+        assert.deepEqual(positions(), Array.from(binding.meshes[0].openPositions),
+          `${modelCode}: first speech target follows the authored order, even if it equals the rest body`);
+        faces.active.speech.finish();
+        faces.active.speech.advance(4);
+        assert.notDeepEqual(positions(), Array.from(binding.meshes[0].openPositions),
+          `${modelCode}: closing transitions to the other original source`);
         faces.endMessage(message);
         assert.deepEqual(positions(), closed);
         assert.equal(faces.start(message), true);
@@ -144,26 +149,57 @@ test("production NPC mouths survive preparation and repeated dialogue", async ()
   }
 });
 
-test("generic mouth rounding does not select ambiguous or materially different shapes", async () => {
+test("generic mouths follow authored sibling order even when the body matches neither target", async () => {
   const engine = new BABYLON.NullEngine();
   try {
-    for (const code of ["KZM_L", "SMT_L", "THK_L", "TPL_L", "SNT_L"]) {
+    for (const code of ["SMT_L", "THK_L", "TPL_L", "SNT_L", "MIB_L"]) {
       const scene = new BABYLON.Scene(engine);
       try {
         const bytes = readFileSync(`play/assets/characters/${code}.CHRM`);
         const model = await loadNativeCharacterModel({ scene, sourceFilename: `${code}.CHRM`,
           modelBuffer: bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) });
-        if (code !== "KZM_L") {
-          assert.equal(resolveGenericFaceMorph(model), null, `${code}: larger source mismatch remains unresolved`);
-          continue;
-        }
         const binding = resolveGenericFaceMorph(model);
         assert.ok(binding);
+        assert.equal(binding.closed.sibling, binding.open.addr);
+        const records = binding.meshes;
+        const controller = new GenericFaceMorphController(binding);
+        const positions = record => Array.from(record.mesh.getVerticesData(BABYLON.VertexBuffer.PositionKind));
+        for (const record of records) assert.deepEqual(positions(record), Array.from(record.restPositions));
+        controller.transition(true, 4);
+        controller.advanceTick();
+        controller.transition(false, 8); // Interrupt the opening blend.
+        for (let i = 0; i < 8; i++) controller.advanceTick();
+        for (const record of records) assert.deepEqual(positions(record), Array.from(record.closedPositions));
+        controller.transition(true, 4);
+        for (let i = 0; i < 4; i++) controller.advanceTick();
+        const bind = model.loader.sourceWorldMatrixForNode(binding.destination);
+        for (const record of records) {
+          assert.deepEqual(positions(record), Array.from(record.openPositions));
+          for (const [index, vertex] of record.mesh._mt5SourceVertexIndices.entries()) {
+            const local = vertex - binding.destination.model.vertexBase;
+            if (local < 0 || local >= binding.destination.model.nbVertex) continue;
+            const rest = model.loader.globalVertices[vertex].sourcePos;
+            const target = model.loader.globalVertices[binding.open.model.vertexBase + local].sourcePos;
+            const delta = Mt5Loader.transformRowVector(target.map((v, axis) => v - rest[axis]), bind);
+            for (let axis = 0; axis < 3; axis++) assert.ok(Math.abs(
+              record.openPositions[index * 3 + axis] - record.restPositions[index * 3 + axis] - delta[axis]
+            ) < 1e-6, `${code}: exact source target in the destination bind frame`);
+          }
+        }
+        controller.reset();
+        for (const record of records) assert.deepEqual(positions(record), Array.from(record.restPositions));
+        model.renderRoot._mt5Nodes.reverse();
+        assert.equal(resolveGenericFaceMorph(model).closed.addr, binding.closed.addr,
+          "array enumeration and geometry similarity do not choose source order");
+        const sibling = binding.closed.sibling;
+        binding.closed.sibling = binding.closed.addr;
+        assert.equal(resolveGenericFaceMorph(model), null, "a cyclic source chain is not a pair");
+        binding.closed.sibling = sibling;
         for (let i = 0; i < binding.open.model.nbVertex; i++) {
           model.loader.globalVertices[binding.open.model.vertexBase + i].pos =
             [...model.loader.globalVertices[binding.closed.model.vertexBase + i].pos];
         }
-        assert.equal(resolveGenericFaceMorph(model), null, "two matching sources do not identify an open pose");
+        assert.equal(resolveGenericFaceMorph(model), null, "indistinguishable targets cannot animate speech");
       } finally { scene.dispose(); }
     }
   } finally { engine.dispose(); }

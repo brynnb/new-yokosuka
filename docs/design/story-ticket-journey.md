@@ -247,6 +247,15 @@ controls after cancellation, and confirms unchanged money/inventory/flags.
 These previews are renderer checks, not evidence of newly earned progression;
 the connected run above supplies that evidence.
 
+An October 23 presentation-only recheck of ticket collection also verifies
+Koji's original `TPL_L` mouth moving with his recorded line. Its stored mouth
+targets differ from the resting face; the shared resolver now follows original
+source ordering instead of looking for an identical closed shape. Native-shot
+and diagnostic frontal captures were reviewed, then cancellation/replay and a
+natural ending restored the avatar, camera and controls without altering the
+isolated save. This does not rerun the payment/progression chain or establish
+all body gestures and props. See the [shared facial implementation](../implementation/cutscenes.md#character-faces).
+
 ## The snow dream and Jimmy's morning call
 
 Official imports: `jimmy-night-dream`, `jimmy-morning-call`.

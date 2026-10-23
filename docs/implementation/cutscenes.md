@@ -1160,15 +1160,16 @@ priority; otherwise it resolves the mouth from the currently leased actor's
 actual body. No actor-name allowlist or new model download is required.
 Cutscenes follow the playing voice's position, so buffering holds the mouth,
 seeking reconstructs its pose, and an actor returning in another shot catches
-up to the ongoing line. Ending/skipping restores the original closed patch.
+up to the ongoing line. Ending/skipping restores the original resting patch,
+which is not necessarily the closed speech target.
 Actors without either proven structure remain unanimated and visible in the
 audit rather than receiving invented jaw motion.
 
-The 2026-10-23 local corpus check found 62 authored generic-mouth bindings
+The 2026-10-23 local corpus check found 63 authored generic-mouth bindings
 among 63 on-stage speaker appearances without a detailed FACE across the 108
-packages. The remaining appearance (`KJHS`/`TPL_L` in `boat-ticket-collection`)
-needs separate facial-resource work;
-these counts describe structural coverage, not 62 reviewed performances.
+packages. Together with the detailed-face catalog, all on-stage speakers in
+this registered package set now resolve a mouth binding. These counts describe
+structural coverage, not 108 reviewed performances or every original scene.
 The short rendered test in `tests/e2e/cutscene-faces.spec.js` checks Megumi's
 visible mouth buffers and poses while her original voice plays, then verifies
 cancelled settlement and released facial ownership. Full Story trigger/choice
@@ -1176,24 +1177,44 @@ coverage is separate from this preview check. Its audio probe samples the
 logical playback clips directly: the pooled backend does not forward every
 HTML audio progress event, so event-only sampling can falsely report a stall.
 
-Match the closed source within original coordinate rounding, not bit identity.
-The 2026-10-23 scan of 247 local `characters/*_(L|M).CHRM` bodies found 17 whose
-otherwise matching closed-pose copies differ by about `1e-6` (maximum observed
-float32 delta `1.0132789611816406e-6`). `GenericFaceMorph` admits `1.1e-6`, still
-requiring one destination, exactly two equally sized sources, one unique closed
-match and a distinct open shape. This raised structural bindings from 212 to
-229 without losing an existing binding. Larger differences in `SMT_L`, `THK_L`,
-`TPL_L` and `SNT_L` remain unresolved; do not turn this into nearest-shape
-selection. The differences are present before GPU preparation as well.
+Select the targets by original child/sibling order, not geometry similarity.
+The original SH-4 selector `0x0c0ac83c` takes child zero of the `-67` container,
+then follows siblings by the requested index. Speech update `0x0c0ac8e2` uses
+index zero for silence/closing and alternates zero/one while speaking. The
+transition consumer `0x0c0ac416` blends toward that selected source; cleanup
+`0x0c0ac3c0` restores the saved original vertex pointer. This was checked against
+the instruction listing as well as the decompilation; no coordinate search is
+present. Executable/function/model hashes and the reproducible corpus counts
+are in [the target-order evidence](../../tools/evidence/generic-face-target-order.json).
+Recheck with `node scripts/testing/run-tests.mjs script tools/animation/audit_generic_face_targets.mjs --check`.
+
+Of 247 local `characters/*_(L|M).CHRM` bodies, 233 have this unambiguous
+two-source structure. Four (`SMT_L`, `THK_L`, `TPL_L`, `SNT_L`) have resting
+geometry matching neither source; `MIB_L` matches source one, which the previous
+similarity test incorrectly treated as closed. Native ordering fixes both
+cases, including the 17 bodies with small coordinate-rounding differences.
+The 14 bodies without a suitable pair remain explicit in the evidence; some
+use the separate detailed FACE path. Do not widen tolerances or guess the
+nearest shape. The small tolerance now only rejects indistinguishable sources.
 
 Kurita's `KZM_L.CHRM` (SHA-256
 `80ae32b38230231d1e4dd7925bbcb68272d3823bb46f32f67ec4a19739a1dfda`)
 exposed this through a real voiced Charlie-inquiry conversation. Its corrected
 mouth was checked over rendered frames with a reviewed speaking capture, then
 the clue, controls and saved reload were verified. Focused tests cover all 17
-newly admitted bodies, exact prepared closed-pose restoration, repeated speech,
-detached-source suppression and unchanged rig culling bounds. This is not
-visual verification of all 17 characters or every line they speak.
+rounded bodies and the five ordering/rest exceptions, exact prepared rest and
+speech endpoints, interrupted/replayed transitions, detached-source suppression
+and unchanged rig culling bounds. This is not visual verification of every body.
+
+`NEW_YOKOSUKA_STORY_FACE_SET=ticket` with the presentation-only face review
+replays the original boat-ticket collection scene through Koji's line, cancels,
+then plays it to its natural end. The October 23 run reviewed his native shot
+and a diagnostic frontal close-up, with changing mouth vertices during advancing
+original audio. His face is viewed from behind in the sampled native shot; the
+diagnostic capture establishes the frontal fit, not original camera fidelity.
+Both exits restored avatar, location, camera and controls and released leases,
+without changing money, inventory or story flags. This is not a new connected
+ticket-purchase playthrough, nor verification of every body gesture or prop.
 
 The same audit identified 24 more appearances whose detailed-face resources
 had not been registered: Gui Zhang (`KIS_M`), Master Chen (`SYU_M`), Jimmy
@@ -1239,9 +1260,11 @@ recorded in the [event specification](../design/story-event-template.md#next-day
 Neither test establishes complete finger/expression fidelity.
 
 The mouth targets use node-local coordinates, while prepared GPU meshes use
-bind-world coordinates. Apply the authored open-minus-closed displacement in
-the destination's bind space; retain its prepared closed geometry, including
-welded seams and parent-owned vertices. Writing raw target positions into the
+bind-world coordinates. Apply each authored source-minus-destination
+displacement in the destination's bind space; retain its prepared resting
+geometry, including welded seams and parent-owned vertices. Blend from the
+current pose, then restore that exact resting geometry after the last closing
+transition or cancellation. Writing raw target positions into the
 GPU buffer displaces the lower face even after speech ends. Making the mouth
 buffer updatable must also preserve the rig's animated culling bounds.
 
