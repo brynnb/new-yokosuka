@@ -2,6 +2,15 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  bunkado: [
+    ...[false,true].map(natural=>["s1.dkty.handguard.arrival","dkty","DKTY",{AKIR:"YKC",OISI:"KOT_L"},{
+      label:natural?"complete":"cancel",natural,openingFrames:[730,970],
+      frames:natural?[1680,2200,2775,2830]:[1680],objects:["TUBA","HAKO","TOKE"],
+      prop:{tag:"TUBA",shown:[0,2950],attachments:[[1630,"attach","OISI"],[2760,"attach","AKIR"]],closeup:true},
+    }]),
+    ["s1.dkty.handguard.remembrance","dkty","DKTY",{AKIR:"YKC",OISI:"KOT_L"},{natural:true,frames:[200,500],objects:["TUBA"]}],
+    ["s1.dkty.handguard.phoenix-question","dkty","DKTY",{AKIR:"YKC",OISI:"KOT_L"},{natural:true,frames:[250,750,850],objects:["TUBA"]}],
+  ],
   tattoo: [
     ...[false,true].map(natural=>["s1.tatq.charlie-aftermath.scene","tatq","TATQ",{CHRL:"BIS",AKIR:"YKC"},{
       label:natural?"complete":"cancel",natural,openingFrames:[45,105],frames:natural?[250,420,640,800,1000,1300,1600]:[420],
@@ -157,7 +166,11 @@ export async function reviewStoryFaces(page, testInfo, character) {
         // Capture the lead-in before waiting for later speaking shots. A missing
         // early recording must not be hidden by a working ending-film voice.
         for (const frame of options.openingFrames || []) {
-          await page.waitForFunction(frame => window.storyProbe.faceReview.frame >= frame, frame, { timeout: 120_000 });
+          await page.waitForFunction(frame => {
+            const r=window.storyProbe.faceReview; return r.error || r.done || r.frame >= frame;
+          }, frame, { timeout: 120_000 });
+          expect(await page.evaluate(()=>window.storyProbe.faceReview.error)).toBeNull();
+          expect(await page.evaluate(()=>window.storyProbe.faceReview.frame)).toBeGreaterThanOrEqual(frame);
           await page.screenshot({ path: testInfo.outputPath(`${label}-opening-${frame}.png`) });
         }
         for (const [tag, code] of Object.entries(actors)) {

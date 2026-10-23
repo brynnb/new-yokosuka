@@ -22,6 +22,9 @@ test("HAND asset descriptors derive original mesh keys and rig layout", () => {
       bytes: fs.readFileSync(metadata.sourcePath.replace("disc1/", "extracted_files/data/")) };
   }
   assert.deepEqual(describeNativeAseqHandAssets(input), actor);
+  assert.throws(() => describeNativeAseqHandAssets({...input,texturePack:{path:"textures.bin"}}), /byte length and SHA-256/);
+  const texturePack={path:"textures.bin",byteLength:4,sha256:sha256(Buffer.alloc(4))};
+  assert.deepEqual(describeNativeAseqHandAssets({...input,texturePack}).texturePack,texturePack);
   const wrong = Buffer.from(input.right.bytes);
   wrong.writeUInt32LE(299, wrong.readUInt32LE(wrong.readUInt32LE(8) + 4) + 8);
   assert.throws(() => describeNativeAseqHandAssets({ ...input,right:{...input.right,bytes:wrong} }), /HAND vertex counts differ/);

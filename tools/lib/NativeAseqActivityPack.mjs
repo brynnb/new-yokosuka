@@ -47,6 +47,10 @@ export function sha256(bytes) {
 export function describeNativeAseqHandAssets({ actorTag, bodyModelCode, handCode,
   left, right, rig, texturePack,
 }) {
+  if (texturePack && (!texturePack.path || !Number.isSafeInteger(texturePack.byteLength)
+    || texturePack.byteLength <= 0 || !/^[a-f0-9]{64}$/.test(texturePack.sha256 || ""))) {
+    throw Error(`${actorTag} HAND textures require a path, byte length and SHA-256`);
+  }
   const model = asset => {
     const { bytes, ...metadata } = asset;
     const root = bytes.readUInt32LE(8), mesh = bytes.readUInt32LE(root + 4);

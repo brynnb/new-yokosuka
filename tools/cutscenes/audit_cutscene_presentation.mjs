@@ -65,6 +65,14 @@ try {
     const actors = new Set(pkg.actorTags);
     const onStageSpeakers = speakers.filter(tag => actors.has(tag));
     const missingFaceAssets = [];
+    const missingHandAssets = [];
+    for (const [tag, hand] of Object.entries(pkg.presentation?.handAssets || {})) {
+      if (hand.mode === "body-only") continue;
+      for (const record of [hand.left?.model, hand.right?.model, hand.rig, ...(hand.texturePack ? [hand.texturePack] : [])]) {
+        if (!record?.path || !pkg.assets[record.path]) missingHandAssets.push({actor:tag,path:record?.path,kind:"not-bundled"});
+        else if (!existsSync(path.join(root,record.path))) missingHandAssets.push({actor:tag,path:record.path,kind:"not-restored-locally"});
+      }
+    }
     for (const [tag, face] of Object.entries(faces)) for (const record of [face.model, face.table, face.poses]) {
       if (!record?.path || !pkg.assets[record.path]) missingFaceAssets.push({ actor: tag, path: record?.path, kind: "not-bundled" });
       else if (!existsSync(path.join(root, record.path))) missingFaceAssets.push({ actor: tag, path: record.path, kind: "not-restored-locally" });
@@ -81,6 +89,7 @@ try {
       voicesWithoutLipCues: voices.filter(voice => actors.has(voice.speakerId) && !voice.lipSync)
         .map(voice => ({ voice: voice.voiceId, speaker: voice.speakerId })),
       missingFaceAssets,
+      missingHandAssets,
       missingAudioAssets,
       referenceOnlyObjects: Object.entries(pkg.environment?.sceneObjects || {}).filter(([, object]) => object.referenceOnly).map(([tag]) => tag),
       attachedObjects: Object.keys(pkg.environment?.attachedObjects || {}),
@@ -93,6 +102,7 @@ try {
     packagesWithSpeakersWithoutDetailedFace: packages.filter(pkg => pkg.speakersWithoutDetailedFace.length).length,
     speakerOccurrencesWithoutDetailedFace: packages.reduce((n, pkg) => n + pkg.speakersWithoutDetailedFace.length, 0),
     missingFaceAssets: packages.reduce((n, pkg) => n + pkg.missingFaceAssets.length, 0),
+    missingHandAssets: packages.reduce((n, pkg) => n + pkg.missingHandAssets.length, 0),
     audioAssetProblems: packages.reduce((n, pkg) => n + pkg.missingAudioAssets.length, 0),
     referenceOnlyObjects: packages.reduce((n, pkg) => n + pkg.referenceOnlyObjects.length, 0),
   };

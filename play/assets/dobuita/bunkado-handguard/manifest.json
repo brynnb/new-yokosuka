@@ -83,27 +83,75 @@
     "evidence": "docs/design/story-event-template.md#bunkado-sword-handguard",
     "resourceName": "TUBA",
     "variant": "",
-    "selectionRule": "Borrow original AUTH-extension ordinals 1, 2, 4; no recovered native-owner branching. Childhood flashback is omitted."
+    "selectionRule": "Original owner 0x23ac8 calls 0x18da8/0x19edc/0x187d4 for slots 0/1/2, bound to AUTH-extension ordinals 1/2/4. Original hand and grip callbacks are compiled as finite data. Childhood flashback, box-lid motion and dynamic gaze are omitted."
   },
   "audioManifest": "public/audio/world/bunkado-handguard/manifest.json",
   "sceneObjects": {
     "HAKO": {
-      "model": "HOHS502G.CHRM",
+      "model": "HOHS502G",
       "browserFilename": "HOHS502G.CHRM",
       "assetPath": "play/assets/dobuita/bunkado-handguard/HOHS502G.CHRM",
-      "textureAssetPath": "play/assets/dobuita/bunkado-handguard/textures.bin"
+      "textureAssetPath": "play/assets/dobuita/bunkado-handguard/textures.bin",
+      "source": {
+        "actorTag": "HAKO",
+        "image": "HAKO",
+        "model": "HOHS502G",
+        "characterRecordOffset": 332,
+        "imagePropertyOffset": 360,
+        "defImageRecordOffset": 292,
+        "presentation": null
+      }
     },
     "TUBA": {
-      "model": "TUB0210G.CHRM",
+      "model": "TUB0210G",
       "browserFilename": "TUB0210G.CHRM",
       "assetPath": "play/assets/dobuita/bunkado-handguard/TUB0210G.CHRM",
-      "textureAssetPath": "play/assets/dobuita/bunkado-handguard/textures.bin"
+      "textureAssetPath": "play/assets/dobuita/bunkado-handguard/textures.bin",
+      "source": {
+        "actorTag": "TUBA",
+        "image": "TUBA",
+        "model": "TUB0210G",
+        "characterRecordOffset": 204,
+        "imagePropertyOffset": 232,
+        "defImageRecordOffset": 164,
+        "presentation": null
+      }
     },
     "TOKE": {
-      "model": "RABK201G.CHRM",
-      "browserFilename": "RABK201G.CHRM",
-      "assetPath": "play/assets/dobuita/bunkado-handguard/RABK201G.CHRM",
-      "textureAssetPath": "play/assets/dobuita/bunkado-handguard/textures.bin"
+      "model": "TOKT203G",
+      "browserFilename": "TOKT203G.CHRM",
+      "assetPath": "play/assets/dobuita/bunkado-handguard/TOKT203G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/bunkado-handguard/room-textures.bin",
+      "source": {
+        "actorTag": "TOKE",
+        "image": "mbwt",
+        "model": "TOKT203G",
+        "characterRecordOffset": 688,
+        "imagePropertyOffset": 780,
+        "defImageRecordOffset": 648,
+        "presentation": {
+          "position": [
+            0.6000000238418579,
+            0.7300000190734863,
+            -3.299999952316284
+          ],
+          "rotationDegrees": [
+            0,
+            90,
+            42
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "source": {
+            "objectPropertyOffset": 1800,
+            "positionPropertyOffset": 1844,
+            "anglePropertyOffset": 1864
+          }
+        }
+      }
     }
   },
   "packageActors": {
@@ -115,6 +163,921 @@
       "characterScale": 1,
       "assetPath": "play/assets/dobuita/bunkado-handguard/KOT_L.CHRM",
       "textureAssetPath": "play/assets/dobuita/bunkado-handguard/textures.bin"
+    }
+  },
+  "attachedObjects": {
+    "HAKO": {
+      "model": "HOHS502G",
+      "browserFilename": "HOHS502G.CHRM",
+      "assetPath": "play/assets/dobuita/bunkado-handguard/HOHS502G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/bunkado-handguard/textures.bin",
+      "source": {
+        "actorTag": "HAKO",
+        "image": "HAKO",
+        "model": "HOHS502G",
+        "characterRecordOffset": 332,
+        "imagePropertyOffset": 360,
+        "defImageRecordOffset": 292,
+        "presentation": null
+      },
+      "sceneObject": true,
+      "attachments": [
+        {
+          "objectTag": "HAKO",
+          "activitySlot": 0,
+          "frame": 1630,
+          "action": "attach",
+          "parentActorTag": "OISI",
+          "controlId": 18,
+          "translation": [
+            0.10000000149011612,
+            0.009999999776482582,
+            -0.014999999664723873
+          ],
+          "rotationRaw": [
+            48060,
+            1637,
+            40965
+          ],
+          "callFileOffset": "0x197d2",
+          "activityId": "TUBA/SEQDATA1.AUTH"
+        },
+        {
+          "objectTag": "HAKO",
+          "activitySlot": 0,
+          "frame": 2793,
+          "action": "detach",
+          "callFileOffset": "0x19d76",
+          "activityId": "TUBA/SEQDATA1.AUTH"
+        }
+      ],
+      "presentation": [
+        {
+          "objectTag": "HAKO",
+          "activitySlot": 1,
+          "frame": 0,
+          "visible": false,
+          "callFileOffset": "0x19fc6",
+          "activityId": "TUBA/SEQDATA2.AUTH"
+        },
+        {
+          "objectTag": "HAKO",
+          "activitySlot": 2,
+          "frame": 0,
+          "visible": false,
+          "callFileOffset": "0x189da",
+          "activityId": "TUBA/SEQDATA4.AUTH"
+        }
+      ]
+    },
+    "TUBA": {
+      "model": "TUB0210G",
+      "browserFilename": "TUB0210G.CHRM",
+      "assetPath": "play/assets/dobuita/bunkado-handguard/TUB0210G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/bunkado-handguard/textures.bin",
+      "source": {
+        "actorTag": "TUBA",
+        "image": "TUBA",
+        "model": "TUB0210G",
+        "characterRecordOffset": 204,
+        "imagePropertyOffset": 232,
+        "defImageRecordOffset": 164,
+        "presentation": null
+      },
+      "sceneObject": true,
+      "attachments": [
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 0,
+          "frame": 1630,
+          "action": "attach",
+          "parentActorTag": "OISI",
+          "controlId": 18,
+          "translation": [
+            0.10000000149011612,
+            0.013000000268220901,
+            -0.02500000037252903
+          ],
+          "rotationRaw": [
+            64625,
+            64625,
+            24576
+          ],
+          "callFileOffset": "0x19762",
+          "activityId": "TUBA/SEQDATA1.AUTH"
+        },
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 0,
+          "frame": 2760,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.10000000149011612,
+            0.05000000074505806,
+            -0.05000000074505806
+          ],
+          "rotationRaw": [
+            57890,
+            63811,
+            38263
+          ],
+          "callFileOffset": "0x19c86",
+          "activityId": "TUBA/SEQDATA1.AUTH"
+        },
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 1,
+          "frame": 0,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.09700000286102295,
+            0.05000000074505806,
+            -0.054999999701976776
+          ],
+          "rotationRaw": [
+            57890,
+            63811,
+            38263
+          ],
+          "callFileOffset": "0x1a1e0",
+          "activityId": "TUBA/SEQDATA2.AUTH"
+        },
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 1,
+          "frame": 590,
+          "action": "detach",
+          "callFileOffset": "0x1a492",
+          "activityId": "TUBA/SEQDATA2.AUTH"
+        },
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 2,
+          "frame": 0,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.09700000286102295,
+            0.05000000074505806,
+            -0.054999999701976776
+          ],
+          "rotationRaw": [
+            57890,
+            63811,
+            38263
+          ],
+          "callFileOffset": "0x18aa2",
+          "activityId": "TUBA/SEQDATA4.AUTH"
+        },
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 2,
+          "frame": 780,
+          "action": "detach",
+          "callFileOffset": "0x18ce2",
+          "activityId": "TUBA/SEQDATA4.AUTH"
+        }
+      ],
+      "presentation": [
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 2,
+          "frame": 0,
+          "visible": true,
+          "callFileOffset": "0x189c6",
+          "activityId": "TUBA/SEQDATA4.AUTH"
+        },
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 2,
+          "frame": 780,
+          "visible": false,
+          "callFileOffset": "0x18cf6",
+          "activityId": "TUBA/SEQDATA4.AUTH"
+        }
+      ]
+    },
+    "TOKE": {
+      "model": "TOKT203G",
+      "browserFilename": "TOKT203G.CHRM",
+      "assetPath": "play/assets/dobuita/bunkado-handguard/TOKT203G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/bunkado-handguard/room-textures.bin",
+      "source": {
+        "actorTag": "TOKE",
+        "image": "mbwt",
+        "model": "TOKT203G",
+        "characterRecordOffset": 688,
+        "imagePropertyOffset": 780,
+        "defImageRecordOffset": 648,
+        "presentation": {
+          "position": [
+            0.6000000238418579,
+            0.7300000190734863,
+            -3.299999952316284
+          ],
+          "rotationDegrees": [
+            0,
+            90,
+            42
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "source": {
+            "objectPropertyOffset": 1800,
+            "positionPropertyOffset": 1844,
+            "anglePropertyOffset": 1864
+          }
+        }
+      },
+      "sceneObject": true,
+      "attachments": [
+        {
+          "objectTag": "TOKE",
+          "activitySlot": 0,
+          "frame": 910,
+          "action": "attach",
+          "parentActorTag": "OISI",
+          "controlId": 12,
+          "translation": [
+            0,
+            -0.11500000208616257,
+            0.11100000143051147
+          ],
+          "rotationRaw": [
+            361,
+            12919,
+            62617
+          ],
+          "callFileOffset": "0x19336",
+          "activityId": "TUBA/SEQDATA1.AUTH"
+        },
+        {
+          "objectTag": "TOKE",
+          "activitySlot": 0,
+          "frame": 1130,
+          "action": "detach",
+          "callFileOffset": "0x1946a",
+          "activityId": "TUBA/SEQDATA1.AUTH"
+        }
+      ],
+      "presentation": []
+    }
+  },
+  "handAssets": {
+    "OISI": {
+      "actorTag": "OISI",
+      "bodyModelCode": "KOT_L",
+      "handCode": "KOT",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/dobuita/bunkado-handguard/KOT_TL.CHRM",
+          "byteLength": 12932,
+          "sha256": "471eecb41ef7c9a0ef176888b313b2224f9de4b460a7ac6d2e397972f69598af"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/dobuita/bunkado-handguard/KOT_TR.CHRM",
+          "byteLength": 12932,
+          "sha256": "a16270534938ad2e800d52bce561d6e05a2f3a57c824d527374e51ceff3447e1"
+        }
+      },
+      "rig": {
+        "path": "play/assets/dobuita/bunkado-handguard/KOT_HM.BIN",
+        "byteLength": 9272,
+        "sha256": "fc612836437e464d08a29c3017a5af60f8dc26fcf41b01386c3b4eeed5e6e615",
+        "vertexCount": 306,
+        "transformNodeCount": 71,
+        "pointerOffsets": [
+          24,
+          168,
+          8960,
+          5848,
+          6472,
+          9272
+        ]
+      },
+      "texturePack": {
+        "path": "play/assets/dobuita/bunkado-handguard/textures.bin",
+        "byteLength": 165248,
+        "sha256": "55ba605c4dd21bff2174d278f3b7ab9afa5da4d3be84778ba84abab82496ee28"
+      }
+    }
+  },
+  "nativeHandPoseTables": {
+    "0x26bc4": {
+      "sourceMapinfoOffset": "0x26bc4",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2366,
+          -1092
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -4004
+        ],
+        [
+          0,
+          0,
+          -6553
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -13289
+        ],
+        [
+          0,
+          0,
+          -5279
+        ],
+        [
+          0,
+          0,
+          -8009
+        ],
+        [
+          0,
+          0,
+          1456
+        ],
+        [
+          0,
+          182,
+          -8738
+        ],
+        [
+          0,
+          0,
+          -6007
+        ],
+        [
+          0,
+          0,
+          -8738
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -5279
+        ],
+        [
+          0,
+          -1274,
+          -6735
+        ],
+        [
+          0,
+          -910,
+          -8738
+        ],
+        [
+          0,
+          0,
+          1638
+        ]
+      ]
+    },
+    "0x272e4": {
+      "sourceMapinfoOffset": "0x272e4",
+      "vectors": [
+        [
+          0,
+          1093,
+          363
+        ],
+        [
+          -3258,
+          1274,
+          3457
+        ],
+        [
+          4350,
+          909,
+          2729
+        ],
+        [
+          0,
+          2730,
+          -6189
+        ],
+        [
+          0,
+          -908,
+          -3821
+        ],
+        [
+          0,
+          0,
+          -7463
+        ],
+        [
+          0,
+          1274,
+          1820
+        ],
+        [
+          0,
+          0,
+          -6006
+        ],
+        [
+          0,
+          0,
+          -2547
+        ],
+        [
+          0,
+          -180,
+          -8735
+        ],
+        [
+          0,
+          1092,
+          2184
+        ],
+        [
+          0,
+          182,
+          -2002
+        ],
+        [
+          0,
+          0,
+          -5096
+        ],
+        [
+          0,
+          727,
+          -8192
+        ],
+        [
+          0,
+          182,
+          2002
+        ],
+        [
+          0,
+          -727,
+          -3639
+        ],
+        [
+          0,
+          -1273,
+          -6189
+        ],
+        [
+          0,
+          -909,
+          -7463
+        ],
+        [
+          0,
+          0,
+          1092
+        ]
+      ]
+    },
+    "0x273c8": {
+      "sourceMapinfoOffset": "0x273c8",
+      "vectors": [
+        [
+          0,
+          1093,
+          363
+        ],
+        [
+          -3258,
+          1274,
+          3457
+        ],
+        [
+          4350,
+          909,
+          2729
+        ],
+        [
+          0,
+          2730,
+          -12195
+        ],
+        [
+          0,
+          -908,
+          -3821
+        ],
+        [
+          0,
+          0,
+          -7463
+        ],
+        [
+          0,
+          1274,
+          1820
+        ],
+        [
+          0,
+          0,
+          -11831
+        ],
+        [
+          0,
+          0,
+          -2547
+        ],
+        [
+          0,
+          -180,
+          -8735
+        ],
+        [
+          0,
+          1092,
+          2184
+        ],
+        [
+          0,
+          182,
+          -7099
+        ],
+        [
+          0,
+          0,
+          -5096
+        ],
+        [
+          0,
+          727,
+          -8192
+        ],
+        [
+          0,
+          182,
+          2002
+        ],
+        [
+          0,
+          -727,
+          -5278
+        ],
+        [
+          0,
+          -1273,
+          -6189
+        ],
+        [
+          0,
+          -909,
+          -7463
+        ],
+        [
+          0,
+          0,
+          1092
+        ]
+      ]
+    },
+    "0x2711c": {
+      "sourceMapinfoOffset": "0x2711c",
+      "vectors": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -3329,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "0x274ac": {
+      "sourceMapinfoOffset": "0x274ac",
+      "vectors": [
+        [
+          892,
+          -163,
+          -6426
+        ],
+        [
+          2712,
+          163,
+          3622
+        ],
+        [
+          0,
+          -892,
+          491
+        ],
+        [
+          0,
+          -345,
+          -7773
+        ],
+        [
+          0,
+          1256,
+          -7991
+        ],
+        [
+          0,
+          -728,
+          -4733
+        ],
+        [
+          0,
+          163,
+          527
+        ],
+        [
+          0,
+          0,
+          -12178
+        ],
+        [
+          0,
+          1074,
+          -22373
+        ],
+        [
+          0,
+          -163,
+          -3458
+        ],
+        [
+          0,
+          -200,
+          -509
+        ],
+        [
+          0,
+          0,
+          -11814
+        ],
+        [
+          0,
+          527,
+          -18368
+        ],
+        [
+          0,
+          -527,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -345
+        ],
+        [
+          0,
+          910,
+          -12014
+        ],
+        [
+          0,
+          -2184,
+          -16748
+        ],
+        [
+          0,
+          -2184,
+          -10012
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "0x26918": {
+      "sourceMapinfoOffset": "0x26918",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2366,
+          -1092
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -4004
+        ],
+        [
+          0,
+          0,
+          -2912
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -13289
+        ],
+        [
+          0,
+          0,
+          -5279
+        ],
+        [
+          0,
+          0,
+          -8009
+        ],
+        [
+          0,
+          0,
+          1456
+        ],
+        [
+          0,
+          182,
+          -8738
+        ],
+        [
+          0,
+          0,
+          -6007
+        ],
+        [
+          0,
+          0,
+          -8738
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -5279
+        ],
+        [
+          0,
+          -1274,
+          -6735
+        ],
+        [
+          0,
+          -910,
+          -8738
+        ],
+        [
+          0,
+          0,
+          1638
+        ]
+      ]
     }
   },
   "actorTags": [
@@ -159,19 +1122,34 @@
       "sha256": "d66329c26e273813bae6b604d4b9e2660e9972348e5bb8a1b92d4e059762bbdd"
     },
     {
+      "path": "play/assets/dobuita/bunkado-handguard/KOT_TL.CHRM",
+      "byteLength": 12932,
+      "sha256": "471eecb41ef7c9a0ef176888b313b2224f9de4b460a7ac6d2e397972f69598af"
+    },
+    {
+      "path": "play/assets/dobuita/bunkado-handguard/KOT_TR.CHRM",
+      "byteLength": 12932,
+      "sha256": "a16270534938ad2e800d52bce561d6e05a2f3a57c824d527374e51ceff3447e1"
+    },
+    {
+      "path": "play/assets/dobuita/bunkado-handguard/KOT_HM.BIN",
+      "byteLength": 9272,
+      "sha256": "fc612836437e464d08a29c3017a5af60f8dc26fcf41b01386c3b4eeed5e6e615"
+    },
+    {
       "path": "play/assets/dobuita/bunkado-handguard/HOHS502G.CHRM",
       "byteLength": 8748,
       "sha256": "c79d4f720f988133470ac9ff084cd8b9f622f8017488c90acadb351352f82d69"
     },
     {
-      "path": "play/assets/dobuita/bunkado-handguard/RABK201G.CHRM",
-      "byteLength": 1084,
-      "sha256": "4d34643ebb3c65778dc8f747f721950404cd603dfea53b07cc1570ef7788b412"
-    },
-    {
       "path": "play/assets/dobuita/bunkado-handguard/TUB0210G.CHRM",
       "byteLength": 12752,
       "sha256": "d0b91affaefb8c51f4fdebaaa11cecc0b8b3049fca2fb59526e51e9928ac15f4"
+    },
+    {
+      "path": "play/assets/dobuita/bunkado-handguard/TOKT203G.CHRM",
+      "byteLength": 5388,
+      "sha256": "efc7e5fd7b912d929644ff58b79b03c4af5579eff22a7b1afa70dace56d22d21"
     },
     {
       "path": "play/assets/dobuita/bunkado-handguard/textures.bin",
@@ -180,6 +1158,15 @@
       "source": {
         "path": "disc2/SCENE/02/DKTY/TUBA.PKF",
         "sha256": "94d437d1a4ee0ba62b985aece24f7e925edc4c2fc582e1630a787f8889572b2d"
+      }
+    },
+    {
+      "path": "play/assets/dobuita/bunkado-handguard/room-textures.bin",
+      "byteLength": 482224,
+      "sha256": "c65b9c2bdef691144dd8939e6b8141e3955810737e2bbbd3d3742bb0ed7d86ee",
+      "source": {
+        "path": "disc2/SCENE/02/DKTY/MPK00.PKF",
+        "sha256": "90ff4ccaae56b4c7435ec34cdb87cc6dff39fb8ce8150c4efc8de79b9a907e65"
       }
     }
   ],
@@ -208,6 +1195,212 @@
         "TOKE",
         "AKIR",
         "OISI"
+      ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x26bc4",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x18fb6",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x26bc4",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x18fd6",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "OISI",
+          "side": "right",
+          "poseTableOffset": "0x26bc4",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x18ff6",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "OISI",
+          "side": "left",
+          "poseTableOffset": "0x26bc4",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x19016",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 0,
+          "frame": 680,
+          "actorTag": "OISI",
+          "side": "right",
+          "poseTableOffset": "0x272e4",
+          "durationNativeTicks": 32,
+          "callFileOffset": "0x191a2",
+          "sourceOrder": 7
+        },
+        {
+          "activitySlot": 0,
+          "frame": 680,
+          "actorTag": "OISI",
+          "side": "left",
+          "poseTableOffset": "0x273c8",
+          "durationNativeTicks": 32,
+          "callFileOffset": "0x191c2",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1190,
+          "actorTag": "OISI",
+          "side": "right",
+          "poseTableOffset": "0x26bc4",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x194be",
+          "sourceOrder": 10
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1190,
+          "actorTag": "OISI",
+          "side": "left",
+          "poseTableOffset": "0x26bc4",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x194de",
+          "sourceOrder": 11
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1630,
+          "actorTag": "OISI",
+          "side": "right",
+          "poseTableOffset": "0x2711c",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x1968e",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1630,
+          "actorTag": "OISI",
+          "side": "left",
+          "poseTableOffset": "0x26bc4",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x196ae",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2180,
+          "actorTag": "OISI",
+          "side": "left",
+          "poseTableOffset": "0x26bc4",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x19956",
+          "sourceOrder": 15
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2760,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x274ac",
+          "durationNativeTicks": 20,
+          "callFileOffset": "0x19c16",
+          "sourceOrder": 16
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x18022",
+          "sourceFunction": "0x17eee",
+          "ownerCallFileOffset": "0x1a512",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "OISI",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x18022",
+          "sourceFunction": "0x17eee",
+          "ownerCallFileOffset": "0x1a51e",
+          "sourceOrder": 1
+        }
+      ],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "OISI",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            5279
+          ],
+          "callFileOffset": "0x1905a",
+          "sourceOrder": 6
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1130,
+          "actorTag": "OISI",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x1945a",
+          "sourceOrder": 9
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1630,
+          "actorTag": "OISI",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            1637,
+            0,
+            1273
+          ],
+          "callFileOffset": "0x196f2",
+          "sourceOrder": 14
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2793,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            5411,
+            4620,
+            -103
+          ],
+          "callFileOffset": "0x19d66",
+          "sourceOrder": 17
+        }
       ],
       "motions": [
         {
@@ -271,6 +1464,90 @@
         "AKIR",
         "OISI"
       ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x274ac",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x1a090",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x26918",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x1a0b0",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "OISI",
+          "side": "right",
+          "poseTableOffset": "0x26918",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x1a0d0",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "OISI",
+          "side": "left",
+          "poseTableOffset": "0x26918",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x1a0f0",
+          "sourceOrder": 5
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x18022",
+          "sourceFunction": "0x17eee",
+          "ownerCallFileOffset": "0x1a512",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "OISI",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x18022",
+          "sourceFunction": "0x17eee",
+          "ownerCallFileOffset": "0x1a51e",
+          "sourceOrder": 1
+        }
+      ],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            5411,
+            4620,
+            -103
+          ],
+          "callFileOffset": "0x1a170",
+          "sourceOrder": 6
+        }
+      ],
       "motions": [
         {
           "actorTag": "AKIR",
@@ -324,6 +1601,100 @@
         "TUBA",
         "AKIR",
         "OISI"
+      ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x274ac",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x18952",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x26918",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x18972",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "OISI",
+          "side": "right",
+          "poseTableOffset": "0x26918",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x18992",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "OISI",
+          "side": "left",
+          "poseTableOffset": "0x26918",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x189b2",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 2,
+          "frame": 780,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x26918",
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x18cd2",
+          "sourceOrder": 7
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x18022",
+          "sourceFunction": "0x17eee",
+          "ownerCallFileOffset": "0x1a512",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "OISI",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x18022",
+          "sourceFunction": "0x17eee",
+          "ownerCallFileOffset": "0x1a51e",
+          "sourceOrder": 1
+        }
+      ],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 2,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            5411,
+            4620,
+            -103
+          ],
+          "callFileOffset": "0x18a32",
+          "sourceOrder": 6
+        }
       ],
       "motions": [
         {

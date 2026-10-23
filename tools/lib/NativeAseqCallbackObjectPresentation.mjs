@@ -1,4 +1,5 @@
 import {
+  nativeAseqCallbackFrame,
   nativeAseqGoverningActivityFrame,
 } from "./NativeAseqScriptOwnership.mjs";
 
@@ -28,12 +29,18 @@ function float32(word) {
   return new DataView(bytes).getFloat32(0, true);
 }
 
-function operationFrame(bytes, callbackFunction, operation, nativeFunction = null, durationFrames = null) {
+function operationFrame(bytes, callbackFunction, operation, nativeFunction = null, durationFrames = null, functions = []) {
   try {
     return nativeAseqGoverningActivityFrame(
       bytes, callbackFunction, Number.parseInt(operation.callFileOffset, 16),
     );
   } catch (error) {
+    // Hand and prop setup obey the same optional playback guards. Retain the
+    // stricter binary-frame and terminal-cleanup checks when this is not setup.
+    if (functions.length) {
+      try { return nativeAseqCallbackFrame(bytes, callbackFunction, nativeFunction, operation, functions); }
+      catch { /* The unique finished-activity path below can still prove cleanup. */ }
+    }
     // FIXO can be installed before playback starts (not just at a frame
     // guard). Prove that placement on the callback's unique entry path;
     // an unrecognized late or conditional command is still an error.
@@ -362,6 +369,7 @@ export function extractNativeAseqCallbackObjectPresentation({
   durationFrames,
   activitySlot = 0,
   objectTags = null,
+  functions = [],
 } = {}) {
   if (!Buffer.isBuffer(bytes) || !Number.isInteger(callbackFunction)) {
     throw new TypeError("native callback object presentation inputs are invalid");
@@ -385,7 +393,7 @@ export function extractNativeAseqCallbackObjectPresentation({
       attachedObjectCues.push(Object.freeze({
         objectTag: tag(action.arguments[0], `${action.callFileOffset} FIXO object`),
         activitySlot,
-        frame: operationFrame(bytes, callbackFunction, action, nativeFunction, durationFrames),
+        frame: operationFrame(bytes, callbackFunction, action, nativeFunction, durationFrames, functions),
         action: "attach",
         parentActorTag: tag(action.arguments[1], `${action.callFileOffset} FIXO parent`),
         controlId: constant(action.arguments[2], `${action.callFileOffset} FIXO control`),
@@ -399,7 +407,7 @@ export function extractNativeAseqCallbackObjectPresentation({
       attachedObjectCues.push(Object.freeze({
         objectTag: tag(action.arguments[0], `${action.callFileOffset} FIXO object`),
         activitySlot,
-        frame: operationFrame(bytes, callbackFunction, action, nativeFunction, durationFrames),
+        frame: operationFrame(bytes, callbackFunction, action, nativeFunction, durationFrames, functions),
         action: "detach",
         callFileOffset: action.callFileOffset,
       }));

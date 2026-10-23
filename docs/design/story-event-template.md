@@ -298,7 +298,7 @@ does not establish working mouth animation or envelope presentation.
 | Old Warehouse District guard avoidance | Connected original-geometry movement, patrols, cover and actual door use; rendered cancellation/reload, capture/next-morning recovery, re-entry, success and saved MS08 arrival verified. Real compiler/database tests cover interrupted input, real detection, atomic recovery and character isolation. Routes, vision/balance and framing are authored, not recovered guard AI. |
 | Master Chen's first meeting | Connected four-segment original presentation, plate confirmation and atomic notebook/next-morning home return verified. Real compiler/database checks cover prerequisites, decline, cancellation at every segment and stale acknowledgements. Rendered approach, decline, live cancellation, natural completion, original Chen/Gui Zhang/body/camera presentation, saved home return and reload pass. |
 | Family lead to the antique shop | Connected optional original-voiced Ine-san hint and original SORA/INEK sequence. Compiler/database cancellation and atomic-clue checks pass. Rendered hint/approach, live cancellation/retry, natural completion, saved clue, restored movement and reload without replay pass. |
-| Bunkado sword handguard | Connected original TUBA handover with authoritative once-only possession and notebook settlement. Compiler/database cancellation/item checks and rendered real-door entry, live cancellation/re-entry, natural completion, owned inventory display, restored controls and reload without replay pass. Detailed hand poses remain rough. |
+| Bunkado sword handguard | Connected original TUBA handover with authoritative once-only possession and notebook settlement. Original detailed hands, source-timed grips and the correct mantel clock are now restored. Rendered real-door cancellation/re-entry, natural completion, owned inventory, controls and reload without duplicate grants pass. Box-lid motion, two native hand-motion requests and dynamic gaze remain incomplete. |
 | Gui Zhang's street encounter | Connected original introduction, client-timed nonlethal fight, bodyguard explanation and rooftop Chai shot. Rendered cancellation/re-entry, physical combat inputs, natural ending, notebook and reload pass. Approach bounds, AI/balance and music-start timing are authored. |
 | Return-home handguard / family crest | Connected original voiced Fuku referral, physical altar-room door/approach and embedded Ine-san presentation. Rendered cancellation/re-entry, natural scene ending, independent notebook settlement, restored controls and reload pass. Held Fuku gestures, close-up and handguard handling are adaptations. |
 | Iwao's key / dojo sword case | Connected real drawer/case picking, explicit leave/pickup choices, live cancellation/retry, saved inventory/notebook and reload without duplicate grants pass in the browser. Compiler/database proximity, key prerequisite, stale acknowledgement and character isolation checks pass. Captions/cameras are authored; detailed lid/hand choreography remains omitted. |
@@ -2008,18 +2008,34 @@ the safekeeping, eighteenth-birthday inheritance and Phoenix Mirror question.
 | --- | --- |
 | Location / trigger | Enter DKTY through Bunkado's real Dobuita door. Physical door selector 35 is bound by the exact return to D000 Entry 7. The direct table's dispatchValue 25 is a different script-argument namespace and must not replace that physical association. |
 | Prerequisites | Personal Story Ryo, completed opening and earned family antique-shop lead. Use ordinary shop entry; no invented weather/date gate or public NPC mutation. |
-| Actors / props | Original AKIR and package-owned OISI/KOT_L. Original TUBA handguard, HAKO box and TOKE prop follow AUTH movements. Their package-model bindings are authored; box-lid callbacks and detailed hand manipulation are not reconstructed. The low-detail body hands remain rough in close-up; merely importing OP00's hand rig does not supply the missing TUBA pose controls. |
+| Actors / props | Original AKIR and package-owned OISI/KOT_L. Original CHRT bindings identify TUBA/TUB0210G, HAKO/HOHS502G and TOKE/TOKT203G (mantel clock, not the previously guessed RABK201G book). Source-timed grips reuse these same AUTH objects: clock in Oishi-san's hands at frames 910–1130; box/handguard at 1630; handguard transferred to Ryo at 2760. Both actors use original detailed hands and compiled pose/component cues. Box-lid/node motion and two animated hand requests remain unimplemented. |
 | Sequence / timing | Original TUBA SEQDATA1 arrival/handover (~98 s), SEQDATA2 remembrance (~20 s), then SEQDATA4 Phoenix Mirror question (~32 s). The childhood flashback is omitted. Original camera/body tracks, A0132 voices and A1_KOTTO sounds; MAPINFO-associated BGM052 starts with the package as an authored timing approximation. |
 | Effects | Atomically grant one non-stackable, non-usable sword_handguard, save the handover milestone and add the notebook page. Presentation props alone are not inventory ownership. No money, time, destination, persistent HP or Phoenix Mirror reward. |
 | Exit / retry | Shared presentation cleanup restores the shop arrival, avatar/camera and controls. Explicit skip may advance a scene; cancelling or failed preparation grants nothing. Last scene acknowledgement commits item and flags together; there is no separately cancellable post-completion grant stage. Reconnect loads the saved possession without replay or duplication. |
 
 `build:bunkado-handguard` pins original TUBA.PKS, TUBA.PKF, DKTY MAPINFO,
-A0132.AFS and A1_KOTTO.SND. It uses the shared activity/audio/texture compilers
-and existing hash-pinned BGM052 viewer render. Twenty-two source voices and
-fourteen sound identities are available. Borrowed AUTH ordinals use explicit
-zero pointer bindings; this does not claim native-owner reconstruction.
-Generated receipts retain archive/member hashes. Assets are locally registered,
-not published to R2.
+MPK00.PKS/PKF, A0132.AFS and A1_KOTTO.SND. It uses the shared activity,
+hand-pose/grip, audio and texture compilers and existing hash-pinned BGM052
+viewer render. Twenty-two source voices and fourteen sound identities are
+available. The retained [callback IR](../../tools/evidence/bunkado-handguard-callback-ir.json)
+records owner `0x23ac8` calling `0x18da8`, `0x19edc` and `0x187d4` for
+slots 0/1/2, bound to original AUTH ordinals 1/2/4. These are finite compiled
+presentation cues, not a runtime native-script interpreter or proof of every
+original story gate. Explicit zero pointer bindings remain. Generated receipts
+retain archive/member hashes. Assets are locally registered, not published to R2.
+
+The original `MHND` setup also recovers the wrist component; the shared guard
+analysis admits a non-playing branch only when it returns without visual state
+changes (audio cleanup is allowed). Unknown visual branches fail extraction.
+The producer now rejects incomplete hand-texture metadata, and the all-package
+presentation audit checks hand models, rigs and textures as well as faces/audio.
+Oishi-san's original simpler mouth controller is retained; rendered speech
+deformation works without adding an invented detailed facial rig.
+
+Remaining limits: original `HMOT_SYG` requests at `0x195f0`/`0x198ea`, HAKO
+node animation and the separate FUTA lid are not compiled; dynamic gaze and
+the childhood flashback are omitted. Not every finger contact or expression
+has been verified, and the existing package-start music timing is approximate.
 
 Migration `009_story_mirror_items.sql` adds the handguard to the existing
 inventory/economy store. Inventory and Collection now share one cancellable
@@ -2039,6 +2055,18 @@ reloads without replay or duplication. This check passes. Inspected shots show
 Oishi-san, the handguard and the owned inventory; detailed finger fidelity is
 not claimed. A saved unfinished shop arrival is allowed to start its automatic
 event rather than being interrupted by artificial test travel.
+
+The 2026-10-23 presentation recheck completes all three clips naturally and
+cancels/replays the arrival, checking unchanged saved state and restored
+avatar/camera/controls. All 22 original voice IDs play and both mouths deform.
+Reviewed captures show Oishi-san holding the correct clock and Ryo holding the
+transferred handguard. A separate connected browser recheck passes real-door
+re-entry, no early grant, once-only item/notebook settlement, inventory display,
+controls and reload without replay. This latest fixture explicitly seeds the
+earlier family clue and Chinese Letter: it verifies Bunkado's boundary, not a
+new end-to-end playthrough earning those prerequisites. The 109-package wiring
+audit has no missing face, hand or audio assets; that is not visual sign-off for
+the other packages.
 
 ## Gui Zhang's street encounter
 

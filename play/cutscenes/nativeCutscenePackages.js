@@ -249,7 +249,7 @@ const bundledMasterChenAssets = runtimeAssetGroup("play/assets/harbor/master-che
 const bundledMirrorMeetingAssets = runtimeAssetGroup("play/assets/harbor/mirror-meeting/*.{AUTH,MOTN,CHRM,bin}");
 const bundledFamilyFukuAssets = runtimeAssetGroup("play/assets/hazuki/family-fuku/*.{AUTH,MOTN}");
 const bundledFamilyIneAssets = runtimeAssetGroup("play/assets/hazuki/family-ine/*.{AUTH,MOTN}");
-const bundledBunkadoHandguardAssets = runtimeAssetGroup("play/assets/dobuita/bunkado-handguard/*.{AUTH,MOTN,CHRM,bin}");
+const bundledBunkadoHandguardAssets = runtimeAssetGroup("play/assets/dobuita/bunkado-handguard/*.{AUTH,MOTN,CHRM,BIN,bin}");
 const bundledGuiZhangAssets = runtimeAssetGroup("play/assets/sakuragaoka/gui-zhang/*.{AUTH,MOTN}");
 const bundledKkyaAssets = runtimeAssetGroup("play/assets/hazuki/kkya/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkybAssets = runtimeAssetGroup("play/assets/hazuki/kkyb/*.{AUTH,MOTN,CHRM,MAPM}");
@@ -553,12 +553,10 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
   }),
   Object.freeze({
     id:"bunkado-handguard",worldId:"dkty",actorDefinitions:Object.freeze([]),actorTags:Object.freeze(bunkadoHandguardManifest.actorTags),
-    assets:Object.freeze({...sourceAssetMap(bundledBunkadoHandguardAssets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
-    // TUBA's detailed hand controls are not reconstructed. The animated
-    // body's low-detail hands are an explicit approximation; importing the
-    // OP00 rig alone does not supply this scene's missing pose controls.
-    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
-    environment:Object.freeze({packageActors:bunkadoHandguardManifest.packageActors,sceneObjects:bunkadoHandguardManifest.sceneObjects}),
+    assets:Object.freeze({...sourceAssetMap(bundledBunkadoHandguardAssets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,...op00HandAssets}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR}),
+      handAssets:Object.freeze({...bunkadoHandguardManifest.handAssets,AKIR:op00AssetInventory.handAssets.AKIR})}),
+    environment:Object.freeze({packageActors:bunkadoHandguardManifest.packageActors,sceneObjects:bunkadoHandguardManifest.sceneObjects,attachedObjects:bunkadoHandguardManifest.attachedObjects}),
     playback:Object.freeze({manifest:bunkadoHandguardManifest,audioManifest:bunkadoHandguardAudio}),
     music:Object.freeze({cues:Object.freeze([Object.freeze({startActivity:true,trackId:"bgm052",loop:true})]),gain:1}),
   }),

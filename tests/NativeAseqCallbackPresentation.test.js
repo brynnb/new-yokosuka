@@ -13,6 +13,39 @@ import {
 import { extractNativeAseqCallbackObjectPresentation } from "../tools/lib/NativeAseqCallbackObjectPresentation.mjs";
 
 const tattooMap = path.resolve(process.env.SHENMUE_DISC1_EXTRACTED_ROOT || "extracted_files", "data/SCENE/01/TATQ/MAPINFO.BIN");
+const bunkadoMap = path.resolve(process.env.SHENMUE_DISC2_EXTRACTED_ROOT || "extracted_disc2_v2", "data/SCENE/02/DKTY/MAPINFO.BIN");
+test("Bunkado source guards retain exact grip transfers and reject a visual skip branch", {
+  skip: !fs.existsSync(bunkadoMap) && "requires original Disc 2 DKTY extraction",
+}, () => {
+  const read = file => JSON.parse(fs.readFileSync(new URL(file, import.meta.url)));
+  const evidence = read("../tools/evidence/bunkado-handguard-callback-ir.json");
+  const manifest = read("../play/assets/dobuita/bunkado-handguard/manifest.json");
+  const bytes = fs.readFileSync(bunkadoMap), functions = [evidence.function, ...evidence.supportingFunctions];
+  assert.equal(createHash("sha256").update(bytes).digest("hex"), evidence.source.mapinfoSha256);
+  for (const [slot,id] of ["0x18da8","0x19edc","0x187d4"].entries()) {
+    const input = { bytes, functions, callbackFunction:Number(id), nativeFunction:functions.find(f=>f.id===id),
+      activitySlot:slot, durationFrames:manifest.activities[slot].durationFrames };
+    const hands = extractNativeAseqCallbackHandPresentation(input);
+    assert.deepEqual(hands.nativeHandComponentLimitations, []);
+    for (const key of ["nativeHandPoseCues","nativeBodyHandPoseCues","nativeHandComponentCues"])
+      assert.deepEqual(manifest.activities[slot][key], hands[key]);
+    const grips = extractNativeAseqCallbackObjectPresentation({...input,objectTags:["TUBA"]});
+    assert.deepEqual(grips.attachedObjectCues.map(c=>[c.frame,c.action,c.parentActorTag]),[
+      [[1630,"attach","OISI"],[2760,"detach",undefined],[2760,"attach","AKIR"]],
+      [[0,"attach","AKIR"],[590,"detach",undefined]],
+      [[0,"attach","AKIR"],[780,"detach",undefined]],
+    ][slot]);
+    if (slot === 2) {
+      const altered = structuredClone(input.nativeFunction);
+      altered.blocks.find(b=>b.id==="0x18d84").actions[0].semanticId="resolved-object-runtime-flag";
+      assert.throws(()=>extractNativeAseqCallbackHandPresentation({...input,nativeFunction:altered}), /no governing ASEQ frame/);
+    }
+  }
+  assert.equal(manifest.sceneObjects.TOKE.model,"TOKT203G");
+  assert.equal(manifest.handAssets.OISI.bodyModelCode,"KOT_L");
+  assert.equal(manifest.attachedObjects.TUBA.sceneObject,true);
+});
+
 test("tattoo introduction retains original detailed grips and later body-hand request", {
   skip: !fs.existsSync(tattooMap) && "requires original Disc 1 TATQ extraction",
 }, () => {

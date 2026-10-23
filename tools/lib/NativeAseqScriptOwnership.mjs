@@ -272,3 +272,78 @@ export function deriveNativeAseqCallOwnership({
     functionEndOffset: owner.functionEndOffset,
   });
 }
+// A selected activity may be guarded by a room flag or the delayed-stop latch.
+// Do not emulate the predicate: prove one branch is a return without visual state changes and the
+// other reaches this callback's ASEQ start synchronously. This conditions setup
+// on the activity actually playing, not on an invented room-state value.
+function normalPlaybackEntry(nativeFunction, branch, functions) {
+  if (branch.successors.length !== 2 || !["bf", "bt", "bf/s", "bt/s"].includes(branch.terminator?.mnemonic)) return null;
+  const classify = (id, seen = new Set(), empty = true) => {
+    const block = nativeFunction.blocks.find(block => block.id === id);
+    if (!block || seen.has(id)) return null;
+    for (const action of block.actions) {
+      // Audio-only cleanup does not change hand/prop state or start a movie.
+      // Keep it outside this visual-data extraction; other side effects reject
+      // the non-playing branch rather than inventing an initial pose.
+      if (action.semanticId === "sound-command-dispatch") continue;
+      empty = false;
+      const arg = action.arguments?.[0];
+      if (action.operationId === 0x50 && ((arg?.kind === "frame-field" && arg.offset === nativeFunction.frameArgumentBase)
+        || (arg?.kind === "constant" && arg.value >= 0 && arg.value < 70))) return "start";
+      if (["runtimeInterfaceCall", "coroutineContinuationTransfer", "childCoroutineLaunch"].includes(action.kind)
+        || (action.kind === "directCall" && !isSynchronousHelper(
+          functions.find(fn => fn.id === action.targetFileOffset), functions,
+        ))) return null;
+    }
+    if (!block.successors.length) return empty ? "return" : null;
+    const paths = block.successors.map(next => classify(next, new Set([...seen, id]), empty));
+    return paths.every(kind => kind === paths[0]) ? paths[0] : null;
+  };
+  const kinds = branch.successors.map(id => classify(id));
+  return kinds.includes("start") && kinds.includes("return")
+    ? branch.successors[kinds.indexOf("start")] : null;
+}
+
+export function isSynchronousHelper(fn, functions, ancestors = new Set()) {
+  if (!fn || ancestors.has(fn.id) || fn.unresolvedControlTransfers?.length) return false;
+  const walk = (id, seen = new Set()) => {
+    const block = fn.blocks.find(block => block.id === id);
+    if (!block || seen.has(id) || (block.terminator
+      && !["bra", "braf", "bf", "bt", "bf/s", "bt/s"].includes(block.terminator.mnemonic))) return false;
+    if (block.actions.some(action => ["runtimeInterfaceCall", "coroutineContinuationTransfer", "childCoroutineLaunch"].includes(action.kind)
+      || (action.kind === "directCall" && !isSynchronousHelper(
+        functions.find(child => child.id === action.targetFileOffset), functions, new Set([...ancestors, fn.id]),
+      )))) return false;
+    return block.successors.every(next => walk(next, new Set([...seen, id])));
+  };
+  return walk(fn.entryBlock);
+}
+
+// Stop at other control flow or scheduler boundaries: missing gates fail.
+export function nativeAseqCallbackFrame(bytes, callbackFunction, nativeFunction, operation, functions = []) {
+  const seen = new Set();
+  let id = nativeFunction.entryBlock;
+  let activityStarted = false;
+  while (id && !seen.has(id)) {
+    seen.add(id);
+    const block = nativeFunction.blocks.find(block => block.id === id);
+    if (!block) break;
+    for (const action of block.actions) {
+      if (action === operation) return 0;
+      if (action.operationId === 0x50 && (action.arguments?.[0]?.kind === "frame-field"
+        || (action.arguments?.[0]?.kind === "constant" && (action.arguments[0].value | 0) >= 0))) activityStarted = true;
+      if (action.kind === "directCall" && isSynchronousHelper(
+        functions.find(fn => fn.id === action.targetFileOffset), functions,
+      )) continue;
+      if (["directCall", "runtimeInterfaceCall", "coroutineContinuationTransfer"].includes(action.kind)) {
+        return nativeAseqGoverningActivityFrame(bytes, callbackFunction, Number(operation.callFileOffset));
+      }
+    }
+    const entryAfterGuard = !activityStarted && normalPlaybackEntry(nativeFunction, block, functions);
+    if (entryAfterGuard) { id = entryAfterGuard; continue; }
+    if ((block.terminator && !["bra", "braf"].includes(block.terminator.mnemonic))
+      || block.successors.length !== 1) break;
+    id = block.successors[0];
+  }
+  return nativeAseqGoverningActivityFrame(bytes, callbackFunction, Number(operation.callFileOffset));
+}
