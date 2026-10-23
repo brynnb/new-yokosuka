@@ -20,6 +20,14 @@ const REVIEW_SETS = {
       prop: { tag: "KOZU", parent: "INE_", shown: [775, 1630], detach: 1035 },
     }]),
   ],
+  dojo: [
+    ...[false, true].map(natural => ["s1.jhd0.first-dojo.scene", "exterior", "JHD0", { FUKU: "FUK", AKIR: "YKC" }, {
+      label: natural ? "complete" : "cancel", natural,
+      frames: natural ? [500, 1050, 1150, 1400, 1770] : [500],
+      openingFrames: [120], firstSpeechBefore: 1075,
+      ...(natural ? { voiceCounts: { SA1116: 11, A0125: 5 } } : {}),
+    }]),
+  ],
 };
 
 // Presentation-only checks through the real Story adapter. These do not grant
@@ -53,7 +61,7 @@ export async function reviewStoryFaces(page, testInfo, character) {
       await page.evaluate(({ id, area, actors }) => {
         const p = window.storyProbe, presentation = p.regions.controller.presentation;
         const review = p.faceReview = { done: false, error: null, cancelling: false,
-          samples: {}, frame: 0, objects: {}, voices: new Set(),
+          samples: {}, frame: 0, objects: {}, voices: new Set(), voiceIds: new Set(),
           returnedFrom: p.lifecycle.worldRuntime.activeWorld.id };
         let nextSample = 0;
         const scene = p.lifecycle.scene;
@@ -64,7 +72,10 @@ export async function reviewStoryFaces(page, testInfo, character) {
           if (runtime) {
             review.frame = runtime.activityRuntime.active?.currentFrame || review.frame;
             for (const voice of runtime.audio.active?.elements || []) {
-              if (voice.kind === "voice" && !voice.audio.paused && voice.audio.currentTime > 0) review.voices.add(voice.cue.speakerId);
+              if (voice.kind === "voice" && !voice.audio.paused && voice.audio.currentTime > 0) {
+                review.voices.add(voice.cue.speakerId);
+                review.voiceIds.add(voice.command.audio.voiceId);
+              }
             }
             for (const [tag, object] of runtime.sceneObjects?.objects || []) {
               if (!object.root.getChildMeshes().some(mesh => mesh.isEnabled() && scene.isActiveMesh(mesh))) continue;
@@ -77,7 +88,7 @@ export async function reviewStoryFaces(page, testInfo, character) {
             if (!actors[tag] || !face.voiceCue || face.voiceCue.positionSeconds <= 0) continue;
             const meshes = face.entry.primaryMeshes;
             if (!meshes.some(mesh => mesh.isEnabled() && scene.isActiveMesh(mesh))) continue;
-            const sample = review.samples[tag] ||= { code: face.entry.definition.faceCode,
+            const sample = review.samples[tag] ||= { code: face.entry.definition.faceCode, firstFrame: review.frame,
               frames: 0, vertices: new Set(), mouths: new Set(), audio: new Set() };
             sample.frames++;
             sample.audio.add(face.voiceCue.positionSeconds);
@@ -103,6 +114,12 @@ export async function reviewStoryFaces(page, testInfo, character) {
           });
       }, { id, area, actors });
       try {
+        // Capture the lead-in before waiting for later speaking shots. A missing
+        // early recording must not be hidden by a working ending-film voice.
+        for (const frame of options.openingFrames || []) {
+          await page.waitForFunction(frame => window.storyProbe.faceReview.frame >= frame, frame, { timeout: 120_000 });
+          await page.screenshot({ path: testInfo.outputPath(`${label}-opening-${frame}.png`) });
+        }
         for (const [tag, code] of Object.entries(actors)) {
           await page.waitForFunction(tag => {
             const r = window.storyProbe.faceReview, s = r.samples[tag];
@@ -110,13 +127,14 @@ export async function reviewStoryFaces(page, testInfo, character) {
           }, tag, { timeout: 120_000 });
           const sample = await page.evaluate(tag => {
             const r = window.storyProbe.faceReview, s = r.samples[tag];
-            return { error: r.error, code: s?.code, frames: s?.frames,
+            return { error: r.error, code: s?.code, frames: s?.frames, firstFrame: s?.firstFrame,
               vertices: s?.vertices.size, mouths: s?.mouths.size, audio: s?.audio.size };
           }, tag);
           console.info(`Story FACE ${id}/${tag}:`, JSON.stringify(sample));
           expect(sample.error).toBeNull(); expect(sample.code).toBe(code);
           expect(sample.frames).toBeGreaterThan(2); expect(sample.vertices).toBeGreaterThan(2);
           expect(sample.mouths).toBeGreaterThan(2); expect(sample.audio).toBeGreaterThan(2);
+          if (options.firstSpeechBefore) expect(sample.firstFrame).toBeLessThan(options.firstSpeechBefore);
           await page.screenshot({ path: testInfo.outputPath(`${label}-face-${tag}.png`) });
           // An actor may be submitted by Babylon while hidden behind scenery.
           // Keep the native-shot capture, then explicitly frame the real shell
@@ -159,12 +177,18 @@ export async function reviewStoryFaces(page, testInfo, character) {
           await page.waitForFunction(() => window.storyProbe.faceReview.done, null, { timeout: 120_000 });
           expect(await page.evaluate(() => window.storyProbe.faceReview.error)).toBeNull();
         }
+        if (options.voiceCounts) {
+          const ids = await page.evaluate(() => [...window.storyProbe.faceReview.voiceIds]);
+          for (const [prefix, count] of Object.entries(options.voiceCounts)) {
+            expect(ids.filter(id => id.startsWith(prefix)).length, `${prefix} actually played recordings`).toBe(count);
+          }
+        }
       } finally {
         const review = await page.evaluate(() => {
           const r = window.storyProbe.faceReview;
-          return { error: r.error, frame: r.frame, done: r.done, voices: [...r.voices],
+          return { error: r.error, frame: r.frame, done: r.done, voices: [...r.voices], voiceIds: [...r.voiceIds],
             samples: Object.fromEntries(Object.entries(r.samples).map(([tag, s]) => [tag,
-              { code: s.code, frames: s.frames, mouths: s.mouths.size, vertices: s.vertices.size, audio: s.audio.size }])),
+              { code: s.code, firstFrame: s.firstFrame, frames: s.frames, mouths: s.mouths.size, vertices: s.vertices.size, audio: s.audio.size }])),
             objects: Object.fromEntries(Object.entries(r.objects).map(([tag, s]) => [tag, { frames: s.frames, positions: s.positions.size }])) };
         });
         await writeFile(testInfo.outputPath(`${label}-review.json`), JSON.stringify(review));

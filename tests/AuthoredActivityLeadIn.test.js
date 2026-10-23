@@ -4,11 +4,21 @@ import test from "node:test";
 import { createNativeAseqActivityRuntime } from "../play/events/NativeAseqActivityRuntime.js";
 import { notebookPagesForCharacter } from "../play/config/notebook.js";
 import { prependAuthoredActivityLeadIn } from "../play/events/AuthoredActivityLeadIn.js";
+import { runtimeAssets } from "../src/RuntimeAssets.js";
+import { createScriptEventPresentationCatalog } from "../play/scripts/ScriptEventPresentationCatalog.js";
 
 const read = file => JSON.parse(fs.readFileSync(file));
 const manifest = read("play/assets/hazuki/mska/manifest.json");
 const audio = read("public/audio/world/mska/manifest.json");
 const lead = read("public/audio/world/first-dojo/manifest.json");
+
+test("dojo speech is recoverable in clean builds and its borrowed player pose is returned", () => {
+  for (const voice of lead.voices) {
+    assert.equal(runtimeAssets[voice.asset]?.sha256, voice.sha256, voice.asset);
+    assert.equal(runtimeAssets[voice.asset]?.size, voice.byteLength, voice.asset);
+  }
+  assert.equal(createScriptEventPresentationCatalog().activity("s1.jhd0.first-dojo.scene").returnPlayerState, true);
+});
 
 test("authored dojo lead-in preserves original ending, voices and runtime duration", async () => {
   let began;

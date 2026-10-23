@@ -764,21 +764,35 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   }
   expect(errors).toEqual([]);
   if (ending === "complete" && process.env.NEW_YOKOSUKA_DOJO_E2E === "true") {
+    test.setTimeout(Math.max(testInfo.timeout, 360_000));
     // Bounded continuation check: use real world loading, then place just
     // outside the dojo volume. Walking triggers it; no direct event start.
-    await page.evaluate(async () => {
-      const life = window.storyProbe.lifecycle;
-      await life.travelToWorld("exterior");
-      life.resetPlayer(life.vectorFromArray([4.6, 0.97, -17.8]), Math.PI, { persist: false });
-    });
-    await page.locator("#renderCanvas").focus();
-    await page.keyboard.down("KeyW");
-    try {
-      await page.waitForFunction(() => window.storyProbe.starts.includes("story-s1-first-dojo"), null, { timeout: 20_000 });
-    } finally { await page.keyboard.up("KeyW"); }
-    await page.waitForFunction(() => window.storyProbe.director?.activeCutscene?.cutscene.id === "story-s1-first-dojo"
-      || window.storyProbe.sceneErrors.length, null, { timeout: 60_000 });
-    expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+    await page.evaluate(async () => window.storyProbe.lifecycle.travelToWorld("exterior"));
+    const enterDojo = async () => {
+      await page.evaluate(() => {
+        const life = window.storyProbe.lifecycle;
+        life.resetPlayer(life.vectorFromArray([4.6, 0.97, -17.8]), Math.PI, { persist: false });
+      });
+      await page.waitForFunction(() => !window.storyProbe.regions.inside.has("s1.jhd0.first-dojo.entrance"));
+      await page.locator("#renderCanvas").focus();
+      await page.keyboard.down("KeyW");
+      try {
+        await page.waitForFunction(() => window.storyProbe.regions.controller.status !== "idle", null, { timeout: 20_000 });
+      } finally { await page.keyboard.up("KeyW"); }
+      await page.waitForFunction(() => window.storyProbe.director?.activeCutscene?.cutscene.id === "story-s1-first-dojo"
+        || window.storyProbe.sceneErrors.length, null, { timeout: 60_000 });
+      expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+    };
+    await enterDojo();
+    await page.waitForTimeout(3000);
+    await page.evaluate(() => window.storyProbe.regions.controller.cancel("verify-dojo-cancellation"));
+    await page.waitForFunction(() => window.storyProbe.regions.controller.status === "idle" && !window.storyProbe.director.active);
+    const cancelled = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+    expect(cancelled.character.storyFlags["story.s1.first-dojo.completed"]).not.toBe(true);
+    expect(cancelled.character.storyFlags["notebook.s1.men-in-black"]).not.toBe(true);
+    expect(cancelled.character.yen).toBe(character.yen + 500);
+    expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    await enterDojo();
     await page.waitForTimeout(3000);
     await page.screenshot({ path: testInfo.outputPath("first-dojo-dialogue.png") });
     await page.waitForFunction(() => !window.storyProbe.director.active, null, { timeout: 120_000 });
@@ -787,12 +801,28 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     expect(saved.character.storyFlags["notebook.s1.men-in-black"]).toBe(true);
     expect(saved.character.yen).toBe(character.yen + 500);
     expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    const returned = await page.evaluate(() => {
+      const p = window.storyProbe;
+      return { position: p.lifecycle.getController().collider.position.asArray(),
+        borrowed: p.actorLeases.filter(lease => lease.scene === "story-s1-first-dojo").at(-1).position,
+        leases: p.lifecycle.scheduledActors.activityActorOwners.size };
+    });
+    expect(Math.hypot(...returned.position.map((v, i) => v - returned.borrowed[i]))).toBeLessThan(0.02);
+    expect(returned.leases).toBe(0);
     await page.locator("button").filter({ hasText: /^Notebook$/ }).click();
     await page.locator("#journal-next").click();
     await expect(page.getByText(/Ask around to find out/)).toBeVisible();
     await page.screenshot({ path: testInfo.outputPath("first-dojo-notebook.png") });
     await page.locator("#journal-close").click();
     expect(errors).toEqual([]);
+    await page.reload(); await page.keyboard.press("Enter");
+    await page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" }).click();
+    await page.locator(".character-slot-button:not(.empty)").first().click();
+    await page.locator("button").filter({ hasText: /^Enter World$/ }).click();
+    await page.waitForFunction(() => window.storyProbe.ready, null, { timeout: 120_000 });
+    expect(await page.evaluate(() => window.storyProbe.starts)).toEqual([]);
+    expect((await (await page.request.get(`/api/characters/${character.id}/state`)).json()).character.storyFlags["notebook.s1.men-in-black"]).toBe(true);
+    expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
     if (process.env.NEW_YOKOSUKA_KITTEN_E2E === "true") {
       await page.evaluate(async () => {
         const life = window.storyProbe.lifecycle;

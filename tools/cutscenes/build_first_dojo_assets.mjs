@@ -56,4 +56,8 @@ try {
       lines,
     },
   }, null, 2) + "\n");
+  // Ignored recordings must be versioned in the runtime catalog or neither
+  // clean deployments nor local asset recovery can find the original speech.
+  execFileSync(process.execPath, [path.join(root, "tools/runtime-assets.mjs"), "update",
+    `${output}/manifest.json`, ...voices.map(voice => voice.asset)], { cwd: root, stdio: "inherit" });
 } finally { fs.rmSync(temporary, { recursive: true, force: true }); }

@@ -11,6 +11,7 @@ import { loadNativeCharacterModel } from "../../play/characters/NativeCharacterM
 import { resolveGenericFaceMorph } from "../../src/GenericFaceMorph.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+const runtimeAssets = JSON.parse(readFileSync(path.join(root, "src/runtime-assets.generated.json"))).assets;
 const args = process.argv.slice(2);
 const inspectModels = args.includes("--models");
 if (inspectModels) args.splice(args.indexOf("--models"), 1);
@@ -51,6 +52,15 @@ try {
     const faces = resolveNativeCutsceneFacialAssets(pkg.presentation?.facialAssets, pkg.presentation?.facialActorAliases);
     const audio = [pkg.playback?.audioManifest, ...(pkg.playback?.audioManifests || []).map(value => value.manifest)].filter(Boolean);
     const voices = audio.flatMap(manifest => manifest.voices || []);
+    const audioPaths = [...new Set(audio.flatMap(manifest => [...(manifest.voices || []), ...(manifest.sounds || [])])
+      .filter(record => !record.unavailable)
+      .flatMap(record => [record.asset, ...(record.assets || []).map(asset => asset.asset)]).filter(Boolean))];
+    // Subtitle/lip metadata can exist while the actual recordings are absent.
+    // Unregistered ignored files also disappear from clean hosted builds.
+    const missingAudioAssets = audioPaths.flatMap(file => [
+      ...(!runtimeAssets[file] ? [{ path: file, kind: "not-registered" }] : []),
+      ...(!existsSync(path.join(root, file)) ? [{ path: file, kind: "not-restored-locally" }] : []),
+    ]);
     const speakers = [...new Set(voices.map(voice => voice.speakerId).filter(Boolean))];
     const actors = new Set(pkg.actorTags);
     const onStageSpeakers = speakers.filter(tag => actors.has(tag));
@@ -71,6 +81,7 @@ try {
       voicesWithoutLipCues: voices.filter(voice => actors.has(voice.speakerId) && !voice.lipSync)
         .map(voice => ({ voice: voice.voiceId, speaker: voice.speakerId })),
       missingFaceAssets,
+      missingAudioAssets,
       referenceOnlyObjects: Object.entries(pkg.environment?.sceneObjects || {}).filter(([, object]) => object.referenceOnly).map(([tag]) => tag),
       attachedObjects: Object.keys(pkg.environment?.attachedObjects || {}),
       detailedHands: Object.entries(pkg.presentation?.handAssets || {}).filter(([, hand]) => hand.mode !== "body-only").map(([tag]) => tag),
@@ -82,6 +93,7 @@ try {
     packagesWithSpeakersWithoutDetailedFace: packages.filter(pkg => pkg.speakersWithoutDetailedFace.length).length,
     speakerOccurrencesWithoutDetailedFace: packages.reduce((n, pkg) => n + pkg.speakersWithoutDetailedFace.length, 0),
     missingFaceAssets: packages.reduce((n, pkg) => n + pkg.missingFaceAssets.length, 0),
+    audioAssetProblems: packages.reduce((n, pkg) => n + pkg.missingAudioAssets.length, 0),
     referenceOnlyObjects: packages.reduce((n, pkg) => n + pkg.referenceOnlyObjects.length, 0),
   };
   if (inspectModels) {

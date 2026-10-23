@@ -232,7 +232,7 @@ const ACTIVITIES = new Map([
       storyPresentation: true, activity: { slot: 0, binding: { primaryPointer, secondaryPointer } } },
   }]),
   ["s1.jhd0.first-dojo.scene", {
-    kind: "native-cutscene", area: "JHD0", durableEffects: "forbidden",
+    kind: "native-cutscene", area: "JHD0", durableEffects: "forbidden", returnPlayerState: true,
     cutscene: { id: "story-s1-first-dojo", packageId: "first-dojo", worldId: "exterior",
       storyPresentation: true, activity: { slot: 0, binding: { primaryPointer: 0x5ee04, secondaryPointer: 0x5ee09 } } },
   }],

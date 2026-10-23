@@ -1127,10 +1127,13 @@ Nozomi's `NZM_L` body is not automatically applied to `NZM_M`. Newly bound
 model, FTBL and TALK resources are added to the package's asset dependencies.
 Unknown pairs remain unbound rather than borrowing a visually similar face.
 
-Run `node tools/cutscenes/audit_cutscene_presentation.mjs` to audit all packages,
+Run `node scripts/testing/run-tests.mjs script tools/cutscenes/audit_cutscene_presentation.mjs` to audit all packages,
 including Story-only scenes. Its ignored report under `tests/reports/` separates
 on-stage and remote speakers, detailed face bindings, missing local assets,
-voices without lip cues, reference-only objects, and hand/prop bindings. Add
+voices without lip cues, absent/unregistered voice and sound files,
+reference-only objects, and hand/prop bindings. Audio metadata alone does not
+prove the recording is available: Vite can return fallback HTML for a missing
+WAV. Local availability is not proof of remote publication. Add
 `--models` to load each distinct speaking body locally and check its authored
 generic mouth structure. Models are inspected serially and disposed promptly.
 This is wiring/geometry coverage, not rendered verification. Missing bodies

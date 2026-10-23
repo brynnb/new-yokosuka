@@ -218,7 +218,7 @@ or the Chinese-cartel conversation (`01KAK`).
 | Audio / weather | Original SA1116 and A0125 voices/subtitles; original MSKA effects and BGM202. Extending that music over the lead-in is an adaptation. Preserve the personal environment; no forced weather or calendar jump. |
 | Props / challenge | None. No QTE or combat; this is not the optional sparring lesson. |
 | Effects | Atomically set `story.s1.first-dojo.completed` and `notebook.s1.men-in-black`. Add the next investigation page; do not grant currency, items or a made-up native flag. |
-| Exit / failure | Stay in Hazuki grounds with camera and controls restored. Explicit X-skip completes the presentation; failure/cancellation leaves the event retryable. Repeat entry cannot settle twice. |
+| Exit / failure | Return the borrowed avatar to its entry position in Hazuki grounds, with camera and controls restored. Explicit X-skip completes the presentation; failure/cancellation leaves the event retryable. Repeat entry cannot settle twice. |
 
 ### Provenance and limitations
 
@@ -231,17 +231,28 @@ order and selects the MSKA ending. Source hashes remain in
 `tools/evidence/mska-native-lifecycle.json` and the generated audio manifest.
 
 `tools/cutscenes/build_first_dojo_assets.mjs` reads the original AFS subtitles
-and speech, decodes the eleven voices and measures their durations. It does
-not execute or translate the room controller. `AuthoredActivityLeadIn` feeds
+and speech, decodes the eleven voices, measures their durations and registers
+them for runtime asset recovery/publication. It does not execute or translate
+the room controller. `AuthoredActivityLeadIn` feeds
 that bounded staging into the same scene presentation/ownership system used
 by the original ending. The original MSKA selector preview remains unchanged.
 
-The connected local browser check passes through the opening, allowance,
-reload, dojo trigger, natural scene completion and the saved seventh notebook
-page. A subsequent captured lead-in verifies Ryo and seated Fuku-san together
-with inward-facing poses and the authored camera. Poses are held rather than
-recreating the original conversation gestures. Voice playback fidelity was not
-assessed by listening to the automated run.
+The October 23 recheck caught eleven absent, unregistered SA1116 recordings:
+the dialogue metadata and ending film could run despite the silent lead-in.
+The canonical builder restored the original recordings; the all-package audit
+now checks both local files and runtime registration. These new local assets
+still require publication before a deployment.
+
+The connected local browser check starts after the opening-complete API,
+earns the allowance, reloads, walks into the dojo, cancels without granting a
+clue, re-enters, completes naturally, and verifies the seventh notebook page
+and another reload without replay. Camera, movement and actor ownership return
+cleanly, including the entry position. Separate full presentation playback
+records all eleven SA1116 and five A0125 voices actually playing, with YKC/FUK
+mouth vertices changing during speech. Reviewed captures cover the lead-in,
+ending shots and detailed faces; a cancellation also restores state without
+progress changes. Poses in the lead-in are held rather than recreating the
+original conversation gestures. Audio fidelity was not assessed by listening.
 
 The notebook page is a lightly adapted investigation prompt. Exact native
 notebook flags and the original leave-home restriction are not implemented.
