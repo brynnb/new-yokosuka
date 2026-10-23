@@ -514,6 +514,36 @@
         "generatedBy": "tools/animation/extract_native_face_poses.py",
         "actorTag": "HRSK"
       }
+    },
+    "FUB": {
+      "actorTag": "FUKU",
+      "bodyModelCode": "FUB_M",
+      "faceCode": "FUB",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/hazuki/tgma/FUB_F.MT5",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/FUB_F.MT5",
+        "byteLength": 142760,
+        "sha256": "d2723415939ce6b6387715a354921f64513a815216f0174892517cbdb5022054"
+      },
+      "table": {
+        "path": "play/assets/hazuki/tgma/FUB_FTBL.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/FUB_FTBL.BIN",
+        "byteLength": 5004,
+        "sha256": "c2be5f63cb0918f4a26b982f68be29c5aadcae95fdb7a24a7ecbe4d6bc2c4f32"
+      },
+      "poses": {
+        "actorTag": "FUKU",
+        "path": "play/assets/cutscenes/native-faces/fub-talk-poses.generated.json",
+        "byteLength": 295967,
+        "sha256": "354e60b8675a9dcc1a1a9ddc3204ef10b021ef7ddad3b0eb761582afeab6012a",
+        "generatedBy": "tools/animation/extract_native_face_poses.py"
+      }
     }
   }
 }

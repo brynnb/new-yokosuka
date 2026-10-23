@@ -13,6 +13,9 @@ import { fileURLToPath } from "node:url";
 import op00Inventory from "../../play/assets/introduction/op00/asset-inventory.generated.json" with {
   type: "json",
 };
+import tgmaManifest from "../../play/assets/hazuki/tgma/manifest.json" with {
+  type: "json",
+};
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const sourceDirectory = path.join(
@@ -222,6 +225,19 @@ const facialVariants = Object.fromEntries(Object.entries(expectedVariants).map(
     buildFacialAsset(definition.actorTag, definition),
   ],
 ));
+// TGMA already publishes this exact alternate Fuku body/face pair and native
+// TALK output. Reuse it across scenes (including GMCT), not another copy or
+// the incompatible FUK face selected by the actor's logical name.
+const fub = tgmaManifest.facialAssets.FUKU;
+if (fub.bodyModelCode !== "FUB_M" || fub.faceCode !== "FUB") {
+  throw new Error("TGMA no longer supplies the exact FUB facial variant");
+}
+for (const record of [fub.model, fub.table, fub.poses]) {
+  if (sha256(readFileSync(path.join(root, record.path))) !== record.sha256) {
+    throw new Error(`Shared FUB asset changed: ${record.path}`);
+  }
+}
+facialVariants.FUB = fub;
 
 const manifest = {
   schema: "new-yokosuka-native-face-pack-v1",

@@ -172,8 +172,23 @@ for(const p of selectedProfiles){
     {name:p.motion,sourcePath:p.area?path.join(source,area,p.motion):common,sourceManifestPath:`${discPath}/${area}/${p.area?p.motion:`COMMON0${disc}.PKS`}`,...(p.area?{}:{archiveMember:p.motion,sourceSha256:p.commonHash||commonHash}),byteLength:p.motionSize,sha256:p.motionHash},
   ];
   const props={},outputMembers=[],textureSources=[];let generatedAssets=[];
+  const packageActors=Object.fromEntries(Object.entries(characters).filter(([tag])=>p.actors.includes(tag)).map(([tag,[label,code]])=>[tag,actor(label,code)]));
   if(area==="GMCT"){
     const bytes=fs.readFileSync(mapSource),chrs=bytes.indexOf("CHRS"),bindings=parseChrtSceneObjectBindings(bytes.subarray(chrs));
+    // Image identifiers are not model filenames: GMCT's "FUK_M" image
+    // explicitly loads FUB_M. Use the serialized DefImage for every package
+    // actor here; AKIR intentionally remains the shared Story player.
+    for(const [tag,definition]of Object.entries(packageActors)){
+      const matches=bindings.filter(value=>value.actorTag===tag);
+      if(matches.length!==1)throw Error(`Expected one original GMCT actor binding for ${tag}`);
+      const binding=matches[0],resolved=actor(definition.label,binding.model);
+      for(const file of [resolved.assetPath,resolved.textureAssetPath]){
+        if(!fs.existsSync(path.join(root,file)))throw Error(`Missing exact GMCT actor asset: ${file}`);
+      }
+      packageActors[tag]={...resolved,sourceBinding:{image:binding.image,mapInfoChrsOffset:chrs,
+        characterRecordOffset:binding.characterRecordOffset,imagePropertyOffset:binding.imagePropertyOffset,
+        defImageRecordOffset:binding.defImageRecordOffset}};
+    }
     for(const tag of p.actors.filter(tag=>tag!=="AKIR"&&!characters[tag])){
       const binding=bindings.find(value=>value.actorTag===tag);if(!binding)throw Error(`Unresolved original GMCT prop ${tag}`);
       // DGCT retains its existing scenery. Keep these original reference
@@ -244,7 +259,7 @@ for(const p of selectedProfiles){
     activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:`${p.resource}.AUTH`,actors:p.actors,durationFrames:p.frames,
       ...callbackCues,
       ...(p.stage?{browserMapVisibility:[],browserIsolatedStage:true,browserLightingPresetIndex:0,nativeSceneObjectStates:stageStates}:{})}],
-    packageActors:Object.fromEntries(Object.entries(characters).filter(([tag])=>p.actors.includes(tag)).map(([tag,[label,code]])=>[tag,actor(label,code)])),
+    packageActors,
     ...(Object.keys(props).length?{sceneObjects:props,outputMembers,generatedAssets}:{}),
   });
   runtimePaths.push(`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path));

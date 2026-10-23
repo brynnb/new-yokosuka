@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import catalog from "../play/assets/cutscenes/native-faces/manifest.generated.json" with {type:"json"};
+import tgma from "../play/assets/hazuki/tgma/manifest.json" with {type:"json"};
+import rescue from "../play/assets/dobuita/chai-rescue/manifest.json" with {type:"json"};
 
 import {
   resolveNativeCutsceneFacialAssets,
@@ -31,6 +34,16 @@ const face = (tag, model) => Object.freeze({
   actorTag: tag, bodyModelCode: model,
   model: { path: `${model}/face.mt5` }, table: { path: `${model}/ftbl.bin` },
   poses: { path: "talk.json", actorTag: tag },
+});
+
+test("arcade rescue binds the exact FUB body to existing FUB FACE and TALK assets", () => {
+  const bound=bindNativeCutsceneFacialAssets({id:"chai-rescue",actorTags:rescue.actorTags,
+    environment:{packageActors:rescue.packageActors}},catalog,path=>`/local/${path}`);
+  const selected=bound.presentation.facialAssets.FUKU;
+  assert.deepEqual(selected,tgma.facialAssets.FUKU);
+  assert.equal(selected.bodyModelCode,"FUB_M");
+  assert.notEqual(selected.table.sha256,catalog.facialAssets.FUKU.table.sha256);
+  for(const record of [selected.model,selected.table,selected.poses])assert.equal(bound.assets[record.path],`/local/${record.path}`);
 });
 
 test("package completion binds all proven bodies, not only the player, with their asset dependencies", () => {

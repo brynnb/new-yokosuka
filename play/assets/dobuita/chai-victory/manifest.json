@@ -58,7 +58,14 @@
       "assetFormat": "MT5",
       "characterScale": 1,
       "assetPath": "play/assets/characters/CHA_M.CHRM",
-      "textureAssetPath": "play/assets/characters/CHA_textures.bin"
+      "textureAssetPath": "play/assets/characters/CHA_textures.bin",
+      "sourceBinding": {
+        "image": "CHA_M",
+        "mapInfoChrsOffset": 98828,
+        "characterRecordOffset": 520,
+        "imagePropertyOffset": 528,
+        "defImageRecordOffset": 480
+      }
     },
     "NITO": {
       "label": "Yuji Nito",
@@ -67,7 +74,14 @@
       "assetFormat": "MT5",
       "characterScale": 1,
       "assetPath": "play/assets/characters/GAT_L.CHRM",
-      "textureAssetPath": "play/assets/characters/GAT_textures.bin"
+      "textureAssetPath": "play/assets/characters/GAT_textures.bin",
+      "sourceBinding": {
+        "image": "GAT_M",
+        "mapInfoChrsOffset": 98828,
+        "characterRecordOffset": 692,
+        "imagePropertyOffset": 700,
+        "defImageRecordOffset": 652
+      }
     }
   },
   "actorTags": [

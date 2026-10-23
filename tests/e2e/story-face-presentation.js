@@ -2,6 +2,14 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  arcade: [
+    ...[false,true].map(natural=>["s1.dgct.chai-intro.scene","arcade","DGCT",{}, {
+      label:natural?"complete":"cancel",natural,frames:natural?[180,430,700,1050,1500,1950]:[430],
+      ...(natural?{observeActors:{AKIR:"YKC",CHAI:"CHA_M"},voiceCounts:{A0172:11}}:{}),
+    }]),
+    ["s1.dgct.chai-victory.scene","arcade","DGCT",{NITO:"GAT_L"},{natural:true,frames:[500,950]}],
+    ["s1.dgct.chai-rescue.scene","arcade","DGCT",{FUKU:"FUB"},{natural:true,frames:[],voiceCounts:{A0172A:3}}],
+  ],
   vision: [
     ...[false,true].map(natural=>["s1.jomo.snow-dream.scene","interior","JOMO",{}, {
       label:natural?"complete":"cancel",natural,frames:natural?[180,450,900]:[180],

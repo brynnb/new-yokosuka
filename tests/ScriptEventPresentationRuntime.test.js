@@ -386,6 +386,11 @@ test("Chai cinematics retain exact source bindings and cannot decide the fight",
     assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);assert.equal(activity.cutscene.worldId,"arcade");
     assert.deepEqual(manifest.activities[0].actors,cast);assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
     assert.equal(manifest.packageActors.CHAI.modelCode,"CHA_M");
+    assert.deepEqual(Object.fromEntries(Object.entries(manifest.packageActors).map(([tag,actor])=>[tag,actor.modelCode])),
+      id==="chai-rescue"?{FUKU:"FUB_M",CHAI:"CHA_M"}:id==="chai-victory"?{CHAI:"CHA_M",NITO:"GAT_L"}:{CHAI:"CHA_M"});
+    for(const actor of Object.values(manifest.packageActors))assert.ok(Number.isInteger(actor.sourceBinding.defImageRecordOffset));
+    if(id==="chai-rescue")assert.equal(manifest.packageActors.FUKU.sourceBinding.image,"FUK_M",
+      "the original image name deliberately differs from its FUB body filename");
     assert.equal(activity.cutscene.activity.binding.activityId,`${resource}/${resource}.AUTH`);
     for(const [tag,prop]of Object.entries(manifest.sceneObjects||{})){
       assert.equal(prop.model,tag==="DOOR"?"DR17_001":"GAMT101G");assert.equal(prop.referenceOnly,true);

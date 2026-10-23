@@ -449,7 +449,7 @@ continuation; defeat brings Fuku's rescue and a day of rest at home.
 | --- | --- |
 | Location / eligibility | Normal You Arcade (`DGCT`), entered through the existing physical Dobuita door 64. Story Ryo, completed opening and earned Jimmy call; personal noon or later. The entrance-side approach is authored, not a recovered event volume. Missing the exact appointment minute cannot strand the player. |
 | Original presentation | GMCT MAPINFO AUTH `0x5edc` introduction, `0x13ce0` victory and `0x16a9c` rescue; original M_0172 bank 32, complete sequence indexes, actors, cameras and A0172/A0172A speech. The three presentations last about 73.35, 38.35 and 27.93 seconds. A1_BGAM's 43 tracks cover the requested sound commands; this bank association follows source naming and exact command coverage, not reconstructed owner execution. |
-| Cast / props | Ryo and Chai (`CHA_M`); victory also uses Yuji Nito (`NITO`, GAT_L, corroborated by the existing scheduled actor and character inventory); rescue uses Fuku (`FUK_M`). Shared ownership suppresses overlapping ambient bodies. The original CHRS identifies DOOR → DR17_001 and SLOT → GAMT101G. Their timeline references are retained, but normal DGCT scenery remains fixed: cabinet knock-over and detailed ticket/finger callbacks are omitted. |
+| Cast / props | Ryo and Chai (`CHA_M`); victory also uses Yuji Nito (`NITO`, `GAT_L`); rescue uses Fuku (`FUB_M`). The generator reads these package-owned bodies from original GMCT CHRS/DefImage records, rather than inferring filenames from image or actor names. Shared ownership suppresses overlapping ambient bodies. The original CHRS identifies DOOR → DR17_001 and SLOT → GAMT101G. Their timeline references are retained, but normal DGCT scenery remains fixed: cabinet knock-over and detailed ticket/finger callbacks are omitted. |
 | Fight / timing / cameras | Original introduction-ending positions feed the existing client-simulated fight. Physical movement, punch/kick/throw/guard inputs drive real health, hits, basic opponent AI and outcomes. Shared generic animations, 100/120 health, speeds and rectangular arena padding are adaptations; Chai's original low-kick moveset is not reconstructed. The normal orbit camera remains player-controlled. Environment/weather stays personal; no new battle music is asserted. |
 | Victory | Only server victory selects the original victory ending. Its acknowledgement atomically saves the won flag, chapter milestone and Asia Travel notebook clue; stay in the arcade that personal day with prior controls/camera restored. |
 | Defeat | Only a genuine zero-health knockout selects the original Fuku rescue. After its acknowledgement, atomically save the lost flag, same chapter/clue, next-day 08:30 and established bedside arrival. Offscreen travel and the remaining rest day are condensed; the separate A0173 home-recovery scene is not yet connected. |
@@ -483,6 +483,37 @@ The 142 focused client presentation, actor ownership, controller and combat
 checks pass, as do the Go scripting/content suites with the real Yarn compiler.
 Those Go commands do not claim unconfigured database integration coverage;
 the two connected browser runs supply the real PostgreSQL outcome checks here.
+
+### Arcade presentation review (2026-10-23)
+
+GMCT binds the image named `FUK_M` to the actual model `FUB_M` (CHRS-relative
+character record 376, image property 404, DefImage record 72). A global
+`FUKU → FUK_M` assumption previously selected the wrong body. All three GMCT
+packages now preserve their serialized model bindings, including
+`NITO/GAT_M → GAT_L`. Rescue reuses TGMA's exact FUB FACE, FTBL and original
+TALK-pose assets through the shared face catalog; no duplicated face assets or
+actor-name-based compatibility fallback are added.
+
+The isolated rendered review (`NEW_YOKOSUKA_STORY_FACE_SET=arcade`) passes
+cancel/replay of the introduction, natural completion of all three films,
+all 11 introduction / 4 victory / 3 rescue recordings, and restored avatar,
+location, camera mode, movement and actor ownership. Money, inventory and
+Story flags remain unchanged. Native shots and diagnostic face closeups were
+inspected; FUB, YKC, and the existing generic CHA_M/GAT_L speech geometry change
+over multiple rendered frames. Chai already had working generic mouth animation;
+this does **not** claim an original detailed CHA FACE/expression reconstruction.
+The review takes about 2.5 minutes including GPU preflight, one browser at a time.
+It complements, rather than repeats, the connected fight-outcome tests above.
+
+The missing ticket action is real: original CHRS names `TIK1`–`TIK4` as
+`TIKHIA1G`–`TIKHIA4G`, but these props are not yet packaged. GMCT uses the older
+SCN3 instruction stream (`0x00000100`, entry file offset `0x20cb`), not the
+compiled SH-4 format handled by the current callback extractor. See the
+[source-format inventory](../../tools/evidence/scn3-container-encoding-evidence.json).
+The existing community bytecode decoder is not yet a validated source of the
+ticket/hand frame guards; no guessed attachments or visibility timing are
+presented as recovered behavior. Cabinet knock-over, exact ticket manipulation,
+and the separate A0173 recovery film remain unfinished.
 
 ## Jimmy chase and interrogation
 
