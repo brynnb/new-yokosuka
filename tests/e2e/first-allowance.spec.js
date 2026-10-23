@@ -31,6 +31,7 @@ import {useStoryInspectable} from "./story-object-input.js";
 import {verifySavedScrollLearning} from "./story-move-learning.js";
 import {placeAtHeartbeatsApproach,reviewHeartbeatsPresentation,inspectHeartbeatsMotions,inspectHeartbeatsBarMotions} from "./story-heartbeats-presentation.js";
 import { reviewStoryFaces } from "./story-face-presentation.js";
+import { reviewTattooIntroduction } from "./story-tattoo-presentation.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
@@ -528,6 +529,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     }
     if(process.env.NEW_YOKOSUKA_AMBUSH_E2E === "true") {
       await verifyParkingLotAmbush(page,testInfo,character);
+      expect(errors).toEqual([]);
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
+    if(process.env.NEW_YOKOSUKA_TATTOO_PRESENTATION_E2E === "true") {
+      await reviewTattooIntroduction(page,testInfo,character);
       expect(errors).toEqual([]);
       expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
       return;
@@ -1575,9 +1582,19 @@ async function verifyCharlieConfrontation(page,testInfo,character) {
     await waitUntil("Wait until tomorrow morning");await waitUntil("Wait until 2 p.m.");
     await enterInteriorDoor(page,{world:"tatq",filename:"S1_D000_DR01_007.MT5",position:[100.4,2.7724,99.9],yaw:2.181661565});
   }
-  await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-tattoo-introduction"||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
   expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  await page.waitForFunction(()=>window.storyProbe.director.activeCutscene.packageRuntime?.activityRuntime.active?.currentFrame>=200);
   await page.screenshot({path:testInfo.outputPath("charlie-parlor-introduction.png")});
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("tattoo-introduction-cancel-check"));
+  await page.waitForFunction(()=>{
+    const p=window.storyProbe;return p.regions.controller.status==="idle"&&!p.director.active&&p.lifecycle.worldRuntime.ready&&!p.lifecycle.getController().movementLocked;
+  },null,{timeout:60_000});
+  const cancelled=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(cancelled.character.storyFlags["notebook.s1.charlie-cartel-appointment"]).not.toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  await enterInteriorDoor(page,{world:"tatq",filename:"S1_D000_DR01_007.MT5",position:[100.4,2.7724,99.9],yaw:2.181661565});
+  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-tattoo-introduction",null,{timeout:60_000});
   const toChallenge=async()=>{
     for(let i=0;i<30&&!await page.evaluate(()=>window.storyProbe.regions.controller.active?.challengePrompt||window.storyProbe.sceneErrors.length);i++) {
       await page.keyboard.press("Space");await page.waitForTimeout(200);
@@ -1609,6 +1626,18 @@ async function verifyCharlieConfrontation(page,testInfo,character) {
   for(let i=0;i<50&&await page.locator("#journal-next").isEnabled();i++)await page.locator("#journal-next").click();
   await expect(page.getByText(/Charlie promised to arrange a meeting/)).toBeVisible();
   await page.screenshot({path:testInfo.outputPath("charlie-cartel-notebook.png")});
+  await page.locator("#journal-close").click();
+  await page.reload();await page.keyboard.press("Enter");
+  await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();
+  await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});
+  await page.waitForTimeout(1500);
+  expect(await page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+  expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-tattoo-introduction"))).toBe(false);
+  const reloaded=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(reloaded.character.storyFlags["notebook.s1.charlie-cartel-appointment"]).toBe(true);
+  expect(reloaded.character.worldId).toBe("tatq");
 }
 
 async function verifyNozomiAfterParlor(page,testInfo,character) {

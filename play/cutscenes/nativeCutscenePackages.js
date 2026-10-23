@@ -51,6 +51,8 @@ import allowanceManifest from "../assets/hazuki/first-allowance/manifest.json";
 import allowanceAudio from "../../public/audio/world/first-allowance/manifest.json";
 import chineseLetterManifest from "../assets/hazuki/chinese-letter/manifest.json";
 import chineseLetterAudio from "../../public/audio/world/chinese-letter/manifest.json";
+import tattooIntroductionManifest from "../assets/dobuita/tattoo-introduction/manifest.json";
+import tattooIntroductionAudio from "../../public/audio/world/tattoo-introduction/manifest.json";
 import firstDojoAudio from "../../public/audio/world/first-dojo/manifest.json";
 import op00ActivityActorManifest from "../data/events/op00ActivityActors.json";
 import op00AssetInventory from "../assets/introduction/op00/asset-inventory.generated.json";
@@ -388,7 +390,8 @@ const nativeSilentActivityMusic = resource => Object.freeze({
 });
 
 const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
-  ...[["chicken-race",chickenRaceManifest,chickenRaceAudio,"mfsy"],["goro-job-lead",goroJobLeadManifest,goroJobLeadAudio,"mfsy"],["goro-job-appointment",goroJobAppointmentManifest,goroJobAppointmentAudio,"mfsy"],
+  ...[["tattoo-introduction",tattooIntroductionManifest,tattooIntroductionAudio,"tatq"],
+    ["chicken-race",chickenRaceManifest,chickenRaceAudio,"mfsy"],["goro-job-lead",goroJobLeadManifest,goroJobLeadAudio,"mfsy"],["goro-job-appointment",goroJobAppointmentManifest,goroJobAppointmentAudio,"mfsy"],
     ["charlie-harbor-interrogation",charlieHarborManifest,charlieHarborAudio,"mfsy"],
     ["goro-trap-aftermath",goroTrapManifest,goroTrapAudio,"mfsy"],["mark-long-zha",markLongZhaManifest,markLongZhaAudio,"mfsy"],
     ["goro-mai-marriage",goroMaiManifest,goroMaiAudio,"mfsy"],

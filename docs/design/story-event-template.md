@@ -1003,9 +1003,9 @@ higher priority than the same-night artist conversation.
 | Field | Implemented adaptation |
 | --- | --- |
 | Prerequisites / trigger | Personal Story Ryo, completed opening, tattoo-parlor lead, resident HORS, 14:00–midnight and a personal day later than the ambush. Cross the parlor door or resume inside an eligible room. The same-night artist conversation and optional location clues are not mandatory for later-day first arrivals. |
-| Characters / setup | Hold Ryo, Takashiro, Tony and Smith for the introduction, then switch to Ryo/Charlie. Reuse shared actor ownership, model loading, camera and input locks. An owned out-of-shot HORS is hidden during the confrontation and restored afterward. |
-| Dialogue / timing | Eleven original A0136A voice/subtitle pairs cover the frightened sailors and artist's directions. Then a real Left/A QTE; only winning reaches thirteen selected original A0136 lines and the next-day 3 p.m. appointment. Voice endings or supported Space advance conversation lines; Space cannot answer a challenge. |
-| Presentation / props | Original AUTH records at MAPINFO `0x23ce4` and `0x281e0` anchor actor positions. Cameras and standing holds are authored. Curtain interaction, a rendered knife, dodging, throwing and arm-grab choreography remain omitted; this is not an exact original QTE presentation. No new gameplay item is granted. |
+| Characters / setup | Original animated Ryo/Takashiro/Tony/Smith introduction, then authored Ryo/Charlie challenge staging. Reuse shared actor ownership, model loading, camera and input locks. An owned out-of-shot HORS is hidden during the confrontation and restored afterward. |
+| Dialogue / timing | Exact 1,780-frame introduction includes twelve A0136A voice/subtitle cues, original camera/body tracks and thirteen distinct sound-effect resources. Then a real Left/A QTE; only winning reaches thirteen selected A0136 lines and the next-day 3 p.m. appointment. Space advances movie time or later conversation lines, never answers the challenge. |
+| Presentation / props | Original AUTH `0x23ce4` drives the introduction; `0x281e0` still only anchors the authored challenge/ending positions. CHRT binds the introduction door, curtain, chairs and parked knife to exact original models. Artist mouth, handheld tattoo tool and curtain-opening manipulation remain incomplete. Challenge/ending cameras and standing holds remain authored; no original knife/dodge/throw/arm-grab choreography is claimed. No new gameplay item is granted. |
 | Challenge | Closed catalog `s1.tatq.charlie`, Left then A. Keyboard uses ArrowLeft then Enter; touch buttons use the same client runtime. Two-second client windows and strict restart are adaptations. Wrong input/timeout offers retry or leave. The server accepts the trusted final client result for the current ready attempt; ordinary Continue, movie completion and stale tokens cannot succeed. |
 | Calendar / environment | Preserve personal weather, season and ordinary room music/ambience; no forced lighting or date jump. Event ownership pauses the personal clock. Record the successful conversation's personal day, rather than resetting the public world time. |
 | Settlement / exit | After scene cleanup, atomically commit `story.s1.charlie-tattoo-confrontation.completed`, `notebook.s1.charlie-cartel-appointment` and `story.s1.charlie-parlor.day`. Appointment eligibility can derive the following day from that ordinal. Restore exact room-entry avatar/location/facing/camera and controls. Money, persistent HP and experience stay unchanged. |
@@ -1016,12 +1016,32 @@ and [Shotgunnova walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-she
 support the day/time gate, Left/A order and appointment. Original
 `SCENE/01/STREAM/A0136A.AFS` and `A0136.AFS` are hash-pinned by the generator.
 `TATQ/QTE.PKS` supplies the scene-specific `BIS_L`/`BIS_F` body/face and its PKF
-supplies textures. That sole bespoke humanoid is correlated with CHRL and was
-visually verified as Charlie; a direct native model-allocation trace is not
-claimed. `build_tatq_story_assets.mjs` reproduces and explicitly registers those
-ignored assets. The M_0136 waiting clips were inspected/rendered, but their
+supplies textures. QTE.PKF's CHARA.CHRT explicitly binds `CHRL` through image
+`CHT_L` to `BIS_L`, independently of the rendered identity check.
+`build_tatq_story_assets.mjs --audio` reproduces the introduction and explicitly
+registers its ignored assets (set `VGMSTREAM_CLI` and a DTPK-compatible
+`DTPK_PYTHON`; use a disk-backed `TMPDIR`). The M_0136 waiting clips were inspected/rendered, but their
 first-frame poses were not suitable as a standalone scene; generic original
 standing motion is an intentional replacement, not a fallback alias.
+
+The introduction borrows exact MAPINFO bytes `0x23ce4..0x26fdc`, SHA-256
+`df894f627509cdaae4b07fd61ff594848c52a14763fe91c5795bd2ff39d36bd6`,
+bank 16 `M_0136.MOTN`, `A0136A.AFS` and `A1_TATT3.SND`. It replaces the obsolete
+standing introduction rather than keeping two paths. Movie completion only
+advances to the playable challenge; it cannot award success or the appointment.
+After updating a server, republish `charlie-tattoo-confrontation` with the
+documented `cmd/script-import -builtin` workflow before accepting new runs;
+restarting a server does not update an already published Yarn version. The old
+introduction sequence capabilities are retired, so drain/cancel old active
+runs as part of any future coordinated client/server rollout.
+
+The shared CHRT parser now recognizes original mixed-case/uppercase property
+names and binds each character to the preceding image definition, preserving
+later redefinitions without changing earlier objects. A local scan of 340
+CHRT members across all three source discs found 907 additional bindings in
+106 members (includes repeated disc content), no changed previously resolved
+model identities, and resolved ten previous parse errors. This is source
+coverage, not proof that every newly discoverable prop is rendered in-game.
 
 `NEW_YOKOSUKA_CHARLIE_QTE_E2E=true` continues the earned ambush/parlor checkpoint.
 It uses actual personal waiting, real door entry or an already-starting resumed
@@ -1030,8 +1050,27 @@ inputs, the clue conversation, unchanged HP/money and the notebook. Full-stack
 tests also prove same-day exclusion, missing artist/early-hour rejection,
 later-day first arrival without the optional artist flag, cancellation before
 and after winning, atomic day/clue settlement, repeat protection and another
-character's isolation. Detailed choreography and mobile controller/gamepad
-input have not been visually verified.
+character's isolation. The remaining challenge/ending choreography and mobile
+controller/gamepad input have not been visually verified.
+
+2026-10-23 rendered recheck: `NEW_YOKOSUKA_TATTOO_PRESENTATION_E2E=true`
+played the complete introduction and captured frames 200/480/900/1200/1650.
+Original camera cuts, Ryo's entrance, sailors' retreat and voiced Ryo/Tony/Smith
+mouth deformation were observed. All four speakers played audio. Cancellation
+and completion restored avatar, position, camera mode and controls with no
+flag, inventory or money changes. Takashiro's mouth, tattoo-tool attachment and
+curtain-opening manipulation remain visible defects; their source face/model
+files exist but are not yet connected.
+
+The updated Charlie browser check used an explicit isolated prerequisite fixture,
+not an uninterrupted earned playthrough: personal waiting, real upstairs door,
+cancel during the original introduction, clean re-entry, wrong QTE input, retry,
+Left/Enter success, conversation, notebook, unchanged HP/money, released actor
+leases and reload without replay all passed. A separate attempt to continue the
+earned bar save through the ambush lost to the five opponents using both the
+old stationary kick routine and the later-fight movement helper. That combat
+path/test strategy needs investigation; its victory/progression was not certified
+by this recheck and no combat balance or result rules were changed.
 
 The source assets and newly encoded Story voices are registered in the immutable
 runtime catalog. They have **not** been published to R2 from this worktree;

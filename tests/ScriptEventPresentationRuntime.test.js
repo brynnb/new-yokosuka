@@ -46,6 +46,23 @@ test("Heartbeats holds source poses, waits for paired clips and retains one scen
   assert.ok(success.scene.actors.slice(0,2).every(a=>a.motion.elapsedSeconds===undefined&&!a.motion.loop));
 });
 
+test("tattoo introduction borrows native presentation without replacing the real challenge",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.tatq.charlie-introduction.scene");
+  assert.equal(activity.durableEffects,"forbidden");
+  assert.equal(activity.cutscene.activity.binding.activityId,"TATQ_INTRO/INTRO.AUTH");
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/dobuita/tattoo-introduction/manifest.json",import.meta.url)));
+  assert.equal(manifest.activities[0].durationFrames,1780);
+  assert.equal(manifest.source.members[0].sourceOffset,0x23ce4);
+  assert.deepEqual(Object.fromEntries(Object.entries(manifest.sceneObjects).map(([tag,obj])=>[tag,obj.model])),
+    {KTE1:"B03I006G",DOOR:"DR01_017",ISU1:"B03I002G",ISU2:"B03I003G",NIFE:"B03I004G"});
+  assert.ok(!authoredScenes.scenes.some(scene=>scene.id==="s1.tatq.charlie-introduction"));
+  const route=JSON.parse(readFileSync(new URL("../tools/scripting/story-investigation.json",import.meta.url))).routes.find(r=>r.id==="charlie-tattoo-confrontation");
+  assert.deepEqual(route.introductionActivities,["s1.tatq.charlie-introduction.scene"]);
+  assert.equal(route.challenge,"s1.tatq.charlie");
+  assert.equal(route.staging,"s1.tatq.charlie-confrontation");
+  assert.ok(!route.leadInVoiceIds,"native voices must not be repeated as Yarn lines");
+});
+
 test("Naoyuki's borrowing film preserves original cast/props without claiming ride victory",()=>{
   const activity=createScriptEventPresentationCatalog().activity("s1.jd00.nozomi-motorcycle.scene");
   const manifest=JSON.parse(readFileSync(new URL("../play/assets/sakuragaoka/nozomi-motorcycle/manifest.json",import.meta.url)));

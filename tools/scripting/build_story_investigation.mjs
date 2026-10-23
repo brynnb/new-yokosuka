@@ -190,9 +190,14 @@ for (const route of spec.routes) {
     // The victory choice node ends the conditional before jumping to Clue.
     if(questions.length)body=body.replace("\n===\ntitle: Clue", "\n<<endif>>\n===\ntitle: Clue");
   } else if (route.challenge) {
-    if (!route.staging || !leadIn.length) throw new Error(`Challenge ${route.id} needs reviewed staging and lead-in`);
+    const introduction=route.introductionActivities;
+    if (!route.staging || (introduction ? !introduction.length || leadIn.length || route.challengeStaging : !leadIn.length)) throw new Error(`Challenge ${route.id} needs one reviewed introduction and challenge staging`);
     const challengeStage=route.challengeStaging||route.staging;
-    const leadInBody=`<<play_sequence "${route.staging}.start">>\n${leadIn.join("\n")}${route.challengeStaging?`\n<<play_sequence "${route.staging}.finish">>\n<<play_sequence "${challengeStage}.start">>`:""}`;
+    // Original films are presentation only. Keep the real challenge and
+    // settlement in the same existing transaction; never infer a win from film completion.
+    const leadInBody=introduction
+      ? `${introduction.map(id=>`<<start_activity "${id}">>`).join("\n")}\n<<play_sequence "${challengeStage}.start">>`
+      : `<<play_sequence "${route.staging}.start">>\n${leadIn.join("\n")}${route.challengeStaging?`\n<<play_sequence "${route.staging}.finish">>\n<<play_sequence "${challengeStage}.start">>`:""}`;
     const success=route.successStaging
       ? `<<play_sequence "${challengeStage}.finish">>\n<<play_sequence "${route.successStaging}.start">>\n<<play_sequence "${route.successStaging}.finish">>\n<<play_sequence "${route.aftermathStaging}.start">>\n${lines.join("\n")}\n<<play_sequence "${route.aftermathStaging}.finish">>`
       : `${lines.join("\n")}\n<<play_sequence "${challengeStage}.finish">>`;

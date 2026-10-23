@@ -34,14 +34,14 @@ function characterPresentation(bytes, start, end, stringStart, stringEnd) {
   const positions = [];
   const angles = [];
   for (let offset = start + 8; offset + 8 <= end; offset += 4) {
-    const property = relativeString(bytes, offset, stringStart, stringEnd);
+    const property = relativeString(bytes, offset, stringStart, stringEnd)?.toUpperCase();
     const type = bytes.readUInt32LE(offset + 4);
-    if (property === "Object") objectPropertyOffset = offset;
-    if (property === "Position" && type === 0x49) {
+    if (property === "OBJECT") objectPropertyOffset = offset;
+    if (property === "POSITION" && type === 0x49) {
       const value = finiteVector(bytes, offset + 8, 3);
       if (value) positions.push({ offset, value });
     }
-    if (property === "Angle" && (type === 0x49 || type === 0x01)) {
+    if (property === "ANGLE" && (type === 0x49 || type === 0x01)) {
       const value = type === 0x49
         ? finiteVector(bytes, offset + 8, 3)
         : [0, bytes.readFloatLE(offset + 8), 0];
@@ -86,12 +86,14 @@ export function parseChrtSceneObjectBindings(bytes) {
 
   const imageModels = new Map();
   for (let offset = 8; offset + 32 <= chrsEnd; offset += 4) {
-    const imageProperty = relativeString(bytes, offset + 16, stringStart, stringEnd);
+    // Native CHRT serializers mix spellings even within one room (TATQ).
+    // Normalize property keywords only; asset names and actor tags retain case.
+    const imageProperty = relativeString(bytes, offset + 16, stringStart, stringEnd)?.toUpperCase();
     if (
-      relativeString(bytes, offset, stringStart, stringEnd) !== "DefImage"
+      relativeString(bytes, offset, stringStart, stringEnd)?.toUpperCase() !== "DEFIMAGE"
       || bytes.readUInt32LE(offset + 4) !== 0x23
       || bytes.readUInt32LE(offset + 12) !== 0x04
-      || (imageProperty !== "Image" && imageProperty !== "IMAGE")
+      || imageProperty !== "IMAGE"
       || bytes.readUInt32LE(offset + 20) !== 0x19
       || bytes.readUInt32LE(offset + 24) !== 0x3f800000
     ) continue;
@@ -99,8 +101,12 @@ export function parseChrtSceneObjectBindings(bytes) {
     const model = relativeString(bytes, offset + 28, stringStart, stringEnd)
       ?.replace(/^[$@]/, "").replace(/\.MT5$/i, "");
     if (!image || !model) throw new Error("CHRT DefImage is incomplete");
-    if (imageModels.has(image)) throw new Error(`CHRT DefImage ${image} is duplicated`);
-    imageModels.set(image, { model, recordOffset: offset });
+    // Definitions are serialized in construction order and may be redefined:
+    // DJAZ uses CYUW1H1G for one object, then CYUW101G under the same image name.
+    // A global last-wins map would retroactively change the earlier object.
+    const definitions = imageModels.get(image) || [];
+    definitions.push({ model, recordOffset: offset });
+    imageModels.set(image, definitions);
   }
 
   const starts = [];
@@ -108,7 +114,7 @@ export function parseChrtSceneObjectBindings(bytes) {
     const actorTag = ascii(bytes, offset, offset + 4);
     if (
       !ACTOR_TAG.test(actorTag)
-      || relativeString(bytes, offset - 8, stringStart, stringEnd) !== "Character"
+      || relativeString(bytes, offset - 8, stringStart, stringEnd)?.toUpperCase() !== "CHARACTER"
       || bytes.readUInt32LE(offset - 4) !== 0x22
     ) continue;
     starts.push({ actorTag, offset });
@@ -120,7 +126,7 @@ export function parseChrtSceneObjectBindings(bytes) {
     let imagePropertyOffset = null;
     for (let offset = start.offset + 8; offset + 12 <= end; offset += 4) {
       if (
-        relativeString(bytes, offset, stringStart, stringEnd) === "Image"
+        relativeString(bytes, offset, stringStart, stringEnd)?.toUpperCase() === "IMAGE"
         && bytes.readUInt32LE(offset + 4) === 0x03
       ) {
         image = relativeString(bytes, offset + 8, stringStart, stringEnd);
@@ -128,7 +134,7 @@ export function parseChrtSceneObjectBindings(bytes) {
         break;
       }
     }
-    const binding = imageModels.get(image);
+    const binding = imageModels.get(image)?.findLast(definition => definition.recordOffset < start.offset);
     return binding ? {
       actorTag: start.actorTag,
       image,

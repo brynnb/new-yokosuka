@@ -1,0 +1,388 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_tatq_story_assets.mjs",
+  "source": {
+    "disc": 1,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "INTRO.AUTH",
+        "path": "disc1/SCENE/01/TATQ/MAPINFO.BIN",
+        "sourceOffset": 146660,
+        "sourceSha256": "33fc374132d53ed955a4a1704350582afd122b4e86635867808d4c312e6bc4a6",
+        "byteLength": 13048,
+        "sha256": "df894f627509cdaae4b07fd61ff594848c52a14763fe91c5795bd2ff39d36bd6"
+      },
+      {
+        "name": "M_0136.MOTN",
+        "path": "disc1/SCENE/01/TATQ/QTE.PKS",
+        "sourceSha256": "2c7d24b8f92596871e765852e174e04aef99bcaada5efa1d610aa854302993a8",
+        "archiveMember": "M_0136.MOTN",
+        "byteLength": 885156,
+        "sha256": "b59326820d48ee99d5d0615021da96ae0c0ac58320876d438962d9a0ba47e07e"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-event-template.md#charlie-confrontation-and-the-cartel-appointment",
+    "resourceName": "TATQ_INTRO",
+    "variant": "",
+    "selectionRule": "Exact TATQ embedded AUTH at 0x23ce4. Slot 0 is a browser package slot, not a recovered controller selector."
+  },
+  "audioManifest": "public/audio/world/tattoo-introduction/manifest.json",
+  "sceneObjects": {
+    "KTE1": {
+      "model": "B03I006G",
+      "browserFilename": "S1_TATQ_B03I006G.MT5",
+      "assetPath": "play/assets/dobuita/tattoo-introduction/B03I006G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/tattoo-introduction/room-textures.bin",
+      "source": {
+        "actorTag": "KTE1",
+        "image": "B03I006G",
+        "model": "B03I006G",
+        "characterRecordOffset": 176,
+        "imagePropertyOffset": 284,
+        "defImageRecordOffset": 136,
+        "presentation": {
+          "position": [
+            -0.8952999711036682,
+            0,
+            -4.373300075531006
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "source": {
+            "objectPropertyOffset": 224,
+            "positionPropertyOffset": 264,
+            "anglePropertyOffset": null
+          }
+        }
+      }
+    },
+    "DOOR": {
+      "model": "DR01_017",
+      "browserFilename": "S1_TATQ_DR01_017.MT5",
+      "assetPath": "play/assets/dobuita/tattoo-introduction/DR01_017.CHRM",
+      "textureAssetPath": "play/assets/dobuita/tattoo-introduction/room-textures.bin",
+      "source": {
+        "actorTag": "DOOR",
+        "image": "DOR1",
+        "model": "DR01_017",
+        "characterRecordOffset": 48,
+        "imagePropertyOffset": 96,
+        "defImageRecordOffset": 8,
+        "presentation": null
+      }
+    },
+    "ISU1": {
+      "model": "B03I002G",
+      "browserFilename": "S1_TATQ_B03I002G.MT5",
+      "assetPath": "play/assets/dobuita/tattoo-introduction/B03I002G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/tattoo-introduction/room-textures.bin",
+      "source": {
+        "actorTag": "ISU1",
+        "image": "CHA1",
+        "model": "B03I002G",
+        "characterRecordOffset": 496,
+        "imagePropertyOffset": 616,
+        "defImageRecordOffset": 456,
+        "presentation": {
+          "position": [
+            -0.2199999988079071,
+            0,
+            -0.6000000238418579
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "source": {
+            "objectPropertyOffset": 544,
+            "positionPropertyOffset": 584,
+            "anglePropertyOffset": 604
+          }
+        }
+      }
+    },
+    "ISU2": {
+      "model": "B03I003G",
+      "browserFilename": "S1_TATQ_B03I003G.MT5",
+      "assetPath": "play/assets/dobuita/tattoo-introduction/B03I003G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/tattoo-introduction/room-textures.bin",
+      "source": {
+        "actorTag": "ISU2",
+        "image": "CHA2",
+        "model": "B03I003G",
+        "characterRecordOffset": 680,
+        "imagePropertyOffset": 800,
+        "defImageRecordOffset": 640,
+        "presentation": {
+          "position": [
+            -0.02500000037252903,
+            0,
+            -1.600000023841858
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "source": {
+            "objectPropertyOffset": 728,
+            "positionPropertyOffset": 768,
+            "anglePropertyOffset": 788
+          }
+        }
+      }
+    },
+    "NIFE": {
+      "model": "B03I004G",
+      "browserFilename": "S1_TATQ_B03I004G.MT5",
+      "assetPath": "play/assets/dobuita/tattoo-introduction/B03I004G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/tattoo-introduction/qte-textures.bin",
+      "source": {
+        "actorTag": "NIFE",
+        "image": "KNIF",
+        "model": "B03I004G",
+        "characterRecordOffset": 416,
+        "imagePropertyOffset": 536,
+        "defImageRecordOffset": 376,
+        "presentation": {
+          "position": [
+            -1.2640000581741333,
+            0.6899999976158142,
+            -4.104000091552734
+          ],
+          "rotationDegrees": [
+            0,
+            90,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "source": {
+            "objectPropertyOffset": 464,
+            "positionPropertyOffset": 504,
+            "anglePropertyOffset": 524
+          }
+        }
+      }
+    }
+  },
+  "packageActors": {
+    "HORS": {
+      "label": "Takashiro",
+      "modelCode": "TAT_M",
+      "browserFilename": "TAT_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/TAT_M.CHRM",
+      "textureAssetPath": "play/assets/characters/TAT_textures.bin"
+    },
+    "TONY": {
+      "label": "Tony Abrams",
+      "modelCode": "GIJ_M",
+      "browserFilename": "GIJ_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/GIJ_M.CHRM",
+      "textureAssetPath": "play/assets/characters/GIJ_textures.bin"
+    },
+    "SMTH": {
+      "label": "Smith Bradley",
+      "modelCode": "GIB_M",
+      "browserFilename": "GIB_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/GIB_M.CHRM",
+      "textureAssetPath": "play/assets/characters/GIB_textures.bin"
+    }
+  },
+  "actorTags": [
+    "KTE1",
+    "AKIR",
+    "DOOR",
+    "ISU1",
+    "ISU2",
+    "NIFE",
+    "HORS",
+    "TONY",
+    "SMTH"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/dobuita/tattoo-introduction/M_0136.MOTN",
+      "byteLength": 885156,
+      "sha256": "b59326820d48ee99d5d0615021da96ae0c0ac58320876d438962d9a0ba47e07e"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/tattoo-introduction/M_0136.MOTN",
+      "byteLength": 885156,
+      "sha256": "b59326820d48ee99d5d0615021da96ae0c0ac58320876d438962d9a0ba47e07e"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-introduction/INTRO.AUTH",
+      "byteLength": 13048,
+      "sha256": "df894f627509cdaae4b07fd61ff594848c52a14763fe91c5795bd2ff39d36bd6"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-introduction/B03I006G.CHRM",
+      "byteLength": 6580,
+      "sha256": "71164eda6beb258285b50da1e8ea0d571528a8b823fed1d6d8d5d1fe30f9c7b9"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-introduction/DR01_017.CHRM",
+      "byteLength": 5764,
+      "sha256": "a5112268c075675527206ab1188a9dff6f783eb48bf1ebf4d6c905ed0e7e0c06"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-introduction/B03I002G.CHRM",
+      "byteLength": 4132,
+      "sha256": "259a7d6d7cc4e28340f9f88125812cf8242869ce38574572635b194a01064f92"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-introduction/B03I003G.CHRM",
+      "byteLength": 4132,
+      "sha256": "259a7d6d7cc4e28340f9f88125812cf8242869ce38574572635b194a01064f92"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-introduction/B03I004G.CHRM",
+      "byteLength": 5964,
+      "sha256": "69023f8330c7c3823571223f8812768f3aa8841a5fa95cbd395c1e405b0a4e7d"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-introduction/room-textures.bin",
+      "byteLength": 1127936,
+      "sha256": "fd5c9e484da199f8975f85a79faad21ebd980b68833fc9b9e93660fbcad73ae6"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-introduction/qte-textures.bin",
+      "byteLength": 347120,
+      "sha256": "1fa272f7fb22e7ceca9736ec4dcb23a7d01ddfef7b3d18220881da54e68f884c"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "TATQ_INTRO/INTRO.AUTH",
+      "archiveMember": "INTRO.AUTH",
+      "byteLength": 13048,
+      "sha256": "df894f627509cdaae4b07fd61ff594848c52a14763fe91c5795bd2ff39d36bd6",
+      "durationFrames": 1780,
+      "durationSeconds": 59.349998474121094,
+      "frameCount": 56,
+      "commandCounts": {
+        "camera": 1,
+        "move": 9,
+        "motion": 7,
+        "effect": 14,
+        "sound": 27,
+        "voice": 12
+      },
+      "actors": [
+        "KTE1",
+        "AKIR",
+        "DOOR",
+        "ISU1",
+        "ISU2",
+        "NIFE",
+        "HORS",
+        "TONY",
+        "SMTH"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 14,
+          "motionName": "AKI_TOUJOU_TATOO_SHOP_0122",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "HORS",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 29,
+          "motionName": "OTH_TAT_JIMMY_SOKOSA_0122",
+          "startFrame": 91,
+          "endFrame": 1799
+        },
+        {
+          "actorTag": "TONY",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 27,
+          "motionName": "OTH_GIA_OH_NO_0122",
+          "startFrame": 149,
+          "endFrame": 1167
+        },
+        {
+          "actorTag": "SMTH",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 28,
+          "motionName": "OTH_GIB_OH_NO_0122",
+          "startFrame": 1,
+          "endFrame": 1070
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 657,
+          "motionBank": 16,
+          "sequenceIndex": 14,
+          "motionName": "AKI_TOUJOU_TATOO_SHOP_0122",
+          "startFrame": 1,
+          "endFrame": 445
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1102,
+          "motionBank": 16,
+          "sequenceIndex": 41,
+          "motionName": "AKI_JIMMY_SOKOSA_0122",
+          "startFrame": 100,
+          "endFrame": 735
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1738,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "AKI_NAIHU_SEIKOU_NAGURU_SEIKOU_QTE_0122",
+          "startFrame": 30,
+          "endFrame": 72
+        }
+      ]
+    }
+  ]
+}
