@@ -1005,7 +1005,7 @@ higher priority than the same-night artist conversation.
 | Prerequisites / trigger | Personal Story Ryo, completed opening, tattoo-parlor lead, resident HORS, 14:00–midnight and a personal day later than the ambush. Cross the parlor door or resume inside an eligible room. The same-night artist conversation and optional location clues are not mandatory for later-day first arrivals. |
 | Characters / setup | Original animated Ryo/Takashiro/Tony/Smith introduction, then authored Ryo/Charlie challenge staging. Reuse shared actor ownership, model loading, camera and input locks. An owned out-of-shot HORS is hidden during the confrontation and restored afterward. |
 | Dialogue / timing | Exact 1,780-frame introduction includes twelve A0136A voice/subtitle cues, original camera/body tracks and thirteen distinct sound-effect resources. Then a real Left/A QTE; only winning reaches thirteen selected A0136 lines and the next-day 3 p.m. appointment. Space advances movie time or later conversation lines, never answers the challenge. |
-| Presentation / props | Original AUTH `0x23ce4` drives the introduction; `0x281e0` still only anchors the authored challenge/ending positions. CHRT binds the introduction door, curtain, chairs and parked knife to exact original models. Artist mouth, handheld tattoo tool and curtain-opening manipulation remain incomplete. Challenge/ending cameras and standing holds remain authored; no original knife/dodge/throw/arm-grab choreography is claimed. No new gameplay item is granted. |
+| Presentation / props | Original AUTH `0x23ce4` drives the introduction; `0x281e0` still only anchors the authored challenge/ending positions. CHRT binds the introduction door, curtain, chairs, parked knife and tattoo tool to exact original models. All four speakers use their original detailed faces. The tool follows original hand attachment cues; detailed finger poses, its off-camera resting placement and curtain-opening manipulation remain incomplete. Challenge/ending cameras and standing holds remain authored; no original knife/dodge/throw/arm-grab choreography is claimed. No new gameplay item is granted. |
 | Challenge | Closed catalog `s1.tatq.charlie`, Left then A. Keyboard uses ArrowLeft then Enter; touch buttons use the same client runtime. Two-second client windows and strict restart are adaptations. Wrong input/timeout offers retry or leave. The server accepts the trusted final client result for the current ready attempt; ordinary Continue, movie completion and stale tokens cannot succeed. |
 | Calendar / environment | Preserve personal weather, season and ordinary room music/ambience; no forced lighting or date jump. Event ownership pauses the personal clock. Record the successful conversation's personal day, rather than resetting the public world time. |
 | Settlement / exit | After scene cleanup, atomically commit `story.s1.charlie-tattoo-confrontation.completed`, `notebook.s1.charlie-cartel-appointment` and `story.s1.charlie-parlor.day`. Appointment eligibility can derive the following day from that ordinal. Restore exact room-entry avatar/location/facing/camera and controls. Money, persistent HP and experience stay unchanged. |
@@ -1043,6 +1043,19 @@ CHRT members across all three source discs found 907 additional bindings in
 model identities, and resolved ten previous parse errors. This is source
 coverage, not proof that every newly discoverable prop is rendered in-game.
 
+The introduction is embedded TRCK slot 0. Original controller `0x19044`
+launches child `0x19fb4` immediately before starting that slot. The extracted
+[callback record](../../tools/evidence/tatq-introduction-callback-ir.json)
+retains both functions, their source hash and exact call offsets. Reproduce it
+with `python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area TATQ --map-entry 0x1c670 --callback 0x19fb4 --include-function 0x19044 --output tools/evidence/tatq-introduction-callback-ir.json`.
+The shared callback compiler recovers `ITEM` → HORS right-hand controller 18
+at frames 1/60, including original local position/rotation, then release at
+frame 1000. Same-frame detach/rebind keeps the last operation, as in DJHN/TOKI.
+CHRT binds `ITEM` through `HORI` to `B03I005G`; no visual filename guess or
+hand-tuned offset is used. The current attachment runtime hides this standalone
+prop after release; its original off-camera resting placement is not claimed.
+The callback also contains detailed HORS/Tony finger poses, not yet connected.
+
 `NEW_YOKOSUKA_CHARLIE_QTE_E2E=true` continues the earned ambush/parlor checkpoint.
 It uses actual personal waiting, real door entry or an already-starting resumed
 room event, original voice playback, a wrong direction, retry, real Left/Enter
@@ -1054,13 +1067,18 @@ character's isolation. The remaining challenge/ending choreography and mobile
 controller/gamepad input have not been visually verified.
 
 2026-10-23 rendered recheck: `NEW_YOKOSUKA_TATTOO_PRESENTATION_E2E=true`
-played the complete introduction and captured frames 200/480/900/1200/1650.
-Original camera cuts, Ryo's entrance, sailors' retreat and voiced Ryo/Tony/Smith
-mouth deformation were observed. All four speakers played audio. Cancellation
+played the complete introduction and captured frames 200/480/900/1120/1200/1360/1650.
+Original camera cuts, Ryo's entrance, sailors' retreat and voiced Ryo/Tony/Smith/
+Takashiro mouth deformation were observed. Original `TAT_F`/`TAT_FTBL` use
+SH-4-evaluated TALK poses through the shared face catalog, including the voice
+adapter used by ordinary Story dialogue. Separate rendered close-ups confirmed
+the artist's changing mouth and hand-held tattoo tool; original finger poses
+remain absent. All four speakers played audio. Cancellation
 and completion restored avatar, position, camera mode and controls with no
-flag, inventory or money changes. Takashiro's mouth, tattoo-tool attachment and
-curtain-opening manipulation remain visible defects; their source face/model
-files exist but are not yet connected.
+flag, inventory or money changes. The tool moved with the hand and released at
+its source frame. Curtain-opening manipulation and the original later
+confrontation remain incomplete; adding face/prop assets is not a certificate
+of complete scene fidelity or a fresh same-night-visit rendered check.
 
 The updated Charlie browser check used an explicit isolated prerequisite fixture,
 not an uninterrupted earned playthrough: personal waiting, real upstairs door,

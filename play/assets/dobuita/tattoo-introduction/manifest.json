@@ -27,7 +27,7 @@
     "evidence": "docs/design/story-event-template.md#charlie-confrontation-and-the-cartel-appointment",
     "resourceName": "TATQ_INTRO",
     "variant": "",
-    "selectionRule": "Exact TATQ embedded AUTH at 0x23ce4. Slot 0 is a browser package slot, not a recovered controller selector."
+    "selectionRule": "Exact first embedded TRCK at 0x23ce4 (slot 0). Controller 0x19044 launches callback 0x19fb4 before starting slot 0; only this introduction is enabled here."
   },
   "audioManifest": "public/audio/world/tattoo-introduction/manifest.json",
   "sceneObjects": {
@@ -220,6 +220,93 @@
       "textureAssetPath": "play/assets/characters/GIB_textures.bin"
     }
   },
+  "attachedObjects": {
+    "ITEM": {
+      "browserFilename": "S1_TATQ_B03I005G.MT5",
+      "assetPath": "play/assets/dobuita/tattoo-introduction/B03I005G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/tattoo-introduction/qte-textures.bin",
+      "source": {
+        "actorTag": "ITEM",
+        "image": "HORI",
+        "model": "B03I005G",
+        "characterRecordOffset": 588,
+        "imagePropertyOffset": 708,
+        "defImageRecordOffset": 548,
+        "presentation": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "source": {
+            "objectPropertyOffset": 636,
+            "positionPropertyOffset": 676,
+            "anglePropertyOffset": 696
+          }
+        }
+      },
+      "attachments": [
+        {
+          "objectTag": "ITEM",
+          "activitySlot": 0,
+          "frame": 1,
+          "action": "attach",
+          "parentActorTag": "HORS",
+          "controlId": 18,
+          "translation": [
+            0.10599999874830246,
+            0.02500000037252903,
+            0.0560000017285347
+          ],
+          "rotationRaw": [
+            15101,
+            45860,
+            42783
+          ],
+          "callFileOffset": "0x1a132",
+          "activityId": "TATQ_INTRO/INTRO.AUTH"
+        },
+        {
+          "objectTag": "ITEM",
+          "activitySlot": 0,
+          "frame": 60,
+          "action": "attach",
+          "parentActorTag": "HORS",
+          "controlId": 18,
+          "translation": [
+            0.10999999940395355,
+            0.024000000208616257,
+            0.05900000035762787
+          ],
+          "rotationRaw": [
+            15829,
+            45496,
+            42238
+          ],
+          "callFileOffset": "0x1a2a6",
+          "activityId": "TATQ_INTRO/INTRO.AUTH"
+        },
+        {
+          "objectTag": "ITEM",
+          "activitySlot": 0,
+          "frame": 1000,
+          "action": "detach",
+          "callFileOffset": "0x1a40e",
+          "activityId": "TATQ_INTRO/INTRO.AUTH"
+        }
+      ]
+    }
+  },
   "actorTags": [
     "KTE1",
     "AKIR",
@@ -274,6 +361,11 @@
       "path": "play/assets/dobuita/tattoo-introduction/B03I004G.CHRM",
       "byteLength": 5964,
       "sha256": "69023f8330c7c3823571223f8812768f3aa8841a5fa95cbd395c1e405b0a4e7d"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-introduction/B03I005G.CHRM",
+      "byteLength": 21604,
+      "sha256": "3f6efab0dd357219e3d911323609ff5283d532191a5bda124309230b0b121017"
     },
     {
       "path": "play/assets/dobuita/tattoo-introduction/room-textures.bin",

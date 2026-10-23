@@ -417,9 +417,9 @@ Use `tools/emulator/run_dialogue_emulator_validation.sh` with a fresh
 `FLYCAST_VALIDATION_ROOT`, `FLYCAST_VALIDATION_STATE_INDEX=7`, and
 `FLYCAST_VALIDATION_THREADED_RENDERING=yes`; do not overwrite the user's emulator profile.
 
-The shared Story face pack for Gui Zhang, Master Chen and Jimmy uses the same
+The shared Story face pack for Gui Zhang, Master Chen, Jimmy and Takashiro uses the same
 oracle, with its own pose output:
-`python3 -m tools.animation.extract_native_face_poses --actors KISY TAIJ JIMY --output play/assets/cutscenes/native-faces/story-talk-poses.generated.json`.
+`python3 -m tools.animation.extract_native_face_poses --actors KISY TAIJ JIMY HORS --output play/assets/cutscenes/native-faces/story-talk-poses.generated.json`.
 Then run `npm run build:native-faces` to copy the pinned FACE/FTBL files and
 regenerate the catalog. Register any new runtime files with `assets:update`
 before testing or publication. Nozomi's explicitly listed `NZM_M` variant

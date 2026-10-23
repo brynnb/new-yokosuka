@@ -55,6 +55,10 @@ test("tattoo introduction borrows native presentation without replacing the real
   assert.equal(manifest.source.members[0].sourceOffset,0x23ce4);
   assert.deepEqual(Object.fromEntries(Object.entries(manifest.sceneObjects).map(([tag,obj])=>[tag,obj.model])),
     {KTE1:"B03I006G",DOOR:"DR01_017",ISU1:"B03I002G",ISU2:"B03I003G",NIFE:"B03I004G"});
+  assert.equal(manifest.attachedObjects.ITEM.source.model,"B03I005G");
+  assert.deepEqual(manifest.attachedObjects.ITEM.attachments.map(c=>[c.frame,c.action,c.parentActorTag]),
+    [[1,"attach","HORS"],[60,"attach","HORS"],[1000,"detach",undefined]]);
+  assert.ok(manifest.attachedObjects.ITEM.attachments.every(c=>c.activityId==="TATQ_INTRO/INTRO.AUTH"));
   assert.ok(!authoredScenes.scenes.some(scene=>scene.id==="s1.tatq.charlie-introduction"));
   const route=JSON.parse(readFileSync(new URL("../tools/scripting/story-investigation.json",import.meta.url))).routes.find(r=>r.id==="charlie-tattoo-confrontation");
   assert.deepEqual(route.introductionActivities,["s1.tatq.charlie-introduction.scene"]);

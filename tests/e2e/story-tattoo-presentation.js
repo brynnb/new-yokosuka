@@ -13,7 +13,7 @@ export async function reviewTattooIntroduction(page, testInfo, character) {
   for(const cancel of [true,false]) {
     await page.evaluate(()=>{
       const p=window.storyProbe,presentation=p.regions.controller.presentation;
-      const r=p.tattooReview={done:false,error:null,frame:0,voices:new Set(),objects:{},poses:{},mouths:{}};
+      const r=p.tattooReview={done:false,error:null,frame:0,voices:new Set(),objects:{},poses:{},mouths:{},artistVertices:new Set(),toolPositions:new Set(),toolHiddenAfterRelease:false};
       let next=0;
       r.observer=p.lifecycle.scene.onAfterRenderObservable.add(()=>{
         if(performance.now()<next)return;next=performance.now()+100;
@@ -27,28 +27,65 @@ export async function reviewTattooIntroduction(page, testInfo, character) {
         }
         for(const [tag,face]of runtime.presentation.faces?.active?.faces||[]){
           if(face.voiceCue?.positionSeconds>0)(r.mouths[tag]||=new Set()).add(JSON.stringify(Array.from(face.mouth.current)));
+          if(tag==="HORS"&&face.voiceCue?.positionSeconds>0&&face.entry.primaryMeshes.some(m=>m.isEnabled()&&p.lifecycle.scene.isActiveMesh(m))) {
+            r.artistVertices.add(JSON.stringify(face.entry.primaryMeshes.flatMap(m=>Array.from(m.getVerticesData("position")))));
+          }
         }
         for(const [tag,object]of runtime.sceneObjects?.objects||[])r.objects[tag]=object.root.getChildMeshes().some(m=>m.isEnabled());
+        const tool=runtime.attachedObjects?.objects.get("ITEM")?.root;
+        if(tool?.isEnabled())r.toolPositions.add(JSON.stringify(tool.getAbsolutePosition().asArray()));
+        if(tool&&r.frame>1000)r.toolHiddenAfterRelease=!tool.isEnabled();
       });
       presentation.begin({area:"TATQ"});
       void presentation.execute({name:"start_activity",arguments:[{type:"string",isStatic:true,value:"s1.tatq.charlie-introduction.scene"}]})
         .then(()=>{presentation.commit();r.done=true;},error=>{presentation.rollback("tattoo-review-error");if(!r.cancelling)r.error=error.message;r.done=true;});
     });
     try {
-      for(const frame of cancel?[480]:[200,480,900,1200,1650]){
+      for(const frame of cancel?[480]:[200,480,900,1120,1200,1360,1650]){
         await page.waitForFunction(frame=>{const r=window.storyProbe.tattooReview;return r.frame>=frame||r.error||r.done;},frame,{timeout:90_000});
         expect(await page.evaluate(()=>window.storyProbe.tattooReview.error)).toBeNull();
         await page.screenshot({path:testInfo.outputPath(`tattoo-${cancel?"cancel":"full"}-${frame}.png`)});
+        if(!cancel&&frame===200){
+          await page.evaluate(()=>{
+            const p=window.storyProbe,r=p.director.activeCutscene.packageRuntime,root=r.attachedObjects.objects.get("ITEM").root;
+            const scene=p.lifecycle.scene,camera=scene.activeCamera,position=camera.position.clone(),target=camera.getTarget().clone();
+            const focus=root.getAbsolutePosition().clone(),eye=focus.add(position.subtract(focus).normalize().scale(.55));
+            p.tattooReview.toolCloseupFrames=0;
+            const observer=scene.onBeforeCameraRenderObservable.add(c=>{if(c!==camera)return;camera.position.copyFrom(eye);camera.setTarget(focus);scene.setTransformMatrix(camera.getViewMatrix(true),camera.getProjectionMatrix(true));p.tattooReview.toolCloseupFrames++;});
+            p.tattooReview.restoreToolCamera=()=>{scene.onBeforeCameraRenderObservable.remove(observer);camera.position.copyFrom(position);camera.setTarget(target);};
+          });
+          try{
+            await page.waitForFunction(()=>window.storyProbe.tattooReview.toolCloseupFrames>=2);
+            await page.screenshot({path:testInfo.outputPath("diagnostic-tattoo-tool.png")});
+          }finally{await page.evaluate(()=>window.storyProbe.tattooReview.restoreToolCamera());}
+        }
+        if(!cancel&&frame===1360){
+          await page.evaluate(async()=>{
+            const {frameCutsceneSurface}=await import("/tests/e2e/cutscene-surface-framing.js");
+            const p=window.storyProbe;p.tattooReview.closeupFrames=0;
+            p.tattooReview.restoreCamera=frameCutsceneSurface(p.director.activeCutscene.packageRuntime,"face","HORS",null,()=>p.tattooReview.closeupFrames++);
+          });
+          try {
+            await page.waitForFunction(()=>window.storyProbe.tattooReview.closeupFrames>=2);
+            await page.screenshot({path:testInfo.outputPath("diagnostic-tattoo-artist-speaking-1.png")});
+            await page.waitForTimeout(250);
+            await page.screenshot({path:testInfo.outputPath("diagnostic-tattoo-artist-speaking-2.png")});
+          } finally {await page.evaluate(()=>window.storyProbe.tattooReview.restoreCamera());}
+        }
       }
       if(cancel)await page.evaluate(()=>{const p=window.storyProbe;p.tattooReview.cancelling=true;p.regions.controller.presentation.rollback("tattoo-review-cancel");});
       await page.waitForFunction(()=>{const p=window.storyProbe;return p.tattooReview.done&&!p.director.active&&p.lifecycle.worldRuntime.ready&&!p.lifecycle.getController().movementLocked;},null,{timeout:90_000});
-      const result=await page.evaluate(()=>{const r=window.storyProbe.tattooReview;return {error:r.error,frame:r.frame,voices:[...r.voices],objects:r.objects,poses:Object.fromEntries(Object.entries(r.poses).map(([k,v])=>[k,v.size])),mouths:Object.fromEntries(Object.entries(r.mouths).map(([k,v])=>[k,v.size]))};});
+      const result=await page.evaluate(()=>{const r=window.storyProbe.tattooReview;return {error:r.error,frame:r.frame,voices:[...r.voices],objects:r.objects,poses:Object.fromEntries(Object.entries(r.poses).map(([k,v])=>[k,v.size])),mouths:Object.fromEntries(Object.entries(r.mouths).map(([k,v])=>[k,v.size])),artistVertices:r.artistVertices.size,toolPositions:r.toolPositions.size,toolHiddenAfterRelease:r.toolHiddenAfterRelease};});
       console.info("TATQ native review",JSON.stringify(result));
       expect(result.error).toBeNull();
       if(!cancel){
         expect(result.voices.sort()).toEqual(["AKIR","HORS","SMTH","TONY"]);
         expect(result.poses.AKIR).toBeGreaterThan(5);
         expect(result.poses.TONY).toBeGreaterThan(5);
+        expect(result.mouths.HORS).toBeGreaterThan(2);
+        expect(result.artistVertices).toBeGreaterThan(2);
+        expect(result.toolPositions).toBeGreaterThan(2);
+        expect(result.toolHiddenAfterRelease).toBe(true);
       }
     } finally {
       await page.evaluate(()=>{const p=window.storyProbe;p.lifecycle.scene.onAfterRenderObservable.remove(p.tattooReview.observer);p.regions.controller.presentation.rollback("tattoo-review-cleanup");});

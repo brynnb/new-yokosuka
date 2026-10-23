@@ -439,6 +439,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
       ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
     presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
     environment:Object.freeze({packageActors:manifest.packageActors,...(manifest.sceneObjects?{sceneObjects:manifest.sceneObjects}:{}),
+      ...(manifest.attachedObjects?{attachedObjects:manifest.attachedObjects}:{}),
       ...(manifest.activities.some(activity=>activity.browserIsolatedStage)?{isolatedStage:true}:{}),
       ...(["boat-ticket-collection","jimmy-interrogation"].includes(id)?{suppressScheduledActors:["ETKO"]}:{})}),
     playback:Object.freeze({manifest,audioManifest}),

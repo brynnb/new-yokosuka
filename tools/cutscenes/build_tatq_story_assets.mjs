@@ -7,6 +7,7 @@ import { buildNativeAseqActivityPack, parseIpacActivityArchive, sha256 } from ".
 import { buildNativeAseqAudioPack } from "../lib/NativeAseqAudioPack.mjs";
 import { parseChrtSceneObjectBindings } from "../lib/chrt_scene_object_bindings.js";
 import { extractNativeTexnPack } from "../lib/NativeTexnPack.mjs";
+import { extractNativeAseqCallbackObjectPresentation } from "../lib/NativeAseqCallbackObjectPresentation.mjs";
 
 const root=path.resolve(import.meta.dirname,"../..");
 const sourceRoot=process.env.SHENMUE_DISC1_EXTRACTED_ROOT||path.join(root,"extracted_files");
@@ -31,6 +32,9 @@ console.log(`Exported TATQ body, face and ${textures.entries.length} original te
 const sourcePath=file=>path.join(sourceRoot,"data/SCENE/01",file);
 const mapPath=sourcePath("TATQ/MAPINFO.BIN");
 const mapHash="33fc374132d53ed955a4a1704350582afd122b4e86635867808d4c312e6bc4a6";
+const callback=JSON.parse(fs.readFileSync(path.join(root,"tools/evidence/tatq-introduction-callback-ir.json")));
+if(callback.source.mapinfoSha256!==mapHash||callback.source.callbackFunction!=="0x19fb4")throw Error("Changed TATQ introduction callback");
+const objects=extractNativeAseqCallbackObjectPresentation({bytes:fs.readFileSync(mapPath),callbackFunction:0x19fb4,nativeFunction:callback.function,durationFrames:1780});
 const roomPath=sourcePath("TATQ/MPK00.PKS");
 const room=fs.readFileSync(roomPath),roomTextures=fs.readFileSync(sourcePath("TATQ/MPK00.PKF"));
 if(sha256(room)!=="a70837006eca15f7c6d3e79a5fb4f8ebe53a1b1e4ef6b7f97cc806d55d114e03"
@@ -46,17 +50,18 @@ const sourceMembers=[
 const bindings=[...parseChrtSceneObjectBindings(parseIpacActivityArchive(roomTextures).members.find(m=>m.name==="CHARA.CHRT").bytes),
   ...parseChrtSceneObjectBindings(parseIpacActivityArchive(textureSource).members.find(m=>m.name==="CHARA.CHRT").bytes)];
 const roomMembers=parseIpacActivityArchive(room).members;
-const props=["KTE1","DOOR","ISU1","ISU2","NIFE"].map(tag=>{
+const props=["KTE1","DOOR","ISU1","ISU2","NIFE","ITEM"].map(tag=>{
   const binding=bindings.find(b=>b.actorTag===tag);
   if(!binding)throw Error(`Missing original TATQ ${tag} model binding`);
   const filename=`${binding.model}.CHRM`,fromRoom=roomMembers.find(m=>m.name===filename),member=fromRoom||members.find(m=>m.name===filename);
   if(!member)throw Error(`Missing original TATQ ${tag} model`);
   return {tag,binding,member,fromRoom:!!fromRoom};
 });
+const tool=props.find(p=>p.tag==="ITEM");
 const manifest=buildNativeAseqActivityPack({
   generatedBy:"tools/cutscenes/build_tatq_story_assets.mjs",resourceName:"TATQ_INTRO",disc:1,
   sourceMembers,expectedMembers:sourceMembers,
-  selectionRule:"Exact TATQ embedded AUTH at 0x23ce4. Slot 0 is a browser package slot, not a recovered controller selector.",
+  selectionRule:"Exact first embedded TRCK at 0x23ce4 (slot 0). Controller 0x19044 launches callback 0x19fb4 before starting slot 0; only this introduction is enabled here.",
   bindingEvidence:"docs/design/story-event-template.md#charlie-confrontation-and-the-cartel-appointment",
   outputDirectory:directory,outputAssetPrefix:prefix,manifestPath:path.join(directory,"manifest.json"),audioManifest:`${audioPrefix}/manifest.json`,
   activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:"INTRO.AUTH",durationFrames:1780,actors:["KTE1","AKIR","DOOR","ISU1","ISU2","NIFE","HORS","TONY","SMTH"]}],
@@ -65,10 +70,17 @@ const manifest=buildNativeAseqActivityPack({
     sourceSha256:sha256(fromRoom?room:source),assetPath:`${prefix}/${member.name}`,byteLength:member.bytes.length,sha256:sha256(member.bytes)})),
   generatedAssets:[{assetPath:`${prefix}/room-textures.bin`,bytes:extractNativeTexnPack(roomTextures).bytes},
     {assetPath:`${prefix}/qte-textures.bin`,bytes:textures.bytes}],
-  sceneObjects:Object.fromEntries(props.map(({tag,binding,member,fromRoom})=>[tag,{
+  sceneObjects:Object.fromEntries(props.filter(p=>p.tag!=="ITEM").map(({tag,binding,member,fromRoom})=>[tag,{
     model:binding.model,browserFilename:`S1_TATQ_${binding.model}.MT5`,assetPath:`${prefix}/${member.name}`,
     textureAssetPath:`${prefix}/${fromRoom?"room":"qte"}-textures.bin`,source:binding,
   }])),
+  attachedObjects:{ITEM:{
+    browserFilename:`S1_TATQ_${tool.binding.model}.MT5`,assetPath:`${prefix}/${tool.member.name}`,
+    textureAssetPath:`${prefix}/qte-textures.bin`,source:tool.binding,
+    // Same-frame detach/rebind has one final visible pose, as in DJHN/TOKI.
+    // After the final detach the off-camera parked tool is not reconstructed.
+    attachments:objects.attachedObjectCues.filter((cue,index,cues)=>cues.findLastIndex(c=>c.objectTag===cue.objectTag&&c.frame===cue.frame)===index),
+  }},
   packageActors:Object.fromEntries([["HORS","Takashiro","TAT_M","TAT"],["TONY","Tony Abrams","GIJ_M","GIJ"],["SMTH","Smith Bradley","GIB_M","GIB"]].map(([tag,label,modelCode,texture])=>[tag,{
     label,modelCode,browserFilename:`${modelCode}.CHRM`,assetFormat:"MT5",characterScale:1,
     assetPath:`play/assets/characters/${modelCode}.CHRM`,textureAssetPath:`play/assets/characters/${texture}_textures.bin`,

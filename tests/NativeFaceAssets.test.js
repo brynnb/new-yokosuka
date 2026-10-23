@@ -84,6 +84,7 @@ test("Story faces fit their exact prepared bodies and restore the body on releas
       ["KISY", manifest.facialAssets.KISY, "play/assets/harbor/master-chen/KIS_M.CHRM", "public/audio/world/master-chen/manifest.json"],
       ["TAIJ", manifest.facialAssets.TAIJ, "play/assets/harbor/master-chen/SYU_M.CHRM", "public/audio/world/master-chen/manifest.json"],
       ["JIMY", manifest.facialAssets.JIMY, "play/assets/characters/JIM_M.CHRM", "public/audio/world/jimmy-caught/manifest.json"],
+      ["HORS", manifest.facialAssets.HORS, "play/assets/characters/TAT_M.CHRM", "public/audio/world/tattoo-introduction/manifest.json"],
       ["HRSK", manifest.facialVariants.NZM_M, "play/assets/harbor/nozomi-home/NZM_M.CHRM", "public/audio/world/nozomi-home/manifest.json"],
     ]) {
       const scene = new BABYLON.Scene(engine);

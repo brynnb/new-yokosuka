@@ -118,6 +118,13 @@ const expected = Object.freeze({
     tableSha256: "6f289a2dea03c347485a0504afd92af28b0a5591d95675f2d78297423b0bd3d0",
     posePath: storyPosePath,
   }),
+  HORS: Object.freeze({
+    bodyModelCode: "TAT_M",
+    faceCode: "TAT",
+    modelSha256: "6c8584dbead4218d9b6f5c993cee1a303dc457dcfcbb8bca7e839f621fd323b9",
+    tableSha256: "c8cef6d0d674f90313c27e170c7611db761c3eaaf368afa3b0184be02c1782d5",
+    posePath: storyPosePath,
+  }),
 });
 const expectedVariants = Object.freeze({
   // JAKR normally resolves to the adult JKA face. SAKR authors the same actor
