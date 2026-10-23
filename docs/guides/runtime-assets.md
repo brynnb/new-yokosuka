@@ -45,6 +45,11 @@ ignored until explicitly registered in the runtime manifest.
 Archived worktrees do not retain ignored game data or tool caches. Restore
 published assets with the command above; unpublished Story packages must be
 rebuilt with the producer named by their `manifest.json` (`generatedBy`).
+If another checkout still contains the extracted files, recover them locally
+first with `node tools/runtime-assets.mjs restore-local /path/to/source-checkout`.
+This checks the destination manifest's sizes and hashes, copies only missing
+matching files, reports unavailable versions, and never overwrites existing
+content or contacts R2. It does not copy arbitrary files from the donor tree.
 Reconnect the original extracted discs and world models first. Story audio
 builders use `VGMSTREAM_CLI`, `DTPK_DUMP`, and a Python 3.12 `DTPK_PYTHON`
 (DTPKDump imports `aifc`, removed from later Python versions). The ride-home

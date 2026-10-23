@@ -38,6 +38,33 @@ export function buildRuntimePlan(repositoryRoot = root, { sourcePrefix, sourcePa
   });
 }
 
+// Branches carry manifests but not ignored extracted binaries. Recover only
+// missing, hash-matching assets from another checkout, without contacting R2
+// or overwriting either checkout's existing data.
+export function restoreLocalRuntimeAssets(repositoryRoot, sourceRoot) {
+  const manifest = JSON.parse(fs.readFileSync(path.join(repositoryRoot, "src/runtime-assets.generated.json")));
+  const report = { verified: 0, copied: 0, unavailable: [] };
+  for (const [file, record] of Object.entries(manifest.assets)) {
+    validateSourcePath(file);
+    const target = path.join(repositoryRoot, file), source = path.join(sourceRoot, file);
+    const present = fs.existsSync(target), candidate = present ? target : source;
+    if (!fs.existsSync(candidate)) { report.unavailable.push(file); continue; }
+    const bytes = fs.readFileSync(candidate);
+    if (bytes.length !== record.size || digest(bytes) !== record.sha256) {
+      if (present) throw new Error(`Refusing to overwrite modified local asset: ${file}`);
+      report.unavailable.push(file);
+      continue;
+    }
+    if (present) report.verified++;
+    else {
+      fs.mkdirSync(path.dirname(target), { recursive: true });
+      fs.writeFileSync(target, bytes, { flag: "wx" });
+      report.copied++;
+    }
+  }
+  return report;
+}
+
 async function main() {
   const [command, ...files] = process.argv.slice(2);
   const manifest = JSON.parse(fs.readFileSync(manifestPath));
@@ -65,6 +92,11 @@ async function main() {
     console.log(`Removed ${files.length} runtime asset records; no files deleted`);
   } else if (command === "verify-local") {
     console.log(`Verified ${buildRuntimePlan().length} local runtime assets`);
+  } else if (command === "restore-local") {
+    if (files.length !== 1) throw new Error("restore-local requires one source checkout path");
+    const report = restoreLocalRuntimeAssets(root, path.resolve(files[0]));
+    console.log(JSON.stringify(report));
+    if (report.unavailable.length) process.exitCode = 1;
   } else if (command === "restore") {
     const base = process.env.VITE_ASSET_URL || "https://pub-c3aa1dfd53424ee9af1b87ad19954589.r2.dev";
     const entries = Object.entries(manifest.assets);
@@ -95,7 +127,7 @@ async function main() {
       }
     }));
     console.log(`Restored/verified ${entries.length} runtime assets`);
-  } else throw new Error("Usage: node tools/runtime-assets.mjs <update [source-path ...]|remove source-path ...|verify-local|restore>");
+  } else throw new Error("Usage: node tools/runtime-assets.mjs <update [source-path ...]|remove source-path ...|verify-local|restore|restore-local source-checkout>");
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

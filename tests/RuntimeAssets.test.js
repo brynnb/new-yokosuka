@@ -1,13 +1,37 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, rmSync, existsSync } from "node:fs";
+import path from "node:path";
 import { createHash } from "node:crypto";
 import { runtimeAssets, runtimeAssetUrl, runtimeAssetGroup, runtimeAssetKey,
   resolveRuntimeAssetUrl } from "../src/RuntimeAssets.js";
 import { createGameAudio } from "../play/audio/MediaElementAudio.js";
 import music from "../public/music/manifest.json" with { type: "json" };
+import { restoreLocalRuntimeAssets } from "../tools/runtime-assets.mjs";
 
 const source = "play/assets/characters/FUK_M.CHRM";
+
+test("local asset recovery copies only exact registered bytes and never overwrites edited assets", t => {
+  const directory = mkdtempSync("/var/tmp/ny-runtime-assets-test-");
+  t.after(() => rmSync(directory, { recursive: true, force: true }));
+  const target = path.join(directory, "target"), donor = path.join(directory, "donor");
+  const content = Buffer.from("original bytes");
+  const record = { size: content.length, sha256: createHash("sha256").update(content).digest("hex") };
+  for (const p of ["target/src", "donor/play/assets", "target/play/assets"]) mkdirSync(path.join(directory, p), { recursive: true });
+  writeFileSync(path.join(target, "src/runtime-assets.generated.json"), JSON.stringify({ assets: {
+    "play/assets/a.bin": record, "play/assets/b.bin": record, "play/assets/c.bin": record,
+  } }));
+  writeFileSync(path.join(donor, "play/assets/a.bin"), content);
+  writeFileSync(path.join(donor, "play/assets/b.bin"), "different revision");
+  const report = restoreLocalRuntimeAssets(target, donor);
+  assert.deepEqual(report, { verified: 0, copied: 1, unavailable: ["play/assets/b.bin", "play/assets/c.bin"] });
+  assert.deepEqual(readFileSync(path.join(target, "play/assets/a.bin")), content);
+  assert.equal(existsSync(path.join(target, "play/assets/b.bin")), false);
+  assert.equal(restoreLocalRuntimeAssets(target, donor).verified, 1);
+  writeFileSync(path.join(target, "play/assets/a.bin"), "local edit");
+  assert.throws(() => restoreLocalRuntimeAssets(target, donor), /Refusing to overwrite/);
+  assert.equal(readFileSync(path.join(target, "play/assets/a.bin"), "utf8"), "local edit");
+});
 
 test("versioned JSON metadata matches the checked-in runtime asset hashes", () => {
   // Binaries can be absent in a clean checkout, but authored/generated JSON
