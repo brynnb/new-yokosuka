@@ -1035,16 +1035,21 @@ Event ID: `story-s1-parking-lot-ambush`, official import `parking-lot-ambush`.
 
 ### Verification
 
-`NEW_YOKOSUKA_AMBUSH_E2E=true` continues the earned Charlie-inquiry checkpoint.
-It walks across the real trigger and renders/skips both original introductions.
-The intended complete check loses to client-controlled opponents, retries with
-physical inputs, questions Tony, verifies notebook/economy, and checks reload.
-Its old stationary kick strategy no longer establishes a win against the current
-shared engine. The replacement keyboard helper reads explicit coordinates,
-moves into actual attack range, guards, and attacks; its latest run defeated
-one opponent and hit three others, but lost. Victory/interrogation/reload remain
-unverified in this recheck. Samples and combat events are retained rather than
-weakening the victory assertion or injecting a result.
+`NEW_YOKOSUKA_AMBUSH_E2E=true` walks across the real trigger and renders/skips
+both original introductions. The 2026-10-23 complete check passed from an
+isolated copy of the earned Charlie-inquiry checkpoint: defeat, retry with
+physical keys, all five opponents defeated, Charlie dialogue choice, tattoo
+clue/date settlement, notebook, completed-trigger rejection and saved reload.
+The keyboard helper uses ordinary guard/movement and starting moves, including
+Elbow Assault (`W,W,J`) and Side Reaper Kick (`S,K`), instead of the earlier
+ineffective repeated simple attacks. No health/damage/difficulty changes or
+injected result were needed. It stops issuing commands when the last opponent
+falls, then waits for the real victory dialogue; a missing target direction
+during the final animation is valid, not a nonfinite gameplay coordinate.
+Reviewed captures show the interrogation and saved notebook; saved HP remains
+100 and yen 2,000, with zero actor leases and unlocked movement after reload.
+Full interrogation lip/gesture fidelity and the alternate tattoo choice are
+not established by this check. Samples and combat events are retained.
 Travel to the approach is shortened; this is not a proof of the entire walk
 from the previous shop or every combat move's choreography.
 

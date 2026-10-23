@@ -2,7 +2,9 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 // Real keyboard play, never a health/AI override or injected result. Keep the
-// selected opponent in kicking range and use the arena's open space to regroup.
+// selected opponent in range and use the arena's open space to regroup. Use
+// earned starting moves, including their real directional command sequences;
+// repeatedly tapping J/K is not representative of the available repertoire.
 export async function fightStoryAmbush(page, testInfo) {
   await page.locator("#renderCanvas").focus();
   const held = new Set();
@@ -25,7 +27,10 @@ export async function fightStoryAmbush(page, testInfo) {
     for (let step = 0; step < 1600; step++) {
       const state = await page.evaluate(() => {
         const r = window.storyProbe.combatRuntime, e = r?.encounter;
-        if (!e || r.active.outcome) return null;
+        // No target/yaw is valid after the last opponent falls, even while
+        // Ryo finishes his final animation before Story settles the result.
+        // Stop input here; the UI assertion below still requires real victory.
+        if (!e || r.active.outcome || e.enemiesDefeated) return null;
         // Vector3 serializes its private _x/_z storage, not the public getters.
         const position = actor => { const p = actor.position(); return { x: p.x, z: p.z }; };
         return { p: position(e.playerActor), target: position(e.enemyActor), yaw: e.playerTargetYaw(),
@@ -48,9 +53,19 @@ export async function fightStoryAmbush(page, testInfo) {
           return score(c)-score(a);
         })[0];
       }
-      if (!escape && distance <= 1.35) {
+      if (!escape && distance <= 1.6) {
         await keys([]);
-        await page.keyboard.press(distance < .8 ? key.throw : distance < 1.1 ? key.hand : key.leg);
+        // Elbow Assault (W,W,J) can hit several opponents in front. Low sweep
+        // (S,K) interrupts a close crowd. Neither requires a learned move or
+        // calls the simulation's move/result methods directly.
+        if (distance < 1) {
+          await page.keyboard.press(key.down);
+          await page.keyboard.press(key.leg);
+        } else {
+          await page.keyboard.press(key.up);
+          await page.keyboard.press(key.up);
+          await page.keyboard.press(key.hand);
+        }
         await keys([key.guard]);
         await page.waitForTimeout(120);
         continue;
