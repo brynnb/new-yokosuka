@@ -924,7 +924,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
 });
 
 async function continueWitnesses(page, testInfo, character, expectedYen, resumeAfterTom = false) {
-  for (const [actor, world, flag] of [
+  for (const [actor, world, flag, spouse] of [
     ...(resumeAfterTom ? [] : [
       ["SUMI", "sakuragaoka", "story.s1.sumiya-witness.completed"],
       ["YAMA", "sakuragaoka", "notebook.s1.dobuita-black-car"],
@@ -932,10 +932,10 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
       ["TOM_", "dobuita", "notebook.s1.chinese-community"],
     ]),
     ...(process.env.NEW_YOKOSUKA_THREE_BLADES_E2E === "true" ? [
-      ["UNO_", "dcha", "notebook.s1.three-blades"],
+      ["UNO_", "dcha", "notebook.s1.three-blades", "RNKT"],
       ["ITOI", "dobuita", "notebook.s1.liu-barber"],
       ["MADA", "dtky", "story.s1.maeda-liu-referral.completed"],
-      ["KYUR", "drht", "notebook.s1.liu-senior"],
+      ["KYUR", "drht", "notebook.s1.liu-senior", "ONRR"],
       ["RKKI", "dobuita", "notebook.s1.sailors"],
     ] : []),
   ]) {
@@ -959,41 +959,68 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
       const position = await page.evaluate(() => window.storyProbe.lifecycle.scheduledActors.dialogueActor("RKKI").position);
       expect(Math.hypot(position[0] + 13.35, position[2] - 47.71)).toBeLessThan(0.3);
     }
-    const point = await residentClickPoint(page, actor);
-    await testInfo.attach(`${actor}-approach`, { body: JSON.stringify(point, null, 2), contentType: "application/json" });
-    if (process.env.NEW_YOKOSUKA_DIALOGUE_APPROACH_E2E === "true") console.info("Supported resident approach:", actor, JSON.stringify(point));
-    await page.screenshot({ path: testInfo.outputPath(`${actor}-before-talk.png`) });
-    if (alreadyComplete) {
-      // A completed talk must still be reachable by a real mesh click, but
-      // must not be replayed by changing its earned progress in the test.
+    for (const ending of spouse && !alreadyComplete ? ["cancel", "complete"] : ["complete"]) {
+      const point = await residentClickPoint(page, actor);
+      await testInfo.attach(`${actor}-approach`, { body: JSON.stringify(point, null, 2), contentType: "application/json" });
+      console.info("Supported resident approach:", actor, JSON.stringify(point));
+      expect(point.pickedActor, "the visible click must select the intended resident").toBe(actor);
+      await page.screenshot({ path: testInfo.outputPath(`${actor}-before-talk.png`) });
+      if (alreadyComplete) {
+        // A completed talk must still be reachable by a real mesh click, but
+        // must not be replayed by changing its earned progress in the test.
+        await page.mouse.click(point.x, point.y);
+        await expect(page.getByText("This conversation is not available right now. Check your notebook for the next lead.", { exact: true })).toBeVisible();
+        expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+        continue;
+      }
+      const before = await page.evaluate(() => ({
+        position:window.storyProbe.lifecycle.getController().collider.position.asArray(),
+        facing:Array.from(window.storyProbe.lifecycle.scheduledActors.dialogueFacingTargets),
+      }));
+      await observeStoryDialogueFace(page, actor);
       await page.mouse.click(point.x, point.y);
-      await expect(page.getByText("This conversation is not available right now. Check your notebook for the next lead.", { exact: true })).toBeVisible();
+      await page.waitForFunction(() => window.storyProbe.dialogue?.active, null, { timeout: 15_000 });
+      await page.waitForFunction(() => {
+        const audio = window.storyProbe.dialogue?.audio;
+        return audio && !audio.paused && audio.currentTime > 0;
+      }, null, { timeout: 15_000 });
+      await verifyObservedStoryDialogueFace(page, testInfo, `${actor}-dialogue-${ending}`);
+      if (spouse) {
+        // Ordinary talks retain the gameplay view, not a cinematic camera.
+        // Actually turn toward the other speaker; an active body mesh at the
+        // edge of the viewport does not prove that its face is visible.
+        await lookAtResident(page, spouse);
+        await observeStoryDialogueFace(page, spouse);
+        await verifyObservedStoryDialogueFace(page, testInfo, `${spouse}-dialogue-${ending}`);
+      }
+      const view = await page.evaluate(() => {
+        const c=window.storyProbe.lifecycle.getController();
+        return {firstPerson:c.firstPerson,yaw:c.cameraYaw,pitch:c.cameraPitch};
+      });
+      // Let every recording finish, including the other participant's lines.
+      // Initial playback followed by Space-skipping missed hidden speakers.
+      if (ending === "cancel") {
+        await page.keyboard.press("KeyX");
+        await expect.poll(() => page.evaluate(() => window.storyProbe.regions.controller.status)).toBe("idle");
+      } else {
+        await expect.poll(() => page.evaluate(flag => window.storyProbe.regions.getCharacter()?.storyFlags?.[flag], flag), { timeout: 240_000 }).toBe(true);
+      }
       expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
-      continue;
-    }
-    await observeStoryDialogueFace(page, actor);
-    await page.mouse.click(point.x, point.y);
-    await page.waitForFunction(() => window.storyProbe.dialogue?.active, null, { timeout: 15_000 });
-    await page.waitForFunction(() => {
-      const audio = window.storyProbe.dialogue?.audio;
-      return audio && !audio.paused && audio.currentTime > 0;
-    }, null, { timeout: 15_000 });
-    await verifyObservedStoryDialogueFace(page, testInfo, `${actor}-dialogue`);
-    // The resident's original voice and mouth really play; advance remaining lines
-    // with the supported Space control to keep this smoke test bounded.
-    for (let line = 0; line < 100; line++) {
-      if (await page.evaluate(flag => !!window.storyProbe.regions.getCharacter()?.storyFlags?.[flag], flag)) break;
-      await page.keyboard.press("Space");
-      await page.waitForTimeout(250);
-    }
-    await expect.poll(() => page.evaluate(flag => window.storyProbe.regions.getCharacter()?.storyFlags?.[flag], flag)).toBe(true);
-    expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
-    const saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
-    expect(saved.character.storyFlags[flag]).toBe(true);
-    expect(saved.character.yen).toBe(expectedYen);
-    if (actor === "KYUR") {
-      const snapshot = await (await page.request.get(`/api/characters/${character.id}/dialogue`)).json();
-      expect(Buffer.from(snapshot.state.banks[2], "base64")[8] & 2).toBe(2);
+      const saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+      expect(Boolean(saved.character.storyFlags[flag])).toBe(ending === "complete");
+      expect(saved.character.yen).toBe(expectedYen);
+      const restored = await page.evaluate(() => {
+        const life=window.storyProbe.lifecycle,c=life.getController();
+        return {position:c.collider.position.asArray(),facing:Array.from(life.scheduledActors.dialogueFacingTargets),
+          view:{firstPerson:c.firstPerson,yaw:c.cameraYaw,pitch:c.cameraPitch}};
+      });
+      expect(restored.facing).toEqual(before.facing);
+      expect(restored.view).toEqual(view);
+      restored.position.forEach((value,i) => expect(value).toBeCloseTo(before.position[i],3));
+      if (actor === "KYUR" && ending === "complete") {
+        const snapshot = await (await page.request.get(`/api/characters/${character.id}/dialogue`)).json();
+        expect(Buffer.from(snapshot.state.banks[2], "base64")[8] & 2).toBe(2);
+      }
     }
   }
   if (process.env.NEW_YOKOSUKA_THREE_BLADES_E2E === "true") {
@@ -1011,7 +1038,38 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
     for(let index=0;index<30 && !await page.getByText(/Ask sailors who travel to Hong Kong or Shanghai/).isVisible() && await page.locator("#journal-previous").isEnabled();index++)await page.locator("#journal-previous").click();
     await expect(page.getByText(/Ask sailors who travel to Hong Kong or Shanghai/)).toBeVisible();
     await page.screenshot({ path: testInfo.outputPath("sailors-notebook.png") });
+    const saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+    await page.reload(); await enterStoryWorld(page);
+    await page.waitForFunction(() => window.storyProbe?.ready, null, { timeout: 120_000 });
+    const reloaded = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+    expect(reloaded.character.storyFlags).toEqual(saved.character.storyFlags);
+    expect(reloaded.character.yen).toBe(expectedYen);
+    expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   }
+}
+
+async function lookAtResident(page, actor) {
+  const target = await page.evaluate(actor => {
+    const life=window.storyProbe.lifecycle,c=life.getController();
+    const bounds=life.scheduledActors.dialogueActorModel(actor).renderRoot.getHierarchyBoundingVectors(true);
+    const point=bounds.min.add(bounds.max).scale(.5);
+    point.y=bounds.min.y+(bounds.max.y-bounds.min.y)*.8;
+    const position=c.collider.position;
+    const yaw=Math.atan2(-(point.x-position.x),-(point.z-position.z));
+    const pitch=Math.atan2(position.y+c.options.firstPersonHeadHeight-point.y,Math.hypot(point.x-position.x,point.z-position.z));
+    return {yaw,pitch,dx:Math.atan2(Math.sin(yaw-c.cameraYaw),Math.cos(yaw-c.cameraYaw))/c.options.cameraSensitivity,
+      dy:(pitch-c.cameraPitch)/c.options.cameraSensitivity};
+  },actor);
+  const steps=Math.max(1,Math.ceil(Math.max(Math.abs(target.dx),Math.abs(target.dy))/180));
+  for(let step=0;step<steps;step++) {
+    await page.mouse.move(780,260);await page.mouse.down({button:"right"});
+    await page.mouse.move(780+target.dx/steps,260+target.dy/steps,{steps:5});
+    await page.mouse.up({button:"right"});
+  }
+  await expect.poll(() => page.evaluate(({yaw,pitch}) => {
+    const c=window.storyProbe.lifecycle.getController();
+    return Math.max(Math.abs(Math.atan2(Math.sin(c.cameraYaw-yaw),Math.cos(c.cameraYaw-yaw))),Math.abs(c.cameraPitch-pitch));
+  },target)).toBeLessThan(.01);
 }
 
 async function observeStoryDialogueFace(page, actor) {
@@ -1120,7 +1178,8 @@ async function residentClickPoint(page, actor) {
     controller.cameraPitch = 0;
   }, actor);
   await page.waitForTimeout(1200);
-  return page.evaluate(actor => {
+  return page.evaluate(async actor => {
+    const { pickScheduledActorSelection, scheduledActorSelection } = await import('/play/characters/ScheduledActorRuntime.js');
     const life = window.storyProbe.lifecycle;
     const model = life.scheduledActors.dialogueActorModel(actor);
     if (!model?.renderRoot) throw new Error(`No visible body for ${actor}`);
@@ -1138,12 +1197,35 @@ async function residentClickPoint(page, actor) {
     controller.cameraPitch = Math.atan2(position.y + controller.options.firstPersonHeadHeight - point.y,
       Math.hypot(point.x - position.x, point.z - position.z));
     controller.updateCamera(1);
+    // Visibility is evaluated during rendering. Picking immediately after
+    // turning can otherwise test the prior view's disabled NPC bodies.
+    await new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        life.scene.onAfterRenderObservable.remove(observer);
+        reject(new Error(`No rendered body after aiming at ${actor}`));
+      }, 5000);
+      const observer = life.scene.onAfterRenderObservable.add(() => {
+        if (!model.renderRoot.getChildMeshes(false).some(mesh =>
+          mesh.isEnabled() && mesh.isVisible && life.scene.isActiveMesh(mesh))) return;
+        clearTimeout(timer);
+        life.scene.onAfterRenderObservable.remove(observer);
+        resolve();
+      });
+    });
     const rect = life.engine.getRenderingCanvas().getBoundingClientRect();
     const viewProjection = life.scene.activeCamera.getViewMatrix(true).multiply(life.scene.activeCamera.getProjectionMatrix(true));
     const screen = point.constructor.Project(point, viewProjection.constructor.Identity(), viewProjection,
       life.scene.activeCamera.viewport.toGlobal(life.engine.getRenderWidth(), life.engine.getRenderHeight()));
+    const pointerX = screen.x * rect.width / life.engine.getRenderWidth(), pointerY = screen.y * rect.height / life.engine.getRenderHeight();
+    const direct = life.scene.pick(pointerX, pointerY, undefined, false, life.scene.activeCamera);
+    const selected = pickScheduledActorSelection(life.scene, life.scene.activeCamera, pointerX, pointerY, direct);
+    const proxy = life.scene.pick(pointerX, pointerY,
+      mesh => mesh.isEnabled() && !!mesh.metadata?.scheduledActorDebugSelectionProxy,
+      false, life.scene.activeCamera);
     return { x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(),
       y: rect.y + screen.y * rect.height / life.engine.getRenderHeight(),
+      pickedActor:selected?.actorCode,directActor:scheduledActorSelection(direct?.pickedMesh)?.actorCode,directMesh:direct?.pickedMesh?.name,
+      proxyActor:scheduledActorSelection(proxy?.pickedMesh)?.actorCode,
       modelCode: model.modelCode, actorPosition: life.scheduledActors.dialogueActor(actor).position,
       renderedCenter: point.asArray(), playerPosition: position.asArray(), bounds: [bounds.min.asArray(), bounds.max.asArray()] };
   }, actor);

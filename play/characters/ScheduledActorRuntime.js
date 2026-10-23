@@ -383,6 +383,14 @@ export function scheduledActorSelection(node) {
   for (let current = node; current; current = current.parent) {
     const metadata = current.metadata;
     if (!metadata?.scheduledActorInstanceId) continue;
+    // Render pieces and helper boxes copy the identity for picking. Their
+    // transform is not the actor owner: retain the highest matching parent.
+    let root = current;
+    for (let parent = current.parent; parent; parent = parent.parent) {
+      const parentId = parent.metadata?.scheduledActorInstanceId;
+      if (parentId && parentId !== metadata.scheduledActorInstanceId) break;
+      if (parentId === metadata.scheduledActorInstanceId) root = parent;
+    }
     return {
       name: (
         metadata.scheduledActorLabel
@@ -391,10 +399,42 @@ export function scheduledActorSelection(node) {
       ),
       id: metadata.scheduledActorInstanceId,
       actorCode: metadata.scheduledActor || null,
-      root: current,
+      root,
     };
   }
   return null;
+}
+
+function pickOverlappingActorBodies(selections, ray) {
+  let nearest = null;
+  const a = BABYLON.Vector3.Zero(), b = BABYLON.Vector3.Zero(), c = BABYLON.Vector3.Zero();
+  for (const selection of selections) {
+    for (const mesh of selection.root.getChildMeshes(false)) {
+      if (!mesh.isEnabled() || !mesh.isVisible || mesh.visibility <= 0
+        || mesh.metadata?.scheduledActorDebugSelectionProxy
+        || mesh.metadata?.scheduledActorOcclusionProxy) continue;
+      const indices = mesh.getIndices();
+      if (!indices?.length) continue;
+      // Babylon's ordinary ray test sees the bind vertices of shader-skinned
+      // NPCs. Resolve only overlapping click candidates against the current
+      // skeleton/morph pose, without baking it into their rendering buffers.
+      const positions = mesh.getPositionData(true, true);
+      if (!positions) continue;
+      const world = mesh.computeWorldMatrix(true);
+      const localRay = BABYLON.Ray.Transform(ray, world.clone().invert());
+      for (let index = 0; index < indices.length; index += 3) {
+        BABYLON.Vector3.FromArrayToRef(positions, indices[index] * 3, a);
+        BABYLON.Vector3.FromArrayToRef(positions, indices[index + 1] * 3, b);
+        BABYLON.Vector3.FromArrayToRef(positions, indices[index + 2] * 3, c);
+        const hit = localRay.intersectsTriangle(a, b, c);
+        if (!hit || hit.distance < 0) continue;
+        const point = BABYLON.Vector3.TransformCoordinates(localRay.origin.add(localRay.direction.scale(hit.distance)), world);
+        const distance = BABYLON.Vector3.Distance(ray.origin, point);
+        if (!nearest || distance < nearest.distance) nearest = { selection, distance };
+      }
+    }
+  }
+  return nearest?.selection || null;
 }
 
 export function pickScheduledActorSelection(
@@ -407,7 +447,9 @@ export function pickScheduledActorSelection(
   const directSelection = scheduledActorSelection(
     directPick?.pickedMesh,
   );
-  if (directSelection) return directSelection;
+  if (directSelection && !directPick.pickedMesh.skeleton
+    && !directPick.pickedMesh.metadata?.scheduledActorDebugSelectionProxy
+    && !directPick.pickedMesh.metadata?.scheduledActorOcclusionProxy) return directSelection;
   // A real interactive surface is a stronger target than the invisible NPC
   // selection proxy behind it. Otherwise a merchant's generous proxy steals
   // clicks on the book/phone on their counter. Keep the proxy fallback for
@@ -420,17 +462,29 @@ export function pickScheduledActorSelection(
   // POINTERPICK reports only the nearest general-purpose hit. Re-pick against
   // the actor proxy so a wall overlay or bind-pose character piece cannot
   // steal the interaction.
-  const actorPick = scene?.pick?.(
+  const actorPicks = scene.multiPick(
     pointerX,
     pointerY,
     (mesh) => Boolean(
       mesh.metadata?.scheduledActorDebugSelectionProxy
+      && mesh.isEnabled()
       && scheduledActorSelection(mesh)
     ),
-    false,
     camera,
-  );
-  return scheduledActorSelection(actorPick?.pickedMesh);
+  ) || [];
+  actorPicks.sort((a, b) => a.distance - b.distance);
+  const selections = new Map(actorPicks.map(hit => {
+    const selection = scheduledActorSelection(hit.pickedMesh);
+    return [selection.id, selection];
+  }));
+  if (selections.size > 1) {
+    const ray = scene.createPickingRay(pointerX, pointerY, BABYLON.Matrix.Identity(), camera);
+    const body = pickOverlappingActorBodies(selections.values(), ray);
+    if (body) return body;
+  }
+  // Retain the generous single-actor target and bind-pose fallback. The
+  // precise pose work above happens only on a click with overlapping actors.
+  return scheduledActorSelection(actorPicks[0]?.pickedMesh) || directSelection;
 }
 
 export function pickScheduledActorDebugIdentity(

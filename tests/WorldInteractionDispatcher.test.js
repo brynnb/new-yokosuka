@@ -19,6 +19,9 @@ function createHarness() {
     pointerX: 12,
     pointerY: 24,
     onPointerObservable: observable,
+    multiPick(_x, _y, predicate) {
+      return candidates.filter(predicate).map(pickedMesh => ({hit:true,distance:1,pickedMesh}));
+    },
     pick(_x, _y, predicate) {
       const pickedMesh = candidates.find(mesh => predicate(mesh));
       return pickedMesh

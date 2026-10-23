@@ -43,6 +43,24 @@ The browser never chooses an actor's daily timetable or publishes an NPC as
 authoritative. Conversely, the server does not own meshes, animations, camera
 presentation, or picking.
 
+### Selecting nearby residents
+
+The shared picker retains generous invisible selection boxes for ordinary NPC
+clicks. When boxes from different residents overlap, it checks their visible
+bodies in the current skeletal/morph pose and selects the nearest body hit.
+Babylon's ordinary mesh ray test otherwise sees shader-skinned bind geometry,
+and the nearest box can belong to someone beside the intended resident. This
+pose calculation runs only for overlapping click candidates, not every frame;
+it does not bake or overwrite GPU vertex buffers. If no body is hit, the nearest
+box remains the generous fallback. Direct interactive scenery retains priority.
+
+Identity copied onto meshes and proxies resolves to the owning actor placement
+root, not that individual piece's transform. The real Ajiichi overlap check
+aims at Tao while Lin Xia's box is nearer: the pose-aware picker selects Tao,
+whereas the box-only pick selects Lin Xia. Tests must wait for a rendered body
+after turning the camera, since frustum/occlusion visibility updates are not
+synchronous with setting camera angles.
+
 ## Presentation cost and lifetime
 
 The runtime retains GPU skinning and cached motion clips. Actor-level frustum
@@ -144,10 +162,10 @@ The client shortcut `npm run build:server-npcs` delegates the first server
 command to the configured standalone checkout. Review and commit changes in
 the repository that owns each output.
 
-Focused browser checks are:
+Focused runtime checks are:
 
 ```sh
-node --test --test-concurrency=1 \
+npm test -- \
   tests/PlayScheduledActors.test.js \
   tests/ScheduledActorNetworkState.test.js \
   tests/ScheduledActorRuntime.test.js \

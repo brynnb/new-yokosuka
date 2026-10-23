@@ -463,16 +463,16 @@ test("scheduled actor debug picking retries past an unrelated direct hit", () =>
   const actorMesh = {
     parent: actorRoot,
     metadata: { scheduledActorDebugSelectionProxy: true },
+    isEnabled: () => true,
   };
   let predicateAcceptedActor = false;
   const scene = {
-    pick(x, y, predicate, fastCheck, camera) {
+    multiPick(x, y, predicate, camera) {
       assert.equal(x, 320);
       assert.equal(y, 180);
-      assert.equal(fastCheck, false);
       assert.equal(camera, "camera");
       predicateAcceptedActor = predicate(actorMesh);
-      return { pickedMesh: actorMesh };
+      return [{ pickedMesh: actorMesh, distance: 1 }];
     },
   };
 
@@ -507,8 +507,8 @@ test("scheduled actor selection exposes its actor root for interaction", () => {
   };
   const selection = pickScheduledActorSelection(
     {
-      pick() {
-        return { pickedMesh: actorMesh };
+      multiPick() {
+        return [{ pickedMesh: actorMesh, distance: 1 }];
       },
     },
     "camera",
@@ -526,6 +526,50 @@ test("NPC proxy fallback cannot steal a direct world interaction",()=>{
     const result=pickScheduledActorSelection({pick(){repicks++;throw Error("proxy stole the object");}},null,10,20,{hit:true,pickedMesh:{parent:root}});
     assert.equal(result,null);assert.equal(repicks,0);
   }
+});
+
+test("overlapping NPC boxes resolve against the rendered skeletal pose without rewriting geometry", () => {
+  const engine = new BABYLON.NullEngine({renderWidth:512,renderHeight:512});
+  const scene = new BABYLON.Scene(engine);
+  const camera = new BABYLON.FreeCamera("camera",new BABYLON.Vector3(0,0,-10),scene);
+  camera.setTarget(BABYLON.Vector3.Zero());
+  const actor = (code,z) => {
+    const root = new BABYLON.TransformNode(code,scene);
+    root.position.z=z;root.metadata={scheduledActor:code,scheduledActorInstanceId:code};
+    const proxy=BABYLON.MeshBuilder.CreateBox(`${code}-proxy`,{width:8,height:3,depth:1},scene);
+    proxy.parent=root;proxy.isVisible=false;proxy.isPickable=false;
+    proxy.metadata={...root.metadata,scheduledActorDebugSelectionProxy:true};
+    const body=BABYLON.MeshBuilder.CreateBox(`${code}-body`,{size:1},scene);
+    body.parent=root;body.isPickable=false;
+    return {root,body,proxy};
+  };
+  try {
+    const front=actor("RNKT",0),back=actor("UNO_",2);
+    front.body.position.x=3; // Her generous box overlaps Tao, her body does not.
+    const positions=Array.from(back.body.getVerticesData("position"));
+    for(let i=1;i<positions.length;i+=3)positions[i]+=4; // Bind pose is not on the ray.
+    back.body.setVerticesData("position",positions);
+    const skeleton=new BABYLON.Skeleton("test","test",scene);
+    const bone=new BABYLON.Bone("root",skeleton,null,BABYLON.Matrix.Identity());
+    back.body.skeleton=skeleton;back.body.numBoneInfluencers=1;
+    const weights=new Float32Array(back.body.getTotalVertices()*4);
+    for(let i=0;i<weights.length;i+=4)weights[i]=1;
+    back.body.setVerticesData("matricesIndices",new Float32Array(weights.length));
+    back.body.setVerticesData("matricesWeights",weights);
+    bone.setPosition(new BABYLON.Vector3(0,-4,0));
+    scene.render();
+    assert.ok(scheduledActorSelection(front.proxy).root === front.root,"copied identity on a proxy must retain the real actor root");
+    assert.equal(pickScheduledActorSelection(scene,camera,256,256)?.actorCode,"UNO_");
+    assert.equal(pickScheduledActorSelection(scene,camera,256,256,{pickedMesh:front.proxy})?.actorCode,"UNO_","a direct helper-box hit must not bypass pose resolution");
+    assert.deepEqual(Array.from(back.body.getVerticesData("position")),positions,"picking must not bake or rewrite the GPU bind vertices");
+    front.body.position.x=0;front.body.computeWorldMatrix(true);
+    assert.equal(pickScheduledActorSelection(scene,camera,256,256)?.actorCode,"RNKT","nearest actual body wins");
+    bone.setPosition(new BABYLON.Vector3(0,-4,-5));skeleton.prepare(true);
+    assert.equal(pickScheduledActorSelection(scene,camera,256,256)?.actorCode,"UNO_","later bone poses must replace the previous picking pose");
+    bone.setPosition(new BABYLON.Vector3(0,-4,0));skeleton.prepare(true);
+    front.root.setEnabled(false);
+    assert.equal(pickScheduledActorSelection(scene,camera,256,256)?.actorCode,"UNO_","disabled actors cannot intercept clicks");
+  } finally {scene.dispose();engine.dispose();}
 });
 
 test("scheduled actor debug boxes follow animated rig bounds", () => {

@@ -557,25 +557,31 @@ extend the browser check. It waits for the real personal clock to reach 10:00,
 loads the existing interiors, clicks residents, tests both daytime referrals,
 checks the stored native bit, then follows Liu Senior and the saved notebook.
 
-The local rendered continuation passed using the same character whose opening
-investigation clues were earned in the prior browser run. It restored the saved
-Story context, loaded the actual interiors, clicked all five residents, verified
-their initial voice playback, used Space for the remaining original lines,
-confirmed `2:65` in the durable save, and found Liu Senior at the source park
-position. The sixteenth notebook page and unlocked controls were verified.
-The test resets nearby to bound travel and retains the gameplay camera; it
-does not claim original multi-person camera direction or gesture fidelity.
+The 2026-10-23 isolated rendered continuation lets all five conversations
+finish naturally (126 original voice lines), with real resident clicks and no
+Space-skipping. Both two-person conversations additionally cancel during a
+spouse's speech, grant no clue, and successfully retry. Completion verifies the
+clues, stored `2:65`, Liu Senior's source park placement and sailors notebook;
+reload retains progress and money. Position, participant-facing overrides,
+player camera and controls restore. Earlier investigation prerequisites were
+seeded into disposable local characters; this is not a fresh uninterrupted
+opening-to-sailors playthrough.
 
-The 2026-10-22 recheck also observes changing original embedded mouth targets
-for Tao (`CHU_L`), Itoi (`WAP_L`), Maeda (`TOK_L`), Liu Ji You (`KUU_L`) and
-Liu Senior (`X32_L`). The latter four conversation captures were reviewed.
-Tao's first capture instead exposed an unsafe test teleport: the fixed NPC +Z
-offset left the view beneath the shop, mostly on its ceiling. The shared test
-approach now uses the controller's existing supported-ground/clearance checks;
-a separate saved-checkpoint run verifies grounded views and real clicks for
-all five, without replaying or changing their earned flags. Tao still needs a
-fresh, properly framed **speaking** capture. Spouses' speech, full natural line
-timing and dedicated conversation gestures remain unreviewed.
+Original mouth deformation is observed over rendered frames for all seven
+speakers. Reviewed speaking captures now include Tao and Lin Xia, Itoi, Liu Ji
+You and Liu En Ling, and Liu Senior. The test uses real right-drag to frame each
+spouse, retaining that player-chosen view afterward. Maeda's working pose still
+points his face downward: moving mouth data is not a clear facial-fidelity
+certificate. Dedicated conversation gestures and original camera direction
+remain unimplemented; several shopkeepers keep empty-handed work motions.
+
+The shared test approach uses supported-ground/clearance and sightline checks,
+then waits for the target's body to render after aiming. A separate completed-
+checkpoint check covers all five residents without replaying or resetting their
+earned flags. It also reproduces Ajiichi's overlapping selection boxes: a click
+aimed at Tao previously selected Lin Xia. The shared picker now resolves
+overlapping boxes against current visible body poses; the exact early-morning
+angle selects Tao while the old box-only method still selects Lin Xia.
 
 For focused rechecks, `NEW_YOKOSUKA_STORY_RESUME_ID` and
 `NEW_YOKOSUKA_STORY_RESUME_TOKEN` select a previously earned isolated test
