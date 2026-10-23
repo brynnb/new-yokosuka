@@ -1149,7 +1149,7 @@ Actors without either proven structure remain unanimated and visible in the
 audit rather than receiving invented jaw motion.
 
 The 2026-10-23 local corpus check found 62 authored generic-mouth bindings
-among 63 on-stage speaker appearances without a detailed FACE across the 107
+among 63 on-stage speaker appearances without a detailed FACE across the 108
 packages. The remaining appearance (`KJHS`/`TPL_L` in `boat-ticket-collection`)
 needs separate facial-resource work;
 these counts describe structural coverage, not 62 reviewed performances.
@@ -1207,6 +1207,20 @@ close-up proves the face fit, not that this shot shows him. Cancellation
 restored the active world and controls without changing flags, money or
 inventory. This does not replay their prerequisite stories or verify all 24
 newly bound speaker appearances.
+
+Add `NEW_YOKOSUKA_STORY_FACE_SET=letter` to review Nozomi after the parlor,
+Fuku-san's resolve, Ine-san's invitation and the Chinese-letter handoff. The
+October 23 run completed all four original timelines naturally, with moving
+NZM/FUK/INE/YKC face geometry during speech. Native shots and diagnostic face
+close-ups were reviewed; the original moving `MAIL` envelope was rendered.
+Each presentation restored the avatar, position, camera mode and controls,
+released actor leases, and left flags, inventory and yen unchanged. This test
+temporarily suspends automatic/region admission because it directly borrows
+the presenter without a Yarn controller run; otherwise an eligible trigger
+could compete for that diagnostic transaction. Normal connected Story tests
+retain both dispatchers. Their separate same-save Nozomi-to-letter recheck is
+recorded in the [event specification](../design/story-event-template.md#next-day-dojo-practice-and-the-chinese-letter).
+Neither test establishes complete finger/expression fidelity.
 
 The mouth targets use node-local coordinates, while prepared GPU meshes use
 bind-world coordinates. Apply the authored open-minus-closed displacement in

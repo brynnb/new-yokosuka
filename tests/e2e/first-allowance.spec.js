@@ -44,7 +44,7 @@ test.afterEach(async({page},info)=>{
   console.info("Story failure state:",JSON.stringify(state));
 });
 const variants = resumeId ? [["resume", false]] : [["complete", false], ["skip", false], ["complete", true]];
-for (const [ending, freshOpening] of variants) test(resumeId ? "investigation continues from an earned saved checkpoint" : `first allowance renders and persists after ${ending}${freshOpening ? " from a fresh opening" : ""}`, async ({ page }, testInfo) => {
+for (const [ending, freshOpening] of variants) test(resumeId ? "investigation continues from a saved checkpoint" : `first allowance renders and persists after ${ending}${freshOpening ? " from a fresh opening" : ""}`, async ({ page }, testInfo) => {
   test.setTimeout(process.env.NEW_YOKOSUKA_MIRROR_RETURN_E2E === "true" ? 600_000 : process.env.NEW_YOKOSUKA_CHEN_E2E === "true" || process.env.NEW_YOKOSUKA_FAMILY_E2E === "true" || process.env.NEW_YOKOSUKA_HANDGUARD_E2E === "true" || process.env.NEW_YOKOSUKA_GUI_ZHANG_E2E === "true" ? 360_000 : process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
   const errors = [];
   const musicResponses = [];
@@ -518,6 +518,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       return;
     }
     if(process.env.NEW_YOKOSUKA_LETTER_E2E === "true") {
+      test.setTimeout(420_000);
       await verifyDojoAndChineseLetter(page,testInfo,character);
       expect(errors).toEqual([]);
       expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
@@ -1729,7 +1730,9 @@ async function verifyDojoAndChineseLetter(page,testInfo,character) {
   expect(character.storyFlags["story.s1.charlie-tattoo-confrontation.completed"]).toBe(true);
   const savedState=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const waitScene=async id=>{
-    await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===id||window.storyProbe.sceneErrors.length,id,{timeout:60_000});
+    // Fuku's native follow-up runs for 2,000 frames before Ine-san enters.
+    // Allow that real timeline to finish instead of skipping to the next film.
+    await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===id||window.storyProbe.sceneErrors.length,id,{timeout:120_000});
     expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
     await page.waitForFunction(()=>[...(window.storyProbe.director?.activeCutscene?.packageRuntime.audio.active?.elements||[])]
       .some(r=>r.kind==="voice"&&r.audio.currentTime>0&&!r.audio.paused),null,{timeout:30_000});
@@ -1766,10 +1769,10 @@ async function verifyDojoAndChineseLetter(page,testInfo,character) {
     } finally {await page.keyboard.up("KeyI");}
     await waitScene("story-s1-fuku-resolve");
     expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(i=>i.action==="leg"))).toBe(true);
-    await page.screenshot({path:testInfo.outputPath("fuku-cartel-resolve.png")});await page.keyboard.press("KeyX");
+    await page.screenshot({path:testInfo.outputPath("fuku-cartel-resolve.png")});
     await waitScene("story-s1-ine-letter-invitation");
-    await page.screenshot({path:testInfo.outputPath("ine-letter-invitation.png")});await page.keyboard.press("KeyX");
-    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.ine-letter-invitation"])).toBe(true);
+    await page.screenshot({path:testInfo.outputPath("ine-letter-invitation.png")});
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.ine-letter-invitation"]),{timeout:60_000}).toBe(true);
     saved=await savedState();expect(saved.character.storyFlags["story.s1.cartel-dojo.completed"]).toBe(true);
     expect(saved.character.yen).toBe(character.yen);expect(saved.character.currentHp).toBe(character.currentHp);
   }
@@ -1797,6 +1800,7 @@ async function verifyDojoAndChineseLetter(page,testInfo,character) {
   await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:120_000});
   await page.waitForTimeout(1000);expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-chinese-letter"))).toBe(false);
   const saved=await savedState();expect(saved.character.storyFlags["notebook.s1.chinese-letter"]).toBe(true);
+  expect(saved.inventory.filter(item=>item.key==="chinese_letter").map(item=>item.quantity)).toEqual([1]);
   expect(saved.character.worldId).toBe("interior");expect(saved.character.avatarId).toBe("ryo");
   expect(saved.character.yen).toBe(character.yen);expect(saved.character.currentHp).toBe(character.currentHp);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);

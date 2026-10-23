@@ -71,11 +71,18 @@ The October 22 source audit located the original `KOZU` handover in JOMO's
 `4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9`).
 Call `0x6395a` attaches it to `INE_`, right-hand control `18`; `0x63a2e`
 detaches it. The retained runtime placement identifies `KOZU` but has no model
-binding. Do not substitute the nearby `MALS530G` model: the existing object
-trace identifies that as `TEGA`, not `KOZU`. The callback uses a signed 16-bit
-clock at frame offset `62`; the current attachment extractor rejects its
-indexed-load frame guard. Both model identity and deterministic timeline
-extraction still need resolving before the original handover can be enabled.
+binding. The October 23 follow-up found its original static definition in
+`COMMON01.PKF`'s `CHARA.CHRT`: character offset `0x5b34`, image property
+`0x5bc4`, `FUTHI10G` → `FUTS5OKG.CHRM` (1,956 bytes in `COMMON01.PKS`, SHA-256
+`2b6031cbd7c81f5eddb56035155bedd072d565d550922083de601e5820af5951`).
+The definition also declares `RefBoard` and shares the model with `KFUT`;
+this is a source-backed candidate, not yet a rendered handover. The CHRT hash
+is `8853f1c13eb220aaeff0075380eccd1278e06484a147773ca43e69c0b459a1ab`.
+Do not substitute the nearby `MALS530G`: the same table binds it to `TEGA`,
+not `KOZU`. The callback uses a signed 16-bit clock at frame offset `62`;
+the current attachment extractor rejects its indexed-load frame guard.
+Verify the candidate surface and recover deterministic attachment timing
+before enabling the handover.
 
 The original event occurs after Ryo first leaves his bedroom. Ine-san gives him
 ¥500, explains the daily allowance and directs him to Fuku-san at the dojo.
@@ -1166,6 +1173,14 @@ Real compiler/PostgreSQL tests cover missing progress/date, wrong day/hour,
 out-of-bounds rejection, cancellation/retry, stale acknowledgements, mode
 locking, another character's isolation and unchanged economy.
 
+The October 23 recheck passed the real parlor return door, walking trigger,
+cancellation/re-entry, natural completion, notebook and saved reload again.
+It used the isolated parlor fixture whose earlier prerequisites were seeded,
+not a fresh uninterrupted bar/ambush playthrough. A separate presentation-only
+run completed all 2,130 frames and sampled original NZM/YKC face deformation
+during speech, with reviewed native shots and diagnostic close-ups. Those
+checks do not certify all authored expressions or gestures.
+
 ## Next-day dojo practice and the Chinese letter
 
 Two official Yarn imports connect this sequence: `cartel-dojo` in the grounds,
@@ -1206,11 +1221,23 @@ uses the real personal wait UI, walks across the dojo trigger, cancels/retries
 practice, sends physical kick/guard inputs, observes original follow-up voices,
 then cancels/re-enters the house handoff and lets it finish naturally. Rendered
 checks show Fuku-san, Ine-san and the original envelope. Notebook/reload and
-restored Ryo/location/controls pass. Test travel is shortened; walking every
-connecting route and the natural endings of both dojo movies are not proved.
+restored Ryo/location/controls pass. The October 23 continuation from the same
+isolated parlor/Nozomi fixture additionally lets both dojo movies end naturally,
+then checks the house cancellation/re-entry, natural letter ending, exactly one
+saved letter, notebook, unchanged HP/yen and reload without replay. Earlier
+parlor prerequisites in that fixture were seeded. Test travel is shortened;
+walking every connecting route is not proved.
 The compiler/PostgreSQL test separately verifies same-day/region gates,
 cancellation before/after practice, atomic invitation, cancelled handoff,
 one item/economy grant on completion, repeat refusal and character isolation.
+
+The separate `NEW_YOKOSUKA_STORY_FACES_E2E=true` /
+`NEW_YOKOSUKA_STORY_FACE_SET=letter` presentation-only review completed all
+three films naturally and verified moving FUK/INE/YKC face geometry during
+speech, original moving `MAIL` geometry, reviewed native shots/close-ups and
+restored presentation state without changing progress. The connected daylight
+capture also shows the original textured letter in Ryo's hand. Complete
+finger/expression callback fidelity remains unverified.
 
 Migration `008_story_items.sql` adds the letter definition. Its possession is
 authoritative and server-saved. Inventory now reads actual server possessions;
