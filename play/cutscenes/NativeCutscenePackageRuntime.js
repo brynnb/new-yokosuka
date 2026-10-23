@@ -63,6 +63,8 @@ import {
 import {
   createNativeCutsceneMusicRuntime,
 } from "./NativeCutsceneMusicRuntime.js";
+import { createTelephoneReceiverBabylonAdapter } from "../scripts/TelephoneReceiverBabylonAdapter.js";
+import { createTelephonePresentationRuntime } from "../scripts/TelephonePresentationRuntime.js";
 
 function hasDefinitions(value) {
   return value && Object.keys(value).length > 0;
@@ -227,6 +229,24 @@ export class NativeCutscenePackageRuntime {
         })
       : null;
 
+    if (definition.playback.manifest.activities.some(activity => activity.nativeTelephoneCues?.length)) {
+      this.telephoneReceiver = createTelephoneReceiverBabylonAdapter({
+        resolveObjectRoot: tag => this.sceneObjects?.objects.get(tag)?.root,
+        resolveActorControl: ({ actorCode, renderKey }) => {
+          const model = this.actors.activeActor(actorCode)?.model;
+          const matrix = model?.latestRetargetedRoutes?.get(renderKey);
+          return matrix ? { root: model.renderRoot, matrix } : null;
+        },
+      });
+      this.telephone = createTelephonePresentationRuntime({
+        // AUTH's existing audio timeline owns telephone sound effects.
+        playSound: () => false,
+        attachReceiver: (binding, owner) => this.telephoneReceiver.attach(binding, owner),
+        updateReceiver: (binding, owner) => this.telephoneReceiver.update(binding, owner),
+        detachReceiver: (binding, owner) => this.telephoneReceiver.detach(binding, owner),
+      });
+    }
+
     const presentation = definition.presentation || {};
     const facialAssets = resolveNativeCutsceneFacialAssets(
       presentation.facialAssets,
@@ -299,6 +319,7 @@ export class NativeCutscenePackageRuntime {
       loadAsset: this.loadAsset,
       presentation: this.presentation,
       onActivityPreparing: activity => {
+        if (this.telephone?.beginActivity(activity, this) === false) return false;
         if ((this.scrollSprites?.beginActivity?.(activity) ?? true) !== true) {
           return false;
         }
@@ -384,6 +405,10 @@ export class NativeCutscenePackageRuntime {
       this.stop("attachment-presentation-failed");
       throw new Error(`cutscene package ${this.id} rejected attached objects at frame ${frame}`);
     }
+    if (frame != null && this.telephone?.setFrame(this, frame) === false) {
+      this.stop("telephone-presentation-failed");
+      throw new Error(`cutscene package ${this.id} rejected telephone at frame ${frame}`);
+    }
   }
 
   stop(reason = "stopped") {
@@ -410,7 +435,13 @@ export class NativeCutscenePackageRuntime {
     this.music.setPaused(true);
     try {
       this.presentation.setSeeking(true);
-      return this.playback.seekBySeconds(seconds);
+      const accepted = this.playback.seekBySeconds(seconds);
+      const frame = this.activityRuntime.active?.currentFrame;
+      if (frame != null && this.telephone?.setFrame(this, frame) === false) {
+        this.stop("telephone-seek-failed");
+        return false;
+      }
+      return accepted;
     } finally {
       this.presentation.setSeeking(false);
       this.music.setPaused(state.paused);
@@ -817,6 +848,8 @@ export class NativeCutscenePackageRuntime {
       }
     }
     // Release borrowed prop presentation before the scene owner disposes roots.
+    this.telephone?.cancel(this);
+    this.telephoneReceiver?.restoreActive();
     this.attachedObjects?.clear();
     this.sceneObjects?.clear();
     this.packageActors?.clear();
@@ -857,6 +890,9 @@ export class NativeCutscenePackageRuntime {
         const accepted = this.activityRuntime.updateActivity(detail);
         if (accepted === true && this.attachedObjects?.update(detail.currentFrame) === false) {
           throw new Error(`cutscene package ${this.id} rejected attached objects at frame ${detail.currentFrame}`);
+        }
+        if (accepted === true && this.telephone?.setFrame(this, detail.currentFrame) === false) {
+          throw new Error(`cutscene package ${this.id} rejected telephone at frame ${detail.currentFrame}`);
         }
         if (accepted !== true && this.activityRuntime.lastUpdateError) {
           throw this.activityRuntime.lastUpdateError;
@@ -956,6 +992,8 @@ export class NativeCutscenePackageRuntime {
       // Hold the outgoing stage until the incoming AUTH has its first pose.
       // Restoring the room between subleases produces a one-frame cut flash.
       () => completedActivity && this.programLease ? true : this.mapLayers?.end(),
+      () => this.telephone?.cancel(this),
+      () => this.telephoneReceiver?.restoreActive(),
       () => this.attachedObjects?.endTrack(),
       () => this.sceneObjects?.releaseStandaloneObjects(),
       () => completedActivity

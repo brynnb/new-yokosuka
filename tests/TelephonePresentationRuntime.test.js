@@ -27,6 +27,43 @@ function harness() {
   return { calls, runtime };
 }
 
+test("AUTH receiver cues follow accepted frames, handovers, seeks and cancellation", () => {
+  const {calls,runtime}=harness(),owner={};
+  const left={bindingIndex:3},right={bindingIndex:4};
+  const activity={nativeTelephoneCues:[{frame:160,action:"attach",receiver:left},
+    {frame:521,action:"attach",receiver:right},{frame:1135,action:"detach"}]};
+  assert.equal(runtime.beginActivity(activity,owner),true);
+  assert.equal(runtime.setFrame(owner,159),true); assert.deepEqual(calls,[]);
+  for(const frame of [160,520,521,700,100,700,1135])assert.equal(runtime.setFrame(owner,frame),true);
+  assert.deepEqual(calls.filter(c=>c[0]!=="update").map(c=>c.slice(0,2)),[
+    ["attach",3],["detach",3],["attach",4],["detach",4],["attach",4],["detach",4],
+  ]);
+  assert.equal(runtime.setFrame({},600),false);
+  assert.equal(runtime.setFrame(owner,-1),false);
+  assert.equal(runtime.setFrame(owner,600),true);
+  assert.equal(runtime.beginActivity(activity,{}),false);
+  assert.equal(runtime.cancel(owner),true);
+  assert.equal(runtime.active,null);
+  assert.equal(runtime.beginActivity(activity,owner),true);
+  assert.equal(runtime.setFrame(owner,600),true);
+  assert.equal(runtime.beginActivity({},owner),true);
+  assert.equal(runtime.active,null);
+});
+
+test("AUTH failure releases the borrowed handset instead of continuing a broken scene", () => {
+  const {runtime,calls}=harness(),owner={};
+  const activity={nativeTelephoneCues:[{frame:5,action:"attach",receiver:{bindingIndex:3}}]};
+  runtime.beginActivity(activity,owner);
+  runtime.updateReceiver=()=>false;
+  assert.equal(runtime.setFrame(owner,5),false);
+  assert.equal(runtime.active,null);
+  assert.equal(calls.at(-1)[0],"detach");
+  runtime.attachReceiver=()=>false;
+  runtime.beginActivity(activity,owner);
+  assert.equal(runtime.setFrame(owner,5),false);
+  assert.equal(runtime.active,null);
+});
+
 test("telephone ring preserves the exact two-cue 90-tick timeline", async () => {
   const { calls, runtime } = harness();
   const sequence = createScriptEventPresentationCatalog().sequence(

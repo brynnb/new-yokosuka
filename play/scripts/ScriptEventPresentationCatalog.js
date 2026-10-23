@@ -267,8 +267,8 @@ const JOMO_TELEPHONE_RECEIVER = Object.freeze({
   actorRuntimeMatrixIndex: 30,
   handCorrection: Object.freeze({
     translation: Object.freeze([
-      0.02499999850988388,
       0.07499999552965164,
+      0.02499999850988388,
       0,
     ]),
     rotationAxis: "z",

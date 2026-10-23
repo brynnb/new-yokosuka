@@ -9,7 +9,7 @@ import {buildNativeAseqAudioPack,registerNativeAseqMusic} from "../lib/NativeAse
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
 import {addNativeAseqStageAssets} from "../lib/NativeAseqStageAssets.mjs";
 import {parseChrtSceneObjectBindings} from "../lib/chrt_scene_object_bindings.js";
-import {extractNativeAseqCallbackPresentation} from "../lib/NativeAseqCallbackPresentation.mjs";
+import {extractNativeAseqCallbackPresentation,extractNativeAseqTelephonePresentation} from "../lib/NativeAseqCallbackPresentation.mjs";
 import {extractNativeAseqCallbackObjectPresentation} from "../lib/NativeAseqCallbackObjectPresentation.mjs";
 
 const root=path.resolve(import.meta.dirname,"../..");
@@ -23,11 +23,13 @@ const homeCallbacks={
   "bank-savings":{owner:"0x70d24",callback:"0x71190",slot:10},
   "travel-family":{owner:"0x730dc",callback:"0x7353c",slot:17},
   "fuku-travel-funds":{owner:"0x718e8",callback:"0x71f20",slot:13},
+  "jimmy-morning-call":{owner:"0x74dc8",callback:"0x7535c",slot:4,evidence:"jimmy-telephone-callback-ir.json"},
+  "nozomi-night-call":{owner:"0x7b4a0",callback:"0x7be00",slot:46,evidence:"nozomi-telephone-callback-ir.json"},
 };
 function homePresentation(profile,mapSource,source,props){
   const binding=homeCallbacks[profile.id];
   if(!binding)return {};
-  const bytes=fs.readFileSync(mapSource),ir=JSON.parse(fs.readFileSync(path.join(root,"tools/evidence/home-ticket-callback-ir.json")));
+  const bytes=fs.readFileSync(mapSource),ir=JSON.parse(fs.readFileSync(path.join(root,"tools/evidence",binding.evidence||"home-ticket-callback-ir.json")));
   if(sha256(bytes)!==ir.source.mapinfoSha256)throw Error("Changed original home callback source");
   const functions=[ir.function,...ir.supportingFunctions],owner=functions.find(f=>f.id===binding.owner);
   const actions=owner.blocks.flatMap(b=>b.actions);
@@ -55,6 +57,8 @@ function homePresentation(profile,mapSource,source,props){
   // actor lease releases the entire face there; it is not an extra movie shot.
   const cues=Object.fromEntries(Object.entries(presentation).map(([key,value])=>
     [key,Array.isArray(value)?value.filter(c=>c.frame===undefined||c.frame<profile.frames):value]));
+  Object.assign(cues,extractNativeAseqTelephonePresentation({...input,
+    bindingEvidence:JSON.parse(fs.readFileSync(path.join(root,"tools/evidence/tagged-telm-control-operation-evidence.json")))}));
   const objects=extractNativeAseqCallbackObjectPresentation({...input,objectTags:Object.keys(props)});
   const attachedObjects=Object.fromEntries(Object.entries(props).flatMap(([tag,prop])=>{
     const grips=objects.attachedObjectCues.filter(c=>c.objectTag===tag),nodes=objects.nodeTransformCues.filter(c=>c.objectTag===tag);

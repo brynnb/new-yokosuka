@@ -325,7 +325,7 @@ promise, then his home call and the noon You Arcade appointment. The original
 | Locations / prerequisites | Story Ryo, completed opening and the earned Asia/Jimmy promise. Sleep uses the established bedside region after 20:00 on the recorded promise day. The call uses the supported foyer/hall approach on any later personal day. |
 | Sequence / cast | Optional, explicit sleep plays existing `KKYC/SEQDATA2.AUTH` with Shenhua in the isolated dream stage, then saves the next day at 08:30 and the established bedside arrival. Crossing the hall starts original A0169: Fuku answers, hands the conversation to Ryo, and Jimmy requests the arcade meeting. Jimmy is a remote voice, not a body in the home. |
 | Original presentation | Existing KKYC assets and source-associated BGM079. The phone pack uses Disc 2 JOMO MAPINFO AUTH `0x9d7dc` (7,456 bytes), COMMON02 `M_0169.MOTN`, bank 19 and complete sequence indexes, original cameras, twelve speech lines and thirteen A1_JYTEL effects. The AUTH movement lasts 1,600 frames; its camera track makes the complete presentation 60 seconds. Source and output hashes are pinned by the pack generator. |
-| Props / weather | Borrow and restore the existing `TEL_` / `S1_JOMO_TELS514G.MT5` phone; do not create a duplicate. Keep normal personal weather outside the isolated vision. Detailed receiver, finger and facial callback reconstruction is not claimed. |
+| Props / weather | Borrow and restore the existing `TEL_` / `S1_JOMO_TELS514G.MT5` phone; do not create a duplicate. Its handset follows the original left-Fuku/right-Ryo handover and receiver-local transforms. Original detailed hand poses/components are recovered. Keep normal personal weather outside the isolated vision. Cord simulation and exact gaze remain omitted. |
 | Completion / exit | Sleep saves its milestone, calendar and bedroom destination in one transaction. The call saves its own milestone and one notebook page, preserving the approach position, personal date, inventory and money. It grants no ticket, refund or fight result. Both restore camera and controls. |
 | Skip / cancellation / missed timing | Existing explicit cinematic skip may complete these noninteractive scenes. Leave, cancellation, failed preparation and stale acknowledgements settle nothing and allow retry. Waiting elsewhere can bypass the optional dream; missing the exact next morning cannot strand the call. |
 
@@ -356,9 +356,37 @@ were uploaded and no production state was changed.
 
 Inspected captures show Shenhua in the isolated dream stage and the original
 Fuku/Ryo home-phone shots. The dream currently lacks rendered snow and is dark;
-the phone receiver is not yet attached to their hands. Those are visible
-presentation limitations, not missing eligibility, dialogue or save outcomes.
+that remains a visible presentation limitation, not missing eligibility,
+dialogue or save outcomes.
 Audio playback fidelity has not been assessed by listening.
+
+### Shared handset presentation
+
+The [original Jimmy callback](../../tools/evidence/jimmy-telephone-callback-ir.json)
+is Disc 2 JOMO owner `0x74dc8`, callback `0x7535c`, native SCEX slot 4.
+It binds receiver render control 3 to Fuku's left endpoint at frame 160,
+adjusts the receiver-local grip at 170, transfers to Ryo's right endpoint at
+521, and releases at 1135. The shared callback compiler also retains the
+original detailed hands. The telephone base stays in its authored scene.
+
+The original executable's receiver setup `0x0c16ba08` resolves the formerly
+unimplemented TELM modes 11/12: receiver-local XYZ float translation, followed
+by fixed-turn Z/Y/X rotation. The fixed hand correction is `(0.075, 0.025, 0)`;
+the earlier evidence incorrectly used literal-address order instead of
+FR4/FR5 argument order. The [source-checked evidence](../../tools/evidence/tagged-telm-control-operation-evidence.json)
+now guards that instruction flow. Both AUTH calls and Goro's existing scripted
+telephone use the same adapter; there are no per-scene guessed offsets.
+
+`NEW_YOKOSUKA_STORY_FACES_E2E=true NEW_YOKOSUKA_STORY_FACE_SET=telephone`
+on the isolated saved fixture verifies Jimmy cancellation after a Space skip
+across the handover, immediate replay, and natural completion; it also runs the
+Nozomi call. Reviewed rendered captures show the held handset upright rather
+than sideways. All 12 Jimmy and 19 Nozomi voices play; FUK/INE/YKC mouth and
+face geometry change over multiple rendered frames. Handset ownership, avatar,
+location, camera and controls restore without changing money, inventory or
+Story flags. This is presentation verification, not a new end-to-end earned
+story playthrough or rendered certification of Goro's separate call. Exact
+cord physics and every finger contact remain unverified.
 
 To regenerate only the new presentation, use
 `node tools/cutscenes/build_home_ticket_pack.mjs --profile jimmy-morning-call --audio`

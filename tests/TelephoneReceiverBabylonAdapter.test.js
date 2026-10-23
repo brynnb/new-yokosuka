@@ -4,6 +4,7 @@ import test from "node:test";
 import * as BABYLON from "@babylonjs/core";
 
 import { Mt5Loader } from "../src/Mt5Loader.js";
+import { scheduledBrowserAttachedObjectMatrix } from "../src/ScheduledActorLocalObjects.js";
 import {
   createScriptEventPresentationCatalog,
 } from "../play/scripts/ScriptEventPresentationCatalog.js";
@@ -38,15 +39,13 @@ test("TELM selector 3 binds only telephone control 3 to Ryo's left hand", () => 
   const originalPosition = receiver.position.clone();
   const hand = Mt5Loader.rowTranslation(1, 2, 3);
   const adapter = createTelephoneReceiverBabylonAdapter({
-    modelOffset,
     resolveObjectRoot: tag => tag === "TEL_" ? telephone : null,
-    getPlayerControlSourceMatrix: request => {
+    resolveActorControl: request => {
       assert.deepEqual(request, {
         actorCode: "AKIR",
         renderKey: -0x42,
-        runtimeMatrixIndex: 30,
       });
-      return hand;
+      return { root: modelOffset, matrix: hand };
     },
   });
   const binding = createScriptEventPresentationCatalog().sequence(
@@ -60,14 +59,17 @@ test("TELM selector 3 binds only telephone control 3 to Ryo's left hand", () => 
     scl: { x: 1, y: 1, z: 1 },
     rot: { x: 0, y: 0, z: Math.PI / 2 },
     pos: {
-      x: 0.02499999850988388,
-      y: 0.07499999552965164,
+      x: 0.07499999552965164,
+      y: 0.02499999850988388,
       z: 0,
     },
   });
   approximatelyEqual(
     receiver.computeWorldMatrix(true).asArray(),
-    Mt5Loader.rowMultiply(correction, hand),
+    scheduledBrowserAttachedObjectMatrix(Mt5Loader.rowMultiply(Mt5Loader.rowMultiply(
+      Mt5Loader.sourceTransformMatrix({scl:{x:1,y:1,z:1},
+        rot:Object.fromEntries(["x","y","z"].map((axis,i)=>[axis,binding.controllerRotationWords[i]/65536*Math.PI*2])),
+        pos:Object.fromEntries(["x","y","z"].map((axis,i)=>[axis,binding.controllerTranslation[i]]))}),correction),hand)),
   );
 
   assert.equal(adapter.detach(binding, owner), true);
@@ -83,9 +85,8 @@ test("telephone receiver binding fails closed for an unproven route", () => {
   const scene = new BABYLON.Scene(engine);
   const modelOffset = new BABYLON.TransformNode("player-model-offset", scene);
   const adapter = createTelephoneReceiverBabylonAdapter({
-    modelOffset,
     resolveObjectRoot: () => null,
-    getPlayerControlSourceMatrix: () => Mt5Loader.rowIdentity(),
+    resolveActorControl: () => ({ root: modelOffset, matrix: Mt5Loader.rowIdentity() }),
   });
   const binding = createScriptEventPresentationCatalog().sequence(
     "jomo.telephone.answer.sa1093.first",
@@ -93,5 +94,30 @@ test("telephone receiver binding fails closed for an unproven route", () => {
 
   assert.equal(adapter.attach({ ...binding, bindingIndex: 2 }, {}), false);
   assert.equal(adapter.attach(binding, {}), false);
+  engine.dispose();
+});
+
+test("telephone supports another actor and the right hand without a Ryo matrix-index alias", () => {
+  const engine = new BABYLON.NullEngine(), scene = new BABYLON.Scene(engine);
+  const actor = new BABYLON.TransformNode("fuku-render-root", scene);
+  actor.position.set(3, 0, 2); actor.rotation.y = 1.1; actor.scaling.setAll(1.2);
+  const phone = new BABYLON.TransformNode("phone", scene);
+  const receiver = new BABYLON.TransformNode("handset", scene); receiver.parent = phone;
+  phone._mt5Nodes = [{flag:3,mesh:receiver}];
+  const adapter = createTelephoneReceiverBabylonAdapter({resolveObjectRoot:()=>phone,
+    resolveActorControl: request => {
+      assert.deepEqual(request,{actorCode:"FUKU",renderKey:-65});
+      return {root:actor,matrix:Mt5Loader.rowTranslation(0.2,1.3,-0.4)};
+    }});
+  const original = createScriptEventPresentationCatalog().sequence("jomo.telephone.answer.sa1093.first").answer.receiver;
+  const binding = {...original,actorCode:"FUKU",bindingIndex:4,actorRenderKey:-65};
+  delete binding.actorRuntimeMatrixIndex;
+  const owner={};
+  assert.equal(adapter.attach(binding,owner),true);
+  assert.equal(receiver.parent,actor);
+  assert.equal(adapter.update({...binding,actorCode:"AKIR"},owner),false);
+  assert.equal(adapter.detach(binding,{}),false);
+  adapter.restoreActive(); assert.equal(receiver.parent,phone);
+  assert.equal(adapter.restoreActive(),true);
   engine.dispose();
 });

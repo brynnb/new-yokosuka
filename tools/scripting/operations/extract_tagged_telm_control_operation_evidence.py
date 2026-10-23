@@ -9,6 +9,7 @@ import json
 import struct
 from collections import Counter
 from pathlib import Path
+from tools.cutscenes.extract_native_aseq_callback_ir import iter_native_maps
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -263,11 +264,15 @@ def build_report(
     ):
         raise ValueError("TELM actor binding consumer changed")
     hand_correction = [
-        f32(executable, 0x0C16BCA0),
         f32(executable, 0x0C16BCA4),
+        f32(executable, 0x0C16BCA0),
         0.0,
     ]
-    if hand_correction != [0.02499999850988388, 0.07499999552965164, 0.0]:
+    # FR4/FR5/FR6 are X/Y/Z. Literal address order is NOT argument order:
+    # BC38 loads FR5, while the delay slot at BC40 loads FR4.
+    if (u16(executable, 0x0C16BC38) != 0xF508
+            or u16(executable, 0x0C16BC40) != 0xF408
+            or hand_correction != [0.07499999552965164, 0.02499999850988388, 0.0]):
         raise ValueError("telephone hand correction translation changed")
     if (
         movw_literal(executable, 0x0C16BC44) != 0x4000
@@ -275,6 +280,15 @@ def build_report(
         or u32(executable, 0x0C16BCAC) != 0x0C1D25C0
     ):
         raise ValueError("telephone hand correction transform changed")
+    if (movw_literal(executable, 0x0C16BA14) != 0x07C4
+            or u16(executable, 0x0C16BA16) != 0xF6E6
+            or u16(executable, 0x0C16BA1A) != 0xF5E6
+            or u16(executable, 0x0C16BA20) != 0xF4E6
+            or [movw_literal(executable, address) for address in
+                (0x0C16BA22, 0x0C16BA30, 0x0C16BA3E)] != [0x07D0, 0x07CC, 0x07C8]
+            or [u32(executable, address) for address in
+                (0x0C16BAF8, 0x0C16BAFC, 0x0C16BB00)] != [0x0C1D25C0, 0x0C1D2500, 0x0C1D2340]):
+        raise ValueError("telephone receiver local transform consumer changed")
     mode11_field_offsets = [
         movw_literal(executable, address)
         for address in (0x0C170530, 0x0C17053C, 0x0C170546)
@@ -370,10 +384,10 @@ def build_report(
         }
 
     report = {
-        "schema": "new-yokosuka-tagged-telm-control-operation-evidence-v5",
+        "schema": "new-yokosuka-tagged-telm-control-operation-evidence-v6",
         "status": (
             "exact-target-resolution-modes-0-1-4-10-11-12-all-disc-inventory"
-            "-binding-consumer-and-d000-dataflow"
+            "-binding-local-transform-consumer-and-d000-dataflow"
         ),
         "source": {
             "executable": "1ST_READ.BIN",
@@ -431,7 +445,7 @@ def build_report(
                 ),
                 "semanticBoundary": (
                     "The operation is an exact object-to-actor visual binding; "
-                    "the separate controller vectors remain low-level fields."
+                    "receiver setup separately composes the mode-11/12 local vectors."
                 ),
             },
             "mode1": {
@@ -492,15 +506,19 @@ def build_report(
                     "signed render key -66 (Ryo runtime matrix 30, the left "
                     "arm endpoint); other nonnegative selectors choose -65 "
                     "(matrix 36, the right arm endpoint). It composes native "
-                    "translation (0.025, 0.075, 0), then a +0x4000 fixed-turn "
+                    "translation (0.075, 0.025, 0), then a +0x4000 fixed-turn "
                     "Z rotation, with that actor control matrix and installs "
                     "the result on telephone control 3."
                 ),
-                "semanticBoundary": (
-                    "This proves the receiver-to-hand matrix route. It does "
-                    "not assign higher-level meanings to every TELM state or "
-                    "to the mode-11/mode-12 controller vectors."
-                ),
+                "localTransform": {
+                    "consumerAddress": "0x0c16ba08",
+                    "translationMode": 11, "rotationMode": 12,
+                    "translationFields": ["0x07bc", "0x07c0", "0x07c4"],
+                    "rotationFields": ["0x07c8", "0x07cc", "0x07d0"],
+                    "composition": "source row-vector Rx * Ry * Rz * T * handCorrection * actorControl",
+                    "proof": "Setup loads the bound receiver matrix, applies mode-11 XYZ float translation, then mode-12 fixed-turn Z/Y/X rotations, and stores back into the receiver matrix at control +0x38. These are receiver-local transforms, not world-space actor motion.",
+                },
+                "semanticBoundary": "Hand binding and receiver-local vectors are proven; remaining TELM states and cable simulation are not implemented by this adapter.",
             },
             "mode4": {
                 "targetAddress": "0x0c170494",
@@ -561,8 +579,8 @@ def build_report(
                     "0x07c0, and 0x07c4."
                 ),
                 "semanticBoundary": (
-                    "The exact bit-preserving copy is proven; the vector's "
-                    "coordinate space and visual role remain unnamed."
+                    "Receiver setup 0x0c16ba14 reads these fields as XYZ floats "
+                    "and translates the bound receiver frame."
                 ),
             },
             "mode12": {
@@ -578,13 +596,13 @@ def build_report(
                     "0x07cc, and 0x07d0."
                 ),
                 "semanticBoundary": (
-                    "The exact bit-preserving copy is proven; the vector's "
-                    "coordinate space and visual role remain unnamed."
+                    "Receiver setup 0x0c16ba22 applies these fixed-turn words "
+                    "as receiver-local Z/Y/X rotations after mode-11 translation."
                 ),
             },
             "unresolved": [
                 "The other 12 numeric mode behaviors are not yet individually named or adapted.",
-                "Modes 11 and 12 have exact low-level copies but their complete controller semantics remain unresolved.",
+                "Receiver-local mode-11/12 transforms are proven; cable simulation and unbound controller states remain outside this adapter.",
                 "Controller state 21 has exact low-level dataflow but no inferred high-level action name.",
                 "This target resolution proves object identity at operation-0x00f1 consumers, not that every upstream launch tag is itself the player's clickable trigger.",
             ],
@@ -624,7 +642,7 @@ def build_report(
             "Modes 0 and 1 exactly attach and detach TEL_ render control 3 through the resolved actor binding; modes 11 and 12 exactly copy two three-word parameter vectors.",
             "The TELM consumer proves selector 3 uses Ryo render key -66/runtime matrix 30 with the exact native hand correction, while other nonnegative selectors use -65/matrix 36.",
             "Mode 4 exactly returns the primary link; mode 10 clears it and enters controller state 21.",
-            "The other 12 numeric mode behaviors, the proven vectors' complete controller interpretation, and the higher-level player interaction trigger remain unresolved rather than inferred.",
+            "The other 12 numeric mode behaviors and the higher-level player interaction trigger remain unresolved rather than inferred.",
         ],
     }
     if inventory is not None:
@@ -642,7 +660,7 @@ def main() -> None:
     report = build_report(
         args.executable.read_bytes(),
         args.mapinfo.read_bytes(),
-        json.loads(args.event_ir.read_text()),
+        {"maps": iter_native_maps(args.event_ir)},
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2) + "\n")

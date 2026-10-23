@@ -60,6 +60,64 @@ function callbackOperations(nativeFunction) {
   );
 }
 
+// TELM borrows only the handset node, unlike FIXO's whole-object attachment.
+// Receiver setup 0x0c16ba08 then composes the mode-11/12 local transform.
+export function extractNativeAseqTelephonePresentation({
+  bytes, nativeFunction, durationFrames, bindingEvidence,
+}) {
+  const consumer = bindingEvidence.operation.bindingConsumer;
+  const operations = [];
+  for (const operation of callbackOperations(nativeFunction).filter(op => op.operationHex === "0x00f1")) {
+    const [modeArg, object, actor, selectorArg] = operation.arguments;
+    const mode = exactConstant(modeArg, "TELM mode");
+    const objectTag = actorTag(object, "TELM object");
+    if (objectTag !== "TEL_") throw new Error(`Unsupported telephone object ${objectTag}`);
+    if (isNativeAseqTerminalCall(nativeFunction, operation.callFileOffset)) {
+      if (mode !== 1) throw new Error("Unsupported telephone terminal operation");
+      continue; // Presentation cleanup restores the borrowed receiver.
+    }
+    const frame = callbackOperationFrame(bytes, Number(nativeFunction.id), nativeFunction, operation);
+    if (frame >= durationFrames) throw new Error("Telephone cue exceeds its AUTH activity");
+    const source = { callbackFunction: nativeFunction.id, callFileOffset: operation.callFileOffset };
+    operations.push({frame, mode, objectTag, actor, selectorArg, operation, source});
+  }
+  const cues = [];
+  let receiver = null, translation = null, rotation = null;
+  const frames = [...new Set(operations.map(op => op.frame))].sort((a,b)=>a-b);
+  for (const frame of frames) {
+    const group = operations.filter(op => op.frame === frame);
+    for (const {mode, objectTag, actor, selectorArg, operation} of group) {
+      if (mode === 1) { receiver = null; continue; }
+      if ([11,12].includes(mode)) {
+        const words = actor.kind === "static-pointer"
+          ? [0,4,8].map(delta=>bytes.readUInt32LE(actor.value+delta))
+          : frameWords(nativeFunction,nativeFunction.blocks.find(b=>b.actions.includes(operation)),actor,operation);
+        if (mode === 12) rotation = words;
+        else translation = words.map(word=>{const b=Buffer.alloc(4);b.writeUInt32LE(word);return b.readFloatLE();});
+        continue;
+      }
+      if (mode !== 0) throw new Error(`Unsupported telephone mode ${mode}`);
+      const selector = exactConstant(selectorArg, "TELM selector");
+      if (![3, 4].includes(selector)) throw new Error(`Unsupported telephone selector ${selector}`);
+      const route = consumer.selectorRoutes[selector === 3 ? "3" : "otherNonNegative"];
+      receiver = {
+        objectTag, actorCode: actorTag(actor, "TELM actor"), bindingIndex: selector,
+        objectRenderKey: consumer.telephoneReceiverRenderControl, actorRenderKey: route.actorRenderKey,
+        handCorrection: { translation: consumer.handCorrection.translation,
+          rotationAxis: consumer.handCorrection.rotationAxis,
+          rotationFixedTurnRaw: consumer.handCorrection.rotationFixedTurnRaw },
+      };
+    }
+    if (receiver && (!translation || !rotation || !translation.every(Number.isFinite))) {
+      throw new Error(`Telephone frame ${frame} has no complete original receiver-local transform`);
+    }
+    cues.push({frame,action:receiver?"attach":"detach",...(receiver?{receiver:{...receiver,
+      controllerTranslation:[...translation],controllerRotationWords:[...rotation]}}:{}),
+      source:group.map(op=>op.source)});
+  }
+  return { nativeTelephoneCues: cues };
+}
+
 // Keep the original operation and its binary-proven activity frame. The
 // preview compiler decides where it can safely execute it; a route/catalog
 // mapping by itself must never be mistaken for a playback trigger.

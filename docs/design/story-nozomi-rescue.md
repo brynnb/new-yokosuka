@@ -37,8 +37,15 @@ The ordinary foyer trigger, optional rest choice, timing window and return to th
 gameplay approach are authored. The original automatic 00:03 departure is not
 recreated: the personal clock pauses during presentation and resumes on exit.
 The later transport deadline is not implemented or falsely marked successful.
-Detailed telephone receiver/hand callbacks and exact facial animation remain
-limited by the shared original-scene player.
+The original Disc 3 JOMO owner `0x7b4a0` selects native slot 46 with callback
+`0x7be00`. Its [retained callback evidence](../../tools/evidence/nozomi-telephone-callback-ir.json)
+binds the handset to Ryo's left endpoint at frame 790 and releases at 2018,
+including its exact receiver-local translation/rotation and detailed hand poses.
+This uses the [shared telephone implementation and rendered checks](story-ticket-journey.md#shared-handset-presentation),
+not a scene-specific attachment. Ine-san and Ryo's speech geometry moves and
+all 19 original English recordings play in the natural presentation check.
+Cord simulation and exact gaze remain omitted; audio fidelity by listening
+and every finger contact are not certified.
 
 ## Source identities
 

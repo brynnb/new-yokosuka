@@ -1,6 +1,7 @@
 import * as BABYLON from "@babylonjs/core";
 
 import { Mt5Loader } from "../../src/Mt5Loader.js";
+import { scheduledBrowserAttachedObjectMatrix } from "../../src/ScheduledActorLocalObjects.js";
 
 const FULL_TURN = Math.PI * 2;
 
@@ -20,18 +21,21 @@ function finiteMatrix(value) {
 function exactReceiverBinding(binding) {
   return (
     binding?.objectTag === "TEL_"
-    && binding.actorCode === "AKIR"
-    && binding.bindingIndex === 3
+    && /^[A-Z0-9_]{4}$/.test(binding.actorCode || "")
+    && [3, 4].includes(binding.bindingIndex)
     && binding.objectRenderKey === 3
-    && binding.actorRenderKey === -0x42
-    && binding.actorRuntimeMatrixIndex === 30
+    && binding.actorRenderKey === (binding.bindingIndex === 3 ? -66 : -65)
     && binding.handCorrection?.rotationAxis === "z"
     && binding.handCorrection?.rotationFixedTurnRaw === 0x4000
     && Array.isArray(binding.handCorrection?.translation)
     && binding.handCorrection.translation.length === 3
-    && binding.handCorrection.translation[0] === 0.02499999850988388
-    && binding.handCorrection.translation[1] === 0.07499999552965164
+    && binding.handCorrection.translation[0] === 0.07499999552965164
+    && binding.handCorrection.translation[1] === 0.02499999850988388
     && binding.handCorrection.translation[2] === 0
+    && Array.isArray(binding.controllerTranslation) && binding.controllerTranslation.length === 3
+    && binding.controllerTranslation.every(Number.isFinite)
+    && Array.isArray(binding.controllerRotationWords) && binding.controllerRotationWords.length === 3
+    && binding.controllerRotationWords.every(Number.isInteger)
   );
 }
 
@@ -46,6 +50,12 @@ function sourceCorrection(binding) {
     },
     pos: { x, y, z },
   });
+}
+
+function receiverLocalTransform(binding) {
+  const [x,y,z] = binding.controllerTranslation;
+  const [rx,ry,rz] = binding.controllerRotationWords.map(word => word / 0x10000 * FULL_TURN);
+  return Mt5Loader.sourceTransformMatrix({scl:{x:1,y:1,z:1},rot:{x:rx,y:ry,z:rz},pos:{x,y,z}});
 }
 
 function transformSnapshot(node) {
@@ -67,27 +77,26 @@ function restoreTransform(node, snapshot) {
 }
 
 // Implements only the exact TELM receiver route proven for JOMO's TEL_ model:
-// render control 3 is rebound to AKIR selector 3, which resolves to Ryo's
-// left-arm endpoint (-0x42 / runtime matrix 30). Unknown descriptors fail
+// render control 3 follows the selected actor's left/right endpoint. Resolve
+// the actor's render key, never reuse Ryo's matrix index for another skeleton.
+// See tagged-telm-control-operation-evidence.json, consumer 0x0c16bb8c.
+// Unknown descriptors fail
 // closed instead of choosing a nearby mesh or bone.
 export class TelephoneReceiverBabylonAdapter {
   constructor({
-    modelOffset,
     resolveObjectRoot,
-    getPlayerControlSourceMatrix,
+    resolveActorControl,
   } = {}) {
     if (
-      !modelOffset
-      || typeof resolveObjectRoot !== "function"
-      || typeof getPlayerControlSourceMatrix !== "function"
+      typeof resolveObjectRoot !== "function"
+      || typeof resolveActorControl !== "function"
     ) {
       throw new TypeError(
-        "telephone receiver adapter requires exact scene and player controls",
+        "telephone receiver adapter requires exact scene and actor controls",
       );
     }
-    this.modelOffset = modelOffset;
     this.resolveObjectRoot = resolveObjectRoot;
-    this.getPlayerControlSourceMatrix = getPlayerControlSourceMatrix;
+    this.resolveActorControl = resolveActorControl;
     this.active = null;
   }
 
@@ -104,7 +113,6 @@ export class TelephoneReceiverBabylonAdapter {
     const frozen = subtree.map(node => Boolean(node.isWorldMatrixFrozen));
     const snapshot = transformSnapshot(receiver);
     for (const node of subtree) node.unfreezeWorldMatrix?.();
-    receiver.parent = this.modelOffset;
     this.active = {
       owner,
       binding: structuredClone(binding),
@@ -125,25 +133,28 @@ export class TelephoneReceiverBabylonAdapter {
       !active
       || active.owner !== owner
       || !exactReceiverBinding(binding)
+      || active.binding.actorCode !== binding.actorCode
+      || active.binding.bindingIndex !== binding.bindingIndex
       || active.receiver.isDisposed?.()
       || active.root.isDisposed?.()
     ) return false;
-    const parent = this.getPlayerControlSourceMatrix({
+    const control = this.resolveActorControl({
       actorCode: binding.actorCode,
       renderKey: binding.actorRenderKey,
-      runtimeMatrixIndex: binding.actorRuntimeMatrixIndex,
     });
-    if (!finiteMatrix(parent)) return false;
+    if (!control?.root || control.root.isDisposed?.() || !finiteMatrix(control.matrix)) return false;
     const sourceMatrix = Mt5Loader.rowMultiply(
-      sourceCorrection(binding),
-      [...parent],
+      Mt5Loader.rowMultiply(receiverLocalTransform(binding), sourceCorrection(binding)),
+      [...control.matrix],
     );
-    const matrix = BABYLON.Matrix.FromArray(sourceMatrix);
+    // Both MT5 geometry and the actor hierarchy use the shared X reflection.
+    // Convert the completed source frame, not just its position or the prop.
+    const matrix = BABYLON.Matrix.FromArray(scheduledBrowserAttachedObjectMatrix(sourceMatrix));
     const scaling = BABYLON.Vector3.One();
     const rotation = BABYLON.Quaternion.Identity();
     const translation = BABYLON.Vector3.Zero();
     if (!matrix.decompose(scaling, rotation, translation)) return false;
-    active.receiver.parent = this.modelOffset;
+    active.receiver.parent = control.root;
     active.receiver.position.copyFrom(translation);
     active.receiver.rotation.setAll(0);
     active.receiver.rotationQuaternion = rotation;

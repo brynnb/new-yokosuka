@@ -2,6 +2,17 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  telephone: [
+    ...[false,true].map(natural=>["s1.jomo.jimmy-morning-call.scene","interior","JOMO",{}, {
+      label:natural?"complete":"cancel",natural,frames:natural?[180,380,550,900,1160]:[380],objects:["TEL_"],
+      ...(natural?{observeActors:{FUKU:"FUK",AKIR:"YKC"}}:{skipReceiver:true}),
+      telephone:[[160,"FUKU",3],[521,"AKIR",4],[1135,null]],
+    }]),
+    ["s1.jomo.nozomi-night-call.scene","interior","JOMO",{}, {
+      natural:true,frames:[810,1300,1990,2050],objects:["TEL_"],telephone:[[790,"AKIR",3],[2018,null]],
+      observeActors:{INE_:"INE",AKIR:"YKC"},
+    }],
+  ],
   home: [
     ["s1.jomo.post-chen-home.scene","interior","JOMO",{AKIR:"YKC",FUKU:"FUK"},{natural:true,frames:[350,550]}],
     ["s1.jomo.bank-savings.scene","interior","JOMO",{AKIR:"YKC"},{natural:true,openingFrames:[180],frames:[330,690],objects:["BANK"]}],
@@ -189,7 +200,7 @@ export async function reviewStoryFaces(page, testInfo, character) {
             if (!review.cancelling) review.error = error.message;
             review.done = true;
           });
-      }, { id, area, actors });
+      }, { id, area, actors:{...options.observeActors,...actors} });
       try {
         // Capture the lead-in before waiting for later speaking shots. A missing
         // early recording must not be hidden by a working ending-film voice.
@@ -239,6 +250,31 @@ export async function reviewStoryFaces(page, testInfo, character) {
           const state = await page.evaluate(() => { const r = window.storyProbe.faceReview; return { done: r.done, error: r.error, frame: Math.round(r.frame) }; });
           expect(state.error).toBeNull();
           if (!state.done) await page.screenshot({ path: testInfo.outputPath(`${label}-native-${state.frame}.png`) });
+          if(options.telephone&&!state.done){
+            const phone=await page.evaluate(()=>{
+              const p=window.storyProbe,r=p.director.activeCutscene.packageRuntime,a=r.telephoneReceiver.active;
+              if(a){p.faceReview.receiver=a.receiver;p.faceReview.receiverParent=a.snapshot.parent;}
+              return {frame:r.activityRuntime.active.currentFrame,actor:a?.binding.actorCode||null,
+                selector:a?.binding.bindingIndex,parent:a?.receiver.parent?.name,
+                position:a?.receiver.getAbsolutePosition().asArray()};
+            });
+            const expected=options.telephone.filter(([at])=>at<=phone.frame).at(-1);
+            console.info(`${label} receiver`,JSON.stringify(phone));
+            expect(phone.actor).toBe(expected?.[1]||null);
+            if(phone.actor){
+              expect(phone.selector).toBe(expected[2]);
+              await page.evaluate(async({actor,selector})=>{
+                const p=window.storyProbe,r=p.director.activeCutscene.packageRuntime;
+                const {frameCutsceneSurface}=await import("/tests/e2e/cutscene-surface-framing.js");
+                p.faceReview.closeupFrames=0;
+                p.faceReview.restoreCamera=frameCutsceneSurface(r,"hand",actor,selector===3?"left":"right",()=>p.faceReview.closeupFrames++);
+              },phone);
+              try{
+                await page.waitForFunction(()=>window.storyProbe.faceReview.closeupFrames>=2);
+                await page.screenshot({path:testInfo.outputPath(`diagnostic-${label}-receiver-${frame}.png`)});
+              }finally{await page.evaluate(()=>window.storyProbe.faceReview.restoreCamera());}
+            }
+          }
           if (options.prop && !state.done) {
             const prop = await page.evaluate(tag => {
               const p = window.storyProbe, r = p.director.activeCutscene.packageRuntime;
@@ -270,9 +306,23 @@ export async function reviewStoryFaces(page, testInfo, character) {
             }
           }
         }
+        if(options.skipReceiver){
+          const before=await page.evaluate(()=>window.storyProbe.faceReview.frame);
+          await page.keyboard.press("Space");
+          await page.waitForFunction(frame=>window.storyProbe.faceReview.frame>=frame+145,before);
+          expect(await page.evaluate(()=>window.storyProbe.director.activeCutscene.packageRuntime.telephoneReceiver.active.binding.actorCode)).toBe("AKIR");
+        }
         if (options.natural) {
           await page.waitForFunction(() => window.storyProbe.faceReview.done, null, { timeout: 120_000 });
           expect(await page.evaluate(() => window.storyProbe.faceReview.error)).toBeNull();
+        }
+        for(const [tag,code]of Object.entries(options.observeActors||{})){
+          const sample=await page.evaluate(tag=>{
+            const s=window.storyProbe.faceReview.samples[tag];
+            return s&&{code:s.code,vertices:s.vertices.size,mouths:s.mouths.size,audio:s.audio.size};
+          },tag);
+          expect(sample?.code).toBe(code);
+          for(const key of ["vertices","mouths","audio"])expect(sample[key]).toBeGreaterThan(2);
         }
         if (options.voiceCounts) {
           const ids = await page.evaluate(() => [...window.storyProbe.faceReview.voiceIds]);
@@ -303,6 +353,10 @@ export async function reviewStoryFaces(page, testInfo, character) {
         }, null, { timeout: 100_000 });
       }
       expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+      if(options.telephone)expect(await page.evaluate(()=>{
+        const r=window.storyProbe.faceReview;
+        return r.receiver && (r.receiver.isDisposed() || r.receiver.parent===r.receiverParent);
+      })).toBe(true);
       for (const tag of options.objects || []) {
         expect(await page.evaluate(tag => window.storyProbe.faceReview.objects[tag]?.frames || 0, tag)).toBeGreaterThan(2);
       }

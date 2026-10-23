@@ -268,6 +268,8 @@ function compileActivity(config, expectation, memberByName, packages) {
     ...(expectation.nativeHandPoseCues
       ? { nativeHandPoseCues: expectation.nativeHandPoseCues }
       : {}),
+    ...(expectation.nativeTelephoneCues?.length
+      ? { nativeTelephoneCues: expectation.nativeTelephoneCues } : {}),
     ...(expectation.nativeBodyHandPoseCues
       ? { nativeBodyHandPoseCues: expectation.nativeBodyHandPoseCues }
       : {}),

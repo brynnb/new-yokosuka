@@ -4,7 +4,7 @@
     "This record describes only behavior directly recovered from Disc 1 JOMO MAPINFO and the aligned SA1093 subtitle/voice archive.",
     "The JOMO room controller dispatches this scene as native command 39. It is an automatic incoming call, not a player-use route on TEL_.",
     "Function 0x8aafc proves the upstream scene/disc and bank-2 predicates that select controller command 39.",
-    "Native TEL_ operation 0x00f1 modes 0 and 1 and their consumer prove the exact receiver-to-hand binding. Modes 11 and 12 retain exact low-level vector copies because their complete controller meaning is still unresolved."
+    "Native TEL_ operation 0x00f1 modes 0 and 1 prove the receiver-to-hand binding. Receiver setup 0x0c16ba08 additionally proves mode-11 XYZ translation and mode-12 fixed-turn rotations in that bound receiver frame."
   ],
   "sources": {
     "mapinfo": {
@@ -101,7 +101,7 @@
       "actorRuntimeMatrixIndex": 30,
       "bodySide": "left",
       "handCorrection": {
-        "translation": [0.02499999850988388, 0.07499999552965164, 0.0],
+        "translation": [0.07499999552965164, 0.02499999850988388, 0.0],
         "rotationAxis": "z",
         "rotationFixedTurnRaw": 16384,
         "rotationDegrees": 90
@@ -201,6 +201,6 @@
       "first, second, and repeat voice-ID order",
       "bit-820 and bit-821 transactional branch progression"
     ],
-    "remainingBoundary": "The exact receiver binding required by this call is implemented. TELM modes 11 and 12 retain their recovered values but their complete controller interpretation remains unresolved and is not used as a guessed visual transform. Natural in-game observation is still required to compare the finished Babylon presentation with the original scene."
+    "remainingBoundary": "Receiver binding and source-proven local translation/rotation are implemented. The fixed correction follows FR4/FR5 argument order, not literal-address order. Telephone cord simulation remains omitted. Natural in-game observation of this specific Goro call is still required; rendered Jimmy and Nozomi checks do not certify Goro's entire scene."
   }
 }

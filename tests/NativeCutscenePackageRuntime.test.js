@@ -72,6 +72,7 @@ test("standalone package seek suppresses intermediate audio and restores music o
   for (const fails of [false, true]) {
     const calls = [];
     const runtime = runtimeWith({
+      activityRuntime: { active: { currentFrame: 150 } },
       playback: { transportState: () => ({ active: true, paused: false }), seekBySeconds: seconds => {
         calls.push(["seek", seconds]); if (fails) throw Error("presentation failed"); return true;
       } },
@@ -82,6 +83,20 @@ test("standalone package seek suppresses intermediate audio and restores music o
     else assert.equal(runtime.seekBySeconds(5), true);
     assert.deepEqual(calls, [["paused", true], ["seeking", true], ["seek", 5], ["seeking", false], ["paused", false]]);
   }
+});
+
+test("package telephone follows accepted frames and releases before borrowed scenery", () => {
+  const calls=[],runtime=programRuntimeWith({calls:[]});
+  Object.assign(runtime,{activityRuntime:{active:{currentFrame:521}},attachedObjects:null,
+    playback:{update:()=>calls.push("pose"),transportState:()=>({active:true}),seekBySeconds:()=>true,stop:()=>true},
+    presentation:{setSeeking:()=>{}},music:{setPaused:()=>{},reset:()=>{}},
+    telephone:{setFrame:(owner,frame)=>{assert.equal(owner,runtime);calls.push(frame);return true;},cancel:()=>calls.push("detach")},
+    telephoneReceiver:{restoreActive:()=>calls.push("restore")},sceneObjects:{releaseStandaloneObjects:()=>calls.push("scenery")},
+  });
+  runtime.update(1/30); assert.deepEqual(calls,["pose",521]);
+  runtime.seekBySeconds(1);assert.equal(calls.at(-1),521);
+  runtime.activityRuntime.active=null;runtime.stop("cancelled");
+  assert.deepEqual(calls.slice(-3),["detach","restore","scenery"]);
 });
 
 test("standalone package stop and failed start release prepared room visibility", async t => {

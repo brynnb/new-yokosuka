@@ -722,8 +722,13 @@ The operation evidence also retains exact low-level behavior for modes 0, 1,
 and 11 through 13. Modes 0 and 1 establish and clear a second associated TELM
 link at fields `0x00a8`/`0x00ac`; modes 11 and 12 copy distinct authored
 three-component values to `0x07bc..0x07c4` and `0x07c8..0x07d0`; mode 13 sets
-field `0x07b8`. These are field-level descriptions, not invented
-open/close/position semantics.
+field `0x07b8`. Receiver setup `0x0c16ba08` additionally proves that, while
+bound to a hand, mode 11 is receiver-local XYZ float translation and mode 12
+is fixed-turn Z/Y/X rotation. These now drive the shared telephone adapter.
+The correction's X/Y literals follow FR4/FR5 argument order `(0.075, 0.025)`,
+not their storage-address order. Other numeric modes and cord simulation
+remain outside this presentation adapter; no generic open/close meaning is
+inferred from them.
 
 ### JOMO telephone cadence
 

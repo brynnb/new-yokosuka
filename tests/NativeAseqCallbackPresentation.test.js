@@ -9,12 +9,37 @@ import {
   extractNativeAseqCallbackHandPresentation,
   extractNativeHandPoseOperation,
   extractNativeHandComponentTimeline,
+  extractNativeAseqTelephonePresentation,
 } from "../tools/lib/NativeAseqCallbackPresentation.mjs";
 import { extractNativeAseqCallbackObjectPresentation } from "../tools/lib/NativeAseqCallbackObjectPresentation.mjs";
 
 const tattooMap = path.resolve(process.env.SHENMUE_DISC1_EXTRACTED_ROOT || "extracted_files", "data/SCENE/01/TATQ/MAPINFO.BIN");
 const mirrorMap = path.resolve(process.env.SHENMUE_DISC2_EXTRACTED_ROOT || "extracted_disc2_v2", "data/SCENE/02/MS8A/MAPINFO.BIN");
 const homeMap = path.resolve(process.env.SHENMUE_DISC2_EXTRACTED_ROOT || "extracted_disc2_v2", "data/SCENE/02/JOMO/MAPINFO.BIN");
+for(const [name,disc,frames,expected]of [
+  ["jimmy",2,1600,[[160,"attach","FUKU",3],[170,"attach","FUKU",3],[521,"attach","AKIR",4],[1135,"detach",undefined,undefined]]],
+  ["nozomi",3,2265,[[790,"attach","AKIR",3],[2018,"detach",undefined,undefined]]],
+]){
+  const map=path.resolve(process.env[`SHENMUE_DISC${disc}_EXTRACTED_ROOT`]||`extracted_disc${disc}_v2`,`data/SCENE/0${disc}/JOMO/MAPINFO.BIN`);
+  test(`${name} telephone uses original pickup, handover and hangup frames`,{skip:!fs.existsSync(map)&&"requires original disc extraction"},()=>{
+    const read=file=>JSON.parse(fs.readFileSync(new URL(file,import.meta.url)));
+    const evidence=read(`../tools/evidence/${name}-telephone-callback-ir.json`),bytes=fs.readFileSync(map);
+    assert.equal(createHash("sha256").update(bytes).digest("hex"),evidence.source.mapinfoSha256);
+    const input={bytes,nativeFunction:evidence.function,durationFrames:frames,
+      bindingEvidence:read("../tools/evidence/tagged-telm-control-operation-evidence.json")};
+    const result=extractNativeAseqTelephonePresentation(input);
+    assert.deepEqual(result.nativeTelephoneCues.map(c=>[c.frame,c.action,c.receiver?.actorCode,c.receiver?.bindingIndex]),expected);
+    const manifest=read(`../play/assets/hazuki/${name}-${name==="jimmy"?"morning":"night"}-call/manifest.json`);
+    assert.deepEqual(manifest.activities[0].nativeTelephoneCues,result.nativeTelephoneCues);
+    const first=result.nativeTelephoneCues[0].receiver;
+    assert.deepEqual(first.controllerRotationWords,name==="jimmy"?[30208,38034,26203]:[18379,38580,26749]);
+    assert.equal(first.handCorrection.translation[0],0.07499999552965164);
+    assert.ok(Object.keys(manifest.handAssets).includes("AKIR"));
+    const broken=structuredClone(evidence.function);
+    broken.blocks.flatMap(b=>b.actions).find(a=>a.operationHex==="0x00f1"&&a.arguments[0].value===0).arguments[3].value=2;
+    assert.throws(()=>extractNativeAseqTelephonePresentation({...input,nativeFunction:broken}),/selector/);
+  });
+}
 test("home callbacks compile native hands, expression durations, bankbook hinge and piggy-bank transfer", {
   skip: !fs.existsSync(homeMap) && "requires original Disc 2 JOMO extraction",
 }, () => {

@@ -27,7 +27,7 @@
     "evidence": "docs/design/story-nozomi-rescue.md",
     "resourceName": "01GET",
     "variant": "",
-    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector. Original owner 0x7b4a0 selects native slot 46 with callback 0x7be00; hands, FACE expressions and prop grips/hinges use that callback. FACE gaze and LKPT tracking remain omitted."
   },
   "audioManifest": "public/audio/world/nozomi-night-call/manifest.json",
   "sceneObjects": {
@@ -46,6 +46,260 @@
       "characterScale": 1,
       "assetPath": "play/assets/INE_M.CHRM",
       "textureAssetPath": "play/assets/INE_textures.bin"
+    }
+  },
+  "attachedObjects": {},
+  "handAssets": {
+    "AKIR": {
+      "actorTag": "AKIR",
+      "bodyModelCode": "YKC_M",
+      "handCode": "YKB",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 10,
+        "model": {
+          "path": "play/assets/introduction/op00/hands/YKB_TL.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YKB_TL.MT5",
+          "byteLength": 40704,
+          "sha256": "517a3423b4cb2c7f96f9cb71475e3f34bc6891af1a0fe892b85c8810826936ec"
+        }
+      },
+      "right": {
+        "rootRenderKey": 5,
+        "model": {
+          "path": "play/assets/introduction/op00/hands/YKB_TR.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YKB_TR.MT5",
+          "byteLength": 40760,
+          "sha256": "1564720156a4967703256cf4e1070e69c660cd57296bdf3b8ea13bffc46dccb8"
+        }
+      },
+      "rig": {
+        "path": "play/assets/introduction/op00/hands/YKB_HM.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YKB_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "bd81f3033c0be237e5f52aa1976166e1376dd1c8c2b3ec66948f25d08fbc9729",
+        "transformNodeCount": 71,
+        "vertexCount": 306,
+        "pointerOffsets": [
+          24,
+          168,
+          8952,
+          5848,
+          6472,
+          9264
+        ]
+      },
+      "presentation": {
+        "attachment": "body-hand-node-world-matrix",
+        "initialPose": "hm-bind-pose",
+        "deformationAssetRetained": true,
+        "nativePoseOperation": "0x005e"
+      }
+    }
+  },
+  "nativeHandPoseTables": {
+    "0x97970": {
+      "sourceMapinfoOffset": "0x97970",
+      "vectors": [
+        [
+          0,
+          0,
+          -8046
+        ],
+        [
+          0,
+          2184,
+          -1829
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -9011
+        ],
+        [
+          0,
+          910,
+          -18422
+        ],
+        [
+          0,
+          0,
+          -9284
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -5697
+        ],
+        [
+          0,
+          0,
+          -17385
+        ],
+        [
+          0,
+          0,
+          -13016
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -7736
+        ],
+        [
+          0,
+          182,
+          -13871
+        ],
+        [
+          0,
+          0,
+          -14599
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1274,
+          -14199
+        ],
+        [
+          0,
+          0,
+          -6371
+        ],
+        [
+          0,
+          -3094,
+          -15983
+        ],
+        [
+          -27,
+          -109,
+          0
+        ]
+      ]
+    },
+    "0x97d00": {
+      "sourceMapinfoOffset": "0x97d00",
+      "vectors": [
+        [
+          0,
+          0,
+          -6005
+        ],
+        [
+          0,
+          0,
+          -909
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -6368
+        ],
+        [
+          0,
+          1820,
+          -8552
+        ],
+        [
+          0,
+          0,
+          -4548
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -8552
+        ],
+        [
+          0,
+          0,
+          -10372
+        ],
+        [
+          0,
+          -545,
+          -4002
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -7823
+        ],
+        [
+          0,
+          0,
+          -12374
+        ],
+        [
+          0,
+          -909,
+          -2182
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1636,
+          -10735
+        ],
+        [
+          0,
+          -2001,
+          -10372
+        ],
+        [
+          0,
+          -1819,
+          -727
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
     }
   },
   "actorTags": [
@@ -100,6 +354,156 @@
         "INE_",
         "AKIR"
       ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 790,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x97970",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x7c082",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2015,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x97d00",
+          "durationNativeTicks": 15,
+          "callFileOffset": "0x7c11e",
+          "sourceOrder": 6
+        }
+      ],
+      "nativeTelephoneCues": [
+        {
+          "frame": 790,
+          "action": "attach",
+          "receiver": {
+            "objectTag": "TEL_",
+            "actorCode": "AKIR",
+            "bindingIndex": 3,
+            "objectRenderKey": 3,
+            "actorRenderKey": -66,
+            "handCorrection": {
+              "translation": [
+                0.07499999552965164,
+                0.02499999850988388,
+                0
+              ],
+              "rotationAxis": "z",
+              "rotationFixedTurnRaw": 16384
+            },
+            "controllerTranslation": [
+              0,
+              -0.009999999776482582,
+              0.05000000074505806
+            ],
+            "controllerRotationWords": [
+              18379,
+              38580,
+              26749
+            ]
+          },
+          "source": [
+            {
+              "callbackFunction": "0x7be00",
+              "callFileOffset": "0x7bfc6"
+            },
+            {
+              "callbackFunction": "0x7be00",
+              "callFileOffset": "0x7c02c"
+            },
+            {
+              "callbackFunction": "0x7be00",
+              "callFileOffset": "0x7c046"
+            }
+          ]
+        },
+        {
+          "frame": 2018,
+          "action": "detach",
+          "source": [
+            {
+              "callbackFunction": "0x7be00",
+              "callFileOffset": "0x7c166"
+            }
+          ]
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 1,
+          "targetIndex": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x7beba",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 0,
+          "targetIndex": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x7bed6",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 0,
+          "frame": 715,
+          "actorTag": "AKIR",
+          "channel": 1,
+          "targetIndex": 1,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x7bf26",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 0,
+          "frame": 745,
+          "actorTag": "AKIR",
+          "channel": 1,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x7bf76",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 0,
+          "frame": 2085,
+          "actorTag": "AKIR",
+          "channel": 1,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x7c1d2",
+          "sourceOrder": 7
+        }
+      ],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 0,
+          "frame": 790,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            4186,
+            -1455,
+            2547
+          ],
+          "callFileOffset": "0x7c0a2",
+          "sourceOrder": 5
+        }
+      ],
+      "nativeFaceClipCues": [],
+      "nativeFaceControllerCues": [],
+      "nativeFaceGazeCues": [],
+      "nativeDetailedHandDefaults": [],
       "motions": [
         {
           "actorTag": "INE_",

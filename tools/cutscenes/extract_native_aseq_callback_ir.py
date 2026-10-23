@@ -13,8 +13,8 @@ ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_IR = ROOT / ".disc-work/dialogue/native-event-ir.json"
 
 
-def read_native_map(path: Path, disc: int, area: str, entry: str) -> dict:
-    """Read one map from the canonical pretty-printed IR without loading 850+ MiB.
+def iter_native_maps(path: Path):
+    """Stream maps from the canonical pretty-printed IR without loading 850+ MiB.
 
     The compiler writes the top-level maps array with indent=2. JSONDecoder
     handles each complete record (including escaped braces/strings); formatting
@@ -42,9 +42,7 @@ def read_native_map(path: Path, disc: int, area: str, entry: str) -> dict:
                     if eof:
                         raise
                 else:
-                    if (value["disc"] == disc and value["area"] == area.upper()
-                            and value["entryFunction"] == entry.lower()):
-                        return value
+                    yield value
                     buffer = buffer[end:]
                     continue
             if eof:
@@ -52,6 +50,13 @@ def read_native_map(path: Path, disc: int, area: str, entry: str) -> dict:
             chunk = stream.read(1024 * 1024)
             eof = not chunk
             buffer += chunk
+
+
+def read_native_map(path: Path, disc: int, area: str, entry: str) -> dict:
+    for value in iter_native_maps(path):
+        if (value["disc"] == disc and value["area"] == area.upper()
+                and value["entryFunction"] == entry.lower()):
+            return value
     raise RuntimeError("requested native map entry is absent from the IR")
 
 

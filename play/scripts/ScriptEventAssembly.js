@@ -96,7 +96,6 @@ export function createScriptEventAssembly({
     selectedObjectActionController,
   });
   const telephoneReceiver = createTelephoneReceiverBabylonAdapter({
-    modelOffset,
     resolveObjectRoot: objectTag => {
       const matches = currentMeshes().filter(root => (
         root?._runtimePlacement === true
@@ -105,19 +104,19 @@ export function createScriptEventAssembly({
       ));
       return matches.length === 1 ? matches[0] : null;
     },
-    getPlayerControlSourceMatrix: ({
+    resolveActorControl: ({
       actorCode,
       renderKey,
-      runtimeMatrixIndex,
     }) => {
       if (
         actorCode !== "AKIR"
-        || renderMatrixByKey.get(renderKey) !== runtimeMatrixIndex
+        || !renderMatrixByKey.has(renderKey)
         || !animation.ready
       ) return null;
-      return retargetCharacterMatrices(
+      const matrix = retargetCharacterMatrices(
         animation.currentRoutes(animation.accumulator).routedMatrices,
-      ).get(renderKey) || null;
+      ).get(renderKey);
+      return matrix ? { root: modelOffset, matrix } : null;
     },
   });
   const playSound = cue => {

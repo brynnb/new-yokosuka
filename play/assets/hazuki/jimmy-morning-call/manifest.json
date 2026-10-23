@@ -27,7 +27,7 @@
     "evidence": "docs/design/story-ticket-journey.md",
     "resourceName": "A0169",
     "variant": "",
-    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector. Original owner 0x74dc8 selects native slot 4 with callback 0x7535c; hands, FACE expressions and prop grips/hinges use that callback. FACE gaze and LKPT tracking remain omitted."
   },
   "audioManifest": "public/audio/world/jimmy-morning-call/manifest.json",
   "sceneObjects": {
@@ -46,6 +46,409 @@
       "characterScale": 1,
       "assetPath": "play/assets/characters/FUK_M.CHRM",
       "textureAssetPath": "play/assets/characters/FUK_textures.bin"
+    }
+  },
+  "attachedObjects": {},
+  "handAssets": {
+    "AKIR": {
+      "actorTag": "AKIR",
+      "bodyModelCode": "YKC_M",
+      "handCode": "YKB",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 10,
+        "model": {
+          "path": "play/assets/introduction/op00/hands/YKB_TL.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YKB_TL.MT5",
+          "byteLength": 40704,
+          "sha256": "517a3423b4cb2c7f96f9cb71475e3f34bc6891af1a0fe892b85c8810826936ec"
+        }
+      },
+      "right": {
+        "rootRenderKey": 5,
+        "model": {
+          "path": "play/assets/introduction/op00/hands/YKB_TR.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YKB_TR.MT5",
+          "byteLength": 40760,
+          "sha256": "1564720156a4967703256cf4e1070e69c660cd57296bdf3b8ea13bffc46dccb8"
+        }
+      },
+      "rig": {
+        "path": "play/assets/introduction/op00/hands/YKB_HM.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YKB_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "bd81f3033c0be237e5f52aa1976166e1376dd1c8c2b3ec66948f25d08fbc9729",
+        "transformNodeCount": 71,
+        "vertexCount": 306,
+        "pointerOffsets": [
+          24,
+          168,
+          8952,
+          5848,
+          6472,
+          9264
+        ]
+      },
+      "presentation": {
+        "attachment": "body-hand-node-world-matrix",
+        "initialPose": "hm-bind-pose",
+        "deformationAssetRetained": true,
+        "nativePoseOperation": "0x005e"
+      }
+    },
+    "FUKU": {
+      "actorTag": "FUKU",
+      "bodyModelCode": "FUK_M",
+      "handCode": "FUK",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/introduction/op00/hands/FUK_TL.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/FUK_TL.MT5",
+          "byteLength": 162476,
+          "sha256": "3434d9f1d5ce9c9e7690a112de21e91085f998ab2b0f880121ff2b114e244ceb"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/introduction/op00/hands/FUK_TR.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/FUK_TR.MT5",
+          "byteLength": 162556,
+          "sha256": "fed2ba987a8a7095246d3da7eb8acf2f6814a9db9e906bf6a33c4daeb8ea2fec"
+        }
+      },
+      "rig": {
+        "path": "play/assets/introduction/op00/hands/FUK_HM.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/FUK_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "4a6c85858467733b459eb40588ff3116fa31c1c4a364b442f0c1169e2cf2bf34",
+        "transformNodeCount": 71,
+        "vertexCount": 306,
+        "pointerOffsets": [
+          24,
+          168,
+          8952,
+          5848,
+          6472,
+          9264
+        ]
+      },
+      "presentation": {
+        "attachment": "body-hand-node-world-matrix",
+        "initialPose": "hm-bind-pose",
+        "deformationAssetRetained": true,
+        "nativePoseOperation": "0x005e"
+      }
+    }
+  },
+  "nativeHandPoseTables": {
+    "0x97d00": {
+      "sourceMapinfoOffset": "0x97d00",
+      "vectors": [
+        [
+          0,
+          0,
+          -6005
+        ],
+        [
+          0,
+          0,
+          -909
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -6368
+        ],
+        [
+          0,
+          1820,
+          -8552
+        ],
+        [
+          0,
+          0,
+          -4548
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -8552
+        ],
+        [
+          0,
+          0,
+          -10372
+        ],
+        [
+          0,
+          -545,
+          -4002
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -7823
+        ],
+        [
+          0,
+          0,
+          -12374
+        ],
+        [
+          0,
+          -909,
+          -2182
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1636,
+          -10735
+        ],
+        [
+          0,
+          -2001,
+          -10372
+        ],
+        [
+          0,
+          -1819,
+          -727
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "0x97a54": {
+      "sourceMapinfoOffset": "0x97a54",
+      "vectors": [
+        [
+          0,
+          0,
+          -8047
+        ],
+        [
+          0,
+          0,
+          -1831
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -9014
+        ],
+        [
+          0,
+          0,
+          -18428
+        ],
+        [
+          0,
+          0,
+          -9829
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -7520
+        ],
+        [
+          0,
+          0,
+          -17389
+        ],
+        [
+          0,
+          0,
+          -11564
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -5737
+        ],
+        [
+          0,
+          0,
+          -18062
+        ],
+        [
+          0,
+          0,
+          -12249
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -7833
+        ],
+        [
+          0,
+          0,
+          -16185
+        ],
+        [
+          0,
+          0,
+          -13991
+        ],
+        [
+          -574,
+          -849,
+          0
+        ]
+      ]
+    },
+    "0x97970": {
+      "sourceMapinfoOffset": "0x97970",
+      "vectors": [
+        [
+          0,
+          0,
+          -8046
+        ],
+        [
+          0,
+          2184,
+          -1829
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -9011
+        ],
+        [
+          0,
+          910,
+          -18422
+        ],
+        [
+          0,
+          0,
+          -9284
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -5697
+        ],
+        [
+          0,
+          0,
+          -17385
+        ],
+        [
+          0,
+          0,
+          -13016
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -7736
+        ],
+        [
+          0,
+          182,
+          -13871
+        ],
+        [
+          0,
+          0,
+          -14599
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1274,
+          -14199
+        ],
+        [
+          0,
+          0,
+          -6371
+        ],
+        [
+          0,
+          -3094,
+          -15983
+        ],
+        [
+          -27,
+          -109,
+          0
+        ]
+      ]
     }
   },
   "actorTags": [
@@ -99,6 +502,268 @@
         "FUKU",
         "AKIR"
       ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 150,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x97d00",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x758aa",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 0,
+          "frame": 150,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x97d00",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x758ca",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 0,
+          "frame": 150,
+          "actorTag": "FUKU",
+          "side": "left",
+          "poseTableOffset": "0x97a54",
+          "durationNativeTicks": 20,
+          "callFileOffset": "0x758ea",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 0,
+          "frame": 522,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x97970",
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x759ca",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1150,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x97d00",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x75ab6",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1150,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x97d00",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x75ad6",
+          "sourceOrder": 9
+        }
+      ],
+      "nativeTelephoneCues": [
+        {
+          "frame": 160,
+          "action": "attach",
+          "receiver": {
+            "objectTag": "TEL_",
+            "actorCode": "FUKU",
+            "bindingIndex": 3,
+            "objectRenderKey": 3,
+            "actorRenderKey": -66,
+            "handCorrection": {
+              "translation": [
+                0.07499999552965164,
+                0.02499999850988388,
+                0
+              ],
+              "rotationAxis": "z",
+              "rotationFixedTurnRaw": 16384
+            },
+            "controllerTranslation": [
+              -0.03999999910593033,
+              -0.009999999776482582,
+              0.05999999865889549
+            ],
+            "controllerRotationWords": [
+              30208,
+              38034,
+              26203
+            ]
+          },
+          "source": [
+            {
+              "callbackFunction": "0x7535c",
+              "callFileOffset": "0x7548a"
+            },
+            {
+              "callbackFunction": "0x7535c",
+              "callFileOffset": "0x754f0"
+            },
+            {
+              "callbackFunction": "0x7535c",
+              "callFileOffset": "0x7550a"
+            }
+          ]
+        },
+        {
+          "frame": 170,
+          "action": "attach",
+          "receiver": {
+            "objectTag": "TEL_",
+            "actorCode": "FUKU",
+            "bindingIndex": 3,
+            "objectRenderKey": 3,
+            "actorRenderKey": -66,
+            "handCorrection": {
+              "translation": [
+                0.07499999552965164,
+                0.02499999850988388,
+                0
+              ],
+              "rotationAxis": "z",
+              "rotationFixedTurnRaw": 16384
+            },
+            "controllerTranslation": [
+              -0.029999999329447746,
+              -0.009999999776482582,
+              0.03999999910593033
+            ],
+            "controllerRotationWords": [
+              53519,
+              1088,
+              60802
+            ]
+          },
+          "source": [
+            {
+              "callbackFunction": "0x7535c",
+              "callFileOffset": "0x755c0"
+            },
+            {
+              "callbackFunction": "0x7535c",
+              "callFileOffset": "0x755da"
+            }
+          ]
+        },
+        {
+          "frame": 521,
+          "action": "attach",
+          "receiver": {
+            "objectTag": "TEL_",
+            "actorCode": "AKIR",
+            "bindingIndex": 4,
+            "objectRenderKey": 3,
+            "actorRenderKey": -65,
+            "handCorrection": {
+              "translation": [
+                0.07499999552965164,
+                0.02499999850988388,
+                0
+              ],
+              "rotationAxis": "z",
+              "rotationFixedTurnRaw": 16384
+            },
+            "controllerTranslation": [
+              -0.019999999552965164,
+              -0.009999999776482582,
+              -0.009999999776482582
+            ],
+            "controllerRotationWords": [
+              11962,
+              62353,
+              60708
+            ]
+          },
+          "source": [
+            {
+              "callbackFunction": "0x7535c",
+              "callFileOffset": "0x75642"
+            },
+            {
+              "callbackFunction": "0x7535c",
+              "callFileOffset": "0x7565e"
+            },
+            {
+              "callbackFunction": "0x7535c",
+              "callFileOffset": "0x7567a"
+            }
+          ]
+        },
+        {
+          "frame": 1135,
+          "action": "detach",
+          "source": [
+            {
+              "callbackFunction": "0x7535c",
+              "callFileOffset": "0x756ce"
+            }
+          ]
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 570,
+          "actorTag": "FUKU",
+          "channel": 1,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x75a5e",
+          "sourceOrder": 7
+        }
+      ],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            2184,
+            -1820,
+            -3822
+          ],
+          "callFileOffset": "0x7583a",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 0,
+          "frame": 170,
+          "actorTag": "FUKU",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1456,
+            -2366,
+            -1274
+          ],
+          "callFileOffset": "0x7596a",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 522,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            4915,
+            -546,
+            -182
+          ],
+          "callFileOffset": "0x759ea",
+          "sourceOrder": 6
+        }
+      ],
+      "nativeFaceClipCues": [],
+      "nativeFaceControllerCues": [],
+      "nativeFaceGazeCues": [],
+      "nativeDetailedHandDefaults": [],
       "motions": [
         {
           "actorTag": "FUKU",

@@ -550,7 +550,7 @@ test("telephone catalog retains concurrent native call timing", () => {
   assert.equal(answer.answer.receiver.actorRenderKey, -0x42);
   assert.equal(answer.answer.receiver.actorRuntimeMatrixIndex, 30);
   assert.deepEqual(answer.answer.receiver.handCorrection, {
-    translation: [0.02499999850988388, 0.07499999552965164, 0],
+    translation: [0.07499999552965164, 0.02499999850988388, 0],
     rotationAxis: "z",
     rotationFixedTurnRaw: 0x4000,
   });

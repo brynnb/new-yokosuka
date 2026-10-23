@@ -13,6 +13,7 @@ from tools.scripting.operations.extract_tagged_telm_control_operation_evidence i
     MAPINFO_SHA256,
     build_report,
 )
+from tools.cutscenes.extract_native_aseq_callback_ir import iter_native_maps
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
@@ -75,8 +76,8 @@ class TaggedTelmControlOperationEvidenceTest(unittest.TestCase):
             consumer["handCorrection"],
             {
                 "translation": [
-                    0.02499999850988388,
                     0.07499999552965164,
+                    0.02499999850988388,
                     0.0,
                 ],
                 "rotationAxis": "z",
@@ -86,6 +87,8 @@ class TaggedTelmControlOperationEvidenceTest(unittest.TestCase):
                 "rotationZRoutineAddress": "0x0c1d25c0",
             },
         )
+        self.assertEqual(consumer["localTransform"]["translationMode"], 11)
+        self.assertEqual(consumer["localTransform"]["rotationMode"], 12)
 
     def test_all_disc_inventory_recovers_all_six_proven_modes(self):
         root = PROJECT_ROOT
@@ -101,7 +104,7 @@ class TaggedTelmControlOperationEvidenceTest(unittest.TestCase):
         report = build_report(
             executable.read_bytes(),
             mapinfo.read_bytes(),
-            json.loads(event_ir.read_text()),
+            {"maps": iter_native_maps(event_ir)},
         )
         inventory = report["allDiscInventory"]
         self.assertEqual(inventory["provenCallCount"], 297)

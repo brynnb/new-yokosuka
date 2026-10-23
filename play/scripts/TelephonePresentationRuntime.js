@@ -69,6 +69,36 @@ export class TelephonePresentationRuntime {
     }
   }
 
+  // AUTH already owns time and sound. Borrow only the receiver on its accepted
+  // frames, including backwards seeks and transfers between different actors.
+  beginActivity(activity, owner) {
+    if (!owner || (this.active && (this.active.owner !== owner || !this.cancel(owner)))) return false;
+    const cues = activity.nativeTelephoneCues || [];
+    if (!cues.length) return true;
+    if (cues.some((cue, index) => !validTick(cue.frame)
+      || (index > 0 && cue.frame < cues[index - 1].frame)
+      || !["attach", "detach"].includes(cue.action)
+      || (cue.action === "attach" && !cue.receiver))) return false;
+    this.active = { kind: "activity", owner, cues, binding: null, frame: 0 };
+    return true;
+  }
+
+  setFrame(owner, frame) {
+    const active = this.active;
+    if (!active) return true;
+    if (active.kind !== "activity" || active.owner !== owner || !validTick(frame)) return false;
+    active.frame = frame;
+    const cue = active.cues.findLast(cue => cue.frame <= frame);
+    const binding = cue?.action === "attach" ? cue.receiver : null;
+    if (binding !== active.binding) {
+      if (active.binding && !accepted(this.detachReceiver(active.binding, owner))) return this.fail(active);
+      active.binding = null;
+      if (binding && !accepted(this.attachReceiver(binding, owner))) return this.fail(active);
+      active.binding = binding;
+    }
+    return !binding || accepted(this.updateReceiver(binding, owner)) || this.fail(active);
+  }
+
   startRing(sequence, owner) {
     if (
       this.active
@@ -126,6 +156,7 @@ export class TelephonePresentationRuntime {
   update(owner, deltaSeconds) {
     const active = this.active;
     if (!active || active.owner !== owner) return true;
+    if (active.kind === "activity") return false;
     if (!Number.isFinite(deltaSeconds) || deltaSeconds < 0) return false;
     active.elapsedTicks += deltaSeconds * active.sequence.tickRate;
     if (active.kind === "ring") return this.updateRing(active);
@@ -188,6 +219,9 @@ export class TelephonePresentationRuntime {
       active.completion.resolve(false);
       return true;
     }
+    if (active.kind === "activity") {
+      return !active.binding || accepted(this.detachReceiver(active.binding, owner));
+    }
     if (active.receiverAttached) {
       cleaned = accepted(this.detachReceiver(
         active.sequence.answer.receiver,
@@ -209,6 +243,10 @@ export class TelephonePresentationRuntime {
   fail(active) {
     if (this.active !== active) return false;
     this.active = null;
+    if (active.kind === "activity") {
+      if (active.binding) this.detachReceiver(active.binding, active.owner);
+      return false;
+    }
     if (active.receiverAttached) {
       this.detachReceiver(active.sequence.answer.receiver, active.owner);
     }
