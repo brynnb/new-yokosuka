@@ -232,7 +232,7 @@ does not establish working mouth animation or envelope presentation.
 | Opening → bedside → first allowance → saved continuation | Rendered/full-stack verified, including explicit intro skips, natural allowance completion, one-time payment and reload. |
 | First dojo visit → men-in-black notebook objective | Connected browser/full-stack progression and notebook verified; server gate/cancellation/settlement tested. Authored two-person lead-in rendered; held poses remain an approximation. |
 | Yamanose kitten / first black-car lead | Connected rendered approach, introduction skip, food choice, natural fish ending and saved notebook verified. Real server/compiler tests cover both food settlements, cancellation/retry and clue isolation. Tofu visuals and prop fidelity remain unverified. |
-| Sumiya / Yamagishi → Nozomi → Tom | Connected browser clicks, visible actors/facing, initial voice playback, saved clues and restored controls verified for all four. Real server/compiler tests cover cancellation/retry, personal eligibility, NPC presence, Yamagishi hours and cross-character isolation. Conversation-specific gestures remain an approximation. |
+| Sumiya / Yamagishi → Nozomi → Tom | Connected browser clicks, original voices with changing rendered mouth buffers, saved clues and restored controls verified for all four. Yamagishi/Nozomi use their exact detailed faces; Sumiya/Tom use original embedded mouth targets. Real server/compiler tests cover cancellation/retry, personal eligibility, NPC presence, Yamagishi hours and cross-character isolation. Conversation-specific gestures and original camera timing remain approximations. |
 | Three Blades → Liu family → Liu Senior's sailors lead | Connected browser continuation verified through Ajiichi, daytime referrals, Liu Barber and Liu Senior. The nighttime cook/Yong/Wu referral is now also rendered and connected; all referrals converge on the same Liu clue. |
 | Nighttime sailors → Heartbeats alley | Personal waiting, Saijo's voiced lead and the alley's failure/retry/success path verified in the browser. Timed input is server-validated; defensive choreography remains approximate. |
 | Heartbeats interior → Charlie notebook lead | Connected real-door/browser check verifies voiced lead-in, failed QTE/retry, successful B,A,B,A inputs, clue settlement, restored Ryo/camera/controls and no replay on re-entry. Rendered cast uses held standing poses; attack choreography is not implemented. |
@@ -388,9 +388,15 @@ QTE or combat.
 
 Click the scheduled NPC to start. The shared presenter locks movement, faces
 the NPC toward Ryo, displays the original English subtitle and plays its
-original voice. Voice completion or Space advances a line. It preserves the
-gameplay camera rather than inventing original shot timings. It does not
-reproduce specific conversation gestures or lip animation. Completion adds
+original voice. The generated Yarn line retains its exact original SRF mouth
+cues as `lip:srf1:...` metadata. `NativeVoiceFacialPresentation` connects those
+cues to the same detailed FACE/embedded mouth renderer used by cutscenes,
+following the audio position rather than elapsed loading time. Detailed faces
+require a proven matching body variant; off-stage voices acquire no model.
+Line changes, cancellation and world teardown release the face, including
+late asset arrivals. Voice completion or Space advances a line. It preserves
+the gameplay camera rather than inventing original shot timings and does not
+reproduce specific conversation gestures. Completion adds
 the personal milestone and lightly adapted notebook page together, then
 restores controls/facing. X/cancellation commits no partial clue; repeat and
 reload cannot duplicate completion.
@@ -419,9 +425,20 @@ generation nor a local import publishes production content.
 Set `NEW_YOKOSUKA_INVESTIGATION_E2E=true` alongside the dojo and kitten test
 flags to extend the connected browser check through Sumiya, Yamagishi, Nozomi and Tom.
 It loads their actual zones and clicks the actual scheduled actors, while
-resetting nearby to bound travel time. The first voice must play; Space
-advances the remaining lines. This does not establish full natural audio or
-animation fidelity.
+resetting nearby to bound travel time. Each resident's voice must play while
+their visible mouth buffers change across rendered frames; Space advances the
+remaining lines. This does not establish full natural audio, gestures or
+camera fidelity.
+
+The 2026-10-22 local run passes allowance/reload → dojo → kitten/fish → all
+four witnesses. Sumiya (`SMY_L`) and Tom (`AME_L`) show changing embedded mouth
+targets; Yamagishi (`YMG_L`) and Nozomi (`NZM_L`) show changing detailed FACE
+vertices. All four rendered captures were reviewed, and each saved lead and
+restored movement was checked. The generator carries 599 unique source voices
+across 727 voiced line uses; all 177 generated imports compile in the real Yarn
+compiler. That corpus check does **not** visually verify the remaining actors
+or conversations. Focused tests separately cover stalled/rewound audio,
+skipping, stale preparation, body replacement, disposal, failure and retry.
 
 The connected run passed locally through allowance, reload, dojo, kitten and
 all four witnesses. Rendered captures also exposed and verified a fix for the

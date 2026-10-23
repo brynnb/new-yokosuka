@@ -7,7 +7,7 @@ import { pathToFileURL } from "node:url";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { afsMembers } from "../lib/NativeAseqAudioPack.mjs";
-import { parseNativeSrfRecords } from "../../src/NativeLipSync.js";
+import { parseNativeSrfRecords, packNativeLipSync } from "../../src/NativeLipSync.js";
 import { nativeDialogueSpeakerLabel, NATIVE_DIALOGUE_SPEAKER_LABELS } from "../../play/dialogue/NativeDialogueSpeaker.js";
 import {moveLearningRoutes} from './story-move-learning.mjs';
 
@@ -89,7 +89,11 @@ for (const route of spec.routes) {
     if (/[<>#\[\]{}]/.test(line.displayText)) throw new Error(`Needs reviewed Yarn escaping: ${id}`);
     voices.add(id);
     if (!voiceRouteIds.length || voiceRouteIds.includes(route.id)) exportedVoices.add(id);
-    return `${nativeDialogueSpeakerLabel({ speakerId })}: ${line.displayText.replaceAll("\n", "[br/]")} #voice:${id} #speaker:${speakerId}`;
+    // Keep the original SRF cue with the exact translated line. A voice URL
+    // alone loses facial timing; fetching another actor's full dialogue tree
+    // at playback would also miss stream-only scenes and remote participants.
+    const lip = line.lipSync ? ` #lip:${packNativeLipSync(line.lipSync)}` : "";
+    return `${nativeDialogueSpeakerLabel({ speakerId })}: ${line.displayText.replaceAll("\n", "[br/]")} #voice:${id} #speaker:${speakerId}${lip}`;
   });
   const lines = dialogueLines(route.voiceIds);
   const leadIn = dialogueLines(route.leadInVoiceIds || []);

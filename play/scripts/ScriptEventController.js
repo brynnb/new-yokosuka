@@ -256,6 +256,7 @@ export class ScriptEventController {
       if (this.presentation.update(deltaSeconds) !== true) {
         throw new Error("script presentation frame update was rejected");
       }
+      this.dialogue.update?.(deltaSeconds);
       return true;
     } catch (error) {
       void this.fail(error);
@@ -274,7 +275,8 @@ export class ScriptEventController {
     this.pendingStart = null;
     this.clearRequestTimeout(this.active);
     this.active?.controller.abort(new DOMException(reason, "AbortError"));
-    this.dialogue.hide();
+    if (this.dialogue.reset) this.dialogue.reset();
+    else this.dialogue.hide();
     this.rollbackPresentation(this.active, reason);
     this.active?.releaseState?.();
     this.active = null;

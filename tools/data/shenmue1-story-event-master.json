@@ -1,6 +1,6 @@
 {
   "schema": "shenmue1-story-event-master-v1",
-  "reviewed": "2026-10-21",
+  "reviewed": "2026-10-22",
   "sources": {
     "routes": {"label":"Story route definitions and their retained native provenance", "path":"tools/scripting/story-investigation.json", "kind":"project adaptation with source locators"},
     "template": {"label":"Story event specifications and verification boundaries", "path":"docs/design/story-event-template.md", "kind":"project implementation record"},
@@ -108,6 +108,10 @@
     "departure":[["boarding","Ryo boards the Hong Kong ship","Travel"],["sailing","Ship departure and closing sequence","Cutscene"]]
   },
   "routeNotes": {
+    "sumiya-witness":"2026-10-22: connected browser click, original voice with rendered SMY_L mouth movement, saved lead and restored movement verified. Screenshot reviewed. Remaining lines skipped; specific gestures/camera fidelity unverified.",
+    "yamagishi-black-car":"2026-10-22: connected browser click, original voice with rendered exact YMG_L detailed FACE movement, saved Dobuita lead and restored movement verified. Screenshot reviewed. Remaining lines skipped; specific gestures/camera fidelity unverified.",
+    "nozomi-black-car":"2026-10-22: connected browser click, original voice with rendered exact NZM_L detailed FACE movement, saved Tom lead and restored movement verified. Screenshot reviewed. Remaining lines skipped; specific gestures/camera fidelity unverified.",
+    "tom-black-car":"2026-10-22: connected browser click, original voice with rendered AME_L mouth movement, saved Chinese-community lead and restored movement verified. Screenshot reviewed. Remaining lines skipped; specific gestures/camera fidelity unverified.",
     "nozomi-photos":"Apart/together choices and their later presentation must remain distinct outcomes.",
     "master-chen-phone-dobuita":"Home, Sakuragaoka and Dobuita are location variants of the password interaction; wrong answers and unavailable callers must be audited. Current authored route covers home/Dobuita.",
     "master-chen-return-call-dobuita":"One appointment interaction, with home/Dobuita/harbor route bindings; original telephone locations and variants still need a full join.",

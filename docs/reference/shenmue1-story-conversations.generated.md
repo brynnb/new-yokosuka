@@ -1,6 +1,6 @@
 # Shenmue I conversation entry appendix
 
-Reviewed 2026-10-21. Generated alongside the [master event list](shenmue1-story-event-master.generated.md); do not edit this output.
+Reviewed 2026-10-22. Generated alongside the [master event list](shenmue1-story-event-master.generated.md); do not edit this output.
 
 **4173 source entry markers across 257 unique actor resources.** The original archive contains 4327 physical entries; repeated identical actor resources are counted once. These are conversation branches, not 4173 additional unique story events. Named plot conversations in the master list can occur here too.
 

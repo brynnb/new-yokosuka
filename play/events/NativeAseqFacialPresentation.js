@@ -185,6 +185,7 @@ export class NativeAseqFacialPresentation {
     this.poseStates = new Map();
     this.active = null;
     this.program = null;
+    this.revision = 0;
   }
 
   async prepare({ actors: actorTags } = {}) {
@@ -282,6 +283,17 @@ export class NativeAseqFacialPresentation {
     if (this.active || this.program) return false;
     this.poseStates.clear();
     return true;
+  }
+
+  clear() {
+    this.revision += 1;
+    if (this.active) this.end(this.active.owner);
+    if (this.program) this.endProgram(this.program.owner);
+    for (const entry of this.entries.values()) entry.root.dispose(false, true);
+    this.entries.clear();
+    this.pending.clear();
+    this.poseAssets.clear();
+    this.poseStates.clear();
   }
 
   play(owner, command) {
@@ -525,15 +537,19 @@ export class NativeAseqFacialPresentation {
   async #prepareActor(actorTag) {
     if (this.entries.has(actorTag)) return this.entries.get(actorTag);
     if (this.pending.has(actorTag)) return this.pending.get(actorTag);
-    const pending = this.#loadActor(actorTag);
-    this.pending.set(actorTag, pending);
-    try {
-      const entry = await pending;
+    const revision = this.revision;
+    const pending = this.#loadActor(actorTag).then(entry => {
+      if (revision !== this.revision) {
+        entry.root.dispose(false, true);
+        throw new DOMException("FACE preparation cancelled", "AbortError");
+      }
       this.entries.set(actorTag, entry);
       return entry;
-    } finally {
-      this.pending.delete(actorTag);
-    }
+    }).finally(() => {
+      if (this.pending.get(actorTag) === pending) this.pending.delete(actorTag);
+    });
+    this.pending.set(actorTag, pending);
+    return pending;
   }
 
   async #loadActor(actorTag) {
@@ -635,7 +651,7 @@ export class NativeAseqFacialPresentation {
     try {
       return await pending;
     } catch (error) {
-      this.poseAssets.delete(key);
+      if (this.poseAssets.get(key) === pending) this.poseAssets.delete(key);
       throw error;
     }
   }

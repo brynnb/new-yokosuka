@@ -37,6 +37,8 @@ import { NativeAseqAttachedObjectRuntime } from "../events/NativeAseqAttachedObj
 import { createNativeCutsceneSceneObjectLoader } from "../cutscenes/NativeCutsceneSceneObjectLoader.js";
 import { fetchAssetBuffer } from "../../src/AssetCache.js";
 import { runtimeAssetUrl } from "../../src/RuntimeAssets.js";
+import { NativeVoiceFacialPresentation } from "../dialogue/NativeVoiceFacialPresentation.js";
+import nativeFaceCatalog from "../assets/cutscenes/native-faces/manifest.generated.json" with { type: "json" };
 
 export function createScriptEventAssembly({
   nativeRuntime,
@@ -207,6 +209,17 @@ export function createScriptEventAssembly({
     japaneseText: dom.dialogueJapanese,
     options: dom.dialogueOptions,
     audioSettings: dialogueAudio,
+    facialPresentation: new NativeVoiceFacialPresentation({
+      scene, catalog: nativeFaceCatalog,
+      loadAsset: path => fetchAssetBuffer(runtimeAssetUrl(path)),
+      getActor: tag => {
+        const model = tag === "AKIR" ? getPlayerModel() : scheduledActors.dialogueActorModel(tag);
+        // An off-stage voice (or a non-Ryo Free roam avatar) must not acquire
+        // another character's surface just because the subtitle says Ryo.
+        if (!model || (tag === "AKIR" && model.modelCode !== nativeFaceCatalog.facialAssets.AKIR.bodyModelCode)) return null;
+        return { actorCode: tag, root: model.root, model };
+      },
+    }),
     onAdvance: () => controller?.advanceLine(),
     onSelect: optionId => controller?.selectOption(optionId),
     onChallengeResponse: (action,token,outcome) => controller?.challengeResponse(action,token,outcome),

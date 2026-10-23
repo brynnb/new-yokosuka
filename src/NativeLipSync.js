@@ -136,6 +136,17 @@ export function nativeLipSyncDescriptor(cues) {
   });
 }
 
+/** Compact transport shared by generated message modules and Yarn metadata. */
+export function packNativeLipSync(value) {
+  const descriptor = validateNativeLipSync(value);
+  let binary = "";
+  for (const { shape, durationTicks } of descriptor.cues) {
+    if (durationTicks > 0xffff) throw new TypeError("packed native lip-sync duration exceeds u16");
+    binary += String.fromCharCode(shape, durationTicks & 0xff, durationTicks >>> 8);
+  }
+  return PACKED_NATIVE_LIP_SYNC_PREFIX + globalThis.btoa(binary);
+}
+
 /** Decode the compact generated-module form: repeated u8 shape/u16le duration. */
 export function unpackNativeLipSync(value) {
   if (

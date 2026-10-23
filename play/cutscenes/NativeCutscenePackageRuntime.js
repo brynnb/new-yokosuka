@@ -826,6 +826,7 @@ export class NativeCutscenePackageRuntime {
     this.stop("disposed");
     this.clearWorld();
     this.audio.dispose();
+    this.presentation.faces?.clear();
   }
 
   nativeActivityAdapter() {

@@ -56,6 +56,36 @@ function arrayBuffer(filename) {
   return value.buffer.slice(value.byteOffset, value.byteOffset + value.byteLength);
 }
 
+test("clearing prepared faces cancels every waiter, disposes late roots, and permits retry", async () => {
+  const engine = new BABYLON.NullEngine(), scene = new BABYLON.Scene(engine);
+  try {
+    let release;
+    const gate = new Promise(resolve => { release = resolve; });
+    const faces = createNativeAseqFacialPresentation({
+      scene, actors: { activeActor: () => null, componentWorldPosition: () => null },
+      definitions: { AKIR: inventory.facialAssets.AKIR },
+      loadAsset: async filename => { await gate; return arrayBuffer(filename); },
+    });
+    const first = faces.prepare({ actors: ["AKIR"] });
+    const second = faces.prepare({ actors: ["AKIR"] });
+    const results = Promise.allSettled([first, second]);
+    faces.clear();
+    release();
+    for (const result of await results) {
+      assert.equal(result.status, "rejected");
+      assert.equal(result.reason.name, "AbortError");
+    }
+    assert.equal(faces.entries.size, 0);
+    assert.equal(scene.meshes.length, 0);
+    await faces.prepare({ actors: ["AKIR"] });
+    assert.equal(faces.entries.size, 1);
+    const root = faces.entries.get("AKIR").root;
+    faces.clear();
+    assert.equal(root.isDisposed(), true);
+    assert.equal(scene.meshes.length, 0);
+  } finally { scene.dispose(); engine.dispose(); }
+});
+
 function assertVectorClose(actual, expected, label, epsilon = 1e-6) {
   assert.equal(actual.length, expected.length, label);
   for (let index = 0; index < expected.length; index += 1) {

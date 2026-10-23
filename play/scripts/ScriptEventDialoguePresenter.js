@@ -71,6 +71,7 @@ export function scriptEventLinePresentation(
     speakerLabel: speaker.label,
     speakerStyle: speaker.style,
     voiceId: voiceId || null,
+    lipSync: metadataValue(line?.metadata, "lip:") || null,
     text: dialogueText(expandYarnSubstitutions(line.text, substitutions)),
   };
 }
@@ -107,6 +108,7 @@ export class ScriptEventDialoguePresenter {
     resolveSpeaker = defaultSpeakerResolver,
     audioFactory = defaultAudioFactory,
     audioSettings = null,
+    facialPresentation = null,
     onAdvance = () => {},
     onSelect = () => {},
     onChallengeResponse = () => {},
@@ -126,6 +128,7 @@ export class ScriptEventDialoguePresenter {
     this.resolveSpeaker = resolveSpeaker;
     this.audioFactory = audioFactory;
     this.audioSettings = audioSettings;
+    this.facialPresentation = facialPresentation;
     this.onAdvance = onAdvance;
     this.onSelect = onSelect;
     this.onChallengeResponse = onChallengeResponse;
@@ -188,8 +191,16 @@ export class ScriptEventDialoguePresenter {
     this.audio = audio;
     this.audioSettings?.attach?.(audio);
     audio.addEventListener?.("ended", () => {
-      if (this.active && this.audio === audio) this.onAdvance();
+      if (this.active && this.audio === audio) {
+        this.facialPresentation?.stop();
+        this.onAdvance();
+      }
     }, { once: true });
+    // Preparing a detailed face must not delay audio or the ordered script
+    // reply queue. The voice-owned adapter rejects stale line/world arrivals.
+    if (detail.lipSync) void this.facialPresentation?.start(detail, audio).catch(error => {
+      if (this.active && this.audio === audio) console.warn(`Could not present script face ${detail.voiceId}:`, error);
+    });
     try {
       await audio.play?.();
     } catch (error) {
@@ -402,6 +413,7 @@ export class ScriptEventDialoguePresenter {
   }
 
   releaseAudio() {
+    this.facialPresentation?.stop();
     if (!this.audio) return;
     this.audioSettings?.detach?.(this.audio);
     this.audio.pause?.();
@@ -417,6 +429,14 @@ export class ScriptEventDialoguePresenter {
 
   dispose() {
     this.hide();
+    this.facialPresentation?.clear();
+  }
+
+  update(deltaSeconds) { this.facialPresentation?.update(deltaSeconds); }
+
+  reset() {
+    this.hide();
+    this.facialPresentation?.clear();
   }
 }
 

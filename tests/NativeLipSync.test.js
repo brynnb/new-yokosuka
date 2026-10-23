@@ -5,6 +5,7 @@ import {
   NATIVE_MOUTH_POSE_BY_SRF_SHAPE,
   NativeLipSyncCuePlayer,
   nativeLipSyncDescriptor,
+  packNativeLipSync,
   parseNativeSrfMouthCues,
   parseNativeSrfRecords,
   unpackNativeLipSync,
@@ -85,6 +86,11 @@ test("native cue playback uses the recovered pose map and transitions", () => {
 
 test("packed message cues preserve exact shapes and durations", () => {
   const packed = "srf1:BRIAAAQA";
+  assert.equal(packNativeLipSync(unpackNativeLipSync(packed)), packed);
+  assert.equal(packNativeLipSync(packed), packed);
+  const wide = nativeLipSyncDescriptor([{ shape: 3, durationTicks: 65535 }]);
+  assert.deepEqual(unpackNativeLipSync(packNativeLipSync(wide)), wide);
+  assert.throws(() => packNativeLipSync(nativeLipSyncDescriptor([{ shape: 0, durationTicks: 65536 }])), /exceeds u16/);
   assert.deepEqual(unpackNativeLipSync(packed), {
     format: "shenmue-srf-mouth-cues-v1",
     tickRate: 60,

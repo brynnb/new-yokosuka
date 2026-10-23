@@ -51,7 +51,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     page.on("console",message=>{if(message.type()==="error")console.info("Story console error:",message.text().slice(0,500));});
   }
   if(process.env.NEW_YOKOSUKA_BUS_E2E === "true")page.on("console",message=>{if(message.type()==="error")console.info("Story travel browser error:",message.text());});
-  const guestToken = resumeId ? process.env.NEW_YOKOSUKA_STORY_RESUME_TOKEN : randomUUID();
+  const guestToken = resumeId ? process.env.NEW_YOKOSUKA_STORY_RESUME_TOKEN : process.env.NEW_YOKOSUKA_STORY_GUEST_TOKEN || randomUUID();
   expect(guestToken).toBeTruthy();
   const auth = await page.request.post("/api/auth/guest", { data: { guestToken } });
   expect(auth.ok(), await auth.text()).toBe(true);
@@ -861,15 +861,25 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
     }
     const point = await residentClickPoint(page, actor);
     await page.screenshot({ path: testInfo.outputPath(`${actor}-before-talk.png`) });
+    await observeStoryDialogueFace(page, actor);
     await page.mouse.click(point.x, point.y);
     await page.waitForFunction(() => window.storyProbe.dialogue?.active, null, { timeout: 15_000 });
     await page.waitForFunction(() => {
       const audio = window.storyProbe.dialogue?.audio;
       return audio && !audio.paused && audio.currentTime > 0;
     }, null, { timeout: 15_000 });
-    await page.waitForTimeout(1500);
+    await page.waitForFunction(() => window.storyDialogueFaceSample.vertices.size > 2, null, { timeout: 60_000 });
     await page.screenshot({ path: testInfo.outputPath(`${actor}-dialogue.png`) });
-    // First voice really plays; advance the remaining original lines
+    const faceSample = await page.evaluate(() => {
+      window.stopStoryDialogueFaceProbe();
+      const s = window.storyDialogueFaceSample;
+      return { actor: s.actor, model: s.model, kind: s.kind, frames: s.frames, vertices: s.vertices.size, mouths: s.mouths.size };
+    });
+    await testInfo.attach(`${actor}-rendered-face`, { body: JSON.stringify(faceSample, null, 2), contentType: "application/json" });
+    console.info("Story dialogue rendered face:", JSON.stringify(faceSample));
+    expect(faceSample.frames).toBeGreaterThan(2);
+    expect(faceSample.mouths).toBeGreaterThan(2);
+    // The resident's original voice and mouth really play; advance remaining lines
     // with the supported Space control to keep this smoke test bounded.
     for (let line = 0; line < 100; line++) {
       if (await page.evaluate(flag => !!window.storyProbe.regions.getCharacter()?.storyFlags?.[flag], flag)) break;
@@ -902,6 +912,37 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
     await expect(page.getByText(/Ask sailors who travel to Hong Kong or Shanghai/)).toBeVisible();
     await page.screenshot({ path: testInfo.outputPath("sailors-notebook.png") });
   }
+}
+
+async function observeStoryDialogueFace(page, actor) {
+  await page.evaluate(actor => {
+    const scene = window.storyProbe.lifecycle.scene;
+    const sample = window.storyDialogueFaceSample = { actor, frames: 0, vertices: new Set(), mouths: new Set() };
+    const observer = scene.onAfterRenderObservable.add(() => {
+      const owner = window.storyProbe.dialogue?.facialPresentation?.active;
+      if (owner?.tag !== actor || !owner.ready || owner.audio.paused || owner.audio.currentTime <= 0) return;
+      const detailed = owner.faces.active?.faces.get(actor);
+      const generic = owner.faces.active?.genericFaces.get(actor);
+      const meshes = detailed?.entry.primaryMeshes || generic?.speech.controller.binding.meshes.map(record => record.mesh);
+      if (!meshes?.some(mesh => mesh.isEnabled() && scene.isActiveMesh(mesh))) return;
+      sample.model = owner.model.modelCode;
+      sample.kind = detailed ? "detailed" : "generic";
+      sample.frames++;
+      sample.mouths.add(detailed ? JSON.stringify(Array.from(detailed.mouth.current)) : generic.speech.controller.weight);
+      // Body motion cannot count: model-local mouth vertices only, excluding
+      // seam vertices which deliberately follow the moving body attachment.
+      sample.vertices.add(JSON.stringify(meshes.flatMap(mesh => {
+        const positions = mesh.getVerticesData("position");
+        if (!detailed) return Array.from(positions);
+        return Array.from(mesh._mt5SourceVertexIndices).flatMap((source, index) => {
+          const local = source - detailed.entry.primaryVertexBase;
+          return mesh._mt5ExternalParentVertexOffsets?.[index] < 0 || local < 0 || local >= detailed.entry.table.vertexCount
+            ? [] : Array.from(positions.slice(index * 3, index * 3 + 3));
+        });
+      })));
+    });
+    window.stopStoryDialogueFaceProbe = () => scene.onAfterRenderObservable.remove(observer);
+  }, actor);
 }
 
 async function residentClickPoint(page, actor) {

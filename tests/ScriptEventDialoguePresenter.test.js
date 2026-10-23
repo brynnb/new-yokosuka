@@ -126,6 +126,7 @@ test("line presentation requires an explicit known speaker and permits optional 
     speakerLabel: "Yoshifumi Hato",
     speakerStyle: "other",
     voiceId: "F1030B001",
+    lipSync: null,
     text: "Ain't got time.\nGet out.",
   });
   assert.throws(() => scriptEventLinePresentation({
@@ -168,6 +169,41 @@ test("dialogue presenter advances only the currently owned voice", async () => {
   presenter.hide();
   listeners[0]();
   assert.equal(advances, 1);
+});
+
+test("script voice metadata reaches shared faces without blocking line changes or cleanup", async () => {
+  const calls = [], ended = [];
+  let finishFace;
+  const preparing = new Promise(resolve => { finishFace = resolve; });
+  const presenter = createScriptEventDialoguePresenter({
+    root: element(), speaker: element(), sourceText: element(), japaneseText: element(), options: optionsElement(),
+    voiceManifest: { urlFor: async id => `/voice/${id}.m4a` },
+    audioFactory: () => ({
+      addEventListener: (_type, handler) => ended.push(handler),
+      play: async () => calls.push(["play"]), pause() {}, removeAttribute() {}, load() {},
+    }),
+    facialPresentation: {
+      start: (detail, audio) => { calls.push(["start", detail, audio]); return preparing; },
+      stop: () => calls.push(["stop"]), update: dt => calls.push(["update", dt]), clear: () => calls.push(["clear"]),
+    },
+    onAdvance: () => calls.push(["advance"]),
+  });
+  await presenter.show({ text: "Ryo: Hello", metadata: ["speaker:AKIR", "voice:F0001", "lip:srf1:BRIAAAQA"] });
+  await Promise.resolve();
+  const start = calls.find(([type]) => type === "start");
+  assert.equal(start[1].lipSync, "srf1:BRIAAAQA");
+  assert.equal(start[2], presenter.audio);
+  assert.ok(calls.some(([type]) => type === "play"), "voice must not await FACE assets");
+  presenter.update(0.1);
+  assert.deepEqual(calls.at(-1), ["update", 0.1]);
+  await presenter.show({ text: "Ryo: Another line", metadata: ["speaker:AKIR"] });
+  const count = calls.length;
+  ended[0]();
+  assert.equal(calls.length, count, "stale audio must not stop or advance the new line");
+  finishFace();
+  presenter.reset();
+  assert.equal(presenter.active, false);
+  assert.equal(calls.at(-1)[0], "clear");
 });
 
 test("unvoiced authored dialogue stays open for manual advance", async () => {
