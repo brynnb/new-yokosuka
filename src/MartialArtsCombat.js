@@ -936,6 +936,7 @@ export function synchronizeCombatVictim(attacker, defender, move) {
   defender.activeFollowupId = null;
   defender.reaction = {
     kind: "paired",
+    pairedAttackerId: attacker.id,
     moveId: move.id,
     attackerId: attacker.id,
     tick: 0,
@@ -1124,6 +1125,7 @@ export function startCombatMove(combatant, move, {
   enemyVariant = combatant.team === "enemy",
 } = {}) {
   if (!canAct(combatant) || !combatMoveAvailable(combatant, move)) return false;
+  if (move.synchronizedVictim && defender && combatPairBlocksInteraction(defender, combatant)) return false;
   combatant.guardHeld = false;
   combatant.action = {
     moveId: move.id,
@@ -1140,6 +1142,7 @@ export function startCombatMove(combatant, move, {
       || move.initialFollowupId
       || null,
     lockedTargetId,
+    pairedTargetId: move.synchronizedVictim ? lockedTargetId : null,
     counteringTargetId: move.counterCondition ? lockedTargetId : null,
   };
   combatant.pendingInitialFollowupId = null;
@@ -1324,6 +1327,7 @@ function startCombatFollowupStage(
     connected: new Set(),
     followupStage: true,
     lockedTargetId,
+    pairedTargetId: stage.synchronizedVictim ? lockedTargetId : null,
     nextFollowupId,
   };
   combatant.activeFollowupId = stage.id;
@@ -1333,8 +1337,25 @@ function startCombatFollowupStage(
 export function isGuarding(combatant) {
   return Boolean(
     combatant.guardHeld
-    && canAct(combatant)
+    // Block stun prevents a new action, not continued defence. Using canAct
+    // here made a second crowd attack bypass a guard the player never released.
+    && !combatant.defeated
+    && !combatant.action
+    && combatant.hitStun <= 0
+    && combatant.knockdown <= 0
+    && (!combatant.reaction || combatant.reaction.kind === "guard")
   );
+}
+
+function combatPairBlocksInteraction(combatant, opponent) {
+  const victimPartner = combatant.reaction?.pairedAttackerId;
+  if (victimPartner) {
+    // Only that still-active authored pair may connect. Even its original
+    // thrower must not start another hit while the victim is getting up.
+    return victimPartner !== opponent.id || opponent.action?.pairedTargetId !== combatant.id;
+  }
+  const partner = combatant.action?.pairedTargetId;
+  return Boolean(partner && partner !== opponent.id);
 }
 
 export function strikeCanConnect(attacker, defender, move) {
@@ -1347,6 +1368,10 @@ export function strikeCanConnect(attacker, defender, move) {
     || defender.defeated
     || defender.invulnerability > 0
     || defender.action?.counteringTargetId === attacker.id
+    // Authored throws/counters own both bodies through recovery. Interrupting
+    // just one clip with a third fighter's hit leaves the other holding air.
+    || combatPairBlocksInteraction(defender, attacker)
+    || combatPairBlocksInteraction(attacker, defender)
   ) {
     return false;
   }
@@ -1386,6 +1411,7 @@ export function applyCombatHit(attacker, defender, move) {
   defender.activeFollowupId = null;
   defender.reaction = {
     kind: guarded ? "guard" : move.knockdown ? "knockdown" : "hit",
+    ...(move.synchronizedVictim ? { pairedAttackerId: attacker.id } : {}),
     moveId: move.id,
     attackerId: attacker.id,
     tick: 0,
@@ -1774,6 +1800,7 @@ export class MartialArtsEnemyAI {
       return { kind: "stunned" };
     }
     if (enemy.action) return { kind: "action" };
+    if (enemy.guardStun > 0) return { kind: "guard", turnYaw: relation.targetYaw };
     if (this.cooldown > 0) {
       this.cooldown -= 1;
       return { kind: "guard", turnYaw: relation.targetYaw };

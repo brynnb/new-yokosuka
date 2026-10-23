@@ -5,6 +5,7 @@ import {
   MARTIAL_ARTS_MOVES,
   MARTIAL_ARTS_STRINGS,
   combatActionDuration,
+  applyCombatHit,
   startCombatMove,
 } from "../src/MartialArtsCombat.js";
 
@@ -1118,6 +1119,35 @@ test("holding guard faces the target and blocks enemy strikes", () => {
   runtime.update(1 / 30);
   assert.ok(Math.abs(player.angle - Math.PI / 2) < 1e-8);
   assert.equal(runtime.player.guardHeld, true);
+});
+
+test("held guard remains active through its blocked-hit animation", () => {
+  const input = new Input();
+  const runtime = new CombatEncounterRuntime({ input, playerActor: actor(), enemyActor: actor(),
+    enemyAI: { decide: () => ({ kind: "idle" }) } });
+  runtime.setActive(true); input.guarding = true; runtime.update(1 / 30);
+  applyCombatHit(runtime.enemy, runtime.player, MARTIAL_ARTS_MOVES.tigerKnuckle);
+  runtime.update(1 / 30);
+  assert.equal(runtime.player.guardHeld, true);
+  assert.equal(runtime.playerMovementLocked, true, "block recovery does not permit locomotion");
+  input.guarding = false; runtime.update(1 / 30);
+  assert.equal(runtime.player.guardHeld, false);
+});
+
+test("crowd attacker limit cannot move a stunned actor or overwrite a paired reaction", () => {
+  const player = actor(), busy = actor(0, 1), stunned = actor(1, 0);
+  const runtime = new CombatEncounterRuntime({ input: new Input(), playerActor: player,
+    waitForFirstAttack: false, preservePlacement: true, maxAttackers: 1,
+    enemies: [{ id: "busy", actor: busy, ai: { decide: () => ({ kind: "action" }) } },
+      { id: "stunned", actor: stunned, ai: { decide: () => ({ kind: "stunned" }) } }],
+  });
+  runtime.setActive(true);
+  startCombatMove(runtime.enemies[0].combatant, MARTIAL_ARTS_MOVES.tigerKnuckle);
+  const victim = runtime.enemies[1].combatant;
+  victim.hitStun = 10; victim.reaction = { kind: "paired", tick: 0, attackerId: "ryo" };
+  const before = stunned.position(); runtime.update(1 / 30);
+  assert.deepEqual(stunned.position(), before);
+  assert.equal(victim.reaction.kind, "paired");
 });
 
 test("pressing and releasing guard immediately updates encounter UI", () => {

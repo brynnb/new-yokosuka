@@ -11,6 +11,8 @@ import {
   MartialArtsEnemyAI,
   THROW_ACQUISITION_NEAR_DISTANCE,
   actionPhase,
+  applyCombatHit,
+  canAct,
   combatActionDuration,
   createCombatant,
   formatCombatCommand,
@@ -18,6 +20,7 @@ import {
   queueCombatCommand,
   setCombatCommandOverride,
   startCombatMove,
+  strikeCanConnect,
   synchronizeCombatVictim,
 } from "../src/MartialArtsCombat.js";
 
@@ -225,16 +228,14 @@ test("move scroll formats native browser commands and positional throws", () => 
 });
 
 test("bare throw selects front, side, and rear native variants", () => {
-  const defender = createCombatant({
-    id: "defender",
-    team: "enemy",
-    yaw: 0,
-  });
   for (const [position, expectedMove] of [
     [{ x: 0, z: 1, yaw: Math.PI }, "overthrow"],
     [{ x: 1, z: 0, yaw: -Math.PI / 2 }, "darksideHazuki"],
     [{ x: 0, z: -1, yaw: 0 }, "backTwistDrop"],
   ]) {
+    // Each angle is a separate bout, not another attacker stealing the same
+    // defender while the previous fixture's throw is still playing.
+    const defender = createCombatant({ id: "defender", team: "enemy", yaw: 0 });
     const attacker = createCombatant({
       id: expectedMove,
       team: "player",
@@ -330,11 +331,38 @@ test("paired victim is locked from animation start rather than hit frame", () =>
   assert.equal(defender.hitStun, move.victimDuration);
   assert.deepEqual(defender.reaction, {
     kind: "paired",
+    pairedAttackerId: "ryo",
     moveId: "overthrow",
     attackerId: "ryo",
     tick: 0,
   });
   assert.equal(synchronizeCombatVictim(attacker, null, move), false);
+});
+
+test("a third fighter cannot break either half of an acquired throw or steal its victim", () => {
+  const { combat, ryo, enemy } = duel(.8);
+  const extraEnemy = combat.add(createCombatant({ id: "extra-enemy", team: "enemy", z: -.5 }));
+  const ally = combat.add(createCombatant({ id: "ally", team: "player", z: .3 }));
+  const throwMove = MARTIAL_ARTS_MOVES.overthrow;
+  startCombatMove(ryo, throwMove, { lockedTargetId: enemy.id, defender: enemy });
+  const assertPairOwned = () => {
+    assert.equal(strikeCanConnect(extraEnemy, ryo, MARTIAL_ARTS_MOVES.tigerKnuckle), false);
+    assert.equal(strikeCanConnect(ally, enemy, MARTIAL_ARTS_MOVES.tigerKnuckle), false);
+    assert.equal(startCombatMove(ally, throwMove, { lockedTargetId: enemy.id, defender: enemy }), false);
+  };
+  assertPairOwned();
+  const events = [];
+  while (ryo.action && ryo.action.connected.size === 0) events.push(...combat.step());
+  assert.ok(events.some(e => e.type === "hit" && e.attackerId === ryo.id && e.defenderId === enemy.id));
+  assertPairOwned();
+  while (ryo.action) combat.step();
+  assert.ok(enemy.reaction, "the victim's get-up can outlast the thrower");
+  assert.equal(strikeCanConnect(ryo, enemy, MARTIAL_ARTS_MOVES.tigerKnuckle), false);
+  assert.equal(startCombatMove(ryo, throwMove, { lockedTargetId: enemy.id, defender: enemy }), false);
+  for (let tick = 0; tick < 1000 && (ryo.action || enemy.reaction); tick++) combat.step();
+  assert.equal(enemy.reaction, null);
+  assert.equal(strikeCanConnect(ally, enemy, MARTIAL_ARTS_MOVES.tigerKnuckle), true,
+    "ownership ends with recovery, not permanent invulnerability");
 });
 
 test("an acquired paired throw cannot become a phantom range miss", () => {
@@ -833,6 +861,20 @@ test("guard blocks strikes while throws defeat guard", () => {
   }
 });
 
+test("held guard survives staggered strikes without permitting actions during block stun", () => {
+  const { combat, ryo, enemy } = duel();
+  enemy.guardHeld = true;
+  const move = MARTIAL_ARTS_MOVES.tigerKnuckle;
+  assert.equal(applyCombatHit(ryo, enemy, move).type, "guarded");
+  combat.step(); combat.step();
+  assert.equal(canAct(enemy), false, "blocking recovery still prevents an attack");
+  assert.equal(applyCombatHit(ryo, enemy, move).type, "guarded",
+    "a second opponent's strike must not bypass a continuously held guard");
+  assert.equal(enemy.health, enemy.maxHealth);
+  enemy.guardHeld = false;
+  assert.equal(applyCombatHit(ryo, enemy, move).type, "hit", "releasing guard is not invulnerability");
+});
+
 test("Shadow Step evades behind the opponent without damaging or stunning", () => {
   const { combat, ryo, enemy } = duel(0.6);
   const move = MARTIAL_ARTS_MOVES.shadowStep;
@@ -893,4 +935,6 @@ test("enemy AI approaches, guards, and selects attacks deterministically", () =>
   const decision = ai.decide(enemy, target);
   assert.equal(decision.kind, "move");
   assert.equal(decision.moveId, "crescentKick");
+  enemy.guardStun = 3;
+  assert.equal(ai.decide(enemy, target).kind, "guard", "block recovery preserves defence instead of locomotion");
 });

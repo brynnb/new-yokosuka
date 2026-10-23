@@ -32,6 +32,7 @@ import {verifySavedScrollLearning} from "./story-move-learning.js";
 import {placeAtHeartbeatsApproach,reviewHeartbeatsPresentation,inspectHeartbeatsMotions,inspectHeartbeatsBarMotions} from "./story-heartbeats-presentation.js";
 import { reviewStoryFaces } from "./story-face-presentation.js";
 import { reviewTattooIntroduction } from "./story-tattoo-presentation.js";
+import { reviewStoryFight } from "./story-combat-review.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
@@ -1424,6 +1425,10 @@ async function verifyParkingLotAmbush(page,testInfo,character) {
   await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready || window.storyProbe.sceneErrors.length,null,{timeout:60_000});
   expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   await page.screenshot({path:testInfo.outputPath("ambush-fight.png")});
+  if(process.env.NEW_YOKOSUKA_COMBAT_REVIEW_E2E === "true") {
+    await reviewStoryFight(page,testInfo);
+    return;
+  }
   // Let the real client-controlled opponents defeat an idle player, then retry.
   await expect(page.getByRole("button",{name:"Try again",exact:true})).toBeVisible({timeout:60_000});
   let saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();

@@ -921,9 +921,10 @@ Event ID: `story-s1-parking-lot-ambush`, official import `parking-lot-ambush`.
   arena padding and the strict retry policy. The generator reuses shared practice
   move identities, timings, damage, ranges, stun and 400 ms input buffering.
   These are playable rules, not a reconstructed original free-battle engine.
-  Guard is simplified, only three basic moves are exposed, and paired throws,
-  enemy-specific combos, root-motion choreography and combat sound cues remain
-  presentation gaps. The arena uses bounded movement and fighter separation,
+  Story now uses the shared client combat engine, earned move repertoire,
+  authored paired throws/root motion and combat sound cues. Enemy-specific
+  movesets and exact original battle behaviour remain approximations.
+  The arena uses bounded movement and fighter separation,
   not the ordinary scenery collision system. The temporary fight HP does not
   modify the character's persistent MMO HP.
 - The interrogation's standing poses and two-person camera are authored; Tony's
@@ -937,15 +938,27 @@ Event ID: `story-s1-parking-lot-ambush`, official import `parking-lot-ambush`.
 ### Verification
 
 `NEW_YOKOSUKA_AMBUSH_E2E=true` continues the earned Charlie-inquiry checkpoint.
-It walks across the real trigger, renders/skips both original introductions,
-loses to the actual server-controlled opponents, retries with physical guard/kick
-inputs, questions Tony with original voice playback, verifies the notebook and
-unchanged persistent health/money, then checks repeat entry and reload. Travel
-to the approach is shortened; this is not a proof of the entire walk from the
-previous shop or every combat move's choreography.
+It walks across the real trigger and renders/skips both original introductions.
+The intended complete check loses to client-controlled opponents, retries with
+physical inputs, questions Tony, verifies notebook/economy, and checks reload.
+Its stationary kick strategy no longer establishes a win against the current
+shared engine: victory/interrogation/reload remain unverified in this recheck.
+Travel to the approach is shortened; this is not a proof of the entire walk
+from the previous shop or every combat move's choreography.
 
-The real compiler/PostgreSQL test executes the canonical generated import with
-server-simulated intents. It checks missing-date migration, same-day/daytime/
+Add `NEW_YOKOSUKA_COMBAT_REVIEW_E2E=true` for the focused rendered guard/cancel
+check, not the complete progression check. The 2026-10-23 hardware-browser run
+observed 26 blocked strikes and one correctly damaging throw in 21 seconds,
+without a third fighter interrupting either half of the pair. X cancellation
+released actor leases and movement, restored numeric pose/camera mode, and left
+saved flags, persistent HP and yen unchanged. Inspected screenshots still show
+an obstructed/inside-avatar camera after return and an overly crowded combat
+HUD; numeric restoration alone does not certify a usable rendered camera.
+The JSON frame/event trace and screenshots are written to the test output,
+not production logs. No win or prerequisite was injected.
+
+The compiler/PostgreSQL test executes the canonical generated import with
+simulated result intents, not server combat AI. It checks missing-date migration, same-day/daytime/
 out-of-region rejection, another character's inability to advance the run,
 timeout, cancellation before and after victory, atomic clue/date settlement,
 repeat protection and stale post-completion inputs. Headless result tests do
@@ -1086,9 +1099,13 @@ cancel during the original introduction, clean re-entry, wrong QTE input, retry,
 Left/Enter success, conversation, notebook, unchanged HP/money, released actor
 leases and reload without replay all passed. A separate attempt to continue the
 earned bar save through the ambush lost to the five opponents using both the
-old stationary kick routine and the later-fight movement helper. That combat
-path/test strategy needs investigation; its victory/progression was not certified
-by this recheck and no combat balance or result rules were changed.
+old stationary kick routine and the later-fight movement helper. The subsequent
+shared combat fixes preserve held blocks, prevent crowd spacing from moving
+stunned actors, and protect authored pairs through recovery. The focused
+guard/cancel check above passed, but victory/progression is still not certified.
+Health, damage, encounter difficulty and result settlement were not adjusted to
+force a win. The older later-fight helper also reverses target-relative strafing;
+repair that test helper before treating it as reliable movement evidence.
 
 The source assets and newly encoded Story voices are registered in the immutable
 runtime catalog. They have **not** been published to R2 from this worktree;

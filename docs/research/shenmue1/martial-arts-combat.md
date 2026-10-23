@@ -183,6 +183,15 @@ Rapid attack strings use an earlier cancel window: the incoming command
 replaces the outgoing action with its dedicated transition clip before
 ordinary recovery completes.
 
+Crowd combat preserves held guard through blocked-hit recovery: this recovery
+still prevents attacking or moving, but does not drop defence against the next
+strike. Throws still defeat guard. The simultaneous-attacker limit must not
+move stunned actors or override a paired reaction. Authored two-character
+throws/counters exclusively own both bodies until recovery; third-party hits
+cannot replace just one animation, and the thrower cannot re-grab the victim
+before its get-up finishes. These are consistency rules for this client combat
+adaptation, not claims of reconstructed Dreamcast crowd-combat rules.
+
 All 51 moves from the native move catalogue are playable:
 
 - `W` / `S`: directional command components

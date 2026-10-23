@@ -6,6 +6,7 @@ import {
   MartialArtsEnemyAI,
   createCombatant,
   combatMoveAvailable,
+  canAct,
   distanceAndFacing,
   opponentPosition,
   queueCombatCommand,
@@ -818,7 +819,7 @@ export class CombatEncounterRuntime {
     this.player.guardHeld = (
       this.input.guarding
       && !this.player.action
-      && !this.player.reaction
+      && (!this.player.reaction || this.player.reaction.kind === "guard")
     );
 
     // Do not replay time spent on loading screens or suspended browser tabs
@@ -834,7 +835,9 @@ export class CombatEncounterRuntime {
           const target = this.combat.nearestOpponent(entry.combatant);
           if (!target) continue;
           let decision = entry.ai.decide(entry.combatant, target);
-          if (entry.combatant.team !== this.player.team && !entry.combatant.action && attackers >= this.maxAttackers) {
+          // Crowd spacing must not override an authored reaction/paired clip.
+          // A stunned actor previously retreated while its animation owned it.
+          if (entry.combatant.team !== this.player.team && canAct(entry.combatant) && attackers >= this.maxAttackers) {
             const relation = distanceAndFacing(entry.combatant, target);
             decision = { kind: relation.distance < 2 ? "retreat" : "guard", turnYaw: relation.targetYaw, distance: .05 };
           } else if (decision.kind === "move" && entry.combatant.team !== this.player.team) attackers++;
