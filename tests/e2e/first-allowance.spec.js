@@ -760,8 +760,36 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
         await page.waitForFunction(() => window.storyProbe.starts.includes("story-s1-first-kitten-introduction"), null, { timeout: 20_000 });
       } finally { await page.keyboard.up("KeyW"); }
       await page.waitForFunction(() => window.storyProbe.director?.activeCutscene?.cutscene.id === "story-s1-first-kitten-introduction", null, { timeout: 60_000 });
+      await page.evaluate(() => {
+        const scene = window.storyProbe.lifecycle.scene;
+        const samples = window.storyProbe.kittenMouth = { vertices: new Set(), weights: new Set(), renderedFrames: 0 };
+        const observer = scene.onAfterRenderObservable.add(() => {
+          const faces = window.storyProbe.director.activeCutscene?.packageRuntime.presentation.faces;
+          const face = faces?.active?.genericFaces.get("MEGM");
+          if (!face?.voiceCue) return;
+          const meshes = face.speech.controller.binding.meshes.map(record => record.mesh);
+          if (!meshes.some(mesh => mesh.isEnabled() && scene.isActiveMesh(mesh))) return;
+          samples.renderedFrames++;
+          samples.weights.add(face.speech.controller.weight);
+          samples.vertices.add(JSON.stringify(meshes.flatMap(mesh => Array.from(mesh.getVerticesData("position")))));
+        });
+        window.storyProbe.stopKittenMouthProbe = () => scene.onAfterRenderObservable.remove(observer);
+      });
       await page.waitForTimeout(3000);
       await page.screenshot({ path: testInfo.outputPath("first-kitten-introduction.png") });
+      await page.waitForFunction(() => window.storyProbe.kittenMouth.vertices.size > 2
+        && window.storyProbe.director.activeCutscene?.packageRuntime.presentation.faces.active?.genericFaces.get("MEGM")?.speech.controller.weight > 0.5,
+      null, { timeout: 45_000 });
+      await page.screenshot({ path: testInfo.outputPath("first-kitten-speaking.png") });
+      const mouth = await page.evaluate(() => {
+        window.storyProbe.stopKittenMouthProbe();
+        const sample = window.storyProbe.kittenMouth;
+        return { renderedFrames: sample.renderedFrames, vertexStates: sample.vertices.size, mouthStates: sample.weights.size };
+      });
+      await testInfo.attach("kitten-generic-mouth", { body: JSON.stringify(mouth, null, 2), contentType: "application/json" });
+      console.info("Megumi rendered generic mouth:", JSON.stringify(mouth));
+      expect(mouth.renderedFrames).toBeGreaterThan(2);
+      expect(mouth.mouthStates).toBeGreaterThan(2);
       // A permitted scene skip must lead to a real choice, not automatically
       // award the fish-only witness clue or play both incompatible endings.
       await page.keyboard.press("KeyX");

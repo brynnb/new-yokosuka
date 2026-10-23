@@ -13,6 +13,8 @@ import {
   nativeFaceEyeTargetAngles,
 } from "../../src/NativeFaceGaze.js";
 import { NativeLipSyncCuePlayer } from "../../src/NativeLipSync.js";
+import { resolveGenericFaceMorph } from "../../src/GenericFaceMorph.js";
+import { NativeGenericFaceSpeech } from "../../src/NativeGenericFaceSpeech.js";
 import {
   evaluateNativeTalkVertices,
   nativeTalkActorPoses,
@@ -202,6 +204,7 @@ export class NativeAseqFacialPresentation {
   begin(owner, actorTags) {
     if (this.active) throw new Error("AUTH faces are already owned");
     const faces = new Map();
+    const genericFaces = new Map();
     try {
       for (const value of actorTags) {
         const actorTag = String(value || "").toUpperCase();
@@ -209,7 +212,18 @@ export class NativeAseqFacialPresentation {
         if (this.definitions.has(actorTag) && !entry) {
           throw new Error(`AUTH FACE asset for ${actorTag} was not prepared`);
         }
-        if (!entry) continue;
+        if (!entry) {
+          // Generic NPC bodies already carry original closed/open mouth
+          // targets. Reuse dialogue's structural binding, never a guessed jaw
+          // bone or a detailed FACE from a different body variant.
+          if (genericFaces.has(actorTag)) continue;
+          const actor = this.actors.activeActor(actorTag);
+          const binding = resolveGenericFaceMorph(actor?.model);
+          if (binding) genericFaces.set(actorTag, {
+            actorTag, actor, speech: new NativeGenericFaceSpeech(binding), voiceCue: null,
+          });
+          continue;
+        }
         const face = this.program
           ? this.program.faces.get(actorTag)
           : this.#acquireFace(actorTag, entry);
@@ -219,10 +233,12 @@ export class NativeAseqFacialPresentation {
         entry.root.setEnabled(true);
         faces.set(actorTag, face);
       }
-      this.active = { owner, faces, lastFrame: 0 };
+      this.active = { owner, faces, genericFaces, lastFrame: 0 };
       for (const face of faces.values()) this.#applyVertices(face);
       return true;
     } catch (error) {
+      this.active = null;
+      for (const face of genericFaces.values()) face.speech.stop();
       if (!this.program) {
         for (const face of faces.values()) this.#releaseFace(face, {
           preservePose: true,
@@ -397,6 +413,20 @@ export class NativeAseqFacialPresentation {
     for (const face of this.active.faces.values()) {
       this.#syncVoice(face, voiceCues.get(face.actorTag));
     }
+    for (const face of this.active.genericFaces.values()) {
+      const cue = voiceCues.get(face.actorTag);
+      const next = cue?.command.audio?.lipSync ? cue : null;
+      if (face.voiceCue !== next) {
+        if (next) face.speech.start(next.command.audio.lipSync);
+        else face.speech.finish();
+        face.voiceCue = next;
+      }
+      if (next) {
+        // A paused/buffering voice holds its pose. Shot changes and re-entry
+        // seek the original cue using the audio clock, not the AUTH shot clock.
+        face.speech.seekFrame(Math.max(0, Math.floor((next.positionSeconds || 0) * 30)));
+      } else face.speech.advance(targetFrame - this.active.lastFrame);
+    }
     while (this.active.lastFrame < targetFrame) {
       this.active.lastFrame += 1;
       for (const face of this.active.faces.values()) this.#advanceFace(face);
@@ -427,6 +457,7 @@ export class NativeAseqFacialPresentation {
 
   end(owner) {
     if (this.active?.owner !== owner) return false;
+    for (const face of this.active.genericFaces.values()) face.speech.stop();
     if (this.program) {
       for (const face of this.active.faces.values()) {
         // Visibility belongs to the shot; the voice cue belongs to the audio

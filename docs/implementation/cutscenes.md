@@ -1117,9 +1117,12 @@ Unknown pairs remain unbound rather than borrowing a visually similar face.
 Run `node tools/cutscenes/audit_cutscene_presentation.mjs` to audit all packages,
 including Story-only scenes. Its ignored report under `tests/reports/` separates
 on-stage and remote speakers, detailed face bindings, missing local assets,
-voices without lip cues, reference-only objects, and hand/prop bindings. This
-is wiring coverage, not rendered verification; a generic body's authored
-mouth patch must be checked separately from detailed FACE resources.
+voices without lip cues, reference-only objects, and hand/prop bindings. Add
+`--models` to load each distinct speaking body locally and check its authored
+generic mouth structure. Models are inspected serially and disposed promptly.
+This is wiring/geometry coverage, not rendered verification. Missing bodies
+remain explicit; an unavailable detailed FACE is not counted as missing speech
+if the body has a usable native two-target mouth.
 
 Do not replace this with sine-driven jaws, duration loops, guessed eyelid
 groups, or hand-selected eyebrow controls. The exact TALK lanes plus `0x0113`
@@ -1134,6 +1137,27 @@ the old “extra jaw by the feet” bug. They remain suppressed and serve only a
 authored closed/open vertex sources for the one attached destination patch.
 The same SRF state machine drives that two-target controller; globally
 unhiding `-68` is not a valid mouth-animation implementation.
+
+Both ordinary dialogue and cutscenes use `NativeGenericFaceSpeech` to drive
+these targets. `NativeAseqFacialPresentation` gives the exact detailed FACE
+priority; otherwise it resolves the mouth from the currently leased actor's
+actual body. No actor-name allowlist or new model download is required.
+Cutscenes follow the playing voice's position, so buffering holds the mouth,
+seeking reconstructs its pose, and an actor returning in another shot catches
+up to the ongoing line. Ending/skipping restores the original closed patch.
+Actors without either proven structure remain unanimated and visible in the
+audit rather than receiving invented jaw motion.
+
+The 2026-10-22 local corpus check found 51 authored generic-mouth bindings
+among 87 on-stage speaker appearances without a detailed FACE across the 107
+packages. The remaining 36 appearances need separate facial-resource work;
+these counts describe structural coverage, not 51 reviewed performances.
+The short rendered test in `tests/e2e/cutscene-faces.spec.js` checks Megumi's
+visible mouth buffers and poses while her original voice plays, then verifies
+cancelled settlement and released facial ownership. Full Story trigger/choice
+coverage is separate from this preview check. Its audio probe samples the
+logical playback clips directly: the pooled backend does not forward every
+HTML audio progress event, so event-only sampling can falsely report a stall.
 
 The mouth targets use node-local coordinates, while prepared GPU meshes use
 bind-world coordinates. Apply the authored open-minus-closed displacement in

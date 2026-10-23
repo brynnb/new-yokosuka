@@ -234,14 +234,14 @@ export class NativeCutscenePackageRuntime {
     );
     this.facialAssets = facialAssets;
     this.programFaceTable = new Map();
-    const faces = hasDefinitions(facialAssets)
-      ? createNativeAseqFacialPresentation({
-          scene,
-          actors: this.actors,
-          definitions: facialAssets,
-          loadAsset: this.loadAsset,
-        })
-      : null;
+    // Even packages without separate FACE/FTBL assets can have native mouth
+    // targets in their actor bodies. Both routes share this ownership adapter.
+    const faces = createNativeAseqFacialPresentation({
+      scene,
+      actors: this.actors,
+      definitions: facialAssets,
+      loadAsset: this.loadAsset,
+    });
     const hands = hasDefinitions(presentation.handAssets)
       ? createNativeAseqHandPresentation({
           scene,

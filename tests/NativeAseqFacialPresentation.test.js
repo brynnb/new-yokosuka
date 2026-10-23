@@ -200,6 +200,8 @@ test("cutscene faces preserve the native neck while replacing overlapping face s
     assert.ok(Array.from(externalParentOffsets).some(offset => offset < 0));
     const owner = {};
     assert.equal(faces.begin(owner, ["AKIR"]), true);
+    assert.equal(faces.active.genericFaces.size, 0,
+      "a prepared detailed FACE exclusively owns its actor's mouth");
     assert.equal(bodyFaceNode.mesh.isEnabled(), true);
     const integratedBodyIndexCount = subtreeIndexCount(bodyFaceNode.mesh);
     // GPU mesh flattening leaves only the replaced FACE node here. Authored

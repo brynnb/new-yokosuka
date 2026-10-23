@@ -290,6 +290,14 @@ export async function runCutscenePreview({
       const musicUrl = moduleUrls["/play/audio/MusicDirector.js"];
       if (!musicUrl) throw new Error("Music runtime module was not observed loading");
       const { PlayMusicDirector } = await import(musicUrl);
+      const mediaSamples = new Set();
+      window.__readCutsceneProbe = () => {
+        // PlaybackClip exposes currentTime but does not forward HTMLAudio's
+        // timeupdate/playing events. Sample the live clips at each checkpoint
+        // as well as their release; stale event samples cannot prove a stall.
+        for (const sample of mediaSamples) sample();
+        return probe;
+      };
       const observedBackground = new WeakSet();
       const setWorld = PlayMusicDirector.prototype.setWorld;
       PlayMusicDirector.prototype.setWorld = function(...args) {
@@ -297,14 +305,37 @@ export async function runCutscenePreview({
         for (const entry of [this.current, this.outgoing]) {
           if (!entry || entry.temporary || observedBackground.has(entry)) continue;
           observedBackground.add(entry);
-          const record = { src: entry.audio.src, releasedAt: null, error: null, maxTime: 0 };
+          const record = { src: new URL(entry.audio.src, location.href).href, releasedAt: null, error: null, maxTime: 0 };
           probe.backgroundMedia.push(record);
           const sample = () => {
             if (entry.audio.currentTime > record.maxTime) record.lastAdvancedAt = Date.now();
             record.maxTime = Math.max(record.maxTime, entry.audio.currentTime);
             record.error ||= entry.audio.error?.message || null;
+            record.paused = entry.audio.paused;
+            record.suspendedByOwner = this.playbackPaused;
+            record.readyState = entry.audio.slot?.audio.readyState ?? entry.audio.readyState;
+            record.sampledAt = Date.now();
           };
-          for (const event of ["timeupdate", "error"]) entry.audio.addEventListener(event, sample);
+          for (const event of ["timeupdate", "error", "pause", "canplay", "progress"]) entry.audio.addEventListener(event, sample);
+          mediaSamples.add(sample);
+          sample();
+          const pause = entry.audio.pause;
+          entry.audio.pause = function(...args) {
+            sample();
+            const slot = this.slot, media = slot?.audio;
+            const source = media?.currentSrc || media?.src;
+            const result = pause.apply(this, args);
+            // The pooled backend releases its physical player on pause while
+            // retaining the logical clip's src for later resume. Observing only
+            // removeAttribute on the logical clip misses this real teardown.
+            if (slot && !this.slot && source === record.src
+              && !media.getAttribute("src") && slot.owner !== this) {
+              record.releasedAt = Date.now();
+              record.releaseKind = "physical-player-detached";
+            }
+            sample();
+            return result;
+          };
           const remove = entry.audio.removeAttribute;
           entry.audio.removeAttribute = function(name) {
             if (name === "src") {
@@ -328,7 +359,7 @@ export async function runCutscenePreview({
           musicOwner = this;
           musicEntry = this.current;
           const entry = this.current;
-          const record = { trackId, src: entry.audio.src, maxTime: 0, played: false, error: null, released: false };
+          const record = { trackId, src: new URL(entry.audio.src, location.href).href, maxTime: 0, played: false, error: null, released: false };
           const sample = () => {
             record.src = entry.audio.currentSrc || record.src;
             if (entry.audio.currentTime > record.maxTime) record.lastAdvancedAt = Date.now();
@@ -337,6 +368,7 @@ export async function runCutscenePreview({
             record.error ||= entry.audio.error?.message || null;
           };
           for (const event of ["timeupdate", "playing", "error"]) entry.audio.addEventListener(event, sample);
+          mediaSamples.add(sample);
           // One-shot scores release their source from onended, not necessarily
           // stopTemporaryTrack. Observe the actual media boundary as well.
           const remove = entry.audio.removeAttribute;
@@ -712,7 +744,7 @@ export async function runCutscenePreview({
     report.returnedToMenu = true;
     stage("checking-settlement");
     await expect(page.locator("body.cutscene-active")).toHaveCount(0);
-    report.probe = await page.evaluate(() => window.__cutsceneBrowserProbe);
+    report.probe = await page.evaluate(() => window.__readCutsceneProbe());
     report.settlements = report.probe.settlements.filter(result => result.programId === expectedPlayback.programId);
     expect(report.settlements, "Menu return must have an explicit successful terminal event").toEqual([
       expect.objectContaining({ kind: sampleOnly ? "cancelled" : "completed", status: sampleOnly ? "cancelled" : "completed" }),
@@ -766,7 +798,7 @@ export async function runCutscenePreview({
       await page.keyboard.press(cancelKey.trim());
       await expect(cutsceneMenu).toBeVisible({ timeout: 30_000 });
       await expect(page.locator("body.cutscene-active")).toHaveCount(0);
-      const after = await page.evaluate(() => window.__cutsceneBrowserProbe);
+      const after = await page.evaluate(() => window.__readCutsceneProbe());
       report.probe = after;
       const replaySettlements = after.settlements.slice(before.settlements.length);
       expect(replaySettlements).toEqual([
@@ -834,7 +866,7 @@ export async function runCutscenePreview({
     return report;
   } finally {
     if (testInfo) {
-      report.probe = await page.evaluate(() => window.__cutsceneBrowserProbe).catch(() => null);
+      report.probe = await page.evaluate(() => window.__readCutsceneProbe?.() ?? window.__cutsceneBrowserProbe).catch(() => null);
       const path = testInfo.outputPath("browser-inventory.json");
       await writeFile(path, JSON.stringify(report, null, 2));
       await testInfo.attach("cutscene-browser-inventory", {

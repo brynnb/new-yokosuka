@@ -1,11 +1,6 @@
-import {
-  GenericFaceMorphController,
-  resolveGenericFaceMorph,
-} from "../../src/GenericFaceMorph.js";
-import {
-  NATIVE_LIP_SYNC_FRAME_RATE,
-  NativeLipSyncCuePlayer,
-} from "../../src/NativeLipSync.js";
+import { resolveGenericFaceMorph } from "../../src/GenericFaceMorph.js";
+import { NativeGenericFaceSpeech } from "../../src/NativeGenericFaceSpeech.js";
+import { NATIVE_LIP_SYNC_FRAME_RATE } from "../../src/NativeLipSync.js";
 
 export class NativeDialogueFacialPresentation {
   constructor({ scheduledActors } = {}) {
@@ -13,7 +8,6 @@ export class NativeDialogueFacialPresentation {
       throw new TypeError("dialogue faces require scheduled actor models");
     }
     this.scheduledActors = scheduledActors;
-    this.player = new NativeLipSyncCuePlayer();
     this.active = null;
     this.accumulator = 0;
   }
@@ -26,17 +20,9 @@ export class NativeDialogueFacialPresentation {
     const model = this.scheduledActors.dialogueActorModel(actorCode);
     const binding = resolveGenericFaceMorph(model);
     if (!binding || !message?.lipSync) return false;
-    const controller = new GenericFaceMorphController(binding);
-    if (!this.player.start(message.lipSync)) return false;
-    const state = this.player.snapshot();
-    controller.transition(state.genericOpen, state.transitionTicksRemaining);
-    this.active = {
-      message,
-      model,
-      controller,
-      cueIndex: state.cueIndex,
-      prefetched: state.prefetched,
-    };
+    const speech = new NativeGenericFaceSpeech(binding);
+    if (!speech.start(message.lipSync)) return false;
+    this.active = { message, model, speech };
     this.accumulator = 0;
     return true;
   }
@@ -48,19 +34,7 @@ export class NativeDialogueFacialPresentation {
     this.accumulator += Math.min(deltaSeconds, 0.25) * NATIVE_LIP_SYNC_FRAME_RATE;
     while (this.active && this.accumulator >= 1) {
       this.accumulator -= 1;
-      this.active.controller.advanceTick();
-      const state = this.player.advance(1);
-      if (
-        state.cueIndex !== this.active.cueIndex
-        || state.prefetched !== this.active.prefetched
-      ) {
-        this.active.cueIndex = state.cueIndex;
-        this.active.prefetched = state.prefetched;
-        this.active.controller.transition(
-          state.genericOpen,
-          state.transitionTicksRemaining,
-        );
-      }
+      this.active.speech.advance();
     }
     return true;
   }
@@ -72,10 +46,9 @@ export class NativeDialogueFacialPresentation {
   }
 
   stop() {
-    this.active?.controller.reset();
+    this.active?.speech.stop();
     this.active = null;
     this.accumulator = 0;
-    this.player.stop();
   }
 }
 

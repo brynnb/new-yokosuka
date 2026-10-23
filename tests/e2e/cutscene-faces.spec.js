@@ -3,6 +3,42 @@ import { availableCutscene } from "../../play/config/cutscenes.js";
 import { runCutscenePreview } from "./cutscene-preview-flow.js";
 import { completionTimeoutForCutscene } from "./cutscene-preview-timeout.js";
 
+test("Megumi speaks with the original body mouth targets and releases them on cancel", async ({ page }, testInfo) => {
+  test.setTimeout(180_000);
+  await runCutscenePreview({
+    page, cutscene: availableCutscene("S1-CATA1-01"), completionTimeout: 90_000,
+    sampleOnly: true, testInfo,
+    inspectPlayback: async ({ page, report }) => {
+      report.genericMouthSamples = [];
+      const deadline = Date.now() + 45_000;
+      while (Date.now() < deadline) {
+        const sample = await page.evaluate(() => {
+          const runtime = [...window.__getCutsceneDirector().runtimes.values()].find(runtime => runtime.presentation.active);
+          const face = runtime?.presentation.faces.active?.genericFaces.get("MEGM");
+          if (!face?.voiceCue) return null;
+          const meshes = face.speech.controller.binding.meshes.map(record => record.mesh);
+          return {
+            weight: face.speech.controller.weight,
+            audioTime: face.voiceCue.positionSeconds,
+            rendered: meshes.some(mesh => mesh.isEnabled() && mesh.getScene().isActiveMesh(mesh)),
+            vertices: meshes.flatMap(mesh => Array.from(mesh.getVerticesData("position"))),
+          };
+        });
+        if (sample?.rendered) report.genericMouthSamples.push(sample);
+        const distinct = new Set(report.genericMouthSamples.map(sample => JSON.stringify(sample.vertices))).size;
+        if (distinct > 2 && sample?.weight > 0.5) break;
+        await page.waitForTimeout(100);
+      }
+      expect(new Set(report.genericMouthSamples.map(sample => sample.weight)).size).toBeGreaterThan(2);
+      expect(new Set(report.genericMouthSamples.map(sample => JSON.stringify(sample.vertices))).size).toBeGreaterThan(2);
+      await page.screenshot({ path: testInfo.outputPath("megumi-speaking.png") });
+      console.info("Megumi rendered mouth samples:", report.genericMouthSamples.length);
+    },
+  });
+  expect(await page.evaluate(() => [...window.__getCutsceneDirector().runtimes.values()]
+    .every(runtime => !runtime.presentation.faces.active))).toBe(true);
+});
+
 test("TGMA deforms the exact FUB face during talking and expressions", async ({ page }, testInfo) => {
   const id = "S1-TGMA-01";
   const completionTimeout = completionTimeoutForCutscene(id);

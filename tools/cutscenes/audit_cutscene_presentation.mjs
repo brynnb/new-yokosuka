@@ -1,19 +1,50 @@
 #!/usr/bin/env node
 // All packages, including Story-only scenes. This is wiring coverage, not a
 // visual certificate: a body can also have a simpler native mouth controller.
-import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer } from "vite";
 import { resolveNativeCutsceneFacialAssets } from "../../play/cutscenes/NativeCutsceneFacialAssets.js";
+import { NullEngine, Scene } from "@babylonjs/core";
+import { loadNativeCharacterModel } from "../../play/characters/NativeCharacterModelLoader.js";
+import { resolveGenericFaceMorph } from "../../src/GenericFaceMorph.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const args = process.argv.slice(2);
+const inspectModels = args.includes("--models");
+if (inspectModels) args.splice(args.indexOf("--models"), 1);
 if (args.length && (args.length !== 2 || args[0] !== "--output")) {
-  throw new Error("Usage: audit_cutscene_presentation.mjs [--output file]");
+  throw new Error("Usage: audit_cutscene_presentation.mjs [--models] [--output file]");
 }
 const output = path.resolve(root, args[1] || "tests/reports/cutscene-presentation.json");
 const vite = await createServer({ root, server: { middlewareMode: true, watch: null }, appType: "custom", logLevel: "error" });
+const engine = inspectModels ? new NullEngine() : null;
+const modelBindings = new Map();
+async function inspectBody(pkg, tag) {
+  const actor = pkg.environment?.packageActors?.[tag]
+    || pkg.actorDefinitions?.find(actor => actor.actorCode === tag);
+  // Same registered body path convention as ScheduledActorRuntime. Package
+  // archive assets take precedence; missing/unknown data remains explicit.
+  const source = actor?.assetPath || (actor?.modelCode
+    ? `play/assets/${actor.characterAssetDirectory || "characters"}/${actor.modelCode}.CHRM` : null);
+  if (!source || !existsSync(path.join(root, source))) return { source, status: "body-unavailable" };
+  if (modelBindings.has(source)) return modelBindings.get(source);
+  const scene = new Scene(engine);
+  try {
+    const bytes = readFileSync(path.join(root, source));
+    const model = await loadNativeCharacterModel({
+      scene, sourceFilename: source, assetFormat: actor.assetFormat || "MT5",
+      modelBuffer: bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
+    });
+    const binding = resolveGenericFaceMorph(model);
+    const result = { source, status: binding ? "authored-two-target-mouth" : "no-structural-mouth-binding" };
+    modelBindings.set(source, result);
+    return result;
+  } finally {
+    scene.dispose();
+  }
+}
 try {
   const { NATIVE_CUTSCENE_PACKAGES } = await vite.ssrLoadModule("/play/cutscenes/nativeCutscenePackages.js");
   const packages = NATIVE_CUTSCENE_PACKAGES.map(pkg => {
@@ -48,15 +79,31 @@ try {
   });
   const summary = {
     packages: packages.length,
-    packagesWithUnboundSpeakers: packages.filter(pkg => pkg.speakersWithoutDetailedFace.length).length,
-    unboundSpeakerOccurrences: packages.reduce((n, pkg) => n + pkg.speakersWithoutDetailedFace.length, 0),
+    packagesWithSpeakersWithoutDetailedFace: packages.filter(pkg => pkg.speakersWithoutDetailedFace.length).length,
+    speakerOccurrencesWithoutDetailedFace: packages.reduce((n, pkg) => n + pkg.speakersWithoutDetailedFace.length, 0),
     missingFaceAssets: packages.reduce((n, pkg) => n + pkg.missingFaceAssets.length, 0),
     referenceOnlyObjects: packages.reduce((n, pkg) => n + pkg.referenceOnlyObjects.length, 0),
   };
+  if (inspectModels) {
+    // Serial, cached by exact source path: never load the whole cast into one
+    // scene or keep GPU rigs alive after their structural inspection.
+    for (const [index, pkg] of packages.entries()) {
+      pkg.genericMouths = {};
+      for (const tag of pkg.speakersWithoutDetailedFace) {
+        pkg.genericMouths[tag] = await inspectBody(NATIVE_CUTSCENE_PACKAGES[index], tag);
+      }
+      pkg.speakersWithoutMouthBinding = pkg.speakersWithoutDetailedFace.filter(tag =>
+        pkg.genericMouths[tag].status !== "authored-two-target-mouth");
+    }
+    summary.genericMouthOccurrences = packages.reduce((n, pkg) => n
+      + Object.values(pkg.genericMouths).filter(mouth => mouth.status === "authored-two-target-mouth").length, 0);
+    summary.speakerOccurrencesWithoutMouthBinding = packages.reduce((n, pkg) => n + pkg.speakersWithoutMouthBinding.length, 0);
+  }
   mkdirSync(path.dirname(output), { recursive: true });
   writeFileSync(output, JSON.stringify({ schema: "cutscene-presentation-audit-v1", summary, packages }, null, 2) + "\n");
   console.log(JSON.stringify(summary));
   console.log(`Wrote ${output}`);
 } finally {
+  engine?.dispose();
   await vite.close();
 }
