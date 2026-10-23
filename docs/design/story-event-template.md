@@ -66,6 +66,17 @@ Money and door reference actors still
 have no rendered geometry; handover and authored hand/expression callbacks
 remain presentation work, not cleared by that facial-motion check.
 
+The October 22 source audit located the original `KOZU` handover in JOMO's
+`0x634ec` callback (MAPINFO SHA-256
+`4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9`).
+Call `0x6395a` attaches it to `INE_`, right-hand control `18`; `0x63a2e`
+detaches it. The retained runtime placement identifies `KOZU` but has no model
+binding. Do not substitute the nearby `MALS530G` model: the existing object
+trace identifies that as `TEGA`, not `KOZU`. The callback uses a signed 16-bit
+clock at frame offset `62`; the current attachment extractor rejects its
+indexed-load frame guard. Both model identity and deterministic timeline
+extraction still need resolving before the original handover can be enabled.
+
 The original event occurs after Ryo first leaves his bedroom. Ine-san gives him
 ¥500, explains the daily allowance and directs him to Fuku-san at the dojo.
 The scene plays once; later daily allowance collection is a separate event.
@@ -335,6 +346,14 @@ to bound test duration, walks into the event, skips the introduction explicitly,
 chooses fish, waits for natural branch completion, and checks saved clues and
 the notebook. It does not prove the entire walking route between zones or the
 tofu branch's rendered appearance.
+
+The October 22 rerun passed the connected allowance/reload, dojo and kitten
+sequence in four minutes with one hardware-rendered browser. Before skipping
+the kitten introduction it also samples Megumi's actual visible mouth buffers
+and poses while the original voice plays. The food choice does not grant the
+fish-only clue early, and the fish ending restores movement without playing or
+crediting the incompatible tofu branch. This is integration coverage plus a
+speech sample, not a complete visual review of the fish/kitten handover.
 
 The connected local run passed with Ryo and Megumi visible, a real food-choice
 panel, and the earned ninth notebook page. The current handoff visibly returns
