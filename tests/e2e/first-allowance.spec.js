@@ -840,7 +840,8 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
       ["RKKI", "dobuita", "notebook.s1.sailors"],
     ] : []),
   ]) {
-    if (resumeAfterTom && character.storyFlags?.[flag]) continue;
+    const alreadyComplete = resumeAfterTom && character.storyFlags?.[flag];
+    if (alreadyComplete && process.env.NEW_YOKOSUKA_DIALOGUE_APPROACH_E2E !== "true") continue;
     if (actor === "UNO_") {
       // Use the advancing personal clock; don't bypass opening hours.
       const state = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
@@ -860,7 +861,17 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
       expect(Math.hypot(position[0] + 13.35, position[2] - 47.71)).toBeLessThan(0.3);
     }
     const point = await residentClickPoint(page, actor);
+    await testInfo.attach(`${actor}-approach`, { body: JSON.stringify(point, null, 2), contentType: "application/json" });
+    if (process.env.NEW_YOKOSUKA_DIALOGUE_APPROACH_E2E === "true") console.info("Supported resident approach:", actor, JSON.stringify(point));
     await page.screenshot({ path: testInfo.outputPath(`${actor}-before-talk.png`) });
+    if (alreadyComplete) {
+      // A completed talk must still be reachable by a real mesh click, but
+      // must not be replayed by changing its earned progress in the test.
+      await page.mouse.click(point.x, point.y);
+      await expect(page.getByText("This conversation is not available right now. Check your notebook for the next lead.", { exact: true })).toBeVisible();
+      expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      continue;
+    }
     await observeStoryDialogueFace(page, actor);
     await page.mouse.click(point.x, point.y);
     await page.waitForFunction(() => window.storyProbe.dialogue?.active, null, { timeout: 15_000 });
@@ -951,8 +962,24 @@ async function residentClickPoint(page, actor) {
   await page.evaluate(actor => {
     const life = window.storyProbe.lifecycle;
     const [x, y, z] = life.scheduledActors.dialogueActor(actor).position;
-    life.resetPlayer(life.vectorFromArray([x, y, z + 2]), Math.PI, { persist: false });
     const controller = life.getController();
+    // A fixed +Z offset can be outside a narrow shop and drop below its floor.
+    // Use the game's existing ground/volume validation, not no-clip or a
+    // per-shop camera override. This bounds travel without inventing footing.
+    let approach;
+    for (const distance of [2, 2.5, 3]) {
+      for (let step = 0; step < 16; step++) {
+        const angle = step * Math.PI / 8;
+        // A newly loaded variant's root can still be above its eventual
+        // grounded pose. This teleport accepts a lower real floor but still
+        // requires full support and a clear standing volume there.
+        approach = controller.recoveryCandidateAt(x + Math.sin(angle) * distance, z + Math.cos(angle) * distance, y, { constrainHeight: false });
+        if (approach) break;
+      }
+      if (approach) break;
+    }
+    if (!approach) throw new Error(`No supported test approach for ${actor} near ${[x, y, z]}`);
+    life.resetPlayer(approach, Math.PI, { persist: false });
     controller.setFirstPerson(true);
     controller.cameraYaw = 0;
     controller.cameraPitch = 0;
@@ -967,6 +994,8 @@ async function residentClickPoint(page, actor) {
     // Walking residents can move between positioning the player and clicking.
     // Aim at the current rendered body, not a stale root + guessed head height.
     const controller = life.getController(), position = controller.collider.position;
+    const floor = controller.sampleTerrain(position.x, position.z, position.y);
+    if (!floor || Math.abs(floor.height - position.y) > 0.15) throw new Error(`Unsupported test approach for ${actor}: ${position.asArray()}`);
     controller.cameraYaw = Math.atan2(-(point.x - position.x), -(point.z - position.z));
     controller.cameraPitch = Math.atan2(position.y + controller.options.firstPersonHeadHeight - point.y,
       Math.hypot(point.x - position.x, point.z - position.z));

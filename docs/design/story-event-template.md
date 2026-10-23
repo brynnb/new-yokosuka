@@ -513,11 +513,25 @@ position. The sixteenth notebook page and unlocked controls were verified.
 The test resets nearby to bound travel and retains the gameplay camera; it
 does not claim original multi-person camera direction or gesture fidelity.
 
+The 2026-10-22 recheck also observes changing original embedded mouth targets
+for Tao (`CHU_L`), Itoi (`WAP_L`), Maeda (`TOK_L`), Liu Ji You (`KUU_L`) and
+Liu Senior (`X32_L`). The latter four conversation captures were reviewed.
+Tao's first capture instead exposed an unsafe test teleport: the fixed NPC +Z
+offset left the view beneath the shop, mostly on its ceiling. The shared test
+approach now uses the controller's existing supported-ground/clearance checks;
+a separate saved-checkpoint run verifies grounded views and real clicks for
+all five, without replaying or changing their earned flags. Tao still needs a
+fresh, properly framed **speaking** capture. Spouses' speech, full natural line
+timing and dedicated conversation gestures remain unreviewed.
+
 For focused rechecks, `NEW_YOKOSUKA_STORY_RESUME_ID` and
 `NEW_YOKOSUKA_STORY_RESUME_TOKEN` select a previously earned isolated test
 character. The test requires Tom's saved lead and resumes unfinished witness
 conversations without creating story flags or advancing the clock. The normal
 variant still connects the whole sequence from the earlier allowance check.
+`NEW_YOKOSUKA_DIALOGUE_APPROACH_E2E=true` additionally revisits completed
+daytime conversations to verify supported footing and real clicks while
+asserting that their completed Story talks remain unavailable.
 Opening-hour waits derive their wall-clock budget from `worldState.dayLengthMs`
 and the remaining personal game time, rather than assuming a speed multiplier.
 
