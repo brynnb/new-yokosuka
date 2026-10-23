@@ -114,12 +114,12 @@ test("Story QTEs judge locally and move lessons use rendered regular combat", as
     await page.evaluate(({id,area})=>window.combatProbe.scripts.controller.start({kind:"activity",activity:id},{area}),{id,area});
   };
   const idle=()=>expect.poll(()=>page.evaluate(()=>window.combatProbe.scripts.controller.status)).toBe("idle");
-  await start("s1.heartbeats.alley","MFBT");
+  await start("s1.heartbeats.bar","MFBT");
   await expect(page.locator("#dialogue-source")).toContainText("Press B");
   await page.keyboard.press("Shift");
   await expect(page.locator("#dialogue-source")).toContainText("Press A");
   await page.screenshot({path:testInfo.outputPath("local-qte-button-prompt.png")});
-  await page.keyboard.press("Enter");await idle();
+  await page.keyboard.press("Enter");await page.keyboard.press("Shift");await page.keyboard.press("Enter");await idle();
   expect(await page.evaluate(()=>window.combatProbe.intents.map(i=>i.action))).toEqual(["challenge_ready","challenge_result"]);
   expect(await page.evaluate(()=>window.combatProbe.intents.at(-1).challengeOutcome)).toBe("success");
 

@@ -25,7 +25,7 @@ for (const viewport of [{ width: 1280, height: 720 }, { width: 390, height: 844 
     await page.goto("/play/");
     await page.waitForFunction(() => window.qtePresenter);
     const start = token => page.evaluate(token => window.qtePresenter.showChallenge({
-      id: "s1.heartbeats.alley", label: "Defend yourself", token: token.repeat(32), ready: true,
+      id: "s1.heartbeats.bar", label: "Defend yourself", token: token.repeat(32), ready: true,
     }), token);
     const buttons = page.locator("#dialogue-options button:visible");
     await start("a");
@@ -39,6 +39,8 @@ for (const viewport of [{ width: 1280, height: 720 }, { width: 390, height: 844 
     // Pointer input uses the same runtime as keys, without a menu of decoys.
     await buttons.click();
     await expect(buttons).toHaveText(["A · Enter"]);
+    await page.keyboard.press("Enter");
+    await page.keyboard.press("Shift");
     await page.keyboard.press("Enter");
     expect(await page.evaluate(() => window.qteResults.at(-1))).toEqual(["challenge_result", "a".repeat(32), "success"]);
     await start("b");

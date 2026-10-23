@@ -25,6 +25,27 @@ function command(name, ...values) {
   };
 }
 
+test("every staged chapter provides cast collections and registered motion assets",()=>{
+  // PlayCharacterAssembly flattens these arrays before loading a world. An
+  // omitted empty collection must not become an undefined actor definition.
+  for(const scene of authoredScenes.scenes)assert.ok(Array.isArray(scene.actorDefinitions),scene.id);
+  for(const asset of Object.values(authoredScenes.motionBanks))assert.ok(runtimeAssetUrl(asset),asset);
+});
+
+test("Heartbeats holds source poses, waits for paired clips and retains one scene lease",()=>{
+  const catalog=createScriptEventPresentationCatalog(),id="s1.heartbeats.alley.defense";
+  const prompt=catalog.sequence(`${id}.prompt.start`),success=catalog.sequence(`${id}.success.start`),failure=catalog.sequence(`${id}.failure.start`);
+  assert.equal(prompt.kind,"scene-staging-start");
+  for(const next of [success,failure]){
+    assert.equal(next.kind,"scene-staging-transition");assert.equal(next.scene.continuationGroup,prompt.scene.continuationGroup);
+    assert.deepEqual(next.scene.actors.map(a=>a.tag),prompt.scene.actors.map(a=>a.tag));
+    assert.equal(catalog.sequence(`${next.scene.id}.finish`).kind,"scene-staging-finish");
+  }
+  assert.ok(prompt.scene.actors.slice(0,2).every(a=>a.motion.elapsedSeconds===0));
+  assert.equal(success.scene.durationSeconds,126/30);assert.equal(failure.scene.durationSeconds,68/30);
+  assert.ok(success.scene.actors.slice(0,2).every(a=>a.motion.elapsedSeconds===undefined&&!a.motion.loop));
+});
+
 test("Naoyuki's borrowing film preserves original cast/props without claiming ride victory",()=>{
   const activity=createScriptEventPresentationCatalog().activity("s1.jd00.nozomi-motorcycle.scene");
   const manifest=JSON.parse(readFileSync(new URL("../play/assets/sakuragaoka/nozomi-motorcycle/manifest.json",import.meta.url)));

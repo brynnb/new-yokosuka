@@ -7,9 +7,10 @@ import sailors from "../data/story-harbor-sailors.generated.json" with {type:"js
 import nozomi from "../data/story-nozomi-rescue.generated.json" with {type:"json"};
 import finalDay from "../data/story-final-day.generated.json" with {type:"json"};
 import finalBattle from "../data/story-final-battle.generated.json" with {type:"json"};
+import heartbeats from "../data/story-heartbeats.generated.json" with {type:"json"};
 
 // One read-only catalog feeds scene presentation, private cast assembly and
 // authoring tools. Chapter generation must not create a second actor registry.
-const chapters=[base,jimmy,harbor,biker,goro,sailors,nozomi,finalDay,finalBattle],scenes=chapters.flatMap(c=>c.scenes);
+const chapters=[base,jimmy,harbor,biker,goro,sailors,nozomi,finalDay,finalBattle,heartbeats],scenes=chapters.flatMap(c=>c.scenes);
 if(chapters.some(c=>c.schema!==base.schema)||new Set(scenes.map(s=>s.id)).size!==scenes.length)throw Error("Invalid or duplicate authored story scene");
 export default Object.freeze({...base,motionBanks:Object.assign({},...chapters.map(c=>c.motionBanks)),scenes});

@@ -55,7 +55,12 @@ buildNativeAseqActivityPack({
   // its archive member in this package so the runtime can instantiate the
   // exact CHRT-bound model without adding it to Dobuita's global placements.
   outputMembers: ["BINS501G.CHRM"],
-  externalAssets: [dialogueMotion],
+  externalAssets: [dialogueMotion, {
+    sourcePath: path.join(sourceRoot, "data/SCENE/01/YQ14/M_YQ14.BIN"),
+    assetPath: "play/assets/dobuita/yq14/M_YQ14.MOTN",
+    byteLength: 88464,
+    sha256: "ff7984a495727a5f9c89eb82cc1fa0e8ca8f08b9510e40abe46d970965d15f6e",
+  }],
   sceneObjects: {
     BIN_: {
       model: "BERHI204",

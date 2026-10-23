@@ -622,7 +622,9 @@ weather override is added beyond the nighttime gate.
 
 Then the shared prompt presenter requests B followed by A, matching the
 [original guide's winning order](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf).
-Desktop mapping is Shift/Enter; onscreen A/B buttons also work. Two-second
+They are separate client attempts (`s1.heartbeats.alley.defend` and `.finish`),
+so the first response can play an action before the next prompt. Desktop
+mapping is Shift/Enter; onscreen A/B buttons also work. Two-second
 windows and restarting on any miss are declared adaptations. The browser
 starts timing after readiness and judges input locally. The server checks the
 owned attempt token and readiness before accepting one result; it does not
@@ -647,12 +649,46 @@ verified that walk, then replayed only the real activity adapter: original
 Ryo/attackers, alley, camera shots and beer prop were visible, both parts
 completed naturally, player position/controls restored and saved flags/money
 were unchanged. This does not re-prove fresh eligibility or every facial/grip
-detail. The original `YQ14/M_YQ14.BIN` includes paired success/failure motions;
-mapping them to the defensive inputs remains work, not completed choreography.
+detail.
 
-Current presentation limits: prompts follow the original beer staging after
-returning to the gameplay camera. The original defensive choreography,
-between-input recovery animation and gamepad button routing remain unfinished.
+The first defensive exchange now uses original `YQ14/M_YQ14.BIN` (88,464 bytes,
+SHA-256 `ff7984a495727a5f9c89eb82cc1fa0e8ca8f08b9510e40abe46d970965d15f6e`).
+`AKI_KERI_SEIKOU_1QTE` / `TKA_KERI_SEIKOU_1QTE` show the counter and the
+attacker falling; the matching `SIPPAI` pair shows the missed defense. The
+prompt holds their source start poses. After input, the scene waits for the
+longest original clip rather than an arbitrary short delay. A successful
+first exchange retains one cast/camera lease through the second prompt;
+failure, cancellation and final settlement release it. Animation alone earns
+no progress.
+
+Rebuild with `tools/cutscenes/build_yq14_activity_pack.mjs`, then
+`NEW_YOKOSUKA_SERVER_DIR=/path/to/server node tools/scripting/build_heartbeats_alley.mjs`,
+and synchronize scripting contracts. This extends the existing activity pack,
+scene catalog and Yarn staging primitives. The camera is the original
+`SEQDATA2.AUTH` shot evaluated at four seconds. Actor alignment, Tony's role
+assignment and the held prompt are reviewed adaptations, **not** a recovered
+native QTE controller. Matching clip names did not prove the input decision
+tree: `HANGEKI` starts in the `KERI_SIPPAI` ending posture, and finisher clips
+have different timing. They are not silently assigned to Smith's second input.
+
+On 2026-10-23 an isolated character seeded from previously earned prerequisites
+walked the supported approach, played the introduction, failed the first
+prompt, retried, played the visible counter/fall, answered A and saved completion
+without changing money. This is an isolated event check, not another complete
+opening-to-Heartbeats playthrough. A second isolated run also failed A after
+winning B, cancelled during the counter, walked back into the trigger and
+finished both inputs. Neither failure nor cancellation saved completion;
+the final result restored first-person view, supported ground position,
+movement and zero actor leases. Source-compiled Yarn tests separately check
+both failure branches and their scene-release ordering. Reviewed rendered
+captures prove the first exchange, not exact native choreography. The new bank and changed package
+manifest are registered locally; they still require asset publication before
+deployment.
+
+Current presentation limits: Smith's second defensive action, the original
+between-input failure-recovery branches, detailed impact sounds and gamepad
+button routing remain unfinished. The A prompt currently retains the end of
+the first exchange rather than pretending an unverified finisher is original.
 The indoor B/A/B/A encounter below now consumes the same challenge primitive.
 
 ## Heartbeats interior: the bar encounter and Charlie lead

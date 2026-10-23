@@ -29,7 +29,7 @@ import {verifyFamilyDeparture} from "./story-family-departure.js";
 import {verifySwallowFlip,verifySwallowPresentation,verifyFinalChai,verifyFinalChaiPresentation,verifyIntroductionLetter,verifyEarnedIntroductionLetter,verifyNozomiAmulet,verifyShipDeparture} from "./story-final-departure.js";
 import {useStoryInspectable} from "./story-object-input.js";
 import {verifySavedScrollLearning} from "./story-move-learning.js";
-import {placeAtHeartbeatsApproach,reviewHeartbeatsPresentation} from "./story-heartbeats-presentation.js";
+import {placeAtHeartbeatsApproach,reviewHeartbeatsPresentation,inspectHeartbeatsMotions} from "./story-heartbeats-presentation.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
@@ -544,6 +544,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
       return;
     }
+    if(process.env.NEW_YOKOSUKA_ALLEY_MOTIONS_E2E === "true") {
+      await inspectHeartbeatsMotions(page,testInfo,character);
+      expect(errors).toEqual([]);
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_ALLEY_PRESENTATION_E2E === "true") {
       await reviewHeartbeatsPresentation(page,testInfo,character);
       expect(errors).toEqual([]);
@@ -558,7 +564,8 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     }
     await continueWitnesses(page, testInfo, character, character.yen, true);
     if(process.env.NEW_YOKOSUKA_ALLEY_QTE_E2E === "true") {
-      await page.locator("#journal-close").click();
+      // Only the optional three-blades route above opens the notebook.
+      if(await page.locator("#journal-close").isVisible())await page.locator("#journal-close").click();
       await verifyAlleyQte(page,testInfo,character);
     }
     if (process.env.NEW_YOKOSUKA_NIGHT_STORY_E2E === "true") {
@@ -1095,19 +1102,53 @@ async function verifyAlleyQte(page,testInfo,character) {
   await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready,null,{timeout:90_000});
   await page.screenshot({path:testInfo.outputPath("heartbeats-alley-prompt.png")});
   await page.keyboard.press("Enter");
+  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.heartbeats.alley.defense.failure"&&window.storyProbe.authoredScene.active.elapsed>=.5);
+  await page.screenshot({path:testInfo.outputPath("heartbeats-alley-failed-defense.png")});
   await expect(page.getByRole("button",{name:"Try again",exact:true})).toBeVisible();
   const failed=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
   expect(failed.character.storyFlags["story.s1.heartbeats-alley.completed"]).not.toBe(true);
   await page.getByRole("button",{name:"Try again",exact:true}).click();
   await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready&&window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0]==="B",null,{timeout:90_000});
   await page.keyboard.press("Shift");
-  await page.waitForFunction(()=>window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0]==="A",null,{timeout:5000});
+  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.heartbeats.alley.defense.success"&&window.storyProbe.authoredScene.active.elapsed>=.7,null,{timeout:15_000});
+  await page.screenshot({path:testInfo.outputPath("heartbeats-alley-first-counter.png")});
+  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.elapsed>=2);
+  await page.screenshot({path:testInfo.outputPath("heartbeats-alley-tony-falls.png")});
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.heartbeats.alley.finish"&&window.storyProbe.regions.controller.active.challengePrompt.ready,null,{timeout:15_000});
+  // The first successful animation is not the event outcome. Failing the
+  // second input must release its retained cast and still offer a full retry.
+  await page.keyboard.press("Shift");
+  await expect(page.getByRole("button",{name:"Try again",exact:true})).toBeVisible();
+  expect(await page.evaluate(()=>window.storyProbe.authoredScene.active)).toBeNull();
+  expect((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character.storyFlags["story.s1.heartbeats-alley.completed"]).not.toBe(true);
+  await page.getByRole("button",{name:"Try again",exact:true}).click();
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.heartbeats.alley.defend"&&window.storyProbe.regions.controller.active.challengePrompt.ready,null,{timeout:90_000});
+  await page.keyboard.press("Shift");
+  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.heartbeats.alley.defense.success"&&window.storyProbe.authoredScene.active.elapsed>=.5);
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("verify-first-defense-cancellation"));
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+  expect(await page.evaluate(()=>window.storyProbe.authoredScene.active)).toBeNull();
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character.storyFlags["story.s1.heartbeats-alley.completed"]).not.toBe(true);
+  const starts=await page.evaluate(()=>window.storyProbe.starts.length);
+  await placeAtHeartbeatsApproach(page);
+  await page.waitForTimeout(300);
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+  try{await page.waitForFunction(count=>window.storyProbe.starts.length>count,starts,{timeout:20_000});}
+  finally{await page.keyboard.up("KeyW");}
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.heartbeats.alley.defend"&&window.storyProbe.regions.controller.active.challengePrompt.ready,null,{timeout:90_000});
+  await page.keyboard.press("Shift");
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.heartbeats.alley.finish"&&window.storyProbe.regions.controller.active.challengePrompt.ready,null,{timeout:15_000});
   await page.keyboard.press("Enter");
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.heartbeats-alley.completed"])).toBe(true);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   const saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
   expect(saved.character.storyFlags["story.s1.heartbeats-alley.completed"]).toBe(true);
   expect(saved.character.yen).toBe(character.yen);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  const restored=await page.evaluate(()=>{const c=window.storyProbe.lifecycle.getController(),p=c.collider.position;return{firstPerson:c.firstPerson,y:p.y,floor:c.sampleTerrain(p.x,p.z,p.y)?.height};});
+  expect(restored.firstPerson).toBe(true);expect(restored.floor).toBeCloseTo(restored.y,2);
+  await page.screenshot({path:testInfo.outputPath("heartbeats-alley-controls-restored.png")});
 }
 
 async function verifyBarQte(page, testInfo, character) {

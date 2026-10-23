@@ -43,11 +43,11 @@ test("challenge prompts own their tokens, touch buttons and timeout lifetime", a
   const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options:optionsElement(),
     onChallengeResponse:(...args)=>calls.push(args)});
   const token="a".repeat(32);
-  presenter.showChallenge({id:"s1.heartbeats.alley",label:"Defend yourself",token,index:0,count:2,ready:false});
+  presenter.showChallenge({id:"s1.heartbeats.bar",label:"Defend yourself",token,ready:false});
   assert.equal(presenter.dom.root.attributes.get("data-presentation"),"qte");
   assert.equal(presenter.dom.options.hidden,true);
   await Promise.resolve();assert.deepEqual(calls,[["challenge_ready",token]]);
-  presenter.showChallenge({id:"s1.heartbeats.alley",label:"Defend yourself",token,ready:true});
+  presenter.showChallenge({id:"s1.heartbeats.bar",label:"Defend yourself",token,ready:true});
   const visible=()=>presenter.dom.options.children.filter(b=>!b.hidden).map(b=>b.dataset.challengeButton);
   assert.deepEqual(visible(),["B"]);
   const stale=presenter.dom.options.children[0].listeners.click;
@@ -55,6 +55,8 @@ test("challenge prompts own their tokens, touch buttons and timeout lifetime", a
   assert.deepEqual(visible(),["A"]);
   assert.equal(calls.length,1); // No per-button network traffic.
   presenter.dom.options.children.find(b=>b.dataset.challengeButton==="A").listeners.click({detail:0});
+  assert.equal(calls.length,1);
+  for(const key of ["B","A"])presenter.dom.options.children.find(b=>b.dataset.challengeButton===key).listeners.click({detail:0});
   assert.deepEqual(calls.at(-1),["challenge_result",token,"success"]);
   presenter.hide();stale();assert.equal(calls.length,2);
   assert.equal(presenter.qte,null);
