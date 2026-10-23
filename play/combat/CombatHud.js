@@ -183,7 +183,9 @@ export class CombatHud {
     );
     dom.combatCommandFeedback.classList.toggle("connected", commandConnected);
     dom.combatCommandFeedback.classList.toggle("missed", commandMissed);
-    dom.combatCommandFeedback.hidden = !controlsActive;
+    dom.combatCommandFeedback.hidden = !controlsActive || (
+      inputTokens.length === 0 && !snapshot.playerResolvedMoveLabel
+    );
   }
 
   populateMoveList(moves = this.getEncounter()?.playerMoves || MARTIAL_ARTS_MOVES) {

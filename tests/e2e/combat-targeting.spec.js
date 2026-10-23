@@ -93,6 +93,8 @@ export async function openCombatApp(page) {
     null, { timeout: 150_000 });
   expect(await page.evaluate(() => window.combatProbe.errors)).toEqual([]);
   await expect(page.locator("#loading")).toHaveClass(/hidden/);
+  // Tests below inspect the full move scroll; ordinary play leaves it folded.
+  await page.locator("#combat-move-count").click();
   return errors;
 }
 

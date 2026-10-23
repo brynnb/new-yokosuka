@@ -137,12 +137,28 @@
 .dialogue-option[hidden] { display: none; }
 
 /* Keep the shared dialogue panel compact while it acts as combat controls. */
-.dialogue-overlay[data-presentation="combat"] .dialogue-options {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+.dialogue-overlay[data-presentation="combat"] .dialogue-panel {
+  padding: 10px 14px;
+}
+
+.dialogue-overlay[data-presentation="combat"] .dialogue-options:not([hidden]) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.dialogue-overlay[data-presentation="combat"] .dialogue-option {
+  width: auto;
+  min-height: 44px;
+  padding: 8px 12px;
+  font-size: 14px;
+  text-align: center;
 }
 
 .dialogue-overlay[data-presentation="combat"] .dialogue-source {
-  font-size: clamp(14px, 1.4vw, 18px);
+  font-size: 14px;
 }
 
 .dialogue-option {
@@ -200,9 +216,5 @@
 
   .dialogue-panel {
     padding: 12px 14px 14px;
-  }
-
-  .dialogue-overlay[data-presentation="combat"] .dialogue-options {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

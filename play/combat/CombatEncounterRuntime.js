@@ -7,6 +7,7 @@ import {
   createCombatant,
   combatMoveAvailable,
   canAct,
+  isGuarding,
   distanceAndFacing,
   opponentPosition,
   queueCombatCommand,
@@ -244,8 +245,8 @@ export class CombatEncounterRuntime {
       playerMaxHealth: this.player.maxHealth,
       enemyHealth: this.enemy.health,
       enemyMaxHealth: this.enemy.maxHealth,
-      playerGuarding: this.player.guardHeld,
-      enemyGuarding: this.enemy.guardHeld,
+      playerGuarding: isGuarding(this.player),
+      enemyGuarding: isGuarding(this.enemy),
       playerDefeated: this.player.defeated,
       enemyDefeated: this.enemy.defeated,
       playerMoveId: this.player.action?.moveId || null,
@@ -764,8 +765,8 @@ export class CombatEncounterRuntime {
         this.commandResultSeconds = 0;
       }
     }
-    const previousPlayerGuard = this.player.guardHeld;
-    const previousEnemyGuard = this.enemy.guardHeld;
+    const previousPlayerGuard = isGuarding(this.player);
+    const previousEnemyGuard = isGuarding(this.enemy);
     for (const { combatant, actor } of this.enemies) {
       if (!combatant.defeated && !this.player.action && !this.player.reaction
         && !combatant.action && !combatant.reaction
@@ -816,11 +817,10 @@ export class CombatEncounterRuntime {
     for (const command of playerCommands) {
       queueCombatCommand(this.player, command);
     }
-    this.player.guardHeld = (
-      this.input.guarding
-      && !this.player.action
-      && (!this.player.reaction || this.player.reaction.kind === "guard")
-    );
+    // Keep physical intent through recovery. The simulation decides when it
+    // can block; filtering here left a one-tick gap when recovery and a hit
+    // occurred in the same update. Presentation uses isGuarding, not intent.
+    this.player.guardHeld = this.input.guarding;
 
     // Do not replay time spent on loading screens or suspended browser tabs
     // as a burst of attacks on the first visible frame.
@@ -871,8 +871,8 @@ export class CombatEncounterRuntime {
       this.setControlsActive(false);
     }
     const guardChanged = (
-      this.player.guardHeld !== previousPlayerGuard
-      || this.enemy.guardHeld !== previousEnemyGuard
+      isGuarding(this.player) !== previousPlayerGuard
+      || isGuarding(this.enemy) !== previousEnemyGuard
     );
     const commandFeedbackChanged = previousCommandFeedback !== JSON.stringify(
       this.playerCommandFeedback(),

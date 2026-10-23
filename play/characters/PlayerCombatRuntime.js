@@ -3,6 +3,7 @@ import {
   MARTIAL_ARTS_FOLLOWUP_STAGES,
   MARTIAL_ARTS_MOVES,
   MartialArtsEnemyAI,
+  isGuarding,
 } from "../../src/MartialArtsCombat.js";
 import { TransformNode } from "@babylonjs/core/Meshes/transformNode.js";
 import { CombatTargetIndicator } from "../combat/CombatTargetIndicator.js";
@@ -13,7 +14,7 @@ import { createCombatRootMotionApplier } from "../combat/CombatRootMotion.js";
 
 export function combatPlayerAnimationState(encounter, movement) {
   if (!encounter?.controlsActive) return null;
-  if (encounter.player.guardHeld) return "combatGuard";
+  if (isGuarding(encounter.player)) return "combatGuard";
   if (!movement.moving && !movement.turning) return "combatStance";
   return {
     backward: "combatRetreat",

@@ -899,7 +899,7 @@ Event ID: `story-s1-parking-lot-ambush`, official import `parking-lot-ambush`.
 | Location and trigger | Dobuita (`D000`), approach to You Arcade from the Suzume Park side. Cross authored region `s1.d000.arcade-ambush`, centred on the original introduction's Ryo arrival. The server checks accepted presence, not coordinates supplied in the trigger request. |
 | Prerequisites / calendar | Personal Story Ryo, opening and Heartbeats bar complete, evening-visits clue, 19:00–23:30 and a later personal day than the bar brawl; ambush incomplete. No forced weather. |
 | Introduction / trap | Original DRAUTH `SEQDATA1.AUTH` and `SEQDATA2.AUTH`, packaged through the existing native cutscene player. Explicit X-skip advances these noninteractive introductions; it does not win the fight. Original cast, voices, motion, camera timeline and available BGM013 cue are reused. |
-| Fight | Ryo against Smith Bradley (`SMTH`), Harry Thompson (`HARY`), Tony Abrams (`TONY`), Takeshi Sera (`SERA`) and Jones Henders (`JONZ`). Start from the trap's decoded final AMOV positions. Shared basic punch, kick, throw and guard controls; at most three attackers act simultaneously. |
+| Fight | Ryo against Smith Bradley (`SMTH`), Harry Thompson (`HARY`), Tony Abrams (`TONY`), Takeshi Sera (`SERA`) and Jones Henders (`JONZ`). Start from the trap's decoded final AMOV positions. Shared punch, kick, throw and guard controls with earned Story moves; at most two attackers act simultaneously in this adaptation. |
 | Victory dialogue | Stage Ryo and Tony in the lot; choose Charlie or the tattoo, then play the selected original E1068 voice/subtitle lines. Both choices converge on a tattoo parlor in Yokosuka, with its location still unknown. |
 | Completion | After interrogation cleanup, atomically record the personal fight day, `story.s1.parking-lot-ambush.completed` and `notebook.s1.tattoo-parlor`. No yen, item, persistent HP or experience reward/change. |
 | Exit | Restore the pre-introduction approach position, facing and camera; release private actor/input ownership and resume the personal clock. This deliberately differs from the original parking-lot exit. |
@@ -941,19 +941,31 @@ Event ID: `story-s1-parking-lot-ambush`, official import `parking-lot-ambush`.
 It walks across the real trigger and renders/skips both original introductions.
 The intended complete check loses to client-controlled opponents, retries with
 physical inputs, questions Tony, verifies notebook/economy, and checks reload.
-Its stationary kick strategy no longer establishes a win against the current
-shared engine: victory/interrogation/reload remain unverified in this recheck.
+Its old stationary kick strategy no longer establishes a win against the current
+shared engine. The replacement keyboard helper reads explicit coordinates,
+moves into actual attack range, guards, and attacks; its latest run defeated
+one opponent and hit three others, but lost. Victory/interrogation/reload remain
+unverified in this recheck. Samples and combat events are retained rather than
+weakening the victory assertion or injecting a result.
 Travel to the approach is shortened; this is not a proof of the entire walk
 from the previous shop or every combat move's choreography.
 
 Add `NEW_YOKOSUKA_COMBAT_REVIEW_E2E=true` for the focused rendered guard/cancel
-check, not the complete progression check. The 2026-10-23 hardware-browser run
-observed 26 blocked strikes and one correctly damaging throw in 21 seconds,
+check, not the complete progression check. The latest 2026-10-23 hardware-browser
+run observed 32 blocked strikes and one correctly damaging throw in 21 seconds,
 without a third fighter interrupting either half of the pair. X cancellation
 released actor leases and movement, restored numeric pose/camera mode, and left
-saved flags, persistent HP and yen unchanged. Inspected screenshots still show
-an obstructed/inside-avatar camera after return and an overly crowded combat
-HUD; numeric restoration alone does not certify a usable rendered camera.
+saved flags, persistent HP and yen unchanged. A regression test also covers a
+strike landing on the same simulation tick knockdown recovery ends: held guard
+now resumes immediately. The inspected return screenshots in the last two runs
+show a normal third-person view; the earlier close-up was not reliably reproduced
+and no camera patch is claimed. The fight HUD now has a collapsible move scroll,
+no empty command box, and a compact action panel. Browser checks verify opening
+and closing the scroll, actual attack feedback, and five 44-pixel-or-larger
+buttons in a panel under 160 pixels tall at 1280×720. Mobile layout is not
+certified by this desktop check. The separate rendered QTE/move-lesson check
+also passed through Tornado Kick and Swallow Flip; its transport is mocked,
+so it is not evidence of saved Story progression.
 The JSON frame/event trace and screenshots are written to the test output,
 not production logs. No win or prerequisite was injected.
 

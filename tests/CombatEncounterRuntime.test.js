@@ -1134,6 +1134,21 @@ test("held guard remains active through its blocked-hit animation", () => {
   assert.equal(runtime.player.guardHeld, false);
 });
 
+test("held guard resumes on the exact simulation tick a knockdown ends", () => {
+  const input = new Input();
+  const runtime = new CombatEncounterRuntime({ input, playerActor: actor(), enemyActor: actor(),
+    enemyAI: { decide: () => ({ kind: "idle" }) } });
+  runtime.setActive(true); input.guarding = true;
+  runtime.player.knockdown = 1;
+  runtime.player.reaction = { kind: "knockdown", tick: 0, pairedAttackerId: "enemy" };
+  startCombatMove(runtime.enemy, MARTIAL_ARTS_MOVES.crescentKick);
+  runtime.enemy.action.tick = MARTIAL_ARTS_MOVES.crescentKick.startup;
+  const events = runtime.update(1 / 30);
+  assert.ok(events.some(e => e.type === "recovered" && e.combatantId === "ryo"));
+  assert.ok(events.some(e => e.type === "guarded" && e.defenderId === "ryo"));
+  assert.equal(runtime.player.health, runtime.player.maxHealth);
+});
+
 test("crowd attacker limit cannot move a stunned actor or overwrite a paired reaction", () => {
   const player = actor(), busy = actor(0, 1), stunned = actor(1, 0);
   const runtime = new CombatEncounterRuntime({ input: new Input(), playerActor: player,

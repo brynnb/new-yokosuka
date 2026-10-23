@@ -222,7 +222,7 @@ export class ScriptEventDialoguePresenter {
       ? `Health: ${player.health}/${player.maxHealth} · Defeated: ${view.defeated||0}/${view.totalOpponents}\nGroup ${view.wave}/${view.waveCount} — ${view.waveLabel}${view.intro?" (arriving)":""}`
       : `Health: ${player.health}/${player.maxHealth} · Opponents: ${remaining}`;
     this.dom.sourceText.textContent=view.training && view.ready ? view.training : view.ready
-      ? `${view.practice?`Practice · ${Math.ceil(view.remainingMs/1000)} seconds remaining`:battle}\nUse your movement/combat controls or the buttons below. Cancel to leave.`
+      ? view.practice?`Practice · ${Math.ceil(view.remainingMs/1000)} seconds remaining`:battle
       : view.practice||view.training?"Preparing practice...":"Preparing the fight...";
     if(this.combatToken===view.token)return true;
     this.clearOptions();this.combatToken=view.token;

@@ -185,12 +185,21 @@ ordinary recovery completes.
 
 Crowd combat preserves held guard through blocked-hit recovery: this recovery
 still prevents attacking or moving, but does not drop defence against the next
-strike. Throws still defeat guard. The simultaneous-attacker limit must not
+strike. Physical guard intent also survives knockdown so it becomes eligible
+on the exact simulation tick recovery ends, rather than one render update later.
+The HUD and animation state use actual guard eligibility, not that held intent;
+attacking or knocked-down fighters must not appear to be guarding.
+Throws still defeat guard. The simultaneous-attacker limit must not
 move stunned actors or override a paired reaction. Authored two-character
 throws/counters exclusively own both bodies until recovery; third-party hits
 cannot replace just one animation, and the thrower cannot re-grab the victim
 before its get-up finishes. These are consistency rules for this client combat
 adaptation, not claims of reconstructed Dreamcast crowd-combat rules.
+
+The shared move scroll starts folded and remains expandable during combat or
+lessons. Empty command feedback is hidden until a command or resolved move is
+available. Story's shared action panel retains its buttons with 44-pixel minimum
+heights, while using a compact layout to leave more of the fight visible.
 
 All 51 moves from the native move catalogue are playable:
 

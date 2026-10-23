@@ -8,6 +8,19 @@ export async function reviewStoryFight(page, testInfo) {
   const saved = () => page.request.get(`/api/characters/${characterId}/state`).then(r => r.json());
   const before = await saved();
   const returnState = await page.evaluate(() => window.storyProbe.combatRuntime.active.snapshot);
+  await expect(page.locator("#combat-move-list")).toBeHidden();
+  await expect(page.locator("#combat-command-feedback")).toBeHidden();
+  await page.locator("#combat-move-count").click();
+  await expect(page.locator("#combat-move-list")).toBeVisible();
+  await page.screenshot({ path: testInfo.outputPath("combat-review-move-list.png") });
+  await page.locator("#combat-move-count").click();
+  await expect(page.locator("#combat-move-list")).toBeHidden();
+  const panel = await page.locator("#dialogue-overlay .dialogue-panel").boundingBox();
+  expect(panel.height).toBeLessThan(160);
+  const targets = await page.locator("#dialogue-overlay button").evaluateAll(buttons =>
+    buttons.map(button => button.getBoundingClientRect().height));
+  expect(targets.length).toBe(5);
+  expect(targets.every(height => height >= 44)).toBe(true);
   await page.evaluate(() => {
     const encounter = window.storyProbe.combatRuntime.encounter;
     const trace = window.storyProbe.combatReview = { frames: [], events: [] };
@@ -62,6 +75,9 @@ export async function reviewStoryFight(page, testInfo) {
       "held guard blocks strikes, and a throw's victim is not interrupted by another fighter");
     expect(defence.some(e => e.type === "guarded")).toBe(true);
   }
+  await page.locator("#renderCanvas").focus();
+  await page.keyboard.press("KeyK");
+  await expect(page.locator("#combat-command-feedback")).toBeVisible();
   await page.keyboard.press("KeyX");
   await expect.poll(() => page.evaluate(() => window.storyProbe.regions.controller.status)).toBe("idle");
   const restored = await page.evaluate(() => {
@@ -78,4 +94,21 @@ export async function reviewStoryFight(page, testInfo) {
   expect(after.character.currentHp).toBe(before.character.currentHp);
   expect(after.character.yen).toBe(before.character.yen);
   await page.screenshot({ path: testInfo.outputPath("combat-review-cancelled.png") });
+  await page.waitForTimeout(1200);
+  console.info("Combat return diagnostic", JSON.stringify(await page.evaluate(() => {
+    const p = window.storyProbe, c = p.lifecycle.getController(), camera = c.camera, player = p.lifecycle.playerRuntime;
+    const bounds = player.modelRoot.getHierarchyBoundingVectors(true);
+    const ray = camera.getForwardRay(10);
+    const hits = c.scene.multiPickWithRay(ray, m => m.isEnabled() && m.isVisible)
+      .sort((a,b) => a.distance-b.distance).slice(0,5).map(h=>({name:h.pickedMesh.name,d:h.distance,parent:h.pickedMesh.parent?.name,material:h.pickedMesh.material?.name}));
+    return { distance:c.cameraDistance,resolved:c.cameraResolvedDistance,target:c.cameraTarget.asArray(),
+      camera:camera.position.asArray(),fov:camera.fov,hits,
+      root:player.modelRoot.position.asArray(),scaling:player.modelRoot.scaling.asArray(),
+      bounds:[bounds.min.asArray(),bounds.max.asArray()],
+      animation:player.animation.state,oneShot:player.animation.activeOneShot,
+      visibility:player.modelRoot.isEnabled(),actor:c.actorRoot.position.asArray(),
+      ownsPlayer:p.regions.controller.ownsPlayerPresentation,
+    };
+  })), "saved", JSON.stringify({position:returnState.position,controllerState:returnState.controllerState,cameraYaw:returnState.cameraYaw}));
+  await page.screenshot({path:testInfo.outputPath("combat-review-settled.png")});
 }

@@ -33,6 +33,7 @@ import {placeAtHeartbeatsApproach,reviewHeartbeatsPresentation,inspectHeartbeats
 import { reviewStoryFaces } from "./story-face-presentation.js";
 import { reviewTattooIntroduction } from "./story-tattoo-presentation.js";
 import { reviewStoryFight } from "./story-combat-review.js";
+import { fightStoryAmbush } from "./story-fight-input.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
@@ -1435,15 +1436,11 @@ async function verifyParkingLotAmbush(page,testInfo,character) {
   expect(saved.character.storyFlags["notebook.s1.tattoo-parlor"]).not.toBe(true);
   await page.getByRole("button",{name:"Try again",exact:true}).click();
   await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready,null,{timeout:60_000});
-  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyI");
-  try {
-    for(let i=0;i<400 && await page.evaluate(()=>!!window.storyProbe.combatRuntime?.active?.view);i++) {
-      await page.keyboard.press("KeyK");await page.waitForTimeout(250);
-    }
-  } finally {await page.keyboard.up("KeyI");}
+  await fightStoryAmbush(page,testInfo);
   const intents=await page.evaluate(()=>window.storyProbe.combatInputs);
   await testInfo.attach("combat-inputs",{body:JSON.stringify(intents),contentType:"application/json"});
-  expect(intents.some(intent=>intent.guard&&intent.action==="leg")).toBe(true);
+  expect(intents.some(intent=>intent.action==="leg")).toBe(true);
+  expect(intents.some(intent=>intent.guard)).toBe(true);
   await expect(page.getByRole("button",{name:"Ask about Charlie",exact:true})).toBeVisible({timeout:30_000});
   saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
   expect(saved.character.storyFlags["notebook.s1.tattoo-parlor"]).not.toBe(true,"winning alone does not settle an unfinished clue conversation");

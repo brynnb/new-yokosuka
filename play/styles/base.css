@@ -712,7 +712,6 @@ body.arcade-active .arcade-overlay {
   left: 14px;
   z-index: 4;
   display: grid;
-  min-width: 290px;
   gap: 5px;
   padding: 10px 13px;
   color: #fff;
@@ -750,12 +749,17 @@ body.arcade-active .arcade-overlay {
   margin-top: 2px;
 }
 
-.combat-move-scroll > h2 {
+.combat-move-scroll > summary {
   margin: 4px 0;
   color: #efbd56;
   font-size: 13px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  cursor: pointer;
+}
+
+.combat-move-scroll[open] {
+  width: min(290px, 70vw);
 }
 
 #combat-move-list {
