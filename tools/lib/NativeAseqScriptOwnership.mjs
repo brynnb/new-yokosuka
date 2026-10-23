@@ -102,15 +102,17 @@ export function nativeAseqGoverningActivityFrame(
     offset < callFileOffset && offset + 18 <= functionEndOffset;
     offset += 2
   ) {
-    // Generated callbacks use either mov.l @(disp,r14),r4 or a signed
-    // mov.w @(disp,r14),r0 followed by mov r0,r4 for their local frame clock.
-    // The latter has an extra instruction; keep all compare/branch offsets
-    // relative to the normalized load, not a cutscene-specific frame offset.
+    // Generated callbacks use a disp4 load, or an immediate r0 index when
+    // their frame field exceeds that encoding's range. Word loads sign-extend
+    // in SH-4; neither form needs an invented per-scene clock/offset override.
+    // Keep compare/branch offsets relative to the final load into r4.
     const wordLoad = (bytes.readUInt16LE(offset) & 0xfff0) === 0x85e0
       && bytes.readUInt16LE(offset + 2) === 0x6403;
-    const compareOffset = offset + (wordLoad ? 2 : 0);
+    const indexedLoad = (bytes.readUInt16LE(offset) & 0xff00) === 0xe000
+      && [0x04ed, 0x04ee].includes(bytes.readUInt16LE(offset + 2));
+    const compareOffset = offset + (wordLoad || indexedLoad ? 2 : 0);
     if (
-      (!wordLoad && (bytes.readUInt16LE(offset) & 0xfff0) !== 0x54e0)
+      (!wordLoad && !indexedLoad && (bytes.readUInt16LE(offset) & 0xfff0) !== 0x54e0)
       || compareOffset + 18 > functionEndOffset
       || bytes.readUInt16LE(compareOffset + 4) !== 0x3450
       || bytes.readUInt16LE(compareOffset + 6) !== 0x344a

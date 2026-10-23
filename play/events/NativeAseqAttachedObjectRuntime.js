@@ -384,6 +384,16 @@ export class NativeAseqAttachedObjectRuntime {
       const selected = visibilityByActor.get(event.actorTag);
       if (!selected || selected.frame < event.frame) visibilityByActor.set(event.actorTag, event);
     }
+    // A callback can hide a scene prop before attaching it or after releasing
+    // it back to AUTH motion. Keep that visibility independent of wrist
+    // ownership; unattached package-only props still stay hidden below.
+    for (const [actorTag, event] of visibilityByActor) {
+      const record = this.objects.get(actorTag);
+      if (record?.sceneObject && this.active.authoredActors.has(actorTag)
+        && selectedByActor.get(actorTag)?.action !== "attach") {
+        record.root.setEnabled(event.visible);
+      }
+    }
     for (const binding of this.active.bindings) {
       if (selectedByActor.has(binding.actorTag)) continue;
       const record = this.objects.get(binding.actorTag);

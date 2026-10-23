@@ -687,6 +687,13 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     await page.screenshot({ path: testInfo.outputPath("allowance-conversation.png") });
     await page.waitForTimeout(12000);
     await page.screenshot({ path: testInfo.outputPath("allowance-later-conversation.png") });
+    await page.waitForFunction(() => {
+      const r = window.storyProbe.director.activeCutscene?.packageRuntime;
+      return r?.activityRuntime.active?.currentFrame >= 1000;
+    }, null, { timeout: 30_000 });
+    expect(await page.evaluate(() => window.storyProbe.director.activeCutscene.packageRuntime
+      .sceneObjects.objects.get("KOZU").root.isEnabled())).toBe(true);
+    await page.screenshot({ path: testInfo.outputPath("allowance-envelope-handover.png") });
     await page.waitForFunction(() => !window.storyProbe.director.active, null, { timeout: 90_000 });
     const faces = await page.evaluate(() => {
       window.storyProbe.stopAllowanceFaceProbe();
@@ -733,7 +740,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await expect(page.getByText(/Ine-san leaves.*500/)).toBeVisible();
   await page.screenshot({ path: testInfo.outputPath("earned-notebook.png") });
   await page.locator("#journal-close").click();
-  if (ending === "complete") {
+  // Explicit skip and natural completion must both survive reconnect without
+  // replaying the scene or granting a second allowance.
+  {
     await page.reload();
     await page.keyboard.press("Enter");
     await page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" }).click();

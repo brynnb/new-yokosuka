@@ -40,9 +40,40 @@
       "referenceOnly": true
     },
     "KOZU": {
-      "model": "non-rendered-reference",
-      "browserFilename": "01KOZ-KOZU-reference",
-      "referenceOnly": true
+      "model": "FUTS5OKG",
+      "browserFilename": "FUTS5OKG.CHRM",
+      "assetPath": "play/assets/hazuki/first-allowance/FUTS5OKG.CHRM",
+      "textureAssetPath": "play/assets/hazuki/first-allowance/textures.bin",
+      "source": {
+        "actorTag": "KOZU",
+        "image": "FUTHI10G",
+        "model": "FUTS5OKG",
+        "characterRecordOffset": 23348,
+        "imagePropertyOffset": 23492,
+        "defImageRecordOffset": 3224,
+        "presentation": {
+          "position": [
+            16.709999084472656,
+            -10,
+            4
+          ],
+          "rotationDegrees": [
+            89.88459777832031,
+            93.97160339355469,
+            14.984999656677246
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "source": {
+            "objectPropertyOffset": 23396,
+            "positionPropertyOffset": 23452,
+            "anglePropertyOffset": 23472
+          }
+        }
+      }
     }
   },
   "packageActors": {
@@ -54,6 +85,302 @@
       "characterScale": 1,
       "assetPath": "play/assets/INE_M.CHRM",
       "textureAssetPath": "play/assets/INE_textures.bin"
+    }
+  },
+  "attachedObjects": {
+    "KOZU": {
+      "browserFilename": "FUTS5OKG.CHRM",
+      "sceneObject": true,
+      "attachments": [
+        {
+          "objectTag": "KOZU",
+          "activitySlot": 35,
+          "frame": 775,
+          "action": "attach",
+          "parentActorTag": "INE_",
+          "controlId": 18,
+          "translation": [
+            0.12999999523162842,
+            0.07500000298023224,
+            -0.05700000002980232
+          ],
+          "rotationRaw": [
+            62621,
+            12920,
+            16926
+          ],
+          "callFileOffset": "0x6395a",
+          "activityId": "01KOZ/SEQDATA35.AUTH"
+        },
+        {
+          "objectTag": "KOZU",
+          "activitySlot": 35,
+          "frame": 1035,
+          "action": "detach",
+          "callFileOffset": "0x63a2e",
+          "activityId": "01KOZ/SEQDATA35.AUTH"
+        },
+        {
+          "objectTag": "KOZU",
+          "activitySlot": 35,
+          "frame": 1696,
+          "action": "detach",
+          "callFileOffset": "0x63be2",
+          "activityId": "01KOZ/SEQDATA35.AUTH"
+        }
+      ],
+      "presentation": [
+        {
+          "activitySlot": 35,
+          "frame": 0,
+          "visible": false,
+          "source": {
+            "path": ".disc-work/dialogue/native-event-ir.json",
+            "sha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0",
+            "disc": 1,
+            "area": "JOMO",
+            "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+            "mapEntryFunction": "0x88b70",
+            "callbackFunction": "0x634ec",
+            "callFileOffset": "0x6385a"
+          },
+          "activityId": "01KOZ/SEQDATA35.AUTH"
+        },
+        {
+          "activitySlot": 35,
+          "frame": 775,
+          "visible": true,
+          "source": {
+            "path": ".disc-work/dialogue/native-event-ir.json",
+            "sha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0",
+            "disc": 1,
+            "area": "JOMO",
+            "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+            "mapEntryFunction": "0x88b70",
+            "callbackFunction": "0x634ec",
+            "callFileOffset": "0x638ea"
+          },
+          "activityId": "01KOZ/SEQDATA35.AUTH"
+        },
+        {
+          "activitySlot": 35,
+          "frame": 1630,
+          "visible": false,
+          "source": {
+            "path": ".disc-work/dialogue/native-event-ir.json",
+            "sha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0",
+            "disc": 1,
+            "area": "JOMO",
+            "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+            "mapEntryFunction": "0x88b70",
+            "callbackFunction": "0x634ec",
+            "callFileOffset": "0x63aba"
+          },
+          "activityId": "01KOZ/SEQDATA35.AUTH"
+        }
+      ]
+    }
+  },
+  "nativeHandPoseTables": {
+    "0x96b30": {
+      "sourceMapinfoOffset": "0x96b30",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2366,
+          -1092
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -4004
+        ],
+        [
+          0,
+          0,
+          -2912
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -13289
+        ],
+        [
+          0,
+          0,
+          -5279
+        ],
+        [
+          0,
+          0,
+          -8009
+        ],
+        [
+          0,
+          0,
+          1456
+        ],
+        [
+          0,
+          182,
+          -8738
+        ],
+        [
+          0,
+          0,
+          -6007
+        ],
+        [
+          0,
+          0,
+          -8738
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -5279
+        ],
+        [
+          0,
+          -1274,
+          -6735
+        ],
+        [
+          0,
+          -910,
+          -8738
+        ],
+        [
+          0,
+          0,
+          1638
+        ]
+      ]
+    },
+    "0x96968": {
+      "sourceMapinfoOffset": "0x96968",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2912,
+          -364
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -10012
+        ],
+        [
+          0,
+          0,
+          -16019
+        ],
+        [
+          0,
+          728,
+          -8374
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -17476
+        ],
+        [
+          0,
+          546,
+          -17840
+        ],
+        [
+          0,
+          0,
+          -8009
+        ],
+        [
+          0,
+          0,
+          1456
+        ],
+        [
+          0,
+          182,
+          -910
+        ],
+        [
+          0,
+          0,
+          -16748
+        ],
+        [
+          0,
+          0,
+          -8738
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -16384
+        ],
+        [
+          0,
+          -2548,
+          -16566
+        ],
+        [
+          0,
+          -1456,
+          -8738
+        ],
+        [
+          0,
+          546,
+          1638
+        ]
+      ]
     }
   },
   "actorTags": [
@@ -81,6 +408,16 @@
       "path": "play/assets/hazuki/first-allowance/SEQDATA35.AUTH",
       "byteLength": 25780,
       "sha256": "9677f9dc9d7872b68d265c41c7162f8c02424238e47f83fd56e07d7bee47bff0"
+    },
+    {
+      "path": "play/assets/hazuki/first-allowance/FUTS5OKG.CHRM",
+      "byteLength": 1956,
+      "sha256": "2b6031cbd7c81f5eddb56035155bedd072d565d550922083de601e5820af5951"
+    },
+    {
+      "path": "play/assets/hazuki/first-allowance/textures.bin",
+      "byteLength": 9312,
+      "sha256": "fde3f192ba196216dfb079d2dbbef0d72a8e64c6e14525e05a19e30459c2cc72"
     }
   ],
   "activities": [
@@ -109,6 +446,108 @@
         "AKIR",
         "INE_"
       ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 35,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x96b30",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x63826",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x96b30",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x63846",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 35,
+          "frame": 781,
+          "actorTag": "INE_",
+          "side": "left",
+          "poseTableOffset": "0x96b30",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x635d6",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 35,
+          "frame": 781,
+          "actorTag": "INE_",
+          "side": "right",
+          "poseTableOffset": "0x96b30",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x635f6",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 35,
+          "frame": 991,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x96968",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x639e6",
+          "sourceOrder": 6
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 35,
+          "frame": 1630,
+          "actorTag": "AKIR",
+          "channel": 0,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x63b0e",
+          "sourceOrder": 7
+        },
+        {
+          "activitySlot": 35,
+          "frame": 1630,
+          "actorTag": "AKIR",
+          "channel": 1,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x63b2a",
+          "sourceOrder": 8
+        }
+      ],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 35,
+          "frame": 781,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            1820,
+            2548,
+            1274
+          ],
+          "callFileOffset": "0x6367e",
+          "sourceOrder": 3
+        }
+      ],
+      "nativeHandComponentLimitations": [
+        {
+          "actorTag": "INE_",
+          "side": "left",
+          "callFileOffset": "0x63734",
+          "reason": "native call 0x63734 has no governing ASEQ frame"
+        }
+      ],
+      "nativeFaceClipCues": [],
+      "nativeFaceControllerCues": [],
+      "nativeFaceGazeCues": [],
+      "nativeDetailedHandDefaults": [],
       "motions": [
         {
           "actorTag": "AKIR",

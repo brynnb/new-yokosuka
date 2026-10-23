@@ -62,27 +62,48 @@ mouth controls changed over the scene. The fresh-character run also skipped
 all four opening packages, walked through the real bedroom door, completed the
 allowance naturally and reloaded its saved continuation. The separate allowance
 skip passed. This does not verify natural playback of the four opening scenes.
-Money and door reference actors still
-have no rendered geometry; handover and authored hand/expression callbacks
-remain presentation work, not cleared by that facial-motion check.
+The October 23 follow-up restores the original allowance envelope and handover.
+Rendered native shots show Ine-san offering the textured envelope, Ryo holding
+it after release, and its disappearance at the authored end cue. Presentation
+cancellation during the handover and natural completion restore the prior
+avatar, position, camera and controls without changing progress. Separate
+connected tests pass the actual allowance trigger, one ¥500 payment, notebook
+and reload without replay/payment for both natural completion and X-skip.
+Those bounded tests use the real opening-completion API; the fresh-bedroom
+walk above was verified separately on October 22, not rerun for this prop fix.
 
 The October 22 source audit located the original `KOZU` handover in JOMO's
 `0x634ec` callback (MAPINFO SHA-256
 `4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9`).
 Call `0x6395a` attaches it to `INE_`, right-hand control `18`; `0x63a2e`
-detaches it. The retained runtime placement identifies `KOZU` but has no model
-binding. The October 23 follow-up found its original static definition in
+detaches it back to the original AUTH world-motion track. The October 23
+follow-up found its original static definition in
 `COMMON01.PKF`'s `CHARA.CHRT`: character offset `0x5b34`, image property
 `0x5bc4`, `FUTHI10G` → `FUTS5OKG.CHRM` (1,956 bytes in `COMMON01.PKS`, SHA-256
 `2b6031cbd7c81f5eddb56035155bedd072d565d550922083de601e5820af5951`).
-The definition also declares `RefBoard` and shares the model with `KFUT`;
-this is a source-backed candidate, not yet a rendered handover. The CHRT hash
+The definition also declares `RefBoard` and shares the model with `KFUT`.
+The CHRT hash
 is `8853f1c13eb220aaeff0075380eccd1278e06484a147773ca43e69c0b459a1ab`.
 Do not substitute the nearby `MALS530G`: the same table binds it to `TEGA`,
 not `KOZU`. The callback uses a signed 16-bit clock at frame offset `62`;
-the current attachment extractor rejects its indexed-load frame guard.
-Verify the candidate surface and recover deterministic attachment timing
-before enabling the handover.
+the shared extractor now recognizes its immediate-indexed load rather than
+requiring a scene-specific frame override. The source-derived cues are:
+
+| Frame | Envelope presentation |
+| --- | --- |
+| 0 | Hidden before the offer |
+| 775 | Shown and attached to Ine-san's right-hand controller |
+| 1035 | Released to AUTH's world motion for Ryo's receipt |
+| 1630 | Hidden as Ryo puts it away |
+| 1696 | Terminal attachment cleanup |
+
+The package includes the original detailed hands, five static hand-pose cues,
+the resolved right-hand adjustment and two final body-hand cues. An additional
+left-hand adjustment at `0x63734` has no recovered governing frame and remains
+an explicit manifest limitation. `dor0` is still a non-rendered reference;
+exact door choreography, the `RefBoard` behavior and full finger/expression
+fidelity are not certified by these checks. Only the envelope's referenced
+textures are exported (9 KiB), not the full 1.6 MiB shared character pack.
 
 The original event occurs after Ryo first leaves his bedroom. Ine-san gives him
 ¥500, explains the daily allowance and directs him to Fuku-san at the dojo.

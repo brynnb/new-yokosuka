@@ -384,6 +384,19 @@ python3 -m tools.cutscenes.build_native_activity_preview_programs
 npm run build:native-event-program-pack
 ```
 
+The shared frame decoder also accepts immediate-indexed word/long clocks, as
+used by the first allowance's JOMO callback. It keeps the same exact comparison
+and branch checks; no per-scene frame override is needed. Callback visibility
+continues to apply after a borrowed scene prop leaves its hand attachment and
+returns to AUTH motion. Without that separation, the envelope remained visible
+after the original hide cue. The [allowance evidence and verification](../design/story-event-template.md#ine-san-first-allowance)
+records the original model, timing, rendered checks and remaining limitations.
+
+```sh
+python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area JOMO --map-entry 0x88b70 --callback 0x634ec --output tools/evidence/first-allowance-native-callback-ir.json
+node tools/cutscenes/build_first_allowance_assets.mjs --activity-only
+```
+
 No single file describes a complete cutscene. The browser package must join
 several native resources without discarding their identities.
 

@@ -102,6 +102,21 @@ test("native ASEQ ownership reads signed word clocks without shifting their gate
   assert.throws(() => nativeAseqGoverningActivityFrame(bytes, 0x20, 0x50), /no governing ASEQ frame/);
 });
 
+test("native ASEQ ownership reads immediate-indexed word and long clocks", () => {
+  for (const instruction of [0x04ed, 0x04ee]) {
+    const bytes = fixture();
+    bytes.writeUInt16LE(0xe03e, 0x2e); // mov #62,r0: beyond a word's disp4 range
+    bytes.writeUInt16LE(instruction, 0x30); // mov.w/l @(r0,r14),r4
+    assert.equal(nativeAseqGoverningActivityFrame(bytes, 0x20, 0x50), 5);
+    assert.throws(() => nativeAseqGoverningActivityFrame(bytes, 0x20, 0x62), /no governing ASEQ frame/);
+    bytes.writeUInt16LE(0xe13e, 0x2e); // a different register does not define r0
+    assert.throws(() => nativeAseqGoverningActivityFrame(bytes, 0x20, 0x50), /no governing ASEQ frame/);
+    bytes.writeUInt16LE(0xe03e, 0x2e);
+    bytes.writeUInt16LE(instruction ^ 0x0100, 0x30); // result is not in r4
+    assert.throws(() => nativeAseqGoverningActivityFrame(bytes, 0x20, 0x50), /no governing ASEQ frame/);
+  }
+});
+
 test("native ASEQ ownership does not cross an unrelated function boundary", () => {
   assert.throws(
     () => deriveNativeAseqCallOwnership({

@@ -13,6 +13,13 @@ const REVIEW_SETS = {
     ["s1.jhd0.ine-letter-invitation.scene", "exterior", "JHD0", { INE_: "INE", AKIR: "YKC" }, { natural: true, frames: [800] }],
     ["s1.jomo.chinese-letter.scene", "interior", "JOMO", { INE_: "INE", AKIR: "YKC" }, { natural: true, frames: [900, 1500, 1900], objects: ["MAIL"] }],
   ],
+  allowance: [
+    ...[false, true].map(natural => ["s1.jomo.first-allowance.scene", "interior", "JOMO", { INE_: "INE", AKIR: "YKC" }, {
+      label: natural ? "complete" : "cancel", natural,
+      frames: natural ? [740, 820, 1000, 1100, 1450, 1650] : [820], objects: ["KOZU"],
+      prop: { tag: "KOZU", parent: "INE_", shown: [775, 1630], detach: 1035 },
+    }]),
+  ],
 };
 
 // Presentation-only checks through the real Story adapter. These do not grant
@@ -35,7 +42,7 @@ export async function reviewStoryFaces(page, testInfo, character) {
   try {
     await page.waitForFunction(() => window.storyProbe.regions.controller.status === "idle" && !window.storyProbe.automatic.pending);
     for (const [id, world, area, actors, options = {}] of REVIEW_SETS[set]) {
-      const label = id.replaceAll(".", "-");
+      const label = id.replaceAll(".", "-") + (options.label ? `-${options.label}` : "");
       await page.evaluate(async world => { await window.storyProbe.lifecycle.travelToWorld(world); }, world);
       await page.waitForFunction(() => window.storyProbe.lifecycle.worldRuntime.ready);
       const prior = await page.evaluate(() => {
@@ -133,6 +140,20 @@ export async function reviewStoryFaces(page, testInfo, character) {
           const state = await page.evaluate(() => { const r = window.storyProbe.faceReview; return { done: r.done, error: r.error, frame: Math.round(r.frame) }; });
           expect(state.error).toBeNull();
           if (!state.done) await page.screenshot({ path: testInfo.outputPath(`${label}-native-${state.frame}.png`) });
+          if (options.prop && !state.done) {
+            const prop = await page.evaluate(tag => {
+              const p = window.storyProbe, r = p.director.activeCutscene.packageRuntime;
+              const root = r.sceneObjects.objects.get(tag).root;
+              const frame = r.activityRuntime.active.currentFrame;
+              const binding = r.attachedObjects.active.bindings.filter(b=>b.actorTag===tag&&b.frame<=frame).at(-1);
+              return { frame, enabled: root.isEnabled(), action: binding?.action || null,
+                parent: binding?.parentActorTag, position: root.getAbsolutePosition().asArray() };
+            }, options.prop.tag);
+            console.info(`${label} prop`, JSON.stringify(prop));
+            expect(prop.enabled).toBe(prop.frame >= options.prop.shown[0] && prop.frame < options.prop.shown[1]);
+            expect(prop.action).toBe(prop.frame < options.prop.shown[0] ? null : prop.frame < options.prop.detach ? "attach" : "detach");
+            if (prop.action === "attach") expect(prop.parent).toBe(options.prop.parent);
+          }
         }
         if (options.natural) {
           await page.waitForFunction(() => window.storyProbe.faceReview.done, null, { timeout: 120_000 });

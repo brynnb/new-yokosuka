@@ -1,10 +1,38 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import fs from "node:fs";
+import path from "node:path";
+import { createHash } from "node:crypto";
 
 import {
   extractNativeAseqCallbackPresentation,
   extractNativeHandPoseOperation,
 } from "../tools/lib/NativeAseqCallbackPresentation.mjs";
+import { extractNativeAseqCallbackObjectPresentation } from "../tools/lib/NativeAseqCallbackObjectPresentation.mjs";
+
+const allowanceMap = path.resolve(process.env.SHENMUE_DISC1_EXTRACTED_ROOT || "extracted_files", "data/SCENE/01/JOMO/MAPINFO.BIN");
+test("original allowance callback recovers indexed-clock handover without a frame override", {
+  skip: !fs.existsSync(allowanceMap) && "requires original Disc 1 JOMO extraction",
+}, () => {
+  const bytes = fs.readFileSync(allowanceMap);
+  const read = file => JSON.parse(fs.readFileSync(new URL(file, import.meta.url)));
+  const callback = read("../tools/evidence/first-allowance-native-callback-ir.json");
+  assert.equal(createHash("sha256").update(bytes).digest("hex"), callback.source.mapinfoSha256);
+  const input = { bytes, callbackFunction: 0x634ec, nativeFunction: callback.function,
+    activitySlot: 35, durationFrames: 1696 };
+  const object = extractNativeAseqCallbackObjectPresentation(input);
+  assert.deepEqual(object.attachedObjectCues.map(cue => [cue.frame, cue.action, cue.parentActorTag, cue.controlId]),
+    [[775, "attach", "INE_", 18], [1035, "detach", undefined, undefined], [1696, "detach", undefined, undefined]]);
+  const manifest = read("../play/assets/hazuki/first-allowance/manifest.json");
+  assert.deepEqual(manifest.attachedObjects.KOZU.attachments.map(({ activityId, ...cue }) => cue), object.attachedObjectCues);
+  const presentation = extractNativeAseqCallbackPresentation(input);
+  for (const key of ["nativeHandPoseCues", "nativeBodyHandPoseCues", "nativeHandComponentCues", "nativeHandComponentLimitations"]) {
+    assert.deepEqual(manifest.activities[0][key], presentation[key], key);
+  }
+  assert.deepEqual(manifest.nativeHandPoseTables, presentation.nativeHandPoseTables);
+  // Keep the unresolved conditional visible; do not silently invent a frame.
+  assert.equal(presentation.nativeHandComponentLimitations[0].callFileOffset, "0x63734");
+});
 
 test("zero-duration HAND commands keep their authored frame and vectors", () => {
   const bytes = Buffer.alloc(19 * 12);

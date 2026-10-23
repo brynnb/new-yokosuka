@@ -45,6 +45,11 @@ test("reused slots attach existing tagged props and return AUTH-driven objects w
     const runtime = new NativeAseqAttachedObjectRuntime({
       definitions: Object.fromEntries([...props].map(([tag]) => [tag, {
         browserFilename: "FISH.MT5", sceneObject: true,
+        presentation: tag === "NBO1" ? [
+          { activityId: "middle", frame: 0, visible: false },
+          { activityId: "middle", frame: 1, visible: true },
+          { activityId: "middle", frame: 8, visible: false },
+        ] : [],
         attachments: [
           { activityId: "middle", frame: 1, parentActorTag: "AKIR", controlId: 18, translation: [1, 0, 0], rotationRaw: [0, 0, 0] },
           { activityId: "middle", frame: 5, action: "detach" },
@@ -73,6 +78,15 @@ test("reused slots attach existing tagged props and return AUTH-driven objects w
     assert.equal(runtime.update(5), true);
     assert.equal(fish1.isEnabled(), true);
     assert.deepEqual(fish1.position.asArray(), [4, 5, 6]);
+    // Callback visibility still governs the AUTH-owned prop after FIXO
+    // releases the wrist. AUTH writes its normal pose/visibility first.
+    fish1.setEnabled(true);
+    runtime.update(8);
+    assert.equal(fish1.isEnabled(), false);
+    assert.equal(fish2.isEnabled(), true);
+    fish1.setEnabled(true);
+    runtime.update(0); // seeking before the handoff must hide it again
+    assert.equal(fish1.isEnabled(), false);
     assert.equal(runtime.beginActivity({ slot: 0, activityId: "last", actors: [] }), 0);
     assert.deepEqual(fish1.position.asArray(), [4, 5, 6]);
     runtime.clear();
