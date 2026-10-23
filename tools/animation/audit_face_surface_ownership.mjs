@@ -18,6 +18,7 @@ const definitions = {
   ...manifest.facialAssets,
   SORY: op00.facialAssets.SORY,
   "JAKR/JKB": manifest.facialVariants.JKB,
+  "HRSK/NZM_M": manifest.facialVariants.NZM_M,
   "OP02/SINF": op02.facialAssets.SINF,
 };
 const key = node => (node.flag << 16) >> 16;
@@ -45,6 +46,7 @@ try {
         : actor === "SINF" ? "public/models/S3_JOMO_SIN_M.MT5"
         : actor === "OP02/SINF" ? op02.packageActors.SINF.assetPath
         : actor === "JAKR/JKB" ? "extracted_files/data/SCENE/01/MODEL/CHARA/JKB_M.MT5"
+        : actor === "HRSK/NZM_M" ? "play/assets/harbor/nozomi-home/NZM_M.CHRM"
         : `play/assets/characters/${definition.bodyModelCode}.CHRM`);
       const face = await load(definition.model.path, true);
       const attachment = body.root._mt5Nodes.find(n => key(n) === -67 && n.model);

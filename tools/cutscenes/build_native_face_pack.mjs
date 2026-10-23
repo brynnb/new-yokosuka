@@ -36,6 +36,10 @@ const jkbPosePath = path.join(
   root,
   "play/assets/cutscenes/native-faces/jkb-talk-poses.generated.json",
 );
+const storyPosePath = path.join(
+  root,
+  "play/assets/cutscenes/native-faces/story-talk-poses.generated.json",
+);
 const expected = Object.freeze({
   IWAO: Object.freeze({
     bodyModelCode: "IWA_M",
@@ -93,6 +97,27 @@ const expected = Object.freeze({
     modelSha256: "17e98b42752469c6ea80fb105ed570e3cbdefc280104ca29098327b1c0bced28",
     tableSha256: "feff5238a1ddd09f9a1368067157d9149ede9dc65c49a0afa7d8c136cd82b7f0",
   }),
+  KISY: Object.freeze({
+    bodyModelCode: "KIS_M",
+    faceCode: "KIS",
+    modelSha256: "1c3d7af0feefec70746dbb887257c4adb0c2ef3971a3889d1768f6406a4c9639",
+    tableSha256: "406779572b41f7432de473b177762901ffe10a56effddba4ac2f23ec8273cd6c",
+    posePath: storyPosePath,
+  }),
+  TAIJ: Object.freeze({
+    bodyModelCode: "SYU_M",
+    faceCode: "SYU",
+    modelSha256: "2452a00d85865f4393fc6eec0c284b3204588ec6c300345a5d8609878a4f9f63",
+    tableSha256: "03f5e59373b83a5ee8aaac3dcdccada228b0b8d3fef33d82eda094005e2f1ba6",
+    posePath: storyPosePath,
+  }),
+  JIMY: Object.freeze({
+    bodyModelCode: "JIM_M",
+    faceCode: "JIM",
+    modelSha256: "cd3745f0013755393fddc119f89365b1cfb68e2522626d34530c422c387aedf1",
+    tableSha256: "6f289a2dea03c347485a0504afd92af28b0a5591d95675f2d78297423b0bd3d0",
+    posePath: storyPosePath,
+  }),
 });
 const expectedVariants = Object.freeze({
   // JAKR normally resolves to the adult JKA face. SAKR authors the same actor
@@ -105,6 +130,13 @@ const expectedVariants = Object.freeze({
     modelSha256: "311a4f734f2f5f4e28156a2b8ccdfd04429711ee8592721653e3e892bcdafb9f",
     tableSha256: "ca13ce45c2c5e1829c87c9144d5e5f8f2e1fc0a43f3a5fd186821f71bcedc8ff",
     posePath: jkbPosePath,
+  }),
+  // Both exact NZM bodies use the NZM FACE shell, but are independent entries:
+  // do not generalize this into automatic _L/_M body compatibility.
+  NZM_M: Object.freeze({
+    ...expected.HRSK,
+    actorTag: "HRSK",
+    bodyModelCode: "NZM_M",
   }),
 });
 
@@ -180,7 +212,7 @@ const facialVariants = Object.fromEntries(Object.entries(expectedVariants).map(
 const manifest = {
   schema: "new-yokosuka-native-face-pack-v1",
   generatedBy: "tools/cutscenes/build_native_face_pack.mjs",
-  evidenceBoundary: "Ryo reuses the exact OP00 FACE/FTBL assets. Every declared native activity actor uses its exact Disc 1 FACE/FTBL pair. All TALK poses are evaluated by the original SH-4 function, and every voice uses its matching native SRF speaker and mouth-cue record.",
+  evidenceBoundary: "Ryo reuses the exact OP00 FACE/FTBL assets. Declared body variants use pinned original FACE/FTBL pairs; TALK poses are evaluated by the original SH-4 function. Speech follows matching SRF mouth cues when present. Asset binding alone does not verify every scene's expressions, camera shots or speech coverage.",
   facialAssets,
   facialVariants,
 };

@@ -1149,8 +1149,9 @@ Actors without either proven structure remain unanimated and visible in the
 audit rather than receiving invented jaw motion.
 
 The 2026-10-23 local corpus check found 62 authored generic-mouth bindings
-among 87 on-stage speaker appearances without a detailed FACE across the 107
-packages. The remaining 25 appearances need separate facial-resource work;
+among 63 on-stage speaker appearances without a detailed FACE across the 107
+packages. The remaining appearance (`KJHS`/`TPL_L` in `boat-ticket-collection`)
+needs separate facial-resource work;
 these counts describe structural coverage, not 62 reviewed performances.
 The short rendered test in `tests/e2e/cutscene-faces.spec.js` checks Megumi's
 visible mouth buffers and poses while her original voice plays, then verifies
@@ -1177,6 +1178,35 @@ the clue, controls and saved reload were verified. Focused tests cover all 17
 newly admitted bodies, exact prepared closed-pose restoration, repeated speech,
 detached-source suppression and unchanged rig culling bounds. This is not
 visual verification of all 17 characters or every line they speak.
+
+The same audit identified 24 more appearances whose detailed-face resources
+had not been registered: Gui Zhang (`KIS_M`), Master Chen (`SYU_M`), Jimmy
+(`JIM_M`) and Nozomi's `NZM_M` cutscene body. The shared catalog now includes
+these exact body families, without per-scene speech implementations. The
+`KIS`, `SYU`, `JIM` and `NZM` FACE/FTBL pairs in the local Disc 1 and Disc 3
+extractions have matching hashes. Their body bindings retain authored signed
+neck references (10, 14, 10 and 10 vertices respectively) and preserve
+body-owned hair. The NZM_M source is the actual TER2 archive member already
+packaged for the home/amulet scenes, not a substituted NZM_L body.
+
+`story-talk-poses.generated.json` evaluates KIS/SYU/JIM using the original
+SH-4 builder, pinned slot-7 fixture and independent YKC oracle, like the other
+detailed faces. Nozomi reuses her existing NZM evaluation. Source hashes live
+in the generated face catalog and pose metadata. Focused tests use the actual
+production-prepared bodies and SRF speech cues, and check face deformation,
+replacement, release and reacquisition. Structural coverage alone does not
+verify original scene expressions, every speaker's camera shot or event gates.
+
+`NEW_YOKOSUKA_STORY_FACES_E2E=true` runs a presentation-only recheck from an
+isolated saved character. On 2026-10-23 it played the real Story adapters for
+Chen's arrival, Jimmy's capture and Nozomi's amulet memory; all four original
+speakers produced changing mouth controls and local face vertices during
+advancing audio. Native-shot and explicit diagnostic close-up captures were
+reviewed. Gui Zhang's initial line is off-screen in the native shot, so its
+close-up proves the face fit, not that this shot shows him. Cancellation
+restored the active world and controls without changing flags, money or
+inventory. This does not replay their prerequisite stories or verify all 24
+newly bound speaker appearances.
 
 The mouth targets use node-local coordinates, while prepared GPU meshes use
 bind-world coordinates. Apply the authored open-minus-closed displacement in

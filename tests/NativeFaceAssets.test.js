@@ -8,6 +8,7 @@ import {
   createNativeAseqFacialPresentation,
 } from "../play/events/NativeAseqFacialPresentation.js";
 import { Mt5Loader } from "../src/Mt5Loader.js";
+import { loadNativeCharacterModel } from "../play/characters/NativeCharacterModelLoader.js";
 import { integrateBodyFaceSurface, restoreBodyFaceSurface } from "../src/FaceSurfaceIntegration.js";
 import {
   nativeTalkActorPoses,
@@ -73,7 +74,54 @@ test("every declared native face has exact presentation assets", () => {
     assert.equal(poses.upperPoses.length, 80);
     assert.equal(poses.mouthPoses.length, 80);
   }
-  assert.equal(posePaths.size, 3);
+  assert.equal(posePaths.size, 4);
+});
+
+test("Story faces fit their exact prepared bodies and restore the body on release", async () => {
+  const engine = new BABYLON.NullEngine();
+  try {
+    for (const [tag, definition, body, audioPath] of [
+      ["KISY", manifest.facialAssets.KISY, "play/assets/harbor/master-chen/KIS_M.CHRM", "public/audio/world/master-chen/manifest.json"],
+      ["TAIJ", manifest.facialAssets.TAIJ, "play/assets/harbor/master-chen/SYU_M.CHRM", "public/audio/world/master-chen/manifest.json"],
+      ["JIMY", manifest.facialAssets.JIMY, "play/assets/characters/JIM_M.CHRM", "public/audio/world/jimmy-caught/manifest.json"],
+      ["HRSK", manifest.facialVariants.NZM_M, "play/assets/harbor/nozomi-home/NZM_M.CHRM", "public/audio/world/nozomi-home/manifest.json"],
+    ]) {
+      const scene = new BABYLON.Scene(engine);
+      try {
+        const model = await loadNativeCharacterModel({ scene,
+          modelBuffer: arrayBuffer(body), sourceFilename: body });
+        const root = new BABYLON.TransformNode(`actor_${tag}`, scene);
+        model.renderRoot.parent = root;
+        const originalIndices = new Map(model.renderRoot.getChildMeshes(false)
+          .filter(mesh => mesh.getTotalIndices()).map(mesh => [mesh, Array.from(mesh.getIndices())]));
+        const faces = createNativeAseqFacialPresentation({ scene,
+          actors: { activeActor: actor => actor === tag ? { actorCode: tag, root, model } : null,
+            componentWorldPosition: () => null },
+          definitions: { [tag]: definition }, loadAsset: arrayBuffer });
+        await faces.prepare({ actors: [tag] });
+        const owner = {};
+        assert.equal(faces.begin(owner, [tag]), true);
+        const active = faces.active.faces.get(tag);
+        assert.ok(active.surfaceIntegration.boundExternalParentVertexCount > 0, `${tag}: authored neck seam`);
+        assert.ok(active.surfaceIntegration.removedTriangleCount > 0, `${tag}: replace coarse face`);
+        const voice = JSON.parse(fs.readFileSync(audioPath)).voices.find(v => v.speakerId === tag && v.lipSync);
+        assert.ok(voice, `${tag}: original SRF voice cues`);
+        const states = new Set();
+        for (let frame = 0; frame < 60; frame++) {
+          faces.apply(owner, { frame, voiceCues: new Map([[tag, {
+            command: { name: "voice", audio: voice }, positionSeconds: frame / 30,
+          }]]) });
+          states.add(JSON.stringify(active.entry.primaryMeshes.flatMap(mesh => Array.from(mesh.getVerticesData("position")))));
+        }
+        assert.ok(states.size > 1, `${tag}: speech deforms its own face`);
+        assert.equal(faces.end(owner), true);
+        for (const [mesh, indices] of originalIndices) assert.deepEqual(Array.from(mesh.getIndices()), indices, `${tag}: cleanup restores body`);
+        assert.equal(faces.begin(owner, [tag]), true, `${tag}: reacquire after release`);
+        assert.equal(faces.end(owner), true);
+        faces.clear();
+      } finally { scene.dispose(); }
+    }
+  } finally { engine.dispose(); }
 });
 
 test("named native face variants preserve authored actor identity", () => {

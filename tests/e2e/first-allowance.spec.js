@@ -30,6 +30,7 @@ import {verifySwallowFlip,verifySwallowPresentation,verifyFinalChai,verifyFinalC
 import {useStoryInspectable} from "./story-object-input.js";
 import {verifySavedScrollLearning} from "./story-move-learning.js";
 import {placeAtHeartbeatsApproach,reviewHeartbeatsPresentation,inspectHeartbeatsMotions} from "./story-heartbeats-presentation.js";
+import { reviewStoryFaces } from "./story-face-presentation.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
@@ -230,6 +231,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   expect(await page.evaluate(() => window.storyProbe.errors)).toEqual([]);
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
+    if (process.env.NEW_YOKOSUKA_STORY_FACES_E2E === "true") {
+      test.setTimeout(540_000);
+      await reviewStoryFaces(page, testInfo, character);
+      expect(errors).toEqual([]); return;
+    }
     if(process.env.NEW_YOKOSUKA_SCROLL_LEARNING_E2E === "true"){
       test.setTimeout(300_000);await verifySavedScrollLearning(page,testInfo,character,{moveId:process.env.NEW_YOKOSUKA_SCROLL_MOVE_ID||'twinBlades'});expect(errors).toEqual([]);return;
     }
