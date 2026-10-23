@@ -1,4 +1,5 @@
 import {
+  isNativeAseqTerminalCall,
   nativeAseqCallbackFrame,
   nativeAseqGoverningActivityFrame,
 } from "./NativeAseqScriptOwnership.mjs";
@@ -66,23 +67,10 @@ function operationFrame(bytes, callbackFunction, operation, nativeFunction = nul
       }
       block = block?.successors.length === 1 ? blocks.get(block.successors[0]) : null;
     }
-    // Likewise, a reset on the unique "activity finished" exit path belongs
+    // Likewise, a reset on the proven "activity finished" postlude belongs
     // to the terminal boundary, not an invented early detach frame.
-    if (Number.isSafeInteger(durationFrames)) {
-      for (const action of [...blocks.values()].flatMap(value => value.actions)) {
-        if (action.semanticId !== "native-operation-0050-aseq-activity-control"
-          || action.arguments[0]?.value !== 0xffffffff
-          || action.resultComparison?.comparison !== "equal"
-          || action.resultComparison.constant !== 0) continue;
-        block = blocks.get(action.resultComparison.resolvedBranch?.comparisonTrueSuccessor);
-        const exitVisited = new Set();
-        while (block && !exitVisited.has(block.id)) {
-          exitVisited.add(block.id);
-          if (block.actions.some(value => value.callFileOffset === operation.callFileOffset)) return durationFrames;
-          block = block.successors.length === 1 ? blocks.get(block.successors[0]) : null;
-        }
-      }
-    }
+    if (Number.isSafeInteger(durationFrames)
+      && isNativeAseqTerminalCall(nativeFunction, operation.callFileOffset)) return durationFrames;
     throw error;
   }
 }

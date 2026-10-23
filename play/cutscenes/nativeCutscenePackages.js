@@ -246,7 +246,7 @@ const bundledHouoAssets = runtimeAssetGroup("play/assets/hazuki/houo/*.{AUTH,MOT
 const bundledTokiAssets = runtimeAssetGroup("play/assets/dobuita/toki/*.{AUTH,MOTN,MT5,BIN}");
 const bundledPhoneBookAssets = runtimeAssetGroup("play/assets/dobuita/phone-book/*.{AUTH,MOTN,CHRM,bin}");
 const bundledMasterChenAssets = runtimeAssetGroup("play/assets/harbor/master-chen/*.{AUTH,MOTN,CHRM,bin}");
-const bundledMirrorMeetingAssets = runtimeAssetGroup("play/assets/harbor/mirror-meeting/*.{AUTH,MOTN,CHRM,bin}");
+const bundledMirrorMeetingAssets = runtimeAssetGroup("play/assets/harbor/mirror-meeting/*.{AUTH,MOTN,CHRM,BIN,bin}");
 const bundledFamilyFukuAssets = runtimeAssetGroup("play/assets/hazuki/family-fuku/*.{AUTH,MOTN}");
 const bundledFamilyIneAssets = runtimeAssetGroup("play/assets/hazuki/family-ine/*.{AUTH,MOTN}");
 const bundledBunkadoHandguardAssets = runtimeAssetGroup("play/assets/dobuita/bunkado-handguard/*.{AUTH,MOTN,CHRM,BIN,bin}");
@@ -546,8 +546,9 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
   }),
   Object.freeze({
     id:"mirror-meeting",worldId:"ms08",actorDefinitions:Object.freeze([]),actorTags:Object.freeze(mirrorMeetingManifest.actorTags),
-    assets:Object.freeze({...sourceAssetMap(bundledMirrorMeetingAssets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets}),
-    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR})}),
+    assets:Object.freeze({...sourceAssetMap(bundledMirrorMeetingAssets),...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,...op00HandAssets}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR}),
+      handAssets:Object.freeze({...mirrorMeetingManifest.handAssets,AKIR:op00AssetInventory.handAssets.AKIR})}),
     environment:Object.freeze({packageActors:mirrorMeetingManifest.packageActors,sceneObjects:mirrorMeetingManifest.sceneObjects,attachedObjects:mirrorMeetingManifest.attachedObjects}),
     playback:Object.freeze({manifest:mirrorMeetingManifest,audioManifest:mirrorMeetingAudio}),
   }),

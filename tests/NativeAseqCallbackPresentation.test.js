@@ -13,6 +13,31 @@ import {
 import { extractNativeAseqCallbackObjectPresentation } from "../tools/lib/NativeAseqCallbackObjectPresentation.mjs";
 
 const tattooMap = path.resolve(process.env.SHENMUE_DISC1_EXTRACTED_ROOT || "extracted_files", "data/SCENE/01/TATQ/MAPINFO.BIN");
+const mirrorMap = path.resolve(process.env.SHENMUE_DISC2_EXTRACTED_ROOT || "extracted_disc2_v2", "data/SCENE/02/MS8A/MAPINFO.BIN");
+test("mirror callbacks retain original hands and grips without the guessed permanent attachment", {
+  skip: !fs.existsSync(mirrorMap) && "requires original Disc 2 MS8A extraction",
+}, () => {
+  const read = file => JSON.parse(fs.readFileSync(new URL(file, import.meta.url)));
+  const evidence=read("../tools/evidence/mirror-meeting-callback-ir.json");
+  const manifest=read("../play/assets/harbor/mirror-meeting/manifest.json");
+  const bytes=fs.readFileSync(mirrorMap),functions=[evidence.function,...evidence.supportingFunctions];
+  assert.equal(createHash("sha256").update(bytes).digest("hex"),evidence.source.mapinfoSha256);
+  for(const [slot,id]of ["0xaf0","0x10f4","0x160c","0x200c","0x272c","0x2d8c","0x38b4","0x3e14"].entries()){
+    const input={bytes,functions,nativeFunction:functions.find(f=>f.id===id),callbackFunction:Number(id),activitySlot:slot};
+    const hands=extractNativeAseqCallbackHandPresentation(input);
+    assert.deepEqual(hands.nativeHandComponentLimitations,[]);
+    assert.deepEqual(manifest.activities[slot].nativeHandPoseCues,hands.nativeHandPoseCues);
+    assert.equal(hands.nativeHandCleanupHelpers.length,1);
+    assert.equal(hands.nativeBodyHandPoseCues.every(c=>c.channel===2&&c.frame===0),true);
+  }
+  assert.deepEqual(manifest.attachedObjects.KAGA.attachments.map(c=>[c.activitySlot,c.frame,c.action,c.parentActorTag,c.controlId]),[
+    [2,0,"attach","CHAI",12],[3,0,"detach",undefined,undefined],
+    [6,723,"attach","AKIR",18],[6,2262,"detach",undefined,undefined],
+    [7,0,"attach","AKIR",18],[7,3630,"detach",undefined,undefined],
+  ]);
+  assert.equal(manifest.attachedObjects.KAGA.attachments.every(c=>c.callFileOffset),true);
+  assert.equal(manifest.sceneObjects.KAGA.source.model,"PNX02H6G");
+});
 const bunkadoMap = path.resolve(process.env.SHENMUE_DISC2_EXTRACTED_ROOT || "extracted_disc2_v2", "data/SCENE/02/DKTY/MAPINFO.BIN");
 test("Bunkado source guards retain exact grip transfers and reject a visual skip branch", {
   skip: !fs.existsSync(bunkadoMap) && "requires original Disc 2 DKTY extraction",

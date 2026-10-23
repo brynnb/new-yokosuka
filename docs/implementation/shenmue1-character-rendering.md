@@ -554,6 +554,17 @@ explicit package texture pack. Merely listing HAND resources in the source
 graph does not load them: the generated package must include `handAssets`
 and its timed hand cues.
 
+Animated hand-motion banks are a separate remaining gap from these static
+poses and wrist components. The [original-operation inventory](../../tools/evidence/hndl-hndr-motion-operation-evidence.json)
+records 331 `0x00e7` requests across 40 areas and 57 `0x00e9` controls.
+`NativeHndlHndrRecordRuntime` preserves their signed range/index and transition
+contract, but that is not a rendered `HMOT_*.BIN` curve decoder. For example,
+Bunkado's two `HMOT_SYG` requests are still omitted even though its detailed
+hand surfaces and static grips render. A bounded inspection of that bank and
+the original executable did not establish verified animated curve output;
+the next decoder work needs original-function pose samples, not guessed
+finger curves or one-off scene corrections.
+
 Regression coverage uses the production welded GPU path, mesh batching, actor
 transforms, multiple head poses, and repeated leases for Ryo, Fuku-san, Ine-san,
 Iwao, and Lan Di. It compares the final skinned world-space boundary positions

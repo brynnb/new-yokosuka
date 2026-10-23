@@ -1,6 +1,7 @@
 import { NATIVE_HAND_POSE_SLOT_ORDER } from "../../src/NativeHandRig.js";
 import { expressionRange, frameWords } from "./NativeAseqCallbackObjectPresentation.mjs";
 import {
+  isNativeAseqTerminalCall,
   isSynchronousHelper,
   nativeAseqCallbackFrame as callbackOperationFrame,
   nativeAseqGoverningActivityFrame,
@@ -329,6 +330,7 @@ export function extractNativeAseqCallbackHandPresentation({ bytes, callbackFunct
   const nativeBodyHandPoseCues = [];
   const nativeHandComponentCues = [];
   const nativeHandComponentLimitations = [];
+  const nativeHandCleanupHelpers = [];
   const mixedHandOrder = functions.length > 0 || callbackOperations(nativeFunction)
     .some(operation => ["actor-mhnd-controller-request", "resolved-object-hndl-hndr-component-write"].includes(operation.semanticId));
   const containsHandCommands = (fn, seen = new Set()) => {
@@ -370,6 +372,14 @@ export function extractNativeAseqCallbackHandPresentation({ bytes, callbackFunct
       if (!helper) throw new Error(`${action.callFileOffset} HAND helper is unavailable`);
       if (!containsHandCommands(helper)) continue;
       if (!isSynchronousHelper(helper, functions)) throw new Error(`${helper.id} HAND helper has unsupported control flow or scheduler boundary`);
+      if (isNativeAseqTerminalCall(nativeFunction, action.callFileOffset)) {
+        // The browser leases private scene actors and releases their hand
+        // surfaces in end(). Do not replay the original room's resident-actor
+        // reset as an initial pose or an unsupported MHND -1 animation cue.
+        nativeHandCleanupHelpers.push({ callFileOffset: action.callFileOffset, helperFunction: helper.id,
+          handledBy: "presentation-end-actor-release" });
+        continue;
+      }
       const frame = callbackOperationFrame(bytes, callbackFunction, nativeFunction, action, functions);
       const setup = extractNativeAseqHandInitialization({ bytes, nativeFunction: helper, functions,
         activitySlot, entryArguments: action.arguments, ownerCallFileOffset: action.callFileOffset,
@@ -415,7 +425,8 @@ export function extractNativeAseqCallbackHandPresentation({ bytes, callbackFunct
   return { nativeHandPoseTables, nativeHandPoseCues, nativeBodyHandPoseCues,
     nativeHandComponentCues: nativeHandComponentCues.filter(cue => !nativeHandComponentLimitations.some(
       limit => limit.actorTag === cue.actorTag && limit.side === cue.side)),
-    nativeHandComponentLimitations };
+    nativeHandComponentLimitations,
+    ...(nativeHandCleanupHelpers.length ? { nativeHandCleanupHelpers } : {}) };
 }
 
 export function extractNativeHandPoseOperation({

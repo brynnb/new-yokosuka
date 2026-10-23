@@ -2,10 +2,14 @@
 // reviewed order and a real Left QTE; native warehouse branching is not needed.
 import fs from "node:fs";
 import path from "node:path";
-import {buildNativeAseqActivityPack,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
+import {execFileSync} from "node:child_process";
+import {buildNativeAseqActivityPack,describeNativeAseqHandAssets,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
 import {buildNativeAseqAudioPack} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
 import {parseAuthSequence} from "../../src/AuthSequence.js";
+import {parseChrtSceneObjectBindings} from "../lib/chrt_scene_object_bindings.js";
+import {extractNativeAseqCallbackHandPresentation} from "../lib/NativeAseqCallbackPresentation.mjs";
+import {extractNativeAseqCallbackObjectPresentation} from "../lib/NativeAseqCallbackObjectPresentation.mjs";
 
 const root=path.resolve(import.meta.dirname,"../..");
 const sourceRoot=process.env.SHENMUE_DISC2_EXTRACTED_ROOT||path.join(root,"extracted_disc2_v2");
@@ -18,43 +22,64 @@ const textureSource=fs.readFileSync(source("MS8A/MS8A.PKF"));
 if(sha256(textureSource)!=="5c636beb2198d08fea31694f4a45642d452c4a4f4ea497d95d9cfa41f1d6a52a")throw Error("Changed original MS8A textures");
 const textures=extractNativeTexnPack(textureSource,"MS8A/MS8A.PKF");
 const members=parseIpacActivityArchive(archive).members;
+const callbackEvidence=JSON.parse(fs.readFileSync(path.join(root,"tools/evidence/mirror-meeting-callback-ir.json")));
+if(callbackEvidence.source.mapinfoSha256!==sha256(map))throw Error("Changed MS8A callback evidence");
+const functions=[callbackEvidence.function,...callbackEvidence.supportingFunctions];
+const callbacks=[0xaf0,0x10f4,0x160c,0x200c,0x272c,0x2d8c,0x38b4,0x3e14];
+const owner=functions.find(fn=>fn.id==="0x4e2c");
+for(const [slot,callback]of callbacks.entries()){
+  const calls=owner.blocks.flatMap(b=>b.actions).filter(a=>Number(a.targetFileOffset)===callback);
+  if(calls.length!==1||calls[0].arguments[1]?.value!==slot)throw Error(`Unproved MS8A callback slot ${slot}`);
+}
+const propCues=[];
 const activities=Array.from({length:8},(_,slot)=>{
   const file=`SEQDATA${slot}.AUTH`,member=members.find(m=>m.name===file);
   if(!member)throw Error(`Missing original ${file}`);
   const sequence=parseAuthSequence(member.bytes.buffer.slice(member.bytes.byteOffset,member.bytes.byteOffset+member.bytes.byteLength));
-  return {slot,primaryPointer:0,secondaryPointer:0,file,durationFrames:sequence.durationFrames,frameCount:sequence.frames.length,actors:sequence.actors};
+  const input={bytes:map,callbackFunction:callbacks[slot],nativeFunction:functions.find(f=>Number(f.id)===callbacks[slot]),
+    functions,activitySlot:slot,durationFrames:sequence.durationFrames};
+  const hands=extractNativeAseqCallbackHandPresentation(input);
+  // Original room setup also initializes resident actors absent from this
+  // AUTH. Do not acquire an invisible Chai merely to reset his body fingers.
+  hands.nativeBodyHandPoseCues=hands.nativeBodyHandPoseCues.filter(c=>sequence.actors.includes(c.actorTag));
+  if(hands.nativeHandPoseCues.some(c=>!sequence.actors.includes(c.actorTag)))throw Error("Unowned MS8A detailed hand cue");
+  propCues.push(...extractNativeAseqCallbackObjectPresentation({...input,objectTags:["KAGA"]}).attachedObjectCues);
+  return {slot,primaryPointer:0,secondaryPointer:0,file,durationFrames:sequence.durationFrames,frameCount:sequence.frames.length,actors:sequence.actors,...hands};
 });
 const prefix="play/assets/harbor/mirror-meeting",audioPrefix="public/audio/world/mirror-meeting";
 const character=(label,modelCode)=>({label,modelCode,browserFilename:`${modelCode}.CHRM`,assetFormat:"MT5",characterScale:1,
   assetPath:`${prefix}/${modelCode}.CHRM`,textureAssetPath:`${prefix}/textures.bin`});
 const object=model=>({model,browserFilename:`${model}.CHRM`,assetPath:`${prefix}/${model}.CHRM`,textureAssetPath:`${prefix}/textures.bin`});
+const bindings=parseChrtSceneObjectBindings(parseIpacActivityArchive(textureSource).members.find(m=>m.name==="CHARA.CHRT").bytes);
+const sceneObjects=Object.fromEntries(["KAGA","CLE1","CLE2"].map(tag=>{
+  const binding=bindings.find(b=>b.actorTag===tag);
+  if(!binding)throw Error(`Missing original MS8A prop ${tag}`);
+  return [tag,{...object(binding.model),source:binding}];
+}));
+const handAssets={},handMembers=[];
+for(const [actorTag,handCode]of Object.entries({TAIJ:"SYU",KISY:"KIS",CHAI:"CHA"})){
+  const record=name=>{const member=members.find(m=>m.name===name);if(!member)throw Error(`Missing original ${name}`);handMembers.push(name);return {path:`${prefix}/${name}`,bytes:member.bytes};};
+  handAssets[actorTag]=describeNativeAseqHandAssets({actorTag,bodyModelCode:`${handCode}_M`,handCode,
+    left:record(`${handCode}_TL.CHRM`),right:record(`${handCode}_TR.CHRM`),rig:record(`${handCode}_HM.BIN`),
+    texturePack:{path:`${prefix}/textures.bin`,byteLength:textures.bytes.length,sha256:sha256(textures.bytes)}});
+}
 const manifest=buildNativeAseqActivityPack({
   generatedBy:"tools/cutscenes/build_mirror_meeting_pack.mjs",resourceName:"MS8A",disc:2,
   sourcePath:source("MS8A/MS8A.PKS"),sourceManifestPath:"disc2/SCENE/02/MS8A/MS8A.PKS",archiveSha256:sha256(archive),
   expectedMembers:members.map(m=>({name:m.name,byteLength:m.bytes.length,sha256:sha256(m.bytes)})),
   bindingEvidence:"docs/design/story-event-template.md#return-to-master-chen",
-  selectionRule:"Original AUTH-extension ordinals. Authored sequence 6,0,1,2,3; real Left input selects 5 versus failed 4; only successful 5 continues to 7. No recovered native-controller branching is claimed.",
+  selectionRule:"Original owner 0x4e2c binds the callback for each AUTH ordinal. Original hand poses and FIXO grips are compiled as finite data. Authored sequence 6,0,1,2,3; real Left input selects 5 versus failed 4; only successful 5 continues to 7. Native gaze/debris and native QTE branching are not reconstructed.",
   outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),audioManifest:`${audioPrefix}/manifest.json`,
   // Original MS8A AUTH requests bank 17 (unlike the earlier meeting's 16).
   motionBanks:[{bank:17,member:"M_0159.MOTN"}],activities,
-  outputMembers:["SYU_M.CHRM","KIS_M.CHRM","CHA_M.CHRM","PNX02H6G.CHRM","B570501G.CHRM","B570502G.CHRM"],
+  outputMembers:["SYU_M.CHRM","KIS_M.CHRM","CHA_M.CHRM","PNX02H6G.CHRM","B570501G.CHRM","B570502G.CHRM",...handMembers],
+  handAssets,nativeHandPoseTables:Object.assign({},...activities.map(a=>a.nativeHandPoseTables)),
   generatedAssets:[{assetPath:`${prefix}/textures.bin`,bytes:textures.bytes,source:{path:"disc2/SCENE/02/MS8A/MS8A.PKF",sha256:sha256(textureSource)}}],
   packageActors:{TAIJ:character("Master Chen","SYU_M"),KISY:character("Chen Gui Zhang","KIS_M"),CHAI:character("Chai","CHA_M")},
-  // Original mirror and paired warehouse pieces, assigned to original AMOV
-  // tags by their reviewed role. Exact callback binding/impact debris is not
-  // recovered; document this adaptation rather than inserting missing meshes.
-  sceneObjects:{KAGA:object("PNX02H6G"),CLE1:object("B570501G"),CLE2:object("B570502G")},
-  // KAGA's AMOV keeps it below the floor while native hand callbacks own it.
-  // Reuse the existing scene-object attachment owner to override that pose,
-  // not a second mirror mesh. These grips/handover frames are authored; 300
-  // falls within the original pickup motion beginning at frame 154 in slot 5.
-  attachedObjects:{KAGA:{browserFilename:"PNX02H6G.CHRM",sceneObject:true,
-    attachments:[
-      ...[[6,"TAIJ"],[0,"TAIJ"],[1,"CHAI"],[2,"CHAI"],[3,"CHAI"],[4,"CHAI"],[5,"CHAI"],[7,"AKIR"]].map(([activitySlot,parentActorTag])=>({activitySlot,frame:0,parentActorTag,controlId:18,translation:[0,0,0.05],rotationRaw:[0,0,0]})),
-      {activitySlot:0,frame:90,parentActorTag:"CHAI",controlId:18,translation:[0,0,0.05],rotationRaw:[0,0,0]},
-      {activitySlot:5,frame:300,parentActorTag:"AKIR",controlId:18,translation:[0,0,0.05],rotationRaw:[0,0,0]},
-    ],
-  }},
+  sceneObjects,
+  // No guessed permanent wrist override: AUTH moves the existing mirror
+  // except where the original callback explicitly gives FIXO ownership.
+  attachedObjects:{KAGA:{...sceneObjects.KAGA,sceneObject:true,attachments:propCues}},
 });
 console.log(`Built mirror meeting: ${manifest.activities.length} original AUTH segments`);
 if(process.argv.includes("--audio")){
@@ -76,3 +101,4 @@ if(process.argv.includes("--audio")){
   });
   console.log(`Built mirror meeting audio: ${audio.voices.length} voices; ${audio.sounds.length} effects`);
 }
+execFileSync(process.execPath,["tools/runtime-assets.mjs","update",`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path)],{cwd:root,stdio:"inherit"});

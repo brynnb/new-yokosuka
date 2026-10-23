@@ -3,10 +3,41 @@ import test from "node:test";
 
 import {
   deriveNativeAseqCallOwnership,
+  isNativeAseqTerminalCall,
   nativeAseqGeneratedFunctionBounds,
   nativeAseqGoverningActivityFrame,
   nativeAseqGoverningActivityRange,
 } from "../tools/lib/NativeAseqScriptOwnership.mjs";
+
+test("terminal cleanup can wait after ASEQ but cannot return to playback", () => {
+  const fn={entryBlock:"poll",blocks:[
+    {id:"poll",actions:[{operationId:0x50,semanticId:"native-operation-0050-aseq-activity-control",
+      arguments:[{value:0xffffffff}],resultComparison:{comparison:"equal",constant:0,
+        resolvedBranch:{comparisonTrueSuccessor:"wait",comparisonFalseSuccessor:"playing"}}}],successors:["wait","playing"]},
+    {id:"playing",actions:[{callFileOffset:"pose"}],successors:["poll"]},
+    {id:"wait",actions:[],successors:["wait","cleanup"]},
+    {id:"cleanup",actions:[{callFileOffset:"release"}],successors:[]},
+  ]};
+  assert.equal(isNativeAseqTerminalCall(fn,"release"),true);
+  assert.equal(isNativeAseqTerminalCall(fn,"pose"),false);
+  fn.blocks[3].successors.push("poll");
+  assert.equal(isNativeAseqTerminalCall(fn,"release"),true,
+    "a later scheduler edge must not invalidate the proven path up to cleanup");
+  fn.blocks[1].successors.push("cleanup");
+  assert.equal(isNativeAseqTerminalCall(fn,"release"),false,
+    "a command also reachable before playback finishes is not terminal cleanup");
+  fn.blocks[1].successors.pop();
+  fn.entryBlock="cleanup";
+  assert.equal(isNativeAseqTerminalCall(fn,"release"),false,
+    "a command also reachable from initial entry is not terminal cleanup");
+  fn.entryBlock="poll";
+  fn.blocks[1].successors.push("missing");
+  assert.equal(isNativeAseqTerminalCall(fn,"release"),false,
+    "unknown branch targets cannot prove exclusive cleanup");
+  fn.blocks[1].successors.pop();
+  fn.blocks[0].actions[0].resultComparison.resolvedBranch.comparisonTrueSuccessor="playing";
+  assert.equal(isNativeAseqTerminalCall(fn,"release"),false);
+});
 
 function writeFunctionPrologue(bytes, offset) {
   bytes.writeUInt16LE(0x2de6, offset);

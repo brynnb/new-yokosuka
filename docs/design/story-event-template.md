@@ -305,7 +305,7 @@ does not establish working mouth animation or envelope presentation.
 | Dojo scrolls / hidden-wall switches | Connected real-object clicks, explicit leave/fit choices, live cancellation/retry, independent server settlement, saved scroll/wall presentation and reload pass. Original recess/opened-wall geometry is visibly checked. Scroll rolling, handguard/sword placement and wall translation are authored approximations. |
 | Basement entry / return | Connected walking approach, explicit leave/descend choice, live cancellation/retry, saved YDB1 arrival, normal movement into the room, cancelled return/retry, exact dojo return, repeat descent and saved reload pass. Original room/furniture geometry is visible. Arrival/cameras/prompts are authored; climbing animation and lighting interactions remain omitted. |
 | Phoenix Mirror search | Connected floor clue, shelf movement, genuine axe pickup, wall opening and once-only mirror/notebook settlement. Compiled Yarn/PostgreSQL and rendered click/cancel/retry/natural ending/reload checks pass. Placement/camera/grips and mechanical reveals are authored; light-source interactions and optional discoveries remain incomplete. |
-| Return to Master Chen / recover mirror from Chai | Connected rendered Fuku referral, repeat bus, real password call/gate/door, original MS8A cast/body/cameras, wrong Left-QTE input/retry/success, natural ending and saved reload pass. Compiler/PostgreSQL checks cover cancellation, stale receipts and isolation. Grips, held prompt staging and detailed callbacks remain adaptations. |
+| Return to Master Chen / recover mirror from Chai | Connected rendered Fuku referral, repeat bus, real password call/gate/door, original MS8A cast/body/cameras, wrong Left-QTE input/retry/success, natural ending and saved reload pass. Original hands and callback grips now replace manual attachments; all eight clips and the final conversation's three speaking faces have a rendered recheck. Native gaze, debris and held QTE staging remain incomplete/adapted. |
 | Home update / mirror dream / Ryo's savings / family travel advice | Connected rendered continuations verify original Fuku update, dream/bank cancellation and natural completion, visible bankbook, once-only savings/next-morning arrival, real bedroom door entry, advice cancellation/retry, original kitchen ending and saved reload. Compiler/PostgreSQL and focused client checks pass. Held advice gestures, exact callback detail and home music remain adaptations/omissions. |
 | Agency fares / flyers / Fuku's contribution | Connected rendered continuations verify real shop doors, original Global/Asia cast and cameras, leave/cancel/retry, natural endings, actual Fuku bedroom entry, original flyer/piggy-bank presentation, one ¥39,634 payment, independent flyers, restored controls and saved reload. Compiler/PostgreSQL and focused client checks cover settlement, hours, stale receipts and personal isolation. Prop-role bindings, detailed breaking debris and cinematic door motion remain adaptations/omissions; inventory flyer art is not added. See [ticket journey](story-ticket-journey.md#agency-quotes-and-fukus-contribution). |
 | Boat lead / agency referral / payment / delayed inquiry | Connected rendered Nozomi talk, original Global referral, physical Asia door entry, decline/cancel/retry, cash/tray/flyer presentation, one ¥69,000 debit, saved four-hour wait, Jimmy's original promise and reload pass. Compiler/PostgreSQL checks include insufficient funds, stale acknowledgements and the 239/240-minute boundary. Original Asia CHRS prop identities replace prior inferred quote bindings; a shared rendered-tested ownership lease prevents duplicate ambient/cinematic actors. Finger detail, two absent original voice references and permanent post-scene population changes remain limitations. See [ticket journey](story-ticket-journey.md#boat-fare-payment-and-delayed-inquiry). |
@@ -2320,11 +2320,11 @@ does not depend on recreating the native warehouse controller.
 | Eligibility | Story Ryo, genuinely recovered `phoenix_mirror` and corresponding milestone. Fuku's completed referral gates the second call; its shared appointment gates recognized entry. The server checks accepted position and actual item possession. First-visit guard refusal is excluded after the original Chen meeting, even if the player never heard it. |
 | Calendar / weather | Preserve the personal calendar and environment. Do not invent a nighttime-only return, bus fare, currency reward or next-morning teleport. The public clock and other players' saves are unchanged. |
 | Presentation | Fuku uses existing original HOUO activity 9 and its exact reviewed bindings. The warehouse uses original MS8A AUTH ordinals 6,0,1,2,3, then explicit challenge result selects failure 4 or success 5 followed by 7. Original camera/body tracks, A0159 voices and A1_HONKN sounds are reused. |
-| Cast / props | Original Ryo, Chen, Gui Zhang and Chai; original Phoenix Mirror and paired warehouse-piece models. Actor/prop role assignments and mirror hand grips/handover frames are reviewed authored adaptations. The existing scene-object attachment owner poses the one mirror; it does not create another duplicate. Detailed non-Ryo facial and hand callbacks, debris and exact prop grips remain incomplete. |
+| Cast / props | Original Ryo, Chen, Gui Zhang and Chai, archive-local detailed hands, shared Ryo/KIS/SYU talking faces and Chai's original simpler mouth. Original CHRT binds KAGA to PNX02H6G and CLE1/CLE2 to B570501G/B570502G. AUTH moves the one mirror except for explicit original FIXO hand bindings; no duplicated prop or permanent guessed wrist override. Native gaze, impact debris and every original expression remain incomplete. |
 | Phone / travel | Reuse the existing password dialogue and validator, ordinary telephone motion and reviewed arrival destinations. Dobuita, home and harbor share one appointment milestone. Bus and recognized compound entry are repeatable reward-free travel; first discovery remains a separate one-time event. Receiver choreography and the guard recognition caption/tableau are authored. |
-| Challenge | A server-owned two-second Left prompt after the crane setup. Original scene completion cannot count as input success. Wrong/missing input plays original failure and offers retry/leave. Retry retains the player's earned mirror. The held prompt pose/camera is authored, not a recovered native QTE callback. |
+| Challenge | A client-timed two-second Left prompt after the crane setup, with the outcome reported to the server. Original scene completion cannot count as input success. Wrong/missing input plays original failure and offers retry/leave. Retry retains the player's earned mirror. The held prompt pose/camera is authored, not a recovered native QTE callback. |
 | Effects / notebook | Set independent referral and appointment flags/pages. Only the successful challenge followed by completed final presentation atomically settles the meeting, mirror legend, Mad Angels and Hong Kong notebook pages. No new mirror, yen, HP or date grant; no possession is consumed on failure. |
-| Exit / interruption | Restore the previous gameplay actor/camera/controls and remain in the warehouse. Leave, cancellation, failed preparation and stale acknowledgements do not settle the chapter. Completed referral/call/meeting cannot replay or award again; committed outcomes survive reload. The separate home continuation below owns Fuku, sleep and bank effects; travel-agency and subsequent story events remain future work. |
+| Exit / interruption | Restore the previous gameplay actor/camera/controls and remain in the warehouse. Leave, cancellation, failed preparation and stale acknowledgements do not settle the chapter. Completed referral/call/meeting cannot replay or award again; committed outcomes survive reload. The separate home continuation below owns Fuku, sleep and bank effects. |
 
 ### Source assets and declared limits
 
@@ -2334,8 +2334,22 @@ A1_HONKN.SND hashes. MS8A AUTH references motion bank **17** (`M_0159.MOTN`),
 not the first meeting's bank 16. All 59 bank sequences decode; 29 are referenced
 by these presentations. The original camera/body sequences are reused, but
 their story order and success/failure selection are authored from the guide
-and motion identities. Zero resource pointers in this package explicitly mean
-AUTH-ordinal selection, not recovered room-owner bindings.
+and motion identities. The retained [MS8A callback evidence](../../tools/evidence/mirror-meeting-callback-ir.json)
+pins MAPINFO and proves owner `0x4e2c` selecting callbacks `0xaf0`, `0x10f4`,
+`0x160c`, `0x200c`, `0x272c`, `0x2d8c`, `0x38b4`, and `0x3e14` for AUTH
+ordinals 0–7. Zero resource pointers still mean AUTH-ordinal loading, not
+execution of the original room-owner state machine.
+
+The shared hand/prop compilers retain the original setup and timed poses.
+KAGA attaches to Chai's **left** controller 12 at slot 2 frame 0, then returns
+to AUTH at slot 3 frame 0. Ryo's right-controller-18 grip starts at explanation
+frame 723 and releases at 2262; the final conversation attaches at frame 0
+and releases at 3630. Other shots use original AMOV, including the deliberately
+off-screen `y=-1` mirror during the crane-button shot. No manually chosen
+handover offset remains. The shared terminal-path analysis distinguishes
+post-ASEQ fade/countdown cleanup from initial hand setup. Original resident
+resets are documented as handled by release of this runtime's private actor
+leases, rather than miscompiled as frame-zero poses.
 
 Four exact voice references (`A0159A005`, `A0159C003`, `A0159A026`,
 `A0159A010`) are absent from the original AFS and IDX. The audio manifest records
@@ -2360,6 +2374,30 @@ replay. Inventory, yen and HP remained unchanged. Captures visibly show Ryo,
 Fuku, Chen, Gui Zhang and Chai with the original scene cameras. This does not
 prove exact mirror grip/handovers, crane debris, every face callback or audio
 fidelity by listening.
+
+The 2026-10-23 presentation-only recheck completes all eight clips naturally,
+cancels/replays the explanation, and verifies restored avatar/view/position,
+zero actor leases and unchanged saved flags/inventory/yen. Native shots and
+diagnostic close-ups show Chen's authored mirror movement, Ryo's grip and
+Chai's left-hand grip; original face geometry changes over voiced frames for
+Ryo, Chen and Gui Zhang in the final conversation. The mirror releases and
+hides at its original ending cue. This is not proof of every finger contact,
+Chai's speaking face, native gaze, debris or listening fidelity; the earlier
+connected-flow evidence above remains separate from this presentation check.
+A separate 4.5-minute connected recheck uses a fresh isolated fixture seeded
+with the mirror, prior referral/appointment/admission and earlier milestones.
+The actual meeting approach, decline, live cancellation/re-entry, original
+clips, wrong-input failure/retry/success, natural final ending and saved reload
+pass. Completion/notebook wait for the ending; inventory, yen and HP remain
+unchanged and controls return. This fixture does not re-earn or re-verify the
+upstream mirror search, bus, telephone or compound-entry prerequisites.
+The presentation review is the `mirror` set of
+`NEW_YOKOSUKA_STORY_FACES_E2E`; the connected continuation uses
+`NEW_YOKOSUKA_MIRROR_RETURN_E2E`. Run either against an isolated eligible save,
+one browser at a time. Seventy-three focused compiler/ownership/hand/activity
+tests pass; deterministic regeneration preserves the verified package. The
+109-package wiring audit reports no missing registered/restored face, hand
+or audio assets. That wiring audit is not a visual certificate for other scenes.
 
 ## Home and travel funds
 

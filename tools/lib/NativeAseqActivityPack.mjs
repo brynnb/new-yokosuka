@@ -277,6 +277,9 @@ function compileActivity(config, expectation, memberByName, packages) {
     ...(expectation.nativeHandComponentLimitations?.length
       ? { nativeHandComponentLimitations: expectation.nativeHandComponentLimitations }
       : {}),
+    ...(expectation.nativeHandCleanupHelpers?.length
+      ? { nativeHandCleanupHelpers: expectation.nativeHandCleanupHelpers }
+      : {}),
     ...(expectation.nativeFaceClipCues
       ? { nativeFaceClipCues: expectation.nativeFaceClipCues }
       : {}),

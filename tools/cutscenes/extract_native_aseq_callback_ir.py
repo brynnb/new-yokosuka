@@ -117,7 +117,7 @@ def main() -> int:
     output = args.output.resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-    print(f"Wrote {output.relative_to(ROOT)}")
+    print(f"Wrote {output.relative_to(ROOT) if output.is_relative_to(ROOT) else output}")
     return 0
 
 

@@ -272,6 +272,56 @@ export function deriveNativeAseqCallOwnership({
     functionEndOffset: owner.functionEndOffset,
   });
 }
+// A call reached only through the "ASEQ finished" postlude is cleanup, not a frame-zero
+// command merely because it has no frame comparison of its own.
+export function isNativeAseqTerminalCall(nativeFunction, callFileOffset) {
+  const blocks = new Map((nativeFunction?.blocks || []).map(block => [block.id, block]));
+  const trace = start => {
+    const pending = [start];
+    const seen = new Set();
+    let found = false, invalid = false, activityBoundary = false;
+    while (pending.length) {
+      const id = pending.pop();
+      if (seen.has(id)) continue;
+      seen.add(id);
+      const block = blocks.get(id);
+      if (!block) { invalid = true; break; }
+      if (block.actions.some(value => value.operationId === 0x50)) {
+        activityBoundary = true;
+        continue;
+      }
+      if (block.actions.some(value => value.callFileOffset === callFileOffset)) {
+        found = true;
+        // Only prove the path up to this command. A later coroutine-deactivate
+        // request can still have a syntactic CFG edge back into the scheduler;
+        // that does not turn an already-proven cleanup into a playback command.
+        continue;
+      }
+      // Fades/countdowns can yield or loop after playback finishes. They may
+      // not re-enter a playback poll or start another activity: that would
+      // make this command's phase ambiguous rather than prove cleanup.
+      pending.push(...block.successors);
+    }
+    return { found, invalid, activityBoundary };
+  };
+  for (const action of [...blocks.values()].flatMap(block => block.actions)) {
+    if (action.semanticId !== "native-operation-0050-aseq-activity-control"
+      || action.arguments[0]?.value !== 0xffffffff
+      || action.resultComparison?.comparison !== "equal"
+      || action.resultComparison.constant !== 0) continue;
+    const branch = action.resultComparison.resolvedBranch;
+    const finished = trace(branch?.comparisonTrueSuccessor);
+    if (!finished.found || finished.invalid || finished.activityBoundary) continue;
+    // Reachability from completion alone is insufficient: a common block may
+    // also run during playback. Stop at the next ASEQ poll when checking the
+    // unfinished branch, otherwise every ordinary loop eventually finishes.
+    const playing = trace(branch?.comparisonFalseSuccessor);
+    const entry = trace(nativeFunction.entryBlock);
+    if (!playing.found && !playing.invalid && !entry.found && !entry.invalid) return true;
+  }
+  return false;
+}
+
 // A selected activity may be guarded by a room flag or the delayed-stop latch.
 // Do not emulate the predicate: prove one branch is a return without visual state changes and the
 // other reaches this callback's ASEQ start synchronously. This conditions setup

@@ -2,6 +2,25 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  mirror: [
+    ...[false,true].map(natural=>["s1.ms08.mirror-meeting.explanation","ms08","MS08",{}, {
+      label:natural?"complete":"cancel",natural,frames:natural?[100,750,1200,2250]:[750],objects:["KAGA"],
+      prop:{tag:"KAGA",shown:[0,2263],attachments:[[723,"attach","AKIR"],[2262,"detach"]],closeup:true},
+    }]),
+    ...[["theft-start",[45,110,155]],["pursuit",[30,70]],["scaffolding",[30,100,250]],
+      ["crane",[30,100,175]],["failure",[50,150,280]],["save-mirror",[60,200,400,510]]]
+      .map(([part,frames])=>[`s1.ms08.mirror-meeting.${part}`,"ms08","MS08",{}, {
+        natural:true,frames,
+        // Original SEQDATA3 AMOV parks KAGA at y=-1 during the button shot;
+        // it is not supposed to render while the crane pieces are visible.
+        objects:part==="crane"?["CLE1","CLE2"]:["KAGA"],
+        ...(part==="scaffolding"?{prop:{tag:"KAGA",shown:[0,273],attachments:[[0,"attach","CHAI"]],closeup:true}}:{}),
+      }]),
+    ["s1.ms08.mirror-meeting.hong-kong","ms08","MS08",{AKIR:"YKC",TAIJ:"SYU",KISY:"KIS"},{
+      natural:true,openingFrames:[150],frames:[2500,3650],objects:["KAGA"],
+      prop:{tag:"KAGA",shown:[0,3630],attachments:[[0,"attach","AKIR"],[3630,"detach"]],closeup:true},
+    }],
+  ],
   bunkado: [
     ...[false,true].map(natural=>["s1.dkty.handguard.arrival","dkty","DKTY",{AKIR:"YKC",OISI:"KOT_L"},{
       label:natural?"complete":"cancel",natural,openingFrames:[730,970],
