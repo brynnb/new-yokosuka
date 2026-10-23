@@ -67,6 +67,14 @@
       "nativeSecondaryMotionRuntimeMode": 1
     }
   },
+  "scrollSprites": [
+    {
+      "path": "play/assets/hazuki/kkyc/SCROLL19.SPR",
+      "nativeSlot": 0,
+      "nativePath": "sprite",
+      "nativeName": "SCROLL19.SPR"
+    }
+  ],
   "actorTags": [
     "SINF"
   ],
@@ -93,6 +101,11 @@
       "path": "play/assets/hazuki/kkyc/SIN_M.CHRM",
       "byteLength": 119772,
       "sha256": "3c060c6f7800e055b3cdb6ada82a3a97443e5bfd7feacd9babda67653fb8a3cb"
+    },
+    {
+      "path": "play/assets/hazuki/kkyc/SCROLL19.SPR",
+      "byteLength": 262196,
+      "sha256": "9c462d2ce4cc5ee3f53a527221d934d943d21c6994e893e9400af7a464531fa0"
     }
   ],
   "activities": [
@@ -123,6 +136,19 @@
         1
       ],
       "browserIsolatedStage": true,
+      "browserLightingPresetIndex": 0,
+      "nativeStageSetup": {
+        "evidence": "tools/evidence/jomo-snow-vision-setup-ir.json",
+        "setupFunction": "0x463e4",
+        "backdropCall": "0x4640c",
+        "lightingFunction": "0x4b358",
+        "nativeLightPresetIndex": 6,
+        "lightingPolicy": "neutral-browser-preset-until-native-light-types-are-projected",
+        "omitted": [
+          "native fog/color-slot projection",
+          "native presentation-controller particles"
+        ]
+      },
       "motions": [
         {
           "actorTag": "SINF",

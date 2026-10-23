@@ -28,6 +28,9 @@ RANGES = {
     "mode5": (0x0C09B41C, 8, "c3a994e2e000db090ee46c3bcc77cd2238ebb0aea93776930c7c913f3ddce79f"),
     "cameraRegisteredHorizontalProjection": (0x0C09A374, 88, "c7a0ad28e52892c1af322208e22663899e7adeeba7eaf72c4078b5a6e799fa9b"),
     "cameraRegisteredVerticalProjection": (0x0C09A4FC, 104, "d429c086ec78fce541613f0d74f6ef48a6a318b055dc9c3d1d6d035f01c2bf69"),
+    "scrollQuadTextureCoordinates": (0x0C09A136, 184, "cbe393209e98db20a801219b051b07cb4be1c5f750f2e3910373de9da76f66da"),
+    "scrollQuadScreenCorners": (0x0C2813B8, 32, "7b18e98785d68f806a74a9bd006f1a7f7c0eafdd95c6ce6f878a98ab89fc8e03"),
+    "texturedQuadUVDispatch": (0x0C17DBDA, 64, "19d727219377412b16a6f261b365da0aae414515ed101b9975ea722eb01a2f8a"),
 }
 LITERALS = {
     0x0C29ACB0: 0x0C16B016,
@@ -119,6 +122,15 @@ def build_report(executable: bytes, event_ir: dict[str, Any]) -> dict[str, Any]:
         "renderer": {
             "address": "0x0c09a358",
             "behavior": "Reads the live camera orientation, adds SCRL +0x48/+0x4c (globals 0x0c1f7158/0x0c1f715c), and rebuilds the projected backdrop vertices every rendered frame.",
+            "verticalTextureOrientation": {
+                "initializer": "0x0c09a136",
+                "screenCornerTable": "0x0c2813b8",
+                "drawFunction": "0x0c17db20",
+                "topVerticesVField": "0x50",
+                "bottomVerticesVField": "0x48",
+                "behavior": "Initialization uses flags 0x408 (vertical-swap bit 0x200 clear), V0=0 and V1 approximately 0.99. The draw function sends V1 to the first two, upper screen vertices and V0 to the lower vertices. A top-down PVR export therefore appears vertically reversed on screen by design; do not flip the source pixels to match an exported PNG.",
+                "browserPolicy": "Babylon Layer uses V=1 at screen top; upload decoded pixels without invertY for the same orientation.",
+            },
         },
         },
         "allDiscInventory": {

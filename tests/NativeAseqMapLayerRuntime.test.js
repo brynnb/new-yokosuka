@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
-import { Color3, DirectionalLight, HemisphericLight, NullEngine, Scene, Vector3 } from "@babylonjs/core";
+import { Color3, DirectionalLight, HemisphericLight, Layer, NullEngine, Scene, Vector3 } from "@babylonjs/core";
 
 import {
   createNativeAseqMapLayerRuntime,
@@ -28,6 +28,17 @@ function fakeRoot(filename, enabled = true) {
     computeWorldMatrix() { this.worldMatrixUpdates += 1; },
   };
 }
+
+test("isolated solid background stays behind an already prepared authored backdrop", () => {
+  const engine=new NullEngine(),scene=new Scene(engine);
+  try {
+    const backdrop=new Layer("authored-scroll",null,scene,true);
+    const runtime=createNativeAseqMapLayerRuntime({scene});runtime.load([]);
+    runtime.applyActivity({activityId:"dream",browserMapVisibility:[],browserIsolatedStage:true,browserBackgroundColor:[0,0,0,1]});
+    assert.deepEqual(scene.layers,[runtime.background,backdrop]);
+    runtime.end();assert.deepEqual(scene.layers,[backdrop]);
+  } finally {scene.dispose();engine.dispose();}
+});
 
 test("stage lighting and environment leases restore on completion, cancellation and replay", () => {
   const engine = new NullEngine();

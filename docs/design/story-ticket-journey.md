@@ -363,9 +363,9 @@ The 125 focused client presentation/ownership/controller tests pass. No assets
 were uploaded and no production state was changed.
 
 Inspected captures show Shenhua in the isolated dream stage and the original
-Fuku/Ryo home-phone shots. The dream currently lacks rendered snow and is dark;
-that remains a visible presentation limitation, not missing eligibility,
-dialogue or save outcomes.
+Fuku/Ryo home-phone shots. The initial dream capture exposed a missing backdrop
+and inherited bedtime lighting; the presentation repair below addresses those.
+Rendered snow remains absent, independently of eligibility, dialogue and saves.
 Audio playback fidelity has not been assessed by listening.
 
 The October 23 earned-save rerun passes the same chain after the connected
@@ -376,16 +376,35 @@ An independent local database read confirms the dream/call and notebook
 milestones, December 11 morning in the house, and unchanged ¥9,136. No
 appointment or completion flags were injected for these two continuations.
 
-The next visual gap is in the vision package, not the Story trigger. The
-retained JOMO vision owner calls `0x4891c` and `0x463e4` immediately before
-slot 52. Reading those helpers from the same hash-verified Disc 1 MAPINFO
+### Snow-dream stage presentation
+
+The retained JOMO owner calls `0x4891c` and `0x463e4` immediately before slot
+52. The [original helper evidence](../../tools/evidence/jomo-snow-vision-setup-ir.json)
 shows `0x463e4` loading `sprite/SCROLL19.SPR` and calling `0x4b358`, which
-selects native light preset 6 and configures fog/background colors. The
-current KKYC generator carries only the isolated black stage and actor;
-those source presentation settings are not yet integrated. The adjacent
-`0x0174/0x0176/0x0178/0x0179` effect setup also needs a reviewed renderer
-mapping. Do not substitute ordinary outdoor snow or guessed brightness
-and call that original presentation.
+selects native light preset 6 and configures fog/background colors. The sprite
+is a blue/pink horizon matte, **not** a snowflake particle texture. Its bytes
+are identical on Discs 1 and 2 (SHA-256
+`9c462d2ce4cc5ee3f53a527221d934d943d21c6994e893e9400af7a464531fa0`).
+The canonical vision generator now includes it and verifies the owner, setup
+calls, resource name and hash.
+
+Standalone AUTH playback now owns the existing shared scroll renderer just as
+native programs do, with independent control state and cleanup. The solid
+stage background is drawn behind prepared scroll layers; previously it hid
+them. Rendered cancellation, replay and natural completion pass with the
+original matte visible, ordinary world/camera/avatar restored, and no changes
+to saved flags, funds or inventory. Captures at frames 180, 450 and 900 were
+reviewed. The shared native quad draws V1 at screen top and V0 below, so its
+orientation intentionally differs from a top-down exported PNG; no manual
+flip or snow-dream-only texture offset was introduced.
+
+Lighting uses the existing neutral browser preset 0 to avoid inheriting the
+player's bedtime darkness. This is an explicit approximation, **not** native
+light preset 6: the full original light types, fog/color-slot projection and
+adjacent `0x0174/0x0176/0x0178/0x0179` presentation controllers remain unmapped.
+The scene still lacks rendered snow. The manifest records those omissions;
+neither this repair nor the passing progression test certifies exact original
+presentation. Ordinary outdoor snow is not substituted into the dream.
 
 ### Shared handset presentation
 

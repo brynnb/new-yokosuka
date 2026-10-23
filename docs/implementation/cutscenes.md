@@ -190,6 +190,21 @@ shared presenter therefore keeps the matte registered to camera yaw/pitch
 within each AUTH shot while resetting its reference at authored shot
 boundaries.
 
+Standalone AUTH packages acquire that same scroll renderer using private
+control state; they do not require a native room program or mutate its slots.
+Failed starts, cancellation and completion release only their own ownership.
+Solid isolated-stage layers are inserted behind prepared scroll backdrops.
+KKYC's snow dream exercises this path with original `SCROLL19.SPR`; see the
+[ticket journey](../design/story-ticket-journey.md#snow-dream-stage-presentation)
+for its explicit lighting/effects limits and rendered checks.
+
+The original textured-quad routine (`1ST_READ.BIN` `0x0c17db20`) assigns V1 to
+the upper vertices and V0 below when the vertical-swap flag is clear, as it is
+for SCRL. Babylon Layer has the same UV direction, so decoded pixel uploads
+retain `invertY: false`. A vertically different top-down texture export is not
+evidence of a rendering bug. The source-checking scroll-operation extractor
+pins the initialization, corner table and UV-dispatch instructions.
+
 ## Data ownership
 
 ### Package soundtrack lifetime

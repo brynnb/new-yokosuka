@@ -22,7 +22,16 @@
     },
     "renderer": {
       "address": "0x0c09a358",
-      "behavior": "Reads the live camera orientation, adds SCRL +0x48/+0x4c (globals 0x0c1f7158/0x0c1f715c), and rebuilds the projected backdrop vertices every rendered frame."
+      "behavior": "Reads the live camera orientation, adds SCRL +0x48/+0x4c (globals 0x0c1f7158/0x0c1f715c), and rebuilds the projected backdrop vertices every rendered frame.",
+      "verticalTextureOrientation": {
+        "initializer": "0x0c09a136",
+        "screenCornerTable": "0x0c2813b8",
+        "drawFunction": "0x0c17db20",
+        "topVerticesVField": "0x50",
+        "bottomVerticesVField": "0x48",
+        "behavior": "Initialization uses flags 0x408 (vertical-swap bit 0x200 clear), V0=0 and V1 approximately 0.99. The draw function sends V1 to the first two, upper screen vertices and V0 to the lower vertices. A top-down PVR export therefore appears vertically reversed on screen by design; do not flip the source pixels to match an exported PNG.",
+        "browserPolicy": "Babylon Layer uses V=1 at screen top; upload decoded pixels without invertY for the same orientation."
+      }
     }
   },
   "allDiscInventory": {

@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import * as BABYLON from "@babylonjs/core";
 import {NativeAseqSceneObjectRuntime} from "../play/events/NativeAseqSceneObjectRuntime.js";
+import { createNativeScrollSpritePresentation } from "../play/events/NativeScrollSpritePresentation.js";
 
 import {
   NativeCutscenePackageRuntime,
@@ -111,6 +112,36 @@ test("standalone package stop and failed start release prepared room visibility"
   const prepare=()=>sceneObjects.prepareActivity({activityId:"room",nativeSceneObjectStates:[{actorTag:"ROOM",presented:true}]});
   prepare();assert.equal(room.isEnabled(),true);runtime.stop("cancelled");assert.equal(room.isEnabled(),false);
   prepare();await assert.rejects(runtime.start({id:"retry",activity:{}}),/prepare failed/);assert.equal(room.isEnabled(),false);
+});
+
+test("standalone AUTH owns the shared scroll renderer across failure, cancellation and replay", async t => {
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  t.after(()=>{scene.dispose();engine.dispose();});
+  const sprite=createNativeScrollSpritePresentation({scene,
+    definitions:[{path:"SCROLL67.SCR0"}],
+    loadAsset:async()=>readFileSync("play/assets/introduction/op02/SCROLL67.SCR0"),
+  });
+  await sprite.load();
+  const runtime=programRuntimeWith({calls:[]});
+  let failure=true;
+  Object.assign(runtime,{scrollSprites:sprite,playback:{stop:()=>true,start:async()=>{
+    assert.equal(sprite.owner,runtime);
+    assert.equal(sprite.beginActivity(),true);
+    assert.equal(sprite.resources[0].layer.isEnabled,true);
+    if(failure)throw Error("prepare failed");
+  }},music:{reset:()=>{},beginActivity:()=>{}}});
+  await assert.rejects(runtime.start({id:"failed",activity:{}}),/prepare failed/);
+  assert.equal(sprite.owner,null);assert.equal(sprite.resources[0].layer.isEnabled,false);
+  failure=false;
+  for(let i=0;i<2;i++){
+    await runtime.start({id:`replay-${i}`,activity:{}});
+    runtime.stop("cancelled");
+    assert.equal(sprite.owner,null);assert.equal(sprite.resources[0].layer.isEnabled,false);
+  }
+  const programOwner={};sprite.begin(programOwner,createNativeSceneGameplayState());
+  runtime.stop("unrelated-standalone-cleanup");
+  assert.equal(sprite.owner,programOwner,"standalone cleanup cannot release a program's backdrop");
+  sprite.clear();
 });
 
 test("standalone attached objects use the accepted AUTH frame and reject failed presentation", () => {

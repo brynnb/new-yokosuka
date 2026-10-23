@@ -220,6 +220,10 @@ export class NativeAseqMapLayerRuntime {
     if (color) {
       if (!this.background) {
         this.background = new Layer("native-activity-background", null, this.scene, true);
+        // The solid clear-color replacement belongs behind authored SCRL
+        // backdrops, even when those textures were prepared before this shot.
+        this.scene.layers.splice(this.scene.layers.indexOf(this.background), 1);
+        this.scene.layers.unshift(this.background);
         // Layer shaders always sample a texture, even for a flat color.
         this.background.texture = RawTexture.CreateRGBATexture(
           new Uint8Array([255, 255, 255, 255]), 1, 1, this.scene, false, false,

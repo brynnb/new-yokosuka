@@ -94,6 +94,9 @@ function parsedSpriteFor(definition, value) {
 }
 
 function nativeTextureFor(scene, bytes, parsed) {
+  // Original SCRL quads assign V1 to the upper screen vertices, V0 below
+  // (1ST_READ 0x0c17dbda; retained scroll-sprite-control-operation evidence).
+  // Layer has that same orientation. Do not flip to match a top-down PNG.
   const texture = BABYLON.RawTexture.CreateRGBATexture(
     combineTiles(bytes, parsed),
     parsed.width,

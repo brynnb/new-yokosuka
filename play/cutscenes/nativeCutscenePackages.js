@@ -253,7 +253,7 @@ const bundledBunkadoHandguardAssets = runtimeAssetGroup("play/assets/dobuita/bun
 const bundledGuiZhangAssets = runtimeAssetGroup("play/assets/sakuragaoka/gui-zhang/*.{AUTH,MOTN}");
 const bundledKkyaAssets = runtimeAssetGroup("play/assets/hazuki/kkya/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkybAssets = runtimeAssetGroup("play/assets/hazuki/kkyb/*.{AUTH,MOTN,CHRM,MAPM}");
-const bundledKkycAssets = runtimeAssetGroup("play/assets/hazuki/kkyc/*.{AUTH,MOTN,CHRM,MAPM}");
+const bundledKkycAssets = runtimeAssetGroup("play/assets/hazuki/kkyc/*.{AUTH,MOTN,CHRM,MAPM,SPR}");
 const bundledKkydAssets = runtimeAssetGroup("play/assets/hazuki/kkyd/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkyeAssets = runtimeAssetGroup("play/assets/hazuki/kkye/*.{AUTH,MOTN,CHRM,MAPM}");
 const bundledKkyfAssets = runtimeAssetGroup("play/assets/hazuki/kkyf/*.{AUTH,MOTN,CHRM,MAPM}");
@@ -332,6 +332,7 @@ const jomoVisionPackage = ({
     } : {}),
     environment: Object.freeze({
       ...(manifest.sceneObjects ? { sceneObjects: manifest.sceneObjects } : {}),
+      ...(manifest.scrollSprites ? { scrollSprites: manifest.scrollSprites } : {}),
       ...(packageActors ? { packageActors: Object.freeze(packageActors) } : {}),
       isolatedStage: true,
     }),

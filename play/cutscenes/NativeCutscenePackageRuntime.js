@@ -65,6 +65,7 @@ import {
 } from "./NativeCutsceneMusicRuntime.js";
 import { createTelephoneReceiverBabylonAdapter } from "../scripts/TelephoneReceiverBabylonAdapter.js";
 import { createTelephonePresentationRuntime } from "../scripts/TelephonePresentationRuntime.js";
+import { createNativeScrollSpriteControlState } from "../events/NativeScrollSpriteControlRuntime.js";
 
 function hasDefinitions(value) {
   return value && Object.keys(value).length > 0;
@@ -381,6 +382,12 @@ export class NativeCutscenePackageRuntime {
     }
     this.activeCutsceneId = cutscene.id;
     try {
+      // Standalone AUTHs have no room-program lease to initialize their SCRL
+      // slots. Use the same control state/renderer without borrowing or mutating
+      // the world's script state. Program-owned slots retain their own lifetime.
+      if (this.scrollSprites && this.scrollSprites.begin(this, {
+        scrollSpriteControlState: createNativeScrollSpriteControlState(),
+      }) !== true) throw new Error(`cutscene package ${this.id} rejected standalone scroll sprites`);
       await this.playback.start({
         id: cutscene.id,
         activity: cutscene.activity,
@@ -989,6 +996,7 @@ export class NativeCutscenePackageRuntime {
   #cleanupPresentation({ completedActivity = false } = {}) {
     const errors = [];
     for (const cleanup of [
+      () => this.scrollSprites?.owner === this ? this.scrollSprites.end(this) : true,
       // Hold the outgoing stage until the incoming AUTH has its first pose.
       // Restoring the room between subleases produces a one-frame cut flash.
       () => completedActivity && this.programLease ? true : this.mapLayers?.end(),

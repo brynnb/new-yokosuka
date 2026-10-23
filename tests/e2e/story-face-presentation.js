@@ -2,6 +2,12 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  vision: [
+    ...[false,true].map(natural=>["s1.jomo.snow-dream.scene","interior","JOMO",{}, {
+      label:natural?"complete":"cancel",natural,frames:natural?[180,450,900]:[180],
+      backdrop:"play/assets/hazuki/kkyc/SCROLL19.SPR",
+    }]),
+  ],
   telephone: [
     ...[false,true].map(natural=>["s1.jomo.jimmy-morning-call.scene","interior","JOMO",{}, {
       label:natural?"complete":"cancel",natural,frames:natural?[180,380,550,900,1160]:[380],objects:["TEL_"],
@@ -250,6 +256,17 @@ export async function reviewStoryFaces(page, testInfo, character) {
           const state = await page.evaluate(() => { const r = window.storyProbe.faceReview; return { done: r.done, error: r.error, frame: Math.round(r.frame) }; });
           expect(state.error).toBeNull();
           if (!state.done) await page.screenshot({ path: testInfo.outputPath(`${label}-native-${state.frame}.png`) });
+          if(options.backdrop&&!state.done){
+            const stage=await page.evaluate(()=>{
+              const p=window.storyProbe,r=p.director.activeCutscene.packageRuntime;
+              p.faceReview.stageRuntime=r;
+              return {owner:r.scrollSprites?.owner===r,
+                paths:r.scrollSprites.resources.filter(s=>s.layer.isEnabled).map(s=>s.definition.path),
+                lighting:r.mapLayers.lightingPresetIndex,
+                flatBehind:r.mapLayers.scene.layers.indexOf(r.mapLayers.background)<r.mapLayers.scene.layers.indexOf(r.scrollSprites.resources[0].layer)};
+            });
+            expect(stage).toEqual({owner:true,paths:[options.backdrop],lighting:0,flatBehind:true});
+          }
           if(options.telephone&&!state.done){
             const phone=await page.evaluate(()=>{
               const p=window.storyProbe,r=p.director.activeCutscene.packageRuntime,a=r.telephoneReceiver.active;
@@ -353,6 +370,11 @@ export async function reviewStoryFaces(page, testInfo, character) {
         }, null, { timeout: 100_000 });
       }
       expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+      if(options.backdrop)expect(await page.evaluate(()=>{
+        const r=window.storyProbe.faceReview.stageRuntime;
+        return {owner:r.scrollSprites.owner,visible:r.scrollSprites.resources.some(s=>s.layer.isEnabled),
+          lighting:r.mapLayers.lightingPresetIndex,isolation:r.mapLayers.releaseEnvironmentIsolation};
+      })).toEqual({owner:null,visible:false,lighting:null,isolation:null});
       if(options.telephone)expect(await page.evaluate(()=>{
         const r=window.storyProbe.faceReview;
         return r.receiver && (r.receiver.isDisposed() || r.receiver.parent===r.receiverParent);

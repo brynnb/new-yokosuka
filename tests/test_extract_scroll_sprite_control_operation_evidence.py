@@ -24,6 +24,9 @@ class ScrollSpriteControlEvidenceTest(unittest.TestCase):
         self.assertEqual(report["allDiscInventory"]["provenModeCallCount"], 103)
         self.assertEqual(report["allDiscInventory"]["modeCounts"]["0"], 77)
         self.assertEqual(report["allDiscInventory"]["modeCounts"]["1"], 2)
+        orientation = report["operation"]["renderer"]["verticalTextureOrientation"]
+        self.assertEqual(orientation["topVerticesVField"], "0x50")
+        self.assertEqual(orientation["bottomVerticesVField"], "0x48")
 
 
 if __name__ == "__main__":

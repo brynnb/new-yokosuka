@@ -26,7 +26,9 @@ const visionOwner = JSON.parse(readFileSync(path.join(root, "tools/evidence/jomo
 const residentRelease = JSON.parse(readFileSync(path.join(root, "tools/evidence/jomo-visions-resident-release-ir.json")));
 const mirrorSetupEvidence = "tools/evidence/jomo-mirrors-native-setup-ir.json";
 const mirrorSetup = JSON.parse(readFileSync(path.join(root, mirrorSetupEvidence)));
-for (const source of [visionOwner, residentRelease, mirrorSetup]) {
+const snowSetupEvidence = "tools/evidence/jomo-snow-vision-setup-ir.json";
+const snowSetup = JSON.parse(readFileSync(path.join(root, snowSetupEvidence)));
+for (const source of [visionOwner, residentRelease, mirrorSetup, snowSetup]) {
   if (source.source.mapinfoSha256 !== sha256(nativeMap)) throw new Error("JOMO vision staging source changed");
 }
 const background = visionOwner.function.blocks.flatMap(b => b.actions).find(a => a.callFileOffset === "0x4aa6a");
@@ -42,6 +44,22 @@ if (background?.operationHex !== "0x006f"
 // The original parent releases the bedroom MPK00 before every vision. Keep
 // loaded browser assets resident, but lease their visibility off for the stage.
 const browserBackgroundColor = [16, 8, 0, 24].map(shift => ((background.arguments[1].value >>> shift) & 255) / 255);
+const snowActions = [snowSetup.function, ...snowSetup.supportingFunctions].flatMap(fn => fn.blocks.flatMap(b => b.actions));
+const snowSprite = snowActions.find(a => a.callFileOffset === "0x4640c");
+const snowLight = snowActions.find(a => a.callFileOffset === "0x4b3a6");
+const nativeString = operand => operand?.kind === "static-pointer"
+  ? nativeMap.subarray(operand.value, nativeMap.indexOf(0, operand.value)).toString() : null;
+if (snowSprite?.operationHex !== "0x00b4" || snowSprite.arguments[0]?.value !== 0
+  || nativeString(snowSprite.arguments[1]) !== "sprite"
+  || nativeString(snowSprite.arguments[2]) !== "SCROLL19.SPR"
+  || snowLight?.semanticId !== "native-light-preset-select" || snowLight.arguments[0]?.value !== 6
+  || !visionOwner.function.blocks.some(b => b.actions.some(a => a.callFileOffset === "0x4acc4" && a.targetFileOffset === "0x463e4"))) {
+  throw new Error("JOMO snow vision presentation setup changed");
+}
+const snowSpriteHash = "9c462d2ce4cc5ee3f53a527221d934d943d21c6994e893e9400af7a464531fa0";
+if (sha256(readFileSync(path.join(root, "extracted_files/data/SPRITE/SCROLL19.SPR"))) !== snowSpriteHash) {
+  throw new Error("JOMO snow vision backdrop changed between source discs");
+}
 const expected = values => values.map(([name, byteLength, sha256]) => ({
   name,
   byteLength,
@@ -183,6 +201,25 @@ const packs = [{
     ["SIN_TR.CHRM", 12764, "6427c37fbdba8b721a0ed0580c89bc9513260f5a1a4df9d5af25fc5226b3962e"],
   ]),
   outputMembers: ["SIN_M.CHRM"],
+  externalAssets: [{
+    sourcePath: path.join(disc2Root, "data/SPRITE/SCROLL19.SPR"),
+    sourceSha256: snowSpriteHash, assetPath: "play/assets/hazuki/kkyc/SCROLL19.SPR",
+    byteLength: 262196, sha256: snowSpriteHash,
+  }],
+  scrollSprites: [{
+    path: "play/assets/hazuki/kkyc/SCROLL19.SPR", nativeSlot: 0,
+    nativePath: "sprite", nativeName: "SCROLL19.SPR",
+  }],
+  stagePresentation: {
+    // Native LGHT's full light-type/attenuation semantics are not rendered yet.
+    // A stable existing neutral preset is a declared approximation, not native
+    // preset 6 reinterpreted as a browser index or the player's bedtime light.
+    browserLightingPresetIndex: 0,
+    nativeStageSetup: { evidence: snowSetupEvidence, setupFunction: "0x463e4",
+      backdropCall: "0x4640c", lightingFunction: "0x4b358", nativeLightPresetIndex: 6,
+      lightingPolicy: "neutral-browser-preset-until-native-light-types-are-projected",
+      omitted: ["native fog/color-slot projection", "native presentation-controller particles"] },
+  },
   packageActors: {
     SINF: {
       label: "Shenhua Ling",
@@ -311,6 +348,8 @@ for (const pack of packs) {
     outputAssetPrefix: `play/assets/hazuki/${key}`,
     manifestPath: path.join(outputDirectory, "manifest.json"),
     outputMembers: pack.outputMembers || [],
+    externalAssets: pack.externalAssets || [],
+    scrollSprites: pack.scrollSprites,
     packageActors: pack.packageActors || undefined,
     sceneObjects: pack.sceneObjects || undefined,
     motionBanks: pack.motionBanks || [],
@@ -326,6 +365,7 @@ for (const pack of packs) {
       browserMapVisibility: [],
       browserIsolatedStage: true,
       browserBackgroundColor,
+      ...pack.stagePresentation,
       ...(pack.sceneObjects ? { nativeSceneObjectStates } : {}),
     }],
   });
