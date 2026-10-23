@@ -1,4 +1,78 @@
 import { expect } from "@playwright/test";
+import fs from "node:fs";
+import { parseIpacActivityArchive, sha256 } from "../../tools/lib/NativeAseqActivityPack.mjs";
+
+// Original motion review, deliberately separate from progression verification.
+// No asset or guessed actor alignment enters the game merely by passing this.
+export async function inspectHeartbeatsBarMotions(page, testInfo, character) {
+  expect(character.storyFlags["story.s1.heartbeats-bar.completed"]).toBe(true);
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const before=await saved();
+  expect(Array.isArray(before.inventory)).toBe(true);
+  const archive=fs.readFileSync("extracted_files/data/SCENE/01/DHQB/MPK00.PKS");
+  expect(sha256(archive)).toBe("9252217af74608f215f1b90bd8460cd9182840b1758094e109520572c028f3a2");
+  const motion=parseIpacActivityArchive(archive).members.find(m=>m.name==="M_DHQB.MOTN").bytes;
+  expect(sha256(motion)).toBe("b53970dc8443c01cdbb02daf4d15b959746aa5729c8919f126df22d7d2c8359b");
+  await page.route("**/__story-review/heartbeats.MOTN",route=>route.fulfill({body:motion,contentType:"application/octet-stream"}));
+  await page.evaluate(async()=>{
+    const p=window.storyProbe;await p.lifecycle.travelToWorld("dbhb");
+    Object.defineProperty(p.regions.controller,"ownsPlayerPresentation",{configurable:true,get:()=>p.regions.controller.presentation.ownsPlayerPresentation});
+  });
+  try { for(const [id,other,ryo,opponent,duration] of [
+    ["counter","SERA","AKI_QOK_NAGERU_CAUNTER_HB_A","OTH_TKA_QOK_NORU_CAUNTER_HB_A",2.7],
+    ["table","HARY","AKI_QOK_TUKKOMU_TABLE_HB_B","OTH_TKB_QOK_TUKKOMU_TABLE_HB_B",9.6],
+    ["kick","JONZ","AKI_QOK_KICK_HB_QTE","OTH_TKC_QOK_KICK_HB_QTE",4.14],
+    ["highkick","JONZ","AKI_QOK_QOK_HIGHKICK_HB_QTE","OTH_TKC_QOK_QOK_HIGHKICK_HB_QTE",2.17],
+  ]) {
+    const returnedFrom=await page.evaluate(()=>{
+      const p=window.storyProbe,c=p.lifecycle.getController();
+      return {position:c.collider.position.asArray(),firstPerson:c.firstPerson,avatar:p.lifecycle.playerRuntime.activeCharacterId};
+    });
+    await page.evaluate(async({id,other,ryo,opponent})=>{
+      const p=window.storyProbe,presentation=p.regions.controller.presentation;
+      const pose=(x,z,rotationY)=>({x,y:0,z,rotationX:0,rotationY,rotationZ:0});
+      const scene={id,area:"DBHB",actors:[
+        {tag:"AKIR",pose:pose(1.8,-5.7,0),motion:{bank:"free",name:"AKI_AKI_STAND_LP",loop:true}},
+        {tag:other,pose:pose(1.8,-4.5,180),motion:{bank:"free",name:"AKI_AKI_STAND_LP",loop:true}},
+      ],camera:{positionX:-1.5,positionY:1.7,positionZ:-6.8,targetX:1.8,targetY:1,targetZ:-4.8,roll:0,perspective:65}};
+      presentation.begin({area:"DBHB"});
+      if(!await presentation.adapters.playSequence({kind:"scene-staging-start",scene},presentation.transaction))throw Error("Bar review staging rejected");
+      p.authoredScene.motionRuntime.bankUrls.barReview="/__story-review/heartbeats.MOTN";
+      const motions=[ryo,opponent].map(name=>({bank:"barReview",name,loop:false}));
+      await p.authoredScene.motionRuntime.loadNamedSelections(motions);
+      scene.actors.forEach((a,i)=>a.motion=motions[i]);p.authoredScene.active.elapsed=0;
+      let previous=performance.now();
+      const tick=now=>{if(!p.authoredScene.active)return;p.authoredScene.update(presentation.transaction,Math.max(0,(now-previous)/1000));previous=now;p.motionReviewFrame=requestAnimationFrame(tick);};
+      p.motionReviewFrame=requestAnimationFrame(tick);
+    },{id,other,ryo,opponent});
+    try {
+      for(const [index,seconds] of [.1,.7,1.3,Math.min(2,duration),duration].entries()) {
+        await page.waitForFunction(t=>window.storyProbe.authoredScene.active?.elapsed>=t,seconds);
+        await page.screenshot({path:testInfo.outputPath(`bar-${id}-${index}.png`)});
+      }
+    } finally {
+      await page.evaluate(()=>{cancelAnimationFrame(window.storyProbe.motionReviewFrame);window.storyProbe.regions.controller.presentation.rollback("bar-motion-review-finished");});
+    }
+    const restored=await page.evaluate(()=>{
+      const p=window.storyProbe,c=p.lifecycle.getController();
+      return {position:c.collider.position.asArray(),firstPerson:c.firstPerson,avatar:p.lifecycle.playerRuntime.activeCharacterId,
+        locked:c.movementLocked,leases:p.lifecycle.scheduledActors.activityActorOwners.size};
+    });
+    expect(restored.locked).toBe(false);expect(restored.leases).toBe(0);
+    expect(restored.avatar).toBe(returnedFrom.avatar);expect(restored.firstPerson).toBe(returnedFrom.firstPerson);
+    restored.position.forEach((v,i)=>expect(v).toBeCloseTo(returnedFrom.position[i],4));
+  } } finally {
+    await page.evaluate(()=>{
+      const p=window.storyProbe;cancelAnimationFrame(p.motionReviewFrame);
+      p.regions.controller.presentation.rollback("bar-review-cleanup");
+      delete p.regions.controller.ownsPlayerPresentation;
+      if(p.authoredScene)delete p.authoredScene.motionRuntime.bankUrls.barReview;
+    });
+    await page.unroute("**/__story-review/heartbeats.MOTN");
+  }
+  const after=await saved();
+  expect(after.character.storyFlags).toEqual(before.character.storyFlags);expect(after.character.yen).toBe(before.character.yen);expect(after.inventory).toEqual(before.inventory);
+}
 
 // Review the original bank in the real world before assigning uncertain clips
 // to Story inputs. This never sends a challenge result or edits progress.

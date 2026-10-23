@@ -753,10 +753,48 @@ contains `M_DHQB.MOTN` (321,216 bytes,
 SHA-256 `b53970dc8443c01cdbb02daf4d15b959746aa5729c8919f126df22d7d2c8359b`):
 62 complete motion clips including milk dialogue, counter/table interactions,
 successful defenses and failed reactions. It also contains `DYNAMICS.DYNM`
-and separate bar objects. These assets are **not yet connected or visually
-verified**. Clip names alone do not establish actor assignment, placement,
+and separate bar objects. These assets are **not connected to Story**.
+Clip names alone do not establish actor assignment, placement,
 prop movement or the original branch/timing sequence; do not substitute the
 normal room's static furniture for moving/breaking fight props without review.
+
+The same day's isolated `NEW_YOKOSUKA_BAR_MOTIONS_E2E=true` review rendered
+four candidate pairs (counter throw, table, kick and high kick), through the
+production actor/motion adapters in DBHB. The clips animate, but the diagnostic
+floor positions and opposed facings **fail the choreography review**: the
+counter pair loses contact, furniture intersects the opponent, and the kick
+pair overlaps incorrectly. Twenty captures cover starts, intermediate frames
+and ends. This test is an inspection aid, not a visual approval or a new Story
+implementation. It checks restoration of avatar, camera mode, position,
+controls and actor leases and leaves earned flags, inventory and money alone.
+Use an isolated character that has already completed the bar event so the
+review cannot accidentally trigger or settle it.
+
+Additional source evidence explains why simply assigning these clips is
+insufficient:
+
+- `DHQB/MPK00.PKF` SHA-256
+  `0a32842dd33a4dedd6fbfd210f7978bd6182d28b4264ae2bc7e836510b124b65`
+  contains `CHARA.CHRT`, with exact SERA→TUW_L, HARY→GIE_L, JONZ→GIF_L,
+  HATO→BAT_L and AKIR→YKB_M bindings. Several initial positions are staging
+  placeholders, not useful fight anchors: AKIR `[133.5,0,38.52]`, SERA
+  `[13.3,0,22]`, and HARY/JONZ `[3.3,0,20.6]`.
+- `DHQB/MAPINFO.BIN` SHA-256
+  `79e56d21feda1d331d0734730e5a8b52766262cee6cb6ff3304a6fbdc502508d`
+  has no embedded AUTH. Its original controller at `0x9808` calls the
+  transform/link helper `0x28fc` and uses per-state motion callbacks at
+  `0x3af4`. For example, the call at `0x98fe` links a runtime-table actor to
+  the main actor with X/Z/angle arguments `0.82703`, `0.42759`, `79.7557`.
+  Those relative transforms must not be treated as absolute world positions.
+- `CHARA.CHRT` explicitly binds `TBN0/1`, `CIS0/1`, `CB10/11`, `CB20/21`,
+  `CB30/31`, `TBI0/1` and `MLK0/1` to the fight-specific furniture/milk models.
+  The controller switches these objects and calls their motion handlers;
+  the `DYNAMICS.DYNM` tracks and exact switch timing remain unresolved.
+
+The next implementation gate is a reviewed continuous actor/object alignment,
+then connecting that presentation to the existing client-timed challenges.
+Keep native-controller research timeboxed rather than enabling the failed
+diagnostic placement as an approximation.
 
 The inquiries below continue this clue. The parking-lot ambush continues their
 evening lead; the same-night tattoo-parlour visit, later Charlie confrontation
