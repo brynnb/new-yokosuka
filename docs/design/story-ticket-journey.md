@@ -304,6 +304,14 @@ controls after cancellation, and confirms unchanged money/inventory/flags.
 These previews are renderer checks, not evidence of newly earned progression;
 the connected run above supplies that evidence.
 
+The October 23 connected rerun continues the same isolated save that earned
+the home withdrawal, agency quotes and Fuku contribution. It passes Nozomi's
+referral, real storefront entry, quote/payment decline and cancellation,
+natural endings, one ¥69,000 charge (¥78,136 to ¥9,136), the enforced
+collection delay, Jimmy's promise and reload without another payment or
+scene. It takes about 4.4 minutes including GPU preflight. Earlier mirror
+prerequisites were seeded; this is not a fresh full-game playthrough.
+
 An October 23 presentation-only recheck of ticket collection also verifies
 Koji's original `TPL_L` mouth moving with his recorded line. Its stored mouth
 targets differ from the resting face; the shared resolver now follows original
@@ -359,6 +367,25 @@ Fuku/Ryo home-phone shots. The dream currently lacks rendered snow and is dark;
 that remains a visible presentation limitation, not missing eligibility,
 dialogue or save outcomes.
 Audio playback fidelity has not been assessed by listening.
+
+The October 23 earned-save rerun passes the same chain after the connected
+boat-ticket rerun (about 2.4 minutes including GPU preflight). Both cancelled
+and naturally completed phone scenes restore controls; reviewed original
+camera captures show the restored handset in Fuku's and Ryo's hands.
+An independent local database read confirms the dream/call and notebook
+milestones, December 11 morning in the house, and unchanged ¥9,136. No
+appointment or completion flags were injected for these two continuations.
+
+The next visual gap is in the vision package, not the Story trigger. The
+retained JOMO vision owner calls `0x4891c` and `0x463e4` immediately before
+slot 52. Reading those helpers from the same hash-verified Disc 1 MAPINFO
+shows `0x463e4` loading `sprite/SCROLL19.SPR` and calling `0x4b358`, which
+selects native light preset 6 and configures fog/background colors. The
+current KKYC generator carries only the isolated black stage and actor;
+those source presentation settings are not yet integrated. The adjacent
+`0x0174/0x0176/0x0178/0x0179` effect setup also needs a reviewed renderer
+mapping. Do not substitute ordinary outdoor snow or guessed brightness
+and call that original presentation.
 
 ### Shared handset presentation
 
