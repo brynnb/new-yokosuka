@@ -53,6 +53,8 @@ import chineseLetterManifest from "../assets/hazuki/chinese-letter/manifest.json
 import chineseLetterAudio from "../../public/audio/world/chinese-letter/manifest.json";
 import tattooIntroductionManifest from "../assets/dobuita/tattoo-introduction/manifest.json";
 import tattooIntroductionAudio from "../../public/audio/world/tattoo-introduction/manifest.json";
+import tattooAftermathManifest from "../assets/dobuita/tattoo-aftermath/manifest.json";
+import tattooAftermathAudio from "../../public/audio/world/tattoo-aftermath/manifest.json";
 import firstDojoAudio from "../../public/audio/world/first-dojo/manifest.json";
 import op00ActivityActorManifest from "../data/events/op00ActivityActors.json";
 import op00AssetInventory from "../assets/introduction/op00/asset-inventory.generated.json";
@@ -391,6 +393,7 @@ const nativeSilentActivityMusic = resource => Object.freeze({
 
 const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
   ...[["tattoo-introduction",tattooIntroductionManifest,tattooIntroductionAudio,"tatq"],
+    ["tattoo-aftermath",tattooAftermathManifest,tattooAftermathAudio,"tatq"],
     ["chicken-race",chickenRaceManifest,chickenRaceAudio,"mfsy"],["goro-job-lead",goroJobLeadManifest,goroJobLeadAudio,"mfsy"],["goro-job-appointment",goroJobAppointmentManifest,goroJobAppointmentAudio,"mfsy"],
     ["charlie-harbor-interrogation",charlieHarborManifest,charlieHarborAudio,"mfsy"],
     ["goro-trap-aftermath",goroTrapManifest,goroTrapAudio,"mfsy"],["mark-long-zha",markLongZhaManifest,markLongZhaAudio,"mfsy"],
@@ -443,7 +446,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     environment:Object.freeze({packageActors:manifest.packageActors,...(manifest.sceneObjects?{sceneObjects:manifest.sceneObjects}:{}),
       ...(manifest.attachedObjects?{attachedObjects:manifest.attachedObjects}:{}),
       ...(manifest.activities.some(activity=>activity.browserIsolatedStage)?{isolatedStage:true}:{}),
-      ...(["boat-ticket-collection","jimmy-interrogation"].includes(id)?{suppressScheduledActors:["ETKO"]}:{})}),
+      ...(["boat-ticket-collection","jimmy-interrogation"].includes(id)?{suppressScheduledActors:["ETKO"]}:id==="tattoo-aftermath"?{suppressScheduledActors:["HORS","TONY","SMTH"]}:{})}),
     playback:Object.freeze({manifest,audioManifest}),
     ...(music?{music}:{}),
   })),

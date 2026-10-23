@@ -198,7 +198,10 @@ for (const route of spec.routes) {
     const leadInBody=introduction
       ? `${introduction.map(id=>`<<start_activity "${id}">>`).join("\n")}\n<<play_sequence "${challengeStage}.start">>`
       : `<<play_sequence "${route.staging}.start">>\n${leadIn.join("\n")}${route.challengeStaging?`\n<<play_sequence "${route.staging}.finish">>\n<<play_sequence "${challengeStage}.start">>`:""}`;
-    const success=route.successStaging
+    if(route.completionActivities && (!route.completionActivities.length || lines.length || route.successStaging || route.aftermathStaging))throw Error(`Ambiguous challenge ending ${route.id}`);
+    const success=route.completionActivities
+      ? `<<play_sequence "${challengeStage}.finish">>\n${route.completionActivities.map(id=>`<<start_activity "${id}">>`).join("\n")}`
+      : route.successStaging
       ? `<<play_sequence "${challengeStage}.finish">>\n<<play_sequence "${route.successStaging}.start">>\n<<play_sequence "${route.successStaging}.finish">>\n<<play_sequence "${route.aftermathStaging}.start">>\n${lines.join("\n")}\n<<play_sequence "${route.aftermathStaging}.finish">>`
       : `${lines.join("\n")}\n<<play_sequence "${challengeStage}.finish">>`;
     if(route.successStaging && !route.aftermathStaging)throw Error(`Missing challenge aftermath ${route.id}`);

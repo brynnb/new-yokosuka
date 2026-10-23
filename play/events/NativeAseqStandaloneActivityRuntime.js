@@ -21,6 +21,7 @@ export class NativeAseqStandaloneActivityRuntime {
     this.onStopped = onStopped;
     this.active = null;
     this.pendingStart = null;
+    this.seeking = false;
   }
 
   async start({ id, activity } = {}, { signal } = {}) {
@@ -60,7 +61,33 @@ export class NativeAseqStandaloneActivityRuntime {
     if (!active || active.completing || !Number.isFinite(deltaSeconds) || deltaSeconds <= 0) {
       return false;
     }
-    const nativeFrames = this.clock.consume(deltaSeconds);
+    return this.#advanceFrames(this.clock.consume(deltaSeconds));
+  }
+
+  transportState() {
+    return Object.freeze({ active: Boolean(this.active), paused: false, seeking: this.seeking });
+  }
+
+  seekBySeconds(seconds) {
+    const active = this.active;
+    if (!active || active.completing || this.seeking || !Number.isFinite(seconds) || seconds <= 0) return false;
+    // Render deltas are intentionally clamped. An explicit skip must instead
+    // run every intervening command exactly once, including the terminal
+    // cleanup boundary; jumping the cursor loses grips, props and callbacks.
+    const frames = Math.min(Math.floor(seconds * this.clock.frameRate), active.activity.durationFrames - active.frame + 1);
+    if (frames < 1) return false;
+    this.seeking = true;
+    try {
+      this.#advanceFrames(frames);
+      return true;
+    } finally {
+      this.seeking = false;
+    }
+  }
+
+  #advanceFrames(nativeFrames) {
+    const active = this.active;
+    if (!active || active.completing) return false;
     for (
       let nativeFrame = 0;
       this.active === active && nativeFrame < nativeFrames;

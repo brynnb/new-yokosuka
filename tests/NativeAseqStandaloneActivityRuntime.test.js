@@ -87,6 +87,43 @@ test("standalone AUTH activity delegates explicit cleanup", async () => {
   assert.deepEqual(stopped, [["user-cancelled", "scene-2"]]);
 });
 
+test("standalone forward seek crosses every frame without the render-delta clamp", async () => {
+  const { calls, activityRuntime } = harness();
+  activityRuntime.startActivity = async () => ({ activityId: "AUTH/SEQ", durationFrames: 500 });
+  const runtime = new NativeAseqStandaloneActivityRuntime({ activityRuntime });
+  assert.equal(runtime.seekBySeconds(5), false);
+  await runtime.start({ id: "seek", activity: { slot: 0 } });
+  assert.equal(runtime.transportState().active, true);
+  runtime.update(1 / 30);
+  assert.equal(runtime.seekBySeconds(5), true);
+  assert.equal(runtime.active.frame, 151);
+  assert.deepEqual(calls.filter(([kind]) => kind === "update").map(([, detail]) => detail.currentFrame),
+    Array.from({ length: 151 }, (_, index) => index + 1));
+  for (const seconds of [-5, 0, NaN, Infinity]) assert.equal(runtime.seekBySeconds(seconds), false);
+  assert.equal(runtime.active.frame, 151);
+  assert.equal(runtime.seekBySeconds(999), true);
+  assert.equal(runtime.active, null);
+  assert.equal(calls.filter(([kind]) => kind === "stop").length, 1);
+  assert.equal(runtime.transportState().seeking, false);
+});
+
+test("seeking through the ending waits for coverage and cancellation cannot finish later", async () => {
+  const { calls, activityRuntime } = harness();
+  let cover;
+  const completed = [];
+  const runtime = new NativeAseqStandaloneActivityRuntime({ activityRuntime,
+    beforeComplete: () => new Promise(resolve => { cover = resolve; }), onComplete: id => completed.push(id) });
+  await runtime.start({ id: "covered", activity: { slot: 0 } });
+  assert.equal(runtime.seekBySeconds(5), true);
+  assert.equal(runtime.active.completing, true);
+  assert.equal(runtime.seekBySeconds(5), false);
+  runtime.stop("cancelled");
+  cover();
+  await new Promise(resolve => setImmediate(resolve));
+  assert.deepEqual(completed, []);
+  assert.equal(calls.filter(([kind]) => kind === "stop").length, 1);
+});
+
 test("standalone stop cancels in-flight start and cleans a late adapter result", async () => {
   const { calls, activityRuntime } = harness();
   let resolve;

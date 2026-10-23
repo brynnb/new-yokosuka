@@ -141,7 +141,7 @@ function frameWordsBefore(nativeFunction, pointer, operation) {
   return words;
 }
 
-function expressionRange(nativeFunction, operationBlock) {
+export function expressionRange(nativeFunction, operationBlock, { includeClock = false } = {}) {
   const byId = new Map(nativeFunction.blocks.map(block => [block.id, block]));
   const targetOffset = Number.parseInt(operationBlock.id, 16);
   const reaches = (startId, targetId, seen = new Set()) => {
@@ -167,12 +167,12 @@ function expressionRange(nativeFunction, operationBlock) {
       ? [expression.left?.operand, expression.right?.operand]
       : [];
     const lower = operands.find(value => (
-      value?.kind === "signed-greater-or-equal"
+      ["signed-greater-or-equal", "signed-greater-than"].includes(value?.kind)
       && value.left?.kind === "frame-field"
       && value.right?.kind === "constant"
     ));
     const upper = operands.find(value => (
-      value?.kind === "signed-greater-or-equal"
+      ["signed-greater-or-equal", "signed-greater-than"].includes(value?.kind)
       && value.left?.kind === "constant"
       && value.right?.kind === "frame-field"
     ));
@@ -182,8 +182,9 @@ function expressionRange(nativeFunction, operationBlock) {
     const falseReaches = reaches(branch.comparisonFalseSuccessor, operationBlock.id);
     if (trueReaches === falseReaches || !falseReaches) continue;
     return Object.freeze({
-      firstFrame: lower.right.value,
-      lastFrame: upper.left.value,
+      firstFrame: lower.right.value + (lower.kind === "signed-greater-than" ? 1 : 0),
+      lastFrame: upper.left.value - (upper.kind === "signed-greater-than" ? 1 : 0),
+      ...(includeClock ? { clockOffset: lower.left.offset, clockWidth: lower.left.width } : {}),
     });
   }
   return null;

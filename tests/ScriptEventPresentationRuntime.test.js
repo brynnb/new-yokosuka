@@ -65,6 +65,19 @@ test("tattoo introduction borrows native presentation without replacing the real
   assert.equal(route.challenge,"s1.tatq.charlie");
   assert.equal(route.staging,"s1.tatq.charlie-confrontation");
   assert.ok(!route.leadInVoiceIds,"native voices must not be repeated as Yarn lines");
+  assert.deepEqual(route.completionActivities,["s1.tatq.charlie-aftermath.scene"]);
+  assert.deepEqual(route.voiceIds,[],"the aftermath must not be duplicated by standing dialogue");
+  const ending=createScriptEventPresentationCatalog().activity(route.completionActivities[0]);
+  const aftermath=JSON.parse(readFileSync(new URL("../play/assets/dobuita/tattoo-aftermath/manifest.json",import.meta.url)));
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/tattoo-aftermath/manifest.json",import.meta.url)));
+  assert.equal(ending.durableEffects,"forbidden");assert.equal(ending.returnPlayerState,true);
+  assert.equal(new NativeAseqActivityCatalog(aftermath).has(ending.cutscene.activity),true);
+  assert.equal(aftermath.source.members[0].sourceOffset,0x281e0);
+  assert.equal(aftermath.activities[0].durationFrames,1695);
+  assert.equal(aftermath.packageActors.CHRL.modelCode,"BIS_L");
+  assert.equal(aftermath.sceneObjects.KTE3.lifecycle.kind,"room-script-persistent");
+  assert.equal(aftermath.activities[0].nativeHandComponentCues.length,35);
+  assert.equal(audio.voices.length,18);assert.ok(audio.voices.every(v=>!v.unavailable));
 });
 
 test("Naoyuki's borrowing film preserves original cast/props without claiming ride victory",()=>{

@@ -8,6 +8,7 @@ import {
   extractNativeAseqCallbackPresentation,
   extractNativeAseqCallbackHandPresentation,
   extractNativeHandPoseOperation,
+  extractNativeHandComponentTimeline,
 } from "../tools/lib/NativeAseqCallbackPresentation.mjs";
 import { extractNativeAseqCallbackObjectPresentation } from "../tools/lib/NativeAseqCallbackObjectPresentation.mjs";
 
@@ -31,6 +32,37 @@ test("tattoo introduction retains original detailed grips and later body-hand re
 });
 
 const allowanceMap = path.resolve(process.env.SHENMUE_DISC1_EXTRACTED_ROOT || "extracted_files", "data/SCENE/01/JOMO/MAPINFO.BIN");
+test("tattoo aftermath compiles the complete held wrist vector and bounded adjustment", {
+  skip: !fs.existsSync(tattooMap) && "requires original Disc 1 TATQ extraction",
+}, () => {
+  const callback = JSON.parse(fs.readFileSync(new URL("../tools/evidence/tatq-aftermath-callback-ir.json", import.meta.url)));
+  const input = { bytes: fs.readFileSync(tattooMap), callbackFunction: 0x1a69c, nativeFunction: callback.function };
+  assert.equal(createHash("sha256").update(input.bytes).digest("hex"), callback.source.mapinfoSha256);
+  const result = extractNativeAseqCallbackHandPresentation(input);
+  assert.deepEqual(result.nativeHandComponentLimitations, []);
+  const cues = result.nativeHandComponentCues;
+  assert.equal(cues.length, 35);
+  assert.deepEqual(cues.filter(c => [0, 510, 539, 580].includes(c.frame)).map(c => [c.frame, c.rotationRaw]),
+    [[0, [-1092, 3640, 0]], [510, [3567, 443, 5115]], [539, [6728, -2544, 5637]], [580, [10376, -2002, 3094]]]);
+  assert.deepEqual(cues.filter(c => c.frame >= 510 && c.frame < 580).map(c => c.frame),
+    Array.from({ length: 30 }, (_, i) => i + 510));
+  const dynamic = structuredClone(callback.function);
+  const block = dynamic.blocks.find(b => b.id === "0x1ac0c");
+  block.actions[0].expression.right = { kind: "frame-field", offset: 40, width: 4 };
+  const omitted = extractNativeAseqCallbackHandPresentation({ ...input, nativeFunction: dynamic });
+  assert.equal(omitted.nativeHandComponentCues.length, 0, "unknown feedback must not leave a partial frozen wrist lane");
+  assert.ok(omitted.nativeHandComponentLimitations.some(c => c.callFileOffset === "0x1ac6a"));
+  const escaped = structuredClone(callback.function);
+  escaped.blocks[0].actions.push({ kind: "engineOperation", semanticId: "resolved-object-component-read",
+    callFileOffset: "0x1a6d2", arguments: [{ kind: "frame-address", offset: 0 }] });
+  const operation = escaped.blocks.flatMap(b => b.actions).find(a => a.callFileOffset === "0x1ac6a");
+  assert.throws(() => extractNativeHandComponentTimeline({ ...input, nativeFunction: escaped, operation }), /dynamic native frame-vector/);
+  const badClock = structuredClone(callback.function);
+  badClock.blocks.find(b => b.id === "0x1aff4").actions[0].expression.right.value = 2;
+  const unclocked = extractNativeAseqCallbackHandPresentation({ ...input, nativeFunction: badClock });
+  assert.equal(unclocked.nativeHandComponentCues.length, 0, "an arbitrary counter is not an ASEQ frame clock");
+});
+
 test("original allowance callback recovers indexed-clock handover without a frame override", {
   skip: !fs.existsSync(allowanceMap) && "requires original Disc 1 JOMO extraction",
 }, () => {
@@ -47,11 +79,15 @@ test("original allowance callback recovers indexed-clock handover without a fram
   assert.deepEqual(manifest.attachedObjects.KOZU.attachments.map(({ activityId, ...cue }) => cue), object.attachedObjectCues);
   const presentation = extractNativeAseqCallbackPresentation(input);
   for (const key of ["nativeHandPoseCues", "nativeBodyHandPoseCues", "nativeHandComponentCues", "nativeHandComponentLimitations"]) {
-    assert.deepEqual(manifest.activities[0][key], presentation[key], key);
+    // The pack omits an empty limitations field, unlike executable cue lists.
+    assert.deepEqual(key === "nativeHandComponentLimitations" ? manifest.activities[0][key] || [] : manifest.activities[0][key], presentation[key], key);
   }
   assert.deepEqual(manifest.nativeHandPoseTables, presentation.nativeHandPoseTables);
-  // Keep the unresolved conditional visible; do not silently invent a frame.
-  assert.equal(presentation.nativeHandComponentLimitations[0].callFileOffset, "0x63734");
+  assert.deepEqual(presentation.nativeHandComponentLimitations, []);
+  const handover = presentation.nativeHandComponentCues.filter(c => c.callFileOffset === "0x63734");
+  assert.deepEqual(handover.map(c => c.frame), Array.from({ length: 50 }, (_, i) => i + 951));
+  assert.deepEqual(handover[0].rotationRaw, [-1820, -6925, -4329]);
+  assert.deepEqual(handover.at(-1).rotationRaw, [-1820, -4622, 277]);
 });
 
 test("zero-duration HAND commands keep their authored frame and vectors", () => {

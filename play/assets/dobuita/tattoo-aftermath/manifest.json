@@ -1,0 +1,1335 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_tatq_story_assets.mjs",
+  "source": {
+    "disc": 1,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "AFTERMATH.AUTH",
+        "path": "disc1/SCENE/01/TATQ/MAPINFO.BIN",
+        "sourceOffset": 164320,
+        "sourceSha256": "33fc374132d53ed955a4a1704350582afd122b4e86635867808d4c312e6bc4a6",
+        "byteLength": 21660,
+        "sha256": "e5ad1935a05b9560b43f8755f1a1d48435c6fa66ce467352e6c8c1272f7c5e6e"
+      },
+      {
+        "name": "M_0136.MOTN",
+        "path": "disc1/SCENE/01/TATQ/QTE.PKS",
+        "sourceSha256": "2c7d24b8f92596871e765852e174e04aef99bcaada5efa1d610aa854302993a8",
+        "archiveMember": "M_0136.MOTN",
+        "byteLength": 885156,
+        "sha256": "b59326820d48ee99d5d0615021da96ae0c0ac58320876d438962d9a0ba47e07e"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-event-template.md#charlie-confrontation-and-the-cartel-appointment",
+    "resourceName": "TATQ_AFTERMATH",
+    "variant": "",
+    "selectionRule": "Exact original TRCK slot 2 at 0x281e0, normalized to package slot 0. Owner 0x19044 pairs it with callback 0x1a69c and setup 0x19860. This is presentation after a separately successful client QTE, never a victory source. Original wrist adjustments are compiled from the bounded callback; callback expression/gaze controls remain untranslated."
+  },
+  "audioManifest": "public/audio/world/tattoo-aftermath/manifest.json",
+  "sceneObjects": {
+    "KTE3": {
+      "model": "B03I008G",
+      "browserFilename": "S1_TATQ_B03I008G.MT5",
+      "assetPath": "play/assets/dobuita/tattoo-aftermath/B03I008G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/tattoo-aftermath/qte-textures.bin",
+      "source": {
+        "actorTag": "KTE3",
+        "image": "B03I008G",
+        "model": "B03I008G",
+        "characterRecordOffset": 256,
+        "imagePropertyOffset": 364,
+        "defImageRecordOffset": 216,
+        "presentation": {
+          "position": [
+            -1.7999999523162842,
+            0,
+            -2
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "source": {
+            "objectPropertyOffset": 304,
+            "positionPropertyOffset": 344,
+            "anglePropertyOffset": null
+          }
+        }
+      },
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          -1.7999999523162842,
+          0,
+          -2
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 304,
+          "positionPropertyOffset": 344,
+          "anglePropertyOffset": null
+        }
+      }
+    },
+    "DOOR": {
+      "model": "DR01_017",
+      "browserFilename": "S1_TATQ_DR01_017.MT5",
+      "assetPath": "play/assets/dobuita/tattoo-aftermath/DR01_017.CHRM",
+      "textureAssetPath": "play/assets/dobuita/tattoo-aftermath/room-textures.bin",
+      "source": {
+        "actorTag": "DOOR",
+        "image": "DOR1",
+        "model": "DR01_017",
+        "characterRecordOffset": 48,
+        "imagePropertyOffset": 96,
+        "defImageRecordOffset": 8,
+        "presentation": null
+      }
+    },
+    "ITEM": {
+      "model": "B03I005G",
+      "browserFilename": "S1_TATQ_B03I005G.MT5",
+      "assetPath": "play/assets/dobuita/tattoo-aftermath/B03I005G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/tattoo-aftermath/qte-textures.bin",
+      "source": {
+        "actorTag": "ITEM",
+        "image": "HORI",
+        "model": "B03I005G",
+        "characterRecordOffset": 588,
+        "imagePropertyOffset": 708,
+        "defImageRecordOffset": 548,
+        "presentation": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "source": {
+            "objectPropertyOffset": 636,
+            "positionPropertyOffset": 676,
+            "anglePropertyOffset": 696
+          }
+        }
+      }
+    },
+    "ISU1": {
+      "model": "B03I002G",
+      "browserFilename": "S1_TATQ_B03I002G.MT5",
+      "assetPath": "play/assets/dobuita/tattoo-aftermath/B03I002G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/tattoo-aftermath/room-textures.bin",
+      "source": {
+        "actorTag": "ISU1",
+        "image": "CHA1",
+        "model": "B03I002G",
+        "characterRecordOffset": 496,
+        "imagePropertyOffset": 616,
+        "defImageRecordOffset": 456,
+        "presentation": {
+          "position": [
+            -0.2199999988079071,
+            0,
+            -0.6000000238418579
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "source": {
+            "objectPropertyOffset": 544,
+            "positionPropertyOffset": 584,
+            "anglePropertyOffset": 604
+          }
+        }
+      }
+    },
+    "ISU2": {
+      "model": "B03I003G",
+      "browserFilename": "S1_TATQ_B03I003G.MT5",
+      "assetPath": "play/assets/dobuita/tattoo-aftermath/B03I003G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/tattoo-aftermath/room-textures.bin",
+      "source": {
+        "actorTag": "ISU2",
+        "image": "CHA2",
+        "model": "B03I003G",
+        "characterRecordOffset": 680,
+        "imagePropertyOffset": 800,
+        "defImageRecordOffset": 640,
+        "presentation": {
+          "position": [
+            -0.02500000037252903,
+            0,
+            -1.600000023841858
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "source": {
+            "objectPropertyOffset": 728,
+            "positionPropertyOffset": 768,
+            "anglePropertyOffset": 788
+          }
+        }
+      }
+    },
+    "NIFE": {
+      "model": "B03I004G",
+      "browserFilename": "S1_TATQ_B03I004G.MT5",
+      "assetPath": "play/assets/dobuita/tattoo-aftermath/B03I004G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/tattoo-aftermath/qte-textures.bin",
+      "source": {
+        "actorTag": "NIFE",
+        "image": "KNIF",
+        "model": "B03I004G",
+        "characterRecordOffset": 416,
+        "imagePropertyOffset": 536,
+        "defImageRecordOffset": 376,
+        "presentation": {
+          "position": [
+            -1.2640000581741333,
+            0.6899999976158142,
+            -4.104000091552734
+          ],
+          "rotationDegrees": [
+            0,
+            90,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "source": {
+            "objectPropertyOffset": 464,
+            "positionPropertyOffset": 504,
+            "anglePropertyOffset": 524
+          }
+        }
+      }
+    }
+  },
+  "packageActors": {
+    "CHRL": {
+      "label": "Charlie",
+      "modelCode": "BIS_L",
+      "browserFilename": "BIS_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/BIS_L.CHRM",
+      "textureAssetPath": "play/assets/characters/BIS_textures.bin"
+    }
+  },
+  "handAssets": {
+    "CHRL": {
+      "actorTag": "CHRL",
+      "bodyModelCode": "BIS_L",
+      "handCode": "BIS",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/dobuita/tattoo-aftermath/BIS_TL.MT5",
+          "sourcePath": "disc1/SCENE/01/MODEL/HAND/BIS_TL.MT5",
+          "byteLength": 160420,
+          "sha256": "c958badbf7c43e9f2140887077af231bc04504736983da37048095fba0f35105"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/dobuita/tattoo-aftermath/BIS_TR.MT5",
+          "sourcePath": "disc1/SCENE/01/MODEL/HAND/BIS_TR.MT5",
+          "byteLength": 160260,
+          "sha256": "c065caaad300d451382034f40ecf43c1d6642c79370f2d60394c735bf3f6081e"
+        }
+      },
+      "rig": {
+        "path": "play/assets/dobuita/tattoo-aftermath/BIS_HM.BIN",
+        "sourcePath": "disc1/SCENE/01/MODEL/HAND/BIS_HM.BIN",
+        "byteLength": 9248,
+        "sha256": "d1cf00a20e1d9e08ea38ed83970590021ad32f55cdec9f35cc858c2c99f6af2d",
+        "vertexCount": 303,
+        "transformNodeCount": 71,
+        "pointerOffsets": [
+          24,
+          168,
+          8944,
+          5848,
+          6472,
+          9248
+        ]
+      }
+    }
+  },
+  "nativeHandPoseTables": {
+    "0x23688": {
+      "sourceMapinfoOffset": "0x23688",
+      "vectors": [
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          3822,
+          364
+        ],
+        [
+          0,
+          2548,
+          728
+        ],
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          0,
+          -7645
+        ],
+        [
+          0,
+          0,
+          -4004
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -6917
+        ],
+        [
+          0,
+          0,
+          -4369
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -7645
+        ],
+        [
+          0,
+          0,
+          -1820
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1456,
+          -6189
+        ],
+        [
+          0,
+          -2184,
+          -8374
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "0x2376c": {
+      "sourceMapinfoOffset": "0x2376c",
+      "vectors": [
+        [
+          0,
+          0,
+          -6005
+        ],
+        [
+          0,
+          0,
+          -909
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -6368
+        ],
+        [
+          0,
+          1820,
+          -8552
+        ],
+        [
+          0,
+          0,
+          -4548
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -8552
+        ],
+        [
+          0,
+          0,
+          -10372
+        ],
+        [
+          0,
+          -545,
+          -4002
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -7823
+        ],
+        [
+          0,
+          0,
+          -12374
+        ],
+        [
+          0,
+          -909,
+          -2182
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1636,
+          -10735
+        ],
+        [
+          0,
+          -2001,
+          -10372
+        ],
+        [
+          0,
+          -1819,
+          -727
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "0x235a4": {
+      "sourceMapinfoOffset": "0x235a4",
+      "vectors": [
+        [
+          0,
+          -364,
+          -11650
+        ],
+        [
+          -2912,
+          -364,
+          -4369
+        ],
+        [
+          1638,
+          910,
+          182
+        ],
+        [
+          0,
+          0,
+          -16019
+        ],
+        [
+          0,
+          182,
+          -23119
+        ],
+        [
+          0,
+          546,
+          -18932
+        ],
+        [
+          0,
+          0,
+          -1092
+        ],
+        [
+          0,
+          0,
+          -16384
+        ],
+        [
+          0,
+          0,
+          -21845
+        ],
+        [
+          0,
+          0,
+          -18750
+        ],
+        [
+          0,
+          0,
+          -546
+        ],
+        [
+          0,
+          0,
+          -21481
+        ],
+        [
+          0,
+          0,
+          -21299
+        ],
+        [
+          0,
+          0,
+          -18568
+        ],
+        [
+          0,
+          0,
+          -728
+        ],
+        [
+          0,
+          910,
+          -18750
+        ],
+        [
+          0,
+          182,
+          -18750
+        ],
+        [
+          0,
+          -4004,
+          -18204
+        ],
+        [
+          0,
+          0,
+          -728
+        ]
+      ]
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "CHRL",
+    "DOOR",
+    "ITEM",
+    "ISU1",
+    "ISU2",
+    "NIFE"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/dobuita/tattoo-aftermath/M_0136.MOTN",
+      "byteLength": 885156,
+      "sha256": "b59326820d48ee99d5d0615021da96ae0c0ac58320876d438962d9a0ba47e07e"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/dobuita/tattoo-aftermath/M_0136.MOTN",
+      "byteLength": 885156,
+      "sha256": "b59326820d48ee99d5d0615021da96ae0c0ac58320876d438962d9a0ba47e07e"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-aftermath/AFTERMATH.AUTH",
+      "byteLength": 21660,
+      "sha256": "e5ad1935a05b9560b43f8755f1a1d48435c6fa66ce467352e6c8c1272f7c5e6e"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-aftermath/BIS_TL.MT5",
+      "byteLength": 160420,
+      "sha256": "c958badbf7c43e9f2140887077af231bc04504736983da37048095fba0f35105"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-aftermath/BIS_TR.MT5",
+      "byteLength": 160260,
+      "sha256": "c065caaad300d451382034f40ecf43c1d6642c79370f2d60394c735bf3f6081e"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-aftermath/BIS_HM.BIN",
+      "byteLength": 9248,
+      "sha256": "d1cf00a20e1d9e08ea38ed83970590021ad32f55cdec9f35cc858c2c99f6af2d"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-aftermath/B03I008G.CHRM",
+      "byteLength": 9124,
+      "sha256": "fac36906aff596845ebdfdc1758373cb511c7e2d692a3274c992c4075c237dab"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-aftermath/DR01_017.CHRM",
+      "byteLength": 5764,
+      "sha256": "a5112268c075675527206ab1188a9dff6f783eb48bf1ebf4d6c905ed0e7e0c06"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-aftermath/B03I005G.CHRM",
+      "byteLength": 21604,
+      "sha256": "3f6efab0dd357219e3d911323609ff5283d532191a5bda124309230b0b121017"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-aftermath/B03I002G.CHRM",
+      "byteLength": 4132,
+      "sha256": "259a7d6d7cc4e28340f9f88125812cf8242869ce38574572635b194a01064f92"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-aftermath/B03I003G.CHRM",
+      "byteLength": 4132,
+      "sha256": "259a7d6d7cc4e28340f9f88125812cf8242869ce38574572635b194a01064f92"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-aftermath/B03I004G.CHRM",
+      "byteLength": 5964,
+      "sha256": "69023f8330c7c3823571223f8812768f3aa8841a5fa95cbd395c1e405b0a4e7d"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-aftermath/room-textures.bin",
+      "byteLength": 1127936,
+      "sha256": "fd5c9e484da199f8975f85a79faad21ebd980b68833fc9b9e93660fbcad73ae6"
+    },
+    {
+      "path": "play/assets/dobuita/tattoo-aftermath/qte-textures.bin",
+      "byteLength": 347120,
+      "sha256": "1fa272f7fb22e7ceca9736ec4dcb23a7d01ddfef7b3d18220881da54e68f884c"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "TATQ_AFTERMATH/AFTERMATH.AUTH",
+      "archiveMember": "AFTERMATH.AUTH",
+      "byteLength": 21660,
+      "sha256": "e5ad1935a05b9560b43f8755f1a1d48435c6fa66ce467352e6c8c1272f7c5e6e",
+      "durationFrames": 1695,
+      "durationSeconds": 56.516666412353516,
+      "frameCount": 50,
+      "commandCounts": {
+        "camera": 1,
+        "move": 7,
+        "motion": 6,
+        "voice": 18,
+        "sound": 29
+      },
+      "actors": [
+        "AKIR",
+        "CHRL",
+        "DOOR",
+        "ITEM",
+        "ISU1",
+        "ISU2",
+        "NIFE"
+      ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x23688",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x1a996",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "CHRL",
+          "side": "left",
+          "poseTableOffset": "0x2376c",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x1aa0c",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "CHRL",
+          "side": "right",
+          "poseTableOffset": "0x2376c",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x1aa2c",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 832,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x235a4",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x1ad42",
+          "sourceOrder": 10
+        },
+        {
+          "activitySlot": 0,
+          "frame": 905,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x235a4",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x1adb2",
+          "sourceOrder": 11
+        }
+      ],
+      "nativeBodyHandPoseCues": [],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1092,
+            3640,
+            0
+          ],
+          "callFileOffset": "0x1a9b4",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 0,
+          "frame": 90,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            364,
+            6189,
+            4004
+          ],
+          "callFileOffset": "0x1aaae",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 0,
+          "frame": 200,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -182,
+            2002,
+            1092
+          ],
+          "callFileOffset": "0x1ab32",
+          "sourceOrder": 6
+        },
+        {
+          "activitySlot": 0,
+          "frame": 444,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            3458,
+            546,
+            5097
+          ],
+          "callFileOffset": "0x1abb6",
+          "sourceOrder": 7
+        },
+        {
+          "activitySlot": 0,
+          "frame": 510,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            3567,
+            443,
+            5115
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 511,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            3676,
+            340,
+            5133
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 512,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            3785,
+            237,
+            5151
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 513,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            3894,
+            134,
+            5169
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 514,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            4003,
+            31,
+            5187
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 515,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            4112,
+            -72,
+            5205
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 516,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            4221,
+            -175,
+            5223
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 517,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            4330,
+            -278,
+            5241
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 518,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            4439,
+            -381,
+            5259
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 519,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            4548,
+            -484,
+            5277
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 520,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            4657,
+            -587,
+            5295
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 521,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            4766,
+            -690,
+            5313
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 522,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            4875,
+            -793,
+            5331
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 523,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            4984,
+            -896,
+            5349
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 524,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            5093,
+            -999,
+            5367
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 525,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            5202,
+            -1102,
+            5385
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 526,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            5311,
+            -1205,
+            5403
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 527,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            5420,
+            -1308,
+            5421
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 528,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            5529,
+            -1411,
+            5439
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 529,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            5638,
+            -1514,
+            5457
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 530,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            5747,
+            -1617,
+            5475
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 531,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            5856,
+            -1720,
+            5493
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 532,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            5965,
+            -1823,
+            5511
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 533,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            6074,
+            -1926,
+            5529
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 534,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            6183,
+            -2029,
+            5547
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 535,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            6292,
+            -2132,
+            5565
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 536,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            6401,
+            -2235,
+            5583
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 537,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            6510,
+            -2338,
+            5601
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 538,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            6619,
+            -2441,
+            5619
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 539,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            6728,
+            -2544,
+            5637
+          ],
+          "callFileOffset": "0x1ac6a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 580,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            10376,
+            -2002,
+            3094
+          ],
+          "callFileOffset": "0x1ace2",
+          "sourceOrder": 9
+        }
+      ],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "KTE3",
+          "presented": true
+        }
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 48,
+          "motionName": "AKI_AT1_IREZUMI_SAGASU_TATOOSHOP_0100",
+          "startFrame": 121,
+          "endFrame": 210
+        },
+        {
+          "actorTag": "CHRL",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 49,
+          "motionName": "OTH_CHY_AT1_IREZUMI_SAGASU_TATOOSHOP_0100",
+          "startFrame": 121,
+          "endFrame": 210
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 91,
+          "motionBank": 16,
+          "sequenceIndex": 51,
+          "motionName": "AKI_AT1_IREZUMI_SAGASU_TATOOSHOP_A_0100",
+          "startFrame": 211,
+          "endFrame": 266
+        },
+        {
+          "actorTag": "CHRL",
+          "frame": 91,
+          "motionBank": 16,
+          "sequenceIndex": 50,
+          "motionName": "OTH_CHY_AT1_IREZUMI_SAGASU_TATOOSHOP_B_0100",
+          "startFrame": 211,
+          "endFrame": 266
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 147,
+          "motionBank": 16,
+          "sequenceIndex": 48,
+          "motionName": "AKI_AT1_IREZUMI_SAGASU_TATOOSHOP_0100",
+          "startFrame": 267,
+          "endFrame": 1805
+        },
+        {
+          "actorTag": "CHRL",
+          "frame": 147,
+          "motionBank": 16,
+          "sequenceIndex": 49,
+          "motionName": "OTH_CHY_AT1_IREZUMI_SAGASU_TATOOSHOP_0100",
+          "startFrame": 267,
+          "endFrame": 1815
+        }
+      ]
+    }
+  ]
+}

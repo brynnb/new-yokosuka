@@ -455,7 +455,7 @@
           "poseTableOffset": "0x96b30",
           "durationNativeTicks": 1,
           "callFileOffset": "0x63826",
-          "sourceOrder": 4
+          "sourceOrder": 5
         },
         {
           "activitySlot": 35,
@@ -465,7 +465,7 @@
           "poseTableOffset": "0x96b30",
           "durationNativeTicks": 1,
           "callFileOffset": "0x63846",
-          "sourceOrder": 5
+          "sourceOrder": 6
         },
         {
           "activitySlot": 35,
@@ -495,7 +495,7 @@
           "poseTableOffset": "0x96968",
           "durationNativeTicks": 1,
           "callFileOffset": "0x639e6",
-          "sourceOrder": 6
+          "sourceOrder": 7
         }
       ],
       "nativeBodyHandPoseCues": [
@@ -507,7 +507,7 @@
           "targetIndex": 8,
           "durationNativeTicks": 16,
           "callFileOffset": "0x63b0e",
-          "sourceOrder": 7
+          "sourceOrder": 8
         },
         {
           "activitySlot": 35,
@@ -517,10 +517,24 @@
           "targetIndex": 8,
           "durationNativeTicks": 16,
           "callFileOffset": "0x63b2a",
-          "sourceOrder": 8
+          "sourceOrder": 9
         }
       ],
       "nativeHandComponentCues": [
+        {
+          "activitySlot": 35,
+          "frame": 781,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6972,
+            -4423
+          ],
+          "callFileOffset": "0x6363a",
+          "sourceOrder": 2
+        },
         {
           "activitySlot": 35,
           "frame": 781,
@@ -534,14 +548,706 @@
           ],
           "callFileOffset": "0x6367e",
           "sourceOrder": 3
-        }
-      ],
-      "nativeHandComponentLimitations": [
+        },
         {
+          "activitySlot": 35,
+          "frame": 951,
           "actorTag": "INE_",
           "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6925,
+            -4329
+          ],
           "callFileOffset": "0x63734",
-          "reason": "native call 0x63734 has no governing ASEQ frame"
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 952,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6878,
+            -4235
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 953,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6831,
+            -4141
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 954,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6784,
+            -4047
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 955,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6737,
+            -3953
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 956,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6690,
+            -3859
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 957,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6643,
+            -3765
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 958,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6596,
+            -3671
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 959,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6549,
+            -3577
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 960,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6502,
+            -3483
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 961,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6455,
+            -3389
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 962,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6408,
+            -3295
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 963,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6361,
+            -3201
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 964,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6314,
+            -3107
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 965,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6267,
+            -3013
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 966,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6220,
+            -2919
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 967,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6173,
+            -2825
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 968,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6126,
+            -2731
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 969,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6079,
+            -2637
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 970,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -6032,
+            -2543
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 971,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5985,
+            -2449
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 972,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5938,
+            -2355
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 973,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5891,
+            -2261
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 974,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5844,
+            -2167
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 975,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5797,
+            -2073
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 976,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5750,
+            -1979
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 977,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5703,
+            -1885
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 978,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5656,
+            -1791
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 979,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5609,
+            -1697
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 980,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5562,
+            -1603
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 981,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5515,
+            -1509
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 982,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5468,
+            -1415
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 983,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5421,
+            -1321
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 984,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5374,
+            -1227
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 985,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5327,
+            -1133
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 986,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5280,
+            -1039
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 987,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5233,
+            -945
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 988,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5186,
+            -851
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 989,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5139,
+            -757
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 990,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5092,
+            -663
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 991,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -5045,
+            -569
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 992,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -4998,
+            -475
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 993,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -4951,
+            -381
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 994,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -4904,
+            -287
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 995,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -4857,
+            -193
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 996,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -4810,
+            -99
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 997,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -4763,
+            -5
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 998,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -4716,
+            89
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 999,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -4669,
+            183
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 35,
+          "frame": 1000,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1820,
+            -4622,
+            277
+          ],
+          "callFileOffset": "0x63734",
+          "sourceOrder": 4
         }
       ],
       "nativeFaceClipCues": [],

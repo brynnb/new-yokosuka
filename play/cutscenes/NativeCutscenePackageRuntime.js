@@ -409,8 +409,10 @@ export class NativeCutscenePackageRuntime {
     if (!state.active) return false;
     this.music.setPaused(true);
     try {
+      this.presentation.setSeeking(true);
       return this.playback.seekBySeconds(seconds);
     } finally {
+      this.presentation.setSeeking(false);
       this.music.setPaused(state.paused);
     }
   }

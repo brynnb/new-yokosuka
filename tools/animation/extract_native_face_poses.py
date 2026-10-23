@@ -70,6 +70,7 @@ FACE_BINDINGS = {
     "TAIJ": ("SYU", "SYU_FTBL.BIN"),
     "JIMY": ("JIM", "JIM_FTBL.BIN"),
     "HORS": ("TAT", "TAT_FTBL.BIN"),
+    "CHRL": ("BIS", "BIS_FTBL.BIN"),
     # OP02's opening vision carries a scene-local high-detail Shenhua face.
     # The table path is supplied explicitly with --binding when evaluated.
     "SINF": ("MGR", "MGR_FTBL.BIN"),

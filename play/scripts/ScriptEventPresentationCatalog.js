@@ -204,6 +204,11 @@ const ACTIVITIES = new Map([
     cutscene:{id:"story-s1-tattoo-introduction",packageId:"tattoo-introduction",worldId:"tatq",storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"TATQ_INTRO/INTRO.AUTH"}}},
   }],
+  ["s1.tatq.charlie-aftermath.scene", {
+    kind:"native-cutscene",area:"TATQ",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-tattoo-aftermath",packageId:"tattoo-aftermath",worldId:"tatq",storyPresentation:true,
+      activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"TATQ_AFTERMATH/AFTERMATH.AUTH"}}},
+  }],
   ["s1.d000.nozomi-after-parlor.scene", {
     kind: "native-cutscene", area: "D000", durableEffects: "forbidden", returnPlayerState: true,
     cutscene: { id: "story-s1-nozomi-after-parlor", packageId: "ybhn", worldId: "dobuita",

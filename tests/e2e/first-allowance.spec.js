@@ -1812,6 +1812,13 @@ async function verifyCharlieConfrontation(page,testInfo,character) {
   await enterInteriorDoor(page,{world:"tatq",filename:"S1_D000_DR01_007.MT5",position:[100.4,2.7724,99.9],yaw:2.181661565});
   await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-tattoo-introduction",null,{timeout:60_000});
   const toChallenge=async()=>{
+    await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime?.activityRuntime.active?.currentFrame>0);
+    const before=await page.evaluate(()=>({frame:window.storyProbe.director.activeCutscene.packageRuntime.activityRuntime.active.currentFrame,
+      focus:{tag:document.activeElement?.tagName,text:document.activeElement?.textContent?.slice(0,80),hidden:Boolean(document.activeElement?.closest("[hidden]"))}}));
+    console.info("Charlie intro keyboard skip",before);
+    await page.keyboard.press("Space");
+    await page.waitForFunction(frame=>window.storyProbe.regions.controller.active?.challengePrompt
+      || window.storyProbe.director.activeCutscene?.packageRuntime?.activityRuntime.active?.currentFrame>=frame+100,before.frame,{timeout:1500});
     for(let i=0;i<30&&!await page.evaluate(()=>window.storyProbe.regions.controller.active?.challengePrompt||window.storyProbe.sceneErrors.length);i++) {
       await page.keyboard.press("Space");await page.waitForTimeout(200);
     }
@@ -1823,12 +1830,28 @@ async function verifyCharlieConfrontation(page,testInfo,character) {
   let saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
   expect(saved.character.storyFlags["notebook.s1.charlie-cartel-appointment"]).not.toBe(true);
   await page.getByRole("button",{name:"Try again",exact:true}).click();await toChallenge();
+  const winChallenge=async()=>{
   for(const [index,button,key]of [[0,"Left","ArrowLeft"],[1,"A","Enter"]]) {
     await page.waitForFunction(({index,button})=>{
       const p=window.storyProbe.regions.controller.active?.challengePrompt;return p?.ready&&window.storyProbe.regions.controller.dialogue.qte?.active?.index===index&&window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0]===button;
     },{index,button});await page.keyboard.press(key);
   }
-  await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0);
+  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-tattoo-aftermath",null,{timeout:60_000});
+  await page.waitForFunction(()=>window.storyProbe.director.activeCutscene.packageRuntime?.activityRuntime.active?.currentFrame>=150);
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  };
+  await winChallenge();
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("tattoo-aftermath-cancel-after-win"));
+  await page.waitForFunction(()=>{
+    const p=window.storyProbe;return p.regions.controller.status==="idle"&&!p.director.active&&p.lifecycle.worldRuntime.ready&&!p.lifecycle.getController().movementLocked;
+  },null,{timeout:60_000});
+  saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(saved.character.storyFlags["notebook.s1.charlie-cartel-appointment"]).not.toBe(true);
+  expect(saved.character.storyFlags["story.s1.charlie-tattoo-confrontation.completed"]).not.toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  await enterInteriorDoor(page,{world:"tatq",filename:"S1_D000_DR01_007.MT5",position:[100.4,2.7724,99.9],yaw:2.181661565});
+  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-tattoo-introduction",null,{timeout:60_000});
+  await toChallenge();await winChallenge();
   await page.screenshot({path:testInfo.outputPath("charlie-parlor-appointment.png")});
   for(let i=0;i<30&&!await page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie-cartel-appointment"]);i++) {
     await page.keyboard.press("Space");await page.waitForTimeout(200);

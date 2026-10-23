@@ -2,6 +2,12 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  tattoo: [
+    ...[false,true].map(natural=>["s1.tatq.charlie-aftermath.scene","tatq","TATQ",{CHRL:"BIS",AKIR:"YKC"},{
+      label:natural?"complete":"cancel",natural,openingFrames:[45,105],frames:natural?[250,420,640,800,1000,1300,1600]:[420],
+      objects:["NIFE","KTE3"],...(natural?{voiceCounts:{A0136:18}}:{}),
+    }]),
+  ],
   alley: [
     ...[false,true].map(natural=>["s1.heartbeats.alley.beer","dobuita","D000",{AKIR:"YKC",TONY:"GIJ"},{
       label:natural?"complete":"cancel",natural,openingFrames:[60],frames:natural?[320,400]:[300],objects:["BIN_"],

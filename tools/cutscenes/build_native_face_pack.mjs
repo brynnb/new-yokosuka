@@ -125,6 +125,13 @@ const expected = Object.freeze({
     tableSha256: "c8cef6d0d674f90313c27e170c7611db761c3eaaf368afa3b0184be02c1782d5",
     posePath: storyPosePath,
   }),
+  CHRL: Object.freeze({
+    bodyModelCode: "BIS_L",
+    faceCode: "BIS",
+    modelSha256: "71f93a590becbc04eea6a0d22ba3516a107d3b732c4861ebe31112730e7ff085",
+    tableSha256: "53e8538c3fb03e678d76e46679ffc45b8a0a2c41686e3e355cddebfcdf499060",
+    posePath: storyPosePath,
+  }),
 });
 const expectedVariants = Object.freeze({
   // JAKR normally resolves to the adult JKA face. SAKR authors the same actor

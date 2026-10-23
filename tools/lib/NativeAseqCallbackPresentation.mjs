@@ -1,5 +1,5 @@
 import { NATIVE_HAND_POSE_SLOT_ORDER } from "../../src/NativeHandRig.js";
-import { frameWords } from "./NativeAseqCallbackObjectPresentation.mjs";
+import { expressionRange, frameWords } from "./NativeAseqCallbackObjectPresentation.mjs";
 import {
   nativeAseqGoverningActivityFrame,
   nativeAseqGoverningActivityRange,
@@ -293,12 +293,12 @@ const handSemantics = new Set([
 ]);
 
 export function extractNativeHandComponentOperation({ bytes, operation, nativeFunction,
-  activitySlot = 0, frame, sourceOrder }) {
+  activitySlot = 0, frame, sourceOrder, rotationRaw: recoveredRotation }) {
   const [actor, side, mask, pointer] = operation.arguments;
   const block = nativeFunction.blocks.find(block => block.actions.includes(operation));
-  const rotationRaw = pointer.kind === "static-pointer"
+  const rotationRaw = recoveredRotation || (pointer.kind === "static-pointer"
     ? [0, 4, 8].map(delta => bytes.readInt32LE(pointer.value + delta))
-    : frameWords(nativeFunction, block, pointer, operation).map(word => word | 0);
+    : frameWords(nativeFunction, block, pointer, operation).map(word => word | 0));
   const componentMask = exactConstant(mask, "HAND component mask");
   if (![0x15, 0x2a].includes(componentMask)) throw new Error("HAND component mask is unsupported");
   const sideIndex = exactConstant(side, "HAND component side");
@@ -307,6 +307,90 @@ export function extractNativeHandComponentOperation({ bytes, operation, nativeFu
     actorTag: actorTag(actor, operation.callFileOffset),
     side: sideIndex === 0 ? "left" : "right",
     componentMask, rotationRaw, callFileOffset: operation.callFileOffset, sourceOrder };
+}
+
+// Some callbacks retain a stack vector across their frame loop, then apply
+// bounded integer steps to it. Translate that finite timeline at build time;
+// do not introduce a second native interpreter into the browser. Every write
+// must be an exact frame-gated constant or a same-field constant add/subtract.
+// Feedback reads and unknown writes still reject the entire hand lane.
+export function extractNativeHandComponentTimeline({ bytes, callbackFunction, nativeFunction,
+  operation, activitySlot = 0, sourceOrder, functions = [] }) {
+  const pointer = operation.arguments[3];
+  const fail = () => { throw new Error(`${operation.callFileOffset} has dynamic native frame-vector writes`); };
+  if (pointer?.kind !== "frame-address") return fail();
+  const entries = nativeFunction.blocks.flatMap(block => block.actions.map(action => ({ block, action })));
+  const operationBlock = entries.find(entry => entry.action === operation)?.block;
+  const bounds = action => {
+    try {
+      const frame = callbackOperationFrame(bytes, callbackFunction, nativeFunction, action, functions);
+      return { firstFrame: frame, lastFrame: frame };
+    } catch (error) {
+      if (!/has no governing ASEQ frame/.test(error.message)) throw error;
+      const range = expressionRange(nativeFunction, entries.find(entry => entry.action === action)?.block, { includeClock: true });
+      if (!range || range.firstFrame < 0 || range.lastFrame < range.firstFrame
+        || range.lastFrame > 20000) return fail();
+      // This pattern is a zero-based callback clock advancing once per native
+      // scheduler tick, not an arbitrary counter whose values resemble frames.
+      const writes = entries.filter(({ action }) => action.offset === range.clockOffset);
+      const initial = writes.find(({ block, action }) => block.id === nativeFunction.entryBlock
+        && action.kind === "frameFieldWrite" && action.width === range.clockWidth && action.value === 0);
+      const step = writes.find(({ action }) => action.kind === "frameFieldExpressionWrite"
+        && action.width === range.clockWidth && action.expression?.kind === "add"
+        && action.expression.left?.kind === "frame-field" && action.expression.left.offset === range.clockOffset
+        && action.expression.right?.kind === "constant" && action.expression.right.value === 1);
+      const ticks = entries.filter(({ action }) => action.semanticId === "native-scheduler-countdown");
+      if (writes.length !== 2 || !initial || !step || ticks.length !== 1
+        || ticks[0].action.runtimeDispatch?.arguments?.[0]?.kind !== "constant"
+        || ticks[0].action.runtimeDispatch.arguments[0].value !== 1) return fail();
+      return range;
+    }
+  };
+  if (!operationBlock) return fail();
+  const range = bounds(operation);
+  const events = [];
+  for (const { action } of entries) {
+    if (!Number.isInteger(action.offset) || !Number.isInteger(action.width)
+      || action.offset >= pointer.offset + 12 || action.offset + action.width <= pointer.offset) continue;
+    if (!["frameFieldWrite", "frameFieldExpressionWrite"].includes(action.kind)
+      || action.width !== 4 || ![0, 4, 8].includes(action.offset - pointer.offset)) return fail();
+    const writeRange = bounds(action);
+    let value = action.value, mode = "set";
+    if (action.kind === "frameFieldExpressionWrite") {
+      const expression = action.expression;
+      if (!["add", "subtract"].includes(expression?.kind)
+        || expression.left?.kind !== "frame-field" || expression.left.offset !== action.offset
+        || expression.left.width !== 4 || expression.right?.kind !== "constant") return fail();
+      value = expression.right.value * (expression.kind === "subtract" ? -1 : 1);
+      mode = "add";
+    }
+    if (!Number.isInteger(value)) return fail();
+    for (let frame = writeRange.firstFrame; frame <= Math.min(writeRange.lastFrame, range.lastFrame); frame++) {
+      events.push({ frame, offset: Number(action.callFileOffset), axis: (action.offset - pointer.offset) / 4, mode, value });
+    }
+  }
+  // Taking a vector address in another operation could modify it without a
+  // frameFieldWrite record (notably native 00ea feedback). Never ignore that.
+  for (const { action } of entries) {
+    if (action.arguments?.some(argument => argument.kind === "frame-address"
+      && argument.offset >= pointer.offset && argument.offset < pointer.offset + 12)
+      && action.semanticId !== "resolved-object-hndl-hndr-component-write") return fail();
+  }
+  for (let frame = range.firstFrame; frame <= range.lastFrame; frame++)
+    events.push({ frame, offset: Number(operation.callFileOffset), mode: "emit" });
+  events.sort((a, b) => a.frame - b.frame || a.offset - b.offset);
+  const state = [null, null, null], cues = [];
+  for (const event of events) {
+    if (event.mode === "emit") {
+      if (!state.every(Number.isInteger)) return fail();
+      cues.push(extractNativeHandComponentOperation({ bytes, operation, nativeFunction, activitySlot,
+        frame: event.frame, sourceOrder, rotationRaw: [...state] }));
+    } else {
+      if (event.mode === "add" && !Number.isInteger(state[event.axis])) return fail();
+      state[event.axis] = (event.value + (event.mode === "add" ? state[event.axis] : 0)) | 0;
+    }
+  }
+  return cues;
 }
 
 export function extractNativeAseqCallbackHandPresentation({ bytes, callbackFunction, nativeFunction, activitySlot = 0, functions = [] }) {
@@ -377,6 +461,14 @@ export function extractNativeAseqCallbackHandPresentation({ bytes, callbackFunct
       catch (error) {
         if (action.semanticId !== "resolved-object-hndl-hndr-component-write"
           || !/has no governing ASEQ frame|has (?:no exact|dynamic) native frame-vector writes/.test(error.message)) throw error;
+        try {
+          nativeHandComponentCues.push(...extractNativeHandComponentTimeline({ bytes, callbackFunction,
+            nativeFunction, operation: action, activitySlot, sourceOrder, functions }));
+          sourceOrder++;
+          continue;
+        } catch (timelineError) {
+          if (!/has dynamic native frame-vector writes/.test(timelineError.message)) throw timelineError;
+        }
         // Dynamic feedback (00ea reads) and conditional per-frame arithmetic
         // require more than a fixed cue. Keep the exact omission observable;
         // never freeze the lane at a partial set of translated constants.

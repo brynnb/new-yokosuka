@@ -68,6 +68,22 @@ function runtimeWith(resources) {
   return runtime;
 }
 
+test("standalone package seek suppresses intermediate audio and restores music on errors", () => {
+  for (const fails of [false, true]) {
+    const calls = [];
+    const runtime = runtimeWith({
+      playback: { transportState: () => ({ active: true, paused: false }), seekBySeconds: seconds => {
+        calls.push(["seek", seconds]); if (fails) throw Error("presentation failed"); return true;
+      } },
+      presentation: { setSeeking: value => calls.push(["seeking", value]) },
+      music: { setPaused: value => calls.push(["paused", value]) },
+    });
+    if (fails) assert.throws(() => runtime.seekBySeconds(5), /presentation failed/);
+    else assert.equal(runtime.seekBySeconds(5), true);
+    assert.deepEqual(calls, [["paused", true], ["seeking", true], ["seek", 5], ["seeking", false], ["paused", false]]);
+  }
+});
+
 test("standalone package stop and failed start release prepared room visibility", async t => {
   const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
   t.after(()=>{scene.dispose();engine.dispose();});

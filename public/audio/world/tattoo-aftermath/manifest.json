@@ -1,0 +1,1762 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_tatq_story_assets.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "disc1/SCENE/01/STREAM/A0136.AFS",
+      "sha256": "d4c15c2353ecd53bc2a9afda1e46131f62e019bcd583d8d40071cea134514a9a"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "disc1/SCENE/01/SOUND/A1_TATT3.SND",
+      "sha256": "25a3a4d1c692507bec7f22076373cd8916594f31c5e6a3f5d888108b7b667463"
+    },
+    "authManifest": "play/assets/dobuita/tattoo-aftermath/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#charlie-confrontation-and-the-cartel-appointment"
+  },
+  "voices": [
+    {
+      "voiceId": "A0136A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136A001.aiff",
+      "nativeMember": "A0136A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 8192,
+      "nativeSha256": "dd0b8f26a97ec6bc6824599f6171e1ca16da16c356212a3fc88eb2bda06cdd11",
+      "speakerId": "AKIR",
+      "sourceText": "The wrong one=@",
+      "displayText": "The wrong one...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136A001.wav",
+      "byteLength": 32556,
+      "sha256": "a196d841d648685168816fb26ea714be42ddf635e774c1d586a89c7700272c51"
+    },
+    {
+      "voiceId": "A0136A002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136A002.aiff",
+      "nativeMember": "A0136A002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 12288,
+      "nativeSha256": "975a18f746d6501f06fd605a8dc49751e9f9c7b055ee17a60bbbb75cd25574ea",
+      "speakerId": "AKIR",
+      "sourceText": "I want to know about the cartel.",
+      "displayText": "I want to know about the cartel.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136A002.wav",
+      "byteLength": 48940,
+      "sha256": "07a85ded0471c63932df89b96a6a90d3c5c06aebe2df83f211373b46c03ea97a"
+    },
+    {
+      "voiceId": "A0136A003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136A003.aiff",
+      "nativeMember": "A0136A003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 16384,
+      "nativeSha256": "89e479833f602f191d690d6dacca1ed7ed4f0bc969fceae1242396523b79277d",
+      "speakerId": "AKIR",
+      "sourceText": "That's none of your business.＆Just tell me!",
+      "displayText": "That's none of your business.\nJust tell me!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136A003.wav",
+      "byteLength": 65324,
+      "sha256": "38d86f7f00cf799d6bd1b37c636a28700da6269aa78e03e20be8c94e0ba3b9f4"
+    },
+    {
+      "voiceId": "A0136A004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136A004.aiff",
+      "nativeMember": "A0136A004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 10240,
+      "nativeSha256": "cccf617a382b0a7e8da99ae9db207e965f927083f90d52a56833b0f4b1df51f3",
+      "speakerId": "AKIR",
+      "sourceText": "OK. So when?",
+      "displayText": "OK. So when?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136A004.wav",
+      "byteLength": 40748,
+      "sha256": "a419e0e4f791c6029d0016bf14d78478ba1e9564422f66fb8fb1b6a2a671aad4"
+    },
+    {
+      "voiceId": "A0136A005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136A005.aiff",
+      "nativeMember": "A0136A005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 8192,
+      "nativeSha256": "c6fde5d97fcfdab263a5737ff0901e7009c2b66e1463666cb57a193edd1fe572",
+      "speakerId": "AKIR",
+      "sourceText": "I have your word?",
+      "displayText": "I have your word?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136A005.wav",
+      "byteLength": 32556,
+      "sha256": "4e9b034e8e3383a1aeaa38c6c93bda854bb563d9313fadcb1d3724535b3d0f81"
+    },
+    {
+      "voiceId": "A0136A006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136A006.aiff",
+      "nativeMember": "A0136A006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 14336,
+      "nativeSha256": "6b82572a4bd492c16e701d339b6bf1eec19d4d8f7575b1c35a3d9791cef742ed",
+      "speakerId": "AKIR",
+      "sourceText": "You know what I'll do if you don't show!",
+      "displayText": "You know what I'll do if you don't show!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136A006.wav",
+      "byteLength": 57132,
+      "sha256": "47f718411e58c5f8e94923a6f3268e68b4d3e51bf91e069719321bb76d721717"
+    },
+    {
+      "voiceId": "A0136A007",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136A007.aiff",
+      "nativeMember": "A0136A007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 8192,
+      "nativeSha256": "505cb1f39ca5444517ef1535cd8e6e70ca21c9f15dea3aa8e9dd3b90a2948b9a",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136A007.wav",
+      "byteLength": 32556,
+      "sha256": "984e1faee2c8d4d33db071117cf5e795566b89dca735ceec78d8a482bbd3c799"
+    },
+    {
+      "voiceId": "A0136B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136B001.aiff",
+      "nativeMember": "A0136B001.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 14336,
+      "nativeSha256": "aaf4ed41778991dac8c71f86109e375ed36e4a381d73bdecebbf86bbbbb9b9f2",
+      "speakerId": "CHRL",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 32
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136B001.wav",
+      "byteLength": 57132,
+      "sha256": "b8f1ceeefcbc4e2179f193ad0e3ac34aa7fe58db2b975d15d4b1019304dadc32"
+    },
+    {
+      "voiceId": "A0136B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136B002.aiff",
+      "nativeMember": "A0136B002.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 12288,
+      "nativeSha256": "32eca199a8faa2e53651b73006c5981bc64b01470c07227b2ef3e62ff9e2a176",
+      "speakerId": "CHRL",
+      "sourceText": "What do you want?",
+      "displayText": "What do you want?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136B002.wav",
+      "byteLength": 48940,
+      "sha256": "b550fdaaabbcccb64c5fce7297bfd346e8c85b0b815eb6a393e0ecc476391c7f"
+    },
+    {
+      "voiceId": "A0136B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136B003.aiff",
+      "nativeMember": "A0136B003.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 12288,
+      "nativeSha256": "0f43853cc446bf6cedf7b6e1dbcddf50988839a60efca02fc0a52e60b9181c42",
+      "speakerId": "CHRL",
+      "sourceText": "I don't know.",
+      "displayText": "I don't know.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136B003.wav",
+      "byteLength": 48940,
+      "sha256": "3211cec320f85b188c01756984087ae27207b5ef28de651324b789993134bb44"
+    },
+    {
+      "voiceId": "A0136B004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136B004.aiff",
+      "nativeMember": "A0136B004.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 14336,
+      "nativeSha256": "627055762ce0bcc965c8faf8ec6394fd45914a703973636c3ea9b8011d1af44a",
+      "speakerId": "CHRL",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 24
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136B004.wav",
+      "byteLength": 57132,
+      "sha256": "f463bdd52066f6778bc2d1a26b74aba4920d08f8668309c3ea745b5ba9650994"
+    },
+    {
+      "voiceId": "A0136B005",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136B005.aiff",
+      "nativeMember": "A0136B005.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 36864,
+      "nativeSha256": "d2f49f6dd00f86c4a7ab12ef7a47526dcbaa664bf92f41a20c39631747fc6078",
+      "speakerId": "CHRL",
+      "sourceText": "Why do you want to know?!",
+      "displayText": "Why do you want to know?!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 47
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 49
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136B005.wav",
+      "byteLength": 147244,
+      "sha256": "e5f71eee56d7634b71042be426a36e01350ada787bd40d9991bad9a05948a697"
+    },
+    {
+      "voiceId": "A0136B006",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136B006.aiff",
+      "nativeMember": "A0136B006.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 14336,
+      "nativeSha256": "b7e5959a88cb275512528398508c6445af09f294c6f8896cf6cd3e68b639fb10",
+      "speakerId": "CHRL",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 31
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 25
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 38
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136B006.wav",
+      "byteLength": 57132,
+      "sha256": "8313cc21c006f5b57deb81c8a29c0da31bab1420d73b7733417c38690ed2d5e3"
+    },
+    {
+      "voiceId": "A0136B007",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136B007.aiff",
+      "nativeMember": "A0136B007.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 49152,
+      "nativeSha256": "a73a22419a408e55b15ac7535623a27516c53d4391af48c6b15740f7906ce3e2",
+      "speakerId": "CHRL",
+      "sourceText": "OK. Lemme go. I'll tell you!",
+      "displayText": "OK. Lemme go. I'll tell you!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 58
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136B007.wav",
+      "byteLength": 196396,
+      "sha256": "c154c2e4fab1f50025207fa19eb51adc2fa23fd83515db0115132f89e83bed14"
+    },
+    {
+      "voiceId": "A0136B008",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136B008.aiff",
+      "nativeMember": "A0136B008.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 22528,
+      "nativeSha256": "e2abda7c1d2d91f8d4cab05fe2cb6bfac0cd23e72f5405444b50d5f8de887a30",
+      "speakerId": "CHRL",
+      "sourceText": "I'll arrange for you＆to meet some of them=@OK?",
+      "displayText": "I'll arrange for you\nto meet some of them...OK?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136B008.wav",
+      "byteLength": 89900,
+      "sha256": "e9b5bb7c7dfeb1d5e61cc9839dcc9e63673f657eb53cc4cf0295c590e6ad38b5"
+    },
+    {
+      "voiceId": "A0136B009",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136B009.aiff",
+      "nativeMember": "A0136B009.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 32768,
+      "nativeSha256": "fb28b012392ab5cde51c764933f4c5cd3a08e71ec42eb045a435a906d4b88878",
+      "speakerId": "CHRL",
+      "sourceText": "You didn't need to rip my arm off!!",
+      "displayText": "You didn't need to rip my arm off!!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 19
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 20
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 86
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136B009.wav",
+      "byteLength": 130860,
+      "sha256": "570bb20cbf1a262df5f69d01655db21f49c2450463ab0608d88e4ad3549d0147"
+    },
+    {
+      "voiceId": "A0136B010",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136B010.aiff",
+      "nativeMember": "A0136B010.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 22528,
+      "nativeSha256": "c0aea0ce0dd0aefc2fea9bde1fd9d5f4079eba623e3dae128b365d2df793edc9",
+      "speakerId": "CHRL",
+      "sourceText": "Tomorrow at 3.＆Wait at the arcade.",
+      "displayText": "Tomorrow at 3.\nWait at the arcade.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 35
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136B010.wav",
+      "byteLength": 89900,
+      "sha256": "c9b46e9be86c3ff53570b274ff81b880a49fec16ee626a030f089d23ca4d02ac"
+    },
+    {
+      "voiceId": "A0136B011",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SOUND/A0136B011.aiff",
+      "nativeMember": "A0136B011.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 6144,
+      "nativeSha256": "9bd2fd3d5d12087744dd0ee5a0bf512f0ba97f3a99f760174d8156d054b3d2d1",
+      "speakerId": "CHRL",
+      "sourceText": "Yeah!",
+      "displayText": "Yeah!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/tattoo-aftermath/voice/A0136B011.wav",
+      "byteLength": 24364,
+      "sha256": "c0d72794e17991e8690b5d3c860667282f6d11d216ad83bf3ac899bb8f398dda"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/footroom/ryoroom1.aiff",
+      "playbackId": 1,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9040100.wav",
+      "byteLength": 15756,
+      "sha256": "5f916667e2a0faf9816cb4b1a4ca61615d45a6028bf7039d6b7f7465cee5b1d9"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/footroom/ryoroom2.aiff",
+      "playbackId": 2,
+      "sampleId": 17,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9040200.wav",
+      "byteLength": 10884,
+      "sha256": "f4302b7b9e55d65f6d3ab6f63a8f1b4a200d7a2cfca8e63e9a29ab6bad1dde5b"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/footroom/ryoroom3.aiff",
+      "playbackId": 3,
+      "sampleId": 18,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9040300.wav",
+      "byteLength": 12276,
+      "sha256": "205e3268ee12efae7b4bfbb4304b95d09bfd824d80c6a1decd419042ae484c7d"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/footroom/ryoroom4.aiff",
+      "playbackId": 4,
+      "sampleId": 19,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9040400.wav",
+      "byteLength": 11628,
+      "sha256": "a72f1c3cd428d648763a0bff97a9abfe178acfe241e162cea1eed9da02845744"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/foot/sneaker1.aiff",
+      "playbackId": 5,
+      "sampleId": 21,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9040500.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/foot/sneaker3.aiff",
+      "playbackId": 7,
+      "sampleId": 24,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9040700.wav",
+      "byteLength": 11188,
+      "sha256": "4f08f0da0c9852ab8de0ef02f0758a9c39be3e73c0f38d3dd5b7a572389d1960"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/cloths2/cl03.aiff",
+      "playbackId": 9,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9040900.wav",
+      "byteLength": 127604,
+      "sha256": "2c13979aaaf032ee706d0353819b385a7aca4f3d3d1a6b0e480c83e7a4162737"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/cloths2/cl06.aiff",
+      "playbackId": 10,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9040a00.wav",
+      "byteLength": 62916,
+      "sha256": "5703d450986e9acb352cdaa832e51acc60482d8cdfa9d14811f6c3868ed8fd94"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/cloths2/cloths01.aiff",
+      "playbackId": 11,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9040b00.wav",
+      "byteLength": 20916,
+      "sha256": "9ba29a5ab2fe22c69473ae00e7b3089de123d7ee9f0de866cee5cbdadd59f9f2"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 15,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9040f00.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/smallobject/knifeotosu.aiff",
+      "playbackId": 16,
+      "sampleId": 12,
+      "sampleRate": 12500,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9041000.wav",
+      "byteLength": 19388,
+      "sha256": "b92b60d47aa8a0ba045573815fd2cbccb041a84eb88c4da623851206ecd687a2"
+    },
+    {
+      "commandHex": "a9041100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/cloths/putupbag.aiff",
+      "playbackId": 17,
+      "sampleId": 14,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9041100.wav",
+      "byteLength": 9596,
+      "sha256": "faa43e47670c18bf9d94998788223f8a58f8c78d2657323bdb2373fa1b6bbef7"
+    },
+    {
+      "commandHex": "a9041200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/footroom/ryoashi4.aiff",
+      "playbackId": 18,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9041200.wav",
+      "byteLength": 7692,
+      "sha256": "90f783d09ff0a784e68fefc2057733815e31e1e32ad7c6975c6fad8330ce75df"
+    },
+    {
+      "commandHex": "a9041300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/foot/sneaker1l.aiff",
+      "playbackId": 19,
+      "sampleId": 22,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9041300.wav",
+      "byteLength": 4084,
+      "sha256": "dcbbc39e31f9ca28e7329008cc3f51a589d6ebc55bb96797aa0b015baa9d2198"
+    },
+    {
+      "commandHex": "a9041400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/swing/swing15.aiff",
+      "playbackId": 20,
+      "sampleId": 27,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9041400.wav",
+      "byteLength": 12540,
+      "sha256": "b224b3c72ba0c7c3c71af2319db1860fe29c4dcb61084bb727a0ac5b60e7e551"
+    },
+    {
+      "commandHex": "a9041500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/swing/swings01.aiff",
+      "playbackId": 21,
+      "sampleId": 28,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9041500.wav",
+      "byteLength": 53796,
+      "sha256": "c1856f4c56170e0a131e607d3faad4078489c9c65c18ae05fc0ef80b262e202d"
+    },
+    {
+      "commandHex": "a9041600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/body/Sitdown.aiff",
+      "playbackId": 22,
+      "sampleId": 20,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9041600.wav",
+      "byteLength": 18220,
+      "sha256": "7e09257edb830b101207d0767b50728f8f6f045e39abf41281b0f34e19ef178b"
+    },
+    {
+      "commandHex": "a9042100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0136/SE/cloths/kubisimeru1.aiff",
+      "playbackId": 32,
+      "sampleId": 13,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/tattoo-aftermath/sfx/a9042100.wav",
+      "byteLength": 27180,
+      "sha256": "11c6cbc0473db917ce2c36b0c42c2b4661067f593f8b8dacc4a38e269355d9c6"
+    }
+  ]
+}
