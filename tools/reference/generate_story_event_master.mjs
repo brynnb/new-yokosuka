@@ -157,7 +157,7 @@ for (const chapter of inventory.chapters) {
 }
 generated.push(...renderExpansions(expansion.sections, sourceRef, ref));
 generated.push("## Shared presentation omissions", "",
-  "The first allowance package has no facial bindings for either voiced actor and marks its KOZU handover object as an invisible reference. The common late-Story package factory binds only Ryo's facial assets, so recording a route here must not be mistaken for complete NPC lip sync. These are existing implementation gaps, not missing requirements. See the [cutscene facial contract](../implementation/cutscenes.md#character-faces) and the package registry.", "",
+  "The shared package catalog now binds missing faces when the exact declared body/FACE pair is already proven. The allowance's Ryo and Ine-san speech deformation has a rendered check, but its KOZU handover object remains an invisible reference. Other actors still lack proven detailed face bindings or need their generic mouth presentation checked; catalog wiring alone is not lip-sync verification. Run `node tools/cutscenes/audit_cutscene_presentation.mjs` for current package-wide wiring gaps. See the [cutscene facial contract](../implementation/cutscenes.md#character-faces) and each event's partial verification notes.", "",
   "## Locations and project adapters", "",
   "These bindings are accounted for without inflating the original-event count. Alternate telephone locations and scene-entry confirmations belong to their parent event. The current project's explicit travel confirmations, clock jumps and checkpoint plumbing are not asserted to be separate original-game cinematics.", "",
   "| Current route | Inventory owner or reason |", "| --- | --- |");

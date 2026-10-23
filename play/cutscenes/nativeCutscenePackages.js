@@ -1,5 +1,6 @@
 import { runtimeAssetGroup, runtimeAssetUrl } from "../../src/RuntimeAssets.js";
 import { INTRODUCTION_ENVIRONMENTS } from "./IntroductionEnvironments.js";
+import { bindNativeCutsceneFacialAssets } from "./NativeCutsceneFacialAssets.js";
 import goroJobLeadManifest from "../assets/harbor/goro-job-lead/manifest.json";
 import chickenRaceManifest from "../assets/harbor/chicken-race/manifest.json";
 import chickenRaceAudio from "../../public/audio/world/chicken-race/manifest.json";
@@ -1317,4 +1318,4 @@ export const NATIVE_CUTSCENE_PACKAGES = Object.freeze([...SOURCE_CUTSCENE_PACKAG
     })) },
     audioManifest: { ...mskaAudioManifest, voices: [...firstDojoAudio.voices, ...mskaAudioManifest.voices] },
   }),
-})]);
+})].map(definition => bindNativeCutsceneFacialAssets(definition, nativeFaceManifest, runtimeAssetUrl)));

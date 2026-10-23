@@ -1106,6 +1106,21 @@ YKC assets and bundles Smith's GIB and Tony's GIJ FACE/FTBL pairs without
 duplicating shared assets. All three actors then use their own SRF cues and
 actor-specific native TALK poses through the same presentation runtime.
 
+The package catalog completes missing bindings through
+`bindNativeCutsceneFacialAssets`, using the declared body model and the proven
+native face catalog. Package-owned models override global actor definitions;
+explicit face variants and aliases remain authoritative. A face proven for
+Nozomi's `NZM_L` body is not automatically applied to `NZM_M`. Newly bound
+model, FTBL and TALK resources are added to the package's asset dependencies.
+Unknown pairs remain unbound rather than borrowing a visually similar face.
+
+Run `node tools/cutscenes/audit_cutscene_presentation.mjs` to audit all packages,
+including Story-only scenes. Its ignored report under `tests/reports/` separates
+on-stage and remote speakers, detailed face bindings, missing local assets,
+voices without lip cues, reference-only objects, and hand/prop bindings. This
+is wiring coverage, not rendered verification; a generic body's authored
+mouth patch must be checked separately from detailed FACE resources.
+
 Do not replace this with sine-driven jaws, duration loops, guessed eyelid
 groups, or hand-selected eyebrow controls. The exact TALK lanes plus `0x0113`
 timeline are the source of facial expression; the complete upper-face blink

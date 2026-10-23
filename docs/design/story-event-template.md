@@ -54,9 +54,17 @@ this as a local prototype using the server's official Yarn import
 
 Rendered tests cover natural completion, X-skip, the earned notebook page and
 reload without replay or another payment. The source presentation retains the
-original camera, body motion and eleven voice lines. Money and door reference
-actors currently have no rendered geometry, and separate hand/face callback
-detail is not reconstructed. These are explicit prototype presentation limits.
+original camera, body motion and eleven voice lines. The shared package binding
+now supplies Ryo's YKC and Ine-san's INE detailed faces with their original SRF
+speech cues. On October 22, natural completion and saved continuation passed
+in a hardware-rendered browser; both actors' model-local face vertices and
+mouth controls changed over the scene. The fresh-character run also skipped
+all four opening packages, walked through the real bedroom door, completed the
+allowance naturally and reloaded its saved continuation. The separate allowance
+skip passed. This does not verify natural playback of the four opening scenes.
+Money and door reference actors still
+have no rendered geometry; handover and authored hand/expression callbacks
+remain presentation work, not cleared by that facial-motion check.
 
 The original event occurs after Ryo first leaves his bedroom. Ine-san gives him
 ¥500, explains the daily allowance and directs him to Fuku-san at the dojo.

@@ -204,6 +204,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     application.start().then(() => window.storyProbe.ready = true).catch(error => { window.storyProbe.errors.push(error.message); application.showStartupError(error); });
   ` }));
   await page.goto("/play/");
+  // React mounts the splash asynchronously; navigation completion alone does
+  // not mean its activation listener exists yet (especially on a cold Vite).
+  await expect(page.getByLabel("Open the New Yokosuka menu")).toBeVisible({ timeout: 120_000 });
   await page.keyboard.press("Enter");
   await page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" }).click();
   await page.locator(".character-slot-button:not(.empty)").first().click();
@@ -614,9 +617,56 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.screenshot({ path: testInfo.outputPath("allowance-playing.png") });
   if (ending === "skip") await page.keyboard.press("KeyX");
   else {
+    // Sample the real rendered FACE buffers throughout both speakers' lines.
+    // Body/head motion cannot satisfy this: these are model-local positions,
+    // excluding seam vertices borrowed from the moving body attachment.
+    await page.evaluate(() => {
+      const runtime = window.storyProbe.director.activeCutscene.packageRuntime;
+      const samples = window.storyProbe.allowanceFaces = new Map();
+      let nextSample = 0;
+      const observer = window.storyProbe.lifecycle.scene.onAfterRenderObservable.add(() => {
+        if (performance.now() < nextSample) return;
+        nextSample = performance.now() + 200;
+        for (const [tag, face] of runtime.presentation.faces?.active?.faces || []) {
+          const sample = samples.get(tag) || { faceCode: face.entry.definition.faceCode, frames: 0,
+            visibleFrames: 0, vertices: new Set(), mouths: new Set() };
+          sample.frames++;
+          if (face.entry.root.isEnabled()) sample.visibleFrames++;
+          sample.mouths.add(JSON.stringify(Array.from(face.mouth.current)));
+          sample.vertices.add(JSON.stringify(face.entry.primaryMeshes.flatMap(mesh => {
+            const positions = mesh.getVerticesData("position");
+            return Array.from(mesh._mt5SourceVertexIndices).flatMap((source, index) => {
+              const local = source - face.entry.primaryVertexBase;
+              return mesh._mt5ExternalParentVertexOffsets?.[index] < 0
+                || local < 0 || local >= face.entry.table.vertexCount ? []
+                : Array.from(positions.slice(index * 3, index * 3 + 3));
+            });
+          })));
+          samples.set(tag, sample);
+        }
+      });
+      window.storyProbe.stopAllowanceFaceProbe = () => window.storyProbe.lifecycle.scene.onAfterRenderObservable.remove(observer);
+    });
     await page.waitForTimeout(7000);
     await page.screenshot({ path: testInfo.outputPath("allowance-conversation.png") });
+    await page.waitForTimeout(12000);
+    await page.screenshot({ path: testInfo.outputPath("allowance-later-conversation.png") });
     await page.waitForFunction(() => !window.storyProbe.director.active, null, { timeout: 90_000 });
+    const faces = await page.evaluate(() => {
+      window.storyProbe.stopAllowanceFaceProbe();
+      return Object.fromEntries([...window.storyProbe.allowanceFaces].map(([tag, sample]) => [tag, {
+        faceCode: sample.faceCode, frames: sample.frames, visibleFrames: sample.visibleFrames,
+        vertexStates: sample.vertices.size, mouthStates: sample.mouths.size,
+      }]));
+    });
+    await testInfo.attach("allowance-face-motion", { body: JSON.stringify(faces, null, 2), contentType: "application/json" });
+    console.info("Allowance rendered FACE motion:", JSON.stringify(faces));
+    for (const [tag, code] of [["AKIR", "YKC"], ["INE_", "INE"]]) {
+      expect(faces[tag]?.faceCode).toBe(code);
+      expect(faces[tag].visibleFrames).toBeGreaterThan(1);
+      expect(faces[tag].vertexStates).toBeGreaterThan(1);
+      expect(faces[tag].mouthStates).toBeGreaterThan(1);
+    }
   }
   await expect.poll(() => page.evaluate(() => window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.allowance"]), { timeout: 30_000 }).toBe(true);
   const stateResponse = await page.request.get(`/api/characters/${character.id}/state`);
