@@ -17,7 +17,7 @@ function requireAddress(value, label) {
 
 export class NativeAseqMapLayerRuntime {
   constructor({ definitions = [], geometryMasks = [], scene = null, acquireEnvironmentIsolation = null,
-    acquireActivityLighting = null } = {}) {
+    acquireActivityLighting = null, acquireActorIsolation = null } = {}) {
     if (!Array.isArray(definitions)) {
       throw new TypeError("AUTH map visibility requires generated definitions");
     }
@@ -65,6 +65,8 @@ export class NativeAseqMapLayerRuntime {
     this.worldRoots = [];
     this.acquireEnvironmentIsolation = acquireEnvironmentIsolation;
     this.releaseEnvironmentIsolation = null;
+    this.acquireActorIsolation = acquireActorIsolation;
+    this.releaseActorIsolation = null;
     this.acquireActivityLighting = acquireActivityLighting;
     this.releaseActivityLighting = null;
     this.lightingPresetIndex = null;
@@ -77,7 +79,9 @@ export class NativeAseqMapLayerRuntime {
       throw new TypeError("AUTH map visibility requires loaded world roots");
     }
     this.clear();
-    this.worldRoots = roots;
+    // Scheduled bodies/attachments have their own visibility owner. Including
+    // them here would also hide retained cinematic cast and restore stale poses.
+    this.worldRoots = roots.filter(root => !root.metadata?.scheduledActorInstanceId);
     for (const [nativeName, definition] of this.definitions) {
       const matches = roots.filter(root => (
         root?._filename?.toUpperCase() === definition.browserFilename.toUpperCase()
@@ -186,12 +190,24 @@ export class NativeAseqMapLayerRuntime {
       this.lightingOverride = lightingOverride;
       if (lightingPresetIndex !== null) this.releaseActivityLighting = this.acquireActivityLighting(lightingPresetIndex, validatedLighting);
     }
-    const isolateEnvironment = activity.browserIsolatedStage || activity.browserIsolatedEnvironment;
+    // Complete outdoor sets can replace geometry/cast while retaining the live
+    // sky and weather. Existing stages still isolate both unless stated otherwise.
+    const isolateEnvironment = activity.browserIsolatedEnvironment ?? activity.browserIsolatedStage;
     if (isolateEnvironment && !this.releaseEnvironmentIsolation) {
       this.releaseEnvironmentIsolation = this.acquireEnvironmentIsolation?.() ?? null;
     } else if (!isolateEnvironment && this.releaseEnvironmentIsolation) {
       this.releaseEnvironmentIsolation();
       this.releaseEnvironmentIsolation = null;
+    }
+    // A complete replacement stage must also exclude live scheduled residents.
+    // This lease uses the package's declared cast, not a hardcoded NPC blacklist,
+    // and survives adjacent shots just like the resident geometry snapshot.
+    if (activity.browserIsolatedStage && !this.releaseActorIsolation) {
+      this.releaseActorIsolation = this.acquireActorIsolation?.() ?? null;
+    } else if (!activity.browserIsolatedStage && this.releaseActorIsolation) {
+      const release = this.releaseActorIsolation;
+      this.releaseActorIsolation = null;
+      release();
     }
     // An isolated cinematic stage borrows the loaded world as an asset source,
     // not as scenery. Snapshot all resident roots (including placed room props),
@@ -271,29 +287,33 @@ export class NativeAseqMapLayerRuntime {
   }
 
   end() {
-    this.background?.dispose();
+    const errors = [];
+    const cleanup = fn => { try { fn(); } catch (error) { errors.push(error); } };
+    cleanup(() => this.background?.dispose());
     this.background = null;
-    if (!this.active) return true;
-    for (const [root, enabled] of this.active.residentSnapshots || []) {
-      if (!root.isDisposed?.()) root.setEnabled(enabled);
+    for (const [root, enabled] of this.active?.residentSnapshots || []) {
+      cleanup(() => { if (!root.isDisposed?.()) root.setEnabled(enabled); });
     }
-    for (const [nativeName, enabled] of this.active.snapshots) {
+    for (const [nativeName, enabled] of this.active?.snapshots || []) {
       const root = this.roots.get(nativeName);
-      if (!root?.isDisposed?.()) {
-        root.setEnabled(enabled);
-        root.computeWorldMatrix?.(true);
-      }
+      cleanup(() => {
+        if (!root?.isDisposed?.()) {
+          root.setEnabled(enabled);
+          root.computeWorldMatrix?.(true);
+        }
+      });
     }
     this.active = null;
     // Restore borrowed values before the environment owner reapplies current
     // server time/weather. Reversing this order can overwrite its fresh state.
-    this.#restoreLighting();
-    this.releaseEnvironmentIsolation?.();
-    this.releaseEnvironmentIsolation = null;
-    this.releaseActivityLighting?.();
-    this.releaseActivityLighting = null;
+    cleanup(() => this.#restoreLighting());
+    for (const key of ["releaseActorIsolation", "releaseEnvironmentIsolation", "releaseActivityLighting"]) {
+      const release = this[key]; this[key] = null;
+      cleanup(() => release?.());
+    }
     this.lightingPresetIndex = null;
     this.lightingOverride = null;
+    if (errors.length) throw new AggregateError(errors, "AUTH stage cleanup failed");
     return true;
   }
 

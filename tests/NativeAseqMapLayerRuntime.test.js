@@ -183,21 +183,30 @@ test("map geometry masks hide one exact node and restore it on clear", () => {
   assert.equal(geometry.worldMatrixUpdates, 2);
 });
 
-test("isolated shots share one environment lease and release it on waking, cancellation, and replay", () => {
+test("isolated shots share actor/environment leases and release on waking, cancellation, and replay", () => {
   let acquired = 0;
   let released = 0;
+  let actorsAcquired = 0;
+  let actorsReleased = 0;
   const runtime = createNativeAseqMapLayerRuntime({
     acquireEnvironmentIsolation: () => { acquired++; return () => released++; },
+    acquireActorIsolation: () => { actorsAcquired++; return () => actorsReleased++; },
   });
   const root = fakeRoot("resident-room");
-  runtime.load([root]);
+  const cast = fakeRoot("retained-cast");
+  cast.metadata = { scheduledActorInstanceId: "cast" };
+  runtime.load([root, cast]);
   const dream = { activityId: "dream", browserMapVisibility: [], browserIsolatedStage: true };
   const waking = { activityId: "waking", browserMapVisibility: [] };
   for (let replay = 0; replay < 2; replay++) {
+    runtime.load([root, cast]);
     runtime.applyActivity(dream);
     runtime.applyActivity({ ...dream, activityId: "next-dream-shot" });
     assert.equal(acquired, replay * 2 + 1);
     assert.equal(released, replay * 2);
+    assert.equal(actorsAcquired, acquired);
+    assert.equal(actorsReleased, released);
+    assert.equal(cast.enabled, true, "geometry isolation must not take ownership of the cast");
     runtime.applyActivity(waking);
     assert.equal(released, replay * 2 + 1);
     assert.equal(root.enabled, true);
@@ -205,6 +214,57 @@ test("isolated shots share one environment lease and release it on waking, cance
     runtime.end();
     runtime.clear();
     assert.equal(released, replay * 2 + 2);
+    assert.equal(actorsReleased, released);
     assert.equal(root.enabled, true);
   }
+  runtime.applyActivity({ ...waking, browserIsolatedEnvironment: true });
+  assert.equal(actorsAcquired, 4, "weather-only isolation retains ordinary NPCs");
+  runtime.end();
+  runtime.load([root, cast]);
+  runtime.applyActivity({ ...dream, browserIsolatedEnvironment: false });
+  assert.equal(acquired, 5, "outdoor replacement sets retain live weather and sky");
+  assert.equal(actorsAcquired, 5);
+  assert.equal(root.enabled, false);
+  assert.equal(cast.enabled, true);
+  runtime.end();
+  assert.equal(root.enabled, true);
+});
+
+test("a failed stage restore releases actors and weather before reporting the error", () => {
+  const releases = [];
+  const runtime = createNativeAseqMapLayerRuntime({
+    acquireEnvironmentIsolation: () => () => releases.push("weather"),
+    acquireActorIsolation: () => () => releases.push("actors"),
+  });
+  const root = fakeRoot("resident-room"), other = fakeRoot("other-room");
+  runtime.load([root, other]);
+  const activity = { activityId: "office", browserMapVisibility: [], browserIsolatedStage: true };
+  runtime.applyActivity(activity);
+  const restore = root.setEnabled;
+  root.setEnabled = () => { throw Error("test disposed renderer"); };
+  assert.throws(() => runtime.end(), error => error instanceof AggregateError
+    && error.errors.some(e => e.message === "test disposed renderer"));
+  assert.deepEqual(releases, ["actors", "weather"]);
+  assert.equal(other.enabled, true);
+  assert.equal(runtime.active, null);
+  runtime.end();
+  assert.equal(releases.length, 2);
+  root.setEnabled = restore;
+  runtime.applyActivity(activity);
+  runtime.end();
+  assert.deepEqual(releases, ["actors", "weather", "actors", "weather"]);
+});
+
+test("failed actor isolation releases an already acquired environment on rollback", () => {
+  let weatherReleased = 0;
+  const runtime = createNativeAseqMapLayerRuntime({
+    acquireEnvironmentIsolation: () => () => weatherReleased++,
+    acquireActorIsolation: () => { throw Error("conflicting actor owner"); },
+  });
+  const root = fakeRoot("resident-room");
+  runtime.load([root]);
+  assert.throws(() => runtime.applyActivity({ activityId: "office", browserMapVisibility: [], browserIsolatedStage: true }), /conflicting/);
+  runtime.end();
+  assert.equal(root.enabled, true);
+  assert.equal(weatherReleased, 1);
 });

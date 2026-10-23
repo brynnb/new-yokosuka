@@ -111,6 +111,39 @@ test("cinematic replacements suppress every ambient variant until the lease rele
   }
 });
 
+test("isolated stages retain their cast and suppress residents across model loads and replay", async t => {
+  const network = new Map(["ONE", "TWO"].map(id => [id, { worldId: "dobuita", x: 0, y: 0, z: 0, yaw: 0 }]));
+  const { runtime } = await activityStreamingHarness(t, { network });
+  await runtime.prepareActivityActors(["ONE"]);
+  const one = runtime.entries.find(e => e.definition.actorCode === "ONE");
+  const two = runtime.entries.find(e => e.definition.actorCode === "TWO");
+  const cast = {};
+  runtime.beginActivityActors(cast, ["ONE"]);
+  let heldProp;
+  for (let replay = 0; replay < 2; replay++) {
+    const release = runtime.acquireActivityActorIsolation({}, ["one", "ABSENT"]);
+    await runtime.prepareActivityActors(["TWO"]);
+    heldProp ||= new BABYLON.TransformNode("held-work-prop", runtime.scene);
+    heldProp.parent = two.root; // The ordinary local-object attachment contract.
+    runtime.updateEntry(one, 0); runtime.updateEntry(two, 0);
+    assert.equal(one.root.isEnabled(), true);
+    assert.equal(two.root.isEnabled(), false);
+    assert.equal(heldProp.isEnabled(), false);
+    assert.equal(release(), true); assert.equal(release(), false);
+    runtime.updateEntry(two, 0);
+    assert.equal(two.root.isEnabled(), true);
+    assert.equal(heldProp.isEnabled(), true);
+  }
+  runtime.endActivityActors(cast);
+  const replacement = runtime.acquireActivityActorSuppression({}, ["ONE"]);
+  const isolation = runtime.acquireActivityActorIsolation({}, ["ONE"]);
+  assert.equal(runtime.activityActorSuppressions.size, 2);
+  isolation();
+  assert.equal(one.root.isEnabled(), false, "stage release must not release the cinematic replacement");
+  replacement();
+  assert.equal(runtime.activityActorSuppressions.size, 0);
+});
+
 test("saved personal actor absence is reversible, per viewer, and does not hide another NPC or an owned film",async t=>{
   const a={playMode:"story",storyFlags:{"story.s1.tom-farewell.completed":true}},b={playMode:"story",storyFlags:{}};
   assert.equal(scheduledActorStoryVisible({actorCode:"TOM_"},a),false);

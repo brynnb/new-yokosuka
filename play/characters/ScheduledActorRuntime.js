@@ -1356,6 +1356,15 @@ export class ScheduledActorRuntime {
     return true;
   }
 
+  acquireActivityActorIsolation(owner, retainedActorCodes) {
+    const retained = new Set(retainedActorCodes.map(code => String(code).toUpperCase()));
+    // Reuse suppression so asynchronous model loads and later schedule updates
+    // cannot turn a background NPC back on during an isolated cinematic stage.
+    const hidden = this.entries.map(entry => entry.definition.actorCode)
+      .filter(code => !retained.has(code));
+    return this.acquireActivityActorSuppression(owner, hidden);
+  }
+
   acquireActivityActorSuppression(owner, actorCodes) {
     if (owner == null || this.activityActorSuppressions.has(owner)) {
       throw new Error("Invalid scheduled actor suppression owner");

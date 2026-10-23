@@ -48,10 +48,12 @@ are not reconstructed by this chapter.
 
 The 2026-10-23 dismissal presentation check passes cancellation, replay and
 natural ending with all 14 English recordings, changing Ryo/Yada mouth geometry
-and 47 sampled door rotations. Native shots were inspected and the previous
-avatar/pose/view/controls and saved progress were restored. This does not rerun
-the final-day progression chain. Alpha-room floor overlap and a resident in the
-entrance shot remain visible; see the shared [room-isolation gap](story-harbor-work.md#original-assets-and-declared-adaptations).
+and moving door. The follow-up shared stage-isolation check samples 531 rendered
+frames without resident geometry/NPC leakage. Reviewed native shots now show
+Ryo unobstructed at the entrance and the office floor without the overlapping
+bands. Prior avatar/pose/view/controls, visibility and saved progress restore.
+This does not rerun the final-day progression chain; see the shared
+[room-isolation contract](story-harbor-work.md#original-assets-and-declared-adaptations).
 
 ## Tom's lesson and farewell
 
@@ -241,8 +243,8 @@ The canonical chapter pack builder pins the original TERY archive
 and TLYE archive
 (`470c9c4ef3ac227ed6ed3c9ffa9328816b948dec88dcefba8a88e3f58e2896fc`).
 Each generated manifest records exact source members, motions, textures,
-speech/effects and output hashes. The geometry descriptor generalizes the
-existing Alpha-room path without changing its generated assets.
+speech/effects and output hashes. The geometry descriptor reuses the
+existing Alpha-room loading path with the original pier assets.
 
 The successful Terry film requests `01TLYB007.str` and `01TLYB008.str`, absent
 from all six checked English01TLY archives. They remain explicitly unavailable,
@@ -276,11 +278,20 @@ position/FOV now replaces an arbitrary QTE offset that placed the lens inside
 a container; its target is reframed toward the held cast. Standalone package
 cleanup now hides cached room fixtures after completion, cancellation and
 failed preparation while retaining outer-program ownership between shots.
-This is shared by the Alpha-room and pier paths; regenerating the three Alpha
-profiles leaves their original asset manifests unchanged. Captures verify the
+This is shared by the Alpha-room and pier paths without changing original
+model bytes. Captures verify the
 QTE cast/pipe, original interrogation, pier conversation and restored bedroom.
 Held-root outcome fragments still approximate spacing, contact and detailed
 pipe hand transfers; the captures are not proof of exact original choreography.
+
+The 2026-10-23 pier presentation recheck uses shared isolated-stage ownership to
+hide the resident battle set and unrelated NPCs while its complete `MAP_TLYE`
+set renders. It explicitly retains the outdoor sky/weather rather than borrowing
+the indoor room's environment isolation. Cancellation/replay, all 13 recordings,
+natural ending, restored visibility/controls and unchanged saved state pass;
+466 sampled rendered frames contain no resident-scene or suppressed-actor leak.
+Reviewed captures show Ryo, Gui Zhang, the pier and sky. This is a presentation
+recheck, not a newly earned post-battle route or a claim of exact lighting/gestures.
 
 ## Family departure
 

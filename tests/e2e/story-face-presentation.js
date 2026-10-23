@@ -5,19 +5,31 @@ const REVIEW_SETS = {
   dismissal: [
     ...[false,true].map(natural=>["s1.mfsy.yada-dismissal.scene","mfsy","MFSY",{}, {
       label:natural?"complete":"cancel",natural,frames:natural?[90,300,650,1000,1600]:[300],
-      objects:["DOOR"],observeActors:{AKIR:"YKC",TMRA:"KWD_L"},
+      objects:["DOOR","ROOM"],isolatedStage:true,observeActors:{AKIR:"YKC",TMRA:"KWD_L"},
     }]),
   ],
   hiring: [
     ...[false,true].map(natural=>["s1.mfsy.yada-job-interview.scene","mfsy","MFSY",{}, {
       label:natural?"complete":"cancel",natural,frames:natural?[90,300,650,800]:[300],
-      objects:["DOOR"],observeActors:{AKIR:"YKC",TMRA:"KWD_L"},
+      objects:["DOOR","ROOM"],isolatedStage:true,observeActors:{AKIR:"YKC",TMRA:"KWD_L"},
     }]),
     ...[false,true].map(natural=>["s1.mfsy.mark-job-introduction.scene","mfsy","MFSY",{}, {
       label:natural?"complete":"cancel",natural,frames:natural?[180,500,1000,1600,1900]:[500],
       // Mark's speech begins after this cancellation point; verify it on the full run.
       objects:["FORK"],observeActors:{AKIR:"YKC",TMRA:"KWD_L",...(natural?{MARK:"GIC_L"}:{})},
     }]),
+  ],
+  "leased-rooms": [
+    ...[false,true].flatMap(natural=>[
+      ["s1.mfsy.warning-letter.scene","mfsy","MFSY",{}, {
+        label:natural?"complete":"cancel",natural,frames:natural?[180,600,1000,1300]:[300],
+        isolatedStage:true,objects:["ROOM"],
+      }],
+      ["s1.mfbt.gui-after-battle.scene","mfbt","MFBT",{}, {
+        label:natural?"complete":"cancel",natural,frames:natural?[180,600,1000,1450]:[300],
+        isolatedStage:true,retainEnvironment:true,objects:["ROOM"],
+      }],
+    ]),
   ],
   chase: [
     ...[false,true].map(natural=>["s1.d000.jimmy-knock.scene","dobuita","D000",{}, {
@@ -181,7 +193,7 @@ export async function reviewStoryFaces(page, testInfo, character) {
         return { position: c.collider.position.asArray(), firstPerson: c.firstPerson,
           avatar: p.lifecycle.playerRuntime.activeCharacterId };
       });
-      await page.evaluate(({ id, area, actors }) => {
+      await page.evaluate(({ id, area, actors, isolatedStage, retainEnvironment }) => {
         const p = window.storyProbe, presentation = p.regions.controller.presentation;
         const review = p.faceReview = { done: false, error: null, cancelling: false,
           samples: {}, frame: 0, objects: {}, voices: new Set(), voiceIds: new Set(),
@@ -194,6 +206,28 @@ export async function reviewStoryFaces(page, testInfo, character) {
           const runtime = p.director?.activeCutscene?.packageRuntime;
           if (runtime) {
             review.frame = runtime.activityRuntime.active?.currentFrame || review.frame;
+            if (isolatedStage && runtime.mapLayers?.active?.residentSnapshots) {
+              review.stageRuntime = runtime;
+              review.stageSnapshots ||= runtime.mapLayers.active.residentSnapshots;
+              const sample = review.stage ||= { frames: 0, roots: 0, hiddenActors: new Set(), violations: new Set() };
+              sample.frames++;
+              sample.roots = runtime.mapLayers.worldRoots.length;
+              if (Boolean(runtime.mapLayers.releaseEnvironmentIsolation) === Boolean(retainEnvironment)) {
+                sample.violations.add("incorrect environment ownership");
+              }
+              for (const root of runtime.mapLayers.worldRoots) {
+                if (root.isEnabled()) sample.violations.add(`resident geometry: ${root.name}`);
+              }
+              const scheduled = p.lifecycle.scheduledActors;
+              const lease = scheduled.activityActorSuppressions.get(runtime.mapLayers);
+              if (!lease) sample.violations.add("missing actor isolation lease");
+              for (const entry of scheduled.entries.filter(e => lease?.codes.has(e.definition.actorCode))) {
+                sample.hiddenActors.add(entry.definition.actorCode);
+                for (const root of [entry.root, ...entry.modelRoots.values(), entry.secondaryObject?.root].filter(Boolean)) {
+                  if (root.isEnabled()) sample.violations.add(`ambient actor: ${entry.definition.actorCode}`);
+                }
+              }
+            }
             for (const voice of runtime.audio.active?.elements || []) {
               if (voice.kind === "voice" && !voice.audio.paused && voice.audio.currentTime > 0) {
                 review.voices.add(voice.cue.speakerId);
@@ -247,7 +281,7 @@ export async function reviewStoryFaces(page, testInfo, character) {
             if (!review.cancelling) review.error = error.message;
             review.done = true;
           });
-      }, { id, area, actors:{...options.observeActors,...actors} });
+      }, { id, area, actors:{...options.observeActors,...actors}, isolatedStage: options.isolatedStage, retainEnvironment: options.retainEnvironment });
       try {
         // Capture the lead-in before waiting for later speaking shots. A missing
         // early recording must not be hidden by a working ending-film voice.
@@ -392,6 +426,8 @@ export async function reviewStoryFaces(page, testInfo, character) {
         const review = await page.evaluate(() => {
           const r = window.storyProbe.faceReview;
           return { error: r.error, frame: r.frame, done: r.done, voices: [...r.voices], voiceIds: [...r.voiceIds],
+            ...(r.stage ? { stage: { frames: r.stage.frames, roots: r.stage.roots,
+              hiddenActors: [...r.stage.hiddenActors], violations: [...r.stage.violations] } } : {}),
             samples: Object.fromEntries(Object.entries(r.samples).map(([tag, s]) => [tag,
               { code: s.code, firstFrame: s.firstFrame, frames: s.frames, mouths: s.mouths.size, vertices: s.vertices.size, audio: s.audio.size }])),
             objects: Object.fromEntries(Object.entries(r.objects).map(([tag, s]) => [tag, { frames: s.frames, positions: s.positions.size,rotations:s.rotations.size }])) };
@@ -411,6 +447,18 @@ export async function reviewStoryFaces(page, testInfo, character) {
         }, null, { timeout: 100_000 });
       }
       expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+      if(options.isolatedStage){
+        const stage=await page.evaluate(()=>{
+          const p=window.storyProbe,r=p.faceReview,s=r.stage,m=r.stageRuntime?.mapLayers;
+          return {frames:s?.frames,roots:s?.roots,violations:[...s?.violations||[]],
+            actorLease:m?.releaseActorIsolation,weatherLease:m?.releaseEnvironmentIsolation,
+            unreturned:(r.stageSnapshots||[]).filter(([root,enabled])=>!root.isDisposed()&&root.isEnabled()!==enabled).map(([root])=>root.name),
+            suppressions:p.lifecycle.scheduledActors.activityActorSuppressions.size};
+        });
+        expect(stage.frames).toBeGreaterThan(2);expect(stage.roots).toBeGreaterThan(0);
+        expect(stage.violations).toEqual([]);expect(stage.unreturned).toEqual([]);
+        expect(stage.actorLease).toBeNull();expect(stage.weatherLease).toBeNull();expect(stage.suppressions).toBe(0);
+      }
       if(options.backdrop)expect(await page.evaluate(()=>{
         const r=window.storyProbe.faceReview.stageRuntime;
         return {owner:r.scrollSprites.owner,visible:r.scrollSprites.resources.some(s=>s.layer.isEnabled),

@@ -258,6 +258,8 @@ function compileActivity(config, expectation, memberByName, packages) {
       browserBackgroundColor: expectation.browserBackgroundColor,
     } : {}),
     ...(expectation.browserIsolatedStage ? { browserIsolatedStage: true } : {}),
+    ...(expectation.browserIsolatedEnvironment !== undefined
+      ? { browserIsolatedEnvironment: expectation.browserIsolatedEnvironment } : {}),
     ...(expectation.browserLightingPresetIndex !== undefined
       ? { browserLightingPresetIndex: expectation.browserLightingPresetIndex } : {}),
     ...(expectation.browserLightingOverride

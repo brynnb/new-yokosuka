@@ -229,6 +229,21 @@ test("Tom's optional lesson keeps source branches, original motions and the inde
   assert.equal(kick.actors[0].motion.name,"AKI_DEKIRU_TORNADO_KICK_B_0100");
 });
 
+test("complete harbor sets replace resident scenery without overriding authored lighting", () => {
+  for (const id of ["yada-job-interview", "yada-dismissal", "warning-letter", "gui-after-battle"]) {
+    const manifest = read(`play/assets/harbor/${id}/manifest.json`);
+    assert.equal(manifest.sceneObjects.ROOM.lifecycle.kind, "room-script-persistent");
+    for (const activity of manifest.activities) {
+      assert.equal(activity.browserIsolatedStage, true, id);
+      assert.deepEqual(activity.browserMapVisibility, []);
+      assert.equal(activity.browserLightingPresetIndex, undefined);
+      assert.equal(activity.browserIsolatedEnvironment, id === "gui-after-battle" ? false : undefined);
+    }
+  }
+  const outdoor = read("play/assets/harbor/mark-job-introduction/manifest.json");
+  assert.ok(outdoor.activities.every(activity => !activity.browserIsolatedStage));
+});
+
 test("post-battle films keep original banks, unavailable voices and the temporary pier geometry",()=>{
   const catalog=new ScriptEventPresentationCatalog();
   for(const [id,file,frames,bank,missing]of[

@@ -136,7 +136,7 @@ const profiles=[
     props:{PIPE:"PIPS501G"},propTextureHash:"57467acd5f8941f70e233d4f325ebaacdab355bd9632ac6a5b57cc1712988fcb",authoredPropBindings:true,
     music:battleMusic,stream:"01TLYD",streamHash:"d1fc504f86af01b675fad9c453d69a8658cf50a7bc7c67c576b1e424b008df43",sound:"A1_TLYD.SND",soundHash:"6982afc70869163b0e71fbe3eb8939dc5890741e67bad301404f4a90a3d746b3"},
   {id:"gui-after-battle",archive:"MFBT/TLYE",resourceName:"TLYE",evidence:"docs/design/story-final-day.md#terry-and-the-last-night",selectionRule:aftermathSelection,auth:"SEQDATA2.AUTH",motion:"M_01TLYE.MOTN",bank:32,frames:1520,actors:["KISY","AKIR"],sharedActorManifests:finalCast,
-    room:{archive:"MFBT/TLYE",member:"MAP_TLYE.MAPM",model:"MAP_TLYE",textureHash:"089c11c5bb28f6e94d82b58620c8c18e4cd9d651783c4b563c73df9201267f88",textureFilename:"tlye-textures.bin"},
+    room:{archive:"MFBT/TLYE",member:"MAP_TLYE.MAPM",model:"MAP_TLYE",textureHash:"089c11c5bb28f6e94d82b58620c8c18e4cd9d651783c4b563c73df9201267f88",textureFilename:"tlye-textures.bin",isolateEnvironment:false},
     music:{id:"bgm106",sourceId:"bf9cde87eead6453c47ffde1645cb5471aa0e5ecac71a48c6f72141444b10cfe",bankHash:"f0c657c96c112ce6493cd516044363818b8788ee144d481c240ea2fbba3b87d1",label:"After the confrontation"},
     stream:"01TLYE",streamHash:"f68c745b022290722a7b248b4a77154ca13adfad750143cdbd8bfd9bebaac921",sound:"A1_TLYE.SND",soundHash:"1be0c960d6959c15290669be499fa55f9ec73e921f4229e30767bfff46a142de"},
   {id:"tom-plane",archive:"MFSY/GBTM",resourceName:"GBTM",evidence:"docs/design/story-final-day.md#night-confrontation",auth:"SEQDATA0.AUTH",motion:"M_01TOM.MOTN",frames:932,actors:["JET_","AKIR"],
@@ -478,7 +478,12 @@ for(const p of selected){
     bindingEvidence:evidence,selectionRule:p.selectionRule||"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),...(p.silent?{}:{audioManifest:`${audioPrefix}/manifest.json`}),
     motionBanks:[{bank:p.bank??16,member:p.motion,...(p.motionParseOptions?{parseOptions:p.motionParseOptions}:{})},...(p.extraMotionBanks||[])],activities:activities.map((activity,slot)=>({...activity,...callbackPresentation,slot,binding:{kind:"map-embedded-slot"},
-      ...(p.stage?{browserMapVisibility:[],browserIsolatedStage:true,browserLightingPresetIndex:0}:{}),
+      // These are complete authored sets, not additions to the resident harbor.
+      // Borrowing both produces overlapping floors and NPCs inside the office.
+      ...(p.stage||p.room?{browserMapVisibility:[],browserIsolatedStage:true}:{}),
+      // The pier is an outdoor replacement set; it does not contain its own sky.
+      ...(p.room?.isolateEnvironment!==undefined?{browserIsolatedEnvironment:p.room.isolateEnvironment}:{}),
+      ...(p.stage?{browserLightingPresetIndex:0}:{}),
       ...(Object.values(sceneObjects).some(o=>o.lifecycle?.kind==="room-script-persistent")?{nativeSceneObjectStates:[...(p.room?[{actorTag:"ROOM",presented:true}]:[]),...stageStates]}:{})})),
     packageActors,sceneObjects,outputMembers:[...new Set(outputMembers)],generatedAssets,
     ...(attachedObjects?{attachedObjects,handAssets,nativeHandPoseTables:callbackPresentation.nativeHandPoseTables}:{}),

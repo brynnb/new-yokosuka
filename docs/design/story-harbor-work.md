@@ -65,12 +65,25 @@ render; all 24 original voice recordings play. Avatar, pose, view, controls,
 money, inventory and flags restore without rewards. This presentation-only
 check is separate from the connected hiring evidence below.
 
-Remaining visible defect: the leased Alpha room overlaps resident harbor
-scenery, producing floor depth flicker. Resident `KYMA` (Azusa Kayama,
-`SHE_L`) at approximately `[25.56, 0, 74.37]` also occupies Ryo's entrance shot.
-The room needs shared environment/actor isolation with reversible ownership,
-not an offset floor or a permanent removal of that resident. The same problem
-appears in Yada's dismissal and should be checked in the other leased-room films.
+The same review exposed overlapping resident harbor floors and resident `KYMA`
+(Azusa Kayama, `SHE_L`) inside Ryo's entrance shot. Complete room packages now
+use the shared isolated-stage lease: hide resident scenery and non-cast NPCs,
+then restore them on every exit. The actor lease reuses scheduled suppression,
+so late model loads cannot resurrect a resident; scheduled cast and attachments
+remain under their own owner rather than a second geometry visibility snapshot.
+No floor offsets or permanent resident removals are used. Cleanup releases
+actors/weather even when a borrowed root fails to restore, and reports the error.
+
+The interview, dismissal, warning-letter office and post-battle pier all pass
+rendered cancellation/replay and natural-ending checks after this fix. Sampled
+render frames show no enabled resident scenery or suppressed actor leakage,
+the authored room renders, and prior world/actor ownership, avatar, pose, camera,
+controls, money, inventory and flags restore. Reviewed office captures no longer
+show the interleaved floor or Azusa blocking Ryo. Mark's outdoor introduction
+retains normal scenery/weather. An explicit `browserIsolatedEnvironment: false`
+lets the outdoor pier replace geometry/cast while retaining its sky/weather;
+indoor sets suppress those effects without modifying the personal calendar.
+This verifies scene isolation, not every prop, gesture or original lighting cue.
 
 ## Coverage and remaining work
 
@@ -89,7 +102,16 @@ and reload without replay. Currency and inventory remain unchanged. Rendered
 captures show Goro, Mai, the original Alpha office/Yada, and Mark seated in the
 original forklift. Exhaustive gesture, prop and audio fidelity is not claimed.
 The shared presentation, package ownership/readiness and scene-object suites
-pass 56 checks, including failure/cancellation cleanup for the reused room lease.
+cover failure/cancellation cleanup for the reused room lease.
+
+The 2026-10-23 recheck resumes the same newly Jimmy-earned isolated character:
+Goro lead cancellation/re-entry, same-day appointment rejection, normal next-day
+and hour waits, Goro/Mai cancellation/retry, hiring decline, cancellation during
+Mark's film, reload/retry, natural completion, notebook and completed reload all
+pass. Direct PostgreSQL verification confirms the three hiring milestones and
+training note, with ¥9,136 unchanged and no training completion awarded. Earlier
+mirror prerequisites were seeded; this is a connected continuation, not a new-game
+full playthrough. The shared stage/actor/package/source-asset checks pass 103 tests.
 
 Forklift training now passes the connected three-delivery browser check,
 including cancellation/retry, saved completion, controls and reload.
@@ -1199,6 +1221,12 @@ inventory, saved notebook and reload without replay. Direct response capture
 confirms successful BGM119 loading; the default browser Resource Timing buffer
 fills during world loading and was not reliable evidence of later audio
 requests. The mix has not been assessed by listening.
+
+A 2026-10-23 presentation-only recheck also verifies the corrected isolated
+office through cancellation/replay and its full 13-recording ending, with restored
+world/state and no resident-actor leakage. Paper/hand choreography remains
+incomplete; the available `FUTS5KBG` and `KMMS500G` models are extracted but are
+not yet connected to the original hand-transfer callbacks.
 
 All 42 new local asset records (1,725,354 bytes) match their recorded hashes and
 sizes. BGM119 reuses an existing viewer asset. No assets were published and no

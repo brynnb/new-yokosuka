@@ -176,6 +176,12 @@ export class NativeCutscenePackageRuntime {
           scene,
           acquireEnvironmentIsolation,
           acquireActivityLighting,
+          acquireActorIsolation: () => scheduledActors.acquireActivityActorIsolation(this.mapLayers, [
+            ...definition.actorTags,
+            ...Object.keys(environment.packageActors || {}),
+            // These residents already belong to the package replacement lease.
+            ...(environment.suppressScheduledActors || []),
+          ]),
         })
       : null;
     this.scrollSprites = hasDefinitions(environment.scrollSprites)
