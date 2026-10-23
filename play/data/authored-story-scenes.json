@@ -2,6 +2,15 @@
   "schema":"new-yokosuka-authored-story-scenes-v1",
   "motionBanks":{"motorcycle":"play/assets/sakuragaoka/nozomi-motorcycle/M_01BIKE.MOTN","harborPay":"play/assets/harbor/payday/M_MO01.MOTN","basement":"play/assets/basement/mirror-search/M_0138.MOTN","koji":"play/assets/sakuragaoka/gao-wen/M_KOJI.MOTN","mgqb":"play/assets/harbor/goro-encounter/M_MGQB.MOTN","mbui":"play/assets/harbor/warehouse-eight/M_0153A.MOTN","oldDistrict":"play/assets/harbor/old-district-entry/M_0153.MOTN"},
   "scenes":[
+    {"id":"s1.dbyo.yong-wu","area":"DBYO","worldId":"dbyo",
+     "actorDefinitions":[],
+     "provenance":"Original CM_D000 selector-4 conversation placements (ECHO 0x111a0, GRKN 0x15230). Scoped staging reuses these while this optional conversation is eligible, including after the original selector's flag65 cutoff. Generic standing motion and two-person camera are authored; native variable bar-seat allocation and conversation gestures are not reconstructed. Restore the ambient actors and player camera on completion/cancel; no schedule or progress override.",
+     "nativeSource":{"path":".disc-work/cycleman/disc1/CM_D000.BIN","sha256":"f5703c148278bc3ec3f656644cd2291de97e5dbfea9d528b31b24842366301cc","placements":{"ECHO":70048,"GRKN":86576}},
+     "actors":[
+       {"tag":"AKIR","presented":false,"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+       {"tag":"ECHO","pose":{"x":0.4366999864578247,"y":0,"z":-3.176800012588501,"rotationX":0,"rotationY":-114.9993896484375,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}},
+       {"tag":"GRKN","pose":{"x":0.26159998774528503,"y":0,"z":-2.250999927520752,"rotationX":0,"rotationY":-104.996337890625,"rotationZ":0},"motion":{"bank":"free","name":"AKI_AKI_STAND_LP","loop":true}}
+     ],"camera":{"positionX":2.3,"positionY":1.65,"positionZ":-4.3,"targetX":0.35,"targetY":1.45,"targetZ":-2.7,"roll":0,"perspective":55}},
     {"id":"s1.mfsy.workday-four-spying","area":"MFSY","worldId":"mfsy",
      "provenance":"Original TYMK/RFA_L coworker model and F1109 warning. Authored standing conversation on the previously rendered Alpha-side walkway, about nine metres from HIRUAUTH's seated Tsuyoshi. Condenses his post12:45 walk and repeated inquiries; no recovered patrol, gestures or camera. All coordinates are native (shared renderer mirrors X).",
      "actorDefinitions":[{"actorCode":"TYMK","label":"Tsuyoshi Murakami","modelCode":"RFA_L","activityOnly":true}],

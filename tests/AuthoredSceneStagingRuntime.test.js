@@ -1,6 +1,26 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { AuthoredSceneStagingRuntime } from "../play/scripts/AuthoredSceneStagingRuntime.js";
+import { existsSync, readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import scenes from "../play/data/authored-story-scenes.json" with {type:"json"};
+
+test("Yong and Wu's staged placements retain the original conversation coordinates and facing", {
+  skip: !existsSync(scenes.scenes.find(scene => scene.id === "s1.dbyo.yong-wu").nativeSource.path)
+    && "requires locally extracted original CM_D000.BIN",
+}, () => {
+  const scene = scenes.scenes.find(scene => scene.id === "s1.dbyo.yong-wu");
+  const source = readFileSync(scene.nativeSource.path);
+  assert.equal(createHash("sha256").update(source).digest("hex"), scene.nativeSource.sha256);
+  assert.deepEqual(scene.actors.map(actor => actor.tag), ["AKIR", "ECHO", "GRKN"]);
+  assert.equal(scene.actors[0].presented, false, "Ryo speaks from the camera side without inventing a source pose");
+  for (const actor of scene.actors.filter(actor => actor.tag !== "AKIR")) {
+    const offset = scene.nativeSource.placements[actor.tag];
+    assert.equal(source.readUInt16LE(offset), 3, "original placement operation");
+    assert.deepEqual([actor.pose.x, actor.pose.y, actor.pose.z], [4,8,12].map(i => source.readFloatLE(offset+i)));
+    assert.equal(actor.pose.rotationY, source.readInt16LE(offset+16)*360/65536);
+  }
+});
 
 function harness() {
   const calls = [];

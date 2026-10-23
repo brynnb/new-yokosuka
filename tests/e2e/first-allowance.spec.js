@@ -38,6 +38,13 @@ import { fightStoryAmbush } from "./story-fight-input.js";
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
 const resumeId = Number(process.env.NEW_YOKOSUKA_STORY_RESUME_ID || 0);
+async function enterStoryWorld(page) {
+  await expect(page.getByLabel("Open the New Yokosuka menu")).toBeVisible({ timeout: 120_000 });
+  await page.keyboard.press("Enter");
+  await page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" }).click();
+  await page.locator(".character-slot-button:not(.empty)").first().click();
+  await page.locator("button").filter({ hasText: /^Enter World$/ }).click();
+}
 test.afterEach(async({page},info)=>{
   if(info.status===info.expectedStatus)return;
   const state=await page.evaluate(()=>{const p=window.storyProbe,l=p?.lifecycle;return{notices:p?.notices,errors:p?.errors,sceneErrors:p?.sceneErrors,status:p?.regions?.controller.status,world:l?.worldRuntime.activeWorld.id,ready:l?.worldRuntime.ready,switching:l?.worldRuntime.switching,movementLocked:l?.getController()?.movementLocked,actorLeases:p?.actorLeases?.slice(-4),rejected:p?.scriptRejections,presence:p?.presencePublishes?.slice(-5)};}).catch(()=>null);
@@ -211,11 +218,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.goto("/play/");
   // React mounts the splash asynchronously; navigation completion alone does
   // not mean its activation listener exists yet (especially on a cold Vite).
-  await expect(page.getByLabel("Open the New Yokosuka menu")).toBeVisible({ timeout: 120_000 });
-  await page.keyboard.press("Enter");
-  await page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" }).click();
-  await page.locator(".character-slot-button:not(.empty)").first().click();
-  await page.locator("button").filter({ hasText: /^Enter World$/ }).click();
+  await enterStoryWorld(page);
   const openingScenes = ["S1-OP02-00", "S1-000", "S1-OP00-MAIL", "S1-OP00-DREAM"];
   if (freshOpening) {
     // Exercise real loading and the explicit player skip, not the completion
@@ -591,7 +594,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       await verifyAlleyQte(page,testInfo,character);
     }
     if (process.env.NEW_YOKOSUKA_NIGHT_STORY_E2E === "true") {
-      await page.locator("#journal-close").click();
+      if (await page.locator("#journal-close").isVisible()) await page.locator("#journal-close").click();
       await continueNightWitnesses(page,testInfo,character);
     }
     expect(errors).toEqual([]);
@@ -1024,6 +1027,11 @@ async function observeStoryDialogueFace(page, actor) {
       const generic = owner.faces.active?.genericFaces.get(actor);
       const meshes = detailed?.entry.primaryMeshes || generic?.speech.controller.binding.meshes.map(record => record.mesh);
       if (!meshes?.length) { sample.missingBindingFrames++; return; }
+      if (!sample.presentation) sample.presentation = {
+        root: owner.model.root.getAbsolutePosition().asArray(),
+        meshes: meshes.map(mesh => ({name:mesh.name,enabled:mesh.isEnabled(),visible:mesh.isVisible,visibility:mesh.visibility,
+          position:mesh.getAbsolutePosition().asArray(),bounds:[mesh.getBoundingInfo().boundingBox.minimumWorld.asArray(),mesh.getBoundingInfo().boundingBox.maximumWorld.asArray()]})),
+      };
       if (!meshes.some(mesh => mesh.isEnabled() && scene.isActiveMesh(mesh))) { sample.offscreenFrames++; return; }
       sample.kind = detailed ? "detailed" : "generic";
       sample.frames++;
@@ -1053,7 +1061,7 @@ async function verifyObservedStoryDialogueFace(page, testInfo, name) {
     window.stopStoryDialogueFaceProbe();
     const s = window.storyDialogueFaceSample;
     return { actor: s.actor, model: s.model, kind: s.kind, frames: s.frames, candidateFrames: s.candidateFrames,
-      offscreenFrames: s.offscreenFrames, missingBindingFrames: s.missingBindingFrames, vertices: s.vertices.size, mouths: s.mouths.size };
+      offscreenFrames: s.offscreenFrames, missingBindingFrames: s.missingBindingFrames, vertices: s.vertices.size, mouths: s.mouths.size, presentation:s.presentation };
   });
   await testInfo.attach(`${name}-rendered-face`, { body: JSON.stringify(sample, null, 2), contentType: "application/json" });
   console.info("Story dialogue rendered face:", JSON.stringify(sample));
@@ -1161,15 +1169,49 @@ async function continueNightWitnesses(page,testInfo,character) {
     if (character.storyFlags?.[flag]) continue;
     await page.evaluate(async world=>{await window.storyProbe.lifecycle.travelToWorld(world);},world);
     await page.waitForFunction(actor=>window.storyProbe.lifecycle.scheduledActors.dialogueActor(actor),actor,{timeout:60_000});
+    for (const ending of actor === "GRKN" ? ["cancel", "complete"] : ["complete"]) {
     const point=await residentClickPoint(page,actor);
+    const before=await page.evaluate(()=>{
+      const c=window.storyProbe.lifecycle.getController();
+      return {position:c.collider.position.asArray(),firstPerson:c.firstPerson,cameraYaw:c.cameraYaw,cameraPitch:c.cameraPitch};
+    });
     await observeStoryDialogueFace(page,actor);
     await page.mouse.click(point.x,point.y);
     await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
     await page.waitForFunction(()=>{const a=window.storyProbe.dialogue?.audio;return a&&!a.paused&&a.currentTime>0;},null,{timeout:15_000});
-    await verifyObservedStoryDialogueFace(page,testInfo,`${actor}-night-dialogue`);
-    for(let line=0;line<100;line++){if(await page.evaluate(flag=>!!window.storyProbe.regions.getCharacter()?.storyFlags?.[flag],flag))break;await page.keyboard.press("Space");await page.waitForTimeout(250);}
-    await expect.poll(()=>page.evaluate(flag=>window.storyProbe.regions.getCharacter()?.storyFlags?.[flag],flag)).toBe(true);
+    await verifyObservedStoryDialogueFace(page,testInfo,`${actor}-night-dialogue-${ending}`);
+    if (actor === "GRKN") {
+      // This original conversation has two resident speakers. Checking only
+      // the clicked actor previously left Yong's lines completely unreviewed.
+      await observeStoryDialogueFace(page,"ECHO");
+      await verifyObservedStoryDialogueFace(page,testInfo,`ECHO-night-dialogue-${ending}`);
+    }
+    if (ending === "cancel") {
+      await page.keyboard.press("KeyX");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+      const cancelled=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+      expect(cancelled.character.storyFlags[flag]).not.toBe(true);
+    } else {
+    // Let all original lines finish. A Space-skipped smoke check cannot prove
+    // the remaining recordings load or that a natural ending releases input.
+    await expect.poll(()=>page.evaluate(flag=>window.storyProbe.regions.getCharacter()?.storyFlags?.[flag],flag),{timeout:180_000}).toBe(true);
+    }
     expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    if (actor === "GRKN") {
+      const restored=await page.evaluate(()=>{
+        const p=window.storyProbe,c=p.lifecycle.getController();
+        return {position:c.collider.position.asArray(),firstPerson:c.firstPerson,cameraYaw:c.cameraYaw,cameraPitch:c.cameraPitch,leases:p.lifecycle.scheduledActors.activityActorOwners.size};
+      });
+      expect(restored.leases).toBe(0);
+      expect(restored.firstPerson).toBe(before.firstPerson);
+      restored.position.forEach((value,i)=>expect(value).toBeCloseTo(before.position[i],3));
+      expect(restored.cameraYaw).toBeCloseTo(before.cameraYaw,3);
+      expect(restored.cameraPitch).toBeCloseTo(before.cameraPitch,3);
+    }
+    const saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+    if (ending === "complete") expect(saved.character.storyFlags[flag]).toBe(true);
+    expect(saved.character.yen).toBe(character.yen);
+    }
   }
   await page.locator("button").filter({hasText:/^Notebook$/}).click();
   while(await page.locator("#journal-next").isEnabled())await page.locator("#journal-next").click();
@@ -1185,6 +1227,12 @@ async function continueNightWitnesses(page,testInfo,character) {
   expect(new Date(morning.worldState.gameTimeMs).getUTCHours()).toBe(8);
   expect(morning.character.storyFlags["notebook.s1.heartbeats"]).toBe(true);
   expect(morning.character.yen).toBe(character.yen);
+  await page.reload(); await enterStoryWorld(page);
+  await page.waitForFunction(()=>window.storyProbe?.ready,null,{timeout:120_000});
+  const reloaded=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+  expect(reloaded.character.storyFlags).toEqual(morning.character.storyFlags);
+  expect(reloaded.character.yen).toBe(morning.character.yen);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
 }
 
 async function verifyAlleyQte(page,testInfo,character) {

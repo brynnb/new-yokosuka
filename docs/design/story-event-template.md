@@ -636,8 +636,9 @@ generator and multi-participant presenter:
 The winning story chain and hours are corroborated by
 [Shotgunnova's walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404).
 Text/speakers/voices come from original HUMANS.AFS F1019, F1276 and F1131.
-Questions are condensed; cameras and ambient gestures retain the ordinary talk
-presentation. Source actor presence remains required for every participant.
+Questions are condensed. Junko and Saijo retain the ordinary talk camera and
+ambient gestures; Yong and Wu use the scoped staging described below.
+Source actor presence remains required for every participant.
 The hours compiler handles intervals that cross midnight, though ordinary
 Story waking time still rolls past the late-night closing hours.
 
@@ -648,13 +649,32 @@ Yarn/PostgreSQL tests cover cancellation, repeat, stale checkpoints and other
 characters; realtime tests cover private receipts and stale-mode rejection.
 Use `NEW_YOKOSUKA_NIGHT_STORY_E2E=true` with a saved connected test character.
 
-The 2026-10-22 presentation pass also verified Wu's `SSI_L` and Saijo's
-`BAU_L` mouths changing over rendered frames during original speech, with
-reviewed captures and restored controls. Junko's talk completed naturally and
-saved its clue, but that capture clipped her face; her mouth presentation and
-Yong's speaking lines still need a framed recheck. The test now aims at the
-upper body rather than centering the chest. Skipped remaining lines do not
-constitute verification of their gestures or natural timing.
+The 2026-10-23 rendered continuation now lets all 23 Junko, 21 Yong/Wu and
+13 Saijo voice lines complete without Space-skipping. Reviewed speaking
+captures and changing rendered mouth buffers cover `JUKY/YAM_L`,
+`ECHO/QHB_L`, `GRKN/SSI_L` and `SAJO/BAU_L`. The combined isolated run passes
+wait-decline/confirm, real resident clicks, natural endings, notebook clues,
+unchanged money, next-morning time and reload. It starts from a seeded earlier
+investigation checkpoint, not a new opening-to-night playthrough. Yong/Wu also
+passes cancellation without settlement, a real-click retry, restored player
+position/first-person camera and zero remaining actor leases.
+
+That review found Yong speaking from behind the bar's entrance wall. His
+default schedule was waiting at browser position `(-3.15, 0, 1.54)` before
+`CM_D000` operation `0x11014`; its variable `BYO2` waiting-seat allocation
+remains unresolved. This was a placement problem, not missing lip-sync data.
+The conversation now borrows both actors through the existing scene-staging
+runtime using the original selector-4 placements at `0x111a0` (Yong) and
+`0x15230` (Wu), including their original facing. The source hash and exact
+coordinates are checked against the locally extracted binary when available.
+No global seating rule, culling bypass or story-flag override is introduced.
+
+`s1.dbyo.yong-wu` deliberately applies those placements for this optional talk
+even after native flag 65 would end that original schedule variant. Its
+two-person camera and generic standing motion are authored; Ryo speaks from
+off camera. Cleanup restores ambient placement and the player's prior view.
+Original conversation-specific gestures, camera timing, ambient variable
+seating and listening-level audio fidelity remain unverified.
 
 ## Heartbeats alley: staged introduction and defensive challenge
 
