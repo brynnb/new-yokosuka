@@ -116,6 +116,36 @@ export function frameWords(nativeFunction, block, pointer, operation) {
   return words;
 }
 
+// Some original ASEQ poll loops initialize a complete vector on one frame
+// and consume it on a later frame. The ordinary unique-predecessor walk cannot
+// cross the loop. This stricter opt-in accepts only complete constant writes
+// under decoded frame guards; dynamic or ambiguous writes fail closed.
+function activityTimelineWords(bytes, callbackFunction, nativeFunction, pointer, operation) {
+  if (pointer?.kind !== "frame-address" || !Number.isInteger(pointer.offset)) {
+    throw new Error(`${operation.callFileOffset} is not an exact native frame vector`);
+  }
+  const operationOffset = Number.parseInt(operation.callFileOffset, 16);
+  const targetFrame = nativeAseqGoverningActivityFrame(bytes, callbackFunction, operationOffset);
+  const writes = new Map();
+  for (const { action } of blockActions(nativeFunction)) {
+    if (!["frameFieldWrite", "frameFieldExpressionWrite"].includes(action.kind)
+      || action.width !== 4 || ![0, 4, 8].some(delta => pointer.offset + delta === action.offset)) continue;
+    const at = nativeAseqGoverningActivityFrame(bytes, callbackFunction, Number.parseInt(action.callFileOffset, 16));
+    if (at > targetFrame || (at === targetFrame && Number.parseInt(action.callFileOffset, 16) >= operationOffset)) continue;
+    if (action.kind !== "frameFieldWrite") throw new Error(`${operation.callFileOffset} has dynamic timeline vector writes`);
+    const prior = writes.get(action.offset);
+    if (!prior || at > prior.frame) writes.set(action.offset, { frame: at, value: action.value >>> 0 });
+    else if (at === prior.frame && prior.value !== (action.value >>> 0)) {
+      throw new Error(`${operation.callFileOffset} has ambiguous timeline vector writes`);
+    }
+  }
+  const fields = [0, 4, 8].map(delta => writes.get(pointer.offset + delta));
+  if (fields.some(field => !field) || !fields.every(field => field.frame === fields[0].frame)) {
+    throw new Error(`${operation.callFileOffset} has no complete timeline vector`);
+  }
+  return fields.map(field => field.value);
+}
+
 function frameWordsBefore(nativeFunction, pointer, operation) {
   if (pointer?.kind !== "frame-address" || !Number.isInteger(pointer.offset)) {
     throw new Error(`${operation.callFileOffset} is not an exact native frame vector`);
@@ -358,9 +388,13 @@ export function extractNativeAseqCallbackObjectPresentation({
   activitySlot = 0,
   objectTags = null,
   functions = [],
+  frameVectorMode = "predecessor",
 } = {}) {
   if (!Buffer.isBuffer(bytes) || !Number.isInteger(callbackFunction)) {
     throw new TypeError("native callback object presentation inputs are invalid");
+  }
+  if (!["predecessor", "activity-timeline"].includes(frameVectorMode)) {
+    throw new TypeError("unsupported native frame vector mode");
   }
   const entries = blockActions(nativeFunction);
   // A room callback can mix several independent presentation owners. Allow
@@ -374,9 +408,12 @@ export function extractNativeAseqCallbackObjectPresentation({
   const nativeActorLookPointCues = [];
   for (const { block, action } of operations) {
     if (action.semanticId === "resolved-object-fixo-attachment-install") {
-      const translation = frameWords(nativeFunction, block, action.arguments[3], action)
+      const vector = pointer => frameVectorMode === "activity-timeline"
+        ? activityTimelineWords(bytes, callbackFunction, nativeFunction, pointer, action)
+        : frameWords(nativeFunction, block, pointer, action);
+      const translation = vector(action.arguments[3])
         .map(float32);
-      const rotationRaw = frameWords(nativeFunction, block, action.arguments[4], action)
+      const rotationRaw = vector(action.arguments[4])
         .map(value => value & 0xffff);
       attachedObjectCues.push(Object.freeze({
         objectTag: tag(action.arguments[0], `${action.callFileOffset} FIXO object`),

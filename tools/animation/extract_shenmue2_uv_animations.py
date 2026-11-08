@@ -119,6 +119,10 @@ def scan_ev1(path: Path) -> list[UvAnimation]:
 def scan_paths(paths: Iterable[Path]) -> list[UvAnimation]:
     ev1_files: set[Path] = set()
     for path in paths:
+        # Raw extraction inputs may be in offline storage. Missing input must
+        # not replace a valid runtime registry with an empty one.
+        if not path.exists():
+            raise FileNotFoundError(f"Source not found: {path}. Restore the extracted source before generating UV animations.")
         if path.is_dir():
             ev1_files.update(
                 candidate
@@ -177,7 +181,10 @@ def main() -> None:
     parser.add_argument("paths", nargs="+", type=Path, help="EV1 files or roots")
     parser.add_argument("--js-out", type=Path, help="write a runtime JS registry")
     args = parser.parse_args()
-    animations = scan_paths(args.paths)
+    try:
+        animations = scan_paths(args.paths)
+    except FileNotFoundError as error:
+        parser.error(str(error))
     if args.js_out:
         write_javascript(args.js_out, animations)
     print(json.dumps(_json_records(animations), indent=2))

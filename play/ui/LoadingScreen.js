@@ -21,6 +21,7 @@ export class LoadingScreen {
     this.total = 1;
     this.error = null;
     this.presentation = null;
+    this.frameOwner = null;
   }
 
   render() {
@@ -101,23 +102,28 @@ export class LoadingScreen {
     });
   }
 
-  captureFrame() {
+  captureFrame(owner = null) {
     const frame = this.dom.transitionFrame;
     const canvas = this.dom.canvas;
-    if (!frame || !canvas) return;
+    if (!frame || !canvas || (owner && !this.canRender)) return false;
     // Callers must cover BEFORE releasing scene ownership. Snapshot the last
     // presented frame so a render already in progress cannot change the fade.
     frame.width = canvas.width;
     frame.height = canvas.height;
     frame.getContext("2d").drawImage(canvas, 0, 0);
     frame.hidden = false;
+    this.frameOwner = owner;
+    return true;
   }
 
-  releaseFrame() {
+  releaseFrame(owner = null) {
+    if (owner && this.frameOwner !== owner) return false;
     const frame = this.dom.transitionFrame;
-    if (!frame) return;
+    if (!frame) return false;
     frame.hidden = true;
     frame.width = frame.height = 0;
+    this.frameOwner = null;
+    return true;
   }
 
   async cover(signal = null) {

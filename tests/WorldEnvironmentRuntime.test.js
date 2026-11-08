@@ -92,11 +92,12 @@ test("native Story environment projects through shared lighting while cutscene a
   let reads = 0;
   runtime.getNativeWeatherEnvironment = () => {
     reads += 1;
-    return { lightingOverride: { dirDiffuse: [.9, .8, .7] }, sky: { imagePath: "/textures/sky/air61.png" } };
+    return { lightingOverride: { dirDiffuse: [.9, .8, .7] }, sky: { index: 5, imagePath: "/textures/sky/air65.png" } };
   };
   runtime.synchronize();
   assert.deepEqual(applied.at(-1).lightingOverride, { dirDiffuse: [.9, .8, .7] });
-  assert.equal(applied.at(-1).skyTextureUrl, "/textures/sky/air61.png");
+  assert.equal(applied.at(-1).skyTextureUrl, "/textures/sky/air65.png");
+  assert.equal(applied.at(-1).skyWeatherTexture, true);
   runtime.getCutsceneLightingPreset = () => 3;
   runtime.getCutsceneLightingOverride = () => ({ dirIntensity: .1 });
   runtime.synchronize();

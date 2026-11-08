@@ -32,15 +32,19 @@ import {StoryNavigationRuntime} from "./StoryNavigationRuntime.js";
 import {StoryDrivingRuntime} from "./StoryDrivingRuntime.js";
 import {StoryForkliftChallengeRuntime} from "./StoryForkliftChallengeRuntime.js";
 import {NativeAseqSceneObjectRuntime} from "../events/NativeAseqSceneObjectRuntime.js";
+import {NativeAseqPackageActorRuntime} from "../events/NativeAseqPackageActorRuntime.js";
 import { createNativeAseqBabylonActors, createNativeAseqBabylonCamera } from "../events/NativeAseqBabylonPresentation.js";
 import { NativeAseqAttachedObjectRuntime } from "../events/NativeAseqAttachedObjectRuntime.js";
 import { createNativeCutsceneSceneObjectLoader } from "../cutscenes/NativeCutsceneSceneObjectLoader.js";
+import { createNativeCutsceneCharacterLoader } from "../cutscenes/NativeCutsceneCharacterLoader.js";
 import { fetchAssetBuffer } from "../../src/AssetCache.js";
 import { runtimeAssetUrl } from "../../src/RuntimeAssets.js";
 import { NativeVoiceFacialPresentation } from "../dialogue/NativeVoiceFacialPresentation.js";
 import nativeFaceCatalog from "../assets/cutscenes/native-faces/manifest.generated.json" with { type: "json" };
 
 export function createScriptEventAssembly({
+  storyFrameHandoff,
+  acquireEnvironmentIsolation,
   nativeRuntime,
   cutsceneDirector,
   getArea,
@@ -164,6 +168,17 @@ export function createScriptEventAssembly({
     onIntent:(action,token)=>controller?.challengeResponse(action,token)});
   const createSceneObjects=(definitions,signal)=>new NativeAseqSceneObjectRuntime({definitions,
     instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})})});
+  // Tableaux may need the same archive-local actors as a native film. Borrow
+  // the existing package actor owner so resident copies are hidden and
+  // restored with the scene, rather than registering duplicate world NPCs.
+  const createActorSet=(definitions,signal)=>{
+    const packageActors=new NativeAseqPackageActorRuntime({definitions,
+      acquireScheduledSuppression:(owner,tags)=>scheduledActors.acquireActivityActorSuppression(owner,tags),
+      instantiate:createNativeCutsceneCharacterLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})})});
+    return {actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,packageActors,
+      preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
+    load:()=>packageActors.load(currentMeshes()),clear:()=>packageActors.clear()};
+  };
   const drivingRuntime=new StoryDrivingRuntime({
     actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
     motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,createSceneObjects,
@@ -183,8 +198,13 @@ export function createScriptEventAssembly({
         capturePlayerState, restorePlayerState,
         createAttachedObjects,
         createSceneObjects,
+        createActorSet,
         currentMeshes,
+        acquireEnvironmentIsolation,
+        acquireActorIsolation: (owner,tags) => scheduledActors.acquireActivityActorIsolation(owner,tags),
       }),
+      storyFrameHandoff,
+      retainPackageMusic:(packageId,owner)=>cutsceneDirector.retainPackageMusic(packageId,owner),
       playerMotionRuntime,
       playerXmptRuntime,
       scheduledActors,

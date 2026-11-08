@@ -190,7 +190,7 @@ export async function verifyFinalChai(page,testInfo,character,{musicResponses}){
   const scene=async id=>{await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===`story-s1-${id}`||window.storyProbe.sceneErrors.length,id,{timeout:100_000});await check();};
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await check();};
   const cancel=async()=>{await page.evaluate(()=>window.storyProbe.regions.controller.cancel("final-chai-check"));await idle();};
-  const combatReady=async()=>{await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.id==="s1.mend.final-chai"&&window.storyProbe.combatRuntime.active.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:100_000});await check();};
+  const combatReady=async()=>{await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.id==="s1.mend.final-chai"&&window.storyProbe.combatRuntime.active.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:100_000});await check();};
   const fight=()=>fightWithKeyboard(page,()=>page.evaluate(()=>!window.storyProbe.combatRuntime?.active));
   const ready=async()=>{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.mend.chai-last-attack"&&window.storyProbe.regions.controller.active.challengePrompt.ready||window.storyProbe.sceneErrors.length,null,{timeout:60000});await check();};
   const winCounter=async()=>{for(const [index,key]of ["ArrowDown","Enter","Enter","Shift"].entries()){
@@ -201,7 +201,7 @@ export async function verifyFinalChai(page,testInfo,character,{musicResponses}){
   await page.screenshot({path:testInfo.outputPath("final-chai-original-beam-ambush.png")});await cancel();
   expect((await check()).character.storyFlags[battle]).not.toBe(true);
   await reload();await choose("Stop Chai");await scene("final-chai-intro");await combatReady();
-  await fightWithKeyboard(page,()=>page.evaluate(()=>window.storyProbe.combatRuntime?.active?.view.actors.find(a=>a.tag==="CHAI")?.health<=142));
+  await fightWithKeyboard(page,()=>page.evaluate(()=>window.storyProbe.combatRuntime?.active?.view?.actors.find(a=>a.tag==="CHAI")?.health<=142));
   await page.screenshot({path:testInfo.outputPath("final-chai-original-fight-and-partial-damage.png")});await cancel();
   await reload();await choose("Stop Chai");await scene("final-chai-intro");await page.keyboard.press("KeyX");await combatReady();
   await expect.poll(()=>page.evaluate(()=>{const m=window.storyMusic?.director,a=m?.current?.audio;return m?.current?.trackId==="bgm032"&&!a.paused&&a.currentTime>1&&a.volume>0;}),{timeout:15000}).toBe(true);

@@ -3,6 +3,35 @@
 The Shenmue II Dreamcast model path is deliberately separate from the
 Shenmue I `public/models` rebuild. It never deletes or replaces viewer assets.
 
+## Local source data
+
+Run the tools from the repository root. Tools expect extraction inputs and
+intermediate outputs under this checkout's ignored `.disc-work/` directory;
+no separate Shenmue II source worktree is required:
+
+- `shenmue2-discN-image/`: original disc descriptors and referenced tracks.
+- `shenmue2-discN-extracted/data/`: durable extracted disc files, not temporary
+  directory links.
+- `shenmue2-discN-models/`: per-disc staged models and textures.
+- `shenmue2-models/`: combined staged library used by the viewer/publication tools.
+- `shenmue2-xbox-extracted/Shenmue II/`: Xbox comparison data, including
+  `Default.xbe`, `scene/`, and `misc/`. The UV-animation extractor reads `scene/`.
+- `shenmue2-disc1-native/` and `shenmue2-disc1-native-npc/`: executable/motion
+  inputs and HUMANS archives used by the animation tools.
+
+Retained emulator evidence stays in `captures/`. Shenmue II's VMUs, save states,
+and configuration use `.flycast-pvr/shenmue2/`, separately from Shenmue I; see
+the [emulator guide](emulator-research.md). All of these are local prerequisites,
+not files included in a clean clone or production build. Preserve them before
+removing a checkout; Git alone does not back them up.
+
+Raw disc images and extracted source trees can be kept in offline storage when
+not researching or regenerating data. Restore the required folder to the paths
+above before running its extractor. Keep `shenmue2-models/`, runtime motions and
+prepared scenery local for development; they do not require the raw disc images
+or Xbox tree during normal gameplay. The UV generator refuses missing sources
+instead of replacing its registry with empty output.
+
 ## Disc staging (1–4)
 
 Use each disc's GDI descriptor with its original referenced track files.

@@ -300,6 +300,9 @@ function compileActivity(config, expectation, memberByName, packages) {
     ...(expectation.nativeSceneObjectStates
       ? { nativeSceneObjectStates: expectation.nativeSceneObjectStates }
       : {}),
+    ...(expectation.authoredSceneObjectOpacityTracks
+      ? { authoredSceneObjectOpacityTracks: expectation.authoredSceneObjectOpacityTracks }
+      : {}),
     ...(expectation.nativeDetailedHandDefaults
       ? { nativeDetailedHandDefaults: expectation.nativeDetailedHandDefaults }
       : {}),
@@ -466,6 +469,7 @@ export function buildNativeAseqActivityPack(config) {
       : {}),
     ...(config.sceneObjects ? { sceneObjects: config.sceneObjects } : {}),
     ...(config.mapLayers ? { mapLayers: config.mapLayers } : {}),
+    ...(config.mapGeometryMasks ? { mapGeometryMasks: config.mapGeometryMasks } : {}),
     ...(config.packageActors ? { packageActors: config.packageActors } : {}),
     ...(config.attachedObjects ? {
       attachedObjects: compileNativeAseqAttachedObjects(config.attachedObjects, activities),

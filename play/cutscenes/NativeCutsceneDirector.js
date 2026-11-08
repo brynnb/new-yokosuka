@@ -133,6 +133,14 @@ export class NativeCutsceneDirector {
     return this.registry.actorDefinitionsForWorld(worldId);
   }
 
+  retainPackageMusic(packageId, owner) {
+    const definition=this.registry.resolve(packageId);
+    if(this.disposed||!owner||!definition||definition.worldId!==this.worldContext?.worldId){
+      throw new Error("Story music package is not available in the active world");
+    }
+    return this.#runtimeFor(definition).music.retain(owner);
+  }
+
   actorTags() {
     return this.registry.actorTags();
   }

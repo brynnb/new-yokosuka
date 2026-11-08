@@ -304,6 +304,18 @@ test("an owned temporary track can be stopped before it ends", () => {
   assert.equal(director.getState().trackId, "home");
 });
 
+test("a stale temporary-music owner cannot stop a replacement with the same track",()=>{
+  const {director,audio,advance}=harness(),oldOwner={},newOwner={};
+  director.setManifest(manifest);director.setWorld("interior");director.unlock();advance(100);
+  assert.equal(director.playTemporaryTrack("town",{loop:true},oldOwner),true);advance(100);
+  assert.equal(director.playTemporaryTrack("town",{loop:true},newOwner),true);advance(100);
+  assert.equal(director.ownsTemporaryTrack("town",oldOwner),false);
+  assert.equal(director.ownsTemporaryTrack("town",newOwner),true);
+  assert.equal(director.stopTemporaryTrack("town",oldOwner),false);
+  assert.equal(director.getState().temporary,true);assert.equal(audio[2].pauseCalls,0);
+  assert.equal(director.stopTemporaryTrack("town",newOwner),true);
+});
+
 test("eligible world changes preserve a cue while excluded worlds stop it", () => {
   const { director, audio, advance } = harness();
   director.setManifest(manifest);

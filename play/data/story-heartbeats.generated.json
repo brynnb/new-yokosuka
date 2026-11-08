@@ -12,7 +12,7 @@
       "continuationGroup": "s1.heartbeats.alley.defense",
       "continuesPrevious": false,
       "actorDefinitions": [],
-      "provenance": "Original hash-pinned YQ14 KERI success/failure actor-motion pairs and held SEQDATA2 camera at 4 seconds. Tony role assignment and alley alignment are visually reviewed adaptations, not a decoded native QTE controller. Two-second B prompt holds the source start pose; original failure-recovery branching and Smith's second defensive exchange remain unresolved.",
+      "provenance": "Original hash-pinned YQ14 KERI success/failure actor-motion pairs and held SEQDATA2 camera at 4 seconds. Tony role assignment and alley alignment are visually reviewed adaptations, not a decoded native QTE controller. Two-second B prompt holds the source start pose; original failure-recovery branching and Smith's native choreography remain unresolved.",
       "actors": [
         {
           "tag": "AKIR",
@@ -83,7 +83,7 @@
       "continuationGroup": "s1.heartbeats.alley.defense",
       "continuesPrevious": true,
       "actorDefinitions": [],
-      "provenance": "Original hash-pinned YQ14 KERI success/failure actor-motion pairs and held SEQDATA2 camera at 4 seconds. Tony role assignment and alley alignment are visually reviewed adaptations, not a decoded native QTE controller. Two-second B prompt holds the source start pose; original failure-recovery branching and Smith's second defensive exchange remain unresolved.",
+      "provenance": "Original hash-pinned YQ14 KERI success/failure actor-motion pairs and held SEQDATA2 camera at 4 seconds. Tony role assignment and alley alignment are visually reviewed adaptations, not a decoded native QTE controller. Two-second B prompt holds the source start pose; original failure-recovery branching and Smith's native choreography remain unresolved.",
       "actors": [
         {
           "tag": "AKIR",
@@ -153,7 +153,7 @@
       "continuationGroup": "s1.heartbeats.alley.defense",
       "continuesPrevious": true,
       "actorDefinitions": [],
-      "provenance": "Original hash-pinned YQ14 KERI success/failure actor-motion pairs and held SEQDATA2 camera at 4 seconds. Tony role assignment and alley alignment are visually reviewed adaptations, not a decoded native QTE controller. Two-second B prompt holds the source start pose; original failure-recovery branching and Smith's second defensive exchange remain unresolved.",
+      "provenance": "Original hash-pinned YQ14 KERI success/failure actor-motion pairs and held SEQDATA2 camera at 4 seconds. Tony role assignment and alley alignment are visually reviewed adaptations, not a decoded native QTE controller. Two-second B prompt holds the source start pose; original failure-recovery branching and Smith's native choreography remain unresolved.",
       "actors": [
         {
           "tag": "AKIR",
@@ -214,6 +214,479 @@
         "roll": 0,
         "perspective": 45.60366821368092
       },
+      "durationSeconds": 2.2666666666666666
+    },
+    {
+      "id": "s1.heartbeats.alley.defense.second-setup",
+      "area": "D000",
+      "worldId": "dobuita",
+      "continuationGroup": "s1.heartbeats.alley.defense",
+      "continuesPrevious": true,
+      "actorDefinitions": [],
+      "camera": {
+        "positionX": -114.75444030761719,
+        "positionY": 1.9238849878311157,
+        "positionZ": 68.40476989746094,
+        "targetX": -120.64001464843751,
+        "targetY": -1.3068560361861545,
+        "targetZ": 70.30879211425787,
+        "roll": 0,
+        "perspective": 45.60366821368092
+      },
+      "provenance": "Authored second-attacker staging: reuses the original paired YQ14 kick motion on Smith, not a recovered second-QTE branch. Transition placement and timing are approximations.",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "pose": {
+            "x": -119.90160884857178,
+            "y": -1.88258,
+            "z": 69.4642578125,
+            "rotationX": 0,
+            "rotationY": 0,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "free",
+            "name": "AKI_AKI_WALK_LP",
+            "loop": true
+          },
+          "movement": {
+            "channels": {
+              "x": {
+                "times": [
+                  0,
+                  2
+                ],
+                "values": [
+                  -119.90160884857178,
+                  -119.9
+                ],
+                "tangents": [
+                  0,
+                  0
+                ]
+              },
+              "y": {
+                "times": [
+                  0,
+                  2
+                ],
+                "values": [
+                  -1.88258,
+                  -1.88258
+                ],
+                "tangents": [
+                  0,
+                  0
+                ]
+              },
+              "z": {
+                "times": [
+                  0,
+                  2
+                ],
+                "values": [
+                  69.4642578125,
+                  71.8
+                ],
+                "tangents": [
+                  0,
+                  0
+                ]
+              },
+              "rotationX": {
+                "times": [
+                  0,
+                  2
+                ],
+                "values": [
+                  0,
+                  0
+                ],
+                "tangents": [
+                  0,
+                  0
+                ]
+              },
+              "rotationY": {
+                "times": [
+                  0,
+                  2
+                ],
+                "values": [
+                  0,
+                  0
+                ],
+                "tangents": [
+                  0,
+                  0
+                ]
+              },
+              "rotationZ": {
+                "times": [
+                  0,
+                  2
+                ],
+                "values": [
+                  0,
+                  0
+                ],
+                "tangents": [
+                  0,
+                  0
+                ]
+              }
+            }
+          },
+          "endMotion": {
+            "bank": "heartbeats",
+            "name": "AKI_KERI_SEIKOU_1QTE",
+            "loop": false,
+            "elapsedSeconds": 0
+          }
+        },
+        {
+          "tag": "TONY",
+          "pose": {
+            "x": -119.9,
+            "y": -1.88258,
+            "z": 69.4,
+            "rotationX": 0,
+            "rotationY": 180,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "heartbeats",
+            "name": "TKA_KERI_SEIKOU_1QTE",
+            "loop": false,
+            "elapsedSeconds": 4.2
+          }
+        },
+        {
+          "tag": "SMTH",
+          "pose": {
+            "x": -120.85,
+            "y": -1.88258,
+            "z": 67.58,
+            "rotationX": 0,
+            "rotationY": -108.86,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "free",
+            "name": "AKI_AKI_WALK_LP",
+            "loop": true
+          },
+          "movement": {
+            "channels": {
+              "x": {
+                "times": [
+                  0,
+                  2
+                ],
+                "values": [
+                  -120.85,
+                  -119.9
+                ],
+                "tangents": [
+                  0,
+                  0
+                ]
+              },
+              "y": {
+                "times": [
+                  0,
+                  2
+                ],
+                "values": [
+                  -1.88258,
+                  -1.88258
+                ],
+                "tangents": [
+                  0,
+                  0
+                ]
+              },
+              "z": {
+                "times": [
+                  0,
+                  2
+                ],
+                "values": [
+                  67.58,
+                  70.6
+                ],
+                "tangents": [
+                  0,
+                  0
+                ]
+              },
+              "rotationX": {
+                "times": [
+                  0,
+                  2
+                ],
+                "values": [
+                  0,
+                  0
+                ],
+                "tangents": [
+                  0,
+                  0
+                ]
+              },
+              "rotationY": {
+                "times": [
+                  0,
+                  2
+                ],
+                "values": [
+                  -108.86,
+                  -180
+                ],
+                "tangents": [
+                  0,
+                  0
+                ]
+              },
+              "rotationZ": {
+                "times": [
+                  0,
+                  2
+                ],
+                "values": [
+                  0,
+                  0
+                ],
+                "tangents": [
+                  0,
+                  0
+                ]
+              }
+            }
+          },
+          "endMotion": {
+            "bank": "heartbeats",
+            "name": "TKA_KERI_SEIKOU_1QTE",
+            "loop": false,
+            "elapsedSeconds": 0
+          }
+        }
+      ],
+      "durationSeconds": 2
+    },
+    {
+      "id": "s1.heartbeats.alley.defense.second-prompt",
+      "area": "D000",
+      "worldId": "dobuita",
+      "continuationGroup": "s1.heartbeats.alley.defense",
+      "continuesPrevious": true,
+      "actorDefinitions": [],
+      "camera": {
+        "positionX": -114.75444030761719,
+        "positionY": 1.9238849878311157,
+        "positionZ": 68.40476989746094,
+        "targetX": -120.64001464843751,
+        "targetY": -1.3068560361861545,
+        "targetZ": 70.30879211425787,
+        "roll": 0,
+        "perspective": 45.60366821368092
+      },
+      "provenance": "Authored second-attacker staging: reuses the original paired YQ14 kick motion on Smith, not a recovered second-QTE branch. Transition placement and timing are approximations.",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "pose": {
+            "x": -119.9,
+            "y": -1.88258,
+            "z": 71.8,
+            "rotationX": 0,
+            "rotationY": 0,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "heartbeats",
+            "name": "AKI_KERI_SEIKOU_1QTE",
+            "loop": false,
+            "elapsedSeconds": 0
+          }
+        },
+        {
+          "tag": "TONY",
+          "pose": {
+            "x": -119.9,
+            "y": -1.88258,
+            "z": 69.4,
+            "rotationX": 0,
+            "rotationY": 180,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "heartbeats",
+            "name": "TKA_KERI_SEIKOU_1QTE",
+            "loop": false,
+            "elapsedSeconds": 4.2
+          }
+        },
+        {
+          "tag": "SMTH",
+          "pose": {
+            "x": -119.9,
+            "y": -1.88258,
+            "z": 70.6,
+            "rotationX": 0,
+            "rotationY": -180,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "heartbeats",
+            "name": "TKA_KERI_SEIKOU_1QTE",
+            "loop": false,
+            "elapsedSeconds": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "s1.heartbeats.alley.defense.second-success",
+      "area": "D000",
+      "worldId": "dobuita",
+      "continuationGroup": "s1.heartbeats.alley.defense",
+      "continuesPrevious": true,
+      "actorDefinitions": [],
+      "camera": {
+        "positionX": -114.75444030761719,
+        "positionY": 1.9238849878311157,
+        "positionZ": 68.40476989746094,
+        "targetX": -120.64001464843751,
+        "targetY": -1.3068560361861545,
+        "targetZ": 70.30879211425787,
+        "roll": 0,
+        "perspective": 45.60366821368092
+      },
+      "provenance": "Authored second-attacker staging: reuses the original paired YQ14 kick motion on Smith, not a recovered second-QTE branch. Transition placement and timing are approximations.",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "pose": {
+            "x": -119.9,
+            "y": -1.88258,
+            "z": 71.8,
+            "rotationX": 0,
+            "rotationY": 0,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "heartbeats",
+            "name": "AKI_KERI_SEIKOU_1QTE",
+            "loop": false
+          }
+        },
+        {
+          "tag": "TONY",
+          "pose": {
+            "x": -119.9,
+            "y": -1.88258,
+            "z": 69.4,
+            "rotationX": 0,
+            "rotationY": 180,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "heartbeats",
+            "name": "TKA_KERI_SEIKOU_1QTE",
+            "loop": false,
+            "elapsedSeconds": 4.2
+          }
+        },
+        {
+          "tag": "SMTH",
+          "pose": {
+            "x": -119.9,
+            "y": -1.88258,
+            "z": 70.6,
+            "rotationX": 0,
+            "rotationY": -180,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "heartbeats",
+            "name": "TKA_KERI_SEIKOU_1QTE",
+            "loop": false
+          }
+        }
+      ],
+      "durationSeconds": 4.2
+    },
+    {
+      "id": "s1.heartbeats.alley.defense.second-failure",
+      "area": "D000",
+      "worldId": "dobuita",
+      "continuationGroup": "s1.heartbeats.alley.defense",
+      "continuesPrevious": true,
+      "actorDefinitions": [],
+      "camera": {
+        "positionX": -114.75444030761719,
+        "positionY": 1.9238849878311157,
+        "positionZ": 68.40476989746094,
+        "targetX": -120.64001464843751,
+        "targetY": -1.3068560361861545,
+        "targetZ": 70.30879211425787,
+        "roll": 0,
+        "perspective": 45.60366821368092
+      },
+      "provenance": "Authored second-attacker staging: reuses the original paired YQ14 kick motion on Smith, not a recovered second-QTE branch. Transition placement and timing are approximations.",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "pose": {
+            "x": -119.9,
+            "y": -1.88258,
+            "z": 71.8,
+            "rotationX": 0,
+            "rotationY": 0,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "heartbeats",
+            "name": "AKI_KERI_SIPPAI_1QTE",
+            "loop": false
+          }
+        },
+        {
+          "tag": "TONY",
+          "pose": {
+            "x": -119.9,
+            "y": -1.88258,
+            "z": 69.4,
+            "rotationX": 0,
+            "rotationY": 180,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "heartbeats",
+            "name": "TKA_KERI_SEIKOU_1QTE",
+            "loop": false,
+            "elapsedSeconds": 4.2
+          }
+        },
+        {
+          "tag": "SMTH",
+          "pose": {
+            "x": -119.9,
+            "y": -1.88258,
+            "z": 70.6,
+            "rotationX": 0,
+            "rotationY": -180,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "heartbeats",
+            "name": "TKA_KERI_SIPPAI_1QTE",
+            "loop": false
+          }
+        }
+      ],
       "durationSeconds": 2.2666666666666666
     }
   ]

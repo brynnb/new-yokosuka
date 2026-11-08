@@ -20,6 +20,22 @@
         "archiveMember": "M_01JIM.MOTN",
         "byteLength": 109660,
         "sha256": "0c8812bb1538dc4a06998b67d9de3acb3cdb5aa0cd7ddcb9d42d1ebf3b99b85a"
+      },
+      {
+        "name": "DR07_001.CHRM",
+        "path": "disc2/SCENE/02/D000/CTERST.PKS",
+        "sourceSha256": "d9b308921d1d3daf06cf52a2cbc0e0c49c3085640c4459ff23238772192e0e76",
+        "archiveMember": "DR07_001.CHRM",
+        "byteLength": 2196,
+        "sha256": "62f621aa82651a1f3da76e33c534cb9bddef952d13c3b0e1c7e3fd33f063ccb0"
+      },
+      {
+        "name": "DR08_001.CHRM",
+        "path": "disc2/SCENE/02/D000/CTERST.PKS",
+        "sourceSha256": "d9b308921d1d3daf06cf52a2cbc0e0c49c3085640c4459ff23238772192e0e76",
+        "archiveMember": "DR08_001.CHRM",
+        "byteLength": 4044,
+        "sha256": "ae268037c4f90d83f5977f916ed77856cc144bec5d7fbcb65eebad61dc6f70f9"
       }
     ]
   },
@@ -32,14 +48,41 @@
   "audioManifest": "public/audio/world/jimmy-knock/manifest.json",
   "sceneObjects": {
     "DOR1": {
-      "model": "unmapped-original-door-reference",
-      "browserFilename": "CTERMO1-DOR1-reference",
-      "referenceOnly": true
+      "model": "DR07_001",
+      "browserFilename": "DR07_001.CHRM",
+      "assetPath": "play/assets/dobuita/jimmy-knock/DR07_001.CHRM",
+      "textureAssetPath": "play/assets/dobuita/jimmy-knock/door-textures.bin",
+      "sourceBinding": {
+        "actorTag": "DOR1",
+        "image": "DOR1",
+        "model": "DR07_001",
+        "characterRecordOffset": 280,
+        "imagePropertyOffset": 288,
+        "defImageRecordOffset": 240,
+        "presentation": null,
+        "archive": "disc2/SCENE/02/D000/CTERST.PKF",
+        "archiveSha256": "8e591075214c8d9c1ba9bf9a3567ae1d795d941c8a0139ccc256227de04a18d1",
+        "member": "CHARA.CHRT"
+      },
+      "replacesTransitionId": "d000-door-25-to-daza-reverse-matched"
     },
     "DOR2": {
-      "model": "unmapped-original-door-reference",
-      "browserFilename": "CTERMO1-DOR2-reference",
-      "referenceOnly": true
+      "model": "DR08_001",
+      "browserFilename": "DR08_001.CHRM",
+      "assetPath": "play/assets/dobuita/jimmy-knock/DR08_001.CHRM",
+      "textureAssetPath": "play/assets/dobuita/jimmy-knock/door-textures.bin",
+      "sourceBinding": {
+        "actorTag": "DOR2",
+        "image": "DOR2",
+        "model": "DR08_001",
+        "characterRecordOffset": 376,
+        "imagePropertyOffset": 384,
+        "defImageRecordOffset": 336,
+        "presentation": null,
+        "archive": "disc2/SCENE/02/D000/CTERST.PKF",
+        "archiveSha256": "8e591075214c8d9c1ba9bf9a3567ae1d795d941c8a0139ccc256227de04a18d1",
+        "member": "CHARA.CHRT"
+      }
     }
   },
   "packageActors": {
@@ -77,6 +120,21 @@
       "path": "play/assets/dobuita/jimmy-knock/SEQDATA3.AUTH",
       "byteLength": 8948,
       "sha256": "0fcf0f89116fea159cf2617767112a1a13e909ac71f01f3879fb95700c54e43f"
+    },
+    {
+      "path": "play/assets/dobuita/jimmy-knock/DR07_001.CHRM",
+      "byteLength": 2196,
+      "sha256": "62f621aa82651a1f3da76e33c534cb9bddef952d13c3b0e1c7e3fd33f063ccb0"
+    },
+    {
+      "path": "play/assets/dobuita/jimmy-knock/DR08_001.CHRM",
+      "byteLength": 4044,
+      "sha256": "ae268037c4f90d83f5977f916ed77856cc144bec5d7fbcb65eebad61dc6f70f9"
+    },
+    {
+      "path": "play/assets/dobuita/jimmy-knock/door-textures.bin",
+      "byteLength": 315088,
+      "sha256": "d0383d01b8ce47ae31fa94b2e4745660e8dee9c5c129270f2b6f6e007005a018"
     }
   ],
   "activities": [

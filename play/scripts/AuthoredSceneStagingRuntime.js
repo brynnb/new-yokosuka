@@ -5,6 +5,7 @@ import { updateNativeCharacterSecondaryMotion } from "../characters/NativeCharac
 import {applyStoryObjectTransforms} from "./StoryObjectPresentation.js";
 import {evaluateAuthActor} from "../../src/AuthMovement.js";
 import {evaluateAuthCamera} from "../../src/AuthCamera.js";
+import {acquireResidentStageIsolation} from "../events/ResidentStageIsolation.js";
 
 const POSE_FIELDS=["x","y","z","rotationX","rotationY","rotationZ"];
 const CAMERA_FIELDS=["positionX","positionY","positionZ","targetX","targetY","targetZ","roll","perspective"];
@@ -21,7 +22,7 @@ function validateTrack(track,fields,duration,label){
 }
 
 export class AuthoredSceneStagingRuntime {
-  constructor({ actors, camera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, createSceneObjects, currentMeshes }) {
+  constructor({ actors, camera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, createSceneObjects, createActorSet, currentMeshes, acquireEnvironmentIsolation, acquireActorIsolation }) {
     this.actors = actors;
     this.camera = camera;
     this.motionRuntime = motionRuntime;
@@ -29,7 +30,10 @@ export class AuthoredSceneStagingRuntime {
     this.restorePlayerState = restorePlayerState;
     this.createAttachedObjects = createAttachedObjects;
     this.createSceneObjects = createSceneObjects;
+    this.createActorSet = createActorSet;
     this.currentMeshes = currentMeshes;
+    this.acquireEnvironmentIsolation = acquireEnvironmentIsolation;
+    this.acquireActorIsolation = acquireActorIsolation;
     this.active = null;
   }
 
@@ -55,6 +59,7 @@ export class AuthoredSceneStagingRuntime {
     if (scene.waitForMotions != null && typeof scene.waitForMotions !== "boolean") {
       throw new Error(`Invalid motion timing option ${scene.id}`);
     }
+    if(scene.isolateResidentWorld!=null&&typeof scene.isolateResidentWorld!=="boolean")throw Error(`Invalid stage isolation ${scene.id}`);
     if (scene.waitForMotions && (scene.durationSeconds != null || scene.actors.some(actor => actor.motion.loop !== false))) {
       throw new Error(`Timed scene requires non-looping motions: ${scene.id}`);
     }
@@ -77,15 +82,25 @@ export class AuthoredSceneStagingRuntime {
     if(continuing&&(!this.active||this.active.transaction!==transaction||!scene.continuationGroup
       ||scene.continuationGroup!==this.active.scene.continuationGroup
       ||JSON.stringify(scene.actors.map(a=>a.tag))!==JSON.stringify(this.active.scene.actors.map(a=>a.tag))
+      ||JSON.stringify(scene.packageActors)!==JSON.stringify(this.active.scene.packageActors)
       ||JSON.stringify(scene.sceneObjects)!==JSON.stringify(this.active.scene.sceneObjects)
+      ||Boolean(scene.isolateResidentWorld)!==Boolean(this.active.scene.isolateResidentWorld)
       ||JSON.stringify(Object.keys(scene.sceneObjectTracks||{}))!==JSON.stringify(Object.keys(this.active.scene.sceneObjectTracks||{}))
       ||scene.attachedObjects||scene.objectTransforms||this.active.objects||this.active.restoreObjects))return false;
-    const owner = continuing?this.active:{ transaction, scene, controller: new AbortController(), elapsed: 0,
+    const owner = continuing?this.active:{ transaction, scene, controller: new AbortController(), elapsed: 0, actors:this.actors,
       actorsBegun: false, cameraBegun: false, snapshot: this.capturePlayerState() };
     this.active = owner;
     const { signal } = owner.controller;
     try {
-      if(!continuing)await this.actors.prepare(scene.actors.map(actor => actor.tag), { signal });
+      if(!continuing&&scene.packageActors){
+        if(!this.createActorSet)throw Error(`No package actor loader for ${scene.id}`);
+        owner.actorSet=this.createActorSet(scene.packageActors,signal);
+        owner.loadingActorSet=true;
+        try{await owner.actorSet.load();}finally{owner.loadingActorSet=false;}
+        signal.throwIfAborted();
+        owner.actors=owner.actorSet.actors;
+      }
+      if(!continuing)await owner.actors.prepare(scene.actors.map(actor => actor.tag), { signal });
       signal.throwIfAborted();
       await this.motionRuntime.loadNamedSelections(scene.actors.flatMap(actor => [actor.motion,...(actor.endMotion?[actor.endMotion]:[])]));
       signal.throwIfAborted();
@@ -109,29 +124,35 @@ export class AuthoredSceneStagingRuntime {
       }
       if(scene.attachedObjects){
         if(!this.createAttachedObjects)throw new Error(`No authored prop loader for ${scene.id}`);
-        owner.objects=this.createAttachedObjects(scene.attachedObjects,tag=>this.actors.activeActor(tag),signal);
+        owner.objects=this.createAttachedObjects(scene.attachedObjects,tag=>owner.actors.activeActor(tag),signal);
         owner.loadingProps=true;
         try{await owner.objects.load([]);}finally{owner.loadingProps=false;}
         signal.throwIfAborted();
       }
       if (this.active !== owner) return false;
+      if(!continuing&&scene.isolateResidentWorld){
+        if(!this.currentMeshes||!this.acquireEnvironmentIsolation||!this.acquireActorIsolation)throw Error(`No stage isolation provider for ${scene.id}`);
+        owner.releaseEnvironment=this.acquireEnvironmentIsolation();
+        owner.releaseActors=this.acquireActorIsolation(owner,[...scene.actors.map(actor=>actor.tag),...Object.keys(scene.packageActors||{})]);
+        owner.residentIsolation=acquireResidentStageIsolation(this.currentMeshes());
+      }
       if (scene.objectTransforms) {
         if (!this.currentMeshes) throw Error(`No world object provider for ${scene.id}`);
         owner.restoreObjects = applyStoryObjectTransforms(this.currentMeshes(), scene.objectTransforms);
       }
       if(!continuing){
-        this.actors.begin(owner, scene.actors.map(actor => actor.tag));
+        owner.actors.begin(owner, scene.actors.map(actor => actor.tag));
         owner.actorsBegun = true;
         this.camera.begin(owner);
         owner.cameraBegun = true;
       }
       for (const actor of scene.actors) {
-        if (actor.pose && !this.actors.applyTransform(owner, actor.tag, actor.pose)) throw new Error(`Cannot stage actor ${actor.tag}`);
+        if (actor.pose && !owner.actors.applyTransform(owner, actor.tag, actor.pose)) throw new Error(`Cannot stage actor ${actor.tag}`);
         // Borrow out-of-shot residents too: hiding an owned root suppresses
         // their ambient copy without moving it away or leaving a global flag.
         // A retained scene lease may bring the next attacker into view. Only
         // explicit visibility cues override the actor's captured state.
-        if(actor.presented!=null)this.actors.activeActor(actor.tag).root.setEnabled(actor.presented);
+        if(actor.presented!=null)owner.actors.activeActor(actor.tag).root.setEnabled(actor.presented);
       }
       owner.objects?.beginActivity({activityId:scene.id,actors:scene.actors.map(a=>a.tag)});
       if (!this.update(transaction, 0)) throw new Error(`Cannot present scene ${scene.id}`);
@@ -139,7 +160,10 @@ export class AuthoredSceneStagingRuntime {
       return true;
     } catch (error) {
       if (this.active === owner) this.release(transaction);
-      else if(owner.clearLateProps){owner.objects?.clear();owner.sceneObjects?.clear();} // Release a late loader, never a newer scene.
+      else {
+        if(owner.clearLateProps){owner.objects?.clear();owner.sceneObjects?.clear();}
+        if(owner.clearLateActorSet)owner.actorSet?.clear();
+      } // Release a late loader, never a newer scene.
       throw error;
     }
   }
@@ -149,8 +173,8 @@ export class AuthoredSceneStagingRuntime {
     if (!owner || owner.transaction !== transaction || !owner.actorsBegun) return true;
     owner.elapsed += Math.max(0, deltaSeconds);
     for (const actor of owner.scene.actors) {
-      const model = this.actors.activeActor(actor.tag)?.model;
-      if(actor.movement&&!this.actors.applyTransform(owner,actor.tag,evaluateAuthActor(actor.movement,owner.elapsed)))return false;
+      const model = owner.actors.activeActor(actor.tag)?.model;
+      if(actor.movement&&!owner.actors.applyTransform(owner,actor.tag,evaluateAuthActor(actor.movement,owner.elapsed)))return false;
       const ended=actor.endMotion&&owner.elapsed>=owner.durationSeconds;
       if (!this.motionRuntime.applyNamed(model, ended?actor.endMotion:actor.motion, ended?owner.elapsed-owner.durationSeconds:owner.elapsed)) return false;
       // Gameplay skips its post-pose pass while a story presentation owns the
@@ -171,6 +195,7 @@ export class AuthoredSceneStagingRuntime {
     if (!owner || owner.transaction !== transaction) return false;
     this.active = null;
     owner.clearLateProps=owner.loadingProps===true;
+    owner.clearLateActorSet=owner.loadingActorSet===true;
     owner.controller.abort(new DOMException("Story scene released", "AbortError"));
     owner.reject?.(owner.controller.signal.reason);
     // Attempt every cleanup even when one adapter fails. The controller will
@@ -180,8 +205,12 @@ export class AuthoredSceneStagingRuntime {
       [!!owner.restoreObjects, () => owner.restoreObjects()],
       [!!owner.objects,()=>owner.objects.clear()],
       [!!owner.sceneObjects,()=>owner.sceneObjects.clear()],
+      [!!owner.residentIsolation,()=>owner.residentIsolation.restore()],
       [owner.cameraBegun, () => this.camera.end(owner)],
-      [owner.actorsBegun, () => this.actors.end(owner, "stopped")],
+      [owner.actorsBegun, () => owner.actors.end(owner, "stopped")],
+      [!!owner.releaseActors,()=>owner.releaseActors()],
+      [!!owner.actorSet, () => owner.actorSet.clear()],
+      [!!owner.releaseEnvironment,()=>owner.releaseEnvironment()],
       [true, () => this.restorePlayerState(owner.snapshot)],
     ]) if (enabled) {
       try { if (cleanup() === false) throw new Error("Story scene cleanup rejected"); }

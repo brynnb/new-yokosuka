@@ -583,6 +583,28 @@ test('opaque textures retain authored vertex opacity without blending opaque str
     } finally { engine.dispose(); }
 });
 
+test("untextured visual geometry requires explicit inclusion without changing map defaults", () => {
+    const engine = new BABYLON.NullEngine();
+    try {
+        const scene = new BABYLON.Scene(engine);
+        const vertices = [[0, 0, 0], [1, 0, 0], [0, 1, 0]]
+            .map(pos => ({pos, norm: [0, 0, 1]}));
+        const polygons = [{texId: 0, hasUV: false, strips: [[0, 1, 2].map(idx => ({
+            idx, u: 0, v: 0, color: [0, 0, 0, 1],
+        }))]}];
+        const ordinary = new Mt5Loader(scene);
+        ordinary.globalVertices = vertices;
+        const skipped = ordinary.createMeshFromModel({polygons});
+        assert.equal(skipped.getChildMeshes().length, 0);
+        const visual = new Mt5Loader(scene, {includeUntexturedGeometry: true});
+        visual.globalVertices = vertices;
+        const retained = visual.createMeshFromModel({polygons});
+        assert.equal(retained.getChildMeshes().length, 1);
+        assert.equal(retained.getChildMeshes()[0].getTotalVertices(), 3);
+        assert.deepEqual(Array.from(retained.getChildMeshes()[0].getVerticesData("color").slice(0, 4)), [0, 0, 0, 1]);
+    } finally { engine.dispose(); }
+});
+
 test("alpha-to-coverage texture decoding keeps naturally filtered alpha", () => {
     const engine = new BABYLON.NullEngine();
     Object.defineProperty(engine, "currentSampleCount", { value: 4 });

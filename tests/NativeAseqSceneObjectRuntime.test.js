@@ -64,6 +64,101 @@ test("explicit transform-only references are owned and disposed without borrowin
   } finally { scene.dispose(); engine.dispose(); }
 });
 
+test("authored object opacity follows accepted frames and restores material state", async () => {
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  try {
+    const root=new BABYLON.TransformNode("card",scene);root._filename="CARD.MT5";
+    const mesh=BABYLON.MeshBuilder.CreatePlane("card-mesh",{},scene);mesh.parent=root;
+    const material=new BABYLON.StandardMaterial("card-material",scene);mesh.material=material;
+    material.transparencyMode=BABYLON.Material.MATERIAL_OPAQUE;material.zOffset=2;mesh.visibility=.8;
+    const runtime=new NativeAseqSceneObjectRuntime({definitions:{CARD:{model:"CARD",browserFilename:root._filename,assetPath:"card"}},
+      instantiateAsset:async()=>[root]});
+    await runtime.load([]);
+    const activity={activityId:"photo",durationFrames:100,authoredSceneObjectOpacityTracks:[{
+      actorTag:"CARD",evidence:"authored review",depthBias:-1,
+      keyframes:[{frame:0,opacity:1},{frame:20,opacity:1},{frame:40,opacity:0}],
+    }]};
+    for(const reason of ["complete","cancelled"]){
+      runtime.prepareActivity(activity);const owner={};runtime.begin(owner,["CARD"]);
+      assert.equal(runtime.applyAuthoredOpacity(0),true);assert.equal(mesh.visibility,.8);
+      assert.equal(material.transparencyMode,BABYLON.Material.MATERIAL_ALPHABLEND);
+      assert.equal(material.disableDepthWrite,true);assert.equal(material.zOffset,-1);
+      runtime.applyAuthoredOpacity(30);assert.equal(mesh.visibility,.4);
+      runtime.applyAuthoredOpacity(40);assert.equal(mesh.visibility,0);
+      runtime.applyAuthoredOpacity(10);assert.equal(mesh.visibility,.8,"seeking reconstructs state");
+      assert.equal(runtime.end(owner,reason),true);
+      assert.equal(mesh.visibility,.8);assert.equal(material.transparencyMode,BABYLON.Material.MATERIAL_OPAQUE);
+      assert.equal(material.disableDepthWrite,false);assert.equal(material.zOffset,2);
+    }
+    assert.throws(()=>runtime.prepareActivity({...activity,authoredSceneObjectOpacityTracks:[{actorTag:"CARD",evidence:"bad",keyframes:[{frame:0,opacity:1},{frame:0,opacity:0}]}]}),/invalid authored/);
+  } finally {scene.dispose();engine.dispose();}
+});
+
+test("failed opacity acquisition restores earlier material mutations", async () => {
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  try {
+    const first=new BABYLON.TransformNode("first",scene);first._filename="FIRST";
+    const second=new BABYLON.TransformNode("second",scene);second._filename="SECOND";
+    const mesh=BABYLON.MeshBuilder.CreatePlane("card",{},scene);mesh.parent=first;
+    mesh.material=new BABYLON.StandardMaterial("material",scene);
+    mesh.material.transparencyMode=BABYLON.Material.MATERIAL_OPAQUE;
+    const runtime=new NativeAseqSceneObjectRuntime({definitions:{
+      ONE_:{model:"FIRST",browserFilename:"FIRST",assetPath:"first"},
+      TWO_:{model:"SECOND",browserFilename:"SECOND",assetPath:"second"},
+    },instantiateAsset:async definition=>[definition.actorTag==="ONE_"?first:second]});
+    await runtime.load([]);
+    const keyframes=[{frame:0,opacity:1},{frame:10,opacity:0}];
+    runtime.prepareActivity({activityId:"test",durationFrames:10,authoredSceneObjectOpacityTracks:[
+      {actorTag:"ONE_",evidence:"review",keyframes},{actorTag:"TWO_",evidence:"review",keyframes},
+    ]});
+    assert.throws(()=>runtime.begin({},["ONE_","TWO_"]),/no renderable material/);
+    assert.equal(runtime.active,null);
+    assert.equal(mesh.material.transparencyMode,BABYLON.Material.MATERIAL_OPAQUE);
+    assert.equal(mesh.material.disableDepthWrite,false);
+  } finally {scene.dispose();engine.dispose();}
+});
+
+test("cinematic replacement hides only the identified world transition and restores it for cancellation and replay", async t => {
+  const engine = new BABYLON.NullEngine(), scene = new BABYLON.Scene(engine);
+  t.after(() => { scene.dispose(); engine.dispose(); });
+  const root = (name, transition) => {
+    const node = new BABYLON.TransformNode(name, scene);
+    node.metadata = { interactiveMapTransition: { transition: { id: transition } } };
+    return node;
+  };
+  const selected = root("selected", "asia"), other = root("other", "another-door");
+  const runtime = new NativeAseqSceneObjectRuntime({ definitions: {
+    DOOR: {model:"door", browserFilename:"DOOR.CHRM", assetPath:"door", replacesTransitionId:"asia"},
+  }, instantiateAsset: async definition => {
+    const node = new BABYLON.TransformNode("cinematic", scene);
+    node._filename = definition.browserFilename;
+    return [node];
+  }});
+  await runtime.load([selected, other]);
+  assert.equal(selected.isEnabled(), false);
+  assert.equal(other.isEnabled(), true);
+  for (const reason of ["cancelled", "complete"]) {
+    const owner = {};
+    runtime.begin(owner, ["DOOR"]);
+    runtime.activate(owner, "DOOR");
+    runtime.end(owner, reason);
+    runtime.releaseStandaloneObjects();
+    assert.equal(selected.isEnabled(), true);
+    assert.equal(other.isEnabled(), true);
+    runtime.prepareActivity({activityId:"retry"});
+    assert.equal(selected.isEnabled(), false);
+  }
+  runtime.clear();
+  assert.equal(selected.isEnabled(), true);
+  selected.setEnabled(false);
+  await runtime.load([selected, other]);
+  runtime.releaseStandaloneObjects();
+  assert.equal(selected.isEnabled(), false, "a previously hidden world object stays hidden");
+  runtime.clear();
+  await assert.rejects(() => runtime.load([other]), /expected one unleased transition/);
+  assert.equal(other.isEnabled(), true);
+});
+
 test("callback effect visibility survives movement and resets with its activity lease", async () => {
   const engine = new BABYLON.NullEngine();
   const scene = new BABYLON.Scene(engine);

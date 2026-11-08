@@ -1,0 +1,129 @@
+{
+  "schema": "new-yokosuka-authored-story-scenes-v1",
+  "generatedBy": "tools/scripting/build_kitten_choice.mjs",
+  "motionBanks": {
+    "kittenChoice": "play/assets/yamanose/cata1/M_01CAT.MOTN"
+  },
+  "scenes": [
+    {
+      "id": "s1.ju00.first-kitten.choice",
+      "area": "JU00",
+      "worldId": "yamanose",
+      "actorDefinitions": [],
+      "provenance": "CATA1 SEQDATA0 final actor roots and last applied MOTN samples. The source camera aims lower to accommodate the authored choice panel; this held shot is a presentation adaptation.",
+      "actors": [
+        {
+          "tag": "AKIR",
+          "pose": {
+            "x": -35.987083435058594,
+            "y": 2.5999999046325684,
+            "z": 42.57646942138672,
+            "rotationX": 0,
+            "rotationY": -28.0749454498291,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "kittenChoice",
+            "name": "AKI_AT1_MEGUMI_NEKOTAWAMURE_0100",
+            "loop": false,
+            "elapsedSeconds": 83.93333333333334
+          }
+        },
+        {
+          "tag": "MEGM",
+          "pose": {
+            "x": -34.380374908447266,
+            "y": 2.5999999046325684,
+            "z": 39.79695129394531,
+            "rotationX": 0,
+            "rotationY": -35,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "kittenChoice",
+            "name": "KOD_MEG_AT1_MEGUMI_NEKOTAWAMURE_0100",
+            "loop": false,
+            "elapsedSeconds": 98.7
+          }
+        },
+        {
+          "tag": "CATM",
+          "pose": {
+            "x": -34.46804428100586,
+            "y": 2.602550983428955,
+            "z": 39.10047149658203,
+            "rotationX": 0,
+            "rotationY": 78.49520874023438,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "kittenChoice",
+            "name": "KCT_YOKOTAWARU_LP",
+            "loop": false,
+            "elapsedSeconds": 1.9333333333333333
+          }
+        }
+      ],
+      "packageActors": {
+        "CATM": {
+          "label": "Yamanose shrine kitten",
+          "modelCode": "KC1_M",
+          "browserFilename": "S3_JU00_KC1_M.MT5",
+          "assetFormat": "MT5",
+          "characterScale": 1
+        }
+      },
+      "sceneObjects": {
+        "NBOX": {
+          "model": "DANM400G",
+          "image": "DANM400G",
+          "browserFilename": "S1_JU00_DANM400G.MT5",
+          "assetPath": "play/assets/yamanose/cata1/DANM400G.CHRM",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "nativeBinding": {
+            "archive": "CATA1.PKF",
+            "archiveMember": "CHARA.CHRT",
+            "characterRecordOffset": 112,
+            "imagePropertyOffset": 140,
+            "defImageRecordOffset": 8
+          },
+          "initialPresentation": {
+            "position": [
+              -34.49094009399414,
+              2.599384069442749,
+              39.187889099121094
+            ],
+            "rotationDegrees": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      },
+      "objectTransforms": [
+        {
+          "object": "BOX1",
+          "visible": false
+        }
+      ],
+      "camera": {
+        "positionX": -36.02495193481445,
+        "positionY": 3.9964070320129395,
+        "positionZ": 40.849971771240234,
+        "targetX": -34.60696792602539,
+        "targetY": 3.1527549266815185,
+        "targetZ": 39.52826690673828,
+        "roll": 0,
+        "perspective": 51.77409744262695
+      }
+    }
+  ]
+}

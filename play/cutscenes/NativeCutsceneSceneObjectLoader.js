@@ -13,7 +13,7 @@ export function createNativeCutsceneSceneObjectLoader({ scene, loadAsset } = {})
   if (!scene || typeof loadAsset !== "function") {
     throw new TypeError("cutscene scene-object loader dependencies are incomplete");
   }
-  return async ({ actorTag, referenceOnly, assetPath, browserFilename, textureAssetPath }) => {
+  return async ({ actorTag, referenceOnly, assetPath, browserFilename, textureAssetPath, includeUntexturedGeometry }) => {
     // Explicit non-rendered references still need owned transforms for AUTH
     // movement/camera cues. This is an authored choice, never a missing-asset fallback.
     if (referenceOnly) {
@@ -30,7 +30,7 @@ export function createNativeCutsceneSceneObjectLoader({ scene, loadAsset } = {})
       modelBuffer,
       await getTexturePack(browserFilename),
     );
-    const loader = new Mt5Loader(scene);
+    const loader = new Mt5Loader(scene, { includeUntexturedGeometry });
     configureMt5TexturePack(loader, texturePack);
     const roots = await loader.load(modelBuffer, texturePack);
     for (const root of roots) root._filename = browserFilename;

@@ -22,20 +22,20 @@
         "sha256": "c9abbf78736e31efe316ab059bcc7a5c2167cc4f6920533ae30fc03b562184a5"
       },
       {
-        "name": "SHAS503G.CHRM",
-        "path": "disc3/SCENE/03/MFSY/NZMPHOTO.PKS",
-        "sourceSha256": "c1b2ba44ca7111fb9e85237a775b253c0bcef99e7a4bbb3ed3c64e00bc46be1e",
-        "archiveMember": "SHAS503G.CHRM",
-        "byteLength": 1476,
-        "sha256": "67d7bc34571c8bd38f9cb8a66b98d56f9b22d5de092367ff344e698a6b5ea4c8"
-      },
-      {
         "name": "SHAS506G.CHRM",
         "path": "disc3/SCENE/03/MFSY/NZMPHOTO.PKS",
         "sourceSha256": "c1b2ba44ca7111fb9e85237a775b253c0bcef99e7a4bbb3ed3c64e00bc46be1e",
         "archiveMember": "SHAS506G.CHRM",
         "byteLength": 1476,
         "sha256": "e43c50e1d315efb98bbb2e27f60633e359fa6997eea9a88a6929b21c1f71f398"
+      },
+      {
+        "name": "SHAS503G.CHRM",
+        "path": "disc3/SCENE/03/MFSY/NZMPHOTO.PKS",
+        "sourceSha256": "c1b2ba44ca7111fb9e85237a775b253c0bcef99e7a4bbb3ed3c64e00bc46be1e",
+        "archiveMember": "SHAS503G.CHRM",
+        "byteLength": 1476,
+        "sha256": "67d7bc34571c8bd38f9cb8a66b98d56f9b22d5de092367ff344e698a6b5ea4c8"
       },
       {
         "name": "BLAS500G.CHRM",
@@ -64,9 +64,9 @@
   "audioManifest": "public/audio/world/nozomi-photo-intro/manifest.json",
   "sceneObjects": {
     "PHT1": {
-      "model": "SHAS503G",
-      "browserFilename": "SHAS503G.CHRM",
-      "assetPath": "play/assets/harbor/nozomi-photo-intro/SHAS503G.CHRM",
+      "model": "SHAS506G",
+      "browserFilename": "SHAS506G.CHRM",
+      "assetPath": "play/assets/harbor/nozomi-photo-intro/SHAS506G.CHRM",
       "textureAssetPath": "play/assets/harbor/nozomi-photo-intro/textures.bin",
       "sourceBinding": {
         "kind": "authored-package-prop-association",
@@ -74,9 +74,9 @@
       }
     },
     "PHT2": {
-      "model": "SHAS506G",
-      "browserFilename": "SHAS506G.CHRM",
-      "assetPath": "play/assets/harbor/nozomi-photo-intro/SHAS506G.CHRM",
+      "model": "SHAS503G",
+      "browserFilename": "SHAS503G.CHRM",
+      "assetPath": "play/assets/harbor/nozomi-photo-intro/SHAS503G.CHRM",
       "textureAssetPath": "play/assets/harbor/nozomi-photo-intro/textures.bin",
       "sourceBinding": {
         "kind": "authored-package-prop-association",
@@ -88,7 +88,7 @@
       "browserFilename": "BLAS500G.CHRM",
       "assetPath": "play/assets/harbor/nozomi-photo-intro/BLAS500G.CHRM",
       "textureAssetPath": "play/assets/harbor/nozomi-photo-intro/textures.bin",
-      "referenceOnly": true,
+      "includeUntexturedGeometry": true,
       "sourceBinding": {
         "kind": "authored-package-prop-association",
         "evidence": "docs/design/story-harbor-work.md"
@@ -99,7 +99,7 @@
       "browserFilename": "BLAS500G.CHRM",
       "assetPath": "play/assets/harbor/nozomi-photo-intro/BLAS500G.CHRM",
       "textureAssetPath": "play/assets/harbor/nozomi-photo-intro/textures.bin",
-      "referenceOnly": true,
+      "includeUntexturedGeometry": true,
       "sourceBinding": {
         "kind": "authored-package-prop-association",
         "evidence": "docs/design/story-harbor-work.md"
@@ -166,14 +166,14 @@
       "sha256": "88c256121036b9c7cb2fb15743877acc8aedff854a2761aacd8589f589f518b0"
     },
     {
-      "path": "play/assets/harbor/nozomi-photo-intro/SHAS503G.CHRM",
-      "byteLength": 1476,
-      "sha256": "67d7bc34571c8bd38f9cb8a66b98d56f9b22d5de092367ff344e698a6b5ea4c8"
-    },
-    {
       "path": "play/assets/harbor/nozomi-photo-intro/SHAS506G.CHRM",
       "byteLength": 1476,
       "sha256": "e43c50e1d315efb98bbb2e27f60633e359fa6997eea9a88a6929b21c1f71f398"
+    },
+    {
+      "path": "play/assets/harbor/nozomi-photo-intro/SHAS503G.CHRM",
+      "byteLength": 1476,
+      "sha256": "67d7bc34571c8bd38f9cb8a66b98d56f9b22d5de092367ff344e698a6b5ea4c8"
     },
     {
       "path": "play/assets/harbor/nozomi-photo-intro/BLAS500G.CHRM",
@@ -221,6 +221,62 @@
         "TJMA",
         "HRSK",
         "POLA"
+      ],
+      "authoredSceneObjectOpacityTracks": [
+        {
+          "actorTag": "BLC0",
+          "depthBias": -1,
+          "evidence": "docs/design/story-harbor-work.md#third-workday-and-nozomis-photos",
+          "keyframes": [
+            {
+              "frame": 0,
+              "opacity": 0
+            },
+            {
+              "frame": 340,
+              "opacity": 0
+            },
+            {
+              "frame": 341,
+              "opacity": 1
+            },
+            {
+              "frame": 780,
+              "opacity": 1
+            },
+            {
+              "frame": 840,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "actorTag": "BLC1",
+          "depthBias": -1,
+          "evidence": "docs/design/story-harbor-work.md#third-workday-and-nozomis-photos",
+          "keyframes": [
+            {
+              "frame": 0,
+              "opacity": 0
+            },
+            {
+              "frame": 710,
+              "opacity": 0
+            },
+            {
+              "frame": 711,
+              "opacity": 1
+            },
+            {
+              "frame": 840,
+              "opacity": 1
+            },
+            {
+              "frame": 900,
+              "opacity": 0
+            }
+          ]
+        }
       ],
       "motions": [
         {

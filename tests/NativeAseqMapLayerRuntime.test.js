@@ -151,6 +151,52 @@ test("OP00 browser cutaway fails closed when its exact root is missing", () => {
   );
 });
 
+test("prepared geometry masks preserve unrelated batch faces and restore exact indices", () => {
+  const root=fakeRoot("S2_TEST_MAP11.MT5");
+  const mesh={name:"batch",indices:new Uint16Array([0,1,2,3,4,5,6,7,8]),metadata:{staticBatchSources:[
+    {nodeAddress:0x10,firstFace:0,faceCount:1},{nodeAddress:0x20,firstFace:1,faceCount:1},{nodeAddress:0x30,firstFace:2,faceCount:1},
+  ]},getIndices(){return this.indices;},setIndices(value){this.indices=value;},makeGeometryUnique(){this.unique=true;},isDisposed(){return false;}};
+  root.getChildMeshes=()=>[mesh];
+  const runtime=createNativeAseqMapLayerRuntime({geometryMasks:[{browserFilename:root._filename,nodeAddress:0x10},{browserFilename:root._filename,nodeAddress:0x30}]});
+  runtime.load([root]);assert.equal(mesh.unique,true);
+  assert.deepEqual(Array.from(mesh.indices),[0,0,0,3,4,5,6,6,6]);
+  runtime.clear();assert.deepEqual(Array.from(mesh.indices),[0,1,2,3,4,5,6,7,8]);
+});
+
+test("activity-scoped batch masks only affect playback and restore on end and replay", () => {
+  const root=fakeRoot("S2_TEST_MAP11.MT5"),mesh={name:"batch",indices:[0,1,2,3,4,5],metadata:{staticBatchSources:[{nodeAddress:1,firstFace:0,faceCount:1},{nodeAddress:2,firstFace:1,faceCount:1}]},
+    getIndices(){return this.indices;},setIndices(value){this.indices=value;},isDisposed(){return false;}};
+  root.getChildMeshes=()=>[mesh];
+  const runtime=createNativeAseqMapLayerRuntime({geometryMasks:[{browserFilename:root._filename,nodeAddress:1,lifetime:"activity"}]});
+  runtime.load([root]);assert.deepEqual(mesh.indices,[0,1,2,3,4,5]);
+  for(let i=0;i<2;i++){
+    runtime.applyActivity({activityId:"shot",browserMapVisibility:[]});
+    assert.deepEqual(mesh.indices,[0,0,0,3,4,5]);
+    runtime.end();assert.deepEqual(mesh.indices,[0,1,2,3,4,5]);
+  }
+  runtime.clear();
+});
+
+test("activity and world masks sharing a batch restore in ownership order", () => {
+  const root=fakeRoot("S2_TEST_MAP11.MT5"),mesh={name:"batch",indices:[0,1,2,3,4,5],metadata:{staticBatchSources:[{nodeAddress:1,firstFace:0,faceCount:1},{nodeAddress:2,firstFace:1,faceCount:1}]},
+    getIndices(){return this.indices;},setIndices(value){this.indices=value;},isDisposed(){return false;}};
+  root.getChildMeshes=()=>[mesh];
+  const runtime=createNativeAseqMapLayerRuntime({geometryMasks:[{browserFilename:root._filename,nodeAddress:1},{browserFilename:root._filename,nodeAddress:2,lifetime:"activity"}]});
+  runtime.load([root]);assert.deepEqual(mesh.indices,[0,0,0,3,4,5]);
+  runtime.applyActivity({activityId:"shot",browserMapVisibility:[]});assert.deepEqual(mesh.indices,[0,0,0,3,3,3]);
+  runtime.end();assert.deepEqual(mesh.indices,[0,0,0,3,4,5]);
+  runtime.clear();assert.deepEqual(mesh.indices,[0,1,2,3,4,5]);
+});
+
+test("failed prepared mask acquisition restores earlier masked batches", () => {
+  const root=fakeRoot("S2_TEST_MAP11.MT5"),mesh={name:"batch",indices:[0,1,2],metadata:{staticBatchSources:[{nodeAddress:1,firstFace:0,faceCount:1}]},
+    getIndices(){return this.indices;},setIndices(value){this.indices=value;},isDisposed(){return false;}};
+  root.getChildMeshes=()=>[mesh];
+  const runtime=createNativeAseqMapLayerRuntime({geometryMasks:[{browserFilename:root._filename,nodeAddress:1},{browserFilename:root._filename,nodeAddress:2}]});
+  assert.throws(()=>runtime.load([root]),/expected node 0x2; found 0/);
+  assert.deepEqual(mesh.indices,[0,1,2]);assert.equal(runtime.maskedGeometry.length,0);
+});
+
 test("map geometry masks hide one exact node and restore it on clear", () => {
   const geometry = {
     enabled: true,

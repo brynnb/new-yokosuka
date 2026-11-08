@@ -2,11 +2,29 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import test from "node:test";
 import { expandFamilies } from "../tools/reference/story_event_expansions.mjs";
+import { storyEventVerification } from "../tools/reference/story_event_verification.mjs";
 
 test("master inventory and conversation appendix are current and internally linked", () => {
   const result = spawnSync(process.execPath, ["tools/reference/generate_story_event_master.mjs", "--check"],
     {encoding: "utf8"});
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+});
+
+test("Story status distinguishes a binding from bounded verification and scoped blockers", () => {
+  const event={id:"story.example",binding:"route:example"};
+  assert.deepEqual(storyEventVerification(event),{implementation:"Binding recorded; not classified",
+    presentation:"Not classified",progression:"Not classified",evidence:"",blocker:""});
+  assert.equal(storyEventVerification({id:"missing"}).implementation,"Unmapped");
+  const review=storyEventVerification(event,{implementation:"implemented",presentation:"rendered-partial",
+    progression:"unverified",evidence:"sampled scene",blocker:"audio source unavailable"});
+  assert.equal(review.implementation,"Implemented");assert.equal(review.presentation,"Rendered (partial)");
+  assert.equal(review.progression,"Unverified");assert.equal(review.blocker,"audio source unavailable");
+  assert.equal(storyEventVerification(event,{presentation:"blocked",blocker:"missing source"}).presentation,"Blocked");
+  assert.throws(()=>storyEventVerification(event,{presentation:"rendered-partial"}),/binding and evidence/);
+  assert.throws(()=>storyEventVerification({id:"missing"},{implementation:"implemented",evidence:"note"}),/binding and evidence/);
+  assert.throws(()=>storyEventVerification(event,{progression:"blocked"}),/scoped reason/);
+  assert.throws(()=>storyEventVerification(event,{presentation:"complete"}),/Invalid verification/);
+  assert.throws(()=>storyEventVerification(event,{unexpected:true}),/Unknown verification field/);
 });
 
 function topicFixture() {

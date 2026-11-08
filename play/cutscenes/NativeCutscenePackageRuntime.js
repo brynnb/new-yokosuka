@@ -169,7 +169,7 @@ export class NativeCutscenePackageRuntime {
           }),
         })
       : null;
-    this.mapLayers = hasDefinitions(environment.mapLayers) || environment.isolatedStage
+    this.mapLayers = hasDefinitions(environment.mapLayers) || hasDefinitions(environment.mapGeometryMasks) || environment.isolatedStage
       ? createNativeAseqMapLayerRuntime({
           definitions: environment.mapLayers,
           geometryMasks: environment.mapGeometryMasks,
@@ -341,10 +341,12 @@ export class NativeCutscenePackageRuntime {
         for (const actorTag of activity.nativeInitialHiddenObjects || []) {
           this.sceneObjects?.applyStateCue({ actorTag, presented: false });
         }
-        return this.#applyActivityProgramCues(activity, "frames", 0);
+        return (this.sceneObjects?.applyAuthoredOpacity?.(0) ?? true)
+          && this.#applyActivityProgramCues(activity, "frames", 0);
       },
       onActivityAdvanced: (activity, frame) => (
-        this.#applyActivityProgramCues(activity, "frames", frame)
+        (this.sceneObjects?.applyAuthoredOpacity?.(frame) ?? true)
+          && this.#applyActivityProgramCues(activity, "frames", frame)
       ),
       onActivityStopped: (activity, reason) => (
         reason === "complete"
@@ -860,6 +862,8 @@ export class NativeCutscenePackageRuntime {
         // rollback boundary for a damaged presentation lease.
       }
     }
+    // A retained Story soundtrack cannot outlive the world that owns it.
+    this.music?.clear?.();
     // Release borrowed prop presentation before the scene owner disposes roots.
     this.telephone?.cancel(this);
     this.telephoneReceiver?.restoreActive();

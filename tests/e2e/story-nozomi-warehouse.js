@@ -16,7 +16,7 @@ export async function verifyNozomiWarehouse(page,testInfo,character,{musicRespon
   };
   const choose=async name=>{await page.getByRole("button",{name,exact:true}).click({timeout:90_000});await errors();};
   const readyFight=async(id,count)=>{
-    await page.waitForFunction(id=>window.storyProbe.combatRuntime?.active?.view.ready&&window.storyProbe.combatRuntime.active.view.id===id||window.storyProbe.sceneErrors.length,id,{timeout:90_000});
+    await page.waitForFunction(id=>window.storyProbe.combatRuntime?.active?.view?.ready&&window.storyProbe.combatRuntime.active.view.id===id||window.storyProbe.sceneErrors.length,id,{timeout:90_000});
     await errors();expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.length)).toBe(count);
   };
   if(!initial.character.storyFlags[flag("nozomi-outside-guards")]){

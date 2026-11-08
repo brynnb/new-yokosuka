@@ -1302,6 +1302,20 @@ test("combat controls keep Ryo facing Chai and prevent fighter overlap", () => {
   assert.ok(Math.abs(runtime.playerTargetYaw() - Math.PI / 2) < 1e-12);
 });
 
+test("idle crowd fighters separate without disturbing action-owned poses", () => {
+  const player = actor(-4, 0), first = actor(1, 0), second = actor(1.01, 0), busy = actor(1.01, 0);
+  const runtime = new CombatEncounterRuntime({
+    input: new Input(), playerActor: player, preservePlacement: true,
+    enemies: [first, second, busy].map((entry, i) => ({ id: `enemy${i}`, actor: entry, ai: { decide: () => ({ kind: "idle" }) } })),
+  });
+  runtime.setActive(true);
+  runtime.enemies[2].combatant.reaction = { kind: "paired", tick: 0, attackerId: "enemy0" };
+  const originalBusy = busy.position();
+  runtime.update(0);
+  assert.ok(Math.hypot(first.x - second.x, first.z - second.z) >= runtime.enemies[0].combatant.radius + runtime.enemies[1].combatant.radius - 1e-12);
+  assert.deepEqual(busy.position(), originalBusy);
+});
+
 test("player commands are discarded until a knockdown recovery completes", () => {
   const input = new Input();
   const runtime = new CombatEncounterRuntime({

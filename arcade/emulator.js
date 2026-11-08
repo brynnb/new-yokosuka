@@ -186,8 +186,10 @@ window.__newYokosukaSetArcadeAudioPreferences = (state = {}) => {
 };
 
 // EmulatorJS 4.2.3 generates retroarch.cfg internally after its GameManager
-// class loads. Disable audio-clock synchronization before that happens so
-// Firefox's autoplay-blocked AudioContext cannot freeze video on frame one.
+// class loads. Use RetroArch's exact-content clock to pace each core at its
+// native rate, independently of the monitor's refresh rate. Audio sync must
+// stay off so Firefox's autoplay-blocked AudioContext cannot freeze frame one;
+// without the content clock, that makes 120/240 Hz displays run games too fast.
 // A later user gesture still resumes the same context and restores sound.
 Object.defineProperty(window, "EJS_GameManager", {
   configurable: true,
@@ -195,14 +197,19 @@ Object.defineProperty(window, "EJS_GameManager", {
     const nativeGetRetroArchCfg = GameManager?.prototype?.getRetroArchCfg;
     if (typeof nativeGetRetroArchCfg === "function") {
       GameManager.prototype.getRetroArchCfg = function getArcadeRetroArchCfg() {
-        const config = nativeGetRetroArchCfg.call(this);
-        if (/(^|\n)audio_sync\s*=/.test(config)) {
-          return config.replace(
-            /(^|\n)audio_sync\s*=.*(?=\n|$)/,
-            "$1audio_sync = false",
-          );
+        let config = nativeGetRetroArchCfg.call(this);
+        if (!config.endsWith("\n")) config += "\n";
+        for (const [key, value] of Object.entries({
+          audio_sync: false,
+          video_vsync: false,
+          vrr_runloop_enable: true,
+        })) {
+          const setting = new RegExp(`^${key}\\s*=.*$`, "gm");
+          config = setting.test(config)
+            ? config.replace(setting, `${key} = ${value}`)
+            : `${config}${key} = ${value}\n`;
         }
-        return `${config}audio_sync = false\n`;
+        return config;
       };
     }
     Object.defineProperty(window, "EJS_GameManager", {
@@ -265,7 +272,10 @@ async function boot() {
   window.EJS_core = config.core || "fbneo";
   window.EJS_gameName = config.gameName;
   window.EJS_gameUrl = romUrl;
-  window.EJS_defaultOptions = config.defaultOptions || {};
+  window.EJS_defaultOptions = {
+    ...config.defaultOptions,
+    vsync: "disabled",
+  };
   window.EJS_pathtodata = "/emulatorjs/data/";
   window.EJS_startOnLoaded = true;
   window.EJS_threads = false;

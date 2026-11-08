@@ -303,7 +303,7 @@ export async function verifyGuiZhangEncounter(page,testInfo,character){
     finally{await page.keyboard.up("KeyW");}
     await noErrors();
   };
-  const combatReady=async()=>{await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:75_000});await noErrors();};
+  const combatReady=async()=>{await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready||window.storyProbe.sceneErrors.length,null,{timeout:75_000});await noErrors();};
   await approach();await page.waitForTimeout(2500);
   await page.screenshot({path:testInfo.outputPath("gui-zhang-original-introduction.png")});
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-gui-introduction"));await idle();

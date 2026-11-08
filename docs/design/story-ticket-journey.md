@@ -541,8 +541,12 @@ Shared native-curve evaluation moves the actors and follow camera. One
 actor/camera lease continues between beats, with ordinary running followed by
 standing at each two-second input window. The corridor, follow camera,
 held input beats and generic biped motion are adaptations; exact original
-obstacles and stunt animations are not claimed. Door references DOR1/DOR2
-remain virtual rather than guessing a moving-world-door binding. `CAR_` now
+obstacles and stunt animations are not claimed. The original `CTERST.PKF`
+`CHARA.CHRT` binds DOR1 to `DR07_001` and DOR2 to `DR08_001`; their exact
+models and texture pack are extracted from `CTERST.PKS`/`CTERST.PKF`. The
+separately placed exploration door at transition `d000-door-25-to-daza-reverse-matched`
+is hidden under a scoped replacement lease and restored when the movie ends or
+is cancelled. `CAR_` now
 resolves to `CARO101G` through the original `CTERBASE.PKF/CHARA.CHRT` record
 (character offset 2068, image offset 2076, definition offset 2028).
 The earlier guessed `C85N305G` truck actually belongs to `CAR4`. Both capture
@@ -586,7 +590,13 @@ cancelled capture, interrogation cancellation/reload and saved harbor-job clue.
 The keyboard test observes the client's current QTE step rather than the
 obsolete server `button` field. Earlier mirror prerequisites on this isolated
 save were seeded; this is not an uninterrupted new-character playthrough.
-The Asia Travel opening still shows a closed resident door in front of Jimmy:
-the missing DOR1/DOR2 association remains a visible defect, not verified fidelity.
-Rendered road captures show Ryo and Jimmy; truck and interrogation scenes were
-inspected. Exhaustive audio/stunt/door fidelity is not claimed.
+On 2026-11-07 a presentation-only GPU run verifies that both source door models
+render and rotate through cancellation/replay and natural completion; the
+exploration door is hidden during playback and restored afterwards. Sampled
+frames show Ryo knocking at the shutter and Jimmy emerging. A separate isolated
+server check seeds the Chai win and earlier clue, then passes actual approach,
+decline, cancellation, failed chase and retry, all thirteen keyboard inputs,
+cancelled capture, office arrival, interrogation, saved notebook and reload.
+The earlier story was not played in this run. Raw door assets are ignored and
+must be published before deployment. Exact hand contact, every camera shot,
+and original chase obstacles remain unverified or approximated.

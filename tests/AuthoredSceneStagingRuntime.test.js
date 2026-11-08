@@ -42,6 +42,8 @@ function harness() {
     motionRuntime: { loadNamedSelections: async () => {}, applyNamed: () => true },
     capturePlayerState: () => ({ position: [1, 2, 3], cameraYaw: 4 }),
     restorePlayerState: snapshot => (calls.push(snapshot), true),
+    acquireEnvironmentIsolation: () => () => calls.push("environment-release"),
+    acquireActorIsolation: (_owner,tags) => (calls.push(["retain",...tags]),() => calls.push("isolation-release")),
   });
   const transaction = { area: "DBHB" };
   const scene = { id: "bar", area: "DBHB", actors: [{ tag: "AKIR", motion: { bank: "free", name: "stand" } }],
@@ -60,12 +62,64 @@ test("standalone tableau props reuse scene-object presentation and dispose on re
   h.runtime.cancel(h.transaction);assert.equal(calls.at(-1),"clear");
 });
 
+test("replacement tableaux isolate resident roots and restore their prior visibility on cancellation",async()=>{
+  const h=harness(),makeRoot=(enabled,metadata={})=>({enabled,metadata,isEnabled(){return this.enabled;},setEnabled(value){this.enabled=value;}});
+  const visible=makeRoot(true),hidden=makeRoot(false),cast=makeRoot(true,{scheduledActorInstanceId:"cast"});
+  h.runtime.currentMeshes=()=>[visible,hidden,cast];h.scene.isolateResidentWorld=true;
+  await h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);
+  assert.equal(visible.enabled,false);assert.equal(hidden.enabled,false);assert.equal(cast.enabled,true);
+  assert.equal(h.runtime.cancel(h.transaction),true);
+  assert.equal(visible.enabled,true);assert.equal(hidden.enabled,false);assert.equal(cast.enabled,true);
+  assert.deepEqual(h.calls.find(c=>Array.isArray(c)),["retain","AKIR"]);
+  assert.ok(h.calls.includes("isolation-release"));assert.ok(h.calls.includes("environment-release"));
+});
+
+test("replacement tableau restores resident roots after camera setup failure",async()=>{
+  const h=harness(),root={enabled:true,isEnabled(){return this.enabled;},setEnabled(value){this.enabled=value;}};
+  h.runtime.currentMeshes=()=>[root];h.scene.isolateResidentWorld=true;
+  h.runtime.camera.apply=()=>false;
+  await assert.rejects(h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction),/Cannot present/);
+  assert.equal(root.enabled,true);assert.equal(h.runtime.active,null);
+  assert.ok(h.calls.includes("isolation-release"));assert.ok(h.calls.includes("environment-release"));
+});
+
+test("failed actor isolation releases the already acquired environment",async()=>{
+  const h=harness();h.runtime.currentMeshes=()=>[];h.scene.isolateResidentWorld=true;
+  h.runtime.acquireActorIsolation=()=>{throw Error("actor isolation failed");};
+  await assert.rejects(h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction),/actor isolation failed/);
+  assert.ok(h.calls.includes("environment-release"));assert.equal(h.runtime.active,null);
+});
+
 test("cancelled standalone loading cannot acquire underneath another tableau",async()=>{
   const h=harness();h.scene.sceneObjects={BIK1:{model:"bike"}};let resolve,clears=0;
   h.runtime.createSceneObjects=()=>({load:()=>new Promise(r=>resolve=r),prepareActivity:()=>assert.fail("cancelled props acquired"),clear:()=>clears++});
   const old=h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);
   await new Promise(r=>setImmediate(r));h.runtime.cancel(h.transaction);
   const scene={...h.scene,id:"new",sceneObjects:undefined},tx={area:h.transaction.area};
+  await h.runtime.play({kind:"scene-staging-start",scene},tx);const owner=h.runtime.active;
+  resolve();await assert.rejects(old,{name:"AbortError"});assert.equal(clears,2);assert.equal(h.runtime.active,owner);
+  h.runtime.cancel(tx);
+});
+
+test("archive-local tableau actors use their own lease and are disposed on release",async()=>{
+  const h=harness(),calls=[];
+  h.scene.packageActors={CATM:{modelCode:"KC1_M"}};
+  h.runtime.createActorSet=definitions=>{
+    assert.equal(definitions,h.scene.packageActors);
+    return {actors:{...h.runtime.actors,begin:()=>(calls.push("begin"),true),end:()=>(calls.push("end"),true)},
+      load:async()=>calls.push("load"),clear:()=>calls.push("clear")};
+  };
+  await h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);
+  assert.deepEqual(calls,["load","begin"]);
+  h.runtime.cancel(h.transaction);assert.deepEqual(calls,["load","begin","end","clear"]);
+});
+
+test("a cancelled archive actor load cannot acquire or clear the next scene",async()=>{
+  const h=harness();h.scene.packageActors={CATM:{modelCode:"KC1_M"}};let resolve,clears=0;
+  h.runtime.createActorSet=()=>({actors:h.runtime.actors,load:()=>new Promise(r=>resolve=r),clear:()=>clears++});
+  const old=h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);
+  await new Promise(r=>setImmediate(r));h.runtime.cancel(h.transaction);
+  const scene={...h.scene,id:"new",packageActors:undefined},tx={area:h.transaction.area};
   await h.runtime.play({kind:"scene-staging-start",scene},tx);const owner=h.runtime.active;
   resolve();await assert.rejects(old,{name:"AbortError"});assert.equal(clears,2);assert.equal(h.runtime.active,owner);
   h.runtime.cancel(tx);

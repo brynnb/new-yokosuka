@@ -59,7 +59,7 @@ export async function verifyHarborBikers(page,testInfo,character){
   }
   if(!(await saved()).character.storyFlags[done]){
     const briefing="The bikers stopped here. Five thugs are blocking the way to Charlie.";
-    const waitFight=async(id,count)=>{await page.waitForFunction(id=>window.storyProbe.combatRuntime?.active?.view.ready&&window.storyProbe.combatRuntime.active.view.id===id||window.storyProbe.sceneErrors.length,id,{timeout:65_000});await noErrors();expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.length)).toBe(count);await check();};
+    const waitFight=async(id,count)=>{await page.waitForFunction(id=>window.storyProbe.combatRuntime?.active?.view?.ready&&window.storyProbe.combatRuntime.active.view.id===id||window.storyProbe.sceneErrors.length,id,{timeout:65_000});await noErrors();expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.length)).toBe(count);await check();};
     const fights=async(captures=false)=>{
       await page.getByText(briefing,{exact:true}).waitFor({timeout:90_000});await page.keyboard.press("Space");await page.getByRole("button",{name:"Face the attackers",exact:true}).click();
       await waitFight("s1.mfsy.biker-thugs",6);if(captures)await page.screenshot({path:testInfo.outputPath("harbor-biker-actual-five-thug-fight.png")});await winHarborFight(page,{attack:"KeyJ"});

@@ -54,6 +54,14 @@ test("outgoing frame fades for one second before destination/loading content app
   assert.equal(f.screen.phase, "loading");
 });
 
+test("a stale Story handoff cannot clear a newer world-transition frame",()=>{
+  const f=fixture(),owner={};f.screen.setPhase("hidden");
+  assert.equal(f.screen.captureFrame(owner),true);assert.equal(f.dom.transitionFrame.hidden,false);
+  f.screen.captureFrame(); // A normal world transition supersedes this frame.
+  assert.equal(f.screen.releaseFrame(owner),false);assert.equal(f.dom.transitionFrame.hidden,false);
+  assert.equal(f.screen.releaseFrame(),true);assert.equal(f.dom.transitionFrame.hidden,true);
+});
+
 test("ready content runs behind the half-second reveal without an artificial minimum load time", async () => {
   const f = fixture();
   const finishing = f.screen.finish();

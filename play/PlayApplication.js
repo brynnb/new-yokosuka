@@ -158,6 +158,7 @@ import {
   createScriptEventAssembly,
 } from "./scripts/ScriptEventAssembly.js";
 import { StoryRegionRuntime } from "./scripts/StoryRegionRuntime.js";
+import { StoryFrameHandoff } from "./scripts/StoryFrameHandoff.js";
 import {StoryObjectPresentation} from "./scripts/StoryObjectPresentation.js";
 import { NativeStoryRuntime } from "./scripts/NativeStoryRuntime.js";
 import {
@@ -806,6 +807,17 @@ function createPlayRuntime() {
   const controlNativeActorLookPoint = createNativeActorLookPointSceneControl({
     getSceneState: () => nativeRoomScriptRuntime.sceneState,
   });
+  const storyFrameHandoff=new StoryFrameHandoff({
+    captureFrame:owner=>loadingScreen.captureFrame(owner),
+    releaseFrame:owner=>loadingScreen.releaseFrame(owner),
+    afterRender:signal=>new Promise((resolve,reject)=>{
+      if(signal?.aborted){reject(signal.reason);return;}
+      let observer;
+      const abort=()=>{scene.onAfterRenderObservable.remove(observer);reject(signal.reason);};
+      observer=scene.onAfterRenderObservable.addOnce(()=>{signal?.removeEventListener("abort",abort);resolve();});
+      signal?.addEventListener("abort",abort,{once:true});
+    }),
+  });
   nativeCutsceneDirector = createNativeCutsceneAssembly({
     acquireEnvironmentIsolation: () => worldEnvironment.acquireIsolatedStage(),
     scene,
@@ -850,6 +862,7 @@ function createPlayRuntime() {
     getPreviewRuntime: () => cutscenePreviewRuntime,
     coverLoading: () => loadingScreen.cover(lifetime.signal),
     finishLoading,
+    storyFrameHandoff,
     transientNotice,
     getWorld: worldId => WORLDS[worldId],
     selectWorld,
@@ -895,6 +908,8 @@ function createPlayRuntime() {
     localDebug: LOCAL_DEBUG,
   });
   const scriptEvents = createScriptEventAssembly({
+    storyFrameHandoff,
+    acquireEnvironmentIsolation: () => worldEnvironment.acquireIsolatedStage(),
     getCharacter: () => accountSession.character,
     menuSounds,
     playerRuntime,

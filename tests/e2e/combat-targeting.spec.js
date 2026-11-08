@@ -298,6 +298,23 @@ test("Combat Practice renders four opponents and switches targets in camera spac
   await page.screenshot({ path: testInfo.outputPath("combat-first-person-target.png") });
   await page.keyboard.press("KeyR");
 
+  // Exercise the real rendered actor adapters with two idle fighters placed
+  // at the same point, before testing paired choreography below.
+  await page.evaluate(() => {
+    const encounter = window.combatProbe.runtime.encounter;
+    for (const entry of encounter.enemies) entry.ai = null;
+    const p = encounter.playerActor.position(), yaw = encounter.playerActor.yaw();
+    for (const entry of encounter.enemies.slice(0, 2)) {
+      entry.actor.setCombatPosition(p.x + Math.sin(yaw) * 2, p.z + Math.cos(yaw) * 2, yaw + Math.PI);
+    }
+  });
+  await expect.poll(() => page.evaluate(() => {
+    const [a, b] = window.combatProbe.runtime.encounter.enemies;
+    const p = a.actor.position(), q = b.actor.position();
+    return Math.hypot(p.x - q.x, p.z - q.z);
+  })).toBeGreaterThan(0.6);
+  await page.screenshot({ path: testInfo.outputPath("combat-idle-opponents-separated.png") });
+
   console.info("Combat browser check: selected throw recipient and animation handoff");
   // Stage a controlled two-recipient range check. Keep real animations and
   // command processing, but prevent AI interruption from making it random.

@@ -105,10 +105,20 @@ constant, previously withheld to avoid publishing a partial frozen lane.
 A hardware-rendered complete/cancel recheck passed with both speaking faces,
 all eleven recordings and the envelope transfer; frame 1000 was visually
 reviewed. This presentation recheck does not supersede the connected payment
-checks above. `dor0` is still a non-rendered reference;
-exact door choreography, the `RefBoard` behavior and full finger/expression
-fidelity are not certified by these checks. Only the envelope's referenced
+checks above. The `RefBoard` behavior and full finger/expression fidelity are
+not certified by these checks. Only the envelope's referenced
 textures are exported (9 KiB), not the full 1.6 MiB shared character pack.
+
+On November 7, the original AUTH `dor0` track was matched by its first-frame
+position to the existing `dor7` bedroom-door placement: both use browser
+coordinates `(-16.302, 0, 1.833)`. This is not the unrelated exploration `dor0`
+entrance door. The normal scene-object lease now borrows the actual bedroom
+door and restores its prior visibility and transform after completion or
+cancellation. Hardware-rendered cancel/replay and full-scene checks show the
+door opening as Ryo emerges and verify restoration. A separate isolated-server
+run reaches the allowance from the hallway, plays the scene naturally, and
+checks one payment, notebook and reload; it completes the opening via API.
+The precise finger/knob contact and native `RefBoard` remain unverified.
 
 The original event occurs after Ryo first leaves his bedroom. Ine-san gives him
 ¥500, explains the daily allowance and directs him to Fuku-san at the dojo.
@@ -278,7 +288,7 @@ does not establish working mouth animation or envelope presentation.
 | Yamanose kitten / first black-car lead | Connected fish run uses an explicit introduction skip; connected tofu run completes the full introduction and branch naturally, saves only the shared clue and reloads without replay. All three clips complete in the separate presentation check, with reviewed hand/food captures. Exact full prop/finger fidelity remains unverified. |
 | Sumiya / Yamagishi → Nozomi → Tom | Connected browser clicks, original voices with changing rendered mouth buffers, saved clues and restored controls verified for all four. Yamagishi/Nozomi use their exact detailed faces; Sumiya/Tom use original embedded mouth targets. Real server/compiler tests cover cancellation/retry, personal eligibility, NPC presence, Yamagishi hours and cross-character isolation. Conversation-specific gestures and original camera timing remain approximations. |
 | Three Blades → Liu family → Liu Senior's sailors lead | Connected browser continuation verified through Ajiichi, daytime referrals, Liu Barber and Liu Senior. The nighttime cook/Yong/Wu referral is now also rendered and connected; all referrals converge on the same Liu clue. |
-| Nighttime sailors → Heartbeats alley | Personal waiting, Saijo's voiced lead and failure/retry/success verified in the browser. Client-timed prompts now stage the original first counter/fall; the second defense and detailed impact audio remain unfinished. |
+| Nighttime sailors → Heartbeats alley | Personal waiting, Saijo's voiced lead and failure/retry/success verified in the browser. Client-timed prompts stage a source-based first counter and an approximate second exchange; original recovery branches and detailed impact audio remain unfinished. |
 | Heartbeats interior → Charlie notebook lead | Connected real-door/browser check verifies voiced lead-in, failed QTE/retry, successful B,A,B,A inputs, clue settlement, restored Ryo/camera/controls and no replay on re-entry. Rendered cast uses held standing poses; attack choreography is not implemented. |
 | Charlie inquiries: Ono → jacket shops; optional Kinuyo → Nagai office → shopkeepers | Seven connected, rendered original-voiced talks and notebook leads verified after the bar-earned checkpoint, including personal daytime waiting, unlocked controls and reload. |
 | Arcade-area ambush → tattoo-parlour lead | Connected rendered introduction/trap, real five-opponent fight, loss/retry, original interrogation and saved notebook verified. Server/compiler/PostgreSQL tests cover calendar/region gates, cancellation, timeout, pre-clue rollback and personal settlement. Combat balance and interrogation staging are adapted. |
@@ -364,8 +374,8 @@ Event ID: `s1.ju00.first-kitten`; official Yarn import: `ju00-first-kitten`.
 | Location / trigger | Approach the Yamanose shrine (`JU00`). The authored volume surrounds the original CATA1 entry position; server-accepted presence supplies the bounds check. |
 | Prerequisites | Personal Story mode, opening and first dojo complete; first kitten encounter not complete. No forced weather, date change or exact-minute gate in this adaptation. |
 | Actors / props | Reuse CATA1's Ryo, Megumi, kitten, box, fish/tofu, motion, attachments and cameras. No new actor or prop renderer. |
-| Sequence / challenge | Play `SEQDATA0.AUTH`, then show a real food choice through Yarn. Dried fish selects `SEQDATA1.AUTH`; tofu selects `SEQDATA2.AUTH`. These are alternative endings, not a three-clip sequence. No QTE or fight. |
-| Timing / audio | Original AUTH cues, `01CAT1` voices and BGM051. Each clip currently acquires/releases its presentation around the choice; seamless original interstitial gestures and music continuity across the choice are not claimed. |
+| Sequence / challenge | Play `SEQDATA0.AUTH`, then hold an adapted final-shot tableau while Yarn shows the food choice. Dried fish selects `SEQDATA1.AUTH`; tofu selects `SEQDATA2.AUTH`. These are alternative endings, not a three-clip sequence. No QTE or fight. |
+| Timing / audio | Original AUTH cues, `01CAT1` voices and BGM051. The Story transaction retains the same BGM051 playback through the food choice and selected ending; the choice tableau is an approximation, not a recovered original interstitial gesture. |
 | Effects | Both branches save `story.s1.first-kitten.completed` and `notebook.s1.black-car`. Only fish saves `notebook.s1.yamagishi-witness`. No currency/item reward, food deduction or guessed native flag. The scene's offered food is not player inventory in this adaptation. |
 | Exit / retry | Stay in Yamanose, restore gameplay camera/avatar/controls. Explicit clip skip advances to the choice or settlement, never chooses food for the player. Cancel/failure commits no partial clue and allows another approach. Completed encounter does not replay. |
 
@@ -416,11 +426,39 @@ hand and late tofu scene. This selector deliberately concatenates both alternate
 endings for inspection; the connected Story test is the branch-isolation proof.
 No additional rendering change was needed for these checks.
 
-The current handoff visibly returns to the gameplay camera for the choice
-before the selected clip starts; seamless interstitial presentation is follow-up
-polish. Sampled hand/food shots are not a frame-by-frame kitten, prop, finger or
-audio-fidelity sign-off. Tests use the isolated server and local assets; these
-events and audio have not been published to production.
+The 2026-11-07 change holds Ryo, Megumi, the kitten and box in a scene-derived
+tableau during the choice instead of leaving the gameplay camera active for the
+whole decision. It samples the original last actor motions and positions; the
+source camera aims lower to fit the choice panel. The shared staging runtime
+borrows the original archive-local kitten model and hides/restores the world
+kitten and box rather than adding persistent NPCs. Separate isolated connected
+tofu and fish runs skip the introduction, exercise real shrine entry and the
+choice, play their endings naturally, verify distinct clues and unchanged yen,
+and reload. The fish run also cancels at the choice and retries without saving.
+Rendered inspection verifies the staged cast and box and restoration of the
+world roots. A follow-up uses the shared transition canvas to retain the last
+rendered film frame until the tableau's first render, with transaction-scoped
+cleanup. The isolated frame probe observed zero uncovered gameplay frames after
+both a skip (six held frames) and a natural completion boundary (four held
+frames). The latter sought through the first 100 seconds and then let the
+ending play normally; that earlier check was not a full real-time playback.
+An unabridged natural run then passed on 2026-11-07: it walked into the shrine
+trigger, played the full introduction without seeking or skipping, held four
+transition frames with none exposing gameplay, and carried the same playing
+BGM051 element through the choice and full tofu ending. It saved the expected
+clues, restored controls and reloaded the saved result.
+Cancelling while the successor's actor load was deliberately delayed released
+the frame and controls, and a late load did not reacquire the scene. A separate
+tofu run passed choice cancellation, retry, settlement and reload. Subsequent
+isolated rendered tofu and fish runs verified the same BGM051 media element
+continued playing across the skipped introduction, the choice and the chosen
+ending; it stopped on cancellation and after settlement. The tofu run also
+retried after cancellation, and both reloaded their distinct saved clues. This
+checks playback continuity, not an auditory comparison with the original.
+Accelerated seeking also produced audio-channel quota warnings, so that earlier
+review is not an audio test.
+Sampled shots are not a frame-by-frame kitten,
+prop, finger or audio-fidelity sign-off. These events have not been deployed.
 
 ## Early black-car investigation
 
@@ -754,9 +792,9 @@ SHA-256 `ff7984a495727a5f9c89eb82cc1fa0e8ca8f08b9510e40abe46d970965d15f6e`).
 attacker falling; the matching `SIPPAI` pair shows the missed defense. The
 prompt holds their source start poses. After input, the scene waits for the
 longest original clip rather than an arbitrary short delay. A successful
-first exchange retains one cast/camera lease through the second prompt;
-failure, cancellation and final settlement release it. Animation alone earns
-no progress.
+first exchange retains one cast/camera lease through repositioning, the second
+prompt and its response; failure, cancellation and final settlement release it.
+Animation alone earns no progress.
 
 Rebuild with `tools/cutscenes/build_yq14_activity_pack.mjs`, then
 `NEW_YOKOSUKA_SERVER_DIR=/path/to/server node tools/scripting/build_heartbeats_alley.mjs`,
@@ -772,7 +810,10 @@ stream (`encodingMarker: 0x00000100`), not a native SH-4 callback. The existing
 container evidence classifies it accordingly and the native IR has zero
 functions. The older speculative bytecode decoder does not yet prove its
 branch/motion selection; completing that decoder is a separate research task,
-not a reason to assign a finisher from its filename alone.
+not a reason to assign a finisher from its filename alone. The second exchange
+instead deliberately reuses the first kick success/failure pair on Smith,
+with authored walk-in and placement. Tony remains down; this is not recovered
+native second-QTE choreography.
 
 On 2026-10-23 an isolated character seeded from previously earned prerequisites
 walked the supported approach, played the introduction, failed the first
@@ -788,11 +829,20 @@ captures prove the first exchange, not exact native choreography. The new bank a
 manifest are registered locally; they still require asset publication before
 deployment.
 
-Current presentation limits: Smith's second defensive action, the original
-between-input failure-recovery branches, detailed impact sounds and gamepad
-button routing remain unfinished. The A prompt currently retains the end of
-the first exchange rather than pretending an unverified finisher is original.
-The indoor B/A/B/A encounter below now consumes the same challenge primitive.
+On 2026-11-07 an isolated connected replay covered the supported approach,
+both wrong-input branches, retry, cancellation during the first exchange and
+success. The completion flag was absent during Smith's response and present
+afterward; money, camera, controls and actor leases were checked. A separate
+rendered replay inspected the walk-in and both Smith reactions over time and
+reloaded the saved character successfully. These checks start from a seeded
+investigation checkpoint, not a complete playthrough, and do not establish
+original second-exchange fidelity.
+
+Current presentation limits: Smith's actual native move and the original
+between-input failure-recovery branches are not reconstructed; the second
+pair repeats the first as an approximation. Detailed impact sounds and gamepad
+button routing remain unfinished. The indoor B/A/B/A encounter below consumes
+the same challenge primitive.
 
 ## Heartbeats interior: the bar encounter and Charlie lead
 
@@ -873,6 +923,12 @@ controls and actor leases and leaves earned flags, inventory and money alone.
 Use an isolated character that has already completed the bar event so the
 review cannot accidentally trigger or settle it.
 
+The named motion pairs have unequal source durations: the Ryo kick is 79
+frames and the matching named opponent clip is 124; the counter throw is 81
+and the opponent's counter climb is 65. Matching names alone do not prove
+simultaneous starts or a complete exchange. Follow-up poses and native state
+transitions must be established before these become gameplay choreography.
+
 Additional source evidence explains why simply assigning these clips is
 insufficient:
 
@@ -898,6 +954,29 @@ The next implementation gate is a reviewed continuous actor/object alignment,
 then connecting that presentation to the existing client-timed challenges.
 Keep native-controller research timeboxed rather than enabling the failed
 diagnostic placement as an approximation.
+
+On 2026-11-07, another isolated rendered review sampled four interpretations of
+the link helper's relative offsets and four positions in the normal room. The
+open floor near native `(3.5, 0, -6.5)` avoids the counter intersection seen in
+the earlier test. It does not establish correct contact or that this helper
+call belongs to the tested QTE: the counter throw leaves its opponent in the
+air at the end of `OTH_TKA_QOK_NORU_CAUNTER_HB_A`, and the table/kick/high-kick
+pairs still need actor alignment and continuous follow-up review. The same
+bank contains `OTH_TKA_QOK_SUBERU_CAUNTER_HB_A`, a candidate continuation,
+but its use, placement and furniture interaction are not established. These
+samples were inspection only; Story remains unchanged. The test restores the
+player and leases and confirms the isolated character's flags, inventory and
+money are unchanged.
+
+A further rendered high-kick review tried the opponent on either side of Ryo,
+at one or 1.5 units, with opposed and matching headings. The two original
+clips were started simultaneously. None of the sampled placements established
+credible contact: the opponent moves before or away from the visible kick, or
+overlaps Ryo. Some movement also leaves the fixed diagnostic camera. Those
+observations are not proof that the original clips are mismatched; their
+relative start timing and original anchors remain unknown. The second set is
+reproducible with `NEW_YOKOSUKA_BAR_HIGHKICK_CONTACT_REVIEW=true` alongside the
+bar motion review; it cannot award progress.
 
 The inquiries below continue this clue. The parking-lot ambush continues their
 evening lead; the same-night tattoo-parlour visit, later Charlie confrontation

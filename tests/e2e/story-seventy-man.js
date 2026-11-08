@@ -13,7 +13,7 @@ export async function verifySeventyManBattle(page,testInfo,character,{musicRespo
     expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;};
   const choose=name=>page.getByRole("button",{name,exact:true}).click({timeout:90_000});
   const reload=async()=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);};
-  const ready=async()=>{await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.id==="s1.mfbt.seventy-man"&&window.storyProbe.combatRuntime.active.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:120_000});await check();};
+  const ready=async()=>{await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.id==="s1.mfbt.seventy-man"&&window.storyProbe.combatRuntime.active.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:120_000});await check();};
   console.info("70-man battle: decline, actual partial fight, cancellation and saved retry");
   await choose("Leave it for now");expect((await check()).character.storyFlags[done]).not.toBe(true);
   await reload();await choose("Fight the Mad Angels");await ready();

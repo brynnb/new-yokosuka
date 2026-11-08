@@ -5,11 +5,21 @@ import {
   interpolateClearColors,
   interpolateLightingPresets,
   validateLightingOverride,
+  weatherSkyBrightness,
 } from "../src/LightingInterpolation.js";
 import {
   clearColorForPreset,
   skyTextureForPreset,
 } from "../src/lighting.js";
+import { DEFAULT_LIGHTING, timeOfDayPresets } from "../src/constants.js";
+
+test("Story weather sky follows the existing light curve without changing other skies", () => {
+  assert.equal(weatherSkyBrightness(DEFAULT_LIGHTING, true), 1);
+  assert.equal(weatherSkyBrightness(timeOfDayPresets[3].lighting, true), 0.2 / 1.5);
+  assert.equal(weatherSkyBrightness(timeOfDayPresets[3].lighting, false), 1);
+  const halfway = interpolateLightingPresets(DEFAULT_LIGHTING, timeOfDayPresets[1].lighting, .5);
+  assert.equal(weatherSkyBrightness(halfway, true), halfway.skyIntensity / 1.5);
+});
 
 test("shot lighting accepts only finite shared preset fields and owns its colors", () => {
   const input = { hemiIntensity: 0.45, hemiDiffuse: [0.4, 0.47, 0.7], dirDirection: [-1, -2, -1] };

@@ -23,6 +23,7 @@ test("Story uses its calendar's native sky/weather and continues past the Free r
   at(3, 17, 59); assert.equal(clock.storyEnvironment(world).sky.index, 2);
   at(3, 18); assert.equal(clock.storyEnvironment(world).sky.index, 3);
   const evening = clock.lightingState(world).blend;
+  assert.equal(evening.skyWeatherTexture, false);
   assert.deepEqual(evening.lightingOverride.dirDiffuse.map(n => Math.round(n * 100)), [93, 77, 75]);
   at(3, 23); assert.equal(clock.lightingState(world).blend.presetIndex, 3);
   assert.equal(clock.lightingState(world).date.getUTCHours(), 23);
@@ -32,6 +33,9 @@ test("Story uses its calendar's native sky/weather and continues past the Free r
   at(4, 7, 30); assert.equal(clock.storyEnvironment(world).sky.index, 1);
   at(7, 18); assert.equal(clock.environmentState(world).weather, "rain");
   assert.equal(clock.storyEnvironment(world).sky.index, 4);
+  assert.equal(clock.lightingState(world).blend.skyWeatherTexture, true);
+  at(29, 19); assert.equal(clock.storyEnvironment(world).sky.index, 5);
+  assert.equal(clock.lightingState(world).blend.skyWeatherTexture, true);
   at(11, 18); assert.equal(clock.environmentState(world).weather, "snow");
   assert.equal(clock.environmentState({ interior: true }).precipitation, "clear");
   assert.equal(clock.storyEnvironment({ fixedWeather: "clear" }), null);

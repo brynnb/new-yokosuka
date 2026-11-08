@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { randomUUID } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import {verifyOldDistrictEntry,verifyOldDistrictStealth,verifyFirstChenMeeting} from "./story-harbor.js";
 import {verifyFamilyMirrorLead,verifyBunkadoHandguard,verifyGuiZhangEncounter,verifyHandguardFamily,verifyDojoItems,verifyDojoSwitches,verifyBasementTravel} from "./story-mirror-search.js";
 import {verifyBasementMirrorSearch} from "./story-basement.js";
@@ -7,12 +8,13 @@ import {verifyMirrorReturn} from "./story-mirror-return.js";
 import {verifyHomeTicketPreparation,verifyAgencyQuotesAndFunds,verifyBoatTicketJourney,verifyTicketActorReplacement} from "./story-home-ticket.js";
 import {verifyJimmyMorningCall,verifyChaiArcade} from "./story-arcade-ticket.js";
 import {verifyJimmyChase} from "./story-jimmy-chase.js";
-import {verifyHarborHiring} from "./story-harbor-hiring.js";
+import {verifyHarborHiring,verifyGoroLeadNatural} from "./story-harbor-hiring.js";
 import {verifyForkliftTraining} from "./story-forklift-training.js";
 import {verifyChickenRace} from "./story-chicken-race.js";
 import {verifyPersonalCalendar} from "./story-calendar.js";
-import {verifyMorningRace,verifyMorningRaceSaved} from "./story-morning-race.js";
+import {verifyMorningRace,verifyMorningRaceSaved,verifyMorningRaceFromEvening} from "./story-morning-race.js";
 import {verifyMorningCargo,verifyMarkLunch,verifyFirstAfternoon} from "./story-workday-one.js";
+import {reviewSalaryPresentation} from "./story-salary-review.js";
 import {verifyWorkdayNight,verifySecondWorkday,verifyMarkAfterWork} from "./story-workday-two.js";
 import {verifyThirdWorkday} from "./story-workday-three.js";
 import {verifyHarborBikers} from "./story-harbor-bikers.js";
@@ -29,20 +31,22 @@ import {verifyFamilyDeparture} from "./story-family-departure.js";
 import {verifySwallowFlip,verifySwallowPresentation,verifyFinalChai,verifyFinalChaiPresentation,verifyIntroductionLetter,verifyEarnedIntroductionLetter,verifyNozomiAmulet,verifyShipDeparture} from "./story-final-departure.js";
 import {useStoryInspectable} from "./story-object-input.js";
 import {verifySavedScrollLearning} from "./story-move-learning.js";
-import {placeAtHeartbeatsApproach,reviewHeartbeatsPresentation,inspectHeartbeatsMotions,inspectHeartbeatsBarMotions} from "./story-heartbeats-presentation.js";
+import {placeAtHeartbeatsApproach,reviewHeartbeatsPresentation,inspectHeartbeatsMotions,inspectHeartbeatsBarMotions,reviewHeartbeatsSecondExchange} from "./story-heartbeats-presentation.js";
 import { reviewStoryFaces } from "./story-face-presentation.js";
 import { reviewTattooIntroduction } from "./story-tattoo-presentation.js";
 import { reviewStoryFight } from "./story-combat-review.js";
 import { fightStoryAmbush } from "./story-fight-input.js";
+import {reviewKittenChoice,verifyKittenChoice,verifyKittenHandoffCancellation} from "./story-kitten-choice.js";
+import { reviewNozomiPhotoPlanes,verifyNozomiPhotoProgression } from "./story-photo-plane-review.js";
 
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
 const resumeId = Number(process.env.NEW_YOKOSUKA_STORY_RESUME_ID || 0);
-async function enterStoryWorld(page) {
+async function enterStoryWorld(page, characterName) {
   await expect(page.getByLabel("Open the New Yokosuka menu")).toBeVisible({ timeout: 120_000 });
   await page.keyboard.press("Enter");
   await page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" }).click();
-  await page.locator(".character-slot-button:not(.empty)").first().click();
+  await page.locator(".character-slot-button:not(.empty)").filter({hasText:characterName}).click();
   await page.locator("button").filter({ hasText: /^Enter World$/ }).click();
 }
 test.afterEach(async({page},info)=>{
@@ -87,6 +91,20 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     localStorage.setItem("new-yokosuka.guest-token.v1", token);
     localStorage.setItem("new-yokosuka.quick-play-confirmations.v1", "3");
   }, guestToken);
+  if(process.env.NEW_YOKOSUKA_CARGO_TRACE_E2E === "true")await page.addInitScript(()=>{
+    const original=WebSocket.prototype.send,seen=new WeakSet();
+    const trace=window.storyCargoTrace={sent:[],received:[]};
+    const remember=(list,value)=>{list.push(value);if(list.length>30)list.shift();};
+    WebSocket.prototype.send=function(data){
+      if(!seen.has(this)){
+        seen.add(this);this.addEventListener("message",event=>{
+          try{const m=JSON.parse(event.data);if(m.type==="cargo_state"&&m.cargo?.id?.startsWith("cargo-story-"))remember(trace.received,m.cargo);}catch{}
+        });
+      }
+      try{const m=JSON.parse(data);if(m.type==="cargo_update"&&m.id?.startsWith("cargo-story-"))remember(trace.sent,m);}catch{}
+      return original.call(this,data);
+    };
+  });
   if (process.env.NEW_YOKOSUKA_FIFTH_SAILORS_LOST_RECEIPT_E2E === "true") await page.addInitScript(() => {
     const add = WebSocket.prototype.addEventListener, send = WebSocket.prototype.send;
     const probe = window.storyLostArrival = { dropped: false, welcomes: [], presence: [] };
@@ -191,7 +209,16 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     ["world/PlayWorldLifecycle", `const probeInitialize = PlayWorldLifecycle.prototype.initialize;
       PlayWorldLifecycle.prototype.initialize = function(...args) { window.storyProbe.lifecycle = this; return probeInitialize.apply(this,args); };`],
     ["scripts/AuthoredSceneStagingRuntime", `const probeStage = AuthoredSceneStagingRuntime.prototype.play;
-      AuthoredSceneStagingRuntime.prototype.play = function(...args) { window.storyProbe.authoredScene = this; return probeStage.apply(this,args); };`],
+      AuthoredSceneStagingRuntime.prototype.play = function(...args) {
+        const p=window.storyProbe;p.authoredScene=this;
+        if(p.delayKittenChoice&&args[0]?.scene?.id==='s1.ju00.first-kitten.choice'){
+          const originalFactory=this.createActorSet;
+          this.createActorSet=(...params)=>{this.createActorSet=originalFactory;const set=originalFactory(...params),load=set.load;
+            set.load=async()=>{p.choicePreparationWaiting=true;await new Promise(resolve=>p.releaseChoicePreparation=resolve);
+              try{return await load();}finally{p.choicePreparationSettled=true;}};return set;};
+        }
+        return probeStage.apply(this,args);
+      };`],
     ["scripts/ScriptAutomaticEventRuntime", `const probeAutomatic = ScriptAutomaticEventRuntime.prototype.update;
       ScriptAutomaticEventRuntime.prototype.update = function(...args) { window.storyProbe.automatic = this; return probeAutomatic.apply(this,args); };`],
     ["cutscenes/NativeCutsceneDirector", `const probeActivityAdapter = NativeCutsceneDirector.prototype.nativeActivityAdapter;
@@ -218,7 +245,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await page.goto("/play/");
   // React mounts the splash asynchronously; navigation completion alone does
   // not mean its activation listener exists yet (especially on a cold Vite).
-  await enterStoryWorld(page);
+  await enterStoryWorld(page,character.name);
   const openingScenes = ["S1-OP02-00", "S1-000", "S1-OP00-MAIL", "S1-OP00-DREAM"];
   if (freshOpening) {
     // Exercise real loading and the explicit player skip, not the completion
@@ -237,6 +264,50 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   expect(await page.evaluate(() => window.storyProbe.errors)).toEqual([]);
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
+    if(process.env.NEW_YOKOSUKA_GORO_LEAD_NATURAL_E2E === "true"){
+      test.setTimeout(360_000);
+      await verifyGoroLeadNatural(page,testInfo,character);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      const flags=await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags);
+      expect(flags["story.s1.goro-job-lead.completed"]).toBe(true);
+      expect(flags["notebook.s1.harbor-job-promise"]).toBe(true);
+      expect(flags["story.s1.goro-job-appointment.completed"]).not.toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_PHOTO_CONNECTED_E2E === "true"){
+      test.setTimeout(300_000);
+      await verifyNozomiPhotoProgression(page,testInfo,character);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      const flags=await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags);
+      expect(flags["story.s1.nozomi-photos.completed"]).toBe(true);
+      expect(flags["story.s1.nozomi-photo.apart"]).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_PHOTO_PLANES_E2E === "true"){
+      test.setTimeout(240_000);
+      await reviewNozomiPhotoPlanes(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_KITTEN_HANDOFF_CANCEL_E2E === "true"){
+      await verifyKittenHandoffCancellation(page,character);expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_KITTEN_CHOICE_REVIEW_E2E === "true"){
+      await reviewKittenChoice(page,testInfo,character);expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_KITTEN_CHOICE_CONNECTED_E2E === "true"){
+      test.setTimeout(300_000);
+      await verifyKittenChoice(page,testInfo,character,process.env.NEW_YOKOSUKA_KITTEN_FOOD||"tofu");
+      if(process.env.NEW_YOKOSUKA_KITTEN_GAP_ONLY_E2E==="true"){expect(errors).toEqual([]);return;}
+      await page.reload();await enterStoryWorld(page);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["story.s1.first-kitten.completed"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
     if (process.env.NEW_YOKOSUKA_STORY_FACES_E2E === "true") {
       test.setTimeout(540_000);
       await reviewStoryFaces(page, testInfo, character);
@@ -244,6 +315,102 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     }
     if(process.env.NEW_YOKOSUKA_SCROLL_LEARNING_E2E === "true"){
       test.setTimeout(300_000);await verifySavedScrollLearning(page,testInfo,character,{moveId:process.env.NEW_YOKOSUKA_SCROLL_MOVE_ID||'twinBlades'});expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_HARBOR_HIRING_E2E === "true"){
+      test.setTimeout(540_000);
+      await verifyHarborHiring(page,testInfo,character);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_FORKLIFT_TRAINING_E2E === "true"){
+      test.setTimeout(540_000);
+      await verifyForkliftTraining(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_CHICKEN_RACE_E2E === "true"){
+      test.setTimeout(360_000);
+      await verifyChickenRace(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_STORY_SKY_REVIEW_E2E === "true"){
+      const sky = async hour => {
+        await page.evaluate(hour => window.storyProbe.clock.setDebugHour(hour),hour);
+        await expect.poll(()=>page.evaluate(async()=>{
+          const state=(await import('/src/state.js')).default;
+          return state.currentSkybox?.material?._floats?.brightness;
+        })).toBeCloseTo(hour===19 ? 0.2/1.5 : 1,4);
+        await page.waitForTimeout(500);
+        const source=await page.evaluate(async()=>{
+          const state=(await import('/src/state.js')).default;
+          return state.currentSkybox?.material?._textures?.fromTexture?.url;
+        });
+        expect(source).toContain('air65.png');
+        await page.screenshot({path:testInfo.outputPath(`story-cloud-sky-${hour}.png`)});
+      };
+      await page.evaluate(()=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray([1.7,0,95]),0,{persist:false});c.setFirstPerson(true);c.cameraYaw=0;c.cameraPitch=.12;c.updateCamera(1);});
+      await sky(8);await sky(19);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_MORNING_FROM_EVENING_E2E === "true"){
+      test.setTimeout(1_200_000);
+      await verifyMorningRaceFromEvening(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_SECOND_MORNING_FROM_EVENING_E2E === "true"){
+      test.setTimeout(1_200_000);
+      await verifyMorningRaceFromEvening(page,testInfo,character,{day:"two"});
+      await verifyMorningRaceSaved(page,testInfo,character,{day:"two"});
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_SECOND_MORNING_RACE_E2E === "true"){
+      test.setTimeout(1_200_000);
+      await verifyMorningRace(page,testInfo,character,{day:"two"});
+      await verifyMorningRaceSaved(page,testInfo,character,{day:"two"});
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_MORNING_RACE_E2E === "true"){
+      test.setTimeout(1_200_000);
+      await verifyMorningRace(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_MORNING_RACE_RELOAD_E2E === "true"){
+      await verifyMorningRaceSaved(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_SALARY_REVIEW_E2E === "true"){
+      test.setTimeout(240_000);
+      await reviewSalaryPresentation(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_MARK_LUNCH_E2E === "true"){
+      test.setTimeout(360_000);
+      await verifyMarkLunch(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_MORNING_CARGO_E2E === "true"){
+      test.setTimeout(480_000);
+      await verifyMorningCargo(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_SECOND_MORNING_CARGO_E2E === "true"){
+      test.setTimeout(480_000);
+      await verifyMorningCargo(page,testInfo,character,{day:"two"});
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_SECOND_WORKDAY_E2E === "true"){
+      test.setTimeout(1_200_000);
+      if(!character.storyFlags["story.s1.workday-two-morning.completed"])await verifyMorningCargo(page,testInfo,character,{day:"two"});
+      await verifySecondWorkday(page,testInfo,character);expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_MARK_AFTER_WORK_E2E === "true"){
+      test.setTimeout(1_200_000);await verifyMarkAfterWork(page,testInfo,character);expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_THIRD_WORKDAY_E2E === "true"){
+      test.setTimeout(1_800_000);await verifyThirdWorkday(page,testInfo,character);expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_FIRST_AFTERNOON_E2E === "true"){
+      test.setTimeout(660_000);
+      await verifyFirstAfternoon(page,testInfo,character);
+      expect(errors).toEqual([]);return;
     }
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
     if(process.env.NEW_YOKOSUKA_SHIP_DEPARTURE_E2E === "true"){
@@ -330,17 +497,6 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     if(process.env.NEW_YOKOSUKA_HARBOR_BIKERS_E2E === "true"){
       test.setTimeout(900_000);await verifyHarborBikers(page,testInfo,character);expect(errors).toEqual([]);return;
     }
-    if(process.env.NEW_YOKOSUKA_THIRD_WORKDAY_E2E === "true"){
-      test.setTimeout(1_800_000);await verifyThirdWorkday(page,testInfo,character);expect(errors).toEqual([]);return;
-    }
-    if(process.env.NEW_YOKOSUKA_MARK_AFTER_WORK_E2E === "true"){
-      test.setTimeout(660_000);await verifyMarkAfterWork(page,testInfo,character);expect(errors).toEqual([]);return;
-    }
-    if(process.env.NEW_YOKOSUKA_SECOND_WORKDAY_E2E === "true"){
-      test.setTimeout(900_000);
-      if(!character.storyFlags["story.s1.workday-two-morning.completed"])await verifyMorningCargo(page,testInfo,character,{day:"two"});
-      await verifySecondWorkday(page,testInfo,character);expect(errors).toEqual([]);return;
-    }
     if(process.env.NEW_YOKOSUKA_SECOND_MORNING_E2E === "true"){
       test.setTimeout(1_260_000);
       await verifyWorkdayNight(page,testInfo,character);
@@ -349,48 +505,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       await verifyMorningRaceSaved(page,testInfo,character,{day:"two"});
       expect(errors).toEqual([]);return;
     }
-    if(process.env.NEW_YOKOSUKA_FIRST_AFTERNOON_E2E === "true"){
-      test.setTimeout(660_000);
-      await verifyFirstAfternoon(page,testInfo,character);
-      expect(errors).toEqual([]);return;
-    }
-    if(process.env.NEW_YOKOSUKA_MARK_LUNCH_E2E === "true"){
-      test.setTimeout(360_000);
-      await verifyMarkLunch(page,testInfo,character);
-      expect(errors).toEqual([]);return;
-    }
-    if(process.env.NEW_YOKOSUKA_MORNING_CARGO_E2E === "true"){
-      test.setTimeout(480_000);
-      await verifyMorningCargo(page,testInfo,character);
-      expect(errors).toEqual([]);return;
-    }
-    if(process.env.NEW_YOKOSUKA_MORNING_RACE_RELOAD_E2E === "true"){
-      await verifyMorningRaceSaved(page,testInfo,character);
-      expect(errors).toEqual([]);return;
-    }
-    if(process.env.NEW_YOKOSUKA_MORNING_RACE_E2E === "true"){
-      test.setTimeout(1_200_000);
-      await verifyMorningRace(page,testInfo,character);
-      expect(errors).toEqual([]);return;
-    }
     if(process.env.NEW_YOKOSUKA_CALENDAR_E2E === "true"){
       await verifyPersonalCalendar(page,testInfo,character);
       expect(errors).toEqual([]);return;
-    }
-    if(process.env.NEW_YOKOSUKA_CHICKEN_RACE_E2E === "true"){
-      test.setTimeout(360_000);
-      await verifyChickenRace(page,testInfo,character);
-      expect(errors).toEqual([]);return;
-    }
-    if(process.env.NEW_YOKOSUKA_FORKLIFT_TRAINING_E2E === "true"){
-      test.setTimeout(540_000);
-      await verifyForkliftTraining(page,testInfo,character);
-      expect(errors).toEqual([]);return;
-    }
-    if(process.env.NEW_YOKOSUKA_HARBOR_HIRING_E2E === "true"){
-      test.setTimeout(540_000);
-      await verifyHarborHiring(page,testInfo,character);
-      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
     }
     if(process.env.NEW_YOKOSUKA_JIMMY_CHASE_E2E === "true"){
       test.setTimeout(540_000);
@@ -569,6 +686,14 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
       return;
     }
+    if(process.env.NEW_YOKOSUKA_ALLEY_SECOND_REVIEW_E2E === "true") {
+      await reviewHeartbeatsSecondExchange(page,testInfo,character);
+      await page.reload();await enterStoryWorld(page);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["story.s1.heartbeats-alley.completed"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_ALLEY_MOTIONS_E2E === "true") {
       await inspectHeartbeatsMotions(page,testInfo,character);
       expect(errors).toEqual([]);
@@ -654,6 +779,45 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   }
   await page.waitForTimeout(2000);
   await page.screenshot({ path: testInfo.outputPath("allowance-playing.png") });
+  if (process.env.NEW_YOKOSUKA_OWNER_RESTART_E2E === "true") {
+    // This opt-in test targets only the dedicated local service created for
+    // it. Killing its exact main process simulates a crash, not a clean close.
+    const unit = "ny-story-owner-restart-e2e.service";
+    const pid = () => execFileSync("systemctl", ["--user", "show", unit, "-p", "MainPID", "--value"], { encoding: "utf8" }).trim();
+    const before = pid();
+    expect(Number(before)).toBeGreaterThan(0);
+    execFileSync("systemctl", ["--user", "kill", "--kill-whom=main", "--signal=SIGKILL", unit]);
+    await expect.poll(() => { const current = pid(); return current !== "0" && current !== before; }, { timeout: 30_000 }).toBe(true);
+    await expect.poll(async () => (await page.request.get("/api/status").catch(() => null))?.ok() === true, { timeout: 30_000 }).toBe(true);
+    const unchanged = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+    expect(unchanged.character.yen).toBe(character.yen);
+    expect(unchanged.character.storyFlags?.["story.s1.first-allowance.completed"]).not.toBe(true);
+    await page.reload();
+    await enterStoryWorld(page, character.name);
+    await page.waitForFunction(id => window.storyProbe?.ready && window.storyProbe.regions?.getCharacter()?.id === id, character.id, { timeout: 120_000 });
+    await page.evaluate(() => {
+      const life = window.storyProbe.lifecycle;
+      life.resetPlayer(life.vectorFromArray([-16.75, 0, 1]), Math.PI, { persist: false });
+    });
+    await page.waitForFunction(() => window.storyProbe.director?.activeCutscene?.cutscene.id === "story-s1-first-allowance" || window.storyProbe.sceneErrors.length, null, { timeout: 30_000 });
+    expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+    await page.keyboard.press("KeyX");
+    await expect.poll(async () => (await (await page.request.get(`/api/characters/${character.id}/state`)).json()).character.storyFlags?.["story.s1.first-allowance.completed"], { timeout: 30_000 }).toBe(true);
+    const saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+    expect(saved.character.yen).toBe(character.yen + 500);
+    expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    await page.reload();
+    await enterStoryWorld(page, character.name);
+    await page.waitForFunction(id => window.storyProbe?.ready && window.storyProbe.regions?.getCharacter()?.id === id, character.id, { timeout: 120_000 });
+    await page.waitForTimeout(1500);
+    const reloaded = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+    expect(reloaded.character.yen).toBe(character.yen + 500);
+    expect(reloaded.character.storyFlags?.["story.s1.first-allowance.completed"]).toBe(true);
+    expect(await page.evaluate(() => window.storyProbe.starts.includes("story-s1-first-allowance"))).toBe(false);
+    expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    expect(errors).toEqual([]);
+    return;
+  }
   if (ending === "skip") await page.keyboard.press("KeyX");
   else {
     // Sample the real rendered FACE buffers throughout both speakers' lines.
@@ -1374,6 +1538,8 @@ async function verifyAlleyQte(page,testInfo,character) {
   // The first successful animation is not the event outcome. Failing the
   // second input must release its retained cast and still offer a full retry.
   await page.keyboard.press("Shift");
+  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.heartbeats.alley.defense.second-failure"&&window.storyProbe.authoredScene.active.elapsed>=.5);
+  await page.screenshot({path:testInfo.outputPath("heartbeats-alley-second-failure.png")});
   await expect(page.getByRole("button",{name:"Try again",exact:true})).toBeVisible();
   expect(await page.evaluate(()=>window.storyProbe.authoredScene.active)).toBeNull();
   expect((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character.storyFlags["story.s1.heartbeats-alley.completed"]).not.toBe(true);
@@ -1396,6 +1562,11 @@ async function verifyAlleyQte(page,testInfo,character) {
   await page.keyboard.press("Shift");
   await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.heartbeats.alley.finish"&&window.storyProbe.regions.controller.active.challengePrompt.ready,null,{timeout:15_000});
   await page.keyboard.press("Enter");
+  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.heartbeats.alley.defense.second-success"&&window.storyProbe.authoredScene.active.elapsed>=.6);
+  expect((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character.storyFlags["story.s1.heartbeats-alley.completed"]).not.toBe(true);
+  await page.screenshot({path:testInfo.outputPath("heartbeats-alley-second-counter.png")});
+  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.heartbeats.alley.defense.second-success"&&window.storyProbe.authoredScene.active.elapsed>=2);
+  await page.screenshot({path:testInfo.outputPath("heartbeats-alley-smith-falls.png")});
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.heartbeats-alley.completed"])).toBe(true);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   const saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();

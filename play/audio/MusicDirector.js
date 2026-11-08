@@ -177,7 +177,7 @@ export class PlayMusicDirector {
     return true;
   }
 
-  playTemporaryTrack(trackId, { gain = 1, loop = false } = {}) {
+  playTemporaryTrack(trackId, { gain = 1, loop = false } = {}, owner = null) {
     if (!this.unlocked || !this.manifest) return false;
     const track = this.manifest.tracks[trackId];
     if (!track) return false;
@@ -187,6 +187,7 @@ export class PlayMusicDirector {
       gain: clamp(gain),
       loop: Boolean(loop),
       temporary: true,
+      owner,
     });
     if (!loop) {
       next.audio.onended = () => {
@@ -213,26 +214,15 @@ export class PlayMusicDirector {
     return true;
   }
 
-  stopTemporaryTrack(trackId = null) {
-    if (
-      !this.current?.temporary
-      || (trackId !== null && this.current.trackId !== trackId)
-    ) {
-      return false;
-    }
-    this.current.audio.onended = null;
-    this.current.audio.pause();
-    this.current.audio.removeAttribute?.("src");
-    this.current = null;
-    this.#syncWorld();
-    this.#emitState();
-    return true;
+  ownsTemporaryTrack(trackId, owner) {
+    return Boolean(this.current?.temporary && this.current.trackId === trackId && this.current.owner === owner);
   }
 
-  stopTemporaryTrack(trackId = null) {
+  stopTemporaryTrack(trackId = null, owner = null) {
     if (
       !this.current?.temporary
       || (trackId && this.current.trackId !== trackId)
+      || (owner !== null && this.current.owner !== owner)
     ) return false;
     this.#stopPlayback();
     this.#syncWorld();
@@ -342,6 +332,7 @@ export class PlayMusicDirector {
     gain,
     loop,
     temporary,
+    owner = null,
   }) {
     const audio = this.audioFactory();
     audio.preload = "auto";
@@ -356,6 +347,7 @@ export class PlayMusicDirector {
       trackId,
       gain,
       temporary,
+      owner,
     };
     const previous = this.current;
     if (previous) previous.audio.onended = null;

@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
+import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
+import { evaluateAuthActor, parseAuthMovement } from "../src/AuthMovement.js";
 
 import mfsy from "../play/data/mfsy-runtime-placements.json" with {
   type: "json",
@@ -46,6 +48,30 @@ test("New Yokosuka Harbor combines live props and all static doors", () => {
     (placement) => placement.runtime.objectTag === "TOMD",
   ));
   assertFinitePlacements(mfsy);
+});
+
+test("Goro appointment reference tracks remain still near existing harbor placements", {
+  skip: !existsSync(new URL("../play/assets/harbor/goro-job-appointment/SEQDATA0.AUTH", import.meta.url))
+    && "requires the locally extracted original AUTH",
+}, () => {
+  const movement = parseAuthMovement(readFileSync(new URL("../play/assets/harbor/goro-job-appointment/SEQDATA0.AUTH", import.meta.url)));
+  const candidates = [
+    ["HAKO", mfsy.placements.find(p=>p.runtime.objectTag==="GHAK"), 0.001],
+    ["DOOR", mfsy.placements.find(p=>p.runtime.staticDoorIndex===14), 0.04],
+  ];
+  for (const [tag, placement, maxDistance] of candidates) {
+    assert.ok(placement,tag);
+    const actor=movement.actors.find(value=>value.tag===tag), start=evaluateAuthActor(actor,0);
+    assert.ok(Math.hypot(-start.x-placement.position[0],start.z-placement.position[2])<maxDistance,tag);
+    assert.ok(Math.abs(-start.rotationY-placement.rotationDegrees[1])<0.001,tag);
+    for(let frame=1;frame<1960;frame++){
+      const current=evaluateAuthActor(actor,frame);
+      for(const key of ["x","y","z","rotationX","rotationY","rotationZ"])
+        assert.ok(Math.abs(current[key]-start[key])<0.0001,`${tag} ${key} frame ${frame}`);
+    }
+  }
+  const box=candidates[0][1], boxTrack=evaluateAuthActor(movement.actors.find(a=>a.tag==="HAKO"),0);
+  assert.ok(Math.abs(boxTrack.y*box.scale[1]-box.position[1])<0.0001);
 });
 
 test("Old Warehouse District retains props but not frozen guard actors", () => {

@@ -41,3 +41,14 @@ export function interpolateClearColors(from, to, progress) {
   const amount = Math.min(1, Math.max(0, Number(progress) || 0));
   return from.map((value, index) => lerp(value, to[index], amount));
 }
+
+// WAIR's rain/cloud sprites are bright daytime textures even at night. Until
+// their original sprite modulation is recovered, use the existing sky-light
+// intensity curve as a bounded browser approximation rather than displaying
+// an unchanged bright sky above a dark world. Clear and non-Story skies retain
+// their existing colors.
+export function weatherSkyBrightness(lighting, skyWeatherTexture) {
+  return skyWeatherTexture
+    ? Math.max(0, Math.min(1, lighting.skyIntensity / DEFAULT_LIGHTING.skyIntensity))
+    : 1;
+}

@@ -96,7 +96,7 @@
     "extract:shenmue1-lights": "node tools/worlds/extract_shenmue1_lights.mjs",
     "export:textures": "node tools/assets/export_viewer_textures.mjs",
     "extract:shenmue2-world-collisions": "node tools/worlds/build_shenmue2_world_collision_catalog.mjs",
-    "extract:shenmue2-uv-animations": "python3 -m tools.animation.extract_shenmue2_uv_animations '../new-yokosuka-shenmue2-models/.disc-work/shenmue2-xbox-extracted/Shenmue II/scene' --js-out src/Shenmue2UvAnimations.generated.js",
+    "extract:shenmue2-uv-animations": "python3 -m tools.animation.extract_shenmue2_uv_animations '.disc-work/shenmue2-xbox-extracted/Shenmue II/scene' --js-out src/Shenmue2UvAnimations.generated.js",
     "extract:shenmue2-boundary-transitions": "node tools/worlds/build_shenmue2_boundary_transition_catalog.mjs",
     "extract:native-world-audio-calls": "python3 -m tools.audio.extract_native_world_audio_calls --disc-root 1:extracted_files/data --disc-root 2:extracted_disc2_v2/data --disc-root 3:extracted_disc3_v2/data",
     "extract:native-telm-audio": "node tools/audio/extract_native_telm_audio.mjs",

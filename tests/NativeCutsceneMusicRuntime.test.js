@@ -130,6 +130,31 @@ test("standalone activity completion releases its package cue", () => {
   assert.deepEqual(calls.slice(1), [["stop", "soundtrack"], ["pause", false]]);
 });
 
+test("a Story lease retains one package cue across clips and releases on transaction end",()=>{
+  const calls=[],runtime=musicRuntime([{startActivity:true,trackId:"soundtrack",loop:true}],calls);
+  const release=runtime.retain({});runtime.beginActivity({slot:0});runtime.endActivity();runtime.reset();
+  runtime.beginActivity({slot:1});runtime.endActivity();
+  assert.deepEqual(calls.filter(([kind])=>kind!=="pause"),[["play","soundtrack",{gain:1,loop:true}]]);
+  assert.equal(release(),true);assert.equal(release(),false);
+  assert.equal(calls.filter(([kind])=>kind==="stop").length,1);
+});
+
+test("world cleanup invalidates a retained cue and stale release is harmless",()=>{
+  const calls=[],runtime=musicRuntime([{startActivity:true,trackId:"soundtrack"}],calls);
+  const release=runtime.retain({});runtime.beginActivity({slot:0});runtime.clear();
+  assert.equal(release(),false);assert.equal(calls.filter(([kind])=>kind==="stop").length,1);
+});
+
+test("a replaced temporary track is not mistaken for the retained package cue",()=>{
+  const calls=[];let owned=false;
+  const runtime=createNativeCutsceneMusicRuntime({cues:[{startActivity:true,trackId:"soundtrack"}]},{
+    playTemporaryTrack:id=>(calls.push(["play",id]),owned=true,true),
+    stopTemporaryTrack:id=>(calls.push(["stop",id,owned]),owned=false,true),
+    ownsTemporaryTrack:()=>owned,setPlaybackPaused(){} });
+  const release=runtime.retain({});runtime.beginActivity({slot:0});owned=false;
+  runtime.beginActivity({slot:1});assert.equal(calls.filter(([kind])=>kind==="play").length,2);release();
+});
+
 test("a rejected music start can retry without pretending to own a track", () => {
   const calls = [];
   let accepted = false;

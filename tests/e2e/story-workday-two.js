@@ -1,6 +1,6 @@
 import {expect} from "@playwright/test";
 import {driveObservedDeliveries} from "./story-forklift-training.js";
-import {winHarborFight} from "./story-workday-one.js";
+import {fightWithKeyboard} from "./story-seventy-man.js";
 
 export async function verifyMarkAfterWork(page,testInfo,character){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
@@ -14,12 +14,12 @@ export async function verifyMarkAfterWork(page,testInfo,character){
     await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await scene("mark-after-work-intro");}finally{await page.keyboard.up("KeyW");}
   };
   const fight=async()=>{
-    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:65_000});await check(false);
+    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready||window.storyProbe.sceneErrors.length,null,{timeout:65_000});await check(false);
     const view=await page.evaluate(()=>window.storyProbe.combatRuntime.active.view);expect(view.actors.length).toBe(6);expect(view.id).toBe("s1.mfsy.mark-after-work");
-    await page.screenshot({path:testInfo.outputPath("warehouse-seventeen-actual-five-thug-fight.png")});await winHarborFight(page,{attack:"KeyJ"});
+    await page.screenshot({path:testInfo.outputPath("warehouse-seventeen-actual-five-thug-fight.png")});await fightWithKeyboard(page,()=>page.evaluate(()=>!window.storyProbe.combatRuntime?.active));
     await scene("mark-after-work-aftermath");await check(false);await scene("mark-brother-explanation");await check(false);
   };
-  const reload=async(retry=false)=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);if(retry)await scene("mark-after-work-intro");else await idle();};
+  const reload=async(retry=false)=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").filter({hasText:character.name}).click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(id=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id===id,character.id);if(retry)await scene("mark-after-work-intro");else await idle();};
   if(!initial.character.storyFlags[done]){
     // A previous interrupted check may already have saved the approach inside
     // the trigger. Accept the real automatic restart rather than teleporting
@@ -51,8 +51,10 @@ export async function verifySecondWorkday(page,testInfo,character){
   };
   if(!initial.character.storyFlags[flag("afternoon")]){
     if(new Date((await saved()).character.storyTimeMs).getUTCHours()<14){await idle();await page.locator("#story-wait-button").click();await page.getByRole("option",{name:"Wait until 2 p.m.",exact:true}).click();await page.getByRole("button",{name:"Wait until 2 p.m.",exact:true}).click();}
-    // The earned checkpoint is in the loading volume. Wait for its actual
-    // asynchronous dispatch instead of racing an initial idle snapshot.
+    // A saved checkpoint may already be inside the loading volume. Other
+    // valid saves require walking in from elsewhere after the wait.
+    await page.getByText("Four more crates for Warehouse No. 3 will finish today's quota of eight. Yada-san pays after the shift.",{exact:true}).waitFor({timeout:4_000}).catch(()=>{});
+    if(!await page.getByText("Four more crates for Warehouse No. 3 will finish today's quota of eight. Yada-san pays after the shift.",{exact:true}).isVisible())await approach([-20,0,117],-Math.PI/2);
     await page.getByText("Four more crates for Warehouse No. 3 will finish today's quota of eight. Yada-san pays after the shift.",{exact:true}).waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();
     await approach([-20,0,117],-Math.PI/2);
     await page.getByText("Four more crates for Warehouse No. 3 will finish today's quota of eight. Yada-san pays after the shift.",{exact:true}).waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Start the deliveries",exact:true}).click();
@@ -63,12 +65,12 @@ export async function verifySecondWorkday(page,testInfo,character){
     // The saved quota returns inside the same trigger, including on reconnect.
     // Await dispatch rather than racing its first idle networking snapshot.
     await page.getByText("The Mad Angels are blocking my work again. Five of them are waiting for a fight.",{exact:true}).waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Face the attackers",exact:true}).click();
-    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check(false);
-    expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.length)).toBe(6);await page.screenshot({path:testInfo.outputPath("second-workday-five-attackers.png")});await winHarborFight(page,{attack:"KeyJ"});
+    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check(false);
+    expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.length)).toBe(6);await page.screenshot({path:testInfo.outputPath("second-workday-five-attackers.png")});await fightWithKeyboard(page,()=>page.evaluate(()=>!window.storyProbe.combatRuntime?.active));
     await page.getByText("The first five have backed off, but four more are coming. Catch my breath and face them.",{exact:true}).waitFor();expect((await check(false)).character.storyFlags[flag("attack")]).not.toBe(true);await page.keyboard.press("Space");
-    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check(false);
+    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check(false);
     const second=await page.evaluate(()=>window.storyProbe.combatRuntime.active.view);expect(second.actors.length).toBe(5);expect(second.actors[0].health).toBe(second.actors[0].maxHealth);
-    await page.screenshot({path:testInfo.outputPath("second-workday-four-attackers-fresh-health.png")});await winHarborFight(page,{attack:"KeyJ"});
+    await page.screenshot({path:testInfo.outputPath("second-workday-four-attackers-fresh-health.png")});await fightWithKeyboard(page,()=>page.evaluate(()=>!window.storyProbe.combatRuntime?.active));
     await page.getByText("They said the Mad Angels meet behind Warehouse No. 17. The shift is over; collect my wages, then look for Mark there.",{exact:true}).waitFor();expect((await check(false)).character.storyFlags[flag("attack")]).not.toBe(true);await page.keyboard.press("Space");await idle();
     const s=await check(false);expect(s.character.storyFlags["notebook.s1.warehouse-seventeen-hangout"]).toBe(true);expect(new Date(s.character.storyTimeMs).getUTCHours()).toBe(17);
   }
@@ -78,7 +80,7 @@ export async function verifySecondWorkday(page,testInfo,character){
     await collect();await page.getByText("Collected today's wages: 2,400 yen. Look behind Warehouse No. 17 for Mark.",{exact:true}).waitFor({timeout:65_000});await check(false);await page.keyboard.press("Space");await idle();await check(true);
   }
   const before=await check(true);expect(before.character.storyFlags[flag("payday")]).toBe(true);expect(before.character.storyFlags["notebook.s1.second-payday"]).toBe(true);expect(before.character.storyFlags["story.s1.workday-two.completed"]).not.toBe(true);
-  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();await check(true);
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").filter({hasText:character.name}).click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(id=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id===id,character.id);await idle();await check(true);
   expect(await page.getByRole("button",{name:"Collect today's wages",exact:true}).isVisible()).toBe(false);await page.screenshot({path:testInfo.outputPath("second-workday-earned-payday-reload.png")});
 }
 

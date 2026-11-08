@@ -2,6 +2,44 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  "workday-lunch": [false,true].map(natural=>["s1.mfsy.workday-lunch.scene","mfsy","MFSY",{}, {
+    label:natural?"complete":"cancel",natural,frames:natural?[90,180,300,420]:[180],geometryMask:true,
+  }]),
+  "goro-appointment": [
+    ...[false,true].map(natural=>["s1.mfsy.goro-job-appointment.scene","mfsy","MFSY",{}, {
+      label:natural?"complete":"cancel",natural,frames:natural?[100,500,900,1500,1850]:[100],
+      ...(natural?{observeActors:{AKIR:"YKC",GORO:"KMB_L",HINA:"MIB_L"},voiceCounts:{"01GORA":22}}:{}),
+      verifyView:true,
+      residentPlacements:[{id:"runtime-GHAK",distance:3,yOffset:0},{id:"static-door-14",distance:3,yOffset:1}],
+    }]),
+  ],
+  "warning-letter-yada": [["s1.mfsy.warning-letter.scene","mfsy","MFSY",{}, {
+    label:"yada-grip",frames:[470],isolatedStage:true,objects:["ROOM","KMEM"],
+    props:[{tag:"KMEM",shown:[435,1030],attachments:[[435,"attach","TMRA"],[550,"attach","AKIR"],[760,"attach","AKIR"],[1030,"detach"]],closeupObject:true,reverse:true}],
+  }]],
+  "warning-letter-props": [
+    ...[false,true].map(natural=>["s1.mfsy.warning-letter.scene","mfsy","MFSY",{}, {
+      label:natural?"complete":"cancel",natural,frames:natural?[90,230,470,600,810,1080]:[90],
+      isolatedStage:true,objects:natural?["ROOM","KYUF","KMEM"]:["ROOM","KYUF"],
+      props:[
+        {tag:"KYUF",shown:[10,195],attachments:[[10,"attach","TMRA"],[195,"detach"]]},
+        {tag:"KMEM",shown:[435,1030],attachments:[[435,"attach","TMRA"],[550,"attach","AKIR"],[760,"attach","AKIR"],[1030,"detach"]],closeupObject:true},
+      ],
+    }]),
+  ],
+  "allowance-door": [
+    ...[false, true].map(natural => ["s1.jomo.first-allowance.scene", "interior", "JOMO", {}, {
+      label: natural ? "complete" : "cancel", natural,
+      frames: natural ? [15, 45, 90, 180, 350] : [45], objects: ["DOR0"], borrowedActorTag: "DOR0",
+    }]),
+  ],
+  "chase-doors": [
+    ...[false, true].map(natural => ["s1.d000.jimmy-knock.scene", "dobuita", "D000", {}, {
+      label: natural ? "complete" : "cancel", natural,
+      frames: natural ? [90, 180, 350, 500] : [180],
+      objects: ["DOR1", "DOR2"], replacedTransition: "d000-door-25-to-daza-reverse-matched",
+    }]),
+  ],
   dismissal: [
     ...[false,true].map(natural=>["s1.mfsy.yada-dismissal.scene","mfsy","MFSY",{}, {
       label:natural?"complete":"cancel",natural,frames:natural?[90,300,650,1000,1600]:[300],
@@ -191,9 +229,10 @@ export async function reviewStoryFaces(page, testInfo, character) {
       const prior = await page.evaluate(() => {
         const p = window.storyProbe, c = p.lifecycle.getController();
         return { position: c.collider.position.asArray(), firstPerson: c.firstPerson,
-          avatar: p.lifecycle.playerRuntime.activeCharacterId };
+          avatar: p.lifecycle.playerRuntime.activeCharacterId,
+          view: [c.cameraYaw,c.cameraPitch,c.cameraDistance] };
       });
-      await page.evaluate(({ id, area, actors, isolatedStage, retainEnvironment }) => {
+      await page.evaluate(({ id, area, actors, isolatedStage, retainEnvironment, replacedTransition, borrowedActorTag }) => {
         const p = window.storyProbe, presentation = p.regions.controller.presentation;
         const review = p.faceReview = { done: false, error: null, cancelling: false,
           samples: {}, frame: 0, objects: {}, voices: new Set(), voiceIds: new Set(),
@@ -206,9 +245,23 @@ export async function reviewStoryFaces(page, testInfo, character) {
           const runtime = p.director?.activeCutscene?.packageRuntime;
           if (runtime) {
             review.frame = runtime.activityRuntime.active?.currentFrame || review.frame;
-            if (isolatedStage && runtime.mapLayers?.active?.residentSnapshots) {
+            if (borrowedActorTag && !review.borrowed) {
+              const record = runtime.sceneObjects.objects.get(borrowedActorTag);
+              if (!record?.explorationSnapshot) throw Error(`Missing borrowed scene object ${borrowedActorTag}`);
+              review.borrowed = {root:record.root, snapshot:record.explorationSnapshot};
+            }
+            if (replacedTransition) {
+              const matches = [...runtime.sceneObjects.replacedWorldRoots].filter(([root]) =>
+                root.metadata?.interactiveMapTransition?.transition?.id === replacedTransition);
+              if (matches.length !== 1) throw Error(`Expected one replaced world transition: ${replacedTransition}`);
+              const [root, snapshot] = matches[0];
+              review.replacement ||= { root, wasEnabled: snapshot.enabled, frames: 0, visibleDuringFilm: 0 };
+              review.replacement.frames++;
+              if (root.isEnabled(false)) review.replacement.visibleDuringFilm++;
+            }
+            if (isolatedStage && runtime.mapLayers?.active?.residentIsolation) {
               review.stageRuntime = runtime;
-              review.stageSnapshots ||= runtime.mapLayers.active.residentSnapshots;
+              review.stageSnapshots ||= runtime.mapLayers.active.residentIsolation.snapshots;
               const sample = review.stage ||= { frames: 0, roots: 0, hiddenActors: new Set(), violations: new Set() };
               sample.frames++;
               sample.roots = runtime.mapLayers.worldRoots.length;
@@ -281,7 +334,7 @@ export async function reviewStoryFaces(page, testInfo, character) {
             if (!review.cancelling) review.error = error.message;
             review.done = true;
           });
-      }, { id, area, actors:{...options.observeActors,...actors}, isolatedStage: options.isolatedStage, retainEnvironment: options.retainEnvironment });
+      }, { id, area, actors:{...options.observeActors,...actors}, isolatedStage: options.isolatedStage, retainEnvironment: options.retainEnvironment, replacedTransition: options.replacedTransition, borrowedActorTag: options.borrowedActorTag });
       try {
         // Capture the lead-in before waiting for later speaking shots. A missing
         // early recording must not be hidden by a working ending-film voice.
@@ -331,6 +384,41 @@ export async function reviewStoryFaces(page, testInfo, character) {
           const state = await page.evaluate(() => { const r = window.storyProbe.faceReview; return { done: r.done, error: r.error, frame: Math.round(r.frame) }; });
           expect(state.error).toBeNull();
           if (!state.done) await page.screenshot({ path: testInfo.outputPath(`${label}-native-${state.frame}.png`) });
+          if(options.geometryMask&&!state.done&&frame===180){
+            const masks=await page.evaluate(()=>{
+              const p=window.storyProbe,r=p.director.activeCutscene.packageRuntime;
+              p.faceReview.geometrySnapshots=r.mapLayers.active.maskedGeometry.map(({mesh,indices,enabled})=>({mesh,indices,enabled}));
+              return p.faceReview.geometrySnapshots.map(({mesh,indices})=>({batched:!!indices,changed:indices&&indices.some((v,i)=>mesh.getIndices()[i]!==v)}));
+            });
+            expect(masks.length).toBeGreaterThan(0);expect(masks.every(m=>m.batched&&m.changed)).toBe(true);
+          }
+          if(options.residentPlacements&&!state.done&&frame===options.frames[0]) for(const placement of options.residentPlacements){
+            const roots=await page.evaluate(id=>{
+              const scene=window.storyProbe.lifecycle.scene;
+              return [...scene.transformNodes,...scene.meshes].filter(root=>root._runtimePlacementRecord?.id===id).map(root=>({
+                enabled:root.isEnabled(),position:root.getAbsolutePosition().asArray(),
+                meshes:root.getChildMeshes(false).length+(scene.meshes.includes(root)?1:0),
+              }));
+            },placement.id);
+            expect(roots.length,placement.id).toBeGreaterThan(0);
+            expect(roots.some(root=>root.enabled&&root.meshes>0),placement.id).toBe(true);
+            await page.evaluate(async ({id,distance,yOffset})=>{
+              const {frameSceneRoot}=await import("/tests/e2e/cutscene-surface-framing.js");
+              const p=window.storyProbe,scene=p.lifecycle.scene;
+              const root=[...scene.transformNodes,...scene.meshes].find(node=>node._runtimePlacementRecord?.id===id&&node.isEnabled());
+              p.faceReview.closeupFrames=0;p.faceReview.placement=root;
+              p.faceReview.restoreCamera=frameSceneRoot(root,()=>p.faceReview.closeupFrames++,{distance,yOffset});
+            },placement);
+            try {
+              await page.waitForFunction(()=>window.storyProbe.faceReview.closeupFrames>=2);
+              const active=await page.evaluate(()=>{
+                const p=window.storyProbe,scene=p.lifecycle.scene,root=p.faceReview.placement;
+                return [root,...root.getChildMeshes(false)].some(mesh=>scene.meshes.includes(mesh)&&mesh.isEnabled()&&scene.isActiveMesh(mesh));
+              });
+              expect(active,placement.id).toBe(true);
+              await page.screenshot({path:testInfo.outputPath(`diagnostic-${label}-${placement.id}.png`)});
+            } finally { await page.evaluate(()=>window.storyProbe.faceReview.restoreCamera()); }
+          }
           if(options.backdrop&&!state.done){
             const stage=await page.evaluate(()=>{
               const p=window.storyProbe,r=p.director.activeCutscene.packageRuntime;
@@ -367,7 +455,7 @@ export async function reviewStoryFaces(page, testInfo, character) {
               }finally{await page.evaluate(()=>window.storyProbe.faceReview.restoreCamera());}
             }
           }
-          if (options.prop && !state.done) {
+          for (const propSpec of options.props || (options.prop ? [options.prop] : [])) if (!state.done) {
             const prop = await page.evaluate(tag => {
               const p = window.storyProbe, r = p.director.activeCutscene.packageRuntime;
               const root = (r.sceneObjects.objects.get(tag)||r.attachedObjects.objects.get(tag)).root;
@@ -375,25 +463,28 @@ export async function reviewStoryFaces(page, testInfo, character) {
               const binding = r.attachedObjects.active.bindings.filter(b=>b.actorTag===tag&&b.frame<=frame).at(-1);
               return { frame, enabled: root.isEnabled(), action: binding?.action || null,
                 parent: binding?.parentActorTag,controlId:binding?.controlId,position: root.getAbsolutePosition().asArray() };
-            }, options.prop.tag);
+            }, propSpec.tag);
             console.info(`${label} prop`, JSON.stringify(prop));
-            expect(prop.enabled).toBe(prop.frame >= options.prop.shown[0] && prop.frame < options.prop.shown[1]);
-            const timeline=options.prop.attachments||[[options.prop.shown[0],"attach",options.prop.parent],[options.prop.detach,"detach"]];
+            expect(prop.enabled).toBe(prop.frame >= propSpec.shown[0] && prop.frame < propSpec.shown[1]);
+            const timeline=propSpec.attachments||[[propSpec.shown[0],"attach",propSpec.parent],[propSpec.detach,"detach"]];
             const expected=timeline.filter(([frame])=>frame<=prop.frame).at(-1);
             expect(prop.action).toBe(expected?.[1]||null);
             if(prop.action==="attach")expect(prop.parent).toBe(expected[2]);
-            if(options.prop.closeup&&prop.enabled&&prop.action==="attach"){
-              await page.evaluate(async ({parent,controlId})=>{
-                const {frameCutsceneSurface}=await import("/tests/e2e/cutscene-surface-framing.js");
+            if((propSpec.closeup||propSpec.closeupObject)&&prop.enabled&&prop.action==="attach"){
+              await page.evaluate(async ({tag,parent,controlId,objectCloseup,reverse})=>{
+                const {frameCutsceneObject,frameCutsceneSurface}=await import("/tests/e2e/cutscene-surface-framing.js");
                 const p=window.storyProbe,r=p.director.activeCutscene.packageRuntime;
-                const side=controlId===12?"left":"right";
-                if(!r.presentation.hands.active.hands.get(parent).sides[side].detailedActive)throw Error("Missing detailed hand during transfer");
                 p.faceReview.closeupFrames=0;
-                p.faceReview.restoreCamera=frameCutsceneSurface(r,"hand",parent,side,()=>p.faceReview.closeupFrames++);
-              },prop);
+                if(objectCloseup) p.faceReview.restoreCamera=frameCutsceneObject(r,tag,()=>p.faceReview.closeupFrames++,{reverse});
+                else {
+                  const side=controlId===12?"left":"right";
+                  if(!r.presentation.hands.active.hands.get(parent).sides[side].detailedActive)throw Error("Missing detailed hand during transfer");
+                  p.faceReview.restoreCamera=frameCutsceneSurface(r,"hand",parent,side,()=>p.faceReview.closeupFrames++);
+                }
+              },{...prop,tag:propSpec.tag,objectCloseup:!!propSpec.closeupObject,reverse:!!propSpec.reverse});
               try{
                 await page.waitForFunction(()=>window.storyProbe.faceReview.closeupFrames>=2);
-                await page.screenshot({path:testInfo.outputPath(`diagnostic-${label}-prop-${frame}-${prop.parent}.png`)});
+                await page.screenshot({path:testInfo.outputPath(`diagnostic-${label}-${propSpec.tag}-${frame}-${prop.parent}.png`)});
               }finally{await page.evaluate(()=>window.storyProbe.faceReview.restoreCamera());}
             }
           }
@@ -447,6 +538,8 @@ export async function reviewStoryFaces(page, testInfo, character) {
         }, null, { timeout: 100_000 });
       }
       expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+      if(options.geometryMask)expect(await page.evaluate(()=>window.storyProbe.faceReview.geometrySnapshots.every(({mesh,indices,enabled})=>
+        mesh.isDisposed()||(indices?indices.every((v,i)=>mesh.getIndices()[i]===v):mesh.isEnabled()===enabled)))).toBe(true);
       if(options.isolatedStage){
         const stage=await page.evaluate(()=>{
           const p=window.storyProbe,r=p.faceReview,s=r.stage,m=r.stageRuntime?.mapLayers;
@@ -468,17 +561,42 @@ export async function reviewStoryFaces(page, testInfo, character) {
         const r=window.storyProbe.faceReview;
         return r.receiver && (r.receiver.isDisposed() || r.receiver.parent===r.receiverParent);
       })).toBe(true);
+      if(options.replacedTransition){
+        const replacement=await page.evaluate(()=>{
+          const r=window.storyProbe.faceReview.replacement;
+          return r&&{frames:r.frames,visibleDuringFilm:r.visibleDuringFilm,restored:r.root.isEnabled(false)===r.wasEnabled};
+        });
+        expect(replacement?.frames).toBeGreaterThan(2);
+        expect(replacement.visibleDuringFilm).toBe(0);
+        expect(replacement.restored).toBe(true);
+      }
+      if(options.borrowedActorTag){
+        const borrowed=await page.evaluate(()=>{
+          const value=window.storyProbe.faceReview.borrowed;
+          if(!value)return null;
+          const {root,snapshot}=value;
+          return {enabled:root.isEnabled(),expectedEnabled:snapshot.enabled,position:root.position.asArray(),
+            expectedPosition:snapshot.position,rotation:root.rotation.asArray(),expectedRotation:snapshot.rotation,
+            scaling:root.scaling.asArray(),expectedScaling:snapshot.scaling,leased:snapshot.leased};
+        });
+        expect(borrowed).toBeTruthy();expect(borrowed.leased).toBe(false);
+        expect(borrowed.enabled).toBe(borrowed.expectedEnabled);
+        for(const key of ["position","rotation","scaling"])
+          borrowed[key].forEach((value,index)=>expect(value).toBeCloseTo(borrowed[`expected${key[0].toUpperCase()+key.slice(1)}`][index],5));
+      }
       for (const tag of options.objects || []) {
         expect(await page.evaluate(tag => window.storyProbe.faceReview.objects[tag]?.frames || 0, tag)).toBeGreaterThan(2);
       }
       const restored = await page.evaluate(() => {
         const p = window.storyProbe, c = p.lifecycle.getController();
         return { position: c.collider.position.asArray(), firstPerson: c.firstPerson,
-          avatar: p.lifecycle.playerRuntime.activeCharacterId, leases: p.lifecycle.scheduledActors.activityActorOwners.size };
+          avatar: p.lifecycle.playerRuntime.activeCharacterId, leases: p.lifecycle.scheduledActors.activityActorOwners.size,
+          view: [c.cameraYaw,c.cameraPitch,c.cameraDistance] };
       });
       expect(restored.leases).toBe(0); expect(restored.firstPerson).toBe(prior.firstPerson);
       expect(restored.avatar).toBe(prior.avatar);
       restored.position.forEach((v, i) => expect(v).toBeCloseTo(prior.position[i], 3));
+      if(options.verifyView)restored.view.forEach((v,i)=>expect(v).toBeCloseTo(prior.view[i],4));
       const after = await saved();
       expect(after.character.storyFlags).toEqual(before.character.storyFlags);
       expect(after.character.yen).toBe(before.character.yen);

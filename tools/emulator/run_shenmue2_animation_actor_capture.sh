@@ -25,7 +25,8 @@ fi
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 flycast_root="${FLYCAST_CAPTURE_ROOT:-$(dirname "${repo_root}")/flycast-pvr-capture}"
-source_profile="${FLYCAST_S2_SOURCE_PROFILE:-${repo_root}/.flycast-pvr}"
+# Keep Shenmue II VMUs and save states separate from the Shenmue I profile.
+source_profile="${FLYCAST_S2_SOURCE_PROFILE:-${repo_root}/.flycast-pvr/shenmue2}"
 validation_root="${FLYCAST_S2_ACTOR_VALIDATION_ROOT:-${source_profile}/actor-validation}"
 disc_root="${FLYCAST_S2_DISC_IMAGE_ROOT:-${repo_root}/.disc-work/shenmue2-disc1-image}"
 runtime_lib="${FLYCAST_S2_RUNTIME_LIB:-${repo_root}/.disc-work/flycast-runtime/local-lib}"

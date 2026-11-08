@@ -11,6 +11,45 @@ import { loadNativeCharacterModel } from "../../play/characters/NativeCharacterM
 import { resolveGenericFaceMorph } from "../../src/GenericFaceMorph.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+export function classifyVoiceCoverage(voices, actors) {
+  // Missing source recordings cannot drive speech or lip motion; retain
+  // them as a separate source-coverage gap rather than a false lip error.
+  return {
+    unavailableVoices: voices.filter(voice => voice.unavailable)
+      .map(voice => ({ voice: voice.voiceId, speaker: voice.speakerId,
+        sourcePath: voice.sourcePath, reason: voice.unavailableReason, resolution: voice.resolution })),
+    voicesWithoutLipCues: voices.filter(voice => !voice.unavailable && actors.has(voice.speakerId) && !voice.lipSync)
+      .map(voice => ({ voice: voice.voiceId, speaker: voice.speakerId })),
+  };
+}
+
+// AUTH objects may borrow scenery or instantiate a packaged model. Only the
+// latter has files to check; reference-only entries deliberately draw nothing.
+// Attached scene objects must name a real scene object, or loading will fail.
+export function auditSceneObjectCoverage(pkg, fileExists) {
+  const environment = pkg.environment || {};
+  const objects = environment.sceneObjects || {};
+  const problems = [];
+  for (const [tag, object] of Object.entries(objects)) {
+    if (object.referenceOnly) continue;
+    for (const file of [object.assetPath, object.textureAssetPath].filter(Boolean)) {
+      if (!pkg.assets?.[file]) problems.push({ actor: tag, path: file, kind: "not-bundled" });
+      if (!fileExists(file)) problems.push({ actor: tag, path: file, kind: "not-restored-locally" });
+    }
+  }
+  for (const [tag, attachment] of Object.entries(environment.attachedObjects || {})) {
+    if (attachment.sceneObject && (!objects[tag] || objects[tag].referenceOnly)) {
+      problems.push({ actor: tag, kind: "missing-scene-object" });
+    }
+    if (!attachment.sceneObject) for (const file of [attachment.assetPath, attachment.textureAssetPath].filter(Boolean)) {
+      if (!pkg.assets?.[file]) problems.push({ actor: tag, path: file, kind: "not-bundled" });
+      if (!fileExists(file)) problems.push({ actor: tag, path: file, kind: "not-restored-locally" });
+    }
+  }
+  return problems;
+}
+
+async function main() {
 const runtimeAssets = JSON.parse(readFileSync(path.join(root, "src/runtime-assets.generated.json"))).assets;
 const args = process.argv.slice(2);
 const inspectModels = args.includes("--models");
@@ -86,10 +125,10 @@ try {
       offStageSpeakers: speakers.filter(tag => !actors.has(tag)),
       detailedFaces: Object.keys(faces).filter(tag => actors.has(tag)),
       speakersWithoutDetailedFace: onStageSpeakers.filter(tag => !faces[tag]),
-      voicesWithoutLipCues: voices.filter(voice => actors.has(voice.speakerId) && !voice.lipSync)
-        .map(voice => ({ voice: voice.voiceId, speaker: voice.speakerId })),
+      ...classifyVoiceCoverage(voices, actors),
       missingFaceAssets,
       missingHandAssets,
+      sceneObjectProblems: auditSceneObjectCoverage(pkg, file => existsSync(path.join(root, file))),
       missingAudioAssets,
       referenceOnlyObjects: Object.entries(pkg.environment?.sceneObjects || {}).filter(([, object]) => object.referenceOnly).map(([tag]) => tag),
       attachedObjects: Object.keys(pkg.environment?.attachedObjects || {}),
@@ -104,6 +143,9 @@ try {
     missingFaceAssets: packages.reduce((n, pkg) => n + pkg.missingFaceAssets.length, 0),
     missingHandAssets: packages.reduce((n, pkg) => n + pkg.missingHandAssets.length, 0),
     audioAssetProblems: packages.reduce((n, pkg) => n + pkg.missingAudioAssets.length, 0),
+    sceneObjectProblems: packages.reduce((n, pkg) => n + pkg.sceneObjectProblems.length, 0),
+    unavailableVoiceCues: packages.reduce((n, pkg) => n + pkg.unavailableVoices.length, 0),
+    playableVoicesWithoutLipCues: packages.reduce((n, pkg) => n + pkg.voicesWithoutLipCues.length, 0),
     referenceOnlyObjects: packages.reduce((n, pkg) => n + pkg.referenceOnlyObjects.length, 0),
   };
   if (inspectModels) {
@@ -129,3 +171,6 @@ try {
   engine?.dispose();
   await vite.close();
 }
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await main();

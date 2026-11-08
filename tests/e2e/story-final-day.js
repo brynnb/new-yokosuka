@@ -95,7 +95,7 @@ export async function verifyFinalNight(page,testInfo,character,{musicResponses})
     await expect.poll(async()=>(await saved()).character.storyFlags[flag("tom-plane")],{timeout:75_000}).toBe(true);
     expect((await check()).character.worldId).toBe("mfbt");
   }
-  const sparReady=async()=>{await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.id==="s1.mfbt.final-spar"&&window.storyProbe.combatRuntime.active.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:100_000});await check();};
+  const sparReady=async()=>{await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.id==="s1.mfbt.final-spar"&&window.storyProbe.combatRuntime.active.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:100_000});await check();};
   if(!(await saved()).character.storyFlags[flag("final-spar")]){
     console.info("Final night: original confrontation, cancelled practice and actual nonlethal spar");
     await choose("Meet Gui Zhang");await scene("final-confrontation");await music("bgm013");await page.waitForTimeout(28000);
@@ -105,7 +105,7 @@ export async function verifyFinalNight(page,testInfo,character,{musicResponses})
     await page.screenshot({path:testInfo.outputPath("gui-zhang-night-spar-ready.png")});
     const bindings=await page.evaluate(()=>window.storyProbe.combatRuntime.active.input.getBindings());
     await page.locator("#renderCanvas").focus();await page.keyboard.down(bindings.guard);
-    try{for(let i=0;i<72&&await page.evaluate(()=>window.storyProbe.combatRuntime?.active?.view.id==="s1.mfbt.final-spar");i++){await page.keyboard.press(bindings.leg);await page.waitForTimeout(500);}}
+    try{for(let i=0;i<72&&await page.evaluate(()=>window.storyProbe.combatRuntime?.active?.view?.id==="s1.mfbt.final-spar");i++){await page.keyboard.press(bindings.leg);await page.waitForTimeout(500);}}
     finally{await page.keyboard.up(bindings.guard);}
     await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.mfbt.mutual-collapse"||window.storyProbe.sceneErrors.length,null,{timeout:20_000});await check();
     await page.screenshot({path:testInfo.outputPath("gui-zhang-original-mutual-collapse.png")});

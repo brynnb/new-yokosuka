@@ -32,6 +32,19 @@ test("every staged chapter provides cast collections and registered motion asset
   for(const asset of Object.values(authoredScenes.motionBanks))assert.ok(runtimeAssetUrl(asset),asset);
 });
 
+test("kitten choice borrows the archive-local cast and releases its tableau before the branch",()=>{
+  const catalog=createScriptEventPresentationCatalog(),id="s1.ju00.first-kitten.choice";
+  const start=catalog.sequence(`${id}.start`),finish=catalog.sequence(`${id}.finish`);
+  assert.equal(start.kind,"scene-staging-start");assert.equal(finish.kind,"scene-staging-finish");
+  assert.deepEqual(start.scene.actors.map(actor=>actor.tag),["AKIR","MEGM","CATM"]);
+  assert.equal(start.scene.packageActors.CATM.modelCode,"KC1_M");
+  assert.ok(start.scene.actors.every(actor=>actor.motion.bank==="kittenChoice"&&Number.isFinite(actor.motion.elapsedSeconds)));
+  assert.equal(start.scene.sceneObjects.NBOX.lifecycle.kind,"room-script-persistent");
+  assert.deepEqual(start.scene.objectTransforms,[{object:"BOX1",visible:false}]);
+  assert.equal(catalog.activity("s1.ju00.first-kitten.introduction").retainPackageMusic,true);
+  for(const part of ["fish","tofu"])assert.notEqual(catalog.activity(`s1.ju00.first-kitten.${part}`).retainPackageMusic,true);
+});
+
 test("Heartbeats holds source poses, waits for paired clips and retains one scene lease",()=>{
   const catalog=createScriptEventPresentationCatalog(),id="s1.heartbeats.alley.defense";
   const prompt=catalog.sequence(`${id}.prompt.start`),success=catalog.sequence(`${id}.success.start`),failure=catalog.sequence(`${id}.failure.start`);
@@ -44,6 +57,18 @@ test("Heartbeats holds source poses, waits for paired clips and retains one scen
   assert.ok(prompt.scene.actors.slice(0,2).every(a=>a.motion.elapsedSeconds===0));
   assert.equal(success.scene.durationSeconds,126/30);assert.equal(failure.scene.durationSeconds,68/30);
   assert.ok(success.scene.actors.slice(0,2).every(a=>a.motion.elapsedSeconds===undefined&&!a.motion.loop));
+  const setup=catalog.sequence(`${id}.second-setup.start`);
+  const secondPrompt=catalog.sequence(`${id}.second-prompt.start`);
+  assert.equal(setup.kind,"scene-staging-transition");
+  assert.equal(setup.scene.actors[1].motion.elapsedSeconds,126/30);
+  assert.equal(secondPrompt.scene.actors[2].motion.elapsedSeconds,0);
+  for(const part of ["second-success","second-failure"]){
+    const next=catalog.sequence(`${id}.${part}.start`);
+    assert.equal(next.kind,"scene-staging-transition");
+    assert.equal(next.scene.actors[1].motion.elapsedSeconds,126/30);
+    assert.equal(next.scene.actors[2].motion.loop,false);
+    assert.equal(catalog.sequence(`${id}.${part}.finish`).kind,"scene-staging-finish");
+  }
 });
 
 test("tattoo introduction borrows native presentation without replacing the real challenge",()=>{
@@ -152,7 +177,11 @@ test("Nozomi's photo films retain original timing/cast without owning choice or 
     for(const actor of Object.values(manifest.packageActors))for(const asset of [actor.assetPath,actor.textureAssetPath])assert.ok(runtimeAssetUrl(asset));
     assert.equal(audio.voices.length,voices);assert.ok(audio.voices.every(v=>!v.unavailable));
     assert.ok(audio.sounds.every(v=>!v.unavailable));
-    if(part==="intro")assert.ok(["BLC0","BLC1"].every(tag=>manifest.sceneObjects[tag].referenceOnly));
+    if(part==="intro"){
+      assert.ok(["BLC0","BLC1"].every(tag=>manifest.sceneObjects[tag].includeUntexturedGeometry&&!manifest.sceneObjects[tag].referenceOnly));
+      assert.deepEqual(manifest.activities[0].authoredSceneObjectOpacityTracks.map(track=>track.actorTag),["BLC0","BLC1"]);
+      assert.equal(manifest.sceneObjects.PHT1.model,"SHAS506G");assert.equal(manifest.sceneObjects.PHT2.model,"SHAS503G");
+    }
   }
 });
 
@@ -191,7 +220,30 @@ test("Gui Zhang's warning uses the original Alpha room, bank18, exact English vo
   assert.equal(audio.sources.stream.path,"disc3/SCENE/03/STREAM/01CAUA.AFS");
   assert.equal(audio.sources.soundBank.path,"disc3/SCENE/03/SOUND/A1_CAV.SND");
   assert.equal(music.source.bankSha256,"48e854a5c8681536f015195da0630fa8e90307404a2e9b70a93b335fdbccebcf");
+  assert.equal(manifest.attachedObjects.KYUF.source.model,"FUTS5KBG");
+  assert.equal(manifest.attachedObjects.KMEM.source.model,"KMMS500G");
+  assert.deepEqual(manifest.attachedObjects.KMEM.attachments.map(c=>[c.frame,c.action,c.parentActorTag]),
+    [[435,"attach","TMRA"],[550,"attach","AKIR"],[760,"attach","AKIR"],[1030,"detach",undefined]]);
+  assert.equal(manifest.handAssets.TMRA.handCode,"KWD");
+  assert.ok(manifest.activities[0].nativeHandPoseCues.some(c=>c.actorTag==="TMRA"&&c.frame===10));
   assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+});
+
+test("warning-letter source records the original coroutine handover without claiming frame timing",()=>{
+  const ir=JSON.parse(readFileSync(new URL("../tools/evidence/maru-letter-native-sequence-ir.json",import.meta.url)));
+  assert.equal(ir.source.disc,3);assert.equal(ir.source.area,"MFSY");
+  assert.equal(ir.source.mapinfoSha256,"adc993ac9fbca4b039a99d3d44f64840d428a7a5540651902c52d96076a98d88");
+  assert.equal(ir.function.id,"0x65834");
+  const actions=ir.function.blocks.flatMap(block=>block.actions);
+  const attaches=actions.filter(action=>action.operationHex==="0x00e6");
+  assert.deepEqual(attaches.map(({arguments:args})=>args.slice(0,3).map(arg=>arg.ascii??arg.value)),[
+    ["KYUF","TMRA",12],["KMEM","TMRA",18],["KMEM","AKIR",18],["KMEM","AKIR",18],
+  ]);
+  const caller=ir.supportingFunctions.find(fn=>fn.id==="0x64238");
+  assert.ok(caller.blocks.some(block=>block.frameFieldComparisons?.some(cmp=>cmp.fieldOffset===0&&cmp.constant===3)));
+  assert.ok(caller.blocks.some(block=>block.actions.some(action=>action.kind==="childCoroutineLaunch"&&action.targetFileOffset==="0x65834")));
+  const owner=ir.supportingFunctions.find(fn=>fn.id==="0x68090");
+  assert.ok(owner.blocks.some(block=>block.actions.some(action=>action.kind==="directCall"&&action.targetFileOffset==="0x64238"&&action.arguments[0]?.value===3)));
 });
 
 test("Chen's post-letter scene keeps its distinct archive, original bank/cast and shared original bodies",()=>{
@@ -228,6 +280,8 @@ test("coworker lunch borrows the original silent film without owning the batch r
   assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
   assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
   assert.equal(manifest.activities[0].durationFrames,450);assert.equal(manifest.audioManifest,undefined);
+  assert.deepEqual(manifest.mapGeometryMasks,[{browserFilename:"S2_MFSY_MAP11.MT5",nodeAddress:0x430b0,lifetime:"activity"}]);
+  assert.deepEqual(manifest.activities[0].browserMapVisibility,[]);
   assert.deepEqual(Object.keys(manifest.packageActors).sort(),["HTSI","MARK","TAKE","TYMK","YOHI"]);
   assert.equal(Object.keys(manifest.sceneObjects).length,12);
 });
@@ -264,6 +318,7 @@ test("Mark's lunch films retain original bindings and cannot settle the rescue t
 test("payday borrows original salary motions and Goro's warning without presentation-side rewards",()=>{
   const scene=authoredScenes.scenes.find(s=>s.id==="s1.mfsy.payday");
   assert.equal(scene.waitForMotions,true);assert.deepEqual(scene.actors.map(a=>a.tag),["AKIR","TMRA"]);
+  assert.equal(scene.isolateResidentWorld,true);
   assert.ok(scene.actors.every(a=>a.motion.bank==="harborPay"&&a.motion.loop===false));
   assert.equal(scene.sceneObjects.ROOM.assetPath,"play/assets/harbor/yada-job-interview/MAPALP.MAPD");
   const film=createScriptEventPresentationCatalog().activity("s1.mfsy.after-work-goro.scene");

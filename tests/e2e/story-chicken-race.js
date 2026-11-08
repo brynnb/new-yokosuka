@@ -5,7 +5,13 @@ export async function verifyChickenRace(page,testInfo,character){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),done="story.s1.chicken-race.completed";
   expect(initial.character.storyFlags["story.s1.forklift-training.completed"]).toBe(true);
+  expect(initial.character.storyFlags["notebook.s1.first-workday"]).toBe(true);
   expect(initial.character.storyFlags[done]).not.toBe(true);
+  await page.locator("button").filter({hasText:/^Notebook$/}).click();
+  for(let i=0;i<130&&await page.locator("#journal-next").isEnabled();i++)await page.locator("#journal-next").click();
+  await expect(page.locator("#journal-page-copy")).toContainText("Finished forklift practice with Mark.");
+  await page.screenshot({path:testInfo.outputPath("forklift-training-earned-notebook.png")});
+  await page.locator("#journal-close").click();
   const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await noErrors();};
   const unchanged=async()=>{const s=await saved();expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory).toEqual(initial.inventory);expect(s.character.storyFlags[done]).not.toBe(true);};
@@ -35,7 +41,9 @@ export async function verifyChickenRace(page,testInfo,character){
   await approach();await page.getByRole("button",{name:"Help the old man",exact:true}).click();await scene();
   // Let the original introduction finish naturally once. It cannot win the QTE.
   await ready();await unchanged();await page.screenshot({path:testInfo.outputPath("chicken-race-original-bikes-and-riders.png")});
-  await page.locator('[data-challenge-button="Down"]').click();
+  // Only the requested button is visible. An incorrect physical key tests
+  // the failure path without depending on a hidden on-screen button.
+  await page.keyboard.press("ArrowDown");
   await page.getByText("The riders got the better of you. Try the chicken race again?",{exact:true}).waitFor();await caption();await unchanged();
   await page.getByRole("button",{name:"Try again",exact:true}).click();await scene();await page.keyboard.press("KeyX");await ready();
   await win();await cancel();

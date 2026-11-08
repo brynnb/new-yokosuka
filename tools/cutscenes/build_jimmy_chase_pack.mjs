@@ -40,8 +40,32 @@ for(const p of profiles){
     members.push({name:"MOTION.BIN",sourcePath:path.join(root,".disc-work/runtime-motion/MOTION.BIN"),sourceManifestPath:"canonical raw MOTION.BIN",byteLength:1826804,sha256:"aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23"});
     banks.push({bank:0,member:"MOTION.BIN",parseOptions:{sequenceIndices:[64]}});
   }
-  const props=Object.fromEntries(p.actors.filter(t=>["DOR1","DOR2"].includes(t)).map(tag=>[tag,{model:"unmapped-original-door-reference",browserFilename:`CTERMO1-${tag}-reference`,referenceOnly:true}]));
+  const props={};
   const outputMembers=[],generatedAssets=[];
+  if(p.id==="jimmy-knock"){
+    const textures=fs.readFileSync(source(2,"D000/CTERST.PKF"));
+    const textureHash="8e591075214c8d9c1ba9bf9a3567ae1d795d941c8a0139ccc256227de04a18d1";
+    if(sha256(textures)!==textureHash)throw Error("Changed original chase door textures");
+    const chrt=parseIpacActivityArchive(textures).members.find(m=>m.name==="CHARA.CHRT");
+    if(!chrt)throw Error("Missing original chase door character table");
+    const bindings=parseChrtSceneObjectBindings(chrt.bytes);
+    const archive=fs.readFileSync(source(2,"D000/CTERST.PKS"));
+    const doorArchiveHash="d9b308921d1d3daf06cf52a2cbc0e0c49c3085640c4459ff23238772192e0e76";
+    if(sha256(archive)!==doorArchiveHash)throw Error("Changed original chase door models");
+    for(const tag of ["DOR1","DOR2"]){
+      const candidates=bindings.filter(b=>b.actorTag===tag);
+      if(candidates.length!==1)throw Error(`Missing or ambiguous original ${tag} binding`);
+      const binding=candidates[0],model=`${binding.model}.CHRM`;
+      const member=parseIpacActivityArchive(archive).members.find(m=>m.name===model);
+      if(!member)throw Error(`Missing original chase door ${model}`);
+      members.push({name:model,sourcePath:source(2,"D000/CTERST.PKS"),sourceManifestPath:"disc2/SCENE/02/D000/CTERST.PKS",archiveMember:model,sourceSha256:doorArchiveHash,byteLength:member.bytes.length,sha256:sha256(member.bytes)});
+      outputMembers.push(model);
+      props[tag]={model:binding.model,browserFilename:model,assetPath:`${prefix}/${model}`,textureAssetPath:`${prefix}/door-textures.bin`,
+        sourceBinding:{...binding,archive:"disc2/SCENE/02/D000/CTERST.PKF",archiveSha256:textureHash,member:"CHARA.CHRT"},
+        ...(tag==="DOR1"?{replacesTransitionId:"d000-door-25-to-daza-reverse-matched"}:{})};
+    }
+    generatedAssets.push({assetPath:`${prefix}/door-textures.bin`,bytes:extractNativeTexnPack(textures,"CTERST.PKF").bytes});
+  }
   if(p.actors.includes("CAR_")){
     const textures=fs.readFileSync(source(2,"D000/CTERBASE.PKF"));
     if(sha256(textures)!=="0f9028c137fa4df057fad9b8e3e06f09ba98dfc82917977e7ef63ad29010551f")throw Error("Changed original chase vehicle textures");

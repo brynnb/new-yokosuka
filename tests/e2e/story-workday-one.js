@@ -1,5 +1,6 @@
 import {expect} from "@playwright/test";
 import {driveObservedDeliveries} from "./story-forklift-training.js";
+import {fightWithKeyboard} from "./story-seventy-man.js";
 
 export async function verifyMorningCargo(page,testInfo,character,{day="one"}={}){
   expect(["one","two","three","four","five"]).toContain(day);
@@ -40,7 +41,7 @@ export async function verifyMorningCargo(page,testInfo,character,{day="one"}={})
   const final=await saved();expect(final.character.storyFlags[done]).toBe(true);expect(final.character.storyFlags[`notebook.s1.${day!=="one"?`${chapter}-lunch`:"workday-one-morning"}`]).toBe(true);
   expect(final.character.yen).toBe(initial.character.yen);expect(final.inventory).toEqual(initial.inventory);expect(new Date(final.character.storyTimeMs).getUTCHours()).toBe(12);
   await page.screenshot({path:testInfo.outputPath(`${chapter}-morning-earned-lunch.png`)});
-  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").filter({hasText:character.name}).click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(id=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id===id,character.id);await idle();
   expect((await saved()).character.storyFlags[done]).toBe(true);expect(await page.getByRole("button",{name:"Start the deliveries",exact:true}).isVisible()).toBe(false);
 }
 
@@ -57,18 +58,21 @@ export async function verifyMarkLunch(page,testInfo,character){
     await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
     try{await scene("intro");}finally{await page.keyboard.up("KeyW");}
   };
-  await idle();await approach();await page.waitForTimeout(8000);await page.screenshot({path:testInfo.outputPath("mark-lunch-original-confrontation.png")});
+  // A prior disconnected or defeated attempt may save the player inside the
+  // trigger, in which case the confrontation legitimately starts on login.
+  if(await page.evaluate(()=>window.storyProbe.regions.controller.status==="idle"))await approach();else await scene("intro");
+  await page.waitForTimeout(8000);await page.screenshot({path:testInfo.outputPath("mark-lunch-original-confrontation.png")});
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-mark-intro-cancel"));await idle();await unchanged();
   await approach();
   // Natural original introduction must lead to actual combat, not a victory.
-  await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:80_000});await noErrors();await unchanged();
+  await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready||window.storyProbe.sceneErrors.length,null,{timeout:80_000});await noErrors();await unchanged();
   expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.map(a=>a.tag))).toEqual(["AKIR","MRSK","OKYS","THG3"]);
   await page.screenshot({path:testInfo.outputPath("mark-lunch-three-opponent-fight.png")});
-  await winHarborFight(page);
+  await fightWithKeyboard(page,()=>page.evaluate(()=>!window.storyProbe.combatRuntime?.active));
   await scene("aftermath");await unchanged();await page.waitForTimeout(8000);await page.screenshot({path:testInfo.outputPath("mark-lunch-original-aftermath.png")});
   await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:55_000,intervals:[1000]}).toBe(true);await idle();
   const final=await saved();expect(final.character.storyFlags["notebook.s1.mark-chen-rivals"]).toBe(true);expect(final.character.yen).toBe(initial.character.yen);expect(final.inventory).toEqual(initial.inventory);
-  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();
+  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").filter({hasText:character.name}).click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(id=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id===id,character.id);await idle();
   expect((await saved()).character.storyFlags[done]).toBe(true);expect(await page.evaluate(()=>window.storyProbe.starts.some(id=>id.startsWith("story-s1-mark-lunch-")))).toBe(false);
 }
 
@@ -107,7 +111,7 @@ export async function verifyFirstAfternoon(page,testInfo,character){
   const economy=async paid=>{const s=await saved();expect(s.character.yen).toBe(initial.character.yen+(paid?3000:0));expect(s.inventory).toEqual(initial.inventory);return s;};
   const reset=async(position,yaw)=>{await page.evaluate(({position,yaw})=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray(position),yaw,{persist:true});c.setFirstPerson(true);c.cameraYaw=yaw;c.cameraPitch=0;c.updateCamera(1);},{position,yaw});await page.waitForTimeout(250);};
   const approach=async(position,yaw)=>{await reset(position,yaw);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await page.waitForFunction(()=>["line","options"].includes(window.storyProbe.regions.controller.status)||window.storyProbe.director?.activeCutscene||window.storyProbe.sceneErrors.length,null,{timeout:15_000});}finally{await page.keyboard.up("KeyW");}await noErrors();};
-  const reload=async()=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();};
+  const reload=async()=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").filter({hasText:character.name}).click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(id=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id===id,character.id);await idle();};
   await idle();
   if(!(await saved()).character.storyFlags[flag("workday-one-afternoon")]){
     const hour=new Date((await saved()).character.storyTimeMs).getUTCHours();
@@ -121,8 +125,8 @@ export async function verifyFirstAfternoon(page,testInfo,character){
   if(!(await saved()).character.storyFlags[flag("workday-one-attack")]){
     if(await page.evaluate(()=>window.storyProbe.regions.controller.status==="idle"))await approach([-20,0,117],-Math.PI/2);
     await page.getByText("Three thugs are trying to stop my work. I need to get past them before going to Yada-san.",{exact:true}).waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Face the attackers",exact:true}).click();
-    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await noErrors();await economy(false);
-    await page.screenshot({path:testInfo.outputPath("workday-one-afternoon-three-attackers.png")});await winHarborFight(page);
+    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await noErrors();await economy(false);
+    await page.screenshot({path:testInfo.outputPath("workday-one-afternoon-three-attackers.png")});await fightWithKeyboard(page,()=>page.evaluate(()=>!window.storyProbe.combatRuntime?.active));
     await page.getByText("The attackers have backed off. The shift is over. I should collect my wages from Yada-san at Alpha Trading.",{exact:true}).waitFor();await economy(false);
     await page.keyboard.press("Space");await idle();expect((await economy(false)).character.storyFlags[flag("workday-one-attack")]).toBe(true);
   }

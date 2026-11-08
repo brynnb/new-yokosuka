@@ -161,7 +161,8 @@ export class WorldEnvironmentRuntime {
       ? null : this.getNativeWeatherEnvironment();
     const lightingBlend = cutscenePreset === null
       ? nativeEnvironment ? { ...clockBlend, lightingOverride: nativeEnvironment.lightingOverride,
-        skyTextureUrl: nativeEnvironment.sky?.imagePath ?? null } : clockBlend
+        skyTextureUrl: nativeEnvironment.sky?.imagePath ?? null,
+        skyWeatherTexture: nativeEnvironment.sky?.index === 4 || nativeEnvironment.sky?.index === 5 } : clockBlend
       : {
         fromIndex: cutscenePreset,
         toIndex: cutscenePreset,

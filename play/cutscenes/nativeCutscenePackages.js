@@ -445,6 +445,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR}),
       ...(manifest.handAssets?{handAssets:{AKIR:op00AssetInventory.handAssets.AKIR,...manifest.handAssets}}:{})}),
     environment:Object.freeze({packageActors:manifest.packageActors,...(manifest.sceneObjects?{sceneObjects:manifest.sceneObjects}:{}),
+      ...(manifest.mapGeometryMasks?{mapGeometryMasks:manifest.mapGeometryMasks}:{}),
       ...(manifest.attachedObjects?{attachedObjects:manifest.attachedObjects}:{}),
       ...(manifest.activities.some(activity=>activity.browserIsolatedStage)?{isolatedStage:true}:{}),
       ...(["boat-ticket-collection","jimmy-interrogation"].includes(id)?{suppressScheduledActors:["ETKO"]}:id==="tattoo-aftermath"?{suppressScheduledActors:["HORS","TONY","SMTH"]}:{})}),

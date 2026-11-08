@@ -25,7 +25,7 @@ function usage() {
 }
 
 const DEFAULT_FAMILY_REPORT = new URL(
-  "evidence/shenmue2-animation-family-conformance.json",
+  "../evidence/shenmue2-animation-family-conformance.json",
   import.meta.url,
 );
 
@@ -119,7 +119,7 @@ function parseArguments(argv) {
     timeout: 216000,
     acquisitionTask: null,
     requestPath: process.env.FLYCAST_S2_ACTOR_CAPTURE_REQUEST
-      || ".flycast-pvr/control/s2-animation-actor-capture.request",
+      || ".flycast-pvr/shenmue2/control/s2-animation-actor-capture.request",
   };
   for (let index = 1; index < argv.length; index += 1) {
     const option = argv[index];

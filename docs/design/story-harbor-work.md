@@ -18,6 +18,19 @@ are optional guidance and have not been added as mandatory gates.
 | `goro-job-appointment`, Warehouse No. 1 blue door | Promise saved; a later personal day, 12:00–17:00; approach | `MGOR/SEQDATA0.AUTH`, Ryo/Goro/Mai, original 01GORA speech | Yada appointment and notebook |
 | `harbor-job-hiring`, Alpha Trading entrance | Appointment saved; 14:00–17:00; explicit meet/leave choice | `MARU/SEQDATA0.AUTH` interview, then `SEQDATA1.AUTH` Mark introduction, original 01MAK speech | Hired milestone and training notebook; no training result or pay |
 
+On 2026-11-07 the isolated character that had actually earned Goro's lead in
+the preceding checkpoint continued through the next-day appointment. Walking
+into the area, cancelling and retrying the full unskipped appointment saved
+its milestone. At Alpha, declining the job and cancelling during Mark's film
+saved no hiring result; after reload, retrying the interview and allowing
+Mark's introduction to finish naturally saved hiring and showed its notebook
+page. A further reload did not replay the job films. PostgreSQL retained the
+promise day, both job milestones and their notes, with ¥2,000 unchanged and no
+forklift-training completion. The interview was explicitly skipped on the
+successful retry; earlier Jimmy progress was seeded, so this is not a complete
+new-game playthrough. Source-native gestures, lighting and every camera shot
+remain separately unverified.
+
 Each scene pauses ordinary movement, borrows the local Ryo and suppresses
 overlapping ambient actors through shared ownership. Original AUTH supplies
 body motion, cameras, shots and voice timing. Speech and effects come from
@@ -54,8 +67,22 @@ reads these associations instead of guessing from archive order; the workers
 were previously swapped and the available office door was left virtual.
 Its AUTH movement drives the real door through the shared scene-object lease.
 Source archive hashes and character/image offsets are retained in manifests.
-The Goro appointment's `DOOR` and `HAKO` remain unmapped references, unlike
-the recovered interview door. Activation volumes are authored
+The Goro appointment's `DOOR` and `HAKO` remain reference-only, unlike
+the recovered interview door. Their AUTH tracks do not move at any integer
+frame. After the usual X reflection, `HAKO` matches resident `GHAK`'s X/Z and
+rotation; its vertical position matches after the resident box's 1.5 scale.
+`DOOR` matches static door 14's rotation and is 0.037 units from its recorded
+X/Z placement. These are plausible existing-world counterparts, not proof of
+native identity; no duplicate models are added on this evidence alone.
+A 2026-11-07 isolated rendered presentation check confirms both placements are
+enabled and submitted for rendering; the crate also appears beside Goro in the
+original camera view. Cancellation and replay through the entire 1,960-frame
+film restore the avatar, position, first-person mode, camera yaw/pitch/distance,
+controls and actor leases, without changing flags, money or inventory. Ryo,
+Goro and Mai visibly move and all 22 original voice clips play with changing
+mouth meshes. This is presentation-only, not a newly earned appointment; the
+door was checked using a diagnostic camera, and precise native identity,
+gestures, finger contact and lighting remain unverified. Activation volumes are authored
 around original actor poses and the Alpha entrance, not recovered EVNT regions.
 
 A 2026-10-23 GPU-rendered presentation recheck passes cancellation/replay and
@@ -93,6 +120,19 @@ Free roam exclusion, repeat prevention, decline, cancellation during either
 hiring film and once-only staged effects. Those tests do not use a database;
 the connected browser run supplies the PostgreSQL evidence.
 
+A 2026-11-07 isolated checkpoint seeded only the earlier Jimmy interrogation,
+then walked into Goro's lead. Cancellation left the promise unsaved; retry
+played the full original film without skipping, sampled its changing poses and
+observed all 23 voice IDs across the cancellation and retry. Completion saved
+the promise, notebook flag and personal promise day. At 13:00 on that same day
+the appointment did not start; after waiting to 13:00 the following day,
+walking into its area started the film and cancellation saved no appointment.
+Reload retained the lead and notebook flag with unlocked movement. Money and
+inventory stayed unchanged, and the camera view returned after the lead. This
+check used shortcuts to approach the volumes and seeded an earlier milestone;
+it is not a fresh playthrough or verification of the notebook page's text,
+every facial expression, or precise original trigger boundaries.
+
 `NEW_YOKOSUKA_HARBOR_HIRING_E2E=true` continues the genuine Jimmy-earned save
 through physical approaches, Goro cancellation/re-entry, same-day appointment
 rejection, normal wait-menu advancement, Goro/Mai cancellation/retry, hiring
@@ -124,8 +164,8 @@ The second day's cargo/ambush/payday also pass connected rendered checks;
 the subsequent Mark rescue and brother explanation also pass their connected
 rendered continuation. The third-day daytime continuation and its evening biker
 chase, both fights and original interrogation also pass connected rendered
-verification. The Lan Di dream and fourth morning through lunch also pass their
-connected continuation; the afternoon and later workdays remain missing. Existing
+verification. The Lan Di dream, fourth morning through lunch and later workday
+continuations documented below also pass bounded connected checks. Existing
 forklift driving, cargo and racing must be reused; neither film completion
 nor a client-reported win may grant a shift's salary or story outcome.
 
@@ -190,6 +230,16 @@ fleet IDs now fence visibility and entry, and a finished removal fade disposes
 the retained model. This repair applies to ordinary forklifts as well as training.
 Desktop keyboard gameplay is verified; mobile controls have not been assessed.
 
+On 2026-11-07, a fresh connected continuation resumed the hiring checkpoint
+earned from Goro's lead and appointment, declined practice, cancelled an entered
+attempt, then retried and physically delivered all three crates. A rendered
+pickup was reviewed; the completion and first-workday notebook flags survived
+reload, the personal clock advanced to 17:00, and ¥2,000 and inventory remained
+unchanged. A subsequent rendered resume showed the first-workday notebook page.
+Jimmy's earlier prerequisite was seeded; this was not an uninterrupted
+new-game playthrough. The test did not independently compare every camera detail
+or verify mobile input.
+
 ## Evening chicken race
 
 The GameSpot guide, printed pp. 51–52, places the riders' harassment of Shozo
@@ -202,8 +252,8 @@ in the guide; it is not a wage or an automatic success from watching a film.
 | ID / location | `chicken-race`, personal Story mode, `MFSY` harbor. |
 | Prerequisites / trigger | Completed forklift practice; 19:00–23:00 personal time; approach around original Ryo position `[1.7274,0,88.9241]`, then choose help or leave. The bounds and later-evening retry window are authored. |
 | Setup / actors / props | Borrow Ryo; privately stage Shozo, Takashi and Takahiro with original character models. Original RACE motorcycle models supply the bikes; their particular BIK1/BIK2 associations are authored choices. |
-| Sequence / audio / camera | Original `RACE/SEQDATA1.AUTH` introduction with original body motion, camera and 01CRA voices/effects. Then an authored side-by-side riding tableau and server-timed A/Down/Left/Right prompts. Captions describe the outcome without inventing voiced dialogue. |
-| Timing / challenge | Introduction may finish or be explicitly skipped. Only four timely server-accepted inputs win. Two-second windows, stationary riding staging and a fresh attempt after failure are declared adaptations. |
+| Sequence / audio / camera | Original `RACE/SEQDATA1.AUTH` introduction with original body motion, camera and 01CRA voices/effects. Then an authored side-by-side riding tableau and client-timed A/Down/Left/Right prompts. Captions describe the outcome without inventing voiced dialogue. |
+| Timing / challenge | Introduction may finish or be explicitly skipped. Four timely inputs win on the client, which reports the outcome for Story settlement; a modified client can falsify it. Two-second windows, stationary riding staging and a fresh attempt after failure are declared adaptations. |
 | Weather / lighting | Preserve the personal evening environment; no additional date, season or weather gate. Separate lamp, headlight and reflection reference actors retain transforms but have no newly rendered geometry. |
 | Completion | Atomically save the race milestone, day and notebook entry after the acknowledged success caption and presentation cleanup. No pay, possession, move reward or calendar jump. |
 | Exit / cancellation / replay | Restore the prior avatar pose/camera and ordinary controls. Decline, failure, interrupted loading and cancellation (including after the last input but before the ending) grant nothing and remain retryable. Saved completion prevents automatic replay. |
@@ -218,6 +268,12 @@ attachment path. Their resource lease also owns failed/late-load cleanup.
 The moving native chicken-race course, opponent's fall into the sea and
 post-race combat-move teaching are not reconstructed here. Rider/handlebar contact
 is approximate. The outcome caption does not claim those effects are animated.
+The 2026-11-07 rendered 19:00 harbor run showed very dark foreground actors and
+buildings against a bright sky. The selected original cloudy sprite was shown
+without time-of-day modulation; Story now dims weather sky textures using its
+existing light curve, an explicitly approximate browser projection. A rendered
+morning/evening harbor comparison confirms the sky changes, but nighttime
+foreground visibility and native sky modulation still need investigation.
 Focused compiler/engine tests cover
 eligibility, real input order, stale tokens, timeout, retry and cancellation
 before final settlement. The connected hardware-rendered check resumes the
@@ -228,6 +284,13 @@ first-person camera and controls restore; PostgreSQL saves the milestone, note
 and day; money/inventory are unchanged and reload does not replay the event.
 The authoring compiler now rejects anonymous or untagged dialogue lines before
 generation, preventing an outcome caption from failing only after the QTE.
+
+On 2026-11-07, the freshly earned training save was resumed through the early
+time gate and ordinary wait. A rendered run exercised the natural introduction,
+wrong physical key, retry, cancellation after a win, successful retry and
+reload. PostgreSQL retained both milestones and notebook flags with ¥2,000
+unchanged. The successful attempts skipped the introduction; an earlier Jimmy
+prerequisite was seeded, and the original aftermath remains absent.
 
 The next connected sequence is the first paid workday. The guide, pp. 53–55,
 places the morning race before ten deliveries to Warehouse No. 18, a noon rescue
@@ -287,11 +350,41 @@ time pauses; the race and its lease use advancing wall time.
 An acknowledged course finish atomically saves a separate race milestone,
 notebook page and workday date, establishes a minimum 09:00 work start, and
 returns to the already tested harbor loading corridor. It does not complete the
-paid shift. Finishing rank and rank-based collectible prizes are not yet
-implemented; neither the local best-time record nor a film can grant them.
+paid shift. The current course is a solo time trial without the original
+competing forklifts. Finishing rank and rank-based collectible prizes are not
+yet implemented; neither the local best-time record nor a film can grant them.
 Cancellation, failed preparation or timeout grants no completion, releases the
 vehicle, and restores the prior camera/pose/controls. Reload must preserve a
 committed outcome without replay.
+
+The 2026-11-07 continuation from the newly earned chicken-race save reached
+the following morning through the regular waiting UI, boarded and cancelled
+one race attempt. On retry the automated driver passed six gates and drove
+beyond the next unconfirmed one. Its route follower now waits for each actual
+gate before proceeding. A further retry passed 23 gates, but stalled at lap 2,
+checkpoint 10 despite the displayed player position being within that gate's
+radius. An isolated second connection later showed the server's last accepted
+vehicle pose had remained roughly 40 metres behind the local physics pose.
+Neither attempt settled the race.
+
+The shared Story vehicle and cargo movement check could become permanently
+stuck after a dropped/delayed update: its two-metre allowance never grew enough
+to reach the next reported position. It now accumulates real elapsed movement
+time only during rejection recovery and caps unused allowance again after an
+accepted update. Packet floods at a single instant still cannot create time.
+A focused rendered test suppressed vehicle presence briefly while driving:
+the old server stayed over 35 metres behind, while the updated server caught up
+and counted a subsequent physical checkpoint. That test cancels rather than
+completes the race.
+
+A subsequent 2026-11-07 rendered retry from the earned race-grid save drove all
+39 gates using the real forklift controls and the pinned native driving line.
+It acknowledged the finish and returned to the harbor: PostgreSQL retained the
+race, notebook and workday-date records with ¥2,000 unchanged. The first cargo
+briefing appeared; declining it before and after a reload preserved the race
+without replay or premature wages. This follows the earlier real next-morning
+wait and boarding, not a single uninterrupted test; Jimmy's prior prerequisite
+was seeded. Rivals, ranking and rank prizes remain absent.
 
 Focused server/compiler checks cover the actual generated Yarn, full three-lap
 observations, identities, countdown/loading, incorrect ordering, cancellation,
@@ -335,6 +428,10 @@ controls and reload without another batch. Run
 `NEW_YOKOSUKA_MORNING_CARGO_E2E=true` against the isolated earned checkpoint.
 Compiler tests cover the real generated Yarn, missing race, hours, partial
 delivery counts, driving/ending cancellation and the three atomic effects.
+The November 7 continuation started from the recently earned race result;
+test-only positioning re-entered the dispatch region for decline and retry,
+and an earlier Jimmy prerequisite had been seeded. This is not an uninterrupted
+new-game playthrough or a visual review of every detail.
 
 ## Mark at lunch: presentation assets
 
@@ -383,6 +480,24 @@ with the earned-save harness. Real compiler/simulation tests cover missing
 prerequisites, hours, actual victory/defeat, timeout/retry and cancellation before
 the final acknowledgement. No fight outcome or future flags are injected into
 the connected save.
+
+On November 7, a separate run continued the newly earned morning-cargo save.
+It rendered and cancelled the confrontation, replayed it into three-opponent
+combat and reached the retry option after the automated player lost. The rescue
+and clue flags remained unset. This run did not reverify victory or the aftermath;
+the approach used test-only positioning and an earlier Jimmy prerequisite was
+seeded.
+
+A later rendered retry again lost the fight; this is not evidence that a human
+cannot win or that its balance matches the original. During those attempts,
+fighters were observed occupying almost the same positions. The shared combat
+runtime now separates idle crowd members while leaving active attack and
+reaction poses untouched. A controlled four-opponent browser check verifies the
+idle-position correction and a paired throw afterward. A subsequent retry on
+the same earned save won through real keyboard guard, movement, attacks and
+recovery, played the original aftermath, and persisted both rescue and notebook
+clue across reload without changing money or inventory. Overlap during active
+animations, overall balance and full audiovisual fidelity remain unverified.
 
 ## First afternoon and payday: verified connected continuation
 
@@ -450,6 +565,23 @@ partial/cancelled delivery, payroll prerequisites, original-motion and final
 caption cancellation, exact grant and already-paid rejection. The shared
 combat, cancellation, prop/room lease and presentation tests remain applicable.
 
+On November 7 a separate continuation used the newly earned lunch-rescue save:
+five physical afternoon deliveries, actual keyboard fight, cancelled and retried
+payday, and cancelled and retried Goro warning all completed. The saved balance
+went from ¥2,000 to ¥5,000 exactly and remained there after reload; inventory was
+unchanged. Test-only positioning was used, and an earlier Jimmy prerequisite was
+seeded. In the reviewed salary capture Ryo partly obscures Yada, and dark linear
+artifacts appear on the ceiling; the authored camera and office rendering need
+further visual review. This check does not establish full animation fidelity.
+
+A subsequent presentation-only replay identified the stripes as overlapping
+resident harbor geometry. The authored office now leases the shared isolated
+stage (resident geometry, weather and non-cast scheduled actors), and a side
+camera keeps both participants visible. Rendered captures at 1, 8, 16 and 23
+seconds show the room without the observed stripes; playback followed by
+rollback restored the borrowed world state. This was a presentation review on
+the already-paid save, not another earned-payday or banknote/finger-fidelity test.
+
 These are local development assets and checks, not production/R2 publication.
 The first workday is verified through Goro's warning. The continuation below
 does not complete the second workday or later narrative.
@@ -467,6 +599,16 @@ parallel workday engine is involved.
 | `workday-one-night` | Completed first workday, actual Phoenix Mirror possession, bedroom bedside approach after 20:00; choose sleep or stay awake. Play original `KKYA/SEQDATA0.AUTH`. | After the acknowledged dream, atomically save its milestone/notebook, next personal morning at 08:30 and the established harbor loading-area arrival. No money or items. |
 | `workday-two-race-entry` | Completed first workday, a personal day later than the recorded first payday, harbor approach from 08:30 to noon; choose race or leave. | Repeatable reward-free transfer to the race grid. The optional dream is not a prerequisite: ordinary waiting can also reach the next day. |
 | `workday-two-race` | Saved second-day boarding, approach inside `ma00race`. Use the same ordinary forklift, course, physics and three-lap/thirty-nine-gate server-observed challenge. | A separately acknowledged second-day race result/notebook/date, minimum 09:00 and harbor return. A first-day win cannot substitute. No wages, rank prize or completed paid shift. |
+
+On November 7 the recently earned first-workday save used the normal wait menu
+to reach the next morning. Its first race attempt was interrupted after five
+checkpoints and saved no result; a retry from the race venue physically drove
+all 39 gates. The result and notebook survived reload, and the second-day cargo
+briefing appeared before and after it. Balance remained ¥5,000 and inventory
+unchanged. The optional mirror dream was not tested because this save does not
+have the mirror; trigger positioning and an earlier seeded Jimmy prerequisite
+mean this is not an uninterrupted new-game playthrough. The race remains a solo
+time-trial approximation without original competitors or prizes.
 
 KKYA's Disc 3 archive SHA256 is
 `c5f1253ccac0592eea434af73254a0a5e73db6a3a8e24c2ad511459990b4e8a9`.
@@ -535,10 +677,23 @@ Ryo and the five correctly named coworker models are reused. BTF/BTS tags use
 the two original bento-piece models in an authored pairing; exact lid/hand
 choreography is not claimed. Repeated bento instances share unique archive
 members and texture output through the existing scene-object lease.
-The rendered lunch capture shows the coworkers, but the resident exploration
-fence partly crosses the original camera view. Native scene-specific scenery
-visibility/framing is not reproduced; this remains a presentation limitation,
-not a claim that the original lunch shot is visually matched.
+The first rendered lunch capture showed an exploration fence crossing the
+original camera view. A later presentation-only review traced the obstruction
+to node `0x430b0` in `S2_MFSY_MAP11.MT5` and tested an authored cutaway of that
+node. The shared activity-scoped geometry mask now handles both original nodes
+and prepared batches, retaining the original camera, cast and surrounding
+harbor. Rendered cancellation and natural completion restored the exact batch
+indices; the approach is not a recovered native scenery-visibility command.
+Ambient bystanders and exact lunchbox/hand choreography remain unverified.
+
+A November 7 continuation of the newly earned second-race save verified
+decline, cancellation, four physical deliveries, the original lunch, and
+saved noon/notebook on reload with ¥5,000 and inventory unchanged. In its
+first attempt the driver moved the fourth crate but the server remained at
+three; the later retry succeeded. The cause of that intermittent failure was
+not captured and remains unresolved. The driver now waits for the server's
+last-crate acknowledgement and can capture bounded cargo traffic for diagnosis.
+The test uses approach positioning and has an earlier seeded Jimmy prerequisite.
 
 The ambush uses original donor thug models, not claimed original harbor attacker
 identities. Their parking-lot cinematic end poses placed two attackers within
@@ -579,8 +734,19 @@ a second payday. A failed pickup and failed fights during verification saved
 neither the unfinished batch nor an unearned clue/payment. The shared keyboard
 driver now observes shifted pickup bodies and makes bounded real control
 adjustments rather than assuming its initial crate coordinate cannot change.
-The lunch-camera occlusion above remains. This payday check does not itself
-complete Mark's later rescue or the second-day story flag.
+The lunch-camera issue was subsequently addressed as described above. This
+payday check does not itself complete Mark's later rescue or the second-day
+story flag.
+
+On November 7 a separate continuation of the newly earned second-morning save
+again completed all four afternoon deliveries and both fights with real keyboard
+input, restored full health for wave two, saved the clue, cancelled and retried
+the payday, and retained one ¥2,400 payment (¥5,000 → ¥7,400) and the notebook
+after reload. The test uses approach positioning and an earlier seeded Jimmy
+prerequisite; it is not a fresh-start playthrough. In a failed attempt, cargo
+traffic showed the second crate settled just outside the drop zone after being
+lowered. The driver now aims farther inside the zone. That explains this attempt,
+not the earlier uncaptured morning rejection, which remains unresolved.
 
 ## Warehouse No. 17: Mark rescue
 
@@ -650,6 +816,33 @@ December 27, currency stays at ¥15,036 and inventory stays unchanged. PostgreSQ
 confirms both notebook flags, the rescue/second-workday flags and finished-day
 record `6204`, matching the already-earned payday.
 
+A later November 7 check continued a different newly earned ¥7,400 payday. It
+reached the original confrontation, cancelled it without progress, won the
+five-opponent fight using keyboard controls, and cancelled Mark's explanation
+without saving the chapter. The temporary test server then stopped during a
+reload/retry; a further attempt reached the same cancellation checkpoint but
+the test process ended before completion, so neither is a second full pass.
+The interrupted pre-fix server left its event lease blocking a retry for up to
+five minutes; after expiry, the encounter became playable again. The local
+server branch now reclaims owner-tagged events after their owning database
+session is gone, without displacing a live owner. Isolated database tests cover
+session loss, stale settlement, mode changes, dialogue, opening and move-scroll
+operations. Legacy untagged events retain the five-minute lease. A separate
+rendered allowance check forcibly stopped the isolated server during the film,
+then confirmed immediate retrigger, one acknowledged ¥500 payment, restored
+controls and completed reload without replay. PostgreSQL recorded the abandoned
+run as expired, an intermediate reload-cancelled retry, and one completed run.
+The test completed the opening via API and skipped the retried film; it is not
+a fresh full-story playthrough or a crash test of every event. This change
+requires server migration 016 and is not deployed.
+
+A subsequent single-browser run on that same ¥7,400 save completed the full
+rescue continuation: cancel/retry, keyboard victory, cancel the explanation,
+reload/retry and a second real fight, natural ending, notebook and chapter
+settlement, then another reload without replay or economy changes. The approach
+was positioned by the test and an earlier Jimmy prerequisite was seeded; it is
+not a fresh-start playthrough. This run used the pre-recovery server binary.
+
 Rendered captures show the package-owned thugs on the supported harbor floor,
 the original confrontation and Mark/Ryo in the explanation. Test setup starts
 near the trigger rather than proving a full walking route from Alpha Trading.
@@ -697,14 +890,29 @@ The first rendered attempt exposed that invalid reference before world entry;
 the package producer now validates every shared model/texture pair at generation
 time instead of breaking the account-menu module import.
 
-PHT1→SHAS503G, PHT2→SHAS506G and POLA→POCS500G are declared package-prop
+PHT1→SHAS506G, PHT2→SHAS503G and POLA→POCS500G are declared package-prop
 associations, not recovered native controller bindings. Their original models
-and NZMPHOTO texture bank are retained. BLC0/BLC1 flash planes remain explicit
-reference-only actors: their effect visibility is not reconstructed, so they
-are not rendered as permanent opaque planes. Both authored choice branches use
+and NZMPHOTO texture bank are retained. The first association is the apart photo
+on the left, and the second is the together photo on the right, matching the
+[original gameplay recording](https://www.youtube.com/watch?v=2TVQUT68F9E).
+Both authored choice branches use
 the same original continuation; native photograph model-switching and a 2D
 inventory-photo display remain unimplemented. The selected identity is still
 saved per character and cannot settle before the ending acknowledgement.
+
+The original introduction triggers its `camera.aiff` shutter cue at AUTH
+frames 330 and 640. `BLAS500G` is a small untextured black quad, and the BLC0
+and BLC1 movement tracks closely follow PHT1 and PHT2. In the reference footage
+both pictures initially appear black and develop in sequence. The scene now
+renders the original quads with authored opacity tracks: the first develops at
+frames 780–840 and the second at 840–900. The sequence and broad timing are
+matched to that recording, but the original controller and exact interpolation
+are not recovered. The opt-in untextured path preserves default filtering of
+map collision and trigger geometry. `NEW_YOKOSUKA_PHOTO_PLANES_E2E=true` checks
+the rendered fade at four frames without altering progress. A separate connected
+checkpoint run walks the real trigger, cancels and retries, observes the fade,
+skips the films, chooses the apart photo, and verifies saved notebook/choice,
+restored controls and reload. It does not establish the entire workday route.
 
 As on earlier days, the four/four delivery split and tested outdoor dispatch pad
 condense the original warehouse route. Exactly-quota work earns the unchanged
@@ -740,9 +948,21 @@ controls restore and the final reload neither replays the photos nor pays again.
 PostgreSQL confirms race/payday on the same personal day (`6205`) and no
 `story.s1.workday-three.completed` flag; the evening story is not bypassed.
 
+A later 2026-11-07 single-browser continuation repeated that daytime path from
+the newly earned Mark-rescue save using the local owner-recovery server. It
+declined and cancelled sleep, saved the next morning, cancelled a race and then
+drove all 39 gates, physically delivered both four-crate batches, played the
+original lunch and photo films, cancelled the together-photo ending and saved
+the apart choice, then cancelled/retried payroll. Exactly ¥2,400 was added
+(¥7,400 → ¥9,800), and the notebook, choice and balance survived reload without
+duplicate payment. The original Eri camera and cast are visible in reviewed
+captures. Test-only approach positioning and an earlier seeded Jimmy prerequisite
+remain; this does not complete or verify the third evening.
+
 These checks reset near approaches, not along a proven full walking route.
-The coworker lunch still has the documented exploration-fence occlusion. Exact
-photo grips/model selection, flash geometry and inventory-photo art are not
+The coworker lunch fence was later addressed by the authored cutaway described
+above; other visual fidelity remains unverified. Exact
+photo grip fidelity, exact development timing, any camera flash and inventory-photo art are not
 claimed. All 57 new local asset records pass hash/size verification; publication
 and deployment have not been performed.
 
@@ -837,8 +1057,8 @@ weather/lighting outside the isolated vision; no new seasonal gate is added.
 
 The four/four quota split and existing outdoor dispatch pad condense the
 original warehouse route. Reusing HIRUAUTH's first lunch film does not claim
-original day-specific film selection. Its previously documented resident-fence
-occlusion remains. The coworker-spying clue and afternoon Goro encounter must
+original day-specific film selection. The shared film's resident-fence cutaway
+is the authored adaptation described above. The coworker-spying clue and afternoon Goro encounter must
 not be granted by this lunch presentation or by earlier workday receipts.
 
 Real compiler/engine checks extend the existing working-night, boarding, race
@@ -1177,8 +1397,8 @@ The five/five split, outdoor dispatch pad and ordinary unmarked crates are an
 explicit adaptation of the original Warehouse8/red-striped return to18 job.
 The existing base ¥300-per-delivery rule is retained; optional overtime and
 historical pay raises are not implemented. The warning-letter archive also
-retains its original paper/envelope meshes, but detailed paper/hand callback
-choreography is not reconstructed. No extra inventory item is invented for it.
+retains its original paper/envelope meshes. Their source-clock handover is
+presented below; no extra inventory item is invented for it.
 
 ### Original warning-letter resources
 
@@ -1224,9 +1444,46 @@ requests. The mix has not been assessed by listening.
 
 A 2026-10-23 presentation-only recheck also verifies the corrected isolated
 office through cancellation/replay and its full 13-recording ending, with restored
-world/state and no resident-actor leakage. Paper/hand choreography remains
-incomplete; the available `FUTS5KBG` and `KMMS500G` models are extracted but are
-not yet connected to the original hand-transfer callbacks.
+world/state and no resident-actor leakage.
+
+The original handover is a **coroutine**, rather than the per-frame callback
+used by the existing attachment extractor. Disc 3 MFSY `0x68090` loads the
+`MARU_LET` resource block and calls `0x64238` with slot 3; that slot launches
+`0x65834`. The original `MARU_LET.PKF` character table binds `KYUF` to envelope
+`FUTS5KBG` and `KMEM` to paper `KMMS500G`. Within that coroutine, `0x00e6`
+attaches `KYUF` to Yada (`TMRA`, control 12), then attaches `KMEM` to Yada
+(control 18) and later to Ryo (`AKIR`, control 18), with a second Ryo grip and
+eventual release. The source also contains object visibility and hand-pose
+operations. The compact [native sequence IR](../../tools/evidence/maru-letter-native-sequence-ir.json)
+preserves these operations and the two callers.
+
+Re-extract this compact evidence from the existing compiled native-event IR:
+
+```sh
+python3 tools/cutscenes/extract_native_aseq_callback_ir.py --disc 3 --area MFSY \
+  --map-entry 0x8aa14 --callback 0x65834 --include-function 0x68090 \
+  --include-function 0x64238 --output tools/evidence/maru-letter-native-sequence-ir.json
+```
+
+Despite the extractor's `--callback` name, `0x65834` is the launched coroutine
+here; the option simply selects the function to retain.
+
+The coroutine polls the original AUTH clock; its guarded operations now compile
+through the shared attachment and hand-pose systems. `KYUF` is attached to Yada
+at frame 10 and released at 195; `KMEM` is attached to Yada at 435, transferred
+to Ryo at 550, re-gripped at 760 and released at 1030. The original articulated
+paper rotations and available Ryo/Yada hand poses are also compiled. A stricter
+opt-in vector extractor handles this loop's earlier, frame-guarded constant
+vector initialization; it rejects dynamic, ambiguous and incomplete vectors.
+
+2026-11-07 isolated rendered presentation checks covered cancellation and
+replay through the natural ending. The envelope and paper were sampled while
+moving, the handoffs and releases matched those frames, all 13 recordings
+played, and camera, actor leases, world and saved state were restored. Separate
+diagnostic views show the paper in Yada's and Ryo's hands; the angle of the
+former native shot obscures fine contact. This was not a newly earned payday
+continuation, and exact finger, gaze, lighting and all camera fidelity remain
+unverified. The new local hand/prop assets need publication before deployment.
 
 All 42 new local asset records (1,725,354 bytes) match their recorded hashes and
 sizes. BGM119 reuses an existing viewer asset. No assets were published and no

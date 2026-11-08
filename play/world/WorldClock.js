@@ -200,7 +200,8 @@ export class WorldClock {
       : world?.interior && world.dynamicTimeOfDay !== true
         ? { fromIndex: 0, toIndex: 0, progress: 0, presetIndex: 0 }
         : story ? { ...storyLightingBlend(date), lightingOverride: story.lightingOverride,
-          skyTextureUrl: story.sky.imagePath }
+          skyTextureUrl: story.sky.imagePath,
+          skyWeatherTexture: story.sky.index === 4 || story.sky.index === 5 }
           : timeOfDayBlendForDate(lightingDate);
     return { serverDate, date, blend };
   }

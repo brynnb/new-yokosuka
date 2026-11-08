@@ -51,7 +51,7 @@
     "evidence": "docs/design/story-harbor-work.md",
     "resourceName": "MARU_LET",
     "variant": "",
-    "selectionRule": "Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection."
+    "selectionRule": "Walkthrough-guided warning after earned fifth payday. Original slot 3 clock guards drive the envelope, paper handover, articulated paper and available HAND cues. Ordinary Yarn alone owns acknowledgement and progress; unconverted gaze remains incomplete."
   },
   "audioManifest": "public/audio/world/warning-letter/manifest.json",
   "sceneObjects": {
@@ -93,6 +93,498 @@
       "textureAssetPath": "play/assets/characters/KWD_textures.bin"
     }
   },
+  "attachedObjects": {
+    "KYUF": {
+      "browserFilename": "FUTS5KBG.CHRM",
+      "assetPath": "play/assets/harbor/warning-letter/FUTS5KBG.CHRM",
+      "textureAssetPath": "play/assets/harbor/warning-letter/callback-textures.bin",
+      "source": {
+        "actorTag": "KYUF",
+        "image": "FUTS5KBG",
+        "model": "FUTS5KBG",
+        "characterRecordOffset": 168,
+        "imagePropertyOffset": 208,
+        "defImageRecordOffset": 128,
+        "presentation": null
+      },
+      "attachments": [
+        {
+          "objectTag": "KYUF",
+          "activitySlot": 0,
+          "frame": 10,
+          "action": "attach",
+          "parentActorTag": "TMRA",
+          "controlId": 12,
+          "translation": [
+            0.20800000429153442,
+            0.03200000151991844,
+            0.02800000086426735
+          ],
+          "rotationRaw": [
+            60983,
+            11639,
+            10556
+          ],
+          "callFileOffset": "0x65a30",
+          "activityId": "MARU_LET/SEQDATA3.AUTH"
+        },
+        {
+          "objectTag": "KYUF",
+          "activitySlot": 0,
+          "frame": 195,
+          "action": "detach",
+          "callFileOffset": "0x65c26",
+          "activityId": "MARU_LET/SEQDATA3.AUTH"
+        }
+      ],
+      "presentation": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "visible": true,
+          "source": {
+            "path": ".disc-work/dialogue/native-event-ir.json",
+            "sha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0",
+            "disc": 3,
+            "area": "MFSY",
+            "mapinfoSha256": "adc993ac9fbca4b039a99d3d44f64840d428a7a5540651902c52d96076a98d88",
+            "mapEntryFunction": "0x8aa14",
+            "callbackFunction": "0x65834",
+            "callFileOffset": "0x65922"
+          },
+          "activityId": "MARU_LET/SEQDATA3.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 195,
+          "visible": false,
+          "source": {
+            "path": ".disc-work/dialogue/native-event-ir.json",
+            "sha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0",
+            "disc": 3,
+            "area": "MFSY",
+            "mapinfoSha256": "adc993ac9fbca4b039a99d3d44f64840d428a7a5540651902c52d96076a98d88",
+            "mapEntryFunction": "0x8aa14",
+            "callbackFunction": "0x65834",
+            "callFileOffset": "0x65c16"
+          },
+          "activityId": "MARU_LET/SEQDATA3.AUTH"
+        }
+      ],
+      "nodeTransforms": []
+    },
+    "KMEM": {
+      "browserFilename": "KMMS500G.CHRM",
+      "assetPath": "play/assets/harbor/warning-letter/KMMS500G.CHRM",
+      "textureAssetPath": "play/assets/harbor/warning-letter/callback-textures.bin",
+      "source": {
+        "actorTag": "KMEM",
+        "image": "KMMS500G",
+        "model": "KMMS500G",
+        "characterRecordOffset": 48,
+        "imagePropertyOffset": 88,
+        "defImageRecordOffset": 8,
+        "presentation": null
+      },
+      "attachments": [
+        {
+          "objectTag": "KMEM",
+          "activitySlot": 0,
+          "frame": 435,
+          "action": "attach",
+          "parentActorTag": "TMRA",
+          "controlId": 18,
+          "translation": [
+            0.09300000220537186,
+            0.039000000804662704,
+            0.02800000086426735
+          ],
+          "rotationRaw": [
+            35323,
+            20759,
+            17847
+          ],
+          "callFileOffset": "0x65d4a",
+          "activityId": "MARU_LET/SEQDATA3.AUTH"
+        },
+        {
+          "objectTag": "KMEM",
+          "activitySlot": 0,
+          "frame": 550,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.16200000047683716,
+            0.10100000351667404,
+            0.024000000208616257
+          ],
+          "rotationRaw": [
+            35305,
+            61162,
+            52061
+          ],
+          "callFileOffset": "0x65f2a",
+          "activityId": "MARU_LET/SEQDATA3.AUTH"
+        },
+        {
+          "objectTag": "KMEM",
+          "activitySlot": 0,
+          "frame": 760,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.18299999833106995,
+            -0.020999999716877937,
+            -0.05000000074505806
+          ],
+          "rotationRaw": [
+            53686,
+            59341,
+            34406
+          ],
+          "callFileOffset": "0x6606a",
+          "activityId": "MARU_LET/SEQDATA3.AUTH"
+        },
+        {
+          "objectTag": "KMEM",
+          "activitySlot": 0,
+          "frame": 1030,
+          "action": "detach",
+          "callFileOffset": "0x661aa",
+          "activityId": "MARU_LET/SEQDATA3.AUTH"
+        }
+      ],
+      "presentation": [
+        {
+          "activitySlot": 0,
+          "frame": 10,
+          "visible": false,
+          "source": {
+            "path": ".disc-work/dialogue/native-event-ir.json",
+            "sha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0",
+            "disc": 3,
+            "area": "MFSY",
+            "mapinfoSha256": "adc993ac9fbca4b039a99d3d44f64840d428a7a5540651902c52d96076a98d88",
+            "mapEntryFunction": "0x8aa14",
+            "callbackFunction": "0x65834",
+            "callFileOffset": "0x65a70"
+          },
+          "activityId": "MARU_LET/SEQDATA3.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 435,
+          "visible": true,
+          "source": {
+            "path": ".disc-work/dialogue/native-event-ir.json",
+            "sha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0",
+            "disc": 3,
+            "area": "MFSY",
+            "mapinfoSha256": "adc993ac9fbca4b039a99d3d44f64840d428a7a5540651902c52d96076a98d88",
+            "mapEntryFunction": "0x8aa14",
+            "callbackFunction": "0x65834",
+            "callFileOffset": "0x65d06"
+          },
+          "activityId": "MARU_LET/SEQDATA3.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1030,
+          "visible": false,
+          "source": {
+            "path": ".disc-work/dialogue/native-event-ir.json",
+            "sha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0",
+            "disc": 3,
+            "area": "MFSY",
+            "mapinfoSha256": "adc993ac9fbca4b039a99d3d44f64840d428a7a5540651902c52d96076a98d88",
+            "mapEntryFunction": "0x8aa14",
+            "callbackFunction": "0x65834",
+            "callFileOffset": "0x661be"
+          },
+          "activityId": "MARU_LET/SEQDATA3.AUTH"
+        }
+      ],
+      "nodeTransforms": [
+        {
+          "objectTag": "KMEM",
+          "activitySlot": 0,
+          "frame": 10,
+          "nodeKey": 152,
+          "mode": "set",
+          "rotationRaw": [
+            32768,
+            0,
+            0
+          ],
+          "callFileOffset": "0x65a5c",
+          "activityId": "MARU_LET/SEQDATA3.AUTH"
+        },
+        {
+          "objectTag": "KMEM",
+          "activitySlot": 0,
+          "frame": 760,
+          "nodeKey": 152,
+          "mode": "set",
+          "rotationRaw": [
+            7281,
+            0,
+            0
+          ],
+          "callFileOffset": "0x65fa6",
+          "activityId": "MARU_LET/SEQDATA3.AUTH"
+        }
+      ]
+    }
+  },
+  "handAssets": {
+    "TMRA": {
+      "actorTag": "TMRA",
+      "bodyModelCode": "KWD_L",
+      "handCode": "KWD",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/harbor/warning-letter/KWD_TL.MT5",
+          "sourcePath": "disc3/SCENE/03/MODEL/HAND/KWD_TL.MT5",
+          "byteLength": 176804,
+          "sha256": "4ba0c3fdf0517acdded3348cc6c0c4d1c4b4b6c6346bed73207670c96d224d9a"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/harbor/warning-letter/KWD_TR.MT5",
+          "sourcePath": "disc3/SCENE/03/MODEL/HAND/KWD_TR.MT5",
+          "byteLength": 176772,
+          "sha256": "f69cf6b183e41a3a2fea40da223b184ace248c29b8d4c9591a0812186caa7b14"
+        }
+      },
+      "rig": {
+        "path": "play/assets/harbor/warning-letter/KWD_HM.BIN",
+        "sourcePath": "disc3/SCENE/03/MODEL/HAND/KWD_HM.BIN",
+        "byteLength": 9248,
+        "sha256": "d1cf00a20e1d9e08ea38ed83970590021ad32f55cdec9f35cc858c2c99f6af2d",
+        "vertexCount": 303,
+        "transformNodeCount": 71,
+        "pointerOffsets": [
+          24,
+          168,
+          8944,
+          5848,
+          6472,
+          9248
+        ]
+      }
+    }
+  },
+  "nativeHandPoseTables": {
+    "0xdd720": {
+      "sourceMapinfoOffset": "0xdd720",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2366,
+          -1092
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -4004
+        ],
+        [
+          0,
+          0,
+          -2912
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -13289
+        ],
+        [
+          0,
+          0,
+          -5279
+        ],
+        [
+          0,
+          0,
+          -8009
+        ],
+        [
+          0,
+          0,
+          1456
+        ],
+        [
+          0,
+          182,
+          -8738
+        ],
+        [
+          0,
+          0,
+          -6007
+        ],
+        [
+          0,
+          0,
+          -8738
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -5279
+        ],
+        [
+          0,
+          -1274,
+          -6735
+        ],
+        [
+          0,
+          -910,
+          -8738
+        ],
+        [
+          0,
+          0,
+          1638
+        ]
+      ]
+    },
+    "0xdd804": {
+      "sourceMapinfoOffset": "0xdd804",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2366,
+          -1092
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -4004
+        ],
+        [
+          0,
+          0,
+          -2912
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -20024
+        ],
+        [
+          0,
+          910,
+          -18932
+        ],
+        [
+          0,
+          364,
+          -5643
+        ],
+        [
+          0,
+          0,
+          2184
+        ],
+        [
+          0,
+          182,
+          -15837
+        ],
+        [
+          0,
+          546,
+          -18386
+        ],
+        [
+          0,
+          546,
+          -5825
+        ],
+        [
+          0,
+          182,
+          1456
+        ],
+        [
+          0,
+          -728,
+          -18204
+        ],
+        [
+          0,
+          -2184,
+          -15291
+        ],
+        [
+          0,
+          -1638,
+          -8738
+        ],
+        [
+          0,
+          728,
+          1638
+        ]
+      ]
+    }
+  },
   "actorTags": [
     "AKIR",
     "TMRA"
@@ -132,9 +624,29 @@
       "sha256": "e7cc167b5d4791494806d221d8ffdd3ee08dac1d1b9b52a2737e76e8a07b1c81"
     },
     {
+      "path": "play/assets/harbor/warning-letter/KWD_TL.MT5",
+      "byteLength": 176804,
+      "sha256": "4ba0c3fdf0517acdded3348cc6c0c4d1c4b4b6c6346bed73207670c96d224d9a"
+    },
+    {
+      "path": "play/assets/harbor/warning-letter/KWD_TR.MT5",
+      "byteLength": 176772,
+      "sha256": "f69cf6b183e41a3a2fea40da223b184ace248c29b8d4c9591a0812186caa7b14"
+    },
+    {
+      "path": "play/assets/harbor/warning-letter/KWD_HM.BIN",
+      "byteLength": 9248,
+      "sha256": "d1cf00a20e1d9e08ea38ed83970590021ad32f55cdec9f35cc858c2c99f6af2d"
+    },
+    {
       "path": "play/assets/harbor/warning-letter/alpha-textures.bin",
       "byteLength": 430464,
       "sha256": "c91ac800b9c7f60379ecae4f27e908e616becf18b9fb3b1542fb11b3fc4fba53"
+    },
+    {
+      "path": "play/assets/harbor/warning-letter/callback-textures.bin",
+      "byteLength": 43152,
+      "sha256": "baba823d7daef6e13889e80f89f809b194969ab4b9ca854b0b0ad2b63ee608b2"
     }
   ],
   "activities": [
@@ -164,6 +676,93 @@
       ],
       "browserMapVisibility": [],
       "browserIsolatedStage": true,
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 10,
+          "actorTag": "TMRA",
+          "side": "left",
+          "poseTableOffset": "0xdd720",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x659ec",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 0,
+          "frame": 155,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0xdd720",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x65b12",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 0,
+          "frame": 400,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0xdd804",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x65e20",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 0,
+          "frame": 400,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0xdd720",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x65e40",
+          "sourceOrder": 4
+        }
+      ],
+      "nativeBodyHandPoseCues": [],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 0,
+          "frame": 10,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            8192,
+            64443,
+            65353
+          ],
+          "callFileOffset": "0x65a0c",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 0,
+          "frame": 400,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -9644,
+            -4004,
+            6735
+          ],
+          "callFileOffset": "0x65e5e",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 0,
+          "frame": 760,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -5097,
+            0,
+            -5097
+          ],
+          "callFileOffset": "0x65fea",
+          "sourceOrder": 6
+        }
+      ],
       "nativeSceneObjectStates": [
         {
           "actorTag": "ROOM",

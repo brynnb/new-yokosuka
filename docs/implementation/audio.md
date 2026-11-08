@@ -61,6 +61,26 @@ decoder failures remain errors, not permission prompts. A Chromium touch test
 checks real decoded playback, async clip reuse and simulated renewed policy
 denial; it is not proof of behavior on physical iOS devices.
 
+## Arcade emulator timing
+
+The isolated arcade iframe reuses one Web Audio context so a trusted gesture
+can unlock sound after a cabinet has started. RetroArch's `audio_sync` remains
+disabled: waiting on a suspended audio context can otherwise freeze the first
+frame before the player has permission to hear sound.
+
+RetroArch's exact-content mode (`vrr_runloop_enable = true`) supplies the frame
+limiter from each core's native timing. `video_vsync` and EmulatorJS's default
+`vsync` option are disabled so display refresh is not the simulation clock.
+The content limiter also remains active if an older saved setting enables
+vsync. This uses the emulator's clock rather than a hardcoded JavaScript 60 Hz
+timer; hardware VRR support is not required for its software frame limiter.
+
+`tests/e2e/arcade-timing.spec.js` runs the real FBNeo and MAME cores with
+simulated 60/120/144/240 Hz browser callbacks. It reads native frame counts
+against elapsed time, checks suspended/running audio, saved vsync settings,
+and pause/resume. The suspended-audio startup case must continue advancing
+at normal speed without needing a click.
+
 ## Cutscene Audio Sessions
 
 `NativeAseqAudioPresentation` owns a single voice/effects session for an entire

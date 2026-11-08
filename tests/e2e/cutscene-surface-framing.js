@@ -29,3 +29,30 @@ export function frameCutsceneSurface(runtime, kind, actorTag, sideName, onFrame)
     camera.position.copyFrom(position); camera.setTarget(target);
   };
 }
+
+// A prop can be held against either a detailed or a body hand. Frame the
+// actual attached object without assuming which hand representation is active.
+export function frameCutsceneObject(runtime, objectTag, onFrame, { reverse = false } = {}) {
+  const root = runtime.attachedObjects.objects.get(objectTag).root;
+  return frameSceneRoot(root, onFrame, { reverse });
+}
+
+export function frameSceneRoot(root, onFrame, { reverse = false, distance = 0.55, yOffset = 0 } = {}) {
+  const scene = root.getScene(), camera = scene.activeCamera;
+  const point = root.getAbsolutePosition().clone();
+  point.y += yOffset;
+  const position = camera.position.clone(), target = camera.getTarget().clone();
+  const direction = camera.position.subtract(point).normalize();
+  if (reverse) direction.scaleInPlace(-1);
+  const closeupPosition = point.add(direction.scale(distance));
+  const observer = scene.onBeforeCameraRenderObservable.add(activeCamera => {
+    if (activeCamera !== camera) return;
+    camera.position.copyFrom(closeupPosition); camera.setTarget(point);
+    scene.setTransformMatrix(camera.getViewMatrix(true), camera.getProjectionMatrix(true));
+    onFrame();
+  });
+  return () => {
+    scene.onBeforeCameraRenderObservable.remove(observer);
+    camera.position.copyFrom(position); camera.setTarget(target);
+  };
+}

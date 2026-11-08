@@ -36,7 +36,7 @@ export async function verifyChaiArcade(page,testInfo,character,enterInteriorDoor
   // Explicit cinematic skip is not a combat result. The real fight must still
   // prepare, receive physical controls and reach its server-owned outcome.
   await page.keyboard.press("KeyX");
-  await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready&&window.storyProbe.combatRuntime?.active?.view.ready,null,{timeout:60_000});await noErrors();
+  await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready,null,{timeout:60_000});await noErrors();
   expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.map(a=>a.tag))).toEqual(["AKIR","CHAI"]);
   await page.screenshot({path:testInfo.outputPath(`chai-server-fight-${ending}.png`)});await unchanged();
   if(ending==="win"){

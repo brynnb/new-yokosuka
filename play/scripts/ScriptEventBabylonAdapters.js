@@ -20,6 +20,8 @@ export class ScriptEventBabylonAdapters {
     telephoneRuntime = null,
     motionCueRuntime = null,
     sceneStagingRuntime = null,
+    storyFrameHandoff = null,
+    retainPackageMusic = null,
     combatRuntime = null,
     navigationRuntime = null,
     drivingRuntime = null,
@@ -85,6 +87,8 @@ export class ScriptEventBabylonAdapters {
     }
     this.motionCueRuntime = motionCueRuntime;
     this.sceneStagingRuntime = sceneStagingRuntime;
+    this.storyFrameHandoff = storyFrameHandoff;
+    this.retainPackageMusic = retainPackageMusic;
     this.combatRuntime=combatRuntime;
     this.navigationRuntime=navigationRuntime;
     this.drivingRuntime=drivingRuntime;
@@ -158,6 +162,7 @@ export class ScriptEventBabylonAdapters {
       pendingMotion: null,
       telephoneMotion: null,
       pendingActivity: null,
+      releasePackageMusic: null,
       context: { ...context },
     };
     return transaction;
@@ -229,7 +234,14 @@ export class ScriptEventBabylonAdapters {
 
   playSequence(sequence, transaction) {
     if (sequence.kind === "scene-staging-start" || sequence.kind === "scene-staging-transition" || sequence.kind === "scene-staging-finish") {
-      return this.sceneStagingRuntime?.play(sequence, transaction) ?? false;
+      const played=this.sceneStagingRuntime?.play(sequence, transaction) ?? false;
+      if(!this.storyFrameHandoff?.pendingFor(transaction))return played;
+      return Promise.resolve(played).then(async accepted=>{
+        if(!accepted)return false;
+        const owner=this.sceneStagingRuntime.active;
+        if(owner?.transaction!==transaction||owner.scene.id!==sequence.scene.id)throw Error("Story handoff has no matching staged owner");
+        return this.storyFrameHandoff.reveal(transaction,sequence.scene.id,owner.controller.signal);
+      });
     }
     if (
       sequence.kind === "actor-motion-cue-start"
@@ -272,11 +284,38 @@ export class ScriptEventBabylonAdapters {
     }
     const pending = { activity };
     transaction.pendingActivity = pending;
+    let acquiredMusic=false;
+    let accepted;
     try {
-      return await this.startActivityAdapter(activity, transaction.context);
+      if(activity.retainPackageMusic){
+        if(transaction.releasePackageMusic||typeof this.retainPackageMusic!=="function"||!activity.cutscene?.packageId)throw Error("Invalid Story music lease");
+        const release=this.retainPackageMusic(activity.cutscene.packageId,transaction);
+        if(typeof release!=="function")throw Error("Story music lease was not acquired");
+        transaction.releasePackageMusic=release;
+        acquiredMusic=true;
+      }
+      if(activity.cutscene?.handoffSequence){
+        if(!this.storyFrameHandoff)throw Error("Story frame handoff is unavailable");
+        this.storyFrameHandoff.expect(transaction,activity.cutscene);
+      }
+      accepted=await this.startActivityAdapter(activity, transaction.context);
+    } catch(error) {
+      this.cleanupRejectedActivity(transaction,acquiredMusic,error);
     } finally {
       if (transaction.pendingActivity === pending) transaction.pendingActivity = null;
     }
+    if(!accepted)this.cleanupRejectedActivity(transaction,acquiredMusic);
+    return accepted;
+  }
+
+  cleanupRejectedActivity(transaction,acquiredMusic,originalError=null) {
+    const errors=originalError?[originalError]:[];
+    try { this.storyFrameHandoff?.cancel(transaction); }
+    catch(error) { errors.push(error); }
+    try { if(acquiredMusic)this.releaseMusic(transaction); }
+    catch(error) { errors.push(error); }
+    if(errors.length===1)throw errors[0];
+    if(errors.length>1)throw new AggregateError(errors,"Story activity and cleanup failed");
   }
 
   ensureCameraOwnership(transaction) {
@@ -329,6 +368,7 @@ export class ScriptEventBabylonAdapters {
   }
 
   commit(transaction) {
+    if(this.storyFrameHandoff?.pendingFor(transaction))throw Error("Story frame handoff has not completed");
     if(this.combatRuntime?.active?.transaction===transaction)throw new Error("Combat presentation has not released ownership");
     if(this.navigationRuntime?.active?.transaction===transaction)throw new Error("Navigation presentation has not released ownership");
     if(this.drivingRuntime?.active?.transaction===transaction)throw new Error("Driving presentation has not released ownership");
@@ -353,7 +393,8 @@ export class ScriptEventBabylonAdapters {
         ? this.playerMotionRuntime.commitTransaction(transaction.playerMotionToken)
         : true;
     } finally {
-      transaction.releaseMovementLock();
+      try { this.releaseMusic(transaction); }
+      finally { transaction.releaseMovementLock(); }
     }
   }
 
@@ -377,49 +418,63 @@ export class ScriptEventBabylonAdapters {
     catch (error) { sceneCleanupError ||= error; }
     try { this.sceneStagingRuntime?.cancel(transaction); }
     catch (error) { sceneCleanupError ||= error; }
-    this.telephoneRuntime?.cancel(transaction);
-    this.motionCueRuntime?.cancel(transaction);
+    try { this.telephoneRuntime?.cancel(transaction); }
+    catch (error) { sceneCleanupError ||= error; }
+    try { this.motionCueRuntime?.cancel(transaction); }
+    catch (error) { sceneCleanupError ||= error; }
     if (transaction.pendingActivity) {
-      this.cancelActivityAdapter(
-        transaction.pendingActivity.activity,
-        "database-script-rollback",
-      );
-      transaction.pendingActivity = null;
+      try {
+        this.cancelActivityAdapter(
+          transaction.pendingActivity.activity,
+          "database-script-rollback",
+        );
+      } catch (error) { sceneCleanupError ||= error; }
+      finally { transaction.pendingActivity = null; }
     }
+    try { this.storyFrameHandoff?.cancel(transaction); }
+    catch (error) { sceneCleanupError ||= error; }
+    try { this.releaseMusic(transaction); }
+    catch (error) { sceneCleanupError ||= error; }
     if (transaction.pendingMotion) {
       transaction.pendingMotion.resolve(false);
       transaction.pendingMotion = null;
     }
-    this.restoreActorFacing(transaction);
+    // Each owner must be offered cleanup even if a different actor or
+    // presentation subsystem has already failed to restore its state.
+    try { this.restoreActorFacing(transaction); }
+    catch (error) { sceneCleanupError ||= error; }
     try {
-      if (transaction.cameraToken) {
-        this.cameraRuntime.rollbackTransaction(transaction.cameraToken);
-      }
-    } finally {
-      if (transaction.playerXmptToken) {
-        this.playerXmptRuntime.rollbackTransaction(
-          transaction.playerXmptToken,
-        );
-      }
-      if (transaction.playerMotionToken) {
-        this.playerMotionRuntime.rollbackTransaction(
-          transaction.playerMotionToken,
-        );
-      }
-    }
+      if (transaction.cameraToken) this.cameraRuntime.rollbackTransaction(transaction.cameraToken);
+    } catch (error) { sceneCleanupError ||= error; }
+    try {
+      if (transaction.playerXmptToken) this.playerXmptRuntime.rollbackTransaction(transaction.playerXmptToken);
+    } catch (error) { sceneCleanupError ||= error; }
+    try {
+      if (transaction.playerMotionToken) this.playerMotionRuntime.rollbackTransaction(transaction.playerMotionToken);
+    } catch (error) { sceneCleanupError ||= error; }
     if (sceneCleanupError) throw sceneCleanupError;
     return true;
   }
 
   restoreActorFacing(transaction, instanceId = null) {
     let restored = false;
+    let restoreError = null;
     for (const [id, state] of transaction.actorFacingStates) {
       if (instanceId && id !== instanceId) continue;
-      this.scheduledActors.restoreDialogueFacingState(id, state);
-      transaction.actorFacingStates.delete(id);
-      restored = true;
+      try {
+        this.scheduledActors.restoreDialogueFacingState(id, state);
+        transaction.actorFacingStates.delete(id);
+        restored = true;
+      } catch (error) { restoreError ||= error; }
     }
+    if (restoreError) throw restoreError;
     return restored;
+  }
+
+  releaseMusic(transaction) {
+    const release=transaction.releasePackageMusic;
+    transaction.releasePackageMusic=null;
+    if(release)release();
   }
 }
 

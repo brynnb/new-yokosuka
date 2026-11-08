@@ -95,6 +95,12 @@ This is a documented visual approximation, not full native lighting emulation.
 Story has no Free roam 19:45 lighting cap. Fixed scene lighting, indoor exposure,
 S2 presentation, clock speed and seasonal surface rules remain unchanged.
 
+The original rain/cloud sprite is bright even when selected at night. As a
+browser approximation, its sky-dome brightness follows the existing Story
+sky-light intensity relative to daylight. This does not alter native resource
+selection, clear skies, Free roam, or explicit cinematic lighting. Native sky
+modulation and the generally dark nighttime foreground remain unresolved.
+
 ## Reproduction
 
 Regenerate/check the small music-policy manifest without rendering or copying

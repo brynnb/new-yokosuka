@@ -1,5 +1,6 @@
 import importlib.util
 import struct
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -62,6 +63,21 @@ class ExtractShenmue2UvAnimationsTest(unittest.TestCase):
     def test_rejects_an_unrelated_indirect_call(self):
         words = [0xC70F, 0xF508, 0x518D, 0x410B, 0xF4CC] + [0] * 8
         self.assertEqual(MODULE.scan_ev1(self._ev1(words, {0x40: 0.1})), [])
+
+    def test_missing_source_does_not_replace_existing_registry(self):
+        root = Path(self.temp.name)
+        output = root / "animations.js"
+        output.write_text("// retained runtime registry\n")
+        valid_source = self._ev1([0] * 16, {})
+        # Even a valid first input cannot hide a missing second source root.
+        result = subprocess.run(
+            [sys.executable, str(SCRIPT), str(valid_source), str(root / "offline"),
+             "--js-out", str(output)],
+            capture_output=True, text=True, check=False,
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("Restore the extracted source", result.stderr)
+        self.assertEqual(output.read_text(), "// retained runtime registry\n")
 
 
 if __name__ == "__main__":

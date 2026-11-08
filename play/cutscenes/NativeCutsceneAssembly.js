@@ -31,13 +31,17 @@ export function createNativeCutsceneAssembly({
   selectWorld,
   coverLoading,
   finishLoading,
+  storyFrameHandoff,
 }) {
   let activeLightingPresetIndex = null;
   let activeLightingOverride = null;
   let activePrecipitation = null;
   const director = createPlayNativeCutsceneDirector({
     beforeComplete: cutscene => {
-      if (cutscene.storyPresentation) return Promise.resolve();
+      if (cutscene.storyPresentation) {
+        if(cutscene.handoffSequence)storyFrameHandoff.capture(cutscene);
+        return Promise.resolve();
+      }
       getPreviewRuntime().beginEnding(cutscene.id);
       return coverLoading();
     },

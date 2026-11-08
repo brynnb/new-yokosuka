@@ -144,6 +144,7 @@ export class NativeAseqSceneObjectRuntime {
       return [normalized, Object.freeze({
         actorTag: normalized,
         referenceOnly: value?.referenceOnly === true,
+        includeUntexturedGeometry: value?.includeUntexturedGeometry === true,
         objectTag: value?.objectTag ? requireText(value.objectTag, `${normalized} world object tag`) : null,
         model: requireText(value?.model, `${normalized} model`),
         browserFilename: requireText(
@@ -155,6 +156,9 @@ export class NativeAseqSceneObjectRuntime {
           : null,
         textureAssetPath: value?.textureAssetPath
           ? requireText(value.textureAssetPath, `${normalized} texture asset path`)
+          : null,
+        replacesTransitionId: value?.replacesTransitionId
+          ? requireText(value.replacesTransitionId, `${normalized} replaced transition`)
           : null,
         lifecycle,
         initialPresentation,
@@ -177,8 +181,10 @@ export class NativeAseqSceneObjectRuntime {
     this.objects = new Map();
     this.instantiateAsset = instantiateAsset;
     this.ownedRoots = new Set();
+    this.replacedWorldRoots = new Map();
     this.active = null;
     this.program = null;
+    this.preparedOpacityTracks = [];
   }
 
   async load(roots) {
@@ -187,6 +193,17 @@ export class NativeAseqSceneObjectRuntime {
     }
     this.clear();
     for (const [actorTag, definition] of this.definitions) {
+      if (definition.replacesTransitionId) {
+        const replacements = roots.filter(root => (
+          root?.metadata?.interactiveMapTransition?.transition?.id === definition.replacesTransitionId
+        ));
+        if (replacements.length !== 1 || this.replacedWorldRoots.has(replacements[0])) {
+          throw new Error(`AUTH scene object ${actorTag} expected one unleased transition ${definition.replacesTransitionId}; found ${replacements.length}`);
+        }
+        const root = replacements[0];
+        this.replacedWorldRoots.set(root, { enabled: root.isEnabled(false), leased: true });
+        root.setEnabled(false);
+      }
       let matches = definition.referenceOnly ? [] : roots.filter(root => (
         root?._filename?.toUpperCase() === definition.browserFilename.toUpperCase()
         && (!definition.objectTag || root.metadata?.runtimeObject?.objectTag === definition.objectTag)
@@ -232,6 +249,25 @@ export class NativeAseqSceneObjectRuntime {
   prepareActivity(activity) {
     if (this.active) {
       throw new Error("AUTH scene-object state cannot change during ownership");
+    }
+    const seen = new Set();
+    this.preparedOpacityTracks = (activity?.authoredSceneObjectOpacityTracks || []).map(track => {
+      const tag=String(track?.actorTag || "").toUpperCase();
+      if(!this.objects.has(tag)||seen.has(tag)||!track.evidence||!Array.isArray(track.keyframes)||track.keyframes.length<2
+        ||track.keyframes.some((key,index)=>!Number.isSafeInteger(key.frame)||key.frame<0||key.frame>activity.durationFrames
+          ||!Number.isFinite(key.opacity)||key.opacity<0||key.opacity>1||(index>0&&key.frame<=track.keyframes[index-1].frame))
+        ||track.keyframes[0].frame!==0||!Number.isFinite(track.depthBias??0)) {
+        throw new Error(`AUTH activity ${activity?.activityId} has invalid authored scene-object opacity`);
+      }
+      seen.add(tag);
+      return {actorTag:tag,keyframes:track.keyframes,depthBias:track.depthBias??0};
+    });
+    for (const [root, snapshot] of this.replacedWorldRoots) {
+      if (!snapshot.leased) {
+        snapshot.enabled = root.isEnabled(false);
+        snapshot.leased = true;
+        root.setEnabled(false);
+      }
     }
     for (const [actorTag, record] of this.objects) {
       if (record.explorationSnapshot && !record.explorationSnapshot.leased) {
@@ -294,11 +330,38 @@ export class NativeAseqSceneObjectRuntime {
     this.active = {
       owner,
       presentationStates: new Map(),
+      opacityTracks: this.preparedOpacityTracks,
+      opacityMeshes: [],
+      opacityMaterials: new Map(),
       snapshots: new Map(records.map(record => [
         record.actorCode,
         captureRoot(record.root),
       ])),
     };
+    try {
+      for(const track of this.active.opacityTracks){
+        if(!this.active.snapshots.has(track.actorTag))throw Error(`AUTH opacity actor ${track.actorTag} is not owned`);
+        const root=this.objects.get(track.actorTag).root;
+        if(!this.ownedRoots.has(root))throw Error(`AUTH opacity actor ${track.actorTag} must be package-owned`);
+        const meshes=root.getChildMeshes().filter(mesh=>mesh.material);
+        if(!meshes.length)throw Error(`AUTH opacity actor ${track.actorTag} has no renderable material`);
+        for(const mesh of meshes){
+          const material=mesh.material;
+          for(const [otherTag,record] of this.objects){
+            if(otherTag!==track.actorTag&&record.root.getChildMeshes().some(other=>other.material===material)) {
+              throw Error("AUTH opacity actors cannot share a material");
+            }
+          }
+          this.active.opacityMeshes.push({mesh,visibility:mesh.visibility,actorTag:track.actorTag});
+          if(!this.active.opacityMaterials.has(material))this.active.opacityMaterials.set(material,{
+            transparencyMode:material.transparencyMode,disableDepthWrite:material.disableDepthWrite,zOffset:material.zOffset,zOffsetUnits:material.zOffsetUnits,
+          });
+          material.transparencyMode=BABYLON.Material.MATERIAL_ALPHABLEND;
+          material.disableDepthWrite=true;
+          material.zOffset=track.depthBias;material.zOffsetUnits=track.depthBias;
+        }
+      }
+    } catch(error) { this.end(owner);throw error; }
     // Native entry setup belongs to the activity lease, not the shared asset.
     // AUTH movement supplies position/rotation afterward but carries no scale
     // channel (for example, JOMO's enlarged dream mirrors).
@@ -389,8 +452,23 @@ export class NativeAseqSceneObjectRuntime {
     return true;
   }
 
+  applyAuthoredOpacity(frame) {
+    if(!Number.isSafeInteger(frame) || frame<0)return false;
+    if(!this.active)return this.preparedOpacityTracks.length===0;
+    for(const track of this.active.opacityTracks){
+      let previous=track.keyframes[0],next=previous;
+      for(const key of track.keyframes){if(key.frame<=frame)previous=key;else{next=key;break;}next=key;}
+      const t=next.frame===previous.frame?0:(frame-previous.frame)/(next.frame-previous.frame);
+      const opacity=previous.opacity+(next.opacity-previous.opacity)*t;
+      for(const state of this.active.opacityMeshes)if(state.actorTag===track.actorTag)state.mesh.visibility=state.visibility*opacity;
+    }
+    return true;
+  }
+
   end(owner, reason = "stopped") {
     if (this.active?.owner !== owner) return false;
+    for(const state of this.active.opacityMeshes)state.mesh.visibility=state.visibility;
+    for(const [material,state] of this.active.opacityMaterials)Object.assign(material,state);
     const successful = reason === "complete" || reason === "replaced";
     for (const [actorTag, snapshot] of this.active.snapshots) {
       const programOwnsActor = this.program?.snapshots.has(actorTag) === true;
@@ -399,6 +477,7 @@ export class NativeAseqSceneObjectRuntime {
       }
     }
     this.active = null;
+    this.preparedOpacityTracks = [];
     return true;
   }
 
@@ -418,6 +497,11 @@ export class NativeAseqSceneObjectRuntime {
     // Continuous room programs retain their props across AUTH subleases.
     // Ordinary scenes release the borrow without discarding cached assets.
     if (this.active || this.program) return false;
+    for (const [root, snapshot] of this.replacedWorldRoots) {
+      if (!snapshot.leased) continue;
+      root.setEnabled(snapshot.enabled);
+      snapshot.leased = false;
+    }
     for (const record of this.objects.values()) {
       const snapshot = record.explorationSnapshot;
       // prepareActivity enables room fixtures before AUTH takes its sublease.
@@ -449,6 +533,7 @@ export class NativeAseqSceneObjectRuntime {
       if (!record.explorationSnapshot) record.root.setEnabled(false);
     }
     this.objects.clear();
+    this.replacedWorldRoots.clear();
     for (const root of this.ownedRoots) root.dispose?.();
     this.ownedRoots.clear();
   }

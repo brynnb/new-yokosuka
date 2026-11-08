@@ -12,10 +12,55 @@ import {
   extractNativeAseqTelephonePresentation,
 } from "../tools/lib/NativeAseqCallbackPresentation.mjs";
 import { extractNativeAseqCallbackObjectPresentation } from "../tools/lib/NativeAseqCallbackObjectPresentation.mjs";
+import { parseAuthMovement, evaluateAuthActor } from "../src/AuthMovement.js";
+
+test("first allowance borrows the bedroom door at the original animated track position", () => {
+  const manifest = JSON.parse(fs.readFileSync(new URL("../play/assets/hazuki/first-allowance/manifest.json", import.meta.url)));
+  const placement = JSON.parse(fs.readFileSync(new URL("../play/data/jomo-runtime-placements.json", import.meta.url)))
+    .placements.find(value => value.runtime?.objectTag === "dor7");
+  const movement = parseAuthMovement(fs.readFileSync(new URL("../play/assets/hazuki/first-allowance/SEQDATA35.AUTH", import.meta.url)));
+  const track = movement.actors.find(actor => actor.tag === "dor0");
+  const initial = evaluateAuthActor(track, 0), moving = evaluateAuthActor(track, 2);
+  assert.deepEqual(manifest.sceneObjects.dor0, {
+    model: "DR01_015", browserFilename: placement.model, objectTag: "dor7",
+  });
+  for (const [i, value] of [-initial.x, initial.y, initial.z].entries()) {
+    assert.ok(Math.abs(value - placement.position[i]) < 0.0001);
+  }
+  assert.ok(Math.abs(moving.rotationY - initial.rotationY) > 60);
+});
 
 const tattooMap = path.resolve(process.env.SHENMUE_DISC1_EXTRACTED_ROOT || "extracted_files", "data/SCENE/01/TATQ/MAPINFO.BIN");
 const mirrorMap = path.resolve(process.env.SHENMUE_DISC2_EXTRACTED_ROOT || "extracted_disc2_v2", "data/SCENE/02/MS8A/MAPINFO.BIN");
 const homeMap = path.resolve(process.env.SHENMUE_DISC2_EXTRACTED_ROOT || "extracted_disc2_v2", "data/SCENE/02/JOMO/MAPINFO.BIN");
+const harborMap = path.resolve(process.env.SHENMUE_DISC3_EXTRACTED_ROOT || "extracted_disc3_v2", "data/SCENE/03/MFSY/MAPINFO.BIN");
+test("frame-guarded coroutine vectors retain exact warning-letter handover and reject ambiguous writes", {
+  skip: !fs.existsSync(harborMap) && "requires original Disc 3 MFSY extraction",
+}, () => {
+  const evidence = JSON.parse(fs.readFileSync(new URL("../tools/evidence/maru-letter-native-sequence-ir.json", import.meta.url)));
+  const bytes = fs.readFileSync(harborMap);
+  assert.equal(createHash("sha256").update(bytes).digest("hex"), evidence.source.mapinfoSha256);
+  const input = {bytes, nativeFunction:evidence.function, callbackFunction:0x65834,
+    durationFrames:1400, objectTags:["KYUF","KMEM"], frameVectorMode:"activity-timeline"};
+  assert.throws(()=>extractNativeAseqCallbackObjectPresentation({...input,frameVectorMode:"predecessor"}), /no exact native frame-vector writes/);
+  const extracted = extractNativeAseqCallbackObjectPresentation(input);
+  assert.deepEqual(extracted.attachedObjectCues.map(c=>[c.frame,c.action,c.objectTag,c.parentActorTag,c.controlId]), [
+    [10,"attach","KYUF","TMRA",12],[195,"detach","KYUF",undefined,undefined],
+    [435,"attach","KMEM","TMRA",18],[550,"detach","KMEM",undefined,undefined],
+    [550,"attach","KMEM","AKIR",18],[760,"detach","KMEM",undefined,undefined],
+    [760,"attach","KMEM","AKIR",18],[1030,"detach","KMEM",undefined,undefined],
+  ]);
+  assert.deepEqual(extracted.nodeTransformCues.map(c=>[c.frame,c.nodeKey,c.rotationRaw]),
+    [[10,152,[32768,0,0]],[760,152,[7281,0,0]]]);
+  const changed=structuredClone(evidence.function);
+  changed.blocks.flatMap(block=>block.actions).find(a=>a.callFileOffset==="0x658ce").kind="frameFieldExpressionWrite";
+  assert.throws(()=>extractNativeAseqCallbackObjectPresentation({...input,nativeFunction:changed}), /dynamic timeline vector writes/);
+  const ambiguous=structuredClone(evidence.function);
+  const initial=ambiguous.blocks.find(block=>block.id==="0x658c8");
+  const original=initial.actions.find(action=>action.callFileOffset==="0x658ce");
+  initial.actions.push({...original,value:original.value+1});
+  assert.throws(()=>extractNativeAseqCallbackObjectPresentation({...input,nativeFunction:ambiguous}), /ambiguous timeline vector writes/);
+});
 for(const [name,disc,frames,expected]of [
   ["jimmy",2,1600,[[160,"attach","FUKU",3],[170,"attach","FUKU",3],[521,"attach","AKIR",4],[1135,"detach",undefined,undefined]]],
   ["nozomi",3,2265,[[790,"attach","AKIR",3],[2018,"detach",undefined,undefined]]],

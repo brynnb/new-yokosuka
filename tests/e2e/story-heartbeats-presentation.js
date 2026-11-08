@@ -18,22 +18,48 @@ export async function inspectHeartbeatsBarMotions(page, testInfo, character) {
     const p=window.storyProbe;await p.lifecycle.travelToWorld("dbhb");
     Object.defineProperty(p.regions.controller,"ownsPlayerPresentation",{configurable:true,get:()=>p.regions.controller.presentation.ownsPlayerPresentation});
   });
-  try { for(const [id,other,ryo,opponent,duration] of [
+  const samples=process.env.NEW_YOKOSUKA_BAR_HIGHKICK_CONTACT_REVIEW==="true"?[
+    // Diagnostic positions, not inferred original placements or Story data.
+    ["highkick-front-near","JONZ","AKI_QOK_QOK_HIGHKICK_HB_QTE","OTH_TKC_QOK_QOK_HIGHKICK_HB_QTE",2.17,{x:0,z:-1,yaw:180,baseX:3.5,baseZ:-6.5}],
+    ["highkick-front-far","JONZ","AKI_QOK_QOK_HIGHKICK_HB_QTE","OTH_TKC_QOK_QOK_HIGHKICK_HB_QTE",2.17,{x:0,z:-1.5,yaw:180,baseX:3.5,baseZ:-6.5}],
+    ["highkick-front-same","JONZ","AKI_QOK_QOK_HIGHKICK_HB_QTE","OTH_TKC_QOK_QOK_HIGHKICK_HB_QTE",2.17,{x:0,z:-1,yaw:0,baseX:3.5,baseZ:-6.5}],
+    ["highkick-front-offset","JONZ","AKI_QOK_QOK_HIGHKICK_HB_QTE","OTH_TKC_QOK_QOK_HIGHKICK_HB_QTE",2.17,{x:.5,z:-1,yaw:180,baseX:3.5,baseZ:-6.5}],
+  ]:process.env.NEW_YOKOSUKA_BAR_OPEN_MOTION_REVIEW==="true"?[
+    ["open-counter","SERA","AKI_QOK_NAGERU_CAUNTER_HB_A","OTH_TKA_QOK_NORU_CAUNTER_HB_A",2.7,{x:-.82703,z:.42759,yaw:-79.7557,baseX:3.5,baseZ:-6.5}],
+    ["open-table","HARY","AKI_QOK_TUKKOMU_TABLE_HB_B","OTH_TKB_QOK_TUKKOMU_TABLE_HB_B",9.6,{x:-.82703,z:.42759,yaw:-79.7557,baseX:3.5,baseZ:-6.5}],
+    ["open-kick","JONZ","AKI_QOK_KICK_HB_QTE","OTH_TKC_QOK_KICK_HB_QTE",4.14,{x:-.82703,z:.42759,yaw:-79.7557,baseX:3.5,baseZ:-6.5}],
+    ["open-highkick","JONZ","AKI_QOK_QOK_HIGHKICK_HB_QTE","OTH_TKC_QOK_QOK_HIGHKICK_HB_QTE",2.17,{x:-.82703,z:.42759,yaw:-79.7557,baseX:3.5,baseZ:-6.5}],
+  ]:process.env.NEW_YOKOSUKA_BAR_SPACE_REVIEW==="true"?[
+    ["space-a","JONZ","AKI_QOK_KICK_HB_QTE","OTH_TKC_QOK_KICK_HB_QTE",4.14,{x:-.82703,z:.42759,yaw:-79.7557,baseX:.3,baseZ:-4.5}],
+    ["space-b","JONZ","AKI_QOK_KICK_HB_QTE","OTH_TKC_QOK_KICK_HB_QTE",4.14,{x:-.82703,z:.42759,yaw:-79.7557,baseX:.3,baseZ:-6.5}],
+    ["space-c","JONZ","AKI_QOK_KICK_HB_QTE","OTH_TKC_QOK_KICK_HB_QTE",4.14,{x:-.82703,z:.42759,yaw:-79.7557,baseX:3.5,baseZ:-6.5}],
+    ["space-d","JONZ","AKI_QOK_KICK_HB_QTE","OTH_TKC_QOK_KICK_HB_QTE",4.14,{x:-.82703,z:.42759,yaw:-79.7557,baseX:3.5,baseZ:-4.5}],
+  ]:process.env.NEW_YOKOSUKA_BAR_ALIGNMENT_REVIEW==="true"?[
+    // The original DHQB controller calls a relative link helper with these
+    // offsets; both coordinate handedness and which state owns the link still
+    // need rendered review. These are not gameplay staging records.
+    ["link-a","JONZ","AKI_QOK_KICK_HB_QTE","OTH_TKC_QOK_KICK_HB_QTE",4.14,{x:.82703,z:.42759,yaw:79.7557}],
+    ["link-b","JONZ","AKI_QOK_KICK_HB_QTE","OTH_TKC_QOK_KICK_HB_QTE",4.14,{x:-.82703,z:.42759,yaw:-79.7557}],
+    ["link-c","JONZ","AKI_QOK_KICK_HB_QTE","OTH_TKC_QOK_KICK_HB_QTE",4.14,{x:.42759,z:.82703,yaw:79.7557}],
+    ["link-d","JONZ","AKI_QOK_KICK_HB_QTE","OTH_TKC_QOK_KICK_HB_QTE",4.14,{x:-.42759,z:.82703,yaw:-79.7557}],
+  ]:[
     ["counter","SERA","AKI_QOK_NAGERU_CAUNTER_HB_A","OTH_TKA_QOK_NORU_CAUNTER_HB_A",2.7],
     ["table","HARY","AKI_QOK_TUKKOMU_TABLE_HB_B","OTH_TKB_QOK_TUKKOMU_TABLE_HB_B",9.6],
     ["kick","JONZ","AKI_QOK_KICK_HB_QTE","OTH_TKC_QOK_KICK_HB_QTE",4.14],
     ["highkick","JONZ","AKI_QOK_QOK_HIGHKICK_HB_QTE","OTH_TKC_QOK_QOK_HIGHKICK_HB_QTE",2.17],
-  ]) {
+  ];
+  try { for(const [id,other,ryo,opponent,duration,relative] of samples) {
     const returnedFrom=await page.evaluate(()=>{
       const p=window.storyProbe,c=p.lifecycle.getController();
       return {position:c.collider.position.asArray(),firstPerson:c.firstPerson,avatar:p.lifecycle.playerRuntime.activeCharacterId};
     });
-    await page.evaluate(async({id,other,ryo,opponent})=>{
+    await page.evaluate(async({id,other,ryo,opponent,relative})=>{
       const p=window.storyProbe,presentation=p.regions.controller.presentation;
       const pose=(x,z,rotationY)=>({x,y:0,z,rotationX:0,rotationY,rotationZ:0});
+      const x=relative?.baseX??1.8,z=relative?.baseZ??-5.7;
       const scene={id,area:"DBHB",actors:[
-        {tag:"AKIR",pose:pose(1.8,-5.7,0),motion:{bank:"free",name:"AKI_AKI_STAND_LP",loop:true}},
-        {tag:other,pose:pose(1.8,-4.5,180),motion:{bank:"free",name:"AKI_AKI_STAND_LP",loop:true}},
+        {tag:"AKIR",pose:pose(x,z,0),motion:{bank:"free",name:"AKI_AKI_STAND_LP",loop:true}},
+        {tag:other,pose:relative?pose(x+relative.x,z+relative.z,relative.yaw):pose(1.8,-4.5,180),motion:{bank:"free",name:"AKI_AKI_STAND_LP",loop:true}},
       ],camera:{positionX:-1.5,positionY:1.7,positionZ:-6.8,targetX:1.8,targetY:1,targetZ:-4.8,roll:0,perspective:65}};
       presentation.begin({area:"DBHB"});
       if(!await presentation.adapters.playSequence({kind:"scene-staging-start",scene},presentation.transaction))throw Error("Bar review staging rejected");
@@ -44,7 +70,7 @@ export async function inspectHeartbeatsBarMotions(page, testInfo, character) {
       let previous=performance.now();
       const tick=now=>{if(!p.authoredScene.active)return;p.authoredScene.update(presentation.transaction,Math.max(0,(now-previous)/1000));previous=now;p.motionReviewFrame=requestAnimationFrame(tick);};
       p.motionReviewFrame=requestAnimationFrame(tick);
-    },{id,other,ryo,opponent});
+    },{id,other,ryo,opponent,relative});
     try {
       for(const [index,seconds] of [.1,.7,1.3,Math.min(2,duration),duration].entries()) {
         await page.waitForFunction(t=>window.storyProbe.authoredScene.active?.elapsed>=t,seconds);
@@ -125,6 +151,46 @@ export async function inspectHeartbeatsMotions(page, testInfo, character) {
     expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   }
   await page.evaluate(()=>{delete window.storyProbe.regions.controller.ownsPlayerPresentation;});
+}
+
+// Render the actual staged transition with an earned character; this bypasses
+// challenge results and never awards progress. Captures are for visual review.
+export async function reviewHeartbeatsSecondExchange(page,testInfo,character) {
+  expect(character.storyFlags["story.s1.heartbeats-alley.completed"]).toBe(true);
+  const before=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+  await placeAtHeartbeatsApproach(page);
+  await page.evaluate(async()=>{
+    const p=window.storyProbe, presentation=p.regions.controller.presentation;
+    Object.defineProperty(p.regions.controller,"ownsPlayerPresentation",{configurable:true,get:()=>presentation.ownsPlayerPresentation});
+    const {createScriptEventPresentationCatalog}=await import("/play/scripts/ScriptEventPresentationCatalog.js");
+    const catalog=createScriptEventPresentationCatalog();
+    presentation.begin({area:"D000"});
+    p.secondReview={done:false,error:null};
+    let previous=performance.now();
+    const tick=now=>{if(!p.secondReview||p.secondReview.done)return;p.authoredScene.update(presentation.transaction,Math.max(0,(now-previous)/1000));previous=now;p.motionReviewFrame=requestAnimationFrame(tick);};
+    p.motionReviewFrame=requestAnimationFrame(tick);
+    void (async()=>{
+      for(const part of ["prompt","success","second-setup","second-prompt","second-success","second-failure"]){
+        if(!await presentation.adapters.playSequence(catalog.sequence(`s1.heartbeats.alley.defense.${part}.start`),presentation.transaction))throw Error(`Rejected ${part}`);
+      }
+      p.secondReview.done=true;
+    })().catch(error=>{p.secondReview.error=error.message;p.secondReview.done=true;});
+  });
+  try {
+    for(const [part,time] of [["second-setup",.5],["second-setup",1.7],["second-success",.6],["second-success",2],["second-failure",.6]]){
+      await page.waitForFunction(({part,time})=>window.storyProbe.secondReview.error||(window.storyProbe.authoredScene.active?.scene.id.endsWith(`.${part}`)&&window.storyProbe.authoredScene.active.elapsed>=time),{part,time},{timeout:20_000});
+      expect(await page.evaluate(()=>window.storyProbe.secondReview.error)).toBeNull();
+      await page.screenshot({path:testInfo.outputPath(`alley-review-${part}-${time}.png`)});
+    }
+    await page.waitForFunction(()=>window.storyProbe.secondReview.done,null,{timeout:20_000});
+    expect(await page.evaluate(()=>window.storyProbe.secondReview.error)).toBeNull();
+  } finally {
+    await page.evaluate(()=>{const p=window.storyProbe;cancelAnimationFrame(p.motionReviewFrame);p.regions.controller.presentation.rollback("second-exchange-review");delete p.regions.controller.ownsPlayerPresentation;});
+  }
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  const after=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+  expect(after.storyFlags).toEqual(before.storyFlags);expect(after.yen).toBe(before.yen);
 }
 
 export async function placeAtHeartbeatsApproach(page) {

@@ -1146,7 +1146,11 @@ Run `node scripts/testing/run-tests.mjs script tools/cutscenes/audit_cutscene_pr
 including Story-only scenes. Its ignored report under `tests/reports/` separates
 on-stage and remote speakers, detailed face bindings, missing local assets,
 voices without lip cues, absent/unregistered voice and sound files,
-reference-only objects, and hand/prop bindings. Audio metadata alone does not
+reference-only objects, and hand/prop bindings. It also checks declared
+packaged scene-object and attachment model/texture paths and verifies that an
+attachment marked as scene-owned names a non-reference scene object. It cannot
+prove a borrowed scenery object exists at runtime or that a handover is timed
+correctly. Audio metadata alone does not
 prove the recording is available: Vite can return fallback HTML for a missing
 WAV. Local availability is not proof of remote publication. Add
 `--models` to load each distinct speaking body locally and check its authored
@@ -1185,6 +1189,42 @@ among 63 on-stage speaker appearances without a detailed FACE across the 108
 packages. Together with the detailed-face catalog, all on-stage speakers in
 this registered package set now resolve a mouth binding. These counts describe
 structural coverage, not 108 reviewed performances or every original scene.
+The 2026-11-07 repeat inspected 109 registered packages: all on-stage speaker
+appearances again have a detailed or generic mouth binding, and there were no
+missing registered face, hand or available-audio assets locally. Twenty-six
+scene-object references remain intentionally non-rendered and need individual
+classification; they are not automatically missing visible props. This check
+does not verify rendering, original expressions, every intended sound, or R2
+publication. A subsequent repeat reports 30 explicitly unavailable original
+voice-cue occurrences separately from lip metadata: no available on-stage
+voice was missing a lip cue. Those are package occurrences, not necessarily
+distinct recordings, and the absent recordings are still unresolved audio
+gaps. `tests/reports/cutscene-presentation-2026-11-07.json` records the
+local structural results.
+
+Another 2026-11-07 metadata-only audit found 24 reference-only objects after
+the warning-letter props were restored. It still reported 30 unavailable voice
+occurrences, all with distinct names. A separate directory-only search of all
+377 inventoried Disc 1–3 stream AFS archives found no exact `.str` filename
+matches; two known warning-letter voices were positive controls, and every
+inspected directory had names for all its entries.
+
+The later 2026-11-07 check again found 109 packages, 30 unavailable voice
+occurrences and 24 reference-only objects. It found no missing declared local
+scene-object/attachment files or unresolved scene-owned attachment definitions.
+The additional checks do not establish visual correctness, successful borrowed
+object resolution, or remote asset publication.
+
+Reproduce the checks with:
+
+```sh
+node scripts/testing/run-tests.mjs script tools/cutscenes/audit_cutscene_presentation.mjs --output tests/reports/cutscene-presentation-current.json
+node tools/audio/audit_unavailable_scene_voices.mjs
+```
+
+The search checks the inventoried local archive paths, sizes and member names,
+not every file or retail variant, archive hashes, alternative names, contents,
+or non-AFS common voice data. It does not prove the recordings never existed.
 The short rendered test in `tests/e2e/cutscene-faces.spec.js` checks Megumi's
 visible mouth buffers and poses while her original voice plays, then verifies
 cancelled settlement and released facial ownership. Full Story trigger/choice

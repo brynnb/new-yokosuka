@@ -36,6 +36,7 @@ $SHENMUE_DISC_ROOT/Disc N/*.cue             local disc images
 .flycast-pvr/config/flycast/                isolated Flycast configuration
 .flycast-pvr/data/flycast/                  VMU data and save states
 .flycast-pvr/control/                       file-based commands to running Flycast
+.flycast-pvr/shenmue2/                      separate Shenmue II config/data/control
 captures/pvr/                               synchronized RAM/PVR captures
 captures/skeleton/                          per-VBlank controller/matrix recordings
 captures/objects/                           per-VBlank object-region recordings
@@ -52,6 +53,12 @@ captures/analysis/                          retained instruction traces and anal
 a clean checkout. Do not make production code depend on them. Distilled,
 reproducible conclusions belong in `tools/evidence/`, generated browser data,
 tests, and the relevant documentation.
+
+Older captures may be moved to offline storage while keeping a small local test
+subset. Restore the complete capture corpus before running bulk discovery or
+`refresh:shenmue2-animation-corpus`; a remaining test subset is not the full
+research dataset. Preserve original relative paths and checksum manifests so
+individual capture references remain reproducible after restoration.
 
 The Flycast checkout contains intentional project-specific commits, including:
 
@@ -136,10 +143,11 @@ tools/emulator/run_flycast_pvr_capture.sh 1
 ```
 
 The positional disc number selects the default *Shenmue I* cue. For *Shenmue
-II*, pass the exact cue with `SHENMUE_CUE`; the rest of the capture, Lua, input,
-save-state, and trace machinery is shared:
+II*, pass the exact cue with `SHENMUE_CUE` and select its separate profile;
+the rest of the capture, Lua, input, save-state, and trace machinery is shared:
 
 ```bash
+FLYCAST_PROFILE_ROOT="$PWD/.flycast-pvr/shenmue2" \
 SHENMUE_CUE="$PWD/.disc-work/shenmue2-disc1-image/Shenmue II (Europe) (En,Fr,De,Es) (Disc 1).cue" \
 tools/emulator/run_flycast_pvr_capture.sh 1
 ```
@@ -148,11 +156,20 @@ The trailing `1` is still required by the launcher's interface but does not
 override `SHENMUE_CUE`. Do not point `SHENMUE_DISC_ROOT` at a Shenmue II folder
 and assume its filenames match the Shenmue I convention.
 
+The two `run_shenmue2_*_capture.sh` launchers default to this Shenmue II source
+profile, then copy it into their own validation subdirectories. Override
+`FLYCAST_S2_SOURCE_PROFILE` only to use another saved profile. For manual helper
+requests, use that running profile's `control/` path; the S2 actor-request helper
+defaults to `.flycast-pvr/shenmue2/control/` and accepts `--request` for isolated
+validation profiles. Do not merge Shenmue II's VMUs or configuration into
+Shenmue I's profile.
+
 On hosts where this checkout's Flycast binary needs the locally retained audio
 compatibility libraries, prefix the launch with:
 
 ```bash
 LD_LIBRARY_PATH="$PWD/.disc-work/flycast-runtime/local-lib" \
+FLYCAST_PROFILE_ROOT="$PWD/.flycast-pvr/shenmue2" \
 SHENMUE_CUE=".../Shenmue II (Europe) (En,Fr,De,Es) (Disc 1).cue" \
 tools/emulator/run_flycast_pvr_capture.sh 1
 ```
@@ -191,7 +208,7 @@ The isolated Flycast data directory contains files such as:
 .flycast-pvr/data/flycast/Shenmue (USA) (Disc 1).state
 .flycast-pvr/data/flycast/Shenmue (USA) (Disc 1)_1.state
 .flycast-pvr/data/flycast/MK-51059_vmu_save_A1.bin
-.flycast-pvr/data/flycast/Shenmue II (Europe) (En,Fr,De,Es) (Disc 1).state
+.flycast-pvr/shenmue2/data/flycast/Shenmue II (Europe) (En,Fr,De,Es) (Disc 1).state
 ```
 
 State files are per disc. In the Lua API, displayed save-state slot 1 is
@@ -226,7 +243,7 @@ For Shenmue II animation research, a saved Flycast state can be turned into a
 
 ```bash
 node tools/emulator/extract_flycast_savestate_ram.mjs \
-  --state ".flycast-pvr/data/flycast/Shenmue II (Europe) (En,Fr,De,Es) (Disc 1).state" \
+  --state ".flycast-pvr/shenmue2/data/flycast/Shenmue II (Europe) (En,Fr,De,Es) (Disc 1).state" \
   --reference-ram captures/pvr/KNOWN-DISC1-FRAME/ram.bin \
   --out captures/pvr/SAVE-DESCRIPTION/ram.bin
 ```
@@ -828,6 +845,7 @@ FLYCAST_SH4_FPU_WRITE_TRACE_PC_START=0x8c040000 \
 FLYCAST_SH4_FPU_WRITE_TRACE_PC_END=0x8c1e1000 \
 FLYCAST_SH4_FPU_WRITE_TRACE_LIMIT=250000 \
 FLYCAST_SH4_FPU_WRITE_TRACE_OUTPUT="$PWD/captures/analysis/s2-controller-write-fpu.csv" \
+FLYCAST_PROFILE_ROOT="$PWD/.flycast-pvr/shenmue2" \
 SHENMUE_CUE="$PWD/.disc-work/shenmue2-disc1-image/Shenmue II (Europe) (En,Fr,De,Es) (Disc 1).cue" \
 tools/emulator/run_flycast_pvr_capture.sh 1
 ```

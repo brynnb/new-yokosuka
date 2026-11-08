@@ -47,6 +47,10 @@ export class Mt5Loader {
         this.mirrorCharacterX = options.mirrorCharacterX ?? false;
         this.characterRigSeamEpsilon = options.characterRigSeamEpsilon ?? 1e-5;
         this.backFaceCulling = options.backFaceCulling ?? true;
+        // Most map-only untextured shapes are collision/trigger markers. A
+        // caller with a source-backed visual asset can opt in explicitly;
+        // the absence of UVs alone does not prove geometry is non-visual.
+        this.includeUntexturedGeometry = options.includeUntexturedGeometry ?? false;
         this.respectStripWindingSign = options.respectStripWindingSign ?? false;
         this.orientTriangleWindingToNormals = options.orientTriangleWindingToNormals
             ?? false;
@@ -2563,15 +2567,13 @@ export class Mt5Loader {
 
 
             if (indices.length > 0) {
-                // HEURISTIC: Skip geometry that lacks UV coordinates.
-                // In MT5, practically all visual geometry has UVs. 
-                // Absence of UVs almost always indicates collision or trigger markers
-                // (like the 'white cylinders' or 'brown cylinders' reported by the user).
+                // Map resources often contain untextured collision/trigger
+                // markers, but some authored visual props are untextured too.
                 const groupHasUV = polys.some((poly) => (
                     poly.hasUV
                     || poly.strips.some((strip) => strip._mt5GeneratedEnvironmentUV)
                 ));
-                if (!groupHasUV) {
+                if (!groupHasUV && !this.includeUntexturedGeometry) {
                     continue;
                 }
 

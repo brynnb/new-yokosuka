@@ -6,6 +6,8 @@ export class NativeCutsceneMusicRuntime {
     this.controls = controls;
     this.trackId = null;
     this.activeCue = null;
+    this.owner = {};
+    this.retainers = new Set();
   }
 
   beginActivity(activity) {
@@ -36,25 +38,46 @@ export class NativeCutsceneMusicRuntime {
 
   stop() {
     if (!this.trackId) return false;
-    const stopped = this.controls.stopTemporaryTrack(this.trackId);
+    const stopped = this.controls.stopTemporaryTrack(this.trackId, this.owner);
     this.trackId = null;
     this.activeCue = null;
     return stopped;
   }
 
   reset() {
+    if (this.retainers.size) { this.setPaused(false); return false; }
     this.stop();
     this.setPaused(false);
+    return true;
+  }
+
+  retain(owner) {
+    if (!owner || this.retainers.has(owner)) throw new Error("Invalid cutscene music owner");
+    this.retainers.add(owner);
+    let released = false;
+    return () => {
+      if (released) return false;
+      released = true;
+      if (!this.retainers.delete(owner)) return false;
+      if (!this.retainers.size) this.reset();
+      return true;
+    };
+  }
+
+  clear() {
+    this.retainers.clear();
+    return this.reset();
   }
 
   #beginCue(cue) {
     if (!cue) return false;
-    if (cue === this.activeCue && cue === this.packageCue) return true;
+    if (cue === this.activeCue && cue === this.packageCue
+      && (this.controls.ownsTemporaryTrack?.(this.trackId, this.owner) ?? true)) return true;
     this.stop();
     const started = this.controls.playTemporaryTrack(cue.trackId, {
       gain: this.gain,
       loop: Boolean(cue.loop),
-    });
+    }, this.owner);
     if (started) {
       this.trackId = cue.trackId;
       this.activeCue = cue;

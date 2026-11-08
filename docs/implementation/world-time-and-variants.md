@@ -217,6 +217,13 @@ native solar/fog/particle renderer. The second cloud/rain texture strip and nati
 sprite fade timing are not reproduced. Cutscene lighting and isolated stages
 retain ownership; MT7/S2, fixed-weather worlds and Free roam are unchanged.
 
+The original rain/cloud textures are bright in the daytime. Until their native
+sprite modulation is recovered, Story's shared sky shader dims those two
+weather resources by the existing interpolated sky-light intensity relative to
+the day preset. The texture selection remains source-backed; the dimming is a
+browser approximation, not a recovered native rule. Clear skies and explicit
+cinematic lighting remain unchanged.
+
 `0x0179(38)` supplies a four-vertex dry volume and lower/upper heights to existing
 kind-one `FIXC` weather fields. It is an exclusion, not an event trigger or a
 restriction on where rain may spawn. The field is owned separately from WAIR;

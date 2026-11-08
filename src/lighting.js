@@ -8,6 +8,7 @@ import {
 import {
   interpolateClearColors,
   interpolateLightingPresets,
+  weatherSkyBrightness,
 } from "./LightingInterpolation.js";
 
 const SKY_VERTEX_SHADER = `
@@ -29,11 +30,13 @@ const SKY_FRAGMENT_SHADER = `
   uniform sampler2D fromTexture;
   uniform sampler2D toTexture;
   uniform float blendAmount;
+  uniform float brightness;
 
   void main(void) {
     vec4 fromColor = texture2D(fromTexture, vUV);
     vec4 toColor = texture2D(toTexture, vUV);
-    gl_FragColor = mix(fromColor, toColor, blendAmount);
+    vec4 color = mix(fromColor, toColor, blendAmount);
+    gl_FragColor = vec4(color.rgb * brightness, color.a);
   }
 `;
 
@@ -128,7 +131,7 @@ function ensureSkyDome() {
     },
     {
       attributes: ["position", "uv"],
-      uniforms: ["worldViewProjection", "blendAmount"],
+      uniforms: ["worldViewProjection", "blendAmount", "brightness"],
       samplers: ["fromTexture", "toTexture"],
     },
   );
@@ -146,7 +149,7 @@ function ensureSkyDome() {
   return skyDome;
 }
 
-function applySkyBlend(fromIndex, toIndex, progress, skyTextureUrl = null) {
+function applySkyBlend(fromIndex, toIndex, progress, skyTextureUrl = null, brightness = 1) {
   const fromUrl = skyTextureUrl ?? skyTextureForPreset(fromIndex);
   const toUrl = skyTextureUrl ?? skyTextureForPreset(toIndex);
   if (!fromUrl || !toUrl || state.isInteriorScene) {
@@ -162,6 +165,7 @@ function applySkyBlend(fromIndex, toIndex, progress, skyTextureUrl = null) {
     "blendAmount",
     Math.min(1, Math.max(0, Number(progress) || 0)),
   );
+  material.setFloat("brightness", brightness);
 }
 
 export function createLights(scene) {
@@ -231,25 +235,28 @@ export function applyTimeOfDayLighting({
   progress,
   lightingOverride = null,
   skyTextureUrl = null,
+  skyWeatherTexture = false,
 }) {
   const from = timeOfDayPresets[fromIndex];
   const to = timeOfDayPresets[toIndex];
   if (!from || !to) return;
-  applyLightingPreset({
+  const lighting = {
     ...interpolateLightingPresets(
       from.lighting || DEFAULT_LIGHTING,
       to.lighting || DEFAULT_LIGHTING,
       progress,
     ),
     ...lightingOverride,
-  });
+  };
+  applyLightingPreset(lighting);
   const [r, g, b, a] = interpolateClearColors(
     clearColorForPreset(fromIndex),
     clearColorForPreset(toIndex),
     progress,
   );
   state.scene.clearColor = new BABYLON.Color4(r, g, b, a);
-  applySkyBlend(fromIndex, toIndex, progress, skyTextureUrl);
+  applySkyBlend(fromIndex, toIndex, progress, skyTextureUrl,
+    weatherSkyBrightness(lighting, skyWeatherTexture));
 }
 
 // Apply sky/time-of-day preset

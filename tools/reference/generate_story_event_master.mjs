@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import assert from "node:assert/strict";
 import { anchor, conversationOutput, sourceInput, loadConversations, expandFamilies,
   renderExpansions, renderConversations } from "./story_event_expansions.mjs";
+import { storyEventVerification } from "./story_event_verification.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const input = "tools/data/shenmue1-story-event-master.json";
@@ -108,6 +109,9 @@ add({id:"scroll.stabArmor.translate",chapter:"learning",name:"Have Stab Armor tr
   note:"Current adaptation uses Master Chen; the annotated SA1108 source names Gui Zhang. Verify original actor."});
 
 assert.equal(new Set(events.map(event => event.id)).size, events.length, "duplicate event ID");
+for (const id of Object.keys(inventory.verification || {})) {
+  assert(events.some(event=>event.id===id), `verification refers to unknown event ${id}`);
+}
 const families = events.filter(event => /family/i.test(event.kind));
 const named = events.length - families.length;
 const source = read(sourceInput);
@@ -131,7 +135,9 @@ const generated = [
   "- Family rows now link to detailed expansions. Original conversation entry markers are source branches, not automatically distinct player-facing events. Unresolved native handoffs remain visible in the appendix.",
   "- Shenmue II and non-playthrough material are outside this list; see the exclusions at the end.", "",
   "## How to read implementation status", "",
-  "**Bound** means a current project route, package, move or item reference is recorded. It does not prove its original trigger, complete presentation, live deployment or a successful browser run. **Unmapped** means this inventory has not established the runtime binding; it does not prove the feature is absent. **Gap** names a verified omission. **Expanded** links to the family's detailed source records or review cases; it does not mean implemented.", "",
+  "Status has separate implementation, rendered presentation, and connected Story-progression checks. **Implemented** is a reviewed local implementation, not a deployment claim. **Rendered (partial)** and **Connected (partial)** identify bounded checks, not full fidelity or a complete playthrough; the adjacent notes describe what was actually checked. **Unverified** is an explicitly identified missing check; **Blocked** describes a specific obstacle, not a claim that every aspect of an event is blocked.", "",
+  "**Binding recorded; not classified** means a project route, package, move or item reference exists but has not yet been assigned an explicit implementation status. **Not classified** does not mean a check failed or was never performed: earlier evidence may already appear in the event note and still needs structured review. **Unmapped** means no binding has been established in this inventory, not proof the feature is absent. **Gap** names a known omission; **Expanded** links to family details without implying implementation.", "",
+  `Structured status has been reviewed for ${Object.keys(inventory.verification || {}).length} of ${events.length} main-list rows (including ${families.length} family rows). The rest still require classification against their evidence; do not treat their default labels as an audit result.`, "",
   "Every row starts with presentation **unreviewed** unless a specific result is recorded. Check these independently before marking an event complete: actors; mouths/faces; objects and handovers; body/hand motion; cameras; voice/music/effects; input/QTE/combat; durable outcome; skip/cancel/retry/restoration. Use **not applicable** only after checking the event. Playing to completion or saving a notebook entry does not clear the presentation checks.", "",
   "The route links retain native resource locators, hashes, voices and adaptation notes where available. A route's authored flags and bounds are not asserted to be the original game's rules. A package ID is not automatically a Story trigger.", "",
   "## Chapters", "",
@@ -150,14 +156,18 @@ for (const chapter of inventory.chapters) {
     const evidence = event.sources.map(sourceRef).join(", ");
     const binding = event.binding ? `; \`${event.binding}\`` : "";
     const section = expansionById.get(event.id);
-    const status = section ? `[Expanded](#expanded-${anchor(event.id)})` : event.gap ? `Gap: ${event.gap}` : event.binding ? "Bound; review" : "Unmapped; review";
-    generated.push(`| \`${event.id}\` | ${cell(event.name)} | ${cell(event.kind)} — ${cell(event.where)}${event.note ? `<br>${cell(event.note)}` : ""} | ${evidence}${binding} | ${cell(status)} |`);
+    const verification=storyEventVerification(event,inventory.verification?.[event.id]);
+    const status=[`Implementation: ${verification.implementation}`,`Presentation: ${verification.presentation}`,
+      `Progression: ${verification.progression}`,...(verification.evidence?[`Evidence: ${verification.evidence}`]:[]),
+      ...(verification.blocker?[`Blocked: ${verification.blocker}`]:[]),...(event.gap?[`Gap: ${event.gap}`]:[]),
+      ...(section?[`[Expanded](#expanded-${anchor(event.id)})`]:[])].map(cell).join("<br>");
+    generated.push(`| \`${event.id}\` | ${cell(event.name)} | ${cell(event.kind)} — ${cell(event.where)}${event.note ? `<br>${cell(event.note)}` : ""} | ${evidence}${binding} | ${status} |`);
   }
   generated.push("");
 }
 generated.push(...renderExpansions(expansion.sections, sourceRef, ref));
 generated.push("## Shared presentation omissions", "",
-  "The shared package catalog binds proven body/FACE pairs; other speakers can reuse their body's original closed/open mouth targets through the shared dialogue/cutscene controller. The [cutscene facial contract](../implementation/cutscenes.md#character-faces) owns the dated corpus audit and rendered-check evidence; each event's notes distinguish its presentation and connected-progression checks. Do not treat structural coverage as a visual certificate. The [allowance handover](../design/story-event-template.md#ine-san-first-allowance) now uses its original envelope and callback timing; its remaining hand/door limitations are recorded separately. Run `node tools/cutscenes/audit_cutscene_presentation.mjs --models` for current package-wide wiring gaps.", "",
+  "The shared package catalog binds proven body/FACE pairs; other speakers can reuse their body's original closed/open mouth targets through the shared dialogue/cutscene controller. The [cutscene facial contract](../implementation/cutscenes.md#character-faces) owns the dated corpus audit and rendered-check evidence; each event's notes distinguish its presentation and connected-progression checks. Do not treat structural coverage as a visual certificate. The audit separately reports explicitly unavailable voice cues and playable on-stage voices missing lip metadata; unavailable recordings remain audio gaps. The [allowance handover](../design/story-event-template.md#ine-san-first-allowance) now uses its original envelope and callback timing; its remaining hand/door limitations are recorded separately. Run `node tools/cutscenes/audit_cutscene_presentation.mjs --models` for current package-wide wiring gaps.", "",
   "## Locations and project adapters", "",
   "These bindings are accounted for without inflating the original-event count. Alternate telephone locations and scene-entry confirmations belong to their parent event. The current project's explicit travel confirmations, clock jumps and checkpoint plumbing are not asserted to be separate original-game cinematics.", "",
   "| Current route | Inventory owner or reason |", "| --- | --- |");

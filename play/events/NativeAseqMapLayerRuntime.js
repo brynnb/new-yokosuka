@@ -1,5 +1,6 @@
 import { Color3, Color4, Layer, RawTexture } from "@babylonjs/core";
 import { validateLightingOverride } from "../../src/LightingInterpolation.js";
+import { acquireResidentStageIsolation } from "./ResidentStageIsolation.js";
 
 function requireText(value, label) {
   if (typeof value !== "string" || !value.trim()) {
@@ -55,8 +56,10 @@ export class NativeAseqMapLayerRuntime {
           value?.nodeAddress,
           `AUTH map geometry mask ${index} node address`,
         ),
+        lifetime: value?.lifetime ?? "world",
       })
     )));
+    if(this.geometryMasks.some(mask=>!["world","activity"].includes(mask.lifetime)))throw new TypeError("Invalid AUTH map geometry mask lifetime");
     this.roots = new Map();
     this.maskedGeometry = [];
     this.active = null;
@@ -94,7 +97,12 @@ export class NativeAseqMapLayerRuntime {
       }
       this.roots.set(nativeName, matches[0]);
     }
-    for (const mask of this.geometryMasks) {
+    this.#applyGeometryMasks(roots,this.geometryMasks.filter(mask=>mask.lifetime==="world"),this.maskedGeometry);
+    return this.roots.size;
+  }
+
+  #applyGeometryMasks(roots,masks,snapshots) {
+    try { for (const mask of masks) {
       const rootsForMask = roots.filter(root => (
         root?._filename?.toUpperCase() === mask.browserFilename.toUpperCase()
       ));
@@ -107,27 +115,61 @@ export class NativeAseqMapLayerRuntime {
       const nodes = (rootsForMask[0]._mt5Nodes || []).filter(
         node => node?.addr === mask.nodeAddress,
       );
-      if (nodes.length !== 1) {
+      if (nodes.length > 1) {
         throw new Error(
           `AUTH map geometry ${mask.browserFilename} expected node `
           + `0x${mask.nodeAddress.toString(16)}; found ${nodes.length}`,
         );
       }
-      const mesh = nodes[0].mesh;
-      if (typeof mesh?.setEnabled !== "function") {
-        throw new Error(
-          `AUTH map geometry ${mask.browserFilename} node `
-          + `0x${mask.nodeAddress.toString(16)} cannot be hidden`,
-        );
+      if (nodes.length === 1) {
+        const mesh = nodes[0].mesh;
+        if (typeof mesh?.setEnabled !== "function") {
+          throw new Error(`AUTH map geometry ${mask.browserFilename} node 0x${mask.nodeAddress.toString(16)} cannot be hidden`);
+        }
+        snapshots.push({ mesh, enabled: mesh.isEnabled?.() !== false });
+        mesh.setEnabled(false);
+        mesh.computeWorldMatrix?.(true);
+        continue;
       }
-      this.maskedGeometry.push({
-        mesh,
-        enabled: mesh.isEnabled?.() !== false,
-      });
-      mesh.setEnabled(false);
-      mesh.computeWorldMatrix?.(true);
+      // Prepared scenery merges multiple native nodes into a material batch.
+      // Collapse only the selected source faces, preserving triangle numbering
+      // for picking and all other members of the batch.
+      let matches = 0;
+      for (const mesh of rootsForMask[0].getChildMeshes?.() || []) {
+        const sources = (mesh.metadata?.staticBatchSources || []).filter(source => source.nodeAddress === mask.nodeAddress);
+        if (!sources.length) continue;
+        if (typeof mesh.setIndices !== "function" || !mesh.getIndices?.()) throw new Error(`AUTH map batch ${mesh.name} has no mutable indices`);
+        let snapshot = snapshots.find(entry => entry.mesh === mesh && entry.indices);
+        if (!snapshot) {
+          mesh.makeGeometryUnique?.();
+          snapshot = { mesh, indices: mesh.getIndices().slice() };
+          snapshots.push(snapshot);
+        }
+        const indices = mesh.getIndices().slice();
+        for (const source of sources) {
+          if (!Number.isSafeInteger(source.firstFace) || !Number.isSafeInteger(source.faceCount) || source.firstFace < 0 || source.faceCount < 0 || (source.firstFace + source.faceCount) * 3 > indices.length) throw new Error(`AUTH map batch ${mesh.name} has invalid source face range`);
+          for (let face = source.firstFace; face < source.firstFace + source.faceCount; face++) indices[face * 3 + 1] = indices[face * 3 + 2] = indices[face * 3];
+          matches++;
+        }
+        mesh.setIndices(indices, null, false, true);
+      }
+      if (!matches) throw new Error(`AUTH map geometry ${mask.browserFilename} expected node 0x${mask.nodeAddress.toString(16)}; found 0`);
+    } } catch (error) {
+      try { this.#restoreGeometryMasks(snapshots); } catch (cleanup) { throw new AggregateError([error, cleanup], "AUTH map geometry setup failed"); }
+      snapshots.length=0;
+      throw error;
     }
-    return this.roots.size;
+  }
+
+  #restoreGeometryMasks(snapshots) {
+    const errors=[];
+    for(const {mesh,enabled,indices} of snapshots){
+      try{if(!mesh?.isDisposed?.()){
+        if(indices)mesh.setIndices(indices,null,false,true);else mesh.setEnabled(enabled);
+        mesh.computeWorldMatrix?.(true);
+      }}catch(error){errors.push(error);}
+    }
+    if(errors.length)throw new AggregateError(errors,"AUTH geometry mask restore failed");
   }
 
   applyActivity(activity) {
@@ -180,8 +222,14 @@ export class NativeAseqMapLayerRuntime {
         root.isEnabled?.() !== false,
       ])),
       activityId: null,
-      residentSnapshots: null,
+      residentIsolation: null,
+      maskedGeometry: null,
     };
+    if(!this.active.maskedGeometry){
+      const snapshots=[];
+      this.#applyGeometryMasks(this.worldRoots,this.geometryMasks.filter(mask=>mask.lifetime==="activity"),snapshots);
+      this.active.maskedGeometry=snapshots;
+    }
     if (lightingPresetIndex !== this.lightingPresetIndex || lightingOverride !== this.lightingOverride) {
       this.#restoreLighting();
       this.releaseActivityLighting?.();
@@ -212,11 +260,11 @@ export class NativeAseqMapLayerRuntime {
     // An isolated cinematic stage borrows the loaded world as an asset source,
     // not as scenery. Snapshot all resident roots (including placed room props),
     // leaving package-owned actors and scenery outside this list untouched.
-    if (activity.browserIsolatedStage && !this.active.residentSnapshots) {
-      this.active.residentSnapshots = this.worldRoots.map(root => [root, root.isEnabled?.() !== false]);
-    } else if (!activity.browserIsolatedStage && this.active.residentSnapshots) {
-      for (const [root, enabled] of this.active.residentSnapshots) root.setEnabled(enabled);
-      this.active.residentSnapshots = null;
+    if (activity.browserIsolatedStage && !this.active.residentIsolation) {
+      this.active.residentIsolation = acquireResidentStageIsolation(this.worldRoots);
+    } else if (!activity.browserIsolatedStage && this.active.residentIsolation) {
+      this.active.residentIsolation.restore();
+      this.active.residentIsolation = null;
     }
     for (const [nativeName, definition] of this.definitions) {
       const root = this.roots.get(nativeName);
@@ -229,7 +277,7 @@ export class NativeAseqMapLayerRuntime {
     }
     this.active.activityId = activity.activityId;
     if (activity.browserIsolatedStage) {
-      for (const root of this.worldRoots) root.setEnabled(false);
+      this.active.residentIsolation.hide();
     }
     // A background layer is independent of the gameplay clock's clear-color
     // updates. It cannot cover actors/terrain like a foreground fade overlay.
@@ -288,12 +336,11 @@ export class NativeAseqMapLayerRuntime {
 
   end() {
     const errors = [];
-    const cleanup = fn => { try { fn(); } catch (error) { errors.push(error); } };
+    const cleanup = fn => { try { fn(); } catch (error) { errors.push(...(error instanceof AggregateError ? error.errors : [error])); } };
     cleanup(() => this.background?.dispose());
     this.background = null;
-    for (const [root, enabled] of this.active?.residentSnapshots || []) {
-      cleanup(() => { if (!root.isDisposed?.()) root.setEnabled(enabled); });
-    }
+    cleanup(() => this.#restoreGeometryMasks(this.active?.maskedGeometry||[]));
+    cleanup(() => this.active?.residentIsolation?.restore());
     for (const [nativeName, enabled] of this.active?.snapshots || []) {
       const root = this.roots.get(nativeName);
       cleanup(() => {
@@ -319,12 +366,7 @@ export class NativeAseqMapLayerRuntime {
 
   clear() {
     this.end();
-    for (const { mesh, enabled } of this.maskedGeometry) {
-      if (!mesh?.isDisposed?.()) {
-        mesh.setEnabled(enabled);
-        mesh.computeWorldMatrix?.(true);
-      }
-    }
+    this.#restoreGeometryMasks(this.maskedGeometry);
     this.maskedGeometry = [];
     this.roots.clear();
     this.worldRoots = [];

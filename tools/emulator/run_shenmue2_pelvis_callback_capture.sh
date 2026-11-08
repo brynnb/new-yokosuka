@@ -4,7 +4,8 @@ set -euo pipefail
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 : "${FLYCAST_ROOT:?set FLYCAST_ROOT to the instrumented Flycast checkout}"
 flycast_root="${FLYCAST_ROOT}"
-source_profile="${FLYCAST_S2_SOURCE_PROFILE:-${repo_root}/.flycast-pvr}"
+# Keep Shenmue II VMUs and save states separate from the Shenmue I profile.
+source_profile="${FLYCAST_S2_SOURCE_PROFILE:-${repo_root}/.flycast-pvr/shenmue2}"
 validation_root="${FLYCAST_S2_VALIDATION_ROOT:-${source_profile}/animation-validation}"
 disc_image_root="${FLYCAST_S2_DISC_IMAGE_ROOT:-${repo_root}/.disc-work/shenmue2-disc1-image}"
 runtime_lib="${FLYCAST_S2_RUNTIME_LIB:-${repo_root}/.disc-work/flycast-runtime/local-lib}"

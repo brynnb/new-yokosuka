@@ -118,7 +118,7 @@ export async function verifyOldDistrictStealth(page,testInfo,character){
   try{
     await page.waitForFunction(()=>window.storyProbe.navigation.active.view.actors[0].hiding,null,{timeout:5_000});
     await page.screenshot({path:testInfo.outputPath("old-district-real-cover.png")});
-    await page.waitForFunction(()=>{const a=window.storyProbe.navigation?.active?.view.actors;return a&&a[2].z>a[0].z+1;},null,{timeout:45_000});
+    await page.waitForFunction(()=>{const a=window.storyProbe.navigation?.active?.view?.actors;return a&&a[2].z>a[0].z+1;},null,{timeout:45_000});
   }finally{await page.keyboard.up("KeyC");}
   await walk(26,-51.8,true);await walk(24,-55.8,true);await walk(22.9,-60.8,true);
   expect((await view()).canUse).toBe(true);

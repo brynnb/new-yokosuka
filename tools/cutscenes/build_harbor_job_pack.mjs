@@ -199,6 +199,9 @@ const profiles=[
     stream:"01CAU",streamHash:"4e61b4621349727688c7dbd35b30d0f11920850084800a42d0073dca4423546f",sound:"A1_CHINA.SND",soundHash:"6862f133cb92a0f81672fbefee6f57c7d143fdd2c257f92aff51fb5829611c1f"},
   {id:"warning-letter",archive:"MARU_LET",auth:"SEQDATA3.AUTH",motion:"M_01CAU.MOTN",bank:18,frames:1400,actors:["AKIR","TMRA"],room:alphaRoom,
     extraMembers:["FUTS5KBG.CHRM","KMMS500G.CHRM"],
+    callback:{evidence:"tools/evidence/maru-letter-native-sequence-ir.json",map:"MFSY/MAPINFO.BIN",props:["KYUF","KMEM"],frameVectorMode:"activity-timeline",textureHash:"e838e6588720d579bcde0b4ce0cce4f086f82d0d427a557bc1e4ed25dcd0c785"},
+    globalHands:{TMRA:{code:"KWD",hashes:["4ba0c3fdf0517acdded3348cc6c0c4d1c4b4b6c6346bed73207670c96d224d9a","f69cf6b183e41a3a2fea40da223b184ace248c29b8d4c9591a0812186caa7b14","d1cf00a20e1d9e08ea38ed83970590021ad32f55cdec9f35cc858c2c99f6af2d"]}},
+    selectionRule:"Walkthrough-guided warning after earned fifth payday. Original slot 3 clock guards drive the envelope, paper handover, articulated paper and available HAND cues. Ordinary Yarn alone owns acknowledgement and progress; unconverted gaze remains incomplete.",
     music:{id:"bgm119",sourceId:"84af3eae1fc0efdcdaf7efb9a15479b28920513dbadcb2997445755e413e5c1e",bankHash:"48e854a5c8681536f015195da0630fa8e90307404a2e9b70a93b335fdbccebcf",label:"Gui Zhang's warning letter"},
     stream:"01CAUA",streamHash:"34612fd23f8462a9d8ad379536ad33e6394496dc6b5538818ff24d47cdf0598c",sound:"A1_CAV.SND",soundHash:"ddea01f48db1846c2d1e5f8f2cadf610e03fdfcae6c918c1ea03837267336c94"},
   {id:"sailor-chase-intro",archive:"MA00/PK_CTS",resourceName:"PK_CTS",auth:"SEQDATA0.AUTH",motion:"M_01CTS.MOTN",frames:1140,actors:["FORK","AKIR","SMTH","TONY"],extraMembers:["M_01_T_S.MOTN"],
@@ -231,7 +234,13 @@ const profiles=[
     actorTextureHash:"21659e72e8d07d6672f87185bef848ed61a61e659f63c924c51af73512f7793f",
     stream:"01CBK",streamHash:"ac592d84435e75dddc18d05e66f969bfb815ac2310f5a5396fc1cba64b3e0792",sound:"A1_CBK.SND",soundHash:"9c57255615360306201708cba0ded088d6a61c62e975a5a906a4c264e39e0758"},
   {id:"nozomi-photo-intro",archive:"NZMPHOTO",auth:"SEQDATA1.AUTH",motion:"M_01PHO.MOTN",frames:1220,actors:["PHT1","PHT2","BLC0","BLC1","AKIR","TJMA","HRSK","POLA"],
-    props:{PHT1:"SHAS503G",PHT2:"SHAS506G",BLC0:"BLAS500G",BLC1:"BLAS500G",POLA:"POCS500G"},referenceActors:["BLC0","BLC1"],authoredPropBindings:true},
+    // Original footage shows the apart photo on the left and the together
+    // photo on the right as Eri presents them. These remain authored bindings.
+    props:{PHT1:"SHAS506G",PHT2:"SHAS503G",BLC0:"BLAS500G",BLC1:"BLAS500G",POLA:"POCS500G"},
+    untexturedActors:["BLC0","BLC1"],authoredOpacityTracks:[
+      {actorTag:"BLC0",depthBias:-1,evidence:"docs/design/story-harbor-work.md#third-workday-and-nozomis-photos",keyframes:[{frame:0,opacity:0},{frame:340,opacity:0},{frame:341,opacity:1},{frame:780,opacity:1},{frame:840,opacity:0}]},
+      {actorTag:"BLC1",depthBias:-1,evidence:"docs/design/story-harbor-work.md#third-workday-and-nozomis-photos",keyframes:[{frame:0,opacity:0},{frame:710,opacity:0},{frame:711,opacity:1},{frame:840,opacity:1},{frame:900,opacity:0}]},
+    ],authoredPropBindings:true},
   {id:"nozomi-photo-ending",archive:"NZMPHOTO",auth:"SEQDATA2.AUTH",motion:"M_01PHO.MOTN",frames:1940,actors:["AKIR","TJMA","HRSK","PHT2","POLA","PHT1"],
     props:{PHT1:"SHAS503G",PHT2:"SHAS506G",POLA:"POCS500G"},authoredPropBindings:true},
   {id:"mark-after-work-intro",archive:"BOKOMARK",auth:"SEQDATA2.AUTH",motion:"M_01MKB.MOTN",frames:520,actors:["AKIR","DEB1","DEB2","MARK","MRSK","OKYS","BTC_"],
@@ -248,6 +257,10 @@ const profiles=[
   {id:"mark-after-work-aftermath",archive:"BOKOMARK",auth:"SEQDATA3.AUTH",motion:"M_01MKB.MOTN",frames:700,actors:["AKIR","MARK","MRSK","OKYS"]},
   {id:"mark-brother-explanation",archive:"BOKOMARK",auth:"SEQDATA4.AUTH",motion:"M_01MKB.MOTN",frames:1961,actors:["AKIR","MARK"]},
   {id:"workday-lunch",archive:"HIRUAUTH",auth:"SEQDATA1.AUTH",motion:"M_01BEN.MOTN",frames:450,silent:true,
+    // The resident exploration fence at this source node sits directly in
+    // the original AUTH camera. This browser-only cutaway is an authored
+    // visibility adaptation, not a recovered original scene command.
+    mapGeometryMasks:[{browserFilename:"S2_MFSY_MAP11.MT5",nodeAddress:0x430b0,lifetime:"activity"}],
     actors:[...Array.from({length:6},(_,i)=>[`BTF${i+1}`,`BTS${i+1}`]).flat(),"AKIR","YOHI","TYMK","TAKE","MARK","HTSI"],
     props:Object.fromEntries(Array.from({length:6},(_,i)=>[[`BTF${i+1}`,"BNMS301G"],[`BTS${i+1}`,"BNMS302G"]]).flat()),
     propTextureHash:"c6796091fbbb5a0ba8f3f50567fdf4b7419227ff984c38942d7bb0a08f635968"},
@@ -290,7 +303,7 @@ const selected=profileArg<0?profiles:profiles.filter(p=>p.id===process.argv[prof
 if(!selected.length)throw Error("Unknown harbor job profile");
 for(const p of selected){
   const prefix=`play/assets/${p.directory||"harbor"}/${p.id}`,audioPrefix=`public/audio/world/${p.id}`,evidence=p.evidence||defaultEvidence;
-  const members=[],outputMembers=[],generatedAssets=[],sceneObjects={},packageActors={};
+  const members=[],outputMembers=[],generatedAssets=[],externalAssets=[],sceneObjects={},packageActors={};
   const member=(archive,name)=>{
     // Multiple scene instances may share one archive model (six lunchboxes).
     // Provenance/output members describe unique source files, not instances.
@@ -410,6 +423,7 @@ for(const p of selected){
     outputMembers.push(member(p.propArchive||p.archive,`${model}.CHRM`));
     sceneObjects[tag]={model,browserFilename:`${model}.CHRM`,assetPath:`${prefix}/${model}.CHRM`,textureAssetPath:propTextureAssetPath,
       ...(p.referenceActors?.includes(tag)?{referenceOnly:true}:{}),
+      ...(p.untexturedActors?.includes(tag)?{includeUntexturedGeometry:true}:{}),
       ...(p.authoredPropBindings?{sourceBinding:{kind:"authored-package-prop-association",evidence}}:{})};
   }
   let callbackPresentation={},attachedObjects,handAssets;
@@ -419,8 +433,8 @@ for(const p of selected){
     if(sha256(bytes)!==cb.source.mapinfoSha256)throw Error(`Changed native callback source for ${p.id}`);
     const input={bytes,nativeFunction:cb.function,callbackFunction:Number.parseInt(cb.function.id,16),activitySlot:0,durationFrames:p.frames};
     const hands=extractNativeAseqCallbackHandPresentation(input);
-    const setup=extractNativeAseqHandInitialization({bytes,activitySlot:0,includeSourceOrder:true,functions:cb.supportingFunctions,
-      nativeFunction:cb.supportingFunctions.find(f=>f.id===p.callback.initializer)});
+    const setup=p.callback.initializer?extractNativeAseqHandInitialization({bytes,activitySlot:0,includeSourceOrder:true,functions:cb.supportingFunctions,
+      nativeFunction:cb.supportingFunctions.find(f=>f.id===p.callback.initializer)}):{nativeHandPoseTables:{},nativeHandPoseCues:[],nativeBodyHandPoseCues:[]};
     // Source setup precedes callback overrides, including four frame-zero
     // grips. Per-frame gaze is independent and is deliberately not guessed.
     const setupCount=setup.nativeHandPoseCues.length+setup.nativeBodyHandPoseCues.length;
@@ -430,7 +444,7 @@ for(const p of selected){
       nativeBodyHandPoseCues:[...setup.nativeBodyHandPoseCues,
         ...hands.nativeBodyHandPoseCues.map(cue=>({...cue,sourceOrder:setupCount+cue.sourceOrder}))],
       nativeHandComponentCues:hands.nativeHandComponentCues.map(cue=>({...cue,sourceOrder:setupCount+cue.sourceOrder}))};
-    const objects=extractNativeAseqCallbackObjectPresentation({...input,objectTags:p.callback.props});
+    const objects=extractNativeAseqCallbackObjectPresentation({...input,objectTags:p.callback.props,frameVectorMode:p.callback.frameVectorMode});
     const textureBytes=fs.readFileSync(path.join(source,`${archiveStem(p.archive)}.PKF`));
     if(sha256(textureBytes)!==p.callback.textureHash)throw Error(`Changed callback prop textures for ${p.id}`);
     const textureAssetPath=p.actorModels&&p.actorTextureHash===p.callback.textureHash
@@ -470,6 +484,19 @@ for(const p of selected){
         texturePack:{path:texture.assetPath,byteLength:texture.bytes.length,sha256:sha256(texture.bytes)}});
     }
   }
+  if(p.globalHands){
+    handAssets||={};
+    for(const [actorTag,{code,hashes}] of Object.entries(p.globalHands)){
+      const files=["TL.MT5","TR.MT5","HM.BIN"].map((suffix,index)=>{
+        const filename=`${code}_${suffix}`,sourcePath=path.join(source,"MODEL/HAND",filename),bytes=fs.readFileSync(sourcePath);
+        if(sha256(bytes)!==hashes[index])throw Error(`Changed original HAND ${filename}`);
+        const assetPath=`${prefix}/${filename}`;
+        externalAssets.push({sourcePath,assetPath,byteLength:bytes.length,sha256:hashes[index]});
+        return {bytes,path:assetPath,sourcePath:`disc3/SCENE/03/MODEL/HAND/${filename}`};
+      });
+      handAssets[actorTag]=describeNativeAseqHandAssets({actorTag,handCode:code,bodyModelCode:packageActors[actorTag].modelCode,left:files[0],right:files[1],rig:files[2]});
+    }
+  }
   for(const actorTag of p.bodyHands||[]){
     if(callbackPresentation.nativeHandPoseCues?.some(c=>c.actorTag===actorTag))throw Error(`Detailed HAND request for body-only ${actorTag}`);
     (handAssets||={})[actorTag]={actorTag,mode:"body-only",bodyModelCode:packageActors[actorTag].modelCode,bodyHandRenderKeys:{left:-66,right:-65}};
@@ -478,14 +505,15 @@ for(const p of selected){
     bindingEvidence:evidence,selectionRule:p.selectionRule||"Walkthrough-guided authored harbor employment order; normalized local slot, not native owner selection.",
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),...(p.silent?{}:{audioManifest:`${audioPrefix}/manifest.json`}),
     motionBanks:[{bank:p.bank??16,member:p.motion,...(p.motionParseOptions?{parseOptions:p.motionParseOptions}:{})},...(p.extraMotionBanks||[])],activities:activities.map((activity,slot)=>({...activity,...callbackPresentation,slot,binding:{kind:"map-embedded-slot"},
+      ...(p.authoredOpacityTracks?{authoredSceneObjectOpacityTracks:p.authoredOpacityTracks}:{}),
       // These are complete authored sets, not additions to the resident harbor.
       // Borrowing both produces overlapping floors and NPCs inside the office.
-      ...(p.stage||p.room?{browserMapVisibility:[],browserIsolatedStage:true}:{}),
+      ...(p.stage||p.room?{browserMapVisibility:[],browserIsolatedStage:true}:p.mapGeometryMasks?{browserMapVisibility:[]}:{}),
       // The pier is an outdoor replacement set; it does not contain its own sky.
       ...(p.room?.isolateEnvironment!==undefined?{browserIsolatedEnvironment:p.room.isolateEnvironment}:{}),
       ...(p.stage?{browserLightingPresetIndex:0}:{}),
       ...(Object.values(sceneObjects).some(o=>o.lifecycle?.kind==="room-script-persistent")?{nativeSceneObjectStates:[...(p.room?[{actorTag:"ROOM",presented:true}]:[]),...stageStates]}:{})})),
-    packageActors,sceneObjects,outputMembers:[...new Set(outputMembers)],generatedAssets,
+    packageActors,sceneObjects,...(p.mapGeometryMasks?{mapGeometryMasks:p.mapGeometryMasks}:{}),outputMembers:[...new Set(outputMembers)],generatedAssets,externalAssets,
     ...(attachedObjects?{attachedObjects,handAssets,nativeHandPoseTables:callbackPresentation.nativeHandPoseTables}:{}),
   });
   runtimePaths.push(`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path));

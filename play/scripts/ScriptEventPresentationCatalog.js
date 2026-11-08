@@ -233,8 +233,10 @@ const ACTIVITIES = new Map([
     ["tofu", 334823, 334836],
   ].map(([part, primaryPointer, secondaryPointer]) => [`s1.ju00.first-kitten.${part}`, {
     kind: "native-cutscene", area: "JU00", durableEffects: "forbidden",
+    ...(part==="introduction"?{retainPackageMusic:true}:{}),
     cutscene: { id: `story-s1-first-kitten-${part}`, packageId: "cata1", worldId: "yamanose",
-      storyPresentation: true, activity: { slot: 0, binding: { primaryPointer, secondaryPointer } } },
+      storyPresentation: true, ...(part==="introduction"?{handoffSequence:"s1.ju00.first-kitten.choice"}:{}),
+      activity: { slot: 0, binding: { primaryPointer, secondaryPointer } } },
   }]),
   ["s1.jhd0.first-dojo.scene", {
     kind: "native-cutscene", area: "JHD0", durableEffects: "forbidden", returnPlayerState: true,

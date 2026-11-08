@@ -774,6 +774,20 @@ export class CombatEncounterRuntime {
         syncCombatant(this.player, this.playerActor);
       }
     }
+    // Crowd members also need room from each other: otherwise several AI
+    // fighters can occupy the same point and attack through one another.
+    // Leave action/reaction poses alone, especially paired choreography.
+    for (let i = 0; i < this.enemies.length; i++) {
+      const first = this.enemies[i];
+      if (first.combatant.defeated || first.combatant.action || first.combatant.reaction) continue;
+      for (let j = i + 1; j < this.enemies.length; j++) {
+        const next = this.enemies[j];
+        if (next.combatant.defeated || next.combatant.action || next.combatant.reaction) continue;
+        if (next.actor.keepDistanceFrom?.(first.actor, first.combatant.radius + next.combatant.radius)) {
+          syncCombatant(next.combatant, next.actor);
+        }
+      }
+    }
     const actionTarget = this.combat.combatants.get(this.player.action?.lockedTargetId);
     const playerFacing = distanceAndFacing(this.player, actionTarget || this.enemy);
     // A synchronized victim clip can outlive the attacker's action: Chai

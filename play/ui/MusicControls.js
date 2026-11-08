@@ -76,14 +76,18 @@ export class MusicControls {
     return this.director.getState().temporary;
   }
 
-  playTemporaryTrack(trackId, options) {
+  playTemporaryTrack(trackId, options, owner = null) {
     if (this.disposed) return false;
-    return this.director.playTemporaryTrack(trackId, options);
+    return this.director.playTemporaryTrack(trackId, options, owner);
   }
 
-  stopTemporaryTrack(trackId) {
+  ownsTemporaryTrack(trackId, owner) {
+    return !this.disposed && this.director.ownsTemporaryTrack(trackId, owner);
+  }
+
+  stopTemporaryTrack(trackId, owner = null) {
     if (this.disposed) return false;
-    return this.director.stopTemporaryTrack(trackId);
+    return this.director.stopTemporaryTrack(trackId, owner);
   }
 
   setPlaybackPaused(paused) {

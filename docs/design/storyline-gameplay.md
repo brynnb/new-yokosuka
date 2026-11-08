@@ -657,19 +657,20 @@ does not write shared currency, inventory or persistent HP.
 The native controller-state runtime can read the original-shaped controller
 fields, but ordinary gameplay input is not currently written into those
 records. The authored challenge is independent of native-controller recovery.
-The alley and bar's defensive choreography and original recovery branches
-remain presentation gaps, distinct from their verified input/result boundary.
+The alley's second exchange uses an authored approximation; the bar's fight
+choreography and the original recovery branches remain presentation gaps,
+distinct from their verified input/result boundary.
 
 `activity_result` exists in fixtures, but live world facts do not populate it.
-The event-advance protocol now also carries challenge readiness, button input
-and deadline polling under the existing active run. No browser-supplied win
-boolean is accepted. Arcade QTE score APIs remain separate from story authority.
+The event-advance protocol carries readiness and the browser's trusted success
+or failure result under the existing active run. It does not validate individual
+button presses or reaction times. Arcade QTE score APIs are separate.
 
 Do not let “the activity finished presenting” set a QTE-success flag. Define a
 small typed outcome such as `success`, `failure`, `timeout`, or a reviewed
 bounded score. The server must validate it against the active session and
-allowed route. Consequential combat, inventory, money, or shared-world effects
-need stronger server/instance authority than a browser completion message.
+allowed route. Personal Story outcomes intentionally trust the client; do not
+mistake that policy for protection against a modified client.
 
 See the [alley event and limits](story-event-template.md#heartbeats-alley-staged-introduction-and-defensive-challenge).
 

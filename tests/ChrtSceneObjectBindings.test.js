@@ -77,6 +77,9 @@ test("native image redefinition does not retroactively replace earlier DJAZ prop
 
 test("chase vehicles and hiring actors use original CHRT associations, not archive order", () => {
   for (const [archive, digest, packages] of [
+    ["disc2/SCENE/02/D000/CTERST", "8e591075214c8d9c1ba9bf9a3567ae1d795d941c8a0139ccc256227de04a18d1", [
+      ["dobuita/jimmy-knock", { DOR1: "DR07_001", DOR2: "DR08_001" }],
+    ]],
     ["disc2/SCENE/02/D000/CTERBASE", "0f9028c137fa4df057fad9b8e3e06f09ba98dfc82917977e7ef63ad29010551f", [
       ["dobuita/jimmy-caught", { CAR_: "CARO101G" }],
       ["dobuita/jimmy-escaped", { CAR_: "CARO101G" }],

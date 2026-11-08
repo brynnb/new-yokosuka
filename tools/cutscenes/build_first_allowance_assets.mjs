@@ -11,6 +11,7 @@ import { extractNativeAseqCallbackObjectPresentation } from "../lib/NativeAseqCa
 import { extractNativeAseqCallbackPresentation, extractNativeAseqCallbackStageEffects } from "../lib/NativeAseqCallbackPresentation.mjs";
 import { externalTextureKeysFromMt5 } from "../../src/assetLoader.js";
 import { buildTexturePackIndex } from "../../src/Mt5TexturePolicy.js";
+import { parseAuthMovement, evaluateAuthActor } from "../../src/AuthMovement.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const source = process.env.SHENMUE_DISC1_EXTRACTED_ROOT || path.join(root, "extracted_files");
@@ -19,6 +20,19 @@ const map = fs.readFileSync(mapPath), mapHash = "4af865fbb62a06e917d6625149f4bcf
 if (sha256(map) !== mapHash) throw new Error("first-allowance MAPINFO source changed");
 const auth = map.subarray(0xb70d4, 0xb70d4 + 25780);
 if (sha256(auth) !== "9677f9dc9d7872b68d265c41c7162f8c02424238e47f83fd56e07d7bee47bff0") throw new Error("01KOZ AUTH changed");
+// AUTH's temporary dor0 is the bedroom door, not the exploration runtime's
+// unrelated entrance object also called dor0. Its original position matches
+// the captured/static-table dor7 exactly; fail if that association changes.
+const movement = parseAuthMovement(auth);
+const doorTrack = movement.actors.find(actor => actor.tag === "dor0");
+if (!doorTrack) throw new Error("01KOZ has no original door track");
+const doorPose = evaluateAuthActor(doorTrack, 0);
+const doors = JSON.parse(fs.readFileSync(path.join(root, "play/data/jomo-runtime-placements.json"))).placements
+  .filter(placement => placement.runtime?.objectTag === "dor7");
+if (doors.length !== 1 || doors[0].model !== "S1_JOMO_DR01_015.MT5"
+  || ![-doorPose.x, doorPose.y, doorPose.z].every((value, i) => Math.abs(value - doors[0].position[i]) < 0.0001)) {
+  throw new Error("01KOZ bedroom door no longer matches the JOMO placement");
+}
 const archivePath = path.join(source, "data/SCENE/01/JOMO/COMMON01.PKS"), archive = fs.readFileSync(archivePath);
 if (sha256(archive) !== "4b117711c45ca0a94690ce14b8896ddb5feacfde0ba5c7f2a13ae5310201ba22") throw new Error("JOMO COMMON01 changed");
 const motion = parseIpacActivityArchive(archive).members.find(member => member.name === "M_01KOZ.MOTN");
@@ -81,7 +95,7 @@ buildNativeAseqActivityPack({
   motionBanks: [{ bank: 28, member: "M_01KOZ.MOTN", parseOptions: { sequenceIndexBase: 112 } }],
   playerActorAliases: ["AKIR"],
   sceneObjects: {
-    dor0: { model: "non-rendered-reference", browserFilename: "01KOZ-dor0-reference", referenceOnly: true },
+    dor0: { model: "DR01_015", browserFilename: doors[0].model, objectTag: "dor7" },
     KOZU: { model: binding.model, browserFilename: prop.name, assetPath: `${prefix}/${prop.name}`,
       textureAssetPath: `${prefix}/textures.bin`, source: binding },
   },
