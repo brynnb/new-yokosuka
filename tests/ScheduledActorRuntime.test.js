@@ -561,6 +561,51 @@ test("NPC proxy fallback cannot steal a direct world interaction",()=>{
   }
 });
 
+test("an opaque foreground surface blocks an NPC proxy without blocking transparent cutouts",()=>{
+  const actorRoot={metadata:{scheduledActor:"ITOI",scheduledActorInstanceId:"ITOI:example"},parent:null};
+  const proxy={parent:actorRoot,metadata:{scheduledActorDebugSelectionProxy:true},isEnabled:()=>true};
+  const scene={multiPick:()=>[{pickedMesh:proxy,distance:1.1}]};
+  const material={alpha:1,needAlphaTesting:()=>false,needAlphaBlending:()=>false};
+  const wall={parent:null,metadata:{},isVisible:true,visibility:1,isEnabled:()=>true,material};
+  const pick={hit:true,distance:.6,pickedMesh:wall};
+  assert.equal(pickScheduledActorSelection(scene,null,10,20,pick),null);
+  assert.equal(pickScheduledActorSelection(scene,null,10,20,{...pick,distance:2}).actorCode,"ITOI");
+  material.needAlphaTesting=()=>true;
+  assert.equal(pickScheduledActorSelection(scene,null,10,20,pick).actorCode,"ITOI");
+  material.needAlphaTesting=()=>false;material.needAlphaBlending=()=>true;
+  assert.equal(pickScheduledActorSelection(scene,null,10,20,pick).actorCode,"ITOI");
+  material.needAlphaBlending=()=>false;wall.isVisible=false;
+  assert.equal(pickScheduledActorSelection(scene,null,10,20,pick).actorCode,"ITOI");
+  wall.isVisible=true;material.alpha=.5;
+  assert.equal(pickScheduledActorSelection(scene,null,10,20,pick).actorCode,"ITOI");
+});
+
+test("retained cutout textures block only when both possible sampled neighborhoods are opaque",()=>{
+  const root={metadata:{scheduledActor:"ITOI",scheduledActorInstanceId:"ITOI:example"},parent:null};
+  const proxy={parent:root,metadata:{scheduledActorDebugSelectionProxy:true},isEnabled:()=>true};
+  const scene={multiPick:()=>[{pickedMesh:proxy,distance:2}]};
+  const pixels=new Uint8Array(8*8*4).fill(255);
+  const texture={hasAlpha:true,coordinatesIndex:0,level:1,uOffset:0,vOffset:0,uScale:1,vScale:1,uAng:0,vAng:0,wAng:0,
+    getSize:()=>({width:8,height:8}),getInternalTexture:()=>({_bufferView:pixels})};
+  const material={alpha:1,diffuseTexture:texture,getClassName:()=>"StandardMaterial",needAlphaTesting:()=>false,needAlphaBlending:()=>true};
+  const wall={parent:null,metadata:{},isVisible:true,visibility:1,isEnabled:()=>true,material};
+  const pick={hit:true,distance:1,pickedMesh:wall,getTextureCoordinates:()=>({x:.5,y:.5})};
+  assert.equal(pickScheduledActorSelection(scene,null,10,20,pick),null);
+  pixels[(4*8+4)*4+3]=0;
+  assert.equal(pickScheduledActorSelection(scene,null,10,20,pick).actorCode,"ITOI");
+  pixels[(4*8+4)*4+3]=255;texture.uOffset=.1;
+  assert.equal(pickScheduledActorSelection(scene,null,10,20,pick).actorCode,"ITOI");
+  texture.uOffset=0;pick.getTextureCoordinates=()=>({x:0,y:.5});
+  assert.equal(pickScheduledActorSelection(scene,null,10,20,pick).actorCode,"ITOI");
+  pick.getTextureCoordinates=()=>({x:.5,y:.5});pick.faceId=0;
+  const colors=new Float32Array([1,1,1,1,1,1,1,1,1,1,1,1]);
+  wall.hasVertexAlpha=true;wall.useVertexColors=true;wall.getTotalVertices=()=>3;
+  wall.getIndices=()=>[0,1,2];wall.getVerticesData=()=>colors;
+  assert.equal(pickScheduledActorSelection(scene,null,10,20,pick),null);
+  colors[7]=.5;
+  assert.equal(pickScheduledActorSelection(scene,null,10,20,pick).actorCode,"ITOI");
+});
+
 test("overlapping NPC boxes resolve against the rendered skeletal pose without rewriting geometry", () => {
   const engine = new BABYLON.NullEngine({renderWidth:512,renderHeight:512});
   const scene = new BABYLON.Scene(engine);

@@ -12,7 +12,7 @@ export const INVENTORY_ITEMS = Object.freeze(
 );
 
 const artwork=new Map(INVENTORY_ITEMS.map(item=>[item.id,item]));
-const itemArtworkIds=Object.freeze({chinese_letter:"letter-to-father"});
+const itemArtworkIds=Object.freeze({chinese_letter:"letter-to-father",dojo_sword:"hazuki-sword"});
 
 export function inventoryArtworkFor(key){
   return artwork.get(storyScrollForItem(key)?'move-scroll':itemArtworkIds[key]||key.replaceAll("_","-"))||null;

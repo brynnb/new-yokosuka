@@ -75,3 +75,26 @@ test("dialogue audio restores and clamps saved preferences", () => {
     muted: true,
   });
 });
+
+test("short story voices use dialogue settings and release their own playback on replacement, completion or disposal", async () => {
+  const clips = [];
+  class Clip extends EventTarget {
+    constructor(source) { super(); this.source=source; this.paused=false; clips.push(this); }
+    play() { return new Promise((resolve,reject) => {this.resolve=resolve;this.reject=reject;}); }
+    pause() { this.paused=true; }
+    removeAttribute(name) { if(name==="src")this.source=""; }
+  }
+  const audio=new DialogueAudio({storage:storage(),audioFactory:source=>new Clip(source)});
+  const first=audio.playOneShot("first");
+  assert.equal(first.volume,.5);assert.equal(first.muted,false);
+  audio.setMuted(true);assert.equal(first.muted,true);
+  const second=audio.playOneShot("second");
+  assert.equal(first.paused,true);assert.equal(first.source,"");assert.equal(second.muted,true);
+  first.reject(new DOMException("old playback cancelled","AbortError"));
+  await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(audio.oneShot.audio,second,"a stale rejection cannot stop the replacement");
+  second.dispatchEvent(new Event("ended"));
+  assert.equal(audio.oneShot,null);assert.equal(second.paused,true);assert.equal(audio.audioElements.size,0);
+  const third=audio.playOneShot("third");audio.dispose();
+  assert.equal(third.paused,true);assert.equal(audio.oneShot,null);assert.equal(audio.audioElements.size,0);
+});

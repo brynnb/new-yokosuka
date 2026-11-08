@@ -99,15 +99,16 @@ export function createScriptEventAssembly({
     restorePlayerState,
     selectedObjectActionController,
   });
+  const resolveTelephoneRoot = objectTag => {
+    const matches = currentMeshes().filter(root => (
+      root?._runtimePlacement === true
+      && root._runtimePlacementRecord?.runtime?.objectTag === objectTag
+      && !root.isDisposed?.()
+    ));
+    return matches.length === 1 ? matches[0] : null;
+  };
   const telephoneReceiver = createTelephoneReceiverBabylonAdapter({
-    resolveObjectRoot: objectTag => {
-      const matches = currentMeshes().filter(root => (
-        root?._runtimePlacement === true
-        && root._runtimePlacementRecord?.runtime?.objectTag === objectTag
-        && !root.isDisposed?.()
-      ));
-      return matches.length === 1 ? matches[0] : null;
-    },
+    resolveObjectRoot: resolveTelephoneRoot,
     resolveActorControl: ({
       actorCode,
       renderKey,
@@ -146,6 +147,8 @@ export function createScriptEventAssembly({
   const createAttachedObjects=(definitions,resolveActor,signal)=>new NativeAseqAttachedObjectRuntime({definitions,resolveActor,
     instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})}),
   });
+  const createSceneObjects=(definitions,signal)=>new NativeAseqSceneObjectRuntime({definitions,
+    instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})})});
   const combatRuntime=new StoryCombatRuntime({
     getCharacter,
     scene, sounds: playerRuntime.combatSounds,
@@ -154,7 +157,7 @@ export function createScriptEventAssembly({
     onViewChanged: view => dialoguePresenter.showCombat(view),
     actors:createNativeAseqBabylonActors({getPlayerModel,syncPlayerTransform,scheduledActors,motionRuntime,
       preservePlayerOnComplete:false,playerYawOffsetRadians:Math.PI}),
-    musicControls,getController,getBinding,capturePlayerState,restorePlayerState,
+    musicControls,getController,getBinding,capturePlayerState,restorePlayerState,createSceneObjects,
     onIntent:(action,token,intent)=>action.startsWith("challenge_")
       ? controller?.challengeResponse(action,token,intent?.outcome)
       : controller?.combatResponse(action,token,intent),
@@ -166,8 +169,6 @@ export function createScriptEventAssembly({
   });
   const vehicleChallengeRuntime=new StoryForkliftChallengeRuntime({scene,getForklifts,getController,capturePlayerState,restorePlayerState,acquireMovementLock,
     onIntent:(action,token)=>controller?.challengeResponse(action,token)});
-  const createSceneObjects=(definitions,signal)=>new NativeAseqSceneObjectRuntime({definitions,
-    instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})})});
   // Tableaux may need the same archive-local actors as a native film. Borrow
   // the existing package actor owner so resident copies are hidden and
   // restored with the scene, rather than registering duplicate world NPCs.
@@ -199,6 +200,13 @@ export function createScriptEventAssembly({
         createAttachedObjects,
         createSceneObjects,
         createActorSet,
+        createTelephoneReceiver: resolveActor => createTelephoneReceiverBabylonAdapter({
+          resolveObjectRoot: resolveTelephoneRoot,
+          resolveActorControl: ({actorCode,renderKey}) => {
+            const model=resolveActor(actorCode)?.model,matrix=model?.latestRetargetedRoutes?.get(renderKey);
+            return matrix?{root:model.renderRoot,matrix}:null;
+          },
+        }),
         currentMeshes,
         acquireEnvironmentIsolation,
         acquireActorIsolation: (owner,tags) => scheduledActors.acquireActivityActorIsolation(owner,tags),

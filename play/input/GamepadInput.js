@@ -11,6 +11,7 @@ export const STANDARD_GAMEPAD_CONTROLS = Object.freeze({
     ["B", "Advance dialogue"],
     ["X", "Open notebook"],
     ["Y", "Open inventory"],
+    ["A / B / X / D-pad", "Story QTE prompts"],
     ["Menu", "Open settings"],
   ]),
   forklift: Object.freeze([
@@ -114,6 +115,8 @@ export class GamepadInput {
     isPoolActive = () => false,
     isPaused = () => false,
     isMenuActive = () => false,
+    isStoryQteActive = () => false,
+    onStoryQteButton = () => {},
     onMenuDirection = () => {},
     onMenuAccept = () => {},
     onMenuBack = () => {},
@@ -138,6 +141,8 @@ export class GamepadInput {
     this.isPoolActive = isPoolActive;
     this.isPaused = isPaused;
     this.isMenuActive = isMenuActive;
+    this.isStoryQteActive = isStoryQteActive;
+    this.onStoryQteButton = onStoryQteButton;
     this.onMenuDirection = onMenuDirection;
     this.onMenuAccept = onMenuAccept;
     this.onMenuBack = onMenuBack;
@@ -162,8 +167,14 @@ export class GamepadInput {
     this.previousMenuDirection = null;
     this.menuRepeatAt = 0;
     this.zoomAccumulator = 0;
+    this.storyQteActive = false;
+    this.storyQteHeld = new Set();
+    this.storyQteSuppressed = new Set();
     this.unsubscribePreferences = this.preferences.subscribe((state) => {
-      if (!state.enabled) this.release();
+      if (!state.enabled) {
+        this.#endStoryQte();
+        this.release();
+      }
     });
   }
 
@@ -176,6 +187,7 @@ export class GamepadInput {
     if (this.frameHandle !== null) this.cancelFrame(this.frameHandle);
     this.frameHandle = null;
     this.unsubscribePreferences?.();
+    this.#endStoryQte();
     this.release();
   }
 
@@ -189,15 +201,31 @@ export class GamepadInput {
     this.#reportStatus(gamepad);
     const state = this.preferences.getState();
     if (!state.enabled || !gamepad) {
+      this.#endStoryQte();
       this.release();
       return;
     }
     if (!this.#updateInputReadiness(gamepad, state)) {
+      this.#endStoryQte();
       this.release();
       this.#recordButtons(gamepad);
       return;
     }
     if (gamepadHasActiveInput(gamepad, state)) this.onActiveInput("gamepad");
+    if (this.isStoryQteActive() && !this.isPaused()) {
+      this.release();
+      this.#updateStoryQte(gamepad, state);
+      this.#recordButtons(gamepad);
+      return;
+    }
+    if (this.#endStoryQte()) {
+      // Do not carry a held QTE direction or face button into exploration.
+      this.inputReady = false;
+      this.neutralInputFrames = 0;
+      this.release();
+      this.#recordButtons(gamepad);
+      return;
+    }
     if (this.isMenuActive()) {
       this.release();
       this.#updateMenu(gamepad, timestamp, state);
@@ -257,11 +285,56 @@ export class GamepadInput {
       ? `${gamepad.index}:${gamepad.id}`
       : null;
     if (nextKey === this.activePadKey) return;
+    this.#endStoryQte();
     this.activePadKey = nextKey;
     this.inputReady = false;
     this.neutralInputFrames = 0;
     this.previousButtons.clear();
     this.previousMenuDirection = null;
+  }
+
+  #endStoryQte() {
+    const wasActive = this.storyQteActive;
+    for (const code of this.storyQteHeld) this.onStoryQteButton(code, false);
+    this.storyQteHeld.clear();
+    this.storyQteSuppressed.clear();
+    this.storyQteActive = false;
+    return wasActive;
+  }
+
+  #updateStoryQte(gamepad, state) {
+    const horizontal = applyGamepadDeadzone(gamepad.axes?.[0], state.movementDeadzone);
+    const vertical = applyGamepadDeadzone(gamepad.axes?.[1], state.movementDeadzone);
+    const pressed = new Set([
+      ...(buttonPressed(gamepad, 0) ? ["A"] : []),
+      ...(buttonPressed(gamepad, 1) ? ["B"] : []),
+      ...(buttonPressed(gamepad, 2) ? ["X"] : []),
+      ...(buttonPressed(gamepad, 12) || vertical < -0.55 ? ["Up"] : []),
+      ...(buttonPressed(gamepad, 13) || vertical > 0.55 ? ["Down"] : []),
+      ...(buttonPressed(gamepad, 14) || horizontal < -0.55 ? ["Left"] : []),
+      ...(buttonPressed(gamepad, 15) || horizontal > 0.55 ? ["Right"] : []),
+    ]);
+    if (!this.storyQteActive) {
+      // A dialogue-advance or movement input held through the handoff must
+      // be released before it can count as a new, timed QTE response.
+      this.storyQteActive = true;
+      this.storyQteSuppressed = new Set(pressed);
+    }
+    for (const code of this.storyQteHeld) {
+      if (!pressed.has(code)) {
+        this.storyQteHeld.delete(code);
+        this.onStoryQteButton(code, false);
+      }
+    }
+    for (const code of [...this.storyQteSuppressed]) {
+      if (!pressed.has(code)) this.storyQteSuppressed.delete(code);
+    }
+    for (const code of pressed) {
+      if (!this.storyQteHeld.has(code) && !this.storyQteSuppressed.has(code)) {
+        this.storyQteHeld.add(code);
+        this.onStoryQteButton(code, true);
+      }
+    }
   }
 
   #updateInputReadiness(gamepad, state) {

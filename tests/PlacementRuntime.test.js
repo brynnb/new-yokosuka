@@ -5,6 +5,27 @@ import * as BABYLON from "@babylonjs/core";
 import { Mt5Loader } from "../src/Mt5Loader.js";
 import placements from "../play/data/d000-runtime-placements.json" with { type: "json" };
 import { mapTransitionForDoor } from "../src/MapTransitions.js";
+import { existsSync, readFileSync } from "node:fs";
+import { externalTextureKeysFromMt5 } from "../src/assetLoader.js";
+
+test("Dobuita OMG placements use their original shared texture archive",()=>{
+  const rows=placements.placements.filter(row=>row.model.startsWith("S1_D000_OMG_"));
+  assert.ok(rows.length>10);
+  assert.ok(rows.every(row=>row.texturePackFile==="OMG_textures.bin"));
+  assert.equal(placements.placements.find(row=>row.runtime?.objectTag==="TEL0").texturePackFile,"OMG_textures.bin");
+});
+
+test("the original OMG pack covers each local object's texture IDs",{
+  skip:!existsSync("play/assets/dobuita/OMG_textures.bin")&&"requires locally extracted assets",
+},()=>{
+  const readBuffer=file=>{const b=readFileSync(file);return b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength);};
+  const index=Mt5Loader.buildTexturePackIndex(readBuffer("play/assets/dobuita/OMG_textures.bin"));
+  for(const row of placements.placements.filter(p=>p.model.startsWith("S1_D000_OMG_"))){
+    const keys=externalTextureKeysFromMt5(readBuffer(`play/assets/dobuita/${row.assetFile}`));
+    assert.ok(keys.size>0,row.model);
+    assert.deepEqual([...keys].filter(key=>!index.has(key)),[],row.model);
+  }
+});
 
 test("known animated storefronts receive their physical routes without a proxy-only flag",async t=>{
   const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);

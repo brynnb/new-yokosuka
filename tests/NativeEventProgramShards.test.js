@@ -20,7 +20,13 @@ function assetFile(path) {
 
 test("production event index is compact and contains no executable closures", () => {
   assert.equal(index.schema, "new-yokosuka-native-event-program-index-v1");
-  assert.deepEqual(index.programs.map(program => program.id), corpus.programs.map(program => program.id));
+  const runtimePrograms=corpus.programs.filter(program=>program.runtimeScope!=="research");
+  const researchPrograms=corpus.programs.filter(program=>program.runtimeScope==="research");
+  assert.ok(researchPrograms.some(program=>program.id==="disc1-jomo-room-initialization-0x88b70"));
+  assert.deepEqual(index.programs.map(program => program.id),runtimePrograms.map(program => program.id));
+  for(const program of researchPrograms){
+    assert.equal(index.programs.some(entry=>entry.id===program.id),false,`${program.id} is research-only`);
+  }
   assert.equal(new Set(index.programs.map(program => program.id)).size, index.programs.length);
   for (const id of ["preview-s1-op00-mail", "preview-s1-op00-dream"]) {
     assert.ok(index.programs.some(program => program.id === id), `${id} is missing`);

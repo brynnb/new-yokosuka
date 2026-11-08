@@ -108,14 +108,21 @@ Content, simulation and Babylon presentation remain separate; do not implement
 one-off fights in Yarn command handlers.
 
 `StoryQteRuntime` starts its monotonic timer when the ready acknowledgement is
-presented, not when the server sent it. Keyboard and touch judge locally and send
-one `challenge_result` (`challengeOutcome: "success" | "failure"`) for the whole
+presented, not when the server sent it. Keyboard, touch and standard gamepads
+judge locally and send one `challenge_result` (`challengeOutcome: "success" | "failure"`) for the whole
 attempt; no button stream or server deadline remains. Retry uses a fresh attempt
 token; duplicate ready/poll replies do not reset local progress. Definitions can
 use per-step windows and simultaneous button chords; the current cinematic QTE
 catalog still uses authored two-second windows, not recovered Dreamcast timing.
 Prompt/correct/wrong feedback reuses the existing menu cues and effects-volume
 preferences. These are explicit audio adaptations, not verified original QTE sounds.
+Standard gamepads use A/B/X and the d-pad or left stick for directional prompts.
+Inputs held through a dialogue-to-QTE transition must be released before they
+count, and held inputs cannot carry back into movement or menu actions. A
+simulated standard gamepad passed the rendered prompt, full-application wiring,
+and connected Heartbeats bar failure/retry/success checks. That encounter used
+an isolated seeded checkpoint and skipped its dialogue; physical controllers
+have not yet been verified.
 
 Move lessons are `kind: "training"`, not cinematic QTEs. Tornado Kick and Swallow
 Flip configure the regular `StoryCombatRuntime` with nonlethal instructors and

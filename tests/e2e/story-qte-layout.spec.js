@@ -10,6 +10,7 @@ for (const viewport of [{ width: 1280, height: 720 }, { width: 390, height: 844 
     await page.route("**/play/ui/react/main.jsx*", route => route.fulfill({ contentType: "text/javascript", body: "" }));
     await page.route("**/play/play.js*", route => route.fulfill({ contentType: "text/javascript", body: `
       import { ScriptEventDialoguePresenter } from '/play/scripts/ScriptEventDialoguePresenter.js';
+      import { GamepadInput } from '/play/input/GamepadInput.js';
       document.body.classList.remove('account-pending');
       document.documentElement.classList.remove('mobile-sidebar-pending');
       document.getElementById('account-ui-root').remove();
@@ -21,6 +22,17 @@ for (const viewport of [{ width: 1280, height: 720 }, { width: 390, height: 844 
         sourceText: node('dialogue-source'), japaneseText: node('dialogue-japanese'), options: node('dialogue-options'),
         onChallengeResponse: (...args) => window.qteResults.push(args),
       });
+      const preferences={getState:()=>({enabled:true,selectedGamepadId:null,movementDeadzone:.2,lookDeadzone:.15}),
+        subscribe:()=>()=>{},setSelectedGamepadId(){}};
+      window.qtePad={id:'Standard Test Pad',index:0,connected:true,mapping:'standard',axes:[0,0,0,0],
+        buttons:Array.from({length:16},()=>({pressed:false,value:0}))};
+      window.qteGamepad=new GamepadInput({preferences,getGamepads:()=>[window.qtePad],
+        isStoryQteActive:()=>window.qtePresenter.storyQteActive,
+        onStoryQteButton:(code,pressed)=>window.qtePresenter.setStoryQteButton(code,pressed)});
+      window.qteGamepad.update(0);window.qteGamepad.update(16);
+      window.qtePadInput=(index,pressed,time)=>{
+        window.qtePad.buttons[index]={pressed,value:pressed?1:0};window.qteGamepad.update(time);
+      };
     ` }));
     await page.goto("/play/");
     await page.waitForFunction(() => window.qtePresenter);
@@ -49,7 +61,25 @@ for (const viewport of [{ width: 1280, height: 720 }, { width: 390, height: 844 
     await start("c");
     await page.clock.runFor(2001);
     expect(await page.evaluate(() => window.qteResults.at(-1))).toEqual(["challenge_result", "c".repeat(32), "failure"]);
+    await start("d");
     await page.evaluate(() => {
+      window.qteGamepad.update(32);
+      for(const [index,time] of [[1,48],[0,80],[1,112],[0,144]]) {
+        window.qtePadInput(index,true,time);window.qtePadInput(index,false,time+16);
+      }
+    });
+    expect(await page.evaluate(() => window.qteResults.at(-1))).toEqual(["challenge_result", "d".repeat(32), "success"]);
+    await page.evaluate(() => {
+      window.qtePresenter.showChallenge({id:"s1.tatq.charlie",label:"Defend yourself",token:"e".repeat(32),ready:true});
+      window.qtePadInput(14,true,176);window.qtePadInput(14,false,192);
+      window.qtePadInput(0,true,208);window.qtePadInput(0,false,224);
+    });
+    expect(await page.evaluate(() => window.qteResults.at(-1))).toEqual(["challenge_result", "e".repeat(32), "success"]);
+    await start("f");
+    await page.evaluate(() => {window.qtePadInput(0,true,240);window.qtePadInput(0,false,256);});
+    expect(await page.evaluate(() => window.qteResults.at(-1))).toEqual(["challenge_result", "f".repeat(32), "failure"]);
+    await page.evaluate(() => {
+      window.qteGamepad.dispose();
       window.qtePresenter.hide();
       window.qtePresenter.show({ text: "Ryo: Back to the conversation.", metadata: ["speaker:AKIR"] });
     });

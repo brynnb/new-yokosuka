@@ -27,7 +27,11 @@ export async function verifyChickenRace(page,testInfo,character){
   };
   const scene=async()=>{await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-chicken-race-intro"||window.storyProbe.sceneErrors.length,null,{timeout:60_000});await noErrors();};
   const ready=async()=>{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.mfsy.chicken-race"&&window.storyProbe.regions.controller.active.challengePrompt.ready||window.storyProbe.sceneErrors.length,null,{timeout:70_000});await noErrors();};
-  const win=async()=>{for(const [index,button]of ["A","Down","Left","Right"].entries()){await page.waitForFunction(index=>window.storyProbe.regions.controller.dialogue.qte?.active?.index===index,index);await page.locator(`[data-challenge-button="${button}"]`).click();}await page.getByText("The riders back down. Shozo is safe.",{exact:true}).waitFor();};
+  const win=async({reviewMotion=false}={})=>{for(const [index,button]of ["A","Down","Left","Right"].entries()){
+    await page.waitForFunction(index=>window.storyProbe.regions.controller.dialogue.qte?.active?.index===index,index);
+    if(reviewMotion){await page.waitForTimeout(700);if(index===2)await page.screenshot({path:testInfo.outputPath("chicken-race-moving-midcourse.png")});}
+    await page.locator(`[data-challenge-button="${button}"]`).click();
+  }await page.getByText("The riders back down. Shozo is safe.",{exact:true}).waitFor();};
   const caption=async()=>{await page.keyboard.press("Space");};
   const cancel=async()=>{await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-chicken-cancel"));await idle();await unchanged();};
   if(new Date(initial.character.storyTimeMs).getUTCHours()<19){await approach(false);await idle();await unchanged();}
@@ -41,6 +45,20 @@ export async function verifyChickenRace(page,testInfo,character){
   await approach();await page.getByRole("button",{name:"Help the old man",exact:true}).click();await scene();
   // Let the original introduction finish naturally once. It cannot win the QTE.
   await ready();await unchanged();await page.screenshot({path:testInfo.outputPath("chicken-race-original-bikes-and-riders.png")});
+  const riding=()=>page.evaluate(()=>{
+    const s=window.storyProbe.authoredScene.active;
+    const point=root=>root.getAbsolutePosition().asArray();
+    return {player:point(s.actors.activeActor("AKIR").root),rider:point(s.actors.activeActor("BIKB").root),
+      bike:point(s.sceneObjects.objects.get("BIK1").root),opponentBike:point(s.sceneObjects.objects.get("BIK2").root)};
+  });
+  const first=await riding();await page.waitForTimeout(500);const moved=await riding();
+  for(const key of ["player","rider","bike","opponentBike"]){
+    expect(Math.hypot(moved[key][0]-first[key][0],moved[key][2]-first[key][2]),`${key} should move during the prompt`).toBeGreaterThan(.5);
+  }
+  for(const [actor,bike] of [["player","bike"],["rider","opponentBike"]]){
+    expect(Math.hypot(moved[actor][0]-moved[bike][0],moved[actor][2]-moved[bike][2]),`${actor} should stay with the bike`).toBeLessThan(.1);
+  }
+  await page.screenshot({path:testInfo.outputPath("chicken-race-moving-bikes.png")});
   // Only the requested button is visible. An incorrect physical key tests
   // the failure path without depending on a hidden on-screen button.
   await page.keyboard.press("ArrowDown");
@@ -48,7 +66,7 @@ export async function verifyChickenRace(page,testInfo,character){
   await page.getByRole("button",{name:"Try again",exact:true}).click();await scene();await page.keyboard.press("KeyX");await ready();
   await win();await cancel();
   await approach();const before=await pose();await page.getByRole("button",{name:"Help the old man",exact:true}).click();await scene();await page.keyboard.press("KeyX");await ready();
-  await win();await caption();await idle();
+  await win({reviewMotion:true});await caption();await idle();
   const final=await saved();expect(final.character.storyFlags[done]).toBe(true);expect(final.character.storyFlags["notebook.s1.chicken-race"]).toBe(true);
   expect(final.character.yen).toBe(initial.character.yen);expect(final.inventory).toEqual(initial.inventory);
   const after=await pose();expect(Math.hypot(...after.position.map((v,i)=>v-before.position[i]))).toBeLessThan(.1);

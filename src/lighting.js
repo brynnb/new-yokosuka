@@ -10,6 +10,46 @@ import {
   interpolateLightingPresets,
   weatherSkyBrightness,
 } from "./LightingInterpolation.js";
+import { SceneStandardMaterial } from "./rendering/SceneStandardMaterial.js";
+
+// Preserve authored material values across mode, world and cinematic changes.
+const storyAmbientMaterials = new WeakMap();
+
+function updateStoryAmbient(material, ambientColor, fill) {
+  if (!(material instanceof SceneStandardMaterial)) return;
+  let owned = storyAmbientMaterials.get(material);
+  // A different owner may deliberately change the material while Story is
+  // active. Relinquish the lease instead of restoring over its newer value.
+  if (owned && !material.ambientColor.equals(owned.applied)) {
+    storyAmbientMaterials.delete(material);
+    owned = null;
+  }
+  if (!(fill > 0)) {
+    if (owned) {
+      material.ambientColor = owned.original;
+      storyAmbientMaterials.delete(material);
+    }
+    return;
+  }
+  // Nonblack values are authored by the material and must not be replaced.
+  if (!owned) {
+    if (!material.ambientColor.equalsFloats(0, 0, 0)) return;
+    owned = { original: material.ambientColor.clone(), applied: null };
+    storyAmbientMaterials.set(material, owned);
+  }
+  const coefficient = value => value > 0 ? Math.min(1, fill / value) : 0;
+  const [r, g, b] = ambientColor.map(coefficient);
+  if (!material.ambientColor.equalsFloats(r, g, b)) {
+    material.ambientColor = new BABYLON.Color3(r, g, b);
+    owned.applied = material.ambientColor.clone();
+  } else if (!owned.applied) {
+    owned.applied = material.ambientColor.clone();
+  }
+}
+
+export function clearStoryAmbientFill() {
+  for (const material of state.scene?.materials || []) updateStoryAmbient(material, [], 0);
+}
 
 const SKY_VERTEX_SHADER = `
   precision highp float;
@@ -202,7 +242,7 @@ export function createLights(scene) {
   state.fillLight.intensity = 0.8;
 }
 
-export function applyLightingPreset(L) {
+export function applyLightingPreset(L, storyAmbientFill = 0) {
   const { hemiLight, skyLight, directLight, fillLight, scene } = state;
   if (!hemiLight || !skyLight || !directLight || !fillLight) return;
   const weather = weatherLightFactors();
@@ -223,6 +263,7 @@ export function applyLightingPreset(L) {
   // Apply emissive to all loaded materials
   const emissive = new BABYLON.Color3(...L.emissive);
   scene.materials.forEach((m) => {
+    updateStoryAmbient(m, L.ambientColor, storyAmbientFill);
     if (m.emissiveColor && m.metadata?.preserveEmissive !== true) {
       m.emissiveColor = emissive;
     }
@@ -236,6 +277,7 @@ export function applyTimeOfDayLighting({
   lightingOverride = null,
   skyTextureUrl = null,
   skyWeatherTexture = false,
+  storyAmbientFill = 0,
 }) {
   const from = timeOfDayPresets[fromIndex];
   const to = timeOfDayPresets[toIndex];
@@ -248,7 +290,7 @@ export function applyTimeOfDayLighting({
     ),
     ...lightingOverride,
   };
-  applyLightingPreset(lighting);
+  applyLightingPreset(lighting, storyAmbientFill);
   const [r, g, b, a] = interpolateClearColors(
     clearColorForPreset(fromIndex),
     clearColorForPreset(toIndex),

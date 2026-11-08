@@ -69,6 +69,13 @@ test("reverse D000 entries identify physical storefront doors", () => {
     byArea.get("DBYO").destination.browserSpawn.yawDegrees,
     180,
   );
+  const barber = byArea.get("DRHT").destination.browserSpawn;
+  assert.ok(Math.abs(barber.position[2] - 2.33) < 1e-5);
+  assert.equal(barber.yawDegrees, 180);
+  assert.equal(barber.evidence.side, -1);
+  assert.deepEqual(barber.evidence.residentAnchors, ["KYUR", "ONRR"]);
+  assert.equal(barber.evidence.sideEvidence, "unanimous-single-area-resident-placements");
+  assert.equal(byArea.get("DSBA").destination.browserSpawn.evidence.sideEvidence, "unresolved-default-door-side");
 });
 
 test("all exact typed door routes are canonicalized across disc variants", () => {

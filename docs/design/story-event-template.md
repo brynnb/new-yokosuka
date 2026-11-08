@@ -61,7 +61,11 @@ in a hardware-rendered browser; both actors' model-local face vertices and
 mouth controls changed over the scene. The fresh-character run also skipped
 all four opening packages, walked through the real bedroom door, completed the
 allowance naturally and reloaded its saved continuation. The separate allowance
-skip passed. This does not verify natural playback of the four opening scenes.
+skip passed. On November 8, a fresh isolated-server run played all four opening
+films at natural speed, walked through the bedroom door, completed the allowance
+and verified the payment, notebook and saved reload. Sampled frames show the
+principal opening cast and Ine-san's envelope handover; they do not establish
+complete shot-by-shot, animation or audio fidelity.
 The October 23 follow-up restores the original allowance envelope and handover.
 Rendered native shots show Ine-san offering the textured envelope, Ryo holding
 it after release, and its disappearance at the authored end cue. Presentation
@@ -206,16 +210,26 @@ allowance variants mark the opening completed through the real API and reset
 to the hallway to isolate natural completion and skip behavior.
 
 The `fresh opening` variant instead creates a new Story-mode Ryo, loads all four
-intro scenes and uses the normal X-skip for each. It checks that the server has
+intro scenes and uses the normal X-skip for each. Set
+`NEW_YOKOSUKA_NATURAL_OPENING_E2E=true` to run only that fresh variant with all
+four films playing at natural speed and periodic rendered captures instead.
+Both modes check that the server has
 not recorded completion early, rejects an early gameplay connection, verifies
 the actual bedside arrival and saved 08:55 handoff, then walks
 through the bedroom doorway with normal input/collision and no hallway reset.
 It waits for natural allowance completion, checks the one-time payment and
 notebook page, and reloads to verify the saved avatar, position, controls and
 absence of replay/payment. The test clicks the rendered door if it is closed;
-an already-open door retains its pose. Source-program initialization, natural
-timing of the four intros, audio fidelity and mid-event network loss are
-separate checks, not claims made by this test. Do not run it against production.
+an already-open door retains its pose. Source-program initialization, complete
+shot-by-shot audiovisual fidelity and mid-event network loss are separate
+checks, not claims made by this test. Do not run it against production.
+
+The connected dojo and kitten extensions require the corresponding official
+scripts to be published in the isolated test database. Use the server's
+documented `cmd/script-import -builtin` workflow with `jhd0-first-dojo` and
+`ju00-first-kitten`; loading the allowance script alone is insufficient. A
+`no_script` response to an automatic room-entry check may instead be the
+expected native-fallback signal, not an entry-trigger failure.
 
 ## Fuku-san: the first dojo visit
 
@@ -269,9 +283,60 @@ ending shots and detailed faces; a cancellation also restores state without
 progress changes. Poses in the lead-in are held rather than recreating the
 original conversation gestures. Audio fidelity was not assessed by listening.
 
+On November 8, a fresh connected run skipped the four opening films, earned and
+reloaded the allowance, clicked the actual JOMO front door into JHD0, then
+placed Ryo just outside the dojo trigger. Normal movement entered the scene;
+cancellation, retry, natural completion, notebook and reload passed. This tests
+the real door and trigger, not the full walking route between them.
+
+A later isolated hardware-rendered run starts from a seeded allowance checkpoint
+and a test-only placement beside the house door. It clicks that real door and
+then uses normal forward movement and camera steering around the courtyard and
+up the west-facing dojo stairs, without another position reset. The natural
+dojo trigger, full unskipped conversation, saved men-in-black notebook page,
+restored first-person camera and controls, actor-lease cleanup, and reload
+without replay all pass. The documented original JHD0 code-10 stair boundaries
+identify the traversed flight. This proves the courtyard route, not a fresh
+opening or the complete walk through the residence interior.
+
 The notebook page is a lightly adapted investigation prompt. Exact native
-notebook flags and the original leave-home restriction are not implemented.
-Do not describe the first conversation as fully animation-faithful.
+notebook flags are not implemented. Do not describe the first conversation as
+fully animation-faithful.
+
+### Attempting to leave before the dojo
+
+Disc 1's original `SA1082.AFS` (SHA-256
+`adce9e48ca715829f6e26b6a0668ae623741487098a60ceb03d20d83283b0d2a`)
+contains Ryo's lines about asking Fuku-san;
+the [Japanization Guide](https://shenmuesubs.sourceforge.net/howto/shenmue1/addons/S1_JPG_083.pdf)
+identifies the archive as the attempt to leave before talking to him. When a
+Story character who earned the first allowance clicks the physical residence
+gate before completing the dojo visit, the gate now stays shut and a short
+notice displays and plays the original `SA1082A005` line. Completing the visit releases
+the gate; later saved black-car progress also supersedes this condition. Free
+roam, uninitialized/older saves without the allowance milestone, and other
+doors are unaffected. This rule is personal and client-side, and the explicit
+travel menu remains an escape hatch rather than a hard multiplayer lock.
+
+An isolated hardware-rendered browser check earned the allowance, clicked the
+real gate and saw the reminder, cancelled and retried the dojo scene, waited
+for its natural ending, verified the saved notebook and reload, then clicked
+the gate again and reached Yamanose with controls restored. Nearby test-only
+placement bypassed walking between the door and dojo. A separate focused
+hardware-rendered check with a seeded isolated character observed the voice
+start and finish, unmuted at the current dialogue volume; it did not establish
+listening-level fidelity or repeat the full earned progression. Replacement,
+world travel, failed playback and disposal release the short voice. Exact
+native selection between the five SA1082 lines and the original full-dialogue
+staging remain unresolved.
+
+`tools/audio/build_story_travel_voices.mjs` verifies the pinned archive, checks
+the source subtitles against the displayed line, decodes with `VGMSTREAM_CLI`
+and registers the ignored audio file in the immutable runtime asset catalog.
+For this build, the reviewed [vgmstream decoder at commit `6802153425`](https://github.com/vgmstream/vgmstream/tree/6802153425adde134e49394fc653455166d7d2f2)
+produced sample-identical PCM to a previously decoded SA1116 reference. The
+new gate recording has not been published to R2 and must be included in any
+future deployment.
 
 ### Connected progression checklist
 
@@ -283,7 +348,7 @@ does not establish working mouth animation or envelope presentation.
 
 | Sequence | Current state |
 | --- | --- |
-| Opening → bedside → first allowance → saved continuation | Rendered/full-stack verified, including explicit intro skips, natural allowance completion, one-time payment and reload. |
+| Opening → bedside → first allowance → saved continuation | Connected fresh-Story runs verified both explicit intro skips and natural intro playback, natural allowance completion, one-time payment and reload. Sampled visuals do not certify every shot or audio cue. |
 | First dojo visit → men-in-black notebook objective | Connected browser/full-stack progression and notebook verified; server gate/cancellation/settlement tested. Authored two-person lead-in rendered; held poses remain an approximation. |
 | Yamanose kitten / first black-car lead | Connected fish run uses an explicit introduction skip; connected tofu run completes the full introduction and branch naturally, saves only the shared clue and reloads without replay. All three clips complete in the separate presentation check, with reviewed hand/food captures. Exact full prop/finger fidelity remains unverified. |
 | Sumiya / Yamagishi → Nozomi → Tom | Connected browser clicks, original voices with changing rendered mouth buffers, saved clues and restored controls verified for all four. Yamagishi/Nozomi use their exact detailed faces; Sumiya/Tom use original embedded mouth targets. Real server/compiler tests cover cancellation/retry, personal eligibility, NPC presence, Yamagishi hours and cross-character isolation. Conversation-specific gestures and original camera timing remain approximations. |
@@ -319,12 +384,12 @@ does not establish working mouth animation or envelope presentation.
 | Home update / mirror dream / Ryo's savings / family travel advice | Connected rendered continuations verify original Fuku update, dream/bank cancellation and natural completion, visible bankbook, once-only savings/next-morning arrival, real bedroom door entry, advice cancellation/retry, original kitchen ending and saved reload. Compiler/PostgreSQL and focused client checks pass. Held advice gestures, exact callback detail and home music remain adaptations/omissions. |
 | Agency fares / flyers / Fuku's contribution | Connected rendered continuations verify real shop doors, original Global/Asia cast and cameras, leave/cancel/retry, natural endings, actual Fuku bedroom entry, original flyer/piggy-bank presentation, one ¥39,634 payment, independent flyers, restored controls and saved reload. Compiler/PostgreSQL and focused client checks cover settlement, hours, stale receipts and personal isolation. Prop-role bindings, detailed breaking debris and cinematic door motion remain adaptations/omissions; inventory flyer art is not added. See [ticket journey](story-ticket-journey.md#agency-quotes-and-fukus-contribution). |
 | Boat lead / agency referral / payment / delayed inquiry | Connected rendered Nozomi talk, original Global referral, physical Asia door entry, decline/cancel/retry, cash/tray/flyer presentation, one ¥69,000 debit, saved four-hour wait, Jimmy's original promise and reload pass. Compiler/PostgreSQL checks include insufficient funds, stale acknowledgements and the 239/240-minute boundary. Original Asia CHRS prop identities replace prior inferred quote bindings; a shared rendered-tested ownership lease prevents duplicate ambient/cinematic actors. Finger detail, two absent original voice references and permanent post-scene population changes remain limitations. See [ticket journey](story-ticket-journey.md#boat-fare-payment-and-delayed-inquiry). |
-| Snow dream → Jimmy's next-day call | Connected rendered/full-stack check verifies sleep decline/cancel/retry, natural KKYC ending, saved next-morning bedside arrival, normal doorway movement, original A0169 cancellation/retry/natural ending, the arcade appointment notebook, restored controls and reload without replay. Compiler/PostgreSQL checks cover date/bounds gates, stale receipts, late arrival without a dream, and personal isolation. Snow and held phone-receiver rendering remain limitations. See [ticket journey](story-ticket-journey.md#the-snow-dream-and-jimmys-morning-call). |
+| Snow dream → Jimmy's next-day call | Connected rendered/full-stack check verifies sleep decline/cancel/retry, natural KKYC ending, saved next-morning bedside arrival, normal doorway movement, original A0169 cancellation/retry/natural ending, the arcade appointment notebook, restored controls and reload without replay. The phone receiver is rendered; snowfall and lighting are approximations. See [ticket journey](story-ticket-journey.md#the-snow-dream-and-jimmys-morning-call). |
 | Chai at You Arcade | Connected rendered/full-stack checks independently verify real arcade-door entry, original introduction cancellation/retry, genuine client-simulated win and knockout, distinct original endings, notebook, restored controls and reload without replay. Victory stays at the arcade that day; defeat saves next-morning home recovery. Real Yarn/simulation checks cover early gates, timeout/retry, ending cancellation, stale inputs and no effects before acknowledgement. Generic combat, fixed cabinet and condensed offscreen recovery are explicit adaptations. See [ticket journey](story-ticket-journey.md#chai-at-you-arcade). |
 | Jimmy chase / interrogation | Connected authored thirteen-input chase with original opening/capture/escape/interrogation. Rendered/full-stack decline, cancellation, wrong-input retry, all correct inputs, saved office return, interrogation cancellation/reload and notebook persistence pass. Moving road/camera beats and an original vehicle choice are adaptations; animated door props remain unmapped. |
 | Harbor hiring: Goro → next-day Goro/Mai → Yada → Mark | Connected browser/full-stack appointment dates, physical approaches, cancellation/retry, office presentation, hiring notebook and reload pass. Original cast, voices, motion and cameras are reused; private Alpha office scenery is scene-owned. No training or wages awarded by the films. See [harbor work](story-harbor-work.md). |
 | Forklift training | Connected browser/full-stack decline, cancellation/retry, three physical lift/carry/drop deliveries, saved notebook/day/17:00 finish, restored controls and reload pass. Reuses ordinary driving/cargo physics; no wages. The outdoor pad, three-crate quota and fifteen-minute limit are explicit adaptations. See [harbor work](story-harbor-work.md#forklift-practice). |
-| Evening chicken race / protect Shozo | Connected rendered/full-stack decline, original introduction cancellation/natural ending, failed-input retry, four accepted inputs, cancellation before settlement, earned notebook/day and saved reload pass. Original cast, bikes, riding motion, voices and camera are reused; held course staging, outcome captions and approximate rider contact remain adaptations. See [harbor work](story-harbor-work.md#evening-chicken-race). |
+| Evening chicken race / protect Shozo | Connected rendered/full-stack decline, original introduction cancellation/natural ending, failed-input retry, four accepted inputs, cancellation before settlement, earned notebook/day and saved reload pass. Original cast, bikes, riding motion, voices and intro camera are reused; the moving race route, outcome captions and approximate rider contact remain adaptations. See [harbor work](story-harbor-work.md#evening-chicken-race). |
 | First workday: morning forklift race | Connected rendered/full-stack boarding, cancellation/retry, three real driven laps/thirty-nine server-observed gates, acknowledged ending, saved notebook/date/harbor return and separate reload pass. Reuses the ordinary course, physics and HUD. Forgiving hours/limit and no opponent ranking/prizes are explicit adaptations. No wages or paid-shift completion. See [harbor work](story-harbor-work.md#first-working-morning-verified-race-and-saved-harbor-return). |
 | First workday: morning cargo → Mark's noon rescue | Connected rendered/full-stack five physical deliveries, cancellation/retry, acknowledged noon/notebook, reload, original Mark confrontation cancellation/natural ending, real three-opponent victory, original aftermath and saved clue/reload pass. No wages or afternoon completion. Outdoor dispatch pad, fixed five-crate batch, basic combat and anonymous third model donor are declared adaptations; ambient bystander choreography and bento identity remain limited. See [harbor work](story-harbor-work.md#first-morning-cargo-batch). |
 | First workday: afternoon cargo → attack → payday → Goro | Connected rendered/full-stack five more physical deliveries, real three-opponent win, 17:00 finish, original salary-motion cancellation/retry, exactly one ¥3,000 grant, Goro cancellation without undoing pay, natural original warning, saved chapter/notebook and reload without duplicate pay/replay pass. Shared original assets and authority are reused. Dispatch pad, fixed quota, adapted attack cast and no theft/extra-crate raise are declared adaptations; exact hand/note contact is not claimed. See [harbor work](story-harbor-work.md#first-afternoon-and-payday-verified-connected-continuation). |
@@ -361,9 +426,10 @@ does not establish working mouth animation or envelope presentation.
 
 Individual previews and recovered program inventories do not promote rows to
 playable or verified. Run `NEW_YOKOSUKA_DOJO_E2E=true` with the fresh-opening
-browser test to extend it through the dojo. That bounded check uses real world
-loading and walks across the dojo trigger, but resets near its entrance rather
-than proving the entire walk from the residence hallway.
+browser test to extend it through the dojo; that older bounded check resets
+near its entrance. The separate `NEW_YOKOSUKA_DOJO_WALK_E2E=true` resume check
+uses an isolated character with the allowance milestone and walks the whole
+grounds route from the house door, as described above.
 
 ## Megumi and the kitten: first black-car lead
 
@@ -402,6 +468,12 @@ chooses fish. Set `NEW_YOKOSUKA_KITTEN_NATURAL_INTRO=true` to wait for the full
 introduction and `NEW_YOKOSUKA_KITTEN_FOOD=tofu` for the alternate choice. The
 test also reloads and checks retained progress, no replay and restored controls.
 It does not prove the entire walking route between zones.
+
+On November 8, the fresh front-door/dojo run continued into the kitten event
+using the bounded shrine placement. The full introduction and fish ending
+played naturally, the fish-specific Yamagishi clue and shared clue were saved,
+and reload preserved them without replay. Megumi's visible speech mesh changed
+across 23 rendered frames; complete handover and audio fidelity remain separate.
 
 The October 22 rerun passed the connected allowance/reload, dojo and kitten
 sequence in four minutes with one hardware-rendered browser. Before skipping
@@ -473,7 +545,7 @@ server-owned gates and atomic settlement.
 | --- | --- | --- | --- |
 | `sumiya-witness`, Sumiya (`SUMI`) in Sakuragaoka (`JD00`) | Opening and first dojo complete; this conversation not complete. | F1129 | Yamagishi hurt himself avoiding the car; visit his home. Alternative to the kitten's fish-only witness clue. |
 | `yamagishi-black-car`, Yamagishi (`YAMA`) in Sakuragaoka | Opening, dojo and witness clue; not complete; personal 08:30–19:00. | F1053 | The car went toward Dobuita. |
-| `nozomi-black-car`, Nozomi (`HRSK`) in Dobuita (`D000`) | Opening and Yamagishi conversation complete; not complete. | F1239 | Tom argued with the occupants. |
+| `nozomi-black-car`, Nozomi (`HRSK`) in Dobuita (`D000`) | Opening and first dojo complete; not complete. Yamagishi's conversation is optional. | F1239 | Tom argued with the occupants. |
 | `tom-black-car`, Tom (`TOM_`) in Dobuita | Opening and Nozomi conversation complete; not complete. | F1038 | A man in a deep-green Chinese coat; ask the Chinese community. |
 
 All four require Story mode and authoritative presence of the corresponding
@@ -505,10 +577,12 @@ HUMANS.AFS catalog, whose source hash is retained in each generated import.
 supplies the witness chain and Yamagishi's 08:30–19:00 availability.
 The authored ordering condenses multiple questions into one conversation;
 it is not a recovered original selector or timing table. In particular, the
-original allows Nozomi to supply her clue without another witness's referral;
-this first authored route orders Yamagishi → Nozomi → Tom explicitly. Other
-witnesses, optional enquiries and native-dialogue consistency outside these
-translated routes remain incomplete. The player may still explore freely.
+original allows Nozomi to supply her clue without another witness's referral.
+After the first dojo visit, this adaptation lets her be questioned before or
+after Sumiya and Yamagishi; Tom's selected lines explicitly refer to Nozomi, so
+they still require her clue. Other witnesses, optional enquiries and
+native-dialogue consistency outside these translated routes remain incomplete.
+The player may still explore freely.
 
 Rebuild server content with `NEW_YOKOSUKA_SERVER_DIR` set to the separate server
 checkout and run `node tools/scripting/build_story_investigation.mjs`.
@@ -522,9 +596,18 @@ Set `NEW_YOKOSUKA_INVESTIGATION_E2E=true` alongside the dojo and kitten test
 flags to extend the connected browser check through Sumiya, Yamagishi, Nozomi and Tom.
 It loads their actual zones and clicks the actual scheduled actors, while
 resetting nearby to bound travel time. Each resident's voice must play while
-their visible mouth buffers change across rendered frames; Space advances the
-remaining lines. This does not establish full natural audio, gestures or
-camera fidelity.
+their visible mouth buffers change across rendered frames, and the complete
+conversations play without line skipping. Set `NEW_YOKOSUKA_NOZOMI_FIRST_E2E=true`
+with the tofu branch to check Nozomi and Tom before Sumiya and Yamagishi. This
+does not establish listening-level audio, gestures or original camera fidelity.
+
+On November 8, an isolated connected browser run took the tofu branch, then
+completed Nozomi, Tom, Sumiya and Yamagishi in that order. It verified the
+fish-only witness and Yamagishi completion were absent before Nozomi and Tom,
+observed each actor's rendered speech, and read each saved clue. A separate
+compiler/PostgreSQL test verifies both orders, cancellation without a clue,
+retained clues and character isolation. Neither is an uninterrupted walking
+playthrough: zone travel and nearby placements are bounded test shortcuts.
 
 The 2026-10-22 local run passes allowance/reload → dojo → kitten/fish → all
 four witnesses. Sumiya (`SMY_L`) and Tom (`AME_L`) show changing embedded mouth
@@ -564,6 +647,14 @@ advances. Preserve the player's gameplay camera and current personal weather.
 No currency, item, QTE, combat, calendar jump or forced travel is involved.
 Controls restore in the current shop or park; cancellations grant no partial
 clues. Alternate referrals unlock one stable notebook page, not duplicate pages.
+
+Liu Barber has no recovered player Entry or live AKIR placement. Its arrival is
+an approximation: the existing door offset is placed on the side supported by
+both residents' original schedule positions. The same generator leaves rooms
+without two agreeing resident anchors on their previous, unresolved fallback;
+their arrival sides still need review. Refresh the compact source evidence with
+`tools/worlds/build_interior_resident_anchors.py` when the local scheduled-actor
+research corpus is available, then regenerate browser transitions.
 
 [Shotgunnova's walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404)
 sections 1.05–1.07 and scenes 1-17–1-19 corroborate the sequence, the spouses'
@@ -840,9 +931,11 @@ original second-exchange fidelity.
 
 Current presentation limits: Smith's actual native move and the original
 between-input failure-recovery branches are not reconstructed; the second
-pair repeats the first as an approximation. Detailed impact sounds and gamepad
-button routing remain unfinished. The indoor B/A/B/A encounter below consumes
-the same challenge primitive.
+pair repeats the first as an approximation. Detailed impact sounds remain
+unfinished. Standard gamepad buttons and directions now use the same challenge
+runtime as keyboard and touch; a simulated standard controller passed the full
+application's prompt wiring and the connected bar encounter below. A physical
+controller and the complete alley encounter have not been tested together.
 
 ## Heartbeats interior: the bar encounter and Charlie lead
 
@@ -856,7 +949,7 @@ the investigation content catalog into ordinary Yarn, not a new quest system.
 | Player / cast / props | Lock input and borrow Ryo, Hato and three original actor models: Sera (`TUW_L`), Jones (`GIF_L`) and Harry (`GIE_L`). The authored scene places Ryo near the original arrival and holds standing loops. No separate drink, weapon or thrown-object prop is animated. |
 | Sequence / dialogue | Original `E1030` welcome, sailors question, mockery and confrontation; then a real defensive QTE; only after winning, Hato names Charlie and describes his motorcycle, clothes and tattoo. The 25 selected original voice/subtitle lines are condensed into authored order. |
 | Camera / timing / audio | One authored room shot; original voices advance on their audio ending or supported Space input. The scene remains owned across the challenge. No invented music identity or exact native fight timing. Preserve existing room sound, weather and lighting. |
-| Challenge | Four client-timed inputs, B/A/B/A, through the same prompt system as the alley. Shift/Enter or onscreen buttons. The server accepts one result for the owned, ready attempt; old tokens, movie completion and Continue cannot win. Two seconds per input and strict restart are adaptations. |
+| Challenge | Four client-timed inputs, B/A/B/A, through the same prompt system as the alley. Shift/Enter, onscreen buttons or standard gamepad B/A. The server accepts one result for the owned, ready attempt; old tokens, movie completion and Continue cannot win. Two seconds per input and strict restart are adaptations. |
 | Effects | Atomically set `story.s1.heartbeats-bar.completed` and `notebook.s1.charlie` after successful input and completed clue dialogue. No currency, item, HP or speculative native-bit effect. |
 | Exit / retry / skip | Restore the exact prior room position, avatar visibility, camera mode and controls. Stay inside Heartbeats; the original forced ejection is not implemented. Space may advance voice lines but not prompts. Wrong/late input offers retry or leaving without progress. X/cancellation, failed preparation or disconnect settle no clue. Re-enter a cancelled event to retry; a completed event does not replay. |
 
@@ -898,6 +991,13 @@ every staged speaker, nor supply the missing bar-fight choreography. Separate
 desktop/phone browser checks exercise the shared compact QTE, pointer/key
 success, wrong input, timeout and return to normal dialogue; their clock is
 controlled for deterministic layout captures, not evidence of original timing.
+
+On November 8, a simulated standard gamepad was used in the connected bar
+encounter from an isolated seeded checkpoint. Wrong A input produced a retry
+without the Charlie clue; B/A/B/A then saved the clue and bar completion,
+restored the camera, player and controls, and did not replay on room re-entry.
+The test used the real door and server transaction but skipped dialogue; it
+does not prove physical-controller behavior or original fight choreography.
 
 The 2026-10-23 source check located the fight-specific room in `DHQB`, separate
 from the ordinary `DBHB` interior. Original `DHQB/MPK00.PKS` (654,588 bytes,
@@ -1119,6 +1219,23 @@ Event ID: `story-s1-parking-lot-ambush`, official import `parking-lot-ambush`.
 
 ### Verification
 
+On 2026-11-08, a connected character with earned Heartbeats, Ono and Tsuruoka
+leads (earlier prerequisites seeded) walked into the ambush region during the
+following day and waited there until 19:00. The personal clock re-armed the
+region without requiring an exit and both original introductions played
+without skips. A first keyboard-controlled fight lost and saved no clue; after
+reconnection, a second ordinary fight defeated all five. The Charlie-choice
+interrogation ran without skipped lines, the tattoo lead survived reload and
+controls and persistent HP/yen were unchanged. This does not establish every
+interrogation face, the alternate choice or original fight fidelity.
+
+The ambush, Heartbeats alley, Fuku's letter gate, the dojo return and Nozomi's
+post-parlor approach now declare the same dispatch hours as their existing
+server gates. Without that metadata, entering before opening could consume the
+client's entry latch until the player physically left. Catalog checks compare
+all time-gated investigation bounds against their authored story windows; only
+the ambush's wait-inside case received this connected rendered recheck.
+
 `NEW_YOKOSUKA_AMBUSH_E2E=true` walks across the real trigger and renders/skips
 both original introductions. The 2026-10-23 complete check passed from an
 isolated copy of the earned Charlie-inquiry checkpoint: defeat, retry with
@@ -1206,6 +1323,16 @@ door entry, cancelled visit/re-entry, notebook and saved reload passed. The
 same save then used the normal wait menu for the next-day Charlie encounter.
 This connects the earned events across saves; the earlier investigation
 checkpoint was copied into an isolated fixture and exterior travel shortened.
+
+On 2026-11-08, a separate connected character earned the ambush victory and
+walked to both Saijo and Kurita, playing their conversations without skips and
+retaining each clue after reload. The natural approach found a collision wall
+blocking the stairs; a source-backed, bounded collision-field handoff now
+allows the character to climb to the real door. The artist's conversation then
+completed without skips, with rendered mouth movement and the next-day clue
+retained after reload. A separate cloned-save check walked up and down and
+checked the stair side and ground collision. The [collision investigation](../research/shenmue1/native-world-collision.md#okayama-heights-natural-ascent-blocker)
+records the evidence and the limits of the handoff approximation.
 
 The rendered visit exposed an ownership bug: ordinary GPU occlusion had disabled
 the artist's render hierarchy while his placement remained enabled. Activity
@@ -1300,6 +1427,14 @@ appointment settlement and reload without replay. Saved day ordinals are
 and persistent HP. Reviewed captures show the original animated introduction,
 the then-authored standing challenge/aftermath and the appointment notebook.
 The later original-aftermath check below supersedes that ending presentation.
+
+On 2026-11-08, a connected earned first-visit checkpoint (earlier prerequisites
+seeded) used the real door for a same-night return, which correctly did not
+trigger. Ryo descended the stairs, waited until the next afternoon, climbed and
+re-entered. The original introduction and aftermath ran without skips around
+actual Left/A QTE inputs; the appointment clue and unlocked controls survived
+reload with HP and yen unchanged. This does not replace the separate failure,
+cancel/retry and detailed facial/prop reviews.
 
 2026-10-23 rendered recheck: `NEW_YOKOSUKA_TATTOO_PRESENTATION_E2E=true`
 played the complete introduction and captured frames 200/480/900/1120/1200/1360/1650.
@@ -1414,6 +1549,12 @@ run completed all 2,130 frames and sampled original NZM/YKC face deformation
 during speech, with reviewed native shots and diagnostic close-ups. Those
 checks do not certify all authored expressions or gestures.
 
+On 2026-11-08, the connected earned Charlie checkpoint used the real parlor
+exit and walked down the repaired stairs. Nozomi's voiced scene triggered
+during that descent and completed without skips; its notebook clue survived
+reload and movement, actor leases, HP and yen were restored. This run did not
+repeat the separate cancellation or detailed face review.
+
 ## Next-day dojo practice and the Chinese letter
 
 Two official Yarn imports connect this sequence: `cartel-dojo` in the grounds,
@@ -1464,6 +1605,15 @@ The compiler/PostgreSQL test separately verifies same-day/region gates,
 cancellation before/after practice, atomic invitation, cancelled handoff,
 one item/economy grant on completion, repeat refusal and character isolation.
 
+On 2026-11-08, a connected character with earned Charlie and Nozomi outcomes
+(earlier prerequisites seeded) waited until the next morning, used the normal
+fast-travel menu to the grounds and walked onto the dojo floor. Practice used
+real controls; both follow-up films finished naturally and the invitation
+survived reload. Ryo then walked from the dojo to the actual house door; the
+letter film completed without skips, exactly one letter and the notebook clue
+survived reload, and HP/yen were unchanged. This does not prove a continuous
+walk from Dobuita to the grounds or repeat the separate cancellation reviews.
+
 The separate `NEW_YOKOSUKA_STORY_FACES_E2E=true` /
 `NEW_YOKOSUKA_STORY_FACE_SET=letter` presentation-only review completed all
 three films naturally and verified moving FUK/INE/YKC face geometry during
@@ -1507,6 +1657,11 @@ It is built by the existing TGMA producer and is not published to R2 yet.
 The connected earned-save check (`NEW_YOKOSUKA_FUKU_GATE_E2E=true`) walks the
 region, hears original voice playback, cancels/re-enters, lets the scene end
 naturally, checks one letter/unlocked controls and reloads without replay.
+An additional continuation (`NEW_YOKOSUKA_EARNED_FUKU_GATE_E2E=true`) starts
+with the previously earned letter, waits until morning, exits the actual house
+door and walks to the gate without repositioning. The voiced scene plays to
+completion; one letter, completion and unlocked controls survive reload, with
+HP and yen unchanged. Earlier prerequisites in this isolated run were seeded.
 The optional `NEW_YOKOSUKA_FUKU_GATE_PRESENTATION_E2E=true` replays only the
 already-earned presentation, not a new story settlement, to verify the letter
 unfolding/texture/show-hide cues. Corresponding screenshots are inspected;
@@ -1538,11 +1693,11 @@ subtitles supply the dialogue, rather than newly written story exposition.
 | Props | Original `FBB0201G` soccer ball and its KOJI textures, attached with the existing shared controller-matrix/prop runtime. Offsets, attachment switches and hiding after the kick are authored; the airborne ball trajectory is not reconstructed. |
 | Action sequence | Original-voiced theft/ambush introduction → real three-opponent fight → Charlie holds Gao → A-button challenge → original kick/release motions → original thanks → separate grandmother referral talk. |
 | Dialogue | Reviewed E1049 theft, hostage and thanks lines; condensed original F1060 talk identifies Xia Xiu Yu and Russiya China Shop. No new choice determines whether the letter can be translated. |
-| Timing | Voice completion/ordinary advance controls dialogue. The server simulates the fight and a two-second A prompt. The kick tableau waits for the longest loaded non-looping original motion: Gao's 418 frames (13.93 seconds). Ryo's 243-frame kick moves after frame 120. This is motion timing, not recovered native camera timing. |
+| Timing | Voice completion/ordinary advance controls dialogue. The client simulates the fight and times a two-second A prompt; the server records the resulting story outcome. The kick tableau waits for the longest loaded non-looping original motion: Gao's 418 frames (13.93 seconds). Ryo's 243-frame kick moves after frame 120. This is motion timing, not recovered native camera timing. |
 | Camera shots | Authored two-person/wider cameras and the existing gameplay combat camera. No claim of original KOJI camera/controller execution. |
 | Weather and lighting | Preserve the character's personal Sakuragaoka/Dobuita environment. Daytime rescue availability 08:30–23:30 and referral 08:30–19:00 are adaptations; no forced date, weather or 14:30 teleport. |
 | Audio | Original E1049/F1060 voice assets; retain the normal zone music as an adaptation. Scene-specific soccer/strike sound effects are not yet reconstructed. |
-| Interactive challenge | Three live fighters using existing movement, guard, hand/kick/throw controls and server health/hit calculations, followed by the closed-catalog A QTE. Health, speed, arena bounds and basic AI are authored balance, not the original free-battle engine. |
+| Interactive challenge | Three client-simulated fighters using existing movement, guard, hand/kick/throw controls and local health/hit calculations, followed by the closed-catalog client-timed A QTE. Health, speed, arena bounds and basic AI are authored balance, not the original free-battle engine. |
 | Completion effects | One atomic rescue milestone plus `notebook.s1.gao-wen`; the separate talk atomically saves `notebook.s1.russiya-translator`. No reward, item consumption, calendar jump or guessed native flag. Temporary fight health does not change persistent MMO HP. |
 | Exit behavior | Remain in the entered zone, restoring player pose, camera, controls and ambient NPC ownership. No public NPC mutation. |
 | Skip, failure and replay | Ordinary advance only skips dialogue, not the fight/QTE. A lost fight retries the fight; a lost QTE retries the hostage attempt. Cancelled/failed aftermath saves no clue. Leaving and re-entering can retry; committed milestones do not replay or grant again. |
@@ -1565,6 +1720,25 @@ resident interaction, notebook and saved reload. Inspected rendered captures
 show Gao/Charlie/Ryo, the hostage hold, ball and actual kick; complete original
 projectile/finger/gesture fidelity is not claimed. Test travel is shortened,
 and this is not proof of walking the original construction-lot route.
+
+On 2026-11-08 a continuation from the separately earned Fuku/letter checkpoint
+used the player-facing Sakuragaoka travel menu and reached the voiced rescue
+introduction and three-opponent fight. It exposed a scenery-obscured authored
+intro shot and a fight camera trapped against a fence; the intro camera was
+reframed and shared fight setup now considers sightlines and target framing
+once at encounter start. Rendered rechecks show the cast and a usable opening
+fight view; other locations and all later fight positions are not certified.
+The first automated player lost four retries. Correcting its lateral steering
+and using normal down-kick and guard inputs then won on the fourth retry, failed
+and retried the A QTE, saved the rescue and Gao's translator referral, and
+verified the notebook and reload without changing persistent HP, yen or the
+letter. Dialogue was advanced with Space and the test positioned Ryo beside
+Gao for the referral; it does not establish a continuous walk to him. The
+earned checkpoint itself had earlier seeded prerequisites. A separately
+replayed aftermath exposed the same blocked camera as the introduction; a
+presentation-only rendered replay confirms the reframed two-person shot.
+The introduction still stages Charlie early and ambient pedestrians can enter
+the shot; its road location and staging remain approximations.
 
 The rendered check found and repaired two shared presentation omissions.
 Guard/hit animation banks now follow the selected pose even when the independent
@@ -1632,6 +1806,17 @@ lighting claim is made. Travel is shortened near the shop's real doorway rather
 than proving the entire walk from the previous event. Audio/assets and the
 official import are verified locally, not published to production or R2.
 
+An additional earned continuation (`NEW_YOKOSUKA_EARNED_XIA_E2E=true`) used
+the normal Dobuita travel picker, walked from its arrival point along the
+street to the shop, and clicked the actual door. A first test aimed at the
+gap between the door leaves; the retried test walked the remaining distance
+and clicked a visible leaf. The original voiced film then ran without skips,
+both translated notebook pages and the completion survived reload, and the
+letter, yen, HP, camera and controls were preserved. The test waited until
+the next morning; earlier story prerequisites were seeded, and the walk was
+split across the retry rather than one uninterrupted run. Sampled shots still
+do not prove a visibly unobscured letter handover or every facial expression.
+
 Door-entry testing exposed a registration gap, not a missing story bit. Ordinary
 animated doors were given their verified physical destinations only when marked
 `nativeStaticTransition`, a proxy-only flag. Known physical routes now attach
@@ -1659,7 +1844,7 @@ Telephone** is intentionally neutral, not a guessed character identity.
 | Trigger | Click the physical telephone. Use-only bounds validate server-accepted player presence; walking nearby never starts a call. |
 | Player setup | Lock interaction/movement ownership, then stage Ryo beside the chosen phone after the player chooses the number. |
 | Characters | Ryo only; the remote voice is not a physical NPC or a new scheduled actor. Other players' views are unchanged. |
-| Props | Existing placed telephone. Original receiver pickup/dial/hangup choreography is not yet reproduced. |
+| Props | Existing placed telephone. At home, the original TEL_ receiver is leased into Ryo's hand using the shared source-proven TELM binding and restored afterward; Dobuita's receiver is not yet wired. Pickup/dial/hangup choreography remains unreconstructed. |
 | Action sequence | Choose the known number → original greeting → first password pair → second pair → warehouse lead; a wrong reply offers retry or leaving. |
 | Dialogue | Fifteen original E1032 voice IDs, resolved against the pinned original archive. Native Yarn choices select actual replies. No fabricated original line IDs. |
 | Timing | Voice completion or Space advances lines; choices wait for the player. Both pair orientations use server-owned random draws. No timer implies a successful answer. |
@@ -1686,9 +1871,24 @@ check passed through cancellation, wrong answer/leaving, retry, the saved
 warehouse notebook page, restored player ownership and reload. A completed
 phone click does not invoke the native object fallback. Captures show Ryo and
 the phone-choice interface; the Dobuita shot was adjusted out of a wall after
-inspection. Its placed phone currently renders flat white, so material fidelity
-is not established. Complete handset animation is not claimed. Local original
+inspection. The then-white placed phone's missing source textures were fixed in
+the subsequent directory check below. Complete handset animation is not claimed. Local original
 voice files are registered and hash-checked, not published to R2.
+
+An earned continuation exited Russiya through its actual door, then used the
+normal fast-travel menu to Hazuki grounds after a direct Dobuita street walk
+became stuck against an object. Ryo walked into the house, clicked its real
+telephone, cancelled once, gave a wrong answer and retried, then gave the two
+correct answers. The warehouse clue, original letter, HP and yen survived
+reload. The dialog was advanced with Space and the earlier checkpoint had
+seeded prerequisites. A later rendered inspection showed the original home
+phone's receiver remained on the cradle while Ryo raised an empty hand. The
+authored home staging now reuses the existing exact TELM receiver adapter with
+the staged actor's current hand matrix and restores the original receiver on
+finish/cancel. A presentation replay and a full call on a disposable copy of
+the checkpoint verify the held receiver, restoration, retry and saved clue.
+Reusing the JOMO binding with a different held animation is an adaptation;
+native pickup, hangup, cord movement and the Dobuita phone remain unfinished.
 
 ## Telephone directory: Amihama
 
@@ -1735,6 +1935,22 @@ picking/player/controls, reload and completed-use decline. Captures were
 inspected: the open book is textured and visible above the counter during the
 reading shot. The initial standalone left-hand binding put it below the
 counter; mesh-enabled/material assertions alone did not detect that failure.
+
+An earned continuation (`NEW_YOKOSUKA_EARNED_DIRECTORY_E2E=true`) used the
+Dobuita travel picker, walked to the tobacco shop and clicked the real book
+from the counter edge. The walk stopped at an overly close test waypoint and
+continued after reload; it was not an uninterrupted trip from Xia. Cancellation
+saved no clue, then the original voiced reading finished naturally and the
+Amihama notebook, unchanged letter/yen/HP, restored book and controls survived
+reload. Earlier prerequisites were seeded. The rendered scene exposed a flat
+white telephone: all five model texture IDs came from D000/OMG.PKF, while the
+placement incorrectly used the map pack. The canonical
+`tools/worlds/build_dobuita_object_textures.mjs` now extracts that original
+pack and verifies all 11 OMG object models' texture references. The local
+Dobuita bundle was rebuilt and a disposable checkpoint reran the full
+directory event with the pink textured phone visible. Its new runtime pack and
+scenery bundle are registered locally but not published to R2; they must be
+published before deployment. The phone receiver is still not animated here.
 
 The real server candidate-chain test also imports both directory scripts:
 Story uses the authored event, while the legacy SA1071 lookup is now Free
@@ -1783,8 +1999,11 @@ fields on a claimed native transition still fail; no original entry number is
 invented. Failed world loading cannot leave the world ready for gameplay.
 
 `NEW_YOKOSUKA_BUS_E2E=true` resumes the genuinely earned directory checkpoint.
-It covers real bus picking, staying, cancellation/re-entry, natural boarding,
-saved location/flag/balance, unlocked control and reload without replay.
+The test positions Ryo near the bus, then covers real bus picking, staying,
+cancellation/re-entry, the complete boarding movie, saved location/flag/balance,
+unlocked control and reload without replay. It does not establish a walkable
+route to the bus from the tobacco counter; direct attempted paths encountered
+collision and need a separate navigation check.
 Inspected captures show Ryo inside the original bus and the rendered harbor.
 The test now waits for the loading cover to disappear: an earlier ready-only
 check incorrectly passed while the loading UI displayed an error.
@@ -1834,8 +2053,8 @@ only this route's nineteen voices when `--voice-route goro-harbor-encounter`
 is supplied. Placement, cameras, held challenge poses and two-second input
 windows are authored approximations; native DYNAMICS choreography is not claimed.
 
-`NEW_YOKOSUKA_GORO_E2E=true` resumes an actually earned harbor checkpoint and
-walks into the approach region. It covers cancellation, wrong input/retry,
+`NEW_YOKOSUKA_GORO_E2E=true` resumes an actually earned harbor checkpoint,
+positions Ryo near the encounter, and walks into the approach region. It covers cancellation, wrong input/retry,
 real timed success, rendered winning motion/directions, saved notebook,
 restored controls and reload. Inspected captures show the original cast and
 the paired throw rather than an invisible or air-hitting opponent. The backend
@@ -1883,7 +2102,7 @@ or declined entry never moves the player and that office travel/milestone settle
 together. The other character receives no clue.
 
 `NEW_YOKOSUKA_WAREHOUSE_E2E=true` resumes the genuinely earned Goro checkpoint.
-It walks into each authored approach, cancels/retries the guard, declines/retries
+It positions Ryo near and walks into each authored approach, cancels/retries the guard, declines/retries
 the window, waits for the original motion and actual office load, cancels the
 overheard conversation and reloads its saved office continuation, then earns
 the notebook clue with restored controls/economy. Inspected captures confirm
@@ -1932,7 +2151,8 @@ re-entry and malformed metadata. The server still independently checks time
 and accepted position; client scheduling is not authorization.
 
 `NEW_YOKOSUKA_OLD_DISTRICT_E2E=true` resumes the genuinely earned invoice clue.
-It verifies the original daytime cast/voice, cancellation/re-entry, real waiting
+It uses test travel and positions Ryo near the gate rather than walking from the
+warehouse. It verifies the original daytime cast/voice, cancellation/re-entry, real waiting
 without another approach, wrong direction/retry, real Right input, original
 motion, saved compound load, supported floor/restored control and reload
 without replay. `TestHarborWarehouseInvestigationAndNighttimeEntry` extends the
@@ -2179,12 +2399,15 @@ Compiler/PostgreSQL checks cover missing milestone/item, bounds, cancelled
 introduction and combat, interrupted input, fresh retry tokens, stale readiness
 and scene acknowledgements, cross-character isolation, once-only completion
 and unchanged inventory/calendar/economy. The connected browser check continues
-the earned handguard save, walks into the region, cancels/re-enters, sends real
-combat inputs, naturally finishes the original explanation, then reloads the
-saved clue. Inspected shots show Gui Zhang and rooftop Chai. Initial combat
-camera acquisition faces the nearest opponent without locking subsequent
-orbiting. Region occupancy remains latched while a presentation owns the
-avatar, so private staging poses cannot manufacture a new approach on cancel.
+the earned handguard save, uses test travel and nearby positioning, walks into
+the region, cancels/re-enters, sends real combat inputs, naturally finishes the
+original explanation, then reloads the saved clue. A retry skips the repeated
+introduction. Inspected shots show Gui Zhang and rooftop Chai. When no clear
+opening angle keeps the opponent framed, the shared combat camera now prefers
+an on-screen view over a longer view facing away. The debug panel crowds the
+right edge and a nearby railing can intrude into the foreground in this narrow
+street; these are not fully solved. Subsequent orbit remains under
+player control. Region occupancy stays latched while presentation owns the avatar.
 
 ## Return-home handguard and family crest
 
@@ -2210,8 +2433,9 @@ Compiler/PostgreSQL checks continue the earned handguard fixture, reject
 unearned/out-of-bounds attempts, cancel dialogue and scene, reject stale
 acknowledgements, and prove once-only independent settlement with inventory,
 calendar and economy unchanged. The connected browser check continues the
-earned Gui Zhang save, cancels/re-enters the automatic referral, clicks the
-original altar-room door at static placement 4, walks through its opening,
+earned Gui Zhang save, uses test travel home, cancels/re-enters the automatic
+referral, positions Ryo near the original altar-room door at static placement
+4, clicks it and walks through its opening,
 cancels/retries the original crest scene and finishes it naturally. It verifies
 saved independent notebook pages, the retained handguard, no mirror grant,
 restored controls and reload without replay. Inspected captures show Fuku-san,
@@ -2258,8 +2482,9 @@ once-only inventory/notebook settlement and character isolation. A connected
 rendered check clicks the real drawer, then its contained case and the dojo
 sword case; it verifies leaving, live cancellation/retry, owned inventory,
 reload, duplicate prevention and restored controls. Inspected captures show
-the original cases and the key in Iwao's open drawer. The sword's inventory
-slot currently has no artwork; this is not a claim of detailed pickup animation.
+the original cases and the key in Iwao's open drawer. The sword's inventory slot
+uses the project's reconstructed sword artwork, not a recovered original icon;
+detailed pickup animation is not reconstructed.
 
 Empty control meshes are excluded from placement bounds. Including Babylon's
 default zero-size box for these nodes shifts drawer bounds toward the world
@@ -2484,3 +2709,21 @@ The [ticket journey guide](story-ticket-journey.md#home-and-travel-funds) specif
 the next connected chapter, its exact original assets, once-only funds and
 declared timing/staging adaptations. Its verification state is recorded in the
 checklist above rather than inferred from successful asset generation.
+
+## Optional Yamanose football encounter: source lead
+
+The optional children’s football QTE is not implemented. Disc 1's original
+`SCENE/01/JU00/JQSO.PKS` (SHA-256
+`956fd7b8441f3538c3a99a59aae840f522dc8238089ba202fc15d98d0b3db87f`)
+contains `DYNAMICS.DYNM`, ball model `FBB0201G.CHRM` and motion bank
+`M_01113.MOTN`. The matching `JQSO.PKF` includes a `CHARA.CHRT` binding from
+`FBB_` to that ball model. The motion bank has separately named Ryo and child
+success/failure sequences; those names do not establish exact timing, placement,
+camera, trigger or audio. The archive contains no AUTH cinematic to reuse as a
+complete film.
+
+The [walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404)
+is a lead for the next-day encounter and catch/miss branches, not proof of exact
+native gates. Recover or deliberately author the missing staging and verify both
+outcomes in the rendered game before marking this event playable. The evidence
+above is retained so a future pass can resume without searching the disc again.

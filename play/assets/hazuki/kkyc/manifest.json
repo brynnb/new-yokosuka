@@ -137,6 +137,7 @@
       ],
       "browserIsolatedStage": true,
       "browserLightingPresetIndex": 0,
+      "browserStagePrecipitation": "snow",
       "nativeStageSetup": {
         "evidence": "tools/evidence/jomo-snow-vision-setup-ir.json",
         "setupFunction": "0x463e4",
@@ -146,7 +147,7 @@
         "lightingPolicy": "neutral-browser-preset-until-native-light-types-are-projected",
         "omitted": [
           "native fog/color-slot projection",
-          "native presentation-controller particles"
+          "exact native presentation-controller particles"
         ]
       },
       "motions": [

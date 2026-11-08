@@ -150,6 +150,10 @@ const packs = [{
     MAP1: persistent("MAP01", "play/assets/hazuki/kkya/MAP01.MAPM", "S3_JOMO_MAP01.MT5"),
     MAP2: persistent("MAP02", "play/assets/hazuki/kkya/MAP02.MAPM", "S3_JOMO_MAP02.MT5"),
   },
+  // This isolated dream must not inherit the bedroom's personal nighttime
+  // lighting. The exact native light projection is not yet recovered; use
+  // the same explicitly approximate neutral preset as the snow vision.
+  stagePresentation: { browserLightingPresetIndex: 0, browserStagePrecipitation: "snow" },
   activity: [50, 614163, 614176, "SEQDATA0.AUTH", ["HOMR"], 1100, 1,
     { camera: 1, move: 1 }, presentation(["MAP1", "MAP2"])],
 }, {
@@ -215,10 +219,11 @@ const packs = [{
     // A stable existing neutral preset is a declared approximation, not native
     // preset 6 reinterpreted as a browser index or the player's bedtime light.
     browserLightingPresetIndex: 0,
+    browserStagePrecipitation: "snow",
     nativeStageSetup: { evidence: snowSetupEvidence, setupFunction: "0x463e4",
       backdropCall: "0x4640c", lightingFunction: "0x4b358", nativeLightPresetIndex: 6,
       lightingPolicy: "neutral-browser-preset-until-native-light-types-are-projected",
-      omitted: ["native fog/color-slot projection", "native presentation-controller particles"] },
+      omitted: ["native fog/color-slot projection", "exact native presentation-controller particles"] },
   },
   packageActors: {
     SINF: {

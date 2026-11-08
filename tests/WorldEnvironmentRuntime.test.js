@@ -87,6 +87,7 @@ test("environment synchronization applies changed time, season, and weather once
 
 test("native Story environment projects through shared lighting while cutscene and fixed worlds retain ownership", () => {
   const { runtime } = createRuntime();
+  runtime.clock.lightingState = () => ({serverDate:new Date(),date:new Date(),blend:{presetIndex:3,storyAmbientFill:.16}});
   const applied = [];
   runtime.applyTimeOfDayLighting = blend => applied.push(blend);
   let reads = 0;
@@ -95,6 +96,7 @@ test("native Story environment projects through shared lighting while cutscene a
     return { lightingOverride: { dirDiffuse: [.9, .8, .7] }, sky: { index: 5, imagePath: "/textures/sky/air65.png" } };
   };
   runtime.synchronize();
+  assert.equal(applied.at(-1).storyAmbientFill, .16);
   assert.deepEqual(applied.at(-1).lightingOverride, { dirDiffuse: [.9, .8, .7] });
   assert.equal(applied.at(-1).skyTextureUrl, "/textures/sky/air65.png");
   assert.equal(applied.at(-1).skyWeatherTexture, true);
@@ -103,6 +105,7 @@ test("native Story environment projects through shared lighting while cutscene a
   runtime.synchronize();
   assert.equal(reads, 1, "cutscene ownership does not sample/mutate the Story environment");
   assert.equal(applied.at(-1).presetIndex, 3);
+  assert.equal(applied.at(-1).storyAmbientFill, undefined);
   assert.deepEqual(applied.at(-1).lightingOverride, { dirIntensity: .1 });
   assert.equal(applied.at(-1).skyTextureUrl, undefined);
   runtime.getCutsceneLightingPreset = () => null;
@@ -239,6 +242,7 @@ test("cinematic precipitation stays overridden on timer updates without changing
 test("isolated stages suppress sky and weather until the last release, then catch up to server state", () => {
   const environment = { weather: "rain", precipitation: "rain" };
   const { runtime, calls, sceneState } = createRuntime({ environment });
+  runtime.clearStoryAmbientFill = () => calls.push("clear-story-ambient");
   const sky = { enabled: true, isEnabled() { return this.enabled; },
     setEnabled(value) { this.enabled = value; }, isDisposed: () => false };
   sceneState.currentSkybox = sky;
@@ -247,7 +251,7 @@ test("isolated stages suppress sky and weather until the last release, then catc
   const release = runtime.acquireIsolatedStage();
   const releaseOther = runtime.acquireIsolatedStage();
   assert.equal(sky.enabled, false);
-  assert.deepEqual(calls, [["weather", "clear"]]);
+  assert.deepEqual(calls, ["clear-story-ambient", ["weather", "clear"]]);
   calls.length = 0;
   environment.weather = environment.precipitation = "snow";
   runtime.synchronize();

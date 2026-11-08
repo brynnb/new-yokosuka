@@ -141,8 +141,12 @@ export class NativeAseqSceneObjectRuntime {
           `AUTH persistent scene object ${normalized} has no initial presentation`,
         );
       }
+      if (value?.visualStyle != null && value.visualStyle !== "unlit-additive") {
+        throw new Error(`AUTH scene object ${normalized} visual style is invalid`);
+      }
       return [normalized, Object.freeze({
         actorTag: normalized,
+        visualStyle: value?.visualStyle || null,
         referenceOnly: value?.referenceOnly === true,
         includeUntexturedGeometry: value?.includeUntexturedGeometry === true,
         objectTag: value?.objectTag ? requireText(value.objectTag, `${normalized} world object tag`) : null,
@@ -534,7 +538,9 @@ export class NativeAseqSceneObjectRuntime {
     }
     this.objects.clear();
     this.replacedWorldRoots.clear();
-    for (const root of this.ownedRoots) root.dispose?.();
+    // Package roots are instantiated by their own loader, including their
+    // materials and textures. Borrowed world roots are not in this set.
+    for (const root of this.ownedRoots) root.dispose?.(false, true);
     this.ownedRoots.clear();
   }
 }

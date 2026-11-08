@@ -252,8 +252,8 @@ in the guide; it is not a wage or an automatic success from watching a film.
 | ID / location | `chicken-race`, personal Story mode, `MFSY` harbor. |
 | Prerequisites / trigger | Completed forklift practice; 19:00–23:00 personal time; approach around original Ryo position `[1.7274,0,88.9241]`, then choose help or leave. The bounds and later-evening retry window are authored. |
 | Setup / actors / props | Borrow Ryo; privately stage Shozo, Takashi and Takahiro with original character models. Original RACE motorcycle models supply the bikes; their particular BIK1/BIK2 associations are authored choices. |
-| Sequence / audio / camera | Original `RACE/SEQDATA1.AUTH` introduction with original body motion, camera and 01CRA voices/effects. Then an authored side-by-side riding tableau and client-timed A/Down/Left/Right prompts. Captions describe the outcome without inventing voiced dialogue. |
-| Timing / challenge | Introduction may finish or be explicitly skipped. Four timely inputs win on the client, which reports the outcome for Story settlement; a modified client can falsify it. Two-second windows, stationary riding staging and a fresh attempt after failure are declared adaptations. |
+| Sequence / audio / camera | Original `RACE/SEQDATA1.AUTH` introduction with original body motion, camera and 01CRA voices/effects. The riders and bikes then follow an authored path along a reviewed harbor pedestrian route while client-timed A/Down/Left/Right prompts run. Captions describe the outcome without inventing voiced dialogue. |
+| Timing / challenge | Introduction may finish or be explicitly skipped. Four timely inputs win on the client, which reports the outcome for Story settlement; a modified client can falsify it. Two-second windows, the moving route and camera, and a fresh attempt after failure are declared adaptations. |
 | Weather / lighting | Preserve the personal evening environment; no additional date, season or weather gate. Separate lamp, headlight and reflection reference actors retain transforms but have no newly rendered geometry. |
 | Completion | Atomically save the race milestone, day and notebook entry after the acknowledged success caption and presentation cleanup. No pay, possession, move reward or calendar jump. |
 | Exit / cancellation / replay | Restore the prior avatar pose/camera and ordinary controls. Decline, failure, interrupted loading and cancellation (including after the last input but before the ending) grant nothing and remain retryable. Saved completion prevents automatic replay. |
@@ -261,13 +261,16 @@ in the guide; it is not a wage or an automatic success from watching a film.
 `tools/cutscenes/build_harbor_chicken_race.mjs --audio` pins the Disc 3 RACE
 archive, texture bank, 01CRA stream and A1_CRA sound bank. The existing activity
 and audio compilers validate the introduction. `M_MBQC.MOTN` supplies the
-original riding loops. Authored tableaus now borrow the same standalone
-scene-object runtime as native cinematics, rather than misusing the hand-prop
-attachment path. Their resource lease also owns failed/late-load cleanup.
+original riding loops. Authored scenes borrow the same standalone scene-object
+runtime as native cinematics, rather than misusing the hand-prop attachment
+path. A shared nonblocking motion option lets actor, vehicle and camera curves
+continue during the prompt while the presentation transaction retains ownership;
+its resource lease also owns failed/late-load cleanup.
 
-The moving native chicken-race course, opponent's fall into the sea and
-post-race combat-move teaching are not reconstructed here. Rider/handlebar contact
-is approximate. The outcome caption does not claim those effects are animated.
+The native chicken-race course, opponent's fall into the sea and post-race
+combat-move teaching are not reconstructed here. The moving path is a practical
+approximation, and rider/handlebar contact is approximate. The outcome caption
+does not claim the fall is animated.
 The 2026-11-07 rendered 19:00 harbor run showed very dark foreground actors and
 buildings against a bright sky. The selected original cloudy sprite was shown
 without time-of-day modulation; Story now dims weather sky textures using its
@@ -291,6 +294,15 @@ wrong physical key, retry, cancellation after a win, successful retry and
 reload. PostgreSQL retained both milestones and notebook flags with ¥2,000
 unchanged. The successful attempts skipped the introduction; an earlier Jimmy
 prerequisite was seeded, and the original aftermath remains absent.
+
+On 2026-11-08, an independently seeded local character exercised the revised
+moving staging three times in a hardware-rendered browser. Both bikes and riders
+moved during the prompt and remained aligned; the adjusted camera showed both
+at the start and farther along the route.
+The complete decline, cancellation, wrong-input, retry, success and reload
+checks passed. This verifies the approximation and transaction cleanup, not the
+original course or its missing aftermath. The fuller connected continuation
+through earned training and the prior stationary presentation passed separately.
 
 The next connected sequence is the first paid workday. The guide, pp. 53–55,
 places the morning race before ten deliveries to Warehouse No. 18, a noon rescue
@@ -405,6 +417,20 @@ Use `NEW_YOKOSUKA_MORNING_RACE_E2E=true` with the earned-save harness and
 `NEW_YOKOSUKA_MORNING_RACE_RELOAD_E2E=true` only with an already earned race
 checkpoint; it checks reconnect without repeating the eleven-minute drive.
 
+On 2026-11-08, a longer connected continuation from the earned Jimmy, hiring,
+training and chicken-race milestones reached 33 of 39 gates, then the automated
+driver failed its 40-second progress check near an obstacle. No scene error was
+reported, but this attempt did not earn a race result. It does not establish
+whether a player could pass the same spot; the earlier complete run remains
+separate evidence. Earlier story prerequisites were seeded and test approaches
+shortened in both cases.
+
+The same day, a retry from that earned race-grid save completed all 39 gates,
+saved the race/notebook and returned to the harbor with inventory and money
+unchanged. The test driver now recognizes progress through ordered recorded
+waypoints as well as gates before declaring a stall; it still requires each
+server-observed gate and retains both a stall watchdog and an overall deadline.
+
 ## First morning cargo batch
 
 `workday-one-morning` requires the earned race and a 09:00–12:00 approach to
@@ -471,6 +497,13 @@ Shared combat moves, basic AI, health/balance and arena bounds are adaptations.
 Uncontrolled ambient harbor bystanders can still appear in the original shots;
 their cinematic choreography and the precise bento prop identity remain unverified.
 
+The 2026-11-08 earned-cargo continuation exposed a scheduled bystander directly
+in front of the combat camera. The shared opening-camera obstruction check now
+includes visible scheduled actors while continuing to exclude the combatants.
+A separate rendered noon replay showed the bystander to the side, the fighters
+visible, and a real victory, cleanup and saved reload. The camera remains under
+player control afterward; this is not a guarantee against later moving actors.
+
 The connected hardware-rendered check resumes the earned five-crate checkpoint,
 walks into the approach, cancels/retries the original film, lets it finish
 naturally, wins using normal keyboard movement/guard/kicks, and lets the
@@ -524,12 +557,15 @@ does not invent an unverified theft amount.
 
 The salary resource is original `ALP_PAY.PKS`, SHA256
 `e5a5096542be5c9cd50e4a0d1ab3042efcaee09667b5b68f558702a48ff6f709`.
-It contains `M_MO01.MOTN` and a banknote model, but **no AUTH film**.
-The builder exports the motion bank without manufacturing a native activity.
+It contains `M_MO01.MOTN` and the `FUTS5KBG.CHRM` pay envelope, but **no AUTH film**.
+The builder exports both and their original `ALP_PAY.PKF` textures without manufacturing a native activity.
 The authored handover waits for both original 764-frame salary clips and
 borrows the already tested, scene-owned Alpha office map. Placement, camera,
-amount caption and encouragement-line ordering are authored; physical
-banknote/finger choreography is omitted. Presentation never authorizes pay.
+amount caption and encouragement-line ordering are authored. The envelope is
+transferred between Yada and Ryo during their handover gestures; grip offsets
+are borrowed from the original warning-letter scene, and transfer timing is an
+authored approximation. Exact contact and finger choreography are not recovered.
+Presentation never authorizes pay.
 
 `GOROMA.PKS` is SHA256
 `906e93a9d55a9d60a5f1fd91ef8ded61ada192462e8e7fe3262753cf0bb77c1c`.
@@ -579,8 +615,11 @@ resident harbor geometry. The authored office now leases the shared isolated
 stage (resident geometry, weather and non-cast scheduled actors), and a side
 camera keeps both participants visible. Rendered captures at 1, 8, 16 and 23
 seconds show the room without the observed stripes; playback followed by
-rollback restored the borrowed world state. This was a presentation review on
-the already-paid save, not another earned-payday or banknote/finger-fidelity test.
+rollback restored the borrowed world state. A subsequent isolated replay uses
+the original envelope and its original texture, with the authored transfer and
+cleanup checked separately; it does not prove exact finger or original timing
+fidelity. This was a presentation review on an already-paid save, not another
+earned-payday test.
 
 These are local development assets and checks, not production/R2 publication.
 The first workday is verified through Goro's warning. The continuation below
@@ -644,6 +683,17 @@ race prompt; the ¥12,636 balance and inventory are unchanged throughout. Captur
 show the original mirror/stage and saved harbor return; exact lighting and
 audible playback fidelity were not assessed. No future flags, checkpoint
 positions or wins were injected during the challenge.
+
+On 2026-11-08, a continuation from the newly earned first workday again passed
+sleep decline/cancellation, the full dream, next-day arrival, race-offer decline
+and reload. Test travel and positioning shortened the route home; earlier
+prerequisites were seeded. A separate seeded visual review found the mirror and
+tree almost black throughout the dream because the isolated stage inherited
+bedtime lighting. KKYA now uses the same neutral browser preset as the snow
+vision; frames 300, 600 and 900 were inspected with that approximation. The
+subsequent bounded cinematic snowfall also renders and is removed on cancellation.
+Its particle behavior and the lighting are approximations; exact native
+lighting, particles and audible fidelity remain unverified.
 
 ## Second workday: cargo, lunch, two-wave ambush and payday
 
@@ -977,9 +1027,9 @@ reconnect after the chase can continue at the fight instead of repeating it.
 | Field | Authored encounter |
 | --- | --- |
 | Location / trigger | `biker-chase`: approach outside Tomato/Harbor Lounge after the third payday, 19:00–24:00 personal time. Bounds surround original MFSY return entry 19 `[84.2,0,60.4]`; the guide backs the location/hour, not this activation volume. `charlie-harbor`: separate approach around the original BAT_MBQC interrogation near Warehouse No. 17, only after a saved chase. |
-| Player / actors / props | Story Ryo on foot; Charlie uses original BIK_L. Original BIKK5DYG motorcycle and M_MBQC riding bank are byte-identical in MBQC and the already loaded RACE pack. One privately staged rider represents the group; rider/handlebar contact is approximate. Five-fighter staging uses BAT_MBQC's BTK_S/BTH_S/BTA_S plus explicit MRSK/OKYS donors, not a recovered native roster. |
+| Player / actors / props | Story Ryo on foot; Charlie uses original BIK_L. Original BIKK5DYG motorcycle and M_MBQC riding bank are byte-identical in MBQC and the already loaded RACE pack. One privately staged rider represents the group; rider/handlebar contact is approximate. Five-fighter staging uses BAT_MBQC's BTK_S/BTH_S/BTA_S plus explicit MRSK/OKYS donors, not a recovered native roster. Both fights and the interrogation share three original parked motorcycle models; their placements are approximations. |
 | Action / camera / timing | Twelve continuous moving actor, prop and follow-camera beats along reviewed HANA/DJUN/HTSI harbor road corridors, at the existing run pace. Each stops at its endpoint for an actual two-second prompt. Route, framing, held beats and unvoiced introduction/failure captions are adaptations; original DYNAMICS/chase cameras and obstacle stunt choreography are not reconstructed. |
-| QTE / combat | Left, Right, A, Left, Left, A, Right, Right, Right, Left, then Left, Right. Every input needs the current server token and receipt-time window. After arrival, actually defeat five thugs, then Charlie. Shared combat/AI, explicit arena/health/speeds and a full-health new Charlie attempt are declared adaptations. Charlie is tougher than each ordinary thug. |
+| QTE / combat | Left, Right, A, Left, Left, A, Right, Right, Right, Left, then Left, Right. The client times and evaluates the prompts, then reports the outcome for the active server event. After arrival, actually defeat five thugs, then Charlie. Shared combat/AI, explicit arena/health/speeds and a full-health new Charlie attempt are declared adaptations. Charlie is tougher than each ordinary thug. |
 | Dialogue / audio / weather | Original BAT_MBQC SEQDATA0.AUTH/M_01CBK supplies the 52.02-second interrogation, cameras, body motion, twelve 01CBK voices and eighteen distinct A1_CBK effects. Preserve personal weather/season/lighting; no new weather/date gate or invented music selection. Detailed hand/facial callback fidelity is not claimed. |
 | Saved effects / exit | All twelve accepted inputs plus scene cleanup atomically save `story.s1.biker-chase.completed` and `s1.work.biker-alley` arrival. Both actual victories and acknowledged original interrogation save the Lan Di notebook, `story.s1.charlie-harbor.completed`, `story.s1.workday-three.completed` and its day together. No money, items or time jump. Return to the saved alley approach with prior camera mode and controls. |
 | Failure / skip / replay | Wrong/late chase input offers a fresh chase or leaving; cancelled movement grants nothing. Saved chase survives reload. Fight defeat/timeout retries the current fight; cancelling the whole fight event restarts both fights but retains the chase. Ending cancellation grants no clue. Original film completion or explicit X-skip can acknowledge its presentation, never win a challenge. Completed events do not automatically replay. |
@@ -1026,6 +1076,88 @@ after cancelling the ending and present only after its acknowledged retry.
 All 38 new local asset records (2,143,412 bytes) pass size/hash verification.
 Nothing has been published or deployed. The following section continues through
 the Lan Di dream and fourth morning, then the remaining Mad Angels workdays.
+
+On 2026-11-08, the newly earned third-payday save continued through decline,
+moving-scene cancellation, a wrong-input retry and all twelve client-timed
+inputs. That chase survived reload. After a genuine group-fight defeat, a
+separate continuation won the five-opponent fight and Charlie's fight with
+keyboard controls, cancelled the original interrogation, reloaded and won both
+fights again. Its natural ending saved the clue and third-day completion through
+reload without changing ¥9,800 or inventory. Test-only positioning near the
+trigger and an earlier seeded Jimmy prerequisite limit this evidence. The
+captured interrogation at approximately 19:00 is very dark; compare with source
+footage and audit shared personal-time lighting before changing it. This is not
+proof of full audiovisual fidelity or a fresh-start playthrough.
+
+A 2026-11-08 presentation-only replay followed the full 1,560-frame original
+interrogation at the saved personal evening time. All twelve 01CBK voices
+played, both AKIR/YKC and CHRL/BIK_L mouths and facial vertices changed during
+speech, and the previous camera, avatar and controls were restored. Five native
+camera-frame captures were reviewed; this is separate from the connected
+progression check above. Compared with the [original playthrough at 47:16](https://www.youtube.com/watch?v=0K3IY75rrOY&t=2836s),
+the same Ryo-over-Charlie shot is substantially darker and the original scene
+also shows parked motorcycles and headlight beams. Earlier footage at 46:20
+shows at least two bikes and visible pools of light on the ground. Original
+`MBQC/MAPINFO.BIN` binds BIK0 and BIK1 to BIKS504G and BIK2 to BIKS509G;
+the original MBQC and RACE packs supply these models and their textures. The
+original room controller's parked transforms have not been recovered, so the
+three placements are explicitly authored approximations. Combat and the film
+use the same scene-owned definitions and release their objects on exit; neither
+adds motorcycles to normal free roam. A presentation-only browser replay loaded
+all three models and captured diagnostic closeups, alongside the full original
+film, voices and restored player state. The former BIK0 placement was behind a
+container and was moved after that visual check. A separate test-only combat
+presentation positioned Ryo at the alley, loaded all three enabled motorcycle
+roots in each fight and verified disposal after each; its captured initial
+combat camera did not visibly frame the bikes. These checks do not establish
+exact original positions, full fight-to-film continuity or a visible bike in
+the initial combat shot.
+
+A subsequent connected browser check used a disposable copy of that local
+checkpoint with only the Charlie conclusion, third-day conclusion and Lan Di
+notebook flags cleared. The already-earned chase and payday were retained. It
+entered both fights through the ordinary region, checked all three enabled bike
+roots during each fight, won both with keyboard input, cancelled the interrogation,
+reloaded, won again and naturally completed the film. The clue and day outcome
+survived reload only after completion. This is not a fresh-start playthrough;
+the initial combat screenshots still do not frame the parked motorcycles.
+The same isolated-copy continuation was repeated after adding the six original
+light meshes and the desktop camera offset; both fights, cancellation, reload,
+retry, natural interrogation and final saved clue passed with normal input.
+
+The shared Story-combat opening camera now starts up to 20 degrees off the
+direct player-to-target line instead of placing the selected opponent directly
+behind Ryo on screen. The angle decreases for portrait viewports. The normal
+controller still owns orbit and target-relative movement; the offset is an
+authored readability choice, not recovered original camera data. Rendered
+desktop fight-entry checks show Ryo and the selected biker or Charlie separated
+in both encounters, and a separate 390-by-844 diagnostic shows both actors on
+screen in each. Other viewport sizes, collision constraints and other locations
+still require broader review. The new angle does not by itself bring the parked
+motorcycles into those initial shots.
+
+The shared `MBQC.PKS` archive also contains `RAY02C2G`/`RAYS5C0G`/`RAYS5C1G`/
+`RAYS5C2G` candidates. Geometry inspection shows `RAYS5C0G.CHRM` is a flat,
+roughly 7.3-unit ground-shaped surface, while `RAYS5C2G.CHRM` includes a small
+surface at roughly headlight height and 192 vertices forming a translucent,
+roughly 8.4-unit cone pointing along local negative Z. The original CHRS groups
+RY00/RY01, RY10/RY11 and RY20/RY21 next to BIK0, BIK1 and BIK2 respectively;
+each first entry names image `RAYS5C0G` but model `RAY02C1G`, and each second
+entry binds `RAYS5C2G`. The loose files in the original MBQC directory provide
+both exact models and their embedded textures. Both are now staged with the
+corresponding bike in the two fights and interrogation, and share its temporary
+scene lifetime. The association, parked transforms, always-on timing and unlit
+additive blending are explicitly authored approximations; the native controller
+and exact blend mode have not been recovered. A rendered on/off comparison shows
+a subtle effect from the original meshes and transparency, not a confirmed match
+for the more prominent lights in the source footage. The full film replay checks
+all nine bike/light roots, and separate test-only combat presentations verify
+their roots and materials are released afterward. The shared scene-object cleanup
+now disposes owned materials and textures too; borrowed world materials remain
+untouched. `BAT_MBQC` itself has no beam bindings. Initial combat framing and
+headlight visibility remain to be improved. See [Story evening lighting](../research/story-evening.md)
+for the shared ambient approximation and remaining local-lighting gap.
+
 The connected [Nozomi rescue](story-nozomi-rescue.md) and
 [final-day continuation](story-final-day.md) document later progress and limits.
 

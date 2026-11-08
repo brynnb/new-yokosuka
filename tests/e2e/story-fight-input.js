@@ -5,7 +5,7 @@ import { writeFile } from "node:fs/promises";
 // selected opponent in range and use the arena's open space to regroup. Use
 // earned starting moves, including their real directional command sequences;
 // repeatedly tapping J/K is not representative of the available repertoire.
-export async function fightStoryAmbush(page, testInfo) {
+export async function fightStoryAmbush(page, testInfo, { nextButton = "Ask about Charlie", artifactPrefix = "ambush" } = {}) {
   await page.locator("#renderCanvas").focus();
   const held = new Set();
   const keys = async next => {
@@ -80,11 +80,11 @@ export async function fightStoryAmbush(page, testInfo) {
     }
   } finally {
     await keys([]);
-    await writeFile(testInfo.outputPath("ambush-keyboard-samples.json"), JSON.stringify(samples));
-    await writeFile(testInfo.outputPath("ambush-keyboard-events.json"), JSON.stringify(await page.evaluate(() => window.storyProbe.fightEvents)));
+    await writeFile(testInfo.outputPath(`${artifactPrefix}-keyboard-samples.json`), JSON.stringify(samples));
+    await writeFile(testInfo.outputPath(`${artifactPrefix}-keyboard-events.json`), JSON.stringify(await page.evaluate(() => window.storyProbe.fightEvents)));
   }
   const view = await page.evaluate(() => window.storyProbe.lastCombatView);
   await testInfo.attach("ambush-final-combat-view", { body: JSON.stringify(view), contentType: "application/json" });
   console.info("Ambush fight outcome", JSON.stringify(view));
-  await expect(page.getByRole("button", {name:"Ask about Charlie",exact:true})).toBeVisible({timeout:15_000});
+  if (nextButton) await expect(page.getByRole("button", {name:nextButton,exact:true})).toBeVisible({timeout:15_000});
 }

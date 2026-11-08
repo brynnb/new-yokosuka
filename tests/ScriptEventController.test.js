@@ -86,6 +86,37 @@ test("training shares combat ownership, reports one result and releases cast bef
   assert.deepEqual(h.errors,[]);h.controller.reset();
 });
 
+test("vehicle and navigation challenges release their old owner before a new challenge", async () => {
+  const kinds = [
+    ["navigation", "Navigation"],
+    ["driving", "Driving"],
+    ["delivery", "ForkliftChallenge"],
+    ["race", "ForkliftChallenge"],
+  ];
+  for (const [oldKind, oldMethod] of kinds) {
+    for (const [newKind, newMethod] of kinds) {
+      const h = harness(), calls = [], token = "a".repeat(32), next = "b".repeat(32);
+      for (const method of new Set(kinds.map(([, name]) => name))) {
+        h.presentation[`show${method}`] = async prompt => { calls.push(["show", method, prompt.token]); return true; };
+        h.presentation[`end${method}`] = () => calls.push(["end", method]);
+      }
+      for (const [kind] of kinds) h.controller.dialogue[`show${kind[0].toUpperCase()}${kind.slice(1)}`] = () => {};
+      const started = h.controller.start({kind:"activity", activity:"challenge-transition"});
+      await h.controller.handleYield(yieldMessage("request-1", {type:"challenge"}, {challenge:{id:"old", token, ready:true, [oldKind]:{}}}));
+      await started;
+      assert.equal(h.controller.challengeResponse("challenge_ready", token), true);
+      await h.controller.handleYield(yieldMessage("request-2", {type:"challenge"}, {challenge:{id:"old", token, ready:true, [oldKind]:{}}}));
+      assert.deepEqual(calls, [["show", oldMethod, token], ["show", oldMethod, token]], `${oldKind} update preserves its owner`);
+      assert.equal(h.controller.challengeResponse("challenge_ready", token), true);
+      await h.controller.handleYield(yieldMessage("request-3", {type:"challenge"}, {challenge:{id:"new", token:next, ready:true, [newKind]:{}}}));
+      assert.deepEqual(calls, [["show", oldMethod, token], ["show", oldMethod, token], ["end", oldMethod], ["show", newMethod, next]], `${oldKind} to ${newKind}`);
+      assert.equal(h.controller.challengeResponse("challenge_ready", token), false, "the old token is no longer accepted");
+      assert.deepEqual(h.errors, []);
+      h.controller.reset();
+    }
+  }
+});
+
 test("server state ownership is prepared before dispatch and released after presentation cleanup", async () => {
   const order = [];
   let ready;

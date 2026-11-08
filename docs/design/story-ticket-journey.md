@@ -30,6 +30,14 @@ native bank-account computation.
 | Leave / skip / failure / replay | Explicit leave/stay-awake, cancellation during either movie, failed preparation and stale acknowledgements settle no funds or day jump. The noninteractive presentation supports the existing explicit skip; it is not a challenge result. Reload reads committed receipts without replay or payment duplication. |
 | Declared adaptations | No automatic 23:30 teleport from the warehouse, forced house/yard lock, original sleep-menu reconstruction or cinematic-minute debit. Player-confirmed home approach and sleep keep the causal order; later agency events require the saved family discussion. |
 
+The authored hall and bedside regions do not overlap: the saved Fuku
+conversation position remains outside the sleep region, while the established
+bedside arrival is inside it. This prevents the sleep choice from interrupting
+the player immediately after the conversation. The client and server use the
+same bounds; this is an authored trigger adjustment, not a recovered native
+volume. A rendered cloned-checkpoint regression covers the conversation,
+separate bedside approach, cancellation/retry and saved next morning.
+
 ### Original assets and generation
 
 `npm run build:home-ticket` uses the shared original activity, TEXN and audio
@@ -365,7 +373,8 @@ were uploaded and no production state was changed.
 Inspected captures show Shenhua in the isolated dream stage and the original
 Fuku/Ryo home-phone shots. The initial dream capture exposed a missing backdrop
 and inherited bedtime lighting; the presentation repair below addresses those.
-Rendered snow remains absent, independently of eligibility, dialogue and saves.
+At that review, rendered snow remained absent, independently of eligibility,
+dialogue and saves. The later cinematic-snow approximation is described below.
 Audio playback fidelity has not been assessed by listening.
 
 The October 23 earned-save rerun passes the same chain after the connected
@@ -402,9 +411,13 @@ Lighting uses the existing neutral browser preset 0 to avoid inheriting the
 player's bedtime darkness. This is an explicit approximation, **not** native
 light preset 6: the full original light types, fog/color-slot projection and
 adjacent `0x0174/0x0176/0x0178/0x0179` presentation controllers remain unmapped.
-The scene still lacks rendered snow. The manifest records those omissions;
-neither this repair nor the passing progression test certifies exact original
-presentation. Ordinary outdoor snow is not substituted into the dream.
+The exact native particles remain unmapped. A later browser approximation uses
+the shared weather renderer's bounded cinematic profile: a camera-relative
+snowfall that does not apply outdoor fog or surface collisions. Rendered tests
+show flakes in this dream and confirm cancellation removes them before the
+phone scene; the profile is not a reconstruction of the original particles.
+Neither this repair nor the passing progression test certifies exact native
+lighting or presentation.
 
 ### Shared handset presentation
 

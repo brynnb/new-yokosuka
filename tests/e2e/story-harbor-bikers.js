@@ -1,5 +1,6 @@
 import {expect} from "@playwright/test";
 import {winHarborFight} from "./story-workday-one.js";
+import {fightStoryAmbush} from "./story-fight-input.js";
 
 // Resume the genuinely earned third payday. Reset only near approaches; every
 // timed input, fight and cinematic acknowledgement crosses the real server.
@@ -26,13 +27,23 @@ export async function verifyHarborBikers(page,testInfo,character){
   };
   const prompt=async(button,beat)=>{
     await page.waitForFunction(({button,beat})=>{
-      const p=window.storyProbe.regions.controller.active?.challengePrompt,s=window.storyProbe.authoredScene?.active?.scene;
-      return p?.ready&&p.button===button&&s?.id===`s1.mfsy.biker-chase.beat-${String(beat).padStart(2,"0")}`||window.storyProbe.sceneErrors.length;
+      const c=window.storyProbe.regions.controller,p=c.active?.challengePrompt,q=c.dialogue.qte?.active,s=window.storyProbe.authoredScene?.active?.scene;
+      return p?.ready&&!q?.outcome&&q?.steps[q.index]?.buttons[0]===button&&s?.id===`s1.mfsy.biker-chase.beat-${String(beat).padStart(2,"0")}`||window.storyProbe.sceneErrors.length;
     },{button,beat},{timeout:60_000});await noErrors();
   };
   if(!initial.character.storyFlags[chase]){
     console.info("Harbor bikers stage: personal evening, leave and moving-scene cancellation");
-    await idle();if(new Date((await saved()).character.storyTimeMs).getUTCHours()<19){
+    // A resumed save can already be inside the approach volume: entering the
+    // world then starts this dialogue before the driver can position Ryo.
+    const intro=page.getByText("Charlie and the Mad Angels are leaving on bikes. Follow them through the harbor.",{exact:true});
+    const {worldId,x,z,storyTimeMs}=initial.character;
+    const resumesInsideApproach=worldId==="mfsy"&&x>=82&&x<=88&&z>=59&&z<=65&&new Date(storyTimeMs).getUTCHours()>=19;
+    if(resumesInsideApproach){
+      await intro.waitFor({timeout:30_000});
+      await page.keyboard.press("Space");await page.getByRole("button",{name:"Leave it for now",exact:true}).click();
+      await idle();expect((await check()).character.storyFlags[chase]).not.toBe(true);
+    }else await idle();
+    if(new Date((await saved()).character.storyTimeMs).getUTCHours()<19){
       await page.locator("#story-wait-button").click();await page.getByRole("option",{name:"Wait until 7 p.m.",exact:true}).click();await page.getByRole("button",{name:"Wait until 7 p.m.",exact:true}).click();await idle();
     }
     await approach();await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();expect((await check()).character.storyFlags[chase]).not.toBe(true);
@@ -59,10 +70,12 @@ export async function verifyHarborBikers(page,testInfo,character){
   }
   if(!(await saved()).character.storyFlags[done]){
     const briefing="The bikers stopped here. Five thugs are blocking the way to Charlie.";
-    const waitFight=async(id,count)=>{await page.waitForFunction(id=>window.storyProbe.combatRuntime?.active?.view?.ready&&window.storyProbe.combatRuntime.active.view.id===id||window.storyProbe.sceneErrors.length,id,{timeout:65_000});await noErrors();expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.length)).toBe(count);await check();};
+    const waitFight=async(id,count)=>{await page.waitForFunction(id=>window.storyProbe.combatRuntime?.active?.view?.ready&&window.storyProbe.combatRuntime.active.view.id===id||window.storyProbe.sceneErrors.length,id,{timeout:65_000});await noErrors();expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.length)).toBe(count);
+      const props=await page.evaluate(()=>[...window.storyProbe.combatRuntime.active.objects.objects].map(([tag,o])=>({tag,enabled:o.root.isEnabled(),meshes:o.root.getChildMeshes().length})));
+      expect(props.map(p=>p.tag).sort()).toEqual(["BIK0","BIK1","BIK2","RY00","RY01","RY10","RY11","RY20","RY21"]);expect(props.every(p=>p.enabled&&p.meshes>0)).toBe(true);await check();};
     const fights=async(captures=false)=>{
       await page.getByText(briefing,{exact:true}).waitFor({timeout:90_000});await page.keyboard.press("Space");await page.getByRole("button",{name:"Face the attackers",exact:true}).click();
-      await waitFight("s1.mfsy.biker-thugs",6);if(captures)await page.screenshot({path:testInfo.outputPath("harbor-biker-actual-five-thug-fight.png")});await winHarborFight(page,{attack:"KeyJ"});
+      await waitFight("s1.mfsy.biker-thugs",6);if(captures)await page.screenshot({path:testInfo.outputPath("harbor-biker-actual-five-thug-fight.png")});await fightStoryAmbush(page,testInfo,{nextButton:null,artifactPrefix:captures?"bikers-first":"bikers-retry"});
       await page.getByText("The others are down. Charlie is still standing.",{exact:true}).waitFor();await check();await page.keyboard.press("Space");
       await waitFight("s1.mfsy.charlie-harbor",2);if(captures)await page.screenshot({path:testInfo.outputPath("harbor-biker-actual-charlie-fight.png")});await winHarborFight(page,{attack:"KeyJ"});
       await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-charlie-harbor-interrogation"||window.storyProbe.sceneErrors.length,null,{timeout:65_000});await check();

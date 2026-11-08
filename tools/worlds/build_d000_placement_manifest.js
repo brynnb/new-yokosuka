@@ -51,6 +51,7 @@ function browserPlacement(object, overrides = {}) {
     ...(localAsset ? {
       assetFile: object.model.replace(/\.MT5$/i, ".CHRM"),
       texturePackModel: "S1_D000_MAP.MT5",
+      texturePackFile: "OMG_textures.bin",
     } : {}),
     position: object.browserPosition.map((value) => rounded(value)),
     rotationDegrees: object.browserRotationDegrees.map(

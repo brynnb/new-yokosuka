@@ -187,6 +187,7 @@ export async function verifyDojoItems(page,testInfo,character){
   expect(after.character.storyFlags["story.s1.phoenix-mirror.completed"]).not.toBe(true);
   await page.locator("#inventory-button").click();const dialog=page.getByRole("dialog",{name:"Inventory",exact:true});
   await expect(dialog.getByText("Mysterious Key",{exact:true})).toBeVisible();await expect(dialog.getByText("Hazuki Sword",{exact:true})).toBeVisible();
+  await expect(dialog.getByRole("img",{name:"Hazuki Sword",exact:true})).toBeVisible();
   await page.screenshot({path:testInfo.outputPath("dojo-owned-quest-items.png")});await dialog.getByRole("button",{name:"Close inventory"}).click();
   await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
   await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
@@ -311,6 +312,9 @@ export async function verifyGuiZhangEncounter(page,testInfo,character){
   await approach();await combatReady();
   expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.id)).toBe("s1.jd00.gui-zhang-first");
   expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.definition.actorDefinitions[0].modelCode)).toBe("KIS_M");
+  await page.waitForTimeout(2000);
+  const target=await page.evaluate(()=>{const o=window.storyProbe.combatRuntime.active;return o.indicator.projectTargets([o.encounter.selectedEnemy])[0];});
+  expect(target.visible).toBe(true);expect(target.screenX).toBeGreaterThan(.22);expect(target.screenX).toBeLessThan(.8);
   await page.screenshot({path:testInfo.outputPath("gui-zhang-combat-ready.png")});
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-gui-combat"));await idle();
   expect((await saved()).character.storyFlags["story.s1.gui-zhang-street.completed"]).not.toBe(true);

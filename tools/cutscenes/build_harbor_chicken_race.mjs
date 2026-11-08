@@ -7,6 +7,7 @@ import {execFileSync} from "node:child_process";
 import {buildNativeAseqActivityPack,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
 import {buildNativeAseqAudioPack} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
+import {createChasePath,curveTrack} from "../lib/AuthoredChase.mjs";
 
 const root=path.resolve(import.meta.dirname,"../..");
 const source=path.join(process.env.SHENMUE_DISC3_EXTRACTED_ROOT||path.join(root,"extracted_disc3_v2"),"data/SCENE/03");
@@ -38,15 +39,44 @@ const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:"RACE",disc
   generatedAssets:[{assetPath:textureAssetPath,bytes:extractNativeTexnPack(textures,"RACE.PKF").bytes}],
 });
 const pose=(x,y,z,rotationY)=>({x,y,z,rotationX:0,rotationY,rotationZ:0});
-const bike=(tag,position)=>({...sceneObjects[tag],lifecycle:{kind:"room-script-persistent"},initialPresentation:{position,rotationDegrees:[0,-90,0],scale:[1,1,1]}});
+// The native QTE course remains unknown. Use a verified harbor pedestrian
+// route as an explicit approximation, keeping the existing original riding
+// motions and both bikes together while the player answers the prompts.
+const schedule=JSON.parse(fs.readFileSync(path.join(root,"play/data/scheduled-actors/mfsy.json")));
+const road=schedule.actors.find(a=>a.actorCode==="JOE_")?.routes.find(r=>r.id==="JOE_:964763891bf1:34200:0x210e8");
+if(!road||sha256(Buffer.from(JSON.stringify(road.points)))!=="e3bb083d2cbdc5571a23fad06bd9f7299af954a02c3e20e0b53ef1be397706eb")throw Error("Changed reviewed harbor path");
+const pathData=createChasePath(road.points.slice(35,41).reverse());
+const distance=pathData.cumulative.at(-2);
+const challenge=JSON.parse(fs.readFileSync(path.join(root,"play/data/story-challenges.json"))).challenges.find(c=>c.id==="s1.mfsy.chicken-race");
+if(!challenge?.buttons?.length||!Number.isFinite(challenge.windowMs))throw Error("Missing chicken-race timing");
+const duration=challenge.buttons.length*challenge.windowMs/1000;
+const stations=[0,...pathData.cumulative.filter(d=>d>0&&d<distance),distance];
+const samples=fn=>stations.map(d=>({time:d===0?0:d===distance?duration:duration*d/distance,value:fn(d)}));
+const riding=(d,lateral=0)=>{
+  const p=pathData.pose(d),previous=pathData.pose(Math.max(0,d-.1)),next=pathData.pose(Math.min(distance,d+.1));
+  const dx=next.x-previous.x,dz=next.z-previous.z,length=Math.hypot(dx,dz)||1;
+  return {...p,x:p.x-dz/length*lateral,z:p.z+dx/length*lateral};
+};
+const rider=(d,lateral)=>({...riding(d,lateral),y:riding(d,lateral).y+.286});
+const camera=d=>{
+  const c=pathData.camera(d),center=riding(d,1.5),p=riding(d);
+  const shiftX=center.x-p.x,shiftZ=center.z-p.z;
+  // Frame both riders within the playable viewport, including its sidebars.
+  return {...c,positionX:p.x+(c.positionX-p.x)*1.4+shiftX,
+    positionZ:p.z+(c.positionZ-p.z)*1.4+shiftZ,targetX:c.targetX+shiftX,targetZ:c.targetZ+shiftZ};
+};
+const bike=(tag,p)=>({...sceneObjects[tag],lifecycle:{kind:"room-script-persistent"},initialPresentation:{position:[p.x,p.y,p.z],rotationDegrees:[0,p.rotationY,0],scale:[1,1,1]}});
+const first=riding(0),second=riding(0,3);
 const scene={id:"s1.mfsy.chicken-race",area:"MFSY",worldId:"mfsy",
-  provenance:"Original riding clips and motorcycles from RACE.PKS. Held side-by-side quay staging and camera are authored; the original moving course, dismount and fall into the sea are not reconstructed.",
+  durationSeconds:duration,waitForMotionCompletion:false,
+  provenance:"Original riding clips and motorcycles from RACE.PKS. The moving side-by-side staging follows a reviewed harbor pedestrian route while prompts run; the original race course, timing, dismount and fall into the sea are not reconstructed.",
   actorDefinitions:Object.entries(packageActors).map(([actorCode,d])=>({actorCode,label:d.label,modelCode:d.modelCode,activityOnly:true})),
-  actors:[{tag:"AKIR",pose:pose(-12,.286,80,-90),motion:{bank:"chickenRace",name:"AKI_NORU_BIKE_LP_QTE",loop:true}},
-    {tag:"BIKB",pose:pose(-12,.286,77,-90),motion:{bank:"chickenRace",name:"OTH_TKA_NORU_BIKE_LP_QTE",loop:true}},
+  actors:[{tag:"AKIR",pose:rider(0,0),movement:curveTrack(samples(d=>rider(d,0))),motion:{bank:"chickenRace",name:"AKI_NORU_BIKE_LP_QTE",loop:true}},
+    {tag:"BIKB",pose:rider(0,3),movement:curveTrack(samples(d=>rider(d,3))),motion:{bank:"chickenRace",name:"OTH_TKA_NORU_BIKE_LP_QTE",loop:true}},
     {tag:"SYZU",pose:pose(-10,0,74,0),motion:{bank:"free",name:"AKI_AKI_STAND_LP",loop:true}}],
-  camera:{positionX:-8,positionY:2.2,positionZ:83,targetX:-12,targetY:1, targetZ:78.5,roll:0,perspective:60},
-  sceneObjects:{BIK1:bike("BIK1",[-12,0,80]),BIK2:bike("BIK2",[-12,0,77])},
+  camera:camera(0),cameraTrack:curveTrack(samples(camera)),
+  sceneObjects:{BIK1:bike("BIK1",first),BIK2:bike("BIK2",second)},
+  sceneObjectTracks:{BIK1:curveTrack(samples(d=>riding(d))),BIK2:curveTrack(samples(d=>riding(d,3)))},
 };
 fs.writeFileSync(path.join(root,"play/data/story-harbor-scenes.generated.json"),JSON.stringify({schema:"new-yokosuka-authored-story-scenes-v1",generatedBy,motionBanks:{chickenRace:`${prefix}/M_MBQC.MOTN`},scenes:[scene]},null,2)+"\n");
 const runtimePaths=[`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path)];

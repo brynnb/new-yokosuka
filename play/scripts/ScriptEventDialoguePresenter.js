@@ -399,6 +399,17 @@ export class ScriptEventDialoguePresenter {
     return true;
   }
 
+  get storyQteActive() {
+    return Boolean(this.active && this.qteToken && this.qte);
+  }
+
+  setStoryQteButton(code, pressed) {
+    if (!this.storyQteActive || !storyChallenges.buttonCodes.includes(code)) return false;
+    if (pressed) return this.qte.press(code);
+    this.qte.release(code);
+    return true;
+  }
+
   hide() {
     this.combatToken=null;this.onCombatGuard?.(false);
     this.navigationToken=null;this.onNavigationHide(false);this.onNavigationDirection(0,0);

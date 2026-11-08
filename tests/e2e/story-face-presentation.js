@@ -2,6 +2,24 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  "harbor-camera": [["s1.mfsy.charlie-harbor-interrogation.scene","mfsy","MFSY",{}, {
+    frames:[30],combatScenes:["s1.mfsy.biker-thugs","s1.mfsy.charlie-harbor"],
+    cameraSeparation:true,
+  }]],
+  "harbor-camera-mobile": [["s1.mfsy.charlie-harbor-interrogation.scene","mfsy","MFSY",{}, {
+    frames:[30],combatScenes:["s1.mfsy.biker-thugs","s1.mfsy.charlie-harbor"],
+    cameraSeparation:true,viewport:{width:390,height:844},
+  }]],
+  "harbor-headlights": [["s1.mfsy.charlie-harbor-interrogation.scene","mfsy","MFSY",{}, {
+    frames:[180],objectCloseups:["BIK0","BIK1","BIK2"],inspectLightMeshes:true,
+    objectCloseupOptions:{localCamera:[3,2.5,-7],localTarget:[0,.5,-2]},
+  }]],
+  "harbor-charlie": [["s1.mfsy.charlie-harbor-interrogation.scene","mfsy","MFSY",{}, {
+    natural:true,frames:[180,450,750,1100,1400],
+    objects:["BIK0","BIK1","BIK2","RY00","RY01","RY10","RY11","RY20","RY21"],objectCloseups:["BIK0","BIK1","BIK2"],
+    combatScenes:["s1.mfsy.biker-thugs","s1.mfsy.charlie-harbor"],
+    observeActors:{AKIR:"YKC",CHRL:"BIK_L"},voiceCounts:{"01CBK":12},
+  }]],
   "workday-lunch": [false,true].map(natural=>["s1.mfsy.workday-lunch.scene","mfsy","MFSY",{}, {
     label:natural?"complete":"cancel",natural,frames:natural?[90,180,300,420]:[180],geometryMask:true,
   }]),
@@ -224,6 +242,13 @@ export async function reviewStoryFaces(page, testInfo, character) {
     await page.waitForFunction(() => window.storyProbe.regions.controller.status === "idle" && !window.storyProbe.automatic.pending);
     for (const [id, world, area, actors, options = {}] of REVIEW_SETS[set]) {
       const label = id.replaceAll(".", "-") + (options.label ? `-${options.label}` : "");
+      const previousViewport=page.viewportSize();
+      if(options.viewport){
+        await page.setViewportSize(options.viewport);
+        // The test enables the developer panel; review the normal game view
+        // by using its existing visibility setting rather than covering combat.
+        await page.evaluate(()=>{const el=document.getElementById("show-debug");window.storyProbe.previousDebugVisibility=el.checked;el.checked=false;el.dispatchEvent(new Event("change",{bubbles:true}));});
+      }
       await page.evaluate(async world => { await window.storyProbe.lifecycle.travelToWorld(world); }, world);
       await page.waitForFunction(() => window.storyProbe.lifecycle.worldRuntime.ready);
       const prior = await page.evaluate(() => {
@@ -384,6 +409,36 @@ export async function reviewStoryFaces(page, testInfo, character) {
           const state = await page.evaluate(() => { const r = window.storyProbe.faceReview; return { done: r.done, error: r.error, frame: Math.round(r.frame) }; });
           expect(state.error).toBeNull();
           if (!state.done) await page.screenshot({ path: testInfo.outputPath(`${label}-native-${state.frame}.png`) });
+          if(options.objectCloseups&&!state.done&&frame===options.frames[0]) for(const tag of options.objectCloseups){
+            const observed=await page.evaluate(async ({tag,options})=>{
+              const {frameSceneRoot}=await import("/tests/e2e/cutscene-surface-framing.js");
+              const p=window.storyProbe,root=p.director.activeCutscene.packageRuntime.sceneObjects.objects.get(tag)?.root;
+              if(!root)throw Error(`Missing owned object ${tag}`);
+              p.faceReview.closeupFrames=0;
+              p.faceReview.restoreCamera=frameSceneRoot(root,()=>p.faceReview.closeupFrames++,{distance:4,yOffset:.65,...options});
+              return {enabled:root.isEnabled(),meshCount:root.getChildMeshes().length,position:root.getAbsolutePosition().asArray()};
+            },{tag,options:options.objectCloseupOptions||{}});
+            expect(observed.enabled).toBe(true);expect(observed.meshCount).toBeGreaterThan(0);
+            try{
+              await page.waitForFunction(()=>window.storyProbe.faceReview.closeupFrames>=2);
+              await page.screenshot({path:testInfo.outputPath(`diagnostic-${label}-${tag}.png`)});
+            } finally { await page.evaluate(()=>window.storyProbe.faceReview.restoreCamera()); }
+          }
+          if(options.inspectLightMeshes&&!state.done&&frame===options.frames[0]){
+            await page.evaluate(async()=>{
+              const {frameSceneRoot}=await import("/tests/e2e/cutscene-surface-framing.js"),p=window.storyProbe;
+              const root=p.director.activeCutscene.packageRuntime.sceneObjects.objects.get("BIK0").root;
+              p.faceReview.closeupFrames=0;
+              p.faceReview.restoreCamera=frameSceneRoot(root,()=>p.faceReview.closeupFrames++,{localCamera:[3,3,-6],localTarget:[0,.4,-2]});
+            });
+            try{
+              await page.waitForFunction(()=>window.storyProbe.faceReview.closeupFrames>=3);
+              await page.screenshot({path:testInfo.outputPath(`diagnostic-${label}-lights-on.png`)});
+              await page.evaluate(()=>{const p=window.storyProbe;p.faceReview.closeupFrames=0;for(const [tag,o] of p.director.activeCutscene.packageRuntime.sceneObjects.objects)if(tag.startsWith("RY"))o.root.setEnabled(false);});
+              await page.waitForFunction(()=>window.storyProbe.faceReview.closeupFrames>=3);
+              await page.screenshot({path:testInfo.outputPath(`diagnostic-${label}-lights-off.png`)});
+            } finally { await page.evaluate(()=>{const p=window.storyProbe;for(const [tag,o] of p.director.activeCutscene.packageRuntime.sceneObjects.objects)if(tag.startsWith("RY"))o.root.setEnabled(true);p.faceReview.restoreCamera();}); }
+          }
           if(options.geometryMask&&!state.done&&frame===180){
             const masks=await page.evaluate(()=>{
               const p=window.storyProbe,r=p.director.activeCutscene.packageRuntime;
@@ -597,10 +652,53 @@ export async function reviewStoryFaces(page, testInfo, character) {
       expect(restored.avatar).toBe(prior.avatar);
       restored.position.forEach((v, i) => expect(v).toBeCloseTo(prior.position[i], 3));
       if(options.verifyView)restored.view.forEach((v,i)=>expect(v).toBeCloseTo(prior.view[i],4));
+      // Diagnostic combat presentation only: actual trigger/result progression
+      // is covered separately by story-harbor-bikers.js.
+      for(const combatId of options.combatScenes||[]){
+        const props=await page.evaluate(async id=>{
+          const p=window.storyProbe,tx={area:"MFSY"};
+          // This is a presentation-only probe, not the natural trigger that
+          // normally places the player at the alley before combat begins.
+          p.lifecycle.resetPlayer(p.lifecycle.vectorFromArray([-92,0,25]),0,{persist:false});
+          p.faceReview.combatTransaction=tx;
+          await p.regions.controller.presentation.adapters.showCombat({id,token:"diagnostic-props",ready:true},tx);
+          const roots=[...p.combatRuntime.active.objects.objects].map(([tag,object])=>({tag,root:object.root}));
+          p.faceReview.combatRoots=roots;
+          p.faceReview.combatMaterials=[...new Set(roots.flatMap(({root})=>root.getChildMeshes().map(mesh=>mesh.material).filter(Boolean)))];
+          p.faceReview.combatFrame=p.lifecycle.scene.getFrameId();
+          return roots.map(({tag,root})=>({tag,enabled:root.isEnabled(),meshes:root.getChildMeshes().length}));
+        },combatId);
+        expect(props.map(p=>p.tag).sort()).toEqual(["BIK0","BIK1","BIK2","RY00","RY01","RY10","RY11","RY20","RY21"]);
+        expect(props.every(p=>p.enabled&&p.meshes>0)).toBe(true);
+        await page.waitForFunction(()=>window.storyProbe.lifecycle.scene.getFrameId()>window.storyProbe.faceReview.combatFrame+2);
+        await page.screenshot({path:testInfo.outputPath(`diagnostic-${combatId.replaceAll(".","-")}.png`)});
+        if(options.cameraSeparation){
+          const separation=await page.evaluate(async()=>{
+            const {Vector3,Matrix}=await import("/node_modules/@babylonjs/core/index.js"),p=window.storyProbe;
+            const scene=p.lifecycle.scene,camera=scene.activeCamera,engine=scene.getEngine(),e=p.combatRuntime.encounter;
+            const project=actor=>Vector3.Project(actor.position().add(new Vector3(0,1,0)),Matrix.Identity(),scene.getTransformMatrix(),camera.viewport.toGlobal(engine.getRenderWidth(),engine.getRenderHeight()));
+            const player=project(e.playerActor),target=project(e.enemyActor);
+            return {player:player.asArray(),target:target.asArray(),width:engine.getRenderWidth()};
+          });
+          expect(Math.abs(separation.player[0]-separation.target[0])).toBeGreaterThan(separation.width*.15);
+          expect(separation.target[0]).toBeGreaterThan(0);expect(separation.target[0]).toBeLessThan(separation.width);
+        }
+        const disposed=await page.evaluate(()=>{
+          const p=window.storyProbe;
+          p.combatRuntime.finish(p.faceReview.combatTransaction);
+          return {roots:p.faceReview.combatRoots.map(({root})=>root.isDisposed()),
+            materials:p.faceReview.combatMaterials.map(material=>!p.lifecycle.scene.materials.includes(material))};
+        });
+        expect(disposed.roots.every(Boolean)).toBe(true);expect(disposed.materials.every(Boolean)).toBe(true);
+      }
       const after = await saved();
       expect(after.character.storyFlags).toEqual(before.character.storyFlags);
       expect(after.character.yen).toBe(before.character.yen);
       expect(after.inventory).toEqual(before.inventory);
+      if(options.viewport&&previousViewport){
+        await page.evaluate(()=>{const el=document.getElementById("show-debug");el.checked=window.storyProbe.previousDebugVisibility;el.dispatchEvent(new Event("change",{bubbles:true}));});
+        await page.setViewportSize(previousViewport);
+      }
     }
   } finally {
     await page.evaluate(() => { window.storyProbe.restoreFaceReviewDispatch(); });

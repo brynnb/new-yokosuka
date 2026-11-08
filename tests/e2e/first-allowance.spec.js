@@ -33,6 +33,7 @@ import {useStoryInspectable} from "./story-object-input.js";
 import {verifySavedScrollLearning} from "./story-move-learning.js";
 import {placeAtHeartbeatsApproach,reviewHeartbeatsPresentation,inspectHeartbeatsMotions,inspectHeartbeatsBarMotions,reviewHeartbeatsSecondExchange} from "./story-heartbeats-presentation.js";
 import { reviewStoryFaces } from "./story-face-presentation.js";
+import { reviewStoryAmbient } from "./story-ambient-review.js";
 import { reviewTattooIntroduction } from "./story-tattoo-presentation.js";
 import { reviewStoryFight } from "./story-combat-review.js";
 import { fightStoryAmbush } from "./story-fight-input.js";
@@ -42,6 +43,7 @@ import { reviewNozomiPhotoPlanes,verifyNozomiPhotoProgression } from "./story-ph
 test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated Story prototype server and offline assets");
 
 const resumeId = Number(process.env.NEW_YOKOSUKA_STORY_RESUME_ID || 0);
+const naturalOpening = process.env.NEW_YOKOSUKA_NATURAL_OPENING_E2E === "true";
 async function enterStoryWorld(page, characterName) {
   await expect(page.getByLabel("Open the New Yokosuka menu")).toBeVisible({ timeout: 120_000 });
   await page.keyboard.press("Enter");
@@ -51,12 +53,13 @@ async function enterStoryWorld(page, characterName) {
 }
 test.afterEach(async({page},info)=>{
   if(info.status===info.expectedStatus)return;
-  const state=await page.evaluate(()=>{const p=window.storyProbe,l=p?.lifecycle;return{notices:p?.notices,errors:p?.errors,sceneErrors:p?.sceneErrors,status:p?.regions?.controller.status,world:l?.worldRuntime.activeWorld.id,ready:l?.worldRuntime.ready,switching:l?.worldRuntime.switching,movementLocked:l?.getController()?.movementLocked,actorLeases:p?.actorLeases?.slice(-4),rejected:p?.scriptRejections,presence:p?.presencePublishes?.slice(-5)};}).catch(()=>null);
+  const state=await page.evaluate(()=>{const p=window.storyProbe,l=p?.lifecycle;return{notices:p?.notices,errors:p?.errors,sceneErrors:p?.sceneErrors,status:p?.regions?.controller.status,world:l?.worldRuntime.activeWorld.id,ready:l?.worldRuntime.ready,switching:l?.worldRuntime.switching,movementLocked:l?.getController()?.movementLocked,actorLeases:p?.actorLeases?.slice(-4),dispatches:p?.regionDispatches?.slice(-5),rejected:p?.scriptRejections,presence:p?.presencePublishes?.slice(-5)};}).catch(()=>null);
   console.info("Story failure state:",JSON.stringify(state));
 });
-const variants = resumeId ? [["resume", false]] : [["complete", false], ["skip", false], ["complete", true]];
+const variants = naturalOpening ? [["complete", true]] : resumeId ? [["resume", false]] : [["complete", false], ["skip", false], ["complete", true]];
 for (const [ending, freshOpening] of variants) test(resumeId ? "investigation continues from a saved checkpoint" : `first allowance renders and persists after ${ending}${freshOpening ? " from a fresh opening" : ""}`, async ({ page }, testInfo) => {
-  test.setTimeout(process.env.NEW_YOKOSUKA_MIRROR_RETURN_E2E === "true" ? 600_000 : process.env.NEW_YOKOSUKA_CHEN_E2E === "true" || process.env.NEW_YOKOSUKA_FAMILY_E2E === "true" || process.env.NEW_YOKOSUKA_HANDGUARD_E2E === "true" || process.env.NEW_YOKOSUKA_GUI_ZHANG_E2E === "true" ? 360_000 : process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
+  test.setTimeout(naturalOpening ? 1_800_000 : process.env.NEW_YOKOSUKA_MIRROR_RETURN_E2E === "true" ? 600_000 : process.env.NEW_YOKOSUKA_CHEN_E2E === "true" || process.env.NEW_YOKOSUKA_FAMILY_E2E === "true" || process.env.NEW_YOKOSUKA_HANDGUARD_E2E === "true" || process.env.NEW_YOKOSUKA_GUI_ZHANG_E2E === "true" ? 360_000 : process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
+  if(naturalOpening&&resumeId)throw Error("Natural opening requires a newly created isolated Story character");
   const errors = [];
   const musicResponses = [];
   page.on("response", response => { if(/bgm119|bgm063|bgm064|bgm032|bgm067|bgm070|bgm095|bgm200|bgm084|bgm013|bgm120|bgm106|bgm107|nozomi-home-cdda05/.test(response.url())) musicResponses.push({url:response.url(),status:response.status()}); });
@@ -91,6 +94,28 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     localStorage.setItem("new-yokosuka.guest-token.v1", token);
     localStorage.setItem("new-yokosuka.quick-play-confirmations.v1", "3");
   }, guestToken);
+  if (process.env.NEW_YOKOSUKA_FIRST_GATE_E2E === "true") await page.addInitScript(() => {
+    window.storyGateVoices=[];
+    const play=HTMLMediaElement.prototype.play;
+    HTMLMediaElement.prototype.play=function(...args){
+      if (this.src.includes("SA1082A005")) {
+        const attempt={playing:false,ended:false,muted:this.muted,volume:this.volume,error:null};
+        window.storyGateVoices.push(attempt);
+        this.addEventListener("playing",()=>{attempt.playing=true;},{once:true});
+        this.addEventListener("ended",()=>{attempt.ended=true;},{once:true});
+        const result=play.apply(this,args);
+        Promise.resolve(result).catch(error=>{attempt.error=error.name;});
+        return result;
+      }
+      return play.apply(this,args);
+    };
+  });
+  if (process.env.NEW_YOKOSUKA_GAMEPAD_QTE_E2E === "true" || process.env.NEW_YOKOSUKA_CONNECTED_GAMEPAD_QTE_E2E === "true") await page.addInitScript(() => {
+    localStorage.setItem("new-yokosuka.gamepad-preferences.v1", JSON.stringify({enabled:true}));
+    window.storyTestPad={id:"Standard Story Test Pad",index:0,connected:true,mapping:"standard",axes:[0,0,0,0],
+      buttons:Array.from({length:16},()=>({pressed:false,value:0}))};
+    Object.defineProperty(navigator,"getGamepads",{configurable:true,value:()=>[window.storyTestPad]});
+  });
   if(process.env.NEW_YOKOSUKA_CARGO_TRACE_E2E === "true")await page.addInitScript(()=>{
     const original=WebSocket.prototype.send,seen=new WeakSet();
     const trace=window.storyCargoTrace={sent:[],received:[]};
@@ -154,7 +179,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     ["scripts/ScriptEventController", `const probeFailure = ScriptEventController.prototype.fail;
       ScriptEventController.prototype.fail = function(error,...args) { window.storyProbe.sceneErrors.push(error.message); return probeFailure.call(this,error,...args); };
       const probeRejected=ScriptEventController.prototype.handleRejected;
-      ScriptEventController.prototype.handleRejected=function(message,...args){if(window.storyProbe)(window.storyProbe.scriptRejections||=[]).push({at:performance.now(),message,frame:window.storyProbe.lastRegionFrame,presence:window.storyProbe.presencePublishes?.slice(-5)});return probeRejected.call(this,message,...args);};`],
+      ScriptEventController.prototype.handleRejected=function(message,...args){if(window.storyProbe)(window.storyProbe.scriptRejections||=[]).push({at:performance.now(),message,selector:this.pendingStart?.selector,frame:window.storyProbe.lastRegionFrame,presence:window.storyProbe.presencePublishes?.slice(-5)});return probeRejected.call(this,message,...args);};`],
     ["interactions/WorldInteractionDispatcher", `const probeDispatcherStart = WorldInteractionDispatcher.prototype.start;
       WorldInteractionDispatcher.prototype.start = function(...args) { window.storyProbe.interactions=this; return probeDispatcherStart.apply(this,args); };`],
     ["scripts/StoryCombatRuntime", `const probeCombatShow = StoryCombatRuntime.prototype.show;
@@ -226,7 +251,14 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       const probeStart = NativeCutsceneDirector.prototype.start;
       NativeCutsceneDirector.prototype.start = function(cutscene,...args) { window.storyProbe.director = this; window.storyProbe.starts.push(cutscene.id); return probeStart.call(this,cutscene,...args).catch(error => { window.storyProbe.sceneErrors.push(error.message); throw error; }); };`],
     ["scripts/StoryRegionRuntime", `const probeUpdate = StoryRegionRuntime.prototype.update;
-      StoryRegionRuntime.prototype.update = function(...args) { window.storyProbe.regions = this; window.storyProbe.lastRegionFrame = args[0]; return probeUpdate.apply(this,args); };`],
+      StoryRegionRuntime.prototype.update = function(...args) {
+        const p=window.storyProbe,f=args[0],v=f.playerPosition,before=new Set(this.inside);
+        p.regions=this;p.lastRegionFrame={...f,playerPosition:v?[v.x,v.y,v.z]:null};
+        const result=probeUpdate.apply(this,args);
+        if(result)(p.regionDispatches||=[]).push({at:performance.now(),frame:p.lastRegionFrame,
+          entered:[...this.inside].filter(id=>!before.has(id)),flags:{...this.getCharacter()?.storyFlags}});
+        return result;
+      };`],
     ["scripts/NativeStoryRuntime", `const probeStoryAutomatic = NativeStoryRuntime.prototype.updateAutomatic;
       NativeStoryRuntime.prototype.updateAutomatic = function(...args) { window.storyProbe.nativeAutomatic = {enabled:args[0].enabled,status:this.scriptedEvents.status,busy:this.scriptedEvents.busy,startup:this.isStartupPresentationActive()}; return probeStoryAutomatic.apply(this,args); };`],
   ]) await page.route(`**/play/${file}.js*`, async route => {
@@ -248,22 +280,1024 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   await enterStoryWorld(page,character.name);
   const openingScenes = ["S1-OP02-00", "S1-000", "S1-OP00-MAIL", "S1-OP00-DREAM"];
   if (freshOpening) {
-    // Exercise real loading and the explicit player skip, not the completion
-    // API or a fake director result. Natural intro timing is a separate check.
-    for (const id of openingScenes) {
+    // Both modes use the real director and server. The opt-in long run lets
+    // each film advance without seeking or skipping, sampling rendered frames.
+    for (const [index,id] of openingScenes.entries()) {
       await page.waitForFunction(id => window.storyProbe.director?.activeCutscene?.cutscene.id === id
         || window.storyProbe.errors.length || window.storyProbe.sceneErrors.length, id, { timeout: 120_000 });
       expect(await page.evaluate(() => [...window.storyProbe.errors, ...window.storyProbe.sceneErrors])).toEqual([]);
       const before = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
       expect(before.character.openingCompleted).toBe(false);
-      await page.screenshot({ path: testInfo.outputPath(`${id}-before-skip.png`) });
-      await page.keyboard.press("KeyX");
+      await page.screenshot({ path: testInfo.outputPath(`${id}-${naturalOpening?"start":"before-skip"}.png`) });
+      if(!naturalOpening){await page.keyboard.press("KeyX");continue;}
+      const started=Date.now(),next=openingScenes[index+1];let sample=0;
+      console.info(`Natural opening started ${id}`);
+      while(true){
+        await page.waitForTimeout(15_000);
+        const state=await page.evaluate(next=>{
+          const p=window.storyProbe,a=p.director?.activeCutscene,r=a?.packageRuntime;
+          return {id:a?.cutscene?.id,activity:r?.activityRuntime?.active?.record?.activityId,
+            frame:r?.activityRuntime?.active?.currentFrame,sceneFrame:p.lifecycle?.scene?.getFrameId(),
+            nextStarted:next?p.starts.includes(next):p.ready,errors:[...p.errors,...p.sceneErrors]};
+        },next);
+        expect(state.errors).toEqual([]);
+        if(state.nextStarted)break;
+        if(Date.now()-started>900_000)throw Error(`Natural opening ${id} exceeded 15 minutes`);
+        if(state.id===id){
+          console.info(`Natural opening ${id}`,JSON.stringify({elapsed:Math.round((Date.now()-started)/1000),...state}));
+          await page.screenshot({path:testInfo.outputPath(`${id}-natural-${String(++sample).padStart(2,"0")}.png`)});
+        }
+      }
     }
   }
   await page.waitForFunction(() => window.storyProbe.ready || window.storyProbe.errors.length, null, { timeout: 120_000 });
   expect(await page.evaluate(() => window.storyProbe.errors)).toEqual([]);
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
+    if(process.env.NEW_YOKOSUKA_EARNED_SWORD_INVENTORY_E2E === "true"){
+      expect(detail.inventory.some(item=>item.key==="dojo_sword")).toBe(true);
+      await page.locator('#inventory-button').click();
+      const dialog=page.getByRole('dialog',{name:'Inventory',exact:true});
+      const sword=dialog.getByRole('img',{name:'Hazuki Sword',exact:true});
+      await expect(sword).toBeVisible();
+      await expect.poll(()=>sword.evaluate(img=>img.complete&&img.naturalWidth)).toBe(256);
+      await page.screenshot({path:testInfo.outputPath('earned-hazuki-sword-inventory.png')});
+      await dialog.getByRole('button',{name:'Close inventory'}).click();
+      return;
+    }
+    if(process.env.NEW_YOKOSUKA_TELEPHONE_MATERIAL_AUDIT_E2E === "true"){
+      test.setTimeout(180_000);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)).toBe('dobuita');
+      const audit=await page.evaluate(()=>{
+        const roots=window.storyProbe.lifecycle.sceneState.currentMeshes.filter(root=>root._runtimePlacementRecord?.runtime?.objectTag==='TEL0');
+        return roots.map(root=>({name:root.name,meshes:root.getChildMeshes().map(mesh=>({name:mesh.name,vertices:mesh.getTotalVertices(),
+          textureId:mesh.metadata?.mt5TextureId,hasTexture:!!mesh.material?.diffuseTexture,
+          material:mesh.material?.name,color:mesh.material?.diffuseColor?.asArray(),
+          vertexColor:mesh.isVerticesDataPresent('color')}))}));
+      });
+      console.info('Telephone material audit:',JSON.stringify(audit));expect(audit.length).toBeGreaterThan(0);
+      const visibleMeshes=audit.flatMap(root=>root.meshes).filter(mesh=>mesh.vertices>0);
+      expect(visibleMeshes.length).toBeGreaterThan(0);
+      expect(visibleMeshes.every(mesh=>mesh.textureId&&mesh.hasTexture)).toBe(true);
+      await page.evaluate(()=>{const l=window.storyProbe.lifecycle,c=l.getController(),root=l.sceneState.currentMeshes.find(r=>r._runtimePlacementRecord?.runtime?.objectTag==='TEL0');
+        const b=root.getHierarchyBoundingVectors(true),center=b.min.add(b.max).scale(.5),p=c.collider.position;
+        c.setFirstPerson(true);c.cameraYaw=Math.atan2(p.x-center.x,p.z-center.z);
+        c.cameraPitch=Math.atan2(p.y+c.options.firstPersonHeadHeight-center.y,Math.hypot(center.x-p.x,center.z-p.z));c.updateCamera(1);
+      });
+      await page.waitForTimeout(500);await page.screenshot({path:testInfo.outputPath('dobuita-original-phone-textures.png')});
+      return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_DIRECTORY_E2E === "true"){
+      test.setTimeout(720_000);
+      await verifyAmihamaDirectory(page,testInfo,character,{earned:true});
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_CHEN_PHONE_PRESENTATION_E2E === "true"){
+      test.setTimeout(180_000);
+      expect(character.storyFlags['story.s1.master-chen-phone.completed']).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)).toBe('interior');
+      await page.evaluate(async()=>{const p=window.storyProbe.regions.controller.presentation;
+        const root=window.storyProbe.lifecycle.sceneState.currentMeshes.find(r=>r._runtimePlacement===true&&r._runtimePlacementRecord?.runtime?.objectTag==='TEL_');
+        const receiver=root?._mt5Nodes?.find(node=>(node.flag&0xffff)===3)?.mesh;
+        if(!receiver)throw Error('Missing original TEL_ receiver');
+        window.chenReceiverSnapshot={receiver,parent:receiver.parent,position:receiver.position.clone()};
+        p.begin({area:'JOMO'});await p.execute({name:'play_sequence',arguments:[{type:'string',isStatic:true,value:'s1.jomo.master-chen-phone.start'}]});
+        window.chenPhoneObserver=window.storyProbe.lifecycle.scene.onBeforeRenderObservable.add(()=>p.update(1/60));
+      });
+      await page.waitForTimeout(1800);await page.screenshot({path:testInfo.outputPath('chen-phone-held-pose.png')});
+      expect(await page.evaluate(()=>{const stage=window.storyProbe.authoredScene.active,s=window.chenReceiverSnapshot;
+        return stage.receiverAttached&&stage.telephoneReceiver.active.receiver===s.receiver&&s.receiver.parent!==s.parent;})).toBe(true);
+      await page.evaluate(async()=>{const p=window.storyProbe.regions.controller.presentation;
+        window.storyProbe.lifecycle.scene.onBeforeRenderObservable.remove(window.chenPhoneObserver);
+        await p.execute({name:'play_sequence',arguments:[{type:'string',isStatic:true,value:'s1.jomo.master-chen-phone.finish'}]});p.rollback('presentation-check');
+      });
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(await page.evaluate(()=>{const s=window.chenReceiverSnapshot;return s.receiver.parent===s.parent&&s.receiver.position.equalsWithEpsilon(s.position);})).toBe(true);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_CHEN_PHONE_E2E === "true"){
+      test.setTimeout(720_000);
+      await verifyEarnedChenPhone(page,testInfo,character);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_XIA_E2E === "true"){
+      test.setTimeout(720_000);
+      expect(character.storyFlags['notebook.s1.russiya-translator']).toBe(true);
+      await verifyXiaTranslation(page,testInfo,character,{earned:true});
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_GAO_AFTERMATH_REPLAY_E2E === "true"){
+      test.setTimeout(240_000);
+      expect(character.storyFlags["story.s1.gao-rescue.completed"]).toBe(true);
+      if(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)!=='sakuragaoka'){
+        await page.locator('#travel-button').click();await page.getByRole('option',{name:'Sakuragaoka',exact:true}).click();
+      }
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==='sakuragaoka'&&window.storyProbe.lifecycle.worldRuntime.ready,null,{timeout:120_000});
+      // Presentation-only replay: do not alter the already committed rescue.
+      await page.evaluate(async()=>{const presentation=window.storyProbe.regions.controller.presentation;
+        presentation.begin({area:'JD00'});
+        await presentation.execute({name:'play_sequence',arguments:[{type:'string',isStatic:true,value:'s1.jd00.gao-aftermath.start'}]});
+        const scene=window.storyProbe.lifecycle.scene;
+        window.gaoAftermathObserver=scene.onBeforeRenderObservable.add(()=>presentation.update(1/60));
+      });
+      await page.waitForTimeout(1000);
+      await page.screenshot({path:testInfo.outputPath('gao-aftermath-reframed.png')});
+      await page.evaluate(async()=>{const presentation=window.storyProbe.regions.controller.presentation;
+        window.storyProbe.lifecycle.scene.onBeforeRenderObservable.remove(window.gaoAftermathObserver);
+        await presentation.execute({name:'play_sequence',arguments:[{type:'string',isStatic:true,value:'s1.jd00.gao-aftermath.finish'}]});
+        presentation.rollback('presentation-check');
+      });
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+      expect(saved.character.storyFlags["story.s1.gao-rescue.completed"]).toBe(true);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_GAO_E2E === "true"){
+      test.setTimeout(720_000);
+      await verifyGaoRescue(page,testInfo,character,{earned:true});
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_FUKU_GATE_E2E === "true"){
+      test.setTimeout(420_000);
+      expect(character.storyFlags["story.s1.chinese-letter.completed"]).toBe(true);
+      expect(character.storyFlags["story.s1.fuku-letter-gate.completed"]).not.toBe(true);
+      await page.locator("#story-wait-button").click();
+      await page.getByRole("option",{name:"Wait until tomorrow morning",exact:true}).click();
+      await page.getByRole("button",{name:"Wait until tomorrow morning",exact:true}).click();
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      await enterInteriorDoor(page,{world:"exterior",filename:"S1_JOMO_DR15_016.MT5",fromWorld:"interior",reposition:false});
+      await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+      await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+      const positions=[];let started=false;
+      try{for(let i=0;i<100;i++){
+        const state=await page.evaluate(()=>{const p=window.storyProbe,c=p.lifecycle.getController(),v=c.collider.position;
+          if(p.regions.controller.status==="idle"){c.cameraYaw=Math.atan2(-(.8-v.x),-(3.2-v.z));c.updateCamera(1);}
+          return {position:v.asArray(),id:p.director?.activeCutscene?.cutscene.id,errors:p.sceneErrors};});
+        positions.push(state.position);expect(state.errors).toEqual([]);
+        if(state.id==="story-s1-fuku-letter-gate"){started=true;break;}
+        await page.waitForTimeout(300);
+      }}finally{await page.keyboard.up("KeyW");}
+      expect(started,`Walking from the house to the gate starts Fuku's conversation: ${JSON.stringify(positions.slice(-5))}`).toBe(true);
+      console.info("Natural Fuku gate approach:",JSON.stringify({start:positions[0],end:positions.at(-1),samples:positions.length}));
+      await page.waitForFunction(()=>[...(window.storyProbe.director?.activeCutscene?.packageRuntime.audio.active?.elements||[])]
+        .some(r=>r.kind==="voice"&&r.command.audio.voiceId.startsWith("A0139")&&r.audio.currentTime>0&&!r.audio.paused),null,{timeout:30_000});
+      await page.screenshot({path:testInfo.outputPath("earned-fuku-letter-gate.png")});
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.fuku-letter-gate.completed"]),{timeout:120_000}).toBe(true);
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      let saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+      expect(saved.inventory.filter(item=>item.key==="chinese_letter").map(item=>item.quantity)).toEqual([1]);
+      expect(saved.character.yen).toBe(character.yen);expect(saved.character.currentHp).toBe(character.currentHp);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+      expect(saved.character.storyFlags["story.s1.fuku-letter-gate.completed"]).toBe(true);
+      expect(saved.inventory.filter(item=>item.key==="chinese_letter").map(item=>item.quantity)).toEqual([1]);
+      expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-fuku-letter-gate"))).toBe(false);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_CHINESE_LETTER_E2E === "true"){
+      test.setTimeout(420_000);
+      expect(character.storyFlags["story.s1.ine-letter-invitation"]).toBe(true);
+      expect(character.storyFlags["story.s1.chinese-letter.completed"]).not.toBe(true);
+      await walkToLandmark(page,testInfo,{world:"exterior",label:"Hazuki house door",targets:[[-1,-22.5],[-7,-22.5],[-7,4],[3,4],[3,2]]});
+      await enterInteriorDoor(page,{world:"interior",filename:"S1_JHD0_DR15_016.MT5",fromWorld:"exterior",reposition:false});
+      await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-chinese-letter"||window.storyProbe.sceneErrors.length,null,{timeout:90_000});
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      await page.waitForFunction(()=>[...(window.storyProbe.director?.activeCutscene?.packageRuntime.audio.active?.elements||[])]
+        .some(r=>r.kind==="voice"&&r.audio.currentTime>0&&!r.audio.paused),null,{timeout:30_000});
+      await page.screenshot({path:testInfo.outputPath("earned-chinese-letter.png")});
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.chinese-letter"]),{timeout:150_000}).toBe(true);
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      let saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+      expect(saved.character.storyFlags["story.s1.chinese-letter.completed"]).toBe(true);
+      expect(saved.inventory.filter(item=>item.key==="chinese_letter").map(item=>item.quantity)).toEqual([1]);
+      expect(saved.character.yen).toBe(character.yen);expect(saved.character.currentHp).toBe(character.currentHp);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+      expect(saved.character.storyFlags["notebook.s1.chinese-letter"]).toBe(true);
+      expect(saved.inventory.filter(item=>item.key==="chinese_letter").map(item=>item.quantity)).toEqual([1]);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_CARTEL_DOJO_E2E === "true"){
+      test.setTimeout(720_000);
+      expect(character.storyFlags["story.s1.charlie-tattoo-confrontation.completed"]).toBe(true);
+      expect(character.storyFlags["story.s1.cartel-dojo.completed"]).not.toBe(true);
+      const before=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).worldState.gameTimeMs;
+      await page.locator("#story-wait-button").click();await page.getByRole("option",{name:"Wait until tomorrow morning",exact:true}).click();
+      await page.getByRole("button",{name:"Wait until tomorrow morning",exact:true}).click();
+      await expect.poll(async()=>new Date((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).worldState.gameTimeMs).getUTCHours()).toBe(8);
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const afterWait=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).worldState.gameTimeMs;
+      expect(Math.floor(afterWait/86_400_000)).toBe(Math.floor(before/86_400_000)+1);
+      // Use the actual player-facing fast-travel picker; no test-only world or
+      // position reset is used to approach the dojo.
+      await page.locator("#travel-button").click();await page.getByRole("option",{name:"Hazuki Residence Grounds",exact:true}).click();
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="exterior"&&window.storyProbe.lifecycle.worldRuntime.ready,null,{timeout:120_000});
+      const targets=[[-7,-22.5],[2,-22.5]],samples=[];let next=0,started=false;
+      await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+      await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+      try{for(let i=0;i<200;i++){
+        const state=await page.evaluate(([x,z])=>{const p=window.storyProbe,c=p.lifecycle.getController(),v=c.collider.position;
+          if(p.regions.controller.status==="idle"){c.cameraYaw=Math.atan2(-(x-v.x),-(z-v.z));c.updateCamera(1);}
+          return {position:v.asArray(),status:p.regions.controller.status,combat:!!p.combatRuntime?.active?.view?.ready,errors:p.sceneErrors};},targets[next]);
+        samples.push(state.position);expect(state.errors).toEqual([]);if(state.combat){started=true;break;}
+        if(next<targets.length-1&&Math.hypot(state.position[0]-targets[next][0],state.position[2]-targets[next][1])<.8)next++;
+        if(i>20&&state.status==="idle"&&Math.hypot(state.position[0]-samples[i-10][0],state.position[2]-samples[i-10][2])<.15)
+          throw Error(`Natural cartel-dojo approach stopped: ${JSON.stringify({state,target:targets[next]})}`);
+        await page.waitForTimeout(300);
+      }}finally{await page.keyboard.up("KeyW");}
+      expect(started,"walking onto the dojo floor starts practice").toBe(true);
+      console.info("Earned cartel-dojo approach:",JSON.stringify({start:samples[0],end:samples.at(-1),samples:samples.length}));
+      expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.practice)).toBe(true);
+      await page.screenshot({path:testInfo.outputPath("earned-cartel-dojo-practice.png")});
+      await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyI");
+      try{for(let i=0;i<70&&await page.evaluate(()=>!!window.storyProbe.combatRuntime?.active?.view);i++){
+        await page.keyboard.press("KeyK");await page.waitForTimeout(500);
+      }}finally{await page.keyboard.up("KeyI");}
+      for(const id of ["story-s1-fuku-resolve","story-s1-ine-letter-invitation"]){
+        await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===id||window.storyProbe.sceneErrors.length,id,{timeout:150_000});
+        expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+        await page.waitForFunction(()=>[...(window.storyProbe.director?.activeCutscene?.packageRuntime.audio.active?.elements||[])]
+          .some(r=>r.kind==="voice"&&r.audio.currentTime>0&&!r.audio.paused),null,{timeout:30_000});
+        await page.screenshot({path:testInfo.outputPath(`earned-${id}.png`)});
+      }
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.ine-letter-invitation"]),{timeout:120_000}).toBe(true);
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const saved=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(saved.storyFlags["story.s1.cartel-dojo.completed"]).toBe(true);expect(saved.yen).toBe(character.yen);expect(saved.currentHp).toBe(character.currentHp);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["story.s1.ine-letter-invitation"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_NOZOMI_DESCENT_E2E === "true"){
+      test.setTimeout(420_000);
+      expect(character.storyFlags["story.s1.charlie-tattoo-confrontation.completed"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.nozomi-worried"]).not.toBe(true);
+      await enterInteriorDoor(page,{world:"dobuita",filename:"S1_TATQ_DR01_017.MT5",fromWorld:"tatq",reposition:false});
+      const targets=[[101.5,101],[102.5,102.3],[103.25,103.35],[104.2,103.35],[104.2,102.45],[102.8,100.65],[101.8,99.4],[101.22,96.49]];
+      await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+      await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+      const samples=[];let next=0,triggered=false;
+      try{
+        for(let i=0;i<300;i++){
+          const state=await page.evaluate(([x,z])=>{const p=window.storyProbe,c=p.lifecycle.getController(),v=c.collider.position;
+            if(p.regions.controller.status==="idle"){c.cameraYaw=Math.atan2(-(x-v.x),-(z-v.z));c.updateCamera(1);}
+            return {position:v.asArray(),world:p.lifecycle.worldRuntime.activeWorld.id,status:p.regions.controller.status,
+              cutscene:p.director?.activeCutscene?.cutscene.id,errors:p.sceneErrors};},targets[next]);
+          samples.push(state.position);expect(state.errors).toEqual([]);expect(state.world).toBe("dobuita");
+          if(state.cutscene==="story-s1-nozomi-after-parlor"){triggered=true;break;}
+          if(next<targets.length-1&&Math.hypot(state.position[0]-targets[next][0],state.position[2]-targets[next][1])<.45)next++;
+          if(i>20&&state.status==="idle"&&Math.hypot(state.position[0]-samples[i-10][0],state.position[2]-samples[i-10][2])<.15)
+            throw Error(`Natural Nozomi descent stopped: ${JSON.stringify({state,target:targets[next]})}`);
+          await page.waitForTimeout(300);
+        }
+      }finally{await page.keyboard.up("KeyW");}
+      expect(triggered,"walking down the stairs starts Nozomi's scene").toBe(true);
+      console.info("Natural Nozomi descent:",JSON.stringify({start:samples[0],end:samples.at(-1),samples:samples.length}));
+      await page.waitForFunction(()=>[...(window.storyProbe.director?.activeCutscene?.packageRuntime.audio.active?.elements||[])]
+        .some(record=>record.kind==="voice"&&record.command.audio.voiceId.startsWith("01YOB")&&record.audio.currentTime>0&&!record.audio.paused),null,{timeout:30_000});
+      await page.screenshot({path:testInfo.outputPath("earned-nozomi-parlor-scene.png")});
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.nozomi-worried"]),{timeout:150_000}).toBe(true);
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const saved=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(saved.storyFlags["story.s1.nozomi-after-parlor.completed"]).toBe(true);expect(saved.yen).toBe(character.yen);expect(saved.currentHp).toBe(character.currentHp);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.nozomi-worried"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_CHARLIE_RETURN_E2E === "true"){
+      test.setTimeout(900_000);
+      expect(character.storyFlags["notebook.s1.charlie-return-tomorrow"]).toBe(true);
+      expect(character.storyFlags["story.s1.charlie-tattoo-confrontation.completed"]).not.toBe(true);
+      await enterInteriorDoor(page,{world:"dobuita",filename:"S1_TATQ_DR01_017.MT5",fromWorld:"tatq",reposition:false});
+      // Returning on the same night must not start tomorrow's encounter.
+      await enterInteriorDoor(page,{world:"tatq",doorSelector:46,fromWorld:"dobuita",reposition:false});
+      await page.waitForTimeout(2500);
+      expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-tattoo-introduction"))).toBe(false);
+      expect(await page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+      await enterInteriorDoor(page,{world:"dobuita",filename:"S1_TATQ_DR01_017.MT5",fromWorld:"tatq",reposition:false});
+      await walkToLandmark(page,testInfo,{world:"dobuita",label:"Okayama downstairs",arrivalRadius:.45,targets:[[101.5,101],[102.5,102.3],
+        [103.25,103.35],[104.2,103.35],[104.2,102.45],[102.8,100.65],[101.8,99.4],[101.22,96.49]]});
+      const time=async()=>new Date((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).worldState.gameTimeMs);
+      const originalDay=(await time()).getUTCDate();
+      for(const [label,hour] of [["Wait until tomorrow morning",8],["Wait until 2 p.m.",14]]){
+        await page.locator("#story-wait-button").click();await page.getByRole("option",{name:label,exact:true}).click();
+        await page.getByRole("button",{name:label,exact:true}).click();
+        await expect.poll(async()=>(await time()).getUTCHours(),{timeout:30_000}).toBe(hour);
+        await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+        await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      }
+      expect((await time()).getUTCDate()).toBe(originalDay+1);
+      await walkToLandmark(page,testInfo,{world:"dobuita",label:"Charlie return upstairs",arrivalRadius:.45,targets:[[101.8,99.4],
+        [102.8,100.65],[104.2,102.45],[104.2,103.35],[103.25,103.35],[102.5,102.3],[101.5,101],[100.4,99.9]]});
+      await enterInteriorDoor(page,{world:"tatq",doorSelector:46,fromWorld:"dobuita",reposition:false});
+      await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-tattoo-introduction"||window.storyProbe.sceneErrors.length,null,{timeout:90_000});
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime?.activityRuntime.active?.currentFrame>=200,null,{timeout:60_000});
+      await page.screenshot({path:testInfo.outputPath("earned-charlie-introduction.png")});
+      // Play the original introduction without seeking; answer only the real
+      // prompts, then allow the complete aftermath to finish naturally.
+      await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready||window.storyProbe.sceneErrors.length,null,{timeout:180_000});
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      for(const [index,button,key]of [[0,"Left","ArrowLeft"],[1,"A","Enter"]]){
+        await page.waitForFunction(({index,button})=>{const q=window.storyProbe.regions.controller.dialogue.qte?.active;
+          return window.storyProbe.regions.controller.active?.challengePrompt?.ready&&q?.index===index&&q.steps[q.index]?.buttons[0]===button;},{index,button},{timeout:15_000});
+        await page.keyboard.press(key);
+      }
+      await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-tattoo-aftermath"||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime?.activityRuntime.active?.currentFrame>=150,null,{timeout:60_000});
+      await page.screenshot({path:testInfo.outputPath("earned-charlie-aftermath.png")});
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie-cartel-appointment"]),{timeout:180_000}).toBe(true);
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const saved=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(saved.storyFlags["story.s1.charlie-tattoo-confrontation.completed"]).toBe(true);expect(saved.yen).toBe(character.yen);expect(saved.currentHp).toBe(character.currentHp);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.charlie-cartel-appointment"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_STAIR_ROUNDTRIP_E2E === "true"){
+      test.setTimeout(240_000);
+      const base=await page.evaluate(async()=>{const l=window.storyProbe.lifecycle,c=l.getController(),p=c.collider.position.clone(),
+        {nativeCollisionDisplacementAllowed}=await import('/src/ThirdPersonControllerRules.js'),{Vector3}=await import('/node_modules/@babylonjs/core/Maths/math.vector.js');
+        const delta=new Vector3(-5,0,0),meshes=c.collisionCandidates(p,p.add(delta));
+        return {handoffs:c.nativeCollisionHandoffs,roles:[...new Set(meshes.map(m=>m.metadata?.nativeCollisionFieldRole).filter(Boolean))],
+          throughWall:nativeCollisionDisplacementAllowed(meshes,p,delta,c.options.playerRadius)};});
+      expect(base.handoffs.length).toBeGreaterThan(0);expect(base.roles).toContain("base");expect(base.roles).not.toContain("alternate");expect(base.throughWall).toBe(false);
+      await walkToLandmark(page,testInfo,{world:"dobuita",label:"stair midpoint",arrivalRadius:.4,targets:[[101.8,99.4],[102.8,100.65]]});
+      const side=await page.evaluate(async()=>{const c=window.storyProbe.lifecycle.getController(),p=c.collider.position.clone(),
+        {nativeCollisionDisplacementAllowed}=await import('/src/ThirdPersonControllerRules.js'),{Vector3}=await import('/node_modules/@babylonjs/core/Maths/math.vector.js');
+        const delta=new Vector3(1.574,0,-1.234),meshes=c.collisionCandidates(p,p.add(delta));
+        return {roles:[...new Set(meshes.map(m=>m.metadata?.nativeCollisionFieldRole).filter(Boolean))],
+          throughSide:nativeCollisionDisplacementAllowed(meshes,p,delta,c.options.playerRadius)};});
+      expect(side.roles).toContain("alternate");expect(side.roles).not.toContain("base");expect(side.throughSide).toBe(false);
+      await walkToLandmark(page,testInfo,{world:"dobuita",label:"stair roundtrip ascent",arrivalRadius:.45,targets:[
+        [104.2,102.45],[104.2,103.35],[103.25,103.35],[102.5,102.3],[101.5,101],[100.4,99.9]]});
+      const top=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());expect(top[1]).toBeGreaterThan(2.5);
+      await page.screenshot({path:testInfo.outputPath("stair-roundtrip-top.png")});
+      await walkToLandmark(page,testInfo,{world:"dobuita",label:"stair roundtrip descent",arrivalRadius:.45,targets:[[101.5,101],[102.5,102.3],
+        [103.25,103.35],[104.2,103.35],[104.2,102.45],[102.8,100.65],[101.8,99.4],[101.22,96.49]]});
+      const ground=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());expect(ground[1]).toBeLessThan(.2);
+      const roles=await page.evaluate(()=>{const c=window.storyProbe.lifecycle.getController(),p=c.collider.position;return [...new Set(c.collisionCandidates(p,p).map(m=>m.metadata?.nativeCollisionFieldRole).filter(Boolean))];});
+      expect(roles).toContain("base");expect(roles).not.toContain("alternate");
+      await page.evaluate(()=>{const c=window.storyProbe.lifecycle.getController();c.cameraYaw=Math.PI/2;c.cameraPitch=0;c.updateCamera(1);});
+      await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");await page.waitForTimeout(3500);await page.keyboard.up("KeyW");
+      const stopped=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());
+      expect(stopped[0]).toBeLessThan(ground[0]-.5);expect(stopped[0]).toBeGreaterThan(97.2);
+      await page.screenshot({path:testInfo.outputPath("stair-roundtrip-ground-wall.png")});expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_TATTOO_VISIT_E2E === "true"){
+      test.setTimeout(480_000);
+      expect(character.storyFlags["notebook.s1.tattoo-parlor"]).toBe(true);
+      expect(character.storyFlags["story.s1.first-tattoo-visit.completed"]).not.toBe(true);
+      await walkToLandmark(page,testInfo,{world:"dobuita",label:"Okayama upstairs",arrivalRadius:.45,targets:[[101.8,99.4],[102.8,100.65],
+        [104.2,102.45],[104.2,103.35],[103.25,103.35],[102.5,102.3],[101.5,101],[100.4,99.9]]});
+      const upstairs=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());
+      expect(upstairs[1]).toBeGreaterThan(2.5);
+      await observeStoryDialogueFace(page,"HORS");
+      await enterInteriorDoor(page,{world:"tatq",doorSelector:46,fromWorld:"dobuita",reposition:false});
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      expect(await page.evaluate(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug)).toBe("story-s1-first-tattoo-visit");
+      await verifyObservedStoryDialogueFace(page,testInfo,"earned-tattoo-artist-speaking");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie-return-tomorrow"]),{timeout:240_000}).toBe(true);
+      const saved=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(saved.storyFlags["story.s1.first-tattoo-visit.completed"]).toBe(true);expect(saved.yen).toBe(character.yen);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.charlie-return-tomorrow"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_TATTOO_APPROACH_E2E === "true"){
+      test.setTimeout(600_000);
+      expect(character.storyFlags["notebook.s1.okayama-second-floor"]).toBe(true);
+      expect(character.storyFlags["story.s1.first-tattoo-visit.completed"]).not.toBe(true);
+      await walkToLandmark(page,testInfo,{world:"dobuita",label:"Okayama Heights stairs",maxSteps:800,targets:[[16,33],[19,35],[22,37],
+        [25,39],[29,40],[39,40],[49,40],[51,43],[54,45],[58,46],[61,48],[64,50],[66,53],[67,57],
+        [69,60],[69,65],[69,70],[69,75],[69,80],[73,81],[78,81],[83,81],[87,82],[91,83],[93,86],
+        [97,87],[100,89],[102,92],[102,95],[101,97]]});
+      await page.screenshot({path:testInfo.outputPath("earned-okayama-stairs.png")});
+      console.info("Okayama approach position:",JSON.stringify(await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray())));
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_KURITA_LOCATION_E2E === "true"){
+      test.setTimeout(720_000);
+      expect(character.storyFlags["notebook.s1.okayama-heights"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.okayama-second-floor"]).not.toBe(true);
+      await enterInteriorDoor(page,{world:"dobuita",filename:"S1_DBYO_DR02_017.MT5",fromWorld:"dbyo",reposition:false});
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("KURI"),null,{timeout:60_000});
+      console.info("Kurita from Saijo lead:",JSON.stringify(await page.evaluate(()=>({player:window.storyProbe.lifecycle.getController().collider.position.asArray(),actor:window.storyProbe.lifecycle.scheduledActors.dialogueActor("KURI").position}))));
+      await walkToScheduledWitness(page,testInfo,"KURI","Kurita",[[101,90],[97,87],[93,86],[91,83],[87,82],[83,81],[78,81],
+        [73,81],[69,80],[69,75],[69,70],[69,65],[69,60],[67,57],[66,53],[64,50],[61,48],[58,46],[54,45],[51,43],
+        [49,40],[39,40],[29,40],[25,39],[19,35],[16,33],[15,31]],"dobuita",{maxSteps:800});
+      const point=await residentClickPoint(page,"KURI",{reposition:false});expect(point.pickedActor).toBe("KURI");
+      await observeStoryDialogueFace(page,"KURI");await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+      await verifyObservedStoryDialogueFace(page,testInfo,"earned-kurita-tattoo-speaking");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.okayama-second-floor"]),{timeout:180_000}).toBe(true);
+      const saved=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(saved.storyFlags["story.s1.kurita-okayama-location.completed"]).toBe(true);expect(saved.yen).toBe(character.yen);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.okayama-second-floor"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_SAIJO_TATTOO_E2E === "true"){
+      test.setTimeout(720_000);
+      expect(character.storyFlags["notebook.s1.tattoo-parlor"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.okayama-heights"]).not.toBe(true);
+      await walkToLandmark(page,testInfo,{world:"dobuita",label:"Bar Yokosuka",maxSteps:800,targets:[[-17,31],[-12,31],[-7,31],[-2,31],
+        [3,31],[8,31],[13,31],[16,33],[19,35],[22,37],[25,39],[29,40],[39,40],[49,40],[51,43],[54,45],
+        [58,46],[61,48],[64,50],[66,53],[67,57],[69,60],[69,65],[69,70],[69,75],[69,80],[73,81],[78,81],
+        [83,81],[87,82],[91,83],[93,86],[97,87],[100,89],[102,92],[104,93]]});
+      await enterInteriorDoor(page,{world:"dbyo",doorSelector:63,fromWorld:"dobuita",reposition:false});
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("SAJO"),null,{timeout:60_000});
+      await walkToLandmark(page,testInfo,{world:"dbyo",label:"Bar Yokosuka counter",targets:[[-3.6,-2.25]]});
+      const point=await residentClickPoint(page,"SAJO",{reposition:false});expect(point.pickedActor).toBe("SAJO");
+      await observeStoryDialogueFace(page,"SAJO");await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+      await verifyObservedStoryDialogueFace(page,testInfo,"earned-saijo-tattoo-speaking");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.okayama-heights"]),{timeout:180_000}).toBe(true);
+      const saved=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(saved.storyFlags["story.s1.saijo-tattoo-location.completed"]).toBe(true);expect(saved.yen).toBe(character.yen);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.okayama-heights"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_AMBUSH_E2E === "true"){
+      test.setTimeout(900_000);
+      expect(character.storyFlags["notebook.s1.charlie-evening"]).toBe(true);
+      expect(character.storyFlags["story.s1.parking-lot-ambush.completed"]).not.toBe(true);
+      const state=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
+      if(new Date(state.worldState.gameTimeMs).getUTCHours()<19){
+        await walkToLandmark(page,testInfo,{world:"dobuita",label:"Arcade ambush region",targets:[[-4,31],[-8,31],[-12,31],[-16,31.5],[-19,29.5]]});
+        await page.waitForTimeout(1200);
+        expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-parking-lot-introduction"))).toBe(false);
+        expect(await page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+        await page.locator("#story-wait-button").click();
+        await page.getByRole("option",{name:"Wait until 7 p.m.",exact:true}).click();
+        await page.getByRole("button",{name:"Wait until 7 p.m.",exact:true}).click();
+      }
+      // Remain in the region: the personal clock, not a manufactured exit,
+      // must re-arm the eligible encounter.
+      for(const part of ["introduction","trap"]){
+        await page.waitForFunction(part=>window.storyProbe.director?.activeCutscene?.cutscene.id===`story-parking-lot-${part}`||window.storyProbe.sceneErrors.length,part,{timeout:180_000});
+        expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+        await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.runtime?.playback?.active?.frame>=15,null,{timeout:60_000});
+        await page.screenshot({path:testInfo.outputPath(`earned-ambush-${part}.png`)});
+      }
+      await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready||window.storyProbe.sceneErrors.length,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      await page.screenshot({path:testInfo.outputPath("earned-ambush-fight.png")});
+      for(let attempt=0;attempt<3;attempt++){
+        await fightStoryAmbush(page,testInfo,{nextButton:null,artifactPrefix:`earned-ambush-${attempt+1}`});
+        const outcome=page.getByRole("button",{name:/^(Ask about Charlie|Try again)$/}).first();
+        await expect(outcome).toBeVisible({timeout:30_000});
+        if(await page.getByRole("button",{name:"Ask about Charlie",exact:true}).isVisible())break;
+        expect((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character.storyFlags["notebook.s1.tattoo-parlor"]).not.toBe(true);
+        if(attempt===2)throw new Error("Three ordinary fight attempts did not defeat the ambush");
+        await page.getByRole("button",{name:"Try again",exact:true}).click();
+        await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready,null,{timeout:60_000});
+      }
+      expect((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character.storyFlags["notebook.s1.tattoo-parlor"]).not.toBe(true);
+      await page.getByRole("button",{name:"Ask about Charlie",exact:true}).click();
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0,null,{timeout:15_000});
+      await page.screenshot({path:testInfo.outputPath("earned-ambush-interrogation.png")});
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.tattoo-parlor"]),{timeout:180_000}).toBe(true);
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const saved=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(saved.storyFlags["story.s1.parking-lot-ambush.completed"]).toBe(true);expect(saved.yen).toBe(character.yen);expect(saved.currentHp).toBe(character.currentHp);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.tattoo-parlor"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_TSURUOKA_E2E === "true"){
+      test.setTimeout(720_000);
+      expect(character.storyFlags["notebook.s1.charlie-jackets"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.charlie-evening"]).not.toBe(true);
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("TURU"),null,{timeout:60_000});
+      console.info("Tsuruoka at earned checkpoint:",JSON.stringify(await page.evaluate(()=>({player:window.storyProbe.lifecycle.getController().collider.position.asArray(),actor:window.storyProbe.lifecycle.scheduledActors.dialogueActor("TURU").position}))));
+      const path=[[119,84],[118,82],[117,80],[115,77],[113,74],[111,71],[111,70],[110,70],[109,70],[108.5,70],
+        [108,69],[105,68.5],[103,66.5],[102,66.5],[101,66.5],[100,66],[97,64.5],[95,64],[93,63],[88,62],[80,61],[73,61],[70,60],
+        [67,57],[66,53],[64,50],[61,48],[58,46],[54,45],[51,43],[49,40],[39,40],[29,40],[25,39],[19,35],
+        [16,33],[13,31],[8,31],[3,31],[-1,30]];
+      const current=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());
+      const closest=path.reduce((best,p,index)=>Math.hypot(p[0]-current[0],p[1]-current[2])<Math.hypot(path[best][0]-current[0],path[best][1]-current[2])?index:best,0);
+      await walkToScheduledWitness(page,testInfo,"TURU","Tsuruoka",path.slice(closest),"dobuita",{maxSteps:800,arrivalRadius:.5,approachRadius:3});
+      await walkToLandmark(page,testInfo,{world:"dobuita",label:"Jupitor's Jackets counter",arrivalRadius:.4,targets:[[.6,31.25],[-.91,31.08]]});
+      const point=await residentClickPoint(page,"TURU",{reposition:false});expect(point.pickedActor).toBe("TURU");
+      await observeStoryDialogueFace(page,"TURU");await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+      await verifyObservedStoryDialogueFace(page,testInfo,"earned-tsuruoka-speaking");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie-evening"]),{timeout:180_000}).toBe(true);
+      const saved=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(saved.storyFlags["notebook.s1.charlie-evening"]).toBe(true);expect(saved.yen).toBe(character.yen);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.charlie-evening"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_ONO_E2E === "true"){
+      test.setTimeout(600_000);
+      expect(character.storyFlags["notebook.s1.charlie"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.charlie-jackets"]).not.toBe(true);
+      if(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="dbhb"))
+        await enterInteriorDoor(page,{world:"dobuita",filename:"S1_DBHB_DR02_016.MT5",fromWorld:"dbhb",reposition:false});
+      const time=async()=>new Date((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).worldState.gameTimeMs);
+      const labels=(await time()).getUTCHours()>=21?["Wait until tomorrow morning","Wait until 10 a.m."]:
+        (await time()).getUTCHours()<10?["Wait until 10 a.m."]:[];
+      for(const label of labels){
+        await page.locator("#story-wait-button").click();
+        await page.getByRole("option",{name:label,exact:true}).click();
+        await page.getByRole("button",{name:label,exact:true}).click();
+        await expect.poll(async()=>(await time()).getUTCHours(),{timeout:30_000}).toBe(label==="Wait until 10 a.m."?10:8);
+        await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+        await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      }
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("ONO_"),null,{timeout:60_000});
+      console.info("Ono after morning wait:",JSON.stringify(await page.evaluate(()=>({player:window.storyProbe.lifecycle.getController().collider.position.asArray(),actor:window.storyProbe.lifecycle.scheduledActors.dialogueActor("ONO_").position}))));
+      await walkToScheduledWitness(page,testInfo,"ONO_","Ono",[[122,64.5],[121,65],[119.5,66],[119.5,68],[120,70],[121,72],
+        [121.5,74],[122,76.5],[122,77.25],[121,77.5],[120,78.5],[119,79.5],[119,82],[119,84],[121,88]],"dobuita");
+      const point=await residentClickPoint(page,"ONO_",{reposition:false});expect(point.pickedActor).toBe("ONO_");
+      await observeStoryDialogueFace(page,"ONO_");await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+      await verifyObservedStoryDialogueFace(page,testInfo,"earned-ono-speaking");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie-jackets"]),{timeout:180_000}).toBe(true);
+      const saved=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(saved.storyFlags["notebook.s1.charlie-jackets"]).toBe(true);expect(saved.yen).toBe(character.yen);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.charlie-jackets"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_EARNED_BAR_E2E === "true"){
+      test.setTimeout(480_000);
+      expect(character.storyFlags["story.s1.heartbeats-alley.completed"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.charlie"]).not.toBe(true);
+      await walkToLandmark(page,testInfo,{world:"dobuita",label:"Heartbeats door",targets:[[124,64.6]]});
+      await enterInteriorDoor(page,{world:"dbhb",doorSelector:30,fromWorld:"dobuita",reposition:false});
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0,null,{timeout:15_000});
+      await page.screenshot({path:testInfo.outputPath("earned-heartbeats-bar-dialogue.png")});
+      // Let the voiced introduction and aftermath run at their natural pace;
+      // only the actual QTE inputs are supplied by the test.
+      await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready,null,{timeout:180_000});
+      for(const [index,button] of ["B","A","B","A"].entries()){
+        await page.waitForFunction(({index,button})=>{const q=window.storyProbe.regions.controller.dialogue.qte?.active;
+          return window.storyProbe.regions.controller.active?.challengePrompt?.ready&&q?.index===index&&q.steps[q.index]?.buttons[0]===button;},{index,button},{timeout:15_000});
+        await page.keyboard.press(button==="B"?"Shift":"Enter");
+      }
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie"]),{timeout:180_000}).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const saved=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(saved.storyFlags["story.s1.heartbeats-bar.completed"]).toBe(true);expect(saved.yen).toBe(character.yen);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.charlie"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_ALLEY_WALK_E2E === "true"){
+      test.setTimeout(720_000);
+      expect(character.storyFlags["notebook.s1.heartbeats"]).toBe(true);
+      expect(character.storyFlags["story.s1.heartbeats-alley.completed"]).not.toBe(true);
+      if(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="dbyo")){
+        await walkToLandmark(page,testInfo,{world:"dbyo",label:"Bar Yokosuka exit",targets:[[-3.6,-1.2]]});
+        await enterInteriorDoor(page,{world:"dobuita",filename:"S1_DBYO_DR02_017.MT5",fromWorld:"dbyo",reposition:false});
+        await walkToLandmark(page,testInfo,{world:"dobuita",label:"Heartbeats street",maxSteps:800,targets:[[101,90],[97,87],[93,86],[91,83],
+          [87,82],[83,81],[78,81],[73,81],[69,80],[69,75],[69,70],[69,65],[70,60],[73,61],[80,61],[88,62],[93,63]]});
+      }
+      const path=[[95,64],[97,64.5],[100,66],[103,66.5],[105,68.5],[108,69],[108.5,70],[110,70],
+        [111,70],[111.5,71.5],[112.5,73],[113.5,74.5],[114.5,75.5],[115.5,77],[116.5,78],[117.5,79.5],
+        [119,79.5],[120,78.5],[121,77.5],[122,77.25],[122,76.5],[121.5,74],[121,72],[120,70],[119.5,68],[119.5,66],[121,65],[121.5,64.5]];
+      const current=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());
+      const closest=path.reduce((best,p,index)=>Math.hypot(p[0]-current[0],p[1]-current[2])<Math.hypot(path[best][0]-current[0],path[best][1]-current[2])?index:best,0);
+      await walkToLandmark(page,testInfo,{world:"dobuita",label:"Heartbeats approach",maxSteps:500,arrivalRadius:.5,targets:path.slice(closest)});
+      await page.evaluate(()=>{const c=window.storyProbe.lifecycle.getController();c.cameraYaw=Math.atan2(-1,0);c.cameraPitch=0;c.updateCamera(1);});
+      await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+      try{await page.waitForFunction(()=>window.storyProbe.starts.includes("story-s1-heartbeats-introduction")||window.storyProbe.sceneErrors.length,null,{timeout:30_000});}
+      finally{await page.keyboard.up("KeyW");}
+      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+      await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.runtime?.playback?.active?.frame>=15,null,{timeout:60_000});
+      await page.screenshot({path:testInfo.outputPath("earned-heartbeats-alley-introduction.png")});
+      await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.heartbeats.alley.defend"&&window.storyProbe.regions.controller.active.challengePrompt.ready,null,{timeout:120_000});
+      await page.keyboard.press("Shift");
+      await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.heartbeats.alley.finish"&&window.storyProbe.regions.controller.active.challengePrompt.ready,null,{timeout:30_000});
+      await page.keyboard.press("Enter");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.heartbeats-alley.completed"]),{timeout:60_000}).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const saved=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(saved.storyFlags["story.s1.heartbeats-alley.completed"]).toBe(true);expect(saved.yen).toBe(character.yen);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_SAIJO_TALK_E2E === "true"){
+      test.setTimeout(480_000);
+      expect(character.storyFlags["notebook.s1.sailors"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.heartbeats"]).not.toBe(true);
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("SAJO"),null,{timeout:60_000});
+      // Saijo is behind the bar; the counter prevents a close approach.
+      // Interact from the naturally reached customer side instead.
+      await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+      const point=await residentClickPoint(page,"SAJO",{reposition:false});expect(point.pickedActor).toBe("SAJO");
+      await observeStoryDialogueFace(page,"SAJO");await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+      await page.waitForTimeout(1500);
+      await page.screenshot({path:testInfo.outputPath("natural-saijo-dialogue-start.png")});
+      console.info("Saijo dialogue view:",JSON.stringify(await page.evaluate(()=>{const l=window.storyProbe.lifecycle,m=l.scheduledActors.dialogueActorModel("SAJO");return {camera:l.scene.activeCamera.position.asArray(),renderEnabled:m.renderRoot.isEnabled(),occlusionCulled:m.occlusionRenderCulled,occluded:m.occlusionMesh?.isOccluded,root:m.root.getAbsolutePosition().asArray()};})));
+      await verifyObservedStoryDialogueFace(page,testInfo,"natural-saijo-speaking");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.heartbeats"]),{timeout:240_000}).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const after=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(after.storyFlags["notebook.s1.heartbeats"]).toBe(true);expect(after.yen).toBe(character.yen);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.heartbeats"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_BAR_WALK_E2E === "true"){
+      test.setTimeout(720_000);
+      expect(character.storyFlags["notebook.s1.sailors"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.heartbeats"]).not.toBe(true);
+      await page.locator("#story-wait-button").click();
+      await page.getByRole("option",{name:"Wait until 7 p.m.",exact:true}).click();
+      await page.getByRole("button",{name:"Wait until 7 p.m.",exact:true}).click();
+      await expect.poll(async()=>new Date((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).worldState.gameTimeMs).getUTCHours()).toBe(19);
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+      await walkToLandmark(page,testInfo,{world:"dobuita",label:"Bar Yokosuka",maxSteps:800,targets:[[-17,44],[-18,40],[-18,35],[-17,31],
+        [-12,31],[-7,31],[-2,31],[3,31],[8,31],[13,31],[16,33],[19,35],[22,37],[25,39],
+        [29,40],[39,40],[49,40],[51,43],[54,45],[58,46],[61,48],[64,50],[66,53],
+        [67,57],[69,60],[69,65],[69,70],[69,75],[69,80],[73,81],[78,81],[83,81],
+        [87,82],[91,83],[93,86],[97,87],[100,89],[102,92],[104,93]]});
+      await enterInteriorDoor(page,{world:"dbyo",doorSelector:63,fromWorld:"dobuita",reposition:false});
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("SAJO"),null,{timeout:60_000});
+      console.info("Saijo at bar:",JSON.stringify(await page.evaluate(()=>{const l=window.storyProbe.lifecycle;return {player:l.getController().collider.position.asArray(),actor:l.scheduledActors.dialogueActor("SAJO").position};})));
+      await page.screenshot({path:testInfo.outputPath("natural-bar-arrival.png")});
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_LIU_SENIOR_WALK_E2E === "true"){
+      test.setTimeout(720_000);
+      expect(character.storyFlags["notebook.s1.liu-senior"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.sailors"]).not.toBe(true);
+      await walkToLandmark(page,testInfo,{world:"drht",label:"Liu Barber exit",targets:[[1,1.8]]});
+      await enterInteriorDoor(page,{world:"dobuita",filename:"S1_DRHT_DR02_019.MT5",fromWorld:"drht",reposition:false});
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("RKKI"),null,{timeout:60_000});
+      const seniorPosition=await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("RKKI").position);
+      expect(Math.hypot(seniorPosition[0]+13.35,seniorPosition[2]-47.71)).toBeLessThan(.3);
+      await walkToScheduledWitness(page,testInfo,"RKKI","Liu Senior",[[-3,84],[2,81],[7,78],[20,77],
+        [32,77],[43,77],[48,80],[53,82],[56,84],[58,83],[59,80],[64,80],[65,77],
+        [66,70],[66,60],[66,50],[62,50],[58,46],[53,43],[48,40],[40,40],[32,40],[25,40],
+        [20,36],[16,33],[14,31],[5,31],[-5,31],[-14,31],[-18,31],[-18,36],[-18,39],[-16,45],[-13,46],[-13,48]],"dobuita",{maxSteps:800});
+      const point=await residentClickPoint(page,"RKKI",{reposition:false});expect(point.pickedActor).toBe("RKKI");
+      await observeStoryDialogueFace(page,"RKKI");await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+      await verifyObservedStoryDialogueFace(page,testInfo,"natural-liu-senior-speaking");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.sailors"]),{timeout:180_000}).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const after=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(after.storyFlags["notebook.s1.sailors"]).toBe(true);expect(after.yen).toBe(character.yen);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.sailors"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_LIU_EXIT_E2E === "true"){
+      test.setTimeout(240_000);
+      expect(character.storyFlags["notebook.s1.liu-senior"]).toBe(true);
+      await walkToLandmark(page,testInfo,{world:"drht",label:"Liu Barber exit",targets:[[1,1.8]]});
+      await enterInteriorDoor(page,{world:"dobuita",filename:"S1_DRHT_DR02_019.MT5",fromWorld:"drht",reposition:false});
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.liu-senior"])).toBe(true);
+      await page.screenshot({path:testInfo.outputPath("natural-liu-exit.png")});
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_LIU_TALK_E2E === "true"){
+      test.setTimeout(600_000);
+      expect(character.storyFlags["notebook.s1.liu-barber"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.liu-senior"]).not.toBe(true);
+      if(process.env.NEW_YOKOSUKA_LIU_ENTRY_E2E === "true"){
+        await enterInteriorDoor(page,{world:"drht",doorSelector:51,fromWorld:"dobuita",reposition:false});
+      }
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("KYUR")&&window.storyProbe.lifecycle.scheduledActors.dialogueActor("ONRR"),null,{timeout:60_000});
+      await walkToScheduledWitness(page,testInfo,"KYUR","Liu",[[1.1,2.5],[1.5,1],[2.6,-.79]],"drht");
+      const point=await residentClickPoint(page,"KYUR",{reposition:false});
+      expect(point.pickedActor).toBe("KYUR");
+      await observeStoryDialogueFace(page,"KYUR");await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+      await verifyObservedStoryDialogueFace(page,testInfo,"natural-liu-speaking");
+      await lookAtResident(page,"ONRR");await observeStoryDialogueFace(page,"ONRR");
+      await verifyObservedStoryDialogueFace(page,testInfo,"natural-liu-spouse-speaking");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.liu-senior"]),{timeout:240_000}).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const after=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(after.storyFlags["notebook.s1.liu-senior"]).toBe(true);expect(after.yen).toBe(character.yen);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.liu-senior"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_LIU_WALK_E2E === "true"){
+      test.setTimeout(600_000);
+      expect(character.storyFlags["notebook.s1.liu-barber"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.liu-senior"]).not.toBe(true);
+      await walkToLandmark(page,testInfo,{world:"dobuita",label:"Liu Barber",targets:[[12,28],[15,31],[18,34],[20,36],[25,39],
+        [32,40],[40,40],[48,40],[53,43],[58,46],[62,50],[66,50],[66,60],[66,70],[65,77],
+        [64,80],[60,80],[59,83],[56,84],[51,81],[45,79],[43,77],[32,77],[20,77],
+        [10,77],[5,79],[0,82],[-5,85],[-6,85]]});
+      await enterInteriorDoor(page,{world:"drht",doorSelector:51,fromWorld:"dobuita",reposition:false});
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("KYUR")&&window.storyProbe.lifecycle.scheduledActors.dialogueActor("ONRR"),null,{timeout:60_000});
+      console.info("Liu Barber actors:",JSON.stringify(await page.evaluate(()=>{const l=window.storyProbe.lifecycle;return {player:l.getController().collider.position.asArray(),liu:l.scheduledActors.dialogueActor("KYUR").position,spouse:l.scheduledActors.dialogueActor("ONRR").position};})));
+      await page.screenshot({path:testInfo.outputPath("natural-liu-arrival.png")});
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_ITOI_TALK_E2E === "true"){
+      test.setTimeout(600_000);
+      expect(character.storyFlags["notebook.s1.three-blades"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.liu-barber"]).not.toBe(true);
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("ITOI"),null,{timeout:60_000});
+      if(process.env.NEW_YOKOSUKA_ITOI_AT_WITNESS_E2E!=="true"){
+        await walkToScheduledWitness(page,testInfo,"ITOI","Itoi",[[93,63],[88,62],[80,61],[72,61],[70,58],
+          [67,57],[66,54],[66,50],[62,50],[58,46],[53,43],[48,40],[40,40],[32,40],[25,40],
+          [20,36],[18,33],[15,31],[13,28],[9,27]]);
+      } else await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+      let point=await residentClickPoint(page,"ITOI",{reposition:false});
+      console.info("Itoi click details:",JSON.stringify(point));
+      await page.screenshot({path:testInfo.outputPath("natural-itoi-before-talk.png")});
+      if(process.env.NEW_YOKOSUKA_ITOI_OCCLUSION_E2E==="true"||!point.pickedActor){
+        expect(point.pickedActor).toBeUndefined();
+        await page.mouse.click(point.x,point.y);await page.waitForTimeout(1500);
+        expect(await page.evaluate(()=>!!window.storyProbe.dialogue?.active)).toBe(false);
+        expect((await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character.storyFlags["notebook.s1.liu-barber"]).not.toBe(true);
+        // Step sideways around the display, rather than repositioning Ryo.
+        await walkToLandmark(page,testInfo,{world:"dobuita",label:"Itoi clear view",targets:[[8.9,26.75]]});
+        point=await residentClickPoint(page,"ITOI",{reposition:false});
+        await page.screenshot({path:testInfo.outputPath("natural-itoi-clear-view.png")});
+      }
+      expect(point.pickedActor).toBe("ITOI");
+      await observeStoryDialogueFace(page,"ITOI");await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+      await verifyObservedStoryDialogueFace(page,testInfo,"natural-itoi-speaking");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.liu-barber"]),{timeout:180_000}).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const after=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(after.storyFlags["notebook.s1.liu-barber"]).toBe(true);expect(after.yen).toBe(character.yen);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.liu-barber"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_ITOI_WALK_E2E === "true"){
+      test.setTimeout(600_000);
+      expect(character.storyFlags["notebook.s1.three-blades"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.liu-barber"]).not.toBe(true);
+      await walkToLandmark(page,testInfo,{world:"dcha",label:"Ajiichi exit",targets:[[.5,-1],[0,-3]]});
+      await enterInteriorDoor(page,{world:"dobuita",filename:"S1_DCHA_DR15_025.MT5",fromWorld:"dcha",reposition:false});
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("ITOI"),null,{timeout:60_000});
+      console.info("Itoi next witness:",JSON.stringify(await page.evaluate(()=>({actor:window.storyProbe.lifecycle.scheduledActors.dialogueActor("ITOI").position,player:window.storyProbe.lifecycle.getController().collider.position.asArray()}))));
+      await page.screenshot({path:testInfo.outputPath("natural-ajiichi-exit.png")});
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_AJIICHI_TALK_E2E === "true"){
+      test.setTimeout(600_000);
+      expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.three-blades"]).not.toBe(true);
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("UNO_")&&window.storyProbe.lifecycle.scheduledActors.dialogueActor("RNKT"),null,{timeout:60_000});
+      await walkToScheduledWitness(page,testInfo,"UNO_","Tao",[[.5,-1],[1,0],[1.55,2.33]],"dcha");
+      const point=await residentClickPoint(page,"UNO_",{reposition:false});
+      expect(point.pickedActor).toBe("UNO_");
+      await observeStoryDialogueFace(page,"UNO_");
+      await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+      await verifyObservedStoryDialogueFace(page,testInfo,"natural-tao-speaking");
+      await lookAtResident(page,"RNKT");await observeStoryDialogueFace(page,"RNKT");
+      await verifyObservedStoryDialogueFace(page,testInfo,"natural-lin-speaking");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.three-blades"]),{timeout:240_000}).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const after=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(after.storyFlags["notebook.s1.three-blades"]).toBe(true);
+      expect(after.yen).toBe(character.yen);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.three-blades"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_AJIICHI_WALK_E2E === "true"){
+      test.setTimeout(600_000);
+      expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.three-blades"]).not.toBe(true);
+      await walkToAjiichi(page,testInfo);
+      await enterInteriorDoor(page,{world:"dcha",doorSelector:28,fromWorld:"dobuita",reposition:false});
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("UNO_")&&window.storyProbe.lifecycle.scheduledActors.dialogueActor("RNKT"),null,{timeout:60_000});
+      console.info("Ajiichi actors:",JSON.stringify(await page.evaluate(()=>{const l=window.storyProbe.lifecycle;return {player:l.getController().collider.position.asArray(),tao:l.scheduledActors.dialogueActor("UNO_").position,lin:l.scheduledActors.dialogueActor("RNKT").position};})));
+      await page.screenshot({path:testInfo.outputPath("natural-ajiichi-arrival.png")});
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_TOM_WALK_E2E === "true"){
+      test.setTimeout(480_000);
+      expect(character.storyFlags["notebook.s1.tom-witness"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.chinese-community"]).not.toBe(true);
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("TOM_"),null,{timeout:60_000});
+      await walkToTom(page,testInfo);
+      const point=await residentClickPoint(page,"TOM_",{reposition:false});
+      expect(point.pickedActor).toBe("TOM_");
+      await observeStoryDialogueFace(page,"TOM_");
+      await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+      await verifyObservedStoryDialogueFace(page,testInfo,"natural-tom-speaking");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.chinese-community"]),{timeout:180_000}).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const after=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(after.storyFlags["notebook.s1.chinese-community"]).toBe(true);
+      expect(after.yen).toBe(character.yen);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.chinese-community"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_NOZOMI_WALK_E2E === "true"){
+      test.setTimeout(480_000);
+      expect(character.storyFlags["story.s1.yamagishi-black-car.completed"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.tom-witness"]).not.toBe(true);
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("HRSK"),null,{timeout:60_000});
+      await walkToNozomi(page,testInfo);
+      const point=await residentClickPoint(page,"HRSK",{reposition:false});
+      expect(point.pickedActor).toBe("HRSK");
+      await observeStoryDialogueFace(page,"HRSK");
+      await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+      await verifyObservedStoryDialogueFace(page,testInfo,"natural-nozomi-speaking");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.tom-witness"]),{timeout:180_000}).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const after=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(after.storyFlags["notebook.s1.tom-witness"]).toBe(true);
+      expect(after.yen).toBe(character.yen);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.tom-witness"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_DOBUITA_WITNESS_WALK_E2E === "true"){
+      test.setTimeout(600_000);
+      expect(character.storyFlags["story.s1.yamagishi-black-car.completed"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.tom-witness"]).not.toBe(true);
+      await walkToDobuita(page,testInfo);
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("HRSK"),null,{timeout:60_000});
+      console.info("Dobuita next witness:",JSON.stringify(await page.evaluate(()=>({actor:window.storyProbe.lifecycle.scheduledActors.dialogueActor("HRSK").position,player:window.storyProbe.lifecycle.getController().collider.position.asArray()}))));
+      await page.screenshot({path:testInfo.outputPath("natural-dobuita-arrival.png")});
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_YAMAGISHI_WALK_E2E === "true"){
+      test.setTimeout(600_000);
+      expect(character.storyFlags["story.s1.sumiya-witness.completed"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.yamagishi-witness"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.dobuita-black-car"]).not.toBe(true);
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("YAMA"),null,{timeout:60_000});
+      await walkToYamagishi(page,testInfo);
+      // At this morning checkpoint Yamagishi stands behind his garden wall.
+      // Wait through the real personal clock for his 10 a.m. street route.
+      await page.locator("#story-wait-button").click();
+      await page.getByRole("option",{name:"Wait until 10 a.m.",exact:true}).click();
+      await page.getByRole("button",{name:"Wait until 10 a.m.",exact:true}).click();
+      await page.waitForFunction(()=>{
+        const l=window.storyProbe.lifecycle,p=l.getController().collider.position,a=l.scheduledActors.dialogueActor("YAMA")?.position;
+        return a&&a[2]<32.4&&Math.hypot(a[0]-p.x,a[2]-p.z)<2.8;
+      },null,{timeout:120_000});
+      const point=await residentClickPoint(page,"YAMA",{reposition:false});
+      expect(point.pickedActor).toBe("YAMA");
+      await observeStoryDialogueFace(page,"YAMA");
+      await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+      await verifyObservedStoryDialogueFace(page,testInfo,"natural-yamagishi-speaking");
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.yamagishi-black-car.completed"]),{timeout:180_000}).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const after=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(after.storyFlags["notebook.s1.dobuita-black-car"]).toBe(true);
+      expect(after.yen).toBe(character.yen);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.dobuita-black-car"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_WITNESS_WALK_E2E === "true") {
+      test.setTimeout(360_000);
+      expect(character.storyFlags["story.s1.first-kitten.completed"]).toBe(true);
+      expect(character.storyFlags["notebook.s1.yamagishi-witness"]).not.toBe(true);
+      expect(character.storyFlags["story.s1.sumiya-witness.completed"]).not.toBe(true);
+      await walkToSakuragaoka(page,testInfo);
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("SUMI"),null,{timeout:60_000});
+      await page.screenshot({path:testInfo.outputPath("natural-sakuragaoka-arrival.png")});
+      await walkToSumiya(page,testInfo);
+      const point=await residentClickPoint(page,"SUMI",{reposition:false});
+      expect(point.pickedActor).toBe("SUMI");
+      await page.screenshot({path:testInfo.outputPath("natural-sumiya-approach.png")});
+      await page.mouse.click(point.x,point.y);
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.active,null,{timeout:15_000});
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.audio&&!window.storyProbe.dialogue.audio.paused&&window.storyProbe.dialogue.audio.currentTime>0,null,{timeout:15_000});
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.sumiya-witness.completed"]),{timeout:180_000}).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      const after=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(after.storyFlags["story.s1.sumiya-witness.completed"]).toBe(true);
+      expect(after.storyFlags["notebook.s1.yamagishi-witness"]).toBe(true);
+      expect(after.yen).toBe(character.yen);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["story.s1.sumiya-witness.completed"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.yamagishi-witness"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_KITTEN_WALK_E2E === "true") {
+      test.setTimeout(480_000);
+      expect(character.storyFlags["story.s1.first-dojo.completed"]).toBe(true);
+      expect(character.storyFlags["story.s1.first-kitten.completed"]).not.toBe(true);
+      await enterInteriorDoor(page,{world:"yamanose",fromWorld:"exterior",filename:"S1_JHD0_DR29_000.MT5",position:[1,0,9.4]});
+      await walkToKitten(page,testInfo);
+      await expect(page.getByRole("button",{name:"Dried fish",exact:true})).toBeVisible({timeout:150_000});
+      const beforeChoice=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(beforeChoice.storyFlags["story.s1.first-kitten.completed"]).not.toBe(true);
+      await page.screenshot({path:testInfo.outputPath("natural-kitten-choice.png")});
+      await page.getByRole("button",{name:"Dried fish",exact:true}).click();
+      await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-first-kitten-fish",null,{timeout:60_000});
+      await page.waitForFunction(()=>!window.storyProbe.director.active,null,{timeout:120_000});
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.first-kitten.completed"])).toBe(true);
+      const after=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+      expect(after.storyFlags["notebook.s1.black-car"]).toBe(true);
+      expect(after.storyFlags["notebook.s1.yamagishi-witness"]).toBe(true);
+      expect(after.yen).toBe(character.yen);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().firstPerson)).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+      await page.reload(); await enterStoryWorld(page);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["story.s1.first-kitten.completed"])).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);
+      return;
+    }
+    if (process.env.NEW_YOKOSUKA_DOJO_WALK_E2E === "true") {
+      expect(character.storyFlags["story.s1.first-allowance.completed"]).toBe(true);
+      expect(character.storyFlags["story.s1.first-dojo.completed"]).not.toBe(true);
+      await enterInteriorDoor(page,{world:"exterior",fromWorld:"interior",filename:"S1_JOMO_DR15_016.MT5",position:[-14.718089,0,5.410742]});
+      await walkToDojo(page,testInfo);
+      await page.waitForTimeout(3000);
+      const during=await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+      expect(during.character.storyFlags["story.s1.first-dojo.completed"]).not.toBe(true);
+      await page.screenshot({path:testInfo.outputPath("natural-dojo-dialogue.png")});
+      await page.waitForFunction(()=>window.storyProbe.regions.controller.status==="idle"&&!window.storyProbe.director.active,null,{timeout:150_000});
+      const after=await (await page.request.get(`/api/characters/${character.id}/state`)).json();
+      expect(after.character.storyFlags["story.s1.first-dojo.completed"]).toBe(true);
+      expect(after.character.storyFlags["notebook.s1.men-in-black"]).toBe(true);
+      expect(after.character.yen).toBe(character.yen);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().firstPerson)).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+      expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+      expect((await (await page.request.get(`/api/characters/${character.id}/state`)).json()).character.storyFlags["notebook.s1.men-in-black"]).toBe(true);
+      expect(errors).toEqual([]);
+      return;
+    }
+    if (process.env.NEW_YOKOSUKA_GATE_VOICE_ONLY_E2E === "true") {
+      await enterInteriorDoor(page,{world:"yamanose",fromWorld:"exterior",filename:"S1_JHD0_DR29_000.MT5",position:[1,0,9.4],blocked:true});
+      expect(errors).toEqual([]);
+      return;
+    }
     if(process.env.NEW_YOKOSUKA_GORO_LEAD_NATURAL_E2E === "true"){
       test.setTimeout(360_000);
       await verifyGoroLeadNatural(page,testInfo,character);
@@ -311,6 +1345,10 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     if (process.env.NEW_YOKOSUKA_STORY_FACES_E2E === "true") {
       test.setTimeout(540_000);
       await reviewStoryFaces(page, testInfo, character);
+      expect(errors).toEqual([]); return;
+    }
+    if (process.env.NEW_YOKOSUKA_STORY_AMBIENT_E2E === "true") {
+      await reviewStoryAmbient(page, testInfo, character);
       expect(errors).toEqual([]); return;
     }
     if(process.env.NEW_YOKOSUKA_SCROLL_LEARNING_E2E === "true"){
@@ -412,7 +1450,6 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       await verifyFirstAfternoon(page,testInfo,character);
       expect(errors).toEqual([]);return;
     }
-    expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
     if(process.env.NEW_YOKOSUKA_SHIP_DEPARTURE_E2E === "true"){
       test.setTimeout(540_000);await verifyShipDeparture(page,testInfo,character,{musicResponses});expect(errors).toEqual([]);return;
     }
@@ -496,6 +1533,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     }
     if(process.env.NEW_YOKOSUKA_HARBOR_BIKERS_E2E === "true"){
       test.setTimeout(900_000);await verifyHarborBikers(page,testInfo,character);expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_FIRST_WORKDAY_NIGHT_E2E === "true"){
+      test.setTimeout(540_000);
+      await verifyWorkdayNight(page,testInfo,character);
+      expect(errors).toEqual([]);return;
     }
     if(process.env.NEW_YOKOSUKA_SECOND_MORNING_E2E === "true"){
       test.setTimeout(1_260_000);
@@ -712,6 +1754,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
       return;
     }
+    // This is a prerequisite for the witness continuation, not for every
+    // independently resumed scene above (some use partially seeded saves).
+    expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
     await continueWitnesses(page, testInfo, character, character.yen, true);
     if(process.env.NEW_YOKOSUKA_ALLEY_QTE_E2E === "true") {
       // Only the optional three-blades route above opens the notebook.
@@ -930,11 +1975,52 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     await page.screenshot({ path: testInfo.outputPath("saved-continuation.png") });
   }
   expect(errors).toEqual([]);
+  if (ending === "complete" && process.env.NEW_YOKOSUKA_GAMEPAD_QTE_E2E === "true") {
+    // Exercise the actual application wiring with a virtual standard pad;
+    // this isolated prompt deliberately does not submit a Story outcome.
+    await page.evaluate(() => {
+      const presenter=window.storyProbe.regions.controller.dialogue;
+      window.storyQteOldResponse=presenter.onChallengeResponse;
+      window.storyQteResponses=[];
+      presenter.onChallengeResponse=(...args)=>window.storyQteResponses.push(args);
+      presenter.showChallenge({id:"s1.heartbeats.bar",label:"Defend yourself",token:"f".repeat(32),ready:true});
+    });
+    await page.waitForTimeout(150);
+    for(const index of [1,0,1,0]) {
+      await page.evaluate(index=>{window.storyTestPad.buttons[index]={pressed:true,value:1};},index);
+      await page.waitForTimeout(100);
+      await page.evaluate(index=>{window.storyTestPad.buttons[index]={pressed:false,value:0};},index);
+      await page.waitForTimeout(100);
+    }
+    await expect.poll(() => page.evaluate(() => window.storyQteResponses)).toEqual([["challenge_result","f".repeat(32),"success"]]);
+    await page.screenshot({path:testInfo.outputPath("gamepad-qte-success.png")});
+    await page.evaluate(() => {
+      const presenter=window.storyProbe.regions.controller.dialogue;
+      presenter.hide();presenter.onChallengeResponse=window.storyQteOldResponse;
+    });
+    expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  }
   if (ending === "complete" && process.env.NEW_YOKOSUKA_DOJO_E2E === "true") {
     test.setTimeout(Math.max(testInfo.timeout, 360_000));
-    // Bounded continuation check: use real world loading, then place just
-    // outside the dojo volume. Walking triggers it; no direct event start.
-    await page.evaluate(async () => window.storyProbe.lifecycle.travelToWorld("exterior"));
+    if (process.env.NEW_YOKOSUKA_FRONT_DOOR_E2E === "true") {
+      // Exercise the authored door and transition; placing Ryo nearby avoids
+      // turning this bounded check into a route-finding test through the house.
+      await enterInteriorDoor(page, { fromWorld: "interior", world: "exterior",
+        filename: "S1_JOMO_DR15_016.MT5", position: [-14.718089, 0, 5.410742] });
+      // Wait for the destination's own frame before the bounded placement.
+      await page.waitForFunction(() => window.storyProbe.lastRegionFrame?.area === "JHD0"
+        && window.storyProbe.lastRegionFrame?.worldId === "exterior"
+        && window.storyProbe.lastRegionFrame?.enabled);
+    } else {
+      await page.evaluate(async () => window.storyProbe.lifecycle.travelToWorld("exterior"));
+    }
+    if (process.env.NEW_YOKOSUKA_FIRST_GATE_E2E === "true") {
+      await enterInteriorDoor(page,{world:"yamanose",fromWorld:"exterior",filename:"S1_JHD0_DR29_000.MT5",
+        position:[1,0,9.4],blocked:true});
+      expect((await (await page.request.get(`/api/characters/${character.id}/state`)).json()).character.storyFlags["story.s1.first-dojo.completed"]).not.toBe(true);
+    }
+    // Place just outside the dojo volume. Walking triggers the actual event;
+    // no direct event start or server-side flag insertion is used.
     const enterDojo = async () => {
       await page.evaluate(() => {
         const life = window.storyProbe.lifecycle;
@@ -944,10 +2030,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       await page.locator("#renderCanvas").focus();
       await page.keyboard.down("KeyW");
       try {
-        await page.waitForFunction(() => window.storyProbe.regions.controller.status !== "idle", null, { timeout: 20_000 });
+        // Room-entry automatic script checks can briefly own the controller;
+        // they are not the dojo trigger and must not stop the approach.
+        await page.waitForFunction(() => window.storyProbe.director?.activeCutscene?.cutscene.id === "story-s1-first-dojo"
+          || window.storyProbe.sceneErrors.length, null, { timeout: 60_000 });
       } finally { await page.keyboard.up("KeyW"); }
-      await page.waitForFunction(() => window.storyProbe.director?.activeCutscene?.cutscene.id === "story-s1-first-dojo"
-        || window.storyProbe.sceneErrors.length, null, { timeout: 60_000 });
       expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
     };
     await enterDojo();
@@ -990,6 +2077,10 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     expect(await page.evaluate(() => window.storyProbe.starts)).toEqual([]);
     expect((await (await page.request.get(`/api/characters/${character.id}/state`)).json()).character.storyFlags["notebook.s1.men-in-black"]).toBe(true);
     expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    if (process.env.NEW_YOKOSUKA_FIRST_GATE_E2E === "true") {
+      await enterInteriorDoor(page,{world:"yamanose",fromWorld:"exterior",filename:"S1_JHD0_DR29_000.MT5",position:[1,0,9.4]});
+      expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    }
     if (process.env.NEW_YOKOSUKA_KITTEN_E2E === "true") {
       const food = process.env.NEW_YOKOSUKA_KITTEN_FOOD || "fish";
       expect(["fish", "tofu"]).toContain(food);
@@ -1088,13 +2179,21 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
 });
 
 async function continueWitnesses(page, testInfo, character, expectedYen, resumeAfterTom = false) {
+  const witnesses = [
+    ["SUMI", "sakuragaoka", "story.s1.sumiya-witness.completed"],
+    ["YAMA", "sakuragaoka", "notebook.s1.dobuita-black-car"],
+    ["HRSK", "dobuita", "notebook.s1.tom-witness"],
+    ["TOM_", "dobuita", "notebook.s1.chinese-community"],
+  ];
+  if (process.env.NEW_YOKOSUKA_NOZOMI_FIRST_E2E === "true") {
+    const flags=await page.evaluate(() => window.storyProbe.regions.getCharacter().storyFlags);
+    expect(flags["story.s1.first-dojo.completed"]).toBe(true);
+    expect(flags["notebook.s1.yamagishi-witness"]).not.toBe(true);
+    expect(flags["story.s1.yamagishi-black-car.completed"]).not.toBe(true);
+    witnesses.push(...witnesses.splice(0,2));
+  }
   for (const [actor, world, flag, spouse] of [
-    ...(resumeAfterTom ? [] : [
-      ["SUMI", "sakuragaoka", "story.s1.sumiya-witness.completed"],
-      ["YAMA", "sakuragaoka", "notebook.s1.dobuita-black-car"],
-      ["HRSK", "dobuita", "notebook.s1.tom-witness"],
-      ["TOM_", "dobuita", "notebook.s1.chinese-community"],
-    ]),
+    ...(resumeAfterTom ? [] : witnesses),
     ...(process.env.NEW_YOKOSUKA_THREE_BLADES_E2E === "true" ? [
       ["UNO_", "dcha", "notebook.s1.three-blades", "RNKT"],
       ["ITOI", "dobuita", "notebook.s1.liu-barber"],
@@ -1184,6 +2283,9 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
       expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
       const saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
       expect(Boolean(saved.character.storyFlags[flag])).toBe(ending === "complete");
+      if (process.env.NEW_YOKOSUKA_NOZOMI_FIRST_E2E === "true" && ["HRSK", "TOM_"].includes(actor)) {
+        expect(saved.character.storyFlags["story.s1.yamagishi-black-car.completed"]).not.toBe(true);
+      }
       expect(saved.character.yen).toBe(expectedYen);
       const restored = await page.evaluate(() => {
         const life=window.storyProbe.lifecycle,c=life.getController();
@@ -1315,10 +2417,10 @@ async function verifyObservedStoryDialogueFace(page, testInfo, name) {
   expect(sample.mouths).toBeGreaterThan(2);
 }
 
-async function residentClickPoint(page, actor) {
+async function residentClickPoint(page, actor, {reposition=true}={}) {
   // Bound travel time without fabricating a talk result: position by the
   // real scheduled NPC, then project its visible mesh for a normal click.
-  await page.evaluate(async actor => {
+  if (reposition) await page.evaluate(async actor => {
     const { Ray } = await import('/node_modules/@babylonjs/core/Culling/ray.js');
     const life = window.storyProbe.lifecycle;
     const [x, y, z] = life.scheduledActors.dialogueActor(actor).position;
@@ -1412,7 +2514,7 @@ async function residentClickPoint(page, actor) {
     return { x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(),
       y: rect.y + screen.y * rect.height / life.engine.getRenderHeight(),
       pickedActor:selected?.actorCode,directActor:scheduledActorSelection(direct?.pickedMesh)?.actorCode,directMesh:direct?.pickedMesh?.name,
-      proxyActor:scheduledActorSelection(proxy?.pickedMesh)?.actorCode,
+      proxyActor:scheduledActorSelection(proxy?.pickedMesh)?.actorCode,proxyDistance:proxy?.distance,directDistance:direct?.distance,
       modelCode: model.modelCode, actorPosition: life.scheduledActors.dialogueActor(actor).position,
       renderedCenter: point.asArray(), playerPosition: position.asArray(), bounds: [bounds.min.asArray(), bounds.max.asArray()] };
   }, actor);
@@ -1579,6 +2681,15 @@ async function verifyAlleyQte(page,testInfo,character) {
 }
 
 async function verifyBarQte(page, testInfo, character) {
+  const gamepad = process.env.NEW_YOKOSUKA_CONNECTED_GAMEPAD_QTE_E2E === "true";
+  const press = async button => {
+    if (!gamepad) return page.keyboard.press(button === "B" ? "Shift" : "Enter");
+    const index = button === "B" ? 1 : 0;
+    await page.evaluate(index => { window.storyTestPad.buttons[index] = {pressed:true,value:1}; }, index);
+    await page.waitForTimeout(100);
+    await page.evaluate(index => { window.storyTestPad.buttons[index] = {pressed:false,value:0}; }, index);
+    await page.waitForTimeout(100);
+  };
   expect(character.storyFlags["story.s1.heartbeats-alley.completed"]).toBe(true);
   const state = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
   if (new Date(state.worldState.gameTimeMs).getUTCHours() < 19) {
@@ -1601,7 +2712,7 @@ async function verifyBarQte(page, testInfo, character) {
   }
   await page.waitForFunction(() => window.storyProbe.regions.controller.active?.challengePrompt?.ready);
   await page.screenshot({ path: testInfo.outputPath("heartbeats-bar-prompt.png") });
-  await page.keyboard.press("Enter");
+  await press("A");
   await expect(page.getByRole("button", { name: "Try again", exact: true })).toBeVisible();
   let saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
   expect(saved.character.storyFlags["notebook.s1.charlie"]).not.toBe(true);
@@ -1614,7 +2725,7 @@ async function verifyBarQte(page, testInfo, character) {
       const p = window.storyProbe.regions.controller.active?.challengePrompt;
       return p?.ready && window.storyProbe.regions.controller.dialogue.qte?.active?.index === index && window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0] === button;
     }, { index, button });
-    await page.keyboard.press(button === "B" ? "Shift" : "Enter");
+    await press(button);
   }
   await page.waitForFunction(() => window.storyProbe.regions.controller.status === "line");
   for (let i = 0; i < 30 && !await page.evaluate(() => window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie"]); i++) {
@@ -1647,11 +2758,294 @@ async function verifyBarQte(page, testInfo, character) {
   expect(await page.evaluate(() => window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
 }
 
-async function enterInteriorDoor(page,{world,filename,doorSelector,position,yaw=0,fromWorld="dobuita"}) {
-    await page.evaluate(async ({filename,doorSelector,position,yaw,fromWorld}) => {
+async function walkToDojo(page,testInfo) {
+  // Waypoints follow the courtyard around the residence; all displacement
+  // comes from the ordinary controller rather than test-only position resets.
+  // Original JHD0 code-10 boundaries identify the dojo's west-facing stair
+  // flight at x=-0.83..0.69, z=-23.50..-21.49.
+  const targets=[[3,4],[-7,4],[-7,-22.5],[2,-22.5]];
+  const positions=[];
+  await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+  await page.locator("#renderCanvas").focus();
+  await page.keyboard.down("KeyW");
+  try {
+    let next=0;
+    for(let step=0;step<240;step++){
+      const state=await page.evaluate(([x,z])=>{
+        const p=window.storyProbe,c=p.lifecycle.getController(),position=c.collider.position;
+        c.cameraYaw=Math.atan2(-(x-position.x),-(z-position.z));c.updateCamera(1);
+        return {position:position.asArray(),scene:p.director?.activeCutscene?.cutscene.id,
+          status:p.regions.controller.status,locked:c.movementLocked};
+      },targets[next]);
+      positions.push(state.position);
+      if(state.scene==="story-s1-first-dojo"){
+        console.info("Natural dojo walk:",JSON.stringify({start:positions[0],end:state.position,samples:positions.length}));
+        await page.screenshot({path:testInfo.outputPath("natural-dojo-walk.png")});
+        return;
+      }
+      if(next<targets.length-1&&Math.hypot(state.position[0]-targets[next][0],state.position[2]-targets[next][1])<.8){next++;}
+      if(step>12){
+        const old=positions[step-10],now=state.position;
+        if(Math.hypot(now[0]-old[0],now[2]-old[2])<.15){
+          await page.screenshot({path:testInfo.outputPath("natural-dojo-walk-blocked.png")});
+          throw Error(`Natural dojo path stopped: ${JSON.stringify({target:targets[next],state,recent:positions.slice(-5)})}`);
+        }
+      }
+      await page.waitForTimeout(300);
+    }
+    throw Error(`Natural dojo walk timed out: ${JSON.stringify(positions.slice(-5))}`);
+  } finally {await page.keyboard.up("KeyW");}
+}
+
+async function walkToKitten(page,testInfo) {
+  const targets=[[48,94],[47,92],[44,90],[42,87],[40,84],[38,81],[37,77],
+    [36,73],[35,69],[37,66],[40,64],[42,61],[44,58],[45,54],
+    [43,51],[40,49],[36,48],[35,44],[36,43]],positions=[];
+  await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+  try {
+    let next=0;
+    for(let step=0;step<350;step++){
+      const state=await page.evaluate(([x,z])=>{
+        const p=window.storyProbe,c=p.lifecycle.getController(),position=c.collider.position;
+        c.cameraYaw=Math.atan2(-(x-position.x),-(z-position.z));c.updateCamera(1);
+        return {position:position.asArray(),scene:p.director?.activeCutscene?.cutscene.id,status:p.regions.controller.status,locked:c.movementLocked};
+      },targets[next]);
+      positions.push(state.position);
+      if(state.scene==="story-s1-first-kitten-introduction"){
+        console.info("Natural kitten walk:",JSON.stringify({start:positions[0],end:state.position,samples:positions.length}));
+        await page.screenshot({path:testInfo.outputPath("natural-kitten-walk.png")});return;
+      }
+      if(next<targets.length-1&&Math.hypot(state.position[0]-targets[next][0],state.position[2]-targets[next][1])<.8)next++;
+      if(step>12){const old=positions[step-10],now=state.position;
+        if(Math.hypot(now[0]-old[0],now[2]-old[2])<.15){
+          await page.screenshot({path:testInfo.outputPath("natural-kitten-walk-blocked.png")});
+          throw Error(`Natural kitten path stopped: ${JSON.stringify({target:targets[next],state,recent:positions.slice(-5)})}`);
+        }
+      }
+      await page.waitForTimeout(300);
+    }
+    throw Error(`Natural kitten walk timed out: ${JSON.stringify(positions.slice(-5))}`);
+  } finally {await page.keyboard.up("KeyW");}
+}
+
+async function walkToSakuragaoka(page,testInfo) {
+  const targets=[[35,46],[32,46],[30,45],[29,43],[26,43],[24,42],
+    [21,42],[18,42],[15,42],[12,42],[10,41]],positions=[];
+  await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+  try {
+    let next=0;
+    for(let step=0;step<300;step++){
+      const state=await page.evaluate(([x,z])=>{
+        const p=window.storyProbe,l=p.lifecycle,c=l.getController(),position=c.collider.position;
+        if(l.worldRuntime.activeWorld.id==="yamanose"){
+          c.cameraYaw=Math.atan2(-(x-position.x),-(z-position.z));c.updateCamera(1);
+        }
+        return {position:position.asArray(),world:l.worldRuntime.activeWorld.id,ready:l.worldRuntime.ready,switching:l.worldRuntime.switching};
+      },targets[next]);
+      positions.push(state.position);
+      if(state.world==="sakuragaoka"){
+        await page.keyboard.up("KeyW");
+        await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.ready,null,{timeout:90_000});
+        console.info("Natural Yamanose road:",JSON.stringify({start:positions[0],end:state.position,samples:positions.length}));return;
+      }
+      if(next<targets.length-1&&Math.hypot(state.position[0]-targets[next][0],state.position[2]-targets[next][1])<.8)next++;
+      if(step>12&&!state.switching){const old=positions[step-10],now=state.position;
+        if(Math.hypot(now[0]-old[0],now[2]-old[2])<.15){
+          await page.screenshot({path:testInfo.outputPath("natural-yamanose-road-blocked.png")});
+          throw Error(`Natural road stopped: ${JSON.stringify({target:targets[next],state,recent:positions.slice(-5)})}`);
+        }
+      }
+      await page.waitForTimeout(300);
+    }
+    throw Error(`Natural road timed out: ${JSON.stringify(positions.slice(-5))}`);
+  } finally {await page.keyboard.up("KeyW");}
+}
+
+async function walkToSumiya(page,testInfo) {
+  const targets=[[8,28],[8,25],[8,22],[8,19],[8,16],[9,14],
+    [11,13],[11,10],[11,7],[11,4],[14,4],[19,3],[24,2],[29,1]],positions=[];
+  await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+  try{
+    let next=0;
+    for(let step=0;step<400;step++){
+      const state=await page.evaluate(({target,following})=>{
+        const l=window.storyProbe.lifecycle,c=l.getController(),position=c.collider.position,actor=l.scheduledActors.dialogueActor("SUMI")?.position;
+        const [x,z]=following&&actor?[actor[0],actor[2]]:target;
+        c.cameraYaw=Math.atan2(-(x-position.x),-(z-position.z));c.updateCamera(1);
+        return {position:position.asArray(),actor,world:l.worldRuntime.activeWorld.id};
+      },{target:targets[next],following:next===targets.length-1});
+      positions.push(state.position);
+      if(state.actor&&Math.hypot(state.position[0]-state.actor[0],state.position[2]-state.actor[2])<2.4){
+        console.info("Natural Sumiya approach:",JSON.stringify({start:positions[0],end:state.position,actor:state.actor,samples:positions.length}));return;
+      }
+      if(next<targets.length-1&&Math.hypot(state.position[0]-targets[next][0],state.position[2]-targets[next][1])<.8)next++;
+      if(step>12){const old=positions[step-10],now=state.position;
+        if(Math.hypot(now[0]-old[0],now[2]-old[2])<.15){
+          await page.screenshot({path:testInfo.outputPath("natural-sumiya-path-blocked.png")});
+          throw Error(`Natural Sumiya path stopped: ${JSON.stringify({target:targets[next],state,recent:positions.slice(-5)})}`);
+        }
+      }
+      await page.waitForTimeout(300);
+    }
+    throw Error(`Natural Sumiya path timed out: ${JSON.stringify(positions.slice(-5))}`);
+  }finally{await page.keyboard.up("KeyW");}
+}
+
+async function walkToYamagishi(page,testInfo) {
+  // Waypoints follow JD00's collision-free streets and avoid the native
+  // Yamanose and Dobuita transition volumes; the final target is the actor.
+  const targets=[[29,0],[24,1],[20,3],[15,3],[12,4],[11,7],[11,12],
+    [10,14],[6,16],[1,18],[1,20],[-5,20],[-11,20],[-12,25],[-12,29],[-14,33]],positions=[];
+  await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+  try{
+    let next=0;
+    for(let step=0;step<650;step++){
+      const state=await page.evaluate(({target,following})=>{
+        const l=window.storyProbe.lifecycle,c=l.getController(),position=c.collider.position,actor=l.scheduledActors.dialogueActor("YAMA")?.position;
+        const [x,z]=following&&actor?[actor[0],actor[2]]:target;
+        c.cameraYaw=Math.atan2(-(x-position.x),-(z-position.z));c.updateCamera(1);
+        return {position:position.asArray(),actor,world:l.worldRuntime.activeWorld.id};
+      },{target:targets[next],following:next===targets.length-1});
+      positions.push(state.position);
+      if(state.world!=="sakuragaoka")throw Error(`Unexpected zone during Yamagishi walk: ${JSON.stringify(state)}`);
+      if(state.actor&&Math.hypot(state.position[0]-state.actor[0],state.position[2]-state.actor[2])<2.4){
+        console.info("Natural Yamagishi approach:",JSON.stringify({start:positions[0],end:state.position,actor:state.actor,samples:positions.length}));return;
+      }
+      if(next<targets.length-1&&Math.hypot(state.position[0]-targets[next][0],state.position[2]-targets[next][1])<.8)next++;
+      if(step>12){const old=positions[step-10],now=state.position;
+        if(Math.hypot(now[0]-old[0],now[2]-old[2])<.15){
+          await page.screenshot({path:testInfo.outputPath("natural-yamagishi-path-blocked.png")});
+          throw Error(`Natural Yamagishi path stopped: ${JSON.stringify({target:targets[next],state,recent:positions.slice(-5)})}`);
+        }
+      }
+      await page.waitForTimeout(300);
+    }
+    throw Error(`Natural Yamagishi path timed out: ${JSON.stringify(positions.slice(-5))}`);
+  }finally{await page.keyboard.up("KeyW");}
+}
+
+async function walkToDobuita(page,testInfo) {
+  const targets=[[-13,29],[-12,26],[-12,22],[-12,18],[-12,14],[-12,10],
+    [-12,6],[-14,4],[-18,4],[-22,4],[-26,4],[-30,4],[-35,4]],positions=[];
+  await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+  try{
+    let next=0;
+    for(let step=0;step<350;step++){
+      const state=await page.evaluate(([x,z])=>{
+        const l=window.storyProbe.lifecycle,c=l.getController(),position=c.collider.position;
+        if(l.worldRuntime.activeWorld.id==="sakuragaoka"){
+          c.cameraYaw=Math.atan2(-(x-position.x),-(z-position.z));c.updateCamera(1);
+        }
+        return {position:position.asArray(),world:l.worldRuntime.activeWorld.id,switching:l.worldRuntime.switching};
+      },targets[next]);
+      positions.push(state.position);
+      if(state.world==="dobuita"){
+        await page.keyboard.up("KeyW");
+        await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.ready,null,{timeout:120_000});
+        console.info("Natural Dobuita road:",JSON.stringify({start:positions[0],end:state.position,samples:positions.length}));return;
+      }
+      if(next<targets.length-1&&Math.hypot(state.position[0]-targets[next][0],state.position[2]-targets[next][1])<.8)next++;
+      if(step>12&&!state.switching){const old=positions[step-10],now=state.position;
+        if(Math.hypot(now[0]-old[0],now[2]-old[2])<.15){
+          await page.screenshot({path:testInfo.outputPath("natural-dobuita-road-blocked.png")});
+          throw Error(`Natural Dobuita road stopped: ${JSON.stringify({target:targets[next],state,recent:positions.slice(-5)})}`);
+        }
+      }
+      await page.waitForTimeout(300);
+    }
+    throw Error(`Natural Dobuita road timed out: ${JSON.stringify(positions.slice(-5))}`);
+  }finally{await page.keyboard.up("KeyW");}
+}
+
+async function walkToNozomi(page,testInfo) {
+  return walkToScheduledWitness(page,testInfo,"HRSK","Nozomi",[[-10,90],[-7,88],[-6,86],[2,81],[7,78],[20,77],
+    [32,77],[44,77],[49,80],[57,84],[59,82],[64,80],[65,73]]);
+}
+
+async function walkToTom(page,testInfo) {
+  return walkToScheduledWitness(page,testInfo,"TOM_","Tom",[[65,73],[66,70],[66,60],[66,50],[62,50],[58,46],
+    [53,43],[48,40],[40,40],[32,40],[25,39],[21,39]]);
+}
+
+async function walkToScheduledWitness(page,testInfo,actorCode,label,targets,world="dobuita",{maxSteps=500,arrivalRadius=.8,approachRadius=2.4}={}) {
+  const positions=[];
+  await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+  try{
+    let next=0;
+    for(let step=0;step<maxSteps;step++){
+      const state=await page.evaluate(({target,following,actorCode})=>{
+        const l=window.storyProbe.lifecycle,c=l.getController(),position=c.collider.position,actor=l.scheduledActors.dialogueActor(actorCode)?.position;
+        const [x,z]=following&&actor?[actor[0],actor[2]]:target;
+        c.cameraYaw=Math.atan2(-(x-position.x),-(z-position.z));c.updateCamera(1);
+        return {position:position.asArray(),actor,world:l.worldRuntime.activeWorld.id};
+      },{target:targets[next],following:next===targets.length-1,actorCode});
+      positions.push(state.position);
+      if(state.world!==world)throw Error(`Unexpected zone during ${label} walk: ${JSON.stringify(state)}`);
+      if(state.actor&&Math.hypot(state.position[0]-state.actor[0],state.position[2]-state.actor[2])<approachRadius){
+        console.info(`Natural ${label} approach:`,JSON.stringify({start:positions[0],end:state.position,actor:state.actor,samples:positions.length}));return;
+      }
+      if(next<targets.length-1&&Math.hypot(state.position[0]-targets[next][0],state.position[2]-targets[next][1])<arrivalRadius)next++;
+      if(step>12){const old=positions[step-10],now=state.position;
+        if(Math.hypot(now[0]-old[0],now[2]-old[2])<.15){
+          await page.screenshot({path:testInfo.outputPath(`natural-${label.toLowerCase()}-path-blocked.png`)});
+          throw Error(`Natural ${label} path stopped: ${JSON.stringify({target:targets[next],state,recent:positions.slice(-5)})}`);
+        }
+      }
+      await page.waitForTimeout(300);
+    }
+    throw Error(`Natural ${label} path timed out: ${JSON.stringify(positions.slice(-5))}`);
+  }finally{await page.keyboard.up("KeyW");}
+}
+
+async function walkToAjiichi(page,testInfo) {
+  return walkToLandmark(page,testInfo,{world:"dobuita",label:"Ajiichi",targets:[[25,39],[32,40],[40,40],[48,40],[53,43],[58,46],
+    [62,50],[66,50],[66,54],[67,57],[70,58],[72,61],[80,61],[88,62],[93,63],[95,65]]});
+}
+
+async function walkToLandmark(page,testInfo,{world,label,targets,maxSteps=500,arrivalRadius=.8}) {
+  const positions=[];
+  await page.evaluate(()=>window.storyProbe.lifecycle.getController().setFirstPerson(true));
+  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+  try{
+    let next=0;
+    for(let step=0;step<maxSteps;step++){
+      const state=await page.evaluate(([x,z])=>{
+        const l=window.storyProbe.lifecycle,c=l.getController(),position=c.collider.position;
+        c.cameraYaw=Math.atan2(-(x-position.x),-(z-position.z));c.updateCamera(1);
+        return {position:position.asArray(),world:l.worldRuntime.activeWorld.id};
+      },targets[next]);
+      positions.push(state.position);
+      if(state.world!==world)throw Error(`Unexpected zone during ${label} walk: ${JSON.stringify(state)}`);
+      if(next===targets.length-1&&Math.hypot(state.position[0]-targets[next][0],state.position[2]-targets[next][1])<arrivalRadius){
+        console.info(`Natural ${label} approach:`,JSON.stringify({start:positions[0],end:state.position,samples:positions.length}));return;
+      }
+      if(next<targets.length-1&&Math.hypot(state.position[0]-targets[next][0],state.position[2]-targets[next][1])<arrivalRadius)next++;
+      if(step>12){const old=positions[step-10],now=state.position;
+        if(Math.hypot(now[0]-old[0],now[2]-old[2])<.15){
+          await page.screenshot({path:testInfo.outputPath(`natural-${label.toLowerCase().replaceAll(" ","-")}-path-blocked.png`)});
+          throw Error(`Natural ${label} path stopped: ${JSON.stringify({target:targets[next],state,recent:positions.slice(-5)})}`);
+        }
+      }
+      await page.waitForTimeout(300);
+    }
+    throw Error(`Natural ${label} path timed out: ${JSON.stringify(positions.slice(-5))}`);
+  }finally{await page.keyboard.up("KeyW");}
+}
+
+async function enterInteriorDoor(page,{world,filename,doorSelector,position,yaw=0,fromWorld="dobuita",blocked=false,reposition=true}) {
+    await page.evaluate(async ({filename,doorSelector,position,yaw,fromWorld,reposition}) => {
       const life = window.storyProbe.lifecycle;
-      if(life.worldRuntime.activeWorld.id!==fromWorld)await life.travelToWorld(fromWorld);
-      life.resetPlayer(life.vectorFromArray(position), yaw, { persist: false });
+      if(life.worldRuntime.activeWorld.id!==fromWorld){
+        if(!reposition)throw new Error(`Expected ${fromWorld} before entering door`);
+        await life.travelToWorld(fromWorld);
+      }
+      if(reposition)life.resetPlayer(life.vectorFromArray(position), yaw, { persist: false });
       // Storefronts can share one original door model. A physical selector
       // identifies its placement; a filename alone can pick another shop.
       const door = life.doorInteractions.entries.find(entry => Number.isInteger(doorSelector)
@@ -1659,12 +3053,13 @@ async function enterInteriorDoor(page,{world,filename,doorSelector,position,yaw=
       if (!door) throw new Error(`Interior door ${filename} is missing`);
       const bounds = door.root.getHierarchyBoundingVectors(true), center = bounds.min.add(bounds.max).scale(.5);
       const controller = life.getController();
+      const location=controller.collider.position;
       controller.setFirstPerson(true);
-      controller.cameraYaw = Math.atan2(-(center.x - position[0]), -(center.z - position[2]));
-      controller.cameraPitch = Math.atan2(position[1]+controller.options.firstPersonHeadHeight-center.y,
-        Math.hypot(center.x-position[0],center.z-position[2]));
+      controller.cameraYaw = Math.atan2(-(center.x - location.x), -(center.z - location.z));
+      controller.cameraPitch = Math.atan2(location.y+controller.options.firstPersonHeadHeight-center.y,
+        Math.hypot(center.x-location.x,center.z-location.z));
       controller.updateCamera(1);
-    },{filename,doorSelector,position,yaw,fromWorld});
+    },{filename,doorSelector,position,yaw,fromWorld,reposition});
     await page.waitForTimeout(800);
     const point = await page.evaluate(({filename,doorSelector}) => {
       const life = window.storyProbe.lifecycle;
@@ -1676,8 +3071,16 @@ async function enterInteriorDoor(page,{world,filename,doorSelector,position,yaw=
       const viewProjection=life.scene.activeCamera.getViewMatrix(true).multiply(life.scene.activeCamera.getProjectionMatrix(true));
       const screen = center.constructor.Project(center, viewProjection.constructor.Identity(), viewProjection,
         life.scene.activeCamera.viewport.toGlobal(life.engine.getRenderWidth(), life.engine.getRenderHeight()));
-      const pick=life.scene.pick(screen.x*rect.width/life.engine.getRenderWidth(),screen.y*rect.height/life.engine.getRenderHeight(),mesh=>Object.keys(mesh.metadata||{}).some(key=>key.startsWith('interactive')),false,life.scene.activeCamera);
-      return { x: rect.x + screen.x * rect.width / life.engine.getRenderWidth(), y: rect.y + screen.y * rect.height / life.engine.getRenderHeight(),
+      const centerX=screen.x*rect.width/life.engine.getRenderWidth(),centerY=screen.y*rect.height/life.engine.getRenderHeight();
+      // A double door's bounding-box center can fall in the gap between its
+      // leaves. Find a visible pixel on this same door, not a nearby object.
+      let x=centerX,pick;
+      for(const offset of Number.isInteger(doorSelector)?[0,-25,25,-50,50,-75,75]:[0]){
+        const candidate=life.scene.pick(centerX+offset,centerY,mesh=>Object.keys(mesh.metadata||{}).some(key=>key.startsWith('interactive')),false,life.scene.activeCamera);
+        if(!pick)pick=candidate;
+        if(!Number.isInteger(doorSelector)||candidate?.pickedMesh?.metadata?.interactiveDoor?.doorSelector===doorSelector){x=centerX+offset;pick=candidate;break;}
+      }
+      return { x: rect.x + x, y: rect.y + centerY,
         depth:screen.z,doorCenter:center.asArray(),playerPosition:life.getController().collider.position.asArray(),
         filename:door.root._filename,selector:door.doorSelector,type:door.type,state:door.state,
         picked:pick?.pickedMesh?.name,pickedSelector:pick?.pickedMesh?.metadata?.interactiveDoor?.doorSelector,
@@ -1689,6 +3092,19 @@ async function enterInteriorDoor(page,{world,filename,doorSelector,position,yaw=
     expect(point.y).toBeGreaterThan(0);expect(point.y).toBeLessThan(720);
     if(Number.isInteger(doorSelector))expect(point.pickedSelector).toBe(doorSelector);
     await page.mouse.click(point.x, point.y);
+    if(blocked){
+      await expect(page.getByText("I should go and talk to Fuku-san.", {exact:true})).toBeVisible();
+      try {
+        await expect.poll(()=>page.evaluate(()=>window.storyGateVoices.some(voice=>voice.playing && voice.ended && !voice.muted && voice.volume>0)),{timeout:15000}).toBe(true);
+      } catch(error) {
+        console.info("Gate voice attempts:",JSON.stringify(await page.evaluate(()=>window.storyGateVoices)));
+        throw error;
+      }
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)).toBe(fromWorld);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      await page.screenshot({path:test.info().outputPath("first-dojo-gate-reminder.png")});
+      return;
+    }
     await page.waitForFunction(world => window.storyProbe.lifecycle.worldRuntime.activeWorld.id === world, world, { timeout: 30_000 });
     await page.waitForFunction(()=>{const life=window.storyProbe.lifecycle;return life.worldRuntime.ready&&!life.worldRuntime.switching&&!life.playerRuntime.characterSwitching;});
 }
@@ -2281,7 +3697,7 @@ async function verifyFukuLetterGate(page,testInfo,character) {
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
 }
 
-async function verifyGaoRescue(page,testInfo,character) {
+async function verifyGaoRescue(page,testInfo,character,{earned=false}={}) {
   expect(character.storyFlags["story.s1.fuku-letter-gate.completed"]).toBe(true);
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
@@ -2303,16 +3719,23 @@ async function verifyGaoRescue(page,testInfo,character) {
       await page.getByRole('button',{name:'Wait until tomorrow morning',exact:true}).click();
       await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
     }
-    await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld('sakuragaoka'));
+    if(earned){
+      if(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)!=='sakuragaoka'){
+        await page.locator('#travel-button').click();await page.getByRole('option',{name:'Sakuragaoka',exact:true}).click();
+      }
+    }else await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld('sakuragaoka'));
     await scene('s1.jd00.gao-introduction');
     await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0,null,{timeout:20_000});
     await page.screenshot({path:testInfo.outputPath('gao-original-cast.png')});
-    await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-gao'));
-    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe('idle');
-    expect((await saved()).character.storyFlags['notebook.s1.gao-wen']).not.toBe(true);
-    expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
-    await page.evaluate(async()=>{await window.storyProbe.lifecycle.travelToWorld('yamanose');await window.storyProbe.lifecycle.travelToWorld('sakuragaoka');});
-    await scene('s1.jd00.gao-introduction');await advanceTo('combat');
+    if(!earned){
+      await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-gao'));
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe('idle');
+      expect((await saved()).character.storyFlags['notebook.s1.gao-wen']).not.toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+      await page.evaluate(async()=>{await window.storyProbe.lifecycle.travelToWorld('yamanose');await window.storyProbe.lifecycle.travelToWorld('sakuragaoka');});
+      await scene('s1.jd00.gao-introduction');
+    }
+    await advanceTo('combat');
     await page.screenshot({path:testInfo.outputPath('gao-three-opponent-fight.png')});
     expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.length)).toBe(4);
     const lostToken=await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.token);
@@ -2323,40 +3746,68 @@ async function verifyGaoRescue(page,testInfo,character) {
       const view=window.storyProbe.combatRuntime?.active?.view,owner=window.storyProbe.combatRuntime.active;
       return view?.ready&&view.token!==old&&owner?.token===view.token&&owner.view.ready&&!!owner.input;
     },lostToken,{timeout:30_000});
-    await page.locator('#renderCanvas').focus();await page.keyboard.down('KeyI');
-    await page.keyboard.down('KeyS');await page.waitForTimeout(350);await page.keyboard.up('KeyS');
-    const heldMovement=new Set();
-    try {
+    for(let attempt=0;attempt<4;attempt++){
+      const samples=[];let lastAttack=0;
+      await page.locator('#renderCanvas').focus();await page.keyboard.down('KeyI');
+      await page.keyboard.down('KeyS');await page.waitForTimeout(350);await page.keyboard.up('KeyS');
+      const heldMovement=new Set();
+      try {
       for(let i=0;i<1600&&await page.evaluate(()=>!!window.storyProbe.combatRuntime?.active?.view);i++) {
         // Read the authoritative positions, then use physical keyboard input.
         // Standing still against three attackers is not a guaranteed victory.
-        const keys=await page.evaluate(()=>{
+        const sample=await page.evaluate(()=>{
           const runtime=window.storyProbe.combatRuntime,view=runtime.active?.view;
-          if(!view)return [];
+          if(!view)return null;
           const player=view.actors[0];
           const opponents=view.actors.slice(1).filter(actor=>actor.health>0)
             .sort((a,b)=>Math.hypot(player.x-a.x,player.z-a.z)-Math.hypot(player.x-b.x,player.z-b.z));
-          const enemy=opponents[0];if(!enemy)return [];
-          const distance=Math.hypot(player.x-enemy.x,player.z-enemy.z);if(distance>=.9)return [];
+          const enemy=opponents[0];if(!enemy)return {keys:[]};
+          const distance=Math.hypot(player.x-enemy.x,player.z-enemy.z);
           const x=(player.x-enemy.x)/Math.max(.01,distance),z=(player.z-enemy.z)/Math.max(.01,distance);
-          const yaw=runtime.encounter.playerTargetYaw()+Math.PI,bindings=runtime.active.input.getBindings();
-          const forward=-Math.sin(yaw)*x-Math.cos(yaw)*z,side=Math.cos(yaw)*x-Math.sin(yaw)*z;
-          return [Math.abs(forward)>.25?(forward>0?bindings.up:bindings.down):null,
-            Math.abs(side)>.25?(side>0?bindings.right:bindings.left):null].filter(Boolean);
+          const yaw=runtime.encounter.playerTargetYaw(),bindings=runtime.active.input.getBindings();
+          const forward=Math.sin(yaw)*x+Math.cos(yaw)*z,side=Math.cos(yaw)*x-Math.sin(yaw)*z;
+          const e=runtime.encounter;
+          return {keys:distance>=1.25?[]:distance<.01?[bindings.down]:[Math.abs(forward)>.25?(forward>0?bindings.up:bindings.down):null,
+            Math.abs(side)>.25?(side>0?bindings.right:bindings.left):null].filter(Boolean),distance,
+            playerHealth:e.player.health,move:e.player.lastMoveId,action:e.player.action?.moveId,
+            enemyHealth:e.opponents.map(o=>o.combatant.health),target:e.player.targetId};
         });
+        if(!sample)break;
+        if(i%25===0){samples.push(sample);if(samples.length>12)samples.shift();}
+        const {keys}=sample;
         for(const key of heldMovement)if(!keys.includes(key)){await page.keyboard.up(key);heldMovement.delete(key);}
         for(const key of keys)if(!heldMovement.has(key)){await page.keyboard.down(key);heldMovement.add(key);}
-        await page.keyboard.press('KeyK');await page.waitForTimeout(80);
+        if(!earned){await page.keyboard.press('KeyK');}
+        else if(sample.distance<1.55&&!sample.action&&Date.now()-lastAttack>900){
+          // An ordinary down+kick has knockdown and does more damage than
+          // endlessly holding guard+kick against three simultaneous enemies.
+          for(const key of heldMovement)await page.keyboard.up(key);
+          heldMovement.clear();await page.keyboard.up('KeyI');
+          await page.keyboard.press('KeyS');await page.keyboard.press('KeyK');
+          await page.keyboard.down('KeyI');lastAttack=Date.now();
+        }
+        await page.waitForTimeout(100);
       }
-    } finally {
-      await page.keyboard.up('KeyI');for(const key of heldMovement)await page.keyboard.up(key);
+      } finally {
+        await page.keyboard.up('KeyI');for(const key of heldMovement)await page.keyboard.up(key);
+      }
+      const retry=page.getByRole('button',{name:'Try again',exact:true});
+      await expect.poll(async()=>await retry.isVisible()||await page.evaluate(()=>window.storyProbe.authoredScene?.active?.scene.id==='s1.jd00.gao-hostage'),{timeout:30_000}).toBe(true);
+      if(!await retry.isVisible())break;
+      console.info(`Gao fight attempt ${attempt+1} lost:`,JSON.stringify(samples.at(-1)));
+      expect((await saved()).character.storyFlags['notebook.s1.gao-wen']).not.toBe(true);
+      if(attempt===3)throw Error('Gao fight was lost after four ordinary retries');
+      await retry.click();await advanceTo('combat');
     }
     await testInfo.attach('gao-combat-inputs',{body:JSON.stringify(await page.evaluate(()=>({
       intents:window.storyProbe.combatInputs.slice(-12),view:window.storyProbe.combatRuntime?.active?.view,
       held:[...(window.storyProbe.combatRuntime.active?.input?.held||[])],errors:window.storyProbe.sceneErrors,
     }))),contentType:'application/json'});
     await noErrors();
-    expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(intent=>intent.guard&&intent.action==='leg'))).toBe(true);
+    if(earned){
+      expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(intent=>intent.action==='leg'))).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(intent=>intent.guard))).toBe(true);
+    }else expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(intent=>intent.guard&&intent.action==='leg'))).toBe(true);
     expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(intent=>Math.hypot(intent.moveX,intent.moveZ)>0))).toBe(true);
     await scene('s1.jd00.gao-hostage');await page.screenshot({path:testInfo.outputPath('gao-hostage-with-ball.png')});await advanceTo('challenge');
     expect((await saved()).character.storyFlags['notebook.s1.gao-wen']).not.toBe(true);
@@ -2379,7 +3830,10 @@ async function verifyGaoRescue(page,testInfo,character) {
     await page.getByRole('button',{name:'Wait until tomorrow morning',exact:true}).click();
     await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   }
-  await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld('dobuita'));
+  if(earned){
+    await page.locator('#travel-button').click();await page.getByRole('option',{name:'Dobuita',exact:true}).click();
+    await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==='dobuita'&&window.storyProbe.lifecycle.worldRuntime.ready,null,{timeout:120_000});
+  }else await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld('dobuita'));
   await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor('KKBN'),null,{timeout:60_000});
   const point=await residentClickPoint(page,'KKBN');await page.mouse.click(point.x,point.y);
   await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0,null,{timeout:15_000});
@@ -2400,18 +3854,19 @@ async function verifyGaoRescue(page,testInfo,character) {
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
 }
 
-async function verifyXiaTranslation(page,testInfo,character) {
+async function verifyXiaTranslation(page,testInfo,character,{earned=false}={}) {
   expect(character.storyFlags['story.s1.gao-rescue.completed']).toBe(true);
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   if(!character.storyFlags['story.s1.xia-letter-translation.completed']){
-  const hour=new Date((await saved()).worldState.gameTimeMs).getUTCHours();
-  if(hour>=21||hour<9){
+  const time=new Date((await saved()).worldState.gameTimeMs);
+  const hour=time.getUTCHours()+time.getUTCMinutes()/60;
+  if(hour>=21||hour<8.5){
     await page.locator('#story-wait-button').click();await page.getByRole('option',{name:'Wait until tomorrow morning',exact:true}).click();
     await page.getByRole('button',{name:'Wait until tomorrow morning',exact:true}).click();
     await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   }
-  const enter=()=>enterInteriorDoor(page,{world:'drsa',filename:'S1_D000_DR15_011.MT5',doorSelector:1,position:[40.5,.0724,75.6]});
+  const enter=()=>enterInteriorDoor(page,{world:'drsa',filename:'S1_D000_DR15_011.MT5',doorSelector:1,position:[40.5,.0724,75.6],reposition:!earned});
   const scene=async()=>{
     await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==='story-s1-xia-letter-translation'||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
     await noErrors();
@@ -2421,14 +3876,30 @@ async function verifyXiaTranslation(page,testInfo,character) {
   // A restored pre-translation save may already be inside the shop. Let its
   // automatic entry finish starting before cancelling/re-entering; don't
   // force test travel concurrently with that legitimate startup event.
-  if(character.worldId!=='drsa')await enter();
+  if(character.worldId!=='drsa'){
+    if(earned){
+      if(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)!=='dobuita'){
+        await page.locator('#travel-button').click();await page.getByRole('option',{name:'Dobuita',exact:true}).click();
+        await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==='dobuita'&&window.storyProbe.lifecycle.worldRuntime.ready,null,{timeout:120_000});
+      }
+      const position=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());
+      if(Math.hypot(position[0]-40.5,position[2]-75.6)>4){
+        await walkToLandmark(page,testInfo,{world:'dobuita',label:'Russiya China Shop street',maxSteps:500,targets:[[69,65],[69,70],[69,75],[69,80],
+          [66,82],[63,84],[60,85],[56,84],[52,82],[48,80],[44,78]]});
+      }
+      await walkToLandmark(page,testInfo,{world:'dobuita',label:'Russiya China Shop door',arrivalRadius:.25,targets:[[40.5,75.6]]});
+    }
+    await enter();
+  }
   await scene();await page.screenshot({path:testInfo.outputPath('xia-original-greeting.png')});
+  if(!earned){
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-xia'));
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe('idle');
   expect((await saved()).character.storyFlags['notebook.s1.translated-letter']).not.toBe(true);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   await enter();await scene();
+  }
   await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime.presentation?.active?.currentFrame>1920||window.storyProbe.sceneErrors.length,null,{timeout:100_000});
   await noErrors();await page.screenshot({path:testInfo.outputPath('xia-original-letter-presented.png')});
   await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime.presentation?.active?.currentFrame>2100||window.storyProbe.sceneErrors.length,null,{timeout:100_000});
@@ -2519,7 +3990,12 @@ async function verifyFirstGoro(page,testInfo,character) {
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe('idle');expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);};
   const approach=async()=>{
     await page.evaluate(()=>{const life=window.storyProbe.lifecycle;life.resetPlayer(life.vectorFromArray([116,0,129]),Math.PI,{persist:false});life.getController().setFirstPerson(false);});
-    await page.waitForTimeout(300);await page.locator('#renderCanvas').focus();await page.keyboard.down('KeyW');
+    // Wait for ordinary gameplay updates to observe the exit before walking
+    // back in; a fixed delay can cross the boundary while scene cleanup is busy.
+    await page.waitForFunction(()=>{const p=window.storyProbe,f=p.lastRegionFrame;
+      return f?.enabled&&f.playerPosition?.[2]>128&&!p.regions.inside.has('s1.mfsy.goro-encounter');
+    },null,{timeout:20_000});
+    await page.locator('#renderCanvas').focus();await page.keyboard.down('KeyW');
     try{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug==='story-s1-goro-harbor-encounter'||window.storyProbe.sceneErrors.length,null,{timeout:20_000});}finally{await page.keyboard.up('KeyW');}
     await noErrors();
     await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await noErrors();
@@ -2589,6 +4065,54 @@ async function verifyHarborBus(page,testInfo,character) {
   expect(await page.evaluate(()=>window.storyProbe.starts.includes('story-s1-harbor-bus'))).toBe(false);
 }
 
+async function verifyEarnedChenPhone(page,testInfo,character) {
+  expect(character.storyFlags['story.s1.xia-letter-translation.completed']).toBe(true);
+  expect(character.storyFlags['story.s1.master-chen-phone.completed']).not.toBe(true);
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe('idle');
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
+  const world=await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id);
+  if(world==='drsa')await enterInteriorDoor(page,{world:'dobuita',filename:'S1_DRSA_DR03_000.MT5',fromWorld:'drsa',reposition:false});
+  if(world!=='interior'){
+    await page.locator('#travel-button').click();await page.getByRole('option',{name:'Hazuki Residence Grounds',exact:true}).click();
+    await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==='exterior'&&window.storyProbe.lifecycle.worldRuntime.ready,null,{timeout:120_000});
+    await walkToLandmark(page,testInfo,{world:'exterior',label:'Hazuki house',targets:[[-7,-22.5],[-7,4],[3,4],[3,2]]});
+    await enterInteriorDoor(page,{world:'interior',filename:'S1_JHD0_DR15_016.MT5',fromWorld:'exterior',reposition:false});
+  }
+  await walkToLandmark(page,testInfo,{world:'interior',label:'Hazuki telephone',targets:[[-15.1,2.7]]});
+  const phone={world:'interior',tag:'TEL_',reposition:false};
+  const fourChoices=async()=>{for(let i=0;i<16&&!await page.evaluate(()=>window.storyProbe.regions.controller.active?.optionIds?.size===4);i++){
+    await page.keyboard.press('Space');await page.waitForTimeout(200);
+  }await expect(page.locator('#dialogue-options .dialogue-option')).toHaveCount(4);};
+  await useStoryInspectable(page,phone);
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-dial'));await idle();
+  expect((await saved()).character.storyFlags['notebook.s1.warehouse-eight-phone']).not.toBe(true);
+  await useStoryInspectable(page,phone);await page.getByRole('button',{name:'Call 0468-61-5647',exact:true}).click();
+  await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length,null,{timeout:25_000});
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  await page.screenshot({path:testInfo.outputPath('earned-chen-phone.png')});
+  await fourChoices();await page.locator('#dialogue-options .dialogue-option').nth(1).click();
+  for(let i=0;i<10&&!await page.getByRole('button',{name:'Try again',exact:true}).isVisible();i++){await page.keyboard.press('Space');await page.waitForTimeout(200);}
+  await expect(page.getByRole('button',{name:'Try again',exact:true})).toBeVisible();
+  expect((await saved()).character.storyFlags['notebook.s1.warehouse-eight-phone']).not.toBe(true);
+  await page.getByRole('button',{name:'Try again',exact:true}).click();await fourChoices();
+  await page.locator('#dialogue-options .dialogue-option').first().click();await fourChoices();
+  await page.locator('#dialogue-options .dialogue-option').first().click();
+  for(let i=0;i<16&&!await page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.['notebook.s1.warehouse-eight-phone']);i++){
+    await page.keyboard.press('Space');await page.waitForTimeout(200);
+  }
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.['notebook.s1.warehouse-eight-phone'])).toBe(true);await idle();
+  let state=await saved();expect(state.character.yen).toBe(character.yen);expect(state.character.currentHp).toBe(character.currentHp);
+  expect(state.inventory.filter(i=>i.key==='chinese_letter').map(i=>i.quantity)).toEqual([1]);
+  await page.locator('button').filter({hasText:/^Notebook$/}).click();
+  for(let i=0;i<60&&await page.locator('#journal-next').isEnabled();i++)await page.locator('#journal-next').click();
+  await expect(page.getByText(/The man said Warehouse No. 8/)).toBeVisible();await page.screenshot({path:testInfo.outputPath('earned-chen-phone-notebook.png')});
+  await page.locator('#journal-close').click();await page.reload();await enterStoryWorld(page,character.name);
+  await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});await idle();
+  state=await saved();expect(state.character.storyFlags['story.s1.master-chen-phone.completed']).toBe(true);
+  expect(state.inventory.filter(i=>i.key==='chinese_letter').map(i=>i.quantity)).toEqual([1]);
+}
+
 async function verifyMasterChenPhone(page,testInfo,character) {
   expect(character.storyFlags['story.s1.xia-letter-translation.completed']).toBe(true);
   expect(character.storyFlags['story.s1.master-chen-phone.completed']).not.toBe(true);
@@ -2644,11 +4168,11 @@ async function verifyMasterChenPhone(page,testInfo,character) {
   await idle();expect(await page.evaluate(()=>window.storyProbe.nativeStarts.length)).toBe(before);
 }
 
-async function verifyAmihamaDirectory(page,testInfo,character) {
+async function verifyAmihamaDirectory(page,testInfo,character,{earned=false}={}) {
   expect(character.storyFlags['story.s1.master-chen-phone.completed']).toBe(true);
   expect(character.storyFlags['story.s1.amihama-directory.completed']).not.toBe(true);
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
-  const book={world:'dobuita',tag:'TBK1',position:[-37.4,0,10.2],expectedChoice:null};
+  const book={world:'dobuita',tag:'TBK1',position:[-37.4,0,10.2],expectedChoice:null,reposition:!earned};
   const scene=async()=>{
     await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==='story-s1-amihama-directory'||window.storyProbe.sceneErrors.length,null,{timeout:45_000});
     expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
@@ -2658,6 +4182,20 @@ async function verifyAmihamaDirectory(page,testInfo,character) {
     await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
     expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
   };
+  if(earned){
+    if(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)!=='dobuita'){
+      await page.locator('#travel-button').click();await page.getByRole('option',{name:'Dobuita',exact:true}).click();
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==='dobuita'&&window.storyProbe.lifecycle.worldRuntime.ready,null,{timeout:120_000});
+    }
+    const position=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());
+    if(position[0]>-20){
+      await walkToLandmark(page,testInfo,{world:'dobuita',label:'telephone street',maxSteps:800,targets:[[69,60],[67,57],[66,53],[64,50],[61,48],[58,46],
+        [54,45],[51,43],[49,40],[39,40],[29,40],[25,39],[19,35],[16,33],[13,31],[8,31],[3,31],[-2,31],[-7,31],[-12,31],[-17,31],[-22,30]]});
+    }
+    const near=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());
+    if(Math.hypot(near[0]+37.4,near[2]-10.2)>2)
+      await walkToLandmark(page,testInfo,{world:'dobuita',label:'telephone directory',maxSteps:300,arrivalRadius:1.8,targets:[[-27,28],[-27,23],[-27,18],[-31,15],[-35,12],[-37.4,10.2]]});
+  }
   await useStoryInspectable(page,book);await scene();
   await page.waitForFunction(()=>[...(window.storyProbe.director?.activeCutscene?.packageRuntime.audio.active?.elements||[])]
     .some(r=>r.kind==='voice'&&r.command.audio.voiceId.startsWith('01TEL')&&r.audio.currentTime>0&&!r.audio.paused),null,{timeout:30_000});

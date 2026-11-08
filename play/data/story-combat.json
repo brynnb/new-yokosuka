@@ -1395,6 +1395,371 @@
       "area": "MFSY",
       "worldId": "mfsy",
       "provenance": "GameSpot p57 five-thug battle after twelve-input chase. Original BAT_MBQC low-detail biker models plus two explicit reviewed thug donors. Authored open-alley formation near original interrogation, basic moves/AI and balance, two simultaneous attackers; all five must actually be defeated. No movie-completion victory or reward.",
+      "sceneObjects": {
+        "BIK0": {
+          "model": "BIKS504G",
+          "browserFilename": "BIKS504G.CHRM",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/BIKS504G.CHRM",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/MBQC-textures.bin",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              97,
+              0,
+              28
+            ],
+            "rotationDegrees": [
+              0,
+              160,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "BIK0",
+            "image": "BIKS504G",
+            "model": "BIKS504G",
+            "characterRecordOffset": 2272,
+            "imagePropertyOffset": 2312,
+            "defImageRecordOffset": 2200,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation"
+          }
+        },
+        "BIK1": {
+          "model": "BIKS504G",
+          "browserFilename": "BIKS504G.CHRM",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/BIKS504G.CHRM",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/MBQC-textures.bin",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              98,
+              0,
+              31
+            ],
+            "rotationDegrees": [
+              0,
+              -150,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "BIK1",
+            "image": "BIKS504G",
+            "model": "BIKS504G",
+            "characterRecordOffset": 2732,
+            "imagePropertyOffset": 2772,
+            "defImageRecordOffset": 2200,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation"
+          }
+        },
+        "BIK2": {
+          "model": "BIKS509G",
+          "browserFilename": "BIKS509G.CHRM",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/BIKS509G.CHRM",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RACE-textures.bin",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              100,
+              0,
+              24
+            ],
+            "rotationDegrees": [
+              0,
+              -90,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "BIK2",
+            "image": "BIKS509G",
+            "model": "BIKS509G",
+            "characterRecordOffset": 3020,
+            "imagePropertyOffset": 3060,
+            "defImageRecordOffset": 2232,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation"
+          }
+        },
+        "RY00": {
+          "model": "RAY02C1G",
+          "browserFilename": "RAY02C1G.MT5",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/RAY02C1G.MT5",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RAY02C1G-textures.bin",
+          "visualStyle": "unlit-additive",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              97,
+              0,
+              28
+            ],
+            "rotationDegrees": [
+              0,
+              160,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "RY00",
+            "image": "RAYS5C0G",
+            "model": "RAY02C1G",
+            "characterRecordOffset": 2532,
+            "imagePropertyOffset": 2572,
+            "defImageRecordOffset": 2492,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation",
+            "companionOf": "BIK0"
+          }
+        },
+        "RY01": {
+          "model": "RAYS5C2G",
+          "browserFilename": "RAYS5C2G.MT5",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/RAYS5C2G.MT5",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RAYS5C2G-textures.bin",
+          "visualStyle": "unlit-additive",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              97,
+              0,
+              28
+            ],
+            "rotationDegrees": [
+              0,
+              160,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "RY01",
+            "image": "RAYS5C2G",
+            "model": "RAYS5C2G",
+            "characterRecordOffset": 2648,
+            "imagePropertyOffset": 2688,
+            "defImageRecordOffset": 2608,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation",
+            "companionOf": "BIK0"
+          }
+        },
+        "RY10": {
+          "model": "RAY02C1G",
+          "browserFilename": "RAY02C1G.MT5",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/RAY02C1G.MT5",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RAY02C1G-textures.bin",
+          "visualStyle": "unlit-additive",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              98,
+              0,
+              31
+            ],
+            "rotationDegrees": [
+              0,
+              -150,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "RY10",
+            "image": "RAYS5C0G",
+            "model": "RAY02C1G",
+            "characterRecordOffset": 2852,
+            "imagePropertyOffset": 2892,
+            "defImageRecordOffset": 2492,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation",
+            "companionOf": "BIK1"
+          }
+        },
+        "RY11": {
+          "model": "RAYS5C2G",
+          "browserFilename": "RAYS5C2G.MT5",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/RAYS5C2G.MT5",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RAYS5C2G-textures.bin",
+          "visualStyle": "unlit-additive",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              98,
+              0,
+              31
+            ],
+            "rotationDegrees": [
+              0,
+              -150,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "RY11",
+            "image": "RAYS5C2G",
+            "model": "RAYS5C2G",
+            "characterRecordOffset": 2936,
+            "imagePropertyOffset": 2976,
+            "defImageRecordOffset": 2608,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation",
+            "companionOf": "BIK1"
+          }
+        },
+        "RY20": {
+          "model": "RAY02C1G",
+          "browserFilename": "RAY02C1G.MT5",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/RAY02C1G.MT5",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RAY02C1G-textures.bin",
+          "visualStyle": "unlit-additive",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              100,
+              0,
+              24
+            ],
+            "rotationDegrees": [
+              0,
+              -90,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "RY20",
+            "image": "RAYS5C0G",
+            "model": "RAY02C1G",
+            "characterRecordOffset": 3248,
+            "imagePropertyOffset": 3288,
+            "defImageRecordOffset": 2492,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation",
+            "companionOf": "BIK2"
+          }
+        },
+        "RY21": {
+          "model": "RAYS5C2G",
+          "browserFilename": "RAYS5C2G.MT5",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/RAYS5C2G.MT5",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RAYS5C2G-textures.bin",
+          "visualStyle": "unlit-additive",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              100,
+              0,
+              24
+            ],
+            "rotationDegrees": [
+              0,
+              -90,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "RY21",
+            "image": "RAYS5C2G",
+            "model": "RAYS5C2G",
+            "characterRecordOffset": 3332,
+            "imagePropertyOffset": 3372,
+            "defImageRecordOffset": 2608,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation",
+            "companionOf": "BIK2"
+          }
+        }
+      },
       "sourceScene": "s1.mfsy.biker-thugs",
       "actors": [
         {
@@ -1519,6 +1884,371 @@
       "area": "MFSY",
       "worldId": "mfsy",
       "provenance": "GameSpot p57: fight Charlie after the five thugs. Original CHRL/BIK_L from the exact interrogation cast, explicit separated standing formation rather than cinematic intimidation poses. Shared basic combat, 160 health, full-health fresh player attempt and faster opponent are declared balance adaptations, not Charlie's original moveset. Winning alone cannot grant the clue; original interrogation must finish or be explicitly skipped.",
+      "sceneObjects": {
+        "BIK0": {
+          "model": "BIKS504G",
+          "browserFilename": "BIKS504G.CHRM",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/BIKS504G.CHRM",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/MBQC-textures.bin",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              97,
+              0,
+              28
+            ],
+            "rotationDegrees": [
+              0,
+              160,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "BIK0",
+            "image": "BIKS504G",
+            "model": "BIKS504G",
+            "characterRecordOffset": 2272,
+            "imagePropertyOffset": 2312,
+            "defImageRecordOffset": 2200,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation"
+          }
+        },
+        "BIK1": {
+          "model": "BIKS504G",
+          "browserFilename": "BIKS504G.CHRM",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/BIKS504G.CHRM",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/MBQC-textures.bin",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              98,
+              0,
+              31
+            ],
+            "rotationDegrees": [
+              0,
+              -150,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "BIK1",
+            "image": "BIKS504G",
+            "model": "BIKS504G",
+            "characterRecordOffset": 2732,
+            "imagePropertyOffset": 2772,
+            "defImageRecordOffset": 2200,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation"
+          }
+        },
+        "BIK2": {
+          "model": "BIKS509G",
+          "browserFilename": "BIKS509G.CHRM",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/BIKS509G.CHRM",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RACE-textures.bin",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              100,
+              0,
+              24
+            ],
+            "rotationDegrees": [
+              0,
+              -90,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "BIK2",
+            "image": "BIKS509G",
+            "model": "BIKS509G",
+            "characterRecordOffset": 3020,
+            "imagePropertyOffset": 3060,
+            "defImageRecordOffset": 2232,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation"
+          }
+        },
+        "RY00": {
+          "model": "RAY02C1G",
+          "browserFilename": "RAY02C1G.MT5",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/RAY02C1G.MT5",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RAY02C1G-textures.bin",
+          "visualStyle": "unlit-additive",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              97,
+              0,
+              28
+            ],
+            "rotationDegrees": [
+              0,
+              160,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "RY00",
+            "image": "RAYS5C0G",
+            "model": "RAY02C1G",
+            "characterRecordOffset": 2532,
+            "imagePropertyOffset": 2572,
+            "defImageRecordOffset": 2492,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation",
+            "companionOf": "BIK0"
+          }
+        },
+        "RY01": {
+          "model": "RAYS5C2G",
+          "browserFilename": "RAYS5C2G.MT5",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/RAYS5C2G.MT5",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RAYS5C2G-textures.bin",
+          "visualStyle": "unlit-additive",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              97,
+              0,
+              28
+            ],
+            "rotationDegrees": [
+              0,
+              160,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "RY01",
+            "image": "RAYS5C2G",
+            "model": "RAYS5C2G",
+            "characterRecordOffset": 2648,
+            "imagePropertyOffset": 2688,
+            "defImageRecordOffset": 2608,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation",
+            "companionOf": "BIK0"
+          }
+        },
+        "RY10": {
+          "model": "RAY02C1G",
+          "browserFilename": "RAY02C1G.MT5",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/RAY02C1G.MT5",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RAY02C1G-textures.bin",
+          "visualStyle": "unlit-additive",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              98,
+              0,
+              31
+            ],
+            "rotationDegrees": [
+              0,
+              -150,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "RY10",
+            "image": "RAYS5C0G",
+            "model": "RAY02C1G",
+            "characterRecordOffset": 2852,
+            "imagePropertyOffset": 2892,
+            "defImageRecordOffset": 2492,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation",
+            "companionOf": "BIK1"
+          }
+        },
+        "RY11": {
+          "model": "RAYS5C2G",
+          "browserFilename": "RAYS5C2G.MT5",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/RAYS5C2G.MT5",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RAYS5C2G-textures.bin",
+          "visualStyle": "unlit-additive",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              98,
+              0,
+              31
+            ],
+            "rotationDegrees": [
+              0,
+              -150,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "RY11",
+            "image": "RAYS5C2G",
+            "model": "RAYS5C2G",
+            "characterRecordOffset": 2936,
+            "imagePropertyOffset": 2976,
+            "defImageRecordOffset": 2608,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation",
+            "companionOf": "BIK1"
+          }
+        },
+        "RY20": {
+          "model": "RAY02C1G",
+          "browserFilename": "RAY02C1G.MT5",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/RAY02C1G.MT5",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RAY02C1G-textures.bin",
+          "visualStyle": "unlit-additive",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              100,
+              0,
+              24
+            ],
+            "rotationDegrees": [
+              0,
+              -90,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "RY20",
+            "image": "RAYS5C0G",
+            "model": "RAY02C1G",
+            "characterRecordOffset": 3248,
+            "imagePropertyOffset": 3288,
+            "defImageRecordOffset": 2492,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation",
+            "companionOf": "BIK2"
+          }
+        },
+        "RY21": {
+          "model": "RAYS5C2G",
+          "browserFilename": "RAYS5C2G.MT5",
+          "assetPath": "play/assets/harbor/charlie-harbor-interrogation/RAYS5C2G.MT5",
+          "textureAssetPath": "play/assets/harbor/charlie-harbor-interrogation/RAYS5C2G-textures.bin",
+          "visualStyle": "unlit-additive",
+          "lifecycle": {
+            "kind": "room-script-persistent"
+          },
+          "initialPresentation": {
+            "position": [
+              100,
+              0,
+              24
+            ],
+            "rotationDegrees": [
+              0,
+              -90,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "sourceBinding": {
+            "actorTag": "RY21",
+            "image": "RAYS5C2G",
+            "model": "RAYS5C2G",
+            "characterRecordOffset": 3332,
+            "imagePropertyOffset": 3372,
+            "defImageRecordOffset": 2608,
+            "presentation": null,
+            "map": "disc3/SCENE/03/MBQC/MAPINFO.BIN",
+            "mapSha256": "6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",
+            "chrsOffset": 464296,
+            "placement": "authored-approximation",
+            "companionOf": "BIK2"
+          }
+        }
+      },
       "placement": {
         "position": [
           -92,

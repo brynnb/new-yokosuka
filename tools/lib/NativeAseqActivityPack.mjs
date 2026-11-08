@@ -264,6 +264,8 @@ function compileActivity(config, expectation, memberByName, packages) {
       ? { browserLightingPresetIndex: expectation.browserLightingPresetIndex } : {}),
     ...(expectation.browserLightingOverride
       ? { browserLightingOverride: expectation.browserLightingOverride } : {}),
+    ...(expectation.browserStagePrecipitation !== undefined
+      ? { browserStagePrecipitation: expectation.browserStagePrecipitation } : {}),
     ...(expectation.nativeStageSetup ? { nativeStageSetup: expectation.nativeStageSetup } : {}),
     ...(expectation.nativeSoundCommandCues
       ? { nativeSoundCommandCues: expectation.nativeSoundCommandCues }

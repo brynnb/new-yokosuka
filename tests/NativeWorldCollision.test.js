@@ -17,6 +17,34 @@ import {
 import {
   parseShenmue2WorldCollisions,
 } from "../tools/lib/shenmue2-world-collisions.mjs";
+import { discoverNativeStairFieldHandoffs, nativeStairFieldAtPosition } from "../src/NativeCollisionFieldHandoffs.js";
+
+test("field handoffs require matching native stair markers and both alternate side walls",()=>{
+  const data=JSON.parse(fs.readFileSync(new URL("../public/data/native-collisions/D000.json",import.meta.url)));
+  const definition=nativeCollisionDefinitionForWorld({nativeArea:"D000",prefix:"S1_D000"},data);
+  const alternate=definition.variantFields.find(field=>field.id==="0001");
+  const handoffs=discoverNativeStairFieldHandoffs(definition.field,alternate,nativeCollisionSegments);
+  assert.equal(handoffs.length,1);assert.equal(handoffs[0].sourceRecordOffset,9532);
+  assert.equal(nativeStairFieldAtPosition(handoffs,{x:103.334,z:101.323},.24),true);
+  assert.equal(nativeStairFieldAtPosition(handoffs,{x:101.227,z:96.496},.24),false);
+  assert.equal(nativeStairFieldAtPosition(handoffs,{x:100.445,z:99.945},.24),false);
+  const stripped=structuredClone(alternate);
+  for(const section of stripped.sections)section.records=section.records.filter(record=>record.code!==9);
+  assert.deepEqual(discoverNativeStairFieldHandoffs(definition.field,stripped,nativeCollisionSegments),[]);
+  const missingGates=structuredClone(alternate);
+  for(const section of missingGates.sections)section.records=section.records.filter(record=>record.code!==10);
+  assert.deepEqual(discoverNativeStairFieldHandoffs(definition.field,missingGates,nativeCollisionSegments),[]);
+  const distantSide=structuredClone(alternate);
+  const side=distantSide.sections.flatMap(section=>section.records).find(record=>record.recordOffset===56);
+  for(const point of [side.geometry.start,side.geometry.end]){point[0]-=20;point[1]-=20*3.57456/2.7677;}
+  assert.deepEqual(discoverNativeStairFieldHandoffs(definition.field,distantSide,nativeCollisionSegments),[],"collinear but remote walls do not qualify");
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine),currentMeshes=[];
+  const meshes=createNativeWorldCollision({scene,currentMeshes,definition});
+  assert.ok(meshes.some(mesh=>mesh.metadata.nativeCollisionFieldRole==="base"&&mesh.metadata.nativeCollisionRecordOffsets.includes(9532)),"base wall remains available");
+  assert.ok(meshes.some(mesh=>mesh.metadata.nativeCollisionFieldRole==="alternate"&&mesh.metadata.nativeCollisionField==="0001"),"alternate boundaries are loaded");
+  assert.deepEqual(meshes.find(mesh=>mesh.metadata.nativeCollisionFieldRole==="base").metadata.nativeCollisionHandoffs,handoffs);
+  scene.dispose();engine.dispose();
+});
 
 test("custom world geometry does not borrow source-area collision in a different frame",async()=>{
   const world=WORLDS["s1-voyage"],area=JSON.parse(fs.readFileSync(new URL("../public/data/native-collisions/MEND.json",import.meta.url)));

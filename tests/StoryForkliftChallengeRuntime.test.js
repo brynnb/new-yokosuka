@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {NullEngine,Scene,MeshBuilder} from "@babylonjs/core";
 import {StoryForkliftChallengeRuntime} from "../play/scripts/StoryForkliftChallengeRuntime.js";
+import {createScriptEventController} from "../play/scripts/ScriptEventController.js";
 
 function harness({loaded=true,floor=true,now}={}){
   const engine=new NullEngine(),scene=new Scene(engine),calls=[];
@@ -39,6 +40,28 @@ test("Story races reuse driving without inventing cargo or a delivery marker",as
     assert.equal(h.calls.filter(c=>Array.isArray(c)&&c[0]==="race").at(-1)[1].checkpoint,2);
     h.runtime.finish(h.transaction);
     assert.equal(h.calls.includes("race-clear"),true);assert.equal(h.assembly.mode.driving,false);
+  }finally{h.engine.dispose();}
+});
+
+test("consecutive controller challenges release and reacquire the real forklift lease",async()=>{
+  const h=harness();let request=0;
+  const presentation={begin:()=>true,execute:()=>true,showForkliftChallenge:prompt=>h.runtime.show(prompt,h.transaction),
+    endForkliftChallenge:()=>h.runtime.finish(h.transaction),rollback:()=>h.runtime.finish(h.transaction)};
+  const dialogue={show:()=>{},showOptions:()=>{},showDelivery:()=>{},hide:()=>{}};
+  const controller=createScriptEventController({presentation,dialogue,createRequestId:()=>`request-${++request}`,
+    client:{startScriptEvent:()=>true,advanceScriptEvent:()=>true}});
+  const yieldChallenge=(requestId,prompt)=>controller.handleYield({requestId,runId:41,event:{type:"challenge"},challenge:prompt});
+  try{
+    const started=controller.start({kind:"activity",activity:"delivery"});
+    await yieldChallenge("request-1",{...h.prompt,ready:true});await started;
+    assert.equal(h.assembly.mode.driving,true);
+    assert.equal(controller.challengeResponse("challenge_poll",h.prompt.token),true);
+    const next={...h.prompt,token:"ffffffffffffffffffffffffffffffff",ready:true};
+    await yieldChallenge("request-2",next);
+    assert.equal(h.runtime.active.token,next.token);
+    assert.equal(h.assembly.mode.driving,true);
+    assert.deepEqual(h.calls.filter(c=>["enter","exit","restore","acquire"].includes(c)),["enter","exit","restore","acquire","enter"]);
+    controller.reset();assert.equal(h.assembly.mode.driving,false);
   }finally{h.engine.dispose();}
 });
 

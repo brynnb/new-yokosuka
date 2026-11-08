@@ -6,6 +6,7 @@ import {applyStoryObjectTransforms} from "./StoryObjectPresentation.js";
 import {evaluateAuthActor} from "../../src/AuthMovement.js";
 import {evaluateAuthCamera} from "../../src/AuthCamera.js";
 import {acquireResidentStageIsolation} from "../events/ResidentStageIsolation.js";
+import { JOMO_TELEPHONE_RECEIVER } from "./TelephoneReceiverBindings.js";
 
 const POSE_FIELDS=["x","y","z","rotationX","rotationY","rotationZ"];
 const CAMERA_FIELDS=["positionX","positionY","positionZ","targetX","targetY","targetZ","roll","perspective"];
@@ -22,7 +23,7 @@ function validateTrack(track,fields,duration,label){
 }
 
 export class AuthoredSceneStagingRuntime {
-  constructor({ actors, camera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, createSceneObjects, createActorSet, currentMeshes, acquireEnvironmentIsolation, acquireActorIsolation }) {
+  constructor({ actors, camera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, createSceneObjects, createActorSet, createTelephoneReceiver, currentMeshes, acquireEnvironmentIsolation, acquireActorIsolation }) {
     this.actors = actors;
     this.camera = camera;
     this.motionRuntime = motionRuntime;
@@ -31,6 +32,7 @@ export class AuthoredSceneStagingRuntime {
     this.createAttachedObjects = createAttachedObjects;
     this.createSceneObjects = createSceneObjects;
     this.createActorSet = createActorSet;
+    this.createTelephoneReceiver = createTelephoneReceiver;
     this.currentMeshes = currentMeshes;
     this.acquireEnvironmentIsolation = acquireEnvironmentIsolation;
     this.acquireActorIsolation = acquireActorIsolation;
@@ -59,7 +61,15 @@ export class AuthoredSceneStagingRuntime {
     if (scene.waitForMotions != null && typeof scene.waitForMotions !== "boolean") {
       throw new Error(`Invalid motion timing option ${scene.id}`);
     }
+    // Some interactive scenes keep moving while the player answers prompts.
+    // Their lease remains active until the normal finish/cancel transaction.
+    if (scene.waitForMotionCompletion != null
+      && (typeof scene.waitForMotionCompletion !== "boolean"
+        || (scene.waitForMotionCompletion === false && scene.durationSeconds == null && !scene.waitForMotions))) {
+      throw new Error(`Invalid motion completion option ${scene.id}`);
+    }
     if(scene.isolateResidentWorld!=null&&typeof scene.isolateResidentWorld!=="boolean")throw Error(`Invalid stage isolation ${scene.id}`);
+    if(scene.telephoneReceiver!=null && scene.telephoneReceiver!=="JOMO_TEL_")throw Error(`Invalid telephone receiver ${scene.id}`);
     if (scene.waitForMotions && (scene.durationSeconds != null || scene.actors.some(actor => actor.motion.loop !== false))) {
       throw new Error(`Timed scene requires non-looping motions: ${scene.id}`);
     }
@@ -85,6 +95,7 @@ export class AuthoredSceneStagingRuntime {
       ||JSON.stringify(scene.packageActors)!==JSON.stringify(this.active.scene.packageActors)
       ||JSON.stringify(scene.sceneObjects)!==JSON.stringify(this.active.scene.sceneObjects)
       ||Boolean(scene.isolateResidentWorld)!==Boolean(this.active.scene.isolateResidentWorld)
+      ||scene.telephoneReceiver!==this.active.scene.telephoneReceiver
       ||JSON.stringify(Object.keys(scene.sceneObjectTracks||{}))!==JSON.stringify(Object.keys(this.active.scene.sceneObjectTracks||{}))
       ||scene.attachedObjects||scene.objectTransforms||this.active.objects||this.active.restoreObjects))return false;
     const owner = continuing?this.active:{ transaction, scene, controller: new AbortController(), elapsed: 0, actors:this.actors,
@@ -145,6 +156,10 @@ export class AuthoredSceneStagingRuntime {
         owner.actorsBegun = true;
         this.camera.begin(owner);
         owner.cameraBegun = true;
+        if(scene.telephoneReceiver){
+          if(!this.createTelephoneReceiver)throw Error(`No telephone receiver provider for ${scene.id}`);
+          owner.telephoneReceiver=this.createTelephoneReceiver(tag=>owner.actors.activeActor(tag));
+        }
       }
       for (const actor of scene.actors) {
         if (actor.pose && !owner.actors.applyTransform(owner, actor.tag, actor.pose)) throw new Error(`Cannot stage actor ${actor.tag}`);
@@ -156,7 +171,7 @@ export class AuthoredSceneStagingRuntime {
       }
       owner.objects?.beginActivity({activityId:scene.id,actors:scene.actors.map(a=>a.tag)});
       if (!this.update(transaction, 0)) throw new Error(`Cannot present scene ${scene.id}`);
-      if(owner.durationSeconds)await new Promise((resolve,reject)=>{owner.resolve=resolve;owner.reject=reject;});
+      if(owner.durationSeconds && scene.waitForMotionCompletion !== false)await new Promise((resolve,reject)=>{owner.resolve=resolve;owner.reject=reject;});
       return true;
     } catch (error) {
       if (this.active === owner) this.release(transaction);
@@ -184,6 +199,12 @@ export class AuthoredSceneStagingRuntime {
     for(const [tag,track] of Object.entries(owner.scene.sceneObjectTracks||{})){
       if(!owner.sceneObjects?.applyTransform(owner,tag,evaluateAuthActor(track,owner.elapsed)))return false;
     }
+    if(owner.telephoneReceiver){
+      if(!owner.receiverAttached){
+        if(!owner.telephoneReceiver.attach(JOMO_TELEPHONE_RECEIVER,owner))return false;
+        owner.receiverAttached=true;
+      }else if(!owner.telephoneReceiver.update(JOMO_TELEPHONE_RECEIVER,owner))return false;
+    }
     if(owner.objects?.update(Math.floor(owner.elapsed*30))===false)return false;
     if(!this.camera.apply(owner, owner.scene.cameraTrack?evaluateAuthCamera(owner.scene.cameraTrack,owner.elapsed):owner.scene.camera))return false;
     if(owner.resolve&&owner.elapsed>=owner.durationSeconds){owner.resolve(true);owner.resolve=null;}
@@ -205,6 +226,7 @@ export class AuthoredSceneStagingRuntime {
       [!!owner.restoreObjects, () => owner.restoreObjects()],
       [!!owner.objects,()=>owner.objects.clear()],
       [!!owner.sceneObjects,()=>owner.sceneObjects.clear()],
+      [!!owner.receiverAttached,()=>owner.telephoneReceiver.detach(JOMO_TELEPHONE_RECEIVER,owner)],
       [!!owner.residentIsolation,()=>owner.residentIsolation.restore()],
       [owner.cameraBegun, () => this.camera.end(owner)],
       [owner.actorsBegun, () => owner.actors.end(owner, "stopped")],

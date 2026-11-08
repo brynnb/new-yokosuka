@@ -1,0 +1,22 @@
+{
+  "schema": "new-yokosuka-story-travel-restrictions-v1",
+  "restrictions": [
+    {
+      "transitionId": "jhd0-gate-to-ju00-entry-1",
+      "requiredFlags": ["story.s1.first-allowance.completed"],
+      "supersededByFlags": [
+        "story.s1.first-dojo.completed",
+        "notebook.s1.men-in-black",
+        "story.s1.first-kitten.completed",
+        "notebook.s1.black-car"
+      ],
+      "message": "I should go and talk to Fuku-san.",
+      "voice": {
+        "id": "SA1082A005",
+        "asset": "public/audio/world/story-travel/SA1082A005.wav",
+        "archive": "SA1082.AFS",
+        "archiveSha256": "adce9e48ca715829f6e26b6a0668ae623741487098a60ceb03d20d83283b0d2a"
+      }
+    }
+  ]
+}

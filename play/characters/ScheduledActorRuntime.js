@@ -437,6 +437,65 @@ function pickOverlappingActorBodies(selections, ray) {
   return nearest?.selection || null;
 }
 
+// Babylon's geometric picking ignores texture alpha. For the retained RGBA
+// textures used by Shenmue scenery, only treat a cutout as solid when every
+// nearby texel is fully opaque. Unknown formats/transforms stay permissive.
+function opaqueVertexAlphaAtPick(pick, mesh) {
+  if (!mesh.hasVertexAlpha || mesh.useVertexColors === false) return true;
+  const colors = mesh.getVerticesData?.(BABYLON.VertexBuffer.ColorKind);
+  const indices = mesh.getIndices?.();
+  const vertexCount = mesh.getTotalVertices?.();
+  const faceOffset = pick.faceId * 3;
+  if (!colors || !indices || colors.length !== vertexCount * 4
+    || !Number.isInteger(pick.faceId) || faceOffset < 0
+    || faceOffset + 2 >= indices.length) return false;
+  return [0, 1, 2].every(index => colors[indices[faceOffset + index] * 4 + 3] === 1);
+}
+
+function opaqueDiffuseAtPick(pick, mesh, material) {
+  const texture = material.diffuseTexture;
+  const internal = texture?.getInternalTexture?.();
+  const pixels = internal?._bufferView;
+  const size = texture?.getSize?.();
+  const uv = pick.getTextureCoordinates?.();
+  if (material.getClassName?.() !== "StandardMaterial" || material.opacityTexture
+    || material.opacityFresnelParameters || !opaqueVertexAlphaAtPick(pick, mesh)
+    || !texture?.hasAlpha || texture.coordinatesIndex !== 0
+    || texture.level !== 1 || texture.uOffset !== 0 || texture.vOffset !== 0
+    || texture.uScale !== 1 || texture.vScale !== 1
+    || texture.uAng !== 0 || texture.vAng !== 0 || texture.wAng !== 0
+    || !(pixels instanceof Uint8Array) || !size?.width || !size?.height
+    || pixels.length !== size.width * size.height * 4
+    || !Number.isFinite(uv?.x) || !Number.isFinite(uv?.y)) return false;
+  const { width, height } = size;
+  const x = Math.floor(uv.x * width), y = Math.floor(uv.y * height);
+  // Avoid sampler wrap and edge ambiguity. Check both vertical orientations
+  // because texture upload policies can flip a retained source buffer.
+  if (x < 1 || x >= width - 1 || y < 1 || y >= height - 1) return false;
+  for (const centerY of [y, height - 1 - y]) {
+    for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+      if (pixels[((centerY + dy) * width + x + dx) * 4 + 3] !== 255) return false;
+    }
+  }
+  return true;
+}
+
+// A proxy is intentionally generous, but it must not win through a solid
+// foreground surface. Unknown or partially transparent pixels remain clickable.
+function opaqueForegroundDistance(pick, directSelection) {
+  const mesh = pick?.pickedMesh;
+  const material = mesh?.material;
+  if (directSelection || !pick?.hit || !Number.isFinite(pick.distance)
+    || !mesh?.isVisible || mesh.visibility !== 1 || !mesh.isEnabled?.()
+    || !material || material.alpha !== 1 || material.disableColorWrite
+    || typeof material.needAlphaTesting !== "function"
+    || typeof material.needAlphaBlending !== "function") return null;
+  if ((material.needAlphaTesting() || material.needAlphaBlending()
+    || material.needAlphaBlendingForMesh?.(mesh))
+    && !opaqueDiffuseAtPick(pick, mesh, material)) return null;
+  return pick.distance;
+}
+
 export function pickScheduledActorSelection(
   scene,
   camera,
@@ -473,6 +532,14 @@ export function pickScheduledActorSelection(
     camera,
   ) || [];
   actorPicks.sort((a, b) => a.distance - b.distance);
+  const foregroundDistance = opaqueForegroundDistance(directPick, directSelection);
+  if (foregroundDistance !== null) {
+    // Bounding-box hits before the wall can still represent visible actors;
+    // only discard proxy candidates which are completely behind the hit.
+    for (let i = actorPicks.length - 1; i >= 0; i--) {
+      if (actorPicks[i].distance > foregroundDistance + 1e-4) actorPicks.splice(i, 1);
+    }
+  }
   const selections = new Map(actorPicks.map(hit => {
     const selection = scheduledActorSelection(hit.pickedMesh);
     return [selection.id, selection];

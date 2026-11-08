@@ -1,6 +1,7 @@
 import {
   createNativeAseqActivityRuntime,
 } from "../events/NativeAseqActivityRuntime.js";
+import { WorldWeatherRuntime } from "../world/WorldWeatherRuntime.js";
 import {
   createNativeAseqActorLookPointPresentation,
 } from "../events/NativeAseqActorLookPointPresentation.js";
@@ -160,6 +161,13 @@ export class NativeCutscenePackageRuntime {
     this.resolveAssetUrl = createAssetUrlResolver(definition);
 
     const environment = definition.environment || {};
+    const stagePrecipitation = definition.playback?.manifest?.activities?.filter(
+      activity => activity.browserStagePrecipitation !== undefined,
+    ) || [];
+    if (stagePrecipitation.some(activity => activity.browserStagePrecipitation !== "snow" || !activity.browserIsolatedStage)) {
+      throw new TypeError("cinematic precipitation requires an isolated snow stage");
+    }
+    this.stageWeather = stagePrecipitation.length ? new WorldWeatherRuntime({ scene, profile: "cinematic" }) : null;
     this.sceneObjects = hasDefinitions(environment.sceneObjects)
       ? createNativeAseqSceneObjectRuntime({
           definitions: environment.sceneObjects,
@@ -338,6 +346,7 @@ export class NativeCutscenePackageRuntime {
       },
       onActivityStarted: activity => {
         this.mapLayers?.applyActivity(activity);
+        this.stageWeather?.apply(activity.browserStagePrecipitation ?? "clear");
         for (const actorTag of activity.nativeInitialHiddenObjects || []) {
           this.sceneObjects?.applyStateCue({ actorTag, presented: false });
         }
@@ -871,6 +880,7 @@ export class NativeCutscenePackageRuntime {
     this.sceneObjects?.clear();
     this.packageActors?.clear();
     this.scrollSprites?.clear();
+    this.stageWeather?.clear();
     this.mapLayers?.clear();
   }
 
@@ -878,6 +888,7 @@ export class NativeCutscenePackageRuntime {
     this.stop("disposed");
     this.clearWorld();
     this.audio.dispose();
+    this.stageWeather?.dispose();
     this.presentation.faces?.clear();
   }
 
@@ -1007,6 +1018,7 @@ export class NativeCutscenePackageRuntime {
     const errors = [];
     for (const cleanup of [
       () => this.scrollSprites?.owner === this ? this.scrollSprites.end(this) : true,
+      () => completedActivity && this.programLease ? true : this.stageWeather?.clear(),
       // Hold the outgoing stage until the incoming AUTH has its first pose.
       // Restoring the room between subleases produces a one-frame cut flash.
       () => completedActivity && this.programLease ? true : this.mapLayers?.end(),

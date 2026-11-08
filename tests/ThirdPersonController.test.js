@@ -38,6 +38,23 @@ import {
     terrainTransitionAllowed,
 } from "../src/ThirdPersonController.js";
 
+test("collision field selection is confined to the authored stair handoff",()=>{
+    const handoffs=[{start:[0,0],end:[0,4],width:1}];
+    const base={metadata:{nativeCollisionFieldRole:"base",nativeCollisionHandoffs:handoffs}},alternate={metadata:{nativeCollisionFieldRole:"alternate"}},ordinary={metadata:{}};
+    const controller=Object.assign(Object.create(ThirdPersonController.prototype),{
+        collider:{position:new BABYLON.Vector3(0,0,2)},options:{playerRadius:.24},nativeCollisionHandoffs:handoffs,
+        raycastIndex:{collisionCandidates:()=>[base,alternate,ordinary]},scene:{meshes:[base,alternate,ordinary]},
+    });
+    assert.deepEqual(controller.collisionCandidates(controller.collider.position),[alternate,ordinary]);
+    assert.deepEqual(controller.collisionCandidates(new BABYLON.Vector3(3,0,2)),[base,ordinary],"recovery evaluates the destination's field");
+    controller.collider.position.set(3,0,2);
+    assert.deepEqual(controller.collisionCandidates(controller.collider.position),[base,ordinary]);
+    controller.collider.position.set(0,0,4.4);
+    assert.deepEqual(controller.collisionCandidates(controller.collider.position),[base,ordinary]);
+    controller.setRaycastIndex(null);controller.collider.position.set(0,0,2);
+    assert.deepEqual(controller.collisionCandidates(controller.collider.position),[alternate,ordinary],"unindexed fallback retains the handoff");
+});
+
 test("temporary movement owners release independently of each other and manual gameplay locks", () => {
     for (const earlierFirst of [true, false]) {
         const controller = Object.assign(Object.create(ThirdPersonController.prototype), {

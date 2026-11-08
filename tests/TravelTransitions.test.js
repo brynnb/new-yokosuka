@@ -1,6 +1,25 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { TravelTransitions } from "../play/world/TravelTransitions.js";
+import { storyTravelRestriction } from "../play/world/StoryTravelRestrictions.js";
+
+test("a Story-restricted door is consumed without opening, travel, or movement locks", () => {
+  const calls = [], door = {state:"closed"};
+  let character = {playMode:"story", openingCompleted:true, storyFlags:{"story.s1.first-allowance.completed":true}};
+  const runtime = new TravelTransitions({worlds:{yamanose:{id:"yamanose"}},
+    doorInteractions:{toggle:()=>calls.push("open")},getController:()=>({
+      captureTravelState:()=>({}),setMovementLocked:value=>calls.push(["lock",value])}),
+    isSwitchingWorld:()=>false,selectWorld:async()=>calls.push("travel"),persistPlayerLocation:()=>{},
+    getTransitionRestriction:transition=>storyTravelRestriction(transition, character),
+    onTransitionDenied:denial=>calls.push(["denied",denial.reason,denial.message])});
+  const transition={id:"jhd0-gate-to-ju00-entry-1",destination:{worldId:"yamanose"}};
+  assert.equal(runtime.beginDoor(door,transition),true);
+  assert.deepEqual(calls,[["denied","story_requirement","I should go and talk to Fuku-san."]]);
+  assert.equal(runtime.pending,null);assert.equal(door.state,"closed");
+  character={...character,storyFlags:{...character.storyFlags,"story.s1.first-dojo.completed":true}};
+  assert.equal(runtime.beginDoor(door,transition),true);
+  assert.deepEqual(calls.slice(1),[["lock",true],"open"]);
+});
 
 test("door travel preserves controller state and waits for the open pose", async () => {
   const locks = [];

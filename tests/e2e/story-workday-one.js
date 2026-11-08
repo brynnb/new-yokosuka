@@ -82,11 +82,13 @@ export async function winHarborFight(page,{attack="KeyK"}={}){
   const keys=async next=>{for(const key of held)if(!next.includes(key)){await page.keyboard.up(key);held.delete(key);}for(const key of next)if(!held.has(key)){await page.keyboard.down(key);held.add(key);}};
   const movement=async retreat=>page.evaluate(retreat=>{
     const r=window.storyProbe.combatRuntime,v=r.active?.view;if(!v)return[];
-    const p=v.actors[0],e=v.actors.slice(1).filter(a=>a.health>0).sort((a,b)=>Math.hypot(a.x-p.x,a.z-p.z)-Math.hypot(b.x-p.x,b.z-p.z))[0];if(!e)return[];
+    const p=v.actors[0],target=r.encounter.enemyActor?.position();if(!target)return[];
+    // Combat faces the selected target, which need not be the nearest enemy.
+    const e={x:target.x,z:target.z};
     const d=Math.hypot(e.x-p.x,e.z-p.z);let x=0,z=0;
     if(retreat){const enemies=v.actors.slice(1).filter(a=>a.health>0),center=enemies.reduce((c,a)=>[c[0]+a.x/enemies.length,c[1]+a.z/enemies.length],[0,0]),length=Math.hypot(p.x-center[0],p.z-center[1]);x=(p.x-center[0])/length;z=(p.z-center[1])/length;}
     else if(d<.9){x=(p.x-e.x)/Math.max(.01,d);z=(p.z-e.z)/Math.max(.01,d);}else if(d>1.4){x=(e.x-p.x)/d;z=(e.z-p.z)/d;}
-    const yaw=r.encounter.playerTargetYaw()+Math.PI,b=r.active.input.getBindings(),f=-Math.sin(yaw)*x-Math.cos(yaw)*z,s=Math.cos(yaw)*x-Math.sin(yaw)*z;
+    const yaw=r.encounter.playerTargetYaw(),b=r.active.input.getBindings(),f=Math.sin(yaw)*x+Math.cos(yaw)*z,s=Math.cos(yaw)*x-Math.sin(yaw)*z;
     return[Math.abs(f)>.25?(f>0?b.up:b.down):null,Math.abs(s)>.25?(s>0?b.right:b.left):null].filter(Boolean);
   },retreat);
   try{

@@ -5,6 +5,47 @@ import * as BABYLON from "@babylonjs/core";
 import {
   NativeAseqSceneObjectRuntime,
 } from "../play/events/NativeAseqSceneObjectRuntime.js";
+import { configureNativeSceneObjectEffect } from "../play/cutscenes/NativeCutsceneSceneObjectLoader.js";
+
+test("owned light-overlay materials use an explicit validated additive style", t=>{
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  t.after(()=>{scene.dispose();engine.dispose();});
+  const root=new BABYLON.TransformNode("root",scene),mesh=BABYLON.MeshBuilder.CreatePlane("beam",{},scene);
+  mesh.parent=root;mesh.material=new BABYLON.StandardMaterial("beam material",scene);
+  configureNativeSceneObjectEffect([root],null);
+  assert.equal(mesh.material.disableLighting,false);
+  configureNativeSceneObjectEffect([root],"unlit-additive");
+  assert.equal(mesh.material.disableLighting,true);
+  assert.equal(mesh.material.alphaMode,BABYLON.Constants.ALPHA_ADD);
+  assert.equal(mesh.material.disableDepthWrite,true);
+  assert.deepEqual(mesh.material.emissiveColor.asArray(),[1,1,1]);
+  assert.throws(()=>configureNativeSceneObjectEffect([root],"unknown"),/Unknown/);
+  assert.throws(()=>new NativeAseqSceneObjectRuntime({definitions:{BEAM:{model:"M",browserFilename:"M",visualStyle:"unknown"}}}),/visual style/);
+});
+
+test("clearing package-owned scene objects also disposes their materials", async t=>{
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  t.after(()=>{scene.dispose();engine.dispose();});
+  const root=new BABYLON.TransformNode("owned",scene),mesh=BABYLON.MeshBuilder.CreatePlane("beam",{},scene);
+  mesh.parent=root;root._filename="BEAM.MT5";
+  const material=new BABYLON.StandardMaterial("owned beam material",scene);mesh.material=material;
+  const runtime=new NativeAseqSceneObjectRuntime({definitions:{BEAM:{model:"BEAM",browserFilename:"BEAM.MT5",assetPath:"beam"}},instantiateAsset:async()=>[root]});
+  await runtime.load([]);runtime.clear();
+  assert.equal(root.isDisposed(),true);
+  assert.equal(scene.materials.includes(material),false);
+});
+
+test("clearing a borrowed world object preserves its shared material", async t=>{
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  t.after(()=>{scene.dispose();engine.dispose();});
+  const root=new BABYLON.TransformNode("world object",scene),mesh=BABYLON.MeshBuilder.CreatePlane("world mesh",{},scene);
+  mesh.parent=root;root._filename="BEAM.MT5";root.metadata={runtimeObject:{objectTag:"BEAM"}};
+  const material=new BABYLON.StandardMaterial("world material",scene);mesh.material=material;
+  const runtime=new NativeAseqSceneObjectRuntime({definitions:{BEAM:{model:"BEAM",browserFilename:"BEAM.MT5",objectTag:"BEAM"}}});
+  await runtime.load([root]);runtime.clear();
+  assert.equal(root.isDisposed(),false);
+  assert.equal(scene.materials.includes(material),true);
+});
 
 test("logical world tags disambiguate shared models and restore noninteractive props", async t=>{
   const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);

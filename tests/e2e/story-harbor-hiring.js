@@ -14,6 +14,12 @@ export async function verifyGoroLeadNatural(page,testInfo,character){
     await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.ready&&!window.storyProbe.lifecycle.getController().movementLocked,null,{timeout:90_000});
     expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   };
+  if(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)!=="mfsy"){
+    await idle();await page.locator("#travel-button").click();
+    await page.getByRole("option",{name:"New Yokosuka Harbor",exact:true}).click();
+    await page.waitForFunction(()=>{const w=window.storyProbe.lifecycle.worldRuntime;return w.activeWorld.id==="mfsy"&&w.ready&&!w.switching;},null,{timeout:120_000});
+    await expect(page.locator("#loading")).toBeHidden({timeout:120_000});await idle();
+  }
   const walk=async(position,expectedId,timeout=60_000)=>{
     await idle();
     const previous=await page.evaluate(position=>{
@@ -40,8 +46,26 @@ export async function verifyGoroLeadNatural(page,testInfo,character){
     });
     await expect.poll(async()=>Math.abs((await saved()).character.x+15),{timeout:30_000}).toBeLessThan(0.1);
   };
+  const wait=async label=>{
+    await page.locator("#story-wait-button").click();await page.getByRole("option",{name:label,exact:true}).click();await page.getByRole("button",{name:label,exact:true}).click();await idle();
+  };
+  const checkSameDayAndAdvance=async()=>{
+    // The lead can finish after 1 p.m.; waiting for a past time is invalid.
+    const hour=new Date((await saved()).character.storyTimeMs).getUTCHours();
+    if(hour<12)await wait("Wait until 1 p.m.");
+    else expect(hour,"same-day appointment check must be before 5 p.m.").toBeLessThan(17);
+    await page.evaluate(()=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray([-31,0,91]),0,{persist:false});c.setFirstPerson(true);c.cameraYaw=0;c.updateCamera(1);});
+    await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");await page.waitForTimeout(1500);await page.keyboard.up("KeyW");await idle();
+    expect((await saved()).character.storyFlags[appointment]).not.toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-goro-job-appointment"))).toBe(false);
+    // Leave the region before the day changes, so the wait does not trigger it.
+    await page.evaluate(()=>window.storyProbe.lifecycle.resetPlayer(window.storyProbe.lifecycle.vectorFromArray([-15,0,110]),0,{persist:false}));
+    await page.waitForTimeout(500);
+    for(const label of ["Wait until tomorrow morning","Wait until 1 p.m."])await wait(label);
+  };
   if(resumeAppointment){
     expect(initial.character.storyFlags[note]).toBe(true);expect(initial.character.storyFlags[appointment]).not.toBe(true);
+    if(process.env.NEW_YOKOSUKA_GORO_RESUME_SAME_DAY_E2E==="true")await checkSameDayAndAdvance();
     await walk([-31,0,91],"goro-job-appointment");
     await page.waitForFunction(()=>window.storyProbe.director.activeCutscene.packageRuntime.activityRuntime.active.currentFrame>=30,null,{timeout:60_000});
     await page.evaluate(()=>window.storyProbe.regions.controller.cancel("goro-appointment-natural-review"));await idle();
@@ -81,20 +105,7 @@ export async function verifyGoroLeadNatural(page,testInfo,character){
     for(const key of ["yaw","pitch","distance"])expect(restored[key]).toBeCloseTo(view[key],4);
     const observed=await page.evaluate(()=>({frames:window.storyProbe.goroLeadReview.frames,voices:[...window.storyProbe.goroLeadReview.voices]}));
     expect(observed.frames).toBeGreaterThan(20);expect(observed.voices.length).toBe(23);
-    const wait=async label=>{
-      await page.locator("#story-wait-button").click();await page.getByRole("option",{name:label,exact:true}).click();await page.getByRole("button",{name:label,exact:true}).click();await idle();
-    };
-    // Check during the valid appointment hours, not merely before noon.
-    await wait("Wait until 1 p.m.");
-    await page.evaluate(()=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray([-31,0,91]),0,{persist:false});c.setFirstPerson(true);c.cameraYaw=0;c.updateCamera(1);});
-    await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");await page.waitForTimeout(1500);await page.keyboard.up("KeyW");await idle();
-    expect((await saved()).character.storyFlags[appointment]).not.toBe(true);
-    expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-goro-job-appointment"))).toBe(false);
-    // Leave the volume before the clock changes: recheckOnDayChange would
-    // otherwise correctly launch the appointment during the wait itself.
-    await page.evaluate(()=>window.storyProbe.lifecycle.resetPlayer(window.storyProbe.lifecycle.vectorFromArray([-15,0,110]),0,{persist:false}));
-    await page.waitForTimeout(500);
-    for(const label of ["Wait until tomorrow morning","Wait until 1 p.m."])await wait(label);
+    await checkSameDayAndAdvance();
     await walk([-31,0,91],"goro-job-appointment");
     await page.waitForFunction(()=>window.storyProbe.director.activeCutscene.packageRuntime.activityRuntime.active.currentFrame>=30,null,{timeout:60_000});
     await page.evaluate(()=>window.storyProbe.regions.controller.cancel("goro-appointment-natural-review"));await idle();
@@ -152,7 +163,13 @@ export async function verifyHarborHiring(page,testInfo,character){
     expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-goro-job-appointment"))).toBe(false);
   }
   if(!(await saved()).character.storyFlags[flag("goro-job-appointment")]){
-    await wait("Wait until tomorrow morning");await wait("Wait until 1 p.m.");
+    if(process.env.NEW_YOKOSUKA_APPOINTMENT_READY_E2E==="true"){
+      const hour=new Date((await saved()).character.storyTimeMs).getUTCHours();
+      expect(hour,"resumed appointment must be during its daytime window").toBeGreaterThanOrEqual(12);
+      expect(hour,"resumed appointment must be during its daytime window").toBeLessThan(17);
+    }else{
+      await wait("Wait until tomorrow morning");await wait("Wait until 1 p.m.");
+    }
     await approach([-31,0,91]);await scene("goro-job-appointment");await page.waitForTimeout(20_000);
     await page.screenshot({path:testInfo.outputPath("goro-mai-original-appointment.png")});await cancel();
     expect((await economy()).character.storyFlags[flag("goro-job-appointment")]).not.toBe(true);

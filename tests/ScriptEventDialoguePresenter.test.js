@@ -104,6 +104,23 @@ test("directional QTEs share keyboard/touch routing and duplicate snapshots do n
   presenter.hide();
 });
 
+test("gamepad QTE inputs use the current attempt and stop when presentation ends",()=>{
+  const calls=[],presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options:optionsElement(),
+    onChallengeResponse:(...args)=>calls.push(args)});
+  const token="d".repeat(32);
+  assert.equal(presenter.storyQteActive,false);
+  assert.equal(presenter.setStoryQteButton("Left",true),false);
+  presenter.showChallenge({id:"s1.tatq.charlie",label:"Defend yourself",token,ready:true});
+  assert.equal(presenter.storyQteActive,true);
+  assert.equal(presenter.setStoryQteButton("Left",true),true);
+  assert.equal(presenter.setStoryQteButton("Left",false),true);
+  assert.equal(presenter.setStoryQteButton("A",true),true);
+  assert.deepEqual(calls,[["challenge_result",token,"success"]]);
+  presenter.hide();assert.equal(presenter.storyQteActive,false);
+  assert.equal(presenter.setStoryQteButton("A",true),false);
+  assert.equal(calls.length,1);
+});
+
 test("move lessons cannot silently fall back to QTE input",()=>{
   const calls=[],options=optionsElement();
   const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options,

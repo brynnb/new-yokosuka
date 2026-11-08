@@ -84,7 +84,10 @@ const encounters = spec.encounters.map(input => {
   const waves=input.waves?.map(wave=>({label:wave.label,...(wave.bossTag?{bossTag:wave.bossTag}:{}),introMs:wave.introMs||0,actors:wave.actors.map(tag=>{
     const spawn=actors.find(a=>a.tag===tag);if(!spawn||tag==="AKIR"||spawn.team==="ally")throw Error(`Invalid wave opponent ${input.id}/${tag}`);return {...spawn};
   })}));
+  const sceneObjects=input.sceneObjectPackage?JSON.parse(fs.readFileSync(path.join(root,input.sceneObjectPackage))).sceneObjects:null;
+  if(input.sceneObjectPackage&&(!sceneObjects||!Object.keys(sceneObjects).length||Object.values(sceneObjects).some(object=>object.lifecycle?.kind!=="room-script-persistent")))throw Error(`Invalid combat scene objects ${input.id}`);
   return {id:input.id,label:input.label,area:input.area,worldId:input.worldId,provenance:input.provenance,
+    ...(sceneObjects?{sceneObjects}:{}),
     ...(input.placement?{placement:input.placement}:{}),...(input.formation?{formation:input.formation}:{}),...(input.actorWorldId?{actorWorldId:input.actorWorldId}:{}),
     ...(input.authoredActors?{authoredStaging:true}:input.sourceScene?{sourceScene:input.sourceScene}:{sourceActivity:input.sourceActivity,sha256:input.sha256}),...(input.sourcePackage?{sourcePackage:input.sourcePackage}:{}),actors,
     actorDefinitions:actors.filter(a=>a.tag!=="AKIR").map(actor=>{

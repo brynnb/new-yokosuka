@@ -62,6 +62,28 @@ test("standalone tableau props reuse scene-object presentation and dispose on re
   h.runtime.cancel(h.transaction);assert.equal(calls.at(-1),"clear");
 });
 
+test("authored phone borrows the exact receiver after actor posing and restores it on cancel",async()=>{
+  const h=harness(),calls=[];h.scene.telephoneReceiver="JOMO_TEL_";
+  h.runtime.motionRuntime.applyNamed=()=>{calls.push("pose");return true;};
+  h.runtime.createTelephoneReceiver=resolve=>({
+    attach:(binding,owner)=>(assert.equal(resolve("AKIR").root,h.root),assert.equal(binding.objectTag,"TEL_"),calls.push("attach"),true),
+    update:()=> (calls.push("update"),true),
+    detach:()=> (calls.push("detach"),true),
+  });
+  await h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);
+  assert.deepEqual(calls,["pose","attach"]);
+  assert.equal(h.runtime.update(h.transaction,.1),true);
+  assert.deepEqual(calls,["pose","attach","pose","update"]);
+  assert.equal(h.runtime.cancel(h.transaction),true);assert.equal(calls.at(-1),"detach");
+});
+
+test("failed authored receiver binding rolls back instead of silently omitting it",async()=>{
+  const h=harness();h.scene.telephoneReceiver="JOMO_TEL_";
+  h.runtime.createTelephoneReceiver=()=>({attach:()=>false,detach:()=>assert.fail("not attached")});
+  await assert.rejects(h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction),/Cannot present/);
+  assert.equal(h.runtime.active,null);assert.ok(h.calls.includes("actors-end"));assert.ok(h.calls.includes("camera-end"));
+});
+
 test("replacement tableaux isolate resident roots and restore their prior visibility on cancellation",async()=>{
   const h=harness(),makeRoot=(enabled,metadata={})=>({enabled,metadata,isEnabled(){return this.enabled;},setEnabled(value){this.enabled=value;}});
   const visible=makeRoot(true),hidden=makeRoot(false),cast=makeRoot(true,{scheduledActorInstanceId:"cast"});
@@ -151,6 +173,24 @@ test("moving tableaux reuse native curve evaluation and stop at their endpoint",
   h.runtime.update(h.transaction,.5);assert.equal(poses.at(-1).x,2);assert.equal(cameras.at(-1).positionX,2);
   h.runtime.update(h.transaction,.5);await pending;assert.equal(poses.at(-1).x,4);assert.equal(motions.at(-1),"stand");
   h.runtime.update(h.transaction,2);assert.equal(poses.at(-1).x,4);h.runtime.cancel(h.transaction);
+});
+
+test("interactive staged motion continues after start and is released on cancellation",async()=>{
+  const h=harness(),poses=[];h.scene={...movingScene(h.scene),waitForMotionCompletion:false};
+  h.runtime.actors.applyTransform=(_owner,_tag,pose)=>(poses.push(pose),true);
+  assert.equal(await h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction),true);
+  assert.ok(h.runtime.active);
+  h.runtime.update(h.transaction,.5);assert.equal(poses.at(-1).x,2);
+  h.runtime.update(h.transaction,2);assert.equal(poses.at(-1).x,4);
+  h.runtime.cancel(h.transaction);assert.equal(h.runtime.active,null);
+  assert.equal(h.calls.filter(c=>c==="camera-end").length,1);
+  assert.equal(h.calls.filter(c=>c==="actors-end").length,1);
+});
+
+test("nonblocking staged motion requires a finite duration",async()=>{
+  const h=harness();h.scene.waitForMotionCompletion=false;
+  await assert.rejects(h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction),/Invalid motion completion option/);
+  assert.equal(h.runtime.active,null);
 });
 
 test("scene beats retain one actor/camera lease and restore only after the final beat",async()=>{

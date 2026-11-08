@@ -114,7 +114,13 @@ export async function verifyAgencyQuotesAndFunds(page,testInfo,character,enterIn
   const unchanged=async(before,flag)=>{const s=await saved();expect(s.character.storyFlags[flag]).not.toBe(true);expect(s.character.yen).toBe(before.character.yen);expect(s.inventory).toEqual(before.inventory);};
   // World-ready precedes its one-time entry dispatch. Waiting must not race
   // that request: the real UI correctly refuses to interrupt an active event.
-  await page.waitForFunction(()=>window.storyProbe.automatic?.attempted&&!window.storyProbe.automatic.pending);
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug==="story-s1-twin-blades-scroll"
+    ||(window.storyProbe.automatic?.attempted&&!window.storyProbe.automatic.pending));
+  if(await page.evaluate(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug==="story-s1-twin-blades-scroll")){
+    await expect(page.getByText("There is a move scroll here in Fuku-san's room.",{exact:true})).toBeVisible();
+    await page.keyboard.press("Space");await page.getByRole("button",{name:"Leave it here",exact:true}).click();await idle();
+    await page.waitForFunction(()=>window.storyProbe.automatic?.attempted&&!window.storyProbe.automatic.pending);
+  }
   await idle();
   const clock=new Date((await saved()).character.storyTimeMs);
   if(clock.getUTCHours()<10){
@@ -146,7 +152,16 @@ export async function verifyAgencyQuotesAndFunds(page,testInfo,character,enterIn
     const door=await openStoryRoomDoor(page,{tag:"dor1",position:[-21.9,0,1]});expect(door.gapCenter).toBeTruthy();
     await page.evaluate(x=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray([x,0,1.2]),0,{persist:false});c.setFirstPerson(true);c.cameraYaw=0;c.cameraPitch=0;c.updateCamera(1);},door.gapCenter[0]);
     await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
-    try{await page.waitForFunction(()=>window.storyProbe.regions.controller.status==="options"||window.storyProbe.sceneErrors.length,null,{timeout:15_000});}finally{await page.keyboard.up("KeyW");}await options();
+    try{await page.waitForFunction(()=>["line","options"].includes(window.storyProbe.regions.controller.status)||window.storyProbe.sceneErrors.length,null,{timeout:15_000});}finally{await page.keyboard.up("KeyW");}
+    if(await page.evaluate(()=>window.storyProbe.regions.controller.status==="line")){
+      await expect(page.getByText("There is a move scroll here in Fuku-san's room.",{exact:true})).toBeVisible();
+      await page.keyboard.press("Space");await page.getByRole("button",{name:"Leave it here",exact:true}).click();await idle();
+      await page.evaluate(()=>{const p=window.storyProbe,c=p.lifecycle.getController(),r=p.regions.regions.find(r=>r.id==="s1.jomo.fuku-travel-funds");
+        c.cameraYaw=Math.atan2(c.collider.position.x-(r.min[0]+r.max[0])/2,c.collider.position.z-(r.min[2]+r.max[2])/2);c.updateCamera(1);});
+      await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+      try{await page.waitForFunction(()=>window.storyProbe.regions.controller.status==="options"||window.storyProbe.sceneErrors.length,null,{timeout:15_000});}finally{await page.keyboard.up("KeyW");}
+    }
+    await options();
     const before=await saved(),position=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());
     await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();await unchanged(before,fundsFlag);
     await retry(position);await page.getByRole("button",{name:"Discuss the expensive fares",exact:true}).click();await scene("story-s1-fuku-travel-funds");

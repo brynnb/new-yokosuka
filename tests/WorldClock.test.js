@@ -7,8 +7,16 @@ import {
   dateAtDebugHour,
   dateAtLightingCap,
   seasonIndexForDate,
+  storyLightingBlend,
 } from "../play/world/WorldClock.js";
 import { timeOfDayBlendForHour } from "../src/WorldTime.js";
+
+test("Story ambient fill fades smoothly at dusk and dawn", () => {
+  const at=(hour,minute=0)=>storyLightingBlend(new Date(Date.UTC(1986,11,4,hour,minute))).storyAmbientFill;
+  assert.equal(at(16),0);assert.equal(at(17),0);assert.equal(at(18),.08);
+  assert.equal(at(18,30),.12);assert.equal(at(19),.16);assert.equal(at(5,30),.16);
+  assert.equal(at(6,30),.08);assert.equal(at(7,30),0);
+});
 
 test("Story uses its calendar's native sky/weather and continues past the Free roam light cap", () => {
   let mode = "story";
@@ -23,9 +31,11 @@ test("Story uses its calendar's native sky/weather and continues past the Free r
   at(3, 17, 59); assert.equal(clock.storyEnvironment(world).sky.index, 2);
   at(3, 18); assert.equal(clock.storyEnvironment(world).sky.index, 3);
   const evening = clock.lightingState(world).blend;
+  assert.equal(evening.storyAmbientFill, 0.08);
   assert.equal(evening.skyWeatherTexture, false);
   assert.deepEqual(evening.lightingOverride.dirDiffuse.map(n => Math.round(n * 100)), [93, 77, 75]);
   at(3, 23); assert.equal(clock.lightingState(world).blend.presetIndex, 3);
+  assert.equal(clock.lightingState(world).blend.storyAmbientFill, 0.16);
   assert.equal(clock.lightingState(world).date.getUTCHours(), 23);
   // Dec 3 dawn is cloudy; use the source's clear Dec 4 dawn for sky boundaries.
   at(4, 5, 29); assert.equal(clock.storyEnvironment(world).sky.index, 3);
@@ -46,6 +56,7 @@ test("Story uses its calendar's native sky/weather and continues past the Free r
   assert.equal(clock.environmentState(world).weather, "clear", "shared server weather is unchanged");
   at(3, 23);
   assert.deepEqual(clock.lightingState(world).blend, timeOfDayBlendForHour(19.75));
+  assert.equal(clock.lightingState(world).blend.storyAmbientFill, undefined);
   mode = "story";
   assert.equal(clock.lightingState(world).blend.presetIndex, 3);
 });

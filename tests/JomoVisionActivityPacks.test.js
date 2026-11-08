@@ -7,6 +7,15 @@ const manifests = codes.map(code => JSON.parse(fs.readFileSync(
   `play/assets/hazuki/${code}/manifest.json`,
 )));
 
+test("Phoenix vision owns neutral approximate lighting instead of inheriting bedtime darkness", () => {
+  const activity=manifests[0].activities[0];
+  assert.equal(activity.browserIsolatedStage,true);
+  assert.equal(activity.browserLightingPresetIndex,0);
+  assert.equal(activity.browserStagePrecipitation,"snow");
+  // The separate Lan Di dream keeps its existing lighting behavior.
+  assert.equal(manifests[5].activities[0].browserLightingPresetIndex,undefined);
+});
+
 test("snow vision retains its original backdrop and explicitly approximates native light preset six", () => {
   const manifest=manifests[2],activity=manifest.activities[0];
   assert.deepEqual(manifest.scrollSprites,[{path:"play/assets/hazuki/kkyc/SCROLL19.SPR",nativeSlot:0,
@@ -14,6 +23,7 @@ test("snow vision retains its original backdrop and explicitly approximates nati
   assert.equal(manifest.outputs.find(o=>o.path.endsWith("SCROLL19.SPR")).sha256,
     "9c462d2ce4cc5ee3f53a527221d934d943d21c6994e893e9400af7a464531fa0");
   assert.equal(activity.browserLightingPresetIndex,0);
+  assert.equal(activity.browserStagePrecipitation,"snow");
   assert.equal(activity.nativeStageSetup.nativeLightPresetIndex,6);
   const setup=JSON.parse(fs.readFileSync(activity.nativeStageSetup.evidence));
   const light=setup.supportingFunctions.flatMap(f=>f.blocks.flatMap(b=>b.actions))

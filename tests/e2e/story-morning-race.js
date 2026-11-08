@@ -134,7 +134,7 @@ export async function verifyMorningRace(page,testInfo,character,{day="one"}={}){
     gateTargets.push(best.index);previous=best.index;
   }
   let routeIndex=drivingLine.slice(0,30).reduce((best,p,index)=>Math.hypot(p[0]-first.position[0],p[1]-first.position[2])<Math.hypot(drivingLine[best][0]-first.position[0],drivingLine[best][1]-first.position[2])?index:best,0);
-  let lastPassed=-1,last,lastProgress=Date.now(),lastMoved=Date.now(),movingPoint=first.position,recoveries=0;
+  let lastPassed=-1,last,lastProgress=Date.now(),lastRouteProgress=Date.now(),lastRouteIndex=routeIndex,lastMoved=Date.now(),movingPoint=first.position,recoveries=0;
   try{
     const deadline=Date.now()+15*60_000;
     while(Date.now()<deadline){
@@ -145,6 +145,11 @@ export async function verifyMorningRace(page,testInfo,character,{day="one"}={}){
       let point=drivingLine[routeIndex%drivingLine.length];
       const lastAllowed=(view.lap-1)*drivingLine.length+gateTargets[view.checkpoint];
       for(let step=0;step<4&&routeIndex<lastAllowed&&Math.hypot(position[0]-point[0],position[2]-point[1])<2.5;step++){routeIndex++;point=drivingLine[routeIndex%drivingLine.length];}
+      // A long leg can legitimately take more than the gate watchdog while
+      // the vehicle continues through the recorded route. Only ordered route
+      // waypoints count here: motion in circles still times out, and the
+      // overall race deadline and real server checkpoint checks remain intact.
+      if(routeIndex>lastRouteIndex){lastRouteIndex=routeIndex;lastRouteProgress=Date.now();}
       const target=Math.atan2(point[0]-position[0],point[1]-position[2]);
       const error=Math.atan2(Math.sin(target-yaw),Math.cos(target-yaw));
       const ahead=drivingLine[(routeIndex+3)%drivingLine.length],aheadYaw=Math.atan2(ahead[0]-position[0],ahead[1]-position[2]);
@@ -163,7 +168,7 @@ export async function verifyMorningRace(page,testInfo,character,{day="one"}={}){
       if(error>.11)next.add("KeyD");else if(error<-.11)next.add("KeyA");
       await keys(next);
       if(view.passed!==lastPassed){lastPassed=view.passed;lastProgress=Date.now();recoveries=0;console.log("Observed morning race gate",view.passed,"lap",view.lap);}
-      if(Date.now()-lastProgress>40_000)throw Error(`Race stopped progressing: ${JSON.stringify({...last,point,routeIndex,error})}`);
+      if(Date.now()-Math.max(lastProgress,lastRouteProgress)>40_000)throw Error(`Race stopped progressing: ${JSON.stringify({...last,point,routeIndex,error})}`);
       expect(position[1],JSON.stringify(last)).toBeLessThan(3);
       await page.waitForTimeout(100);
     }

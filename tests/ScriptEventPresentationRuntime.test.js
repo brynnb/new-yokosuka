@@ -321,6 +321,13 @@ test("payday borrows original salary motions and Goro's warning without presenta
   assert.equal(scene.isolateResidentWorld,true);
   assert.ok(scene.actors.every(a=>a.motion.bank==="harborPay"&&a.motion.loop===false));
   assert.equal(scene.sceneObjects.ROOM.assetPath,"play/assets/harbor/yada-job-interview/MAPALP.MAPD");
+  const envelope=scene.attachedObjects.KYUF;
+  assert.equal(envelope.assetPath,"play/assets/harbor/payday/FUTS5KBG.CHRM");
+  assert.equal(envelope.textureAssetPath,"play/assets/harbor/payday/prop-textures.bin");
+  assert.deepEqual(envelope.attachments.map(({frame,parentActorTag})=>[frame,parentActorTag]),[[200,"TMRA"],[275,"AKIR"]]);
+  assert.deepEqual(envelope.presentation.map(({frame,visible})=>[frame,visible]),[[200,true],[360,false]]);
+  const salary=JSON.parse(readFileSync(new URL("../play/assets/harbor/payday/manifest.json",import.meta.url)));
+  assert.equal(salary.sourceMembers.find(member=>member.name==="FUTS5KBG.CHRM").sha256,"2fcb9adea9c9bc825113ae3b9bb2183a5a43886dad853a7447e31d3acfce479c");
   const film=createScriptEventPresentationCatalog().activity("s1.mfsy.after-work-goro.scene");
   assert.equal(film.durableEffects,"forbidden");assert.equal(film.returnPlayerState,true);
   assert.equal(film.cutscene.activity.binding.activityId,"GOROMA/SEQDATA2.AUTH");

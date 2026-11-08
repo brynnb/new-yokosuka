@@ -46,6 +46,7 @@ export class PlayInterfaceAssembly {
     getArcadeGames,
     getForkliftMode,
     getPoolRuntime,
+    getStoryQtePresenter = () => null,
     resetAudio,
     mobileUiQuery = window.matchMedia("(max-width: 850px)"),
   }) {
@@ -87,6 +88,8 @@ export class PlayInterfaceAssembly {
       isPoolActive: () => getPoolRuntime()?.active === true,
       isPaused: () => !getWorldReady() || Boolean(getArcadeGames()?.active),
       isMenuActive: () => this.playUi.menuIsActive(),
+      isStoryQteActive: () => getStoryQtePresenter()?.storyQteActive === true,
+      onStoryQteButton: (code, pressed) => getStoryQtePresenter()?.setStoryQteButton(code, pressed),
       onMenuDirection: direction => this.playUi.moveMenuFocus(direction),
       onMenuAccept: () => document.activeElement?.click?.(),
       onMenuBack: () => this.closeTopMenu(),

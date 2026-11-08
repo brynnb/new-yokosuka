@@ -17,7 +17,12 @@ export async function verifyMirrorReturn(page,testInfo,character){
     await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("options");await noErrors();
   };
   const cutscene=async id=>{await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===id||window.storyProbe.sceneErrors.length,id,{timeout:100_000});await noErrors();};
-  const arrived=async world=>{await page.waitForFunction(world=>window.storyProbe.ready&&window.storyProbe.lifecycle.worldRuntime.activeWorld.id===world,world,{timeout:120_000});await noErrors();};
+  const arrived=async world=>{
+    await page.waitForFunction(world=>{const p=window.storyProbe,w=p.lifecycle.worldRuntime;
+      return p.ready&&w.activeWorld.id===world&&w.ready&&!w.switching;
+    },world,{timeout:120_000});
+    await expect(page.locator("#loading")).toBeHidden({timeout:120_000});await noErrors();
+  };
   const walkInto=async(position,yaw,predicate)=>{
     await page.evaluate(({position,yaw})=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray(position),yaw,{persist:false});c.setFirstPerson(true);c.cameraYaw=yaw;c.cameraPitch=0;c.updateCamera(1);},{position,yaw});
     await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");

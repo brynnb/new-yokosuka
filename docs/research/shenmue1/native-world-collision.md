@@ -150,6 +150,41 @@ both fields with the same coordinates and endpoint order. The fields are
 alternate collision sets whose exact selection rules still require an engine
 trace.
 
+### Okayama Heights natural-ascent blocker
+
+On 2026-11-08, a connected Story character walked from the earned Kurita clue
+to the tattoo-parlor stairs. Ordinary movement stopped midway at browser
+`[103.334, 1.872, 101.323]`, before the upstairs door. In D000 field `0000`,
+the middle segment of code-0 polyline record offset `9532` crosses the flight
+at that position; the current loader extends it vertically as a blocking wall.
+This prevents the fully natural route to the first tattoo visit.
+
+Both flight-end code-10 boundaries also appear in field `0001`, which instead
+has long code-9 side boundaries and omits that code-0 polyline. On a cloned
+save, a diagnostic that genuinely disabled field `0000` and enabled `0001`
+allowed ordinary movement past the mid-flight stop to y=2.772 on the upper
+landing. It did not establish the complete route to the door or prove when the
+original game switches collision fields. Merely setting `checkCollisions=false`
+is not a valid experiment: door synchronization reapplies the mesh's stored
+collision behavior. The diagnostic changed that temporary behavior too.
+
+The runtime now derives a bounded handoff only when both fields share the same
+two flight markers and field `0001` supplies two long side walls matching the
+field `0000` U-shaped chain. This pattern currently matches this one flight in
+the extracted corpus. The player uses the alternate field within the matched
+flight and the original field elsewhere; neither field nor the blocking record
+is deleted. This is an evidence-based approximation, not a recovered native
+field-selection algorithm. Ambiguous or incomplete source patterns retain the
+existing field unchanged.
+
+A connected GPU-browser round trip walked from street level up the flight,
+across the landing to the door and back down. It checked that the alternate
+field's side boundary still blocks and that normal ground-level collision is
+restored. A separate earned Story run climbed from the previously blocked
+position, entered the real tattoo door, rendered the artist's moving mouth,
+finished the conversation without skips and retained the clue after reload.
+Other staircases and the original collision-field semantics remain unverified.
+
 ## Door-controlled records
 
 Native door boundaries use the `100`–`199` COLI code namespace. At runtime,

@@ -629,8 +629,10 @@ documented approximations of the original game.
 The prompt uses a compact variant of the shared dialogue surface, displaying
 only the current required button(s) with their keyboard equivalents. Touch
 buttons retain their pointer ownership across steps; wrong keyboard input still
-fails. Desktop and phone layout/input checks are separate from the connected
-scene checks and do not establish original fight choreography.
+fails. Standard gamepad A/B/X and directional inputs use the same attempt
+runtime. Desktop and phone layout/input checks, a simulated-gamepad
+full-application prompt check, and an isolated connected bar encounter all pass.
+They do not establish physical-controller behavior or original fight choreography.
 
 The parking-lot ambush extends the same event ownership with `start_combat` and
 `combat_result`. The client simulates movement, health, full Practice moves and

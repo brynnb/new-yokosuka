@@ -4288,7 +4288,10 @@
           "sourceKind": "reverse interior door transform",
           "evidence": {
             "returnTransitionId": "dgct-auto_door-to-d000-entry-6",
-            "inwardOffset": 0.85
+            "inwardOffset": 0.85,
+            "side": 1,
+            "residentAnchors": [],
+            "sideEvidence": "unresolved-default-door-side"
           }
         }
       },
@@ -4389,7 +4392,10 @@
           "sourceKind": "reverse interior door transform",
           "evidence": {
             "returnTransitionId": "dkpa-door-to-d000-entry-25",
-            "inwardOffset": 0.85
+            "inwardOffset": 0.85,
+            "side": 1,
+            "residentAnchors": [],
+            "sideEvidence": "unresolved-default-door-side"
           }
         }
       },
@@ -4531,14 +4537,20 @@
           "position": [
             0.6119999885559082,
             0.0,
-            4.030000066757202
+            2.330000066757202
           ],
-          "yawDegrees": 0.0,
-          "yawRadians": 0.0,
+          "yawDegrees": 180.0,
+          "yawRadians": 3.141592653589793,
           "sourceKind": "reverse interior door transform",
           "evidence": {
             "returnTransitionId": "drht-door-to-d000-entry-21",
-            "inwardOffset": 0.85
+            "inwardOffset": 0.85,
+            "side": -1,
+            "residentAnchors": [
+              "KYUR",
+              "ONRR"
+            ],
+            "sideEvidence": "unanimous-single-area-resident-placements"
           }
         }
       },
@@ -4690,7 +4702,10 @@
           "sourceKind": "reverse interior door transform",
           "evidence": {
             "returnTransitionId": "dsba-soba_door-to-d000-entry-12",
-            "inwardOffset": 0.85
+            "inwardOffset": 0.85,
+            "side": 1,
+            "residentAnchors": [],
+            "sideEvidence": "unresolved-default-door-side"
           }
         }
       },
@@ -4839,7 +4854,10 @@
           "sourceKind": "reverse interior door transform",
           "evidence": {
             "returnTransitionId": "dslt-tokoya_door-to-d000-entry-26",
-            "inwardOffset": 0.85
+            "inwardOffset": 0.85,
+            "side": 1,
+            "residentAnchors": [],
+            "sideEvidence": "unresolved-default-door-side"
           }
         }
       },
@@ -4892,7 +4910,10 @@
           "sourceKind": "reverse interior door transform",
           "evidence": {
             "returnTransitionId": "dsus-dr15_002-to-d000-entry-22",
-            "inwardOffset": 0.85
+            "inwardOffset": 0.85,
+            "side": 1,
+            "residentAnchors": [],
+            "sideEvidence": "unresolved-default-door-side"
           }
         }
       },
@@ -7479,5 +7500,5 @@
       }
     }
   ],
-  "evidenceBoundary": "D000 storefronts are associated by each interior's exact reverse D000 Entry rather than equating coroutine dispatch ordinals with logical door selectors. Destinations without an authored player Entry use the original live AKIR CHRS placement when available; otherwise they use the exact reverse interior door transform plus a fixed inward offset. Facing away from the exit is an adaptation. Interior return-door roots are exact native door-controller records; they remain non-interactive until the native Door Box dimensions are decoded."
+  "evidenceBoundary": "D000 storefronts are associated by each interior's exact reverse D000 Entry rather than equating coroutine dispatch ordinals with logical door selectors. Destinations without an authored player Entry use the original live AKIR CHRS placement when available; otherwise they use the exact reverse interior door transform plus a fixed offset. A unanimous pair of single-area original resident placements can choose the inside side; without that evidence the side remains an unresolved approximation. Facing away from the exit is an adaptation. Interior return-door roots are exact native door-controller records; they remain non-interactive until the native Door Box dimensions are decoded."
 }

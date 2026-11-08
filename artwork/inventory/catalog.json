@@ -1,7 +1,7 @@
 {
   "sourceArticle": "https://www.phantomriverstone.com/2021/12/unused-inventory-icons-discovered-in.html",
   "generator": "Built-in image_gen; AI reconstructions, not recovered original art.",
-  "inventoryStatus": "Display-only catalog, not server-backed ownership. Only released-game items and menu concepts are displayed. Reserve art is not imported or published by the client build.",
+  "inventoryStatus": "Artwork catalog only; ownership comes from the server. Display assets cover available possessions and menu concepts. Reserve art is not imported or published by the client build.",
   "encoding": "Display: 256px lossless WebP. Reserve: original-resolution lossless WebP. Original PNG masters retained in the local ignored experiment folder.",
   "assets": [
     {
@@ -130,12 +130,13 @@
       "index": 12,
       "id": "hazuki-sword",
       "name": "Hazuki sword",
-      "usage": "reserve",
-      "reason": "Sword can be carried locally but has no released inventory icon.",
-      "file": "artwork/inventory/reserve/hazuki-sword.webp",
-      "width": 1254,
-      "height": 1254,
-      "bytes": 171932
+      "usage": "display",
+      "reason": "Project inventory representation of the collectible dojo sword; no released-game inventory icon.",
+      "file": "play/ui/assets/inventory/hazuki-sword.webp",
+      "masterFile": "artwork/inventory/reserve/hazuki-sword.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 11406
     },
     {
       "index": 13,

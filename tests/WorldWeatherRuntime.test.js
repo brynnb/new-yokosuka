@@ -4,6 +4,35 @@ import * as BABYLON from "@babylonjs/core";
 
 import { WorldWeatherRuntime } from "../play/world/WorldWeatherRuntime.js";
 
+test("cinematic snowfall is bounded, follows the camera and never changes world fog", () => {
+  const engine = new BABYLON.NullEngine();
+  const scene = new BABYLON.Scene(engine);
+  const camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(1, 2, 3), scene);
+  scene.activeCamera = camera;
+  scene.fogMode = BABYLON.Scene.FOGMODE_EXP2;
+  scene.fogDensity = .25;
+  const runtime = new WorldWeatherRuntime({ scene, profile: "cinematic" });
+  try {
+    assert.equal(runtime.apply("snow"), true);
+    assert.equal(runtime.particles.getCapacity(), 800);
+    assert.equal(runtime.particles.emitRate, 120);
+    assert.ok(runtime.particles.getActiveCount() > 0);
+    assert.equal(scene.fogMode, BABYLON.Scene.FOGMODE_EXP2);
+    assert.equal(scene.fogDensity, .25);
+    scene.onBeforeRenderObservable.notifyObservers(scene);
+    assert.deepEqual(runtime.emitter.position.asArray(), [1, 2, 6]);
+    camera.rotation.y = Math.PI / 2;
+    camera.getViewMatrix(true);
+    scene.onBeforeRenderObservable.notifyObservers(scene);
+    assert.ok(Math.abs(runtime.emitter.position.x - 4) < 1e-5);
+    assert.ok(Math.abs(runtime.emitter.position.z - 3) < 1e-5);
+    runtime.clear();
+    assert.equal(runtime.particles, null);
+    assert.equal(scene.fogMode, BABYLON.Scene.FOGMODE_EXP2);
+    assert.equal(scene.fogDensity, .25);
+  } finally { runtime.dispose(); scene.dispose(); engine.dispose(); }
+});
+
 test("native dry volumes use mirrored X, survive precipitation changes, and replace atomically", () => {
   const engine = new BABYLON.NullEngine();
   const scene = new BABYLON.Scene(engine);

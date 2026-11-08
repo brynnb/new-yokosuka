@@ -1,4 +1,5 @@
-import { applyMediaElementAudio } from "./MediaElementAudio.js";
+import { applyMediaElementAudio, createGameAudio } from "./MediaElementAudio.js";
+import { isAudioPermissionError } from "./BrowserAudioPlayback.js";
 
 export const DIALOGUE_VOLUME_STORAGE_KEY =
   "new-yokosuka.dialogue-volume";
@@ -45,6 +46,7 @@ export class DialogueAudio {
     masterMuted = false,
     overallVolume = 1,
     enabled = true,
+    audioFactory = source => createGameAudio(source),
   } = {}) {
     const preferences = readDialogueAudioPreferences(storage);
     this.storage = storage;
@@ -54,6 +56,8 @@ export class DialogueAudio {
     this.masterMuted = Boolean(masterMuted);
     this.overallVolume = clampVolume(overallVolume);
     this.audioElements = new Set();
+    this.audioFactory = audioFactory;
+    this.oneShot = null;
   }
 
   getState() {
@@ -114,6 +118,43 @@ export class DialogueAudio {
     this.audioElements.delete(audio);
   }
 
+  playOneShot(source) {
+    this.stopOneShot();
+    if (!source) return null;
+    const audio = this.audioFactory(source);
+    const release = () => { if (this.oneShot?.audio === audio) this.stopOneShot(); };
+    this.oneShot = {audio, release};
+    this.attach(audio);
+    audio.addEventListener("ended", release);
+    audio.addEventListener("error", release);
+    try {
+      void Promise.resolve(audio.play()).catch(error => {
+        if (this.oneShot?.audio !== audio) return;
+        if (!isAudioPermissionError(error) && error?.name !== "AbortError") {
+          console.warn("Could not play story reminder:", error);
+        }
+        release();
+      });
+    } catch (error) {
+      release();
+      if (!isAudioPermissionError(error) && error?.name !== "AbortError") {
+        console.warn("Could not play story reminder:", error);
+      }
+    }
+    return audio;
+  }
+
+  stopOneShot() {
+    const owner = this.oneShot;
+    if (!owner) return;
+    this.oneShot = null;
+    owner.audio.removeEventListener("ended", owner.release);
+    owner.audio.removeEventListener("error", owner.release);
+    this.detach(owner.audio);
+    owner.audio.pause();
+    owner.audio.removeAttribute("src");
+  }
+
   apply() {
     for (const audio of this.audioElements) this.applyTo(audio);
   }
@@ -127,6 +168,7 @@ export class DialogueAudio {
   }
 
   dispose() {
+    this.stopOneShot();
     this.audioElements.clear();
   }
 }

@@ -45,6 +45,8 @@ const archives={
   "MB9Q/MPK00":"70a419eb5544dade0c62f3b2ca0a8d747eaf79e11e9df5c467b728d753b22f7c",
   RYUSATSU:"385fd95a064964da1723afade848a3673e5632d56c1536460df9be7acd03686c",
   BAT_MBQC:"52867cbea1dd59044282ee476405026a769a909eab8bbcced955f94975d470e0",
+  MBQC:"39623d989642b19fbe99f7285e8a5a852410324e3bd39b6ccbc68ece7798bcc1",
+  RACE:"3be01b130f22a0b19f3318e0d833200c92ab8b3a488581bdabf62fcea44156a4",
   NZMPHOTO:"c1b2ba44ca7111fb9e85237a775b253c0bcef99e7a4bbb3ed3c64e00bc46be1e",
   BOKOMARK:"f074ed751b0000c66357087fc8ed23c0a343080723bb511567b92c2d0ed96164",
   HIRUAUTH:"e740397e02958441010345d34d1369b20bbad9bc2ebdf397b413251b20a9a97e",
@@ -230,6 +232,15 @@ const profiles=[
   {id:"mark-long-zha",archive:"RYUSATSU",auth:"SEQDATA1.AUTH",motion:"M_01MKJ.MOTN",frames:1000,actors:["AKIR","MARK"],
     stream:"01MKJ",streamHash:"cb353da35315b081014c3a92fe4e0a2bb2cb0f6c2d5ae2986eefca6585d32772",sound:"A1_MKJ.SND",soundHash:"264c861f97044a430b1723fcce33393b77ffce22483534bed0fabc7bde5b0408"},
   {id:"charlie-harbor-interrogation",archive:"BAT_MBQC",auth:"SEQDATA0.AUTH",motion:"M_01CBK.MOTN",frames:1560,actors:["AKIR","BTK_","BTH_","CHRL","BTA_"],
+    persistentProps:{map:"MBQC/MAPINFO.BIN",mapHash:"6edaaa04c151a0c5ebdc22dbbb4f050db8daf914a1b42e1f74194fabb84c6f0a",archiveByModel:{BIKS504G:"MBQC",BIKS509G:"RACE"},
+      textureHashes:{MBQC:"32c384516440a42132fc06f480337539766a38d917577715cd3bd6f71f179d2a",RACE:"6b7a95a33bfeced4e651765d516de98b6318b5fb397a2da877b4f64a8e68fa36"},
+      looseModels:{RAY02C1G:{sha256:"a5ae2299ac25b3fc7ba5caf2118c243fd5f8e5368ac9636ff8d2708667cd2459"},RAYS5C2G:{sha256:"b8f4f27b3f10f171ac01658ecf6688c45a3232d89eedd804bd56a44b9c312af7"}},
+      // Original CHRS lists paired ground/beam actors immediately after each
+      // bike. Their shared parked transforms are reviewed approximations.
+      companions:{RY00:"BIK0",RY01:"BIK0",RY10:"BIK1",RY11:"BIK1",RY20:"BIK2",RY21:"BIK2"},
+      // Approximate ground placements, not recovered native transforms. The
+      // original room controller supplies the models but no static positions.
+      placements:{BIK0:{position:[97,0,28],rotationDegrees:[0,160,0]},BIK1:{position:[98,0,31],rotationDegrees:[0,-150,0]},BIK2:{position:[100,0,24],rotationDegrees:[0,-90,0]}}},
     actorModels:{BTK_:["Mad Angels biker","BTK_S"],BTH_:["Mad Angels biker","BTH_S"],BTA_:["Mad Angels biker","BTA_S"]},
     actorTextureHash:"21659e72e8d07d6672f87185bef848ed61a61e659f63c924c51af73512f7793f",
     stream:"01CBK",streamHash:"ac592d84435e75dddc18d05e66f969bfb815ac2310f5a5396fc1cba64b3e0792",sound:"A1_CBK.SND",soundHash:"9c57255615360306201708cba0ded088d6a61c62e975a5a906a4c264e39e0758"},
@@ -266,7 +277,8 @@ const profiles=[
     propTextureHash:"c6796091fbbb5a0ba8f3f50567fdf4b7419227ff984c38942d7bb0a08f635968"},
   {id:"after-work-goro",archive:"GOROMA",auth:"SEQDATA2.AUTH",motion:"M_01GOJ.MOTN",frames:2410,actors:["DOOR","AKIR","GORO"],
     stream:"01GOJ",streamHash:"06c5dd27705cf46350c3b59ebdefc89c14174499959526d9f253358b68f90bb8",sound:"A1_GOJ.SND",soundHash:"210668743582286b7b4bfa406ee36f766233f06fcb88b67021b522a5afe4adf3"},
-  {id:"payday",archive:"ALP_PAY",motion:"M_MO01.MOTN",assetOnly:true},
+  {id:"payday",archive:"ALP_PAY",motion:"M_MO01.MOTN",assetOnly:true,
+    prop:"FUTS5KBG.CHRM",propTextureHash:"bce7c331de9dfcfafe46a70a6f81c68f11128661424c1d973d67a315b5374cbc"},
   {id:"goro-job-lead",archive:"GOROCOOP",auth:"SEQDATA1.AUTH",motion:"M_01GOH.MOTN",frames:2330,actors:["AKIR","GORO"],
     stream:"01GOHA",streamHash:"018d20a6b303b790e3dff9f1b872c776b974d3857e75f8b438e5742870e5721a",sound:"A1_GOH.SND",soundHash:"5537070981a30cb231cf7fd646735bda7cb8b201ef09ab023f9a4bd8b68a6908"},
   {id:"goro-job-appointment",archive:"MGOR",auth:"SEQDATA0.AUTH",motion:"M_01GOR.MOTN",frames:1960,actors:["AKIR","HINA","GORO","DOOR","HAKO"],
@@ -334,14 +346,28 @@ for(const p of selected){
     // ALP_PAY has salary motions, but no AUTH film. Preserve those originals
     // without fabricating a native activity; Yarn owns the authored handover.
     const bytes=fs.readFileSync(path.join(source,`MFSY/${p.archive}.PKS`));
-    const payload=parseIpacActivityArchive(bytes).members.find(m=>m.name===p.motion).bytes;
+    const archive=parseIpacActivityArchive(bytes);
     fs.mkdirSync(path.join(root,prefix),{recursive:true});
-    fs.writeFileSync(path.join(root,prefix,p.motion),payload);
-    const assetPath=`${prefix}/${p.motion}`;
+    const outputs=[];
+    for(const filename of [p.motion,...(p.prop?[p.prop]:[])]){
+      member(p.archive,filename);
+      const payload=archive.members.find(m=>m.name===filename).bytes;
+      const assetPath=`${prefix}/${filename}`;
+      fs.writeFileSync(path.join(root,assetPath),payload);
+      outputs.push({path:assetPath,byteLength:payload.length,sha256:sha256(payload)});
+    }
+    if(p.prop){
+      const sourcePath=path.join(source,`${archiveStem(p.archive)}.PKF`),textures=fs.readFileSync(sourcePath);
+      if(sha256(textures)!==p.propTextureHash)throw Error(`Changed original ${p.archive}.PKF`);
+      const payload=extractNativeTexnPack(textures,`${p.archive}.PKF`).bytes,assetPath=`${prefix}/prop-textures.bin`;
+      fs.writeFileSync(path.join(root,assetPath),payload);
+      members.push({name:`${p.archive}.PKF`,sourcePath,sourceManifestPath:`disc3/SCENE/03/${archiveStem(p.archive)}.PKF`,sourceSha256:p.propTextureHash,byteLength:textures.length,sha256:p.propTextureHash});
+      outputs.push({path:assetPath,byteLength:payload.length,sha256:sha256(payload)});
+    }
     fs.writeFileSync(path.join(root,prefix,"manifest.json"),JSON.stringify({generatedBy,resourceName:p.archive,sourceMembers:members.map(({sourcePath,...record})=>record),
-      outputs:[{path:assetPath,byteLength:payload.length,sha256:sha256(payload)}],evidence},null,2)+"\n");
-    runtimePaths.push(`${prefix}/manifest.json`,assetPath);
-    console.log(`Built ${p.id}: original salary motion bank, no native AUTH`);
+      outputs,evidence},null,2)+"\n");
+    runtimePaths.push(`${prefix}/manifest.json`,...outputs.map(output=>output.path));
+    console.log(`Built ${p.id}: original salary assets, no native AUTH`);
     continue;
   }
   const texture=(archive,hash,filename)=>{
@@ -397,6 +423,44 @@ for(const p of selected){
       lifecycle:{kind:"room-script-persistent"},initialPresentation:{position:[0,0,0],rotationDegrees:[0,0,0],scale:[1,1,1]}};
   }
   const stageStates=p.stage?addNativeAseqStageAssets({stage:p.stage,sourceDirectory:path.join(source,path.dirname(archiveStem(p.archive))),sourceManifestPrefix:`disc3/SCENE/03/${path.dirname(archiveStem(p.archive))}`,assetPrefix:prefix,members,outputMembers,sceneObjects,generatedAssets}):[];
+  if(p.persistentProps){
+    const spec=p.persistentProps,map=fs.readFileSync(path.join(source,spec.map));
+    if(sha256(map)!==spec.mapHash)throw Error(`Changed persistent scene source for ${p.id}`);
+    const chrs=map.indexOf("CHRS");
+    if(chrs<0)throw Error(`Missing CHRS for ${p.id}`);
+    const bindings=parseChrtSceneObjectBindings(map.subarray(chrs)),textures={};
+    const placements={...spec.placements};
+    for(const [tag,owner] of Object.entries(spec.companions||{})){
+      if(!placements[owner]||placements[tag])throw Error(`Invalid persistent companion ${p.id}/${tag}`);
+      placements[tag]=placements[owner];
+    }
+    for(const [tag,presentation] of Object.entries(placements)){
+      const matches=bindings.filter(binding=>binding.actorTag===tag);
+      if(matches.length!==1)throw Error(`Ambiguous persistent prop ${p.id}/${tag}`);
+      const binding=matches[0],archive=spec.archiveByModel[binding.model],loose=spec.looseModels?.[binding.model];
+      let filename,textureAssetPath;
+      if(loose){
+        filename=`${binding.model}.MT5`;
+        const sourcePath=path.join(source,"MBQC",filename),bytes=fs.readFileSync(sourcePath);
+        if(sha256(bytes)!==loose.sha256)throw Error(`Changed persistent prop ${p.id}/${tag}`);
+        if(!members.some(m=>m.name===filename)){
+          members.push({name:filename,sourcePath,sourceManifestPath:`disc3/SCENE/03/MBQC/${filename}`,sourceSha256:loose.sha256,byteLength:bytes.length,sha256:loose.sha256});
+          textureAssetPath=`${prefix}/${binding.model}-textures.bin`;
+          generatedAssets.push({assetPath:textureAssetPath,bytes:extractNativeTexnPack(bytes,filename).bytes});
+        }else textureAssetPath=`${prefix}/${binding.model}-textures.bin`;
+      }else{
+        if(!archive||!spec.textureHashes[archive])throw Error(`Missing prop archive ${p.id}/${tag}`);
+        textures[archive]||=texture(archive,spec.textureHashes[archive],`${archive}-textures.bin`);
+        filename=member(archive,`${binding.model}.CHRM`);textureAssetPath=textures[archive];
+      }
+      outputMembers.push(filename);
+      sceneObjects[tag]={model:binding.model,browserFilename:filename,assetPath:`${prefix}/${filename}`,textureAssetPath,
+        ...(spec.companions?.[tag]?{visualStyle:"unlit-additive"}:{}),
+        lifecycle:{kind:"room-script-persistent"},initialPresentation:{...presentation,scale:[1,1,1]},
+        sourceBinding:{...binding,map:`disc3/SCENE/03/${spec.map}`,mapSha256:spec.mapHash,chrsOffset:chrs,placement:"authored-approximation",...(spec.companions?.[tag]?{companionOf:spec.companions[tag]}:{})}};
+      stageStates.push({actorTag:tag,presented:true});
+    }
+  }
   const propTextureAssetPath=p.props?texture(p.propArchive||p.archive,p.propTextureHash,"textures.bin"):null;
   if(p.chrtModels){
     // Recover both bodies and props from the same original character table.

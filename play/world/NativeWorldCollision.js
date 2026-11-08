@@ -2,6 +2,7 @@ import * as BABYLON from "@babylonjs/core";
 import {
   nativeCollisionAdjustmentForRecord,
 } from "../config/nativeCollisionAdjustments.js";
+import { discoverNativeStairFieldHandoffs } from "../../src/NativeCollisionFieldHandoffs.js";
 
 const DEFAULT_LOWER_Y = -32;
 const DEFAULT_UPPER_Y = 64;
@@ -113,6 +114,7 @@ export function nativeCollisionDefinitionForWorld(
     variantId,
     source: variant.sources?.[0] || null,
     field,
+    variantFields: variant.fields,
   };
 }
 
@@ -522,6 +524,9 @@ export function createNativeWorldCollision({
       definition,
     });
   }
+  const alternate = definition.fieldId === "0000"
+    ? definition.variantFields?.find(field => field.id === "0001") : null;
+  const handoffs = discoverNativeStairFieldHandoffs(definition.field, alternate, nativeCollisionSegments);
   const meshes = [];
   for (const group of collisionGroups(definition)) {
     const positions = [];
@@ -557,6 +562,8 @@ export function createNativeWorldCollision({
       nativeCollisionArea: definition.area,
       nativeCollisionDisc: definition.disc,
       nativeCollisionField: definition.fieldId,
+      nativeCollisionFieldRole: handoffs.length ? "base" : null,
+      nativeCollisionHandoffs: handoffs,
       nativeCollisionSectionIndex: group.sectionIndex,
       nativeCollisionCode: group.code,
       nativeCollisionRecordOffsets: group.records.map(
@@ -572,5 +579,14 @@ export function createNativeWorldCollision({
     meshes.push(mesh);
   }
   applyNativeDoorCollisionStates(meshes);
+  if (handoffs.length) {
+    const alternateMeshes = createNativeWorldCollision({scene, currentMeshes, lowerY, upperY,
+      definition: {...definition, fieldId: alternate.id, field: alternate, variantFields: []}});
+    for (const mesh of alternateMeshes) {
+      mesh.metadata.nativeCollisionFieldRole = "alternate";
+      mesh.metadata.nativeCollisionHandoffs = handoffs;
+    }
+    meshes.push(...alternateMeshes);
+  }
   return meshes;
 }

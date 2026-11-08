@@ -100,8 +100,11 @@ try {
   if (world.assetFormat === "MT7") await loadMt7Scene(state, spec.records, {batchStatic: false, installEffects: false});
   else await loadMt5Scene(state, world.prefix, {filenames: new Set(spec.filenames),
     includeHiddenVariants: true, timeOfDayIndex: 0, variantProfile: spec.variantProfile, variantZone: spec.zone});
-  const reader = new PlacementRuntime({scene, bundledModels: runtimeAssetGroup("play/assets/dobuita/*.CHRM"),
-    bundledTextures: runtimeAssetGroup("play/assets/dobuita/*_textures.bin"), fetchArrayBuffer: fetchAssetBuffer});
+  // Compilation consumes local extraction outputs, including newly registered
+  // assets that cannot exist on R2 until after this build has been published.
+  const localRuntimeGroup=pattern=>Object.fromEntries(Object.keys(runtimeAssetGroup(pattern)).map(file=>[file,`/${file}`]));
+  const reader = new PlacementRuntime({scene, bundledModels: localRuntimeGroup("play/assets/dobuita/*.CHRM"),
+    bundledTextures: localRuntimeGroup("play/assets/dobuita/*_textures.bin"), fetchArrayBuffer: fetchAssetBuffer});
   const fixedIds = new Set(audit?.rows.filter(row => row.included).map(row => row.id) || []);
   const templateModels = new Set(spec.models);
   const fixedLayer = fixedIds.size ? new B.TransformNode(`${key}-fixed-placements`, scene) : null;

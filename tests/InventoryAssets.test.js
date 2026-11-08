@@ -2,13 +2,14 @@ import assert from "node:assert/strict";
 import { readFile, stat } from "node:fs/promises";
 import test from "node:test";
 import catalog from "../artwork/inventory/catalog.json" with { type: "json" };
-import { INVENTORY_ITEMS } from "../play/ui/react/inventoryItems.js";
+import { INVENTORY_ITEMS, inventoryArtworkFor } from "../play/ui/react/inventoryItems.js";
 
 test("inventory display assets exist and unused artwork stays separate", async () => {
   assert.equal(new Set(catalog.assets.map((item) => item.id)).size, catalog.assets.length);
   assert.deepEqual(INVENTORY_ITEMS.map((item) => item.id),
     catalog.assets.filter((item) => item.usage === "display").map((item) => item.id));
   assert.ok(!INVENTORY_ITEMS.some((item) => item.id === "h214-key" || item.id === "demo-notebook"));
+  assert.equal(inventoryArtworkFor("dojo_sword")?.id, "hazuki-sword");
   let displayBytes = 0;
   for (const item of catalog.assets) {
     const file = new URL(`../${item.file}`, import.meta.url);

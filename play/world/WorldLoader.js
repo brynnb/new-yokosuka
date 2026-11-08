@@ -283,8 +283,9 @@ export class WorldLoader {
       // first. Merge only immutable resident geometry before indexing it.
       await batchStaticWorldRoots(this.state.currentMeshes, {signal});
       ensureActive(signal);
+      let nativeCollisionMeshes = [];
       if (nativeCollisionDefinition) {
-        createNativeWorldCollision({
+        nativeCollisionMeshes = createNativeWorldCollision({
           scene: this.scene,
           currentMeshes: this.state.currentMeshes,
           definition: nativeCollisionDefinition,
@@ -294,6 +295,9 @@ export class WorldLoader {
         this.scene,
         this.state.currentMeshes,
       );
+      if (raycastIndex) raycastIndex.nativeCollisionHandoffs = nativeCollisionMeshes.find(
+        mesh => mesh.metadata?.nativeCollisionHandoffs?.length,
+      )?.metadata.nativeCollisionHandoffs || [];
 
       return {
         composition,

@@ -10,6 +10,7 @@ export class TravelTransitions {
     persistPlayerLocation,
     authorizeTransition = null,
     commitTransition = null,
+    getTransitionRestriction = () => null,
     onTransitionDenied = () => {},
   }) {
     this.worlds = worlds;
@@ -20,6 +21,7 @@ export class TravelTransitions {
     this.persistPlayerLocation = persistPlayerLocation;
     this.authorizeTransition = authorizeTransition;
     this.commitTransition = commitTransition;
+    this.getTransitionRestriction = getTransitionRestriction;
     this.onTransitionDenied = onTransitionDenied;
     this.boundaryDetector = new BoundaryTransitionDetector();
     this.pending = null;
@@ -35,6 +37,12 @@ export class TravelTransitions {
     }
     const destinationWorld = this.worlds[transition.destination.worldId];
     if (!destinationWorld) return false;
+
+    const restriction = this.getTransitionRestriction(transition);
+    if (restriction) {
+      this.onTransitionDenied({...restriction, transition});
+      return true;
+    }
 
     const controller = this.getController();
     const requiresAuthorization = (

@@ -21,6 +21,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 EVIDENCE = ROOT / "tools" / "evidence" / "map-warp-inventory.json"
 ENTRY_EVIDENCE = ROOT / "tools" / "evidence" / "map-entry-points.json"
+RESIDENT_ANCHORS = ROOT / "tools" / "evidence" / "interior-resident-anchors.json"
 OUTPUT = ROOT / "play" / "data" / "native-map-transitions.json"
 MODEL_CATALOG = ROOT / "public" / "models.json"
 MAP_CATALOG = ROOT / "public" / "data" / "maps.csv"
@@ -429,21 +430,56 @@ def d000_door_candidates(evidence: dict) -> list[dict]:
     return list(by_selector.values())
 
 
-def derived_interior_spawn(return_transition: dict) -> dict:
+def resident_interior_side(return_transition: dict, resident_anchors: dict) -> tuple[int, list[str]]:
+    """Infer a door side only when two independent room residents agree.
+
+    Resident placements are original schedule data, not player spawn records.
+    Require every observed placement of each qualifying resident to be beyond
+    the existing doorway offset and on the same side. Ambiguous rooms retain
+    the previous approximation until their actual arrivals can be recovered.
+    """
+    door = return_transition["source"]["nativeDoorObject"]
+    position = door["position"]
+    yaw = math.radians(door["yawDegrees"])
+    direction = (math.sin(yaw), math.cos(yaw))
+    area = return_transition["source"]["area"]
+    by_actor = {}
+    for anchor in resident_anchors["anchors"]:
+        if anchor["area"] != area:
+            continue
+        distances = by_actor.setdefault(anchor["actor"], [])
+        for point in anchor["positions"]:
+            coords = point["position"]
+            distances.append((coords[0] - position[0]) * direction[0]
+                             + (coords[2] - position[2]) * direction[1])
+    votes = {}
+    for actor, distances in by_actor.items():
+        if not distances or any(abs(distance) <= 0.85 for distance in distances):
+            continue
+        sign = 1 if distances[0] > 0 else -1
+        if all(distance * sign > 0 for distance in distances):
+            votes[actor] = sign
+    if len(votes) >= 2 and len(set(votes.values())) == 1:
+        return next(iter(votes.values())), sorted(votes)
+    return 1, []
+
+
+def derived_interior_spawn(return_transition: dict, resident_anchors: dict) -> dict:
     """Place the player just inside an authored interior exit door."""
     door = return_transition["source"]["nativeDoorObject"]
     position = door["position"]
     door_yaw_degrees = door["yawDegrees"]
     door_yaw = math.radians(door_yaw_degrees)
     inward_distance = 0.85
-    yaw_degrees = (door_yaw_degrees + 180) % 360
+    side, residents = resident_interior_side(return_transition, resident_anchors)
+    yaw_degrees = (door_yaw_degrees + (180 if side > 0 else 0)) % 360
     if yaw_degrees > 180:
         yaw_degrees -= 360
     return {
         "position": [
-            position[0] + math.sin(door_yaw) * inward_distance,
+            position[0] + math.sin(door_yaw) * inward_distance * side,
             position[1],
-            position[2] + math.cos(door_yaw) * inward_distance,
+            position[2] + math.cos(door_yaw) * inward_distance * side,
         ],
         "yawDegrees": yaw_degrees,
         "yawRadians": math.radians(yaw_degrees),
@@ -451,6 +487,12 @@ def derived_interior_spawn(return_transition: dict) -> dict:
         "evidence": {
             "returnTransitionId": return_transition["id"],
             "inwardOffset": inward_distance,
+            "side": side,
+            "residentAnchors": residents,
+            "sideEvidence": (
+                "unanimous-single-area-resident-placements"
+                if residents else "unresolved-default-door-side"
+            ),
         },
     }
 
@@ -474,6 +516,7 @@ def reverse_matched_d000_transition(
     return_transition: dict,
     authored_inbound_spawns: dict,
     door_candidates: list[dict],
+    resident_anchors: dict,
     default_inbound_spawns: dict | None = None,
 ) -> dict | None:
     """Recover an inbound storefront edge from its exact reverse edge.
@@ -522,7 +565,7 @@ def reverse_matched_d000_transition(
         authored_spawn
         if authored_spawn is not None
         else default_spawn if default_spawn is not None
-        else derived_interior_spawn(return_transition)
+        else derived_interior_spawn(return_transition, resident_anchors)
     )
     # You Arcade has a separately tuned arrival. The generated storefront
     # interiors should face into their room rather than back at the exit.
@@ -576,6 +619,7 @@ def reverse_matched_d000_transition(
 def main() -> None:
     evidence = json.loads(EVIDENCE.read_text())
     entry_report = json.loads(ENTRY_EVIDENCE.read_text())
+    resident_anchors = json.loads(RESIDENT_ANCHORS.read_text())
     model_catalog = json.loads(MODEL_CATALOG.read_text())
     entries = entry_index(entry_report)
     transitions = [
@@ -675,6 +719,7 @@ def main() -> None:
                 return_transition,
                 authored_inbound_spawns,
                 door_candidates,
+                resident_anchors,
                 default_inbound_spawns,
             )
             for return_transition in all_exact_door_transitions
@@ -768,7 +813,10 @@ def main() -> None:
             "logical door selectors. Destinations without an authored player "
             "Entry use the original live AKIR CHRS placement when available; "
             "otherwise they use the exact reverse interior door transform plus "
-            "a fixed inward offset. Facing away from the exit is an adaptation. "
+            "a fixed offset. A unanimous pair of single-area original resident "
+            "placements can choose the inside side; without that evidence the "
+            "side remains an unresolved approximation. Facing away from the exit "
+            "is an adaptation. "
             "Interior return-door roots are exact native door-controller records; "
             "they remain non-interactive until the native Door Box dimensions "
             "are decoded."

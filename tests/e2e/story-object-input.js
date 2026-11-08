@@ -41,11 +41,15 @@ export async function openStoryRoomDoor(page,{tag,position}) {
   return {...point,gapCenter};
 }
 
-export async function useStoryInspectable(page,{world,tag,position,expectedChoice='Call 0468-61-5647'}) {
-  await page.evaluate(async({world,tag,position})=>{
+export async function useStoryInspectable(page,{world,tag,position,expectedChoice='Call 0468-61-5647',reposition=true}) {
+  await page.evaluate(async({world,tag,position,reposition})=>{
     const life=window.storyProbe.lifecycle;
-    if(life.worldRuntime.activeWorld.id!==world)await life.travelToWorld(world);
-    life.resetPlayer(life.vectorFromArray(position),0,{persist:false});
+    if(life.worldRuntime.activeWorld.id!==world){
+      if(!reposition)throw Error(`Expected ${world} before inspecting ${tag}`);
+      await life.travelToWorld(world);
+    }
+    if(reposition)life.resetPlayer(life.vectorFromArray(position),0,{persist:false});
+    else position=life.getController().collider.position.asArray();
     const target=life.scene.meshes.map(mesh=>mesh.metadata?.interactiveInspectable || mesh.metadata?.interactiveMapTransition)
       .find(value=>value?.objectTag===tag || value?.transition?.source.objectTag===tag);
     if(!target)throw Error(`Missing physical story object ${world}/${tag}`);
@@ -53,7 +57,7 @@ export async function useStoryInspectable(page,{world,tag,position,expectedChoic
     controller.setFirstPerson(true);controller.cameraYaw=Math.atan2(position[0]-center.x,position[2]-center.z);
     controller.cameraPitch=Math.atan2(position[1]+controller.options.firstPersonHeadHeight-center.y,Math.hypot(center.x-position[0],center.z-position[2]));
     controller.updateCamera(1);
-  },{world,tag,position});
+  },{world,tag,position,reposition});
   await page.waitForTimeout(500);
   const point=await page.evaluate(tag=>{
     const life=window.storyProbe.lifecycle,root=life.scene.meshes.map(mesh=>mesh.metadata?.interactiveInspectable || mesh.metadata?.interactiveMapTransition)

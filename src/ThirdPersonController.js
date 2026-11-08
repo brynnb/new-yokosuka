@@ -40,6 +40,7 @@ import {
     RECOVERY_REPEAT_WINDOW_MS,
     recoveryVolumeClear,
 } from "./PlayerRecoveryCollision.js";
+import { nativeStairFieldAtPosition } from "./NativeCollisionFieldHandoffs.js";
 
 // Shenmue collision boundaries and some extracted visual meshes contain
 // opposite-winding copies of the same face. Have Babylon choose the face
@@ -70,6 +71,7 @@ export class ThirdPersonController {
         this.stepSurfacePredicate = options.stepSurfacePredicate
             || defaultStepSurfacePredicate;
         this.raycastIndex = options.raycastIndex || null;
+        this.nativeCollisionHandoffs = this.raycastIndex?.nativeCollisionHandoffs || [];
         this.keys = new Set();
         this.cameraYaw = actorRoot.rotation.y + Math.PI;
         this.lastActorYaw = actorRoot.rotation.y;
@@ -504,12 +506,21 @@ export class ThirdPersonController {
 
     setRaycastIndex(raycastIndex) {
         this.raycastIndex = raycastIndex || null;
+        this.nativeCollisionHandoffs = this.raycastIndex?.nativeCollisionHandoffs
+            || this.scene?.meshes?.find(mesh => mesh.metadata?.nativeCollisionHandoffs?.length)
+                ?.metadata.nativeCollisionHandoffs || [];
     }
 
     collisionCandidates(start, end = start, padding = this.options.playerRadius) {
-        return this.raycastIndex
+        const candidates = this.raycastIndex
             ? this.raycastIndex.collisionCandidates(start, end, padding)
             : this.scene?.meshes || [];
+        if (!this.nativeCollisionHandoffs?.length) return candidates;
+        const field = nativeStairFieldAtPosition(
+            this.nativeCollisionHandoffs, start, this.options.playerRadius,
+        ) ? "alternate" : "base";
+        return candidates.filter(mesh => !mesh.metadata?.nativeCollisionFieldRole
+            || mesh.metadata.nativeCollisionFieldRole === field);
     }
 
     moveColliderWithCollisions(displacement) {

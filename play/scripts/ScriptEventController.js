@@ -336,10 +336,17 @@ export class ScriptEventController {
     // Consecutive fights can yield directly without a dialogue in between.
     // A new attempt must release the old cast/input before acquiring its own.
     if(active.combatView && (event.type!=="combat" || message.combat?.token!==active.combatView.token)) {this.presentation.endCombat();this.dialogue.hide();active.combatView=null;active.combatInputPending=false;}
-    if(active.challengePrompt?.navigation&&event.type!=="challenge"){this.presentation.endNavigation();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
-    if(active.challengePrompt?.driving&&event.type!=="challenge"){this.presentation.endDriving();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
-    if(active.challengePrompt?.kind==="training"&&(event.type!=="challenge"||message.challenge?.token!==active.challengePrompt.token)){this.presentation.endCombat();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
-    if((active.challengePrompt?.delivery||active.challengePrompt?.race)&&event.type!=="challenge"){this.presentation.endForkliftChallenge();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
+    const previousChallenge = active.challengePrompt;
+    const nextChallenge = event.type === "challenge" ? message.challenge : null;
+    // Updates to one challenge reuse its lease; a new token or different kind
+    // must release the old controls, camera and actors before acquiring another.
+    const sameChallenge = kind => nextChallenge?.token === previousChallenge?.token && Boolean(nextChallenge?.[kind]);
+    let endChallenge = null;
+    if(previousChallenge?.navigation&&!sameChallenge("navigation")) endChallenge=()=>this.presentation.endNavigation();
+    else if(previousChallenge?.driving&&!sameChallenge("driving")) endChallenge=()=>this.presentation.endDriving();
+    else if(previousChallenge?.kind==="training"&&(nextChallenge?.kind!=="training"||nextChallenge.token!==previousChallenge.token)) endChallenge=()=>this.presentation.endCombat();
+    else if(previousChallenge?.delivery&&!sameChallenge("delivery") || previousChallenge?.race&&!sameChallenge("race")) endChallenge=()=>this.presentation.endForkliftChallenge();
+    if(endChallenge){endChallenge();this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
     if (TERMINAL_EVENTS.has(event.type)) {
       active.controller.abort(new DOMException(event.type, "AbortError"));
       this.dialogue.hide();

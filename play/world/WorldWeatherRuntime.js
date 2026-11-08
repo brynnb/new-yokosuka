@@ -77,7 +77,26 @@ function particleTexture(scene, weather) {
   return texture;
 }
 
-function configureSnow(particles) {
+function configureSnow(particles, cinematic = false) {
+  if (cinematic) {
+    // A bounded camera-following approximation for isolated stages. It has no
+    // world cover, surface collisions or fog and is not a native particle decode.
+    particles.emitRate = 120;
+    particles.minLifeTime = 4;
+    particles.maxLifeTime = 6;
+    particles.minSize = 0.035;
+    particles.maxSize = 0.08;
+    particles.minAngularSpeed = -1.5;
+    particles.maxAngularSpeed = 1.5;
+    particles.gravity = new BABYLON.Vector3(0.08, -0.18, 0.03);
+    particles.createBoxEmitter(
+      new BABYLON.Vector3(-0.22, -0.9, -0.18),
+      new BABYLON.Vector3(0.22, -0.55, 0.18),
+      new BABYLON.Vector3(-2, 0, -1),
+      new BABYLON.Vector3(2, 2, 1),
+    );
+    return;
+  }
   particles.emitRate = 780;
   // The slowest flakes emitted from the top of the box still travel more
   // than five metres below the camera before expiring. This keeps downhill
@@ -136,12 +155,15 @@ export class WorldWeatherRuntime {
   constructor({
     scene,
     cameraCutDistance = CAMERA_CUT_DISTANCE,
+    profile = "world",
   }) {
     if (!scene) throw new TypeError("world weather requires a Babylon scene");
     if (!Number.isFinite(cameraCutDistance) || cameraCutDistance <= 0) {
       throw new TypeError("world weather camera cut distance must be positive");
     }
+    if (!["world", "cinematic"].includes(profile)) throw new TypeError("invalid weather profile");
     this.scene = scene;
+    this.profile = profile;
     this.cameraCutDistanceSquared = cameraCutDistance * cameraCutDistance;
     this.weather = "clear";
     this.emitter = null;
@@ -294,15 +316,24 @@ export class WorldWeatherRuntime {
 
   followCamera(position) {
     if (!position || !this.emitter) return false;
+    const camera = this.scene.activeCamera;
+    // Isolated dream cameras can have a very narrow field of view. Emit in
+    // front of the shot rather than wasting most flakes behind the camera.
+    const emitterPosition = this.profile === "cinematic" && camera?.getForwardRay
+      ? position.add(camera.getForwardRay(1).direction.scale(3)) : position;
+    if (this.profile === "cinematic" && camera?.absoluteRotation) {
+      this.emitter.rotationQuaternion ||= BABYLON.Quaternion.Identity();
+      this.emitter.rotationQuaternion.copyFrom(camera.absoluteRotation);
+    }
     const previous = this.lastCameraPosition;
-    const delta = previous ? position.subtract(previous) : null;
+    const delta = previous ? emitterPosition.subtract(previous) : null;
     const cameraCut = Boolean(
       delta && delta.lengthSquared() >= this.cameraCutDistanceSquared
     );
-    this.emitter.position.copyFrom(position);
+    this.emitter.position.copyFrom(emitterPosition);
     this.emitter.computeWorldMatrix?.(true);
-    if (previous) previous.copyFrom(position);
-    else this.lastCameraPosition = position.clone();
+    if (previous) previous.copyFrom(emitterPosition);
+    else this.lastCameraPosition = emitterPosition.clone();
 
     // CPU particles normally remain in world space when their emitter moves.
     // That is correct for a travelling gameplay camera, but a cut would leave
@@ -341,7 +372,7 @@ export class WorldWeatherRuntime {
     }
     this.clear();
     this.weather = weather;
-    applyWeatherFog(this.scene, weather);
+    if (this.profile === "world") applyWeatherFog(this.scene, weather);
     if (!precipitation) return true;
 
     this.emitter = new BABYLON.TransformNode("world_weather_emitter", this.scene);
@@ -350,7 +381,7 @@ export class WorldWeatherRuntime {
       `world_weather_${weather}`,
       // 780 flakes/second * 14 seconds = 10,920 possible live flakes.
       // Keep enough capacity that the extended vertical volume stays dense.
-      weather === "rain" ? 1200 : 11000,
+      this.profile === "cinematic" ? 800 : weather === "rain" ? 1200 : 11000,
       this.scene,
     );
     this.particles.particleTexture = this.texture;
@@ -359,9 +390,9 @@ export class WorldWeatherRuntime {
     this.particles.color2 = new BABYLON.Color4(0.82, 0.9, 1, 0.72);
     this.particles.colorDead = new BABYLON.Color4(0.8, 0.88, 1, 0);
     this.particles.blendMode = BABYLON.ParticleSystem.BLENDMODE_STANDARD;
-    if (weather === "snow") configureSnow(this.particles);
+    if (weather === "snow") configureSnow(this.particles, this.profile === "cinematic");
     else configureRain(this.particles);
-    this.configureSurfaceCollisions();
+    if (this.profile === "world") this.configureSurfaceCollisions();
     this.openSkyEmitRate = this.particles.emitRate;
 
     this.followCamera(this.cameraPosition());
@@ -387,7 +418,7 @@ export class WorldWeatherRuntime {
     this.emitter = null;
     this.lastCameraPosition = null;
     this.weather = "clear";
-    applyWeatherFog(this.scene, "clear");
+    if (this.profile === "world") applyWeatherFog(this.scene, "clear");
   }
 
   dispose() {

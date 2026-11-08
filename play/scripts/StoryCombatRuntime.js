@@ -8,18 +8,88 @@ import { MartialArtsEnemyAI, setCombatCommandOverride } from "../../src/MartialA
 import { combatPlayerAnimationState } from "../characters/PlayerCombatRuntime.js";
 import { PLAYER_COMBAT_CONFIG } from "../characters/PlayerMotionLibrary.js";
 import { targetRelativeMovement, targetRelativeMovementDirection } from "../../src/ThirdPersonControllerRules.js";
+import { Ray } from "@babylonjs/core/Culling/ray.js";
+import { Vector3 } from "@babylonjs/core/Maths/math.vector.js";
+
+// The horizontal field of view narrows on portrait displays. Scale the opening
+// angle with aspect ratio so the offset doesn't push the target off-screen.
+// This is only the starting view; players can still orbit freely.
+function openingCameraOffset(controller) {
+  const engine=controller.scene?.getEngine?.(),width=engine?.getRenderWidth?.(),height=engine?.getRenderHeight?.();
+  const aspect=width>0&&height>0?width/height:16/9;
+  return Math.PI/9*Math.min(1,Math.sqrt(aspect/(16/9)));
+}
+
+// Start behind the player when possible, but don't place the camera inside the
+// player when a wall or fence occupies that angle. This runs only while framing
+// a new encounter/wave; it never fights the player's subsequent camera orbit.
+function avoidObstructedOpeningCamera(controller, actorRoots, targetPosition, projectTarget) {
+  if (controller.firstPerson) { controller.updateCamera(1); return; }
+  const initialYaw=controller.cameraYaw, desired=controller.cameraDistance;
+  const clearance=()=>{
+    controller.updateCamera(1);
+    const distance=controller.cameraResolvedDistance;
+    if (!controller.scene?.pickWithRay || !controller.camera?.position || !controller.cameraTarget || !Number.isFinite(distance)) return {clear:distance,visible:distance,distance};
+    const projected=projectTarget();
+    // The fallback must still frame the opponent. Otherwise, if every angle
+    // intersects scenery, choosing the longest camera arm can face away from
+    // the fight entirely (for example, Gui Zhang's narrow street).
+    const visible=!projected || (projected.visible && projected.screenX>=.12 && projected.screenX<=.8 && projected.screenY>=0 && projected.screenY<=1);
+    if(!visible)return {clear:0,visible:0,distance};
+    // Some visible scenery is deliberately not a gameplay camera collider.
+    // Check sight separately once at encounter setup; don't change collision
+    // flags or hide geometry, and don't raycast on every combat frame.
+    const blocker=mesh=>{
+      if(!mesh.isVisible || !mesh.isEnabled() || mesh.visibility<=0 || !mesh.getTotalVertices?.())return false;
+      for(let node=mesh;node;node=node.parent){
+        // Combatants must not block their own framing rays, but a nearby
+        // scheduled bystander can obscure the fight just like scenery.
+        if(actorRoots.includes(node))return false;
+      }
+      return true;
+    };
+    const playerPosition=controller.actorRoot?.position;
+    const focuses=[controller.cameraTarget,
+      ...[playerPosition,targetPosition].filter(Boolean).flatMap(position=>[.55,1.45].map(y=>position.add(new Vector3(0,y,0))))];
+    for(const focus of focuses){
+      const direction=controller.camera.position.subtract(focus),length=direction.length();
+      if(length<1e-6)return {clear:0,visible:distance,distance};
+      if(controller.scene.pickWithRay(new Ray(focus,direction.scale(1/length),length),blocker)?.hit)return {clear:0,visible:distance,distance};
+    }
+    // Leave extra room for the target indicator when a clear view is available.
+    const centered=!projected || projected.screenX<=.7;
+    return {clear:centered?distance:0,visible:distance,distance};
+  };
+  const resolved=clearance();
+  if (!Number.isFinite(controller.cameraResolvedDistance) || !Number.isFinite(desired)) return;
+  const adequate=Math.min(3, desired*.75);
+  let bestYaw=initialYaw, bestDistance=resolved.clear;
+  let visibleYaw=initialYaw, visibleDistance=resolved.visible;
+  let fallbackYaw=initialYaw, fallbackDistance=resolved.distance;
+  if (bestDistance>=adequate) return;
+  for (const offset of [Math.PI/4,-Math.PI/4,Math.PI/2,-Math.PI/2,3*Math.PI/4,-3*Math.PI/4,Math.PI]) {
+    controller.cameraYaw=initialYaw+offset;
+    const view=clearance();
+    if(view.distance>fallbackDistance){fallbackYaw=controller.cameraYaw;fallbackDistance=view.distance;}
+    if(view.visible>visibleDistance){visibleYaw=controller.cameraYaw;visibleDistance=view.visible;}
+    if (view.clear>bestDistance) {bestYaw=controller.cameraYaw;bestDistance=view.clear;}
+    if (view.clear>=adequate) break;
+  }
+  controller.cameraYaw=bestDistance>0?bestYaw:visibleDistance>0?visibleYaw:fallbackYaw;
+  controller.updateCamera(1);
+}
 
 // Story owns encounter lifetime, formations, waves and results. Practice owns
 // neither these models nor this input. Both use the same combat/animation core.
 export class StoryCombatRuntime {
   constructor({ actors, createCombatActors, scene, getController, getBinding,
     getCharacter = () => null,
-    capturePlayerState, restorePlayerState, onIntent, musicControls = null, sounds = null,
+    capturePlayerState, restorePlayerState, onIntent, createSceneObjects = null, musicControls = null, sounds = null,
     onStateChanged = () => {}, onViewChanged = () => {}, target = window, now = () => performance.now(),
     createIndicator = getEncounter => new CombatTargetIndicator(scene, getEncounter),
   }) {
     Object.assign(this, { actors, createCombatActors, getController, getBinding, capturePlayerState,
-      restorePlayerState, onIntent, musicControls, sounds, onStateChanged, onViewChanged, target, now, createIndicator, getCharacter });
+      restorePlayerState, onIntent, createSceneObjects, musicControls, sounds, onStateChanged, onViewChanged, target, now, createIndicator, getCharacter });
     this.active = null;
   }
 
@@ -48,6 +118,19 @@ export class StoryCombatRuntime {
       const tags = definition.actors.map(actor => actor.tag);
       await this.actors.prepare(tags, { signal });
       signal.throwIfAborted();
+      if (definition.sceneObjects) {
+        if (!this.createSceneObjects) throw new Error(`No combat scene-object loader for ${definition.id}`);
+        owner.objects = this.createSceneObjects(definition.sceneObjects, signal);
+        owner.loadingObjects = true;
+        try { await owner.objects.load([]); }
+        finally {
+          owner.loadingObjects = false;
+          if (owner.clearLateObjects) owner.objects.clear();
+        }
+        signal.throwIfAborted();
+        owner.objects.prepareActivity({ activityId: definition.id,
+          nativeSceneObjectStates: Object.keys(definition.sceneObjects).map(actorTag => ({ actorTag, presented: true })) });
+      }
       this.actors.begin(owner, tags);
       owner.actorsBegun = true;
       owner.orientations = tags.map(tag => this.actors.activeActor(tag).root)
@@ -129,8 +212,9 @@ export class StoryCombatRuntime {
     if (boss) encounter.player.targetId = boss;
     const p = encounter.playerActor.position(), e = encounter.enemyActor.position();
     const controller = this.getController();
-    controller.cameraYaw = Math.atan2(p.x - e.x, p.z - e.z);
-    controller.updateCamera(1);
+    controller.cameraYaw = Math.atan2(p.x - e.x, p.z - e.z) + openingCameraOffset(controller);
+    avoidObstructedOpeningCamera(controller,[...owner.records.values()].map(record=>record.root),e,
+      ()=>owner.indicator.projectTargets([encounter.selectedEnemy])[0]);
   }
 
   action(command) {
@@ -258,6 +342,7 @@ export class StoryCombatRuntime {
     const owner = this.active;
     if (!owner || owner.transaction !== transaction) return false;
     this.active = null;
+    owner.clearLateObjects = owner.loadingObjects === true;
     owner.controller.abort(new DOMException("Combat presentation released", "AbortError"));
     owner.input?.dispose();
     owner.indicator?.dispose();
@@ -269,9 +354,10 @@ export class StoryCombatRuntime {
       // yaw-only orientation, then returns the original object before the
       // presentation owner restores its saved components (also on load error).
       for (const [root, quaternion] of owner.orientations || []) root.rotationQuaternion = quaternion;
-      try { if (owner.actorsBegun) this.actors.end(owner, "stopped"); }
-      finally { try { if (owner.musicTrack) this.musicControls.stopTemporaryTrack(owner.musicTrack); }
-        finally { this.restorePlayerState(owner.snapshot); } }
+      try { if (!owner.loadingObjects) owner.objects?.clear(); }
+      finally { try { if (owner.actorsBegun) this.actors.end(owner, "stopped"); }
+        finally { try { if (owner.musicTrack) this.musicControls.stopTemporaryTrack(owner.musicTrack); }
+          finally { this.restorePlayerState(owner.snapshot); } } }
     }
     return true;
   }

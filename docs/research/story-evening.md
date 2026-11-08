@@ -99,7 +99,50 @@ The original rain/cloud sprite is bright even when selected at night. As a
 browser approximation, its sky-dome brightness follows the existing Story
 sky-light intensity relative to daylight. This does not alter native resource
 selection, clear skies, Free roam, or explicit cinematic lighting. Native sky
-modulation and the generally dark nighttime foreground remain unresolved.
+modulation and the original local nighttime lighting remain unresolved.
+
+## Nighttime foreground investigation
+
+At 19:00, the browser selects its `Night` preset: hemisphere intensity `0.1`,
+sky intensity `0.2`, directional intensity `0.15` and emissive `[0,0,0]`, before
+additional weather attenuation. These are browser presentation settings, not
+recovered WAIR intensities. WAIR supplies a separate directional RGB sample;
+the clear 19:00 value is approximately `[0.86,0.85,0.90]`.
+
+The MT5 loader constructs `SceneStandardMaterial` without setting `ambientColor`,
+whose Babylon default is black. Babylon multiplies scene ambient by material
+ambient, so the existing scene ambient contributed nothing to those materials.
+Simply enabling its full value would be unsafe: the existing night preset's
+scene ambient `[0.875,0.871,1]` is brighter than daytime `[0.3,0.3,0.3]` and was
+authored under the old ineffective behavior.
+
+Story now adds a bounded, neutral ambient contribution to default-black MT
+materials, including prepared scenery and actors. Its target fades from zero at
+17:00 to `0.08` at 18:00 and `0.16` at 19:00, remains there overnight, then
+fades to zero between 05:30 and 07:30. Individual channels are capped at the
+existing scene-ambient color. The chosen intensity is a browser
+approximation informed by a rendered comparison with the original scene, not a
+decoded native light intensity. Existing nonblack material ambient values are
+left alone. Entering Free roam, a fixed-lit scene, or an explicitly isolated
+cinematic restores the prior material values. Late-loaded actors receive the same
+policy. Sky selection, weather, native RGB sampling and Free roam remain separate.
+
+GPU-rendered checks compared the harbor's actor and prepared scenery at 08:00
+and 19:00, tested Free roam and isolated-stage restoration, and replayed the full
+Charlie interrogation plus a separately lit snow vision. Both speakers' faces and
+all twelve interrogation voices remained active. These tests cover selected shots,
+not every location, weather or display. A separate visual sweep tested `0.08`,
+`0.16` and `0.24`; the middle value preserves nighttime contrast while improving
+readability. The original local-light controller is still missing, so this does not claim
+Dreamcast lighting parity.
+
+The original [Charlie interrogation](https://www.youtube.com/watch?v=0K3IY75rrOY&t=2836s)
+also includes motorcycle headlights and visible pools of light. Our replay now
+stages original motorcycle and beam meshes using approximate placement and
+additive blending. A rendered on/off comparison shows a subtle effect; its
+strength, timing and visibility in the original camera framing remain open.
+Source assets and verification limits are recorded in the
+[harbor work guide](../design/story-harbor-work.md#third-evening-bikers-and-charlie).
 
 ## Reproduction
 

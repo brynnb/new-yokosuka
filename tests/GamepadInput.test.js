@@ -13,6 +13,7 @@ import {
   InputActionSystem,
   createGameplayActionMaps,
 } from "../play/input/InputActions.js";
+import { StoryQteRuntime } from "../play/scripts/StoryQteRuntime.js";
 
 function pad({ axes = [0, 0, 0, 0], pressed = [], values = {} } = {}) {
   return {
@@ -182,6 +183,60 @@ test("standard gamepad drives analog movement, camera, and actions", () => {
   assert.equal(player.firstPerson, false);
   input.dispose();
   assert.equal(player.gamepadLookStates.at(-1), false);
+});
+
+test("Story QTE owns gamepad buttons and does not inherit or leak held input", () => {
+  let currentPad=pad(),qteVisible=false;
+  const results=[],actions=[],player=controller(),actionSystem=new InputActionSystem();
+  const qte=new StoryQteRuntime({now:()=>0,schedule:()=>1,cancel(){},present(){},finish:outcome=>results.push(outcome)});
+  const input=new GamepadInput({preferences:preferences(),getGamepads:()=>[currentPad],getController:()=>player,
+    actions:actionSystem,isStoryQteActive:()=>qteVisible,onStoryQteButton:(code,pressed)=>pressed?qte.press(code):qte.release(code),
+    onInteract:()=>actions.push("interact"),onDialogueAdvance:()=>actions.push("advance"),onOpenNotebook:()=>actions.push("notebook")});
+  input.update(0);input.update(16);
+  currentPad=pad({pressed:[1]});input.update(32);assert.deepEqual(actions,["advance"]);
+  qteVisible=true;qte.start({buttons:["B","A","B","A"],windowMs:2000});
+  input.update(48);assert.equal(qte.active.index,0); // Held dialogue B is suppressed.
+  for(const [at,pressed] of [[64,[]],[80,[1]],[96,[]],[112,[0]],[128,[]],[144,[1]],[160,[]],[176,[0]]]) {
+    currentPad=pad({pressed});input.update(at);
+  }
+  assert.deepEqual(results,["success"]);assert.deepEqual(actions,["advance"]);
+  assert.equal(actionSystem.snapshot(INPUT_CONTEXTS.EXPLORATION).value("moveY"),0);
+  qteVisible=false;input.update(192);input.update(208); // A remains held after the QTE.
+  assert.deepEqual(actions,["advance"]);
+  currentPad=pad();input.update(224);input.update(240);
+  currentPad=pad({pressed:[0]});input.update(256);
+  assert.deepEqual(actions,["advance","interact"]);input.dispose();
+});
+
+test("Story QTE directions merge stick and d-pad and support held chords", () => {
+  let currentPad=pad(),active=true;
+  const results=[],events=[];
+  const qte=new StoryQteRuntime({now:()=>0,schedule:()=>1,cancel(){},present(){},finish:outcome=>results.push(outcome)});
+  const input=new GamepadInput({preferences:preferences(),getGamepads:()=>[currentPad],isStoryQteActive:()=>active,
+    onStoryQteButton:(code,pressed)=>{events.push([code,pressed]);if(pressed)qte.press(code);else qte.release(code);}});
+  input.update(0);input.update(16);
+  qte.start({steps:[{buttons:["Left","A"],windowMs:2000},{buttons:["Right"],windowMs:2000}]});
+  currentPad=pad({axes:[-1,0,0,0]});input.update(32);
+  currentPad=pad({axes:[-1,0,0,0],pressed:[0,14]});input.update(48);
+  assert.equal(qte.active.index,1);
+  currentPad=pad({pressed:[14]});input.update(64); // Stick released; d-pad still holds Left.
+  assert.equal(events.filter(([code,pressed])=>code==="Left"&&!pressed).length,0);
+  currentPad=pad();input.update(80);
+  currentPad=pad({pressed:[15]});input.update(96);
+  assert.deepEqual(results,["success"]);
+  active=false;input.update(112);input.dispose();
+});
+
+test("disconnecting or disabling a gamepad releases a held Story QTE button", () => {
+  let currentPad=pad(),active=true;
+  const events=[],prefs=preferences();
+  const input=new GamepadInput({preferences:prefs,getGamepads:()=>currentPad?[currentPad]:[],isStoryQteActive:()=>active,
+    onStoryQteButton:(code,pressed)=>events.push([code,pressed])});
+  input.update(0);input.update(16);currentPad=pad({pressed:[0]});input.update(32);
+  currentPad=null;input.update(48);assert.deepEqual(events,[["A",true],["A",false]]);
+  currentPad=pad();input.update(64);input.update(80);currentPad=pad({pressed:[1]});input.update(96);
+  prefs.getState().enabled=false;input.update(112);
+  assert.deepEqual(events.slice(-2),[["B",true],["B",false]]);input.dispose();
 });
 
 test("Dreamcast-style gamepad buttons open notebook, inventory, and settings", () => {

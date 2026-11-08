@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { StoryRegionRuntime } from "../play/scripts/StoryRegionRuntime.js";
+import storyRegions from "../play/data/story-regions.json" with {type:"json"};
 import {moveLearningRoutes} from "../tools/scripting/story-move-learning.mjs";
 import investigation from "../tools/scripting/story-investigation.json" with {type:"json"};
 import {createScriptEventController} from "../play/scripts/ScriptEventController.js";
@@ -40,6 +41,24 @@ test("optional entry offers never preempt an eligible main-story route",()=>{
     for(const story of main.filter(r=>r.area===optional.area))
       assert.ok(optional.priority<(story.priority??200),`${optional.id} must yield to ${story.id}`);
   }
+});
+
+test("finishing Fuku's hall conversation does not offer sleep until Ryo approaches the bed",()=>{
+  const ids=["s1.jomo.post-chen-home","s1.jomo.hong-kong-savings"];
+  const regions=storyRegions.regions.filter(region=>ids.includes(region.id));
+  assert.equal(regions.length,2);
+  const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,
+    storyFlags:{"story.s1.master-chen-mirror.completed":true}};
+  let starts=0;
+  const runtime=new StoryRegionRuntime({controller:{status:"idle",start:async()=>{starts++;}},
+    getCharacter:()=>character,publishPresence:()=>true,regions});
+  const frame={area:"JOMO",worldId:"interior",enabled:true,playerPosition:[-17.6,0,3.48]};
+  assert.equal(runtime.update(frame),true);
+  character.storyFlags["story.s1.post-chen-home.completed"]=true;
+  assert.equal(runtime.update(frame),false,"the same hall position must not offer sleep");
+  assert.equal(starts,1);
+  assert.equal(runtime.update({...frame,playerPosition:[-17.6,0,4.1]}),true,"approaching the actual bedside offers sleep");
+  assert.equal(starts,2);
 });
 
 test("overlapping entry bounds share one offer but later eligibility and real re-entry still work",()=>{
@@ -158,6 +177,30 @@ test("personal time opens the night gate without requiring physical re-entry",()
   date=new Date("1986-12-17T00:00:00Z");assert.equal(runtime.update(frame),false);
   date=new Date("1986-12-17T19:00:00Z");assert.equal(runtime.update(frame),true);
   assert.equal(calls.length,2);
+});
+
+test("time-gated investigation regions match their server windows and the ambush re-arms at night",()=>{
+  // These windows mirror the official Yarn gates. The client controls dispatch
+  // only: the server still owns date, inventory and final eligibility checks.
+  const gated=investigation.routes.filter(route=>route.bounds&&route.hours);
+  assert.ok(gated.length>10);
+  for(const route of gated){
+    const region=storyRegions.regions.find(item=>item.id===route.bounds);
+    assert.ok(region,`${route.id} has a dispatch region`);
+    assert.deepEqual(region.hours,route.hours,route.id);
+  }
+  // This earlier event uses its own official-script source, not the catalog.
+  assert.deepEqual(storyRegions.regions.find(region=>region.id==="s1.d000.heartbeats-alley")?.hours,[19,24]);
+  const region=storyRegions.regions.find(item=>item.id==="s1.d000.arcade-ambush");
+  let date=new Date("1986-12-04T18:59:59Z"),starts=0;
+  const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{
+    "story.s1.heartbeats-bar.completed":true,"notebook.s1.charlie-evening":true}};
+  const runtime=new StoryRegionRuntime({controller:{status:"idle",start:async()=>starts++},getCharacter:()=>character,
+    getGameDate:()=>date,publishPresence:()=>true,regions:[region]});
+  const frame={area:"D000",worldId:"dobuita",playerPosition:[-19.76,0,29.2],enabled:true};
+  assert.equal(runtime.update(frame),false);assert.equal(starts,0);
+  date=new Date("1986-12-04T19:00:00Z");assert.equal(runtime.update(frame),true);assert.equal(starts,1);
+  assert.equal(runtime.update(frame),false);assert.equal(starts,1);
 });
 
 test("overnight dispatch uses the same inclusive-start exclusive-end rule",()=>{

@@ -8,8 +8,13 @@ import { nativeClockRecordFromGameDate } from "../events/NativeClockRecordRuntim
 
 const storyWeatherSchedule = new NativeWeatherSchedule(nativeWeatherCatalog);
 
-// WAIR supplies exact sky resources and light RGB. Intensity/ambient/direction
-// remain the browser's four presets: project those onto the clear-table light
+// Browser approximation, not a decoded WAIR intensity: a small neutral
+// indirect fill keeps original MT5 colors readable at night. Reviewed against
+// the harbor interrogation; local headlights remain a separate missing effect.
+const STORY_NIGHT_AMBIENT = 0.16;
+
+// WAIR supplies exact sky resources and light RGB. Browser light intensity and
+// direction still use four presets: project those onto the clear-table light
 // anchors (16,17,18,19), with dawn bounded by native sky changes (05:30,07:30).
 // This is an explicit renderer adaptation, not a monthly astronomical sunset.
 export function storyLightingBlend(date) {
@@ -24,7 +29,10 @@ export function storyLightingBlend(date) {
     fromIndex = Math.floor(hour) - 16; toIndex = fromIndex + 1;
     progress = hour % 1;
   }
+  const nightWeight = index => Math.max(0, (index - 1) / 2);
+  const weight = nightWeight(fromIndex) * (1 - progress) + nightWeight(toIndex) * progress;
   return { fromIndex, toIndex, progress,
+    storyAmbientFill: STORY_NIGHT_AMBIENT * weight,
     presetIndex: progress < 0.5 ? fromIndex : toIndex };
 }
 

@@ -115,7 +115,16 @@ export async function verifyWorkdayNight(page,testInfo,character,{day="one"}={})
     // cancelled after this shorter scene had legitimately settled its morning.
     if(dreamName){await page.waitForTimeout(2000);expect(await page.evaluate(()=>window.storyProbe.director?.activeCutscene?.cutscene.id)).toBe(`story-s1-${dreamName}`);}
     await page.screenshot({path:testInfo.outputPath(`${chapter}-${dreamName||"ordinary-sleep-acknowledgement"}.png`)});
+    if(process.env.NEW_YOKOSUKA_DREAM_LIGHT_REVIEW_E2E==="true"&&dreamName==="phoenix-vision"){
+      await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.packageRuntime?.stageWeather?.particles?.getActiveCount()>0,null,{timeout:20_000});
+      await page.evaluate(()=>window.storyWeatherReview=window.storyProbe.director.activeCutscene.packageRuntime.stageWeather);
+      for(const frame of [300,600,900]){
+        await page.waitForFunction(frame=>window.storyProbe.director?.activeCutscene?.packageRuntime?.activityRuntime?.active?.currentFrame>=frame,frame,{timeout:45_000});
+        await page.screenshot({path:testInfo.outputPath(`phoenix-vision-frame-${frame}.png`)});
+      }
+    }
     await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-workday-dream-cancel"));await idle();const cancelled=await economy();expect(cancelled.character.storyFlags[done]).not.toBe(true);expect(cancelled.character.worldId).toBe("interior");
+    if(process.env.NEW_YOKOSUKA_DREAM_LIGHT_REVIEW_E2E==="true"&&dreamName==="phoenix-vision")expect(await page.evaluate(()=>window.storyWeatherReview.particles)).toBe(null);
     expect(new Date(cancelled.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(beforeCancel.character.storyTimeMs).toISOString().slice(0,10));
     await approach();const before=await saved();await page.getByRole("button",{name:"Sleep until tomorrow",exact:true}).click();await dream();if(ordinarySleep)await page.keyboard.press("Space");
     await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:75_000,intervals:[1000]}).toBe(true);

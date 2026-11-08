@@ -23,6 +23,7 @@ export class WorldEnvironmentRuntime {
     updateModelVisibility,
     updateMapLayer,
     applyTimeOfDayLighting,
+    clearStoryAmbientFill = () => {},
     applyWaterTimeOfDay,
     getNativeWeather = () => null,
     getNativeWeatherEnvironment = () => null,
@@ -48,6 +49,7 @@ export class WorldEnvironmentRuntime {
     this.updateModelVisibility = updateModelVisibility;
     this.updateMapLayer = updateMapLayer;
     this.applyTimeOfDayLighting = applyTimeOfDayLighting;
+    this.clearStoryAmbientFill = clearStoryAmbientFill;
     this.applyWaterTimeOfDay = applyWaterTimeOfDay;
     this.getNativeWeather = getNativeWeather;
     this.getNativeWeatherEnvironment = getNativeWeatherEnvironment;
@@ -135,6 +137,9 @@ export class WorldEnvironmentRuntime {
     const owner = {};
     this.isolatedStageOwners.add(owner);
     if (this.isolatedStageOwners.size === 1) {
+      // Isolated cinematic stages retain their own lighting while periodic
+      // world synchronization is suspended; do not leak Story's material fill.
+      this.clearStoryAmbientFill();
       const sky = this.sceneState.currentSkybox;
       this.isolatedSky = sky ? { sky, enabled: sky.isEnabled() } : null;
       sky?.setEnabled(false);

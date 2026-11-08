@@ -162,6 +162,14 @@ vary by month. Browser light intensity remains an approximation using the
 existing presets over source-table time anchors. See the
 [source verification and policy boundaries](../research/story-evening.md).
 
+Story also applies a modest, smoothly changing ambient fill to otherwise-black
+MT materials during evening and night. It keeps actors and scenery legible
+without enabling the existing, much brighter scene-ambient presets wholesale.
+This is a browser approximation, not an extracted Dreamcast intensity. Free roam,
+fixed-light scenes and isolated or explicitly lit cinematics retain their own
+lighting. Original local lights such as motorcycle headlights still require
+separate implementation.
+
 ### Native room weather controls
 
 S1 room operation `0x0176(1,0)` samples the original `SPRITE/WEATHER.BIN`

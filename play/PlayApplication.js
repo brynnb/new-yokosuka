@@ -13,6 +13,7 @@ import {
 import {
   applyTimeOfDay,
   applyTimeOfDayLighting,
+  clearStoryAmbientFill,
 } from "../src/lighting.js";
 import { RYO_YK_RENDER_MATRIX_ROUTES } from "../src/RuntimeMatrixRecording.js";
 import { StuckMovementDetector } from "../src/StuckMovementDetector.js";
@@ -64,6 +65,7 @@ import {
   openPoolChooser,
 } from "./ui/react/poolStore.js";
 import { TravelTransitions } from "./world/TravelTransitions.js";
+import { storyTravelRestriction } from "./world/StoryTravelRestrictions.js";
 import {
   ScheduledSceneObjectRuntime,
 } from "./world/ScheduledSceneObjectRuntime.js";
@@ -191,6 +193,7 @@ function createPlayRuntime() {
   let controller = null;
   let poolRuntime = null;
   let audioRuntime = null;
+  let scriptEventDialoguePresenter = null;
   const interfaceRuntime = new PlayInterfaceAssembly({
     localDebug: LOCAL_DEBUG,
     getController: () => controller,
@@ -199,6 +202,7 @@ function createPlayRuntime() {
     getArcadeGames: () => arcadeGames,
     getForkliftMode: () => forkliftModeRuntime,
     getPoolRuntime: () => poolRuntime,
+    getStoryQtePresenter: () => scriptEventDialoguePresenter,
     resetAudio: () => {
       audioRuntime.musicControls.reset();
       audioRuntime.dialogueAudioControls.reset();
@@ -628,6 +632,7 @@ function createPlayRuntime() {
     updateModelVisibility,
     updateMapLayer: (date, changed) => worldMapLayerState.update(date, changed),
     applyTimeOfDayLighting,
+    clearStoryAmbientFill,
     applyWaterTimeOfDay: applyGlobalWaterTimeOfDay,
   });
   worldRuntime.setEnvironment(worldEnvironment);
@@ -962,10 +967,11 @@ function createPlayRuntime() {
   });
   const {
     activityRunner: assembledActivityRunner,
-    dialoguePresenter: scriptEventDialoguePresenter,
+    dialoguePresenter: assembledScriptEventDialoguePresenter,
     controller: scriptEventController,
     automaticEvents: scriptAutomaticEventRuntime,
   } = scriptEvents;
+  scriptEventDialoguePresenter = assembledScriptEventDialoguePresenter;
   nativeScriptActivityRunner = assembledActivityRunner;
   const nativeStoryRuntime = new NativeStoryRuntime({
     storyObjects: new StoryObjectPresentation({getCharacter: () => accountSession.character}),
@@ -1235,6 +1241,7 @@ function createPlayRuntime() {
     isSwitchingWorld: () => worldRuntime.switching,
     selectWorld: (...args) => selectWorld(...args),
     persistPlayerLocation,
+    getTransitionRestriction: transition => storyTravelRestriction(transition, accountSession.character),
     authorizeTransition: (transition) => {
       if (!multiplayerRuntime.client) {
         return Promise.reject(
@@ -1254,8 +1261,9 @@ function createPlayRuntime() {
       }
       return multiplayerRuntime.client.commitTransition(authorization);
     },
-    onTransitionDenied: ({ message }) => {
+    onTransitionDenied: ({ message, voiceAsset }) => {
       inspectableInteractions.showHint(message);
+      if (voiceAsset) dialogueAudio.playOneShot(voiceAsset);
     },
   });
 
@@ -1582,6 +1590,7 @@ function createPlayRuntime() {
   }
 
   function selectWorld(world, options = {}) {
+    dialogueAudio.stopOneShot();
     return worldRuntime.select(world, options);
   }
 

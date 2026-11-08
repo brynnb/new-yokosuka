@@ -5,6 +5,7 @@ import { StoryCombatRuntime } from "../play/scripts/StoryCombatRuntime.js";
 import { createCombatActorAdapter } from "../play/combat/CombatActorAdapter.js";
 import { applyCombatHit, MARTIAL_ARTS_MOVES } from "../src/MartialArtsCombat.js";
 import catalog from "../play/data/story-combat.json" with { type: "json" };
+import harborFilm from "../play/assets/harbor/charlie-harbor-interrogation/manifest.json" with { type: "json" };
 import { STORY_STARTING_MOVE_IDS } from "../play/combat/StoryMoveProgression.js";
 
 function harness(id = "s1.d000.parking-lot", flags = {}) {
@@ -24,6 +25,7 @@ function harness(id = "s1.d000.parking-lot", flags = {}) {
   const runtime = new StoryCombatRuntime({
     actors: { prepare: (...args) => prepare(...args), begin: () => calls.push("begin"), end: () => calls.push("end"), activeActor: tag => records.get(tag) },
     createCombatActors: async () => records, getController: () => controller, getBinding: key => bindings[key],
+    createSceneObjects: () => ({ load: async () => {}, prepareActivity: () => {}, clear: () => {} }),
     getCharacter: () => character,
     capturePlayerState: () => "snapshot", restorePlayerState: s => calls.push(s),
     onIntent: (...args) => { calls.push(args); return accept; }, target: new EventTarget(), now: () => now,
@@ -36,6 +38,57 @@ function harness(id = "s1.d000.parking-lot", flags = {}) {
     character: next => { character = next; },
     accept: value => { accept = value; }, prepare: fn => { prepare = fn; } };
 }
+
+test("combat borrows the same parked props as the following film and releases them", async () => {
+  const h=harness("s1.mfsy.charlie-harbor"), calls=[];
+  h.runtime.createSceneObjects=definitions=>({
+    load:async()=>calls.push("load"),
+    prepareActivity:activity=>calls.push(activity),
+    clear:()=>calls.push("clear"),
+  });
+  await h.ready();
+  const tags=["BIK0","BIK1","BIK2","RY00","RY01","RY10","RY11","RY20","RY21"];
+  assert.deepEqual(Object.keys(h.definition.sceneObjects).sort(),tags);
+  assert.deepEqual(h.definition.sceneObjects,harborFilm.sceneObjects);
+  assert.deepEqual(catalog.encounters.find(e=>e.id==="s1.mfsy.biker-thugs").sceneObjects,harborFilm.sceneObjects);
+  assert.deepEqual(calls[1].nativeSceneObjectStates.map(s=>s.actorTag).sort(),tags);
+  for(const tag of tags.filter(t=>t.startsWith("RY"))){
+    const light=h.definition.sceneObjects[tag],bike=h.definition.sceneObjects[light.sourceBinding.companionOf];
+    assert.deepEqual(light.initialPresentation,bike.initialPresentation);
+  }
+  h.runtime.finish(h.transaction);
+  assert.equal(calls.at(-1),"clear");
+});
+
+test("failed combat prop loading releases partial assets and restores player state", async () => {
+  const h=harness("s1.mfsy.biker-thugs"), calls=[];
+  h.runtime.createSceneObjects=()=>({
+    load:async()=>{throw new Error("missing model");},
+    prepareActivity:()=>calls.push("present"),clear:()=>calls.push("clear"),
+  });
+  await assert.rejects(h.runtime.show(h.view,h.transaction),/missing model/);
+  assert.deepEqual(calls,["clear"]);
+  assert.equal(h.runtime.active,null);
+  assert.equal(h.calls.at(-1),"snapshot");
+  assert.equal(h.calls.includes("begin"),false);
+});
+
+test("cancelled combat releases scene objects that finish loading late", async () => {
+  const h=harness("s1.mfsy.biker-thugs"), calls=[];
+  let resolveLoad;
+  h.runtime.createSceneObjects=()=>({
+    load:()=>new Promise(resolve=>{resolveLoad=resolve;}),
+    prepareActivity:()=>calls.push("present"),
+    clear:()=>calls.push("clear"),
+  });
+  const pending=h.runtime.show(h.view,h.transaction);
+  await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(typeof resolveLoad,"function");
+  h.runtime.finish(h.transaction);
+  resolveLoad();
+  await assert.rejects(pending,{name:"AbortError"});
+  assert.deepEqual(calls,["clear"]);
+});
 
 test("every Story fight uses the shared engine and earned moves; lessons loan only their taught move", async () => {
   for (const def of catalog.encounters) {
@@ -98,6 +151,98 @@ test("Story runs locally between rare keepalives, with camera-relative selection
   assert.equal(h.calls.some(c => Array.isArray(c) && c[0] === "combat_input"), false);
   assert.equal(h.calls.filter(c => Array.isArray(c)).length, 1);
   h.step(6); assert.equal(h.calls.at(-1)[0], "combat_poll");
+  h.runtime.finish(h.transaction);
+});
+
+test("Story starts combat with a separated target view and preserves manual orbit", async () => {
+  const h=harness();await h.ready();
+  const e=h.runtime.encounter,p=e.playerActor.position(),target=e.enemyActor.position();
+  const behind=Math.atan2(p.x-target.x,p.z-target.z);
+  assert.ok(Math.abs(h.controller.cameraYaw-behind-Math.PI/9)<1e-9);
+  h.controller.cameraYaw+=.4;
+  const chosenYaw=h.controller.cameraYaw;
+  h.step();assert.equal(h.controller.cameraYaw,chosenYaw);
+  h.runtime.finish(h.transaction);
+});
+
+test("Story chooses a clear opening camera when its preferred angle hits a wall", async () => {
+  const h=harness();
+  h.controller.updateCamera=function(){this.cameraResolvedDistance=Math.sin(this.cameraYaw)>.7?4:.5;};
+  await h.ready();
+  assert.equal(h.controller.cameraResolvedDistance,4);
+  const opening=h.controller.cameraYaw;
+  h.controller.cameraYaw=opening+.1;h.step();
+  assert.equal(h.controller.cameraYaw,opening+.1);
+  h.runtime.finish(h.transaction);
+});
+
+test("Story checks rendered scenery as well as collision before framing fighters", async () => {
+  const h=harness();let picks=0,blockedYaw;
+  h.controller.actorRoot=h.records.get('AKIR').root;
+  h.controller.camera={position:new Vector3()};h.controller.cameraTarget=new Vector3();
+  h.controller.scene={pickWithRay:()=>{picks++;return {hit:Math.abs(h.controller.cameraYaw-blockedYaw)<.01};}};
+  h.controller.updateCamera=function(){
+    blockedYaw??=this.cameraYaw;
+    this.cameraTarget.copyFrom(this.actorRoot.position).addInPlace(new Vector3(0,1.12,0));
+    this.camera.position.copyFrom(this.cameraTarget).addInPlace(new Vector3(Math.sin(this.cameraYaw)*4,1,Math.cos(this.cameraYaw)*4));
+    this.cameraResolvedDistance=4;
+  };
+  h.runtime.createIndicator=()=>({dispose(){},projectTargets:()=>[{visible:true,screenX:.5,screenY:.5}]});
+  await h.ready();
+  assert.ok(picks>1,'an obstructed view should be sampled again');
+  const e=h.runtime.encounter,p=e.playerActor.position(),target=e.enemyActor.position();
+  assert.notEqual(h.controller.cameraYaw,Math.atan2(p.x-target.x,p.z-target.z)+Math.PI/9);
+  h.runtime.finish(h.transaction);
+});
+
+test("Story avoids a scheduled bystander while excluding the fighters from camera blockers", async () => {
+  const h=harness();let blockedYaw,sawBystander=false;
+  const mesh=parent=>({parent,isVisible:true,visibility:1,isEnabled:()=>true,getTotalVertices:()=>10});
+  const bystander=mesh({metadata:{scheduledActorInstanceId:"ambient-person"}});
+  const fighter=mesh(h.records.get("AKIR").root);
+  h.controller.actorRoot=h.records.get("AKIR").root;
+  h.controller.camera={position:new Vector3()};h.controller.cameraTarget=new Vector3();
+  h.controller.scene={pickWithRay:(_ray,predicate)=>{
+    assert.equal(predicate(fighter),false,"the player's own body must not obstruct framing");
+    const allowed=predicate(bystander);sawBystander ||= allowed;
+    return {hit:allowed&&Math.abs(h.controller.cameraYaw-blockedYaw)<.01};
+  }};
+  h.controller.updateCamera=function(){
+    blockedYaw??=this.cameraYaw;
+    this.cameraTarget.copyFrom(this.actorRoot.position).addInPlace(new Vector3(0,1.12,0));
+    this.camera.position.copyFrom(this.cameraTarget).addInPlace(new Vector3(Math.sin(this.cameraYaw)*4,1,Math.cos(this.cameraYaw)*4));
+    this.cameraResolvedDistance=4;
+  };
+  h.runtime.createIndicator=()=>({dispose(){},projectTargets:()=>[{visible:true,screenX:.5,screenY:.5}]});
+  await h.ready();
+  assert.equal(sawBystander,true);
+  assert.notEqual(h.controller.cameraYaw,blockedYaw);
+  h.runtime.finish(h.transaction);
+});
+
+test("an obstructed combat camera keeps the opponent in view rather than choosing a longer off-screen angle", async () => {
+  const h=harness();let initial;
+  h.controller.actorRoot=h.records.get('AKIR').root;
+  h.controller.camera={position:new Vector3()};h.controller.cameraTarget=new Vector3();
+  h.controller.scene={pickWithRay:()=>({hit:true})};
+  h.controller.updateCamera=function(){
+    initial??=this.cameraYaw;
+    this.cameraTarget.copyFrom(this.actorRoot.position).addInPlace(new Vector3(0,1.12,0));
+    this.camera.position.copyFrom(this.cameraTarget).addInPlace(new Vector3(Math.sin(this.cameraYaw)*4,1,Math.cos(this.cameraYaw)*4));
+    this.cameraResolvedDistance=Math.abs(this.cameraYaw-initial)<.01?1.5:4;
+  };
+  h.runtime.createIndicator=()=>({dispose(){},projectTargets:()=>[{visible:true,screenX:Math.abs(h.controller.cameraYaw-initial)<.01?.5:1.2,screenY:.5}]});
+  await h.ready();
+  assert.ok(Math.abs(h.controller.cameraYaw-initial)<.01,'the visible target beats a longer off-screen view');
+  h.runtime.finish(h.transaction);
+});
+
+test("Story scales its opening combat angle for portrait viewports", async () => {
+  const h=harness();h.controller.scene={getEngine:()=>({getRenderWidth:()=>390,getRenderHeight:()=>844})};
+  await h.ready();
+  const e=h.runtime.encounter,p=e.playerActor.position(),target=e.enemyActor.position();
+  const behind=Math.atan2(p.x-target.x,p.z-target.z);
+  assert.ok(Math.abs(h.controller.cameraYaw-behind-(Math.PI/9)*Math.sqrt((390/844)/(16/9)))<1e-9);
   h.runtime.finish(h.transaction);
 });
 

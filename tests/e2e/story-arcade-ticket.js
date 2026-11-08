@@ -117,9 +117,21 @@ export async function verifyJimmyMorningCall(page,testInfo,character){
       const approach=async()=>{await reset([-17.6,0,3],Math.PI);await walk(()=>window.storyProbe.regions.controller.status==="options"||window.storyProbe.sceneErrors.length);};
       await approach();await page.getByRole("button",{name:"Stay awake",exact:true}).click();await idle();await unchanged(sleepFlag);
       await approach();await page.getByRole("button",{name:"Sleep until tomorrow",exact:true}).click();await scene("snow-dream");
+      await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.packageRuntime?.stageWeather?.particles?.getActiveCount()>0,null,{timeout:20_000});
+      await page.evaluate(()=>window.storyWeatherReview=window.storyProbe.director.activeCutscene.packageRuntime.stageWeather);
       await page.waitForTimeout(1800);await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-snow-dream-cancel"));await idle();await unchanged(sleepFlag);
+      expect(await page.evaluate(()=>window.storyWeatherReview.particles)).toBe(null);
       await approach();const beforeSleep=await saved();await page.getByRole("button",{name:"Sleep until tomorrow",exact:true}).click();await scene("snow-dream");
       await page.waitForTimeout(9000);await page.screenshot({path:testInfo.outputPath("original-snow-girl-dream.png")});await unchanged(sleepFlag);
+      if(process.env.NEW_YOKOSUKA_SNOW_PROJECTION_REVIEW_E2E==="true"){
+        const diagnostic=await page.evaluate(()=>{
+          const w=window.storyProbe.director.activeCutscene.packageRuntime.stageWeather,s=w.scene,m=s.getTransformMatrix();
+          const projected=w.particles.particles.map(p=>p.position.constructor.TransformCoordinates(p.position,m));
+          return {active:projected.length,inView:projected.filter(p=>Math.abs(p.x)<=1&&Math.abs(p.y)<=1&&p.z>=0&&p.z<=1).length,
+            camera:w.cameraPosition()?.asArray(),emitter:w.emitter.position.asArray()};
+        });
+        console.info("Snow projection review",JSON.stringify(diagnostic));
+      }
       await expect.poll(async()=>(await saved()).character.storyFlags[sleepFlag],{timeout:100_000,intervals:[1000]}).toBe(true);await idle();
       const a=new Date((await saved()).character.storyTimeMs),b=new Date(beforeSleep.character.storyTimeMs);
       expect(a.toISOString().slice(0,10)).toBe(new Date(Date.UTC(b.getUTCFullYear(),b.getUTCMonth(),b.getUTCDate()+1)).toISOString().slice(0,10));

@@ -37,14 +37,18 @@ export function frameCutsceneObject(runtime, objectTag, onFrame, { reverse = fal
   return frameSceneRoot(root, onFrame, { reverse });
 }
 
-export function frameSceneRoot(root, onFrame, { reverse = false, distance = 0.55, yOffset = 0 } = {}) {
+export function frameSceneRoot(root, onFrame, { reverse = false, distance = 0.55, yOffset = 0, localCamera = null, localTarget = null } = {}) {
   const scene = root.getScene(), camera = scene.activeCamera;
   const point = root.getAbsolutePosition().clone();
   point.y += yOffset;
   const position = camera.position.clone(), target = camera.getTarget().clone();
   const direction = camera.position.subtract(point).normalize();
   if (reverse) direction.scaleInPlace(-1);
-  const closeupPosition = point.add(direction.scale(distance));
+  let closeupPosition = point.add(direction.scale(distance));
+  if(localCamera&&localTarget){
+    const transform=values=>camera.position.constructor.TransformCoordinates(camera.position.clone().set(...values),root.computeWorldMatrix(true));
+    closeupPosition=transform(localCamera);point.copyFrom(transform(localTarget));
+  }
   const observer = scene.onBeforeCameraRenderObservable.add(activeCamera => {
     if (activeCamera !== camera) return;
     camera.position.copyFrom(closeupPosition); camera.setTarget(point);
