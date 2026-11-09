@@ -8,19 +8,32 @@ title: Attempt
 <<start_activity "s1.mfsy.chicken-race-intro.scene">>
 <<play_sequence "s1.mfsy.chicken-race.start">>
 <<start_challenge "s1.mfsy.chicken-race">>
-<<if challenge_result("s1.mfsy.chicken-race") == "success">>
-Ryo Hazuki: {{text:success}} #speaker:AKIR
 <<play_sequence "s1.mfsy.chicken-race.finish">>
+<<play_sequence "s1.mfsy.chicken-race-aftermath.start">>
+<<if challenge_result("s1.mfsy.chicken-race") == "success">>
+{{voice:E1070A007}}
+{{voice:E1070A008}}
+{{voice:E1070B016}}
+<<set_flag "notebook.s1.chicken-race">>
+<<elseif challenge_result("s1.mfsy.chicken-race") == "partial">>
+{{voice:E1070B017}}
+{{voice:E1070B018}}
+{{voice:E1070A009}}
+{{voice:E1070C008}}
+{{voice:E1070B019}}
+<<set_flag "story.s1.chicken-race.draw">>
+<<set_flag "notebook.s1.chicken-race.draw">>
+<<else>>
+{{voice:E1070B021}}
+{{voice:E1070B022}}
+{{voice:E1070C009}}
+{{voice:E1070A013}}
+<<set_flag "story.s1.chicken-race.loss">>
+<<set_flag "notebook.s1.chicken-race.loss">>
+<<endif>>
+<<play_sequence "s1.mfsy.chicken-race-aftermath.finish">>
 {{effects}}
 <<jump Done>>
-<<else>>
-<<play_sequence "s1.mfsy.chicken-race.finish">>
-Ryo Hazuki: {{text:failure}} #speaker:AKIR
--> Try again
-    <<jump Attempt>>
--> Leave it for now
-    <<jump Done>>
-<<endif>>
 ===
 title: Done
 ---

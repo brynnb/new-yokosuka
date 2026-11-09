@@ -424,17 +424,17 @@ export function jomoObjectBehavior(model, objectTag, evidence = {}) {
   if (model === "S1_JOMO_CLKS501G.MT5" && objectTag === "TOKE") {
     return { kind: "alarm-clock" };
   }
+  const sourceArea=/^S[1-3]_([A-Z0-9]{4})_/.exec(model)?.[1];
+  const storyLabel=STORY_OBJECT_LABELS.get(`${sourceArea}:${objectTag}`);
   if (INSPECT_MODELS.has(model)) {
     return {
       kind: "inspect",
-      label: INSPECT_LABEL_BY_TAG[objectTag] || "Examine",
+      label: INSPECT_LABEL_BY_TAG[objectTag] || storyLabel || "Examine",
     };
   }
   // Ordinary authored object use shares this classifier with gameplay and
   // scenery preparation, so a quest prop stays individually pickable rather
   // than being silently baked into static scenery. Its Yarn route owns state.
-  const sourceArea=/^S[1-3]_([A-Z0-9]{4})_/.exec(model)?.[1];
-  const storyLabel=STORY_OBJECT_LABELS.get(`${sourceArea}:${objectTag}`);
   if (evidence.authoredStoryProp === true) {
     if (typeof evidence.initiallyEnabled !== "boolean") throw Error(`Missing authored Story visibility ${model}:${objectTag}`);
     return {kind: storyLabel ? "inspect" : "passive-scenery", label: storyLabel,

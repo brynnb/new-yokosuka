@@ -1,6 +1,7 @@
 import { runtimeAssetGroup, runtimeAssetUrl } from "../../src/RuntimeAssets.js";
 import storyCombat from "../data/story-combat.json" with { type: "json" };
 import storyNavigation from "../data/story-navigation.json" with {type:"json"};
+import { storyPersonalActors } from "../data/story-personal-actors.js";
 import { scheduledActorsForWorld } from "../../src/PlayScheduledActors.js";
 import {
   composeScheduledActorDefinitions,
@@ -136,9 +137,11 @@ export class PlayCharacterAssembly {
       .flatMap(scene => scene.actorDefinitions);
     const combatActors=storyCombat.encounters.filter(encounter=>encounter.worldId===world.id).flatMap(encounter=>encounter.actorDefinitions);
     const navigationActors=storyNavigation.challenges.filter(d=>d.worldId===world.id).flatMap(d=>d.guards.map(g=>({actorCode:g.tag,modelCode:g.modelCode,label:g.label,activityOnly:true})));
-    if (world.id !== "ma00race" && activityActors.length === 0 && authoredActors.length === 0 && combatActors.length===0&&navigationActors.length===0) return actors;
+    const personalActors=storyPersonalActors[world.id]||[];
+    if (world.id !== "ma00race" && activityActors.length === 0 && authoredActors.length === 0 && combatActors.length===0&&navigationActors.length===0&&personalActors.length===0) return actors;
     return composeScheduledActorDefinitions([
       actors,
+      personalActors,
       world.id === "ma00race" ? ma00RaceManifest.actors : [],
       activityActors,
       authoredActors,

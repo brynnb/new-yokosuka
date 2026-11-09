@@ -6,7 +6,7 @@ import {verifyFamilyMirrorLead,verifyBunkadoHandguard,verifyGuiZhangEncounter,ve
 import {verifyBasementMirrorSearch} from "./story-basement.js";
 import {verifyMirrorReturn} from "./story-mirror-return.js";
 import {verifyHomeTicketPreparation,verifyAgencyQuotesAndFunds,verifyBoatTicketJourney,verifyTicketActorReplacement} from "./story-home-ticket.js";
-import {verifyJimmyMorningCall,verifyChaiArcade} from "./story-arcade-ticket.js";
+import {verifyJimmyMorningCall,verifyChaiArcade,verifyChaiRecoveryReload} from "./story-arcade-ticket.js";
 import {verifyJimmyChase} from "./story-jimmy-chase.js";
 import {verifyHarborHiring,verifyGoroLeadNatural} from "./story-harbor-hiring.js";
 import {verifyForkliftTraining} from "./story-forklift-training.js";
@@ -30,6 +30,24 @@ import {verifyFinalAftermath} from "./story-final-aftermath.js";
 import {verifyFamilyDeparture} from "./story-family-departure.js";
 import {verifySwallowFlip,verifySwallowPresentation,verifyFinalChai,verifyFinalChaiPresentation,verifyIntroductionLetter,verifyEarnedIntroductionLetter,verifyNozomiAmulet,verifyShipDeparture} from "./story-final-departure.js";
 import {useStoryInspectable} from "./story-object-input.js";
+import {verifyKittenCare} from "./story-kitten-care.js";
+import {verifyKittenRoof} from "./story-kitten-roof.js";
+import {verifyKittenAdoption} from "./story-kitten-adoption.js";
+import {verifyKittenNozomi} from "./story-kitten-nozomi.js";
+import {verifyKittenSearch} from "./story-kitten-search.js";
+import {verifyYamanoseFootball} from "./story-yamanose-football.js";
+import {verifyNozomiParkConfession} from "./story-nozomi-park-confession.js";
+import {verifyNozomiParkTears} from "./story-nozomi-park-tears.js";
+import {verifyEriNozomiPark} from "./story-eri-nozomi-park.js";
+import {verifyFriendsVisit} from "./story-friends-visit.js";
+import {verifyFriendsBar} from "./story-friends-bar.js";
+import {verifyHarborArrivalFilm} from "./story-harbor-arrival-film.js";
+import {verifyDailyAllowance} from "./story-daily-allowance.js";
+import {verifyIwaoFarewellLetter} from "./story-iwao-letter.js";
+import {verifyChildhoodMeal} from "./story-childhood-meal.js";
+import {verifyCherryMemory} from "./story-cherry-memory.js";
+import {verifyDojoFriendshipMemory} from "./story-dojo-friendship-memory.js";
+import {verifyYamamotoStory} from "./story-yamamoto.js";
 import {verifySavedScrollLearning} from "./story-move-learning.js";
 import {placeAtHeartbeatsApproach,reviewHeartbeatsPresentation,inspectHeartbeatsMotions,inspectHeartbeatsBarMotions,reviewHeartbeatsSecondExchange} from "./story-heartbeats-presentation.js";
 import { reviewStoryFaces } from "./story-face-presentation.js";
@@ -45,7 +63,7 @@ test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated 
 const resumeId = Number(process.env.NEW_YOKOSUKA_STORY_RESUME_ID || 0);
 const naturalOpening = process.env.NEW_YOKOSUKA_NATURAL_OPENING_E2E === "true";
 async function enterStoryWorld(page, characterName) {
-  await expect(page.getByLabel("Open the New Yokosuka menu")).toBeVisible({ timeout: 120_000 });
+  await expect(page.getByLabel("Open the New Yokosuka menu")).toBeVisible({ timeout: process.env.NEW_YOKOSUKA_FOOTBALL_E2E === "true" ? 30_000 : 120_000 });
   await page.keyboard.press("Enter");
   await page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" }).click();
   await page.locator(".character-slot-button:not(.empty)").filter({hasText:characterName}).click();
@@ -61,7 +79,15 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   test.setTimeout(naturalOpening ? 1_800_000 : process.env.NEW_YOKOSUKA_MIRROR_RETURN_E2E === "true" ? 600_000 : process.env.NEW_YOKOSUKA_CHEN_E2E === "true" || process.env.NEW_YOKOSUKA_FAMILY_E2E === "true" || process.env.NEW_YOKOSUKA_HANDGUARD_E2E === "true" || process.env.NEW_YOKOSUKA_GUI_ZHANG_E2E === "true" ? 360_000 : process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true" ? 900_000 : process.env.NEW_YOKOSUKA_KITTEN_E2E === "true" ? 600_000 : freshOpening ? 480_000 : 240_000);
   if(naturalOpening&&resumeId)throw Error("Natural opening requires a newly created isolated Story character");
   const errors = [];
+  if(process.env.NEW_YOKOSUKA_FOOTBALL_E2E === "true"){
+    page.on("console",message=>{if(message.type()==="error")console.info("Football browser error:",message.text().slice(0,500));});
+    page.on("requestfailed",request=>console.info("Football request failed:",request.url().split("?")[0],request.failure()?.errorText));
+  }
   const musicResponses = [];
+  if (process.env.NEW_YOKOSUKA_PHOTO_CONNECTED_E2E === "true") {
+    page.on("console", message => { if (message.type() === "error") console.info("Photo test browser error:", message.text().slice(0, 500)); });
+    page.on("requestfailed", request => console.info("Photo test request failed:", request.url(), request.failure()?.errorText));
+  }
   page.on("response", response => { if(/bgm119|bgm063|bgm064|bgm032|bgm067|bgm070|bgm095|bgm200|bgm084|bgm013|bgm120|bgm106|bgm107|nozomi-home-cdda05/.test(response.url())) musicResponses.push({url:response.url(),status:response.status()}); });
   page.on("pageerror", error => {errors.push(error.message);console.info("Story page error:",error.message);});
   if(process.env.NEW_YOKOSUKA_SECOND_MORNING_E2E==="true"||process.env.NEW_YOKOSUKA_THIRD_WORKDAY_E2E==="true")page.on("pageerror",error=>console.info("Working morning page error:",error.message));
@@ -1310,6 +1336,91 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
       expect(errors).toEqual([]);return;
     }
+    if(process.env.NEW_YOKOSUKA_YAMAMOTO_E2E === "true"){
+      test.setTimeout(360_000);await verifyYamamotoStory(page,testInfo,character,residentClickPoint,enterStoryWorld);expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_DOJO_FRIENDSHIP_MEMORY_E2E === "true"){
+      test.setTimeout(300_000);await verifyDojoFriendshipMemory(page,testInfo,character,enterStoryWorld);expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_CHERRY_MEMORY_E2E === "true"){
+      test.setTimeout(300_000);await verifyCherryMemory(page,testInfo,character,enterStoryWorld);expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_CHILDHOOD_MEAL_E2E === "true"){
+      test.setTimeout(240_000);
+      await verifyChildhoodMeal(page,testInfo,character,enterStoryWorld);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_IWAO_LETTER_E2E === "true"){
+      test.setTimeout(240_000);
+      await verifyIwaoFarewellLetter(page,testInfo,character,enterStoryWorld);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_DAILY_ALLOWANCE_E2E === "true"){
+      test.setTimeout(240_000);
+      await verifyDailyAllowance(page,testInfo,character,enterStoryWorld);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_KITTEN_CARE_E2E === "true"){
+      test.setTimeout(480_000);
+      await verifyKittenCare(page,testInfo,character,residentClickPoint,enterStoryWorld);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_KITTEN_CHECK_IN_E2E === "true"){
+      test.setTimeout(180_000);
+      const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json()),before=await saved();
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="yamanose"&&window.storyProbe.lifecycle.worldRuntime.ready,null,{timeout:120_000});
+      for(let attempt=0;attempt<2;attempt++){
+        const point=await residentClickPoint(page,"MEGM");expect(point.pickedActor).toBe("MEGM");await page.mouse.click(point.x,point.y);
+        await page.waitForFunction(()=>window.storyProbe.dialogue?.active||window.storyProbe.sceneErrors.length,null,{timeout:30_000});
+        expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+        await page.waitForFunction(()=>{const a=window.storyProbe.dialogue?.audio;return a&&!a.paused&&a.currentTime>0;},null,{timeout:20_000});
+        expect(await page.getByRole("button",{name:"Tama",exact:true}).isVisible()).toBe(false);
+        for(let i=0;i<15&&await page.evaluate(()=>window.storyProbe.regions.controller.status!=="idle");i++){await page.keyboard.press("Space");await page.waitForTimeout(250);}
+        await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+      }
+      const after=await saved();expect(after.character.storyFlags).toEqual(before.character.storyFlags);
+      expect(after.inventory).toEqual(before.inventory);expect(after.character.yen).toBe(before.character.yen);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_KITTEN_NAME_E2E === "true"){
+      test.setTimeout(300_000);
+      const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+      await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="yamanose"&&window.storyProbe.lifecycle.worldRuntime.ready,null,{timeout:120_000});
+      if(process.env.NEW_YOKOSUKA_KITTEN_WAIT_NEXT_DAY_E2E === "true"){
+        const oldTime=(await saved()).worldState.gameTimeMs;
+        await page.locator("#story-wait-button").click();
+        await page.getByRole("option",{name:"Wait until tomorrow morning",exact:true}).click();
+        await page.getByRole("button",{name:"Wait until tomorrow morning",exact:true}).click();
+        await expect.poll(async()=>(await saved()).worldState.gameTimeMs,{timeout:30_000}).toBeGreaterThan(oldTime);
+      }
+      const before=await saved();
+      await page.waitForFunction(()=>{const a=window.storyProbe.lifecycle.scheduledActors.dialogueActorModel("MEGM");return a?.root?.isEnabled()&&a.renderRoot.getChildMeshes().some(m=>m.isEnabled()&&window.storyProbe.lifecycle.scene.isActiveMesh(m));},null,{timeout:30_000});
+      const talk=async()=>{
+        const point=await residentClickPoint(page,"MEGM");expect(point.pickedActor).toBe("MEGM");
+        await page.screenshot({path:testInfo.outputPath("kitten-megumi-shrine.png")});
+        await page.mouse.click(point.x,point.y);
+        await page.waitForFunction(()=>window.storyProbe.dialogue?.active||window.storyProbe.sceneErrors.length,null,{timeout:30_000});
+        expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+        await page.waitForFunction(()=>{const a=window.storyProbe.dialogue?.audio;return a&&!a.paused&&a.currentTime>0;},null,{timeout:20_000});
+        for(let i=0;i<15&&!await page.getByRole("button",{name:"Tama",exact:true}).isVisible();i++){await page.keyboard.press("Space");await page.waitForTimeout(250);}
+        await expect(page.getByRole("button",{name:"Tama",exact:true})).toBeVisible({timeout:15_000});
+      };
+      await talk();await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-kitten-name-cancel"));
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+      expect((await saved()).character.storyFlags["story.s1.kitten-name.completed"]).not.toBe(true);
+      await talk();await page.getByRole("button",{name:"Tama",exact:true}).click();
+      for(let i=0;i<35&&!(await saved()).character.storyFlags["story.s1.kitten-name.completed"];i++){await page.keyboard.press("Space");await page.waitForTimeout(200);}
+      await expect.poll(async()=>(await saved()).character.storyFlags["story.s1.kitten-name.completed"],{timeout:30_000}).toBe(true);
+      let after=await saved();expect(after.character.storyFlags["story.s1.kitten-name.tama"]).toBe(true);
+      expect(after.character.storyFlags["story.s1.kitten-name.sasuke-rejected"]).not.toBe(true);
+      expect(after.character.yen).toBe(before.character.yen);expect(after.inventory).toEqual(before.inventory);
+      await page.reload();await enterStoryWorld(page,character.name);
+      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.lifecycle.worldRuntime.ready,null,{timeout:120_000});
+      after=await saved();expect(after.character.storyFlags["story.s1.kitten-name.tama"]).toBe(true);
+      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_PHOTO_CONNECTED_E2E === "true"){
       test.setTimeout(300_000);
       await verifyNozomiPhotoProgression(page,testInfo,character);
@@ -1317,7 +1428,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
       const flags=await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags);
       expect(flags["story.s1.nozomi-photos.completed"]).toBe(true);
-      expect(flags["story.s1.nozomi-photo.apart"]).toBe(true);
+      const chosenPhoto = process.env.NEW_YOKOSUKA_PHOTO_CHOICE || "apart";
+      expect(flags[`story.s1.nozomi-photo.${chosenPhoto}`]).toBe(true);
+      expect(flags[`story.s1.nozomi-photo.${chosenPhoto === "apart" ? "together" : "apart"}`]).not.toBe(true);
       expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
       expect(errors).toEqual([]);return;
     }
@@ -1340,6 +1453,43 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
       expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["story.s1.first-kitten.completed"])).toBe(true);
       expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_FOOTBALL_E2E === "true") {
+      test.setTimeout(300_000);await verifyYamanoseFootball(page,testInfo,character,enterStoryWorld);expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_NOZOMI_PARK_E2E === "true") {
+      test.setTimeout(480_000);await verifyNozomiParkConfession(page,testInfo,character,enterStoryWorld);expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_NOZOMI_TEARS_E2E === "true") {
+      test.setTimeout(480_000);await verifyNozomiParkTears(page,testInfo,character,enterStoryWorld);expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_ERI_NOZOMI_E2E === "true") {
+      test.setTimeout(600_000);await verifyEriNozomiPark(page,testInfo,character,enterStoryWorld);
+      if(process.env.NEW_YOKOSUKA_ERI_TO_TEARS === "true")await verifyNozomiParkTears(page,testInfo,character,enterStoryWorld);
+      expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_FRIENDS_VISIT_E2E === "true") {
+      test.setTimeout(480_000);await verifyFriendsVisit(page,testInfo,character,enterStoryWorld);expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_FRIENDS_BAR_E2E === "true") {
+      test.setTimeout(300_000);await verifyFriendsBar(page,testInfo,character);expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_HARBOR_ARRIVAL_FILM_E2E === "true") {
+      test.setTimeout(360_000);await verifyHarborArrivalFilm(page,testInfo,character);expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_KITTEN_SEARCH_E2E === "true") {
+      test.setTimeout(360_000);await verifyKittenSearch(page,testInfo,character,residentClickPoint,enterStoryWorld);expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_KITTEN_NOZOMI_E2E === "true") {
+      test.setTimeout(300_000);await verifyKittenNozomi(page,testInfo,character,residentClickPoint,enterStoryWorld);expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_KITTEN_ADOPTION_E2E === "true") {
+      test.setTimeout(240_000);await verifyKittenAdoption(page,testInfo,character,residentClickPoint,enterStoryWorld);expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_KITTEN_ROOF_E2E === "true") {
+      test.setTimeout(480_000);await verifyKittenRoof(page,testInfo,character,residentClickPoint,enterStoryWorld);
+      if(process.env.NEW_YOKOSUKA_KITTEN_ROOF_TO_ADOPTION === "true")await verifyKittenAdoption(page,testInfo,character,residentClickPoint,enterStoryWorld);
       expect(errors).toEqual([]);return;
     }
     if (process.env.NEW_YOKOSUKA_STORY_FACES_E2E === "true") {
@@ -1559,6 +1709,10 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     if(process.env.NEW_YOKOSUKA_CHAI_ARCADE_E2E === "true"){
       test.setTimeout(480_000);
       await verifyChaiArcade(page,testInfo,character,enterInteriorDoor);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
+    }
+    if(process.env.NEW_YOKOSUKA_CHAI_RECOVERY_RELOAD_E2E === "true"){
+      await verifyChaiRecoveryReload(page,character);
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
     }
     if(process.env.NEW_YOKOSUKA_JIMMY_CALL_E2E === "true"){
@@ -4038,16 +4192,23 @@ async function verifyHarborBus(page,testInfo,character) {
   await useStoryInspectable(page,bus);
   await page.getByRole('button',{name:'Stay in Dobuita',exact:true}).click();await idle();
   expect((await saved()).character.storyFlags['story.s1.harbor-arrival.completed']).not.toBe(true);
+  expect((await saved()).character.storyFlags['story.s1.harbor-arrival-film.pending']).not.toBe(true);
   await useStoryInspectable(page,bus);await page.getByRole('button',{name:bus.expectedChoice,exact:true}).click();
   await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==='story-s1-harbor-bus'||window.storyProbe.sceneErrors.length);
   expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   await page.waitForTimeout(1800);await page.screenshot({path:testInfo.outputPath('harbor-bus-original-boarding.png')});
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-bus'));await idle();
   expect((await saved()).character.storyFlags['story.s1.harbor-arrival.completed']).not.toBe(true);
+  expect((await saved()).character.storyFlags['story.s1.harbor-arrival-film.pending']).not.toBe(true);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   await useStoryInspectable(page,bus);await page.getByRole('button',{name:bus.expectedChoice,exact:true}).click();
   await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==='mfsy'&&window.storyProbe.ready||window.storyProbe.sceneErrors.length,null,{timeout:120_000});
-  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);await idle();
+  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==='story-s1-harbor-bus-arrival'||window.storyProbe.sceneErrors.length,null,{timeout:120_000});
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  const arriving=await saved();expect(arriving.character.storyFlags['story.s1.harbor-arrival-film.pending']).toBe(true);
+  expect(arriving.character.storyFlags['story.s1.harbor-arrival-film.completed']).not.toBe(true);
+  await page.keyboard.press('KeyX');await idle();
+  await expect.poll(async()=>(await saved()).character.storyFlags['story.s1.harbor-arrival-film.completed']).toBe(true);
   await expect(page.locator('#loading')).toHaveClass(/\bhidden\b/);
   await page.waitForTimeout(1500);await page.screenshot({path:testInfo.outputPath('harbor-bus-saved-arrival.png')});
   await expect(page.locator('#loading-error')).not.toBeVisible();
@@ -4062,7 +4223,9 @@ async function verifyHarborBus(page,testInfo,character) {
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id)).toBe('mfsy');
   await expect(page.locator('#loading')).toHaveClass(/\bhidden\b/);
   expect((await saved()).character.storyFlags['story.s1.harbor-arrival.completed']).toBe(true);
+  expect((await saved()).character.storyFlags['story.s1.harbor-arrival-film.completed']).toBe(true);
   expect(await page.evaluate(()=>window.storyProbe.starts.includes('story-s1-harbor-bus'))).toBe(false);
+  expect(await page.evaluate(()=>window.storyProbe.starts.includes('story-s1-harbor-bus-arrival'))).toBe(false);
 }
 
 async function verifyEarnedChenPhone(page,testInfo,character) {

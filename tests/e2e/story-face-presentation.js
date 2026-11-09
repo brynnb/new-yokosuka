@@ -2,6 +2,28 @@ import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
 const REVIEW_SETS = {
+  "kitten-recovery-asset-check": [["s1.ju00.kitten-recovery.scene","yamanose","JU00",{}, {frames:[100]}]],
+  "kitten-recovery": [false,true].map(natural=>["s1.ju00.kitten-recovery.scene","yamanose","JU00",{}, {
+    label:natural?"complete":"cancel",natural,frames:natural?[100,400,800,1200,1550]:[180,600],
+    ...(natural?{voiceCounts:{"01CAT3":20},observeActors:{YASU:"YSO_L",KAYO:"KYK_L"}}:{}),
+  }]),
+  "nozomi-photo-ending-review": [["s1.mfsy.nozomi-photo-ending-together.scene","mfsy","MFSY",{}, {
+    natural:true,frames:[100,400,800,1200,1700],objects:["PHT1","PHT2"],
+    voiceCounts:{"01PHO":17},
+  }]],
+  "nozomi-photo-owners": ["apart","together"].map(photoChoice=>[`s1.mfsy.nozomi-photo-ending-${photoChoice}.scene`,"mfsy","MFSY",{}, {
+    frames:[100],photoOwners:true,photoChoice,objectCloseups:["PHT1","PHT2"],objectCloseupOptions:{distance:0.7,yOffset:0},
+  }]),
+  "chai-ticket-review": [false,true].map(natural=>["s1.dgct.chai-intro.scene","arcade","DGCT",{}, {
+    label:natural?"complete":"cancel",natural,
+    frames:natural?[600,840,900]:[450,520,600,680,760,840,900],objects:["TIK1"],
+    props:[{tag:"TIK1",shown:[515,870],attachments:[[515,"attach","CHAI"]],closeupObject:!natural}],
+    ...(natural?{voiceCounts:{A0172:11}}:{}),
+  }]),
+  "chai-home-recovery": [false,true].map(natural=>["s1.jomo.chai-home-recovery.scene","interior","JOMO",{}, {
+    label:natural?"complete":"cancel",natural,frames:natural?[60,180,360,530]:[180],
+    ...(natural?{voiceCounts:{A0173:4}}:{}),
+  }]),
   "harbor-camera": [["s1.mfsy.charlie-harbor-interrogation.scene","mfsy","MFSY",{}, {
     frames:[30],combatScenes:["s1.mfsy.biker-thugs","s1.mfsy.charlie-harbor"],
     cameraSeparation:true,
@@ -409,6 +431,21 @@ export async function reviewStoryFaces(page, testInfo, character) {
           const state = await page.evaluate(() => { const r = window.storyProbe.faceReview; return { done: r.done, error: r.error, frame: Math.round(r.frame) }; });
           expect(state.error).toBeNull();
           if (!state.done) await page.screenshot({ path: testInfo.outputPath(`${label}-native-${state.frame}.png`) });
+          if(options.photoOwners&&!state.done){
+            const positions=await page.evaluate(()=>{
+              const r=window.storyProbe.director.activeCutscene.packageRuntime;
+              const scene=window.storyProbe.lifecycle.scene,camera=scene.activeCamera,engine=scene.getEngine();
+              return Object.fromEntries(["PHT1","PHT2"].map(tag=>{
+                const position=r.sceneObjects.objects.get(tag).root.getAbsolutePosition();
+                const projected=position.constructor.Project(position,scene.getTransformMatrix().constructor.Identity(),scene.getTransformMatrix(),camera.viewport.toGlobal(engine.getRenderWidth(),engine.getRenderHeight()));
+                return [tag,{world:position.asArray(),screen:projected.asArray(),model:r.sceneObjects.definitions.get(tag).model}];
+              }).concat(["AKIR","TJMA","HRSK"].map(tag=>[tag,r.actors.activeActor(tag).root.getAbsolutePosition().asArray()])));
+            });
+            console.info("Photo ownership review",JSON.stringify(positions));
+            const expected=options.photoChoice==="apart"?["SHAS506G","SHAS503G"]:["SHAS503G","SHAS506G"];
+            expect([positions.PHT1.model,positions.PHT2.model]).toEqual(expected);
+            expect(positions.PHT1.screen[0]).toBeLessThan(positions.PHT2.screen[0]);
+          }
           if(options.objectCloseups&&!state.done&&frame===options.frames[0]) for(const tag of options.objectCloseups){
             const observed=await page.evaluate(async ({tag,options})=>{
               const {frameSceneRoot}=await import("/tests/e2e/cutscene-surface-framing.js");
@@ -513,7 +550,7 @@ export async function reviewStoryFaces(page, testInfo, character) {
           for (const propSpec of options.props || (options.prop ? [options.prop] : [])) if (!state.done) {
             const prop = await page.evaluate(tag => {
               const p = window.storyProbe, r = p.director.activeCutscene.packageRuntime;
-              const root = (r.sceneObjects.objects.get(tag)||r.attachedObjects.objects.get(tag)).root;
+              const root = (r.sceneObjects?.objects.get(tag)||r.attachedObjects?.objects.get(tag)).root;
               const frame = r.activityRuntime.active.currentFrame;
               const binding = r.attachedObjects.active.bindings.filter(b=>b.actorTag===tag&&b.frame<=frame).at(-1);
               return { frame, enabled: root.isEnabled(), action: binding?.action || null,

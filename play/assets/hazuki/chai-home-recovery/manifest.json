@@ -1,0 +1,142 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "A0173.AUTH",
+        "path": "disc2/SCENE/02/JOMO/MAPINFO.BIN",
+        "sourceOffset": 734772,
+        "sourceSha256": "6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe",
+        "byteLength": 3628,
+        "sha256": "345482a8010ea23f04e26016f3fe65a2bac701559a7f951446af75940b6779e8"
+      },
+      {
+        "name": "M_0173.MOTN",
+        "path": "disc2/SCENE/02/JOMO/COMMON02.PKS",
+        "sourceSha256": "916aab45137cf340516a1cdd2ee61540e7c6562a1e92c5f932e9055ae0db3b89",
+        "archiveMember": "M_0173.MOTN",
+        "byteLength": 19812,
+        "sha256": "feafae82942d0a72d975956eb3e9503b317f92cb88f5dfcf244adcab62c56e7a"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "A0173",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/chai-home-recovery/manifest.json",
+  "packageActors": {
+    "FUKU": {
+      "label": "Masayuki Fukuhara",
+      "modelCode": "FUK_M",
+      "browserFilename": "FUK_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/FUK_M.CHRM",
+      "textureAssetPath": "play/assets/characters/FUK_textures.bin"
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "FUKU"
+  ],
+  "motionBanks": [
+    {
+      "bank": 25,
+      "path": "play/assets/hazuki/chai-home-recovery/M_0173.MOTN",
+      "byteLength": 19812,
+      "sha256": "feafae82942d0a72d975956eb3e9503b317f92cb88f5dfcf244adcab62c56e7a",
+      "sequenceIndexBase": 128
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/chai-home-recovery/M_0173.MOTN",
+      "byteLength": 19812,
+      "sha256": "feafae82942d0a72d975956eb3e9503b317f92cb88f5dfcf244adcab62c56e7a"
+    },
+    {
+      "path": "play/assets/hazuki/chai-home-recovery/A0173.AUTH",
+      "byteLength": 3628,
+      "sha256": "345482a8010ea23f04e26016f3fe65a2bac701559a7f951446af75940b6779e8"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "A0173/A0173.AUTH",
+      "archiveMember": "A0173.AUTH",
+      "byteLength": 3628,
+      "sha256": "345482a8010ea23f04e26016f3fe65a2bac701559a7f951446af75940b6779e8",
+      "durationFrames": 600,
+      "durationSeconds": 20.016666412353516,
+      "frameCount": 18,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 5,
+        "voice": 4,
+        "sound": 11
+      },
+      "actors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 128,
+          "motionName": "AKI_AT1_NERU_CHAIBATTLEMAKE_0100",
+          "startFrame": 251,
+          "endFrame": 460
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 1,
+          "motionBank": 25,
+          "sequenceIndex": 129,
+          "motionName": "IWA_FUK_AT1_NERU_CHAIBATTLEMAKE_0100",
+          "startFrame": 251,
+          "endFrame": 605
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 211,
+          "motionBank": 25,
+          "sequenceIndex": 130,
+          "motionName": "AKI_AT1_NERU_CHAIBATTLEMAKE_0100_2",
+          "startFrame": 501,
+          "endFrame": 645
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 356,
+          "motionBank": 25,
+          "sequenceIndex": 128,
+          "motionName": "AKI_AT1_NERU_CHAIBATTLEMAKE_0100",
+          "startFrame": 596,
+          "endFrame": 834
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 356,
+          "motionBank": 25,
+          "sequenceIndex": 129,
+          "motionName": "IWA_FUK_AT1_NERU_CHAIBATTLEMAKE_0100",
+          "startFrame": 616,
+          "endFrame": 792
+        }
+      ]
+    }
+  ]
+}

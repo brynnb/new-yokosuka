@@ -1,0 +1,15 @@
+// Exact native care predicates are not recovered. The two daily feedings and
+// subsequent day are a deliberately simple playable approximation.
+<<if progress_value("story.s1.kitten-care.feedings") < 2 || progress_value("story.s1.kitten-care.last-day") == 0 || game_day() <= progress_value("story.s1.kitten-care.last-day")>>
+    <<pass_trigger>>
+<<endif>>
+-> Check on the kitten
+    <<jump Recovery>>
+-> Leave it for now
+    <<complete>>
+===
+title: Recovery
+---
+<<start_activity "s1.ju00.kitten-recovery.scene">>
+{{effects}}
+<<complete>>

@@ -1,6 +1,7 @@
 {
   "schema": "new-yokosuka-story-time-transitions-v1",
   "transitions": [
+    {"id":"s1.nozomi.park-end","label":"Finish the park conversation","hour":23,"minute":30,"nextDay":false},
     {"id":"s1.departure.dawn","label":"Return home at 5:21 a.m.","hour":5,"minute":21,"nextDay":false},
     {"id":"s1.departure.next-dawn","label":"Return home at the next 5:21 a.m.","hour":5,"minute":21,"nextDay":true},
     {"id":"s1.departure.morning","label":"Sleep until 8:30 a.m.","hour":8,"minute":30,"nextDay":false},

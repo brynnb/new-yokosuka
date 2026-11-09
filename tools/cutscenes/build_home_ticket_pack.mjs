@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import {execFileSync} from "node:child_process";
-import {buildNativeAseqActivityPack,sha256} from "../lib/NativeAseqActivityPack.mjs";
+import {buildNativeAseqActivityPack,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
 import {buildNativeAseqAudioPack,registerNativeAseqMusic} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
 import {addNativeAseqStageAssets} from "../lib/NativeAseqStageAssets.mjs";
@@ -25,6 +25,7 @@ const homeCallbacks={
   "fuku-travel-funds":{owner:"0x718e8",callback:"0x71f20",slot:13},
   "jimmy-morning-call":{owner:"0x74dc8",callback:"0x7535c",slot:4,evidence:"jimmy-telephone-callback-ir.json"},
   "nozomi-night-call":{owner:"0x7b4a0",callback:"0x7be00",slot:46,evidence:"nozomi-telephone-callback-ir.json"},
+  "nozomi-park-call":{owner:"0x6dcc4",callback:"0x6dfe4",slot:44,evidence:"nozomi-park-call-callback-ir.json"},
 };
 function homePresentation(profile,mapSource,source,props){
   const binding=homeCallbacks[profile.id];
@@ -84,6 +85,16 @@ const actor=(label,code)=>{
     assetPath:`${prefix}/${code}.CHRM`,textureAssetPath:`${prefix}/${code.slice(0,3)}_textures.bin`};
 };
 const profiles=[
+  {id:"friends-visit-arrival",resource:"01FRE",offset:0xbd138,size:5644,hash:"b55709205608fb9e20494d0511250ebc5402e57aed7976a7090e06afe4a21f4b",frames:1030,
+    motion:"M_01FRE.MOTN",motionSize:104568,motionHash:"4edd6ff2f64c2f519140b0af46bc3fd446899c669631b68949459d0febe773ca",bank:26,base:0,actors:["AKIR","ITOH","SKRD"],
+    stream:"01FRE",streamHash:"7b43d75d3065e0b7770b00a06cb5c5f2b9093a0e2a4b783961d1f3b8c1fcf1da",sound:"A1_ITO.SND",soundHash:"82f25b1f26360cfccdf57c8c134588d0cd37690e9b3e098dfc09b9d285da6134"},
+  {id:"friends-visit-departure",resource:"01FRE",offset:0xbe744,size:2932,hash:"3bde61761c0314bc25cb5dc18754ac5c6275e29474831e642e23edb980504837",frames:400,
+    motion:"M_01FRE.MOTN",motionSize:104568,motionHash:"4edd6ff2f64c2f519140b0af46bc3fd446899c669631b68949459d0febe773ca",bank:26,base:0,actors:["AKIR","ITOH","SKRD"],
+    stream:"01FRE",streamHash:"7b43d75d3065e0b7770b00a06cb5c5f2b9093a0e2a4b783961d1f3b8c1fcf1da",sound:"A1_ITO.SND",soundHash:"82f25b1f26360cfccdf57c8c134588d0cd37690e9b3e098dfc09b9d285da6134"},
+  {id:"nozomi-park-call",disc:1,evidence:"docs/design/story-event-template.md#nozomis-park-invitation",resource:"01SKIA",offset:0xbd5c8,size:4644,hash:"e9386ee1bcf14f26d27e00dc8938d4f7711df12326828189883ec847cf7fbea1",frames:700,
+    mapHash:"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",commonHash:"4b117711c45ca0a94690ce14b8896ddb5feacfde0ba5c7f2a13ae5310201ba22",
+    motion:"M_01SKI.MOTN",motionSize:160700,motionHash:"c35670e8c98e56ff456497b47ca02715a353f17805096f076e9e3e1167d888ad",bank:28,base:224,actors:["TEL_","AKIR"],
+    stream:"01SKIA",streamHash:"dc0edb3c25f777504f97322317232f129e1ebabb193c3a8534ec5611753b9620",sound:"A1_NOZOK.SND",soundHash:"82f2ddf4ce075f2175fa008217f2023d2d617c3580f71769a80f86dfa21b3eba"},
   {id:"family-departure",disc:3,area:"YDMA",directory:"hazuki",evidence:"docs/design/story-final-day.md#family-departure",resource:"A0180",offset:0x56dc,size:39616,hash:"8c2cac4b9757ad79d905affbc679d14160a07cff9a8ac4a0bd1dd842eed6c855",frames:2328,
     mapHash:"7dc07d2539f818589896f8a0642d8e9aa586c579e53e0088c6a8312d5d3aaf87",
     motion:"M_0180.BIN",motionSize:782904,motionHash:"0d3483e4cf3fa8638d86e1f5812eb75e5fa41f2da62ff00054a2fd6ec0adbc83",bank:22,base:0,actors:["ABAG","AKIR","FUKU","INE_"],
@@ -106,6 +117,12 @@ const profiles=[
   {id:"jimmy-morning-call",resource:"A0169",offset:0x9d7dc,size:7456,hash:"b113abdfdc1eb09823a1f80f17ea26e697afffe042b300ac656e4d9f53372a1d",frames:1600,
     motion:"M_0169.MOTN",motionSize:181132,motionHash:"091fa20c78398a3e3756ee21ffc0a26425ea6e3ecffcc316122a31f41fae3d7f",bank:19,base:0,actors:["TEL_","FUKU","AKIR"],
     stream:"A0169",streamHash:"f75f94816b8a8f011dbf372f57077596f45c21f382ed13816d80450672edb796",sound:"A1_JYTEL.SND",soundHash:"b36c631fd2911f0450652cbdddb1feaa608b01387f8b2b70a7abc69cddc9c2fe"},
+  {id:"chai-home-recovery",resource:"A0173",offset:0xb3634,size:3628,hash:"345482a8010ea23f04e26016f3fe65a2bac701559a7f951446af75940b6779e8",frames:600,
+    motion:"M_0173.MOTN",motionSize:19812,motionHash:"feafae82942d0a72d975956eb3e9503b317f92cb88f5dfcf244adcab62c56e7a",bank:25,base:128,actors:["AKIR","FUKU"],
+    // JOMO's source resource cluster names these exact music and effect banks
+    // immediately before A0173. The trigger selecting it remains authored.
+    music:{id:"bgm101",sourceId:"fabab8f456f5142af641f85b895e2327ad4b52856c3ccc21c00e4c6006271737",bankHash:"2f1b77ae62696f1e2451108840a160536c509cdfc938d6253471cf8b4fe5a451",label:"Fuku's recovery visit"},
+    stream:"A0173",streamHash:"034889ec59c71ef2a0c4220d458de1b4300f8d6312eb468ca83e75267dfa056c",sound:"A1_FUKAN.SND",soundHash:"060975f789a815ef0fa2ef23c1c2d1aa7c1ef9a00a8a0acf944b71aba0fb5db2"},
   {id:"post-chen-home",resource:"A0160",offset:0xb7ff4,size:3276,hash:"5d559c6b948d565b4755ebdcaf04fc6d7d7276e8d5087a8c6b1a6b81e901e9e2",frames:650,
     motion:"M_0160.MOTN",motionSize:7456,motionHash:"f7b5e2410d8bf9bcb5e31372f1b69dceea706e1a26e975fc262ad73165040a62",bank:25,base:112,actors:["AKIR","FUKU"],
     stream:"A0160",streamHash:"9895738da8b143f1ea3930a66beef9492fc82e9eb0856014878d7db1606c4a49",sound:"A1_HUKHE.SND",soundHash:"f05518358966ff53f5f6ebda47710ead4d0f11a7dc9605e336a0da2bc17f7b10"},
@@ -147,7 +164,8 @@ profiles.push(
     stream:"A0172A",streamHash:"cf360208aeca97a7d14e26647653449818510b5f36a003e5d3b1c2d457c682a1"},
 );
 const characters={FUKU:["Masayuki Fukuhara","FUK_M"],INE_:["Ine-san","INE_M"],SIND:["Satoshi Shinoda","SND_L"],ETKO:["Etsuko Sekine","JOJ_L"],
-  JIMY:["Jimmy Yan","JIM_M"],KJHS:["Koji Hase","TPL_L"],MNWA:["Kazumi Minowa","MIR_L"],CHAI:["Chai","CHA_M"],NITO:["Yuji Nito","GAT_L"]};
+  JIMY:["Jimmy Yan","JIM_M"],KJHS:["Koji Hase","TPL_L"],MNWA:["Kazumi Minowa","MIR_L"],CHAI:["Chai","CHA_M"],NITO:["Yuji Nito","GAT_L"],
+  ITOH:["Naoyuki Ito","RFB_L"],SKRD:["Ichiro Sakurada","NKK_L"]};
 const asiaModels={
   TIRT230G:[19776,"25989de0432ac1014543fd70dcd40530c98fc02bd076962a5f700ec03fa0c35b"],
   TIRS703G:[68928,"d01d70fea30308739de0d21e5a771605fa78cc12765499d6e21aaa7cbdf034ae"],
@@ -171,8 +189,22 @@ for(const p of selectedProfiles){
     {name:`${p.resource}.AUTH`,sourcePath:mapSource,sourceManifestPath:`${discPath}/${area}/MAPINFO.BIN`,sourceOffset:p.offset,sourceSha256:p.mapHash||mapHash,byteLength:p.size,sha256:p.hash},
     {name:p.motion,sourcePath:p.area?path.join(source,area,p.motion):common,sourceManifestPath:`${discPath}/${area}/${p.area?p.motion:`COMMON0${disc}.PKS`}`,...(p.area?{}:{archiveMember:p.motion,sourceSha256:p.commonHash||commonHash}),byteLength:p.motionSize,sha256:p.motionHash},
   ];
-  const props={},outputMembers=[],textureSources=[];let generatedAssets=[];
+  const props={},outputMembers=[],textureSources=[];let generatedAssets=[],authoredAttachedObjects;
   const packageActors=Object.fromEntries(Object.entries(characters).filter(([tag])=>p.actors.includes(tag)).map(([tag,[label,code]])=>[tag,actor(label,code)]));
+  if(p.id.startsWith("friends-visit-")){
+    // JOMO's scene-specific HOUMON archive contains the same two bodies used
+    // by the scheduled characters. Verify byte identity rather than assuming
+    // that the similarly named free-roam models are suitable for this film.
+    const archivePath=path.join(source,"JOMO/HOUMON.PKS"),bytes=fs.readFileSync(archivePath);
+    const archiveHash="540fce44a8a985aea33ae6c63cbd0f5f5c83d1ef235ba0fced5b259f64920862";
+    if(sha256(bytes)!==archiveHash)throw Error("Changed original friends-visit model archive");
+    const archive=parseIpacActivityArchive(bytes);
+    for(const tag of ["ITOH","SKRD"]){
+      const definition=packageActors[tag],member=archive.members.find(x=>x.name===definition.browserFilename);
+      if(!member||sha256(member.bytes)!==sha256(fs.readFileSync(path.join(root,definition.assetPath))))throw Error(`Changed original friends-visit body ${tag}`);
+      definition.sourceBinding={kind:"original-scene-archive",path:"disc2/SCENE/02/JOMO/HOUMON.PKS",sha256:archiveHash,member:member.name,memberSha256:sha256(member.bytes)};
+    }
+  }
   if(area==="GMCT"){
     const bytes=fs.readFileSync(mapSource),chrs=bytes.indexOf("CHRS"),bindings=parseChrtSceneObjectBindings(bytes.subarray(chrs));
     // Image identifiers are not model filenames: GMCT's "FUK_M" image
@@ -195,6 +227,25 @@ for(const p of selectedProfiles){
       // actors without duplicate models; cabinet knock-over is omitted for now.
       props[tag]={model:binding.model,browserFilename:`GMCT-${tag}-reference`,referenceOnly:true,
         sourceBinding:{mapInfoChrsOffset:chrs,characterRecordOffset:binding.characterRecordOffset,defImageRecordOffset:binding.defImageRecordOffset}};
+    }
+    if(p.id==="chai-intro"){
+      // GMCT CHRS binds TIK1 to this exact source model. Its SCN3 callback is
+      // not decoded: the paper grip and visibility window are an authored
+      // adaptation aligned to Chai's original hand-to-mouth motion.
+      const binding=bindings.find(value=>value.actorTag==="TIK1"),file="TIKHIA1G.MT5";
+      if(binding?.model!=="TIKHIA1G")throw Error("Changed original GMCT ticket binding");
+      const sourcePath=path.join(source,"MODEL/CHARA",file),bytes=fs.readFileSync(sourcePath);
+      const hash="e98e0a204da264387505882d49a7b49813a5e19238d773d57c9431a8a75bcee2";
+      if(bytes.length!==8352||sha256(bytes)!==hash)throw Error("Changed original GMCT ticket model");
+      members.push({name:file,sourcePath,sourceManifestPath:`${discPath}/MODEL/CHARA/${file}`,byteLength:bytes.length,sha256:hash});
+      outputMembers.push(file);
+      generatedAssets.push({assetPath:`${prefix}/ticket-textures.bin`,bytes:extractNativeTexnPack(bytes,file).bytes,
+        source:{path:`${discPath}/MODEL/CHARA/${file}`,sha256:hash}});
+      const activityId="A0172/A0172.AUTH";
+      authoredAttachedObjects={TIK1:{browserFilename:file,assetPath:`${prefix}/${file}`,textureAssetPath:`${prefix}/ticket-textures.bin`,
+        source:{actorTag:"TIK1",model:binding.model,mapInfoChrsOffset:chrs,characterRecordOffset:binding.characterRecordOffset,defImageRecordOffset:binding.defImageRecordOffset},
+        attachments:[{activityId,frame:515,action:"attach",parentActorTag:"CHAI",controlId:18,translation:[0.093,0.039,0.028],rotationRaw:[35323,20759,17847]}],
+        presentation:[{activityId,frame:515,visible:true},{activityId,frame:870,visible:false}]}};
     }
   }
   if(p.actors.includes("TEL_")){
@@ -260,7 +311,9 @@ for(const p of selectedProfiles){
       ...callbackCues,
       ...(p.stage?{browserMapVisibility:[],browserIsolatedStage:true,browserLightingPresetIndex:0,nativeSceneObjectStates:stageStates}:{})}],
     packageActors,
-    ...(Object.keys(props).length?{sceneObjects:props,outputMembers,generatedAssets}:{}),
+    ...(Object.keys(props).length?{sceneObjects:props}:{}),
+    ...(outputMembers.length?{outputMembers}:{}),...(generatedAssets.length?{generatedAssets}:{}),
+    ...(authoredAttachedObjects?{attachedObjects:authoredAttachedObjects}:{}),
   });
   runtimePaths.push(`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path));
   console.log(`Built ${p.id}: ${manifest.activities[0].durationSeconds.toFixed(2)} seconds`);

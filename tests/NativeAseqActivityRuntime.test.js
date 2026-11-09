@@ -30,6 +30,19 @@ const op02Manifest = JSON.parse(
   fs.readFileSync("play/assets/introduction/op02/manifest.json", "utf8"),
 );
 
+test("reviewed AUTH motion substitution reaches playback and rejects missing target clips", async()=>{
+  const arrival=JSON.parse(fs.readFileSync("play/assets/harbor/bus-arrival/manifest.json","utf8"));
+  const audio=JSON.parse(fs.readFileSync("public/audio/world/harbor-bus-arrival/manifest.json","utf8"));
+  const runtimeFor=manifest=>createNativeAseqActivityRuntime({manifest,audioManifest:audio,loadAsset:path=>fs.readFileSync(path),presentation:{beginActivity:()=>({}),advanceActivity:()=>true,endActivity:()=>true}});
+  const runtime=runtimeFor(arrival),record=runtime.catalog.resolve({slot:0,binding:{kind:"map-embedded-slot",activityId:"YBUSFLY/SEQDATAD.AUTH"}}),prepared=await runtime.prepare(record);
+  const changed=prepared.motions.filter(m=>m.authoredMotionSubstitution);
+  assert.ok(changed.length>10);assert.ok(changed.every(m=>m.actorTag==="EXT1"&&m.motionName==="AKI_AKI_WALK_LP"&&m.authoredMotionSubstitution.sourceIndex===222));
+  assert.ok(prepared.sequence.motions.some(m=>m.actorTag==="EXT1"&&m.motionBank===2&&m.sequenceIndex===222),"source AUTH remains unchanged");
+  const invalid=structuredClone(arrival);invalid.activities[0].authoredMotionSubstitutions[0].targetIndex=9999;
+  const bad=runtimeFor(invalid),badRecord=bad.catalog.resolve({slot:0,binding:{kind:"map-embedded-slot",activityId:"YBUSFLY/SEQDATAD.AUTH"}});
+  await assert.rejects(bad.prepare(badRecord),/unresolved motion/);
+});
+
 function harness({ rejectFrame = null } = {}) {
   const calls = [];
   const runtime = createNativeAseqActivityRuntime({

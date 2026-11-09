@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
 import {
+  applyAuthMotionSubstitutions,
   parseAuthSequence,
   resolveAuthMotions,
   resolveAuthSoundMotions,
@@ -19,6 +20,21 @@ function bytes(path) {
 function parseMotion(path, options) {
   return MotnLoader.parse(bytes(path), options);
 }
+
+test("explicit authored motion substitutions preserve source commands and reject stale rules",()=>{
+  const sequence={actors:["EXT1","AKIR"],motions:[
+    {actorTag:"EXT1",motionBank:2,sequenceIndex:222,recordOffset:12,startFrame:1,endFrame:36},
+    {actorTag:"AKIR",motionBank:2,sequenceIndex:222,recordOffset:24,startFrame:1,endFrame:36},
+  ]};
+  const rule={actorTag:"EXT1",sourceBank:2,sourceIndex:222,targetBank:0,targetIndex:101,reason:"Original bank unresolved; use the actor's authored walk."};
+  const result=applyAuthMotionSubstitutions(sequence,[rule]);
+  assert.deepEqual([result.motions[0].motionBank,result.motions[0].sequenceIndex,result.motions[0].recordOffset],[0,101,12]);
+  assert.deepEqual(result.motions[0].authoredMotionSubstitution,{sourceBank:2,sourceIndex:222,reason:rule.reason});
+  assert.equal(result.motions[1],sequence.motions[1]);assert.equal(sequence.motions[0].motionBank,2);
+  assert.throws(()=>applyAuthMotionSubstitutions(sequence,[{...rule,sourceIndex:223}]),/Unused/);
+  assert.throws(()=>applyAuthMotionSubstitutions(sequence,[rule,rule]),/Duplicate/);
+  assert.throws(()=>applyAuthMotionSubstitutions(sequence,[{...rule,reason:""}]),/Invalid/);
+});
 
 test("motion resolution exposes exact whole-clip rebasing and rejects unrelated short clips", () => {
   const auth = { motions: [{ sequenceIndex: 0, motionBank: 16, startFrame: 612, endFrame: 691 }] };

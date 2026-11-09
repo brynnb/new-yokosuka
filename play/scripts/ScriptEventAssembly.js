@@ -16,6 +16,7 @@ import {
 } from "./ScriptEventController.js";
 import {
   createScriptEventDialoguePresenter,
+  resolveScriptEventSpeaker,
 } from "./ScriptEventDialoguePresenter.js";
 import {
   createScriptEventPresentationRuntime,
@@ -185,14 +186,7 @@ export function createScriptEventAssembly({
     motionRuntime,getController,getBinding,capturePlayerState,restorePlayerState,createSceneObjects,
     onIntent:(action,token,intent)=>controller?.drivingResponse(action,token,intent),
   });
-  const presentation = createScriptEventPresentationRuntime({
-    adapters: createScriptEventBabylonAdapters({
-      cameraRuntime,
-      combatRuntime,
-      navigationRuntime,
-      drivingRuntime,
-      vehicleChallengeRuntime,
-      sceneStagingRuntime: new AuthoredSceneStagingRuntime({
+  const sceneStagingRuntime = new AuthoredSceneStagingRuntime({
         actors: createNativeAseqBabylonActors({ getPlayerModel, syncPlayerTransform,
           scheduledActors, motionRuntime, preservePlayerOnComplete: false, playerYawOffsetRadians: Math.PI }),
         camera: createNativeAseqBabylonCamera(camera), motionRuntime,
@@ -210,7 +204,15 @@ export function createScriptEventAssembly({
         currentMeshes,
         acquireEnvironmentIsolation,
         acquireActorIsolation: (owner,tags) => scheduledActors.acquireActivityActorIsolation(owner,tags),
-      }),
+      });
+  const presentation = createScriptEventPresentationRuntime({
+    adapters: createScriptEventBabylonAdapters({
+      cameraRuntime,
+      combatRuntime,
+      navigationRuntime,
+      drivingRuntime,
+      vehicleChallengeRuntime,
+      sceneStagingRuntime,
       storyFrameHandoff,
       retainPackageMusic:(packageId,owner)=>cutsceneDirector.retainPackageMusic(packageId,owner),
       playerMotionRuntime,
@@ -236,11 +238,13 @@ export function createScriptEventAssembly({
     japaneseText: dom.dialogueJapanese,
     options: dom.dialogueOptions,
     audioSettings: dialogueAudio,
+    resolveSpeaker: tag => resolveScriptEventSpeaker(tag, sceneStagingRuntime.active?.scene),
     facialPresentation: new NativeVoiceFacialPresentation({
       scene, catalog: nativeFaceCatalog,
       loadAsset: path => fetchAssetBuffer(runtimeAssetUrl(path)),
       getActor: tag => {
-        const model = tag === "AKIR" ? getPlayerModel() : scheduledActors.dialogueActorModel(tag);
+        const model = tag === "AKIR" ? getPlayerModel()
+          : sceneStagingRuntime.active?.actors?.activeActor(tag)?.model || scheduledActors.dialogueActorModel(tag);
         // An off-stage voice (or a non-Ryo Free roam avatar) must not acquire
         // another character's surface just because the subtitle says Ryo.
         if (!model || (tag === "AKIR" && model.modelCode !== nativeFaceCatalog.facialAssets.AKIR.bodyModelCode)) return null;

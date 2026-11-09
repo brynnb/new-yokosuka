@@ -2,6 +2,7 @@
   "schema": "new-yokosuka-story-challenges-v1",
   "buttonCodes": ["A","B","X","Left","Right","Up","Down"],
   "challenges": [
+    {"id":"s1.ju00.football","label":"Catch the football","buttons":["A"],"windowMs":2000,"provenance":"The walkthrough identifies the A-button catch; the two-second window is an authored approximation."},
     {"id":"s1.mend.chai-last-attack","label":"Chai's last attack — counter","buttons":["Down","A","A","B"],"windowMs":2000,"provenance":"GameSpot p65 original Down,A,A,B order after separately won final battle. Original short attack/water-fall films; held source poses, generic two-second windows and fresh retries are authored, not native QTE-controller reconstruction."},
     {"id":"s1.mend.swallow-flip","label":"Learn the Swallow Flip","kind":"training"},
     {"id":"s1.mfbt.terry-finisher","label":"Stop Terry's final attack — kick","buttons":["A"],"windowMs":2000,"provenance":"GameSpot p65 requires A after the70-man victory. Original TERY outcome motions; frozen source poses, two-second window and retry are authored adaptations. Film completion cannot win."},
@@ -29,7 +30,7 @@
     {"id":"s1.mfsy.workday-one-afternoon","label":"Afternoon cargo — Warehouse No. 18 dispatch","kind":"delivery","delivery":{"worldId":"mfsy","vehicle":[-15.821,0,118.673,1.3021669961391247],"pickup":[-11.964,0.6,119.735],"dropMin":[-3.323,-0.2,120.889],"dropMax":[-1.323,2,123.889],"count":5,"durationSeconds":1800}},
     {"id":"s1.mfsy.workday-one-morning","label":"Morning cargo — Warehouse No. 18 dispatch","kind":"delivery","delivery":{"worldId":"mfsy","vehicle":[-15.821,0,118.673,1.3021669961391247],"pickup":[-11.964,0.6,119.735],"dropMin":[-3.323,-0.2,120.889],"dropMax":[-1.323,2,123.889],"count":5,"durationSeconds":1800}},
     {"id":"s1.ma00.morning-race","label":"Morning forklift race","kind":"race","race":{"worldId":"ma00race","vehicle":[66,0,105,1.5707963267948966],"durationSeconds":1800}},
-    {"id":"s1.mfsy.chicken-race","label":"Protect Shozo — chicken race","buttons":["A","Down","Left","Right"],"windowMs":2000},
+    {"id":"s1.mfsy.chicken-race","label":"Protect Shozo — chicken race","buttons":["A","Down","Left","Right"],"windowMs":2000,"scoring":{"successAt":2,"partialAt":1}},
     {"id":"s1.mfsy.forklift-training","label":"Forklift training — loading area","kind":"delivery","delivery":{"worldId":"mfsy","vehicle":[-15.821,0,118.673,1.3021669961391247],"pickup":[-11.964,0.6,119.735],"dropMin":[-3.323,-0.2,120.889],"dropMax":[-1.323,2,123.889],"count":3,"durationSeconds":900}},
     {"id":"s1.d000.jimmy-chase.left","label":"Catch Jimmy — turn left","buttons":["Left"],"windowMs":2000},
     {"id":"s1.d000.jimmy-chase.right","label":"Catch Jimmy — turn right","buttons":["Right"],"windowMs":2000},

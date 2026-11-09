@@ -165,8 +165,8 @@ test("harbor biker beats move the original motorcycle with Charlie, and only bor
 });
 
 test("Nozomi's photo films retain original timing/cast without owning choice or notebook settlement",()=>{
-  for(const [part,file,frames,voices]of [["intro","SEQDATA1.AUTH",1220,7],["ending","SEQDATA2.AUTH",1940,17]]){
-    const activity=createScriptEventPresentationCatalog().activity(`s1.mfsy.nozomi-photo-${part}.scene`);
+  for(const [part,variant,file,frames,voices]of [["intro","intro","SEQDATA1.AUTH",1220,7],["ending","ending-apart","SEQDATA2.AUTH",1940,17],["ending","ending-together","SEQDATA2.AUTH",1940,17]]){
+    const activity=createScriptEventPresentationCatalog().activity(`s1.mfsy.nozomi-photo-${variant}.scene`);
     const manifest=JSON.parse(readFileSync(new URL(`../play/assets/harbor/nozomi-photo-${part}/manifest.json`,import.meta.url)));
     const audio=JSON.parse(readFileSync(new URL(`../public/audio/world/nozomi-photo-${part}/manifest.json`,import.meta.url)));
     assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
@@ -183,6 +183,20 @@ test("Nozomi's photo films retain original timing/cast without owning choice or 
       assert.equal(manifest.sceneObjects.PHT1.model,"SHAS506G");assert.equal(manifest.sceneObjects.PHT2.model,"SHAS503G");
     }
   }
+});
+
+test("the original kitten recovery film is presentation only",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.ju00.kitten-recovery.scene");
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/yamanose/kitten-recovery/manifest.json",import.meta.url)));
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/kitten-recovery/manifest.json",import.meta.url)));
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.cutscene.activity.binding.activityId,"CATA2/SEQDATA3.AUTH");
+  assert.equal(new NativeAseqActivityCatalog(manifest).has(activity.cutscene.activity),true);
+  assert.equal(manifest.activities[0].durationFrames,1650);assert.equal(manifest.motionBanks[0].bank,16);
+  assert.deepEqual(manifest.activities[0].actors,["NBOX","CATM","YASU","AKIR","KAYO"]);
+  assert.equal(manifest.sceneObjects.NBOX.nativeBinding.archive,"CATA2.PKF");
+  assert.equal(audio.voices.length,20);assert.equal(audio.sounds.length,22);
+  assert.ok([...audio.voices,...audio.sounds].every(row=>!row.unavailable&&runtimeAssetUrl(row.asset)));
 });
 
 test("Goro's trap borrows original films and fighters, not the archive's Ryo reference body",()=>{
@@ -333,6 +347,21 @@ test("payday borrows original salary motions and Goro's warning without presenta
   assert.equal(film.cutscene.activity.binding.activityId,"GOROMA/SEQDATA2.AUTH");
 });
 
+test("Chai loss recovery uses the original bedroom film without settling its own outcome",()=>{
+  const activity=createScriptEventPresentationCatalog().activity("s1.jomo.chai-home-recovery.scene");
+  const manifest=JSON.parse(readFileSync(new URL("../play/assets/hazuki/chai-home-recovery/manifest.json",import.meta.url)));
+  const audio=JSON.parse(readFileSync(new URL("../public/audio/world/chai-home-recovery/manifest.json",import.meta.url)));
+  assert.equal(activity.durableEffects,"forbidden");assert.equal(activity.returnPlayerState,true);
+  assert.equal(activity.cutscene.activity.binding.activityId,"A0173/A0173.AUTH");
+  assert.equal(manifest.activities[0].durationFrames,600);
+  assert.deepEqual(manifest.actorTags,["AKIR","FUKU"]);
+  assert.equal(manifest.packageActors.FUKU.modelCode,"FUK_M");
+  assert.equal(manifest.motionBanks[0].bank,25);
+  assert.equal(manifest.motionBanks[0].sequenceIndexBase,128);
+  assert.equal(audio.voices.length,4);assert.equal(audio.sounds.length,7);
+  assert.ok([...audio.voices,...audio.sounds].every(clip=>!clip.unavailable));
+});
+
 test("Jimmy films retain exact source bindings and running beats form one continuous owned route",()=>{
   const catalog=createScriptEventPresentationCatalog();
   for(const [part,area,resource]of [["jimmy-knock","d000","CTERMO1/SEQDATA3.AUTH"],["jimmy-caught","d000","CTERMO1/SEQDATA1.AUTH"],["jimmy-escaped","d000","CTERMO1/SEQDATA2.AUTH"],["jimmy-interrogation","daza","A0174/A0174.AUTH"]]){
@@ -453,6 +482,13 @@ test("Chai cinematics retain exact source bindings and cannot decide the fight",
     for(const actor of Object.values(manifest.packageActors))assert.ok(Number.isInteger(actor.sourceBinding.defImageRecordOffset));
     if(id==="chai-rescue")assert.equal(manifest.packageActors.FUKU.sourceBinding.image,"FUK_M",
       "the original image name deliberately differs from its FUB body filename");
+    if(id==="chai-intro"){
+      const ticket=manifest.attachedObjects.TIK1;
+      assert.equal(ticket.source.model,"TIKHIA1G");
+      assert.equal(ticket.assetPath,"play/assets/dobuita/chai-intro/TIKHIA1G.MT5");
+      assert.deepEqual(ticket.attachments.map(({frame,parentActorTag,controlId})=>[frame,parentActorTag,controlId]),[[515,"CHAI",18]]);
+      assert.deepEqual(ticket.presentation.map(({frame,visible})=>[frame,visible]),[[515,true],[870,false]]);
+    }
     assert.equal(activity.cutscene.activity.binding.activityId,`${resource}/${resource}.AUTH`);
     for(const [tag,prop]of Object.entries(manifest.sceneObjects||{})){
       assert.equal(prop.model,tag==="DOOR"?"DR17_001":"GAMT101G");assert.equal(prop.referenceOnly,true);

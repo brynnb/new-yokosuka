@@ -1,0 +1,28 @@
+<<play_sequence "s1.ju00.football-intro.start">>
+{{voice:E1014AB001}}
+{{voice:E1014AC001}}
+{{voice:E1014AC015}}
+<<play_sequence "s1.ju00.football-intro.finish">>
+<<play_sequence "s1.ju00.football-prompt.start">>
+<<start_challenge "s1.ju00.football">>
+<<play_sequence "s1.ju00.football-prompt.finish">>
+<<if challenge_result("s1.ju00.football") == "success">>
+<<play_sequence "s1.ju00.football-catch.start">>
+{{voice:E1014AB003}}
+{{voice:E1014AA002}}
+{{voice:E1014AA003}}
+{{voice:E1014AB004}}
+<<play_sequence "s1.ju00.football-catch.finish">>
+<<set_flag "story.s1.football.caught">>
+<<else>>
+<<play_sequence "s1.ju00.football-miss.start">>
+{{voice:E1014AA008}}
+{{voice:E1014AA004}}
+{{voice:E1014AC009}}
+{{voice:E1014AD006}}
+{{voice:E1014AC014}}
+<<play_sequence "s1.ju00.football-miss.finish">>
+<<set_flag "story.s1.football.missed">>
+<<endif>>
+{{effects}}
+<<complete>>

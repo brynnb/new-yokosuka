@@ -14,7 +14,12 @@ export class StoryQteRuntime {
       || !s.buttons.every(b => typeof b === "string") || !Number.isFinite(s.windowMs) || s.windowMs <= 0)) {
       throw new Error(`Invalid QTE steps: ${definition.id}`);
     }
-    this.active = { steps, index: 0, held: new Set(), outcome: null };
+    const scoring=definition.scoring;
+    if(scoring && (!Number.isSafeInteger(scoring.successAt) || !Number.isSafeInteger(scoring.partialAt)
+      || scoring.partialAt < 1 || scoring.successAt <= scoring.partialAt || scoring.successAt > steps.length)) {
+      throw new Error(`Invalid QTE scoring: ${definition.id}`);
+    }
+    this.active = { steps, scoring, hits: 0, index: 0, held: new Set(), outcome: null };
     this.next();
   }
 
@@ -26,22 +31,38 @@ export class StoryQteRuntime {
     this.present({ index: owner.index, count: owner.steps.length, buttons: step.buttons, windowMs: step.windowMs });
     this.sound("prompt");
     this.timer = this.schedule(() => {
-      if (this.active === owner && !owner.outcome) this.complete("failure");
+      if (this.active === owner && !owner.outcome) this.miss();
     }, step.windowMs);
   }
 
   press(button) {
     const owner = this.active;
     if (!owner || owner.outcome) return false;
-    if (this.now() >= owner.deadline) { this.complete("failure"); return false; }
+    if (this.now() >= owner.deadline) { this.miss(); return false; }
     const step = owner.steps[owner.index];
-    if (!step.buttons.includes(button)) { this.complete("failure"); return false; }
+    if (!step.buttons.includes(button)) { this.miss(); return false; }
     owner.held.add(button);
     if (!step.buttons.every(b => owner.held.has(b))) return true;
     this.sound("correct");
-    if (++owner.index === owner.steps.length) this.complete("success");
-    else this.next();
+    owner.hits++;
+    this.advance();
     return true;
+  }
+
+  miss() {
+    const owner=this.active;
+    if(!owner || owner.outcome)return;
+    this.sound("wrong");
+    if(!owner.scoring){this.complete("failure");return;}
+    this.advance();
+  }
+
+  advance() {
+    const owner=this.active;
+    if(++owner.index < owner.steps.length){this.next();return;}
+    const outcome=!owner.scoring || owner.hits>=owner.scoring.successAt ? "success"
+      : owner.hits>=owner.scoring.partialAt ? "partial" : "failure";
+    this.complete(outcome);
   }
 
   release(button) { this.active?.held.delete(button); }
@@ -50,7 +71,6 @@ export class StoryQteRuntime {
     if (!this.active || this.active.outcome) return;
     this.active.outcome = outcome;
     this.cancel(this.timer);
-    if (outcome === "failure") this.sound("wrong");
     this.finish(outcome);
   }
 

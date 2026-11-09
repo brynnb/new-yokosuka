@@ -18,6 +18,12 @@
         "path": "disc2/SCENE/02/GMCT/M_0172.BIN",
         "byteLength": 713600,
         "sha256": "6b566f4d2bc6890145e3c7f2ba1fdf0d9a3b73655e1ff537d4ac03dfa145ed68"
+      },
+      {
+        "name": "TIKHIA1G.MT5",
+        "path": "disc2/SCENE/02/MODEL/CHARA/TIKHIA1G.MT5",
+        "byteLength": 8352,
+        "sha256": "e98e0a204da264387505882d49a7b49813a5e19238d773d57c9431a8a75bcee2"
       }
     ]
   },
@@ -46,6 +52,51 @@
       }
     }
   },
+  "attachedObjects": {
+    "TIK1": {
+      "browserFilename": "TIKHIA1G.MT5",
+      "assetPath": "play/assets/dobuita/chai-intro/TIKHIA1G.MT5",
+      "textureAssetPath": "play/assets/dobuita/chai-intro/ticket-textures.bin",
+      "source": {
+        "actorTag": "TIK1",
+        "model": "TIKHIA1G",
+        "mapInfoChrsOffset": 98828,
+        "characterRecordOffset": 856,
+        "defImageRecordOffset": 816
+      },
+      "attachments": [
+        {
+          "activityId": "A0172/A0172.AUTH",
+          "frame": 515,
+          "action": "attach",
+          "parentActorTag": "CHAI",
+          "controlId": 18,
+          "translation": [
+            0.093,
+            0.039,
+            0.028
+          ],
+          "rotationRaw": [
+            35323,
+            20759,
+            17847
+          ]
+        }
+      ],
+      "presentation": [
+        {
+          "activityId": "A0172/A0172.AUTH",
+          "frame": 515,
+          "visible": true
+        },
+        {
+          "activityId": "A0172/A0172.AUTH",
+          "frame": 870,
+          "visible": false
+        }
+      ]
+    }
+  },
   "actorTags": [
     "AKIR",
     "CHAI"
@@ -69,6 +120,20 @@
       "path": "play/assets/dobuita/chai-intro/A0172.AUTH",
       "byteLength": 56836,
       "sha256": "01e36d04c63cc52eb2399b17f652ed583308bcbbc873abddc85c9dc7b2865b00"
+    },
+    {
+      "path": "play/assets/dobuita/chai-intro/TIKHIA1G.MT5",
+      "byteLength": 8352,
+      "sha256": "e98e0a204da264387505882d49a7b49813a5e19238d773d57c9431a8a75bcee2"
+    },
+    {
+      "path": "play/assets/dobuita/chai-intro/ticket-textures.bin",
+      "byteLength": 6172,
+      "sha256": "fd10ff823981eb0614398f557ac964fb9e8fdb053096ade6b1711f9cfd03c4f1",
+      "source": {
+        "path": "disc2/SCENE/02/MODEL/CHARA/TIKHIA1G.MT5",
+        "sha256": "e98e0a204da264387505882d49a7b49813a5e19238d773d57c9431a8a75bcee2"
+      }
     }
   ],
   "activities": [

@@ -1,0 +1,496 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "disc1/SCENE/01/STREAM/01SKIA.AFS",
+      "sha256": "dc0edb3c25f777504f97322317232f129e1ebabb193c3a8534ec5611753b9620"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "disc1/SCENE/01/SOUND/A1_NOZOK.SND",
+      "sha256": "82f2ddf4ce075f2175fa008217f2023d2d617c3580f71769a80f86dfa21b3eba"
+    },
+    "authManifest": "play/assets/hazuki/nozomi-park-call/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#nozomis-park-invitation"
+  },
+  "voices": [
+    {
+      "voiceId": "01SKIAA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIAA001.aiff",
+      "nativeMember": "01SKIAA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "5acc8db186443f1ac4da5d2be1edd6d6b06a579a9b0d9e6fce089a1faf518382",
+      "speakerId": "AKIR",
+      "sourceText": "Hello.",
+      "displayText": "Hello.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-park-call/voice/01SKIAA001.wav",
+      "byteLength": 16172,
+      "sha256": "50fbaa9cd32cb6ffcc106ba45373f7b8a39995850a99e60aa75cea4e900103c9"
+    },
+    {
+      "voiceId": "01SKIAA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIAA002.aiff",
+      "nativeMember": "01SKIAA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "2c495b133142a832b5db228db0a7104a7485b2b6bcca317a456127b082b0d61c",
+      "speakerId": "AKIR",
+      "sourceText": "Nozomi, what's up?",
+      "displayText": "Nozomi, what's up?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-park-call/voice/01SKIAA002.wav",
+      "byteLength": 32556,
+      "sha256": "e5683be0b7d7e9c22b116ab98c57ce8014740c7eb7c57ca8bbbec459dd95f3c1"
+    },
+    {
+      "voiceId": "01SKIAA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIAA003.aiff",
+      "nativeMember": "01SKIAA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "9ff92ff6758a111c6cfbe665a0c6798645fa602d8ccf872cb2d00cc49c40bc3d",
+      "speakerId": "AKIR",
+      "sourceText": "Yeah.",
+      "displayText": "Yeah.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-park-call/voice/01SKIAA003.wav",
+      "byteLength": 16172,
+      "sha256": "16503b8ec13f9da6b0151f5bb69b394755a0c7f1e237bc9729f05911375a4073"
+    },
+    {
+      "voiceId": "01SKIAA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIAA004.aiff",
+      "nativeMember": "01SKIAA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "8b90cf4279e539cbf268cac5803be3a6350d34f90783eb936113c1d488a188c0",
+      "speakerId": "AKIR",
+      "sourceText": "All right.",
+      "displayText": "All right.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-park-call/voice/01SKIAA004.wav",
+      "byteLength": 16172,
+      "sha256": "170208d4f30d7fc3a954210a0c9cbbffad4c8fe351b6e0393bfad03c1dace0af"
+    },
+    {
+      "voiceId": "01SKIAB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIAB001.aiff",
+      "nativeMember": "01SKIAB001.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 4096,
+      "nativeSha256": "455ad8f08ae621d6f2af7ebb542cdbecd5974f873955851e795830785cacc5de",
+      "speakerId": "HRSK",
+      "sourceText": "Ryo.",
+      "displayText": "Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-park-call/voice/01SKIAB001.wav",
+      "byteLength": 16172,
+      "sha256": "94dc3d880fb0254d15d8e8bddceac438bc64ebf4d37f1e60f0ef6628428ead4b"
+    },
+    {
+      "voiceId": "01SKIAB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIAB002.aiff",
+      "nativeMember": "01SKIAB002.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 16384,
+      "nativeSha256": "5b8ec61322a155481ac24bbd265ede79ba83905e0167d94b706edfceb402d470",
+      "speakerId": "HRSK",
+      "sourceText": "I want to talk to you about＆something=@can we meet?",
+      "displayText": "I want to talk to you about\nsomething...can we meet?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-park-call/voice/01SKIAB002.wav",
+      "byteLength": 65324,
+      "sha256": "a4c7e9132db7d1a39573a91c9eb82671dce37cab9728035d7c60234540b3195b"
+    },
+    {
+      "voiceId": "01SKIAB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SOUND/01SKIAB003.aiff",
+      "nativeMember": "01SKIAB003.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 20480,
+      "nativeSha256": "c0cb517243d203375473bb1821cb3ea8749edf24afc7cb823044f3f1dc306133",
+      "speakerId": "HRSK",
+      "sourceText": "At Sakuragaoka Park=@＆I'll be waiting.",
+      "displayText": "At Sakuragaoka Park...\nI'll be waiting.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 43
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/nozomi-park-call/voice/01SKIAB003.wav",
+      "byteLength": 81708,
+      "sha256": "b02a22f610f0133d13679c5a8d6a8a9d0c2e2e416cf7449bb304e91949c74c09"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 1,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-park-call/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SE/cloths2/friction4.aiff",
+      "playbackId": 11,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-park-call/sfx/a9040b00.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040e00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SE/footroom/ganashi3.aiff",
+      "playbackId": 14,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-park-call/sfx/a9040e00.wav",
+      "byteLength": 4508,
+      "sha256": "24bd6dd3ac1c7bc2bd6e316878371b54b71d2c99661584880b53a1ba3024f229"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SE/smallobject/telbell1.aiff",
+      "playbackId": 15,
+      "sampleId": 15,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-park-call/sfx/a9040f00.wav",
+      "byteLength": 45252,
+      "sha256": "e70ecde603fb32b95c21bbee6d85686ff377a5d0359fff6c388fadf6bb65db15"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01SKI/SE/smallobject/Telphon.aiff",
+      "playbackId": 16,
+      "sampleId": 16,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/nozomi-park-call/sfx/a9041000.wav",
+      "byteLength": 9060,
+      "sha256": "d2fcd98a33f2cd919911db6b9c9b87af6628a091cd7ad610462fb5444a271473"
+    }
+  ]
+}

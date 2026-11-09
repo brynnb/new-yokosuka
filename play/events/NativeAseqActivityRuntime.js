@@ -1,6 +1,7 @@
 import { parseAuthCamera } from "../../src/AuthCamera.js";
 import { parseAuthMovement } from "../../src/AuthMovement.js";
 import {
+  applyAuthMotionSubstitutions,
   parseAuthSequence,
   resolveAuthMotions,
 } from "../../src/AuthSequence.js";
@@ -454,11 +455,12 @@ export class NativeAseqActivityRuntime {
       throw new Error(`AUTH activity ${record.activityId} differs from its manifest`);
     }
 
+    const playbackSequence = applyAuthMotionSubstitutions(sequence, record.authoredMotionSubstitutions);
     const motionPackages = new Map();
-    for (const bank of new Set(sequence.motions.map(command => command.motionBank))) {
+    for (const bank of new Set(playbackSequence.motions.map(command => command.motionBank))) {
       const output = this.catalog.motionBanks.get(bank);
       if (!output) throw new Error(`AUTH activity motion bank ${bank} is not catalogued`);
-      const indices = sequence.motions
+      const indices = playbackSequence.motions
         .filter(command => command.motionBank === bank)
         .map(command => command.sequenceIndex);
       motionPackages.set(bank, MotnLoader.parse(await this.loadExact(output, { signal }), {
@@ -466,7 +468,7 @@ export class NativeAseqActivityRuntime {
         sequenceIndices: [...new Set(indices)],
       }));
     }
-    const motions = resolveAuthMotions(sequence, motionPackages);
+    const motions = resolveAuthMotions(playbackSequence, motionPackages);
     const motionByOffset = new Map(motions.map(motion => [motion.recordOffset, motion]));
     if (motions.some(motion => !motion.motionValid || !motion.motionName)) {
       throw new Error(`AUTH activity ${record.activityId} has unresolved motion data`);

@@ -1,0 +1,149 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 2,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "01FRE.AUTH",
+        "path": "disc2/SCENE/02/JOMO/MAPINFO.BIN",
+        "sourceOffset": 780100,
+        "sourceSha256": "6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe",
+        "byteLength": 2932,
+        "sha256": "3bde61761c0314bc25cb5dc18754ac5c6275e29474831e642e23edb980504837"
+      },
+      {
+        "name": "M_01FRE.MOTN",
+        "path": "disc2/SCENE/02/JOMO/COMMON02.PKS",
+        "sourceSha256": "916aab45137cf340516a1cdd2ee61540e7c6562a1e92c5f932e9055ae0db3b89",
+        "archiveMember": "M_01FRE.MOTN",
+        "byteLength": 104568,
+        "sha256": "4edd6ff2f64c2f519140b0af46bc3fd446899c669631b68949459d0febe773ca"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-ticket-journey.md",
+    "resourceName": "01FRE",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector."
+  },
+  "audioManifest": "public/audio/world/friends-visit-departure/manifest.json",
+  "packageActors": {
+    "ITOH": {
+      "label": "Naoyuki Ito",
+      "modelCode": "RFB_L",
+      "browserFilename": "RFB_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/RFB_L.CHRM",
+      "textureAssetPath": "play/assets/characters/RFB_textures.bin",
+      "sourceBinding": {
+        "kind": "original-scene-archive",
+        "path": "disc2/SCENE/02/JOMO/HOUMON.PKS",
+        "sha256": "540fce44a8a985aea33ae6c63cbd0f5f5c83d1ef235ba0fced5b259f64920862",
+        "member": "RFB_L.CHRM",
+        "memberSha256": "1241cb8bb48b1e4f1a2927cdab7de820279b21937c7a18720a522461d5ce91ef"
+      }
+    },
+    "SKRD": {
+      "label": "Ichiro Sakurada",
+      "modelCode": "NKK_L",
+      "browserFilename": "NKK_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/NKK_L.CHRM",
+      "textureAssetPath": "play/assets/characters/NKK_textures.bin",
+      "sourceBinding": {
+        "kind": "original-scene-archive",
+        "path": "disc2/SCENE/02/JOMO/HOUMON.PKS",
+        "sha256": "540fce44a8a985aea33ae6c63cbd0f5f5c83d1ef235ba0fced5b259f64920862",
+        "member": "NKK_L.CHRM",
+        "memberSha256": "1270220abc37aee6a31040c8dcebd6389c07e8ccd191752367fb2e31d2a8fc7f"
+      }
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "ITOH",
+    "SKRD"
+  ],
+  "motionBanks": [
+    {
+      "bank": 26,
+      "path": "play/assets/hazuki/friends-visit-departure/M_01FRE.MOTN",
+      "byteLength": 104568,
+      "sha256": "4edd6ff2f64c2f519140b0af46bc3fd446899c669631b68949459d0febe773ca",
+      "sequenceIndexBase": 0
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/friends-visit-departure/M_01FRE.MOTN",
+      "byteLength": 104568,
+      "sha256": "4edd6ff2f64c2f519140b0af46bc3fd446899c669631b68949459d0febe773ca"
+    },
+    {
+      "path": "play/assets/hazuki/friends-visit-departure/01FRE.AUTH",
+      "byteLength": 2932,
+      "sha256": "3bde61761c0314bc25cb5dc18754ac5c6275e29474831e642e23edb980504837"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "01FRE/01FRE.AUTH",
+      "archiveMember": "01FRE.AUTH",
+      "byteLength": 2932,
+      "sha256": "3bde61761c0314bc25cb5dc18754ac5c6275e29474831e642e23edb980504837",
+      "durationFrames": 400,
+      "durationSeconds": 13.350000381469727,
+      "frameCount": 13,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 3,
+        "voice": 4,
+        "sound": 8
+      },
+      "actors": [
+        "AKIR",
+        "ITOH",
+        "SKRD"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 26,
+          "sequenceIndex": 7,
+          "motionName": "AKI_AT2_MIOKURU_DOKYUSEIHOUMON0_0100",
+          "startFrame": 216,
+          "endFrame": 685
+        },
+        {
+          "actorTag": "ITOH",
+          "frame": 1,
+          "motionBank": 26,
+          "sequenceIndex": 9,
+          "motionName": "YKI_ITO_AT2_KAERU_DOKYUSEIHOUMON0_0100",
+          "startFrame": 171,
+          "endFrame": 520
+        },
+        {
+          "actorTag": "SKRD",
+          "frame": 1,
+          "motionBank": 26,
+          "sequenceIndex": 11,
+          "motionName": "YKI_SRA_AT2_KAERU_DOKYUSEIHOUMON0_0100",
+          "startFrame": 171,
+          "endFrame": 520
+        }
+      ]
+    }
+  ]
+}

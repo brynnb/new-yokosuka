@@ -1,0 +1,1207 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_nozomi_park_story_stage.mjs",
+  "source": {
+    "disc": 1,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "M_01FUL.MOTN",
+        "path": "extracted_files/data/SCENE/01/DNOZ/M_01FUL.BIN",
+        "byteLength": 90220,
+        "sha256": "27fcb2bf528b1688b24379aacb63a05ebeaeca0938dba21f262bf4905b23848d"
+      },
+      {
+        "name": "SEQDATA2.AUTH",
+        "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA2.BIN",
+        "byteLength": 11104,
+        "sha256": "210cf85c321ba1e7265ae05af47ff402abb259b698fabc29d19bec0b71ee1d5e"
+      },
+      {
+        "name": "SEQDATA3.AUTH",
+        "path": "extracted_files/data/SCENE/01/DNOZ/SEQDATA3.BIN",
+        "byteLength": 4092,
+        "sha256": "ce0cc17dae8d19f50c39141a7d313ed9cb5c06640ba617623b2550b06152139f"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/player-cutscene-owner-discovery.json",
+    "resourceName": "DNOZ",
+    "variant": "selector-1",
+    "selectionRule": "ordered loose AUTH fragments selected by DNOZ owner 0x1d74"
+  },
+  "audioManifest": "public/audio/world/dnoz/manifest.json",
+  "sceneObjects": {
+    "MAP0": {
+      "model": "MAP",
+      "browserFilename": "S1_DNOZ_MAP.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAP1": {
+      "model": "MAP01",
+      "browserFilename": "S1_DNOZ_MAP01.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP01.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAP2": {
+      "model": "MAP02",
+      "browserFilename": "S1_DNOZ_MAP02.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP02.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAP3": {
+      "model": "MAP03",
+      "browserFilename": "S1_DNOZ_MAP03.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP03.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAP4": {
+      "model": "MAP04",
+      "browserFilename": "S1_DNOZ_MAP04.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP04.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAP5": {
+      "model": "MAP05",
+      "browserFilename": "S1_DNOZ_MAP05.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP05.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAP6": {
+      "model": "MAP06",
+      "browserFilename": "S1_DNOZ_MAP06.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP06.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAP7": {
+      "model": "MAP07",
+      "browserFilename": "S1_DNOZ_MAP07.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP07.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAP8": {
+      "model": "MAP08",
+      "browserFilename": "S1_DNOZ_MAP08.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP08.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAP9": {
+      "model": "MAP09",
+      "browserFilename": "S1_DNOZ_MAP09.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP09.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAPA": {
+      "model": "MAP10",
+      "browserFilename": "S1_DNOZ_MAP10.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP10.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAPB": {
+      "model": "MAP11",
+      "browserFilename": "S1_DNOZ_MAP11.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP11.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAPC": {
+      "model": "MAP12",
+      "browserFilename": "S1_DNOZ_MAP12.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP12.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "MAPD": {
+      "model": "MAP13",
+      "browserFilename": "S1_DNOZ_MAP13.MT5",
+      "assetPath": "play/assets/sakuragaoka/dnoz-environment/MAP13.MAPM",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "handAssets": {
+    "HRSK": {
+      "actorTag": "HRSK",
+      "bodyModelCode": "NZM_M",
+      "handCode": "NZM",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/sakuragaoka/dnoz-ski/NZM_TL.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/NZM_TL.MT5",
+          "byteLength": 176556,
+          "sha256": "df4e0acbdf46ac948526877ce5310d4446abfa5baab990ffe7920a48c26f1fbe"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/sakuragaoka/dnoz-ski/NZM_TR.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/NZM_TR.MT5",
+          "byteLength": 176644,
+          "sha256": "d63432086a043706bf40975919ef48644d8f69324e9da4f4766733b29d76f7f5"
+        }
+      },
+      "rig": {
+        "path": "play/assets/sakuragaoka/dnoz-ski/NZM_HM.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/NZM_HM.BIN",
+        "byteLength": 8608,
+        "sha256": "d2df197f87e38cf83ee3a44015f376503cb4702819824d5f057405e34fcf64e6",
+        "transformNodeCount": 71,
+        "vertexCount": 299,
+        "pointerOffsets": [
+          24,
+          168,
+          8304,
+          5848,
+          6344,
+          8608
+        ]
+      },
+      "presentation": {
+        "attachment": "body-hand-node-world-matrix",
+        "initialPose": "hm-bind-pose",
+        "deformationAssetRetained": true,
+        "nativePoseOperation": "0x005e"
+      }
+    }
+  },
+  "nativeHandPoseTables": {
+    "0x3248": {
+      "sourceMapinfoOffset": "0x3248",
+      "vectors": [
+        [
+          0,
+          0,
+          -5461
+        ],
+        [
+          0,
+          -2366,
+          -1092
+        ],
+        [
+          0,
+          -182,
+          1092
+        ],
+        [
+          0,
+          -546,
+          -6735
+        ],
+        [
+          0,
+          0,
+          -4004
+        ],
+        [
+          0,
+          0,
+          -6553
+        ],
+        [
+          0,
+          -182,
+          1274
+        ],
+        [
+          0,
+          0,
+          -13289
+        ],
+        [
+          0,
+          0,
+          -5279
+        ],
+        [
+          0,
+          0,
+          -8009
+        ],
+        [
+          0,
+          0,
+          1456
+        ],
+        [
+          0,
+          182,
+          -8738
+        ],
+        [
+          0,
+          0,
+          -6007
+        ],
+        [
+          0,
+          0,
+          -8738
+        ],
+        [
+          0,
+          182,
+          1638
+        ],
+        [
+          0,
+          -728,
+          -5279
+        ],
+        [
+          0,
+          -1274,
+          -6735
+        ],
+        [
+          0,
+          -910,
+          -8738
+        ],
+        [
+          0,
+          0,
+          1638
+        ]
+      ]
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "HRSK"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/sakuragaoka/dnoz/M_01FUL.MOTN",
+      "byteLength": 90220,
+      "sha256": "27fcb2bf528b1688b24379aacb63a05ebeaeca0938dba21f262bf4905b23848d"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/sakuragaoka/dnoz/M_01FUL.MOTN",
+      "byteLength": 90220,
+      "sha256": "27fcb2bf528b1688b24379aacb63a05ebeaeca0938dba21f262bf4905b23848d"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz/SEQDATA2.AUTH",
+      "byteLength": 11104,
+      "sha256": "210cf85c321ba1e7265ae05af47ff402abb259b698fabc29d19bec0b71ee1d5e"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz/SEQDATA3.AUTH",
+      "byteLength": 4092,
+      "sha256": "ce0cc17dae8d19f50c39141a7d313ed9cb5c06640ba617623b2550b06152139f"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-ski/NZM_HM.BIN",
+      "byteLength": 8608,
+      "sha256": "d2df197f87e38cf83ee3a44015f376503cb4702819824d5f057405e34fcf64e6"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-ski/NZM_TL.MT5",
+      "byteLength": 176556,
+      "sha256": "df4e0acbdf46ac948526877ce5310d4446abfa5baab990ffe7920a48c26f1fbe"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-ski/NZM_TR.MT5",
+      "byteLength": 176644,
+      "sha256": "d63432086a043706bf40975919ef48644d8f69324e9da4f4766733b29d76f7f5"
+    },
+    {
+      "path": "play/assets/sakuragaoka/nozomi-park-story/NZM_M.CHRM",
+      "byteLength": 198572,
+      "sha256": "1f705b462f4bdc8cff50c4f1a5a0f57c35b163c1560d4b05b414169aa2138c79"
+    },
+    {
+      "path": "play/assets/sakuragaoka/nozomi-park-story/NZM_textures.bin",
+      "byteLength": 131184,
+      "sha256": "549188a60d4ca92c4e480eb5174fa4673b5a4307008504c2bf51341f6f58c2a0"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP.MAPM",
+      "byteLength": 671764,
+      "sha256": "3f0f15bde2bcbd920cace8729840bd48f0518b61e431f43ea9c41d88abe47ec7"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP01.MAPM",
+      "byteLength": 892320,
+      "sha256": "5581d9e20e5a28fb29c06cc2726a7c80379a251755f9095124311b1c404f2fc8"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP02.MAPM",
+      "byteLength": 31912,
+      "sha256": "fbfbde456dfd89241be404be9b1393941d6695d1454f25bfc7355cd05d32d9c9"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP03.MAPM",
+      "byteLength": 22912,
+      "sha256": "bf0868e060c1b95138b33ae19a860bac70b04c997a1fad2c5a062563fffbea38"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP04.MAPM",
+      "byteLength": 33876,
+      "sha256": "a5ab628a306454eb6e6a9ccb25bc748482396a8f042d9bbb1e96b99c468ac310"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP05.MAPM",
+      "byteLength": 27544,
+      "sha256": "10196633b60338a06afe6e0b07f0d506e35f6e14813251343caef020013c67c2"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP06.MAPM",
+      "byteLength": 52792,
+      "sha256": "e5cf266bdac15ee19a65d85f20be69b1fb0cfeb8306daaaf8f4909671ebceb48"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP07.MAPM",
+      "byteLength": 44384,
+      "sha256": "549cf35b8399003ce58505b2f062f81aca036681aa12080a032018bcbe3e0898"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP08.MAPM",
+      "byteLength": 294908,
+      "sha256": "3a98e7e3870c1f41861ca94b13c42d27abfab469cacb14723085833576076133"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP09.MAPM",
+      "byteLength": 276376,
+      "sha256": "934e1317451cf00a92858e76fbcbda5794c7c69e0faf776973b0b282b4072927"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP10.MAPM",
+      "byteLength": 806388,
+      "sha256": "eaf70bf4f5372cc36e892292b5cb593f877aadaf4d4c605ade345c6315a7f68c"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP11.MAPM",
+      "byteLength": 806388,
+      "sha256": "e84a7128e090866ecf8397dd7d2f55cc9ef197f98c4d98e6bfa2f250b2103039"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP12.MAPM",
+      "byteLength": 26516,
+      "sha256": "1aa523e6cbdc7abad32c5de5ebe2eb85af3e51b534a8d90ac608c5202a87a3c3"
+    },
+    {
+      "path": "play/assets/sakuragaoka/dnoz-environment/MAP13.MAPM",
+      "byteLength": 22652,
+      "sha256": "b5c30ad9232d7333df3469e92eaef83c98582f289771cadc3a0180dc60e10821"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "primaryPointer": 14653,
+      "secondaryPointer": 14666,
+      "activityId": "DNOZ/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 11104,
+      "sha256": "210cf85c321ba1e7265ae05af47ff402abb259b698fabc29d19bec0b71ee1d5e",
+      "durationFrames": 1920,
+      "durationSeconds": 64.01667022705078,
+      "frameCount": 50,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 6,
+        "voice": 17,
+        "sound": 30
+      },
+      "actors": [
+        "AKIR",
+        "HRSK"
+      ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x133e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0x1a7e",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x135e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0x1a7e",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x133e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0x1a8a",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x135e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0x1a8a",
+          "sourceOrder": 5
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x2e2",
+          "sourceFunction": "0x1ac",
+          "ownerCallFileOffset": "0x19ce",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x2e2",
+          "sourceFunction": "0x1ac",
+          "ownerCallFileOffset": "0x19da",
+          "sourceOrder": 1
+        }
+      ],
+      "nativeFaceClipCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "clipGroup": 3,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x14a6"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 950,
+          "actorTag": "HRSK",
+          "clipGroup": 0,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x1532"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1472,
+          "actorTag": "HRSK",
+          "clipGroup": 2,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x157e"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1560,
+          "actorTag": "HRSK",
+          "clipGroup": 3,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x15ca"
+        }
+      ],
+      "nativeFaceControllerCues": [],
+      "nativeFaceGazeCues": [],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "MAP0",
+          "presented": true
+        },
+        {
+          "actorTag": "MAP1",
+          "presented": true
+        },
+        {
+          "actorTag": "MAP2",
+          "presented": false
+        },
+        {
+          "actorTag": "MAP3",
+          "presented": true
+        },
+        {
+          "actorTag": "MAP4",
+          "presented": false
+        },
+        {
+          "actorTag": "MAP5",
+          "presented": true
+        },
+        {
+          "actorTag": "MAP6",
+          "presented": false
+        },
+        {
+          "actorTag": "MAP7",
+          "presented": true
+        },
+        {
+          "actorTag": "MAP8",
+          "presented": true
+        },
+        {
+          "actorTag": "MAP9",
+          "presented": false
+        },
+        {
+          "actorTag": "MAPA",
+          "presented": true
+        },
+        {
+          "actorTag": "MAPB",
+          "presented": false
+        },
+        {
+          "actorTag": "MAPC",
+          "presented": false
+        },
+        {
+          "actorTag": "MAPD",
+          "presented": false
+        }
+      ],
+      "nativeDetailedHandDefaults": [],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_KIKU_NAKIGOE_NOZOMINAMIDA_0100",
+          "startFrame": 49,
+          "endFrame": 50
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 70,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_KIKU_NAKIGOE_NOZOMINAMIDA_0100",
+          "startFrame": 50,
+          "endFrame": 160
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 181,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_KIKU_NAKIGOE_NOZOMINAMIDA_0100",
+          "startFrame": 1,
+          "endFrame": 200
+        },
+        {
+          "actorTag": "HRSK",
+          "frame": 181,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "SIN_NOZ_AT2_TALK_NOZOMINAMIDA_0100",
+          "startFrame": 91,
+          "endFrame": 290
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 381,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AT2_TALK_NOZOMINAMIDA_0100",
+          "startFrame": 1,
+          "endFrame": 1597
+        },
+        {
+          "actorTag": "HRSK",
+          "frame": 381,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "SIN_NOZ_AT2_TALK_NOZOMINAMIDA_0100",
+          "startFrame": 264,
+          "endFrame": 1845
+        }
+      ],
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "browserMapVisibility": [],
+      "browserIsolatedStage": true,
+      "browserIsolatedEnvironment": false
+    },
+    {
+      "slot": 1,
+      "primaryPointer": 14680,
+      "secondaryPointer": 14693,
+      "activityId": "DNOZ/SEQDATA3.AUTH",
+      "archiveMember": "SEQDATA3.AUTH",
+      "byteLength": 4092,
+      "sha256": "ce0cc17dae8d19f50c39141a7d313ed9cb5c06640ba617623b2550b06152139f",
+      "durationFrames": 1560,
+      "durationSeconds": 52.016666412353516,
+      "frameCount": 16,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2,
+        "sound": 6,
+        "voice": 9
+      },
+      "actors": [
+        "AKIR",
+        "HRSK"
+      ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x133e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0x1a7e",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x135e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0x1a7e",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "right",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x133e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0x1a8a",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "side": "left",
+          "poseTableOffset": "0x3248",
+          "durationNativeTicks": 8,
+          "callFileOffset": "0x135e",
+          "sourceFunction": "0x12e4",
+          "ownerCallFileOffset": "0x1a8a",
+          "sourceOrder": 5
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x2e2",
+          "sourceFunction": "0x1ac",
+          "ownerCallFileOffset": "0x19ce",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x2e2",
+          "sourceFunction": "0x1ac",
+          "ownerCallFileOffset": "0x19da",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 1,
+          "frame": 143,
+          "actorTag": "AKIR",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x13ca",
+          "sourceFunction": "0x1374",
+          "ownerCallFileOffset": "0x171a",
+          "sourceOrder": 6,
+          "releaseDetailed": true
+        },
+        {
+          "activitySlot": 1,
+          "frame": 143,
+          "actorTag": "HRSK",
+          "channel": 2,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x13ca",
+          "sourceFunction": "0x1374",
+          "ownerCallFileOffset": "0x1726",
+          "sourceOrder": 7,
+          "releaseDetailed": true
+        }
+      ],
+      "nativeFaceClipCues": [
+        {
+          "activitySlot": 1,
+          "frame": 0,
+          "actorTag": "HRSK",
+          "clipGroup": 3,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x16de"
+        },
+        {
+          "activitySlot": 1,
+          "frame": 1080,
+          "actorTag": "HRSK",
+          "clipGroup": 0,
+          "selector": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x1852"
+        }
+      ],
+      "nativeFaceControllerCues": [],
+      "nativeFaceGazeCues": [
+        {
+          "activitySlot": 1,
+          "frame": 1162,
+          "actorTag": "AKIR",
+          "mode": 0,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x1896"
+        },
+        {
+          "activitySlot": 1,
+          "frame": 1560,
+          "actorTag": "AKIR",
+          "mode": 2,
+          "durationNativeTicks": 8,
+          "target": {
+            "kind": "actor-component",
+            "actorTag": "HRSK",
+            "selector": 18,
+            "associated": false,
+            "offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          "callFileOffset": "0x1946"
+        }
+      ],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "MAP0",
+          "presented": true
+        },
+        {
+          "actorTag": "MAP1",
+          "presented": true
+        },
+        {
+          "actorTag": "MAP2",
+          "presented": false
+        },
+        {
+          "actorTag": "MAP3",
+          "presented": true
+        },
+        {
+          "actorTag": "MAP4",
+          "presented": false
+        },
+        {
+          "actorTag": "MAP5",
+          "presented": true
+        },
+        {
+          "actorTag": "MAP6",
+          "presented": false
+        },
+        {
+          "actorTag": "MAP7",
+          "presented": true
+        },
+        {
+          "actorTag": "MAP8",
+          "presented": true
+        },
+        {
+          "actorTag": "MAP9",
+          "presented": false
+        },
+        {
+          "actorTag": "MAPA",
+          "presented": true
+        },
+        {
+          "actorTag": "MAPB",
+          "presented": false
+        },
+        {
+          "actorTag": "MAPC",
+          "presented": false
+        },
+        {
+          "actorTag": "MAPD",
+          "presented": false
+        }
+      ],
+      "nativeDetailedHandDefaults": [],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_AT3_MOTARERU_NOZOMINAMIDA_0100",
+          "startFrame": 50,
+          "endFrame": 1635
+        },
+        {
+          "actorTag": "HRSK",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "SIN_NOZ_AT3_MOTARERU_NOZOMINAMIDA_0100",
+          "startFrame": 101,
+          "endFrame": 1562
+        }
+      ],
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "browserMapVisibility": [],
+      "browserIsolatedStage": true,
+      "browserIsolatedEnvironment": false
+    }
+  ],
+  "packageActors": {
+    "HRSK": {
+      "label": "Nozomi Harasaki",
+      "modelCode": "NZM_M",
+      "browserFilename": "NZM_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/sakuragaoka/nozomi-park-story/NZM_M.CHRM",
+      "textureAssetPath": "play/assets/sakuragaoka/nozomi-park-story/NZM_textures.bin",
+      "sourceBinding": {
+        "actorTag": "HRSK",
+        "image": "NZM_M",
+        "model": "NZM_M",
+        "characterRecordOffset": 236,
+        "imagePropertyOffset": 264,
+        "defImageRecordOffset": 196,
+        "presentation": null,
+        "mapInfoChrsOffset": 15224
+      }
+    }
+  }
+}

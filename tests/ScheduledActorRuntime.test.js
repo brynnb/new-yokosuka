@@ -3,6 +3,7 @@ import test from "node:test";
 import * as BABYLON from "@babylonjs/core";
 import {runtimeAssetUrl} from "../src/RuntimeAssets.js";
 import {scheduledActorStoryVisible} from "../src/ScheduledActorPresentation.js";
+import {storyPersonalActors} from "../play/data/story-personal-actors.js";
 import { clearWorldSceneAssets } from "../src/rendering/SceneResources.js";
 import {
   createScheduledActorOcclusionProxy,
@@ -31,6 +32,37 @@ import {
   setScheduledActorOcclusionCulled,
   updateScheduledActorDebugSelectionProxy,
 } from "../play/characters/ScheduledActorRuntime.js";
+
+test("personal Story residents follow each player's flags and calendar",()=>{
+  const megumi=storyPersonalActors.yamanose[0];
+  const time=hour=>new Date(Date.UTC(1986,11,5,hour));
+  const story=flags=>({playMode:"story",storyFlags:flags});
+  assert.equal(scheduledActorStoryVisible(megumi,story({}),time(12)),false);
+  assert.equal(scheduledActorStoryVisible(megumi,story({"story.s1.first-kitten.completed":true}),time(12)),true);
+  assert.equal(scheduledActorStoryVisible(megumi,story({"story.s1.first-kitten.completed":true,"story.s1.kitten-adopted.completed":true}),time(12)),false);
+  assert.equal(scheduledActorStoryVisible(megumi,{playMode:"free_roam",storyFlags:{"story.s1.first-kitten.completed":true}},time(12)),false);
+  assert.equal(scheduledActorStoryVisible(megumi,story({"story.s1.first-kitten.completed":true}),time(20)),false);
+  assert.equal(scheduledActorStoryVisible(megumi,story({"story.s1.first-kitten.completed":true}),null),false);
+});
+
+test("a personal Story placement replaces only that viewer's scheduled actor",()=>{
+  const personal=storyPersonalActors.sakuragaoka.find(actor=>actor.actorCode==="KAME"),regular={actorCode:"KAME"};
+  const story=flags=>({playMode:"story",storyFlags:flags}),request="story.s1.yamamoto-request.completed",done="story.s1.yamamoto-escort.completed";
+  for(const [character,visible] of [[story({}),"regular"],[story({[request]:true}),"personal"],[story({[request]:true,[done]:true}),"regular"],[{playMode:"free_roam",storyFlags:{[request]:true}},"regular"]]){
+    assert.equal(scheduledActorStoryVisible(regular,character),visible==="regular");
+    assert.equal(scheduledActorStoryVisible(personal,character),visible==="personal");
+    const runtime=Object.create(ScheduledActorRuntime.prototype);
+    runtime.entries=[{definition:regular,root:{position:{x:1,y:2,z:3}},defaultModel:{root:{isEnabled:()=>true}}},
+      {definition:personal,root:{position:{x:4,y:5,z:6}},defaultModel:{root:{isEnabled:()=>true}}}];runtime.getGameDate=()=>null;
+    runtime.isActorPresent=definition=>scheduledActorStoryVisible(definition,character);
+    assert.equal(runtime.activityEntries(["KAME"])[0].definition,visible==="regular"?regular:personal);
+    assert.deepEqual(runtime.dialogueActor("KAME").position,visible==="regular"?[1,2,3]:[4,5,6]);
+    assert.equal(runtime.dialogueActorModel("KAME"),runtime.activityEntries(["KAME"])[0].defaultModel);
+  }
+  const ambiguous=Object.create(ScheduledActorRuntime.prototype);
+  ambiguous.entries=[{definition:regular},{definition:personal}];ambiguous.isActorPresent=()=>true;
+  assert.throws(()=>ambiguous.activityEntries(["KAME"]),/not unique/);
+});
 
 test("archive-owned actor prefetch and assembly use the same registered model/texture pair",async()=>{
   const runtime=Object.create(ScheduledActorRuntime.prototype),requests=[];

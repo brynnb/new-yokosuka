@@ -11,9 +11,9 @@ title: Fight
 <<complete>>
 <<elseif combat_result("s1.dgct.chai-arcade") == "defeated">>
 <<start_activity "s1.dgct.chai-rescue.scene">>
-<<advance_story_time "s1.wait.morning">>
 <<travel_story "s1.home.bedroom-morning">>
 <<set_flag "story.s1.chai-arcade.lost">>
+<<set_flag "story.s1.chai-recovery.pending">>
 {{effects}}
 <<complete>>
 <<else>>

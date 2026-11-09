@@ -1,0 +1,364 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_kitten_recovery_pack.mjs",
+  "source": {
+    "disc": 2,
+    "path": "disc2/SCENE/02/JU00/CATA2.PKS",
+    "sha256": "5d028873e0f399c4a0d5b829dc6bfee08e397ad71b7e91d2c9c57659bf292c34",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "DANM400G.CHRM",
+        "byteLength": 2636,
+        "sha256": "a34211b0f17aa553059312bd098f755e7fa95483bcd5d95a8deae88e3318f452"
+      },
+      {
+        "name": "M_01CAT.MOTN",
+        "byteLength": 366692,
+        "sha256": "01489797ac2fb1db34bb63659b418672160c4d0a2fdd4d6bc5fbcc5073a04f42"
+      },
+      {
+        "name": "SEQDATA0.AUTH",
+        "byteLength": 13840,
+        "sha256": "b1afaf2acb206ec14ea1d98c4a870fc00a2a27bb9592bef48feed2574c04065f"
+      },
+      {
+        "name": "SEQDATA3.AUTH",
+        "byteLength": 20616,
+        "sha256": "eb103793ecfe4fbb10e76ae611f6be47ff08026fa010bf62d85c7a9d50d1a60d"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-event-template.md#later-kitten-events-source-leads",
+    "resourceName": "CATA2",
+    "variant": "",
+    "selectionRule": "Original healed-kitten film; Story gates and outcome are independently authored, not recovered native controller logic."
+  },
+  "audioManifest": "public/audio/world/kitten-recovery/manifest.json",
+  "sceneObjects": {
+    "NBOX": {
+      "model": "DANM400G",
+      "image": "DANM400G",
+      "browserFilename": "S1_JU00_DANM400G.MT5",
+      "assetPath": "play/assets/yamanose/kitten-recovery/DANM400G.CHRM",
+      "lifecycle": {
+        "kind": "native-composite-owner"
+      },
+      "nativeBinding": {
+        "archive": "CATA2.PKF",
+        "archiveMember": "CHARA.CHRT",
+        "characterRecordOffset": 48,
+        "imagePropertyOffset": 76,
+        "defImageRecordOffset": 8
+      }
+    }
+  },
+  "packageActors": {
+    "CATM": {
+      "label": "Yamanose shrine kitten",
+      "modelCode": "KC1_M",
+      "browserFilename": "S3_JU00_KC1_M.MT5",
+      "assetFormat": "MT5",
+      "characterScale": 1
+    },
+    "YASU": {
+      "label": "Yasuo Ito",
+      "modelCode": "YSO_L",
+      "browserFilename": "YSO_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/YSO_L.CHRM",
+      "textureAssetPath": "play/assets/characters/YSO_textures.bin"
+    },
+    "KAYO": {
+      "label": "Kayoko Ito",
+      "modelCode": "KYK_L",
+      "browserFilename": "KYK_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/KYK_L.CHRM",
+      "textureAssetPath": "play/assets/characters/KYK_textures.bin"
+    }
+  },
+  "actorTags": [
+    "NBOX",
+    "CATM",
+    "YASU",
+    "AKIR",
+    "KAYO"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/yamanose/cata1/M_01CAT.MOTN",
+      "byteLength": 366692,
+      "sha256": "01489797ac2fb1db34bb63659b418672160c4d0a2fdd4d6bc5fbcc5073a04f42"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/yamanose/cata1/M_01CAT.MOTN",
+      "byteLength": 366692,
+      "sha256": "01489797ac2fb1db34bb63659b418672160c4d0a2fdd4d6bc5fbcc5073a04f42"
+    },
+    {
+      "path": "play/assets/yamanose/kitten-recovery/SEQDATA3.AUTH",
+      "byteLength": 20616,
+      "sha256": "eb103793ecfe4fbb10e76ae611f6be47ff08026fa010bf62d85c7a9d50d1a60d"
+    },
+    {
+      "path": "play/assets/yamanose/kitten-recovery/DANM400G.CHRM",
+      "byteLength": 2636,
+      "sha256": "a34211b0f17aa553059312bd098f755e7fa95483bcd5d95a8deae88e3318f452"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "CATA2/SEQDATA3.AUTH",
+      "archiveMember": "SEQDATA3.AUTH",
+      "byteLength": 20616,
+      "sha256": "eb103793ecfe4fbb10e76ae611f6be47ff08026fa010bf62d85c7a9d50d1a60d",
+      "durationFrames": 1650,
+      "durationSeconds": 55.016666412353516,
+      "frameCount": 102,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5,
+        "motion": 24,
+        "effect": 21,
+        "sound": 49,
+        "voice": 20
+      },
+      "actors": [
+        "NBOX",
+        "CATM",
+        "YASU",
+        "AKIR",
+        "KAYO"
+      ],
+      "motions": [
+        {
+          "actorTag": "YASU",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "GAK_YAS_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 71,
+          "endFrame": 541
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 85,
+          "endFrame": 590
+        },
+        {
+          "actorTag": "KAYO",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 20,
+          "motionName": "KOD_CYC_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 40,
+          "endFrame": 412
+        },
+        {
+          "actorTag": "YASU",
+          "frame": 81,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "GAK_YAS_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 151,
+          "endFrame": 541
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 81,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 165,
+          "endFrame": 590
+        },
+        {
+          "actorTag": "KAYO",
+          "frame": 81,
+          "motionBank": 16,
+          "sequenceIndex": 20,
+          "motionName": "KOD_CYC_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 108,
+          "endFrame": 412
+        },
+        {
+          "actorTag": "KAYO",
+          "frame": 181,
+          "motionBank": 16,
+          "sequenceIndex": 20,
+          "motionName": "KOD_CYC_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 235,
+          "endFrame": 412
+        },
+        {
+          "actorTag": "YASU",
+          "frame": 322,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "GAK_YAS_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 190,
+          "endFrame": 541
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 322,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 254,
+          "endFrame": 590
+        },
+        {
+          "actorTag": "KAYO",
+          "frame": 322,
+          "motionBank": 16,
+          "sequenceIndex": 20,
+          "motionName": "KOD_CYC_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 265,
+          "endFrame": 412
+        },
+        {
+          "actorTag": "YASU",
+          "frame": 372,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "GAK_YAS_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 365,
+          "endFrame": 541
+        },
+        {
+          "actorTag": "KAYO",
+          "frame": 372,
+          "motionBank": 16,
+          "sequenceIndex": 20,
+          "motionName": "KOD_CYC_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 335,
+          "endFrame": 412
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 410,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 398,
+          "endFrame": 590
+        },
+        {
+          "actorTag": "CATM",
+          "frame": 421,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "KCT_EVENT_STEP10_1",
+          "startFrame": 1,
+          "endFrame": 600
+        },
+        {
+          "actorTag": "KAYO",
+          "frame": 450,
+          "motionBank": 16,
+          "sequenceIndex": 20,
+          "motionName": "KOD_CYC_AT1_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 395,
+          "endFrame": 412
+        },
+        {
+          "actorTag": "KAYO",
+          "frame": 491,
+          "motionBank": 16,
+          "sequenceIndex": 21,
+          "motionName": "KOD_CYC_AT2_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 301,
+          "endFrame": 301
+        },
+        {
+          "actorTag": "YASU",
+          "frame": 516,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "GAK_YAS_AT2_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 57,
+          "endFrame": 811
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 521,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "AKI_AT2_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "KAYO",
+          "frame": 521,
+          "motionBank": 16,
+          "sequenceIndex": 21,
+          "motionName": "KOD_CYC_AT2_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 301,
+          "endFrame": 1033
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 660,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "AKI_AT2_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 1,
+          "endFrame": 742
+        },
+        {
+          "actorTag": "CATM",
+          "frame": 951,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "KCT_EVENT_STEP_2",
+          "startFrame": 31,
+          "endFrame": 300
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 951,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "AKI_AT2_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 191,
+          "endFrame": 742
+        },
+        {
+          "actorTag": "KAYO",
+          "frame": 951,
+          "motionBank": 16,
+          "sequenceIndex": 21,
+          "motionName": "KOD_CYC_AT2_YASUO_KAYOKO_NEKOTAWAMURE_0100",
+          "startFrame": 631,
+          "endFrame": 1033
+        },
+        {
+          "actorTag": "CATM",
+          "frame": 1371,
+          "motionBank": 16,
+          "sequenceIndex": 12,
+          "motionName": "KCT_EVENT_STEP_3",
+          "startFrame": 31,
+          "endFrame": 363
+        }
+      ]
+    }
+  ]
+}

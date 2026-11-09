@@ -1,0 +1,14 @@
+<<look_at_actor "MEGM" "AKIR">>
+<<if flag_set("story.s1.kitten-name.mimi")>>
+{{voice:E1041B030}}
+<<elseif flag_set("story.s1.kitten-name.chibi")>>
+{{voice:E1041B045}}
+<<else>>
+{{voice:E1041B046}}
+<<endif>>
+{{voice:E1041A080}}
+{{voice:E1041B031}}
+{{voice:E1041B032}}
+{{voice:E1041B033}}
+<<clear_actor_look "MEGM">>
+<<complete>>

@@ -1,0 +1,120 @@
+{
+  "schema": "new-yokosuka-authored-story-scenes-v1",
+  "generatedBy": "tools/scripting/build_friends_bar_staging.mjs",
+  "motionBanks": {},
+  "scenes": [
+    {
+      "id": "s1.dbyo.friends-lead",
+      "area": "DBYO",
+      "worldId": "dbyo",
+      "actorDefinitions": [],
+      "isolateScheduledActors": true,
+      "provenance": "Original DBYO 0x1ab44 dialogue uses Akemi, Saijo and Yoko's ordinary scheduled bodies. This private cast, standing positions, idle poses and camera approximate the original dynamic room choreography.",
+      "packageActors": {
+        "AKMI": {
+          "label": "Akemi Sato",
+          "modelCode": "HOS_L",
+          "browserFilename": "HOS_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/characters/HOS_L.CHRM",
+          "textureAssetPath": "play/assets/characters/HOS_textures.bin"
+        },
+        "SAJO": {
+          "label": "Teruhiko Saijo",
+          "modelCode": "BAU_L",
+          "browserFilename": "BAU_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/characters/BAU_L.CHRM",
+          "textureAssetPath": "play/assets/characters/BAU_textures.bin"
+        },
+        "YOKO": {
+          "label": "Yoko Minato",
+          "modelCode": "HOB_L",
+          "browserFilename": "HOB_L.CHRM",
+          "assetFormat": "MT5",
+          "characterScale": 1,
+          "assetPath": "play/assets/characters/HOB_L.CHRM",
+          "textureAssetPath": "play/assets/characters/HOB_textures.bin"
+        }
+      },
+      "actors": [
+        {
+          "tag": "AKIR",
+          "pose": {
+            "x": 3.5,
+            "y": 0,
+            "z": -1.9,
+            "rotationX": 0,
+            "rotationY": 90,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "free",
+            "name": "AKI_AKI_STAND_LP",
+            "loop": true
+          }
+        },
+        {
+          "tag": "AKMI",
+          "pose": {
+            "x": 1,
+            "y": 0,
+            "z": -1.4,
+            "rotationX": 0,
+            "rotationY": -90,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "mobj",
+            "name": "SIN_TATI_LP_F",
+            "loop": true
+          }
+        },
+        {
+          "tag": "SAJO",
+          "pose": {
+            "x": 4,
+            "y": 0,
+            "z": -3,
+            "rotationX": 0,
+            "rotationY": 90,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "mobj",
+            "name": "YKI_TATI_2_LP_F",
+            "loop": true
+          }
+        },
+        {
+          "tag": "YOKO",
+          "pose": {
+            "x": 2.1,
+            "y": 0,
+            "z": -2.95,
+            "rotationX": 0,
+            "rotationY": 180,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "mobj",
+            "name": "SIN_TATI_LP_F",
+            "loop": true
+          }
+        }
+      ],
+      "camera": {
+        "positionX": 0.2,
+        "positionY": 1.55,
+        "positionZ": -3.8,
+        "targetX": 3,
+        "targetY": 1,
+        "targetZ": -2,
+        "roll": 0,
+        "perspective": 65
+      }
+    }
+  ]
+}

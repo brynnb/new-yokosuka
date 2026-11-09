@@ -1,0 +1,1008 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01FRE.AFS",
+      "sha256": "7b43d75d3065e0b7770b00a06cb5c5f2b9093a0e2a4b783961d1f3b8c1fcf1da"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_ITO.SND",
+      "sha256": "82f25b1f26360cfccdf57c8c134588d0cd37690e9b3e098dfc09b9d285da6134"
+    },
+    "authManifest": "play/assets/hazuki/friends-visit-arrival/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md"
+  },
+  "voices": [
+    {
+      "voiceId": "01FREA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SOUND/01FREA001.aiff",
+      "nativeMember": "01FREA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 4096,
+      "nativeSha256": "2b91cdc0e40f0b1a9c11ac70d38b259dd3a904e25ccc3fcfe5ea301474955df1",
+      "speakerId": "AKIR",
+      "sourceText": "Yo.",
+      "displayText": "Yo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/friends-visit-arrival/voice/01FREA001.wav",
+      "byteLength": 16172,
+      "sha256": "8d84e5e41596a7214a9a1cf2366fd3d7864e123b0d9d5936a04144c1043d9f38"
+    },
+    {
+      "voiceId": "01FREA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SOUND/01FREA002.aiff",
+      "nativeMember": "01FREA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 10240,
+      "nativeSha256": "8b907c802d75d04d71607c9f55e6bc9da1a267108a5284ca0396edd87312d816",
+      "speakerId": "AKIR",
+      "sourceText": "What're you talking about?",
+      "displayText": "What're you talking about?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/friends-visit-arrival/voice/01FREA002.wav",
+      "byteLength": 40748,
+      "sha256": "83d2f5a5f25ca52523dc4fe6de0525908084dd5a6e7b982727addad7c6ede459"
+    },
+    {
+      "voiceId": "01FREA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SOUND/01FREA003.aiff",
+      "nativeMember": "01FREA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 6144,
+      "nativeSha256": "8eba5e94def00036158e4445f550fed07b6815aa05ed74321a8fe2764392ad05",
+      "speakerId": "AKIR",
+      "sourceText": "Everything is cool.",
+      "displayText": "Everything is cool.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/friends-visit-arrival/voice/01FREA003.wav",
+      "byteLength": 24364,
+      "sha256": "cd778af008dc073d0ae14a374d37ba8123254fce57d7c2bb7f66dcdd040395a4"
+    },
+    {
+      "voiceId": "01FREA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SOUND/01FREA004.aiff",
+      "nativeMember": "01FREA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 22528,
+      "nativeSha256": "c07fe418aa27fc56d871a2c3ce5cd28186a0433c4c44251fcd1cbe04bdb4e245",
+      "speakerId": "AKIR",
+      "sourceText": "I know, I know=@＆But I really am OK=@",
+      "displayText": "I know, I know...\nBut I really am OK...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 34
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/friends-visit-arrival/voice/01FREA004.wav",
+      "byteLength": 89900,
+      "sha256": "8c88385724298f2b97fa09e07f09c771c2b097b9eba1c082cac985c72f008778"
+    },
+    {
+      "voiceId": "01FREA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SOUND/01FREA005.aiff",
+      "nativeMember": "01FREA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 8192,
+      "nativeSha256": "97a3ea92c95f344e1755a63e18fcbc027e8ecdac4e1d1df93bf90de7695dbbb9",
+      "speakerId": "AKIR",
+      "sourceText": "OK I will.",
+      "displayText": "OK I will.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/friends-visit-arrival/voice/01FREA005.wav",
+      "byteLength": 32556,
+      "sha256": "afb13a7a799a8c970558717d3face4a6b0caa227e4d6150b1240ba846d2c9bc3"
+    },
+    {
+      "voiceId": "01FREB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SOUND/01FREB001.aiff",
+      "nativeMember": "01FREB001.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 18432,
+      "nativeSha256": "fc753ed1564a27e4b0863def6e2215d5dfcde6540a3959fddbfd859794556b48",
+      "speakerId": "ITOH",
+      "sourceText": "Don't yo me=@What's with you man?",
+      "displayText": "Don't yo me...What's with you man?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/friends-visit-arrival/voice/01FREB001.wav",
+      "byteLength": 73516,
+      "sha256": "45a30187c33e0e4e1178c9ca657a6b884ff3269e47c58ab9193c9c96a7a6ebd7"
+    },
+    {
+      "voiceId": "01FREB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SOUND/01FREB002.aiff",
+      "nativeMember": "01FREB002.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 18432,
+      "nativeSha256": "d728cb769581ca2454ae5d3c24037cda6fb33e308770573fcd4b9ab5fb598446",
+      "speakerId": "ITOH",
+      "sourceText": "You=@Fuku-san is worried 'bout ya' man.",
+      "displayText": "You...Fuku-san is worried 'bout ya' man.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/friends-visit-arrival/voice/01FREB002.wav",
+      "byteLength": 73516,
+      "sha256": "5af6343a3eae51d5ab01d0c43a7a1b1691da24a32066777349af649a27540697"
+    },
+    {
+      "voiceId": "01FREB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SOUND/01FREB003.aiff",
+      "nativeMember": "01FREB003.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 12288,
+      "nativeSha256": "7a1fcfbda50a964a865e8c40ca6e363b707d55708e5014026d52a0429c49435d",
+      "speakerId": "ITOH",
+      "sourceText": "We know you like to do things alone=@",
+      "displayText": "We know you like to do things alone...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 16
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/friends-visit-arrival/voice/01FREB003.wav",
+      "byteLength": 48940,
+      "sha256": "61d7fd3a7184ea52d7e02959f3f3207955e67d2a679cf288156dda0e90cad315"
+    },
+    {
+      "voiceId": "01FREB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SOUND/01FREB004.aiff",
+      "nativeMember": "01FREB004.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 14336,
+      "nativeSha256": "b1dcb53e6c4d3a7d5924fb0a8a9d745c43067fc97573b5bb9d25674bc830209f",
+      "speakerId": "ITOH",
+      "sourceText": "If you get in trouble, let us know.",
+      "displayText": "If you get in trouble, let us know.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 22
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/friends-visit-arrival/voice/01FREB004.wav",
+      "byteLength": 57132,
+      "sha256": "d940607822582cde71984acd64f16e9b3676c1e54f13923c923b119214a1f5e4"
+    },
+    {
+      "voiceId": "01FREC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SOUND/01FREC001.aiff",
+      "nativeMember": "01FREC001.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 10240,
+      "nativeSha256": "9e9599398dfc1f683a6043b49a3d8732266bba37a2292062448325a804dab2ca",
+      "speakerId": "SKRD",
+      "sourceText": "He said to check up on you.",
+      "displayText": "He said to check up on you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/friends-visit-arrival/voice/01FREC001.wav",
+      "byteLength": 40748,
+      "sha256": "4f0f75e7dcf28adc8c4255f89c59875126d427a2af1fa6223840f860d06fa5c0"
+    },
+    {
+      "voiceId": "01FREC002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SOUND/01FREC002.aiff",
+      "nativeMember": "01FREC002.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 10240,
+      "nativeSha256": "19d2f93614f24d0c0e9ebec11259cfe0c6d2df6ac6932b91740ad61a8259969e",
+      "speakerId": "SKRD",
+      "sourceText": "But we're old friends.",
+      "displayText": "But we're old friends.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/friends-visit-arrival/voice/01FREC002.wav",
+      "byteLength": 40748,
+      "sha256": "e535c82dc8f5a7509b6c4c892bd224ee5e4f24e761ce458a1643a0ac9cd0a671"
+    },
+    {
+      "voiceId": "01FREC003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SOUND/01FREC003.aiff",
+      "nativeMember": "01FREC003.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 16384,
+      "nativeSha256": "9dba139f7fb1bb576236e99891da9cf1a367b53bdbb68fc82857e30db67bd997",
+      "speakerId": "SKRD",
+      "sourceText": "Well, you do seem＆better than I thought=@",
+      "displayText": "Well, you do seem\nbetter than I thought...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 23
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/friends-visit-arrival/voice/01FREC003.wav",
+      "byteLength": 65324,
+      "sha256": "56dba389264e06a4249f386e57fe1139da6c92c3fa7c7f785054e54371b83c45"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 4,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/friends-visit-arrival/sfx/a9040400.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SE/footroom/ryo1.aiff",
+      "playbackId": 5,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/friends-visit-arrival/sfx/a9040500.wav",
+      "byteLength": 5076,
+      "sha256": "1ffbc05a7c076950b41f8df8e6c292faec92bc490676e2fe2909bf6d6bc2daa3"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SE/footroom/ryo2.aiff",
+      "playbackId": 6,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/friends-visit-arrival/sfx/a9040600.wav",
+      "byteLength": 8692,
+      "sha256": "d8a32b777023f8d593da3c2c4271bb7b99976e232152a4af8c56ec1948ce7694"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SE/door/Dooropen.aiff",
+      "playbackId": 9,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/friends-visit-arrival/sfx/a9040900.wav",
+      "byteLength": 28788,
+      "sha256": "685533e226a9ccd50e0b95589cf1b8d3b53f4006381fe41e341e54cb39635124"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01FRE/SE/body/shoulder2.aiff",
+      "playbackId": 10,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/friends-visit-arrival/sfx/a9040a00.wav",
+      "byteLength": 2084,
+      "sha256": "ab7daa803b5619e55f7b99c9c812538f75425f8f62aeb07eec5e5c2257012565"
+    }
+  ]
+}

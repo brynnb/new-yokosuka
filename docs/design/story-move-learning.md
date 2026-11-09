@@ -25,8 +25,10 @@ expert-animation balancing are unchanged.
 | Tiger Storm | Bunkado Antiques, ¥2,000 |
 | Arm Break Fire | Bunkado Antiques, ¥3,000 |
 
-Walk into a lesson/pickup approach to receive an optional offer. Declining or
-cancelling leaves it available on re-entry. Lessons use the shared combat
+Walk into a lesson approach to receive an optional offer. In the house, examine
+the scroll in Fuku-san's room or the basket in the rear passage; the basement
+scroll still uses an authored approach. Declining or cancelling leaves the
+offer available to retry. Lessons use the shared combat
 controls and complete on an actual finished move; counters require the partner's
 incoming strike. They are nonlethal and have no time limit. Buying or finding a
 scroll only grants the item: choose **Read** in Inventory to learn it. The item
@@ -36,9 +38,8 @@ Optional entry offers use priorities 100–108, below the required Story routes'
 200-series band. When several eligible volumes overlap, the shared entry
 dispatcher issues one request and holds the approach position while awaiting
 the server. Its presentation takes over the movement lock; rejection, timeout
-and cancellation release it. A pickup volume that starts earlier can still
-offer before the main conversation becomes eligible. Decline it normally and
-continue walking; no scroll or learned flag is silently granted or suppressed.
+and cancellation release it. The two house scrolls use explicit object picks,
+so simply entering Iwao's room no longer interrupts unrelated interactions.
 
 Pit Blow replaces Elbow Slam, Double Blow replaces TwinHandWaves, Swallow Dive
 replaces Side Reaper Kick, and Tornado Kick replaces Against Cascade in Story's
@@ -57,8 +58,13 @@ These guides are evidence for the adaptation, not original engine source.
 The six additional lessons use original actor models and combat animations,
 but authored captions, practice spacing and approach volumes. Position anchors
 come from the existing dojo spar, Yamagishi/Shozo route endpoints and Alpha
-Trading payday area. House and basement pickups reuse reviewed room/shelf
-approaches; original drawer/basket search animations are not reconstructed.
+Trading payday area. The house scroll uses original `imk1` in Fuku-san's room;
+the passage scroll is selected through original `bkgu` basket, which covers
+original `imk3`. The object associations are inferred from placement and the
+guide, not recovered native item callbacks. The basement uses an authored
+approach. Original drawer/basket opening and hand pickup animations are not
+reconstructed; the basket remains closed. Each collected source scroll hides
+only for that Story character.
 Translation is an acknowledged caption event at Warehouse 8, not a new film.
 Later optional lessons remain available after their earliest milestone instead
 of reproducing every original missable day/branch window. Shozo's later teaching
@@ -96,6 +102,10 @@ Use an earned Story character that has not collected Twin Blades, or select
 Shadow Reaper with `NEW_YOKOSUKA_SCROLL_MOVE_ID=shadowReaper`. This checks the
 actual pickup choices, Read request, retained item and Story/Free roam round trip
 without granting a prerequisite or learning flag through the test fixture.
-The October 23 connected home continuation also passes Twin Blades pickup,
-Read, retained item and the Story/Free roam round trip after Fuku's travel
-discussion, with the new entry priorities and request ownership active.
+The November 9 isolated rendered checks use the actual Fuku-room object and
+open the actual passage door before using the basket. For each, leave and
+cancellation grant nothing; retry, pickup, Read, retained item and the
+Story/Free roam round trip pass. The tests reposition near the objects and seed
+an earlier notebook clue; they do not prove a fresh full-story route or basket
+opening choreography. The earlier October 23 home continuation exercised the
+older approach-based implementation.

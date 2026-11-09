@@ -1,0 +1,137 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_harbor_arrival_pack.mjs",
+  "sources": {
+    "stream": null,
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_BUSNO.SND",
+      "sha256": "40c2e792ea21e45f4a406dff4b2b84bd3b7f172d4de2056a0d05d8a337e8b5a8"
+    },
+    "authManifest": "play/assets/harbor/bus-arrival/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#bus-to-new-yokosuka-harbor"
+  },
+  "voices": [],
+  "sounds": [
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BUS/SE/vehicle/Airbrake04.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/harbor-bus-arrival/sfx/a9040100.wav",
+      "byteLength": 18964,
+      "sha256": "7406e2da8c1121716be085874f3fc37e2c1739dfc82198ff90f99adfc0414799"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BUS/SE/vehicle/bus03.aiff",
+      "playbackId": 5,
+      "sampleId": 6,
+      "sampleRate": 11025,
+      "asset": "public/audio/world/harbor-bus-arrival/sfx/a9040500.wav",
+      "byteLength": 100716,
+      "sha256": "a8bc8e6aae2a01381a34958dd25f9e15d183566abeb602fe5759f47b34f21871"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BUS/SE/vehicle/bus04.aiff",
+      "playbackId": 6,
+      "sampleId": 7,
+      "sampleRate": 11025,
+      "asset": "public/audio/world/harbor-bus-arrival/sfx/a9040600.wav",
+      "byteLength": 110412,
+      "sha256": "3178da4aa078877c2e45d09a03280f497cf31906f0967aa25d4d9db41ebbd745"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BUS/SE/vehicle/Busdoorop2.aiff",
+      "playbackId": 9,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/harbor-bus-arrival/sfx/a9040900.wav",
+      "byteLength": 36004,
+      "sha256": "9914d6e71a5ca448c2bb50ede2cb0cd0f6a3a3e754cc85a29f03d47ca5bca818"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BUS/SE/vehicle/forklift01.aiff",
+      "playbackId": 10,
+      "sampleId": 16,
+      "sampleRate": 11025,
+      "asset": "public/audio/world/harbor-bus-arrival/sfx/a9040a00.wav",
+      "byteLength": 112308,
+      "sha256": "e092d5362caf3bf8b541dcffc8b7a9e107367951dc1df0475e1fee17588a3e89"
+    },
+    {
+      "commandHex": "a9040f00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BUS/SE/foot2/RYOASHI3.aiff",
+      "playbackId": 15,
+      "sampleId": 23,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/harbor-bus-arrival/sfx/a9040f00.wav",
+      "byteLength": 4580,
+      "sha256": "dc05963ce7a61555b42150b8793a7b87773b9cad6fa37b290787d7705ecd59be"
+    },
+    {
+      "commandHex": "a9041000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BUS/SE/foot2/RYOASHI4.aiff",
+      "playbackId": 16,
+      "sampleId": 24,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/harbor-bus-arrival/sfx/a9041000.wav",
+      "byteLength": 7692,
+      "sha256": "806691e99da419903716cf245dd78902c61d0492b2f9c1132edbdca3e4e10b12"
+    },
+    {
+      "commandHex": "a9041800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BUS/SE/vehicle/truck01.aiff",
+      "playbackId": 24,
+      "sampleId": 34,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/harbor-bus-arrival/sfx/a9041800.wav",
+      "byteLength": 106740,
+      "sha256": "e41f356bf0d08391ba625c22c07ffa7ccc1a19d17ce34a793638d8d40b3ce2e7"
+    },
+    {
+      "commandHex": "a9041a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BUS/SE/vehicle/truck03.aiff",
+      "playbackId": 26,
+      "sampleId": 36,
+      "sampleRate": 11025,
+      "asset": "public/audio/world/harbor-bus-arrival/sfx/a9041a00.wav",
+      "byteLength": 103532,
+      "sha256": "f8e83831b5d9386c8b02821f6f442552b41bc515db12b1b2bfaf75ef49713e57"
+    },
+    {
+      "commandHex": "a9042200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BUS/SE/vehicle/carpass7.aiff",
+      "playbackId": 32,
+      "sampleId": 14,
+      "sampleRate": 12000,
+      "asset": "public/audio/world/harbor-bus-arrival/sfx/a9042200.wav",
+      "byteLength": 102692,
+      "sha256": "5cb45d5984e692cb6e2d8168120f564e9687f63d9697c3dec38331e7f17a2309"
+    },
+    {
+      "commandHex": "a9042500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BUS/SE/foot/sneaker1.aiff",
+      "playbackId": 35,
+      "sampleId": 32,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/harbor-bus-arrival/sfx/a9042500.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9042600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01BUS/SE/foot/sneaker5.aiff",
+      "playbackId": 36,
+      "sampleId": 33,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/harbor-bus-arrival/sfx/a9042600.wav",
+      "byteLength": 10804,
+      "sha256": "0334446f014be77a677e0e4e97f7e1604c7dc5b356bef53103d39acc9081f9e1"
+    }
+  ]
+}

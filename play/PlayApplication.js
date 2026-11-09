@@ -668,7 +668,7 @@ function createPlayRuntime() {
       || actorRoot.position.add(new BABYLON.Vector3(0, 1.4, 0))
     ),
     getCameraFadeEnabled: () => !nativeCutsceneDirector?.active,
-    isActorPresent: definition => scheduledActorStoryVisible(definition,accountSession.character),
+    isActorPresent: (definition,gameDate) => scheduledActorStoryVisible(definition,accountSession.character,gameDate),
     networkState: scheduledActorNetworkState,
     localDebug: LOCAL_DEBUG,
     remoteAvatar: {

@@ -95,6 +95,9 @@ import bebfActivityManifest from "../assets/hazuki/bebf/manifest.json";
 import bebfAudioManifest from "../../public/audio/world/bebf/manifest.json";
 import sakrActivityManifest from "../assets/yd01/sakr/manifest.json";
 import sakrAudioManifest from "../../public/audio/world/sakr/manifest.json";
+import childhoodMealManifest from "../assets/hazuki/childhood-meal/manifest.json";
+import childhoodMealAudio from "../../public/audio/world/childhood-meal/manifest.json";
+import cherryMemoryManifest from "../assets/hazuki/cherry-memory/manifest.json";
 import houoActivityManifest from "../assets/hazuki/houo/manifest.json";
 import houoAudioManifest from "../../public/audio/world/houo/manifest.json";
 import tokiActivityManifest from "../assets/dobuita/toki/manifest.json";
@@ -125,8 +128,20 @@ import boatCollectionManifest from "../assets/dobuita/boat-ticket-collection/man
 import boatCollectionAudio from "../../public/audio/world/boat-ticket-collection/manifest.json";
 import jimmyCallManifest from "../assets/hazuki/jimmy-morning-call/manifest.json";
 import jimmyCallAudio from "../../public/audio/world/jimmy-morning-call/manifest.json";
+import chaiHomeRecoveryManifest from "../assets/hazuki/chai-home-recovery/manifest.json";
+import chaiHomeRecoveryAudio from "../../public/audio/world/chai-home-recovery/manifest.json";
 import nozomiCallManifest from "../assets/hazuki/nozomi-night-call/manifest.json";
 import nozomiCallAudio from "../../public/audio/world/nozomi-night-call/manifest.json";
+import nozomiParkCallManifest from "../assets/hazuki/nozomi-park-call/manifest.json";
+import nozomiParkCallAudio from "../../public/audio/world/nozomi-park-call/manifest.json";
+import friendsVisitArrivalManifest from "../assets/hazuki/friends-visit-arrival/manifest.json";
+import friendsVisitArrivalAudio from "../../public/audio/world/friends-visit-arrival/manifest.json";
+import friendsVisitDepartureManifest from "../assets/hazuki/friends-visit-departure/manifest.json";
+import friendsVisitDepartureAudio from "../../public/audio/world/friends-visit-departure/manifest.json";
+import harborBusArrivalManifest from "../assets/harbor/bus-arrival/manifest.json";
+import harborBusArrivalAudio from "../../public/audio/world/harbor-bus-arrival/manifest.json";
+import nozomiParkConfessionManifest from "../assets/sakuragaoka/nozomi-park-story/confession.json";
+import nozomiParkTearsManifest from "../assets/sakuragaoka/nozomi-park-story/tears.json";
 import nozomiMotorcycleManifest from "../assets/sakuragaoka/nozomi-motorcycle/manifest.json";
 import nozomiMotorcycleAudio from "../../public/audio/world/nozomi-motorcycle/manifest.json";
 import nozomiRescueManifest from "../assets/harbor/nozomi-rescue/manifest.json";
@@ -210,6 +225,12 @@ import kkyeActivityManifest from "../assets/hazuki/kkye/manifest.json";
 import kkyfActivityManifest from "../assets/hazuki/kkyf/manifest.json";
 import cata1ActivityManifest from "../assets/yamanose/cata1/manifest.json";
 import cata1AudioManifest from "../../public/audio/world/cata1/manifest.json";
+import kittenRecoveryManifest from "../assets/yamanose/kitten-recovery/manifest.json";
+import kittenRecoveryAudio from "../../public/audio/world/kitten-recovery/manifest.json";
+import kittenRoofManifest from "../assets/yamanose/kitten-roof/manifest.json";
+import kittenRoofAudio from "../../public/audio/world/kitten-roof/manifest.json";
+import kittenNozomiManifest from "../assets/yamanose/kitten-nozomi/manifest.json";
+import kittenNozomiAudio from "../../public/audio/world/kitten-nozomi/manifest.json";
 import evsnActivityManifest from "../assets/sakuragaoka/evsn/manifest.json";
 import evsnAudioManifest from "../../public/audio/world/evsn/manifest.json";
 const iwaTextureUrl = runtimeAssetUrl("play/assets/characters/IWA_textures.bin");
@@ -426,29 +447,48 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["mark-lunch-intro",markLunchIntroManifest,markLunchIntroAudio,"mfsy"],["mark-lunch-aftermath",markLunchAftermathManifest,markLunchAftermathAudio,"mfsy"],
     ["after-work-goro",afterWorkGoroManifest,afterWorkGoroAudio,"mfsy"],
     ["workday-lunch",workdayLunchManifest,null,"mfsy"],
-    ["nozomi-photo-intro",nozomiPhotoIntroManifest,nozomiPhotoIntroAudio,"mfsy"],["nozomi-photo-ending",nozomiPhotoEndingManifest,nozomiPhotoEndingAudio,"mfsy"],
+    ["nozomi-photo-intro",nozomiPhotoIntroManifest,nozomiPhotoIntroAudio,"mfsy"],
+    ["kitten-recovery",kittenRecoveryManifest,kittenRecoveryAudio,"yamanose"],
+    ["kitten-roof",kittenRoofManifest,kittenRoofAudio,"yamanose"],
+    ["kitten-nozomi",kittenNozomiManifest,kittenNozomiAudio,"yamanose",Object.freeze({cues:[{startActivity:true,trackId:"bgm018",loop:true}],gain:1}),{HRSK:nativeFaceManifest.facialVariants.NZM_M}],
+    ["childhood-meal",childhoodMealManifest,childhoodMealAudio,"interior",undefined,{IWAO:nativeFaceManifest.facialAssets.IWAO,JAKR:nativeFaceManifest.facialVariants.JKB},undefined,{requirePlayer:false,preservePlayerOnComplete:false}],
+    ["cherry-memory",cherryMemoryManifest,sakrAudioManifest,"exterior",nativeSilentActivityMusic("SAKR"),{IWAO:nativeFaceManifest.facialAssets.IWAO,JAKR:nativeFaceManifest.facialVariants.JKB},undefined,{requirePlayer:false,preservePlayerOnComplete:false}],
+    ["nozomi-photo-ending-together",nozomiPhotoEndingManifest,nozomiPhotoEndingAudio,"mfsy"],
+    // PHT1 is in Ryo's hand and PHT2 is the other picture. The original
+    // choice callback is not decoded, so swap only these two source models
+    // for the apart choice while reusing the same original tracks/audio.
+    ["nozomi-photo-ending-apart",nozomiPhotoEndingManifest,nozomiPhotoEndingAudio,"mfsy",undefined,undefined,
+      {...nozomiPhotoEndingManifest.sceneObjects,PHT1:nozomiPhotoEndingManifest.sceneObjects.PHT2,PHT2:nozomiPhotoEndingManifest.sceneObjects.PHT1}],
     ["mark-after-work-intro",markAfterWorkIntroManifest,markAfterWorkIntroAudio,"mfsy"],["mark-after-work-aftermath",markAfterWorkAftermathManifest,markAfterWorkAftermathAudio,"mfsy"],["mark-brother-explanation",markBrotherManifest,markBrotherAudio,"mfsy"],
     ["jimmy-knock",jimmyKnockManifest,jimmyKnockAudio,"dobuita"],["jimmy-caught",jimmyCaughtManifest,jimmyCaughtAudio,"dobuita"],["jimmy-escaped",jimmyEscapedManifest,jimmyEscapedAudio,"dobuita"],["jimmy-interrogation",jimmyInterrogationManifest,jimmyInterrogationAudio,"daza"],
     ["chai-intro",chaiIntroManifest,chaiIntroAudio,"arcade"],["chai-victory",chaiVictoryManifest,chaiVictoryAudio,"arcade"],["chai-rescue",chaiRescueManifest,chaiRescueAudio,"arcade"],
+    ["chai-home-recovery",chaiHomeRecoveryManifest,chaiHomeRecoveryAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm101",loop:true}],gain:1}),{FUKU:nativeFaceManifest.facialAssets.FUKU}],
     ["jimmy-morning-call",jimmyCallManifest,jimmyCallAudio,"interior"],["post-chen-home",postChenHomeManifest,postChenHomeAudio,"interior"],["bank-savings",bankSavingsManifest,bankSavingsAudio,"interior"],["travel-family",travelFamilyManifest,travelFamilyAudio,"interior"],
     ["nozomi-night-call",nozomiCallManifest,nozomiCallAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm063",loop:true}],gain:1})],
+    ["nozomi-park-call",nozomiParkCallManifest,nozomiParkCallAudio,"interior"],
+    ["friends-visit-arrival",friendsVisitArrivalManifest,friendsVisitArrivalAudio,"interior"],
+    ["friends-visit-departure",friendsVisitDepartureManifest,friendsVisitDepartureAudio,"interior"],
+    ["harbor-bus-arrival",harborBusArrivalManifest,harborBusArrivalAudio,"mfsy"],
+    ["nozomi-park-confession",nozomiParkConfessionManifest,dnozSkiAudioManifest,"interior",Object.freeze({cues:[{startActivity:true,trackId:"sakuragaoka",loop:true}],gain:1}),{HRSK:nativeFaceManifest.facialVariants.NZM_M}],
+    ["nozomi-park-tears",nozomiParkTearsManifest,dnozAudioManifest,"sakuragaoka",Object.freeze({cues:[{startActivity:true,trackId:"sakuragaoka",loop:true}],gain:1}),{HRSK:nativeFaceManifest.facialVariants.NZM_M}],
     ["nozomi-motorcycle",nozomiMotorcycleManifest,nozomiMotorcycleAudio,"sakuragaoka",Object.freeze({cues:[{startActivity:true,trackId:"bgm200",loop:true}],gain:1})],
     ["fuku-travel-funds",fukuTravelFundsManifest,fukuTravelFundsAudio,"interior"],["global-airfare",globalAirfareManifest,globalAirfareAudio,"dski"],["asia-airfare",asiaAirfareManifest,asiaAirfareAudio,"daza"],
-    ["global-boat",globalBoatManifest,globalBoatAudio,"dski"],["boat-ticket-purchase",boatPurchaseManifest,boatPurchaseAudio,"daza"],["boat-ticket-collection",boatCollectionManifest,boatCollectionAudio,"daza"]].map(([id,manifest,audioManifest,worldId,music])=>Object.freeze({
+    ["global-boat",globalBoatManifest,globalBoatAudio,"dski"],["boat-ticket-purchase",boatPurchaseManifest,boatPurchaseAudio,"daza"],["boat-ticket-collection",boatCollectionManifest,boatCollectionAudio,"daza"]].map(([id,manifest,audioManifest,worldId,music,extraFaces,sceneObjectOverrides,actorOptions])=>Object.freeze({
     id,worldId,actorDefinitions:Object.freeze([]),actorTags:Object.freeze(manifest.actorTags),
+    ...(actorOptions?{actors:Object.freeze(actorOptions)}:{}),
     // The compiler's explicit output list includes room maps and props too;
     // don't infer their directory or file extension from the gameplay world.
     assets:Object.freeze({...Object.fromEntries([...manifest.outputs.map(asset=>asset.path),...(manifest.motionBanks||[]).map(bank=>bank.path)].map(path=>[path,runtimeAssetUrl(path)])),
       ...Object.fromEntries(Object.values(manifest.packageActors||{}).flatMap(actor=>[actor.assetPath,actor.textureAssetPath].filter(Boolean)).map(path=>[path,runtimeAssetUrl(path)])),
       ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,
       ...(manifest.handAssets?op00HandAssets:{})}),
-    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR}),
+    presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR,...extraFaces}),
       ...(manifest.handAssets?{handAssets:{AKIR:op00AssetInventory.handAssets.AKIR,...manifest.handAssets}}:{})}),
-    environment:Object.freeze({packageActors:manifest.packageActors,...(manifest.sceneObjects?{sceneObjects:manifest.sceneObjects}:{}),
+    environment:Object.freeze({packageActors:manifest.packageActors,...(manifest.sceneObjects?{sceneObjects:sceneObjectOverrides||manifest.sceneObjects}:{}),
       ...(manifest.mapGeometryMasks?{mapGeometryMasks:manifest.mapGeometryMasks}:{}),
       ...(manifest.attachedObjects?{attachedObjects:manifest.attachedObjects}:{}),
       ...(manifest.activities.some(activity=>activity.browserIsolatedStage)?{isolatedStage:true}:{}),
-      ...(["boat-ticket-collection","jimmy-interrogation"].includes(id)?{suppressScheduledActors:["ETKO"]}:id==="tattoo-aftermath"?{suppressScheduledActors:["HORS","TONY","SMTH"]}:{})}),
+      ...(["boat-ticket-collection","jimmy-interrogation"].includes(id)?{suppressScheduledActors:["ETKO"]}:id==="tattoo-aftermath"?{suppressScheduledActors:["HORS","TONY","SMTH"]}:id==="kitten-nozomi"?{suppressScheduledActors:["MEGM"]}:{})}),
     playback:Object.freeze({manifest,audioManifest}),
     ...(music?{music}:{}),
   })),
@@ -1237,6 +1277,9 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
       packageActors: hihyActivityManifest.packageActors,
       sceneObjects: hihyActivityManifest.sceneObjects,
       scrollSprites: hihyActivityManifest.scrollSprites,
+      // The original HIHY owner hides Fuku until the memory releases the
+      // scene. Use the existing scoped lease so cancellation restores him too.
+      suppressScheduledActors: Object.freeze(["FUKU"]),
     }),
     playback: Object.freeze({
       manifest: hihyActivityManifest,

@@ -2,7 +2,8 @@
   "schema": "new-yokosuka-authored-story-scenes-v1",
   "generatedBy": "tools/cutscenes/build_harbor_chicken_race.mjs",
   "motionBanks": {
-    "chickenRace": "play/assets/harbor/chicken-race/M_MBQC.MOTN"
+    "chickenRace": "play/assets/harbor/chicken-race/M_MBQC.MOTN",
+    "harborBiker": "play/assets/harbor/chicken-race/M_DEQB.MOTN"
   },
   "scenes": [
     {
@@ -903,6 +904,93 @@
             }
           }
         }
+      }
+    },
+    {
+      "id": "s1.mfsy.chicken-race-aftermath",
+      "area": "MFSY",
+      "worldId": "mfsy",
+      "isolateScheduledActors": true,
+      "provenance": "Original E1070 outcome voices and RACE/M_DEQB standing motions; the location, camera, gestures and dismount are authored approximations.",
+      "actorDefinitions": [
+        {
+          "actorCode": "SYZU",
+          "label": "Shozo Mizuki",
+          "modelCode": "KOG_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "BIKA",
+          "label": "Takashi Watanabe",
+          "modelCode": "MJA_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "BIKB",
+          "label": "Takahiro Iwami",
+          "modelCode": "MJB_L",
+          "activityOnly": true
+        }
+      ],
+      "actors": [
+        {
+          "tag": "AKIR",
+          "pose": {
+            "x": -47.2,
+            "y": 0,
+            "z": 46.6,
+            "rotationX": 0,
+            "rotationY": 310,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "free",
+            "name": "AKI_AKI_STAND_LP",
+            "loop": true
+          }
+        },
+        {
+          "tag": "BIKA",
+          "pose": {
+            "x": -46,
+            "y": 0,
+            "z": 44.8,
+            "rotationX": 0,
+            "rotationY": 130,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "harborBiker",
+            "name": "OTH_STAND_YANKII_01_LP_F",
+            "loop": true
+          }
+        },
+        {
+          "tag": "BIKB",
+          "pose": {
+            "x": -45.5,
+            "y": 0,
+            "z": 46.3,
+            "rotationX": 0,
+            "rotationY": 130,
+            "rotationZ": 0
+          },
+          "motion": {
+            "bank": "harborBiker",
+            "name": "OTH_STAND_YANKII_02_LP_F",
+            "loop": true
+          }
+        }
+      ],
+      "camera": {
+        "positionX": -42,
+        "positionY": 2.2,
+        "positionZ": 49,
+        "targetX": -47,
+        "targetY": 1.1,
+        "targetZ": 45.3,
+        "roll": 0,
+        "perspective": 65
       }
     }
   ]

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import authoredTalks from "../play/data/authored-story-talks.json" with {type:"json"};
 import storyObjects from "../play/data/authored-story-objects.json" with {type:"json"};
+import jomoPlacements from "../play/data/jomo-runtime-placements.json" with {type:"json"};
 
 test("authored object labels use the shared classifier and preserve native mechanics",()=>{
   const objects=authoredTalks.objects.filter(o=>o.label);
@@ -12,6 +13,17 @@ test("authored object labels use the shared classifier and preserve native mecha
   }
   assert.equal(jomoObjectBehavior("S1_JOMO_HIKR101G.MT5","IWWH").kind,"drawer");
   assert.equal(jomoObjectBehavior("S1_JHD0_KHKS500G.MT5","another-tag").kind,"none");
+});
+
+test("Story food, letter and scrolls use original placements and the shared picker",()=>{
+  for(const [tag,model,label] of [["knib","S1_JOMO_NIPK302G.MT5","Dried fish"],["kmil","S1_JOMO_MLKS301G.MT5","Milk"],
+    ["TEGA","S1_JOMO_MALS530G.MT5","Iwao's letter"],["imk1","S1_JOMO_MKIS3C1G.MT5","Twin Blades scroll"],["bkgu","S1_JOMO_KAGT211G.MT5","Basket"]]){
+    const matches=jomoPlacements.placements.filter(p=>p.runtime?.objectTag===tag);
+    assert.equal(matches.length,1);
+    assert.equal(matches[0].model,model);
+    assert.equal(jomoObjectBehavior(model,tag).label,label);
+    assert.equal(jomoObjectBehavior(model,tag).kind,"inspect");
+  }
 });
 
 test("reviewed authored props retain declared initial visibility while native mechanics retain priority",()=>{

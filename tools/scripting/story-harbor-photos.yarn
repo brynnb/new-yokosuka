@@ -8,10 +8,11 @@
 ===
 title: Ending
 ---
-<<start_activity "s1.mfsy.nozomi-photo-ending.scene">>
 <<if $kept_apart>>
+<<start_activity "s1.mfsy.nozomi-photo-ending-apart.scene">>
 <<set_flag "story.s1.nozomi-photo.apart">>
 <<else>>
+<<start_activity "s1.mfsy.nozomi-photo-ending-together.scene">>
 <<set_flag "story.s1.nozomi-photo.together">>
 <<endif>>
 {{effects}}

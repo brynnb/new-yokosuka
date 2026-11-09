@@ -3,6 +3,258 @@
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
     {
+      "id":"harbor-bus-arrival-film","disc":2,"actor":"AKIR","participants":[],"presentActors":[],"area":"MFSY","trigger":"enter","priority":911,
+      "title":"Arrive at New Yokosuka Harbor","bounds":"s1.mfsy.harbor-bus-arrival","requiredFlags":["story.s1.harbor-arrival-film.pending"],"completedFlag":"story.s1.harbor-arrival-film.completed","effects":[],"voiceIds":[],"activities":["s1.mfsy.harbor-bus-arrival.scene"],
+      "nativeSources":[{"role":"original-harbor-arrival","locator":"disc2/SCENE/02/MFSY/YBUSFLY.PKS#SEQDATAD.AUTH","sha256":"2fe8137b1c39f1d636ca07bd697f85bc9439cb198c7bbd659001e5fe919bff30"}],
+      "summary":"The bus reaches New Yokosuka Harbor and Ryo steps out.",
+      "provenance":"Original YBUSFLY arrival, moving cast and vehicles, camera and A1_BUSNO sound. The source owner selects between original alternatives; the less-populated D variant is an adaptation. An authored pending receipt and harbor arrival bounds resume playback after the saved bus journey; exact branch conditions and native control timing are not reconstructed."
+    },
+    {
+      "id":"friends-bar-lead","disc":2,"actor":"AKIR","participants":["AKMI","SAJO","YOKO"],"presentActors":[],"area":"DBYO","trigger":"enter","priority":260,
+      "title":"Friends are waiting at home","hours":[19,23.5],"bounds":"s1.dbyo.friends-lead","requiredFlags":["story.s1.nozomi-park-tears.completed"],"excludedFlags":["story.s1.friends-visit.completed"],"dayAfterIfKnown":"story.s1.nozomi-park-tears.day",
+      "completedFlag":"story.s1.friends-bar-lead.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-friends-bar-lead.yarn","destination":"s1.home.friends-visit",
+      "dialogueArchive":{"path":"data/SCENE/02/STREAM/SA1018.AFS","sha256":"325085b66d5551c12767813e8a63d0695aab4b8e71fd0a9497924947eb7ac377"},
+      "nativeSources":[{"role":"original-bar-controller","locator":"disc2/SCENE/02/DBYO/MAPINFO.BIN#0x1ab44","sha256":"0175b8e5871759838f9304199824f1aa44f595116de73b85be352612229b5e15"}],
+      "summary":"At Bar Yokosuka, Akemi tells Ryo that Fuku called and his friends are waiting at home.",
+      "provenance":"Original SA1018 voices in DBYO controller 0x1ab44's order, followed by its original JOMO map transition. Private cast, held poses, camera, home arrival and personal eligibility are authored approximations. The home visit remains independently available."
+    },
+    {
+      "id":"friends-visit","disc":2,"actor":"AKIR","participants":["ITOH","SKRD"],"presentActors":[],"area":"JOMO","trigger":"enter","priority":260,
+      "title":"A visit from old friends","hours":[19,23.5],"bounds":"s1.jomo.friends-visit","requiredFlags":["story.s1.nozomi-park-tears.completed"],"dayAfterIfKnown":"story.s1.nozomi-park-tears.day",
+      "completedFlag":"story.s1.friends-visit.completed","effects":[],"voiceIds":[],"activities":["s1.jomo.friends-visit-arrival.scene","s1.jomo.friends-visit-departure.scene"],
+      "confirmation":{"accept":"Visit with your friends","decline":"Leave it for now"},
+      "nativeSources":[{"role":"original-friends-films","locator":"disc2/SCENE/02/JOMO/MAPINFO.BIN#TRCK/0xbd138,0xbe744","sha256":"6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe"}],
+      "summary":"Naoyuki and Ichiro visit Ryo at home because they are worried about him.",
+      "provenance":"Original 01FRE films, camera, movement, character animation and English audio. Naoyuki and Ichiro's displayed bodies are byte-identical to the original HOUMON scene archive. The preceding SA1018 bar lead is separately implemented. This independent home approach, confirmation, calendar gate and return position are authored approximations; the original native selector remains unreconstructed. An absent saved park day is tolerated for older saves."
+    },
+    {
+      "id":"eri-nozomi-park","disc":1,"actor":"TJMA","participants":["AKIR"],"presentActors":[],"area":"D000","trigger":"enter","priority":260,
+      "title":"Eri is worried about Nozomi","hours":[19,23],"earliestDate":"1986-12-26","bounds":"s1.d000.eri-nozomi-lead","requiredFlags":["story.s1.master-chen-mirror.completed"],"excludedFlags":["story.s1.nozomi-park-tears.completed"],
+      "completedFlag":"story.s1.eri-nozomi-lead.completed","effects":["notebook.s1.eri-nozomi-park"],"staging":"s1.d000.eri-nozomi-lead",
+      "voiceIds":["F1227B145","F1227A075","F1227B146","F1227A077","F1227B147","F1227B148","F1227B149","F1227B150"],
+      "nativeSources":[{"role":"original-eri-conversation","locator":"disc1/SCENE/01/STREAM/HUMANS.AFS#F1227","sha256":"c61b53f0784442505e491a2bba7dc8f608495922f69acfb253be8c10492570a7"}],
+      "summary":"Eri tells Ryo that Nozomi is upset at Sakura Park.",
+      "provenance":"Original F1227 Eri/Ryo voices and native Eri model. Contemporary guides place Eri near You Arcade after December 25 and 7 p.m. The mirror prerequisite, automatic approach, exact location, held poses, camera, once-only personal receipt and notebook are authored; native day and conversation selectors are not decoded. The lead is optional and does not gate Nozomi's separately triggered park visit."
+    },
+    {
+      "id":"nozomi-park-tears","disc":1,"actor":"AKIR","participants":[],"presentActors":[],"area":"JD00","trigger":"enter","priority":260,
+      "title":"Nozomi at Sakura Park","hours":[19,23],"earliestDate":"1986-12-26","bounds":"s1.jd00.nozomi-park-tears","requiredFlags":["story.s1.master-chen-mirror.completed"],
+      "completedFlag":"story.s1.nozomi-park-tears.completed","recordDays":["story.s1.nozomi-park-tears.day"],"effects":[],"voiceIds":[],"activities":["s1.jd00.nozomi-park-tears-1.scene","s1.jd00.nozomi-park-tears-2.scene"],
+      "confirmation":{"accept":"Talk with Nozomi","decline":"Leave it for now"},"timeTransition":"s1.nozomi.park-end",
+      "nativeSources":[{"role":"original-first-film","locator":"disc1/SCENE/01/DNOZ/SEQDATA2.BIN","sha256":"210cf85c321ba1e7265ae05af47ff402abb259b698fabc29d19bec0b71ee1d5e"},{"role":"original-second-film","locator":"disc1/SCENE/01/DNOZ/SEQDATA3.BIN","sha256":"ce0cc17dae8d19f50c39141a7d313ed9cb5c06640ba617623b2550b06152139f"}],
+      "summary":"Find Nozomi upset at Sakura Park and spend the evening with her.",
+      "provenance":"Original DNOZ films, source Nozomi model, scenery, face, hands, voices and BGM068. Guides agree on an evening after December 25; one describes a prior park confession and Phoenix Mirror requirement while another claims an alternative route. This approximation requires the Chen mirror meeting, but does not lock out players who missed the first conversation. Personal date, 23:30 ending, reachable park region and confirmation are authored gates; exact native selection and aftermath remain unresolved."
+    },
+    {
+      "id":"nozomi-park-confession","disc":1,"actor":"AKIR","participants":[],"presentActors":[],"area":"JOMO","trigger":"enter","priority":265,
+      "title":"Nozomi's park invitation","hours":[19,23],"bounds":"s1.jomo.nozomi-park-call","requiredFlags":["story.s1.master-chen-phone.completed"],"excludedFlags":["story.s1.bunkado-handguard.completed"],
+      "completedFlag":"story.s1.nozomi-park-confession.completed","recordDays":["story.s1.nozomi-park-confession.day"],"effects":[],"voiceIds":[],"yarnTemplate":"story-nozomi-park-confession.yarn",
+      "nativeSources":[{"role":"original-telephone-film","locator":"disc1/SCENE/01/JOMO/MAPINFO.BIN#TRCK/0xbd5c8","sha256":"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"},{"role":"original-park-first-film","locator":"disc1/SCENE/01/DNOZ/SEQDATA4.BIN","sha256":"2cb6480b7585a4006d55c778b6fea01e1b821e329346f6d5cdecbe7578887d2b"},{"role":"original-park-second-film","locator":"disc1/SCENE/01/DNOZ/SEQDATA5.BIN","sha256":"da6f69a9a4d4fd576dae55353cab272975e99e411da87c0cae2f80dd420b2032"}],
+      "summary":"Answer Nozomi's call and meet her in Sakura Park.",
+      "provenance":"Original 01SKIA home telephone film and two DNOZ park films, original cast, cameras, hands, speech and soundtrack. The guide places the call around 7 p.m. after contacting Chen, before the handguard, and the ending at 11:30 p.m. The approach, explicit answer choice and broader evening window are authored. Park geometry is privately leased without changing the persistent world; Ryo returns to the home telephone, an approximation of the original curfew handoff. Cancelling before completion saves no progress or clock change."
+    },
+    {
+      "id":"yamanose-football","disc":1,"actor":"AKIR","participants":["KOTA","YASU","KAYO"],"presentActors":[],"area":"JU00","trigger":"enter","priority":260,
+      "title":"The children's football game","hours":[8.5,19],"bounds":"s1.ju00.football","requiredFlags":["story.s1.first-kitten.completed"],"excludedFlags":["story.s1.kitten-adopted.completed"],"dayAfterIfKnown":"story.s1.first-kitten.day",
+      "completedFlag":"story.s1.football.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-yamanose-football.yarn",
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/E1014A.AFS","sha256":"465421694a9958fc3130e814385df295941d8f339ee0411ba2b571504a14838c"},
+      "nativeSources":[{"role":"original-football-event","locator":"disc1/SCENE/01/JU00/JQSO.PKS#DYNAMICS.DYNM,M_01113.MOTN,FBB0201G.CHRM","sha256":"956fd7b8441f3538c3a99a59aae840f522dc8238089ba202fc15d98d0b3db87f"},{"role":"original-event-voice-binding","locator":"disc1/SCENE/01/JU00/MAPINFO.BIN#0x52424","sha256":"3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d"}],
+      "summary":"Help the children by catching the football, or see the different outcome if Ryo misses it.",
+      "provenance":"Original JQSO character motions, ball model and E1014A English voices. The walkthrough identifies a daytime A-button catch on a later day. Road trigger, exact timing, staging, camera, ball path and simplified dialogue order are authored; the native DYNAMICS controller and weather gate are not decoded. The optional event does not block kitten naming or older saves. The outcome is saved only after the conversation finishes."
+    },
+    {
+      "id":"yamamoto-request","disc":1,"actor":"KAME","participants":["AKIR"],"presentActors":[],"area":"JD00","trigger":"enter","priority":250,
+      "title":"Help Kame find the Yamamotos","bounds":"s1.jd00.yamamoto-request","requiredFlags":["story.s1.first-dojo.completed"],"completedFlag":"story.s1.yamamoto-request.completed","effects":[],
+      "voiceIds":["E1044B001","E1044A001","E1044B002","E1044A002","E1044B003","E1044B004","E1044A004","E1044A005","E1044B006"],"staging":"s1.jd00.yamamoto-request",
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/E1044.AFS","sha256":"72cf8bdb9eda9e74afeedb649166e63963d01d150beacc01717dd0cdd999b2e2"},
+      "nativeSources":[{"role":"original-encounter-controller","locator":"disc1/SCENE/01/JD00/MAPINFO.BIN#0x613c0","sha256":"8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b"}],
+      "summary":"Meet Kame on the Sakuragaoka street and offer to find the Yamamoto house.",
+      "provenance":"Original E1044 voices in the MAPINFO-recorded order; original player/Kame positions and camera 6003. Held poses, selectable trigger bounds, prerequisite and subsequent personal park placement are approximations; detailed motion and native weather/date gates remain unverified."
+    },
+    {
+      "id":"yamamoto-nameplate","disc":1,"actor":"AKIR","participants":[],"presentActors":[],"area":"JD00","trigger":"use","object":"YAMN","objectLabel":"Yamamoto nameplate","priority":250,
+      "title":"Find the Yamamoto nameplate","bounds":"s1.jd00.yamamoto-nameplate","requiredFlags":["story.s1.yamamoto-request.completed"],"completedFlag":"story.s1.yamamoto-nameplate.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-yamamoto-nameplate.yarn",
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/E1044.AFS","sha256":"72cf8bdb9eda9e74afeedb649166e63963d01d150beacc01717dd0cdd999b2e2"},
+      "nativeSources":[{"role":"original-house-binding","locator":"disc1/SCENE/01/JD00/JD00.PKF#CHARA.CHRT/YAMN","sha256":"4cd7f4c4ca955b9d73abc6677d0eed59e5e0a448f0dd25cc19c7b62cbfd8f7c9"}],
+      "summary":"Inspect the original Yamamoto nameplate beside the park.",
+      "provenance":"Original E1044 discovery voice and YAMN house binding. The small selectable patch on the existing wall, reach and saved receipt are authored; no extra geometry or native inspection controller is claimed."
+    },
+    {
+      "id":"yamamoto-escort","disc":1,"actor":"KAME","participants":["AKIR"],"presentActors":[],"area":"JD00","priority":255,
+      "title":"Take Kame to the Yamamoto house","bounds":"s1.jd00.yamamoto-park","requiredFlags":["story.s1.yamamoto-request.completed","story.s1.yamamoto-nameplate.completed"],"completedFlag":"story.s1.yamamoto-escort.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-yamamoto-escort.yarn","destination":"s1.yamamoto.house",
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/E1044.AFS","sha256":"72cf8bdb9eda9e74afeedb649166e63963d01d150beacc01717dd0cdd999b2e2"},
+      "nativeSources":[{"role":"original-park-controller","locator":"disc1/SCENE/01/JD00/MAPINFO.BIN#0x5f2ac","sha256":"8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b"}],
+      "summary":"Return to Kame in Sakura Park and guide her to the house.",
+      "provenance":"Original E1044 confirmation and thanks; original park callback establishes her swing location. The waiting pose, walking route, camera, travel receipt and no time cutoff are authored approximations; no reward or native escort controller is claimed."
+    },
+    {
+      "id":"yamamoto-wait","disc":1,"actor":"KAME","participants":["AKIR"],"presentActors":[],"area":"JD00","priority":245,
+      "title":"Kame waits in Sakura Park","bounds":"s1.jd00.yamamoto-park","requiredFlags":["story.s1.yamamoto-request.completed"],"excludedFlags":["story.s1.yamamoto-nameplate.completed","story.s1.yamamoto-escort.completed"],"repeatable":true,"completedFlag":"story.s1.yamamoto-wait.unused","effects":[],
+      "voiceIds":["E1044B010","E1044B011","E1044A015","E1044A016","E1044B012","E1044B013"],
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/E1044.AFS","sha256":"72cf8bdb9eda9e74afeedb649166e63963d01d150beacc01717dd0cdd999b2e2"},
+      "summary":"Kame reminds Ryo about the Yamamoto house while she waits.","provenance":"Original E1044 dialogue; repeatable selection and fixed Story waiting placement are authored."
+    },
+    {
+      "id":"dojo-friendship-memory","disc":1,"actor":"AKIR","participants":["IWAO","JAKR"],"presentActors":[],"area":"JHD0","trigger":"use","object":"GART","objectLabel":"Dojo principles","priority":250,
+      "title":"Treasure your friends","bounds":"s1.jhd0.dojo-friendship-memory","requiredFlags":["story.s1.first-dojo.completed"],"completedFlag":"story.s1.dojo-friendship-memory.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-dojo-friendship-memory.yarn",
+      "nativeSources":[{"role":"original-dojo-memory","locator":"disc1/SCENE/01/JHD0/HIHY.PKS#SEQDATA5.AUTH","sha256":"6fee93fbde9d7f778b776ba2dfe2d1487e333d1cc72110cc9a23e0929481a705"}],
+      "summary":"Examine the dojo's principles to remember Iwao's lesson about friendship.",
+      "provenance":"Original HIHY film, voices, camera and character models. Banner pick, player reach, post-dojo prerequisite and once-only receipt are authored approximations; exact native eligibility is not recovered."
+    },
+    {
+      "id":"cherry-memory","disc":1,"actor":"AKIR","participants":["IWAO","JAKR"],"presentActors":[],"area":"JHD0","trigger":"enter","priority":245,
+      "title":"Training beneath the cherry tree","bounds":"s1.jhd0.cherry-memory","requiredFlags":["story.s1.first-allowance.completed"],"completedFlag":"story.s1.cherry-memory.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-cherry-memory.yarn",
+      "nativeSources":[{"role":"original-cherry-tree-memory","locator":"disc1/SCENE/01/YD01/SAKR.PKS#SEQDATA0.AUTH","sha256":"dbe1067dd36caa78e75afd9343af2cbd052efdc60eca3096116d371a0c2ef57d"}],
+      "summary":"Approach the cherry tree near the dojo to remember training with Iwao.",
+      "provenance":"Original SAKR film, camera, actors, voices, scenery and native hand callback. The reachable grounds region, first-allowance prerequisite and once-only Story gate are authored approximations; the original eligibility and cutoff remain unresolved."
+    },
+    {
+      "id":"childhood-meal","disc":1,"actor":"AKIR","participants":["IWAO","JAKR"],"presentActors":[],"area":"JOMO","trigger":"use","object":"sykj","objectLabel":"Dining table","priority":250,
+      "title":"A meal with Father","bounds":"s1.jomo.childhood-meal","requiredFlags":[],"completedFlag":"story.s1.childhood-meal.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-childhood-meal.yarn",
+      "nativeSources":[{"role":"original-room-and-scene","locator":"disc1/SCENE/01/JOMO/MAPINFO.BIN#TRCK/0x9d7cc","sha256":"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"}],
+      "summary":"Examine the family dining table to remember a meal with Iwao.",
+      "provenance":"Original A0122 timeline, voices, character and meal models, hand poses and recovered hand-held props. The table interaction, reach and once-only progress gate are authored approximations; native conditions and head-gaze targets remain unresolved."
+    },
+    {
+      "id":"iwao-farewell-letter","disc":1,"actor":"AKIR","participants":["IWAO"],"presentActors":[],"area":"JOMO","trigger":"use","object":"TEGA","objectLabel":"Iwao's letter","priority":250,
+      "title":"Iwao's farewell letter","bounds":"s1.jomo.iwao-farewell-letter","requiredFlags":[],"repeatable":true,
+      "completedFlag":"story.s1.iwao-farewell-letter.unused","effects":[],"voiceIds":[],"yarnTemplate":"story-iwao-farewell-letter.yarn",
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/01LET.AFS","sha256":"33cf5a1117487f81ae2ef438ecf589b7e28a83433279cb830607f3edc33db7e5"},
+      "nativeSources":[{"role":"original-room-and-letter","locator":"disc1/SCENE/01/JOMO/MAPINFO.BIN#0x8421c","sha256":"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"}],
+      "summary":"Examine the original letter on Iwao's desk and hear his original farewell. The reading can be repeated; only completing it records that it was read.",
+      "provenance":"Original 01LET English voices and subtitles. JOMO function 0x8421c's recorded dialogue region lists B006 then B001 through B005. TEGA is the captured original desk letter; reach, dialogue presentation, repeat policy and read receipt are authored. The exact native progression cutoff and paper/hand choreography remain unresolved."
+    },
+    {
+      "id":"daily-allowance","disc":1,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":200,
+      "title":"Ine-san's daily allowance","bounds":"s1.jomo.daily-allowance",
+      "requiredFlags":["story.s1.first-allowance.completed"],"repeatable":true,"completedFlag":"story.s1.daily-allowance.unused","effects":[],
+      "voiceIds":[],"yarnTemplate":"story-daily-allowance.yarn",
+      "nativeSources":[{"role":"original-foyer-envelope","locator":"disc1/SCENE/01/JOMO/MAPINFO.BIN","sha256":"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"}],
+      "summary":"Pass the foyer shoe cabinet to collect Ine-san's 500-yen daily allowance once per personal day.",
+      "provenance":"GameSpot guide p11 and original KFUT/FUTS5OKG placement identify the envelope and cabinet. The reachable region, unvoiced caption and direct collection are authored. First allowance and subsequent collections share the saved last-paid day; missed days do not accumulate. Exact native availability after harbor employment and historical saves without a paid-day receipt remain unresolved."
+    },
+    {
+      "id":"kitten-missing","disc":2,"actor":"MEGM","presentActors":[],"area":"JU00","priority":275,
+      "title":"Megumi's missing kitten","hours":[8.5,19],"bounds":"s1.ju00.first-kitten.shrine",
+      "requiredFlags":["story.s1.first-kitten.completed","story.s1.kitten-healed.completed","story.s1.master-chen-mirror.completed"],"excludedFlags":["story.s1.kitten-roof.completed","story.s1.kitten-adopted.completed"],
+      "completedFlag":"story.s1.kitten-missing.completed","effects":["notebook.s1.kitten-missing"],"voiceIds":[],"yarnTemplate":"story-kitten-missing.yarn",
+      "dialogueArchive":{"path":"data/SCENE/02/STREAM/E1041.AFS","sha256":"03e62416e5263752f58e43c91aba5bce17736a8dc4be51c674ef21509f276355"},
+      "nativeSources":[{"role":"original-missing-kitten-dialogue","locator":"disc2/SCENE/02/JU00/MAPINFO.BIN#0x4d868","sha256":"3a565890be5cf3a746119b63e8b5aac4cdc5396f8ea8ea3d0f35ba9fb79264c5"}],
+      "summary":"Megumi asks Ryo to look for her missing kitten in Yamanose.",
+      "provenance":"Original E1041 dialogue and name branches; JU00 MAPINFO lists the voices. The guide places the search during Hong Kong preparation. Click, progress gates, ordering and default-name handling are authored; native weather and exact eligibility are unresolved."
+    },
+    {
+      "id":"kitten-search-wait","disc":2,"actor":"MEGM","presentActors":[],"area":"JU00","priority":274,
+      "title":"Megumi waits for the kitten","hours":[8.5,19],"bounds":"s1.ju00.first-kitten.shrine",
+      "requiredFlags":["story.s1.kitten-missing.completed"],"excludedFlags":["story.s1.kitten-found.completed"],"repeatable":true,"completedFlag":"story.s1.kitten-search-wait.unused","effects":[],"voiceIds":[],"yarnTemplate":"story-kitten-search-wait.yarn",
+      "dialogueArchive":{"path":"data/SCENE/02/STREAM/E1041.AFS","sha256":"03e62416e5263752f58e43c91aba5bce17736a8dc4be51c674ef21509f276355"},
+      "nativeSources":[{"role":"original-missing-kitten-dialogue","locator":"disc2/SCENE/02/JU00/MAPINFO.BIN#0x4d817","sha256":"3a565890be5cf3a746119b63e8b5aac4cdc5396f8ea8ea3d0f35ba9fb79264c5"}],
+      "summary":"Megumi asks whether Ryo has found the kitten yet.","provenance":"Original name-specific E1041 waiting voices; repeatability, direct interaction and personal gates are authored."
+    },
+    {
+      "id":"kitten-found","disc":2,"actor":"AKIR","participants":["HRSK","MEGM"],"presentActors":[],"area":"JU00","trigger":"use","object":"CATM","objectLabel":"Kitten","priority":270,
+      "title":"Find Megumi's kitten","bounds":"s1.ju00.kitten-search","requiredFlags":["story.s1.kitten-missing.completed"],"completedFlag":"story.s1.kitten-found.completed","effects":["notebook.s1.kitten-found"],"voiceIds":[],"yarnTemplate":"story-kitten-found.yarn","destination":"s1.yamanose.kitten-reunion",
+      "dialogueArchive":{"path":"data/SCENE/02/STREAM/E1041.AFS","sha256":"03e62416e5263752f58e43c91aba5bce17736a8dc4be51c674ef21509f276355"},
+      "nativeSources":[{"role":"original-kitten-reunion-dialogue","locator":"disc2/SCENE/02/JU00/MAPINFO.BIN#0x4deec","sha256":"3a565890be5cf3a746119b63e8b5aac4cdc5396f8ea8ea3d0f35ba9fb79264c5"}],
+      "summary":"Find the kitten near the lower Yamanose stairs and return her to Megumi with Nozomi.",
+      "provenance":"Original E1041 discovery and name-specific reunion lines; source omits E1041F008 from the inventoried English archive. The guide identifies the lower stairs and laundry. Exact placement, camera, held poses, interaction and return transition are authored approximations; no cat pickup animation or native path is claimed."
+    },
+    {
+      "id":"kitten-nozomi","disc":2,"actor":"AKIR","presentActors":[],"area":"JU00","trigger":"use","object":"CATM","objectLabel":"Kitten","priority":245,
+      "title":"Ryo, Nozomi and the kitten","hours":[8.5,19],"bounds":"s1.ju00.first-kitten.shrine",
+      "requiredFlags":["story.s1.first-kitten.completed"],"excludedFlags":["story.s1.kitten-roof.completed","story.s1.kitten-adopted.completed"],
+      "dayAfterIfKnown":"story.s1.first-kitten.day","completedFlag":"story.s1.kitten-nozomi.completed","effects":[],"voiceIds":[],
+      "activities":["s1.ju00.kitten-nozomi.scene"],"confirmation":{"accept":"Spend time with the kitten","decline":"Leave it for now"},
+      "nativeSources":[{"role":"original-shrine-film","locator":"disc2/SCENE/02/JU00/CATA2.PKS#SEQDATA0.AUTH","sha256":"5d028873e0f399c4a0d5b829dc6bfee08e397ad71b7e91d2c9c57659bf292c34"},{"role":"original-scene-resource-binding","locator":"disc2/SCENE/02/JU00/MAPINFO.BIN#0x4d794","sha256":"3a565890be5cf3a746119b63e8b5aac4cdc5396f8ea8ea3d0f35ba9fb79264c5"}],
+      "summary":"Ryo spends a quiet moment with the kitten before Nozomi arrives.",
+      "provenance":"Original CATA2 film, 01MUT voices, camera and motions. JU00 MAPINFO binds the film to A1_RYODK effects and BGM018. Next-day availability, personal receipt, kitten interaction, confirmation and cutoff are authored approximations; original weather and trigger remain unverified. This is distinct from the missing-kitten search."
+    },
+    {
+      "id":"kitten-roof","disc":3,"actor":"MEGM","presentActors":[],"area":"JU00","priority":280,
+      "title":"The kitten on the shrine roof","hours":[8.5,19],"bounds":"s1.ju00.first-kitten.shrine",
+      "requiredFlags":["story.s1.first-kitten.completed","story.s1.kitten-healed.completed","story.s1.jimmy-interrogation.completed"],
+      "blockedWhilePending":[{"started":"story.s1.kitten-missing.completed","finished":"story.s1.kitten-found.completed"}],
+      "completedFlag":"story.s1.kitten-roof.completed","effects":[],"recordDays":["story.s1.kitten-roof.day"],"voiceIds":[],
+      "activities":["s1.ju00.kitten-roof.scene","s1.ju00.kitten-medicine.scene"],
+      "confirmation":{"accept":"Check on the kitten","decline":"Leave it for now"},
+      "nativeSources":[{"role":"original-roof-and-medicine-films","locator":"disc3/SCENE/03/JU00/CATA3.PKS#SEQDATA0.AUTH,SEQDATA1.AUTH","sha256":"087f76f8e8a8d8e2dc1dbc61cb3998bcb1f9c41eda133ee6a12667690fdb0642"}],
+      "summary":"After the kitten recovers and Jimmy is questioned, Megumi notices the kitten on the shrine roof and Nozomi arrives with medicine.",
+      "provenance":"Original CATA3 films, camera, motions, 01CJP voices and CHRT medicine prop. Shotgunnova's walkthrough places the visit after Jimmy's interrogation. Healed-kitten and interrogation gates, daytime hours, choice and direct Megumi interaction are authored approximations; native weather, dates and prior missing-kitten requirements are unresolved. No adoption or item is granted."
+    },
+    {
+      "id":"kitten-adoption","disc":1,"actor":"MEGM","presentActors":[],"area":"JU00","priority":290,
+      "title":"Megumi adopts the kitten","hours":[8.5,19],"bounds":"s1.ju00.first-kitten.shrine",
+      "requiredFlags":["story.s1.first-kitten.completed","story.s1.kitten-healed.completed","story.s1.kitten-roof.completed","story.s1.goro-job-lead.completed"],
+      "dayAfterIfKnown":"story.s1.kitten-roof.day","completedFlag":"story.s1.kitten-adopted.completed","effects":[],
+      "voiceIds":[],"yarnTemplate":"story-kitten-adoption.yarn",
+      "nativeSources":[{"role":"original-megumi-adoption-dialogue","locator":"disc3/SCENE/03/STREAM/HUMANS.AFS#F1120","sha256":"c61b53f0784442505e491a2bba7dc8f608495922f69acfb253be8c10492570a7"}],
+      "summary":"Megumi shares that her mother has agreed to let her keep the kitten, using the chosen name.",
+      "provenance":"Original F1120 adoption branches mention Mimi, Chibi and Tama; Shotgunnova's walkthrough describes Tama as the default if naming was missed. Personal prerequisites, next-day timing, approach and direct talk are authored approximations. The accepted name or default and adoption save only when the original-voiced conversation completes; cancellation saves nothing. The shrine-only personal Megumi representation disappears after adoption, without affecting shared residents."
+    },
+    {
+      "id":"kitten-after-recovery","disc":1,"actor":"MEGM","presentActors":[],"area":"JU00","priority":239,
+      "title":"Megumi — visit the kitten","hours":[8.5,19],"bounds":"s1.ju00.first-kitten.shrine",
+      "requiredFlags":["story.s1.first-kitten.completed","story.s1.kitten-healed.completed"],"repeatable":true,
+      "completedFlag":"story.s1.kitten-after-recovery.unused","effects":[],
+      "voiceIds":["F1120B082","F1120B083","F1120A045","F1120B085","F1120A047","F1120B086","F1120A048","F1120B087"],
+      "summary":"An original-voiced, reward-free conversation with Megumi after the kitten's recovery.",
+      "provenance":"Original F1120 dialogue and subtitles. Selection as a repeatable post-recovery check-in is authored; it does not imply adoption or any further native outcome."
+    },
+    {
+      "id":"kitten-recovery","disc":2,"actor":"MEGM","presentActors":[],"area":"JU00","priority":270,
+      "title":"The kitten's recovery","hours":[8.5,19],"bounds":"s1.ju00.first-kitten.shrine",
+      "requiredFlags":["story.s1.first-kitten.completed"],"completedFlag":"story.s1.kitten-healed.completed","effects":[],
+      "voiceIds":[],"yarnTemplate":"story-kitten-recovery.yarn",
+      "nativeSources":[{"role":"original-recovery-film","locator":"disc2/SCENE/02/JU00/CATA2.PKS#SEQDATA3.AUTH","sha256":"5d028873e0f399c4a0d5b829dc6bfee08e397ad71b7e91d2c9c57659bf292c34"}],
+      "summary":"After two separate days of care, revisit the shrine the next day to see the original recovery scene.",
+      "provenance":"Original CATA2 film and voices. Two daily feedings, the following-day wait and Megumi click are an authored approximation; native health and trigger predicates remain unverified. Only completed presentation saves recovery."
+    },
+    {
+      "id":"kitten-feed","disc":1,"actor":"MEGM","presentActors":[],"area":"JU00","priority":260,
+      "title":"Care for the kitten","hours":[8.5,19],"bounds":"s1.ju00.first-kitten.shrine",
+      "requiredFlags":["story.s1.first-kitten.completed"],"excludedFlags":["story.s1.kitten-healed.completed"],"repeatable":true,
+      "completedFlag":"story.s1.kitten-feed.unused","effects":[],"voiceIds":[],"yarnTemplate":"story-kitten-feed.yarn",
+      "nativeSources":[{"role":"original-kitchen-objects","locator":"disc1/SCENE/01/JOMO/MAPINFO.BIN","sha256":"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"}],
+      "summary":"Offer owned kitchen food to the kitten once per personal day.",
+      "provenance":"Original kitchen food and kitten-care subject; the direct conversation, once-daily care rule, lines, tracked count and food consumption are authored. Acknowledgement atomically consumes only the chosen item and records care."
+    },
+    {
+      "id":"kitten-fish","disc":1,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"use","object":"knib","objectLabel":"Dried fish","priority":250,
+      "title":"Kitchen — dried fish for the kitten","bounds":"s1.jomo.kitten-fish",
+      "requiredFlags":["story.s1.first-kitten.completed"],"completedFlag":"story.s1.kitten-fish.completed","effects":[],
+      "items":[{"key":"kitten_dried_fish","quantity":1}],"voiceIds":[],"yarnTemplate":"story-kitten-food-pickup.yarn",
+      "authoredText":{"prompt":"There is some dried fish here. I could give it to the kitten.","confirm":"Take the dried fish","receipt":"I'll bring this to the kitten."},
+      "nativeSources":[{"role":"original-kitchen-objects","locator":"disc1/SCENE/01/JOMO/MAPINFO.BIN","sha256":"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"}],
+      "provenance":"Original knib kitchen placement and NIPK302G model; the choice, reusable inventory and once-only receipt are authored. No feeding or recovery is implied by pickup."
+    },
+    {
+      "id":"kitten-milk","disc":1,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"use","object":"kmil","objectLabel":"Milk","priority":250,
+      "title":"Kitchen — milk for the kitten","bounds":"s1.jomo.kitten-milk",
+      "requiredFlags":["story.s1.first-kitten.completed"],"completedFlag":"story.s1.kitten-milk.completed","effects":[],
+      "items":[{"key":"kitten_milk","quantity":1}],"voiceIds":[],"yarnTemplate":"story-kitten-food-pickup.yarn",
+      "authoredText":{"prompt":"There is some milk here. I could give it to the kitten.","confirm":"Take the milk","receipt":"I'll bring this to the kitten."},
+      "nativeSources":[{"role":"original-kitchen-objects","locator":"disc1/SCENE/01/JOMO/MAPINFO.BIN","sha256":"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"}],
+      "provenance":"Original kmil kitchen placement and MLKS301G model; the choice, reusable inventory and once-only receipt are authored. No feeding or recovery is implied by pickup."
+    },
+    {
+      "id":"kitten-check-in","disc":1,"actor":"MEGM","presentActors":[],"area":"JU00","priority":240,
+      "title":"Megumi — check on the kitten","hours":[8.5,19],"bounds":"s1.ju00.first-kitten.shrine",
+      "requiredFlags":["story.s1.first-kitten.completed"],"excludedFlags":["story.s1.kitten-healed.completed"],
+      "repeatable":true,"completedFlag":"story.s1.kitten-check-in.unused","effects":[],
+      "voiceIds":["F1120A001","F1120B001","F1120B002","F1120A002","F1120B003"],
+      "summary":"A short original-voiced check-in with Megumi while the kitten is recovering. Repeatable and reward-free.",
+      "provenance":"Original F1120 voices and subtitles. An authored repeatable fallback gives the personal shrine resident a conversation before or after naming; it does not feed the kitten, advance recovery or establish original selection predicates. The separately implemented naming route takes priority when eligible."
+    },
+    {
+      "id":"kitten-name","disc":1,"actor":"MEGM","presentActors":[],"area":"JU00","priority":250,
+      "title":"Megumi — name the kitten","hours":[8.5,19],"bounds":"s1.ju00.first-kitten.shrine",
+      "requiredFlags":["story.s1.first-kitten.completed"],"completedFlag":"story.s1.kitten-name.completed","effects":[],
+      "dayAfterIfKnown":"story.s1.first-kitten.day","voiceIds":[],"yarnTemplate":"story-kitten-name.yarn",
+      "nativeSources":[{"role":"original-megumi-naming-dialogue","locator":"disc3/SCENE/03/STREAM/HUMANS.AFS#F1120","sha256":"c61b53f0784442505e491a2bba7dc8f608495922f69acfb253be8c10492570a7"}],
+      "summary":"Talk with Megumi beside the shrine kitten and suggest Mimi, Chibi, Tama, or Sasuke. Her original response and the personal choice save only after the conversation finishes.",
+      "provenance":"Original F1120 voices and SRF subtitles supply all dialogue; the walkthrough places naming on a later daytime after the football event. A personal shrine placement, direct click and flag/date gates are authored adaptations. New saves wait until the next personal day; older completed saves lack a recorded day and remain eligible. The separately implemented optional football event is deliberately not a prerequisite; the later adoption conversation defaults an unnamed kitten to Tama. Sasuke is recorded only as a rejected suggestion. Cancellation leaves all naming outcomes unset."
+    },
+    {
       "id":"departure","disc":3,"actor":"AKIR","presentActors":[],"area":"MEND","trigger":"enter","priority":987,
       "title":"Sail to Hong Kong","bounds":"s1.mend.departure","requiredFlags":["story.s1.nozomi-amulet.completed","story.s1.chen-introduction-letter.completed"],
       "requiredItems":[{"key":"letter_of_introduction","quantity":1},{"key":"nozomi_amulet","quantity":1}],
@@ -501,7 +753,7 @@
       "summary":"Original picture-taking and Canada/keepsake films with a real apart/together choice between them. Final acknowledgement saves only this character's choice/notebook/meeting. No inventory-photo art, money or calendar change.",
       "requiredFlags":["story.s1.workday-three-morning.completed"],"completedFlag":"story.s1.nozomi-photos.completed","effects":["notebook.s1.nozomi-photos"],"voiceIds":[],"yarnTemplate":"story-harbor-photos.yarn",
       "nativeSources":[{"role":"original-nozomi-eri-photo-films","locator":"disc3/SCENE/03/MFSY/NZMPHOTO.PKS#SEQDATA1.AUTH,SEQDATA2.AUTH,M_01PHO.MOTN","sha256":"c1b2ba44ca7111fb9e85237a775b253c0bcef99e7a4bbb3ed3c64e00bc46be1e"}],
-      "provenance":"GameSpot p57: Eri takes two photos during third-day lunch; player chooses one, then learns Nozomi is going to Canada. Original 01PHO films end/start at the choice. Both authored choice branches reuse the same original continuation; native prop/model branching is not recovered. Chosen identity saves as a private flag after acknowledgement, not an invented alternate voice. Inventory photo art is unimplemented. Approach/hours, footage-matched prop pairing and photo-development timing are declared adaptations. No money, items or time jump."
+      "provenance":"GameSpot p57: Eri takes two photos during third-day lunch; player chooses one, then learns Nozomi is going to Canada. Original 01PHO films end/start at the choice. Both authored choice branches reuse the original continuation, swapping the original photo models in Ryo's and Eri's hands; the native choice callback is not recovered. Chosen identity saves as a private flag after acknowledgement, not an invented alternate voice. Inventory photo art is unimplemented. Approach/hours, footage-matched prop pairing and photo-development timing are declared adaptations. No money, items or time jump."
     },
     {
       "id":"workday-three-afternoon","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":650,
@@ -681,14 +933,15 @@
       "authoredText":{"success":"Finished the morning race. Time to start the day's deliveries.","failure":"I did not finish the course. Try the morning race again?"},
       "provenance":"Original MA00 three-lap course recovered from AI TASK positions; same checkpoint data drives exploration and server observation. Shared original forklift/physics/rendered race HUD. Server accepts only ordered gates reached while driving the assigned leased vehicle, after a three-second countdown. Completion is a course finish, not an asserted finishing rank. No collectible prize or wage is granted without rank evidence. Authored caption, forgiving time limit, 9am minimum work start and harbor return."
     },
-    {"id":"chicken-race","disc":3,"actor":"AKIR","participants":["SYZU","BIKA","BIKB"],"presentActors":[],"area":"MFSY","trigger":"enter","priority":430,"title":"Shozo — the chicken race","hours":[19,23],"bounds":"s1.mfsy.chicken-race","requiredFlags":["story.s1.forklift-training.completed"],"completedFlag":"story.s1.chicken-race.completed","effects":["notebook.s1.chicken-race"],"recordDays":["story.s1.chicken-race.day"],"voiceIds":[],"yarnTemplate":"story-chicken-race.yarn","authoredText":{"success":"The riders back down. Shozo is safe.","failure":"The riders got the better of you. Try the chicken race again?"},"nativeSources":[{"role":"original-introduction-and-riding-assets","locator":"disc3/SCENE/03/MFSY/RACE.PKS#SEQDATA1.AUTH,M_01CRA.MOTN,M_MBQC.MOTN","sha256":"3be01b130f22a0b19f3318e0d833200c92ab8b3a488581bdabf62fcea44156a4"}],"provenance":"GameSpot pp51-52: evening encounter after training by Hokuhoku Lunches; winning A Down Left Right. Original introduction cast/voices/motion/camera and riding/motorcycle assets. Moving QTE staging on a reviewed harbor pedestrian route, two-second windows, outcome captions and forgiving later-evening retry are adaptations; no native race course, sea-fall choreography, move reward, pay or time jump."},
+    {"id":"chicken-race","disc":3,"actor":"AKIR","participants":["SYZU","BIKA","BIKB"],"presentActors":[],"area":"MFSY","trigger":"enter","priority":430,"title":"Shozo — the chicken race","hours":[19,23],"bounds":"s1.mfsy.chicken-race","requiredFlags":["story.s1.forklift-training.completed"],"completedFlag":"story.s1.chicken-race.completed","effects":[],"recordDays":["story.s1.chicken-race.day"],"voiceIds":[],"dialogueArchive":{"path":"data/SCENE/03/STREAM/E1070.AFS","sha256":"91c15d618797a8f961f348300c89b386971a07bc917ef1fd2ab7f12d2020cd3d"},"yarnTemplate":"story-chicken-race.yarn","nativeSources":[{"role":"original-introduction-and-riding-assets","locator":"disc3/SCENE/03/MFSY/RACE.PKS#SEQDATA1.AUTH,M_01CRA.MOTN,M_MBQC.MOTN,M_DEQB.MOTN","sha256":"3be01b130f22a0b19f3318e0d833200c92ab8b3a488581bdabf62fcea44156a4"}],"provenance":"GameSpot pp51-52: evening encounter after training by Hokuhoku Lunches; A Down Left Right. Original introduction cast/voices/motion/camera, riding/motorcycle assets and E1070 result lines. Original result branches include win, draw and loss. Shotgunnova's walkthrough says about half the prompts can win; our two-hit win and one-hit draw are guide-informed approximations, not decoded native scoring. Moving QTE staging on a reviewed harbor pedestrian route, two-second windows and stationary outcome conversations are adaptations; no native race course, sea-fall choreography, move reward, pay or time jump."},
     {"id":"forklift-training","disc":3,"actor":"AKIR","presentActors":[],"area":"MFSY","trigger":"enter","priority":420,"title":"Mark — forklift practice","hours":[14,17],"bounds":"s1.mfsy.forklift-training","requiredFlags":["story.s1.harbor-job-hiring.completed"],"completedFlag":"story.s1.forklift-training.completed","effects":["notebook.s1.first-workday"],"recordDays":["story.s1.forklift-training.day"],"voiceIds":[],"challenge":"s1.mfsy.forklift-training","yarnTemplate":"story-forklift-training.yarn","nativeSources":[{"role":"original-instruction-context","locator":"disc3/SCENE/03/MFSY/MARU.PKS#SEQDATA1.AUTH","sha256":"a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b"}],"provenance":"GameSpot pp50-51: Mark teaches driving and crate handling before the first workday. Existing original forklift/crate assets and Havok driving; three server-validated lifted/carry/stable-drop deliveries in an authored outdoor loading pad. This condenses the original Warehouse No.3 interior practice until 5pm. No pay, quota bonus, native flag or free movement acknowledgement can count as success. Explicit choice, cancellation/retry and atomic saved 5pm/training-day/notebook. Original instruction film already played during hiring; no invented voices."},
     {"id":"goro-job-lead","disc":3,"actor":"AKIR","participants":["GORO"],"presentActors":[],"area":"MFSY","trigger":"enter","priority":390,"title":"Goro — a job at the harbor","hours":[8.5,20],"bounds":"s1.mfsy.goro-job-lead","requiredFlags":["story.s1.jimmy-interrogation.completed"],"completedFlag":"story.s1.goro-job-lead.completed","effects":["notebook.s1.harbor-job-promise"],"recordDays":["story.s1.harbor-job-promise.day"],"voiceIds":[],"activities":["s1.mfsy.goro-job-lead.scene"],"nativeSources":[{"role":"original-job-referral","locator":"disc3/SCENE/03/MFSY/GOROCOOP.PKS#SEQDATA1.AUTH","sha256":"23073336078302cec958cdedb84443428f1e6f64ca2126e311fd5dd7ea9312a1"}],"provenance":"GameSpot pp49-50 and original 01GOHA: Goro promises work and asks Ryo to meet tomorrow at noon by Warehouse No.1's big blue door. Authored approach around the original opening pose; guard/foreman inquiries are optional guidance. Actual personal promise day and notebook settle only after the original film completes or is explicitly skipped."},
     {"id":"goro-job-appointment","disc":3,"actor":"AKIR","participants":["GORO","HINA"],"presentActors":[],"area":"MFSY","trigger":"enter","priority":400,"title":"Goro and Mai — Alpha Trading appointment","hours":[12,17],"bounds":"s1.mfsy.goro-job-appointment","requiredFlags":["story.s1.goro-job-lead.completed"],"dayAfter":"story.s1.harbor-job-promise.day","completedFlag":"story.s1.goro-job-appointment.completed","effects":["notebook.s1.alpha-trading-appointment"],"voiceIds":[],"activities":["s1.mfsy.goro-job-appointment.scene"],"nativeSources":[{"role":"original-job-appointment","locator":"disc3/SCENE/03/MFSY/MGOR.PKS#SEQDATA0.AUTH","sha256":"7feb53502a9325de4ffaa6539d38b9d2d7adb4d431285339035fa25057ca8ee6"}],"provenance":"Original 01GORA and GameSpot p50: Goro/Mai direct Ryo to Yada at Alpha Trading at 2pm. Next personal day, noon to 5pm; later days remain eligible if missed. Original voices, bodies and cameras; DOOR/HAKO remain unmapped references. No hiring, training or pay yet."},
     {"id":"harbor-job-hiring","disc":3,"actor":"AKIR","participants":["TMRA","MARK"],"presentActors":[],"area":"MFSY","trigger":"enter","priority":410,"title":"Alpha Trading — Yada hires Ryo","hours":[14,17],"bounds":"s1.mfsy.harbor-job-hiring","requiredFlags":["story.s1.goro-job-appointment.completed"],"completedFlag":"story.s1.harbor-job-hiring.completed","effects":["notebook.s1.harbor-job-training"],"voiceIds":[],"confirmation":{"accept":"Meet Yada about the job","decline":"Leave it for now"},"optionSelections":[0],"activities":["s1.mfsy.yada-job-interview.scene","s1.mfsy.mark-job-introduction.scene"],"nativeSources":[{"role":"original-hiring-and-introduction","locator":"disc3/SCENE/03/MFSY/MARU.PKS#SEQDATA0.AUTH,SEQDATA1.AUTH","sha256":"a49e67dfd7f7655755396f33690e0840d94177cf181c46f16052e2cd866e975b"}],"provenance":"GameSpot pp50-51 and original 01MAK: Yada hires Ryo and introduces Mark outside. Explicit approach/choice outside Alpha Trading; original office map privately loaded during interview. Forgiving 2pm-5pm appointment on later days. Both films must be acknowledged before saving hiring. Worker model associations and unmapped door motion are adaptations. Does not complete forklift training, advance the workday or award salary."},
     {"id":"jimmy-chase","disc":2,"actor":"AKIR","participants":["JIMY"],"presentActors":[],"area":"D000","trigger":"enter","priority":370,"title":"Asia Travel — catch Jimmy","bounds":"s1.d000.jimmy-chase","requiredFlags":["story.s1.chai-arcade.completed"],"completedFlag":"story.s1.jimmy-chase.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-jimmy-chase.yarn","destination":"s1.dobuita.asia-interrogation","nativeSources":[{"role":"original-chase-films","locator":"disc2/SCENE/02/D000/CTERMO1.PKS#SEQDATA3.AUTH,SEQDATA1.AUTH,SEQDATA2.AUTH","sha256":"af1eaba80d5e541628a7c857580da821cda22ccf6d7476e2876e83287c2bdc6f"}],"provenance":"GameSpot pp47-48: knock at closed Asia, chase Left Right Left Right Left Right A Left Left Right Left Right A, capture then interrogation. Original opening/capture/escape cast, cameras, body motion and voices. Running corridor comes from original MTRI civilian road waypoints, not native Jimmy DYNAMICS; generic running and two-second held input beats are adaptations. Capture and escape use CARO101G from the original CTERBASE CHRT CAR_ binding. The original CTERST CHRT resolves the opening's DOR1 and DOR2 models; the separately placed exploration door is hidden only while the scene owns them. No ticket/refund or native flag guess. All thirteen actual inputs and acknowledged capture required before saved office return."},
     {"id":"jimmy-interrogation","disc":2,"actor":"AKIR","participants":["JIMY"],"presentActors":[],"area":"DAZA","trigger":"enter","priority":380,"title":"Asia Travel — the Mad Angels lead","bounds":"s1.daza.jimmy-interrogation","requiredFlags":["story.s1.jimmy-chase.completed"],"completedFlag":"story.s1.jimmy-interrogation.completed","effects":["notebook.s1.jimmy-mad-angels"],"voiceIds":[],"activities":["s1.daza.jimmy-interrogation.scene"],"nativeSources":[{"role":"original-interrogation","locator":"disc2/SCENE/02/ARAR/MAPINFO.BIN#AUTH/0xaa6c/A0174","sha256":"e5adb7020c8c0704316adc482881b77ce9660f59c97f946ab2735e8ac9612c98"},{"role":"original-english-voices","locator":"disc3/SCENE/03/ARAR/A0174.AFS","sha256":"ea45785153858b21fc78df9aee666252aadb6cabb8682bc2e7e8c862576307c2"}],"provenance":"Original A0174 explains the agency's bankruptcy, worthless Philippines offer and Mad Angels extorting harbor workers. Exact original actors, movement, cameras and English voices, using byte-identical Disc 2 presentation and Disc 3 voice archive. Authored office trigger after earned capture; cancellation grants no clue and remains retryable. No Philippines item, refund or invented native flags."},
-    {"id":"chai-arcade","disc":2,"actor":"AKIR","participants":["CHAI"],"presentActors":[],"area":"DGCT","trigger":"enter","priority":350,"title":"You Arcade — Chai and the Hong Kong ticket","hours":[12,24],"bounds":"s1.dgct.chai-arcade","requiredFlags":["story.s1.jimmy-morning-call.completed"],"completedFlag":"story.s1.chai-arcade.completed","effects":["notebook.s1.chai-asia-travel"],"voiceIds":[],"combat":"s1.dgct.chai-arcade","yarnTemplate":"story-chai-arcade.yarn","nativeSources":[{"role":"original-arcade-cinematics","locator":"disc2/SCENE/02/GMCT/MAPINFO.BIN#AUTH/0x5edc/0x13ce0/0x16a9c","sha256":"1a63b5c07521fc8c9f3d8c734e1ec1336ef3d7f610fce6fc16c82eb1e4d1ce91"}],"provenance":"GameSpot pp46-47: noon arcade ambush; both actual victory and knockout continue toward Asia Travel, but defeat sends Ryo home to rest until the next day. Original A0172 introduction/victory and A0172A Fuku rescue with exact cast/voices/cameras. Real server-controlled combat distinguishes knockout from timeout/network failure; the latter cannot advance the story. Original introduction ending poses and shared basic fighting rules; combat balance, forgiving later-noon admission, fixed cabinet, omitted ticket/finger callbacks and condensed offscreen rest are declared adaptations. No refund, new ticket, item deletion or native flag guess. Outcome, notebook and any loss date/destination settle together after their ending is acknowledged."},
+    {"id":"chai-arcade","disc":2,"actor":"AKIR","participants":["CHAI"],"presentActors":[],"area":"DGCT","trigger":"enter","priority":350,"title":"You Arcade — Chai and the Hong Kong ticket","hours":[12,24],"bounds":"s1.dgct.chai-arcade","requiredFlags":["story.s1.jimmy-morning-call.completed"],"completedFlag":"story.s1.chai-arcade.completed","effects":["notebook.s1.chai-asia-travel"],"voiceIds":[],"combat":"s1.dgct.chai-arcade","yarnTemplate":"story-chai-arcade.yarn","nativeSources":[{"role":"original-arcade-cinematics","locator":"disc2/SCENE/02/GMCT/MAPINFO.BIN#AUTH/0x5edc/0x13ce0/0x16a9c","sha256":"1a63b5c07521fc8c9f3d8c734e1ec1336ef3d7f610fce6fc16c82eb1e4d1ce91"}],"provenance":"GameSpot pp46-47: noon arcade ambush; both actual victory and knockout continue toward Asia Travel, but defeat sends Ryo home to rest until the next day. Original A0172 introduction/victory and A0172A Fuku rescue with exact cast/voices/cameras. Client combat distinguishes knockout from timeout/network failure; the latter cannot advance the story. Original ticket model follows Chai's hand on an authored timing and grip; exact finger/bite callbacks remain unknown. Original introduction ending poses and shared basic fighting rules; combat balance, forgiving later-noon admission, fixed cabinet and condensed offscreen rest are declared adaptations. No refund, new ticket, item deletion or native flag guess. Outcome, notebook and loss destination settle after the ending; the separately acknowledged A0173 recovery advances the personal date."},
+    {"id":"chai-home-recovery","disc":2,"actor":"AKIR","participants":["FUKU"],"presentActors":[],"area":"JOMO","trigger":"enter","priority":345,"title":"Fuku-san helps Ryo recover","summary":"Original bedroom recovery after a newly acknowledged arcade knockout; rest advances only after the film.","bounds":"s1.jomo.chai-home-recovery","requiredFlags":["story.s1.chai-recovery.pending","story.s1.chai-arcade.lost"],"completedFlag":"story.s1.chai-recovery.completed","effects":[],"voiceIds":[],"yarnTemplate":"story-chai-home-recovery.yarn","nativeSources":[{"role":"original-recovery-cinematic","locator":"disc2/SCENE/02/JOMO/MAPINFO.BIN#AUTH/0xb3634/A0173","sha256":"6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe"}],"provenance":"Original A0173 shows Fuku tending Ryo and telling him to rest. After the real arcade knockout, an authored pending receipt starts this scene at the existing bedside arrival; acknowledgement advances the personal clock to the following morning and clears the pending receipt. Cancelled playback changes neither clock nor completion. Older loss saves lack the pending receipt and do not repeat or gain an extra day."},
     {"id":"jimmy-night-dream","disc":2,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"enter","priority":330,"title":"Sleep — the girl in the snow","hours":[20,24],"bounds":"s1.jomo.jimmy-night-dream","requiredFlags":["story.s1.boat-ticket-collection.completed"],"excludedFlags":["story.s1.jimmy-morning-call.completed"],"sameDayAs":"story.s1.jimmy-promise.day","completedFlag":"story.s1.snow-dream.completed","effects":[],"voiceIds":[],"confirmation":{"accept":"Sleep until tomorrow","decline":"Stay awake"},"optionSelections":[0],"activities":["s1.jomo.snow-dream.scene"],"timeTransition":"s1.wait.morning","destination":"s1.home.bedroom-morning","nativeSources":[{"role":"original-snow-dream","locator":"disc2/SCENE/02/JOMO/KKYC.PKS#SEQDATA2.AUTH","sha256":"cbe0d96e6530d185ecaee204d74bad93511bbd4584bbec05effed7eb213b93c3"}],"provenance":"GameSpot guide pp45-46: after Jimmy's promise, Ryo dreams of a girl praying in snow and receives the call the next morning. Reuse original KKYC. Optional explicit bedside sleep after 20:00 on the promise day; next-day 08:30 and established bedside arrival settle together after presentation. Ordinary waiting may bypass the dream without blocking the call; no weather or public clock mutation."},
     {"id":"jimmy-morning-call","disc":2,"actor":"AKIR","participants":["FUKU","JIMY"],"presentActors":[],"area":"JOMO","trigger":"enter","priority":340,"title":"Jimmy calls — meet at You Arcade","bounds":"s1.jomo.jimmy-morning-call","requiredFlags":["story.s1.boat-ticket-collection.completed"],"dayAfter":"story.s1.jimmy-promise.day","completedFlag":"story.s1.jimmy-morning-call.completed","effects":["notebook.s1.jimmy-arcade-appointment"],"voiceIds":[],"activities":["s1.jomo.jimmy-morning-call.scene"],"nativeSources":[{"role":"original-cinematic","locator":"disc2/SCENE/02/JOMO/MAPINFO.BIN#AUTH/0x9d7dc/A0169","sha256":"6a4e6e8d8e71aa450fef6922ebe0036776a94cb498710a562e4418a9338037fe"}],"provenance":"Original A0169 voices explicitly identify Jimmy and the noon You Arcade appointment. GameSpot pp45-46 supplies next-morning order. Original Ryo/Fuku body motions, cameras and twelve voice lines; Jimmy remains a remote voice. Authored foyer approach triggers on any later personal day, so missing the exact morning cannot strand progress. No ticket, charge, forced date jump or arcade victory. Original phone is borrowed; receiver/finger callbacks remain a presentation limitation."},
     {"id":"nozomi-boat-lead","disc":2,"actor":"HRSK","area":"D000","priority":300,"title":"Nozomi — a cheaper way to Hong Kong","requiredFlags":["story.s1.fuku-travel-funds.completed"],"completedFlag":"story.s1.nozomi-boat-lead.completed","effects":["notebook.s1.boat-fares"],"voiceIds":["F1239A062","F1239B071","F1239A063","F1239B072","F1239A065","F1239B073","F1239A066","F1239B074","F1239A067","F1239B075","F1239A068","F1239B076","F1239A069","F1239B077","F1239B078","F1239A070"],"provenance":"GameSpot guide p44 identifies Nozomi as the direct cheaper-boat lead. Exact contiguous HRSK HUMANS exchange F1239A062 through A070, with original voices. Conversation gestures/facing use the existing ordinary dialogue primitive; its roughly 70,000 yen line is original dialogue, not a live balance or reward."},
@@ -904,7 +1157,7 @@
     {
       "id":"harbor-bus","actor":"AKIR","presentActors":[],"area":"D000","trigger":"use","object":"BUS_","priority":210,
       "title":"Bus to New Yokosuka Harbor","bounds":"s1.d000.harbor-bus",
-      "requiredFlags":["story.s1.amihama-directory.completed"],"completedFlag":"story.s1.harbor-arrival.completed","effects":[],
+      "requiredFlags":["story.s1.amihama-directory.completed"],"completedFlag":"story.s1.harbor-arrival.completed","effects":["story.s1.harbor-arrival-film.pending"],
       "activities":["s1.d000.harbor-bus.boarding"],"voiceIds":[],"destination":"s1.harbor.bus-arrival",
       "confirmation":{"accept":"Board the bus to Amihama","decline":"Stay in Dobuita"},"optionSelections":[0],
       "nativeSources":[{"role":"presentation-archive","locator":"disc1/SCENE/01/D000/BUSS.PKS#SEQDATA1.AUTH","sha256":"9a2dfb19a2f7d134ee0b046cfaa6802861590e3918e30fa918eff6809a5be323"}],

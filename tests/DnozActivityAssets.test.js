@@ -11,6 +11,7 @@ import { MotnLoader } from "../src/MotnLoader.js";
 import { Mt5Loader } from "../src/Mt5Loader.js";
 import { parseNativeHandRig } from "../src/NativeHandRig.js";
 import { extractNativeAseqCallbackHandPresentation } from "../tools/lib/NativeAseqCallbackPresentation.mjs";
+import { parseChrtSceneObjectBindings } from "../tools/lib/chrt_scene_object_bindings.js";
 import evidence from "../tools/evidence/dnoz-dedicated-native-callback-ir.json" with { type: "json" };
 
 const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
@@ -177,6 +178,28 @@ test("DNOZ hand rig topology matches both exact detailed-hand surfaces", async (
     scene.dispose();
     engine.dispose();
   }
+});
+
+test("Story park cast uses the DNOZ-bound Nozomi model and matching hand seams", async () => {
+  const map=fs.readFileSync("extracted_files/data/SCENE/01/DNOZ/MAPINFO.BIN"),chrs=map.indexOf("CHRS");
+  const binding=parseChrtSceneObjectBindings(map.subarray(chrs)).find(value=>value.actorTag==="HRSK");
+  assert.equal(binding?.model,"NZM_M");
+  const source=fs.readFileSync("extracted_files/data/SCENE/01/MODEL/CHARA/NZM_M.MT5");
+  const model=fs.readFileSync("play/assets/sakuragaoka/nozomi-park-story/NZM_M.CHRM");
+  assert.equal(sha256(model),sha256(source));
+  for(const variant of ["confession","tears"]){
+    const manifest=JSON.parse(fs.readFileSync(`play/assets/sakuragaoka/nozomi-park-story/${variant}.json`));
+    assert.equal(manifest.packageActors.HRSK.modelCode,binding.model);
+    assert.equal(manifest.handAssets.HRSK.bodyModelCode,binding.model);
+    assert.ok(manifest.activities.every(activity=>activity.browserIsolatedStage));
+  }
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  try{
+    const buffer=model.buffer.slice(model.byteOffset,model.byteOffset+model.byteLength);
+    const [root]=await new Mt5Loader(scene,{mirrorCharacterX:true,characterRigMode:"gpu"}).load(buffer,null);
+    for(const key of [-66,-65,-67])assert.ok(root._mt5Nodes.some(node=>(node.flag<<16>>16)===key&&node.model),`missing body seam ${key}`);
+    root.dispose(false,true);
+  }finally{scene.dispose();engine.dispose();}
 });
 
 test("both DNOZ scenes resolve every authored performance without fallback motion", () => {

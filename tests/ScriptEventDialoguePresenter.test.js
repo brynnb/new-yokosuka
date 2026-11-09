@@ -5,8 +5,17 @@ import { createScriptEventController } from "../play/scripts/ScriptEventControll
 import {
   createScriptEventDialoguePresenter,
   expandYarnSubstitutions,
+  resolveScriptEventSpeaker,
   scriptEventLinePresentation,
 } from "../play/scripts/ScriptEventDialoguePresenter.js";
+
+test("dialogue resolves a temporary staged cast without accepting unrelated speakers", () => {
+  const scene={actorDefinitions:[{actorCode:"BIKA",label:"Takashi Watanabe"}]};
+  const line=scriptEventLinePresentation({text:"BIKA: Back off.",metadata:["speaker:BIKA"]},code=>resolveScriptEventSpeaker(code,scene));
+  assert.equal(line.speakerLabel,"Takashi Watanabe");
+  assert.equal(resolveScriptEventSpeaker("BIKA"),null);
+  assert.equal(resolveScriptEventSpeaker("UNKNOWN",scene),null);
+});
 
 function element() {
   return {

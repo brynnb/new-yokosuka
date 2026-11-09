@@ -102,17 +102,33 @@ for (const route of spec.routes) {
     if(!/^[a-z][a-z0-9_]*$/.test(key)||!Number.isSafeInteger(quantity)||quantity<1)throw new Error(`Invalid inventory prerequisite in ${route.id}`);
     return {key,quantity};
   });
-  // Repeatability is for reviewed, reward-free room travel, not repeated quest
-  // payouts. One-way milestone gates would strand a player after returning.
-  if (route.repeatable && ((!route.destination && !route.shop) || route.items?.length || route.grantYen || route.spendYen || route.recordMinutes?.length || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length)) throw Error(`Unsafe repeatable route ${route.id}`);
+  // Ambient talks cannot settle effects. An explicitly authored repeatable
+  // template owns its transactional choices itself (for example, consuming a
+  // held item); it must not also declare an unconditional generated reward.
+  const ambientTalk=route.repeatable&&!route.destination&&!route.shop&&route.voiceIds.length>0&&!route.yarnTemplate&&!route.trigger;
+  const repeatableTemplate=route.repeatable&&!!route.yarnTemplate&&!route.destination&&!route.shop;
+  if (route.repeatable && ((!route.destination && !route.shop && !ambientTalk && !repeatableTemplate) || route.items?.length || route.grantYen || route.spendYen || route.recordMinutes?.length || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length || ((ambientTalk||repeatableTemplate)&&route.effects.length))) throw Error(`Unsafe repeatable route ${route.id}`);
   if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw Error(`Invalid Story destination ${route.id}`);
   const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...(route.excludedFlags||[]).map(flag=>`flag_set("${flag}")`), ...requiredItems.map(({key,quantity})=>`!has_item("${key}", ${quantity})`), ...(route.repeatable ? [] : [`flag_set("${route.completedFlag}")`])];
+  for(const pending of route.blockedWhilePending||[]){
+    if(![pending.started,pending.finished].every(flag=>/^story\.s1\.[a-z0-9.-]+$/.test(flag)))throw Error(`Invalid pending Story gate in ${route.id}`);
+    gates.push(`(flag_set("${pending.started}") && !flag_set("${pending.finished}"))`);
+  }
   if (route.hours) gates.push(route.hours[0] < route.hours[1]
     ? `(game_hour() < ${route.hours[0]} || game_hour() >= ${route.hours[1]})`
     : `(game_hour() < ${route.hours[0]} && game_hour() >= ${route.hours[1]})`);
   if(route.bounds)gates.push(`!actor_in_bounds("AKIR", "${route.bounds}")`);
+  if(route.earliestDate){
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(route.earliestDate))throw Error(`Invalid earliest Story date in ${route.id}`);
+    const milliseconds=Date.parse(`${route.earliestDate}T00:00:00Z`);
+    if(!Number.isFinite(milliseconds)||new Date(milliseconds).toISOString().slice(0,10)!==route.earliestDate)throw Error(`Invalid earliest Story date in ${route.id}`);
+    gates.push(`game_day() < ${milliseconds/86400000}`);
+  }
   if(route.sameDayAs)gates.push(`game_day() != progress_value("${route.sameDayAs}")`);
   if(route.dayAfter && !route.legacyDateNotice)gates.push(`progress_value("${route.dayAfter}") == 0 || game_day() <= progress_value("${route.dayAfter}")`);
+  // Older saves may predate a milestone's date receipt. A missing date is not
+  // evidence that it happened today: allow those saves without inventing one.
+  if(route.dayAfterIfKnown)gates.push(`(progress_value("${route.dayAfterIfKnown}") > 0 && game_day() <= progress_value("${route.dayAfterIfKnown}"))`);
   if(route.minuteAfter){
     const {key,minutes}=route.minuteAfter;
     if(!/^story\.s1\.[a-z0-9.-]+$/.test(key)||!Number.isSafeInteger(minutes)||minutes<1||minutes>1440)throw Error(`Invalid elapsed-minute gate ${route.id}`);
@@ -135,7 +151,7 @@ for (const route of spec.routes) {
       if(!/^[a-z][a-z0-9_]*$/.test(key)||!Number.isSafeInteger(quantity)||quantity<1)throw new Error(`Invalid inventory effect in ${route.id}`);
       return `<<give_item "${key}" ${quantity}>>`;
     }),
-    ...[route.completedFlag,...route.effects].map(flag=>`<<set_flag "${flag}">>`)];
+    ...(ambientTalk||repeatableTemplate?[]:[route.completedFlag,...route.effects].map(flag=>`<<set_flag "${flag}">>`))];
   let body;
   if (route.shop) {
     if(!route.repeatable||!route.nativeSources?.length||!route.shop.length)throw Error(`Invalid scroll shop ${route.id}`);
@@ -165,7 +181,10 @@ for (const route of spec.routes) {
       .replaceAll("{{clockEffects}}",route.timeTransition?`<<advance_story_time "${route.timeTransition}">>`:"")
       .replaceAll("{{timeTransition}}", route.timeTransition || "{{timeTransition}}")
       .replaceAll("{{destination}}", route.destination || "{{destination}}")
-      .replaceAll("{{effects}}", effects.join("\n"));
+      // Preserve Yarn option/conditional indentation on every emitted effect,
+      // not just the first one. Otherwise a multi-effect receipt can escape
+      // its branch and make later choices unreachable.
+      .replace(/^([ \t]*)\{\{effects\}\}/gm, (_, indent) => effects.map(effect => `${indent}${effect}`).join("\n"));
     if (body.includes("{{")) throw new Error(`Unresolved Yarn template reference ${route.id}`);
   } else if(route.combat) {
     const dating=route.dayAfter ? `<<if progress_value("${route.dayAfter}") == 0>>\n${route.legacyDateNotice?`Ryo Hazuki: ${route.legacyDateNotice} #speaker:AKIR\n<<record_game_day "${route.dayAfter}">>\n<<jump Done>>`:'<<pass_trigger>>'}\n<<endif>>\n<<if game_day() <= progress_value("${route.dayAfter}")>>\n<<pass_trigger>>\n<<endif>>\n` : "";
@@ -222,8 +241,11 @@ for (const route of spec.routes) {
       body = `-> ${accept}\n    <<jump Present>>\n-> ${decline}\n    <<complete>>\n===\ntitle: Present\n---\n${body}`;
     }
   } else {
-    const begin=route.staging?`<<play_sequence "${route.staging}.start">>`:participants.map(actor=>`<<look_at_actor "${actor}" "AKIR">>`).join("\n");
-    const finish=route.staging?`<<play_sequence "${route.staging}.finish">>`:participants.map(actor=>`<<clear_actor_look "${actor}">>`).join("\n");
+    // AKIR is the target, not a scheduled resident that can look at himself.
+    // He is still a valid dialogue speaker, but cannot own an NPC facing lease.
+    const lookActors=[...new Set(participants.filter(actor=>actor!=="AKIR"))];
+    const begin=route.staging?`<<play_sequence "${route.staging}.start">>`:lookActors.map(actor=>`<<look_at_actor "${actor}" "AKIR">>`).join("\n");
+    const finish=route.staging?`<<play_sequence "${route.staging}.finish">>`:lookActors.map(actor=>`<<clear_actor_look "${actor}">>`).join("\n");
     body = `${begin}\n${lines.join("\n")}\n${finish}\n${effects.join("\n")}\n<<complete>>`;
   }
   // Yarn accepts anonymous lines, but our shared presenter requires character
@@ -246,9 +268,10 @@ for (const route of spec.routes) {
       flags: Object.fromEntries(route.requiredFlags.map(flag => [flag, true])),
       ...(requiredItems.length?{inventory:Object.fromEntries(requiredItems.map(({key,quantity})=>[key,quantity]))}:{}),
       actorPresence: Object.fromEntries((route.presentActors || participants).map(actor => [actor, true])),
-      ...((route.recordDays?.length||route.recordMinutes?.length||route.minuteAfter||route.combat||route.dayAfter||route.sameDayAs||route.timeTransition)?{gameDate:"1986-12-04"}:{}),
+      ...((route.earliestDate||route.recordDays?.length||route.recordMinutes?.length||route.minuteAfter||route.combat||route.dayAfter||route.dayAfterIfKnown||route.sameDayAs||route.timeTransition)?{gameDate:route.earliestDate||"1986-12-04"}:{}),
       ...(route.spendYen?{yen:route.spendYen.amount}:{}),
       ...(route.dayAfter?{progress:{[route.dayAfter]:Date.UTC(1986,11,3)/86400000}}:{}),
+      ...(route.dayAfterIfKnown?{progress:{[route.dayAfterIfKnown]:Date.UTC(1986,11,3)/86400000}}:{}),
       ...(route.sameDayAs?{progress:{[route.sameDayAs]:Date.UTC(1986,11,4)/86400000}}:{}),
       ...(route.minuteAfter?{progress:{[route.minuteAfter.key]:Date.UTC(1986,11,4,10)/60000-route.minuteAfter.minutes}}:{}),
       ...(route.bounds?{actorBounds:{AKIR:{[route.bounds]:true}}}:{}),
@@ -257,7 +280,7 @@ for (const route of spec.routes) {
       ...(route.activityResults?{activityResults:route.activityResults}:{}),
     } }],
   });
-  if (route.repeatable) imports.at(-1).Summary = route.shop ? 'Optional scroll purchases through existing transactional yen/inventory effects. Original prices, authored captions; buying does not learn a move. Already-owned scrolls cannot be bought again.' : "Repeatable, reward-free room travel with authored unvoiced confirmation. The existing server transaction saves one reviewed destination and idempotent notebook/milestones; leave or cancellation does not travel.";
+  if (route.repeatable && !route.summary && (route.shop || route.destination)) imports.at(-1).Summary = route.shop ? 'Optional scroll purchases through existing transactional yen/inventory effects. Original prices, authored captions; buying does not learn a move. Already-owned scrolls cannot be bought again.' : "Repeatable, reward-free room travel with authored unvoiced confirmation. The existing server transaction saves one reviewed destination and idempotent notebook/milestones; leave or cancellation does not travel.";
   if (route.grantYen) imports.at(-1).Summary = "Original presentation followed by once-only personal funds, calendar, location and notebook settlement through the existing server transaction. Cancelled/failed presentation settles nothing; reload cannot repeat the grant.";
 }
 fs.writeFileSync(path.join(server, "internal/officialscript/early_investigation.generated.json"), JSON.stringify(imports, null, 2) + "\n");

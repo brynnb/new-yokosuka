@@ -112,6 +112,14 @@ test("failed actor isolation releases the already acquired environment",async()=
   assert.ok(h.calls.includes("environment-release"));assert.equal(h.runtime.active,null);
 });
 
+test("actor-only isolation leaves the world visible and releases on cancellation",async()=>{
+  const h=harness(),root={enabled:true,isEnabled(){return this.enabled;},setEnabled(value){this.enabled=value;}};
+  h.runtime.currentMeshes=()=>[root];h.scene.isolateScheduledActors=true;
+  await h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);
+  assert.equal(root.enabled,true);assert.deepEqual(h.calls.find(c=>Array.isArray(c)),["retain","AKIR"]);
+  h.runtime.cancel(h.transaction);assert.ok(h.calls.includes("isolation-release"));assert.ok(!h.calls.includes("environment-release"));
+});
+
 test("cancelled standalone loading cannot acquire underneath another tableau",async()=>{
   const h=harness();h.scene.sceneObjects={BIK1:{model:"bike"}};let resolve,clears=0;
   h.runtime.createSceneObjects=()=>({load:()=>new Promise(r=>resolve=r),prepareActivity:()=>assert.fail("cancelled props acquired"),clear:()=>clears++});
@@ -134,6 +142,15 @@ test("archive-local tableau actors use their own lease and are disposed on relea
   await h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);
   assert.deepEqual(calls,["load","begin"]);
   h.runtime.cancel(h.transaction);assert.deepEqual(calls,["load","begin","end","clear"]);
+});
+
+test("archive-owned actors and actor isolation hold distinct suppression leases",async()=>{
+  const h=harness(),leases=new Set();h.scene.packageActors={CATM:{modelCode:"KC1_M"}};h.scene.isolateScheduledActors=true;
+  const acquire=owner=>{if(leases.has(owner))throw Error("duplicate owner");leases.add(owner);return()=>leases.delete(owner);};
+  h.runtime.acquireActorIsolation=owner=>acquire(owner);
+  h.runtime.createActorSet=()=>{let release;return{actors:{...h.runtime.actors,begin:owner=>(release=acquire(owner),true),end:()=>(release(),true)},load:async()=>{},clear:()=>{}};};
+  await h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);
+  assert.equal(leases.size,2);h.runtime.cancel(h.transaction);assert.equal(leases.size,0);
 });
 
 test("a cancelled archive actor load cannot acquire or clear the next scene",async()=>{

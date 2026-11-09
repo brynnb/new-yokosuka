@@ -1,0 +1,5 @@
+// The original film has no persistent side effects; completing it records
+// this Story character's receipt. Cancellation leaves the event available.
+<<start_activity "s1.jhd0.dojo-friendship-memory.scene">>
+{{effects}}
+<<complete>>

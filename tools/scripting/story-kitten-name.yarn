@@ -1,0 +1,46 @@
+<<look_at_actor "MEGM" "AKIR">>
+{{voice:F1120A003}}
+{{voice:F1120B004}}
+{{voice:F1120B005}}
+{{voice:F1120A004}}
+-> Mimi
+    {{voice:F1120A008}}
+    {{voice:F1120B008}}
+    {{voice:F1120B009}}
+    {{voice:F1120A009}}
+    {{voice:F1120B010}}
+    {{voice:F1120A010}}
+    {{voice:F1120A011}}
+    {{voice:F1120B011}}
+    <<set_flag "story.s1.kitten-name.mimi">>
+-> Sasuke
+    {{voice:F1120A012}}
+    {{voice:F1120A013}}
+    {{voice:F1120B015}}
+    {{voice:F1120B016}}
+    {{voice:F1120A014}}
+    {{voice:F1120B017}}
+    {{voice:F1120B018}}
+    {{voice:F1120B019}}
+    <<set_flag "story.s1.kitten-name.sasuke-rejected">>
+-> Chibi
+    {{voice:F1120A015}}
+    {{voice:F1120B020}}
+    {{voice:F1120B021}}
+    {{voice:F1120B022}}
+    {{voice:F1120A016}}
+    <<set_flag "story.s1.kitten-name.chibi">>
+-> Tama
+    {{voice:F1120A017}}
+    {{voice:F1120B023}}
+    {{voice:F1120B024}}
+    {{voice:F1120B025}}
+    {{voice:F1120A018}}
+    {{voice:F1120A019}}
+    {{voice:F1120B026}}
+    {{voice:F1120B027}}
+    {{voice:F1120A020}}
+    <<set_flag "story.s1.kitten-name.tama">>
+<<clear_actor_look "MEGM">>
+{{effects}}
+<<complete>>

@@ -1,0 +1,22 @@
+<<look_at_actor "MEGM" "AKIR">>
+{{voice:E1041A058}}
+<<if flag_set("story.s1.kitten-name.mimi")>>
+{{voice:E1041B012}}
+{{voice:E1041A059}}
+<<elseif flag_set("story.s1.kitten-name.chibi")>>
+{{voice:E1041B018}}
+{{voice:E1041A066}}
+<<else>>
+{{voice:E1041B019}}
+{{voice:E1041A067}}
+<<if !flag_set("story.s1.kitten-name.tama")>>
+<<set_flag "story.s1.kitten-name.tama">>
+<<set_flag "story.s1.kitten-name.completed">>
+<<endif>>
+<<endif>>
+{{voice:E1041B021}}
+{{voice:E1041B022}}
+{{voice:E1041A069}}
+<<clear_actor_look "MEGM">>
+{{effects}}
+<<complete>>

@@ -236,6 +236,33 @@ function packageForBank(motionPackages, bank) {
   return motionPackages;
 }
 
+// Some recovered films address a motion-bank binding that is not yet known.
+// An explicit, source-documented substitution can use another already-loaded
+// clip while preserving the original AUTH event and its timing. Never infer a
+// replacement or silently accept an unused rule: wrong bindings must remain
+// visible to the author rather than looking like successful reconstruction.
+export function applyAuthMotionSubstitutions(sequence, substitutions = []) {
+  if (!Array.isArray(substitutions)) throw new TypeError("AUTH motion substitutions must be an array");
+  const seen = new Set();
+  for (const rule of substitutions) {
+    if (!sequence.actors.includes(rule?.actorTag)
+      || ![rule.sourceBank, rule.sourceIndex, rule.targetBank, rule.targetIndex].every(Number.isSafeInteger)
+      || [rule.sourceBank, rule.sourceIndex, rule.targetBank, rule.targetIndex].some(n => n < 0)
+      || typeof rule.reason !== "string" || !rule.reason.trim()) throw new Error("Invalid authored AUTH motion substitution");
+    const key = `${rule.actorTag}:${rule.sourceBank}:${rule.sourceIndex}`;
+    if (seen.has(key)) throw new Error(`Duplicate authored AUTH motion substitution ${key}`);
+    seen.add(key);
+    if (!sequence.motions.some(m => m.actorTag === rule.actorTag && m.motionBank === rule.sourceBank && m.sequenceIndex === rule.sourceIndex)) {
+      throw new Error(`Unused authored AUTH motion substitution ${key}`);
+    }
+  }
+  return {...sequence, motions:sequence.motions.map(motion => {
+    const rule = substitutions.find(item => item.actorTag === motion.actorTag && item.sourceBank === motion.motionBank && item.sourceIndex === motion.sequenceIndex);
+    return rule ? {...motion, motionBank:rule.targetBank, sequenceIndex:rule.targetIndex,
+      authoredMotionSubstitution:{sourceBank:rule.sourceBank,sourceIndex:rule.sourceIndex,reason:rule.reason}} : motion;
+  })};
+}
+
 export function resolveAuthMotions(sequence, motionPackages) {
   return sequence.motions.map((event) => {
     const motionPackage = packageForBank(motionPackages, event.motionBank);

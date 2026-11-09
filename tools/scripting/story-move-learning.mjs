@@ -43,6 +43,7 @@ function region(route,worldId,position,radius=1.5){
   const [x,y,z]=position;
   regions.push({id:route.bounds,area:route.area,worldId,actor:'AKIR',playMode:'story',openingCompleted:true,
     requiredFlags:route.requiredFlags,completedFlag:route.completedFlag,
+    ...(route.trigger==='use'?{trigger:'use'}:{}),
     ...(route.hours?{hours:route.hours}:{}),
     min:[x-radius,y-.5,z-radius],max:[x+radius,y+2,z+radius],provenance});
 }
@@ -64,17 +65,24 @@ export const moveLearningRoutes=lessons.map((lesson,index)=>{
   region(route,lesson.worldId,lesson.position);
   return route;
 });
-// Approaches reuse reviewed rooms/shelf areas, not invented clickable props.
-for(const [id,area,worldId,position,requires] of [
-  ['twinBlades','JOMO','interior',[-22.1,0,-1.1],[]],
-  ['shadowReaper','JOMO','interior',[1.4,0,.5],[]],
-  ['stabArmor','YDB1','ydb1',[-6.2,0,3],['story.s1.basement-visited']],
+// JOMO's captured original scroll-shaped object is in Fuku's room; the rear
+// passage scroll sits inside a closed basket. Use the scroll or its basket
+// instead of interrupting every approach to an approximate room volume
+// (which also covered Iwao's unrelated desk).
+// The basement scroll remains an authored approach until its native object is
+// identified; do not invent a model association there.
+for(const [id,area,worldId,position,requires,object] of [
+  ['twinBlades','JOMO','interior',[-23.46,0,-4.275],[],'imk1'],
+  ['shadowReaper','JOMO','interior',[-5.98,0,2.6],[],'bkgu'],
+  ['stabArmor','YDB1','ydb1',[-6.2,0,3],['story.s1.basement-visited'],null],
 ]){
   const m=move(id),route=routeBase(`${m.slug}-scroll`,area,worldId,requires);
   Object.assign(route,{priority:optionalEntryPriority+moveLearningRoutes.length,title:`${m.location} — move scroll`,items:[{key:m.itemKey,quantity:1}],
     yarnTemplate:'story-scroll-pickup.yarn',authoredText:{prompt:`There is a move scroll here in ${m.location}.`,
       receipt:id==='stabArmor'?'This scroll is in Chinese. I should ask Master Chen to translate it.':`The ${m.name} scroll. I can read it in my inventory to learn the move.`}});
-  region(route,worldId,position,.9);moveLearningRoutes.push(route);
+  if(object)Object.assign(route,{trigger:'use',object,objectLabel:id==='shadowReaper'?'Basket':`${m.name} scroll`,
+    provenance:`${provenance} Object ${object} and its position are original JOMO placements; the correspondence to this scroll is inferred from its model and location, not a recovered native selection callback.`});
+  region(route,worldId,position,object?1.5:.9);moveLearningRoutes.push(route);
 }
 const translation=routeBase('stab-armor-translation','MS08','ms08',['story.s1.master-chen.completed']);
 Object.assign(translation,{title:'Master Chen — translate Stab Armor',priority:640,trigger:'automatic',

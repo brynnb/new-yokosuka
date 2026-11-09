@@ -231,6 +231,54 @@ documented `cmd/script-import -builtin` workflow with `jhd0-first-dojo` and
 `no_script` response to an automatic room-entry check may instead be the
 expected native-fallback signal, not an entry-trigger failure.
 
+## Subsequent daily allowance
+
+The [contemporary GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
+(printed p. 11) places Ine-san's ¥500 daily allowance on the foyer shoe
+cabinet. The original JOMO placement `KFUT` uses the same `FUTS5OKG` envelope
+model as the first allowance handover. An authored walking region near that
+cabinet now offers the daily payment after the first handover. The existing
+`story.s1.allowance.last-paid-day` receipt and the personal Story calendar
+prevent a second payment on the first day or after reload. The date and ¥500
+settle atomically after the unvoiced line is acknowledged; cancellation pays
+nothing. Missed days do not accumulate. Older saves without a day receipt can
+collect once and then receive the same ordinary protection.
+
+An isolated, hardware-rendered run with only the first allowance and its
+same-day receipt seeded walked into the foyer, checked no first-day payment,
+waited for tomorrow, cancelled and retried, reloaded, checked no duplicate and
+collected again the following day. The database contained two ¥500 ledger
+entries. Test positioning shortened the approach; movement through the region
+used normal controls. The walking volume and caption are authored; an actual
+hand pickup animation and exact native behavior after Ryo starts harbor work
+remain unverified. This adaptation currently continues the allowance during
+employment rather than inventing a cutoff. It does not change Free roam.
+
+## Iwao's farewell letter
+
+The original JOMO placement `TEGA` / `MALS530G` is the letter on Iwao's desk.
+The native JOMO dialogue region at function `0x8421c` lists `01LETB006`, then
+`01LETB001`–`01LETB005`; these are Iwao's original six English recordings and
+subtitles from hash-checked `01LET.AFS`. Examine the letter to hear them in
+that order. Completion records a personal read flag, but does not grant an
+inventory item or advance the main story; cancelling records nothing, and the
+letter can be reread. The proximity, dialogue overlay and durable receipt are
+authored adaptations; original close-up/paper/hand choreography and the exact
+native availability cutoff remain unresolved. The six extracted voice files
+must be published before any future deployment of this branch.
+
+An isolated rendered browser check with the initial allowance seeded picked
+the real desk letter, heard the first original line, cancelled, retried,
+completed and reread it, then reloaded and read it again. It checked the saved
+flag, unchanged inventory and money, and restored controls. A separate real
+Yarn check verifies all six voice IDs and their order. The test repositions
+near the desk and is not a full natural walk from the opening.
+
+The `01MEM` recordings listed elsewhere as a farewell-letter conversation
+actually mention Zhu, the mirror and Master Chen: they concern the later
+Chinese letter, not this desk letter. Do not use those lines as a fabricated
+follow-up to the farewell.
+
 ## Fuku-san: the first dojo visit
 
 Event ID: `s1.jhd0.first-dojo`; official Yarn import: `jhd0-first-dojo`.
@@ -389,7 +437,7 @@ does not establish working mouth animation or envelope presentation.
 | Jimmy chase / interrogation | Connected authored thirteen-input chase with original opening/capture/escape/interrogation. Rendered/full-stack decline, cancellation, wrong-input retry, all correct inputs, saved office return, interrogation cancellation/reload and notebook persistence pass. Moving road/camera beats and an original vehicle choice are adaptations; animated door props remain unmapped. |
 | Harbor hiring: Goro → next-day Goro/Mai → Yada → Mark | Connected browser/full-stack appointment dates, physical approaches, cancellation/retry, office presentation, hiring notebook and reload pass. Original cast, voices, motion and cameras are reused; private Alpha office scenery is scene-owned. No training or wages awarded by the films. See [harbor work](story-harbor-work.md). |
 | Forklift training | Connected browser/full-stack decline, cancellation/retry, three physical lift/carry/drop deliveries, saved notebook/day/17:00 finish, restored controls and reload pass. Reuses ordinary driving/cargo physics; no wages. The outdoor pad, three-crate quota and fifteen-minute limit are explicit adaptations. See [harbor work](story-harbor-work.md#forklift-practice). |
-| Evening chicken race / protect Shozo | Connected rendered/full-stack decline, original introduction cancellation/natural ending, failed-input retry, four accepted inputs, cancellation before settlement, earned notebook/day and saved reload pass. Original cast, bikes, riding motion, voices and intro camera are reused; the moving race route, outcome captions and approximate rider contact remain adaptations. See [harbor work](story-harbor-work.md#evening-chicken-race). |
+| Evening chicken race / protect Shozo | Seeded rendered/full-stack decline, original introduction cancellation/natural ending, continued prompts after misses, cancelled outcomes, and win/draw/loss original-voiced staged conversations pass. Separate saved notebook outcomes survive reload. Original cast, bikes, riding motion, voices and intro camera are reused; the moving route, outcome thresholds, staging and rider contact remain adaptations. See [harbor work](story-harbor-work.md#evening-chicken-race). |
 | First workday: morning forklift race | Connected rendered/full-stack boarding, cancellation/retry, three real driven laps/thirty-nine server-observed gates, acknowledged ending, saved notebook/date/harbor return and separate reload pass. Reuses the ordinary course, physics and HUD. Forgiving hours/limit and no opponent ranking/prizes are explicit adaptations. No wages or paid-shift completion. See [harbor work](story-harbor-work.md#first-working-morning-verified-race-and-saved-harbor-return). |
 | First workday: morning cargo → Mark's noon rescue | Connected rendered/full-stack five physical deliveries, cancellation/retry, acknowledged noon/notebook, reload, original Mark confrontation cancellation/natural ending, real three-opponent victory, original aftermath and saved clue/reload pass. No wages or afternoon completion. Outdoor dispatch pad, fixed five-crate batch, basic combat and anonymous third model donor are declared adaptations; ambient bystander choreography and bento identity remain limited. See [harbor work](story-harbor-work.md#first-morning-cargo-batch). |
 | First workday: afternoon cargo → attack → payday → Goro | Connected rendered/full-stack five more physical deliveries, real three-opponent win, 17:00 finish, original salary-motion cancellation/retry, exactly one ¥3,000 grant, Goro cancellation without undoing pay, natural original warning, saved chapter/notebook and reload without duplicate pay/replay pass. Shared original assets and authority are reused. Dispatch pad, fixed quota, adapted attack cast and no theft/extra-crate raise are declared adaptations; exact hand/note contact is not claimed. See [harbor work](story-harbor-work.md#first-afternoon-and-payday-verified-connected-continuation). |
@@ -456,7 +504,8 @@ bindings are in `play/assets/yamanose/cata1/manifest.json` and
 also distinguishes the optional kitten care from essential progression. Do not
 make the fish-only clue a mandatory gate for the entire investigation: other
 witnesses and direct approaches to Yamagishi must remain possible. Later kitten
-care/naming are still unimplemented. Sumiya now supplies the alternate witness
+care is still unimplemented; the separate naming conversation is described in
+[later kitten events](#later-kitten-events-source-leads). Sumiya supplies the alternate witness
 lead in the authored conversation catalog below. This first encounter is not
 proof of the later kitten systems.
 
@@ -765,8 +814,9 @@ NPC schedules. Mode/revision checks reject stale receipts, and monotonic clock
 checkpointing prevents an older location writer from undoing the jump.
 Cancellation and the decline option advance nothing. Reconnect restores the
 stored time. Waiting until an already-passed evening declines; morning means
-the next calendar day. This does not implement the original bed interaction,
-curfew destination, daily allowance or deadline scenes.
+the next calendar day. Waiting itself does not pay the separately implemented
+[daily allowance](#subsequent-daily-allowance), and does not implement the
+original bed interaction, curfew destination or deadline scenes.
 
 After waiting, these original-voiced talks use the existing investigation
 generator and multi-participant presenter:
@@ -1130,7 +1180,8 @@ personal NPC presence. They are not a recovered native business/selector table.
 The shared waiting catalog now also offers 10:00 and 13:00 targets, through the
 same confirm/cancel, atomic personal clock settlement and private NPC refresh
 as evening/morning waiting. This remains a wait-anywhere adaptation; it does not
-implement sleeping, curfew or daily allowance collection.
+implement sleeping or curfew, and does not itself collect the separate daily
+allowance.
 
 ### Verification and input ownership
 
@@ -1972,16 +2023,23 @@ exists; this connects it to authored progression, not its native bus controller.
 | Player setup | Confirm boarding; the existing cinematic owner stages original Ryo and bus poses. |
 | Characters | Ryo and the original bus-driver package actor. Other players are not moved. |
 | Props | Existing world bus, with original moving-door cues. Borrowed visibility/picking/door state is restored on cancellation. |
-| Action sequence | Board or stay → original boarding movie → one authoritative harbor arrival → load the shared harbor. |
+| Action sequence | Board or stay → original boarding movie → save and load the shared harbor → original harbor arrival movie. |
 | Dialogue | Authored confirmation labels; the chosen original boarding movie contains sound rather than spoken dialogue. |
-| Timing | Original 325-frame BUSS variant A. No inferred timetable or pretend wait for a scheduled bus. |
-| Camera shots | Original boarding camera. Harbor exploration starts at the established browser bus destination. |
+| Timing | Original 325-frame BUSS variant A, then the 1,730-frame YBUSFLY variant D. No inferred timetable or pretend wait for a scheduled bus. |
+| Camera shots | Original boarding and harbor arrival cameras. Exploration starts at the established browser bus destination. |
 | Weather and lighting | Preserve personal date/time and current environment policy; no forced calendar or weather jump. |
-| Audio | Existing BUSS original sound pack. No new voice lines or invented music. |
+| Audio | Original BUSS and YBUSFLY sound packs. No new voice lines or invented music. |
 | Interactive challenge | Boarding confirmation, not a QTE. Staying leaves progression unchanged. |
-| Completion effects | Atomically save `story.s1.harbor-arrival.completed` and the reviewed `mfsy` arrival pose. No reward, fare, inventory or native-bank mutation. |
+| Completion effects | Atomically save `story.s1.harbor-arrival.completed`, an arrival-film pending flag, and the reviewed `mfsy` arrival pose. The film records its own completion only after playing or an explicit skip. No reward, fare, inventory or native-bank mutation. |
 | Exit behavior | Shared New Yokosuka Harbor at `[130.5, 0, 140.6]`, yaw π, restored control. This spawn is an existing exploration adaptation, not an extracted original arrival shot. |
-| Skip, failure and replay | Cancelled/failed boarding remains retryable. A completed/explicitly skipped movie settles once. Loading failure after settlement retains the harbor save for reload. Completed boarding does not repeat. |
+| Skip, failure and replay | Cancelled/failed boarding remains retryable. An interrupted arrival film retains its pending receipt and can retry at the harbor stop; completed or explicitly skipped films do not repeat. A loading failure retains the saved harbor location for reload. Old saves that already arrived do not acquire a new pending receipt. |
+
+The arrival film uses the original camera, bus, actor trajectories, sound cues,
+and recovered bus-door callbacks. The original owner chooses between multiple
+arrival variants using a selector that has not yet been recovered; variant D
+is an explicit approximation. One harbor worker's motion-bank binding is also
+unresolved, so the worker uses the original walking motion already assigned to
+that same worker later in the film instead of an unrelated incompatible motion.
 
 The named `travel_story` effect uses the existing Yarn transaction, not a
 second travel save. The reviewed destination catalog supplies server-owned
@@ -1998,10 +2056,13 @@ browser-only transition from an exact original scene/area/entry request. Missing
 fields on a claimed native transition still fail; no original entry number is
 invented. Failed world loading cannot leave the world ready for gameplay.
 
-`NEW_YOKOSUKA_BUS_E2E=true` resumes the genuinely earned directory checkpoint.
+`NEW_YOKOSUKA_BUS_E2E=true` resumes a directory checkpoint.
 The test positions Ryo near the bus, then covers real bus picking, staying,
 cancellation/re-entry, the complete boarding movie, saved location/flag/balance,
-unlocked control and reload without replay. It does not establish a walkable
+the automatic arrival movie, explicit skip, unlocked control and reload without
+replay. The connected arrival test used an isolated character seeded with the
+directory milestone; natural arrival playback and interrupted playback/retry
+were also tested separately. It does not establish a walkable
 route to the bus from the tobacco counter; direct attempted paths encountered
 collision and need a separate navigation check.
 Inspected captures show Ryo inside the original bus and the rendered harbor.
@@ -2710,9 +2771,81 @@ the next connected chapter, its exact original assets, once-only funds and
 declared timing/staging adaptations. Its verification state is recorded in the
 checklist above rather than inferred from successful asset generation.
 
-## Optional Yamanose football encounter: source lead
+## Nozomi's park invitation
 
-The optional children’s football QTE is not implemented. Disc 1's original
+The optional invitation uses the original 700-frame `01SKIA` telephone film
+in disc 1 JOMO `MAPINFO.BIN` at `0xbd5c8`, with its original seven English voice
+lines and `M_01SKI.MOTN` performance. Original owner `0x6dcc4` selects native
+slot 44 and callback `0x6dfe4`; the shared telephone adapter restores the
+handset, including grip changes at frames 30, 180 and 399 and release at 655.
+Two original DNOZ films and their dedicated park geometry follow. The footage
+uses Nozomi's original `NZM_M` model and the source hands, faces and audio.
+
+The [walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404)
+places the call near 7 p.m. before the handguard, ending at 11:30 p.m. The
+Story version requires the Chen phone lead, uses a broader 7–11 p.m. window,
+and asks the player to answer near the telephone. It returns Ryo to that home
+position and updates the personal clock only after both films complete; the
+exact ringing window and curfew handoff are adaptations. An isolated rendered
+Story run with the Chen lead seeded exercised the actual approach, decline,
+call and park cancellation/retry, natural completion of both original films,
+23:30 settlement and reload. More than 20 original voice clips played and
+Nozomi's visible speech vertices changed; precise gaze remains unverified.
+
+## Nozomi's later park conversation
+
+The original DNOZ `SEQDATA2` and `SEQDATA3` films, English recordings,
+hand/face cues, BGM068, `NZM_M` model and dedicated park scenery play after an
+authored Sakura Park approach in personal Story. The server checks an evening
+on or after December 26 and the Master Chen mirror meeting. Guides agree on the
+calendar window but disagree about whether the earlier confession is necessary;
+the adaptation deliberately does not require it. Player confirmation, exact
+trigger volume and return position are adaptations; completion advances the
+personal clock to 11:30 p.m. and saves the event once.
+
+With the date and mirror meeting seeded, a rendered run checked normal park
+approach, decline, cancellation in each film, retry and unskipped completion.
+Original voices played and Nozomi's visible mouth vertices changed; clock,
+progress and gameplay controls survived completion and reload.
+
+The separate Eri conversation is available outside You Arcade after the mirror
+meeting, from December 26 during the evening, before the park visit. It uses
+Eri's original model and the original voiced F1227 conversation; the arcade
+approach, poses, camera and exact eligibility are approximations. Finishing it
+adds a notebook note without completing or requiring the park visit. A rendered
+test walked into the scene, exercised cancellation and retry, checked the saved
+note across reload, and continued into the park encounter on the same isolated
+character. The mirror prerequisite and personal date were seeded for that test.
+
+## Naoyuki and Ichiro visit Ryo
+
+The actual home visit is `01FRE`, not `01GAK`: the latter contains a separate
+conversation with Fuku. JOMO's original two `01FRE` films supply the camera,
+movement and body animation, with their matching English voices and sound bank.
+The displayed Naoyuki and Ichiro bodies are byte-identical to the originals in
+JOMO's `HOUMON.PKS`. Facial animation has not yet been verified.
+
+[A contemporary walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/15613)
+places the visit the evening after Nozomi's later park conversation, introduced
+at Bar Yokosuka. The original DBYO controller at `0x1ab44` plays the twelve
+`SA1018` lines involving Akemi, Saijo, Yoko and Ryo, then transitions to JOMO.
+The Story version uses the original recorded lines and same home transition,
+with private scene actors, authored poses, camera, entry bounds, calendar gate
+and home arrival. The home visit also remains independently available at an
+authored hallway approach; the exact native selector and scene choreography
+remain unresolved. Its confirmation and return pose are adaptations.
+
+Isolated rendered tests seeded the park milestone and previous day, then
+checked the voiced bar conversation, cancellation, retry, transfer home and
+following visit. The reviewed bar shot does not establish whether Yoko is
+visible from the held camera, and native changing gestures are not reproduced.
+A separate home test checked both original films, cancel/retry
+in either, normal full playback, original voices, unchanged inventory and money,
+restored controls and saved completion on reload.
+
+## Optional Yamanose football encounter
+
+Disc 1's original
 `SCENE/01/JU00/JQSO.PKS` (SHA-256
 `956fd7b8441f3538c3a99a59aae840f522dc8238089ba202fc15d98d0b3db87f`)
 contains `DYNAMICS.DYNM`, ball model `FBB0201G.CHRM` and motion bank
@@ -2723,7 +2856,236 @@ camera, trigger or audio. The archive contains no AUTH cinematic to reuse as a
 complete film.
 
 The [walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404)
-is a lead for the next-day encounter and catch/miss branches, not proof of exact
-native gates. Recover or deliberately author the missing staging and verify both
-outcomes in the rendered game before marking this event playable. The evidence
-above is retained so a future pass can resume without searching the disc again.
+identifies a next-day daytime encounter and an A-button catch with different
+success and failure outcomes. The Story implementation uses original E1014A
+voices, JQSO motions and ball model. A walkable road trigger, camera, positions,
+ball path, two-second input window, simplified voice order and omission of the
+weather gate are authored approximations, not decoded native behavior. The
+optional encounter does not block naming the kitten. The catch and miss have
+separate personal flags; cancellation saves neither. Original physics, exact
+contact and complete cinematic choreography remain unverified.
+
+## Later kitten events: source leads
+
+Original source inspection identifies separate scenes rather than one
+generic kitten film. Naming, feeding, recovery, the later roof/medicine
+films and adoption are connected to personal Story progress:
+
+- Disc 2 `JU00/CATA2.PKS` (`5d028873e0f399c4a0d5b829dc6bfee08e397ad71b7e91d2c9c57659bf292c34`), `SEQDATA3.AUTH`, is the 1,650-frame healed-leg encounter. The original `01CAT3.AFS` (`8bb32231ed5cfff895996d16d4267e02522e1fdff5a775392b439f397ee39b0f`) subtitles identify Yasuo and Kayoko celebrating the kitten's recovery. Its `CHARA.CHRT` binds `NBOX` to `DANM400G`; `M_01CAT.MOTN` is byte-identical to the first encounter's motion bank.
+- The same archive's `SEQDATA0.AUTH` is a distinct 1,617-frame shrine scene in which Ryo speaks to the kitten and Nozomi arrives. `JU00/MAPINFO.BIN` (SHA-256 `3a565890be5cf3a746119b63e8b5aac4cdc5396f8ea8ea3d0f35ba9fb79264c5`, record `0x4d794`) associates `01MUT`, `CATA2`, `BGM018.SND` and `A1_RYODK.SND`. The original `01MUT.AFS` provides twelve voiced lines. It is not the later missing-kitten search: the separate `E1041.AFS` has Megumi's disappearance report and the search/reunion dialogue. An isolated rendered run clicked the actual kitten, declined and cancelled before retrying the original film, heard its original voices and music, observed Nozomi's mouth vertices move, and verified the saved receipt after reload. Ryo, the kitten and Nozomi were inspected in rendered shots; detailed hand contact remains unverified. The next-day gate, interaction, confirmation and cutoff are authored, not recovered native eligibility. The pack's local runtime assets require publication before deployment.
+- Disc 3 `JU00/CATA3.PKS` (`087f76f8e8a8d8e2dc1dbc61cb3998bcb1f9c41eda133ee6a12667690fdb0642`) contains the 1,157-frame kitten-on-the-roof scene and the 870-frame Nozomi/medicine continuation. Their `01CJP.AFS` (`0288c4c5317409b3f9df94ee1b5aaf6f4772ea9c379400aba7e66b781fa31e29`) subtitles establish the subject of each. Its `CHARA.CHRT` binds `DRUG` to `NANHIL0G`.
+- The naming conversation is not those films: the Megumi `F1120` dialogue has original lines for Mimi, Sasuke, Chibi and Tama. She rejects Sasuke; the [walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404) says the others are accepted and places the optional encounter the following day after the football event. If it is missed, the guide says the name defaults to Tama. Our authored route offers those original voiced choices on a direct click; it records Sasuke only as rejected. The separately playable football event is not required for naming, and later adoption dialogue defaults an unnamed kitten to Tama.
+
+The first-kitten event now records its personal completion day; the naming
+route opens the following day. Older completed saves lack that receipt and are
+eligible without inventing a date. Megumi's authored daytime shrine resident
+is local to a Story viewer and uses her original standing idle. It does not
+change the shared scheduled NPC. A lower-priority original-voiced check-in is
+repeatable without progress or rewards, including on the first day. After a
+seeded dojo prerequisite, one isolated character completed the first kitten
+encounter, talked to Megumi twice that day, waited until the following morning,
+cancelled and retried naming, chose Tama, and reloaded. A separate old save
+without a first-visit date also passed. Real-Yarn checks cover all four
+suggestions and the rejection, date, mode, bounds and cancellation gates.
+The first visit also unlocks the original `knib` dried-fish and `kmil` milk
+models in the Hazuki kitchen as personal, one-time pickups. The normal
+inventory transaction saves one of each only after the choice is acknowledged;
+the original prop hides for that Story character and restores for other
+characters and Free roam. The milk is behind the original refrigerator door.
+On a later visit, talking to Megumi offers whichever food is held, consumes only
+the acknowledged choice and records one feeding on that personal day. A
+second same-day visit falls back to ordinary voiced conversation.
+
+After two feedings on separate personal days, visiting Megumi the following day
+offers the original recovery film. Only its acknowledged ending saves healing;
+leaving or cancelling remains retryable. Afterward, a repeatable voiced
+conversation keeps Megumi usable without asserting adoption. The two available
+foods, once-per-day rule, two-feeding threshold, next-day wait, confirmation
+and Megumi trigger are intentionally simple authored approximations, not
+recovered native health or trigger rules. There is no hand-to-kitten feeding
+animation, food shop or refill yet. The newly extracted
+post-recovery voices and the recovery-film assets are local runtime assets and
+must be verified and published before any future deployment of this branch.
+
+After recovery and Jimmy's interrogation, a daytime Story player can click
+Megumi and choose to watch the original CATA3 rooftop film followed by Nozomi's
+medicine scene. The original `SEQDATA0.AUTH` and `SEQDATA1.AUTH` supply the
+actors, movements and cameras, `01CJP.AFS` supplies 22 voices, and the original
+`CHARA.CHRT` binds Nozomi's `DRUG` prop to `NANHIL0G`. The exact weather gate,
+exact weather and original temporal eligibility are still unresolved. The two prerequisite flags, daytime hours and confirmation are
+explicit adaptations; completing both films sets one personal receipt and
+grants no item, money or adoption.
+
+The separate missing-kitten search uses the original name-specific `E1041.AFS`
+report and reunion dialogue. After recovery and the Chen mirror meeting, talking
+to Megumi records the search; the original kitten model moves locally to an
+authored position near the lower stairs and laundry described in the
+[walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/6804).
+Megumi's waiting dialogue remains available, and clicking the kitten stages
+Nozomi's discovery and a cut back to the shrine. Acknowledging the complete
+reunion returns Ryo there and records the result and notebook entry. Cancelling
+either scene leaves the kitten missing and the search retryable. An active
+search must finish before the rooftop event; a player who never starts the
+optional search is not blocked. The original E1041 selection program, exact
+weather and placement, meowing, pickup, walk back, camera and gestures are not
+recovered. The scene uses authored held poses and a cut, not a claimed native
+animation. `E1041F008` is referenced by the original controller but absent from
+the inventoried English audio archive, so it is not replaced with another voice.
+New local voice assets require publication before deployment.
+
+An isolated rendered run seeded through healing and Chen cancelled and retried
+the report, reloaded while the kitten was still missing, heard Megumi's
+name-specific reminder, clicked the kitten near the stairs, and inspected both
+staged views. Cancelling discovery or reunion left the search open; a completed
+retry saved the shrine return and notebook entry through another reload. The
+test uses repositioning to shorten travel and does not verify an unseeded
+walkthrough or every actor gesture.
+
+In an isolated rendered test seeded through healing and Jimmy's interrogation,
+a real Megumi click reached the event. Decline and cancellation during either
+film saved nothing; replay completed the second film and survived reload.
+Rendered frames showed the kitten on the roof and Nozomi holding the medicine;
+multiple original voice clips played, and Megumi's generic and Nozomi's
+body-matched detailed mouth vertices changed during speech. Money, inventory
+and movement controls were preserved. This does not prove exact native weather,
+all finger contacts or original music, nor an unseeded full playthrough. The
+new locally extracted assets require publication and verification before a
+future authorized deployment.
+
+After the roof visit and job lead, a daytime Story player can click Megumi on a
+later personal day to hear her original name-specific adoption conversation.
+Mimi, Chibi and Tama are preserved; if naming was missed or Sasuke was rejected,
+the conversation uses and records Tama. A saved roof date enforces the next-day
+wait; older saves without one remain eligible. Only completion records adoption.
+Megumi and the original kitten model then leave the shrine for that Story viewer,
+without changing other characters or Free roam; the box remains. The specific
+prerequisites, click, hours and day delay are approximations, not recovered native
+eligibility. A rendered isolated run seeded through healing, Jimmy and the job
+lead played the roof and medicine films, waited to the next day, heard the
+original default-name voice, cancelled and retried adoption, and checked shrine
+visibility and progress after reload. Separate rendered runs covered Mimi and a
+rejected-name fallback; Yarn tests also cover Chibi and old saves. These do not
+establish a complete unseeded playthrough. The new voice assets must be published
+and checked before deployment.
+
+The CATA2 recovery film is packaged through the shared AUTH pipeline with
+its original 20 voices, 22 effects, motion bank, camera, child models and
+kitten. A local rendered presentation-only review completed and separately
+cancelled the film, restoring control without changing saved progress; the
+source shot at frame 800 shows both children, Ryo and the kitten. A second
+rendered run observed both children's visible mouth geometry changing while
+their original voices played. Detailed hand and box interaction remain
+unverified. The source files and sound bank were hash checked. A subsequent
+isolated full-stack browser run, seeded only through the first encounter and
+naming, picked both real kitchen objects, declined and cancelled each pickup,
+reloaded their saved inventory and personal prop visibility, cancelled a
+feeding, fed on separate personal days, confirmed the same-day fallback,
+cancelled and retried the original recovery film, and verified natural ending,
+saved healing, reload and post-recovery voiced conversation. Test positioning
+shortened walking and a test travel call changed zones. The same run does not
+prove an entirely unseeded playthrough or native care rules.
+
+### Childhood meal memory
+
+The kitchen's original `sykj` meal object offers a Story-only, once-per-character
+memory after the opening. The interaction reach and once-only gate are an
+authored approximation; the original eligibility and cutoff are not recovered.
+Only successful completion records `story.s1.childhood-meal.completed`, so
+cancellation does not consume the memory. This does not affect Free roam or
+another player's kitchen.
+
+Disc 1 JOMO `MAPINFO.BIN` contains the exact slot-2 A0122 camera, movements and
+six voice cues at `0x9d7cc`. Its `NINJIN.PKS`/`.PKF` supply the young Ryo,
+Iwao, tableware, food and textures, and `COMMON01.PKS` supplies `M_0122.MOTN`.
+The source owner at `0x645f8` launches callback `0x64ca0`, whose hand poses and
+two hand-held objects are translated by the shared compilers. Setup `0x65cf6`
+hides the present-day meal; cleanup `0x65e72` restores it. The package leases
+that same object and restores it on completion or cancellation. Head-gaze
+targets, some native food-visibility changes and the associated music are not
+established; the scene must not be considered fully source-identical.
+
+In a rendered, isolated server/database run seeded through opening and first
+allowance, an actual pick of the kitchen model started the film; cancellation,
+prop restoration, retry, natural completion and saved receipt after reload
+passed. Screenshots show both actors and the original food; all six original
+voice elements emitted their browser `playing` event during natural playback.
+A separate fresh
+walkthrough has not been verified. Package assets are locally generated and
+must be verified and published before any future deployment.
+
+### Cherry-tree memory
+
+After the first allowance, entering the reachable grounds near the cherry
+tree offers the original SAKR training memory once per Story character. The
+entry volume, prerequisite and once-only receipt are authored approximations;
+the native trigger and cutoff have not been recovered. Only completion saves
+the receipt; cancellation remains retryable. Other players and Free roam do
+not receive this character's event.
+
+The shared SAKR pipeline supplies the original camera, movements, faces,
+native hand cues and A0128 dialogue. `build_cherry_memory_stage.mjs` reuses
+the exact `SAKR.PKS` maps and actors in an isolated cinematic lease while the
+player remains in JHD0, rather than switching the shared game world. The
+original YD01 preview and its packaged activity remain separate. The live
+outdoor sky and weather are retained; exact memory weather is not recovered.
+Package assets must be checked and published before any future deployment.
+
+In an isolated rendered run seeded through the first allowance, walking into
+the approach started the film. Cancellation left no receipt and retry worked;
+the original film then played to its natural ending, with multiple original
+voice elements reporting `playing`. The visible tree, actors and sky were
+inspected; the Story receipt survived reload, and the prior position,
+first-person view and movement controls were restored. This is not proof of a
+fresh end-to-end playthrough or of the original eligibility/weather rules.
+
+### Dojo friendship memory
+
+After the first dojo scene, using the original horizontal GART principles
+plaque offers the HIHY memory once per Story character. Its clickable reach,
+prerequisite and once-only receipt are approximations; original eligibility
+and cutoff remain unverified. It is a separate interaction from the two
+vertical KAK1/KAK2 scroll switches, and cancellation does not settle the event.
+
+The existing original HIHY package retains `SEQDATA5.AUTH`, `M_0125.MOTN`,
+Iwao's archive-local body, young Ryo's matching original model, 13 A0125B
+voices, faces, scroll and original camera. The native owner hides Fuku while
+the film plays; the shared actor suppression lease restores him afterward.
+The owner's separate `POK2`/`POS2` prop visibility cues and precise finger
+detail remain unverified. The personal room's original map remains in use;
+the native resource-selection pointers and gameplay-return lease are shared
+with the existing cutscene preview.
+
+A seeded, isolated rendered run clicked GART, inspected the plaque and actor
+frames, cancelled and retried, then played the original film to its end. Voice
+elements reported playback; the receipt survived reload and position, camera
+mode and movement restored. The scroll-puzzle flags, inventory and money were
+unchanged. This is not an unseeded full-playthrough or exact native gate proof.
+
+### Kame Shibukawa and the Yamamoto house
+
+In Story, approaching Kame in Sakuragaoka begins her request after the first
+dojo scene. She then waits personally beside the Sakura Park swing while the
+player finds and clicks the original Yamamoto nameplate. Returning to her
+starts the original-voiced conversation and an authored cut to their arrival
+outside the house. These flags and her temporary placement belong only to the
+individual character; Free roam and other players keep their own NPC view.
+Cancellation leaves each step retryable, and no money or item reward is added.
+
+Disc 1 JD00 `MAPINFO.BIN` owner `0x613c0` supplies the street positions and
+ECAM `6003` first camera key; Kame's original swing callback is `0x5f2ac`.
+JD00 `MAPINFO.BIN` SHA-256 is
+`8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b`.
+The original JD00 `YAMN` nameplate and 22 selected English voice lines from
+`E1044.AFS` are used. The original eligibility, weather/date cutoff, seated
+swing pose, detailed gestures and full walking route are not recovered. The
+approach volume, first-dojo gate, standing park pose and arrival cut are
+explicit approximations, not claims of native behavior.
+
+A rendered isolated run seeded through the first dojo crossed the street
+trigger, cancelled and retried it, clicked Kame and the actual nameplate,
+cancelled and retried both the sign and final encounter, and saved the
+completion and arrival location across reload. Captures of the encounter,
+sign and arrival were reviewed; inventory and money were unchanged. Test
+positioning shortened travel, so this is not an unseeded full playthrough.
+Voice files are locally generated runtime assets and must be published and
+verified with their manifest before a future authorized deployment.

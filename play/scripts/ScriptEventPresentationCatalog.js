@@ -34,6 +34,14 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ["s1.mfsy.harbor-bus-arrival.scene",{kind:"native-cutscene",area:"MFSY",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-harbor-bus-arrival",packageId:"harbor-bus-arrival",worldId:"mfsy",storyPresentation:true,
+      activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"YBUSFLY/SEQDATAD.AUTH"}}}}],
+  ...[["confession","4","5","JOMO","interior"],["tears","2","3","JD00","sakuragaoka"]].flatMap(([part,first,second,area,worldId])=>[first,second].map((file,slot)=>[
+    `s1.${area.toLowerCase()}.nozomi-park-${part}-${slot+1}.scene`,{kind:"native-cutscene",area,durableEffects:"forbidden",returnPlayerState:true,
+      cutscene:{id:`story-s1-nozomi-park-${part}-${slot+1}`,packageId:`nozomi-park-${part}`,worldId,storyPresentation:true,
+        activity:{slot,binding:{kind:"map-embedded-slot",activityId:`DNOZ/SEQDATA${file}.AUTH`}}}},
+  ])),
   ["s1.mend.ship-sailing.scene",{kind:"native-cutscene",area:"MEND",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-ship-sailing",packageId:"ship-sailing",worldId:"mend",storyPresentation:true,
       program:{programId:"story-s1-ship-sailing",entryFunction:"$activity-sequence",area:"MEND",worldId:"mend"}}}],
@@ -88,12 +96,22 @@ const ACTIVITIES = new Map([
     ["yada-job-interview","MARU/SEQDATA0.AUTH"],["mark-job-introduction","MARU/SEQDATA1.AUTH"],
     ["mark-lunch-intro","MIZUMARK/SEQDATA1.AUTH"],["mark-lunch-aftermath","MIZUMARK/SEQDATA2.AUTH"],
     ["mark-after-work-intro","BOKOMARK/SEQDATA2.AUTH"],["mark-after-work-aftermath","BOKOMARK/SEQDATA3.AUTH"],["mark-brother-explanation","BOKOMARK/SEQDATA4.AUTH"],
-    ["nozomi-photo-intro","NZMPHOTO/SEQDATA1.AUTH"],["nozomi-photo-ending","NZMPHOTO/SEQDATA2.AUTH"],
+    ["nozomi-photo-intro","NZMPHOTO/SEQDATA1.AUTH"],["nozomi-photo-ending-apart","NZMPHOTO/SEQDATA2.AUTH"],["nozomi-photo-ending-together","NZMPHOTO/SEQDATA2.AUTH"],
+    ["kitten-recovery","CATA2/SEQDATA3.AUTH","JU00","yamanose"],
+    ["kitten-roof","CATA3/SEQDATA0.AUTH","JU00","yamanose"],
+    ["kitten-nozomi","CATA2/SEQDATA0.AUTH","JU00","yamanose"],
+    ["childhood-meal","A0122/A0122.AUTH","JOMO","interior"],
+    ["cherry-memory","SAKR/SEQDATA0.AUTH","JHD0","exterior"],
     ["after-work-goro","GOROMA/SEQDATA2.AUTH"],["workday-lunch","HIRUAUTH/SEQDATA1.AUTH"]].map(([part,activityId,area="MFSY",worldId="mfsy"])=>[`s1.${area.toLowerCase()}.${part}.scene`,{
     kind:"native-cutscene",area,durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-${part}`,packageId:part,worldId,storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId}}},
   }]),
+  ["s1.ju00.kitten-medicine.scene",{
+    kind:"native-cutscene",area:"JU00",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-kitten-medicine",packageId:"kitten-roof",worldId:"yamanose",storyPresentation:true,
+      activity:{slot:1,binding:{kind:"map-embedded-slot",activityId:"CATA3/SEQDATA1.AUTH"}}},
+  }],
   ...[["jimmy-knock","CTERMO1/SEQDATA3.AUTH","D000","dobuita"],["jimmy-caught","CTERMO1/SEQDATA1.AUTH","D000","dobuita"],["jimmy-escaped","CTERMO1/SEQDATA2.AUTH","D000","dobuita"],["jimmy-interrogation","A0174/A0174.AUTH","DAZA","daza"]].map(([part,activityId,area,worldId])=>[`s1.${area.toLowerCase()}.${part}.scene`,{
     kind:"native-cutscene",area,durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-${part}`,packageId:part,worldId,storyPresentation:true,
@@ -104,13 +122,18 @@ const ACTIVITIES = new Map([
     cutscene:{id:`story-s1-${part}`,packageId:part,worldId:"arcade",storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:`${resource}/${resource}.AUTH`}}},
   }]),
-  ...[["nozomi-night-call","01GET","JOMO","interior"],["jimmy-morning-call","A0169","JOMO","interior"],["post-chen-home","A0160","JOMO","interior"],["bank-savings","01BNK","JOMO","interior"],["travel-family","01EAR","JOMO","interior"],
+  ...[["friends-visit-arrival","01FRE","JOMO","interior"],["friends-visit-departure","01FRE","JOMO","interior"],["nozomi-park-call","01SKIA","JOMO","interior"],["nozomi-night-call","01GET","JOMO","interior"],["jimmy-morning-call","A0169","JOMO","interior"],["chai-home-recovery","A0173","JOMO","interior"],["post-chen-home","A0160","JOMO","interior"],["bank-savings","01BNK","JOMO","interior"],["travel-family","01EAR","JOMO","interior"],
     ["fuku-travel-funds","01MON","JOMO","interior"],["global-airfare","01MIT","DSKI","dski"],["asia-airfare","01ETU","DAZA","daza"],
     ["global-boat","01MIT","DSKI","dski"],["boat-ticket-purchase","01ETU","DAZA","daza"],["boat-ticket-collection","A0165","DAZA","daza"]].map(([part,resource,area,worldId])=>[`s1.${area.toLowerCase()}.${part}.scene`,{
     kind:"native-cutscene",area,durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:`story-s1-${part}`,packageId:part,worldId,storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:`${resource}/${resource}.AUTH`}}},
   }]),
+  ["s1.jhd0.dojo-friendship-memory.scene",{
+    kind:"native-cutscene",area:"JHD0",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-dojo-friendship-memory",packageId:"hihy",worldId:"exterior",storyPresentation:true,
+      activity:{slot:0,binding:{primaryPointer:388275,secondaryPointer:388280}}},
+  }],
   ["s1.jomo.mirror-dream.scene",{
     kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-mirror-dream",packageId:"kkyb",worldId:"interior",storyPresentation:true,

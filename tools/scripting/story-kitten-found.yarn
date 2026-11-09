@@ -1,0 +1,27 @@
+<<play_sequence "s1.ju00.kitten-found.start">>
+{{voice:E1041A168}}
+{{voice:E1041F001}}
+{{voice:E1041A169}}
+{{voice:E1041F002}}
+{{voice:E1041A081}}
+<<play_sequence "s1.ju00.kitten-found.finish">>
+<<play_sequence "s1.ju00.kitten-reunion.start">>
+{{voice:E1041F004}}
+<<if flag_set("story.s1.kitten-name.mimi")>>
+{{voice:E1041B024}}
+<<elseif flag_set("story.s1.kitten-name.chibi")>>
+{{voice:E1041B026}}
+<<else>>
+{{voice:E1041B027}}
+<<endif>>
+{{voice:E1041B028}}
+{{voice:E1041F005}}
+{{voice:E1041B060}}
+{{voice:E1041F006}}
+{{voice:E1041B061}}
+{{voice:E1041A158}}
+{{voice:E1041F009}}
+<<play_sequence "s1.ju00.kitten-reunion.finish">>
+<<travel_story "{{destination}}">>
+{{effects}}
+<<complete>>

@@ -462,10 +462,10 @@ continuation; defeat brings Fuku's rescue and a day of rest at home.
 | --- | --- |
 | Location / eligibility | Normal You Arcade (`DGCT`), entered through the existing physical Dobuita door 64. Story Ryo, completed opening and earned Jimmy call; personal noon or later. The entrance-side approach is authored, not a recovered event volume. Missing the exact appointment minute cannot strand the player. |
 | Original presentation | GMCT MAPINFO AUTH `0x5edc` introduction, `0x13ce0` victory and `0x16a9c` rescue; original M_0172 bank 32, complete sequence indexes, actors, cameras and A0172/A0172A speech. The three presentations last about 73.35, 38.35 and 27.93 seconds. A1_BGAM's 43 tracks cover the requested sound commands; this bank association follows source naming and exact command coverage, not reconstructed owner execution. |
-| Cast / props | Ryo and Chai (`CHA_M`); victory also uses Yuji Nito (`NITO`, `GAT_L`); rescue uses Fuku (`FUB_M`). The generator reads these package-owned bodies from original GMCT CHRS/DefImage records, rather than inferring filenames from image or actor names. Shared ownership suppresses overlapping ambient bodies. The original CHRS identifies DOOR → DR17_001 and SLOT → GAMT101G. Their timeline references are retained, but normal DGCT scenery remains fixed: cabinet knock-over and detailed ticket/finger callbacks are omitted. |
+| Cast / props | Ryo and Chai (`CHA_M`); victory also uses Yuji Nito (`NITO`, `GAT_L`); rescue uses Fuku (`FUB_M`). The generator reads these package-owned bodies from original GMCT CHRS/DefImage records, rather than inferring filenames from image or actor names. Shared ownership suppresses overlapping ambient bodies. The original CHRS identifies DOOR → DR17_001 and SLOT → GAMT101G. Their timeline references are retained, but normal DGCT scenery remains fixed. The original ticket follows Chai's hand using an authored grip and visibility window; detailed finger and eating callbacks remain omitted. |
 | Fight / timing / cameras | Original introduction-ending positions feed the existing client-simulated fight. Physical movement, punch/kick/throw/guard inputs drive real health, hits, basic opponent AI and outcomes. Shared generic animations, 100/120 health, speeds and rectangular arena padding are adaptations; Chai's original low-kick moveset is not reconstructed. The normal orbit camera remains player-controlled. Environment/weather stays personal; no new battle music is asserted. |
-| Victory | Only server victory selects the original victory ending. Its acknowledgement atomically saves the won flag, chapter milestone and Asia Travel notebook clue; stay in the arcade that personal day with prior controls/camera restored. |
-| Defeat | Only a genuine zero-health knockout selects the original Fuku rescue. After its acknowledgement, atomically save the lost flag, same chapter/clue, next-day 08:30 and established bedside arrival. Offscreen travel and the remaining rest day are condensed; the separate A0173 home-recovery scene is not yet connected. |
+| Victory | The client combat result selects the original victory ending. Its acknowledgement atomically saves the won flag, chapter milestone and Asia Travel notebook clue; stay in the arcade that personal day with prior controls/camera restored. |
+| Defeat | Only a genuine zero-health knockout selects the original Fuku rescue. Its acknowledgement saves the loss, chapter/clue, pending recovery and established bedside arrival. The original A0173 recovery plays at the bedside; its acknowledgement clears the pending receipt and advances the personal clock to next-day 08:30. Offscreen travel and the remainder of the rest day are condensed. |
 | Failure / cancellation / replay | Timeout or lost heartbeats offer retry/leave, never the rescue or progress. Continue/skip cannot win the fight. Noninteractive movies support ordinary explicit skip. Cancelling an introduction, fight or ending settles nothing and remains retryable. Reloading a completed chapter does not start another ambush. |
 
 Both endings preserve money, inventory and persistent HP. Story-fight health
@@ -518,15 +518,51 @@ this does **not** claim an original detailed CHA FACE/expression reconstruction.
 The review takes about 2.5 minutes including GPU preflight, one browser at a time.
 It complements, rather than repeats, the connected fight-outcome tests above.
 
-The missing ticket action is real: original CHRS names `TIK1`–`TIK4` as
-`TIKHIA1G`–`TIKHIA4G`, but these props are not yet packaged. GMCT uses the older
+Original CHRS names `TIK1`–`TIK4` as `TIKHIA1G`–`TIKHIA4G`. The first original
+ticket model and its embedded texture are now packaged and follow Chai's right
+hand through the gesture toward his mouth. The grip and frame 515–870 visibility
+window are authored from rendered motion review, not recovered callbacks. It
+disappears as he eats it; intermediate bite deformation and exact finger contact
+are not implemented. One rendered check cancelled during the scene, replayed
+it to its natural ending with all eleven original voice clips, and verified
+restored state. Captures show the textured ticket in his hand and near his
+mouth; this is not a fresh connected battle or exact-fidelity claim.
+
+GMCT uses the older
 SCN3 instruction stream (`0x00000100`, entry file offset `0x20cb`), not the
 compiled SH-4 format handled by the current callback extractor. See the
 [source-format inventory](../../tools/evidence/scn3-container-encoding-evidence.json).
 The existing community bytecode decoder is not yet a validated source of the
-ticket/hand frame guards; no guessed attachments or visibility timing are
-presented as recovered behavior. Cabinet knock-over, exact ticket manipulation,
-and the separate A0173 recovery film remain unfinished.
+ticket/hand frame guards; the authored attachment is not presented as recovered
+behavior. Cabinet knock-over and exact ticket manipulation remain unfinished.
+
+### Home recovery after an arcade knockout
+
+Disc 2 JOMO `MAPINFO.BIN` contains the original 600-frame A0173 at `0xb3634`
+(SHA-256 `345482a8010ea23f04e26016f3fe65a2bac701559a7f951446af75940b6779e8`).
+It uses `M_0173.MOTN`, Fuku and Ryo, four A0173 voice clips and seven effects.
+The adjacent source resource cluster names A1_FUKAN and BGM101. The package
+reuses those exact original assets, camera, timing and the existing character
+faces. The bedroom trigger and pending receipt are authored; this does not
+establish every original situation that could invoke A0173.
+
+Only newly acknowledged losses set the pending receipt, so old completed loss
+saves cannot unexpectedly play the scene or advance another day. Cancellation
+or a failed load leaves the receipt and same-day clock intact for retry. The
+scene's final acknowledgement clears the receipt and advances to the following
+personal morning without changing money or inventory.
+
+An isolated connected run used an earlier seeded Jimmy prerequisite, the real
+arcade door and an actual unguarded fight to reach defeat, played the original
+rescue, then naturally triggered A0173 at home. Cancelling and re-entering the
+bedside region retried it; its natural completion saved the next morning and
+the notebook without changing inventory or currency. A separate reload on that
+same saved character confirmed no replay, no second date advance and restored
+controls. The test skipped the repeated arcade introduction; this is not an
+uninterrupted new-game playthrough. A separate rendered scene review observed
+all four voice cues and cancellation/replay. Exact facial detail, original
+trigger ownership and blanket motion remain unverified. New extracted assets
+must be published before a future deployment.
 
 ## Jimmy chase and interrogation
 

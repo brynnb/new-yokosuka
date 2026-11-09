@@ -1,6 +1,7 @@
 {
   "schema":"new-yokosuka-story-actor-presence-v1",
   "rules":[
-    {"actorCode":"TOM_","excludedFlags":["story.s1.tom-farewell.completed"],"provenance":"Acknowledged personal farewell removes Tom from both Dobuita and harbor resident views. TOMH is Toshimichi Fukui, not a Tom alias. Private/owned cinematic actors and Free roam are unaffected."}
+    {"actorCode":"TOM_","excludedFlags":["story.s1.tom-farewell.completed"],"provenance":"Acknowledged personal farewell removes Tom from both Dobuita and harbor resident views. TOMH is Toshimichi Fukui, not a Tom alias. Private/owned cinematic actors and Free roam are unaffected."},
+    {"actorCode":"KAME","excludedFlags":[],"replacedWhen":{"requiredFlags":["story.s1.yamamoto-request.completed"],"excludedFlags":["story.s1.yamamoto-escort.completed"]},"provenance":"During this character's search, Kame waits in the park instead of following her ordinary shared schedule. This is a local Story projection; Free roam and other viewers keep the regular resident."}
   ]
 }

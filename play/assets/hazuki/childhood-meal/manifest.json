@@ -1,0 +1,1780 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_childhood_meal_pack.mjs",
+  "source": {
+    "disc": 1,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "A0122.AUTH",
+        "path": "disc1/SCENE/01/JOMO/MAPINFO.BIN",
+        "sourceOffset": 645068,
+        "sourceSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+        "byteLength": 10052,
+        "sha256": "3d3a41fb2cec5c9a8bedbf8a8e66fe11a7d643b70228791fbbb7e9785412dec6"
+      },
+      {
+        "name": "M_0122.MOTN",
+        "path": "disc1/SCENE/01/JOMO/COMMON01.PKS",
+        "sourceSha256": "4b117711c45ca0a94690ce14b8896ddb5feacfde0ba5c7f2a13ae5310201ba22",
+        "archiveMember": "M_0122.MOTN",
+        "byteLength": 30068,
+        "sha256": "e91fee875bcdeb26ae8b780e757c21b5f8f3a39b3a051cfa1fc9fc4f3cabab67"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-event-template.md#childhood-meal-memory",
+    "resourceName": "A0122",
+    "variant": "",
+    "selectionRule": "Original JOMO SCEX slot 2; owner 0x645f8 launches hand/prop callback 0x64ca0. The player interaction and repeat gate are a Story adaptation."
+  },
+  "audioManifest": "public/audio/world/childhood-meal/manifest.json",
+  "sceneObjects": {
+    "GOHR": {
+      "model": "GTYHI00G",
+      "browserFilename": "S1_JOMO_GTYHI00G.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/GTYHI00G.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.930000305175781,
+          0.75,
+          -2.4709999561309814
+        ],
+        "rotationDegrees": [
+          0,
+          180,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 600,
+          "positionPropertyOffset": 656,
+          "anglePropertyOffset": 676
+        }
+      }
+    },
+    "MISR": {
+      "model": "MISHI00G",
+      "browserFilename": "S1_JOMO_MISHI00G.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/MISHI00G.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.843999862670898,
+          0.75,
+          -2.744999885559082
+        ],
+        "rotationDegrees": [
+          0,
+          180,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 764,
+          "positionPropertyOffset": 820,
+          "anglePropertyOffset": 840
+        }
+      }
+    },
+    "HSR1": {
+      "model": "HSJHI00G",
+      "browserFilename": "S1_JOMO_HSJHI00G.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/HSJHI00G.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          11,
+          0.75,
+          -2.5
+        ],
+        "rotationDegrees": [
+          0,
+          90,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 928,
+          "positionPropertyOffset": 984,
+          "anglePropertyOffset": 1004
+        }
+      }
+    },
+    "HSR2": {
+      "model": "HSJHI00G",
+      "browserFilename": "S1_JOMO_HSJHI00G.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/HSJHI00G.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          11.010000228881836,
+          0.75,
+          -2.5
+        ],
+        "rotationDegrees": [
+          0,
+          90,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 1092,
+          "positionPropertyOffset": 1148,
+          "anglePropertyOffset": 1168
+        }
+      }
+    },
+    "MSOI": {
+      "model": "MISHI00G",
+      "browserFilename": "S1_JOMO_MISHI00G.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/MISHI00G.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.270000457763672,
+          0.75,
+          -2.4660000801086426
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 1256,
+          "positionPropertyOffset": 1312,
+          "anglePropertyOffset": 1332
+        }
+      }
+    },
+    "GOHI": {
+      "model": "GTYHI00G",
+      "browserFilename": "S1_JOMO_GTYHI00G.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/GTYHI00G.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.399999618530273,
+          0.75,
+          -2.450000047683716
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 1420,
+          "positionPropertyOffset": 1476,
+          "anglePropertyOffset": 1496
+        }
+      }
+    },
+    "HSI1": {
+      "model": "HSJHI00G",
+      "browserFilename": "S1_JOMO_HSJHI00G.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/HSJHI00G.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.930000305175781,
+          0.75,
+          -2.4000000953674316
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 1584,
+          "positionPropertyOffset": 1640,
+          "anglePropertyOffset": 1660
+        }
+      }
+    },
+    "HSI2": {
+      "model": "HSJHI00G",
+      "browserFilename": "S1_JOMO_HSJHI00G.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/HSJHI00G.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.930000305175781,
+          0.75,
+          -2.4000000953674316
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 1748,
+          "positionPropertyOffset": 1804,
+          "anglePropertyOffset": 1824
+        }
+      }
+    },
+    "NINJ": {
+      "model": "NINK3000",
+      "browserFilename": "S1_JOMO_NINK3000.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/NINK3000.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.930000305175781,
+          0.75,
+          -2.4000000953674316
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 1912,
+          "positionPropertyOffset": 1968,
+          "anglePropertyOffset": 1988
+        }
+      }
+    },
+    "NIMI": {
+      "model": "NIMK3000",
+      "browserFilename": "S1_JOMO_NIMK3000.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/NIMK3000.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.5,
+          0.75,
+          -2.680000066757202
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 2076,
+          "positionPropertyOffset": 2132,
+          "anglePropertyOffset": 2152
+        }
+      }
+    },
+    "NIMR": {
+      "model": "NIMK3000",
+      "browserFilename": "S1_JOMO_NIMK3000.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/NIMK3000.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.930000305175781,
+          0.75,
+          -2.4000000953674316
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 2240,
+          "positionPropertyOffset": 2296,
+          "anglePropertyOffset": 2316
+        }
+      }
+    },
+    "TFUI": {
+      "model": "TFUK3000",
+      "browserFilename": "S1_JOMO_TFUK3000.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/TFUK3000.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.300000190734863,
+          0.75,
+          -2.6700000762939453
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 2396,
+          "positionPropertyOffset": 2452,
+          "anglePropertyOffset": 2472
+        }
+      }
+    },
+    "TFUR": {
+      "model": "TFUK3000",
+      "browserFilename": "S1_JOMO_TFUK3000.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/TFUK3000.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.579899787902832,
+          0.75,
+          -2.4549999237060547
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 2552,
+          "positionPropertyOffset": 2608,
+          "anglePropertyOffset": 2628
+        }
+      }
+    },
+    "SYKI": {
+      "model": "SKEK3000",
+      "browserFilename": "S1_JOMO_SKEK3000.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/SKEK3000.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.406999588012695,
+          0.75,
+          -2.430000066757202
+        ],
+        "rotationDegrees": [
+          0,
+          -90,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 2708,
+          "positionPropertyOffset": 2764,
+          "anglePropertyOffset": 2784
+        }
+      }
+    },
+    "SYKR": {
+      "model": "SKEK3000",
+      "browserFilename": "S1_JOMO_SKEK3000.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/SKEK3000.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.689000129699707,
+          0.75,
+          -2.6579999923706055
+        ],
+        "rotationDegrees": [
+          0,
+          90,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 2864,
+          "positionPropertyOffset": 2920,
+          "anglePropertyOffset": 2940
+        }
+      }
+    },
+    "SYKJ": {
+      "model": "SSTS500G",
+      "browserFilename": "S1_JOMO_SSTS500G.MT5",
+      "objectTag": "sykj"
+    }
+  },
+  "packageActors": {
+    "IWAO": {
+      "label": "Iwao Hazuki",
+      "modelCode": "IWA_M",
+      "browserFilename": "IWA_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/hazuki/childhood-meal/IWA_M.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin"
+    },
+    "JAKR": {
+      "label": "Young Ryo Hazuki",
+      "modelCode": "JKB_M",
+      "browserFilename": "JKB_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/hazuki/childhood-meal/JKB_M.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin"
+    }
+  },
+  "attachedObjects": {
+    "GOHI": {
+      "model": "GTYHI00G",
+      "browserFilename": "S1_JOMO_GTYHI00G.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/GTYHI00G.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.399999618530273,
+          0.75,
+          -2.450000047683716
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 1420,
+          "positionPropertyOffset": 1476,
+          "anglePropertyOffset": 1496
+        }
+      },
+      "sceneObject": true,
+      "attachments": [
+        {
+          "objectTag": "GOHI",
+          "activitySlot": 0,
+          "frame": 1,
+          "action": "attach",
+          "parentActorTag": "IWAO",
+          "controlId": 12,
+          "translation": [
+            0.09099999815225601,
+            0.0020000000949949026,
+            -0.027000000700354576
+          ],
+          "rotationRaw": [
+            10920,
+            2729,
+            61896
+          ],
+          "callFileOffset": "0x64e4a",
+          "activityId": "A0122/A0122.AUTH"
+        },
+        {
+          "objectTag": "GOHI",
+          "activitySlot": 0,
+          "frame": 1320,
+          "action": "detach",
+          "callFileOffset": "0x65c1e",
+          "activityId": "A0122/A0122.AUTH"
+        }
+      ]
+    },
+    "NINJ": {
+      "model": "NINK3000",
+      "browserFilename": "S1_JOMO_NINK3000.MT5",
+      "assetPath": "play/assets/hazuki/childhood-meal/NINK3000.CHRM",
+      "textureAssetPath": "play/assets/hazuki/childhood-meal/textures.bin",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          10.930000305175781,
+          0.75,
+          -2.4000000953674316
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "source": {
+          "objectPropertyOffset": 1912,
+          "positionPropertyOffset": 1968,
+          "anglePropertyOffset": 1988
+        }
+      },
+      "sceneObject": true,
+      "attachments": [
+        {
+          "objectTag": "NINJ",
+          "activitySlot": 0,
+          "frame": 1,
+          "action": "attach",
+          "parentActorTag": "JAKR",
+          "controlId": 18,
+          "translation": [
+            0.1589999943971634,
+            -0.07999999821186066,
+            -0.0729999989271164
+          ],
+          "rotationRaw": [
+            908,
+            12557,
+            55522
+          ],
+          "callFileOffset": "0x64eba",
+          "activityId": "A0122/A0122.AUTH"
+        },
+        {
+          "objectTag": "NINJ",
+          "activitySlot": 0,
+          "frame": 1320,
+          "action": "detach",
+          "callFileOffset": "0x65c2e",
+          "activityId": "A0122/A0122.AUTH"
+        }
+      ]
+    }
+  },
+  "handAssets": {
+    "IWAO": {
+      "actorTag": "IWAO",
+      "handCode": "IWA",
+      "bodyModelCode": "IWA_M",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/hazuki/childhood-meal/IWA_TL.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/IWA_TL.MT5",
+          "byteLength": 185148,
+          "sha256": "f19af6e7483e12e39a7db653661e2cc15b63a27bda5005929d4581251603b80b"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/hazuki/childhood-meal/IWA_TR.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/IWA_TR.MT5",
+          "byteLength": 185204,
+          "sha256": "bd606f4acca38d5a1ab9ccd538f95b93c0211d1fce2302f4e8a128c2da94590d"
+        }
+      },
+      "rig": {
+        "path": "play/assets/hazuki/childhood-meal/IWA_HM.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/IWA_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "e9ac04b80a5b7f693d6af299683073906c5a2bd0d47d88676a6707501bfb0e06",
+        "transformNodeCount": 71,
+        "vertexCount": 306,
+        "pointerOffsets": [
+          24,
+          168,
+          8952,
+          5848,
+          6472,
+          9264
+        ]
+      },
+      "presentation": {
+        "attachment": "body-hand-node-world-matrix",
+        "initialPose": "hm-bind-pose",
+        "deformationAssetRetained": true,
+        "nativePoseOperation": "0x005e"
+      }
+    },
+    "JAKR": {
+      "actorTag": "JAKR",
+      "handCode": "JKB",
+      "bodyModelCode": "JKB_M",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/hazuki/childhood-meal/JKB_TL.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/JKB_TL.MT5",
+          "byteLength": 193240,
+          "sha256": "aed6a05ffb8bb0eeed4fb6826b70397bae21e149d4cb4a2148862309523726df"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/hazuki/childhood-meal/JKB_TR.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/JKB_TR.MT5",
+          "byteLength": 193144,
+          "sha256": "986057c4ca7927c10594c1a3047b15b21a1995dfd54878ba896a88a4aa81678e"
+        }
+      },
+      "rig": {
+        "path": "play/assets/hazuki/childhood-meal/JKB_HM.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/JKB_HM.BIN",
+        "byteLength": 9168,
+        "sha256": "e7529472af95b35041d5cf7647ece11e764f404d6f433aeb581241b4732dac02",
+        "transformNodeCount": 71,
+        "vertexCount": 301,
+        "pointerOffsets": [
+          24,
+          168,
+          8864,
+          5848,
+          6456,
+          9168
+        ]
+      },
+      "presentation": {
+        "attachment": "body-hand-node-world-matrix",
+        "initialPose": "hm-bind-pose",
+        "deformationAssetRetained": true,
+        "nativePoseOperation": "0x005e"
+      }
+    }
+  },
+  "nativeHandPoseTables": {
+    "0x98174": {
+      "sourceMapinfoOffset": "0x98174",
+      "vectors": [
+        [
+          0,
+          0,
+          -6005
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -5459
+        ],
+        [
+          0,
+          727,
+          -6005
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -3821
+        ],
+        [
+          0,
+          -363,
+          -6005
+        ],
+        [
+          0,
+          363,
+          -4367
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -3821
+        ],
+        [
+          0,
+          0,
+          -6188
+        ],
+        [
+          0,
+          0,
+          -3093
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -3821
+        ],
+        [
+          0,
+          -1637,
+          -363
+        ],
+        [
+          0,
+          -1273,
+          -4731
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "0x98258": {
+      "sourceMapinfoOffset": "0x98258",
+      "vectors": [
+        [
+          0,
+          0,
+          -6005
+        ],
+        [
+          0,
+          4731,
+          -6188
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -2727
+        ],
+        [
+          0,
+          0,
+          -9097
+        ],
+        [
+          0,
+          0,
+          -5457
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -8734
+        ],
+        [
+          0,
+          -909,
+          -7277
+        ],
+        [
+          0,
+          0,
+          -7823
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1456,
+          -4002
+        ],
+        [
+          0,
+          0,
+          -9462
+        ],
+        [
+          0,
+          726,
+          -7824
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -12011
+        ],
+        [
+          0,
+          -1091,
+          -7461
+        ],
+        [
+          0,
+          -1636,
+          -9280
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "0x9833c": {
+      "sourceMapinfoOffset": "0x9833c",
+      "vectors": [
+        [
+          0,
+          0,
+          -6005
+        ],
+        [
+          0,
+          2547,
+          -3275
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -2727
+        ],
+        [
+          0,
+          0,
+          -9097
+        ],
+        [
+          0,
+          0,
+          -5457
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -8734
+        ],
+        [
+          0,
+          -909,
+          -7277
+        ],
+        [
+          0,
+          0,
+          -7823
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1456,
+          -4002
+        ],
+        [
+          0,
+          0,
+          -9462
+        ],
+        [
+          0,
+          726,
+          -7824
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -12011
+        ],
+        [
+          0,
+          -1091,
+          -7461
+        ],
+        [
+          0,
+          -1636,
+          -9280
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "0x97b38": {
+      "sourceMapinfoOffset": "0x97b38",
+      "vectors": [
+        [
+          0,
+          0,
+          -3275
+        ],
+        [
+          0,
+          0,
+          -1637
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -4550
+        ],
+        [
+          0,
+          0,
+          -4731
+        ],
+        [
+          0,
+          0,
+          -1455
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -4186
+        ],
+        [
+          0,
+          0,
+          -6005
+        ],
+        [
+          0,
+          0,
+          -1819
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -5823
+        ],
+        [
+          0,
+          910,
+          -4731
+        ],
+        [
+          0,
+          0,
+          -2001
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -909,
+          -3276
+        ],
+        [
+          0,
+          -909,
+          -3639
+        ],
+        [
+          0,
+          0,
+          -3457
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "actorTags": [
+    "NIMR",
+    "JAKR",
+    "IWAO"
+  ],
+  "motionBanks": [
+    {
+      "bank": 18,
+      "path": "play/assets/hazuki/childhood-meal/M_0122.MOTN",
+      "byteLength": 30068,
+      "sha256": "e91fee875bcdeb26ae8b780e757c21b5f8f3a39b3a051cfa1fc9fc4f3cabab67"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/childhood-meal/M_0122.MOTN",
+      "byteLength": 30068,
+      "sha256": "e91fee875bcdeb26ae8b780e757c21b5f8f3a39b3a051cfa1fc9fc4f3cabab67"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/A0122.AUTH",
+      "byteLength": 10052,
+      "sha256": "3d3a41fb2cec5c9a8bedbf8a8e66fe11a7d643b70228791fbbb7e9785412dec6"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/GTYHI00G.CHRM",
+      "byteLength": 3756,
+      "sha256": "4eb0b3d857650311cb85191d37b683e4db2f68f2f992458a1741db5117cf75ef"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/MISHI00G.CHRM",
+      "byteLength": 3476,
+      "sha256": "aa204aba3cf2de862557def284be3663283e666959ed754c02363182b67a9819"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/HSJHI00G.CHRM",
+      "byteLength": 572,
+      "sha256": "bef23aa43d2b7d11891935e390a7acde6ef56c023684378238d3afa60c2ea4ac"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/NINK3000.CHRM",
+      "byteLength": 1012,
+      "sha256": "d8ce1067ab07b2b709fdabb525844da563495accd89a622c27f0df856eadd7f1"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/NIMK3000.CHRM",
+      "byteLength": 7540,
+      "sha256": "851f1794662459b6660574c1d60069c3ea604fef86b6bbc5a91c9c7d107d584b"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/TFUK3000.CHRM",
+      "byteLength": 2972,
+      "sha256": "c646dac580172856702a2f8e8f289c1f6abf83d209ea102bc9c8b2e6fd4d4216"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/SKEK3000.CHRM",
+      "byteLength": 1844,
+      "sha256": "e5d825ca6d7363f507f6754ad03a0e1f478ae3fbe0fed3a6af952408a835457f"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/IWA_M.CHRM",
+      "byteLength": 64000,
+      "sha256": "df9d4ab5b9e98c26214877345586be217a1307e62ef1089bced6c71b3e8615da"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/JKB_M.CHRM",
+      "byteLength": 52008,
+      "sha256": "9717c743c1931d131276c7f9d971f675e06df229b85a74bd4738ff5f776ca28d"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/IWA_TL.MT5",
+      "byteLength": 185148,
+      "sha256": "f19af6e7483e12e39a7db653661e2cc15b63a27bda5005929d4581251603b80b"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/IWA_TR.MT5",
+      "byteLength": 185204,
+      "sha256": "bd606f4acca38d5a1ab9ccd538f95b93c0211d1fce2302f4e8a128c2da94590d"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/IWA_HM.BIN",
+      "byteLength": 9264,
+      "sha256": "e9ac04b80a5b7f693d6af299683073906c5a2bd0d47d88676a6707501bfb0e06"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/JKB_TL.MT5",
+      "byteLength": 193240,
+      "sha256": "aed6a05ffb8bb0eeed4fb6826b70397bae21e149d4cb4a2148862309523726df"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/JKB_TR.MT5",
+      "byteLength": 193144,
+      "sha256": "986057c4ca7927c10594c1a3047b15b21a1995dfd54878ba896a88a4aa81678e"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/JKB_HM.BIN",
+      "byteLength": 9168,
+      "sha256": "e7529472af95b35041d5cf7647ece11e764f404d6f433aeb581241b4732dac02"
+    },
+    {
+      "path": "play/assets/hazuki/childhood-meal/textures.bin",
+      "byteLength": 621840,
+      "sha256": "f6d50f17891149d11304774c4ad514725025e6d41e3df5ca7535aeb5c1899421",
+      "source": {
+        "path": "disc1/SCENE/01/JOMO/NINJIN.PKF",
+        "sha256": "016a76db7761515be55ff527d613a8a193d66bd9ff7493efdbfa327ff68e8885"
+      }
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "A0122/A0122.AUTH",
+      "archiveMember": "A0122.AUTH",
+      "byteLength": 10052,
+      "sha256": "3d3a41fb2cec5c9a8bedbf8a8e66fe11a7d643b70228791fbbb7e9785412dec6",
+      "durationFrames": 1320,
+      "durationSeconds": 50,
+      "frameCount": 15,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 16,
+        "sound": 2,
+        "voice": 6
+      },
+      "actors": [
+        "NIMR",
+        "JAKR",
+        "IWAO"
+      ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "IWAO",
+          "side": "left",
+          "poseTableOffset": "0x98174",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x64f72",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "IWAO",
+          "side": "right",
+          "poseTableOffset": "0x98258",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x64f92",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "JAKR",
+          "side": "right",
+          "poseTableOffset": "0x9833c",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x6539a",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "JAKR",
+          "side": "left",
+          "poseTableOffset": "0x97b38",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x653ba",
+          "sourceOrder": 9
+        },
+        {
+          "activitySlot": 0,
+          "frame": 690,
+          "actorTag": "JAKR",
+          "side": "right",
+          "poseTableOffset": "0x9833c",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x65516",
+          "sourceOrder": 11
+        },
+        {
+          "activitySlot": 0,
+          "frame": 690,
+          "actorTag": "JAKR",
+          "side": "left",
+          "poseTableOffset": "0x97b38",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x65536",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 811,
+          "actorTag": "JAKR",
+          "side": "right",
+          "poseTableOffset": "0x9833c",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x6561e",
+          "sourceOrder": 15
+        },
+        {
+          "activitySlot": 0,
+          "frame": 960,
+          "actorTag": "IWAO",
+          "side": "left",
+          "poseTableOffset": "0x98174",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x651d6",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 960,
+          "actorTag": "IWAO",
+          "side": "right",
+          "poseTableOffset": "0x98258",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x651f6",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 0,
+          "frame": 960,
+          "actorTag": "JAKR",
+          "side": "right",
+          "poseTableOffset": "0x9833c",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x6579e",
+          "sourceOrder": 18
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1000,
+          "actorTag": "JAKR",
+          "side": "right",
+          "poseTableOffset": "0x9833c",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x65882",
+          "sourceOrder": 21
+        }
+      ],
+      "nativeBodyHandPoseCues": [],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "IWAO",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3457,
+            4731,
+            0
+          ],
+          "callFileOffset": "0x64fb2",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "IWAO",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -13285,
+            -2365,
+            0
+          ],
+          "callFileOffset": "0x64fd2",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 0,
+          "frame": 960,
+          "actorTag": "IWAO",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3457,
+            4731,
+            0
+          ],
+          "callFileOffset": "0x65216",
+          "sourceOrder": 6
+        },
+        {
+          "activitySlot": 0,
+          "frame": 960,
+          "actorTag": "IWAO",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -13285,
+            -2365,
+            0
+          ],
+          "callFileOffset": "0x65236",
+          "sourceOrder": 7
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1,
+          "actorTag": "JAKR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3819,
+            -2365,
+            0
+          ],
+          "callFileOffset": "0x653da",
+          "sourceOrder": 10
+        },
+        {
+          "activitySlot": 0,
+          "frame": 690,
+          "actorTag": "JAKR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3819,
+            -2365,
+            0
+          ],
+          "callFileOffset": "0x65556",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 690,
+          "actorTag": "JAKR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            546,
+            4914,
+            1820
+          ],
+          "callFileOffset": "0x65576",
+          "sourceOrder": 14
+        },
+        {
+          "activitySlot": 0,
+          "frame": 811,
+          "actorTag": "JAKR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3819,
+            -2365,
+            0
+          ],
+          "callFileOffset": "0x6563e",
+          "sourceOrder": 16
+        },
+        {
+          "activitySlot": 0,
+          "frame": 811,
+          "actorTag": "JAKR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x6565e",
+          "sourceOrder": 17
+        },
+        {
+          "activitySlot": 0,
+          "frame": 960,
+          "actorTag": "JAKR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3819,
+            -2365,
+            0
+          ],
+          "callFileOffset": "0x657be",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 960,
+          "actorTag": "JAKR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x657de",
+          "sourceOrder": 20
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1000,
+          "actorTag": "JAKR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3819,
+            -2365,
+            0
+          ],
+          "callFileOffset": "0x658a2",
+          "sourceOrder": 22
+        }
+      ],
+      "nativeSceneObjectStates": [
+        {
+          "actorTag": "GOHR",
+          "presented": true
+        },
+        {
+          "actorTag": "MISR",
+          "presented": true
+        },
+        {
+          "actorTag": "HSR1",
+          "presented": true
+        },
+        {
+          "actorTag": "HSR2",
+          "presented": true
+        },
+        {
+          "actorTag": "MSOI",
+          "presented": true
+        },
+        {
+          "actorTag": "GOHI",
+          "presented": true
+        },
+        {
+          "actorTag": "HSI1",
+          "presented": true
+        },
+        {
+          "actorTag": "HSI2",
+          "presented": true
+        },
+        {
+          "actorTag": "NINJ",
+          "presented": true
+        },
+        {
+          "actorTag": "NIMI",
+          "presented": true
+        },
+        {
+          "actorTag": "NIMR",
+          "presented": true
+        },
+        {
+          "actorTag": "TFUI",
+          "presented": true
+        },
+        {
+          "actorTag": "TFUR",
+          "presented": true
+        },
+        {
+          "actorTag": "SYKI",
+          "presented": true
+        },
+        {
+          "actorTag": "SYKR",
+          "presented": true
+        }
+      ],
+      "motions": [
+        {
+          "actorTag": "JAKR",
+          "frame": 1,
+          "motionBank": 18,
+          "sequenceIndex": 6,
+          "motionName": "JAK_NINJINKIRAI_RR_0122",
+          "startFrame": 1,
+          "endFrame": 120
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 1,
+          "motionBank": 18,
+          "sequenceIndex": 0,
+          "motionName": "IWA_NINJIN_0122",
+          "startFrame": 1,
+          "endFrame": 120
+        },
+        {
+          "actorTag": "JAKR",
+          "frame": 121,
+          "motionBank": 18,
+          "sequenceIndex": 6,
+          "motionName": "JAK_NINJINKIRAI_RR_0122",
+          "startFrame": 181,
+          "endFrame": 370
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 121,
+          "motionBank": 18,
+          "sequenceIndex": 0,
+          "motionName": "IWA_NINJIN_0122",
+          "startFrame": 181,
+          "endFrame": 370
+        },
+        {
+          "actorTag": "JAKR",
+          "frame": 311,
+          "motionBank": 18,
+          "sequenceIndex": 6,
+          "motionName": "JAK_NINJINKIRAI_RR_0122",
+          "startFrame": 401,
+          "endFrame": 590
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 311,
+          "motionBank": 18,
+          "sequenceIndex": 0,
+          "motionName": "IWA_NINJIN_0122",
+          "startFrame": 401,
+          "endFrame": 590
+        },
+        {
+          "actorTag": "JAKR",
+          "frame": 501,
+          "motionBank": 18,
+          "sequenceIndex": 6,
+          "motionName": "JAK_NINJINKIRAI_RR_0122",
+          "startFrame": 811,
+          "endFrame": 859
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 501,
+          "motionBank": 18,
+          "sequenceIndex": 0,
+          "motionName": "IWA_NINJIN_0122",
+          "startFrame": 801,
+          "endFrame": 859
+        },
+        {
+          "actorTag": "JAKR",
+          "frame": 551,
+          "motionBank": 18,
+          "sequenceIndex": 6,
+          "motionName": "JAK_NINJINKIRAI_RR_0122",
+          "startFrame": 890,
+          "endFrame": 1029
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 551,
+          "motionBank": 18,
+          "sequenceIndex": 0,
+          "motionName": "IWA_NINJIN_0122",
+          "startFrame": 890,
+          "endFrame": 1029
+        },
+        {
+          "actorTag": "JAKR",
+          "frame": 691,
+          "motionBank": 18,
+          "sequenceIndex": 6,
+          "motionName": "JAK_NINJINKIRAI_RR_0122",
+          "startFrame": 1030,
+          "endFrame": 1338
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 691,
+          "motionBank": 18,
+          "sequenceIndex": 0,
+          "motionName": "IWA_NINJIN_0122",
+          "startFrame": 1030,
+          "endFrame": 1338
+        },
+        {
+          "actorTag": "JAKR",
+          "frame": 1000,
+          "motionBank": 18,
+          "sequenceIndex": 6,
+          "motionName": "JAK_NINJINKIRAI_RR_0122",
+          "startFrame": 1369,
+          "endFrame": 1418
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 1000,
+          "motionBank": 18,
+          "sequenceIndex": 0,
+          "motionName": "IWA_NINJIN_0122",
+          "startFrame": 1369,
+          "endFrame": 1418
+        },
+        {
+          "actorTag": "JAKR",
+          "frame": 1050,
+          "motionBank": 18,
+          "sequenceIndex": 6,
+          "motionName": "JAK_NINJINKIRAI_RR_0122",
+          "startFrame": 1449,
+          "endFrame": 1808
+        },
+        {
+          "actorTag": "IWAO",
+          "frame": 1050,
+          "motionBank": 18,
+          "sequenceIndex": 0,
+          "motionName": "IWA_NINJIN_0122",
+          "startFrame": 1449,
+          "endFrame": 1603
+        }
+      ]
+    }
+  ]
+}

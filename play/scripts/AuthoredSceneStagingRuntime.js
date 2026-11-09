@@ -69,6 +69,7 @@ export class AuthoredSceneStagingRuntime {
       throw new Error(`Invalid motion completion option ${scene.id}`);
     }
     if(scene.isolateResidentWorld!=null&&typeof scene.isolateResidentWorld!=="boolean")throw Error(`Invalid stage isolation ${scene.id}`);
+    if(scene.isolateScheduledActors!=null&&typeof scene.isolateScheduledActors!=="boolean")throw Error(`Invalid actor isolation ${scene.id}`);
     if(scene.telephoneReceiver!=null && scene.telephoneReceiver!=="JOMO_TEL_")throw Error(`Invalid telephone receiver ${scene.id}`);
     if (scene.waitForMotions && (scene.durationSeconds != null || scene.actors.some(actor => actor.motion.loop !== false))) {
       throw new Error(`Timed scene requires non-looping motions: ${scene.id}`);
@@ -95,6 +96,7 @@ export class AuthoredSceneStagingRuntime {
       ||JSON.stringify(scene.packageActors)!==JSON.stringify(this.active.scene.packageActors)
       ||JSON.stringify(scene.sceneObjects)!==JSON.stringify(this.active.scene.sceneObjects)
       ||Boolean(scene.isolateResidentWorld)!==Boolean(this.active.scene.isolateResidentWorld)
+      ||Boolean(scene.isolateScheduledActors)!==Boolean(this.active.scene.isolateScheduledActors)
       ||scene.telephoneReceiver!==this.active.scene.telephoneReceiver
       ||JSON.stringify(Object.keys(scene.sceneObjectTracks||{}))!==JSON.stringify(Object.keys(this.active.scene.sceneObjectTracks||{}))
       ||scene.attachedObjects||scene.objectTransforms||this.active.objects||this.active.restoreObjects))return false;
@@ -141,11 +143,14 @@ export class AuthoredSceneStagingRuntime {
         signal.throwIfAborted();
       }
       if (this.active !== owner) return false;
-      if(!continuing&&scene.isolateResidentWorld){
-        if(!this.currentMeshes||!this.acquireEnvironmentIsolation||!this.acquireActorIsolation)throw Error(`No stage isolation provider for ${scene.id}`);
-        owner.releaseEnvironment=this.acquireEnvironmentIsolation();
-        owner.releaseActors=this.acquireActorIsolation(owner,[...scene.actors.map(actor=>actor.tag),...Object.keys(scene.packageActors||{})]);
-        owner.residentIsolation=acquireResidentStageIsolation(this.currentMeshes());
+      if(!continuing&&(scene.isolateResidentWorld||scene.isolateScheduledActors)){
+        if(!this.acquireActorIsolation||(scene.isolateResidentWorld&&(!this.currentMeshes||!this.acquireEnvironmentIsolation)))throw Error(`No stage isolation provider for ${scene.id}`);
+        if(scene.isolateResidentWorld)owner.releaseEnvironment=this.acquireEnvironmentIsolation();
+        // Archive-owned actors also acquire a scheduled-actor suppression
+        // lease for this scene owner. Isolation covers the complementary cast,
+        // so it needs its own lease identity to coexist and release separately.
+        owner.releaseActors=this.acquireActorIsolation({},[...scene.actors.map(actor=>actor.tag),...Object.keys(scene.packageActors||{})]);
+        if(scene.isolateResidentWorld)owner.residentIsolation=acquireResidentStageIsolation(this.currentMeshes());
       }
       if (scene.objectTransforms) {
         if (!this.currentMeshes) throw Error(`No world object provider for ${scene.id}`);

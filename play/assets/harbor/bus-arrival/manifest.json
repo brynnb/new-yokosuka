@@ -1,0 +1,1072 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_harbor_arrival_pack.mjs",
+  "source": {
+    "disc": 2,
+    "path": "disc2/SCENE/02/MFSY/YBUSFLY.PKS",
+    "sha256": "2fe8137b1c39f1d636ca07bd697f85bc9439cb198c7bbd659001e5fe919bff30",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "CARO101G.CHRM",
+        "byteLength": 14168,
+        "sha256": "d7022872ff41a223abb914ff36508b61c256d9dca0c9f97b452ac5cf7f67b9d1"
+      },
+      {
+        "name": "FOBS5UNG.CHRM",
+        "byteLength": 16580,
+        "sha256": "4d7bff218d9ae6a7722b34e866b1c28de6ab8babd2b6edc46b119f0075bf479c"
+      },
+      {
+        "name": "FONS503G.CHRM",
+        "byteLength": 612,
+        "sha256": "f1c0bdc2386e0d2658a129479fe7ad8165dbcf45341e449d7bc7b1e3a02bb19e"
+      },
+      {
+        "name": "FONS507G.CHRM",
+        "byteLength": 612,
+        "sha256": "17f889fa6d03c8377e1a5514ee463a612e62331571ddd54dd49f5aaccc9c6909"
+      },
+      {
+        "name": "FONS508G.CHRM",
+        "byteLength": 612,
+        "sha256": "c74ce3e7dd170266b372aea1fd4cad3724750275ef8e70b61d1469f041c481ad"
+      },
+      {
+        "name": "HAT02L1P.CHRM",
+        "byteLength": 58504,
+        "sha256": "87f5e8eb67c6e0e0ee5a3f719b484d78c4f5630f961799aa2059b195ea7e9ec0"
+      },
+      {
+        "name": "M_01BUS.MOTN",
+        "byteLength": 79568,
+        "sha256": "697c48d9e46dd09c3d9932756aab77a53aca9f1bb83e3e6fe06ff2d148289e51"
+      },
+      {
+        "name": "SEQDATA6.AUTH",
+        "byteLength": 43100,
+        "sha256": "0343259948632f28986b8c665f04754b1fb1f64b5aadd82163afecd3e662468f"
+      },
+      {
+        "name": "SEQDATAD.AUTH",
+        "byteLength": 24744,
+        "sha256": "3a726fb47a36099e88b712e2713deef05547abd071173dae29ed5b366d521ddc"
+      },
+      {
+        "name": "SGA_L.CHRM",
+        "byteLength": 32380,
+        "sha256": "ded386715637871c6206f137bb30d575aefbd99978a52ddb5c1789b1a7d7c6d1"
+      },
+      {
+        "name": "SGF_L.CHRM",
+        "byteLength": 31088,
+        "sha256": "d292c54fc191562b0a9cacd7ee109fcad6084ba6229de9a1dd6c971d88cefea9"
+      },
+      {
+        "name": "SGH_L.CHRM",
+        "byteLength": 32724,
+        "sha256": "0553e3070cd88d0742df4c521490d72018d298cdb1123e57cf03915a8c0a10e4"
+      },
+      {
+        "name": "SOUGRIFG.CHRM",
+        "byteLength": 18908,
+        "sha256": "f9d0e361d89e1541438a58890158c54e55e023f14ecfe2af8558afaaf64c057e"
+      },
+      {
+        "name": "TRXG0CPG.CHRM",
+        "byteLength": 21988,
+        "sha256": "14cccce4bb44d203f7bd3ae84271d2e112fdc783919b73105b62cec07525cb1e"
+      },
+      {
+        "name": "TRXG0SHG.CHRM",
+        "byteLength": 17972,
+        "sha256": "0c8dcbdb513c58f44b63e78f18455d865494dd144f403bf4362156842816edf9"
+      },
+      {
+        "name": "TRXG0YNG.CHRM",
+        "byteLength": 17372,
+        "sha256": "c08c065d6e9c9784c14d8defa7b59a11ececf29abb2faf281cf9fc5e7becd775"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-event-template.md#bus-to-new-yokosuka-harbor",
+    "resourceName": "YBUSFLY",
+    "variant": "",
+    "selectionRule": "MFSY owner 0x29bcc selects one of original SEQDATA6 or SEQDATAD harbor arrivals. Use the less-populated D alternative; exact branch conditions are unresolved."
+  },
+  "audioManifest": "public/audio/world/harbor-bus-arrival/manifest.json",
+  "sceneObjects": {
+    "BLU1": {
+      "model": "TRXG0YNG",
+      "browserFilename": "TRXG0YNG.CHRM",
+      "assetPath": "play/assets/harbor/bus-arrival/TRXG0YNG.CHRM",
+      "textureAssetPath": "play/assets/harbor/bus-arrival/textures.bin",
+      "sourceBinding": {
+        "actorTag": "BLU1",
+        "image": "TRXG0YNG",
+        "model": "TRXG0YNG",
+        "characterRecordOffset": 1296,
+        "imagePropertyOffset": 1344,
+        "defImageRecordOffset": 1256,
+        "presentation": null,
+        "member": "TRXG0YNG.CHRM",
+        "memberSha256": "c08c065d6e9c9784c14d8defa7b59a11ececf29abb2faf281cf9fc5e7becd775"
+      }
+    },
+    "FOK2": {
+      "model": "FOBS5UNG",
+      "browserFilename": "FOBS5UNG.CHRM",
+      "assetPath": "play/assets/harbor/bus-arrival/FOBS5UNG.CHRM",
+      "textureAssetPath": "play/assets/harbor/bus-arrival/textures.bin",
+      "sourceBinding": {
+        "actorTag": "FOK2",
+        "image": "FOKS5UNG",
+        "model": "FOBS5UNG",
+        "characterRecordOffset": 548,
+        "imagePropertyOffset": 596,
+        "defImageRecordOffset": 408,
+        "presentation": null,
+        "member": "FOBS5UNG.CHRM",
+        "memberSha256": "4d7bff218d9ae6a7722b34e866b1c28de6ab8babd2b6edc46b119f0075bf479c"
+      }
+    },
+    "SOU3": {
+      "model": "SOUGRIFG",
+      "browserFilename": "SOUGRIFG.CHRM",
+      "assetPath": "play/assets/harbor/bus-arrival/SOUGRIFG.CHRM",
+      "textureAssetPath": "play/assets/harbor/bus-arrival/textures.bin",
+      "sourceBinding": {
+        "actorTag": "SOU3",
+        "image": "SOUGRIFG",
+        "model": "SOUGRIFG",
+        "characterRecordOffset": 2112,
+        "imagePropertyOffset": 2140,
+        "defImageRecordOffset": 1952,
+        "presentation": null,
+        "member": "SOUGRIFG.CHRM",
+        "memberSha256": "f9d0e361d89e1541438a58890158c54e55e023f14ecfe2af8558afaaf64c057e"
+      }
+    },
+    "YEL1": {
+      "model": "TRXG0SHG",
+      "browserFilename": "TRXG0SHG.CHRM",
+      "assetPath": "play/assets/harbor/bus-arrival/TRXG0SHG.CHRM",
+      "textureAssetPath": "play/assets/harbor/bus-arrival/textures.bin",
+      "sourceBinding": {
+        "actorTag": "YEL1",
+        "image": "TRXG0SHG",
+        "model": "TRXG0SHG",
+        "characterRecordOffset": 1628,
+        "imagePropertyOffset": 1676,
+        "defImageRecordOffset": 1488,
+        "presentation": null,
+        "member": "TRXG0SHG.CHRM",
+        "memberSha256": "0c8dcbdb513c58f44b63e78f18455d865494dd144f403bf4362156842816edf9"
+      }
+    },
+    "BLU2": {
+      "model": "TRXG0SHG",
+      "browserFilename": "TRXG0SHG.CHRM",
+      "assetPath": "play/assets/harbor/bus-arrival/TRXG0SHG.CHRM",
+      "textureAssetPath": "play/assets/harbor/bus-arrival/textures.bin",
+      "sourceBinding": {
+        "actorTag": "BLU2",
+        "image": "TRXG0SHG",
+        "model": "TRXG0SHG",
+        "characterRecordOffset": 1528,
+        "imagePropertyOffset": 1576,
+        "defImageRecordOffset": 1488,
+        "presentation": null,
+        "member": "TRXG0SHG.CHRM",
+        "memberSha256": "0c8dcbdb513c58f44b63e78f18455d865494dd144f403bf4362156842816edf9"
+      }
+    },
+    "BUS_": {
+      "model": "BUSS530G",
+      "browserFilename": "BUSS530G.CHRM",
+      "assetPath": "play/assets/dobuita/BUSS530G.CHRM",
+      "textureAssetPath": "play/assets/dobuita/BUSS530G_textures.bin"
+    }
+  },
+  "packageActors": {
+    "EXT1": {
+      "label": "Harbor worker",
+      "modelCode": "SGA_L",
+      "browserFilename": "SGA_L.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/harbor/bus-arrival/SGA_L.CHRM",
+      "textureAssetPath": "play/assets/harbor/bus-arrival/textures.bin",
+      "sourceBinding": {
+        "actorTag": "EXT1",
+        "image": "S09_S",
+        "model": "SGA_L",
+        "characterRecordOffset": 48,
+        "imagePropertyOffset": 76,
+        "defImageRecordOffset": 8,
+        "presentation": null,
+        "member": "SGA_L.CHRM",
+        "memberSha256": "ded386715637871c6206f137bb30d575aefbd99978a52ddb5c1789b1a7d7c6d1"
+      }
+    }
+  },
+  "attachedObjects": {
+    "BUS_": {
+      "browserFilename": "BUSS530G.CHRM",
+      "sceneObject": true,
+      "attachments": [],
+      "nodeTransforms": [
+        {
+          "activitySlot": 0,
+          "nodeKey": 153,
+          "callFileOffset": "0x2c678",
+          "frame": 1435,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 154,
+          "callFileOffset": "0x2c69a",
+          "frame": 1435,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 157,
+          "callFileOffset": "0x2c6bc",
+          "frame": 1435,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 157,
+          "callFileOffset": "0x2c6bc",
+          "firstFrame": 1435,
+          "lastFrame": 1465,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            455,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 158,
+          "callFileOffset": "0x2c6de",
+          "frame": 1435,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 158,
+          "callFileOffset": "0x2c6de",
+          "firstFrame": 1435,
+          "lastFrame": 1465,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            -983,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 155,
+          "callFileOffset": "0x2c700",
+          "frame": 1435,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 155,
+          "callFileOffset": "0x2c700",
+          "firstFrame": 1435,
+          "lastFrame": 1465,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            -455,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 156,
+          "callFileOffset": "0x2c722",
+          "frame": 1435,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 156,
+          "callFileOffset": "0x2c722",
+          "firstFrame": 1435,
+          "lastFrame": 1465,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            983,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 153,
+          "callFileOffset": "0x2c678",
+          "frame": 1550,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 154,
+          "callFileOffset": "0x2c69a",
+          "frame": 1550,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 157,
+          "callFileOffset": "0x2c6bc",
+          "frame": 1550,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            14654,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 157,
+          "callFileOffset": "0x2c6bc",
+          "firstFrame": 1550,
+          "lastFrame": 1580,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            -455,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 158,
+          "callFileOffset": "0x2c6de",
+          "frame": 1550,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            -30474,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 158,
+          "callFileOffset": "0x2c6de",
+          "firstFrame": 1550,
+          "lastFrame": 1580,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            983,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 155,
+          "callFileOffset": "0x2c700",
+          "frame": 1550,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            -14654,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 155,
+          "callFileOffset": "0x2c700",
+          "firstFrame": 1550,
+          "lastFrame": 1580,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            455,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 156,
+          "callFileOffset": "0x2c722",
+          "frame": 1550,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            30474,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        },
+        {
+          "activitySlot": 0,
+          "nodeKey": 156,
+          "callFileOffset": "0x2c722",
+          "firstFrame": 1550,
+          "lastFrame": 1580,
+          "mode": "add",
+          "rotationRaw": [
+            0,
+            -983,
+            0
+          ],
+          "activityId": "YBUSFLY/SEQDATAD.AUTH",
+          "source": {
+            "evidence": "tools/evidence/harbor-flyover-callback-ir.json"
+          }
+        }
+      ]
+    }
+  },
+  "actorTags": [
+    "BLU1",
+    "FOK2",
+    "SOU3",
+    "YEL1",
+    "BUS_",
+    "AKIR",
+    "EXT1",
+    "BLU2"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/bus-arrival/M_01BUS.MOTN",
+      "byteLength": 79568,
+      "sha256": "697c48d9e46dd09c3d9932756aab77a53aca9f1bb83e3e6fe06ff2d148289e51"
+    },
+    {
+      "bank": 0,
+      "path": "play/assets/dobuita/jimmy-escaped/MOTION.BIN",
+      "byteLength": 1826804,
+      "sha256": "aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23"
+    },
+    {
+      "bank": 2,
+      "path": "play/assets/dobuita/jimmy-escaped/MOTION.BIN",
+      "byteLength": 1826804,
+      "sha256": "aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/bus-arrival/M_01BUS.MOTN",
+      "byteLength": 79568,
+      "sha256": "697c48d9e46dd09c3d9932756aab77a53aca9f1bb83e3e6fe06ff2d148289e51"
+    },
+    {
+      "path": "play/assets/dobuita/jimmy-escaped/MOTION.BIN",
+      "byteLength": 1826804,
+      "sha256": "aca6a41b967b9f9f92ad847c9495e780058b8194e359bca9a9c2763b0d337b23"
+    },
+    {
+      "path": "play/assets/harbor/bus-arrival/SEQDATAD.AUTH",
+      "byteLength": 24744,
+      "sha256": "3a726fb47a36099e88b712e2713deef05547abd071173dae29ed5b366d521ddc"
+    },
+    {
+      "path": "play/assets/harbor/bus-arrival/TRXG0YNG.CHRM",
+      "byteLength": 17372,
+      "sha256": "c08c065d6e9c9784c14d8defa7b59a11ececf29abb2faf281cf9fc5e7becd775"
+    },
+    {
+      "path": "play/assets/harbor/bus-arrival/FOBS5UNG.CHRM",
+      "byteLength": 16580,
+      "sha256": "4d7bff218d9ae6a7722b34e866b1c28de6ab8babd2b6edc46b119f0075bf479c"
+    },
+    {
+      "path": "play/assets/harbor/bus-arrival/SOUGRIFG.CHRM",
+      "byteLength": 18908,
+      "sha256": "f9d0e361d89e1541438a58890158c54e55e023f14ecfe2af8558afaaf64c057e"
+    },
+    {
+      "path": "play/assets/harbor/bus-arrival/TRXG0SHG.CHRM",
+      "byteLength": 17972,
+      "sha256": "0c8dcbdb513c58f44b63e78f18455d865494dd144f403bf4362156842816edf9"
+    },
+    {
+      "path": "play/assets/harbor/bus-arrival/SGA_L.CHRM",
+      "byteLength": 32380,
+      "sha256": "ded386715637871c6206f137bb30d575aefbd99978a52ddb5c1789b1a7d7c6d1"
+    },
+    {
+      "path": "play/assets/dobuita/BUSS530G.CHRM",
+      "byteLength": 100360,
+      "sha256": "6d7a04141e652476b120a1bcd07ca3e864ca95526a7cd25427012779b0c932ff"
+    },
+    {
+      "path": "play/assets/dobuita/BUSS530G_textures.bin",
+      "byteLength": 146804,
+      "sha256": "beb93fc87a1e6b639813283d03a932d5fff428979f3ee12e498c2d3520eb3315"
+    },
+    {
+      "path": "play/assets/harbor/bus-arrival/textures.bin",
+      "byteLength": 398592,
+      "sha256": "2c7c2495c6ff1b71a2c530d1a6dbc3030cfef9e9bf4f07409f10375500796c98",
+      "source": {
+        "path": "disc2/SCENE/02/MFSY/YBUSFLY.PKF",
+        "sha256": "e525f76bc8ac0fa243577efcb7bd5e11c8ff2e756c5494e3ff62dd7dfca370df"
+      }
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "authoredMotionSubstitutions": [
+        {
+          "actorTag": "EXT1",
+          "sourceBank": 2,
+          "sourceIndex": 222,
+          "targetBank": 0,
+          "targetIndex": 101,
+          "reason": "Unresolved original worker bank; reuse the walk authored later in this same film."
+        }
+      ],
+      "activityId": "YBUSFLY/SEQDATAD.AUTH",
+      "archiveMember": "SEQDATAD.AUTH",
+      "byteLength": 24744,
+      "sha256": "3a726fb47a36099e88b712e2713deef05547abd071173dae29ed5b366d521ddc",
+      "durationFrames": 1730,
+      "durationSeconds": 57.68333435058594,
+      "frameCount": 61,
+      "commandCounts": {
+        "camera": 1,
+        "move": 8,
+        "motion": 43,
+        "sound": 18
+      },
+      "actors": [
+        "BLU1",
+        "FOK2",
+        "SOU3",
+        "YEL1",
+        "BUS_",
+        "AKIR",
+        "EXT1",
+        "BLU2"
+      ],
+      "motions": [
+        {
+          "actorTag": "EXT1",
+          "frame": 1,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 37,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 73,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 109,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 145,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 181,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 217,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 253,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 289,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 325,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 331,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 367,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 403,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 439,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 475,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 511,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 547,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 583,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 619,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 655,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 691,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 727,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 763,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 799,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 835,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 871,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 907,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 943,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 979,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 1015,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 1051,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 1087,
+          "motionBank": 2,
+          "sequenceIndex": 222,
+          "motionName": "ARPD_072",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1094,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "AKI_ORIRU_STAND_BUS_LP_0100",
+          "startFrame": 1,
+          "endFrame": 90
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 1100,
+          "motionBank": 0,
+          "sequenceIndex": 101,
+          "motionName": "AKI_AKI_WALK_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 1136,
+          "motionBank": 0,
+          "sequenceIndex": 101,
+          "motionName": "AKI_AKI_WALK_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 1172,
+          "motionBank": 0,
+          "sequenceIndex": 101,
+          "motionName": "AKI_AKI_WALK_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1184,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "AKI_ORIRU_STAND_BUS_LP_0100",
+          "startFrame": 1,
+          "endFrame": 90
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 1208,
+          "motionBank": 0,
+          "sequenceIndex": 101,
+          "motionName": "AKI_AKI_WALK_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 1244,
+          "motionBank": 0,
+          "sequenceIndex": 101,
+          "motionName": "AKI_AKI_WALK_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1274,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "AKI_ORIRU_STAND_BUS_LP_0100",
+          "startFrame": 1,
+          "endFrame": 90
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 1280,
+          "motionBank": 0,
+          "sequenceIndex": 101,
+          "motionName": "AKI_AKI_WALK_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "EXT1",
+          "frame": 1281,
+          "motionBank": 2,
+          "sequenceIndex": 128,
+          "motionName": "ERROR_24",
+          "startFrame": 1,
+          "endFrame": 14
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 1394,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_ORIRU_STAND_BUS_0100",
+          "startFrame": 1,
+          "endFrame": 443
+        }
+      ]
+    }
+  ]
+}

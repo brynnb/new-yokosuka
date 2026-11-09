@@ -43,3 +43,27 @@ test("cancel/retry discard old deadlines and malformed data fails explicitly",()
   h.runtime.start({buttons:["B"],windowMs:500});stale();h.runtime.press("B");assert.deepEqual(h.results,["success"]);
   assert.throws(()=>h.runtime.start({steps:[{buttons:["A"],windowMs:NaN}]}),/Invalid QTE/);
 });
+test("scored QTEs continue after missed cues and distinguish win, draw and loss",()=>{
+  const definition={buttons:["A","Down","Left","Right"],windowMs:100,scoring:{successAt:4,partialAt:3}};
+  for(const [mistakes,expected] of [[0,"success"],[1,"partial"],[2,"failure"],[4,"failure"]]){
+    const h=harness();h.runtime.start(definition);
+    for(let i=0;i<definition.buttons.length;i++){
+      if(i<mistakes){if(i%2===0)h.runtime.press("B");else h.step(100);}
+      else h.runtime.press(definition.buttons[i]);
+    }
+    assert.deepEqual(h.results,[expected]);assert.equal(h.views.length,4);
+    assert.equal(h.sounds.filter(s=>s==="wrong").length,mistakes);
+    h.step(500);assert.deepEqual(h.results,[expected]);
+  }
+  const h=harness();
+  assert.throws(()=>h.runtime.start({...definition,scoring:{successAt:5,partialAt:3}}),/Invalid QTE scoring/);
+  assert.throws(()=>h.runtime.start({...definition,scoring:{successAt:3,partialAt:3}}),/Invalid QTE scoring/);
+});
+test("chicken race's guide-informed approximation allows a win with two correct cues",()=>{
+  const definition=catalog.challenges.find(challenge=>challenge.id==="s1.mfsy.chicken-race");
+  for(const [hits,expected] of [[0,"failure"],[1,"partial"],[2,"success"],[3,"success"],[4,"success"]]){
+    const h=harness();h.runtime.start(definition);
+    definition.buttons.forEach((button,index)=>h.runtime.press(index<hits?button:"X"));
+    assert.deepEqual(h.results,[expected]);
+  }
+});

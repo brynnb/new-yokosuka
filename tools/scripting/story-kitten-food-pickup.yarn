@@ -1,0 +1,11 @@
+Ryo Hazuki: {{text:prompt}} #speaker:AKIR
+-> {{text:confirm}}
+    <<jump TakeFood>>
+-> Leave it for now
+    <<complete>>
+===
+title: TakeFood
+---
+Ryo Hazuki: {{text:receipt}} #speaker:AKIR
+{{effects}}
+<<complete>>

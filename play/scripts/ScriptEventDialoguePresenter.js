@@ -31,11 +31,12 @@ export function expandYarnSubstitutions(text, substitutions = []) {
   });
 }
 
-function defaultSpeakerResolver(speakerCode) {
+export function resolveScriptEventSpeaker(speakerCode, scene = null) {
   const descriptor = nativeDialogueActorDescriptor(speakerCode);
-  if (!descriptor && !NATIVE_DIALOGUE_SPEAKER_LABELS[speakerCode]) return null;
+  const staged = scene?.actorDefinitions?.find(actor => actor.actorCode === speakerCode);
+  if (!descriptor && !NATIVE_DIALOGUE_SPEAKER_LABELS[speakerCode] && !staged?.label) return null;
   return {
-    label: nativeDialogueSpeakerLabel({
+    label: staged?.label || nativeDialogueSpeakerLabel({
       speakerId: speakerCode,
       nativeParticipantCode: speakerCode,
     }),
@@ -56,7 +57,7 @@ function dialogueText(text) {
 
 export function scriptEventLinePresentation(
   line,
-  resolveSpeaker = defaultSpeakerResolver,
+  resolveSpeaker = resolveScriptEventSpeaker,
   substitutions = [],
 ) {
   const speakerCode = metadataValue(line?.metadata, "speaker:").toUpperCase();
@@ -105,7 +106,7 @@ export class ScriptEventDialoguePresenter {
     japaneseText,
     options,
     voiceManifest = createNativeDialogueVoiceManifest(),
-    resolveSpeaker = defaultSpeakerResolver,
+    resolveSpeaker = resolveScriptEventSpeaker,
     audioFactory = defaultAudioFactory,
     audioSettings = null,
     facialPresentation = null,
@@ -366,7 +367,7 @@ export class ScriptEventDialoguePresenter {
       },
       finish:outcome=>{
         if(!current())return;
-        this.dom.sourceText.textContent=outcome==="success"?"Correct!":"Missed — try again.";
+        this.dom.sourceText.textContent=outcome==="success"?"Correct!":outcome==="partial"?"Race finished.":definition.scoring?"Race finished.":"Missed — try again.";
         this.dom.options.hidden=true;
         this.onChallengeResponse("challenge_result",prompt.token,outcome);
       }});

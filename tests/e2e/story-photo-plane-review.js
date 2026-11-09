@@ -89,11 +89,15 @@ export async function reviewNozomiPhotoPlanes(page,testInfo,character) {
 // Connected checkpoint: walk through the actual trigger, cancel, retry and
 // choose a photo. The server, not the presentation, owns every saved effect.
 export async function verifyNozomiPhotoProgression(page,testInfo,character) {
+  const choice=process.env.NEW_YOKOSUKA_PHOTO_CHOICE||"apart";
+  expect(["apart","together"]).toContain(choice);
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const before=await saved();
   expect(before.character.storyFlags["story.s1.workday-three-morning.completed"]).toBe(true);
   expect(before.character.storyFlags["story.s1.nozomi-photos.completed"]).not.toBe(true);
-  await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld("mfsy"));
+  await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.ready&&!window.storyProbe.lifecycle.worldRuntime.switching,null,{timeout:120_000});
+  await page.evaluate(async()=>{if(window.storyProbe.lifecycle.worldRuntime.activeWorld.id!=="mfsy")await window.storyProbe.lifecycle.travelToWorld("mfsy");});
+  await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="mfsy"&&window.storyProbe.lifecycle.worldRuntime.ready&&!window.storyProbe.lifecycle.worldRuntime.switching,null,{timeout:120_000});
   const approach=async()=>{
     await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
     await page.evaluate(()=>{
@@ -120,15 +124,17 @@ export async function verifyNozomiPhotoProgression(page,testInfo,character) {
   expect(opacity[0]).toBeGreaterThan(0);expect(opacity[0]).toBeLessThan(1);expect(opacity[1]).toBe(1);
   await page.screenshot({path:testInfo.outputPath("photo-development-connected.png")});
   await page.keyboard.press("KeyX");
-  await page.getByRole("button",{name:"Keep the photo standing apart",exact:true}).click({timeout:60_000});
-  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-nozomi-photo-ending",null,{timeout:60_000});
-  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.runtime?.playback?.active?.frame>=20,null,{timeout:60_000});
+  await page.getByRole("button",{name:`Keep the photo standing ${choice}`,exact:true}).click({timeout:60_000});
+  await page.waitForFunction(choice=>window.storyProbe.director?.activeCutscene?.cutscene.id===`story-s1-nozomi-photo-ending-${choice}`,choice,{timeout:60_000});
+  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.runtime?.playback?.active?.frame>=100,null,{timeout:60_000});
+  expect(await page.evaluate(()=>window.storyProbe.director.activeCutscene.packageRuntime.sceneObjects.definitions.get("PHT1").model)).toBe(choice==="apart"?"SHAS506G":"SHAS503G");
+  await page.screenshot({path:testInfo.outputPath(`chosen-photo-${choice}.png`)});
   await page.keyboard.press("KeyX");
   await expect.poll(async()=>(await saved()).character.storyFlags["story.s1.nozomi-photos.completed"],{timeout:60_000}).toBe(true);
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
   const after=await saved();
-  expect(after.character.storyFlags["story.s1.nozomi-photo.apart"]).toBe(true);
-  expect(after.character.storyFlags["story.s1.nozomi-photo.together"]).not.toBe(true);
+  expect(after.character.storyFlags[`story.s1.nozomi-photo.${choice}`]).toBe(true);
+  expect(after.character.storyFlags[`story.s1.nozomi-photo.${choice==="apart"?"together":"apart"}`]).not.toBe(true);
   expect(after.character.storyFlags["notebook.s1.nozomi-photos"]).toBe(true);
   expect(after.character.yen).toBe(before.character.yen);expect(after.inventory).toEqual(before.inventory);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);

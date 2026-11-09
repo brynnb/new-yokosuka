@@ -1,0 +1,1566 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_kitten_roof_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/STREAM/01CJP.AFS",
+      "sha256": "0288c4c5317409b3f9df94ee1b5aaf6f4772ea9c379400aba7e66b781fa31e29"
+    },
+    "soundBank": {
+      "disc": 3,
+      "path": "disc3/SCENE/03/SOUND/A1_NEKOT.SND",
+      "sha256": "7ee9ffea5275fd8f0d8eb60a0b10ee1ba900b7b0b25741945db8ba161a152392"
+    },
+    "authManifest": "play/assets/yamanose/kitten-roof/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#later-kitten-events-source-leads"
+  },
+  "voices": [
+    {
+      "voiceId": "01CJPA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPA001.aiff",
+      "nativeMember": "01CJPA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 8192,
+      "nativeSha256": "77f8803fe5669b1e18730805fb78428e852d382949397e245c7ab4db3e1d32db",
+      "speakerId": "AKIR",
+      "sourceText": "Hi, Megumi. What's up?",
+      "displayText": "Hi, Megumi. What's up?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPA001.wav",
+      "byteLength": 32556,
+      "sha256": "1499eb126a82da88909f28eebbeb9280563bfd07edf76b5db4fadc933d9a3caa"
+    },
+    {
+      "voiceId": "01CJPA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPA002.aiff",
+      "nativeMember": "01CJPA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 10240,
+      "nativeSha256": "ea3eab83ee6534581bf40fa220d60126ca76809fb29b3d561280f6bb7749ed19",
+      "speakerId": "AKIR",
+      "sourceText": "'Cause her leg is healed.",
+      "displayText": "'Cause her leg is healed.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPA002.wav",
+      "byteLength": 40748,
+      "sha256": "be59ceb6d0441763e300df834483450fa95360b89d563e5d57f006a8b2aca12f"
+    },
+    {
+      "voiceId": "01CJPA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPA003.aiff",
+      "nativeMember": "01CJPA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 16384,
+      "nativeSha256": "31a21dfec834d51b949c0e4addb8d2e1cd169240f5d1f90a6626942d83e4011f",
+      "speakerId": "AKIR",
+      "sourceText": "Don't worry. Cats like high places.",
+      "displayText": "Don't worry. Cats like high places.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPA003.wav",
+      "byteLength": 65324,
+      "sha256": "1f67a4e11784f6c4a87314456ecfb5710ca8a3697dd93a2f8eeb5d246d7a10ed"
+    },
+    {
+      "voiceId": "01CJPA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPA004.aiff",
+      "nativeMember": "01CJPA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 18432,
+      "nativeSha256": "fb0752488c398fbed87f31d2b63bf5dc1a488ce9aabad727985cb519ae8c57d7",
+      "speakerId": "AKIR",
+      "sourceText": "Her leg seems fine.＆It's no problem Megumi.",
+      "displayText": "Her leg seems fine.\nIt's no problem Megumi.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 26
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPA004.wav",
+      "byteLength": 73516,
+      "sha256": "4b0062c2a508d18eac800294e7442b435eda6564275fa6f8268e921c1900d57d"
+    },
+    {
+      "voiceId": "01CJPA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPA005.aiff",
+      "nativeMember": "01CJPA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 4096,
+      "nativeSha256": "ed49ca5b4a61070cb63967ccacbce758c38f71c2c5feac1c71aaaaf9b5a430eb",
+      "speakerId": "AKIR",
+      "sourceText": "See ya'.",
+      "displayText": "See ya'.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPA005.wav",
+      "byteLength": 16172,
+      "sha256": "fd644e5cc8017090dc60074e57f4b2e5c6aa699244f8f6216bedfb5a3503ce4c"
+    },
+    {
+      "voiceId": "01CJPA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPA006.aiff",
+      "nativeMember": "01CJPA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 6144,
+      "nativeSha256": "0b9d42000bb62803c077c2e2a40e5b6007b271e42e227f9bd120429df0dda836",
+      "speakerId": "AKIR",
+      "sourceText": "Nozomi.",
+      "displayText": "Nozomi.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPA006.wav",
+      "byteLength": 24364,
+      "sha256": "31ef0518be56f87ea4a41df625681d4dbc0a5a558e4aa5d3fc721d1181e45e7f"
+    },
+    {
+      "voiceId": "01CJPA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPA007.aiff",
+      "nativeMember": "01CJPA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 8192,
+      "nativeSha256": "789d2a5c12e839315bac641c3693e3953187969a8bd3f4b173fa425e6f82382b",
+      "speakerId": "AKIR",
+      "sourceText": "Is that medicine?",
+      "displayText": "Is that medicine?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPA007.wav",
+      "byteLength": 32556,
+      "sha256": "20a57ddbf83c8c1b8fd7ee159ffc1ff8be88a3f833e9b23737218261cfe6db35"
+    },
+    {
+      "voiceId": "01CJPA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPA008.aiff",
+      "nativeMember": "01CJPA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 4096,
+      "nativeSha256": "99216c6c62d019de1f49c1afa17188b3482ef9176756b78c18b360fd30f75d05",
+      "speakerId": "AKIR",
+      "sourceText": "Right.",
+      "displayText": "Right.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPA008.wav",
+      "byteLength": 16172,
+      "sha256": "47c95ace2534b5cc1c430512db2e4c2d0af84824aaee6303c7e0aebb22f85322"
+    },
+    {
+      "voiceId": "01CJPA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPA009.aiff",
+      "nativeMember": "01CJPA009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 4096,
+      "nativeSha256": "528e24a6b16675c3ad122f4c176fd42f5504c8b28b1ad99ee77349937d9f471b",
+      "speakerId": "AKIR",
+      "sourceText": "That's good.",
+      "displayText": "That's good.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPA009.wav",
+      "byteLength": 16172,
+      "sha256": "7c3cd245e8a4276f12d443a961e1aeb24a6b4a690be09103b00c669f07b34453"
+    },
+    {
+      "voiceId": "01CJPB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPB001.aiff",
+      "nativeMember": "01CJPB001.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 10240,
+      "nativeSha256": "a64a83405ca86a16c1f66d0a5b56af8bbdbbaa9809885a279dc2540a1e964fd4",
+      "speakerId": "MEGM",
+      "sourceText": "Oh! Hi, Ryo.",
+      "displayText": "Oh! Hi, Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPB001.wav",
+      "byteLength": 40748,
+      "sha256": "6772815e1ffa7c42e67ddc5635000eeea4fd16535920c999d9d36030c73bebd9"
+    },
+    {
+      "voiceId": "01CJPB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPB002.aiff",
+      "nativeMember": "01CJPB002.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 14336,
+      "nativeSha256": "0edb50c04123cacdbf4fc2b3928673b8fc406ca66dc75751dcea8e0c5b072de8",
+      "speakerId": "MEGM",
+      "sourceText": "Look, up there.",
+      "displayText": "Look, up there.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 28
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPB002.wav",
+      "byteLength": 57132,
+      "sha256": "694f1eccedaf7074c0eea69fbaf5e58073ea519f6ce5b1b770f9c84359a7655d"
+    },
+    {
+      "voiceId": "01CJPB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPB003.aiff",
+      "nativeMember": "01CJPB003.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 4096,
+      "nativeSha256": "0bc674aa812d237d56a411a4cac635a2fba98dfdba59473ddf679b75600c4c64",
+      "speakerId": "MEGM",
+      "sourceText": "Mmm.",
+      "displayText": "Mmm.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPB003.wav",
+      "byteLength": 16172,
+      "sha256": "705c57e2b32f7210ec2846c685cd90d2fc33d0fa34934f71f41bed5a17015614"
+    },
+    {
+      "voiceId": "01CJPB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPB004.aiff",
+      "nativeMember": "01CJPB004.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 20480,
+      "nativeSha256": "59be172c75b237f93874757f2537e37ee773fabd5ae40086f7f6d494bacee980",
+      "speakerId": "MEGM",
+      "sourceText": "But I'm worried she can't come down!",
+      "displayText": "But I'm worried she can't come down!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 20
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPB004.wav",
+      "byteLength": 81708,
+      "sha256": "bd7b19e49ae51d70d7489253a748bc601270a0da1ceecadd070a749bff3387e7"
+    },
+    {
+      "voiceId": "01CJPB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPB005.aiff",
+      "nativeMember": "01CJPB005.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 14336,
+      "nativeSha256": "3fe9ff4ee2fd8806c717115356c78482c312f4230799bce46242321f425e4c21",
+      "speakerId": "MEGM",
+      "sourceText": "Really? Ohh!",
+      "displayText": "Really? Ohh!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 29
+          },
+          {
+            "shape": 5,
+            "durationTicks": 33
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPB005.wav",
+      "byteLength": 57132,
+      "sha256": "73613ec278555b3fd5f1c9b0e9f4760eb586fb5d71ee22e727044b61da56f0aa"
+    },
+    {
+      "voiceId": "01CJPB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPB006.aiff",
+      "nativeMember": "01CJPB006.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 8192,
+      "nativeSha256": "aa3d9a2e0b643359332b3dae366be217794254748de58f7cb58e629d9bb3c4ea",
+      "speakerId": "MEGM",
+      "sourceText": "Oh my=@",
+      "displayText": "Oh my...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 29
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPB006.wav",
+      "byteLength": 32556,
+      "sha256": "2b61a259673e653faa0d73abd771f443103fa7a607626410bcb7200abedf6634"
+    },
+    {
+      "voiceId": "01CJPB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPB007.aiff",
+      "nativeMember": "01CJPB007.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 4096,
+      "nativeSha256": "7c9c6fcbb7e90a2e99153e1f422f2e64732731e18d46e3202dc42de84786eaea",
+      "speakerId": "MEGM",
+      "sourceText": "OK.",
+      "displayText": "OK.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 18
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPB007.wav",
+      "byteLength": 16172,
+      "sha256": "d12765f5e57d2c4081e4b4b32dcd0b42ba14073d2929c1434c5e21411014ca0f"
+    },
+    {
+      "voiceId": "01CJPB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPB008.aiff",
+      "nativeMember": "01CJPB008.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 6144,
+      "nativeSha256": "27522c1e029e4e25c912fbacdbba35413cf53305feead7a0207619d09c700e0f",
+      "speakerId": "MEGM",
+      "sourceText": "Bye-bye.",
+      "displayText": "Bye-bye.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPB008.wav",
+      "byteLength": 24364,
+      "sha256": "6e3a3c9a9819b85b4b521456ea00bd02eddaa474e2c680f9201b4db6d8192735"
+    },
+    {
+      "voiceId": "01CJPB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPB009.aiff",
+      "nativeMember": "01CJPB009.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 10240,
+      "nativeSha256": "38d6f8886b621d03af541cd32ba4af124732706158d68a6f1fc894f5c2342b41",
+      "speakerId": "MEGM",
+      "sourceText": "Hi Nozomi.",
+      "displayText": "Hi Nozomi.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 28
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPB009.wav",
+      "byteLength": 40748,
+      "sha256": "0243719cbd209f4c814a417cf13082f5854b85588bbb1b8a70e9d0f7c35adf45"
+    },
+    {
+      "voiceId": "01CJPB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPB010.aiff",
+      "nativeMember": "01CJPB010.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 14336,
+      "nativeSha256": "2be6828575c99a7a9aaa094bad9a8fb82dc39d2ba746d8d02eb30db7fc49189b",
+      "speakerId": "MEGM",
+      "sourceText": "Her leg's OK now.",
+      "displayText": "Her leg's OK now.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 27
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 30
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPB010.wav",
+      "byteLength": 57132,
+      "sha256": "1345be1a14c10964aa2f057a525821fd7f2dad968ad51b9db326de347908deb8"
+    },
+    {
+      "voiceId": "01CJPC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPC001.aiff",
+      "nativeMember": "01CJPC001.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 6144,
+      "nativeSha256": "6c552b58b1d63d6a82578792189c782077cf306a3ce285fd2003f56d231fe59d",
+      "speakerId": "HRSK",
+      "sourceText": "Hi Ryo.",
+      "displayText": "Hi Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPC001.wav",
+      "byteLength": 24364,
+      "sha256": "a1a6576de25ad4fae880f7227f1defae92d28f6502dc1c8a9a4a7f37e2328ae5"
+    },
+    {
+      "voiceId": "01CJPC002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPC002.aiff",
+      "nativeMember": "01CJPC002.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 12288,
+      "nativeSha256": "56e876bec2e541453a2280c47e83a498bec74b869f86a4cce873aa6106e64ac6",
+      "speakerId": "HRSK",
+      "sourceText": "Megumi was worried, so=@",
+      "displayText": "Megumi was worried, so...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPC002.wav",
+      "byteLength": 48940,
+      "sha256": "2ec9325698fa9a034b2ba3a6ade93e1f052b4840155fb171f6a79e416dfa6823"
+    },
+    {
+      "voiceId": "01CJPC003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SOUND/01CJPC003.aiff",
+      "nativeMember": "01CJPC003.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 30720,
+      "nativeSha256": "54c0ba28a73b123a98757c98798c92b1ccdfedfaeaad5054cd52f4cc9ed9ac41",
+      "speakerId": "HRSK",
+      "sourceText": "Guess we don't need this.＆Well, gotta get back to the shop.",
+      "displayText": "Guess we don't need this.\nWell, gotta get back to the shop.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 72
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 32
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-roof/voice/01CJPC003.wav",
+      "byteLength": 122668,
+      "sha256": "4be876cefe6d3414b85cdcd6fb4006cc6a22e556ec74c1eb4a7418fed1765fbe"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SE/animal/cat2.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-roof/sfx/a9040000.wav",
+      "byteLength": 27084,
+      "sha256": "0a382a18814907ae6723499f91fcaaa2b4368b5dcd371b019c4281429106810d"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SE/cloths2/friction2.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-roof/sfx/a9040100.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SE/cloths2/friction4.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-roof/sfx/a9040200.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-roof/sfx/a9040300.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SE/footsoil/ryoashi08.aiff",
+      "playbackId": 4,
+      "sampleId": 5,
+      "sampleRate": 44100,
+      "asset": "public/audio/world/kitten-roof/sfx/a9040400.wav",
+      "byteLength": 18316,
+      "sha256": "6cc55e275086b04337ee43e8c380a4c08c50a0f8c0343788c1995df592af7de7"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SE/foot/sneaker1.aiff",
+      "playbackId": 5,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-roof/sfx/a9040500.wav",
+      "byteLength": 10956,
+      "sha256": "6d2cb5b6730ad60d94a60190a579ef97fa51c0d54b9a35c1105bf342793dd63c"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SE/foot/sneaker5.aiff",
+      "playbackId": 6,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-roof/sfx/a9040600.wav",
+      "byteLength": 10804,
+      "sha256": "0334446f014be77a677e0e4e97f7e1604c7dc5b356bef53103d39acc9081f9e1"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 7,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-roof/sfx/a9040700.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 8,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-roof/sfx/a9040800.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01CJP/SE/footsoil/ryoashi07.aiff",
+      "playbackId": 9,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-roof/sfx/a9040900.wav",
+      "byteLength": 10332,
+      "sha256": "3eec1a54de29fe4a3f5ea2c11b721a90acafeebcd0722636809ece3279035ed6"
+    }
+  ]
+}

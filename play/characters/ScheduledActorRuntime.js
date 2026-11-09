@@ -1339,7 +1339,7 @@ export class ScheduledActorRuntime {
     return this.loadedWorldId || this.getActiveWorldId();
   }
 
-  dialogueActor(actorCode, preferredInstanceId = null) {
+  matchingActorEntries(actorCode, preferredInstanceId = null) {
     const normalizedActorCode = String(actorCode || "").toUpperCase();
     const matches = this.entries.filter((entry) => {
       const instanceId = entry.definition.instanceId
@@ -1347,6 +1347,17 @@ export class ScheduledActorRuntime {
       return entry.definition.actorCode === normalizedActorCode
         && (!preferredInstanceId || instanceId === preferredInstanceId);
     });
+    // One actor may have mutually exclusive shared and personal Story poses.
+    // Explicit instance IDs keep their existing semantics; otherwise resolve
+    // the single eligible pose, without choosing between ambiguous residents.
+    return matches.length>1&&!preferredInstanceId
+      ? matches.filter(entry=>this.isActorPresent?.(entry.definition,this.getGameDate?.())!==false)
+      : matches;
+  }
+
+  dialogueActor(actorCode, preferredInstanceId = null) {
+    const normalizedActorCode = String(actorCode || "").toUpperCase();
+    const matches = this.matchingActorEntries(normalizedActorCode,preferredInstanceId);
     if (matches.length !== 1) return null;
     const entry = matches[0];
     if (!entry.defaultModel && entry.models?.size === 0) return null;
@@ -1363,12 +1374,7 @@ export class ScheduledActorRuntime {
 
   dialogueActorModel(actorCode, preferredInstanceId = null) {
     const normalizedActorCode = String(actorCode || "").toUpperCase();
-    const matches = this.entries.filter((entry) => {
-      const instanceId = entry.definition.instanceId
-        || entry.definition.actorCode;
-      return entry.definition.actorCode === normalizedActorCode
-        && (!preferredInstanceId || instanceId === preferredInstanceId);
-    });
+    const matches = this.matchingActorEntries(normalizedActorCode,preferredInstanceId);
     if (matches.length !== 1) return null;
     const entry = matches[0];
     const models = [...new Set([
@@ -1387,7 +1393,7 @@ export class ScheduledActorRuntime {
       throw new TypeError("scheduled activity actors must be a non-empty unique list");
     }
     return normalized.map(actorCode => {
-      const matches = this.entries.filter(entry => entry.definition.actorCode === actorCode);
+      const matches = this.matchingActorEntries(actorCode);
       if (matches.length !== 1) {
         throw new Error(`scheduled activity actor ${actorCode} is not unique`);
       }
@@ -2444,7 +2450,8 @@ export class ScheduledActorRuntime {
     }
     // A package body replaces this resident; ambient updates must not turn
     // its old body back on behind the cinematic copy each frame.
-    if (this.isActorPresent(entry.definition) === false || this.activityActorSuppressions.size && [...this.activityActorSuppressions.values()].some(
+    const gameDate = this.getGameDate?.();
+    if (this.isActorPresent(entry.definition, gameDate) === false || this.activityActorSuppressions.size && [...this.activityActorSuppressions.values()].some(
       lease => lease.codes.has(entry.definition.actorCode),
     )) {
       for (const root of new Set([
@@ -2461,7 +2468,6 @@ export class ScheduledActorRuntime {
       entry.localRouteDistance += Math.max(0, deltaSeconds)
         * Math.max(0, definition.localLoopRoute.speed || 0);
     }
-    const gameDate = this.getGameDate?.();
     const gameSecond = gameDate instanceof Date && !Number.isNaN(gameDate.valueOf())
       ? gameDate.getUTCHours() * 3600
         + gameDate.getUTCMinutes() * 60
@@ -2662,10 +2668,16 @@ export class ScheduledActorRuntime {
     // Dialogue facing does not own the authoritative route/vehicle position.
     const dialogueIdle = dialogueFacing?.active && !routeState?.moving
       && !secondaryObjectActive && dialogueFacing.defaultIdleMotionId;
+    // Static personal/room residents do not receive a network route state.
+    // When their original default idle is known, use that same registered
+    // motion instead of leaving the body in its unanimated bind pose.
+    const standingState = !routeState && definition.nativeDefaultMotionStateId
+      ? {operation:2,moving:false,motionStateId:definition.nativeDefaultMotionStateId}
+      : routeState;
     const motionState = dialogueIdle
       ? { ...routeState, operation: 2, moving: false, actionControllerId: 0,
           motionStateId: dialogueIdle }
-      : routeState;
+      : standingState;
     const motion = model?.characterAssetFormat === "MT7"
       ? scheduledActorShenmue2MotionSelection(model, motionState)
       : scheduledActorMotionSelection(motionState);
@@ -2733,7 +2745,9 @@ export class ScheduledActorRuntime {
           refresh: false,
         });
       if (Number.isFinite(minimumY)) {
-        const correction = routeState.position[1] + 0.003 - minimumY;
+        const groundY = routeState?.position?.[1] ?? definition.position?.[1];
+        if (!Number.isFinite(groundY)) throw new Error(`Missing ground position for animated actor ${definition.actorCode}`);
+        const correction = groundY + 0.003 - minimumY;
         root.metadata.scheduledActorGroundOffset += correction;
         root.position.y += correction;
         root.computeWorldMatrix(true);

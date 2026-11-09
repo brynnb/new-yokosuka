@@ -1,0 +1,13 @@
+-> Answer the phone
+    <<start_activity "s1.jomo.nozomi-park-call.scene">>
+    <<start_activity "s1.jomo.nozomi-park-confession-1.scene">>
+    <<start_activity "s1.jomo.nozomi-park-confession-2.scene">>
+    <<jump Commit>>
+-> Leave it for now
+    <<complete>>
+===
+title: Commit
+---
+<<advance_story_time "s1.nozomi.park-end">>
+{{effects}}
+<<complete>>

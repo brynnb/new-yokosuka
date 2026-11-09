@@ -320,16 +320,25 @@ export function extractNativeAseqCountedNodeTransformLoop({
     || delays.length !== 1 || delays[0].runtimeDispatch?.arguments?.[0]?.value !== 1) {
     throw new Error("HMDL loop is not an inclusive single-tick counter");
   }
-  const selectedBlocks = nativeFunction.blocks.flatMap(block => (
-    (block.frameFieldComparisons || [])
-      .filter(comparison => comparison.comparison === "cmp/eq"
-        && comparison.constant === selector && comparison.fieldOffset === 0)
-      .map(comparison => nativeFunction.blocks.find(candidate => (
-        candidate.id === comparison.resolvedBranch?.comparisonTrueSuccessor
-      )))
-  ));
+  const comparisons = nativeFunction.blocks.flatMap(block => block.frameFieldComparisons || []);
+  const selectBlocks = field => comparisons
+    .filter(comparison => comparison.comparison === "cmp/eq"
+      && comparison.constant === selector && comparison.fieldOffset === field)
+    .map(comparison => nativeFunction.blocks.find(candidate => (
+      candidate.id === comparison.resolvedBranch?.comparisonTrueSuccessor
+    )));
+  // Some source routines test the argument directly during initialization,
+  // then copy it to local field zero before selecting the per-frame delta.
+  // A selector without an initialization branch uses the initial zeroed
+  // vectors; require the other explicit argument comparisons as evidence of
+  // that distinct default path instead of assuming any missing branch is safe.
+  const localBlocks=selectBlocks(0),argumentBlocks=selectBlocks(nativeFunction.frameArgumentBase);
+  const directArgumentSelectors=comparisons.filter(c=>c.comparison==="cmp/eq"&&c.fieldOffset===nativeFunction.frameArgumentBase);
+  const directForm=directArgumentSelectors.length>0;
+  const selectedBlocks=directForm?[...argumentBlocks,...localBlocks]:localBlocks;
   const selectorWrites = actions.filter(action => action.offset === 0);
-  if (selectedBlocks.length !== 2 || selectedBlocks.some(block => !block)
+  if ((directForm ? localBlocks.length!==1 || argumentBlocks.length>1 : localBlocks.length!==2)
+    || selectedBlocks.some(block => !block)
     || !selectorWrites.length || selectorWrites.some(action => (
       action.kind !== "frameFieldExpressionWrite"
       || action.expression?.kind !== "frame-field"

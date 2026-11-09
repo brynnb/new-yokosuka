@@ -1,0 +1,710 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_childhood_meal_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 1,
+      "path": "disc1/SCENE/01/STREAM/A0122.AFS",
+      "sha256": "0c9cbcb90fb89a2b60ff60e60e769ca6f0b12b50808e1b6e97daccd319056720"
+    },
+    "soundBank": {
+      "disc": 1,
+      "path": "disc1/SCENE/01/SOUND/A1_KSNIN.SND",
+      "sha256": "434d3591580adb12217300f05522467d92b8939f013cc200e74afef38d3be216"
+    },
+    "authManifest": "play/assets/hazuki/childhood-meal/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#childhood-meal-memory"
+  },
+  "voices": [
+    {
+      "voiceId": "A0122A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0122/SOUND/A0122A001.aiff",
+      "nativeMember": "A0122A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 22528,
+      "nativeSha256": "0d4e476bf54d7941c50f6361bf957c211e52d6eb7601f89c403aa3d4613b5f36",
+      "speakerId": "JAKR",
+      "sourceText": "OK=@ I'll eat them.",
+      "displayText": "OK... I'll eat them.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 31
+          },
+          {
+            "shape": 0,
+            "durationTicks": 35
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          }
+        ]
+      },
+      "asset": "public/audio/world/childhood-meal/voice/A0122A001.wav",
+      "byteLength": 89900,
+      "sha256": "a502421f74ce037fb835efc7de3d976c7dc210e6d3f6588b770e44d70c3f97e6"
+    },
+    {
+      "voiceId": "A0122A002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0122/SOUND/A0122A002.aiff",
+      "nativeMember": "A0122A002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 22528,
+      "nativeSha256": "c474d5a584e99c1075e9ab6c5898b1e51a6925c18394bf9abee2db8d3a95de01",
+      "speakerId": "JAKR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 34
+          },
+          {
+            "shape": 1,
+            "durationTicks": 20
+          },
+          {
+            "shape": 0,
+            "durationTicks": 37
+          },
+          {
+            "shape": 4,
+            "durationTicks": 26
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 20
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          }
+        ]
+      },
+      "asset": "public/audio/world/childhood-meal/voice/A0122A002.wav",
+      "byteLength": 89900,
+      "sha256": "c417f9f41b0559be6c255b1da212a45e8fa208c88bddf3a927ad09bde3e324c9"
+    },
+    {
+      "voiceId": "A0122B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0122/SOUND/A0122B001.aiff",
+      "nativeMember": "A0122B001.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 43008,
+      "nativeSha256": "b47ebd3a72199a83e73c0dda65f503f87fafb9bb2401cfe4bd23b3c0b95d42e4",
+      "speakerId": "IWAO",
+      "sourceText": "Ryo, while you're still sleeping in bed,＆farmers are working hard in the fields,",
+      "displayText": "Ryo, while you're still sleeping in bed,\nfarmers are working hard in the fields,",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 53
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 41
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          }
+        ]
+      },
+      "asset": "public/audio/world/childhood-meal/voice/A0122B001.wav",
+      "byteLength": 171820,
+      "sha256": "6a1d186f4b05a148e0703e6400d04baf8fd4b1c866154cb3435574e87b34ca7f"
+    },
+    {
+      "voiceId": "A0122B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0122/SOUND/A0122B002.aiff",
+      "nativeMember": "A0122B002.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 16384,
+      "nativeSha256": "0fd4d7da6efad33103c2b12ab443b041c1b0868a02f3dbcb21c6f7b0ed113877",
+      "speakerId": "IWAO",
+      "sourceText": "carefully picking carrots, one by one.",
+      "displayText": "carefully picking carrots, one by one.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/childhood-meal/voice/A0122B002.wav",
+      "byteLength": 65324,
+      "sha256": "270b47d61bbaabcd8b685b0a04976d55e1e0597283658161af21d50c91491177"
+    },
+    {
+      "voiceId": "A0122B003",
+      "sourcePath": "/p16/prj16m5/AUTH01/0122/SOUND/A0122B003.aiff",
+      "nativeMember": "A0122B003.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 14336,
+      "nativeSha256": "16e2b3f70455aaa1859d766e72dbbeca78789f6b2aaf71296fbb39dab6fa3932",
+      "speakerId": "IWAO",
+      "sourceText": "So how can you waste them like that?",
+      "displayText": "So how can you waste them like that?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/childhood-meal/voice/A0122B003.wav",
+      "byteLength": 57132,
+      "sha256": "03ee2d4e419f4186a15256b7f08394037d5cba8630d85f3c81a1995c927bb071"
+    },
+    {
+      "voiceId": "A0122B004",
+      "sourcePath": "/p16/prj16m5/AUTH01/0122/SOUND/A0122B004.aiff",
+      "nativeMember": "A0122B004.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 28672,
+      "nativeSha256": "e2385e5c4472326dcfe8331b11af3572a89f97493106ae61d431b41cd46da2cb",
+      "speakerId": "IWAO",
+      "sourceText": "Good=@That's my boy.",
+      "displayText": "Good...That's my boy.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 58
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 28
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/childhood-meal/voice/A0122B004.wav",
+      "byteLength": 114476,
+      "sha256": "a1d213baabb20d1c3715f37b93acb4330812449fa0ec8db01069e8abce9481a1"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0122/SE/smallobject/dish04.aiff",
+      "playbackId": 0,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/childhood-meal/sfx/a9040000.wav",
+      "byteLength": 36780,
+      "sha256": "688c024d2f9895983d0996d860c06660ed5c7601517d958385915164b013038b"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0122/SE/smallobject/dish14.aiff",
+      "playbackId": 1,
+      "sampleId": 0,
+      "sampleRate": 15000,
+      "asset": "public/audio/world/childhood-meal/sfx/a9040100.wav",
+      "byteLength": 36780,
+      "sha256": "49384a85ea10ee047d7e8e0ea7d0f984090e22d5a69d549707abdccf8b7e0fab"
+    }
+  ]
+}

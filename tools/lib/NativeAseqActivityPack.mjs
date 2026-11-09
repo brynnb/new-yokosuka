@@ -240,6 +240,7 @@ function compileActivity(config, expectation, memberByName, packages) {
     slot: expectation.slot,
     ...(expectation.binding ? { binding: expectation.binding } : {}),
     ...(expectation.hiddenActors ? { hiddenActors: expectation.hiddenActors } : {}),
+    ...(expectation.authoredMotionSubstitutions ? { authoredMotionSubstitutions: expectation.authoredMotionSubstitutions } : {}),
     primaryPointer: expectation.primaryPointer,
     secondaryPointer: expectation.secondaryPointer,
     activityId: `${config.resourceName}/${expectation.file}`,

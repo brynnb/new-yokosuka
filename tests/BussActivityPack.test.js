@@ -8,6 +8,18 @@ import { extractNativeAseqCountedNodeTransformLoop } from "../tools/lib/NativeAs
 const manifest = JSON.parse(readFileSync("play/assets/dobuita/buss/manifest.json"));
 const door = JSON.parse(readFileSync("tools/evidence/buss-door-native-callback-ir.json"));
 
+test("harbor flyover preserves the original two-stage bus-door controller",()=>{
+  const arrival=JSON.parse(readFileSync("play/assets/harbor/bus-arrival/manifest.json"));
+  const evidence=JSON.parse(readFileSync("tools/evidence/harbor-flyover-callback-ir.json"));
+  const loop=evidence.supportingFunctions.find(f=>f.id==="0x2c268");
+  const cues=arrival.attachedObjects.BUS_.nodeTransforms;
+  const open=cues.filter(c=>c.mode==="add"&&c.firstFrame===1435),close=cues.filter(c=>c.mode==="add"&&c.firstFrame===1550);
+  assert.deepEqual(open.map(c=>c.nodeKey),[157,158,155,156]);assert.deepEqual(open.map(c=>c.rotationRaw[1]),[455,-983,-455,983]);
+  assert.deepEqual(close.map(c=>c.nodeKey),[157,158,155,156]);assert.deepEqual(close.map(c=>c.rotationRaw[1]),[-455,983,455,-983]);
+  assert.ok(open.every(c=>c.lastFrame===1465));assert.ok(close.every(c=>c.lastFrame===1580));
+  assert.throws(()=>extractNativeAseqCountedNodeTransformLoop({nativeFunction:loop,selector:4,firstFrame:1435}),/selector cases/);
+});
+
 test("BUSS has the original open-door poses and closing loops for all four exact variants", () => {
   const definition = manifest.attachedObjects.BUS_;
   assert.equal(definition.sceneObject, true);

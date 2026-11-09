@@ -59,7 +59,26 @@ export async function verifyChaiArcade(page,testInfo,character,enterInteriorDoor
   }
   await scene(ending==="win"?"chai-victory":"chai-rescue");await page.waitForTimeout(7000);
   await page.screenshot({path:testInfo.outputPath(`chai-original-${ending}-ending.png`)});await unchanged();
-  await expect.poll(async()=>(await saved()).character.storyFlags["story.s1.chai-arcade.completed"],{timeout:65_000,intervals:[1000]}).toBe(true);await idle();
+  await expect.poll(async()=>(await saved()).character.storyFlags["story.s1.chai-arcade.completed"],{timeout:65_000,intervals:[1000]}).toBe(true);
+  if(ending==="defeat"){
+    await scene("chai-home-recovery");
+    const pending=await saved();
+    expect(pending.character.storyFlags["story.s1.chai-recovery.pending"]).toBe(true);
+    expect(pending.character.storyFlags["story.s1.chai-recovery.completed"]).not.toBe(true);
+    expect(new Date(pending.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
+    await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-chai-home-recovery-cancel"));await idle();
+    const cancelled=await saved();
+    expect(cancelled.character.storyFlags["story.s1.chai-recovery.pending"]).toBe(true);
+    expect(cancelled.character.storyFlags["story.s1.chai-recovery.completed"]).not.toBe(true);
+    expect(new Date(cancelled.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
+    const move=async position=>{await page.evaluate(position=>{const l=window.storyProbe.lifecycle;l.resetPlayer(l.vectorFromArray(position),0,{persist:false});},position);await page.waitForTimeout(600);};
+    await move([-14,0,4.1]);await move([-17.6,0,4.1]);
+    await scene("chai-home-recovery");
+    await page.waitForTimeout(4000);await page.screenshot({path:testInfo.outputPath("chai-home-recovery.png")});
+    await expect.poll(async()=>(await saved()).character.storyFlags["story.s1.chai-recovery.completed"],{timeout:65_000,intervals:[1000]}).toBe(true);
+    expect((await saved()).character.storyFlags["story.s1.chai-recovery.pending"]).not.toBe(true);
+  }
+  await idle();
   const final=await saved();expect(final.character.storyFlags["notebook.s1.chai-asia-travel"]).toBe(true);
   expect(final.character.storyFlags[`story.s1.chai-arcade.${ending==="win"?"won":"lost"}`]).toBe(true);
   expect(final.character.storyFlags[`story.s1.chai-arcade.${ending==="win"?"lost":"won"}`]).not.toBe(true);
@@ -71,9 +90,35 @@ export async function verifyChaiArcade(page,testInfo,character,enterInteriorDoor
   }else{expect(final.character.worldId).toBe("arcade");expect(afterDay.toISOString().slice(0,10)).toBe(beforeDay.toISOString().slice(0,10));}
   await page.locator("button").filter({hasText:/^Notebook$/}).click();for(let i=0;i<120&&await page.locator("#journal-next").isEnabled();i++)await page.locator("#journal-next").click();
   await expect(page.locator("#journal-page-copy")).toContainText("Go back to Asia Travel Company.");await page.screenshot({path:testInfo.outputPath(`chai-${ending}-saved-notebook.png`)});await page.locator("#journal-close").click();
-  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.reload();await expect(page.getByLabel("Open the New Yokosuka menu")).toBeVisible({timeout:120_000});await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").filter({hasText:character.name}).click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
   await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);await idle();
   expect((await saved()).character.storyFlags["story.s1.chai-arcade.completed"]).toBe(true);expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-chai-intro"))).toBe(false);
+}
+
+// Reload the actual loss checkpoint; never re-inject its outcome or clock.
+export async function verifyChaiRecoveryReload(page,character){
+  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const before=await saved();
+  expect(before.character.storyFlags["story.s1.chai-arcade.lost"]).toBe(true);
+  expect(before.character.storyFlags["story.s1.chai-recovery.completed"]).toBe(true);
+  expect(before.character.storyFlags["story.s1.chai-recovery.pending"]).not.toBe(true);
+  await page.reload();
+  await expect(page.getByLabel("Open the New Yokosuka menu")).toBeVisible({timeout:120_000});
+  await page.keyboard.press("Enter");
+  await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+  await page.locator(".character-slot-button:not(.empty)").filter({hasText:character.name}).click();
+  await page.locator("button").filter({hasText:/^Enter World$/}).click();
+  await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+  await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.ready&&!window.storyProbe.lifecycle.worldRuntime.switching,null,{timeout:120_000});
+  await page.waitForTimeout(3000);
+  const after=await saved();
+  expect(after.character.storyFlags["story.s1.chai-recovery.completed"]).toBe(true);
+  expect(after.character.storyFlags["story.s1.chai-recovery.pending"]).not.toBe(true);
+  expect(new Date(after.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(before.character.storyTimeMs).toISOString().slice(0,10));
+  expect(after.character.yen).toBe(before.character.yen);
+  expect(after.inventory).toEqual(before.inventory);
+  expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-chai-home-recovery"))).toBe(false);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
 }
 
 // Continues a genuinely earned Asia/Jimmy save. No future story flags,

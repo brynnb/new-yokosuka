@@ -1,0 +1,5 @@
+<<start_activity "s1.jomo.chai-home-recovery.scene">>
+<<advance_story_time "s1.wait.morning">>
+<<clear_flag "story.s1.chai-recovery.pending">>
+{{effects}}
+<<complete>>

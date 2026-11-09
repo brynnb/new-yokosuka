@@ -252,11 +252,11 @@ in the guide; it is not a wage or an automatic success from watching a film.
 | ID / location | `chicken-race`, personal Story mode, `MFSY` harbor. |
 | Prerequisites / trigger | Completed forklift practice; 19:00–23:00 personal time; approach around original Ryo position `[1.7274,0,88.9241]`, then choose help or leave. The bounds and later-evening retry window are authored. |
 | Setup / actors / props | Borrow Ryo; privately stage Shozo, Takashi and Takahiro with original character models. Original RACE motorcycle models supply the bikes; their particular BIK1/BIK2 associations are authored choices. |
-| Sequence / audio / camera | Original `RACE/SEQDATA1.AUTH` introduction with original body motion, camera and 01CRA voices/effects. The riders and bikes then follow an authored path along a reviewed harbor pedestrian route while client-timed A/Down/Left/Right prompts run. Captions describe the outcome without inventing voiced dialogue. |
-| Timing / challenge | Introduction may finish or be explicitly skipped. Four timely inputs win on the client, which reports the outcome for Story settlement; a modified client can falsify it. Two-second windows, the moving route and camera, and a fresh attempt after failure are declared adaptations. |
+| Sequence / audio / camera | Original `RACE/SEQDATA1.AUTH` introduction with original body motion, camera and 01CRA voices/effects. The riders and bikes then follow an authored path along a reviewed harbor pedestrian route while client-timed A/Down/Left/Right prompts run. Staged on-foot win, draw and loss exchanges use original E1070 recordings; their camera, positions and standing gestures are authored. |
+| Timing / challenge | Introduction may finish or be explicitly skipped. Missed inputs do not terminate the race. Two or more successes produce a win, one a draw and zero a loss. The win threshold follows the [Shotgunnova walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404)'s account that roughly half the prompts can win; the draw threshold and two-second windows are authored approximations, not decoded original scoring. The client reports the result for Story settlement and can be modified. |
 | Weather / lighting | Preserve the personal evening environment; no additional date, season or weather gate. Separate lamp, headlight and reflection reference actors retain transforms but have no newly rendered geometry. |
-| Completion | Atomically save the race milestone, day and notebook entry after the acknowledged success caption and presentation cleanup. No pay, possession, move reward or calendar jump. |
-| Exit / cancellation / replay | Restore the prior avatar pose/camera and ordinary controls. Decline, failure, interrupted loading and cancellation (including after the last input but before the ending) grant nothing and remain retryable. Saved completion prevents automatic replay. |
+| Completion | Atomically save the race milestone, day and outcome-specific authored notebook entry after the acknowledged result conversation and presentation cleanup. No pay, possession, immediate move reward or calendar jump. Later optional lessons are separate events. |
+| Exit / cancellation / replay | Restore the prior avatar pose/camera and ordinary controls. Decline, interrupted loading and cancellation (including after the last input but before the ending) grant nothing and remain retryable. Any acknowledged result advances Story; saved completion prevents automatic replay. |
 
 `tools/cutscenes/build_harbor_chicken_race.mjs --audio` pins the Disc 3 RACE
 archive, texture bank, 01CRA stream and A1_CRA sound bank. The existing activity
@@ -267,41 +267,49 @@ path. A shared nonblocking motion option lets actor, vehicle and camera curves
 continue during the prompt while the presentation transaction retains ownership;
 its resource lease also owns failed/late-load cleanup.
 
-The native chicken-race course, opponent's fall into the sea and post-race
-combat-move teaching are not reconstructed here. The moving path is a practical
-approximation, and rider/handlebar contact is approximate. The outcome caption
-does not claim the fall is animated.
+The native chicken-race course, opponent's fall into the sea, dismount and
+outcome-scoring rules are not reconstructed here. The moving path and
+rider/handlebar contact are approximate. The result conversations are staged
+approximations using original E1070 dialogue and generic RACE standing motions;
+the one-hit draw threshold is not a claim about native behavior. Ambient
+scheduled NPCs are hidden only for the staged conversation and then restored;
+the surrounding world and other players are not isolated. Shozo's later
+optional lessons have separate Story routes, and whether every original lesson
+has the same prerequisite after a draw or loss remains unverified.
+
+In a seeded, isolated hardware-rendered run, an incorrect input continued to
+the following cue; draw, loss and win were each cancelled without settlement
+before a final four-input win. The on-foot cast and three original victory
+voices were checked; each audio element reported `playing`. Separate rendered
+runs earned a draw and a loss, checked their first original audio, reloaded and
+read the matching notebook pages. Completion restored the prior position and
+camera, preserved money and inventory, and survived reload. Earlier training
+was seeded, not earned within these runs. Voice and motion assets remain local
+until an explicitly authorized asset publication.
 The 2026-11-07 rendered 19:00 harbor run showed very dark foreground actors and
 buildings against a bright sky. The selected original cloudy sprite was shown
 without time-of-day modulation; Story now dims weather sky textures using its
 existing light curve, an explicitly approximate browser projection. A rendered
 morning/evening harbor comparison confirms the sky changes, but nighttime
 foreground visibility and native sky modulation still need investigation.
-Focused compiler/engine tests cover
-eligibility, real input order, stale tokens, timeout, retry and cancellation
-before final settlement. The connected hardware-rendered check resumes the
-training-earned save, verifies the early-hour gate, declines, cancels the original
-introduction, lets it finish naturally on retry, fails an input, retries, wins but
-cancels the unacknowledged ending, then earns the actual completion. Position,
-first-person camera and controls restore; PostgreSQL saves the milestone, note
-and day; money/inventory are unchanged and reload does not replay the event.
-The authoring compiler now rejects anonymous or untagged dialogue lines before
-generation, preventing an outcome caption from failing only after the QTE.
+Focused runtime and compiler/engine tests cover eligibility, real input order,
+scored misses and timeout, stale tokens and cancellation before settlement. The
+authoring compiler rejects anonymous or untagged dialogue lines before generation.
 
 On 2026-11-07, the freshly earned training save was resumed through the early
 time gate and ordinary wait. A rendered run exercised the natural introduction,
 wrong physical key, retry, cancellation after a win, successful retry and
 reload. PostgreSQL retained both milestones and notebook flags with ¥2,000
 unchanged. The successful attempts skipped the introduction; an earlier Jimmy
-prerequisite was seeded, and the original aftermath remains absent.
+prerequisite was seeded. At that time the original aftermath was not present.
 
 On 2026-11-08, an independently seeded local character exercised the revised
 moving staging three times in a hardware-rendered browser. Both bikes and riders
 moved during the prompt and remained aligned; the adjusted camera showed both
 at the start and farther along the route.
-The complete decline, cancellation, wrong-input, retry, success and reload
-checks passed. This verifies the approximation and transaction cleanup, not the
-original course or its missing aftermath. The fuller connected continuation
+The then-current decline, cancellation, wrong-input, retry, success and reload
+checks passed. This verified the approximation and transaction cleanup, not the
+original course or its then-missing aftermath. The fuller connected continuation
 through earned training and the prior stationary presentation passed separately.
 
 The next connected sequence is the first paid workday. The guide, pp. 53–55,
@@ -945,10 +953,12 @@ associations, not recovered native controller bindings. Their original models
 and NZMPHOTO texture bank are retained. The first association is the apart photo
 on the left, and the second is the together photo on the right, matching the
 [original gameplay recording](https://www.youtube.com/watch?v=2TVQUT68F9E).
-Both authored choice branches use
-the same original continuation; native photograph model-switching and a 2D
-inventory-photo display remain unimplemented. The selected identity is still
-saved per character and cannot settle before the ending acknowledgement.
+Both choice branches reuse the original continuation, with its PHT1/PHT2 models
+swapped so Ryo holds the selected source photo. This association is an authored
+approximation: the native choice callback is not decoded. The selected identity
+is saved per character only after the ending acknowledgement. A 2D inventory
+photo display is still unimplemented, and the small pictures and hand grip have
+not been verified in detail from the normal camera.
 
 The original introduction triggers its `camera.aiff` shutter cue at AUTH
 frames 330 and 640. `BLAS500G` is a small untextured black quad, and the BLC0
@@ -961,8 +971,12 @@ are not recovered. The opt-in untextured path preserves default filtering of
 map collision and trigger geometry. `NEW_YOKOSUKA_PHOTO_PLANES_E2E=true` checks
 the rendered fade at four frames without altering progress. A separate connected
 checkpoint run walks the real trigger, cancels and retries, observes the fade,
-skips the films, chooses the apart photo, and verifies saved notebook/choice,
-restored controls and reload. It does not establish the entire workday route.
+skips the films, chooses a photo, and verifies saved notebook/choice, restored
+controls and reload. Both choices passed independently on isolated characters
+with the preceding morning flag seeded; this does not establish the entire
+workday route. Local offline assets were required: the versioned R2 URL for
+`PPL_L.CHRM` returned 404 on 2026-11-09, although the matching file exists
+locally. Asset publication must be checked before a future deployment.
 
 As on earlier days, the four/four delivery split and tested outdoor dispatch pad
 condense the original warehouse route. Exactly-quota work earns the unchanged

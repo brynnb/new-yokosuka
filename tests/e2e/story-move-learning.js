@@ -1,5 +1,6 @@
 import {expect} from '@playwright/test';
 import fs from 'node:fs';
+import {openStoryRoomDoor,useStoryInspectable} from './story-object-input.js';
 
 export async function verifySavedScrollLearning(page, testInfo, character, {moveId='twinBlades'}={}) {
   const catalog=JSON.parse(fs.readFileSync('play/data/story-move-learning.json'));
@@ -32,6 +33,28 @@ export async function verifySavedScrollLearning(page, testInfo, character, {move
   // Use the actual world, dispatch volume and Yarn choices. Resetting near the
   // authored room approach bounds test time without granting any Story state.
   if(initial.character.worldId!==region.worldId)await page.evaluate(async world=>window.storyProbe.lifecycle.travelToWorld(world),region.worldId);
+  let pickedRootTag=null;
+  if(region.trigger==='use'){
+    if(moveId==='shadowReaper')await openStoryRoomDoor(page,{staticDoorIndex:4,position:[-4.5,0,.8]});
+    const target=moveId==='twinBlades'
+      ? {tag:'imk1',position:[-22.3,0,-3.5]}
+      : {tag:'bkgu',position:[-4.9,0,2.15]};
+    pickedRootTag=moveId==='twinBlades'?'imk1':'imk3';
+    const inspect=async()=>{
+      await useStoryInspectable(page,{world:'interior',...target,expectedChoice:null});
+      await page.waitForFunction(()=>window.storyProbe.regions.controller.status==='line');
+      await page.keyboard.press('Space');
+      await expect(page.getByRole('button',{name:'Take the move scroll',exact:true})).toBeVisible();
+    };
+    await inspect();await page.getByRole('button',{name:'Leave it here',exact:true}).click();await idle();
+    expect((await saved()).inventory.some(item=>item.key===move.itemKey)).toBe(false);
+    await inspect();await page.getByRole('button',{name:'Take the move scroll',exact:true}).click();
+    await page.waitForFunction(()=>window.storyProbe.regions.controller.status==='line');
+    await page.evaluate(()=>window.storyProbe.regions.controller.cancel('scroll-pickup-check'));await idle();
+    expect((await saved()).inventory.some(item=>item.key===move.itemKey)).toBe(false);
+    await inspect();
+    await page.screenshot({path:testInfo.outputPath(`story-${moveId}-source-object.png`)});
+  } else {
   const inside=await page.evaluate(region=>{
     const position=window.storyProbe.lifecycle.getController().collider.position.asArray();
     return position.every((value,index)=>value>=region.min[index]&&value<=region.max[index]);
@@ -44,8 +67,8 @@ export async function verifySavedScrollLearning(page, testInfo, character, {move
       life.resetPlayer(life.vectorFromArray(region.min.map((value,index)=>(value+region.max[index])/2)),0,{persist:false});
     },region);
   }
-  await page.waitForFunction(()=>window.storyProbe.regions.controller.status==='line');
-  await page.keyboard.press('Space');
+  }
+  if(!pickedRootTag){await page.waitForFunction(()=>window.storyProbe.regions.controller.status==='line');await page.keyboard.press('Space');}
   await page.getByRole('button',{name:'Take the move scroll',exact:true}).click();
   await page.waitForFunction(()=>window.storyProbe.regions.controller.status==='line');
   expect((await saved()).inventory.some(item=>item.key===move.itemKey)).toBe(false);
@@ -54,6 +77,7 @@ export async function verifySavedScrollLearning(page, testInfo, character, {move
   expect(found.inventory.find(item=>item.key===move.itemKey)?.quantity).toBe(1);
   expect(found.character.storyFlags[flag]).not.toBe(true);
   expect(found.character.yen).toBe(initial.character.yen);
+  if(pickedRootTag)expect(await page.evaluate(tag=>window.storyProbe.lifecycle.scene.meshes.find(m=>m.metadata?.runtimeObject?.objectTag===tag)?.metadata.runtimeObject.root.isEnabled(false),pickedRootTag)).toBe(false);
 
   await page.locator('#inventory-button').click();
   await page.getByRole('button',{name:`Read ${move.name} Scroll`,exact:true}).click();

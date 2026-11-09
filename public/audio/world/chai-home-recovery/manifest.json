@@ -1,0 +1,328 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/A0173.AFS",
+      "sha256": "034889ec59c71ef2a0c4220d458de1b4300f8d6312eb468ca83e75267dfa056c"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_FUKAN.SND",
+      "sha256": "060975f789a815ef0fa2ef23c1c2d1aa7c1ef9a00a8a0acf944b71aba0fb5db2"
+    },
+    "authManifest": "play/assets/hazuki/chai-home-recovery/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-ticket-journey.md"
+  },
+  "voices": [
+    {
+      "voiceId": "A0173A001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0173/SOUND/A0173A001.aiff",
+      "nativeMember": "A0173A001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 34816,
+      "nativeSha256": "a1581b2e73d3b6655bfd464c15f5b31624b4fbe5fcc232be0d3fb298fe7340ab",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 23
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 77
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 87
+          }
+        ]
+      },
+      "asset": "public/audio/world/chai-home-recovery/voice/A0173A001.wav",
+      "byteLength": 139052,
+      "sha256": "61455af50b38381100f16969a5652080bd62ddff2b19c8040b7a73302f991b1b"
+    },
+    {
+      "voiceId": "A0173A002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0173/SOUND/A0173A002.aiff",
+      "nativeMember": "A0173A002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 6144,
+      "nativeSha256": "32d88c3018c270df8fc535b664436104f191432dc408043ade23ef41a67227ae",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 36
+          }
+        ]
+      },
+      "asset": "public/audio/world/chai-home-recovery/voice/A0173A002.wav",
+      "byteLength": 24364,
+      "sha256": "1fe846aa2a5b36581584c9b437f60fe8a23efe89e25fff176c9b7e0811346238"
+    },
+    {
+      "voiceId": "A0173B001",
+      "sourcePath": "/p16/prj16m5/AUTH01/0173/SOUND/A0173B001.aiff",
+      "nativeMember": "A0173B001.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "d8a4309fb4a88b1d5c8286ccd7b8166c60af76b4de07399cd85e7cea4bd1167f",
+      "speakerId": "FUKU",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chai-home-recovery/voice/A0173B001.wav",
+      "byteLength": 16172,
+      "sha256": "85613ce6361a4c26a60a398f5db9674ec60d2de67a4f2c3a3540cf12cf47c1ef"
+    },
+    {
+      "voiceId": "A0173B002",
+      "sourcePath": "/p16/prj16m5/AUTH01/0173/SOUND/A0173B002.aiff",
+      "nativeMember": "A0173B002.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 14336,
+      "nativeSha256": "44d44e73ec698b6e1bbb97908b5d12355443d8d063c80c2e6539fde394025ba0",
+      "speakerId": "FUKU",
+      "sourceText": "Just take it easy and rest today.",
+      "displayText": "Just take it easy and rest today.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 18
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/chai-home-recovery/voice/A0173B002.wav",
+      "byteLength": 57132,
+      "sha256": "a4f56d269836728897c3e7eaf4d3a2afbb2d09063505f99538a45bd0d1c05405"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/0173/SE/body/akirahand.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-home-recovery/sfx/a9040000.wav",
+      "byteLength": 15308,
+      "sha256": "18d1dab246c9a3499340f72a2f819c8a9ab565a23b33d9fddfa9b94237dc6fe2"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/0173/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-home-recovery/sfx/a9040100.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/0173/SE/cloths2/furimuki_n02.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-home-recovery/sfx/a9040200.wav",
+      "byteLength": 25804,
+      "sha256": "b445f45589f7dca74cd10ffb930d08fe60f20e43722f8414eb191cb942211a83"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/0173/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-home-recovery/sfx/a9040300.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/0173/SE/footsoil/kankiaruki03.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-home-recovery/sfx/a9040400.wav",
+      "byteLength": 8132,
+      "sha256": "3afddc79d9449c27da41721f84e774c4d6a62cce071057ecb94394e448e96583"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/0173/SE/cloths2/R_mouhu_nageru.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-home-recovery/sfx/a9040500.wav",
+      "byteLength": 21612,
+      "sha256": "5c49cb5c012c4b62f58d0b81d8f68aa02b2734dd78710011d0c69a431d5a0988"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/0173/SE/cloths/sofa2.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/chai-home-recovery/sfx/a9040600.wav",
+      "byteLength": 15988,
+      "sha256": "e92aa0461cab1dce595e5813321903cf918fe0d5e386d5da20636108c1e43bbe"
+    }
+  ]
+}

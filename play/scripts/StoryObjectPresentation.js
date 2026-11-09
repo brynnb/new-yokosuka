@@ -73,7 +73,8 @@ export class StoryObjectPresentation {
     const character = this.getCharacter();
     const rules = this.rules.filter(rule => rule.area === this.area);
     const active = character?.playMode === "story" && character.openingCompleted
-      ? rules.filter(rule => character.storyFlags?.[rule.flag] === true) : [];
+      ? rules.filter(rule => character.storyFlags?.[rule.flag] === true
+        && !(rule.excludedFlags || []).some(flag => character.storyFlags?.[flag] === true)) : [];
     this.activeSurfaces = character?.playMode === "story" && character.openingCompleted
       ? this.surfaces.filter(surface => surface.area === this.area
         && surface.requiredFlags.every(flag => character.storyFlags?.[flag] === true)

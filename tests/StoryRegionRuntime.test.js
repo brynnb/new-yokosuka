@@ -113,6 +113,22 @@ test("a saved-day appointment re-arms after midnight without fabricating eligibi
   character.storyFlags.called=true;date=new Date("1986-12-25T08:30:00Z");assert.equal(runtime.update(frame),false);
 });
 
+test("the daily allowance approach rechecks the personal day without dispatching every frame",()=>{
+  const region=storyRegions.regions.find(r=>r.id==="s1.jomo.daily-allowance");
+  assert.ok(region);
+  let date=new Date("1986-12-03T09:00:00Z"),starts=0;
+  const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{}};
+  const runtime=new StoryRegionRuntime({controller:{status:"idle",start:async()=>{starts++;}},getCharacter:()=>character,
+    getGameDate:()=>date,publishPresence:()=>true,regions:[region]});
+  const frame={area:"JOMO",worldId:"interior",enabled:true,playerPosition:[-15.6,0,3.6]};
+  assert.equal(runtime.update(frame),false,"first allowance is a prerequisite");
+  character.storyFlags["story.s1.first-allowance.completed"]=true;
+  assert.equal(runtime.update(frame),true);assert.equal(runtime.update(frame),false);
+  date=new Date("1986-12-04T09:00:00Z");assert.equal(runtime.update(frame),true);
+  assert.equal(runtime.update(frame),false);assert.equal(starts,2);
+  character.playMode="free_roam";runtime.reset();assert.equal(runtime.update(frame),false);
+});
+
 test("malformed personal-hour metadata is an error, not an invisible missing event",()=>{
   for(const hours of [[19], [19,19], [24,6], [19,NaN], "night"])
     assert.throws(()=>new StoryRegionRuntime({controller:{},getCharacter(){},publishPresence(){},regions:[{id:"broken",hours}]}),/Invalid story region hours: broken/);
@@ -182,7 +198,9 @@ test("personal time opens the night gate without requiring physical re-entry",()
 test("time-gated investigation regions match their server windows and the ambush re-arms at night",()=>{
   // These windows mirror the official Yarn gates. The client controls dispatch
   // only: the server still owns date, inventory and final eligibility checks.
-  const gated=investigation.routes.filter(route=>route.bounds&&route.hours);
+  // Only entry regions dispatch automatically. Talk/use routes may share an
+  // ungated proximity region with an independently timed Yarn interaction.
+  const gated=investigation.routes.filter(route=>route.trigger==="enter"&&route.bounds&&route.hours);
   assert.ok(gated.length>10);
   for(const route of gated){
     const region=storyRegions.regions.find(item=>item.id===route.bounds);
@@ -219,6 +237,21 @@ test("use-only proximity bounds do not automatically call a telephone",()=>{
   const runtime=new StoryRegionRuntime({controller:{status:"idle",start:async()=>starts++},getCharacter:()=>character,publishPresence(){return true;}});
   assert.equal(runtime.update({area:"D000",playerPosition:[-38,0,10],enabled:true}),false);
   assert.equal(runtime.update({area:"JOMO",playerPosition:[-15.5,0,2],enabled:true}),false);
+  assert.equal(starts,0);
+});
+
+test("home scrolls require using their placed objects and never interrupt a room approach",()=>{
+  const routes=moveLearningRoutes.filter(route=>["twin-blades-scroll","shadow-reaper-scroll"].includes(route.id));
+  assert.deepEqual(routes.map(route=>[route.trigger,route.object]),[["use","imk1"],["use","bkgu"]]);
+  const regions=storyRegions.regions.filter(region=>routes.some(route=>route.bounds===region.id));
+  assert.equal(regions.length,2);assert.ok(regions.every(region=>region.trigger==="use"));
+  let starts=0;
+  const runtime=new StoryRegionRuntime({controller:{status:"idle",start:async()=>starts++},
+    getCharacter:()=>({id:1,modeRevision:0,playMode:"story",openingCompleted:true}),publishPresence:()=>true,regions});
+  for(const region of regions){
+    const point=region.min.map((value,index)=>(value+region.max[index])/2);
+    assert.equal(runtime.update({area:"JOMO",worldId:"interior",playerPosition:point,enabled:true}),false);
+  }
   assert.equal(starts,0);
 });
 

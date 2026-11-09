@@ -1,0 +1,9 @@
+// The first handover already records this same day. The calendar is personal,
+// and a saved receipt prevents duplicate payment after cancellation or reload.
+<<if progress_value("story.s1.allowance.last-paid-day") >= game_day()>>
+    <<pass_trigger>>
+<<endif>>
+Ryo Hazuki: Ine-san left my allowance on the shoe cabinet. #speaker:AKIR
+<<record_game_day "story.s1.allowance.last-paid-day">>
+<<grant_yen 500 "Ine-san's daily allowance">>
+<<complete>>

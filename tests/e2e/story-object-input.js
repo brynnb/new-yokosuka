@@ -1,29 +1,29 @@
 import {expect} from "@playwright/test";
 
-export async function openStoryRoomDoor(page,{tag,position}) {
-  await page.evaluate(({tag,position})=>{
-    const l=window.storyProbe.lifecycle,d=l.doorInteractions.entries.find(d=>d.objectTag===tag);
-    if(!d)throw Error(`Missing physical room door ${tag}`);
+export async function openStoryRoomDoor(page,{tag,staticDoorIndex,position}) {
+  await page.evaluate(({tag,staticDoorIndex,position})=>{
+    const l=window.storyProbe.lifecycle,d=l.doorInteractions.entries.find(d=>staticDoorIndex==null?d.objectTag===tag:d.root._runtimePlacementRecord?.runtime?.staticDoorIndex===staticDoorIndex);
+    if(!d)throw Error(`Missing physical room door ${tag??staticDoorIndex}`);
     l.resetPlayer(l.vectorFromArray(position),0,{persist:false});
     const b=d.root.getHierarchyBoundingVectors(true),p=b.min.add(b.max).scale(.5),c=l.getController();
     c.setFirstPerson(true);c.cameraYaw=Math.atan2(position[0]-p.x,position[2]-p.z);
     c.cameraPitch=Math.atan2(position[1]+c.options.firstPersonHeadHeight-p.y,Math.hypot(p.x-position[0],p.z-position[2]));c.updateCamera(1);
-  },{tag,position});
+  },{tag,staticDoorIndex,position});
   await page.waitForTimeout(500);
-  const point=await page.evaluate(tag=>{
-    const l=window.storyProbe.lifecycle,d=l.doorInteractions.entries.find(d=>d.objectTag===tag),b=d.root.getHierarchyBoundingVectors(true),p=b.min.add(b.max).scale(.5);
+  const point=await page.evaluate(({tag,staticDoorIndex})=>{
+    const l=window.storyProbe.lifecycle,d=l.doorInteractions.entries.find(d=>staticDoorIndex==null?d.objectTag===tag:d.root._runtimePlacementRecord?.runtime?.staticDoorIndex===staticDoorIndex),b=d.root.getHierarchyBoundingVectors(true),p=b.min.add(b.max).scale(.5);
     const canvas=l.engine.getRenderingCanvas(),r=canvas.getBoundingClientRect(),camera=l.scene.activeCamera,vp=camera.getViewMatrix(true).multiply(camera.getProjectionMatrix(true));
     const s=p.constructor.Project(p,vp.constructor.Identity(),vp,camera.viewport.toGlobal(l.engine.getRenderWidth(),l.engine.getRenderHeight()));
     const x=s.x*r.width/l.engine.getRenderWidth(),y=s.y*r.height/l.engine.getRenderHeight();
     const pick=l.scene.pick(x,y,m=>Object.keys(m.metadata||{}).some(k=>k.startsWith("interactive")),false,camera);
-    return{x:r.x+x,y:r.y+y,state:d.state,picked:pick?.pickedMesh?.metadata?.interactiveDoor?.objectTag,
+    return{x:r.x+x,y:r.y+y,state:d.state,picked:pick?.pickedMesh?.metadata?.interactiveDoor?.objectTag,matched:pick?.pickedMesh?.metadata?.interactiveDoor===d,
       threshold:d.collisionBindCenter?.asArray(),type:d.type};
-  },tag);
+  },{tag,staticDoorIndex});
   console.info("Room door pick",{tag,...point});
-  if(point.state==="closed"){expect(point.picked).toBe(tag);await page.mouse.click(point.x,point.y);}
-  await page.waitForFunction(tag=>window.storyProbe.lifecycle.doorInteractions.entries.find(d=>d.objectTag===tag)?.state==="open",tag);
-  const gapCenter=await page.evaluate(tag=>{
-    const l=window.storyProbe.lifecycle,d=l.doorInteractions.entries.find(d=>d.objectTag===tag),p=d.collisionBindCenter;
+  if(point.state==="closed"){if(staticDoorIndex==null)expect(point.picked).toBe(tag);else expect(point.matched).toBe(true);await page.mouse.click(point.x,point.y);}
+  await page.waitForFunction(({tag,staticDoorIndex})=>window.storyProbe.lifecycle.doorInteractions.entries.find(d=>staticDoorIndex==null?d.objectTag===tag:d.root._runtimePlacementRecord?.runtime?.staticDoorIndex===staticDoorIndex)?.state==="open",{tag,staticDoorIndex});
+  const gapCenter=await page.evaluate(({tag,staticDoorIndex})=>{
+    const l=window.storyProbe.lifecycle,d=l.doorInteractions.entries.find(d=>staticDoorIndex==null?d.objectTag===tag:d.root._runtimePlacementRecord?.runtime?.staticDoorIndex===staticDoorIndex),p=d.collisionBindCenter;
     if(d.type!=="sliding"||!p)return null;
     for(const m of l.scene.meshes){
       if(!m.metadata?.nativeCollisionDoorMoved)continue;
@@ -37,7 +37,7 @@ export async function openStoryRoomDoor(page,{tag,position}) {
       }
     }
     throw Error(`No moved native boundary for room door ${tag}`);
-  },tag);
+  },{tag,staticDoorIndex});
   return {...point,gapCenter};
 }
 

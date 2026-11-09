@@ -28,7 +28,7 @@ const packageActors={SYZU:character("Shozo Mizuki","KOG_L"),BIKA:character("Taka
 const vehicles={BIK1:"BIKK5DYG",BIK2:"BIKS509G"};
 const sceneObjects=Object.fromEntries(Object.entries(vehicles).map(([tag,model])=>[tag,{model,browserFilename:`${model}.CHRM`,assetPath:`${prefix}/${model}.CHRM`,textureAssetPath}]));
 for(const tag of ["LINT","LPOS","LGT1","LGT2","REF1","REF2"])sceneObjects[tag]={model:"unmapped-original-light-reference",browserFilename:`RACE-${tag}-reference`,referenceOnly:true};
-const names=["SEQDATA1.AUTH","M_01CRA.MOTN","M_MBQC.MOTN",...Object.values(vehicles).map(v=>`${v}.CHRM`)];
+const names=["SEQDATA1.AUTH","M_01CRA.MOTN","M_MBQC.MOTN","M_DEQB.MOTN",...Object.values(vehicles).map(v=>`${v}.CHRM`)];
 const members=names.map(member);
 const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:"RACE",disc:3,sourceMembers:members,expectedMembers:members,bindingEvidence:evidence,
   selectionRule:"Walkthrough-guided evening encounter; local presentation slot, not native owner selection.",
@@ -78,7 +78,17 @@ const scene={id:"s1.mfsy.chicken-race",area:"MFSY",worldId:"mfsy",
   sceneObjects:{BIK1:bike("BIK1",first),BIK2:bike("BIK2",second)},
   sceneObjectTracks:{BIK1:curveTrack(samples(d=>riding(d))),BIK2:curveTrack(samples(d=>riding(d,3)))},
 };
-fs.writeFileSync(path.join(root,"play/data/story-harbor-scenes.generated.json"),JSON.stringify({schema:"new-yokosuka-authored-story-scenes-v1",generatedBy,motionBanks:{chickenRace:`${prefix}/M_MBQC.MOTN`},scenes:[scene]},null,2)+"\n");
+// The native outcome choreography is not yet decoded. Cut to a stationary
+// street conversation with the original standing motions and E1070 speech,
+// rather than presenting the voiced exchange over riders still on their bikes.
+const ending={id:"s1.mfsy.chicken-race-aftermath",area:"MFSY",worldId:"mfsy",isolateScheduledActors:true,
+  provenance:"Original E1070 outcome voices and RACE/M_DEQB standing motions; the location, camera, gestures and dismount are authored approximations.",
+  actorDefinitions:Object.entries(packageActors).map(([actorCode,d])=>({actorCode,label:d.label,modelCode:d.modelCode,activityOnly:true})),
+  actors:[{tag:"AKIR",pose:pose(-47.2,0,46.6,310),motion:{bank:"free",name:"AKI_AKI_STAND_LP",loop:true}},
+    {tag:"BIKA",pose:pose(-46,0,44.8,130),motion:{bank:"harborBiker",name:"OTH_STAND_YANKII_01_LP_F",loop:true}},
+    {tag:"BIKB",pose:pose(-45.5,0,46.3,130),motion:{bank:"harborBiker",name:"OTH_STAND_YANKII_02_LP_F",loop:true}}],
+  camera:{positionX:-42,positionY:2.2,positionZ:49,targetX:-47,targetY:1.1,targetZ:45.3,roll:0,perspective:65}};
+fs.writeFileSync(path.join(root,"play/data/story-harbor-scenes.generated.json"),JSON.stringify({schema:"new-yokosuka-authored-story-scenes-v1",generatedBy,motionBanks:{chickenRace:`${prefix}/M_MBQC.MOTN`,harborBiker:`${prefix}/M_DEQB.MOTN`},scenes:[scene,ending]},null,2)+"\n");
 const runtimePaths=[`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path)];
 if(process.argv.includes("--audio")){
   const audio=buildNativeAseqAudioPack({generatedBy,disc:3,authDirectory:path.join(root,prefix),authFiles:["SEQDATA1.AUTH"],authManifest:`${prefix}/manifest.json`,resourceBindingEvidence:evidence,

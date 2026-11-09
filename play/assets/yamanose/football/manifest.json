@@ -1,0 +1,36 @@
+{
+  "schema": "new-yokosuka-authored-scene-assets-v1",
+  "generatedBy": "tools/cutscenes/build_yamanose_football_assets.mjs",
+  "bindings": [
+    {
+      "actorTag": "FBB_",
+      "image": "FBB0201G",
+      "model": "FBB0201G",
+      "characterRecordOffset": 48,
+      "imagePropertyOffset": 128,
+      "defImageRecordOffset": 8,
+      "presentation": null
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/yamanose/football/M_01113.MOTN",
+      "byteLength": 234808,
+      "sha256": "2e229983ef457320f771a5465f6a240318fe6c55df37fedac9d72c17db1212b8",
+      "source": {
+        "path": "data/SCENE/01/JU00/JQSO.PKS",
+        "sha256": "956fd7b8441f3538c3a99a59aae840f522dc8238089ba202fc15d98d0b3db87f",
+        "member": "M_01113.MOTN"
+      }
+    }
+  ],
+  "reusedBall": {
+    "path": "play/assets/sakuragaoka/gao-wen/FBB0201G.CHRM",
+    "sha256": "5d27cea0f483ec2906346af2fc468729b8c2f9276ca221e3f47389278549583e",
+    "source": {
+      "path": "data/SCENE/01/JU00/JQSO.PKS",
+      "sha256": "956fd7b8441f3538c3a99a59aae840f522dc8238089ba202fc15d98d0b3db87f",
+      "member": "FBB0201G.CHRM"
+    }
+  }
+}

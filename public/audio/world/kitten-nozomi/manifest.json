@@ -1,0 +1,1062 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_kitten_nozomi_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01MUT.AFS",
+      "sha256": "759b0dc7bcd5b6e5539ca0ccfbef18d7f03167968da7350680622c4152ce7971"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_RYODK.SND",
+      "sha256": "f9be967cefd06f7d3de735507ec7eaae4ec60d0b1051d6430a38c89747700bba"
+    },
+    "authManifest": "play/assets/yamanose/kitten-nozomi/manifest.json",
+    "resourceBindingEvidence": "docs/design/story-event-template.md#later-kitten-events-source-leads"
+  },
+  "voices": [
+    {
+      "voiceId": "01MUTA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SOUND/01MUTA001.aiff",
+      "nativeMember": "01MUTA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 30720,
+      "nativeSha256": "e1f766ce74dd8b1595543c0929db66b9709ede3206ba3ebb811129e61f568cae",
+      "speakerId": "AKIR",
+      "sourceText": "You and I have a lot in common,＆our parents died on the same day.",
+      "displayText": "You and I have a lot in common,\nour parents died on the same day.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 62
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 16
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-nozomi/voice/01MUTA001.wav",
+      "byteLength": 122668,
+      "sha256": "b71939b1a3138f1e7293865908e706dd1b7d8cadbc2eb747d220f7b643a9caa4"
+    },
+    {
+      "voiceId": "01MUTA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SOUND/01MUTA002.aiff",
+      "nativeMember": "01MUTA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 10240,
+      "nativeSha256": "c285505df92f8298276e59e256dd3cbe163a52161cb90b6f318808daab24be20",
+      "speakerId": "AKIR",
+      "sourceText": "Oh, Nozomi=@",
+      "displayText": "Oh, Nozomi...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-nozomi/voice/01MUTA002.wav",
+      "byteLength": 40748,
+      "sha256": "08712822a6175f4ef895f6538e25fe0750a386a46a14133cb4923352b2fadbcc"
+    },
+    {
+      "voiceId": "01MUTA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SOUND/01MUTA003.aiff",
+      "nativeMember": "01MUTA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 2048,
+      "nativeSha256": "84b06aa9976e34a0a7ccbb9e4301b02577a3da716c419398a63080e91ce8d912",
+      "speakerId": "AKIR",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-nozomi/voice/01MUTA003.wav",
+      "byteLength": 7980,
+      "sha256": "f7acb43a5061f880fc12dad63e0e3dfa6cd32a3dbd264502330a8680401d15f1"
+    },
+    {
+      "voiceId": "01MUTA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SOUND/01MUTA004.aiff",
+      "nativeMember": "01MUTA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 6144,
+      "nativeSha256": "48ea11a3cc60e75ae03f0f7caa8abdc54e0601f960820ec65c902573e5889ab1",
+      "speakerId": "AKIR",
+      "sourceText": "Nothing=@",
+      "displayText": "Nothing...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-nozomi/voice/01MUTA004.wav",
+      "byteLength": 24364,
+      "sha256": "9b511b931cdc21ab07fbb8e8637f9eab5ca88bb719f62f81956c7fc188a58609"
+    },
+    {
+      "voiceId": "01MUTA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SOUND/01MUTA005.aiff",
+      "nativeMember": "01MUTA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 14336,
+      "nativeSha256": "f118229b273c6aaa285a3739c65731e7b0f1543986873c4ae33fb72598fc78e5",
+      "speakerId": "AKIR",
+      "sourceText": "It's not like that. It's just=@",
+      "displayText": "It's not like that. It's just...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-nozomi/voice/01MUTA005.wav",
+      "byteLength": 57132,
+      "sha256": "02597f9be6254e201024ed44aae5412df543aeb589a6b87470e3a9176091b7ae"
+    },
+    {
+      "voiceId": "01MUTA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SOUND/01MUTA006.aiff",
+      "nativeMember": "01MUTA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 4096,
+      "nativeSha256": "50b8abe19a7ff24b87bcaf12e48ec421cbdae05c4392502102444e8c0f3cc308",
+      "speakerId": "AKIR",
+      "sourceText": "OK.",
+      "displayText": "OK.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-nozomi/voice/01MUTA006.wav",
+      "byteLength": 16172,
+      "sha256": "900a700078ce51150dec791900c5e3b7e58e26e17809298ae34c628ac5e72f85"
+    },
+    {
+      "voiceId": "01MUTB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SOUND/01MUTB001.aiff",
+      "nativeMember": "01MUTB001.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 4096,
+      "nativeSha256": "8711c512f3488f1e0ee5d1ee33726f3fb9a5dcbabe757f96a9d5d1bd7a6d93d5",
+      "speakerId": "HRSK",
+      "sourceText": "Ryo.",
+      "displayText": "Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-nozomi/voice/01MUTB001.wav",
+      "byteLength": 16172,
+      "sha256": "a227c2193670abe8d9e58b4d30dc010f944f19dec178fbb0e92bf9867202e458"
+    },
+    {
+      "voiceId": "01MUTB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SOUND/01MUTB002.aiff",
+      "nativeMember": "01MUTB002.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 10240,
+      "nativeSha256": "1db86840c5a323574767881fca7aa74838030dae354ca2dd787cab7d1e59f856",
+      "speakerId": "HRSK",
+      "sourceText": "What were you talking about?",
+      "displayText": "What were you talking about?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-nozomi/voice/01MUTB002.wav",
+      "byteLength": 40748,
+      "sha256": "bd5c148a008c53def4a116721c7441f5ec364e0b594c5ad02d82ec3ba42cd675"
+    },
+    {
+      "voiceId": "01MUTB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SOUND/01MUTB003.aiff",
+      "nativeMember": "01MUTB003.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 30720,
+      "nativeSha256": "b60942dd2041743707b141abb590e5c9de464371784cea6dfdc69a0c658a6d61",
+      "speakerId": "HRSK",
+      "sourceText": "You always say {Nothing.}＆You never tell me anything anymore.",
+      "displayText": "You always say {Nothing.}\nYou never tell me anything anymore.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 20
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 31
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-nozomi/voice/01MUTB003.wav",
+      "byteLength": 122668,
+      "sha256": "b9fd68ebffdd966df6128929de6c83630dbcca5a0931bce868ce3396c42cbf11"
+    },
+    {
+      "voiceId": "01MUTB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SOUND/01MUTB004.aiff",
+      "nativeMember": "01MUTB004.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 8192,
+      "nativeSha256": "6e09487dfb2d0eee15f440a286043301936546c38f0be84aeb803eb31214b470",
+      "speakerId": "HRSK",
+      "sourceText": "I understand.",
+      "displayText": "I understand.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-nozomi/voice/01MUTB004.wav",
+      "byteLength": 32556,
+      "sha256": "0f42256ed4fc86cc3fc380390eae5e88732b53b4b913f43812bfe1aab7addb36"
+    },
+    {
+      "voiceId": "01MUTB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SOUND/01MUTB005.aiff",
+      "nativeMember": "01MUTB005.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 16384,
+      "nativeSha256": "b479387723568cb3e9328c8f586d56e774f9228a016a901fd8133efb9e4ff1cd",
+      "speakerId": "HRSK",
+      "sourceText": "But you need to talk to me, OK?",
+      "displayText": "But you need to talk to me, OK?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-nozomi/voice/01MUTB005.wav",
+      "byteLength": 65324,
+      "sha256": "9d22791a15b9d8d6a68b60467c9c41c7b94c55829378e9c4f1303d3117225c58"
+    },
+    {
+      "voiceId": "01MUTB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SOUND/01MUTB006.aiff",
+      "nativeMember": "01MUTB006.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 22528,
+      "nativeSha256": "bd51edf00b6404bf32875b19bc7985b1b7d8b880f4317c3fd1f2a0e6a8a94f3f",
+      "speakerId": "HRSK",
+      "sourceText": "Take care of yourself. See ya'.",
+      "displayText": "Take care of yourself. See ya'.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 78
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/kitten-nozomi/voice/01MUTB006.wav",
+      "byteLength": 89900,
+      "sha256": "936c9e460f90e7c339c1f594b3a9271976fa2b4b3dfd27de25ef1fb67857722f"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-nozomi/sfx/a9040000.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-nozomi/sfx/a9040100.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SE/animal/cat2.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-nozomi/sfx/a9040200.wav",
+      "byteLength": 27084,
+      "sha256": "0a382a18814907ae6723499f91fcaaa2b4368b5dcd371b019c4281429106810d"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SE/animal/cat3.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-nozomi/sfx/a9040300.wav",
+      "byteLength": 24076,
+      "sha256": "972a1c51a7e5c52219749808c402ada0d5b47be54515d64a3a9f70f8de600c2c"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SE/animal/cat4.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-nozomi/sfx/a9040400.wav",
+      "byteLength": 24692,
+      "sha256": "92a25868b34053df17985b44fd97b39e6eabfdb0454bc24a27a58bbb81559a28"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SE/cloths2/friction2.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-nozomi/sfx/a9040500.wav",
+      "byteLength": 20916,
+      "sha256": "70c58a40f2a0cb7dbd1431ee497c610b51fa15fe0946d79d09230e6cccc708b6"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SE/cloths2/friction4.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-nozomi/sfx/a9040600.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-nozomi/sfx/a9040700.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-nozomi/sfx/a9040800.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SE/footsoil/ryoashi05.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-nozomi/sfx/a9040900.wav",
+      "byteLength": 14884,
+      "sha256": "565ee6addd2a88dfa716c1c51c9e81d13fd0245434e9e467e3598443fb9ff75e"
+    },
+    {
+      "commandHex": "a9040a00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SE/cloths/RYODORO2.aiff",
+      "playbackId": 10,
+      "sampleId": 10,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-nozomi/sfx/a9040a00.wav",
+      "byteLength": 7068,
+      "sha256": "169e664998132ea3e953a9f06f21f00960c1ef0bbe244f7193476fdadf00c901"
+    },
+    {
+      "commandHex": "a9040b00",
+      "sourcePath": "/p16/prj16m5/AUTH01/01MUT/SE/footsoil/ryotsuchiashi01.aiff",
+      "playbackId": 11,
+      "sampleId": 11,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/kitten-nozomi/sfx/a9040b00.wav",
+      "byteLength": 10852,
+      "sha256": "883aa6c59eb27f1998efdaa5abf1192f4bc4a99e0d008be6239495a392049b8a"
+    }
+  ]
+}
