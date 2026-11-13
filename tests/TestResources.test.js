@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import { mkdtempSync, rmSync, symlinkSync } from "node:fs";
 import path from "node:path";
 import test from "node:test";
-import { dockerTestMemoryArgs, hostTestServiceArgs, testLockPath } from "../scripts/testing/test-resources.mjs";
+import { assertBrowserProcessMemoryBudget, dockerTestMemoryArgs, hostTestServiceArgs, testLockPath } from "../scripts/testing/test-resources.mjs";
 
 const cwd = path.resolve(import.meta.dirname, "..");
 
@@ -29,6 +29,138 @@ test("host budgets cover child processes and cannot expand test arguments as env
   assert.ok(args.includes("--expand-environment=no"));
   assert.ok(args.includes("--setenv=NAME"));
   assert.ok(!args.some(arg => arg.includes("private")), "do not print environment values in command arguments");
+});
+
+
+function browserResourceFixture({ worker = "/tests/run.service", memory = "8589934592", swap = "0", groups = {} } = {}) {
+  const files = new Map([
+    ["/proc/self/cgroup", `0::${worker}\n`],
+    [path.join("/sys/fs/cgroup", worker, "memory.max"), memory + "\n"],
+    [path.join("/sys/fs/cgroup", worker, "memory.swap.max"), swap + "\n"],
+    ...Object.entries(groups).map(([pid, group]) => [`/proc/${pid}/cgroup`, `0::${group}\n`]),
+  ]);
+  const reads = [];
+  const readFile = (filename, encoding) => {
+    reads.push(filename);
+    assert.equal(encoding, "utf8");
+    if (!files.has(filename)) throw Object.assign(new Error(`No fixture for ${filename}`), { code: "ENOENT" });
+    const value = files.get(filename);
+    if (value instanceof Error) throw value;
+    return value;
+  };
+  return { files, reads, readFile };
+}
+
+test("CDP browser, renderer, GPU and utility processes share one aggregate budget across descendants", () => {
+  const fixture = browserResourceFixture({ worker: "/tests/run:one.service ", groups: {
+    41: "/tests/run:one.service ", 42: "/tests/run:one.service /renderer", 43: "/tests/run:one.service /gpu/nested",
+  } });
+  fixture.files.set("/proc/41/cgroup", "7:cpu:/legacy\n0::/tests/run:one.service \n");
+  const evidence = assertBrowserProcessMemoryBudget([
+    { id: 41, type: "browser" }, { id: 42, type: "renderer" }, { id: 43, type: "GPU" }, { id: 43, type: "utility" },
+  ], fixture);
+  assert.equal(evidence.worker.memoryMaxBytes, "8589934592");
+  assert.equal(evidence.worker.swapMaxBytes, "0");
+  assert.equal(evidence.worker.cgroupAfter, evidence.worker.cgroup);
+  assert.deepEqual(evidence.processes.map(record => record.relation), ["same", "descendant", "descendant"]);
+  assert.deepEqual(evidence.processes[2].types, ["GPU", "utility"]);
+  assert.equal(fixture.reads.filter(filename => filename === "/proc/43/cgroup").length, 1);
+  assert.deepEqual([...new Set(fixture.reads)].sort(), [...fixture.files.keys()].sort(), "read only the supplied browser PIDs and the bounded worker's files");
+});
+
+test("a sibling app scope, parent, or deceptive path prefix cannot escape the aggregate browser budget", () => {
+  for (const outside of ["/user.slice/app-chromium.scope", "/tests/run.service-other", "/tests"]) {
+    const fixture = browserResourceFixture({ groups: { 41: "/tests/run.service", 42: outside } });
+    assert.throws(() => assertBrowserProcessMemoryBudget([
+      { id: 41, type: "browser" }, { id: 42, type: "GPU" },
+    ], fixture), error => {
+      assert.equal(error.resourceEvidence.processes[0].relation, "same");
+      assert.equal(error.resourceEvidence.processes[1].relation, "outside");
+      assert.equal(error.resourceEvidence.processes[1].cgroup, outside);
+      assert.deepEqual(error.resourceEvidence.failures, [{ pid: 42, reason: "outside_worker_cgroup" }]);
+      return true;
+    });
+  }
+});
+
+test("a bounded container cgroup namespace root accepts descendants but rejects namespace escapes", () => {
+  const fixture = browserResourceFixture({ worker: "/", groups: { 41: "/", 42: "/renderer" } });
+  const processes = [{ id: 41, type: "browser" }, { id: 42, type: "renderer" }];
+  assert.deepEqual(assertBrowserProcessMemoryBudget(processes, fixture).processes.map(record => record.relation), ["same", "descendant"]);
+  fixture.files.set("/proc/42/cgroup", "0::/../outside\n");
+  assert.throws(() => assertBrowserProcessMemoryBudget(processes, fixture), error => {
+    assert.equal(error.resourceEvidence.processes[1].relation, "unreadable");
+    assert.equal(error.resourceEvidence.processes[1].readError.code, "INVALID_CGROUP");
+    return true;
+  });
+});
+
+test("browser verification rejects invalid PIDs before constructing a process read", () => {
+  for (const id of [undefined, null, "41", 0, -1, 1.5, NaN, Infinity, Number.MAX_SAFE_INTEGER + 1]) {
+    const fixture = browserResourceFixture();
+    assert.throws(() => assertBrowserProcessMemoryBudget([{ id, type: "browser" }], fixture));
+    assert.ok(fixture.reads.every(filename => filename === "/proc/self/cgroup" || filename.startsWith("/sys/fs/cgroup/")));
+  }
+});
+
+test("browser verification requires its own browser PID, not just other reported processes", () => {
+  for (const processInfo of [[], [{ id: 42, type: "renderer" }]]) {
+    const fixture = browserResourceFixture({ groups: { 42: "/tests/run.service" } });
+    assert.throws(() => assertBrowserProcessMemoryBudget(processInfo, fixture));
+    assert.ok(!fixture.reads.includes("/proc/42/cgroup"));
+  }
+});
+
+test("malformed unified worker memberships fail before reading a cgroup budget", () => {
+  for (const source of ["1:memory:/tests/run.service\n", "0::/one\n0::/two\n", "0::relative\n", "0::/tests/run.service\ntrailing-garbage\n",
+    "0::/tests/../escape\n", "0::/tests//run\n", "0::/tests/run/\n", "0::/tests/./run\n", "0::/tests/\u0000run\n"]) {
+    const fixture = browserResourceFixture();
+    fixture.files.set("/proc/self/cgroup", source);
+    assert.throws(() => assertBrowserProcessMemoryBudget([{ id: 41, type: "browser" }], fixture));
+    assert.deepEqual(fixture.reads, ["/proc/self/cgroup"]);
+  }
+});
+
+test("unbounded RAM or swap fails before any browser process can pass containment", () => {
+  for (const limits of [{ memory: "max" }, { memory: "8589934593" }, { swap: "1" }, { swap: "max" }]) {
+    const fixture = browserResourceFixture(limits);
+    assert.throws(() => assertBrowserProcessMemoryBudget([{ id: 41, type: "browser" }], fixture), error => {
+      assert.equal(error.resourceEvidence.worker.memoryMaxBytes, limits.memory || "8589934592");
+      assert.equal(error.resourceEvidence.worker.swapMaxBytes, limits.swap || "0");
+      return true;
+    });
+    assert.ok(!fixture.reads.includes("/proc/41/cgroup"));
+  }
+});
+
+test("an exited or unreadable CDP process fails closed without hiding a separate scope violation", () => {
+  for (const code of ["ENOENT", "EACCES"]) {
+    const fixture = browserResourceFixture({ groups: { 41: "/tests/run.service", 43: "/user.slice/app-chromium.scope" } });
+    fixture.files.set("/proc/42/cgroup", Object.assign(new Error("Process membership unavailable"), { code }));
+    assert.throws(() => assertBrowserProcessMemoryBudget([
+      { id: 41, type: "browser" }, { id: 42, type: "renderer" }, { id: 43, type: "utility" },
+    ], fixture), error => {
+      assert.equal(error.resourceEvidence.processes[1].readError.code, code);
+      assert.equal(error.resourceEvidence.processes[2].relation, "outside");
+      assert.deepEqual(error.resourceEvidence.failures, [
+        { pid: 42, reason: "unverifiable_process" }, { pid: 43, reason: "outside_worker_cgroup" },
+      ]);
+      return true;
+    });
+  }
+});
+
+test("worker migration cannot substitute an unverified cgroup for the budget-checked ancestor", () => {
+  const fixture = browserResourceFixture({ groups: { 41: "/tests/run.service" } });
+  let selfReads = 0;
+  const readFile = (filename, encoding) => filename === "/proc/self/cgroup" && ++selfReads === 2
+    ? "0::/user.slice/app-node.scope\n" : fixture.readFile(filename, encoding);
+  assert.throws(() => assertBrowserProcessMemoryBudget([{ id: 41, type: "browser" }], { readFile }), error => {
+    assert.equal(error.resourceEvidence.worker.cgroup, "/tests/run.service");
+    assert.equal(error.resourceEvidence.worker.cgroupAfter, "/user.slice/app-node.scope");
+    assert.deepEqual(error.resourceEvidence.failures, [{ pid: process.pid, reason: "worker_cgroup_changed" }]);
+    return true;
+  });
 });
 
 test("the real bounded Node launcher rejects an overlapping test run", () => {

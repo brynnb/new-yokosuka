@@ -37,6 +37,21 @@ systemd user session (`systemctl --user`). The Docker launcher requires Linux,
 prerequisites fail the run; do not retry without limits. Existing external dev
 servers and GPU video memory are not included in these test RAM ceilings.
 
+Linux headless launches set `DBUS_SESSION_BUS_ADDRESS=unix:path=/dev/null` for
+Chromium only; the launcher retains its session bus for systemd. This prevents
+Chromium's desktop-portal registration from moving the browser into a separate
+application scope outside the test budget. Desktop-portal features that require
+the user session bus are unavailable in these headless tests.
+
+The renderer preflight takes browser-level CDP `SystemInfo.getProcessInfo`
+snapshots before and after its small WebGL probe. It requires a browser PID and
+checks every reported PID against the worker's verified 8 GiB/no-swap cgroup or
+its descendants. Invalid or unreadable membership, an outside scope, or worker
+migration fails the preflight. The `browser-process-resources` JSON attachment
+and `[Playwright browser resources]` logs record PIDs, roles, cgroups, limits,
+and failures. This evidence covers the reported snapshots of the locally
+launched browser in the worker's PID namespace.
+
 All launchers share one per-user lock across worktrees. An overlapping run exits
 with code 75 instead of starting another workload; wait and retry. Ctrl-C or
 SIGTERM cleans up only the exact transient user service or Docker container

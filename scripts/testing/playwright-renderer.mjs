@@ -7,6 +7,12 @@ export function playwrightRendererOptions(env = process.env, platform = process.
   }
   return {
     channel: "chromium",
+    // Headless tests do not use desktop portals. Deny only Chromium's session
+    // bus connection: portal registration otherwise moves it out of the
+    // launcher's bounded systemd cgroup into a separate app scope.
+    ...(platform === "linux" ? {
+      env: { ...env, DBUS_SESSION_BUS_ADDRESS: "unix:path=/dev/null" },
+    } : {}),
     args: software ? [] : [
       "--enable-gpu",
       "--disable-software-rasterizer",

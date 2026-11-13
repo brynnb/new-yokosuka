@@ -27,3 +27,29 @@ test("software rendering is an explicit opt-out, not an automatic retry", () => 
   assert.doesNotThrow(() => assertPlaywrightRenderer("SwiftShader", env));
   assert.throws(() => assertPlaywrightRenderer(null, env));
 });
+
+
+test("Linux isolates the browser session bus while preserving the supplied launch environment", () => {
+  for (const software of [false, true]) {
+    for (const existingBus of [false, true]) {
+      const env = Object.freeze({ PATH: "/fixture/bin", DISPLAY: ":7", XDG_RUNTIME_DIR: "/run/user/fixture",
+        ...(software ? { PLAYWRIGHT_SOFTWARE_RENDERING: "true" } : {}),
+        ...(existingBus ? { DBUS_SESSION_BUS_ADDRESS: "unix:path=/fixture/user/bus" } : {}),
+      });
+      const before = { ...env };
+      const options = playwrightRendererOptions(env, "linux");
+      assert.notEqual(options.env, env, "browser overrides must not mutate the launcher's environment");
+      assert.deepEqual(options.env, { ...before, DBUS_SESSION_BUS_ADDRESS: "unix:path=/dev/null" });
+      assert.deepEqual(env, before);
+    }
+  }
+});
+
+test("non-Linux browser launches retain the existing inherited-environment behavior", () => {
+  const env = Object.freeze({ DBUS_SESSION_BUS_ADDRESS: "unix:path=/fixture/user/bus", DISPLAY: ":7" });
+  for (const platform of ["darwin", "win32"]) {
+    const options = playwrightRendererOptions(env, platform);
+    assert.equal(Object.hasOwn(options, "env"), false);
+  }
+  assert.equal(env.DBUS_SESSION_BUS_ADDRESS, "unix:path=/fixture/user/bus");
+});
