@@ -347,6 +347,21 @@ without replay all pass. The documented original JHD0 code-10 stair boundaries
 identify the traversed flight. This proves the courtyard route, not a fresh
 opening or the complete walk through the residence interior.
 
+A subsequent full-catalog run exposed a dispatch conflict that isolated
+single-script fixtures missed: the first dojo entry and optional Pit Blow both
+used `enter/JHD0` priority 100. The server intentionally rejects that tie before
+Yarn evaluates either script's prerequisites or bounds. The canonical optional
+learning band now uses priorities 50–58, below the older priority-100 main
+entries as well as the newer routes. Combined-catalog validation and
+`TestFirstDojoDispatchWithOptionalMoveLesson` pass with the real Yarn compiler
+and isolated PostgreSQL: first-dojo cancellation does not settle, natural
+acknowledgement saves the notebook, and the completed dojo subsequently yields
+to the eligible lesson without granting a move on decline. Ambiguous-trigger
+protection remains intact. The continuing fresh character that earned the
+opening and allowance has now entered and completed this dojo scene naturally;
+the broader fresh route is still in progress. The fix is recorded in client
+`6e36c0b5` and server `5a50a96`.
+
 The notebook page is a lightly adapted investigation prompt. Exact native
 notebook flags are not implemented. Do not describe the first conversation as
 fully animation-faithful.
@@ -414,7 +429,7 @@ does not establish working mouth animation or envelope presentation.
 | Xia Xiu Yu / Chinese-letter translation | Connected real-door entry, original TOKI actors/voices/cameras, cancellation/re-entry, natural ending, two notebook pages, restored arrival/camera/controls and saved reload verified. Compiler/database possession/presence/hours, stale acknowledgement, repeat and personal-isolation checks pass. Letter attachment/fold data is reused; complete hand/finger fidelity is not claimed. |
 | Telephone passwords / Warehouse No. 8 lead | Both real-phone clicks, original initial voice playback, wrong answer/leave, cancellation after the first correct answer, retry, saved warehouse notebook, restored controls, reload and no native fallback verified in the browser. All four reciprocal pair orientations, proximity, stale replies, shared once-only settlement and personal isolation pass compiler/database tests. Receiver/dial choreography remains approximate. |
 | Telephone directory / Amihama | Real TBK1 use, original successful 01TEL camera/body/voices, visibly textured open book, cancellation/re-entry, natural completion, saved Amihama page, restored book/player/controls, reload and repeat decline verified. Compiler/database proximity, stale acknowledgement, once-only settlement, personal isolation and legacy candidate-chain checks pass. Book hand binding/swap timing are explicit adaptations. |
-| Bus / first harbor arrival | Original BUSS boarding connected to a physical bus click after the earned Amihama lead. Stay, cancellation/re-entry, natural boarding, atomic harbor location/milestone, controls and saved reload verified. Timetable, fare and original harbor arrival movie are not reproduced; existing browser spawn is reused. |
+| Bus / first harbor arrival | A protected real-GPU continuation verifies normal walking from the tobacco counter around original collision boundaries to the bus, real picking, stay/cancel/retry, natural boarding, atomic harbor/pending save, arrival-film cancellation/reload/retry, natural original YBUSFLY D ending and completed reload. HP/yen/inventory and control/actor cleanup pass. Earlier predecessors are seeded; timetable, fare, original variant choice, one worker motion binding and the exploration spawn remain adapted or omitted. |
 | Goro's first harbor encounter | Connected approach, original voiced cast, cancellation/re-entry, wrong input/retry, actual Left/A/B success, original winning motion, directions/notebook, controls and saved reload verified. Real compiler/database tests cover earned arrival gate, accepted bounds, stale input, cancellation after winning, once-only effects and personal isolation. Placement/cameras/held challenge poses are authored. |
 | New Warehouse No. 8: refusal → rear window → overheard clue | Connected rendered approach, original voiced guard, cancellation/re-entry, climb decline/retry, correctly aligned original entering-window motion, exact office arrival, cancelled conversation/reload, saved Old Warehouse District notebook and restored controls verified. Real compiler/database tests cover bounds, stale acknowledgement, cancelled/declined climb without travel, atomic original arrival, once-only effects and personal isolation. Crate physics and walkway search are condensed. |
 | Old Warehouse District daytime gate / nighttime entry | Optional original voiced guard, cancellation/re-entry, waiting in the same area until 19:00, failed Right QTE/retry, original head-bump/catch motion, saved original inside-district arrival, ground support, restored control and reload verified. Compiler/database tests prove personal-hour boundaries, cancelled successful input without travel, exact atomic arrival and no fabricated stealth/Chen success. Shot, held prompt and flashlight binding are authored. |
@@ -2062,9 +2077,25 @@ cancellation/re-entry, the complete boarding movie, saved location/flag/balance,
 the automatic arrival movie, explicit skip, unlocked control and reload without
 replay. The connected arrival test used an isolated character seeded with the
 directory milestone; natural arrival playback and interrupted playback/retry
-were also tested separately. It does not establish a walkable
-route to the bus from the tobacco counter; direct attempted paths encountered
-collision and need a separate navigation check.
+were also tested separately.
+
+The later protected real-GPU continuation in `browser-bus-resumed-1.log`
+closes the counter-to-bus navigation gap. Starting at an isolated phone/directory
+checkpoint beside the tobacco counter, it uses ordinary keyboard walking and
+camera steering around the original booth/wall collision endpoints to reach
+an approach inside the unchanged client/server boarding bounds. The helper
+records its starting directory state and any seeded predecessor scope; it does
+not reset the player, directly travel or seed arrival receipts during this walk.
+A real bus pick then covers staying, boarding cancellation, retry and natural
+boarding. The automatic harbor film is cancelled, the page reloaded, and the
+pending arrival is retried and allowed to finish naturally. Saved location,
+arrival/pending/completed receipts, unchanged HP/yen/inventory, restored
+controls and released actor ownership, and another reload without replay pass.
+The run passed in about 3.3 minutes including the hardware-renderer check.
+Earlier prerequisites remain seeded: this verifies the connected counter,
+boarding and harbor sequence, not a fresh uninterrupted Story playthrough.
+The earlier direct paths crossed original collision boundaries; no collision
+removal or widened boarding region was needed to verify the walk.
 Inspected captures show Ryo inside the original bus and the rendered harbor.
 The test now waits for the loading cover to disappear: an earlier ready-only
 check incorrectly passed while the loading UI displayed an error.

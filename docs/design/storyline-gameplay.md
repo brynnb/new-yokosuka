@@ -1,7 +1,7 @@
 # Storyline gameplay integration
 
 Status: authored Story prototype plus retained native-engine research
-Last reviewed: October 18, 2026
+Last reviewed: November 13, 2026 (coverage summary)
 
 The [implemented play modes](../implementation/play-modes.md) isolate Story
 and Free roam saves, calendars and NPC views. The current implementation uses
@@ -11,8 +11,12 @@ records grouped progression verification. The
 [master event list](../reference/shenmue1-story-event-master.generated.md) owns
 individual event coverage, including optional content and unresolved families;
 neither a route binding nor progression verification proves complete facial,
-prop or camera presentation. Connected browser
-coverage reaches the opening, allowance, early witnesses, Heartbeats and the
+prop or camera presentation. The coverage below combines separate scenario runs,
+including continuations from earned or seeded predecessor checkpoints. It does
+not yet establish one fresh-character opening-to-finale traversal; each run's
+setup, movement shortcuts and explicit presentation skips remain part of its
+verification boundary. Connected browser coverage reaches the opening,
+allowance, early witnesses, Heartbeats and the
 Charlie inquiries, the parking-lot ambush, the same-night tattoo-parlour visit
 and Charlie's later confrontation/cartel appointment. Coverage follows the core
 walkthrough route; optional branches and presentation gaps remain explicit in
@@ -40,8 +44,22 @@ binding and open/closed timing remain documented adaptations. Original bus
 boarding now connects that earned lead to a saved New Yokosuka Harbor arrival,
 with rendered stay/cancel/retry/completion and reload checks. Named Story travel
 settles the destination with its milestone and fences stale location writers.
-Timetable, fare and the original harbor-arrival movie remain adaptations or
-unimplemented. Goro's first harbor encounter now connects the arrival to his
+The original YBUSFLY/SEQDATAD harbor-arrival film now follows boarding, with
+source camera/cast, recovered bus-door callbacks and sound effects. Boarding
+saves its destination and a pending-film receipt together; natural completion
+or explicit skip saves the separate film receipt, while cancellation remains
+retryable. Connected boarding/arrival and separate rendered cancellation, retry,
+completion, skip and reload checks pass. Variant D is an explicit selection;
+one worker uses a source-backed motion substitution. Timetable, fare and the
+existing exploration spawn remain adaptations. The dedicated tobacco-counter-to-bus
+scenario passed isolated rendered acceptance on November 13: one character
+actually earned the directory clue, walked from the counter to the bus, declined
+boarding, cancelled/retried boarding, cancelled/reloaded the arrival film, then
+completed it naturally and reloaded without replay. The earlier phone/Chinese-letter
+checkpoint and initial clock/geography were seeded; directory, boarding and arrival
+outcomes were earned during the run. This establishes that physical segment from
+its disclosed predecessor, alongside the earlier near-bus checks.
+Goro's first harbor encounter now connects the arrival to his
 warehouse directions: original voices/cast, failed QTE/retry, actual Left/A/B
 success, original winning motion, saved notebook and reload are rendered and
 full-stack verified. Placement, cameras and held challenge poses are authored.
@@ -134,6 +152,13 @@ original confrontation, real three-opponent rescue and original aftermath.
 The clue and reload are verified without money or inventory changes.
 Five afternoon deliveries, a genuine attack victory, once-only ¥3,000 payday,
 original Goro warning and saved reload are also connected and verified.
+The shared salary staging already uses the original ALP_PAY paired motions,
+FUTS5KBG envelope and private Alpha office across all five paydays. Its envelope
+transfers from Yada to Ryo through the shared attachment runtime; transfer timing,
+grip borrowed from the warning-letter scene, camera and encouragement dialogue
+are authored. Exact payroll callbacks, detailed fingers and native amount display
+remain unproven. Presentation never grants the wage; the Yarn acknowledgement
+does. Older claims that this scene has no handover prop are obsolete.
 The return-home Phoenix Mirror dream and second morning's race now pass a connected
 rendered continuation through cancellation/retry, saved next-day arrival, all
 three physical laps, separate day-two settlement and reload without replay.

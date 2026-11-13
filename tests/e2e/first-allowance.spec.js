@@ -42,6 +42,7 @@ import {verifyEriNozomiPark} from "./story-eri-nozomi-park.js";
 import {verifyFriendsVisit} from "./story-friends-visit.js";
 import {verifyFriendsBar} from "./story-friends-bar.js";
 import {verifyHarborArrivalFilm} from "./story-harbor-arrival-film.js";
+import { verifyEarnedHarborBus } from "./story-earned-harbor-bus.js";
 import {verifyDailyAllowance} from "./story-daily-allowance.js";
 import {verifyIwaoFarewellLetter} from "./story-iwao-letter.js";
 import {verifyChildhoodMeal} from "./story-childhood-meal.js";
@@ -340,6 +341,13 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   expect(await page.evaluate(() => window.storyProbe.errors)).toEqual([]);
   await page.waitForFunction(() => window.storyProbe.regions?.getCharacter()?.id);
   if (resumeId) {
+    if (process.env.NEW_YOKOSUKA_EARNED_BUS_E2E === "true") {
+      test.setTimeout(720_000);
+      await verifyEarnedHarborBus(page, testInfo, character, {
+        walkToLandmark, verifyDirectory: verifyAmihamaDirectory, enterStoryWorld,
+      });
+      expect(errors).toEqual([]); return;
+    }
     if(process.env.NEW_YOKOSUKA_EARNED_SWORD_INVENTORY_E2E === "true"){
       expect(detail.inventory.some(item=>item.key==="dojo_sword")).toBe(true);
       await page.locator('#inventory-button').click();
@@ -1908,6 +1916,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
       return;
     }
+    if(process.env.NEW_YOKOSUKA_POST_ALLOWANCE_E2E === "true"){
+      // Continue the same earned fresh-character save. The shared helper never
+      // inserts prerequisites or repeats completed dojo/kitten milestones.
+      await continueAfterAllowance(page,testInfo,character,character.yen,errors);
+      expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
+    }
     // This is a prerequisite for the witness continuation, not for every
     // independently resumed scene above (some use partially seeded saves).
     expect(character.storyFlags["notebook.s1.chinese-community"]).toBe(true);
@@ -2101,9 +2115,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
   expect(await page.evaluate(() => window.storyProbe.starts)).toEqual([
     ...(freshOpening ? openingScenes : []), "story-s1-first-allowance",
   ]);
-  await page.locator("button").filter({ hasText: /^Notebook$/ }).click();
-  for (let index = 0; index < 5; index++) await page.locator("#journal-next").click();
-  await expect(page.getByText(/Ine-san leaves.*500/)).toBeVisible();
+  await expectNotebookEntry(page,/Ine-san leaves.*500/);
   await page.screenshot({ path: testInfo.outputPath("earned-notebook.png") });
   await page.locator("#journal-close").click();
   // Explicit skip and natural completion must both survive reconnect without
@@ -2155,7 +2167,55 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   }
   if (ending === "complete" && process.env.NEW_YOKOSUKA_DOJO_E2E === "true") {
-    test.setTimeout(Math.max(testInfo.timeout, 360_000));
+    await continueAfterAllowance(page,testInfo,character,character.yen+500,errors);
+  }
+});
+
+async function expectNotebookEntry(page, pattern, {present=true}={}) {
+  const overlay=page.locator("#journal-overlay");
+  if(!await overlay.isVisible())await page.locator("#journal-button").click();
+  await expect(overlay).toBeVisible();
+  const copy=page.locator("#journal-page-copy"),number=page.locator("#journal-page-number");
+  const previous=page.locator("#journal-previous"),next=page.locator("#journal-next");
+  const counter=(await number.innerText()).match(/^\s*(\d+)\s*\/\s*(\d+)\s*$/);
+  expect(counter,"Notebook exposes its current page and finite page count").not.toBeNull();
+  const total=Number(counter[2]);
+  expect(total).toBeGreaterThan(0);expect(total).toBeLessThanOrEqual(256);
+  const turn=async button=>{
+    const old=await number.innerText();await button.click();await expect(number).not.toHaveText(old);
+  };
+  // The UI remembers a stable page ID per character. Use only real paging
+  // controls; neither a new browser nor another saved page implies page one.
+  for(let step=0;step<total&&await previous.isEnabled();step++)await turn(previous);
+  await expect(previous).toBeDisabled();
+  let found=false,visited=0;
+  for(let index=0;index<total;index++){
+    visited++;
+    if(await copy.filter({hasText:pattern}).isVisible()){found=true;break;}
+    if(!await next.isEnabled())break;
+    await turn(next);
+  }
+  if(!found){
+    expect(visited,"A missing entry is checked across every advertised notebook page").toBe(total);
+    await expect(next).toBeDisabled();
+  }
+  expect(found,"Notebook entry "+pattern+" after inspecting "+visited+" of "+total+" pages").toBe(present);
+}
+
+async function continueAfterAllowance(page,testInfo,character,expectedYen,errors){
+  test.setTimeout(Math.max(testInfo.timeout, 900_000));
+  const readState=async()=>{
+    const response=await page.request.get("/api/characters/"+character.id+"/state");
+    expect(response.ok(),"Story continuation state HTTP "+response.status()+": "+(await response.text()).slice(0,600)).toBe(true);
+    return response.json();
+  };
+  const before=await readState();
+  expect(before.character.openingCompleted).toBe(true);
+  expect(before.character.storyFlags["story.s1.first-allowance.completed"]).toBe(true);
+  expect(before.character.yen).toBe(expectedYen);
+  const dojoEarned=before.character.storyFlags["story.s1.first-dojo.completed"]===true;
+  if(dojoEarned)expect(before.character.storyFlags["notebook.s1.men-in-black"]).toBe(true);
+  if(!dojoEarned){
     if (process.env.NEW_YOKOSUKA_FRONT_DOOR_E2E === "true") {
       // Exercise the authored door and transition; placing Ryo nearby avoids
       // turning this bounded check into a route-finding test through the house.
@@ -2176,6 +2236,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     // Place just outside the dojo volume. Walking triggers the actual event;
     // no direct event start or server-side flag insertion is used.
     const enterDojo = async () => {
+      const previousRejections=await page.evaluate(()=>window.storyProbe.scriptRejections?.length||0);
       await page.evaluate(() => {
         const life = window.storyProbe.lifecycle;
         life.resetPlayer(life.vectorFromArray([4.6, 0.97, -17.8]), Math.PI, { persist: false });
@@ -2186,9 +2247,15 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       try {
         // Room-entry automatic script checks can briefly own the controller;
         // they are not the dojo trigger and must not stop the approach.
-        await page.waitForFunction(() => window.storyProbe.director?.activeCutscene?.cutscene.id === "story-s1-first-dojo"
-          || window.storyProbe.sceneErrors.length, null, { timeout: 60_000 });
+        await page.waitForFunction(previous=>{
+          const p=window.storyProbe;
+          return p.director?.activeCutscene?.cutscene.id === "story-s1-first-dojo"||p.sceneErrors.length
+            ||p.scriptRejections?.slice(previous).some(r=>r.selector?.kind==="enter");
+        },previousRejections,{timeout:60_000});
       } finally { await page.keyboard.up("KeyW"); }
+      const rejected=await page.evaluate(previous=>(window.storyProbe.scriptRejections||[]).slice(previous)
+        .filter(r=>r.selector?.kind==="enter").map(r=>({code:r.message.code,message:r.message.message})),previousRejections);
+      expect(rejected,"The earned dojo approach must resolve one eligible published event").toEqual([]);
       expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
     };
     await enterDojo();
@@ -2198,7 +2265,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     const cancelled = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
     expect(cancelled.character.storyFlags["story.s1.first-dojo.completed"]).not.toBe(true);
     expect(cancelled.character.storyFlags["notebook.s1.men-in-black"]).not.toBe(true);
-    expect(cancelled.character.yen).toBe(character.yen + 500);
+    expect(cancelled.character.yen).toBe(expectedYen);
     expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
     await enterDojo();
     await page.waitForTimeout(3000);
@@ -2207,7 +2274,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     await expect.poll(() => page.evaluate(() => window.storyProbe.regions.getCharacter()?.storyFlags?.["story.s1.first-dojo.completed"])).toBe(true);
     const saved = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
     expect(saved.character.storyFlags["notebook.s1.men-in-black"]).toBe(true);
-    expect(saved.character.yen).toBe(character.yen + 500);
+    expect(saved.character.yen).toBe(expectedYen);
     expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
     const returned = await page.evaluate(() => {
       const p = window.storyProbe;
@@ -2217,11 +2284,6 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     });
     expect(Math.hypot(...returned.position.map((v, i) => v - returned.borrowed[i]))).toBeLessThan(0.02);
     expect(returned.leases).toBe(0);
-    await page.locator("button").filter({ hasText: /^Notebook$/ }).click();
-    await page.locator("#journal-next").click();
-    await expect(page.getByText(/Ask around to find out/)).toBeVisible();
-    await page.screenshot({ path: testInfo.outputPath("first-dojo-notebook.png") });
-    await page.locator("#journal-close").click();
     expect(errors).toEqual([]);
     await page.reload(); await page.keyboard.press("Enter");
     await page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" }).click();
@@ -2235,7 +2297,17 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       await enterInteriorDoor(page,{world:"yamanose",fromWorld:"exterior",filename:"S1_JHD0_DR29_000.MT5",position:[1,0,9.4]});
       expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
     }
-    if (process.env.NEW_YOKOSUKA_KITTEN_E2E === "true") {
+  }
+  // Check the earned journal receipt even when resuming after the dojo movie.
+  await expectNotebookEntry(page,/Ask around to find out/);
+  await page.screenshot({path:testInfo.outputPath("first-dojo-notebook.png")});
+  await page.locator("#journal-close").click();
+  await expect(page.locator("#journal-overlay")).toBeHidden();
+  if (process.env.NEW_YOKOSUKA_KITTEN_E2E === "true") {
+    const beforeKitten=await readState();
+    const kittenEarned=beforeKitten.character.storyFlags["story.s1.first-kitten.completed"]===true;
+    if(kittenEarned)expect(beforeKitten.character.storyFlags["notebook.s1.black-car"]).toBe(true);
+    if(!kittenEarned){
       const food = process.env.NEW_YOKOSUKA_KITTEN_FOOD || "fish";
       expect(["fish", "tofu"]).toContain(food);
       const naturalIntroduction = process.env.NEW_YOKOSUKA_KITTEN_NATURAL_INTRO === "true";
@@ -2298,21 +2370,10 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       const final = await (await page.request.get(`/api/characters/${character.id}/state`)).json();
       expect(final.character.storyFlags["notebook.s1.black-car"]).toBe(true);
       expect(Boolean(final.character.storyFlags["notebook.s1.yamagishi-witness"])).toBe(food === "fish");
-      expect(final.character.yen).toBe(character.yen + 500);
+      expect(final.character.yen).toBe(expectedYen);
       expect(await page.evaluate(food => window.storyProbe.starts.some(id =>
         id === `story-s1-first-kitten-${food === "fish" ? "tofu" : "fish"}`), food)).toBe(false);
       expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
-      await page.locator("button").filter({ hasText: /^Notebook$/ }).click();
-      await page.locator("#journal-next").click();
-      if (food === "fish") {
-        await page.locator("#journal-next").click();
-        await expect(page.getByText(/Visit him at home in Sakuragaoka/)).toBeVisible();
-      } else {
-        await expect(page.getByText(/Visit him at home in Sakuragaoka/)).toHaveCount(0);
-        await expect(page.locator("#journal-next")).toBeDisabled();
-      }
-      await page.screenshot({ path: testInfo.outputPath("first-kitten-notebook.png") });
-      await page.locator("#journal-close").click();
       await page.reload(); await page.keyboard.press("Enter");
       await page.locator(".account-entry-actions button").filter({ hasText: "Quick Play" }).click();
       await page.locator(".character-slot-button:not(.empty)").first().click();
@@ -2323,14 +2384,27 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       expect(reloaded.character.yen).toBe(final.character.yen);
       expect(await page.evaluate(() => window.storyProbe.starts)).toEqual([]);
       expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
-      if (process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true") {
-        await continueWitnesses(page, testInfo, character, character.yen + 500);
-      }
-      expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
-      expect(errors).toEqual([]);
     }
+    // Both fresh completion and an earned resume must display the saved clues.
+    // An absent tofu-branch clue is checked across every page, not just the
+    // currently remembered one; the original choice assertion remains above.
+    const kittenState=await readState();
+    expect(kittenState.character.storyFlags["notebook.s1.black-car"]).toBe(true);
+    await expectNotebookEntry(page,/Ask about the black car/);
+    const witnessEarned=kittenState.character.storyFlags["notebook.s1.yamagishi-witness"]===true;
+    await expectNotebookEntry(page,/Visit him at home in Sakuragaoka/,{present:witnessEarned});
+    if(!witnessEarned)await expectNotebookEntry(page,/Ask about the black car/);
+    await page.screenshot({path:testInfo.outputPath("first-kitten-notebook.png")});
+    await page.locator("#journal-close").click();
+    await expect(page.locator("#journal-overlay")).toBeHidden();
+    if (process.env.NEW_YOKOSUKA_INVESTIGATION_E2E === "true") {
+      const current=await readState();
+      await continueWitnesses(page, testInfo, current.character, expectedYen);
+    }
+    expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+    expect(errors).toEqual([]);
   }
-});
+}
 
 async function continueWitnesses(page, testInfo, character, expectedYen, resumeAfterTom = false) {
   const witnesses = [
@@ -2356,7 +2430,7 @@ async function continueWitnesses(page, testInfo, character, expectedYen, resumeA
       ["RKKI", "dobuita", "notebook.s1.sailors"],
     ] : []),
   ]) {
-    const alreadyComplete = resumeAfterTom && character.storyFlags?.[flag];
+    const alreadyComplete = character.storyFlags?.[flag] === true;
     if (alreadyComplete && process.env.NEW_YOKOSUKA_DIALOGUE_APPROACH_E2E !== "true") continue;
     if (actor === "UNO_") {
       // Use the advancing personal clock; don't bypass opening hours.
@@ -3718,6 +3792,13 @@ async function verifyDojoAndChineseLetter(page,testInfo,character) {
     await page.locator("#story-wait-button").click();
     await page.getByRole("option",{name:"Wait until tomorrow morning",exact:true}).click();
     await page.getByRole("button",{name:"Wait until tomorrow morning",exact:true}).click();
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    // Morning arrival is 08:00; the real dojo trigger opens at 08:30.
+    // Advance through the supported clock UI before entering its region.
+    await page.locator("#story-wait-button").click();
+    await page.getByRole("option",{name:"Wait until 10 a.m.",exact:true}).click();
+    await page.getByRole("button",{name:"Wait until 10 a.m.",exact:true}).click();
+    await expect.poll(async()=>new Date((await savedState()).worldState.gameTimeMs).getUTCHours()).toBe(10);
     await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
     await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld("exterior"));
     const enterDojo=async()=>{
