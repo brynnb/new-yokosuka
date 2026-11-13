@@ -1716,7 +1716,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     }
     if(process.env.NEW_YOKOSUKA_CHAI_ARCADE_E2E === "true"){
       test.setTimeout(480_000);
-      await verifyChaiArcade(page,testInfo,character,enterInteriorDoor);
+      await verifyChaiArcade(page,testInfo,character,enterInteriorDoor,{fightStoryAmbush});
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
     }
     if(process.env.NEW_YOKOSUKA_CHAI_RECOVERY_RELOAD_E2E === "true"){

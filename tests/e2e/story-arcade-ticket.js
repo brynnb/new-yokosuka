@@ -2,8 +2,9 @@ import {expect} from "@playwright/test";
 import {openStoryRoomDoor} from "./story-object-input.js";
 import transitions from "../../play/data/native-map-transitions.json" with {type:"json"};
 
-export async function verifyChaiArcade(page,testInfo,character,enterInteriorDoor){
+export async function verifyChaiArcade(page,testInfo,character,enterInteriorDoor,{fightStoryAmbush}={}){
   const ending=process.env.NEW_YOKOSUKA_CHAI_ENDING||"win";expect(["win","defeat"]).toContain(ending);
+  if(ending==="win")expect(typeof fightStoryAmbush,"Chai win requires the injected keyboard helper").toBe("function");
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved();expect(initial.character.storyFlags["story.s1.jimmy-morning-call.completed"]).toBe(true);
   expect(initial.character.storyFlags["story.s1.chai-arcade.completed"]).not.toBe(true);
@@ -12,6 +13,7 @@ export async function verifyChaiArcade(page,testInfo,character,enterInteriorDoor
     await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await noErrors();
     await page.waitForFunction(()=>{const l=window.storyProbe.lifecycle;return l.worldRuntime.ready&&!l.worldRuntime.switching;},null,{timeout:70_000});
     await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.nativeStoryRuntime.ownsPlayerPresentation)).toBe(false);
   };
   const scene=async id=>{await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===`story-s1-${id}`||window.storyProbe.sceneErrors.length,id,{timeout:90_000});await noErrors();};
   const unchanged=async()=>{const s=await saved();expect(s.character.storyFlags["story.s1.chai-arcade.completed"]).not.toBe(true);expect(s.character.storyFlags["notebook.s1.chai-asia-travel"]).not.toBe(true);expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory).toEqual(initial.inventory);};
@@ -30,8 +32,45 @@ export async function verifyChaiArcade(page,testInfo,character,enterInteriorDoor
   await enterInteriorDoor(page,{world:"arcade",filename:inbound.source.model,doorSelector:inbound.source.doorSelector,position:outbound.destination.browserSpawn.position,yaw:outbound.destination.browserSpawn.yawRadians});
   await scene("chai-intro");await page.waitForTimeout(1500);
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-chai-intro-cancel"));await idle();await unchanged();
-  await page.evaluate(()=>{const l=window.storyProbe.lifecycle;l.resetPlayer(l.vectorFromArray([-2.7,0,-3]),0,{persist:false});});await page.waitForTimeout(300);
-  await page.evaluate(()=>{const l=window.storyProbe.lifecycle;l.resetPlayer(l.vectorFromArray([-2.7,0,-.85]),0,{persist:false});});
+  // Observe a processed outside frame before walking back into the region.
+  // Cancellation keeps its entry latch until ordinary gameplay sees that exit.
+  const retrySamples=[],region=await page.evaluate(()=>window.storyProbe.regions.regions.find(r=>r.id==="s1.dgct.chai-arcade"));
+  expect(region).toBeTruthy();
+  const inside=position=>position.every((value,axis)=>value>=region.min[axis]&&value<=region.max[axis]);
+  const retrySample=stage=>page.evaluate(stage=>{
+    const p=window.storyProbe,l=p.lifecycle,c=l.getController(),r=p.regions,input=l.simulationRuntime.playInput;
+    return {stage,status:r.controller.status,slug:r.controller.active?.scriptIdentity.scriptSlug,pending:r.controller.pendingStart?.selector,
+      entered:r.inside.has("s1.dgct.chai-arcade"),frame:p.lastRegionFrame,
+      actorRoot:c.actorRoot.position.asArray(),collider:c.collider.position.asArray(),
+      movementLocked:c.movementLocked,nativeOwnership:l.nativeStoryRuntime.ownsPlayerPresentation,
+      rawForward:input.actions.value("keyboard","KeyW"),moveY:input.currentSnapshot?.value("moveY"),
+      ready:l.worldRuntime.ready,switching:l.worldRuntime.switching,
+      dispatches:p.regionDispatches.filter(value=>value.entered.includes("s1.dgct.chai-arcade")).length};
+  },stage);
+  let outside,entered;
+  try{
+    await page.evaluate(()=>{const l=window.storyProbe.lifecycle;l.resetPlayer(l.vectorFromArray([-2.7,0,-3]),0,{persist:false});});
+    for(let n=0;n<50;n++){
+      await page.waitForTimeout(100);outside=await retrySample("exit");retrySamples.push(outside);
+      if(!outside.entered&&!inside(outside.actorRoot)&&!inside(outside.collider)&&outside.status==="idle"&&!outside.nativeOwnership)break;
+    }
+    expect(outside.entered,"the cancelled Chai region observes the actual exit").toBe(false);
+    expect(inside(outside.actorRoot)||inside(outside.collider)).toBe(false);
+    expect(outside.status).toBe("idle");expect(outside.nativeOwnership).toBe(false);
+    await page.locator("#renderCanvas").focus();await expect(page.locator("#renderCanvas")).toBeFocused();
+    await page.keyboard.down("KeyW");
+    for(let n=0;n<100;n++){
+      await page.waitForTimeout(100);entered=await retrySample("walk-in");retrySamples.push(entered);
+      if(entered.dispatches>outside.dispatches)break;
+    }
+  }finally{
+    await page.keyboard.up("KeyW");
+    await testInfo.attach("chai-cancel-reentry-proof",{body:JSON.stringify(retrySamples),contentType:"application/json"});
+  }
+  expect(retrySamples.some(value=>value.stage==="walk-in"&&value.rawForward>0&&value.moveY>0),"real forward input re-enters the arcade trigger").toBe(true);
+  expect(entered.dispatches,"a second Chai enter request is actually dispatched").toBeGreaterThan(outside.dispatches);
+  expect(Math.hypot(entered.collider[0]-outside.collider[0],entered.collider[2]-outside.collider[2])).toBeGreaterThan(.2);
+  console.info("Chai cancelled-intro re-entry proof:",JSON.stringify({outside,entered,samples:retrySamples.length}));
   await scene("chai-intro");await page.waitForTimeout(20_000);await page.screenshot({path:testInfo.outputPath("chai-original-ticket-confrontation.png")});await unchanged();
   // Explicit cinematic skip is not a combat result. The real fight must still
   // prepare, receive physical controls and reach its server-owned outcome.
@@ -40,22 +79,38 @@ export async function verifyChaiArcade(page,testInfo,character,enterInteriorDoor
   expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.map(a=>a.tag))).toEqual(["AKIR","CHAI"]);
   await page.screenshot({path:testInfo.outputPath(`chai-server-fight-${ending}.png`)});await unchanged();
   if(ending==="win"){
-    await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyI");const movement=new Set();
-    try{
-      for(let i=0;i<1400&&await page.evaluate(()=>!!window.storyProbe.combatRuntime?.active?.view);i++){
-        const keys=await page.evaluate(()=>{
-          const r=window.storyProbe.combatRuntime,v=r.active?.view;if(!v)return[];
-          const p=v.actors[0],e=v.actors[1],d=Math.hypot(p.x-e.x,p.z-e.z);if(d>=.9)return[];
-          const x=(p.x-e.x)/Math.max(.01,d),z=(p.z-e.z)/Math.max(.01,d),yaw=r.encounter.playerTargetYaw()+Math.PI,b=r.active.input.getBindings();
-          const f=-Math.sin(yaw)*x-Math.cos(yaw)*z,s=Math.cos(yaw)*x-Math.sin(yaw)*z;
-          return[Math.abs(f)>.25?(f>0?b.up:b.down):null,Math.abs(s)>.25?(s>0?b.right:b.left):null].filter(Boolean);
-        });
-        for(const key of movement)if(!keys.includes(key)){await page.keyboard.up(key);movement.delete(key);}
-        for(const key of keys)if(!movement.has(key)){await page.keyboard.down(key);movement.add(key);}
-        await page.keyboard.press("KeyK");await page.waitForTimeout(80);
-      }
-    }finally{await page.keyboard.up("KeyI");for(const key of movement)await page.keyboard.up(key);}
-    expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(i=>i.guard&&i.action==="leg"))).toBe(true);
+    const inputStart=await page.evaluate(()=>window.storyProbe.combatInputs.length);
+    const playerId=await page.evaluate(()=>window.storyProbe.combatRuntime.encounter.player.id);
+    // Real directional attacks release guard first; the same helper already
+    // earned ambush/Gao wins. A Chai loss is a separate Story branch, not a retry.
+    await fightStoryAmbush(page,testInfo,{nextButton:null,artifactPrefix:"chai-arcade"});
+    const proof=await page.evaluate(({inputStart,playerId})=>{
+      const p=window.storyProbe,inputs=p.combatInputs.slice(inputStart);
+      // fightStoryAmbush creates a fresh event list for this encounter.
+      const hits=p.fightEvents.filter(event=>event.type==="hit"&&event.attackerId===playerId&&event.damage>0);
+      return {actions:[...new Set(inputs.map(input=>input.action).filter(action=>["hand","leg","throw"].includes(action)))],
+        guarded:inputs.some(input=>input.guard),damagingPlayerHits:hits.length,
+        inputTail:inputs.slice(-12),hitTail:hits.slice(-8)};
+    },{inputStart,playerId});
+    await testInfo.attach("chai-arcade-combat-inputs",{body:JSON.stringify(proof),contentType:"application/json"});
+    const outcome=await page.waitForFunction(()=>{
+      const p=window.storyProbe,id=p.director?.activeCutscene?.cutscene.id;
+      return p.sceneErrors.length?"scene-error":["story-s1-chai-victory","story-s1-chai-rescue"].includes(id)?id:false;
+    },null,{timeout:90_000});await noErrors();
+    const actualScene=await outcome.jsonValue();await outcome.dispose();
+    if(actualScene==="story-s1-chai-rescue"){
+      const state=await saved(),flags=state.character.storyFlags;
+      const loss={requestedEnding:"win",actualEnding:"defeat",scene:actualScene,world:state.character.worldId,
+        receipts:{completed:flags["story.s1.chai-arcade.completed"]===true,won:flags["story.s1.chai-arcade.won"]===true,
+          lost:flags["story.s1.chai-arcade.lost"]===true,recoveryPending:flags["story.s1.chai-recovery.pending"]===true}};
+      await testInfo.attach("chai-arcade-unexpected-defeat",{body:JSON.stringify(loss),contentType:"application/json"});
+      console.info("Chai Arcade actual defeat branch:",JSON.stringify(loss));
+      await page.screenshot({path:testInfo.outputPath("chai-arcade-unexpected-defeat.png")});
+      throw Error("Chai Arcade required a win but reached the actual chai-rescue defeat branch. Recorded the observed receipts; no retry or outcome reset was attempted.");
+    }
+    expect(proof.actions.length,"Chai fight consumes a real hand, leg, or throw attack").toBeGreaterThan(0);
+    expect(proof.guarded,"Chai fight consumes real guard input").toBe(true);
+    expect(proof.damagingPlayerHits,"Chai victory includes a real player hit").toBeGreaterThan(0);
   }
   await scene(ending==="win"?"chai-victory":"chai-rescue");await page.waitForTimeout(7000);
   await page.screenshot({path:testInfo.outputPath(`chai-original-${ending}-ending.png`)});await unchanged();
