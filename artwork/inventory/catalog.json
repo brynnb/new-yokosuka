@@ -1,8 +1,8 @@
 {
   "sourceArticle": "https://www.phantomriverstone.com/2021/12/unused-inventory-icons-discovered-in.html",
-  "generator": "Built-in image_gen; AI reconstructions, not recovered original art.",
+  "generator": "Mixed sources: legacy built-in image_gen AI reconstructions and explicitly identified direct renders of original models. Per-asset provenance identifies source-model renders.",
   "inventoryStatus": "Artwork catalog only; ownership comes from the server. Display assets cover available possessions and menu concepts. Reserve art is not imported or published by the client build.",
-  "encoding": "Display: 256px lossless WebP. Reserve: original-resolution lossless WebP. Original PNG masters retained in the local ignored experiment folder.",
+  "encoding": "Display: 256px lossless WebP. Reserve: original-resolution lossless WebP. Legacy PNG masters remain in the local ignored experiment folder; direct-render masters are retained with their private capture evidence and identified by hash.",
   "assets": [
     {
       "index": 1,
@@ -360,6 +360,72 @@
       "width": 1247,
       "height": 1261,
       "bytes": 378904
+    },
+    {
+      "index": 33,
+      "id": "basement-axe",
+      "name": "Basement axe",
+      "usage": "display",
+      "reason": "Artwork for the existing saved basement_axe possession.",
+      "file": "play/ui/assets/inventory/basement-axe.webp",
+      "generator": "Direct render of the original model and textures through src/Mt5Loader.js; authored thumbnail camera and lighting, not a recovered original inventory icon.",
+      "transformation": "Selected transparent three-quarter render, resized without trimming to 256px and encoded as lossless WebP.",
+      "provenance": {
+        "sourceManifest": "play/assets/basement/mirror-search/manifest.json",
+        "model": {
+          "file": "play/assets/basement/mirror-search/ONOS500G.CHRM",
+          "bytes": 1900,
+          "sha256": "c4cc7dca0e7194d3734bda8f34bd0b771f84fd342a32c82d611c3d3feddac147"
+        },
+        "textures": {
+          "file": "play/assets/basement/mirror-search/textures.bin",
+          "bytes": 2195520,
+          "sha256": "ba534504cd5caa11733db03850dd6a43cad95a967184c9dc0916384a3bf2d6f8"
+        },
+        "loaders": [
+          "src/Mt5Loader.js",
+          "play/assets/configureMt5TexturePack.js"
+        ],
+        "sourceRender": {
+          "name": "basement-axe-three-quarter.png",
+          "width": 1024,
+          "height": 1024,
+          "sha256": "1eb705b75b04f2ddb2994cab2fd2cea4ae514db3adefa1c7def4c4d82e518d37"
+        },
+        "camera": {
+          "projection": "orthographic",
+          "view": "three-quarter",
+          "position": [
+            1.162652030495963,
+            0.8939964389809708,
+            3.453121514996352
+          ],
+          "target": [
+            -0.045940499752759933,
+            0.3414969965815544,
+            0
+          ],
+          "up": [
+            0.3145665606161178,
+            0.949235418082441,
+            0
+          ],
+          "orthoHalf": 0.5192285907817532
+        },
+        "lighting": {
+          "fill": 0.65,
+          "ground": [
+            0.35,
+            0.35,
+            0.35
+          ],
+          "directional": 0.65
+        }
+      },
+      "width": 256,
+      "height": 256,
+      "bytes": 11604,
+      "sha256": "9de5faa056401af9e3288b056086c2b79546ede8084ad69900fb7f1a32d8af7a"
     }
   ]
 }

@@ -2757,6 +2757,15 @@ inventory/notebook settlement, control restoration and saved presentation on
 reload. It is not proof of exact hand grip, original scratch artwork, optional
 discoveries or every basement illumination rule.
 
+The axe inventory artwork is a 256px transparent render of the original
+`ONOS500G.CHRM` and packaged YDB1 textures through the production MT5 loader.
+Its thumbnail camera and lighting are authored; it is not a recovered original
+inventory icon. The [artwork catalog](../../artwork/inventory/catalog.json)
+records the source hashes, selected render and camera. Focused asset/bundle
+checks and a separate real-browser inventory check passed on desktop and
+390px mobile layouts. This isolated UI check uses a catalog-backed inventory
+fixture; the added earned-pickup assertion awaits the fresh Story continuation.
+
 ## Return to Master Chen
 
 Official Yarn imports: `fuku-phoenix-mirror`, `harbor-bus-revisit`,

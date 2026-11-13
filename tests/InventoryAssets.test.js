@@ -10,6 +10,7 @@ test("inventory display assets exist and unused artwork stays separate", async (
     catalog.assets.filter((item) => item.usage === "display").map((item) => item.id));
   assert.ok(!INVENTORY_ITEMS.some((item) => item.id === "h214-key" || item.id === "demo-notebook"));
   assert.equal(inventoryArtworkFor("dojo_sword")?.id, "hazuki-sword");
+  assert.equal(inventoryArtworkFor("basement_axe")?.id, "basement-axe");
   let displayBytes = 0;
   for (const item of catalog.assets) {
     const file = new URL(`../${item.file}`, import.meta.url);

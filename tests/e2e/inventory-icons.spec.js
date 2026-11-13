@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import catalog from "../../artwork/inventory/catalog.json" with { type: "json" };
 
 test("HQ inventory renders transparent icons in grey slots without loading reserve art", async ({ page }, testInfo) => {
   const errors = [];
@@ -24,7 +25,7 @@ test("HQ inventory renders transparent icons in grey slots without loading reser
   const dialog = page.getByRole("dialog", { name: "Inventory", exact: true });
   await expect(dialog).toBeVisible();
   const icons = dialog.locator("img.inventory-slot-icon");
-  await expect(icons).toHaveCount(16);
+  await expect(icons).toHaveCount(catalog.assets.filter((item) => item.usage === "display").length);
   const results = await icons.evaluateAll(async (images) => Promise.all(images.map(async (image) => {
     await image.decode();
     const canvas = document.createElement("canvas");
@@ -48,6 +49,9 @@ test("HQ inventory renders transparent icons in grey slots without loading reser
   }
   await expect(dialog.getByRole("img", { name: "Phoenix Mirror", exact: true })).toBeVisible();
   await expect(dialog.getByRole("img", { name: "Sword Handguard", exact: true })).toBeVisible();
+  const axe = dialog.getByRole("img", { name: "Basement axe", exact: true });
+  await expect(axe).toBeVisible();
+  await expect(axe).toHaveAttribute("src", /basement-axe(?:-[a-zA-Z0-9_-]+)?[.]webp(?:[?].*)?$/);
   expect(requests.some((url) => url.includes("/reserve/"))).toBe(false);
   await expect(page.getByRole("button", { name: "Close inventory" })).toBeFocused();
   await page.screenshot({ path: testInfo.outputPath("inventory-hq-desktop.png") });
@@ -57,6 +61,9 @@ test("HQ inventory renders transparent icons in grey slots without loading reser
   expect(bounds.x).toBeGreaterThanOrEqual(0);
   expect(bounds.x + bounds.width).toBeLessThanOrEqual(390);
   await page.screenshot({ path: testInfo.outputPath("inventory-hq-mobile.png") });
+  await axe.scrollIntoViewIfNeeded();
+  await expect(axe).toBeInViewport();
+  await page.screenshot({ path: testInfo.outputPath("inventory-basement-axe-last-slot.png") });
   await page.keyboard.press("Escape");
   await expect(dialog).toBeHidden();
   expect(errors).toEqual([]);
