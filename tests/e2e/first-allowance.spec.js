@@ -3468,7 +3468,9 @@ async function verifyParkingLotAmbush(page,testInfo,character) {
   await fightStoryAmbush(page,testInfo);
   const intents=await page.evaluate(()=>window.storyProbe.combatInputs);
   await testInfo.attach("combat-inputs",{body:JSON.stringify(intents),contentType:"application/json"});
-  expect(intents.some(intent=>intent.action==="leg")).toBe(true);
+  // The distance-based strategy can legitimately win with Elbow Assaults;
+  // require consumed attack input without prescribing a leg attack.
+  expect(intents.some(intent=>["hand","leg","throw"].includes(intent.action)),"the fight consumes real attack input").toBe(true);
   expect(intents.some(intent=>intent.guard)).toBe(true);
   await expect(page.getByRole("button",{name:"Ask about Charlie",exact:true})).toBeVisible({timeout:30_000});
   saved=await(await page.request.get(`/api/characters/${character.id}/state`)).json();
