@@ -423,7 +423,7 @@ does not establish working mouth animation or envelope presentation.
 | Family lead to the antique shop | Connected optional original-voiced Ine-san hint and original SORA/INEK sequence. Compiler/database cancellation and atomic-clue checks pass. Rendered hint/approach, live cancellation/retry, natural completion, saved clue, restored movement and reload without replay pass. |
 | Bunkado sword handguard | Connected original TUBA handover with authoritative once-only possession and notebook settlement. Original detailed hands, source-timed grips and the correct mantel clock are now restored. Rendered real-door cancellation/re-entry, natural completion, owned inventory, controls and reload without duplicate grants pass. Box-lid motion, two native hand-motion requests and dynamic gaze remain incomplete. |
 | Gui Zhang's street encounter | Connected original introduction, client-timed nonlethal fight, bodyguard explanation and rooftop Chai shot. Rendered cancellation/re-entry, physical combat inputs, natural ending, notebook and reload pass. Approach bounds, AI/balance and music-start timing are authored. |
-| Return-home handguard / family crest | Connected original voiced Fuku referral, physical altar-room door/approach and embedded Ine-san presentation. The upgraded family film has a real Radeon GPU recheck from seeded prerequisites: original detailed hands, source-timed grips/visibility and the distinct textured JOMO prop are visibly confirmed through natural playback. Referral/film cancellation, retry after reload, notebook settlement, retained handguard and restored controls pass. Explicit-skip recheck is pending. Fuku staging, initial prop visibility and the bounded tabletop pose remain adaptations. |
+| Return-home handguard / family crest | Connected original voiced Fuku referral, physical altar-room door/approach and embedded Ine-san presentation. The upgraded family film has a real Radeon GPU recheck from seeded prerequisites: original detailed hands, source-timed grips/visibility and the distinct textured JOMO prop are visibly confirmed through natural playback. Referral/film cancellation, retry after reload, notebook settlement, retained handguard and restored controls pass. A separate protected GPU run also verifies explicit skip, saved completion, retained inventory, restored controls and reload. Fuku staging, initial prop visibility and the bounded tabletop pose remain adaptations. |
 | Iwao's key / dojo sword case | Connected real drawer/case picking, explicit leave/pickup choices, live cancellation/retry, saved inventory/notebook and reload without duplicate grants pass in the browser. Compiler/database proximity, key prerequisite, stale acknowledgement and character isolation checks pass. Captions/cameras are authored; detailed lid/hand choreography remains omitted. |
 | Dojo scrolls / hidden-wall switches | Connected real-object clicks, explicit leave/fit choices, live cancellation/retry, independent server settlement, saved scroll/wall presentation and reload pass. Original recess/opened-wall geometry is visibly checked. Scroll rolling, handguard/sword placement and wall translation are authored approximations. |
 | Basement entry / return | Connected walking approach, explicit leave/descend choice, live cancellation/retry, saved YDB1 arrival, normal movement into the room, cancelled return/retry, exact dojo return, repeat descent and saved reload pass. Original room/furniture geometry is visible. Arrival/cameras/prompts are authored; climbing animation and lighting interactions remain omitted. |
@@ -2539,8 +2539,13 @@ new physical approach retried the scene. Natural completion saved the family
 clue/notebook while retaining the handguard, restored movement/camera/avatar
 state, and survived the final reload without replay. This is a connected
 client/server check from stated prerequisites, not a fresh uninterrupted
-main-route playthrough. Explicit skipping of the upgraded presentation is
-pending a separate isolated run.
+main-route playthrough. A second protected Radeon GPU run, using a separate
+task-owned PostgreSQL fixture, also verified explicit skipping of the upgraded
+presentation, saved completion, retained inventory, restored controls and reload.
+The real Yarn/server `TestMirrorSearchSettlesOnlyAfterCompletedEvents` check
+passed against the isolated PostgreSQL instance, and the client/server contract
+check passed. These checks retain the same stated prerequisite and travel
+limits; neither fixture establishes a fresh uninterrupted Story playthrough.
 
 Earlier compiler/PostgreSQL checks continue the earned handguard fixture, reject
 unearned/out-of-bounds attempts, cancel dialogue and scene, reject stale
