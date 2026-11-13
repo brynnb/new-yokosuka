@@ -423,7 +423,7 @@ does not establish working mouth animation or envelope presentation.
 | Family lead to the antique shop | Connected optional original-voiced Ine-san hint and original SORA/INEK sequence. Compiler/database cancellation and atomic-clue checks pass. Rendered hint/approach, live cancellation/retry, natural completion, saved clue, restored movement and reload without replay pass. |
 | Bunkado sword handguard | Connected original TUBA handover with authoritative once-only possession and notebook settlement. Original detailed hands, source-timed grips and the correct mantel clock are now restored. Rendered real-door cancellation/re-entry, natural completion, owned inventory, controls and reload without duplicate grants pass. Box-lid motion, two native hand-motion requests and dynamic gaze remain incomplete. |
 | Gui Zhang's street encounter | Connected original introduction, client-timed nonlethal fight, bodyguard explanation and rooftop Chai shot. Rendered cancellation/re-entry, physical combat inputs, natural ending, notebook and reload pass. Approach bounds, AI/balance and music-start timing are authored. |
-| Return-home handguard / family crest | Connected original voiced Fuku referral, physical altar-room door/approach and embedded Ine-san presentation. Rendered cancellation/re-entry, natural scene ending, independent notebook settlement, restored controls and reload pass. Held Fuku gestures, close-up and handguard handling are adaptations. |
+| Return-home handguard / family crest | Connected original voiced Fuku referral, physical altar-room door/approach and embedded Ine-san presentation. The upgraded family film has a real Radeon GPU recheck from seeded prerequisites: original detailed hands, source-timed grips/visibility and the distinct textured JOMO prop are visibly confirmed through natural playback. Referral/film cancellation, retry after reload, notebook settlement, retained handguard and restored controls pass. Explicit-skip recheck is pending. Fuku staging, initial prop visibility and the bounded tabletop pose remain adaptations. |
 | Iwao's key / dojo sword case | Connected real drawer/case picking, explicit leave/pickup choices, live cancellation/retry, saved inventory/notebook and reload without duplicate grants pass in the browser. Compiler/database proximity, key prerequisite, stale acknowledgement and character isolation checks pass. Captions/cameras are authored; detailed lid/hand choreography remains omitted. |
 | Dojo scrolls / hidden-wall switches | Connected real-object clicks, explicit leave/fit choices, live cancellation/retry, independent server settlement, saved scroll/wall presentation and reload pass. Original recess/opened-wall geometry is visibly checked. Scroll rolling, handguard/sword placement and wall translation are authored approximations. |
 | Basement entry / return | Connected walking approach, explicit leave/descend choice, live cancellation/retry, saved YDB1 arrival, normal movement into the room, cancelled return/retry, exact dojo return, repeat descent and saved reload pass. Original room/furniture geometry is visible. Arrival/cameras/prompts are authored; climbing animation and lighting interactions remain omitted. |
@@ -2484,13 +2484,65 @@ corroborate both clues.
 | Location / prerequisites | Fuku's automatic JOMO return-home conversation requires the earned Gui Zhang milestone and actual handguard. After its completion, entering the authored altar-room volume near original A01136 Ryo's position starts Ine-san's explanation. |
 | Actors / sequence | Private Fuku / Ryo foyer tableau with six original voiced lines, then original embedded JOMO AUTH at 0xb1d84 with AKIR / INE_. Fuku's staging borrows the original A0169 foyer poses at 35 seconds; held gestures and a close-up on the foyer side of the closed bedroom door are adaptations. Ine-san uses original body/camera tracks and M_01136.MOTN bank 17. |
 | Timing / environment | Ordinary dialogue advances through the shared controls. Original crest presentation lasts about 53 seconds. Preserve personal date/weather; BGM077 starts with the crest scene as an authored timing choice. No QTE or combat. |
-| Props / fidelity | Actual saved handguard possession gates both events. Detailed handguard hand binding and sliding-door state changes are not reconstructed. A1_BUTU contains tracks 0–5; the AUTH's two door sounds reference absent tracks 6/7 and remain explicitly unavailable rather than substituted. Eight original voices and six other sound identities are recovered. |
+| Props / fidelity | Actual saved handguard possession gates both events. The family film uses the original JOMO TUB0210G.MT5 with embedded textures, original detailed YKB/INE hands and rigs, fourteen original hand-pose cues and eighty-three component cues. Original callback grip transfers and eight visibility flags are compiled as data. Initial visibility and the standalone tabletop interval at frames 325–395 are explicit browser adaptations; other detached intervals stay hidden. Fuku's separate foyer staging and cinematic sliding-door changes remain unreconstructed. A1_BUTU contains tracks 0–5; the AUTH's two door sounds reference absent tracks 6/7 and remain explicitly unavailable. Eight original voices and six other sound identities are recovered. |
 | Effects / recovery | Each event independently commits one milestone and notebook page through Yarn. No item, currency, HP, calendar, destination or guessed native-state change. Cancellation/failed preparation grants nothing; cleanup restores the player's approach, avatar, camera and controls. Committed events do not replay on reload. |
 
 `build:handguard-family` pins JOMO MAPINFO, COMMON02.PKS / M_01136,
-A01136.AFS and A1_BUTU.SND. The existing activity/audio producers retain exact
-member and archive receipts; local runtime registration does not publish assets.
-Compiler/PostgreSQL checks continue the earned handguard fixture, reject
+A01136.AFS, A1_BUTU.SND, the loose JOMO `TUB0210G.MT5`, and six detailed
+hand/rig files from Disc 2 `MODEL/HAND`. The prop is 45,548 bytes and is not
+byte-identical to the antique shop's `TUB0210G.CHRM`; its original embedded
+textures travel with this model. Presentation-only generation also updates the
+runtime registry, so the checked-in manifest does not stand in for missing
+binary outputs. The existing producers retain exact source/member receipts;
+local registration does not publish assets.
+
+The retained `tools/evidence/family-crest-callback-ir.json` identifies JOMO map
+entry `0x88b70`, owner `0x6e62c`, and child callback `0x6f234`. The owner requests
+`$TUB0210G.MT5` at string offset `0x9a094`, launches that callback, and starts
+native ASEQ slot 15; the standalone package uses slot 0 and the exact activity
+ID `01136/CREST.AUTH`. The shared extractors compile fourteen hand poses,
+eighty-three hand-component cues, twelve FIXO attachment/reset operations,
+and eight original visibility changes. Same-frame reset/install pairs collapse
+to their final owner, producing eight runtime attachment cues without a second
+prop. Ryo first holds the handguard at frame 210, Ine-san receives it at 396,
+switches hands at 572 and 865, returns it at 898, and Ryo adjusts his grip at
+1098 before detaching it at 1410. Native hidden intervals remain hidden even
+when an attachment is active.
+
+The original vector initializer adds components for flag `0x38000000`; the
+FIXO reset evidence proves cleared fields, but not the entire native render
+propagation into a released object's world pose. Therefore the builder retains
+the raw vector operations and explicitly interprets their operands as an
+absolute tabletop pose only for frames 325–395. This bounded placement is
+ordinary generated data consumed by the shared attachment runtime; it is not
+an emulation of native vector arithmetic. Initial visibility before the first
+explicit native flag is an authored baseline. Detached intervals outside the
+bounded placement are hidden. No claim of exact native detach choreography,
+Fuku handguard handling, or sliding-door animation follows from this work.
+
+The callback addition passes focused source/asset and shared-runtime checks.
+On November 13, the protected GPU-browser run passed both its real Radeon
+renderer preflight and the connected Story scenario. Evidence is retained at
+`/run/media/brynn/PersonalArchive/ny-jimmy-story-JbHBjgbv/family-crest-20261113/natural/`.
+Inspected natural-playback captures show the correctly textured original
+handguard in Ryo's first grip, on the table, in Ine-san's right-hand pickup and
+left-hand close-up, and back in Ryo's hand. The run used no timeline seeking or
+diagnostic camera to produce those views; enabled-mesh assertions alone are
+not the visibility evidence.
+
+This recheck began with an isolated fixture seeded with the earlier Gui Zhang
+milestone and handguard possession, and initially shortened house travel to
+the altar-room door. The real Fuku referral covered cancellation/retry; the
+actual altar door was picked and opened and Ryo walked through it. The family
+film was cancelled around frame 650, Ryo moved out, the page reloaded, and a
+new physical approach retried the scene. Natural completion saved the family
+clue/notebook while retaining the handguard, restored movement/camera/avatar
+state, and survived the final reload without replay. This is a connected
+client/server check from stated prerequisites, not a fresh uninterrupted
+main-route playthrough. Explicit skipping of the upgraded presentation is
+pending a separate isolated run.
+
+Earlier compiler/PostgreSQL checks continue the earned handguard fixture, reject
 unearned/out-of-bounds attempts, cancel dialogue and scene, reject stale
 acknowledgements, and prove once-only independent settlement with inventory,
 calendar and economy unchanged. The connected browser check continues the
@@ -2500,8 +2552,8 @@ referral, positions Ryo near the original altar-room door at static placement
 cancels/retries the original crest scene and finishes it naturally. It verifies
 saved independent notebook pages, the retained handguard, no mirror grant,
 restored controls and reload without replay. Inspected captures show Fuku-san,
-Ryo and Ine-san in the original room. Detailed prop/facial fidelity is not
-claimed.
+Ryo and Ine-san in the original room. Those earlier captures do not establish
+the new callback-driven prop/hand presentation or exact facial fidelity.
 
 Sliding collision binds to the moving leaf's frozen closed geometry center,
 not the whole door origin at the join between two leaves. Only that leaf's

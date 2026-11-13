@@ -20,6 +20,48 @@
         "archiveMember": "M_01136.MOTN",
         "byteLength": 66132,
         "sha256": "d07f17592e4c56bf9e758f861b4ae90ba1360ec8350e0d4bcd3d1cda26b49983"
+      },
+      {
+        "name": "TUB0210G.MT5",
+        "path": "disc2/SCENE/02/JOMO/TUB0210G.MT5",
+        "byteLength": 45548,
+        "sha256": "65cbbf5d36cea3add3b5184bb9a3027137871ef13c15614df7a58b848fcd09e4"
+      },
+      {
+        "name": "YKB_TL.MT5",
+        "path": "disc2/SCENE/02/MODEL/HAND/YKB_TL.MT5",
+        "byteLength": 40704,
+        "sha256": "517a3423b4cb2c7f96f9cb71475e3f34bc6891af1a0fe892b85c8810826936ec"
+      },
+      {
+        "name": "YKB_TR.MT5",
+        "path": "disc2/SCENE/02/MODEL/HAND/YKB_TR.MT5",
+        "byteLength": 40760,
+        "sha256": "1564720156a4967703256cf4e1070e69c660cd57296bdf3b8ea13bffc46dccb8"
+      },
+      {
+        "name": "YKB_HM.BIN",
+        "path": "disc2/SCENE/02/MODEL/HAND/YKB_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "bd81f3033c0be237e5f52aa1976166e1376dd1c8c2b3ec66948f25d08fbc9729"
+      },
+      {
+        "name": "INE_TL.MT5",
+        "path": "disc2/SCENE/02/MODEL/HAND/INE_TL.MT5",
+        "byteLength": 47812,
+        "sha256": "25e9cd4b53d933f76887fb0a9e1cfe168a54e4032d5856e8b96e7d54dabe117e"
+      },
+      {
+        "name": "INE_TR.MT5",
+        "path": "disc2/SCENE/02/MODEL/HAND/INE_TR.MT5",
+        "byteLength": 47868,
+        "sha256": "4ce6cec8fd94d7ce04bc8fe3cedffc7eb28475bcd27bf25ef7a05e9ff8ede101"
+      },
+      {
+        "name": "INE_HM.BIN",
+        "path": "disc2/SCENE/02/MODEL/HAND/INE_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "c386a4f223da87a797bfafb9990507fb02cc72e122d47ccaa6fc43d417a72ff5"
       }
     ]
   },
@@ -27,7 +69,7 @@
     "evidence": "docs/design/story-event-template.md#return-home-handguard-and-family-crest",
     "resourceName": "01136",
     "variant": "",
-    "selectionRule": "Exact embedded JOMO AUTH; package slot 0 is not a reconstructed native selector."
+    "selectionRule": "Exact embedded JOMO AUTH at native slot 15, owned by 0x6e62c and callback 0x6f234; packaged as slot 0. Original hand poses, component animation, attachments and visibility are compiled as data. Frames 325-395 use original vector operands as an absolute tabletop pose, with an authored initial visibility baseline; native FIXO-to-world propagation remains unresolved."
   },
   "audioManifest": "public/audio/world/family-crest/manifest.json",
   "packageActors": {
@@ -39,6 +81,782 @@
       "characterScale": 1,
       "assetPath": "play/assets/INE_M.CHRM",
       "textureAssetPath": "play/assets/INE_textures.bin"
+    }
+  },
+  "attachedObjects": {
+    "TUBA": {
+      "model": "TUB0210G",
+      "browserFilename": "S1_JOMO_TUB0210G.MT5",
+      "assetPath": "play/assets/hazuki/family-crest/TUB0210G.MT5",
+      "source": {
+        "path": "disc2/SCENE/02/JOMO/TUB0210G.MT5",
+        "sha256": "65cbbf5d36cea3add3b5184bb9a3027137871ef13c15614df7a58b848fcd09e4",
+        "ownerFunction": "0x6e62c",
+        "requestStringOffset": "0x9a094"
+      },
+      "attachments": [
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 0,
+          "frame": 210,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.11500000208616257,
+            0.03200000151991844,
+            -0.023000000044703484
+          ],
+          "rotationRaw": [
+            63169,
+            64625,
+            63897
+          ],
+          "callFileOffset": "0x6f5da",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 0,
+          "frame": 295,
+          "action": "detach",
+          "callFileOffset": "0x6f63e",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 0,
+          "frame": 396,
+          "action": "attach",
+          "parentActorTag": "INE_",
+          "controlId": 18,
+          "translation": [
+            0.09700000286102295,
+            -0.02199999988079071,
+            -0.00800000037997961
+          ],
+          "rotationRaw": [
+            47877,
+            64443,
+            34042
+          ],
+          "callFileOffset": "0x6f97a",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 0,
+          "frame": 572,
+          "action": "attach",
+          "parentActorTag": "INE_",
+          "controlId": 12,
+          "translation": [
+            0.07400000095367432,
+            -0.0010000000474974513,
+            0.04100000113248825
+          ],
+          "rotationRaw": [
+            34042,
+            7463,
+            23483
+          ],
+          "callFileOffset": "0x6fc86",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 0,
+          "frame": 865,
+          "action": "attach",
+          "parentActorTag": "INE_",
+          "controlId": 18,
+          "translation": [
+            0.08699999749660492,
+            -0.03200000151991844,
+            -0.03400000184774399
+          ],
+          "rotationRaw": [
+            43144,
+            4004,
+            28216
+          ],
+          "callFileOffset": "0x6ff62",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 0,
+          "frame": 898,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.08900000154972076,
+            0.02199999988079071,
+            -0.0820000022649765
+          ],
+          "rotationRaw": [
+            56251,
+            62986,
+            52976
+          ],
+          "callFileOffset": "0x700f2",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 0,
+          "frame": 1098,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.06400000303983688,
+            0.023000000044703484,
+            -0.09399999678134918
+          ],
+          "rotationRaw": [
+            54478,
+            60618,
+            39009
+          ],
+          "callFileOffset": "0x70292",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "objectTag": "TUBA",
+          "activitySlot": 0,
+          "frame": 1410,
+          "action": "detach",
+          "callFileOffset": "0x70582",
+          "activityId": "01136/CREST.AUTH"
+        }
+      ],
+      "worldTransforms": [
+        {
+          "activitySlot": 0,
+          "frame": 325,
+          "lastFrame": 395,
+          "position": [
+            4.850399971008301,
+            0.3407999873161316,
+            0.314300000667572
+          ],
+          "rotationRaw": [
+            16384,
+            0,
+            0
+          ],
+          "sourceCalls": [
+            "0x6f7d0",
+            "0x6f7ee"
+          ],
+          "activityId": "01136/CREST.AUTH"
+        }
+      ],
+      "presentation": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "visible": true,
+          "source": "authored-initial-visible-baseline",
+          "reason": "Allows the first native grip before the callback's later explicit visibility flags.",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 396,
+          "visible": false,
+          "callFileOffset": "0x6f90a",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 412,
+          "visible": true,
+          "callFileOffset": "0x6faf6",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 440,
+          "visible": false,
+          "callFileOffset": "0x6fb3a",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 572,
+          "visible": true,
+          "callFileOffset": "0x6fb8e",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 847,
+          "visible": false,
+          "callFileOffset": "0x6fd8a",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 865,
+          "visible": true,
+          "callFileOffset": "0x6fef2",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 898,
+          "visible": true,
+          "callFileOffset": "0x70072",
+          "activityId": "01136/CREST.AUTH"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1098,
+          "visible": true,
+          "callFileOffset": "0x70212",
+          "activityId": "01136/CREST.AUTH"
+        }
+      ],
+      "standalonePoseAdaptation": {
+        "kind": "bounded-original-vector-operands-as-absolute-pose",
+        "firstFrame": 325,
+        "lastFrame": 395,
+        "nativeVectorOperations": [
+          {
+            "activitySlot": 0,
+            "frame": 0,
+            "semanticId": "resolved-object-vector-initialize",
+            "flags": 939524096,
+            "words": [
+              1083913850,
+              3240457195,
+              1050733550
+            ],
+            "callFileOffset": "0x6f35e",
+            "frameVectorOffset": 60
+          },
+          {
+            "activitySlot": 0,
+            "frame": 325,
+            "semanticId": "resolved-object-vector-initialize",
+            "flags": 939524096,
+            "words": [
+              1083913850,
+              1051622742,
+              1050733550
+            ],
+            "callFileOffset": "0x6f7d0",
+            "frameVectorOffset": 60
+          },
+          {
+            "activitySlot": 0,
+            "frame": 325,
+            "semanticId": "resolved-object-vector-operation",
+            "flags": 939524096,
+            "words": [
+              16384,
+              0,
+              0
+            ],
+            "callFileOffset": "0x6f7ee",
+            "frameVectorOffset": 48
+          }
+        ],
+        "reason": "Only frames 325-395 use the original position/rotation operands as an absolute standalone pose; native FIXO-to-world render propagation is not recovered. Other detached intervals remain hidden."
+      }
+    }
+  },
+  "handAssets": {
+    "AKIR": {
+      "actorTag": "AKIR",
+      "bodyModelCode": "YKC_M",
+      "handCode": "YKB",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 10,
+        "model": {
+          "path": "play/assets/hazuki/family-crest/YKB_TL.MT5",
+          "sourcePath": "disc2/SCENE/02/MODEL/HAND/YKB_TL.MT5",
+          "byteLength": 40704,
+          "sha256": "517a3423b4cb2c7f96f9cb71475e3f34bc6891af1a0fe892b85c8810826936ec"
+        }
+      },
+      "right": {
+        "rootRenderKey": 5,
+        "model": {
+          "path": "play/assets/hazuki/family-crest/YKB_TR.MT5",
+          "sourcePath": "disc2/SCENE/02/MODEL/HAND/YKB_TR.MT5",
+          "byteLength": 40760,
+          "sha256": "1564720156a4967703256cf4e1070e69c660cd57296bdf3b8ea13bffc46dccb8"
+        }
+      },
+      "rig": {
+        "path": "play/assets/hazuki/family-crest/YKB_HM.BIN",
+        "sourcePath": "disc2/SCENE/02/MODEL/HAND/YKB_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "bd81f3033c0be237e5f52aa1976166e1376dd1c8c2b3ec66948f25d08fbc9729",
+        "vertexCount": 306,
+        "transformNodeCount": 71,
+        "pointerOffsets": [
+          24,
+          168,
+          8952,
+          5848,
+          6472,
+          9264
+        ]
+      }
+    },
+    "INE_": {
+      "actorTag": "INE_",
+      "bodyModelCode": "INE_M",
+      "handCode": "INE",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 11,
+        "model": {
+          "path": "play/assets/hazuki/family-crest/INE_TL.MT5",
+          "sourcePath": "disc2/SCENE/02/MODEL/HAND/INE_TL.MT5",
+          "byteLength": 47812,
+          "sha256": "25e9cd4b53d933f76887fb0a9e1cfe168a54e4032d5856e8b96e7d54dabe117e"
+        }
+      },
+      "right": {
+        "rootRenderKey": 6,
+        "model": {
+          "path": "play/assets/hazuki/family-crest/INE_TR.MT5",
+          "sourcePath": "disc2/SCENE/02/MODEL/HAND/INE_TR.MT5",
+          "byteLength": 47868,
+          "sha256": "4ce6cec8fd94d7ce04bc8fe3cedffc7eb28475bcd27bf25ef7a05e9ff8ede101"
+        }
+      },
+      "rig": {
+        "path": "play/assets/hazuki/family-crest/INE_HM.BIN",
+        "sourcePath": "disc2/SCENE/02/MODEL/HAND/INE_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "c386a4f223da87a797bfafb9990507fb02cc72e122d47ccaa6fc43d417a72ff5",
+        "vertexCount": 306,
+        "transformNodeCount": 71,
+        "pointerOffsets": [
+          24,
+          168,
+          8952,
+          5848,
+          6472,
+          9264
+        ]
+      }
+    }
+  },
+  "nativeHandPoseTables": {
+    "0x96ec0": {
+      "sourceMapinfoOffset": "0x96ec0",
+      "vectors": [
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "0x97fac": {
+      "sourceMapinfoOffset": "0x97fac",
+      "vectors": [
+        [
+          0,
+          1092,
+          -5825
+        ],
+        [
+          2184,
+          364,
+          1720
+        ],
+        [
+          0,
+          0,
+          -281
+        ],
+        [
+          0,
+          1456,
+          -9648
+        ],
+        [
+          0,
+          1092,
+          -7032
+        ],
+        [
+          0,
+          1092,
+          -6861
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2002,
+          -9803
+        ],
+        [
+          0,
+          1274,
+          -20000
+        ],
+        [
+          0,
+          364,
+          -7697
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -7988
+        ],
+        [
+          0,
+          1820,
+          -19842
+        ],
+        [
+          0,
+          0,
+          -10758
+        ],
+        [
+          0,
+          43,
+          -49
+        ],
+        [
+          0,
+          0,
+          -7778
+        ],
+        [
+          0,
+          -546,
+          -18459
+        ],
+        [
+          0,
+          -1092,
+          -13076
+        ],
+        [
+          0,
+          -668,
+          -327
+        ]
+      ]
+    },
+    "0x97d00": {
+      "sourceMapinfoOffset": "0x97d00",
+      "vectors": [
+        [
+          0,
+          0,
+          -6005
+        ],
+        [
+          0,
+          0,
+          -909
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -6368
+        ],
+        [
+          0,
+          1820,
+          -8552
+        ],
+        [
+          0,
+          0,
+          -4548
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -8552
+        ],
+        [
+          0,
+          0,
+          -10372
+        ],
+        [
+          0,
+          -545,
+          -4002
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -7823
+        ],
+        [
+          0,
+          0,
+          -12374
+        ],
+        [
+          0,
+          -909,
+          -2182
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1636,
+          -10735
+        ],
+        [
+          0,
+          -2001,
+          -10372
+        ],
+        [
+          0,
+          -1819,
+          -727
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "0x98090": {
+      "sourceMapinfoOffset": "0x98090",
+      "vectors": [
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          1092,
+          -2184
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -3458
+        ],
+        [
+          0,
+          0,
+          -8374
+        ],
+        [
+          0,
+          0,
+          -4369
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -4733
+        ],
+        [
+          0,
+          0,
+          -6917
+        ],
+        [
+          0,
+          0,
+          -3458
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -5097
+        ],
+        [
+          0,
+          -364,
+          -5461
+        ],
+        [
+          0,
+          0,
+          -2184
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -4369
+        ],
+        [
+          0,
+          -2184,
+          -5097
+        ],
+        [
+          0,
+          0,
+          -1456
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
     }
   },
   "actorTags": [
@@ -63,13 +881,51 @@
       "path": "play/assets/hazuki/family-crest/CREST.AUTH",
       "byteLength": 6320,
       "sha256": "5872c2ff4b204d7928f876a9986b9487f58ed2de7e82c39c5b286db0ce419413"
+    },
+    {
+      "path": "play/assets/hazuki/family-crest/TUB0210G.MT5",
+      "byteLength": 45548,
+      "sha256": "65cbbf5d36cea3add3b5184bb9a3027137871ef13c15614df7a58b848fcd09e4"
+    },
+    {
+      "path": "play/assets/hazuki/family-crest/YKB_TL.MT5",
+      "byteLength": 40704,
+      "sha256": "517a3423b4cb2c7f96f9cb71475e3f34bc6891af1a0fe892b85c8810826936ec"
+    },
+    {
+      "path": "play/assets/hazuki/family-crest/YKB_TR.MT5",
+      "byteLength": 40760,
+      "sha256": "1564720156a4967703256cf4e1070e69c660cd57296bdf3b8ea13bffc46dccb8"
+    },
+    {
+      "path": "play/assets/hazuki/family-crest/YKB_HM.BIN",
+      "byteLength": 9264,
+      "sha256": "bd81f3033c0be237e5f52aa1976166e1376dd1c8c2b3ec66948f25d08fbc9729"
+    },
+    {
+      "path": "play/assets/hazuki/family-crest/INE_TL.MT5",
+      "byteLength": 47812,
+      "sha256": "25e9cd4b53d933f76887fb0a9e1cfe168a54e4032d5856e8b96e7d54dabe117e"
+    },
+    {
+      "path": "play/assets/hazuki/family-crest/INE_TR.MT5",
+      "byteLength": 47868,
+      "sha256": "4ce6cec8fd94d7ce04bc8fe3cedffc7eb28475bcd27bf25ef7a05e9ff8ede101"
+    },
+    {
+      "path": "play/assets/hazuki/family-crest/INE_HM.BIN",
+      "byteLength": 9264,
+      "sha256": "c386a4f223da87a797bfafb9990507fb02cc72e122d47ccaa6fc43d417a72ff5"
     }
   ],
   "activities": [
     {
       "slot": 0,
       "binding": {
-        "kind": "map-embedded-slot"
+        "kind": "map-embedded-slot",
+        "nativeSlot": 15,
+        "ownerFunction": "0x6e62c",
+        "callbackFunction": "0x6f234"
       },
       "activityId": "01136/CREST.AUTH",
       "archiveMember": "CREST.AUTH",
@@ -88,6 +944,1313 @@
       "actors": [
         "AKIR",
         "INE_"
+      ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x96ec0",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x6f3ee",
+          "sourceOrder": 0
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x96ec0",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x6f40e",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "INE_",
+          "side": "right",
+          "poseTableOffset": "0x96ec0",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x6f42e",
+          "sourceOrder": 2
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "INE_",
+          "side": "left",
+          "poseTableOffset": "0x96ec0",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x6f44e",
+          "sourceOrder": 3
+        },
+        {
+          "activitySlot": 0,
+          "frame": 210,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x97fac",
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x6f56a",
+          "sourceOrder": 5
+        },
+        {
+          "activitySlot": 0,
+          "frame": 295,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x97d00",
+          "durationNativeTicks": 30,
+          "callFileOffset": "0x6f65e",
+          "sourceOrder": 6
+        },
+        {
+          "activitySlot": 0,
+          "frame": 396,
+          "actorTag": "INE_",
+          "side": "right",
+          "poseTableOffset": "0x98090",
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x6f8d6",
+          "sourceOrder": 10
+        },
+        {
+          "activitySlot": 0,
+          "frame": 396,
+          "actorTag": "INE_",
+          "side": "left",
+          "poseTableOffset": "0x97d00",
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x6f8f6",
+          "sourceOrder": 11
+        },
+        {
+          "activitySlot": 0,
+          "frame": 830,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x97d00",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x6fd38",
+          "sourceOrder": 16
+        },
+        {
+          "activitySlot": 0,
+          "frame": 855,
+          "actorTag": "INE_",
+          "side": "right",
+          "poseTableOffset": "0x96ec0",
+          "durationNativeTicks": 20,
+          "callFileOffset": "0x6fdda",
+          "sourceOrder": 17
+        },
+        {
+          "activitySlot": 0,
+          "frame": 855,
+          "actorTag": "INE_",
+          "side": "left",
+          "poseTableOffset": "0x96ec0",
+          "durationNativeTicks": 20,
+          "callFileOffset": "0x6fdfa",
+          "sourceOrder": 18
+        },
+        {
+          "activitySlot": 0,
+          "frame": 890,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x97fac",
+          "durationNativeTicks": 20,
+          "callFileOffset": "0x7002a",
+          "sourceOrder": 21
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1410,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x96ec0",
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x705a2",
+          "sourceOrder": 26
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1410,
+          "actorTag": "AKIR",
+          "side": "left",
+          "poseTableOffset": "0x96ec0",
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x705c2",
+          "sourceOrder": 27
+        }
+      ],
+      "nativeBodyHandPoseCues": [],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 0,
+          "frame": 160,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -36,
+            -133,
+            48
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 161,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -72,
+            -266,
+            96
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 162,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -108,
+            -399,
+            144
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 163,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -144,
+            -532,
+            192
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 164,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -180,
+            -665,
+            240
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 165,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -216,
+            -798,
+            288
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 166,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -252,
+            -931,
+            336
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 167,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -288,
+            -1064,
+            384
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 168,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -324,
+            -1197,
+            432
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 169,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -360,
+            -1330,
+            480
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 170,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -396,
+            -1463,
+            528
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 171,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -432,
+            -1596,
+            576
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 172,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -468,
+            -1729,
+            624
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 173,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -504,
+            -1862,
+            672
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 174,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -540,
+            -1995,
+            720
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 175,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -576,
+            -2128,
+            768
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 176,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -612,
+            -2261,
+            816
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 177,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -648,
+            -2394,
+            864
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 178,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -684,
+            -2527,
+            912
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 179,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -720,
+            -2660,
+            960
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 180,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -756,
+            -2793,
+            1008
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 181,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -792,
+            -2926,
+            1056
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 182,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -828,
+            -3059,
+            1104
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 183,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -864,
+            -3192,
+            1152
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 184,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -900,
+            -3325,
+            1200
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 185,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -936,
+            -3458,
+            1248
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 186,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -972,
+            -3591,
+            1296
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 187,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1008,
+            -3724,
+            1344
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 188,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1044,
+            -3857,
+            1392
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 189,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1080,
+            -3990,
+            1440
+          ],
+          "callFileOffset": "0x6f512",
+          "sourceOrder": 4
+        },
+        {
+          "activitySlot": 0,
+          "frame": 291,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            3640,
+            1456,
+            -10740
+          ],
+          "callFileOffset": "0x6f700",
+          "sourceOrder": 7
+        },
+        {
+          "activitySlot": 0,
+          "frame": 291,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -4187,
+            2730,
+            -9102
+          ],
+          "callFileOffset": "0x6f71e",
+          "sourceOrder": 8
+        },
+        {
+          "activitySlot": 0,
+          "frame": 337,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3273,
+            -364,
+            -2000
+          ],
+          "callFileOffset": "0x6f876",
+          "sourceOrder": 9
+        },
+        {
+          "activitySlot": 0,
+          "frame": 405,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            4980,
+            1474,
+            -10200
+          ],
+          "callFileOffset": "0x6fa8c",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 406,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            6320,
+            1492,
+            -9660
+          ],
+          "callFileOffset": "0x6fa8c",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 407,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            7660,
+            1510,
+            -9120
+          ],
+          "callFileOffset": "0x6fa8c",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 408,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            9000,
+            1528,
+            -8580
+          ],
+          "callFileOffset": "0x6fa8c",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 409,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            10340,
+            1546,
+            -8040
+          ],
+          "callFileOffset": "0x6fa8c",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 410,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            11680,
+            1564,
+            -7500
+          ],
+          "callFileOffset": "0x6fa8c",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 411,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            13020,
+            1582,
+            -6960
+          ],
+          "callFileOffset": "0x6fa8c",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 412,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            14360,
+            1600,
+            -6420
+          ],
+          "callFileOffset": "0x6fa8c",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 413,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            15700,
+            1618,
+            -5880
+          ],
+          "callFileOffset": "0x6fa8c",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 414,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            17040,
+            1636,
+            -5340
+          ],
+          "callFileOffset": "0x6fa8c",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 415,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            18380,
+            1654,
+            -4800
+          ],
+          "callFileOffset": "0x6fa8c",
+          "sourceOrder": 12
+        },
+        {
+          "activitySlot": 0,
+          "frame": 405,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -4296,
+            2166,
+            -8393
+          ],
+          "callFileOffset": "0x6faaa",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 406,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -4405,
+            1602,
+            -7684
+          ],
+          "callFileOffset": "0x6faaa",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 407,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -4514,
+            1038,
+            -6975
+          ],
+          "callFileOffset": "0x6faaa",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 408,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -4623,
+            474,
+            -6266
+          ],
+          "callFileOffset": "0x6faaa",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 409,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -4732,
+            -90,
+            -5557
+          ],
+          "callFileOffset": "0x6faaa",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 410,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -4841,
+            -654,
+            -4848
+          ],
+          "callFileOffset": "0x6faaa",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 411,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -4950,
+            -1218,
+            -4139
+          ],
+          "callFileOffset": "0x6faaa",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 412,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -5059,
+            -1782,
+            -3430
+          ],
+          "callFileOffset": "0x6faaa",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 413,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -5168,
+            -2346,
+            -2721
+          ],
+          "callFileOffset": "0x6faaa",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 414,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -5277,
+            -2910,
+            -2012
+          ],
+          "callFileOffset": "0x6faaa",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 415,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -5386,
+            -3474,
+            -1303
+          ],
+          "callFileOffset": "0x6faaa",
+          "sourceOrder": 13
+        },
+        {
+          "activitySlot": 0,
+          "frame": 572,
+          "actorTag": "INE_",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            15593,
+            3822,
+            -5918
+          ],
+          "callFileOffset": "0x6fbf8",
+          "sourceOrder": 14
+        },
+        {
+          "activitySlot": 0,
+          "frame": 572,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -817,
+            -3127,
+            -2408
+          ],
+          "callFileOffset": "0x6fc16",
+          "sourceOrder": 15
+        },
+        {
+          "activitySlot": 0,
+          "frame": 860,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1337,
+            -3098,
+            -2526
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 861,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1857,
+            -3069,
+            -2644
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 862,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -2377,
+            -3040,
+            -2762
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 863,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -2897,
+            -3011,
+            -2880
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 864,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3417,
+            -2982,
+            -2998
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 865,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -3937,
+            -2953,
+            -3116
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 866,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -4457,
+            -2924,
+            -3234
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 867,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -4977,
+            -2895,
+            -3352
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 868,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -5497,
+            -2866,
+            -3470
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 869,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -6017,
+            -2837,
+            -3588
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 870,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -6537,
+            -2808,
+            -3706
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 871,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -7057,
+            -2779,
+            -3824
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 872,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -7577,
+            -2750,
+            -3942
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 873,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -8097,
+            -2721,
+            -4060
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 874,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -8617,
+            -2692,
+            -4178
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 875,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -9137,
+            -2663,
+            -4296
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 876,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -9657,
+            -2634,
+            -4414
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 877,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -10177,
+            -2605,
+            -4532
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 878,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -10697,
+            -2576,
+            -4650
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 879,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -11217,
+            -2547,
+            -4768
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 880,
+          "actorTag": "INE_",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            -11737,
+            -2518,
+            -4886
+          ],
+          "callFileOffset": "0x6fea2",
+          "sourceOrder": 19
+        },
+        {
+          "activitySlot": 0,
+          "frame": 865,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            -1268,
+            2000,
+            730
+          ],
+          "callFileOffset": "0x6ffa6",
+          "sourceOrder": 20
+        },
+        {
+          "activitySlot": 0,
+          "frame": 950,
+          "actorTag": "AKIR",
+          "side": "left",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x70186",
+          "sourceOrder": 22
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1098,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            3643,
+            6552,
+            -3455
+          ],
+          "callFileOffset": "0x701fe",
+          "sourceOrder": 23
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1390,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x704fa",
+          "sourceOrder": 24
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1390,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x7053e",
+          "sourceOrder": 25
+        }
       ],
       "motions": [
         {

@@ -491,3 +491,104 @@ test("AUTH FIXO presentation and articulated nodes seek from authored state", as
     engine.dispose();
   }
 });
+
+
+test("standalone props rest between handoffs, seek deterministically and restore on cancellation", async () => {
+  const engine = new BABYLON.NullEngine(), scene = new BABYLON.Scene(engine);
+  try {
+    const prop = new BABYLON.TransformNode("placed-prop", scene);
+    prop._filename = "PROP.MT5";
+    prop.position.set(7, 8, 9);
+    const actor = new BABYLON.TransformNode("actor", scene);
+    actor.position.set(10, 2, 3);
+    const attach = frame => ({ activityId: "exchange", frame, parentActorTag: "AKIR",
+      controlId: 18, translation: [1, 0, 0], rotationRaw: [0, 0, 0] });
+    const runtime = new NativeAseqAttachedObjectRuntime({
+      definitions: { PROP: { browserFilename: "PROP.MT5",
+        attachments: [attach(1), {activityId:"exchange",frame:3,action:"detach"},
+          attach(9), {activityId:"exchange",frame:12,action:"detach"}],
+        presentation: [
+          {activityId:"exchange",frame:0,visible:true},
+          {activityId:"exchange",frame:6,visible:false},
+          {activityId:"exchange",frame:7,visible:true},
+        ],
+        worldTransforms: [{activityId:"exchange",frame:5,lastFrame:8,
+          position:[4,.3,2],rotationRaw:[16384,0,0]}],
+      } },
+      resolveActor: () => ({model:{renderRoot:actor,
+        latestControllerFamily:{nodes:[{index:0,type:18}]},
+        latestControllerMatrices:[Array.from(BABYLON.Matrix.Identity().asArray())]}}),
+    });
+    await runtime.load([prop]);
+    runtime.beginActivity({activityId:"exchange",actors:["AKIR"]});
+    assert.equal(runtime.update(1),true);
+    assert.ok(prop.parent === actor);
+    assert.equal(prop.isEnabled(),true);
+    runtime.update(3);
+    assert.equal(prop.isEnabled(),false);
+    assert.equal(runtime.update(5),true);
+    assert.equal(prop.parent,null);
+    assert.ok(BABYLON.Vector3.Distance(prop.position,new BABYLON.Vector3(-4,.3,2))<1e-6);
+    assert.equal(prop.isEnabled(),true);
+    runtime.update(6);
+    assert.equal(prop.isEnabled(),false);
+    runtime.update(8);
+    assert.equal(prop.isEnabled(),true);
+    runtime.update(9);
+    assert.ok(prop.parent === actor);
+    assert.equal(prop.isEnabled(),true);
+    runtime.update(12);
+    assert.equal(prop.isEnabled(),false);
+    runtime.update(5);
+    assert.equal(prop.parent,null);
+    assert.equal(prop.isEnabled(),true);
+    runtime.update(0);
+    assert.equal(prop.isEnabled(),false);
+    runtime.update(5);
+    runtime.endActivity();
+    assert.equal(prop.isEnabled(),false);
+    assert.equal(prop.parent,null);
+    assert.deepEqual(prop.position.asArray(),[7,8,9]);
+    runtime.beginActivity({activityId:"unrelated",actors:[]});
+    assert.equal(runtime.update(5),true);
+    assert.equal(prop.isEnabled(),false);
+    runtime.clear();
+    assert.equal(prop.isDisposed(),false);
+  } finally {scene.dispose();engine.dispose();}
+});
+
+test("world-only package props obey bounded placement intervals and dispose only their own root", async () => {
+  const engine = new BABYLON.NullEngine(), scene = new BABYLON.Scene(engine);
+  try {
+    const unrelated = new BABYLON.TransformNode("unrelated",scene);
+    let prop;
+    const runtime = new NativeAseqAttachedObjectRuntime({
+      definitions:{PROP:{browserFilename:"PROP.MT5",assetPath:"prop.mt5",attachments:[],
+        worldTransforms:[{activityId:"table",frame:10,lastFrame:20,position:[1,2,3]}]}},
+      resolveActor:()=>null,
+      instantiateAsset:async()=>[prop=new BABYLON.TransformNode("owned",scene)],
+    });
+    await runtime.load([unrelated]);
+    runtime.beginActivity({activityId:"table",actors:[]});
+    runtime.update(9);assert.equal(prop.isEnabled(),false);
+    runtime.update(10);assert.equal(prop.isEnabled(),true);
+    runtime.update(20);assert.equal(prop.isEnabled(),true);
+    runtime.update(21);assert.equal(prop.isEnabled(),false);
+    runtime.update(10);assert.equal(prop.isEnabled(),true);
+    runtime.clear();
+    assert.equal(prop.isDisposed(),true);
+    assert.equal(unrelated.isDisposed(),false);
+  } finally {scene.dispose();engine.dispose();}
+});
+
+test("standalone placement data rejects missing scope, invalid intervals and ambiguous same-frame poses", () => {
+  const make = poses => new NativeAseqAttachedObjectRuntime({
+    definitions:{PROP:{browserFilename:"PROP.MT5",attachments:[],worldTransforms:poses}},
+    resolveActor:()=>null,
+  });
+  const pose={activityId:"table",frame:10,lastFrame:20,position:[1,2,3]};
+  assert.throws(()=>make([{...pose,activityId:undefined}]),/exact activity ID/);
+  assert.throws(()=>make([{...pose,lastFrame:9}]),/invalid frame range/);
+  assert.throws(()=>make([{...pose,position:[1,NaN,3]}]),/finite/);
+  assert.throws(()=>make([pose,pose]),/duplicate/);
+});

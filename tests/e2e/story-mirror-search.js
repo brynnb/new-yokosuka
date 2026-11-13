@@ -200,7 +200,15 @@ export async function verifyDojoItems(page,testInfo,character){
 export async function verifyHandguardFamily(page,testInfo,character){
   expect(character.storyFlags["story.s1.gui-zhang-street.completed"]).toBe(true);
   expect(character.storyFlags["story.s1.ine-family-crest.completed"]).not.toBe(true);
-  const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const saved=async()=>{
+    const url=`/api/characters/${character.id}/state`,response=await page.request.get(url);
+    const body=await response.text(),contentType=response.headers()["content-type"]||"missing Content-Type";
+    const diagnostic=`GET ${url}: HTTP ${response.status()} ${response.statusText()}; ${contentType}; body ${JSON.stringify(body.slice(0,800))}`;
+    expect(response.ok(),diagnostic).toBe(true);
+    expect(contentType,diagnostic).toMatch(/^application\/json(?:;|$)/i);
+    try{return JSON.parse(body);}
+    catch(error){throw new Error(`Invalid character-state JSON: ${diagnostic}`,{cause:error});}
+  };
   const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
   const enter=async()=>{
@@ -268,23 +276,126 @@ export async function verifyHandguardFamily(page,testInfo,character){
     try{await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-ine-family-crest"||window.storyProbe.sceneErrors.length,null,{timeout:30_000});}
     finally{await page.keyboard.up("KeyW");}await noErrors();
   };
-  await approach();await page.waitForTimeout(4000);
-  await page.screenshot({path:testInfo.outputPath("handguard-original-crest-introduction.png")});
-  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-family-crest"));await idle();
-  expect((await saved()).character.storyFlags["notebook.s1.hazuki-family-crest"]).not.toBe(true);
-  await approach();await page.waitForTimeout(18_000);
-  await page.screenshot({path:testInfo.outputPath("handguard-original-crest-explanation.png")});
-  await expect.poll(async()=>(await saved()).character.storyFlags["notebook.s1.hazuki-family-crest"],{timeout:65_000,intervals:[1000]}).toBe(true);
-  await idle();await noErrors();const after=await saved();
+  testInfo.setTimeout(Math.max(testInfo.timeout,360_000));
+  const skip=process.env.NEW_YOKOSUKA_HANDGUARD_FAMILY_SKIP_E2E==="true";
+  const done="story.s1.ine-family-crest.completed",notebook="notebook.s1.hazuki-family-crest";
+  const beforeCrest=await saved(),samples=[];
+  const walkOutside=async()=>{
+    const position=await page.evaluate(()=>window.storyProbe.lifecycle.getController().actorRoot.position.asArray());
+    await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyS");
+    try{await page.waitForTimeout(500);}finally{await page.keyboard.up("KeyS");}
+    const moved=await page.evaluate(()=>window.storyProbe.lifecycle.getController().actorRoot.position.asArray());
+    expect(Math.hypot(moved[0]-position[0],moved[2]-position[2])).toBeGreaterThan(.2);
+    expect(moved[0]<-6||moved[0]>-2.5||moved[2]<-3||moved[2]>1).toBe(true);
+    // Reload outside the unfinished trigger, otherwise entering the saved
+    // region may correctly launch a fresh attempt before the test approaches.
+    await page.waitForTimeout(700);
+  };
+  const reload=async()=>{
+    await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
+    await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
+    await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:90_000});await idle();await noErrors();
+  };
+  const clean=async()=>{
+    await idle();await noErrors();
+    const state=await page.evaluate(()=>{
+      const p=window.storyProbe,r=window.handguardFamilyRuntime,l=p.lifecycle;
+      const root=r?.attachedObjects?.objects.get("TUBA")?.root;
+      return {active:!!r?.active,attachments:!!r?.attachedObjects?.active,hands:!!r?.presentation?.hands?.active,
+        propReleased:!root||root.isDisposed()||!root.isEnabled(),
+        visibleProps:l.scene.meshes.filter(m=>m.metadata?.nativeAseqAttachedObject==="TUBA"&&m.isEnabled()).length,
+        firstPerson:l.getController().firstPerson};
+    });
+    expect(state).toEqual({active:false,attachments:false,hands:false,propReleased:true,visibleProps:0,firstPerson:false});
+  };
+  const sample=async(frame,owner,controlId,name,visible=true)=>{
+    // Wait for the original clock. No seek, frozen animation, diagnostic camera
+    // or altered prop placement is used for these gameplay screenshots.
+    await page.waitForFunction(frame=>{
+      const p=window.storyProbe;
+      return p.sceneErrors.length||p.director?.activeCutscene?.packageRuntime.activityRuntime.active?.currentFrame>=frame;
+    },frame,{timeout:60_000});await noErrors();
+    const state=await page.evaluate(()=>{
+      const p=window.storyProbe,r=p.director.activeCutscene.packageRuntime,l=p.lifecycle;
+      window.handguardFamilyRuntime=r;
+      const a=r.attachedObjects,record=a?.objects.get("TUBA"),root=record?.root;
+      if(!root)throw Error("The family-crest package did not load the original handguard");
+      const selected=a.active.bindings.filter(b=>b.actorTag==="TUBA"&&b.frame<=a.active.frame).sort((x,y)=>y.frame-x.frame)[0];
+      const parentTag=["AKIR","INE_"].find(tag=>r.actors.activeActor(tag)?.model.renderRoot===root.parent)||null;
+      const meshes=root.getChildMeshes(false).filter(m=>m.getTotalVertices()>0);
+      const textures=new Set(meshes.flatMap(m=>m.material?.getActiveTextures?.()||[]));
+      const b=root.getHierarchyBoundingVectors(true),v=l.scene.activeCamera.getViewMatrix(true).multiply(l.scene.activeCamera.getProjectionMatrix(true));
+      const viewport=l.scene.activeCamera.viewport.toGlobal(l.engine.getRenderWidth(),l.engine.getRenderHeight());
+      const points=[];
+      for(const x of [b.min.x,b.max.x])for(const y of [b.min.y,b.max.y])for(const z of [b.min.z,b.max.z])
+        points.push(b.min.constructor.Project(l.vectorFromArray([x,y,z]),v.constructor.Identity(),v,viewport));
+      const round=value=>Number(value.toFixed(4));
+      return {frame:a.active.frame,action:selected?.action,owner:selected?.parentActorTag,controlId:selected?.controlId,parentTag,
+        enabled:root.isEnabled(),activeMeshes:meshes.filter(m=>m.isEnabled()&&m.isVisible&&l.scene.isActiveMesh(m)).length,
+        meshCount:meshes.length,vertexCount:meshes.reduce((sum,m)=>sum+m.getTotalVertices(),0),
+        textureCount:textures.size,readyTextures:[...textures].filter(t=>t.isReady()).length,
+        worldPosition:root.getAbsolutePosition().asArray().map(round),worldBounds:[b.min.asArray().map(round),b.max.asArray().map(round)],
+        screenBounds:[Math.min(...points.map(p=>p.x)),Math.min(...points.map(p=>p.y)),Math.max(...points.map(p=>p.x)),Math.max(...points.map(p=>p.y))].map(round),
+        screenDepth:[Math.min(...points.map(p=>p.z)),Math.max(...points.map(p=>p.z))].map(round),
+        viewport:[l.engine.getRenderWidth(),l.engine.getRenderHeight()],
+        handActors:[...(r.presentation.hands?.active?.hands.keys()||[])].sort()};
+    });
+    samples.push({name,...state});
+    await testInfo.attach(`handguard-crest-${name}-state`,{body:JSON.stringify(state,null,2),contentType:"application/json"});
+    // Capture before assertions so a regression retains the actual failed view.
+    await page.screenshot({path:testInfo.outputPath(`handguard-crest-${name}.png`)});
+    expect(state.frame).toBeGreaterThanOrEqual(frame);
+    expect(state.handActors).toEqual(["AKIR","INE_"]);
+    expect(state.meshCount).toBeGreaterThan(0);expect(state.vertexCount).toBeGreaterThan(0);
+    expect(state.textureCount).toBeGreaterThan(0);expect(state.readyTextures).toBe(state.textureCount);
+    if(owner==="world"){
+      expect(state.action).toBe("detach");expect(state.parentTag).toBe(null);expect(state.enabled).toBe(true);
+      // This validates the documented standalone-pose interpretation. The
+      // original additive-vector/FIXO restore semantics remain an approximation.
+      for(const [index,value]of [-4.8504,.3408,.3143].entries())expect(state.worldPosition[index]).toBeCloseTo(value,3);
+    }else if(owner){
+      expect(state.action).toBe("attach");expect(state.owner).toBe(owner);expect(state.controlId).toBe(controlId);
+      expect(state.parentTag).toBe(owner);expect(state.enabled).toBe(visible);
+    }else{
+      expect(state.action).toBe("detach");expect(state.enabled).toBe(false);
+    }
+    // Projection and active-mesh counts are bounded diagnostics, not proof of
+    // visible pixels. Review the corresponding unmodified rendered screenshot.
+    return state;
+  };
+  await approach();
+  await sample(250,"AKIR",18,"cancel-attempt-ryo");
+  await sample(650,"INE_",12,"cancel-attempt-ine");
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-family-crest"));await clean();
+  let state=await saved();
+  expect(state.character.storyFlags[done]).not.toBe(true);expect(state.character.storyFlags[notebook]).not.toBe(true);
+  expect(state.inventory).toEqual(beforeCrest.inventory);
+  await walkOutside();await reload();
+  state=await saved();expect(state.character.storyFlags[done]).not.toBe(true);expect(state.character.storyFlags[notebook]).not.toBe(true);
+  await approach();
+  if(skip){
+    await sample(650,"INE_",12,"before-explicit-skip");
+    await page.keyboard.press("KeyX");
+  }else{
+    for(const [frame,owner,controlId,name,visible]of [
+      [250,"AKIR",18,"ryo-offer"],[350,"world",null,"table-rest"],[416,"INE_",18,"ine-right-hand"],
+      [450,"INE_",18,"ine-between-grips",false],[650,"INE_",12,"ine-left-hand"],
+      [940,"AKIR",18,"ryo-return"],[1140,"AKIR",18,"ryo-adjusted-grip"],[1450,null,null,"released"],
+    ])await sample(frame,owner,controlId,name,visible);
+  }
+  await expect.poll(async()=>(await saved()).character.storyFlags[notebook],{timeout:65_000,intervals:[1000]}).toBe(true);
+  await clean();const after=await saved();
+  expect(after.character.storyFlags[done]).toBe(true);
   expect(after.character.worldId).toBe("interior");expect(after.character.avatarId).toBe("ryo");
   expect(after.character.yen).toBe(character.yen);expect(after.character.currentHp).toBe(character.currentHp);
+  expect(after.inventory).toEqual(beforeCrest.inventory);
   expect(after.inventory.filter(i=>i.key==="sword_handguard")).toMatchObject([{quantity:1}]);
   expect(after.inventory.some(i=>i.key==="phoenix_mirror")).toBe(false);
-  await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");await page.waitForTimeout(500);await page.keyboard.up("KeyW");
-  await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
-  await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
-  await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:90_000});await idle();await noErrors();
-  expect((await saved()).character.storyFlags["story.s1.ine-family-crest.completed"]).toBe(true);
+  await walkOutside();
+  await testInfo.attach("handguard-crest-render-evidence",{body:JSON.stringify({mode:skip?"explicit-skip":"natural",samples},null,2),contentType:"application/json"});
+  await reload();
+  expect((await saved()).character.storyFlags[done]).toBe(true);
+  expect((await saved()).character.storyFlags[notebook]).toBe(true);
   expect(await page.evaluate(()=>window.storyProbe.director?.activeCutscene||window.storyProbe.authoredScene?.active)).toBeFalsy();
 }
 

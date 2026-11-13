@@ -207,6 +207,7 @@ export class NativeAseqAttachedObjectRuntime {
     this.bindingsByScope = new Map();
     this.presentationByScope = new Map();
     this.nodeOperationsByScope = new Map();
+    this.worldTransformsByScope = new Map();
     for (const [actorTagValue, value] of Object.entries(definitions)) {
       const actorTag = requireActorTag(actorTagValue, "attached object tag");
       const browserFilename = String(value?.browserFilename || "").trim();
@@ -305,6 +306,31 @@ export class NativeAseqAttachedObjectRuntime {
         this.nodeOperationsByScope.set(scope.scopeKey, operations);
         return result;
       });
+      // A standalone prop can rest in the world between wrist attachments.
+      // These are explicit package placements, not an emulation of native
+      // vector opcodes. Bounded intervals avoid inventing a pose after release.
+      const worldTransforms = (value?.worldTransforms || []).map((event) => {
+        const scope = scopeFor(event, `${actorTag} world transform`);
+        if (!Number.isSafeInteger(event?.frame) || event.frame < 0) {
+          throw new TypeError(`${actorTag} world transform frame must be non-negative`);
+        }
+        const lastFrame = event.lastFrame ?? null;
+        if (lastFrame !== null && (!Number.isSafeInteger(lastFrame) || lastFrame < event.frame)) {
+          throw new TypeError(`${actorTag} world transform has an invalid frame range`);
+        }
+        const result = Object.freeze({
+          actorTag, ...scope, frame: event.frame, lastFrame,
+          position: requireVector(event.position, `${actorTag} world position`),
+          rotationRaw: requireFixedTurnVector(event.rotationRaw ?? [0, 0, 0], `${actorTag} world rotation`),
+        });
+        const events = this.worldTransformsByScope.get(scope.scopeKey) || [];
+        if (events.some(item => item.actorTag === actorTag && item.frame === event.frame)) {
+          throw new Error(`${actorTag} has duplicate ${scope.scopeKey} frame ${event.frame} world transforms`);
+        }
+        events.push(result);
+        this.worldTransformsByScope.set(scope.scopeKey, events);
+        return result;
+      });
       this.definitions.set(actorTag, Object.freeze({
         actorTag,
         browserFilename,
@@ -314,6 +340,7 @@ export class NativeAseqAttachedObjectRuntime {
         attachments: Object.freeze(attachments),
         presentation: Object.freeze(presentation),
         nodeTransforms: Object.freeze(nodeTransforms),
+        worldTransforms: Object.freeze(worldTransforms),
       }));
     }
     if (this.definitions.size === 0) {
@@ -384,6 +411,34 @@ export class NativeAseqAttachedObjectRuntime {
       const selected = visibilityByActor.get(event.actorTag);
       if (!selected || selected.frame < event.frame) visibilityByActor.set(event.actorTag, event);
     }
+    const worldPosesByActor = new Map();
+    for (const pose of this.active.worldTransforms) {
+      if (pose.frame > frame) continue;
+      const selected = worldPosesByActor.get(pose.actorTag);
+      if (!selected || selected.frame < pose.frame) worldPosesByActor.set(pose.actorTag, pose);
+    }
+    for (const [actorTag, pose] of worldPosesByActor) {
+      if (pose.lastFrame !== null && frame > pose.lastFrame) worldPosesByActor.delete(actorTag);
+    }
+    let worldTransformsApplied = true;
+    for (const actorTag of this.active.worldTransformActors) {
+      const record = this.objects.get(actorTag);
+      if (record?.sceneObject && this.active.authoredActors.has(actorTag)) continue;
+      if (selectedByActor.get(actorTag)?.action === "attach") continue;
+      const pose = worldPosesByActor.get(actorTag);
+      if (!pose) {
+        record?.root.setEnabled(false);
+        continue;
+      }
+      if (!record || !applyAttachedMatrix(record.root, null, localAttachmentMatrix({
+        translation: pose.position, rotationRaw: pose.rotationRaw,
+      }))) {
+        record?.root.setEnabled(false);
+        worldTransformsApplied = false;
+        continue;
+      }
+      record.root.setEnabled(visibilityByActor.get(actorTag)?.visible ?? true);
+    }
     // A callback can hide a scene prop before attaching it or after releasing
     // it back to AUTH motion. Keep that visibility independent of wrist
     // ownership; unattached package-only props still stay hidden below.
@@ -397,14 +452,15 @@ export class NativeAseqAttachedObjectRuntime {
     for (const binding of this.active.bindings) {
       if (selectedByActor.has(binding.actorTag)) continue;
       const record = this.objects.get(binding.actorTag);
-      if (!record?.sceneObject || !this.active.authoredActors.has(binding.actorTag)) record?.root.setEnabled(false);
+      if ((!record?.sceneObject || !this.active.authoredActors.has(binding.actorTag))
+        && !worldPosesByActor.has(binding.actorTag)) record?.root.setEnabled(false);
     }
     let applied = 0;
     for (const binding of selectedByActor.values()) {
       const record = this.objects.get(binding.actorTag);
       const authDriven = record?.sceneObject && this.active.authoredActors.has(binding.actorTag);
       if (binding.action === "detach") {
-        if (!authDriven) record?.root.setEnabled(false);
+        if (!authDriven && !worldPosesByActor.has(binding.actorTag)) record?.root.setEnabled(false);
         if (record) applied += 1;
         continue;
       }
@@ -438,13 +494,14 @@ export class NativeAseqAttachedObjectRuntime {
       else record.root.setEnabled(false);
     }
     const nodesApplied = this.#applyNodeTransforms(frame);
-    return applied === selectedByActor.size && nodesApplied;
+    return applied === selectedByActor.size && nodesApplied && worldTransformsApplied;
   }
 
   endTrack() {
     if (!this.active) return false;
     const actorTags = new Set([
       ...this.active.bindings, ...this.active.presentation, ...this.active.nodeOperations,
+      ...this.active.worldTransforms,
     ].map(event => event.actorTag));
     for (const actorTag of actorTags) {
       const record = this.objects.get(actorTag);
@@ -480,6 +537,7 @@ export class NativeAseqAttachedObjectRuntime {
     const bindings = this.bindingsByScope.get(scopeKey) || [];
     const presentation = this.presentationByScope.get(scopeKey) || [];
     const nodeOperations = this.nodeOperationsByScope.get(scopeKey) || [];
+    const worldTransforms = this.worldTransformsByScope.get(scopeKey) || [];
     this.active = {
       scopeKey,
       frame: 0,
@@ -487,6 +545,8 @@ export class NativeAseqAttachedObjectRuntime {
       presentation,
       presentationActors: new Set(presentation.map(event => event.actorTag)),
       nodeOperations,
+      worldTransforms,
+      worldTransformActors: new Set(worldTransforms.map(event => event.actorTag)),
     };
     return bindings.length;
   }

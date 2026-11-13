@@ -23,7 +23,7 @@ const MANIFEST_SCHEMA = "new-yokosuka-aseq-activity-pack-v1";
 export function compileNativeAseqAttachedObjects(definitions, activities) {
   return Object.fromEntries(Object.entries(definitions).map(([tag, definition]) => [tag, {
     ...definition,
-    ...Object.fromEntries(["attachments", "presentation", "nodeTransforms"]
+    ...Object.fromEntries(["attachments", "presentation", "nodeTransforms", "worldTransforms"]
       .filter(key => definition[key])
       .map(key => [key, definition[key].map(cue => {
         const matches = activities.filter(activity => cue.activityId
