@@ -1,5 +1,46 @@
 import {expect} from "@playwright/test";
 
+// Decline only the genuine optional Stab Armor offer. The basement search and
+// its saved return checkpoint can both enter this region with the full catalog.
+export async function declineBasementScrollOffer(page, testInfo, character, evidenceName = "basement-optional-scroll-offer") {
+  const saved = () => page.request.get(`/api/characters/${character.id}/state`).then(r => r.json());
+  const idle = async () => {
+    await expect.poll(() => page.evaluate(() => window.storyProbe.regions.controller.status)).toBe("idle");
+    expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+    expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
+  };
+  // The full catalog offers this optional scroll on the floor/shelf approach.
+  // Let the actual region dispatch settle, then decline its own UI before
+  // picking the required object. Do not cancel arbitrary Story interactions.
+  await page.waitForFunction(() => {
+    const p = window.storyProbe, r = p.regions;
+    const region = r.regions.find(region => region.id === "s1.ydb1.stab-armor-scroll");
+    if (!region) throw Error("Missing published Stab Armor scroll region");
+    const position = p.lifecycle.getController().collider.position.asArray();
+    const inside = position.every((value, axis) => value >= region.min[axis] && value <= region.max[axis]);
+    return !inside || r.getCharacter().storyFlags?.[region.completedFlag] || r.inside.has(region.id);
+  });
+  await page.waitForFunction(() => ["idle", "line", "options"].includes(window.storyProbe.regions.controller.status));
+  const slug = await page.evaluate(() => window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug);
+  if (slug === "story-s1-stab-armor-scroll") {
+    const prior = await saved();
+    if (await page.evaluate(() => window.storyProbe.regions.controller.status === "line")) await page.keyboard.press("Space");
+    await expect(page.getByRole("button", {name: "Take the move scroll", exact: true})).toBeVisible();
+    await page.screenshot({path: testInfo.outputPath(`${evidenceName}.png`)});
+    await page.getByRole("button", {name: "Leave it here", exact: true}).click();
+    await idle();
+    const after = await saved();
+    expect(after.inventory).toEqual(prior.inventory);
+    expect(after.character.yen).toBe(prior.character.yen);
+    expect(after.character.currentHp).toBe(prior.character.currentHp);
+    expect(after.character.storyFlags["story.s1.stab-armor-scroll.completed"])
+      .toBe(prior.character.storyFlags["story.s1.stab-armor-scroll.completed"]);
+    console.info("Basement optional Stab Armor scroll declined without a grant");
+  }
+  await idle();
+
+}
+
 // Continue the earned descent save through real mouse picks and the normal
 // WebSocket/Yarn transaction. Resetting the test pose shortens walking only;
 // no future flag, reward, controller outcome or runtime event is fabricated.
@@ -15,6 +56,10 @@ export async function verifyBasementMirrorSearch(page, testInfo, character) {
     expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
     await noErrors();
   };
+  let scrollChecks = 0;
+  const declineOptionalScroll = () => declineBasementScrollOffer(page, testInfo, character,
+    `basement-optional-scroll-offer-${++scrollChecks}`);
+  await declineOptionalScroll();
   const objectState = tag => page.evaluate(tag => {
     const root = window.storyProbe.lifecycle.scene.meshes.find(m => m.metadata?.runtimeObject?.objectTag === tag)?.metadata.runtimeObject.root;
     if (!root) throw Error(`Missing basement prop ${tag}`);
@@ -75,6 +120,7 @@ export async function verifyBasementMirrorSearch(page, testInfo, character) {
       return {x: rect.x + s.x * rect.width / l.engine.getRenderWidth(), y: rect.y + s.y * rect.height / l.engine.getRenderHeight()};
     }, {tag, position, surfacePoint});
     await page.waitForTimeout(350);
+    await declineOptionalScroll();
     const actualPick=await page.evaluate(({point,tag})=>{
       const d=window.storyProbe.interactions,l=window.storyProbe.lifecycle,rect=l.engine.getRenderingCanvas().getBoundingClientRect();
       const pick=l.scene.pick(point.x-rect.x,point.y-rect.y,m=>d.isInteractiveMesh(m),false,l.scene.activeCamera);
@@ -91,6 +137,42 @@ export async function verifyBasementMirrorSearch(page, testInfo, character) {
     await page.keyboard.press("Space");
     await page.waitForFunction(() => window.storyProbe.regions.controller.status === "options");
   };
+  const verifyOwnedAxe = async () => {
+    await idle();
+    const state = await saved();
+    expect(state.character.storyFlags["story.s1.basement-axe.completed"]).toBe(true);
+    const owned = state.inventory.filter(item => item.key === "basement_axe");
+    expect(owned).toHaveLength(1);
+    const item = owned[0];
+    expect(item.quantity).toBe(1);
+    expect(typeof item.name).toBe("string");
+    expect(item.name.trim()).not.toBe("");
+    expect((await objectState("AXE_")).enabled, "the earned axe pickup is disabled").toBe(false);
+    await page.locator("#inventory-button").click();
+    const dialog = page.getByRole("dialog", {name: "Inventory", exact: true});
+    await expect(dialog).toBeVisible();
+    const artwork = dialog.getByRole("img", {name: item.name, exact: true});
+    await expect(dialog.getByText(item.name, {exact: true})).toBeVisible();
+    await expect(artwork).toBeVisible();
+    await artwork.scrollIntoViewIfNeeded();
+    await expect(artwork).toBeInViewport();
+    await expect.poll(() => artwork.evaluate(img => img.complete && img.naturalWidth > 0 && img.naturalHeight > 0)).toBe(true);
+    const image = await artwork.evaluate(img => ({
+      src: img.currentSrc || img.src, complete: img.complete,
+      naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight,
+      bounds: img.getBoundingClientRect().toJSON(),
+    }));
+    expect(new URL(image.src).pathname).toMatch(/\/basement-axe(?:-[^/]+)?\.webp$/);
+    await testInfo.attach("axe-earned-inventory-artwork", {
+      body: JSON.stringify({key: item.key, name: item.name, quantity: item.quantity, ...image}),
+      contentType: "application/json",
+    });
+    await page.screenshot({path: testInfo.outputPath("axe-earned-inventory.png")});
+    await dialog.getByRole("button", {name: "Close inventory", exact: true}).click();
+    await expect(dialog).toBeHidden();
+    await page.locator("#renderCanvas").focus();
+    await idle();
+  };
   const steps = [
     {tag:"FLOR", flag:"story.s1.basement-floor.completed", scene:"s1.ydb1.floor", choice:"Examine the floor", position:[-5.6,0,3.1], point:[-6.1,0,2]},
     {tag:"SHEF", flag:"story.s1.basement-shelf.completed", scene:"s1.ydb1.shelf", choice:"Pull the shelf aside", position:[-5.7,0,2.8]},
@@ -100,7 +182,11 @@ export async function verifyBasementMirrorSearch(page, testInfo, character) {
   ];
   for (const step of steps) {
     const previous = await saved();
-    if (previous.character.storyFlags[step.flag]) continue;
+    if (previous.character.storyFlags[step.flag]) {
+      // A resumed save still verifies the owned artwork without another pickup.
+      if (step.tag === "AXE_") await verifyOwnedAxe();
+      continue;
+    }
     const unchanged = async () => {
       const state = await saved();
       expect(state.character.storyFlags[step.flag]).not.toBe(true);
@@ -132,6 +218,7 @@ export async function verifyBasementMirrorSearch(page, testInfo, character) {
     // reward until the actual final line and scene-cleanup acknowledgement.
     await unchanged(); await page.keyboard.press("Space"); await idle();
     await expect.poll(async () => (await saved()).character.storyFlags[step.flag]).toBe(true);
+    if (step.tag === "AXE_") await verifyOwnedAxe();
   }
   const after = await saved();
   for (const key of ["basement_axe", "phoenix_mirror"]) {

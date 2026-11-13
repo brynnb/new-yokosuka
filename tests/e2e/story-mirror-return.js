@@ -1,5 +1,6 @@
 import {expect} from "@playwright/test";
 import {useStoryInspectable} from "./story-object-input.js";
+import {declineBasementScrollOffer} from "./story-basement.js";
 import mksgPlacements from "../../play/data/mksg-runtime-placements.json" with {type:"json"};
 
 // Continue the genuinely earned mirror save. Pose resets shorten approaches;
@@ -30,15 +31,42 @@ export async function verifyMirrorReturn(page,testInfo,character){
   };
   const economy=async()=>{const state=await saved();expect(state.inventory).toEqual(initial.inventory);expect(state.character.yen).toBe(initial.character.yen);expect(state.character.currentHp).toBe(initial.character.currentHp);};
 
+  // A failed or user-saved approach can be inside the separate optional
+  // Pit Blow offer. Decline that exact offer before requesting another event.
+  if(initial.character.worldId==="exterior"){
+    const hour=new Date(initial.worldState.gameTimeMs).getUTCHours();
+    const pitOffer=await page.evaluate(hour=>{
+      const p=window.storyProbe,r=p.regions,c=r.getCharacter();
+      const region=r.regions.find(region=>region.id==="s1.jhd0.pit-blow");
+      const position=p.lifecycle.getController().collider.position.asArray();
+      return region&&c.playMode==="story"&&c.openingCompleted
+        &&region.requiredFlags.every(flag=>c.storyFlags?.[flag])&&!c.storyFlags?.[region.completedFlag]
+        &&hour>=region.hours[0]&&hour<region.hours[1]
+        &&position.every((value,axis)=>value>=region.min[axis]&&value<=region.max[axis]);
+    },hour);
+    if(pitOffer){
+      await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug==="story-s1-pit-blow"||window.storyProbe.sceneErrors.length);
+      await noErrors();await options();
+      await page.screenshot({path:testInfo.outputPath("mirror-return-optional-pit-blow-offer.png")});
+      await page.getByRole("button",{name:"Not now",exact:true}).click();await idle();await economy();
+      const after=await saved();
+      for(const flag of ["story.s1.pit-blow.completed","story.s1.pit-blow.learned"])
+        expect(after.character.storyFlags[flag]).toBe(initial.character.storyFlags[flag]);
+      console.info("Mirror return declined the saved optional Pit Blow offer without learning it");
+    }
+  }
+
   if(!initial.character.storyFlags["story.s1.fuku-phoenix-mirror.completed"]){
     if(initial.character.worldId==="ydb1"){
+      await declineBasementScrollOffer(page,testInfo,character,"mirror-return-optional-scroll-offer");
       await walkInto([-.758,-.005110997706651688,6],Math.PI,()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.ydb1.basement-return");
       await options();await page.getByRole("button",{name:"Return to the dojo",exact:true}).click();await arrived("exterior");
     }else if(initial.character.worldId!=="exterior"){await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld("exterior"));await arrived("exterior");}
+    // Approach through the clear gap: Pit Blow ends at x8.4; Fuku starts at x8.7.
     const fukuChoice=()=>page.getByRole("button",{name:"Show Fuku-san the mirror",exact:true});
-    if(!await fukuChoice().isVisible())await walkInto([8.1,.96,-22.5],-Math.PI/2,()=>window.storyProbe.regions.controller.status==="options"||window.storyProbe.sceneErrors.length);
+    if(!await fukuChoice().isVisible())await walkInto([8.55,.96,-22.5],-Math.PI/2,()=>window.storyProbe.regions.controller.status==="options"||window.storyProbe.sceneErrors.length);
     await expect(fukuChoice()).toBeVisible();await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();
-    const fukuApproach=async()=>{await walkInto([8.1,.96,-22.5],-Math.PI/2,()=>window.storyProbe.regions.controller.status==="options"||window.storyProbe.sceneErrors.length);await expect(fukuChoice()).toBeVisible();};
+    const fukuApproach=async()=>{await walkInto([8.55,.96,-22.5],-Math.PI/2,()=>window.storyProbe.regions.controller.status==="options"||window.storyProbe.sceneErrors.length);await expect(fukuChoice()).toBeVisible();};
     await fukuApproach();await fukuChoice().click();await cutscene("story-s1-fuku-phoenix-mirror");
     await page.waitForTimeout(1800);await page.screenshot({path:testInfo.outputPath("fuku-mirror-cancelled-original.png")});
     await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-mirror-referral-cancel"));await idle();
