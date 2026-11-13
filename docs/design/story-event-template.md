@@ -432,7 +432,7 @@ does not establish working mouth animation or envelope presentation.
 | Bus / first harbor arrival | Protected real-GPU continuations verify normal walking from the tobacco counter around original collision boundaries to the bus, real picking, stay/cancel/retry, natural boarding, atomic harbor/pending save, arrival-film cancellation/reload/retry, natural original YBUSFLY D ending and completed reload. The later run uses the same fresh character 5 after opening through phone was earned, then earns the directory and covers the actual 2.14-metre first CMAL leg and the bus approach. HP/yen/inventory and control/actor cleanup pass. Earlier isolated predecessors were seeded; the fresh continuation uses the travel menu from home to Dobuita, and earlier helpers may shorten approaches or skip scenes. Whole-route completion is not claimed. Timetable, fare, original variant choice, one worker motion binding and the exploration spawn remain adapted or omitted. |
 | Goro's first harbor encounter | Connected approach, original voiced cast, cancellation/re-entry, wrong input/retry, actual Left/A/B success, original winning motion, directions/notebook, controls and saved reload verified. Real compiler/database tests cover earned arrival gate, accepted bounds, stale input, cancellation after winning, once-only effects and personal isolation. Placement/cameras/held challenge poses are authored. |
 | New Warehouse No. 8: refusal → rear window → overheard clue | Connected rendered approach, original voiced guard, cancellation/re-entry, climb decline/retry, correctly aligned original entering-window motion, exact office arrival, cancelled conversation/reload, saved Old Warehouse District notebook and restored controls verified. Real compiler/database tests cover bounds, stale acknowledgement, cancelled/declined climb without travel, atomic original arrival, once-only effects and personal isolation. Crate physics and walkway search are condensed. |
-| Old Warehouse District daytime gate / nighttime entry | Optional original voiced guard, cancellation/re-entry, waiting in the same area until 19:00, failed Right QTE/retry, original head-bump/catch motion, saved original inside-district arrival, ground support, restored control and reload verified. Compiler/database tests prove personal-hour boundaries, cancelled successful input without travel, exact atomic arrival and no fabricated stealth/Chen success. Shot, held prompt and flashlight binding are authored. |
+| Old Warehouse District daytime gate / nighttime entry | Optional original voiced guard, cancellation/re-entry, waiting in the same area until 19:00, failed Right QTE/retry, original head-bump/catch motion, saved original inside-district arrival, ground support, the automatic ready-stealth handoff and reload verified. Compiler/database tests prove personal-hour boundaries, cancelled successful input without travel, exact atomic arrival and no fabricated stealth/Chen success. Shot, held prompt and flashlight binding are authored. |
 | Old Warehouse District guard avoidance | Connected original-geometry movement, patrols, cover and actual door use; rendered cancellation/reload, capture/next-morning recovery, re-entry, success and saved MS08 arrival verified. Real compiler/database tests cover interrupted input, real detection, atomic recovery and character isolation. Routes, vision/balance and framing are authored, not recovered guard AI. |
 | Master Chen's first meeting | Connected four-segment original presentation, plate confirmation and atomic notebook/next-morning home return verified. Real compiler/database checks cover prerequisites, decline, cancellation at every segment and stale acknowledgements. Rendered approach, decline, live cancellation, natural completion, original Chen/Gui Zhang/body/camera presentation, saved home return and reload pass. |
 | Family lead to the antique shop | Connected optional original-voiced Ine-san hint and original SORA/INEK sequence. Compiler/database cancellation and atomic-clue checks pass. Rendered hint/approach, live cancellation/retry, natural completion, saved clue, restored movement and reload without replay pass. |
@@ -2271,8 +2271,8 @@ and accepted position; client scheduling is not authorization.
 It uses test travel and positions Ryo near the gate rather than walking from the
 warehouse. It verifies the original daytime cast/voice, cancellation/re-entry, real waiting
 without another approach, wrong direction/retry, real Right input, original
-motion, saved compound load, supported floor/restored control and reload
-without replay. `TestHarborWarehouseInvestigationAndNighttimeEntry` extends the
+motion, saved compound load, supported floor and the automatic ready-stealth
+handoff after entry and reload without replay. `TestHarborWarehouseInvestigationAndNighttimeEntry` extends the
 connected real compiler/PostgreSQL test through both gate variants, including
 stale/cancelled acknowledgements, personal-hour boundaries and atomic arrival.
 Night access is explicitly **not** stealth or Master Chen completion.
@@ -2282,6 +2282,19 @@ pinned-source extraction path for all three banks and the flashlight. Existing
 Goro/window motion bytes are unchanged; manifests record the shared producer.
 Audio starts in-browser; listening fidelity was not assessed. No deployment or
 R2 publication is performed.
+
+The fresh character’s `harbor-r2-07` attempt earned the daytime advice,
+wrong/correct QTE and compound entry before an obsolete idle assertion failed: the
+automatic stealth challenge was already ready. `harbor-r3-01` resumed those
+receipts without repeating the gate or changing the clock. It required the exact
+`story-s1-old-district-stealth` owner, ready navigation and original four actor
+tags before and after reload, while stealth and Chen receipts remained unset.
+Ordinary exploration movement is correctly locked while that challenge owns
+input. The subsequent `harbor-r3-02` patrol check passed cancellation/reload,
+keyboard movement, cover, sprint and door use, then verified unlocked exploration
+in MS08 and the saved result after reload. Together these retained reports
+extend the same fresh save; they do not claim a second fresh gate replay or
+original patrol fidelity.
 
 ### Connected guard avoidance
 

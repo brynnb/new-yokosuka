@@ -40,6 +40,18 @@ export async function verifyFirstChenMeeting(page,testInfo,character){
   expect((await saved()).character.worldId).toBe("interior");expect(await page.evaluate(()=>window.storyProbe.starts.some(id=>id.startsWith("story-s1-master-chen")))).toBe(false);await idle();
 }
 
+// Entry hands directly to this event, including after reconnect. Reuse the
+// same ordinary intro-dialogue readiness as the separate patrol acceptance.
+async function readyOldDistrictStealth(page){
+  const errors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug==="story-s1-old-district-stealth"||window.storyProbe.sceneErrors.length,null,{timeout:60_000});await errors();
+  for(let n=0;n<30&&!await page.evaluate(()=>window.storyProbe.navigation?.active?.ready);n++){
+    await page.keyboard.press("Space");await page.waitForTimeout(150);await errors();
+  }
+  await page.waitForFunction(()=>window.storyProbe.navigation?.active?.ready||window.storyProbe.sceneErrors.length,null,{timeout:30_000});await errors();
+  await page.locator("#renderCanvas").focus();
+}
+
 // Resume a genuinely earned district arrival. Navigate with ordinary keyboard
 // intents; no coordinate, detection or success writes are used to win.
 export async function verifyOldDistrictStealth(page,testInfo,character){
@@ -48,14 +60,7 @@ export async function verifyOldDistrictStealth(page,testInfo,character){
   expect(character.storyFlags["story.s1.old-district-stealth.completed"]).not.toBe(true);
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const errors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
-  const ready=async()=>{
-    await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug==="story-s1-old-district-stealth"||window.storyProbe.sceneErrors.length,null,{timeout:60_000});await errors();
-    for(let n=0;n<30&&!await page.evaluate(()=>window.storyProbe.navigation?.active?.ready);n++){
-      await page.keyboard.press("Space");await page.waitForTimeout(150);await errors();
-    }
-    await page.waitForFunction(()=>window.storyProbe.navigation?.active?.ready||window.storyProbe.sceneErrors.length,null,{timeout:30_000});await errors();
-    await page.locator("#renderCanvas").focus();
-  };
+  const ready=()=>readyOldDistrictStealth(page);
   await ready();
   if(process.env.NEW_YOKOSUKA_STEALTH_CAPTURE_E2E==="true"){
     const before=(await saved()).worldState.gameTimeMs;
@@ -144,68 +149,90 @@ export async function verifyOldDistrictStealth(page,testInfo,character){
 // Resetting a nearby approach position isolates the trigger, not its outcomes.
 export async function verifyOldDistrictEntry(page,testInfo,character){
   expect(character.storyFlags["story.s1.warehouse-eight-overheard.completed"]).toBe(true);
-  expect(character.storyFlags["story.s1.old-district-entry.completed"]).not.toBe(true);
+  expect(character.storyFlags["story.s1.old-district-stealth.completed"]).not.toBe(true);
+  if(character.storyFlags["story.s1.old-district-entry.completed"]) expect(character.worldId).toBe("mksg");
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
   const waitUntil=async label=>{await page.locator("#story-wait-button").click();await page.getByRole("option",{name:label,exact:true}).click();await page.getByRole("button",{name:label,exact:true}).click();};
-  // A cancelled prior attempt may resume at the eligible gate at night.
-  // Leave that live event before selecting an earlier-time fixture approach.
-  await page.evaluate(async()=>{
-    await window.storyProbe.regions.controller.cancel("test-prepare-gate-continuation");
-    const l=window.storyProbe.lifecycle;await l.travelToWorld("mfsy");
-    l.resetPlayer(l.vectorFromArray([130,0,-12]),0,{persist:false});
-  });
-  await idle();await expect(page.locator("#loading")).toBeHidden({timeout:90_000});
-  const hour=new Date((await saved()).worldState.gameTimeMs).getUTCHours();
-  if(hour>=18)await waitUntil("Wait until tomorrow morning");
-  const approach=async()=>{
-    await page.evaluate(()=>{const l=window.storyProbe.lifecycle;l.resetPlayer(l.vectorFromArray([124,0,-12]),-Math.PI/2,{persist:false});l.getController().setFirstPerson(false);});
-    await page.waitForTimeout(300);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
-    try{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug==="story-s1-old-district-day-gate"||window.storyProbe.sceneErrors.length,null,{timeout:20_000});}finally{await page.keyboard.up("KeyW");}
-    await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length,null,{timeout:30_000});await noErrors();
+  const checkpoint=async()=>{
+    const state=await saved();expect(state.character.id).toBe(character.id);expect(state.character.worldId).toBe("mksg");
+    for(const flag of ["story.s1.old-district-entry.completed","story.s1.old-district-flashlight.caught","notebook.s1.old-district-patrols"]) expect(state.character.storyFlags[flag],flag).toBe(true);
+    expect(state.character.storyFlags["story.s1.old-district-stealth.completed"]).not.toBe(true);expect(state.character.storyFlags["story.s1.master-chen.completed"]).not.toBe(true);
+    expect(state.character.yen).toBe(character.yen);expect(state.character.currentHp).toBe(character.currentHp);
   };
-  await approach();await page.screenshot({path:testInfo.outputPath("old-district-daytime-guard.png")});
-  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-daytime-guard"));await idle();
-  expect((await saved()).character.storyFlags["notebook.s1.old-district-night"]).not.toBe(true);
-  await approach();
-  for(let i=0;i<25&&!await page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.old-district-night"]);i++){await page.keyboard.press("Space");await page.waitForTimeout(150);await noErrors();}
-  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.old-district-night"])).toBe(true);await idle();
-  // Stay in the gate volume. Waiting must change eligibility without needing
-  // a new approach, even if the daytime region already consumed its dispatch.
-  await waitUntil("Wait until 7 p.m.");
-  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug==="story-s1-old-district-night-entry"||window.storyProbe.sceneErrors.length,null,{timeout:30_000});await noErrors();
-  await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length);await noErrors();
-  await page.keyboard.press("Space");
-  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.mfsy.old-district-head-bump"||window.storyProbe.sceneErrors.length);await noErrors();
-  await page.waitForTimeout(500);await page.screenshot({path:testInfo.outputPath("old-district-original-head-bump.png")});
-  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await noErrors();
-  await page.screenshot({path:testInfo.outputPath("old-district-right-prompt.png")});
-  await page.keyboard.press("ArrowLeft");await expect(page.getByRole("button",{name:"Try again",exact:true})).toBeVisible();
-  expect((await saved()).character.storyFlags["story.s1.old-district-entry.completed"]).not.toBe(true);expect((await saved()).character.worldId).toBe("mfsy");
-  await page.getByRole("button",{name:"Try again",exact:true}).click();
-  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready);expect(await page.evaluate(()=>window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0])).toBe("Right");
-  await page.keyboard.press("ArrowRight");
-  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.mfsy.old-district-catch"||window.storyProbe.sceneErrors.length);await noErrors();
-  await page.waitForTimeout(5_000);await page.screenshot({path:testInfo.outputPath("old-district-original-flashlight-catch.png")});
-  const flashlight=await page.evaluate(()=>{
-    const root=window.storyProbe.authoredScene.active.objects.objects.get("FLAS").root;
-    const box=root.getHierarchyBoundingVectors();
-    return {enabled:root.isEnabled(),min:box.min.asArray(),max:box.max.asArray()};
-  });
-  expect(flashlight.enabled).toBe(true);
-  console.info("Original flashlight presentation:",JSON.stringify(flashlight));
+  const handoff=async label=>{
+    await readyOldDistrictStealth(page);
+    const state=await page.evaluate(()=>{
+      const p=window.storyProbe;
+      return {world:p.lifecycle.worldRuntime.activeWorld.id,script:p.regions.controller.active?.scriptIdentity.scriptSlug,
+        controllerStatus:p.regions.controller.status,movementLocked:p.lifecycle.getController().movementLocked,
+        navigationReady:p.navigation?.active?.ready,actors:p.navigation?.active?.view?.actors.map(actor=>actor.tag)};
+    });
+    expect(state).toMatchObject({world:"mksg",script:"story-s1-old-district-stealth",movementLocked:true,navigationReady:true});
+    expect(state.actors).toEqual(["AKIR","KEBB","KEBC","KEBD"]);
+    await testInfo.attach(label,{body:JSON.stringify(state),contentType:"application/json"});
+  };
+  // Resume an earned entry without cancelling its next event or repeating the
+  // daytime gate, wait, and flashlight QTE. STEALTH earns its own result later.
+  if(!character.storyFlags["story.s1.old-district-entry.completed"]){
+    // A cancelled prior attempt may resume at the eligible gate at night.
+    // Leave that live event before selecting an earlier-time fixture approach.
+    await page.evaluate(async()=>{
+      await window.storyProbe.regions.controller.cancel("test-prepare-gate-continuation");
+      const l=window.storyProbe.lifecycle;await l.travelToWorld("mfsy");
+      l.resetPlayer(l.vectorFromArray([130,0,-12]),0,{persist:false});
+    });
+    await idle();await expect(page.locator("#loading")).toBeHidden({timeout:90_000});
+    const hour=new Date((await saved()).worldState.gameTimeMs).getUTCHours();
+    if(hour>=18)await waitUntil("Wait until tomorrow morning");
+    const approach=async()=>{
+      await page.evaluate(()=>{const l=window.storyProbe.lifecycle;l.resetPlayer(l.vectorFromArray([124,0,-12]),-Math.PI/2,{persist:false});l.getController().setFirstPerson(false);});
+      await page.waitForTimeout(300);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");
+      try{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug==="story-s1-old-district-day-gate"||window.storyProbe.sceneErrors.length,null,{timeout:20_000});}finally{await page.keyboard.up("KeyW");}
+      await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length,null,{timeout:30_000});await noErrors();
+    };
+    await approach();await page.screenshot({path:testInfo.outputPath("old-district-daytime-guard.png")});
+    await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-cancel-daytime-guard"));await idle();
+    expect((await saved()).character.storyFlags["notebook.s1.old-district-night"]).not.toBe(true);
+    await approach();
+    for(let i=0;i<25&&!await page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.old-district-night"]);i++){await page.keyboard.press("Space");await page.waitForTimeout(150);await noErrors();}
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.old-district-night"])).toBe(true);await idle();
+    // Stay in the gate volume. Waiting must change eligibility without needing
+    // a new approach, even if the daytime region already consumed its dispatch.
+    await waitUntil("Wait until 7 p.m.");
+    await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug==="story-s1-old-district-night-entry"||window.storyProbe.sceneErrors.length,null,{timeout:30_000});await noErrors();
+    await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length);await noErrors();
+    await page.keyboard.press("Space");
+    await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.mfsy.old-district-head-bump"||window.storyProbe.sceneErrors.length);await noErrors();
+    await page.waitForTimeout(500);await page.screenshot({path:testInfo.outputPath("old-district-original-head-bump.png")});
+    await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await noErrors();
+    await page.screenshot({path:testInfo.outputPath("old-district-right-prompt.png")});
+    await page.keyboard.press("ArrowLeft");await expect(page.getByRole("button",{name:"Try again",exact:true})).toBeVisible();
+    expect((await saved()).character.storyFlags["story.s1.old-district-entry.completed"]).not.toBe(true);expect((await saved()).character.worldId).toBe("mfsy");
+    await page.getByRole("button",{name:"Try again",exact:true}).click();
+    await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready);expect(await page.evaluate(()=>window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0])).toBe("Right");
+    await page.keyboard.press("ArrowRight");
+    await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.mfsy.old-district-catch"||window.storyProbe.sceneErrors.length);await noErrors();
+    await page.waitForTimeout(5_000);await page.screenshot({path:testInfo.outputPath("old-district-original-flashlight-catch.png")});
+    const flashlight=await page.evaluate(()=>{
+      const root=window.storyProbe.authoredScene.active.objects.objects.get("FLAS").root;
+      const box=root.getHierarchyBoundingVectors();
+      return {enabled:root.isEnabled(),min:box.min.asArray(),max:box.max.asArray()};
+    });
+    expect(flashlight.enabled).toBe(true);
+    console.info("Original flashlight presentation:",JSON.stringify(flashlight));
+  }
   await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="mksg"||window.storyProbe.sceneErrors.length,null,{timeout:90_000});await noErrors();
-  await expect(page.locator("#loading")).toBeHidden({timeout:90_000});await idle();
+  await expect(page.locator("#loading")).toBeHidden({timeout:90_000});await handoff("old-district-entry-handoff");
   await page.waitForTimeout(2_000);await noErrors();
   const position=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());
   expect(position[1]).toBeGreaterThan(-.5);expect(position[1]).toBeLessThan(1);
   await page.screenshot({path:testInfo.outputPath("old-district-earned-compound-arrival.png")});
-  const state=await saved();expect(state.character.worldId).toBe("mksg");expect(state.character.storyFlags["story.s1.old-district-entry.completed"]).toBe(true);
-  expect(state.character.storyFlags["story.s1.old-district-stealth.completed"]).not.toBe(true);expect(state.character.storyFlags["story.s1.master-chen.completed"]).not.toBe(true);
-  expect(state.character.yen).toBe(character.yen);expect(state.character.currentHp).toBe(character.currentHp);
+  await checkpoint();
   await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
   await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:90_000});await expect(page.locator("#loading")).toBeHidden({timeout:90_000});await page.waitForTimeout(1_000);await noErrors();
   expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-old-district-night-entry"))).toBe(false);
-  expect((await saved()).character.storyFlags["notebook.s1.old-district-patrols"]).toBe(true);await idle();
+  await handoff("old-district-entry-reloaded-handoff");await checkpoint();
+  await page.screenshot({path:testInfo.outputPath("old-district-entry-reloaded-handoff.png")});
 }
