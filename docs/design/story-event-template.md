@@ -2425,6 +2425,19 @@ approach, cancels/retries, completes all three scenes naturally, moves Ryo after
 cleanup and reloads without replay. That rendered check passes; inspected
 screenshots show Fuku by the tree and Ine-san on the porch.
 
+The fresh continuation `route-r1-01` naturally finished this family sequence
+and saved its lead before a post-film movement assertion recorded zero
+displacement. The controller was idle/unlocked and no extra scene or notebook
+was open, but the failed capture did not record effective gameplay input or
+native presentation ownership. Its immediate cleanup cause remains unresolved.
+`family-r2-01` resumed the earned exterior checkpoint without replay or position
+reset. It recorded real forward input in the gameplay action snapshot and
+0.359642 metres of both collider and actor movement, then verified unchanged
+HP, yen and inventory, saved receipts and reload without replay. The helper now
+waits for native presentation ownership as well as the movement lock to clear
+and retains bounded focus/input/position evidence. That resumed success is
+separate from proof of the original immediate post-cinematic cleanup.
+
 ## Bunkado sword handguard
 
 Official import: `story-s1-bunkado-handguard`. The
