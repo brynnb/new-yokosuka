@@ -30,10 +30,11 @@ const lessons = [
   {moveId:'crossCharge', area:'MFSY', worldId:'mfsy', teacher:shozo, position:[78.4,0,39.8], requires:['story.s1.workday-four-payday.completed',learned('shadowBlade')], hours:[17.5,23.5]},
 ];
 const provenance='Authored optional learning adaptation using the existing shared combat engine and contemporary move guides. Original character models and recovered move commands; captions, placement, offers and retry windows are authored. No per-move proficiency changes.';
-// Required Story routes use the 200+ priority band. Optional entry offers
-// must not steal the same room/teacher approach (e.g. Twin Blades vs Fuku's
-// travel discussion). Their own distinct priorities still disambiguate gates.
-const optionalEntryPriority=100;
+// Required Story entries include the original priority-100 dojo/Heartbeats
+// imports as well as the newer 200+ routes. Equal selector/priority candidates
+// fail before Yarn checks their distinct bounds or prerequisite flags. Keep
+// optional lessons below both bands, with distinct priorities for shared areas.
+const optionalEntryPriority=50;
 const routeBase=(id,area,worldId,requiredFlags=[])=>({id,area,actor:'AKIR',presentActors:[],trigger:'enter',
   priority:optionalEntryPriority,requiredFlags,completedFlag:`story.s1.${id}.completed`,effects:[],voiceIds:[],nativeSources,provenance,
   summary:'Optional move learning through acknowledged personal Story events. Decline/cancel does not teach or grant items.'});
