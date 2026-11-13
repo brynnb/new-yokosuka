@@ -3983,55 +3983,20 @@ async function verifyGaoRescue(page,testInfo,character,{earned=false}={}) {
       const view=window.storyProbe.combatRuntime?.active?.view,owner=window.storyProbe.combatRuntime.active;
       return view?.ready&&view.token!==old&&owner?.token===view.token&&owner.view.ready&&!!owner.input;
     },lostToken,{timeout:30_000});
+    const gaoInputStart=await page.evaluate(()=>window.storyProbe.combatInputs.length);
+    const gaoPlayerId=await page.evaluate(()=>window.storyProbe.combatRuntime.encounter.player.id);
     for(let attempt=0;attempt<4;attempt++){
-      const samples=[];let lastAttack=0;
-      await page.locator('#renderCanvas').focus();await page.keyboard.down('KeyI');
-      await page.keyboard.down('KeyS');await page.waitForTimeout(350);await page.keyboard.up('KeyS');
-      const heldMovement=new Set();
-      try {
-      for(let i=0;i<1600&&await page.evaluate(()=>!!window.storyProbe.combatRuntime?.active?.view);i++) {
-        // Read the authoritative positions, then use physical keyboard input.
-        // Standing still against three attackers is not a guaranteed victory.
-        const sample=await page.evaluate(()=>{
-          const runtime=window.storyProbe.combatRuntime,view=runtime.active?.view;
-          if(!view)return null;
-          const player=view.actors[0];
-          const opponents=view.actors.slice(1).filter(actor=>actor.health>0)
-            .sort((a,b)=>Math.hypot(player.x-a.x,player.z-a.z)-Math.hypot(player.x-b.x,player.z-b.z));
-          const enemy=opponents[0];if(!enemy)return {keys:[]};
-          const distance=Math.hypot(player.x-enemy.x,player.z-enemy.z);
-          const x=(player.x-enemy.x)/Math.max(.01,distance),z=(player.z-enemy.z)/Math.max(.01,distance);
-          const yaw=runtime.encounter.playerTargetYaw(),bindings=runtime.active.input.getBindings();
-          const forward=Math.sin(yaw)*x+Math.cos(yaw)*z,side=Math.cos(yaw)*x-Math.sin(yaw)*z;
-          const e=runtime.encounter;
-          return {keys:distance>=1.25?[]:distance<.01?[bindings.down]:[Math.abs(forward)>.25?(forward>0?bindings.up:bindings.down):null,
-            Math.abs(side)>.25?(side>0?bindings.right:bindings.left):null].filter(Boolean),distance,
-            playerHealth:e.player.health,move:e.player.lastMoveId,action:e.player.action?.moveId,
-            enemyHealth:e.opponents.map(o=>o.combatant.health),target:e.player.targetId};
-        });
-        if(!sample)break;
-        if(i%25===0){samples.push(sample);if(samples.length>12)samples.shift();}
-        const {keys}=sample;
-        for(const key of heldMovement)if(!keys.includes(key)){await page.keyboard.up(key);heldMovement.delete(key);}
-        for(const key of keys)if(!heldMovement.has(key)){await page.keyboard.down(key);heldMovement.add(key);}
-        if(!earned){await page.keyboard.press('KeyK');}
-        else if(sample.distance<1.55&&!sample.action&&Date.now()-lastAttack>900){
-          // An ordinary down+kick has knockdown and does more damage than
-          // endlessly holding guard+kick against three simultaneous enemies.
-          for(const key of heldMovement)await page.keyboard.up(key);
-          heldMovement.clear();await page.keyboard.up('KeyI');
-          await page.keyboard.press('KeyS');await page.keyboard.press('KeyK');
-          await page.keyboard.down('KeyI');lastAttack=Date.now();
-        }
-        await page.waitForTimeout(100);
-      }
-      } finally {
-        await page.keyboard.up('KeyI');for(const key of heldMovement)await page.keyboard.up(key);
-      }
+      // Use the same real directional commands and crowd movement as the
+      // ambush. Releasing guard before W,W,J or S,K avoids repeatedly asking
+      // for a guard+kick chord while three opponents surround Ryo.
+      await fightStoryAmbush(page,testInfo,{nextButton:null,artifactPrefix:`gao-attempt-${attempt+1}`});
       const retry=page.getByRole('button',{name:'Try again',exact:true});
       await expect.poll(async()=>await retry.isVisible()||await page.evaluate(()=>window.storyProbe.authoredScene?.active?.scene.id==='s1.jd00.gao-hostage'),{timeout:30_000}).toBe(true);
       if(!await retry.isVisible())break;
-      console.info(`Gao fight attempt ${attempt+1} lost:`,JSON.stringify(samples.at(-1)));
+      console.info(`Gao fight attempt ${attempt+1} lost:`,JSON.stringify(await page.evaluate(()=>{
+        const view=window.storyProbe.lastCombatView;
+        return {outcome:view?.outcome,actors:view?.actors?.map(actor=>({tag:actor.tag,health:actor.health}))};
+      })));
       expect((await saved()).character.storyFlags['notebook.s1.gao-wen']).not.toBe(true);
       if(attempt===3)throw Error('Gao fight was lost after four ordinary retries');
       await retry.click();await advanceTo('combat');
@@ -4041,11 +4006,14 @@ async function verifyGaoRescue(page,testInfo,character,{earned=false}={}) {
       held:[...(window.storyProbe.combatRuntime.active?.input?.held||[])],errors:window.storyProbe.sceneErrors,
     }))),contentType:'application/json'});
     await noErrors();
-    if(earned){
-      expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(intent=>intent.action==='leg'))).toBe(true);
-      expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(intent=>intent.guard))).toBe(true);
-    }else expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(intent=>intent.guard&&intent.action==='leg'))).toBe(true);
-    expect(await page.evaluate(()=>window.storyProbe.combatInputs.some(intent=>Math.hypot(intent.moveX,intent.moveZ)>0))).toBe(true);
+    const gaoInputs=await page.evaluate(start=>window.storyProbe.combatInputs.slice(start),gaoInputStart);
+    // A distance-based strategy can win with Elbow Assaults alone; require
+    // consumed attack, guard, and movement input without prescribing a kick.
+    expect(gaoInputs.some(intent=>['hand','leg','throw'].includes(intent.action)), 'Gao fight consumes real attack input').toBe(true);
+    expect(gaoInputs.some(intent=>intent.guard), 'Gao fight consumes real guard input').toBe(true);
+    expect(gaoInputs.some(intent=>Math.hypot(intent.moveX,intent.moveZ)>0), 'Gao fight consumes real movement input').toBe(true);
+    expect(await page.evaluate(playerId=>window.storyProbe.fightEvents.some(event=>
+      event.type==='hit'&&event.attackerId===playerId&&event.damage>0),gaoPlayerId), 'Gao victory includes a real player hit').toBe(true);
     await scene('s1.jd00.gao-hostage');await page.screenshot({path:testInfo.outputPath('gao-hostage-with-ball.png')});await advanceTo('challenge');
     expect((await saved()).character.storyFlags['notebook.s1.gao-wen']).not.toBe(true);
     await page.keyboard.press('Shift');
