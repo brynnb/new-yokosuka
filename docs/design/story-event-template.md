@@ -428,8 +428,8 @@ does not establish working mouth animation or envelope presentation.
 | Gao Wen rescue / translator referral | Connected browser check verifies original-voiced cast, real three-opponent loss/retry/win, failed A-QTE attempt/retry, original kick/ball/hostage presentation, grandmother referral, notebook, restored controls and saved reload. Compiler/database gates, cancellation, stale input and personal isolation pass. Roadside staging/ball trajectory/basic AI are explicit adaptations. |
 | Xia Xiu Yu / Chinese-letter translation | Connected real-door entry, original TOKI actors/voices/cameras, cancellation/re-entry, natural ending, two notebook pages, restored arrival/camera/controls and saved reload verified. Compiler/database possession/presence/hours, stale acknowledgement, repeat and personal-isolation checks pass. Letter attachment/fold data is reused; complete hand/finger fidelity is not claimed. |
 | Telephone passwords / Warehouse No. 8 lead | Both real-phone clicks, original initial voice playback, wrong answer/leave, cancellation after the first correct answer, retry, saved warehouse notebook, restored controls, reload and no native fallback verified in the browser. All four reciprocal pair orientations, proximity, stale replies, shared once-only settlement and personal isolation pass compiler/database tests. Receiver/dial choreography remains approximate. |
-| Telephone directory / Amihama | Real TBK1 use, original successful 01TEL camera/body/voices, visibly textured open book, cancellation/re-entry, natural completion, saved Amihama page, restored book/player/controls, reload and repeat decline verified. Compiler/database proximity, stale acknowledgement, once-only settlement, personal isolation and legacy candidate-chain checks pass. Book hand binding/swap timing are explicit adaptations. |
-| Bus / first harbor arrival | A protected real-GPU continuation verifies normal walking from the tobacco counter around original collision boundaries to the bus, real picking, stay/cancel/retry, natural boarding, atomic harbor/pending save, arrival-film cancellation/reload/retry, natural original YBUSFLY D ending and completed reload. HP/yen/inventory and control/actor cleanup pass. Earlier predecessors are seeded; timetable, fare, original variant choice, one worker motion binding and the exploration spawn remain adapted or omitted. |
+| Telephone directory / Amihama | Real TBK1 use, original successful 01TEL camera/body/voices, visibly textured open book, cancellation/re-entry, natural completion, saved Amihama page, restored book/player/controls, reload and repeat decline verified. The later continuation on the same fresh character earns the directory after opening through phone, using the travel menu from home to Dobuita then physical street/counter walking. Compiler/database proximity, stale acknowledgement, once-only settlement, personal isolation and legacy candidate-chain checks pass. Book hand binding/swap timing are explicit adaptations. |
+| Bus / first harbor arrival | Protected real-GPU continuations verify normal walking from the tobacco counter around original collision boundaries to the bus, real picking, stay/cancel/retry, natural boarding, atomic harbor/pending save, arrival-film cancellation/reload/retry, natural original YBUSFLY D ending and completed reload. The later run uses the same fresh character 5 after opening through phone was earned, then earns the directory and covers the actual 2.14-metre first CMAL leg and the bus approach. HP/yen/inventory and control/actor cleanup pass. Earlier isolated predecessors were seeded; the fresh continuation uses the travel menu from home to Dobuita, and earlier helpers may shorten approaches or skip scenes. Whole-route completion is not claimed. Timetable, fare, original variant choice, one worker motion binding and the exploration spawn remain adapted or omitted. |
 | Goro's first harbor encounter | Connected approach, original voiced cast, cancellation/re-entry, wrong input/retry, actual Left/A/B success, original winning motion, directions/notebook, controls and saved reload verified. Real compiler/database tests cover earned arrival gate, accepted bounds, stale input, cancellation after winning, once-only effects and personal isolation. Placement/cameras/held challenge poses are authored. |
 | New Warehouse No. 8: refusal → rear window → overheard clue | Connected rendered approach, original voiced guard, cancellation/re-entry, climb decline/retry, correctly aligned original entering-window motion, exact office arrival, cancelled conversation/reload, saved Old Warehouse District notebook and restored controls verified. Real compiler/database tests cover bounds, stale acknowledgement, cancelled/declined climb without travel, atomic original arrival, once-only effects and personal isolation. Crate physics and walkway search are condensed. |
 | Old Warehouse District daytime gate / nighttime entry | Optional original voiced guard, cancellation/re-entry, waiting in the same area until 19:00, failed Right QTE/retry, original head-bump/catch motion, saved original inside-district arrival, ground support, restored control and reload verified. Compiler/database tests prove personal-hour boundaries, cancelled successful input without travel, exact atomic arrival and no fabricated stealth/Chen success. Shot, held prompt and flashlight binding are authored. |
@@ -2099,6 +2099,31 @@ removal or widened boarding region was needed to verify the walk.
 Inspected captures show Ryo inside the original bus and the rendered harbor.
 The test now waits for the loading cover to disappear: an earlier ready-only
 check incorrectly passed while the loading UI displayed an error.
+
+A further protected continuation on the same fresh character 5 passed in
+`browser-earned-earned-bus-harbor-r2-04.log` (327.1 seconds including the
+hardware-renderer check). Opening through the phone call had been earned;
+directory, Amihama notebook and all bus/arrival receipts were initially unset.
+The helper used the travel menu from the home interior to Dobuita, then ordinary
+keyboard walking to the directory and the real TBK1 picker. Directory
+cancellation, original voiced natural completion, notebook settlement and reload
+passed before the bus walk. The actual departure was
+`[-36.0351, 0.008876, 11.2381]`, about 2.14 metres from the first CMAL waypoint,
+so that previously unaccepted first leg was included. The input attachment
+records KeyW down/up on the canvas and 40 retained forward, unlocked movement
+samples; one passes within 0.16 metres of CMAL. The walk reached
+`[-44.8882, 0.003137, 8.4449]` inside the unchanged boarding bounds.
+
+The same run passed staying, boarding cancellation/retry, natural boarding,
+saved harbor/pending receipts, arrival-film cancellation/reload, natural arrival
+completion and completed reload without replay. The final saved character is in
+`mfsy` with unchanged HP 100/100, yen 2500 and `chinese_letter` quantity 1;
+Goro completion is still unset. Both pending and completed film receipts remain
+saved, with completed guarding replay. This extends the fresh earned
+continuation while preserving the earlier isolated and explicit-skip evidence.
+The home-to-Dobuita travel-menu shortcut and earlier helpers' shortened
+approaches or supported skips remain limitations; it is not whole-route
+completion or uninterrupted natural playback of every preceding stage.
 
 Compiler/database tests cover proximity, cancellation, stale acknowledgements,
 atomic settlement, late position writes and mode round trips. The PostgreSQL

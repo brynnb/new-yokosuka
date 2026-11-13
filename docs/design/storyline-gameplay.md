@@ -59,6 +59,20 @@ completed it naturally and reloaded without replay. The earlier phone/Chinese-le
 checkpoint and initial clock/geography were seeded; directory, boarding and arrival
 outcomes were earned during the run. This establishes that physical segment from
 its disclosed predecessor, alongside the earlier near-bus checks.
+
+A later continuation on the same fresh character 5 also passed after earning
+opening through the phone call, then the directory during this run
+(`browser-earned-earned-bus-harbor-r2-04.log`, 327.1 seconds including the
+hardware-renderer check). It physically walked from the actual book position,
+including the previously unaccepted 2.14-metre leg to the first CMAL waypoint,
+and reached the bus through the real picker. Natural boarding saved the harbor
+and pending-film receipts; arrival cancellation/reload, natural completion and
+completed reload without replay all passed, with HP, yen and items unchanged.
+The helper used the travel menu from the home interior to Dobuita before the
+physical street/counter walks, and earlier phase helpers may shorten approaches
+or use supported skips. This adds accepted fresh continuation through arrival;
+it does not claim whole-route completion or remove the fidelity limitations.
+
 Goro's first harbor encounter now connects the arrival to his
 warehouse directions: original voices/cast, failed QTE/retry, actual Left/A/B
 success, original winning motion, saved notebook and reload are rendered and
