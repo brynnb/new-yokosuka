@@ -25,6 +25,40 @@ export async function verifyHarborBikers(page,testInfo,character){
     try{await page.getByText("Charlie and the Mad Angels are leaving on bikes. Follow them through the harbor.",{exact:true}).waitFor();}finally{await page.keyboard.up("KeyW");}
     await page.keyboard.press("Space");await noErrors();
   };
+  let declinedSwallowDive=false;
+  const declineOptionalSwallowDive=async()=>{
+    // The earned payday pose is inside Gui Zhang's optional evening lesson.
+    // A real wait or reload can dispatch it before the biker approach starts.
+    // Both calls precede the biker approach; waiting in place does not
+    // re-arm a lesson already declined at this same entry.
+    if(declinedSwallowDive)return;
+    const prior=await saved(),clock=prior.worldState.gameTimeMs;
+    expect(Number.isFinite(clock)).toBe(true);
+    const date=new Date(clock),hour=date.getUTCHours()+date.getUTCMinutes()/60;
+    const offer=await page.evaluate(hour=>{
+      const p=window.storyProbe,r=p.regions,c=r.getCharacter();
+      const region=r.regions.find(region=>region.id==="s1.mfsy.swallow-dive");
+      if(!region)throw Error("Missing published Swallow Dive region");
+      const position=p.lifecycle.getController().actorRoot.position.asArray();
+      return p.lifecycle.worldRuntime.activeWorld.id==="mfsy"&&c.playMode==="story"&&c.openingCompleted
+        &&region.requiredFlags.every(flag=>c.storyFlags?.[flag])&&!c.storyFlags?.[region.completedFlag]
+        &&hour>=region.hours[0]&&hour<region.hours[1]
+        &&position.every((value,axis)=>value>=region.min[axis]&&value<=region.max[axis]);
+    },hour);
+    if(!offer)return;
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.active?.scriptIdentity?.scriptSlug),{timeout:45_000}).toBe("story-s1-swallow-dive");
+    await page.getByText("I can practice Swallow Dive with Gui Zhang here.",{exact:true}).waitFor();
+    await page.keyboard.press("Space");
+    await page.screenshot({path:testInfo.outputPath("harbor-bikers-optional-swallow-dive-offer.png")});
+    await page.getByRole("button",{name:"Not now",exact:true}).click();await idle();
+    const after=await check();
+    expect(after.inventory).toEqual(prior.inventory);expect(after.character.yen).toBe(prior.character.yen);
+    expect(after.character.currentHp).toBe(prior.character.currentHp);
+    for(const flag of ["story.s1.swallow-dive.completed","story.s1.swallow-dive.learned"])
+      expect(after.character.storyFlags[flag]).toBe(prior.character.storyFlags[flag]);
+    declinedSwallowDive=true;
+    console.info("Harbor bikers declined the actual optional Swallow Dive offer without learning it");
+  };
   const prompt=async(button,beat)=>{
     await page.waitForFunction(({button,beat})=>{
       const c=window.storyProbe.regions.controller,p=c.active?.challengePrompt,q=c.dialogue.qte?.active,s=window.storyProbe.authoredScene?.active?.scene;
@@ -42,9 +76,10 @@ export async function verifyHarborBikers(page,testInfo,character){
       await intro.waitFor({timeout:30_000});
       await page.keyboard.press("Space");await page.getByRole("button",{name:"Leave it for now",exact:true}).click();
       await idle();expect((await check()).character.storyFlags[chase]).not.toBe(true);
-    }else await idle();
+    }else{await declineOptionalSwallowDive();await idle();}
     if(new Date((await saved()).character.storyTimeMs).getUTCHours()<19){
-      await page.locator("#story-wait-button").click();await page.getByRole("option",{name:"Wait until 7 p.m.",exact:true}).click();await page.getByRole("button",{name:"Wait until 7 p.m.",exact:true}).click();await idle();
+      await page.locator("#story-wait-button").click();await page.getByRole("option",{name:"Wait until 7 p.m.",exact:true}).click();await page.getByRole("button",{name:"Wait until 7 p.m.",exact:true}).click();
+      await declineOptionalSwallowDive();await idle();
     }
     await approach();await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();expect((await check()).character.storyFlags[chase]).not.toBe(true);
     await approach();await page.getByRole("button",{name:"Chase the bikers",exact:true}).click();
