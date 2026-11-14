@@ -1,6 +1,42 @@
 import {expect} from "@playwright/test";
+import regions from "../../play/data/story-regions.json" with {type:"json"};
 import {performTrainingMove} from "./story-training-input.js";
 import {fightWithKeyboard} from "./story-seventy-man.js";
+
+async function declinePendingFinalOffer(page,character,{regionId,scriptSlug,acceptLabel,requiredItems=[]},stage){
+  const region=regions.regions.find(region=>region.id===regionId);
+  expect(region,"Missing published final-offer region: "+regionId).toBeDefined();
+  const saved=()=>page.request.get('/api/characters/'+character.id+'/state').then(r=>r.json());
+  const before=await saved(),c=before.character;
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  const eligible=c.playMode==="story"&&c.playMode===region.playMode&&c.openingCompleted===true&&c.worldId===region.worldId&&
+    region.requiredFlags.every(flag=>c.storyFlags[flag]===true)&&c.storyFlags[region.completedFlag]!==true&&
+    !(region.excludedFlags||[]).some(flag=>c.storyFlags[flag]===true)&&
+    requiredItems.every(([key,quantity])=>(before.inventory.find(item=>item.key===key)?.quantity||0)>=quantity);
+  let handoff=null,declined=false;
+  if(eligible){
+    handoff=await page.evaluate(({worldId,min,max})=>{
+      const l=window.storyProbe.lifecycle,position=l.getController().actorRoot.position.asArray();
+      return {world:l.worldRuntime.activeWorld.id,ready:l.worldRuntime.ready,position,
+        inside:l.worldRuntime.activeWorld.id===worldId&&position.every((value,i)=>value>=min[i]&&value<=max[i])};
+    },region);
+    if(handoff.inside){
+      expect(handoff.ready).toBe(true);
+      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.active?.scriptIdentity?.scriptSlug),{timeout:45_000}).toBe(scriptSlug);
+      await expect(page.getByRole("button",{name:acceptLabel,exact:true})).toBeVisible();
+      await page.getByRole("button",{name:"Not yet",exact:true}).click();declined=true;
+    }
+  }
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  const after=await saved();expect(after.character.storyFlags).toEqual(before.character.storyFlags);expect(after.inventory).toEqual(before.inventory);
+  for(const key of ["yen","currentHp","maxHp","worldId","playMode"])expect(after.character[key]).toBe(before.character[key]);
+  if(declined){
+    expect(after.character.storyFlags[region.completedFlag]).not.toBe(true);
+    console.info("Final departure: declined exact following offer without effects",JSON.stringify({stage,regionId,scriptSlug,...handoff}));
+  }
+}
 
 export async function verifyShipDeparture(page,testInfo,character,{musicResponses}){
   await page.setViewportSize({width:1920,height:1080});
@@ -8,7 +44,7 @@ export async function verifyShipDeparture(page,testInfo,character,{musicResponse
   const initial=await saved(),done="story.s1.departure.completed";
   for(const flag of ["story.s1.chen-introduction-letter.completed","story.s1.nozomi-amulet.completed"])expect(initial.character.storyFlags[flag]).toBe(true);
   expect(initial.character.storyFlags[done]).not.toBe(true);
-  const check=async()=>{const s=await saved();expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory).toEqual(initial.inventory);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;};
+  const check=async()=>{const s=await saved();expect(s.character.yen).toBe(initial.character.yen);expect(s.character.currentHp).toBe(initial.character.currentHp);expect(s.inventory).toEqual(initial.inventory);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;};
   const pending=async()=>{const s=await check();expect(s.character.storyFlags).toEqual(initial.character.storyFlags);expect(s.character.worldId).toBe("mend");return s;};
   const choose=name=>page.getByRole("button",{name,exact:true}).click({timeout:100_000});
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
@@ -44,8 +80,45 @@ export async function verifyShipDeparture(page,testInfo,character,{musicResponse
   expect(Object.keys(earned.character.storyFlags).filter(k=>!Object.hasOwn(initial.character.storyFlags,k)).sort()).toEqual(["notebook.s1.departure",done].sort());
   await page.waitForTimeout(3000);expect(Math.abs((await saved()).character.y-earned.character.y)).toBeLessThan(.15);
   await page.screenshot({path:testInfo.outputPath("ship-earned-real-deck-and-controls.png")});
-  await page.keyboard.down("KeyW");await page.waitForTimeout(250);await page.keyboard.up("KeyW");await page.waitForTimeout(1500);
+  // The earned yaw-0 ship spawn faces +Z. The original ship mesh has deck
+  // support and a clear body-height corridor for this short forward probe.
+  // Keep the earned pose/camera and measure real input plus both moving roots.
+  const sample=()=>page.evaluate(()=>{
+    const l=window.storyProbe.lifecycle,c=l.getController(),input=l.simulationRuntime.playInput;
+    return {world:l.worldRuntime.activeWorld.id,ready:l.worldRuntime.ready,
+      rawForward:input.actions.value("keyboard","KeyW"),moveY:input.currentSnapshot?.value("moveY"),
+      run:input.currentSnapshot?.held("run"),autoRun:c.autoRun,runToggled:c.runToggled,
+      collider:c.collider.position.asArray(),actorRoot:c.actorRoot.position.asArray(),cameraYaw:c.cameraYaw,
+      movementLocked:c.movementLocked,nativeOwnership:l.nativeStoryRuntime.ownsPlayerPresentation};
+  });
+  const distance=(a,b)=>Math.hypot(a[0]-b[0],a[2]-b[2]);
+  await page.locator("#renderCanvas").focus();await expect(page.locator("#renderCanvas")).toBeFocused();
+  const before=await sample(),samples=[],spawn=[.7419610619543935,6.277686675037195,31.292083740234375];
+  expect(before.world).toBe("s1-voyage");expect(before.ready).toBe(true);
+  expect(before.movementLocked).toBe(false);expect(before.nativeOwnership).toBe(false);
+  expect(distance(before.collider,spawn),"probe begins at the earned deck spawn").toBeLessThan(.1);
+  expect(distance(before.actorRoot,spawn)).toBeLessThan(.1);
+  expect(Math.cos(before.cameraYaw+Math.PI)).toBeGreaterThan(.99);
+  expect(Math.abs(Math.sin(before.cameraYaw+Math.PI))).toBeLessThan(.02);
+  expect(before.rawForward).toBe(0);expect(before.moveY).toBe(0);
+  expect(before.run||before.autoRun||before.runToggled).toBe(false);
+  try{
+    await page.keyboard.down("KeyW");
+    for(let n=0;n<5;n++){
+      await page.waitForTimeout(100);const value=await sample();samples.push(value);
+      if(distance(value.collider,before.collider)>.2&&distance(value.actorRoot,before.actorRoot)>.2)break;
+    }
+  }finally{await page.keyboard.up("KeyW");}
+  const last=samples.at(-1),proof={before,samples,
+    colliderDistance:distance(last.collider,before.collider),actorDistance:distance(last.actorRoot,before.actorRoot)};
+  await testInfo.attach("ship-earned-movement-proof",{body:JSON.stringify(proof),contentType:"application/json"});
+  console.info("Ship earned movement proof:",JSON.stringify(proof));
+  expect(samples.some(value=>value.rawForward>0&&value.moveY>0),"forward input reaches gameplay").toBe(true);
+  expect(proof.colliderDistance,"real ship-deck collider displacement").toBeGreaterThan(.2);
+  expect(proof.actorDistance,"visible actor follows ship-deck movement").toBeGreaterThan(.2);
+  await page.waitForTimeout(1500);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().actorRoot.position.y)).toBeGreaterThan(5);
+  await page.screenshot({path:testInfo.outputPath("ship-earned-forward-movement.png")});
   await reload();await idle();await check();expect((await saved()).character.worldId).toBe("s1-voyage");expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
   await page.screenshot({path:testInfo.outputPath("ship-earned-reloaded-deck.png")});
   // Use the actual sidebar switches and full teardown/reload. No future
@@ -53,6 +126,7 @@ export async function verifyShipDeparture(page,testInfo,character,{musicResponse
   const switchMode=async(mode,label)=>{await page.locator('[role="radio"]').filter({hasText:label}).click();await page.waitForFunction(mode=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.playMode===mode,mode,{timeout:100_000});await idle();};
   await switchMode("free_roam","Free roam");expect((await saved()).character.worldId).not.toBe("s1-voyage");
   await switchMode("story","Story mode");expect((await check()).character.worldId).toBe("s1-voyage");expect((await saved()).character.storyFlags[done]).toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
   expect(Math.abs((await saved()).character.y-earned.character.y)).toBeLessThan(.15);await page.screenshot({path:testInfo.outputPath("ship-after-free-roam-round-trip.png")});
   expect(musicResponses.some(r=>r.url.includes("bgm095")&&[200,206].includes(r.status))).toBe(true);
 }
@@ -84,6 +158,7 @@ export async function verifyNozomiAmulet(page,testInfo,character,{musicResponses
   await expect.poll(()=>page.evaluate(()=>{const m=window.storyMusic?.director,a=m?.current?.audio;return m?.current?.trackId==="bgm070"&&!a.paused&&a.currentTime>1&&a.volume>0;}),{timeout:15000}).toBe(true);
   await page.waitForTimeout(64000);await page.screenshot({path:testInfo.outputPath("nozomi-original-giving-the-amulet.png")});await check();
   await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:120_000}).toBe(true);
+  await declinePendingFinalOffer(page,character,{regionId:"s1.mend.departure",scriptSlug:"story-s1-departure",acceptLabel:"Sail to Hong Kong",requiredItems:[["letter_of_introduction",1],["nozomi_amulet",1]]},"completion");
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   expect((await check(true)).character.storyFlags["notebook.s1.nozomi-amulet"]).toBe(true);
   // See the documented Settings modal/accessibility limitation; use the real
@@ -91,6 +166,7 @@ export async function verifyNozomiAmulet(page,testInfo,character,{musicResponses
   await page.locator("#inventory-button").click();await expect(page.getByText("Nozomi's Amulet",{exact:true})).toBeVisible();
   await page.screenshot({path:testInfo.outputPath("nozomi-earned-amulet-inventory.png")});await page.getByRole("button",{name:"Close inventory",exact:true}).click();
   await reload();await page.waitForTimeout(1200);await check(true);expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+  await declinePendingFinalOffer(page,character,{regionId:"s1.mend.departure",scriptSlug:"story-s1-departure",acceptLabel:"Sail to Hong Kong",requiredItems:[["letter_of_introduction",1],["nozomi_amulet",1]]},"reload");
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   expect(Math.abs((await saved()).character.y)).toBeLessThan(.5);await page.screenshot({path:testInfo.outputPath("nozomi-earned-amulet-reload-and-controls.png")});
   expect(musicResponses.some(r=>r.url.includes("bgm070")&&[200,206].includes(r.status))).toBe(true);
@@ -140,7 +216,7 @@ export async function verifyIntroductionLetter(page,testInfo,character,{musicRes
   await expect.poll(()=>page.evaluate(()=>{const m=window.storyMusic?.director,a=m?.current?.audio;return m?.current?.trackId==="bgm067"&&!a.paused&&a.currentTime>1&&a.volume>0;}),{timeout:15000}).toBe(true);
   await page.waitForTimeout(45000);await page.screenshot({path:testInfo.outputPath("chen-original-tao-li-shao-introduction.png")});await check();
   await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:100_000}).toBe(true);
-  const following=page.getByRole("button",{name:"Not yet",exact:true});if(await following.isVisible())await following.click();
+  await declinePendingFinalOffer(page,character,{regionId:"s1.mend.nozomi-amulet",scriptSlug:"story-s1-nozomi-amulet",acceptLabel:"Remember Nozomi's farewell",requiredItems:[["letter_of_introduction",1]]},"completion");
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   const final=await check(true);expect(final.character.storyFlags["notebook.s1.tao-li-shao"]).toBe(true);
   await page.locator("#inventory-button").click();
@@ -148,7 +224,7 @@ export async function verifyIntroductionLetter(page,testInfo,character,{musicRes
   await page.screenshot({path:testInfo.outputPath("chen-earned-introduction-letter-inventory.png")});
   await page.getByRole("button",{name:"Close inventory",exact:true}).click();
   await reload();await page.waitForTimeout(1200);await check(true);
-  if(await following.isVisible())await following.click();
+  await declinePendingFinalOffer(page,character,{regionId:"s1.mend.nozomi-amulet",scriptSlug:"story-s1-nozomi-amulet",acceptLabel:"Remember Nozomi's farewell",requiredItems:[["letter_of_introduction",1]]},"reload");
   expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
   expect(Math.abs((await saved()).character.y)).toBeLessThan(.5);
@@ -222,10 +298,12 @@ export async function verifyFinalChai(page,testInfo,character,{musicResponses}){
   await reload();await choose("Face Chai's last attack");await scene("chai-counter-ready");await ready();await winCounter();await scene("chai-counter-win");
   await page.waitForTimeout(3300);await page.screenshot({path:testInfo.outputPath("final-chai-original-water-fall.png")});
   await expect.poll(async()=>(await saved()).character.storyFlags[counter],{timeout:30000}).toBe(true);
-  const following=page.getByRole("button",{name:"Not yet",exact:true});if(await following.isVisible())await following.click();
+  await declinePendingFinalOffer(page,character,{regionId:"s1.mend.chen-introduction-letter",scriptSlug:"story-s1-chen-introduction-letter",acceptLabel:"Speak with Master Chen"},"completion");
   await idle();const final=await check();expect(final.character.storyFlags["notebook.s1.chai-last-attack"]).toBe(true);
   expect(new Date(final.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
-  await reload();await page.waitForTimeout(1200);if(await following.isVisible())await following.click();await idle();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+  await reload();await page.waitForTimeout(1200);
+  await declinePendingFinalOffer(page,character,{regionId:"s1.mend.chen-introduction-letter",scriptSlug:"story-s1-chen-introduction-letter",acceptLabel:"Speak with Master Chen"},"reload");
+  await idle();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
   await page.screenshot({path:testInfo.outputPath("final-chai-earned-counter-reload-and-controls.png")});
   expect(musicResponses.some(r=>r.url.includes("bgm032")&&[200,206].includes(r.status))).toBe(true);
 }
@@ -291,10 +369,11 @@ export async function verifySwallowFlip(page,testInfo,character,{musicResponses}
   await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:60000}).toBe(true);
   const final=await check();expect(final.character.storyFlags[learned]).toBe(true);expect(final.character.storyFlags["notebook.s1.swallow-flip"]).toBe(true);
   expect(new Date(final.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
+  await declinePendingFinalOffer(page,character,{regionId:"s1.mend.final-chai",scriptSlug:"story-s1-final-chai",acceptLabel:"Stop Chai"},"completion");
   await idle();await reload();await page.waitForTimeout(1200);
   // The newly published following ambush may offer its normal confirmation;
   // declining it is not replaying the completed lesson or granting a fight.
-  const following=page.getByRole("button",{name:"Not yet",exact:true});if(await following.isVisible())await following.click();
+  await declinePendingFinalOffer(page,character,{regionId:"s1.mend.final-chai",scriptSlug:"story-s1-final-chai",acceptLabel:"Stop Chai"},"reload");
   await idle();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
   await page.screenshot({path:testInfo.outputPath("swallow-earned-dock-reload-and-controls.png")});
   expect(musicResponses.some(r=>r.url.includes("bgm064")&&[200,206].includes(r.status))).toBe(true);
