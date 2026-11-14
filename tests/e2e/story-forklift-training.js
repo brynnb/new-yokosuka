@@ -81,34 +81,35 @@ export async function driveObservedDeliveries(page,testInfo,count,prefix){
   console.info("Physical delivery initial alignment",prefix,JSON.stringify(initialVehicle));
   // This exercise follows a clear straight corridor. Drive through the real
   // keyboard/physics boundary, without teleporting the vehicle or cargo.
-  const slowDrive=async(field,target,{realign=true,tolerance=.25}={})=>{
-    const held=new Set();let last,realignments=0,deadline=Date.now()+30_000;
+  const slowDrive=async(field,target,{realign=true,tolerance=.25,steer=true,laneHeading=heading}={})=>{
+    const laneForward=[Math.sin(laneHeading),Math.cos(laneHeading)];
+    const held=new Set();let last,realignments=0,deadline=Date.now()+(steer?30_000:8000);
     const keys=async next=>{for(const key of held)if(!next.has(key)){await page.keyboard.up(key);held.delete(key);}for(const key of next)if(!held.has(key)){await page.keyboard.down(key);held.add(key);}};
     try{while(Date.now()<deadline){
       last=await info();if(!last)return;const point=field==="cargo"?last.cargo:last.position,x=point?.[0];expect(x).toBeDefined();
       expect(last.position[1],`Forklift left the road: ${JSON.stringify(last)}`).toBeLessThan(2);
       const dx=target[0]-x,dz=target[1]-point[2],velocity=last.velocity[0]*Math.sin(last.yaw)+last.velocity[2]*Math.cos(last.yaw);
-      // Lowering can nudge the box. Aim safely inside the drop zone rather
-      // than stopping as soon as its center crosses the boundary.
-      if(field==="cargo"&&x>=last.view.dropMin[0]+.45&&x<=last.view.dropMax[0]-.45&&last.cargo[2]>=last.view.dropMin[2]+.45&&last.cargo[2]<=last.view.dropMax[2]-.45&&Math.abs(velocity)<.2)return;
+      // Reach the actual cargo target center before lowering. The old inset
+      // early return could stop well outside this existing .25 m tolerance.
+      if(field==="cargo")expect(last.support,JSON.stringify(last)).toBe(true);
       if(Math.hypot(dx,dz)<tolerance&&Math.abs(velocity)<.2)return;
       // Contacts can change both yaw and lateral position. X-only throttle
       // control let repeated return trips drift over a metre from the crate.
       // Follow the pickup/drop lane in 2D, reversing steering when backing up.
-      const remaining=dx*forward[0]+dz*forward[1],direction=Math.sign(remaining)||1;
-      const cross=-dx*forward[1]+dz*forward[0];
-      if(field==="vehicle"&&realign&&realignments<2&&Math.abs(remaining)<.3&&Math.abs(cross)>.2&&Math.abs(velocity)<.15){
+      const remaining=dx*laneForward[0]+dz*laneForward[1],direction=Math.sign(remaining)||1;
+      const cross=-dx*laneForward[1]+dz*laneForward[0];
+      if(realign&&realignments<2&&Math.abs(remaining)<.3&&Math.abs(cross)>.2&&Math.abs(velocity)<.15){
         // A forklift cannot steer sideways from a stop. Back up along the lane
         // and make another approach instead of relaxing the pickup tolerance.
         await keys(new Set());realignments++;
-        await slowDrive("vehicle",[last.position[0]-forward[0]*2.5,last.position[2]-forward[1]*2.5],{realign:false});
+        await slowDrive("vehicle",[last.position[0]-laneForward[0]*2.5,last.position[2]-laneForward[1]*2.5],{realign:false,steer,laneHeading});
         deadline=Date.now()+30_000;continue;
       }
-      const desiredYaw=heading-direction*Math.atan2(cross,3);
+      const desiredYaw=laneHeading-direction*Math.atan2(cross,3);
       const error=Math.atan2(Math.sin(desiredYaw-last.yaw),Math.cos(desiredYaw-last.yaw));
       const desired=direction*Math.min(1.1,Math.abs(remaining)*1.3),change=desired-velocity,next=new Set();
       if(change>.15)next.add("KeyW");else if(change<-.15)next.add("KeyS");
-      if(error*direction>.035)next.add("KeyD");else if(error*direction<-.035)next.add("KeyA");
+      if(steer){if(error*direction>.035)next.add("KeyD");else if(error*direction<-.035)next.add("KeyA");}
       await keys(next);
       await page.waitForTimeout(100);
     }throw Error(`Physical drive did not reach ${field} XZ=${JSON.stringify(target)}: ${JSON.stringify(last)}`);}
@@ -168,12 +169,59 @@ export async function driveObservedDeliveries(page,testInfo,count,prefix){
     const view=(await info()).view;
     await slowDrive("cargo",[(view.dropMin[0]+view.dropMax[0])/2,(view.dropMin[2]+view.dropMax[2])/2]);
     const atGoal=await info();expect(atGoal.cargo[0]).toBeGreaterThanOrEqual(view.dropMin[0]);expect(atGoal.cargo[0]).toBeLessThanOrEqual(view.dropMax[0]);expect(atGoal.cargo[2]).toBeGreaterThan(view.dropMin[2]);expect(atGoal.cargo[2]).toBeLessThan(view.dropMax[2]);
+    // Pin this crate: an accepted delivery can advance the live prompt and
+    // remove its entry before the physical withdrawal has finished.
+    const unloadingCargoId=pickup.view.cargoId;
+    const unloadState=()=>page.evaluate(({cargoId,challengeId,index,count,dropMin,dropMax})=>{
+      const r=window.storyProbe.delivery,a=r.getForklifts(),physics=a.cargo.physics,c=physics.entries.get(cargoId);
+      const active=r.active,delivered=active?.prompt.delivery?.delivered;
+      const accepted=(active?.prompt.id===challengeId&&delivered>=index+1)||(index===count-1&&!active);
+      const p=a.mode.driving?physics.dynamicForkliftPose(a.mode.activeId):null,proxy=physics.forkliftProxies.get(a.mode.activeId);
+      const position=c?.node.position.asArray()??null,q=c?.node.rotationQuaternion?.asArray()??null,norm=q?.reduce((sum,v)=>sum+v*v,0);
+      const upDot=norm?1-2*(q[0]*q[0]+q[2]*q[2])/norm:null;
+      return{cargoId,currentCargoId:active?.prompt.delivery?.cargoId??null,active:!!active,accepted,delivered:delivered??null,driving:a.mode.driving,
+        position,quaternion:q,upDot,support:c?.forkSupportActive??null,
+        speed:c?.aggregate.body.getLinearVelocity().length()??null,angularSpeed:c?.aggregate.body.getAngularVelocity().length()??null,
+        inBounds:!!position&&position.every((value,i)=>value>=dropMin[i]&&value<=dropMax[i]),
+        physicalLift:p?.forkLift??null,tineCollisionActive:proxy?.tineCollisionActive??null,
+        vehicle:p?{position:a.mode.actorRoot.position.asArray(),yaw:a.mode.actorRoot.rotation.y}:null};
+    },{cargoId:unloadingCargoId,challengeId:pickup.challengeId,index:crate,count,dropMin:view.dropMin,dropMax:view.dropMax});
+    const recordUnload=async(stage,state)=>{
+      await testInfo.attach(`${prefix}-crate-${crate+1}-${stage}.json`,{body:JSON.stringify({stage,crate:crate+1,dropMin:view.dropMin,dropMax:view.dropMax,...state},null,2),contentType:"application/json"});
+      console.info("Physical unload",JSON.stringify({stage,crate:crate+1,accepted:state.accepted,position:state.position,upDot:state.upDot,support:state.support,speed:state.speed,physicalLift:state.physicalLift,tineCollisionActive:state.tineCollisionActive}));
+    };
+    await recordUnload("before-lower",await unloadState());
+    let unloadReady=false,stableSince=null;
     await page.keyboard.down("KeyF");
-    try{await page.waitForFunction(()=>window.storyProbe.delivery.getForklifts().mode.state.lift<.02,null,{timeout:5000});}finally{await page.keyboard.up("KeyF");}
-    const current=await info();
-    // The return point is only a staging waypoint. Pickup alignment and server
-    // delivery confirmation are checked separately at their original precision.
-    if(current)await slowDrive("vehicle",crate<count-1?[original[0],original[2]]:[current.position[0]-forward[0]*2,current.position[2]-forward[1]*2],{tolerance:.6});
+    try{
+      const deadline=Date.now()+5000;
+      while(Date.now()<deadline){
+        const state=await unloadState();
+        if(state.accepted&&!state.driving){unloadReady=true;break;}
+        if(!state.active||!state.driving)break;
+        // Production tine collision persists below .01 while carrying. Require
+        // the actual collision flag off as well as low physical lift/release.
+        const forksClear=Number.isFinite(state.physicalLift)&&state.physicalLift<=.01&&state.tineCollisionActive===false;
+        const crateSettled=state.accepted||(state.position&&state.support===false&&state.inBounds&&state.upDot>=.65&&state.speed<.3&&state.angularSpeed<.3);
+        if(forksClear&&crateSettled){
+          stableSince??=Date.now();
+          if(state.accepted||Date.now()-stableSince>=200){unloadReady=true;break;}
+        }else stableSince=null;
+        await page.waitForTimeout(100);
+      }
+    }finally{await page.keyboard.up("KeyF");}
+    const lowered=await unloadState();await recordUnload("after-lower",lowered);
+    expect(unloadReady,JSON.stringify(lowered)).toBe(true);
+    let current=await info();
+    if(current&&lowered.position){
+      // Clear the tines along the current heading before any steering return.
+      await slowDrive("vehicle",[current.position[0]-Math.sin(current.yaw)*1.6,current.position[2]-Math.cos(current.yaw)*1.6],{realign:false,steer:false,laneHeading:current.yaw});
+    }
+    await recordUnload("cleared",await unloadState());
+    current=await info();
+    // The return point is only a staging waypoint. Keep the original exact
+    // server receipt gates below, including their 15/20-second timeouts.
+    if(current&&crate<count-1)await slowDrive("vehicle",[original[0],original[2]],{tolerance:.6});
     try{
       if(crate<count-1)await expect.poll(()=>page.evaluate(()=>window.storyProbe.delivery.active?.prompt.delivery.delivered),{timeout:15_000}).toBe(crate+1);
       else await page.waitForFunction(count=>!window.storyProbe.delivery.active||window.storyProbe.delivery.active.prompt.delivery.delivered>=count,count,{timeout:20_000});

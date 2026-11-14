@@ -131,9 +131,30 @@ export async function verifyFifthAfternoon(page,testInfo,character,{musicRespons
   const approach=async(position,yaw,text)=>{await idle();await page.evaluate(({position,yaw})=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray(position),yaw,{persist:false});c.setFirstPerson(true);c.cameraYaw=yaw;c.cameraPitch=0;c.updateCamera(1);},{position,yaw});await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await page.getByText(text,{exact:true}).waitFor();}finally{await page.keyboard.up("KeyW");}};
   if(!initial.character.storyFlags[quota]){
     console.info("Fifth afternoon: five new physical deliveries after the earned sailor chase");
-    const text="Terry leads the Mad Angels. Finish the remaining five deliveries, then collect today's wages from Yada-san.";
-    if(!await page.getByText(text,{exact:true}).isVisible())await approach([-20,0,117],-Math.PI/2,text);
-    await page.keyboard.press("Space");await page.getByRole("button",{name:"Start the deliveries",exact:true}).click();
+    const {default:routes}=await import("../../tools/scripting/story-investigation.json",{with:{type:"json"}});
+    const route=routes.routes.find(route=>route.id==="workday-five-afternoon"),briefing=page.getByText(route.authoredText.briefing,{exact:true});
+    const current=await check(),clock=current.worldState.gameTimeMs;
+    expect(current.character.playMode).toBe("story");expect(current.character.openingCompleted).toBe(true);
+    for(const flag of route.requiredFlags)expect(current.character.storyFlags[flag]).toBe(true);
+    expect(current.character.storyFlags[route.completedFlag]).not.toBe(true);expect(Number.isFinite(clock)).toBe(true);
+    const hour=new Date(clock).getUTCHours()+new Date(clock).getUTCMinutes()/60;
+    expect(hour).toBeGreaterThanOrEqual(route.hours[0]);expect(hour).toBeLessThan(route.hours[1]);
+    // An earned dispatch-pad save can start this exact offer before its text
+    // appears. Await the inside handoff without assuming free-roam idle.
+    const handoff=await page.evaluate(regionId=>{
+      const p=window.storyProbe,r=p.regions,l=p.lifecycle,region=r.regions.find(region=>region.id===regionId);
+      if(!region)throw Error(`Missing published fifth-afternoon region: ${regionId}`);
+      const position=l.getController().actorRoot.position.asArray();
+      return {world:l.worldRuntime.activeWorld.id,ready:l.worldRuntime.ready,regionId,position,min:region.min,max:region.max,
+        inside:position.every((value,axis)=>value>=region.min[axis]&&value<=region.max[axis]),
+        status:r.controller.status,script:r.controller.active?.scriptIdentity?.scriptSlug};
+    },route.bounds);
+    expect(handoff.world).toBe("mfsy");expect(handoff.ready).toBe(true);
+    await testInfo.attach("fifth-afternoon-handoff",{body:JSON.stringify(handoff),contentType:"application/json"});
+    console.info("Fifth afternoon handoff:",JSON.stringify(handoff));
+    if(!handoff.inside)await approach([-20,0,117],-Math.PI/2,route.authoredText.briefing);
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.active?.scriptIdentity?.scriptSlug),{timeout:45_000}).toBe("story-s1-workday-five-afternoon");
+    await briefing.waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Start the deliveries",exact:true}).click();
     await page.waitForFunction(()=>window.storyProbe.delivery?.active?.entered||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check();
     await page.waitForTimeout(1800);await page.locator("#renderCanvas").focus();await driveObservedDeliveries(page,testInfo,5,"workday-five-afternoon");
     await page.getByText("All ten deliveries are finished. The shift is over; collect today's wages from Yada-san.",{exact:true}).waitFor();
