@@ -1,5 +1,6 @@
 import {expect} from "@playwright/test";
 import {performTrainingMove} from "./story-training-input.js";
+import regions from "../../play/data/story-regions.json" with {type:"json"};
 
 // Resume genuinely earned rest. Only ordinary positioning/presence, original
 // presentations and real choices are used; no future flags/date are inserted.
@@ -148,14 +149,40 @@ export async function verifyTomLessonAndFarewell(page,testInfo,character){
   const initial=await saved(),lesson="story.s1.tom-lesson.completed",learned="story.s1.tornado-kick.learned",farewell="story.s1.tom-farewell.completed";
   expect(initial.character.storyFlags["story.s1.yada-dismissal.completed"]).toBe(true);
   const check=async()=>{
-    const s=await saved();expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory).toEqual(initial.inventory);
-    for(const id of ["final-battle","departure"])expect(s.character.storyFlags[`story.s1.${id}.completed`]).not.toBe(true);
+    const s=await saved();for(const key of ["yen","currentHp","maxHp"])expect(s.character[key]).toBe(initial.character[key]);expect(s.inventory).toEqual(initial.inventory);
+    for(const id of ["tom-plane","final-battle","departure"])expect(s.character.storyFlags[`story.s1.${id}.completed`]).not.toBe(true);
     expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;
   };
   const choose=name=>page.getByRole("button",{name,exact:true}).click({timeout:90_000});
   const scene=async id=>{await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===`story-s1-${id}`||window.storyProbe.sceneErrors.length,id,{timeout:90_000});await check();};
   const ready=async()=>{await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.id==="s1.mfsy.tornado-kick"&&window.storyProbe.regions.controller.active.challengePrompt.ready||window.storyProbe.sceneErrors.length,null,{timeout:90_000});await check();};
-  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await check();};
+  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await check();};
+  const declinePendingPlane=async(stage)=>{
+    const region=regions.regions.find(region=>region.id==="s1.mfsy.tom-plane");
+    expect(region,"Missing published Tom plane region").toBeDefined();
+    const before=await check(),c=before.character;
+    if(c.playMode!==region.playMode||c.openingCompleted!==true||c.worldId!==region.worldId||
+      !region.requiredFlags.every(flag=>c.storyFlags[flag]===true)||c.storyFlags[region.completedFlag]===true||
+      (region.excludedFlags||[]).some(flag=>c.storyFlags[flag]===true))return;
+    expect(Number.isFinite(before.worldState?.gameTimeMs),"Tom handoff has an authoritative personal clock").toBe(true);
+    const clock=new Date(before.worldState.gameTimeMs),hour=clock.getUTCHours()+clock.getUTCMinutes()/60+clock.getUTCSeconds()/3600;
+    const [start,end]=region.hours;
+    if(!(start<=end?hour>=start&&hour<end:hour>=start||hour<end))return;
+    const handoff=await page.evaluate(({worldId,min,max})=>{
+      const l=window.storyProbe.lifecycle,position=l.getController().actorRoot.position.asArray();
+      return {world:l.worldRuntime.activeWorld.id,ready:l.worldRuntime.ready,position,
+        inside:l.worldRuntime.activeWorld.id===worldId&&position.every((value,i)=>value>=min[i]&&value<=max[i])};
+    },region);
+    if(!handoff.inside)return;
+    expect(handoff.ready).toBe(true);
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.active?.scriptIdentity?.scriptSlug),{timeout:45_000}).toBe("story-s1-tom-plane");
+    await expect(page.getByRole("button",{name:"Watch Tom's plane",exact:true})).toBeVisible();
+    await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();
+    const after=await check();expect(after.character.storyFlags).toEqual(before.character.storyFlags);expect(after.inventory).toEqual(before.inventory);
+    for(const key of ["yen","currentHp","maxHp","worldId","playMode"])expect(after.character[key]).toBe(before.character[key]);
+    console.info("Tom farewell: declined exact plane offer without effects",JSON.stringify({stage,hour,...handoff}));
+  };
+
   const reload=async()=>{
     await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();
     await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
@@ -204,7 +231,10 @@ export async function verifyTomLessonAndFarewell(page,testInfo,character){
   const final=await check(),date=new Date(final.character.storyTimeMs);
   expect(date.toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
   expect(date.getUTCHours()).toBe(22);expect(final.character.storyFlags["notebook.s1.tom-farewell"]).toBe(true);
-  await idle();await reload();await idle();
+  for(const flag of [lesson,learned,farewell,"notebook.s1.tornado-kick","notebook.s1.tom-farewell"])expect(final.character.storyFlags[flag]).toBe(true);
+  await declinePendingPlane("completion");await idle();
+  await page.screenshot({path:testInfo.outputPath("tom-farewell-earned-checkpoint.png")});
+  await reload();await declinePendingPlane("reload");await idle();
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
   const residents=await page.evaluate(()=>[...window.storyProbe.lifecycle.characterAssembly.scheduledActors.entries.values()]
     .filter(e=>e.definition.actorCode==="TOM_"&&!e.definition.activityOnly)
