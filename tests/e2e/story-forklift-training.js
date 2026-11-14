@@ -1,4 +1,7 @@
 import {expect} from "@playwright/test";
+import {readFileSync} from "node:fs";
+
+const deliveryChallenges=JSON.parse(readFileSync(new URL("../../play/data/story-challenges.json",import.meta.url),"utf8")).challenges;
 
 export async function verifyForkliftTraining(page,testInfo,character){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
@@ -33,7 +36,46 @@ export async function verifyForkliftTraining(page,testInfo,character){
 // Training and paid batches use the same actual keyboard/cargo boundary. Only
 // the authored quota changes; neither helper can manufacture a delivered crate.
 export async function driveObservedDeliveries(page,testInfo,count,prefix){
-  const info=()=>page.evaluate(()=>{const r=window.storyProbe.delivery,a=r.getForklifts();if(!r.active||!a.mode.driving)return null;const v=r.active.prompt.delivery,c=a.cargo.physics.entries.get(v.cargoId),p=a.cargo.physics.dynamicForkliftPose(a.mode.activeId);if(!p)return null;return{view:v,position:a.mode.actorRoot.position.asArray(),yaw:a.mode.actorRoot.rotation.y,velocity:p.linearVelocity.asArray(),speed:a.mode.state.speed,lift:a.mode.state.lift,cargo:c?.node.position.asArray(),support:c?.forkSupportActive};});
+  const info=()=>page.evaluate(()=>{const r=window.storyProbe.delivery,a=r.getForklifts();if(!r.active||!a.mode.driving)return null;const v=r.active.prompt.delivery,c=a.cargo.physics.entries.get(v.cargoId),p=a.cargo.physics.dynamicForkliftPose(a.mode.activeId);if(!p)return null;return{view:v,challengeId:r.active.prompt.id,position:a.mode.actorRoot.position.asArray(),yaw:a.mode.actorRoot.rotation.y,velocity:p.linearVelocity.asArray(),speed:a.mode.state.speed,lift:a.mode.state.lift,physicalLift:p.forkLift,cargo:c?.node.position.asArray(),support:c?.forkSupportActive};});
+  // Read-only evidence for pickup misses; use the actual support-probe poses,
+  // whose rig frame differs from the dynamic chassis frame.
+  const pickupDiagnostic=(delayMs=0)=>page.evaluate(async delayMs=>{
+    const rules=await import("/src/ForkliftCargoRules.js");
+    if(delayMs)await new Promise(resolve=>setTimeout(resolve,delayMs));
+    const r=window.storyProbe.delivery,a=r.getForklifts(),physics=a.cargo.physics;
+    const cargoId=r.active?.prompt.delivery.cargoId,c=physics.entries.get(cargoId),proxy=physics.forkliftProxies.get(a.mode.activeId);
+    const array=value=>value?.asArray?.()??null,number=value=>value==null?null:Number.isFinite(value)?value:String(value);
+    const nodePose=node=>node?{position:array(node.position),quaternion:array(node.rotationQuaternion),rotation:array(node.rotation)}:null;
+    if(!c||!proxy)return{sampledAt:performance.now(),cargoId,available:false};
+    const tines=proxy.tines.map(t=>({position:t.pose.position,orientation:t.pose.orientation,halfExtents:t.halfExtents}));
+    const actual=physics.dynamicForkliftPose(a.mode.activeId),requestedDelta=proxy.dynamicActive?proxy.dynamic.forkTargetLift-proxy.lift:proxy.liftDelta;
+    const externalStable=physics.elapsedSeconds-c.lastExternalSupportAt<=rules.EXTERNAL_SUPPORT_CONTACT_MEMORY_SECONDS&&physics.elapsedSeconds-c.externalSupportStartedAt>=rules.EXTERNAL_SUPPORT_SETTLE_SECONDS;
+    return{sampledAt:performance.now(),physicsTime:physics.elapsedSeconds,cargoId,vehicleId:a.mode.activeId,
+      vehicle:{actor:nodePose(a.mode.actorRoot),position:array(actual?.position),quaternion:array(actual?.orientation),linearVelocity:array(actual?.linearVelocity),angularVelocity:array(actual?.angularVelocity),actualLift:actual?.forkLift,modeLift:a.mode.state.lift},
+      cargo:{position:array(c.node.position),quaternion:array(c.node.rotationQuaternion),dimensions:array(c.dimensions),linearVelocity:array(c.aggregate.body.getLinearVelocity()),localOwner:c.localOwner,support:c.forkSupportActive},
+      supportTines:tines.map(t=>({position:array(t.position),quaternion:array(t.orientation),halfExtents:array(t.halfExtents)})),
+      dynamicForkBody:nodePose(proxy.dynamic?.forkNode),
+      lift:{dynamicActive:proxy.dynamicActive,proxy:proxy.lift,target:proxy.dynamic?.forkTargetLift??null,delta:proxy.liftDelta,requestedDelta},
+      history:{forkSupportUntil:number(c.forkSupportUntil),forkSupportReleaseUntil:number(c.forkSupportReleaseUntil),lastContactAt:number(c.lastContactAt),lastExternalSupportAt:number(c.lastExternalSupportAt),externalSupportStartedAt:number(c.externalSupportStartedAt)},
+      gates:{geometryEligible:rules.cargoSupportedByForklift({position:c.node.position,orientation:c.node.rotationQuaternion,dimensions:c.dimensions},tines),tineCollisionEnabled:rules.forkTineCollisionEnabled(proxy.lift,c.forkSupportActive),nonDescending:requestedDelta>=-1e-5,cooldownReady:physics.elapsedSeconds>=c.forkSupportReleaseUntil,externalSupportStable:externalStable,externalSupportAllowsEngage:!externalStable||requestedDelta>1e-5}
+    };
+  },delayMs);
+  const deliveryEvidence=async(stage,crate,pickupY,cargoId)=>{
+    const observed=await page.evaluate(cargoId=>{
+      const r=window.storyProbe.delivery,a=r.getForklifts(),c=a.cargo.physics.entries.get(cargoId),p=a.cargo.physics.dynamicForkliftPose(a.mode.activeId);
+      const fields=["id","worldId","x","y","z","qx","qy","qz","qw","velocityX","velocityY","velocityZ","angularVelocityX","angularVelocityY","angularVelocityZ","sleeping","autoRight","updatedAtMs","touching"];
+      const select=value=>value?Object.fromEntries(fields.filter(key=>value[key]!==undefined).map(key=>[key,value[key]])):null;
+      const trace=window.storyCargoTrace;
+      return{sampledAt:performance.now(),challengeId:r.active?.prompt.id,cargoId,delivered:r.active?.prompt.delivery.delivered,
+        local:{cargo:c?.node.position.asArray(),quaternion:c?.node.rotationQuaternion?.asArray(),velocity:c?.aggregate.body.getLinearVelocity().asArray(),support:c?.forkSupportActive,localOwner:c?.localOwner,physicalLift:p?.forkLift,modeLift:a.mode.state.lift},
+        // This is the latest accepted cargo echo, not the server's private lifted/settled bookkeeping.
+        acceptedCargo:select(a.cargo.serverStates.get(cargoId)),
+        network:trace?{sent:trace.sent.filter(value=>value.id===cargoId).slice(-30).map(select),received:trace.received.filter(value=>value.id===cargoId).slice(-30).map(select)}:null};
+    },cargoId);
+    const evidence={schema:"new-yokosuka-forklift-delivery-evidence-v1",stage,crate,pickupY,requiredCarryY:pickupY+.35,requiredPhysicalLift:.45,...observed};
+    await testInfo.attach(`${prefix}-crate-${crate}-${stage}.json`,{body:JSON.stringify(evidence,null,2),contentType:"application/json"});
+    console.info("Physical delivery evidence",JSON.stringify({stage,crate,cargoId,pickupY,local:observed.local,acceptedCargo:observed.acceptedCargo,packets:observed.network?{sent:observed.network.sent.length,received:observed.network.received.length}:null}));
+  };
   expect(await page.evaluate(()=>window.storyProbe.delivery.getForklifts().fleet.size)).toBe(1);
   const initialVehicle=await info(),original=initialVehicle.position,heading=initialVehicle.yaw,forward=[Math.sin(heading),Math.cos(heading)];
   console.info("Physical delivery initial alignment",prefix,JSON.stringify(initialVehicle));
@@ -74,21 +116,51 @@ export async function driveObservedDeliveries(page,testInfo,count,prefix){
   };
   for(let crate=0;crate<count;crate++){
     await page.waitForFunction(()=>{const r=window.storyProbe.delivery;return r.active?.prompt.delivery.cargoId&&r.getForklifts().cargo.physics.entries.has(r.active.prompt.delivery.cargoId);});
-    const pickup=await info();
-    await slowDrive("vehicle",[pickup.cargo[0]-forward[0]*1.3,pickup.cargo[2]-forward[1]*1.3]);
+    const pickup=await info(),pickupY=deliveryChallenges.find(definition=>definition.id===pickup.challengeId)?.delivery?.pickup?.[1];
+    expect(Number.isFinite(pickupY),`Missing canonical pickup height for ${pickup.challengeId}`).toBe(true);
+    let approachCargo=pickup.cargo,approachTarget=[pickup.cargo[0]-forward[0]*1.3,pickup.cargo[2]-forward[1]*1.3];
+    await slowDrive("vehicle",approachTarget);
     let lifted;
     for(let attempt=0;attempt<3;attempt++){
-      await page.keyboard.down("KeyE");await page.waitForTimeout(500);await page.keyboard.up("KeyE");await page.waitForTimeout(400);
+      const preLift=await pickupDiagnostic();
+      await page.keyboard.down("KeyE");
+      // Sample concurrently; never await this promise while E remains held.
+      const midPulsePromise=pickupDiagnostic(250).catch(error=>({diagnosticError:String(error)}));
+      await page.waitForTimeout(500);await page.keyboard.up("KeyE");
+      const afterPulse=await pickupDiagnostic(),midPulse=await midPulsePromise;
+      await page.waitForTimeout(400);
       lifted=await info();if(lifted.support)break;
+      const failedLift=await pickupDiagnostic(),name=`${prefix}-crate-${crate+1}-pickup-attempt-${attempt+1}`;
+      const diagnostic={schema:"new-yokosuka-forklift-pickup-diagnostic-v1",crate:crate+1,attempt:attempt+1,approach:{originalHeading:heading,targetXZ:approachTarget,cargoAtTargetCalculation:approachCargo},preLift,midPulse,afterPulse,failedLift};
+      console.info("Physical delivery pickup miss",name,JSON.stringify(diagnostic));
+      await testInfo.attach(`${name}.json`,{body:JSON.stringify(diagnostic,null,2),contentType:"application/json"});
+      const screenshot=await page.screenshot({path:testInfo.outputPath(`${name}.png`)});
+      await testInfo.attach(`${name}.png`,{body:screenshot,contentType:"image/png"});
       if(attempt<2){
         // Lower fully and back out before reinserting the forks. Pushing at
         // the raised box edge merely shoves the crate away from the tines.
         await page.keyboard.down("KeyF");try{await page.waitForFunction(()=>window.storyProbe.delivery.getForklifts().mode.state.lift<.02,null,{timeout:5000});}finally{await page.keyboard.up("KeyF");}
         const current=await info();await slowDrive("vehicle",[current.cargo[0]-forward[0]*3,current.cargo[2]-forward[1]*3]);
-        const observed=await info(),distance=1.15-attempt*.1;await slowDrive("vehicle",[observed.cargo[0]-forward[0]*distance,observed.cargo[2]-forward[1]*distance]);
+        const observed=await info(),distance=1.15-attempt*.1;approachCargo=observed.cargo;approachTarget=[observed.cargo[0]-forward[0]*distance,observed.cargo[2]-forward[1]*distance];await slowDrive("vehicle",approachTarget);
       }
     }
     expect(lifted.support,JSON.stringify(lifted)).toBe(true);
+    // Support can engage below the server's carry-height threshold. Raise with
+    // ordinary input before transport; this does not diagnose an earlier miss.
+    await page.keyboard.down("KeyE");
+    try{
+      const deadline=Date.now()+3000;
+      while(Date.now()<deadline){
+        lifted=await info();expect(lifted?.support,JSON.stringify(lifted)).toBe(true);
+        if(lifted.cargo[1]>=pickupY+.35&&lifted.physicalLift>=.45)break;
+        await page.waitForTimeout(100);
+      }
+    }finally{await page.keyboard.up("KeyE");}
+    lifted=await info();
+    await deliveryEvidence("carry",crate+1,pickupY,pickup.view.cargoId);
+    expect(lifted?.support,JSON.stringify(lifted)).toBe(true);
+    expect(lifted.cargo[1],JSON.stringify(lifted)).toBeGreaterThanOrEqual(pickupY+.35);
+    expect(lifted.physicalLift,JSON.stringify(lifted)).toBeGreaterThanOrEqual(.45);
     if(crate===0){
       await page.evaluate(()=>{const r=window.storyProbe.delivery,a=r.getForklifts(),c=r.getController();a.vehicleController.cameraManuallyPositioned=true;c.cameraYaw=a.mode.actorRoot.rotation.y+Math.PI/2;c.cameraPitch=.3;c.cameraDistance=7;c.updateCamera(1);});
       await page.screenshot({path:testInfo.outputPath(`${prefix}-real-pickup.png`)});
@@ -106,7 +178,7 @@ export async function driveObservedDeliveries(page,testInfo,count,prefix){
       if(crate<count-1)await expect.poll(()=>page.evaluate(()=>window.storyProbe.delivery.active?.prompt.delivery.delivered),{timeout:15_000}).toBe(crate+1);
       else await page.waitForFunction(count=>!window.storyProbe.delivery.active||window.storyProbe.delivery.active.prompt.delivery.delivered>=count,count,{timeout:20_000});
     }catch(error){
-      console.info("Physical delivery not accepted",JSON.stringify({crate:crate+1,local:await info(),network:await page.evaluate(()=>window.storyCargoTrace||null)}));
+      await deliveryEvidence("drop-not-accepted",crate+1,pickupY,pickup.view.cargoId);
       throw error;
     }
     console.log("Physical delivery finished",prefix,crate+1);

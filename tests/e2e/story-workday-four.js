@@ -99,9 +99,30 @@ export async function verifyFourthAfternoon(page,testInfo,character){
   }
   if(!(await saved()).character.storyFlags["story.s1.workday-four-afternoon.completed"]){
     console.info("Fourth afternoon stage: four actual physical deliveries and acknowledged17:00 quota");
-    const briefing=page.getByText("Goro is safe, but the Mad Angels threatened my family and friends. Finish the remaining four crates before collecting my wages.",{exact:true});
-    // Reconnecting at the dispatch pad may already have its exact briefing.
-    await page.waitForTimeout(500);if(!await briefing.isVisible())await approach([-20,0,117],-Math.PI/2,()=>briefing.waitFor());await page.keyboard.press("Space");await page.getByRole("button",{name:"Start the deliveries",exact:true}).click();await page.waitForFunction(()=>window.storyProbe.delivery?.active?.entered||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check();await page.waitForTimeout(1800);await page.locator("#renderCanvas").focus();await driveObservedDeliveries(page,testInfo,4,"workday-four-afternoon");
+    const {default:routes}=await import("../../tools/scripting/story-investigation.json",{with:{type:"json"}});
+    const route=routes.routes.find(route=>route.id==="workday-four-afternoon"),briefing=page.getByText(route.authoredText.briefing,{exact:true});
+    const current=await check(),clock=current.worldState.gameTimeMs;
+    expect(current.character.playMode).toBe("story");expect(current.character.openingCompleted).toBe(true);
+    for(const flag of route.requiredFlags)expect(current.character.storyFlags[flag]).toBe(true);
+    expect(current.character.storyFlags[route.completedFlag]).not.toBe(true);expect(Number.isFinite(clock)).toBe(true);
+    const hour=new Date(clock).getUTCHours()+new Date(clock).getUTCMinutes()/60;
+    expect(hour).toBeGreaterThanOrEqual(route.hours[0]);expect(hour).toBeLessThan(route.hours[1]);
+    // Loading the earned dispatch-pad pose can start this exact offer before
+    // its text appears. An inside actor must await that handoff, not require idle.
+    const handoff=await page.evaluate(regionId=>{
+      const p=window.storyProbe,r=p.regions,l=p.lifecycle,region=r.regions.find(region=>region.id===regionId);
+      if(!region)throw Error(`Missing published fourth-afternoon region: ${regionId}`);
+      const position=l.getController().actorRoot.position.asArray();
+      return {world:l.worldRuntime.activeWorld.id,ready:l.worldRuntime.ready,regionId,position,min:region.min,max:region.max,
+        inside:position.every((value,axis)=>value>=region.min[axis]&&value<=region.max[axis]),
+        status:r.controller.status,script:r.controller.active?.scriptIdentity?.scriptSlug};
+    },route.bounds);
+    expect(handoff.world).toBe("mfsy");expect(handoff.ready).toBe(true);
+    await testInfo.attach("fourth-afternoon-handoff",{body:JSON.stringify(handoff),contentType:"application/json"});
+    console.info("Fourth afternoon handoff:",JSON.stringify(handoff));
+    if(!handoff.inside)await approach([-20,0,117],-Math.PI/2,()=>briefing.waitFor({timeout:45_000}));
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.active?.scriptIdentity?.scriptSlug),{timeout:45_000}).toBe("story-s1-workday-four-afternoon");
+    await briefing.waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Start the deliveries",exact:true}).click();await page.waitForFunction(()=>window.storyProbe.delivery?.active?.entered||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check();await page.waitForTimeout(1800);await page.locator("#renderCanvas").focus();await driveObservedDeliveries(page,testInfo,4,"workday-four-afternoon");
     await page.getByText("All eight crates are delivered. The shift is over; collect today's wages from Yada-san.",{exact:true}).waitFor();expect((await check()).character.storyFlags["story.s1.workday-four-afternoon.completed"]).not.toBe(true);await page.keyboard.press("Space");await idle();expect(new Date((await check()).character.storyTimeMs).getUTCHours()).toBe(17);
   }
   if(!(await saved()).character.storyFlags[pay]){
