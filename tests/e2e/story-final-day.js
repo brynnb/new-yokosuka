@@ -84,6 +84,28 @@ export async function verifyFinalNight(page,testInfo,character,{musicResponses})
   const scene=async id=>{await page.waitForFunction(id=>window.storyProbe.director?.activeCutscene?.cutscene.id===`story-s1-${id}`||window.storyProbe.sceneErrors.length,id,{timeout:100_000});await check();};
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);await check();};
   const reload=async()=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);};
+  const declinePendingSeventy=async(stage)=>{
+    const region=regions.regions.find(region=>region.id==="s1.mfbt.seventy-man");
+    expect(region,"Missing published seventy-man region").toBeDefined();
+    const before=await check(),c=before.character;
+    if(c.playMode!==region.playMode||c.openingCompleted!==true||c.worldId!==region.worldId||
+      !region.requiredFlags.every(flag=>c.storyFlags[flag]===true)||c.storyFlags[region.completedFlag]===true)return;
+    const handoff=await page.evaluate(({worldId,min,max})=>{
+      const l=window.storyProbe.lifecycle,position=l.getController().actorRoot.position.asArray();
+      return {world:l.worldRuntime.activeWorld.id,ready:l.worldRuntime.ready,position,
+        inside:l.worldRuntime.activeWorld.id===worldId&&position.every((value,i)=>value>=min[i]&&value<=max[i])};
+    },region);
+    if(!handoff.inside)return;
+    expect(handoff.ready).toBe(true);
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.active?.scriptIdentity?.scriptSlug),{timeout:45_000}).toBe("story-s1-seventy-man");
+    await expect(page.getByRole("button",{name:"Fight the Mad Angels",exact:true})).toBeVisible();
+    await page.getByRole("button",{name:"Leave it for now",exact:true}).click();
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await idle();
+    const after=await check();expect(after.character.storyFlags).toEqual(before.character.storyFlags);expect(after.inventory).toEqual(before.inventory);
+    for(const key of ["yen","currentHp","maxHp","worldId","playMode"])expect(after.character[key]).toBe(before.character[key]);
+    expect(after.character.storyFlags[region.completedFlag]).not.toBe(true);
+    console.info("Final night: declined exact seventy-man offer without effects",JSON.stringify({stage,...handoff}));
+  };
   const cancel=async()=>{await page.evaluate(()=>window.storyProbe.regions.controller.cancel("final-night-check"));await idle();};
   const music=async id=>{await expect.poll(()=>page.evaluate(id=>{const m=window.storyMusic?.director,a=m?.current?.audio;return m?.current?.trackId===id&&!a.paused&&a.currentTime>1&&a.volume>0;},id),{timeout:15_000}).toBe(true);};
   if(!(await saved()).character.storyFlags[flag("tom-plane")]){
@@ -132,11 +154,11 @@ export async function verifyFinalNight(page,testInfo,character,{musicResponses})
     await page.screenshot({path:testInfo.outputPath("original-mad-angels-encirclement.png")});
     await expect.poll(async()=>(await saved()).character.storyFlags[flag("final-pipe")],{timeout:60_000}).toBe(true);
   }
-  await idle();const final=await check();expect(final.character.worldId).toBe("mfbt");
+  await declinePendingSeventy("completion");await idle();const final=await check();expect(final.character.worldId).toBe("mfbt");
   expect(Math.hypot(final.character.x+29.329214096069336,final.character.z-102.2677993774414)).toBeLessThan(.2);
   expect(new Date(final.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
   console.info("Final night music responses",JSON.stringify(musicResponses.filter(r=>/bgm013|bgm084/.test(r.url))));
-  await reload();await idle();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+  await reload();await declinePendingSeventy("reload");await idle();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.dom.app.classList.contains("combat-mode"))).toBe(false);
   await page.screenshot({path:testInfo.outputPath("final-night-saved-battle-floor-and-controls.png")});
 }
