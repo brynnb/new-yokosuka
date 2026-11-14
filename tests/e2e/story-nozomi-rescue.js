@@ -14,6 +14,30 @@ export async function verifyNozomiTransport(page,testInfo,character,{residentCli
     expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;};
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await page.waitForFunction(()=>{const w=window.storyProbe.lifecycle.worldRuntime;return w.ready&&!w.switching;});await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
   const reload=async({idleAfter=true}={})=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(()=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id);if(idleAfter)await idle();};
+  const declinePendingRide=async(stage)=>{
+    const {default:catalog}=await import("../../play/data/story-regions.json",{with:{type:"json"}});
+    const region=catalog.regions.find(region=>region.id==="s1.jd00.nozomi-ride-entry");
+    expect(region,"Missing published Nozomi ride-entry region").toBeDefined();
+    const before=await check(),c=before.character;
+    if(c.playMode!==region.playMode||c.openingCompleted!==true||c.worldId!==region.worldId||
+      !region.requiredFlags.every(flag=>c.storyFlags[flag]===true)||region.excludedFlags.some(flag=>c.storyFlags[flag]===true))return;
+    // This published next offer intentionally has no clock gate. Borrowing's
+    // overnight window must not be imposed on the repeatable road transfer.
+    const handoff=await page.evaluate(({worldId,min,max})=>{
+      const l=window.storyProbe.lifecycle,position=l.getController().actorRoot.position.asArray();
+      return {world:l.worldRuntime.activeWorld.id,ready:l.worldRuntime.ready,position,
+        inside:l.worldRuntime.activeWorld.id===worldId&&position.every((value,i)=>value>=min[i]&&value<=max[i])};
+    },region);
+    if(!handoff.inside)return;
+    expect(handoff.ready).toBe(true);
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.active?.scriptIdentity?.scriptSlug),{timeout:45_000}).toBe("story-s1-nozomi-ride-entry");
+    await expect(page.getByRole("button",{name:"Ride to the harbor",exact:true})).toBeVisible();
+    await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();
+    const after=await check();expect(after.character.storyFlags).toEqual(before.character.storyFlags);expect(after.inventory).toEqual(before.inventory);
+    for(const key of ["yen","currentHp","maxHp","worldId","playMode"])expect(after.character[key]).toBe(before.character[key]);
+    for(const flag of ["story.s1.nozomi-ride-entry.completed","story.s1.nozomi-ride.completed"])expect(after.character.storyFlags[flag]).toBe(before.character.storyFlags[flag]);
+    console.info("Nozomi transport: declined exact next ride without effects",JSON.stringify({stage,...handoff}));
+  };
   if(!initial.character.storyFlags[referral]&&!initial.character.storyFlags[borrow]){
     const door=transitions.reverseMatchedD000Transitions.find(d=>d.destination.area==="DBYO"),back=transitions.allExactDoorTransitions.find(d=>d.id===door.evidence.returnTransitionId);
     await enterInteriorDoor(page,{world:"dbyo",filename:door.source.model,doorSelector:door.source.doorSelector,position:back.destination.browserSpawn.position,yaw:back.destination.browserSpawn.yawRadians});
@@ -41,11 +65,12 @@ export async function verifyNozomiTransport(page,testInfo,character,{residentCli
     console.info("Nozomi transport: original Naoyuki film, natural ending and permission-only settlement");
     // Original C003 starts at27.67s: Naoyuki agrees to lend the bike.
     await page.waitForTimeout(28_000);await page.screenshot({path:testInfo.outputPath("nozomi-naoyuki-original-motorcycle.png")});
-    await expect.poll(async()=>(await saved()).character.storyFlags[borrow],{timeout:65_000,intervals:[1000]}).toBe(true);await idle();await check();
+    await expect.poll(async()=>(await saved()).character.storyFlags[borrow],{timeout:65_000,intervals:[1000]}).toBe(true);await check();
     expect(musicResponses.some(r=>r.url.includes("bgm200")&&[200,206].includes(r.status))).toBe(true);
   }
+  await declinePendingRide("completion");await idle();
   const end=await check();expect(end.character.worldId).toBe("sakuragaoka");expect(end.character.storyFlags["notebook.s1.borrowed-motorcycle"]).toBe(true);
-  await reload();await check();expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-nozomi-motorcycle"))).toBe(false);
+  await reload({idleAfter:false});await declinePendingRide("reload");await idle();await check();expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-nozomi-motorcycle"))).toBe(false);
   await page.locator("button").filter({hasText:/^Notebook$/}).click();for(let i=0;i<160&&await page.locator("#journal-next").isEnabled();i++)await page.locator("#journal-next").click();
   await expect(page.locator("#journal-page-copy")).toContainText("Naoyuki lent me his motorcycle.");await page.screenshot({path:testInfo.outputPath("nozomi-borrowed-motorcycle-earned-reload.png")});await page.locator("#journal-close").click();await idle();
 }
