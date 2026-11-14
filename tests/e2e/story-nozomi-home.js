@@ -5,6 +5,16 @@ import {expect} from "@playwright/test";
 export async function verifyNozomiHome(page,testInfo,character,{musicResponses}){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),flag=id=>`story.s1.${id}.completed`;
+  // Each admitted attempt pauses the live personal clock. Derive the next
+  // occurrence from that attempt, not the earlier persisted checkpoint.
+  const nextDateAt=(clock,hour,minute)=>{
+    expect(Number.isFinite(clock?.gameTimeMs),"active attempt has an authoritative personal clock").toBe(true);
+    expect(clock.paused,"the successful attempt holds the personal clock").toBe(true);
+    const start=new Date(clock.gameTimeMs),target=new Date(clock.gameTimeMs);
+    target.setUTCHours(hour,minute,0,0);
+    if(target.getTime()<=start.getTime())target.setUTCDate(target.getUTCDate()+1);
+    return target.toISOString().slice(0,10);
+  };
   expect(initial.character.storyFlags[flag("nozomi-rescue")]).toBe(true);
   const errors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   const economy=async()=>{const s=await saved();expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory).toEqual(initial.inventory);expect(s.character.storyFlags["story.s1.final-battle.completed"]).not.toBe(true);await errors();return s;};
@@ -26,6 +36,7 @@ export async function verifyNozomiHome(page,testInfo,character,{musicResponses})
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel("ride-home-cancel"));
   expect((await economy()).character.storyFlags[flag("nozomi-home")]).not.toBe(true);
   await reload();await slot(0);
+  const expectedHomeDate=nextDateAt((await economy()).worldState,5,56);
   const skip=process.env.NEW_YOKOSUKA_NOZOMI_HOME_SKIP_E2E==="true";
   if(skip){
     console.info("Nozomi home: supported explicit program skip");await page.keyboard.press("KeyX");
@@ -40,7 +51,7 @@ export async function verifyNozomiHome(page,testInfo,character,{musicResponses})
   if(!skip)expect(await page.evaluate(()=>window.storyProbe.homeActivities.map(a=>a.slot))).toEqual(Array.from({length:23},(_,i)=>i));
   const home=await economy();expect(home.character.worldId).toBe("interior");expect(home.character.storyFlags["notebook.s1.nozomi-home"]).toBe(true);
   const date=new Date(home.character.storyTimeMs);expect(date.getUTCHours()).toBe(5);expect(date.getUTCMinutes()).toBe(56);
-  expect(date.toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
+  expect(date.toISOString().slice(0,10)).toBe(expectedHomeDate);
   if(!skip){const responses=musicResponses.filter(r=>r.url.includes("nozomi-home-cdda05"));expect(responses.some(r=>r.status===200||r.status===206),JSON.stringify(responses)).toBe(true);}
   }
   console.info("Nozomi home: separate bedside stay/reload/sleep and next07:30 save");
@@ -49,9 +60,11 @@ export async function verifyNozomiHome(page,testInfo,character,{musicResponses})
   console.info("Bedside state",JSON.stringify(await page.evaluate(()=>{const p=window.storyProbe,r=p.regions,c=r.getCharacter();return{frame:p.lastRegionFrame,status:r.controller.status,inside:[...r.inside],character:{id:c.id,mode:c.playMode,opening:c.openingCompleted,home:c.storyFlags?.["story.s1.nozomi-home.completed"],rest:c.storyFlags?.["story.s1.final-morning.completed"]}};})));
   await choose("Stay awake");expect((await economy()).character.storyFlags[flag("final-morning")]).not.toBe(true);
   await reload();expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-nozomi-home"))).toBe(false);
+  await expect(page.getByRole("button",{name:"Sleep until 7:30 a.m.",exact:true})).toBeVisible({timeout:90_000});
+  const expectedMorningDate=nextDateAt((await economy()).worldState,7,30);
   await choose("Sleep until 7:30 a.m.");
   await expect.poll(async()=>(await saved()).character.storyFlags[flag("final-morning")]).toBe(true);
-  const wake=await economy(),morning=new Date(wake.character.storyTimeMs);expect(wake.character.worldId).toBe("interior");expect(morning.getUTCHours()).toBe(7);expect(morning.getUTCMinutes()).toBeGreaterThanOrEqual(30);expect(morning.getUTCMinutes()).toBeLessThan(32);expect(morning.toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
+  const wake=await economy(),morning=new Date(wake.character.storyTimeMs);expect(wake.character.worldId).toBe("interior");expect(morning.getUTCHours()).toBe(7);expect(morning.getUTCMinutes()).toBeGreaterThanOrEqual(30);expect(morning.getUTCMinutes()).toBeLessThan(32);expect(morning.toISOString().slice(0,10)).toBe(expectedMorningDate);
   await reload();await page.waitForTimeout(2500);await economy();
   expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
