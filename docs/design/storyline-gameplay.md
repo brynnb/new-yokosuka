@@ -11,11 +11,17 @@ records grouped progression verification. The
 [master event list](../reference/shenmue1-story-event-master.generated.md) owns
 individual event coverage, including optional content and unresolved families;
 neither a route binding nor progression verification proves complete facial,
-prop or camera presentation. The coverage below combines separate scenario runs,
-including continuations from earned or seeded predecessor checkpoints. It does
-not yet establish one fresh-character opening-to-finale traversal; each run's
-setup, movement shortcuts and explicit presentation skips remain part of its
-verification boundary. Connected browser coverage reaches the opening,
+prop or camera presentation. The coverage below retains separate historical scenario runs. The
+[November 13 campaign](../../tools/evidence/earned-story-continuation-20261113.json)
+also records 71 accepted staged continuations on character 5, created fresh,
+after the separately retained four opening films and first allowance, through
+the saved Story `s1-voyage` endpoint. The final accepted attempt is
+`SHIP_DEPARTURE:route-r26-06`; its snapshot and hashes are indexed in that manifest.
+No prerequisite flags, items or outcomes were seeded in this chain. Helpers
+sometimes shorten travel or use supported presentation skips, so this proves
+continuity on one earned save without certifying uninterrupted walking, natural
+playback of every scene, all alternate outcomes or complete original fidelity.
+Earlier isolated fixtures retain their stated evidence and limitations. Connected browser coverage reaches the opening,
 allowance, early witnesses, Heartbeats and the
 Charlie inquiries, the parking-lot ambush, the same-night tattoo-parlour visit
 and Charlie's later confrontation/cartel appointment. Coverage follows the core
@@ -112,8 +118,15 @@ handguard referral and Ine-san's family-crest explanation are implemented
 through the same event system, with original voices and embedded presentation;
 rendered cancellation/re-entry, real altar-room door use and walking, natural
 scene completion, saved independent notebook pages, restored controls and
-reload pass. Fuku's held gestures/close-up and detailed handguard handling remain
-adaptations. Shared sliding collision now binds the moving leaf independently.
+reload pass. Fuku's held gestures and close-up remain authored. Ine-san's film
+now uses original detailed Ryo/Ine hands and rigs, the distinct textured JOMO
+handguard and callback-derived transfers and visibility cues. Initial prop
+visibility, the bounded tabletop pose at frames 325–395 and unresolved native
+detach propagation remain adaptations. Cinematic sliding doors and two absent
+original door sounds remain incomplete; eight voices and six other sound
+identities are recovered, while BGM077 start timing is authored. These restored
+hands do not certify every finger contact or facial detail. Shared sliding
+collision now binds the moving leaf independently.
 Iwao's key and the dojo sword case now have original-object use and independent
 saved possessions through shared authored pickup choices. Connected rendered
 drawer/case use, leave/cancel/retry, inventory/notebook settlement, unlocked

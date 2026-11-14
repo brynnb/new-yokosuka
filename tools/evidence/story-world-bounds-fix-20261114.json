@@ -1,0 +1,345 @@
+{
+  "schema": "new-yokosuka-story-world-bounds-fix-v1",
+  "recordedAtUtc": "2026-11-14T03:47:03.993653+00:00",
+  "publication": {
+    "status": "installed",
+    "proposedRepositoryPath": "tools/evidence/story-world-bounds-fix-20261114.json",
+    "installedAtUtc": "2026-11-14T05:39:33.045792+00:00",
+    "completionGate": {
+      "manifestRepositoryPath": "tools/evidence/earned-story-continuation-20261113.json",
+      "manifestSha256": "54dd2a91f358f7da25f6c28fddc81312868243365c0e16ba643472cd270522f8",
+      "acceptedAtUtc": "2026-11-14T05:25:22.663Z",
+      "selectedPhaseCount": 71,
+      "characterId": 5
+    }
+  },
+  "acceptance": {
+    "focusedServerTests": "passed",
+    "boundedBuildAndRestart": "passed",
+    "sameSavePersistedDispatchAndRideSettlement": "observed in failed route-r19-01 phase",
+    "overallNozomiRidePhase": "passed via earned-state continuation route-r20-01; original r18/r19 attempts remain failed",
+    "fullSelectedRoute": "passed at installation: 71 selected same-save staged continuations, ending with SHIP_DEPARTURE:route-r26-06; see publication.completionGate",
+    "fullSelectedRouteAtPreparation": "pending"
+  },
+  "originalFailure": {
+    "phase": "NOZOMI_RIDE",
+    "attempt": "route-r18-02",
+    "result": "failed",
+    "characterId": 5,
+    "savedWorldId": "nbik",
+    "savedRideEntryCompleted": true,
+    "savedRideCompleted": false,
+    "serverErrorUtc": "2026-11-14T03:26:41Z",
+    "serverError": "bounds \"s1.nbik.nozomi-home\" for actor \"AKIR\" were not supplied by the authoritative world",
+    "serverErrorLine": 745
+  },
+  "diagnosis": {
+    "candidateScope": "enter / native area NBIK",
+    "publishedOrder": [
+      {
+        "slug": "story-s1-nozomi-home",
+        "priority": 990,
+        "worldId": "nbik-home"
+      },
+      {
+        "slug": "story-s1-nozomi-ride",
+        "priority": 940,
+        "worldId": "nbik"
+      }
+    ],
+    "mechanism": "The earlier home candidate eagerly queries its authored bounds even when prerequisite guards fail. The previous map omitted a known sibling-world region, so the strict resolver aborted instead of allowing the candidate to pass."
+  },
+  "fix": {
+    "serverCommit": "13a159439c725678a7c759547241f32cc0336f5c",
+    "behavior": "Keep every catalogued same-area, same-actor region known. An explicitly different WorldID produces false; matching-world regions still use the authored spatial bounds.",
+    "preserved": "Unknown region, area or actor facts remain absent and strict queries fail closed. Nonfinite authoritative transforms remain empty. No script priorities, guards, receipts, resources or database rows were changed by this fix.",
+    "sources": [
+      {
+        "path": "internal/scriptevent/story_regions.go",
+        "bytes": 2150,
+        "sha256": "f487d02ed4ddb7f221671bf297afbe251c0069d33875d7078324f25d72cb2309"
+      },
+      {
+        "path": "internal/scriptevent/story_world_bounds_test.go",
+        "bytes": 4497,
+        "sha256": "1e99658199afe8f09b91fa1081e151b6c5aa72192e62060544c0fe05ce2f8656"
+      },
+      {
+        "path": "internal/scriptevent/motorcycle_world_dispatch_test.go",
+        "bytes": 8253,
+        "sha256": "8bfcc954c86e55ac5fc9d835ce88d3420990c61bc9ad597032db481baebc29e6"
+      }
+    ]
+  },
+  "validation": {
+    "executor": "root coordinator; this evidence task ran no tests or builds",
+    "resourceCaps": {
+      "memoryMaxMiB": 2048,
+      "swapMaxMiB": 0,
+      "sharedTestLock": true,
+      "goParallelPackages": 1,
+      "raceDetector": false
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "command": [
+          "go",
+          "test",
+          "-p",
+          "1",
+          "./internal/scriptevent",
+          "-run",
+          "^(TestStoryWorldBounds|TestMotorcycleWorldDispatch|TestAuthoredHall|TestRaceRegion)",
+          "-count=1",
+          "-v"
+        ],
+        "exitCode": 0,
+        "packageSeconds": 0.006,
+        "result": "Bounds/query/nonfinite tests and existing hall/race isolation checks passed; the real-Yarn test skipped because its required compiler environment variable was not set. This is not a Yarn pass.",
+        "log": {
+          "path": "server-world-bounds-test.log",
+          "bytes": 4737,
+          "sha256": "19291795d8ca7c5e523548053a08422addf8f6a08165dcf1db1f991a2e08ec0a"
+        }
+      },
+      {
+        "attempt": 2,
+        "command": [
+          "go",
+          "test",
+          "-p",
+          "1",
+          "./internal/scriptevent",
+          "-run",
+          "^TestMotorcycleWorldDispatchUsesRealYarnAndAuthoritativeBounds$",
+          "-count=1",
+          "-v"
+        ],
+        "compilerEnvironment": "NEW_YOKOSUKA_YARN_COMPILER correctly supplied with the existing .NET runtime",
+        "exitCode": 1,
+        "packageSeconds": 0.629,
+        "result": "Both real-Yarn branches reached their intended choice/activity, then strict state equality failed because the fixture had nil Progress while cloneState normalizes it to an empty map. Retained as a failed test setup attempt.",
+        "log": {
+          "path": "server-world-bounds-yarn-test.log",
+          "bytes": 2123,
+          "sha256": "15f3f9af84a53e7c39e4ff70ef262f4350e4b57e0e55ce388a2bebcbc8c21d85"
+        }
+      },
+      {
+        "attempt": 3,
+        "command": [
+          "go",
+          "test",
+          "-p",
+          "1",
+          "./internal/scriptevent",
+          "-run",
+          "^TestMotorcycleWorldDispatchUsesRealYarnAndAuthoritativeBounds$",
+          "-count=1",
+          "-v"
+        ],
+        "exitCode": 0,
+        "packageSeconds": 0.583,
+        "skipped": false,
+        "fixtureCorrection": "Initialize only fixture Progress to map[string]float64{}; retain strict equality and production behavior.",
+        "passedBranches": [
+          "borrowed_ride_passes_off-world_home",
+          "earned_home_uses_its_own_world"
+        ],
+        "log": {
+          "path": "server-world-bounds-yarn-test-r2.log",
+          "bytes": 1040,
+          "sha256": "8cb0241550a39732ae151584b3a5bcc8f0eb2bcf93ffe53793c166cc7c9cebda"
+        }
+      }
+    ],
+    "coverage": "Explicit map value plus key existence in both NBIK directions and MA00 practice/race; unknown queries and nonfinite transforms; actual Yarn compiler, Bridge, Engine, guards, AuthoritativeActorBounds, candidate pass-through, choice/driving and home activity; unchanged state/effects plus cancellation.",
+    "orderDoubleBoundary": "The repository double derives and sorts actual published trigger metadata, deliberately receives ride before home, and asserts home priority precedes ride. It models priority DESC / version ID ordering; it does not execute the store SQL. Real compiler/runtime/query behavior is not stubbed."
+  },
+  "buildAndRestart": {
+    "buildCommand": [
+      "go",
+      "build",
+      "-p",
+      "1",
+      "-o",
+      "W/server-world-bounds-next",
+      "./cmd/server"
+    ],
+    "buildExitCode": 0,
+    "sourceClean": true,
+    "atUtc": "2026-11-14T03:41:37.134785+00:00",
+    "newPid": 3702403,
+    "newStartTicks": 82471194,
+    "binarySha256": "9804464d8b23b23d8fb2c848a4e5bf8497c5571a8df6e56443c275820154f270",
+    "healthStatus": 200,
+    "sourceIdentityBoundary": "Source identity recorded from clean revision/build provenance, not embedded Go VCS metadata.",
+    "liveServerLog": "server-after-world-bounds-fix.log"
+  },
+  "followup": {
+    "phase": "NOZOMI_RIDE",
+    "attempt": "route-r19-01",
+    "result": "failed",
+    "totalSeconds": 111.92,
+    "coordinatorObserved": "Real persisted selection started the driving challenge. Ordinary cancellation, reload, return and retry were exercised; the ride completed and saved mfsy. The overall phase then failed because the legitimate next warehouse offer locks movement.",
+    "snapshotVerified": {
+      "characterId": 5,
+      "playMode": "story",
+      "worldId": "mfsy",
+      "newFlags": [
+        "story.s1.nozomi-ride.completed"
+      ],
+      "yen": 22836,
+      "hp": {
+        "current": 100,
+        "max": 100
+      },
+      "inventoryRows": 8,
+      "inventoryAndResourcesEqualToFailedPreFixSnapshot": true
+    },
+    "scope": "This supplies actual dispatch and ride-settlement evidence for the server fix, not an accepted overall phase. The client handoff correction and same-save continuation remain coordinator-owned."
+  },
+  "limits": [
+    "Original route-r18-02 and route-r19-01 attempts remain failed. Only the separate earned-state continuation route-r20-01 is accepted; it did not repeat the ride.",
+    "The focused Go commands did not use the race detector.",
+    "Unit tests do not establish rendering, audio or source-game fidelity. Accepted r20 continuation does not establish later warehouse or full-route acceptance.",
+    "The pre-restart database checkpoint is referenced by descriptor only; no database contents, credentials, tokens or account details are copied into this note."
+  ],
+  "evidence": {
+    "originalServerLog": {
+      "path": "server-after-disconnect-fix.log",
+      "bytes": 181040,
+      "sha256": "25bc3b8140fe795e3028d0e95a9919d0289331164e390aaa707de53d4854f545"
+    },
+    "originalSourceBaseline": {
+      "path": "story_regions.before-sibling-world-bounds.go",
+      "bytes": 1947,
+      "sha256": "6b8609abc7c3427734a31b0bd91d6d81fd1bb2294836aa5e6118b1a6d54f8693"
+    },
+    "failedRideLog": {
+      "path": "browser-earned-nozomi-ride-route-r18-02.log",
+      "bytes": 78447,
+      "sha256": "8c3e17402f047429429edc122abc99d18c1ffbd5d0cf106f2e43841f3631accf"
+    },
+    "failedRideSnapshot": {
+      "path": "earned-nozomi-ride-route-r18-02/character-state.json",
+      "bytes": 16130,
+      "sha256": "ebe687f60dc6182bcc2d4d4f488405fe8b44710445394c6e33c5dc59bb93240c"
+    },
+    "failedRideReport": {
+      "path": "html-earned-nozomi-ride-route-r18-02/index.html",
+      "bytes": 533599,
+      "sha256": "f98b6309d1828da67ae6b62587837184a56c8886b76506e65c3099be9842139a"
+    },
+    "followupRideLog": {
+      "path": "browser-earned-nozomi-ride-route-r19-01.log",
+      "bytes": 137376,
+      "sha256": "48872bf6283c85d0624100de17157460d4d33f98be6e1b61b94b46e541acc986"
+    },
+    "followupRideSnapshot": {
+      "path": "earned-nozomi-ride-route-r19-01/character-state.json",
+      "bytes": 16174,
+      "sha256": "e55cf82a7644c7d76c584b32449eb84124f88240edff5216a751f7f4ed541c2e"
+    },
+    "followupRideReport": {
+      "path": "html-earned-nozomi-ride-route-r19-01/index.html",
+      "bytes": 566715,
+      "sha256": "b2bad14bfd3b97a7074c1e50b4b12c6299b0586de6abff85b8920c38afa118c6"
+    },
+    "buildLog": {
+      "path": "server-world-bounds-build.log",
+      "bytes": 379,
+      "sha256": "82214079588be53e47a2d6af274f4d53a1edfed88c6b42f3173ddef041cf8530"
+    },
+    "restartMetadata": {
+      "path": "server-world-bounds-restart.json",
+      "bytes": 1029,
+      "sha256": "094b646df7bc2c680240cd4ba3292be57186e73f0df9b1683738515ee38c3855"
+    },
+    "preRestartCheckpoint": {
+      "path": "before-world-bounds-fix.pgdump",
+      "bytes": 1897394,
+      "sha256": "333c9141743c7084b50c53e4145ec8d37094ea1c9701b724f6c55ac2ff0e3c33"
+    }
+  },
+  "updatedAtUtc": "2026-11-14T03:51:15.074430+00:00",
+  "acceptedContinuation": {
+    "phase": "NOZOMI_RIDE",
+    "attempt": "route-r20-01",
+    "result": "passed",
+    "totalSeconds": 22.48,
+    "storyTestSeconds": 18.545,
+    "checkpointOk": true,
+    "batchMetadata": {
+      "path": "earned-batch-route-r20.json",
+      "observedResult": {
+        "scenario": "NOZOMI_RIDE",
+        "label": "route-r20-01",
+        "exit": 0,
+        "seconds": 22.48,
+        "checkpoint": {
+          "ok": true
+        }
+      },
+      "boundary": "The coordinator file is mutable while later phases run; the accepted report, log and snapshot below are retained with hashes."
+    },
+    "executedScope": "Resume the already-earned ride. Decline the exact next warehouse offer through Leave it for now, reload once, and decline it again. Strict receipt/resource/world preservation and restored-idle checks pass. No repeated ride is claimed.",
+    "ordinaryWarehouseDeclines": 2,
+    "reloads": 1,
+    "repeatedRide": false,
+    "preservedFromFailedR19Snapshot": {
+      "fullStoryFlags": true,
+      "inventory": true,
+      "yen": true,
+      "currentHp": true,
+      "maxHp": true,
+      "worldId": true,
+      "playMode": true,
+      "characterId": true
+    },
+    "savedState": {
+      "characterId": 5,
+      "playMode": "story",
+      "worldId": "mfsy",
+      "rideCompleted": true,
+      "yen": 22836,
+      "hp": {
+        "current": 100,
+        "max": 100
+      },
+      "inventoryRows": 8
+    },
+    "sourceTiming": {
+      "activeServerCommit": "13a159439c725678a7c759547241f32cc0336f5c",
+      "serverWasActiveDuring": [
+        "route-r19-01 physical ride",
+        "route-r20-01 preservation/reload continuation"
+      ],
+      "clientHelperCommit": "807834b7085cfb8784ac35841f5ae84ec75a775d",
+      "clientCommitCreated": "after route-r20-01 acceptance; the reviewed helper body ran before its commit was created"
+    },
+    "evidence": {
+      "browserLog": {
+        "path": "browser-earned-nozomi-ride-route-r20-01.log",
+        "bytes": 89383,
+        "sha256": "589b20bbd8bd69f073bf3bfddb79592d77924f31a98df6fa52af235dcae7703d"
+      },
+      "characterSnapshot": {
+        "path": "earned-nozomi-ride-route-r20-01/character-state.json",
+        "bytes": 16176,
+        "sha256": "9fa5f65e2ad5bde69308e553294cdde8bc4c91500a923ce256da1116feb6a215"
+      },
+      "lastRunReport": {
+        "path": "earned-nozomi-ride-route-r20-01/.last-run.json",
+        "bytes": 45,
+        "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+      },
+      "htmlReport": {
+        "path": "html-earned-nozomi-ride-route-r20-01/index.html",
+        "bytes": 533787,
+        "sha256": "cd03e27b1350c4ba47d6fa4bac1c12b27fda786f7951086d682ad86094bf2889"
+      }
+    }
+  }
+}

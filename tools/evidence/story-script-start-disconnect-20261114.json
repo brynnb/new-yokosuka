@@ -1,0 +1,270 @@
+{
+  "schema": "new-yokosuka-story-script-start-disconnect-evidence-v1",
+  "preparedAtUtc": "2026-11-14T01:45:47.566004+00:00",
+  "scope": "Focused realtime lifecycle fix and accepted same-save normal browser continuation; no complete-route acceptance claim.",
+  "publication": {
+    "status": "installed",
+    "proposedRepositoryPath": "tools/evidence/story-script-start-disconnect-20261114.json",
+    "installAfter": "Browser campaign completion and root review; does not bypass the separate 71-phase/terminal gate.",
+    "installedAtUtc": "2026-11-14T05:39:33.045792+00:00",
+    "completionGate": {
+      "manifestRepositoryPath": "tools/evidence/earned-story-continuation-20261113.json",
+      "manifestSha256": "54dd2a91f358f7da25f6c28fddc81312868243365c0e16ba643472cd270522f8",
+      "acceptedAtUtc": "2026-11-14T05:25:22.663Z",
+      "selectedPhaseCount": 71,
+      "characterId": 5
+    }
+  },
+  "sourceVersions": {
+    "server": {
+      "commit": "2877113a30c5effbf1443336b6dc550d83723ba4",
+      "changedFiles": [
+        "internal/realtime/script_events.go",
+        "internal/realtime/script_events_test.go"
+      ],
+      "relatedExistingCleanupFiles": [
+        "internal/scriptevent/engine.go",
+        "internal/store/script_event_owner.go"
+      ]
+    },
+    "client": {
+      "commit": "3ec1e018",
+      "helperFile": "tests/e2e/story-harbor-bikers.js"
+    }
+  },
+  "chronology": [
+    {
+      "attempt": "route-r11-03",
+      "phase": "HARBOR_BIKERS",
+      "result": "failed",
+      "seconds": 25.4,
+      "snapshotServerUtc": "2026-11-14T01:01:37.497Z",
+      "observation": "The real wait until 19:00 reached a legitimate optional Swallow Dive enter dispatch. The helper incorrectly required idle while it was starting; this initial assertion failure is distinct from the subsequent disconnect/start race."
+    },
+    {
+      "event": "late run after disconnected attempt",
+      "runId": 4417,
+      "scriptSlug": "story-s1-swallow-dive",
+      "observedStatus": "active",
+      "createdUtc": "2026-11-14T01:01:39.927402Z",
+      "leaseExpiresUtc": "2026-11-14T01:06:39.929643Z",
+      "observation": "Creation followed the failed snapshot by about 2.43 seconds. The earlier unregister had no adopted run to cancel; late Start could assign the run after membership removal."
+    },
+    {
+      "attempt": "route-r12-01",
+      "phase": "HARBOR_BIKERS",
+      "result": "failed",
+      "seconds": 58.7,
+      "enterRejection": "event_active",
+      "rejectionUtcApproximate": "2026-11-14T01:05:31Z",
+      "observation": "The orphan run still held its lease. The separate automatic no_script response does not diagnose enter eligibility; the browser never received the exact optional offer."
+    },
+    {
+      "event": "reviewed server restart",
+      "atUtc": "2026-11-14T01:26:25.705080+00:00",
+      "serverCommit": "2877113a30c5effbf1443336b6dc550d83723ba4",
+      "databaseUnchanged": true
+    },
+    {
+      "attempt": "route-r13-01",
+      "phase": "HARBOR_BIKERS",
+      "result": "passed",
+      "seconds": 497.31,
+      "observation": "Normal continuation after restart and elapsed prior lease; exact optional offer declined before the required chase/fight/interrogation route."
+    }
+  ],
+  "fix": {
+    "behavior": [
+      "Bind pending Start context to client.done; stop the watcher when the request finishes.",
+      "Under the hub lock, require original client membership, current active-character ownership, live request context and open client before adopting a nonterminal run.",
+      "If adoption loses, cancel only that exact late run through captured engine/account/character identity using a fresh bounded context outside the hub lock.",
+      "Leave replacement-session run/clock and previously committed candidate receipts intact."
+    ],
+    "originalLateRunRetrospectivelyCancelledByThisFix": false
+  },
+  "focusedServerValidation": {
+    "command": [
+      "go",
+      "test",
+      "-p",
+      "1",
+      "-race",
+      "./internal/realtime",
+      "-run",
+      "^(TestScriptEventStart|TestScriptCalendarTransitionsPublishBeforeYieldAndKeepWallTime)",
+      "-count=1",
+      "-v"
+    ],
+    "result": "passed",
+    "exitCode": 0,
+    "packageSeconds": 1.127,
+    "raceDetector": true,
+    "resourceCaps": {
+      "memoryMaxMiB": 2048,
+      "swapMaxMiB": 0,
+      "sharedTestLock": true,
+      "goPackageParallelism": 1
+    },
+    "tests": [
+      "TestScriptEventStartCancelsRunAfterClientOwnershipEnds",
+      "TestScriptEventStartDerivesNativeAreaAndYields",
+      "TestScriptCalendarTransitionsPublishBeforeYieldAndKeepWallTime"
+    ],
+    "disconnectSubcases": [
+      "unregistered: actual Hub.Unregister during blocked Start",
+      "closed: done closed while membership remains",
+      "replaced: distinct replacement owns character while old membership/done remain live"
+    ],
+    "assertionScope": [
+      "Exact old run cancelled once with live bounded cleanup context.",
+      "No stale playable yield, clock transition or retained old run.",
+      "Replacement run99 and its paused clock preserved.",
+      "Connected start and calendar complete/cancelled/declined/error paths retained."
+    ],
+    "log": {
+      "path": "server-disconnect-tests.log",
+      "bytes": 2065,
+      "sha256": "d8d759253b0aa37a3b4c33a1fd5dfde2db30caef90f09801930efc23c48c9c03"
+    }
+  },
+  "normalFlowDatabaseObservation": {
+    "queriedAtUtc": "2026-11-14T01:35:03.972381+00:00",
+    "characterId": 5,
+    "scriptSlug": "story-s1-swallow-dive",
+    "readOnly": true,
+    "rows": [
+      {
+        "id": 4417,
+        "status": "expired",
+        "created_utc": "2026-11-14T01:01:39.927402Z",
+        "finished_utc": "2026-11-14T01:27:04.440332Z",
+        "expires_utc": "2026-11-14T01:06:39.929643Z",
+        "failure_code": null
+      },
+      {
+        "id": 4477,
+        "status": "completed",
+        "created_utc": "2026-11-14T01:27:10.015433Z",
+        "finished_utc": "2026-11-14T01:27:10.779645Z",
+        "expires_utc": "2026-11-14T01:32:10.758571Z",
+        "failure_code": null
+      }
+    ],
+    "interpretation": "Old run4417 was finalized expired after its lease deadline during normal resumed processing, consistent with existing expiry/owner cleanup. The row does not identify the exact cleanup check. New run4477 completed; completed alone does not identify the chosen option."
+  },
+  "acceptedNormalBrowserContinuation": {
+    "phase": "HARBOR_BIKERS",
+    "attempt": "route-r13-01",
+    "characterId": 5,
+    "result": "passed",
+    "seconds": 497.31,
+    "storyTestSeconds": 492.025,
+    "checkpointOk": true,
+    "reportCounts": {
+      "expected": 2,
+      "unexpected": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "storyErrors": 0
+    },
+    "executed": {
+      "swallowNotNow": 1,
+      "correctChaseInputs": 12,
+      "chaseWrongInput": 1,
+      "chaseTryAgain": 1,
+      "thugFightRuns": 2,
+      "charlieFightRuns": 2,
+      "explicitControllerCancellations": 2,
+      "fullReloads": 3,
+      "keyXPresses": 0
+    },
+    "optionalOffer": {
+      "scriptSlug": "story-s1-swallow-dive",
+      "choice": "Not now",
+      "completedFlag": false,
+      "learnedFlag": false,
+      "resourcesUnchanged": true
+    },
+    "savedScope": {
+      "newTrueFlags": [
+        "notebook.s1.lan-di-harbor",
+        "story.s1.biker-chase.completed",
+        "story.s1.charlie-harbor.completed",
+        "story.s1.workday-three.completed"
+      ],
+      "yen": 17436,
+      "yenDelta": 0,
+      "currentHp": 100,
+      "maxHp": 100,
+      "inventoryRowsExactlyUnchanged": true,
+      "interrogationCompletedNaturally": true,
+      "noInterrogationReplayAfterFinalReload": true
+    }
+  },
+  "limits": [
+    "This is not a forced-disconnect browser reproduction. The deterministic server regression and ordinary rendered continuation are separate evidence.",
+    "Optional Swallow Dive learning is not accepted; the tested choice declines it with completed/learned flags false.",
+    "The r11/r12 attempts remain failed. No outcome, flag, item, lease row or clock was manually changed to recover.",
+    "Approaches may be shortened; cancellation/retry and a deliberate wrong chase input mean this is not an uninterrupted fully walked run. Existing presentation/fidelity limits remain.",
+    "Evidence descriptors identify private retained files, not public downloads. Raw logs, account/guest details, credentials, full flag dumps and database archive contents are excluded.",
+    "The mutable continuing batch file is not used as an immutable descriptor; the accepted selected result is retained in the hashed phase review, report, log and snapshot."
+  ],
+  "evidencePathBase": "Paths below are relative to the retained family-crest-20261113 task archive; no host-specific absolute paths are included.",
+  "sourceEvidence": [
+    {
+      "path": "script-start-disconnect-evidence.json",
+      "bytes": 1331,
+      "sha256": "deb6bda2e841f3f37b462d76542f0816976484dc27c4147028c10e04d2f915ae"
+    },
+    {
+      "path": "script-start-disconnect-normal-flow.json",
+      "bytes": 1853,
+      "sha256": "0c3200eb6f47192804cf40a69dceca6a9be160e0ecdc254f7fd876963906f1bf"
+    },
+    {
+      "path": "server-disconnect-tests.log",
+      "bytes": 2065,
+      "sha256": "d8d759253b0aa37a3b4c33a1fd5dfde2db30caef90f09801930efc23c48c9c03"
+    },
+    {
+      "path": "server-disconnect-restart.json",
+      "bytes": 507,
+      "sha256": "64acf246ea0032f8f128a623750c2f489e1a368c6b5c1e93e57c99d422eef2ad"
+    },
+    {
+      "path": "disconnect-start-fix-evidence.md",
+      "bytes": 7193,
+      "sha256": "1777dfce992f18851845ac197c6b284eebe7784c462140021d23837de610e7e6"
+    },
+    {
+      "path": "earned-harbor-bikers-evidence.json",
+      "bytes": 13223,
+      "sha256": "c18111dec10d94602182e3dec10df05a3a1004ad8857930fb5bec5c392c03ab1"
+    },
+    {
+      "path": "browser-earned-harbor-bikers-route-r11-03.log",
+      "bytes": 64579,
+      "sha256": "fc321184112adf656d401e3d8c1e38549e1980befa1a580e6cfd33c63168df5e"
+    },
+    {
+      "path": "browser-earned-harbor-bikers-route-r12-01.log",
+      "bytes": 65224,
+      "sha256": "8e5b8edc118adb81db56047e25b8c8ba5d0363b5c36a59ccee0b32a3fedd5f3f"
+    },
+    {
+      "path": "browser-earned-harbor-bikers-route-r13-01.log",
+      "bytes": 176274,
+      "sha256": "1d64e7c19f17d1c955b5556fabb4e894bdc8bcf9f96d92acc24f411a611cd5ff"
+    },
+    {
+      "path": "html-earned-harbor-bikers-route-r13-01/index.html",
+      "bytes": 753179,
+      "sha256": "2d6845439754bc79f690479f388293f66cee0d5500e5363f12f71597cf7f57fe"
+    },
+    {
+      "path": "earned-harbor-bikers-route-r13-01/character-state.json",
+      "bytes": 13826,
+      "sha256": "9b80d174e93d0270bf9f81abd1599a016271e79db880d7c3e7e59789ef3785e3"
+    }
+  ]
+}

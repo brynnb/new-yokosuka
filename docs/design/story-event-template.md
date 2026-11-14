@@ -409,6 +409,160 @@ for individual events, optional branches, lessons, recurring interactions and
 unresolved coverage. In particular, the allowance progression receipt below
 does not establish working mouth animation or envelope presentation.
 
+#### Same-character continuation — November 13, 2026 campaign
+
+The [accepted continuation manifest](../../tools/evidence/earned-story-continuation-20261113.json)
+indexes 71 passing selected phases on character 5 after its fresh opening and
+first allowance. These are staged browser continuations, including retained
+failed attempts that had already saved legitimate progress. Prerequisite flags,
+items and outcomes were not reseeded. Travel shortcuts and supported skips are
+disclosed per phase; the groups below are evidence ranges, not a new event census.
+
+| Evidence group | Selected phases | Accepted attempts | Scope |
+| --- | --- | --- | --- |
+| Early investigation | 15: POST_ALLOWANCE → PHONE | POST_ALLOWANCE:early-r5-01 → PHONE:harbor-r2-03 | Dojo and witnesses through the Chinese letter and phone lead; retained partial settlements remain part of the record. |
+| First harbor visit | 6: EARNED_BUS → CHEN | EARNED_BUS:harbor-r2-04 → CHEN:harbor-r3-03 | Earned directory and physical bus approach, arrival, warehouse access, stealth and the first Chen meeting. |
+| Mirror search | 9: FAMILY → MIRROR_RETURN | FAMILY:family-r2-01 → MIRROR_RETURN:route-r5-01 | Family clue, handguard, dojo puzzle, genuine axe/mirror acquisition and return meeting. |
+| Ticket and Chai | 6: HOME_TICKET → JIMMY_CHASE | HOME_TICKET:route-r5-02 → JIMMY_CHASE:route-r7-02 | Travel funds and ticket chain, selected Chai victory, then Jimmy's chase and interrogation. |
+| Harbor employment | 19: HARBOR_HIRING → CHEN_WARNING | HARBOR_HIRING:route-r7-03 → CHEN_WARNING:route-r17-02 | Hiring, training, five workdays and warning; the biker route includes an effect-free Swallow Dive decline. Fourth-afternoon continuation combines the previously earned Goro ending with four actual deliveries, once-only wages and Mark/reload checks; earlier pickup/drop causes remain unresolved. Only selected saved race/photo/chase branches; no optional move-learning acceptance. |
+| Nozomi rescue | 5: NOZOMI_CALL → NOZOMI_HOME | NOZOMI_CALL:route-r17-03 → NOZOMI_HOME:route-r22-02 | Call; earned transport scenes preserved on resume; physical timed ride plus no-replay checkpoint; warehouse rescue and natural ride home. |
+| Final day and departure | 11: FINAL_DAY_MORNING → SHIP_DEPARTURE | FINAL_DAY_MORNING:route-r22-03 → SHIP_DEPARTURE:route-r26-06 | Final day, the selected lessons and battles, introduction letter and amulet, then the authored ship endpoint. |
+
+The accepted HARBOR_BIKERS attempt `route-r13-01` (497.31 s) declines only the eligible Swallow Dive offer through its normal UI,
+with resources unchanged and no move learned. The required chase, both fight
+stages and interrogation settle with retained cancellation/retry and reload
+evidence. Its tested helper was committed afterward as `3ec1e018`. Earlier
+r11/r12 failures remain in the record; optional move learning receives no new
+acceptance.
+
+FOURTH_AFTERNOON passes in `route-r16-01` (223.06 s; Story test 217.044 s;
+client `baefd385`). It preserves Goro's ending earned in failed `route-r13-04`,
+then accepts the exact inside-region/starting handoff, four actual deliveries,
+carry-height contract checks and once-only 2,400 yen wages, ending at 19,836 yen.
+HP remains 100 and all eight inventory rows stay unchanged; Mark completes
+naturally and the saved result survives reload. Failed `route-r14-01` retains
+its handoff failure; failed `route-r15-01` retains two accepted crates and the
+third-drop failure. The original pickup miss and r15 drop causes remain
+unproven: the added carry check fulfills a known contract, not a diagnosis.
+Goro's dialogue used 19 Space presses (18 for introductions and one failure
+acknowledgement); two full nine-input QTEs precede the naturally completed final ending. Those introductions and
+Tsuyoshi's warning (six quick Space presses) do not establish uninterrupted
+voice playback.
+
+FIFTH_AFTERNOON passes in `route-r17-01` (280.71 s; client `ab70b583`)
+with five physical deliveries. Centered unloads are observed upright, with
+released support and inactive tine collisions before withdrawal; authoritative
+receipts remain required. The retained `route-r16-04` failure shows an accepted
+server endpoint lying sideways and outside the drop bounds; the tipping
+mechanism itself is not established. Once-only wages add 3,000 yen to reach
+22,836 yen, and the warning-letter cancellation/retry and saved reload pass
+with HP 100 and all eight inventory rows unchanged.
+
+NOZOMI_TRANSPORT passes in `route-r18-01` (20.93 s; Story test 17.176 s),
+preserving Saijo's referral, Naoyuki's borrowing permission and both notebooks
+already earned in failed `route-r17-04`. That failed attempt retains two
+cancellations, two reloads and eleven Space advances of Saijo's dialogue;
+Naoyuki's successful retry completes naturally without Space or KeyX. The
+BGM200 response assertion was beyond the failed boundary and did not execute.
+Saijo's advances do not establish uninterrupted voice playback, and these
+attempts make no new audibility claim. The accepted continuation replays
+neither transport scene: two ordinary ride-offer declines surround one reload,
+with full flags, inventory, yen, HP, world and mode preserved, no ride receipt
+granted, and the borrowed notebook/no-replay checks satisfied. It uses no
+Space, KeyX, sceneSkip, controller cancellation or walking input. Client
+`29722a6c` was committed after that actual acceptance.
+
+NOZOMI_RIDE physically settles in failed `route-r19-01` after one KeyX driving cancellation,
+one reload, the normal return to Naoyuki, a real reapproach and retry, saving
+its ride receipt and `mfsy`. The KeyX input cancelled driving gameplay. That attempt
+still fails at the legitimate next warehouse offer; the earlier `route-r18-02`
+bounds failure is retained too. The separate `route-r20-01` passes in 22.48 s
+(Story test 18.545 s), preserving the earned ride without repeating it. Two
+ordinary warehouse-offer declines surround one reload; complete flags and all
+eight inventory rows, 22,836 yen and HP 100/100 remain unchanged. Server
+`13a1594` was already active during the physical ride and checkpoint
+continuation; client `807834b7` was committed after the latter passed. These
+checkpoint checks do not add movie-skip, audio, warehouse-rescue or later-scene
+acceptance. Both original failed attempts keep their failed results, and no
+receipt reset or outcome reseeding was used.
+
+NOZOMI_WAREHOUSE passes in `route-r22-01` (20.36 s; Story test 13.596 s),
+preserving the independently earned outside/inside victory receipts, warehouse
+admission, rescue and Terry notebook from failed `route-r21-01`. In r21, the
+first directional-input attempt at each battle defeated six then seven
+opponents. Two cancellations (the first outside fight and first hostage intro)
+and five reloads were exercised; the retry introduction, deal and coda settled
+naturally with no Space or KeyX. BGM084's unpaused, advancing media element and
+positive volume, plus four HTTP 206 responses, were verified; these checks do
+not establish audibility. R21 still failed at the legitimate next home offer,
+and its final reload was not reached. The earlier `route-r20-02` knockout also
+remains failed. R22 supplies the missing checkpoint proof: two normal home-offer
+declines surround one reload, with complete flags, inventory, yen and HP
+preserved, idle/unlocked controls, no rescue starts and no active combat. It
+replays neither fight nor film. Client `25fc3f0c` was committed after r22 passed.
+These staged checks make no home, measured-walking or full-route acceptance
+claim; both earlier attempts retain their failed results.
+
+NOZOMI_HOME verifies December 16 arrival at 05:56 and immediate wake at
+07:30–07:31; late-start next-day branches remain untested. Visible skirt spikes
+reproduce the documented limitation with the original model and paired motions.
+Their cloth/rig/transform cause remains unproven; no rendering fix is claimed.
+
+The separate opening baseline naturally completes all four films and the first
+allowance, including notebook and saved reload. That original whole test later
+failed at the dojo; its opening evidence is not relabelled as a passing whole test.
+
+Final acceptance is `SHIP_DEPARTURE:route-r26-06`: Story mode, `s1-voyage`, departure and
+notebook receipts, and one retained introduction letter and Nozomi amulet.
+HP, yen and inventory remain unchanged across departure. Actual forward input
+moves both actor and collider more than 0.2 m from the earned deck spawn.
+Reload and an actual Free roam/Story round trip retain the endpoint without
+replaying a cutscene. The terminal snapshot is `earned-ship-departure-route-r26-06/character-state.json`
+(SHA-256 `f650b83a4e1e75ec63dec222337e88c4a16d0af21b6b25691c0e6d36400c7c70`); its logs, screenshots and source versions
+are indexed in the manifest.
+
+This new continuity evidence does not cover Chai's saved loss/home recovery,
+optional scroll acquisition, credits, unused alternatives or every optional
+encounter. The selected Chicken Race victory, apart photo and Smith chase do
+not certify all saved outcomes. FAMILY's original immediate zero movement remains
+unresolved despite a successful measured resume. Xia's sampled frames still do
+not demonstrate the visible letter transfer. Family-crest table/visibility,
+door/audio approximations and the existing combat, race, stealth, motorcycle,
+QTE, camera, face, hand and scenery limits remain. Earlier seeded and separate
+variant evidence is retained, and no inventory status is promoted by this update.
+
+#### Shared server fixes exercised by this campaign
+
+Pending script starts are tied to the connection that requested them. The
+server adopts a returned active run under the hub lock only while that client
+is registered, owns the character and remains open. If ownership has ended,
+it cancels that exact run with a fresh bounded context, preserving replacement
+sessions and previously committed receipts.
+
+The [script-start lifecycle evidence](../../tools/evidence/story-script-start-disconnect-20261114.json)
+records server commit 2877113 and race-enabled regressions for Unregister,
+a closed client still registered, and the distinct-session replacement
+interval, plus connected-start and calendar-transition checks. The older
+orphaned lease expired naturally before the later ordinary browser
+continuation. HARBOR_BIKERS route-r13-01 then passed, including an effect-free
+Swallow Dive decline. Its tested helper was committed afterward as 3ec1e018.
+The browser evidence covers normal continuation; forced-disconnect behavior is covered by focused server
+regressions, and the optional move was not learned.
+
+The earned route also exposed candidate selection between the motorcycle
+ride and return-home scene, which share native NBIK but use separate worlds.
+The server now reports catalogued sibling-world bounds as known false, while
+unknown authoritative bounds still fail closed. Focused bounds and real-Yarn
+tests passed. The same saved character completed the physical ride in failed
+route-r19-01, then passed the separate preservation/reload continuation
+route-r20-01 without repeating it. The [authored-world bounds evidence](../../tools/evidence/story-world-bounds-fix-20261114.json)
+retains both original failed attempts, the compiler setup skip, fixture
+correction and repository-ordering test boundary. Server 13a1594 was active
+during both rendered attempts; client helper 807834b7 was committed after the
+accepted continuation.
+
+#### Historical and independent grouped checks
+
 | Sequence | Current state |
 | --- | --- |
 | Opening → bedside → first allowance → saved continuation | Connected fresh-Story runs verified both explicit intro skips and natural intro playback, natural allowance completion, one-time payment and reload. Sampled visuals do not certify every shot or audio cue. |

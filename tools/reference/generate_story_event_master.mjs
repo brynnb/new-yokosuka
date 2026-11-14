@@ -112,6 +112,8 @@ assert.equal(new Set(events.map(event => event.id)).size, events.length, "duplic
 for (const id of Object.keys(inventory.verification || {})) {
   assert(events.some(event=>event.id===id), `verification refers to unknown event ${id}`);
 }
+const classifiedCount = Object.values(inventory.verification || {}).filter(record =>
+  ["implementation", "presentation", "progression"].every(key => Object.hasOwn(record, key))).length;
 const families = events.filter(event => /family/i.test(event.kind));
 const named = events.length - families.length;
 const source = read(sourceInput);
@@ -137,7 +139,7 @@ const generated = [
   "## How to read implementation status", "",
   "Status has separate implementation, rendered presentation, and connected Story-progression checks. **Implemented** is a reviewed local implementation, not a deployment claim. **Rendered (partial)** and **Connected (partial)** identify bounded checks, not full fidelity or a complete playthrough; the adjacent notes describe what was actually checked. **Unverified** is an explicitly identified missing check; **Blocked** describes a specific obstacle, not a claim that every aspect of an event is blocked.", "",
   "**Binding recorded; not classified** means a project route, package, move or item reference exists but has not yet been assigned an explicit implementation status. **Not classified** does not mean a check failed or was never performed: earlier evidence may already appear in the event note and still needs structured review. **Unmapped** means no binding has been established in this inventory, not proof the feature is absent. **Gap** names a known omission; **Expanded** links to family details without implying implementation.", "",
-  `Structured status has been reviewed for ${Object.keys(inventory.verification || {}).length} of ${events.length} main-list rows (including ${families.length} family rows). The rest still require classification against their evidence; do not treat their default labels as an audit result.`, "",
+  `Structured status has been reviewed for ${classifiedCount} of ${events.length} main-list rows (including ${families.length} family rows). The rest still require classification against their evidence; do not treat their default labels as an audit result.`, "",
   "Every row starts with presentation **unreviewed** unless a specific result is recorded. Check these independently before marking an event complete: actors; mouths/faces; objects and handovers; body/hand motion; cameras; voice/music/effects; input/QTE/combat; durable outcome; skip/cancel/retry/restoration. Use **not applicable** only after checking the event. Playing to completion or saving a notebook entry does not clear the presentation checks.", "",
   "The route links retain native resource locators, hashes, voices and adaptation notes where available. A route's authored flags and bounds are not asserted to be the original game's rules. A package ID is not automatically a Story trigger.", "",
   "## Chapters", "",
