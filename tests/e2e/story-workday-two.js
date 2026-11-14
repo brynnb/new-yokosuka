@@ -1,6 +1,5 @@
 import {expect} from "@playwright/test";
 import {driveObservedDeliveries} from "./story-forklift-training.js";
-import {fightWithKeyboard} from "./story-seventy-man.js";
 import {fightStoryAmbush} from "./story-fight-input.js";
 
 export async function verifyMarkAfterWork(page,testInfo,character){
@@ -14,10 +13,38 @@ export async function verifyMarkAfterWork(page,testInfo,character){
     await idle();await page.evaluate(()=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray([-91,0,36]),0,{persist:false});c.setFirstPerson(true);c.cameraYaw=0;c.cameraPitch=0;c.updateCamera(1);});
     await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await scene("mark-after-work-intro");}finally{await page.keyboard.up("KeyW");}
   };
+  let battleRun=0;
+  const attemptTokens=new Set();
   const fight=async()=>{
-    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready||window.storyProbe.sceneErrors.length,null,{timeout:65_000});await check(false);
-    const view=await page.evaluate(()=>window.storyProbe.combatRuntime.active.view);expect(view.actors.length).toBe(6);expect(view.id).toBe("s1.mfsy.mark-after-work");
-    await page.screenshot({path:testInfo.outputPath("warehouse-seventeen-actual-five-thug-fight.png")});await fightWithKeyboard(page,()=>page.evaluate(()=>!window.storyProbe.combatRuntime?.active));
+    battleRun++;
+    const id="s1.mfsy.mark-after-work",retry=page.getByRole("button",{name:"Try again",exact:true});
+    for(let attempt=1;attempt<=3;attempt++){
+      await page.waitForFunction(id=>{
+        const p=window.storyProbe,v=p.combatRuntime?.active?.view;
+        return (v?.ready&&v.id===id)||p.sceneErrors.length;
+      },id,{timeout:65_000});await check(false);
+      const start=await page.evaluate(()=>window.storyProbe.combatRuntime.active.view);
+      expect(start.id).toBe(id);expect(start.actors.length).toBe(6);
+      expect(start.actors[0].health).toBe(start.actors[0].maxHealth);
+      expect(typeof start.token).toBe("string");expect(start.token.length>0).toBe(true);
+      expect(attemptTokens.has(start.token),"each ordinary retry creates a fresh combat attempt").toBe(false);attemptTokens.add(start.token);
+      const prefix=`warehouse-seventeen-run-${battleRun}-attempt-${attempt}`;
+      await page.screenshot({path:testInfo.outputPath(`${prefix}-five-thug-fight.png`)});
+      await fightStoryAmbush(page,testInfo,{nextButton:null,artifactPrefix:prefix});
+      await page.waitForFunction(()=>!window.storyProbe.combatRuntime?.active,null,{timeout:20_000});
+      // A win goes straight into the aftermath film. Only a loss presents
+      // options; Try again restarts Fight without repeating the introduction.
+      await expect.poll(async()=>await retry.isVisible()||await page.evaluate(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-mark-after-work-aftermath"),{timeout:20_000}).toBe(true);
+      await check(false);
+      const result=await page.evaluate(()=>window.storyProbe.lastCombatView),lost=await retry.isVisible();
+      const evidence={run:battleRun,attempt,id:result.id,lost,defeated:result.defeated,remainingMs:result.remainingMs,playerHealth:result.actors[0].health};
+      await testInfo.attach(`${prefix}-outcome`,{body:JSON.stringify(evidence),contentType:"application/json"});
+      console.info("Warehouse seventeen combat attempt:",JSON.stringify(evidence));
+      expect(result.id).toBe(id);
+      if(!lost){expect(result.defeated).toBe(5);expect(result.actors[0].health).toBeGreaterThan(0);break;}
+      expect(attempt,"Warehouse seventeen exhausted three ordinary keyboard attempts").toBeLessThan(3);
+      await retry.click();
+    }
     await scene("mark-after-work-aftermath");await check(false);await scene("mark-brother-explanation");await check(false);
   };
   const reload=async(retry=false)=>{await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").filter({hasText:character.name}).click();await page.locator("button").filter({hasText:/^Enter World$/}).click();await page.waitForFunction(id=>window.storyProbe.ready&&window.storyProbe.regions?.getCharacter()?.id===id,character.id);if(retry)await scene("mark-after-work-intro");else await idle();};
