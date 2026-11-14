@@ -6,6 +6,16 @@ export async function verifyFinalAftermath(page,testInfo,character,{musicRespons
   await page.setViewportSize({width:1920,height:1080});
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const initial=await saved(),flag=id=>`story.s1.${id}.completed`;
+  // Each admitted attempt pauses the live personal clock. Derive the next
+  // occurrence from that attempt, not the earlier persisted checkpoint.
+  const nextDateAt=(clock,hour,minute)=>{
+    expect(Number.isFinite(clock?.gameTimeMs),"active attempt has an authoritative personal clock").toBe(true);
+    expect(clock.paused,"the successful attempt holds the personal clock").toBe(true);
+    const start=new Date(clock.gameTimeMs),target=new Date(clock.gameTimeMs);
+    target.setUTCHours(hour,minute,0,0);
+    if(target.getTime()<=start.getTime())target.setUTCDate(target.getUTCDate()+1);
+    return target.toISOString().slice(0,10);
+  };
   expect(initial.character.storyFlags[flag("seventy-man")]).toBe(true);
   const check=async()=>{const s=await saved();expect(s.character.yen).toBe(initial.character.yen);expect(s.inventory).toEqual(initial.inventory);
     expect(s.character.storyFlags[flag("departure")]).not.toBe(true);expect(s.character.storyFlags[flag("final-chai")]).not.toBe(true);
@@ -47,19 +57,24 @@ export async function verifyFinalAftermath(page,testInfo,character,{musicRespons
     await choose("Speak with Gui Zhang");await scene("gui-after-battle");await music("bgm106");await page.waitForTimeout(7000);
     expect(await pier()).toBeGreaterThan(0);await page.screenshot({path:testInfo.outputPath("gui-zhang-original-pier-room-and-cast.png")});
     await cancel();expect(await pier()).toBe(0);expect((await check()).character.storyFlags[flag("gui-after-battle")]).not.toBe(true);
-    expect((await check()).character.worldId).toBe("mfbt");await reload();await choose("Speak with Gui Zhang");await scene("gui-after-battle");await music("bgm106");
+    expect((await check()).character.worldId).toBe("mfbt");await reload();await choose("Speak with Gui Zhang");await scene("gui-after-battle");
+    const expectedHomeDate=nextDateAt((await check()).worldState,5,21);
+    await music("bgm106");
     await page.waitForTimeout(25000);await page.screenshot({path:testInfo.outputPath("gui-zhang-original-pier-conversation.png")});
     await expect.poll(async()=>(await saved()).character.storyFlags[flag("gui-after-battle")],{timeout:70000}).toBe(true);
-    const home=await check(),date=new Date(home.character.storyTimeMs),sourceDate=new Date(initial.character.storyTimeMs);sourceDate.setUTCDate(sourceDate.getUTCDate()+1);
+    const home=await check(),date=new Date(home.character.storyTimeMs);
     expect(home.character.worldId).toBe("interior");expect(date.getUTCHours()).toBe(5);expect(date.getUTCMinutes()).toBe(21);
-    expect(date.toISOString().slice(0,10)).toBe(sourceDate.toISOString().slice(0,10));
+    expect(date.toISOString().slice(0,10)).toBe(expectedHomeDate);
   }
   if(!(await saved()).character.storyFlags[flag("departure-rest")]){
     console.info("Final aftermath: separate bedside stay/reload and actual08:30 saved rest");
     await choose("Stay awake");expect((await check()).character.storyFlags[flag("departure-rest")]).not.toBe(true);
-    await reload();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);await choose("Sleep until 8:30 a.m.");
+    await reload();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
+    await expect(page.getByRole("button",{name:"Sleep until 8:30 a.m.",exact:true})).toBeVisible({timeout:90_000});
+    const expectedMorningDate=nextDateAt((await check()).worldState,8,30);
+    await choose("Sleep until 8:30 a.m.");
     await expect.poll(async()=>(await saved()).character.storyFlags[flag("departure-rest")]).toBe(true);
-    const wake=await check(),date=new Date(wake.character.storyTimeMs);expect(wake.character.worldId).toBe("interior");expect(date.getUTCHours()).toBe(8);expect(date.getUTCMinutes()).toBeGreaterThanOrEqual(30);expect(date.getUTCMinutes()).toBeLessThan(32);
+    const wake=await check(),date=new Date(wake.character.storyTimeMs);expect(wake.character.worldId).toBe("interior");expect(date.getUTCHours()).toBe(8);expect(date.getUTCMinutes()).toBeGreaterThanOrEqual(30);expect(date.getUTCMinutes()).toBeLessThan(32);expect(date.toISOString().slice(0,10)).toBe(expectedMorningDate);
   }
   await reload();await page.waitForTimeout(1500);await check();expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
   // A newly published following chapter may now offer its normal choice.
