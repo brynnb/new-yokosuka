@@ -1,6 +1,7 @@
 import {expect} from "@playwright/test";
 import {driveObservedDeliveries} from "./story-forklift-training.js";
 import {fightWithKeyboard} from "./story-seventy-man.js";
+import {fightStoryAmbush} from "./story-fight-input.js";
 
 export async function verifyMarkAfterWork(page,testInfo,character){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
@@ -45,33 +46,98 @@ export async function verifySecondWorkday(page,testInfo,character){
   const paidInitially=!!initial.character.storyFlags[flag("payday")],unpaid=initial.character.yen-(paidInitially?2400:0);
   const check=async(paid=false)=>{const s=await saved();expect(s.character.yen).toBe(unpaid+(paid?2400:0));expect(s.inventory).toEqual(initial.inventory);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return s;};
   const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
-  const approach=async(position,yaw)=>{
+  const approach=async(position,yaw,regionId=null)=>{
     await idle();await page.evaluate(({position,yaw})=>{const l=window.storyProbe.lifecycle,c=l.getController();l.resetPlayer(l.vectorFromArray(position),yaw,{persist:false});c.setFirstPerson(true);c.cameraYaw=yaw;c.cameraPitch=0;c.updateCamera(1);},{position,yaw});
-    await page.waitForTimeout(250);await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await page.waitForFunction(()=>["line","options"].includes(window.storyProbe.regions.controller.status)||window.storyProbe.sceneErrors.length,null,{timeout:15_000});}finally{await page.keyboard.up("KeyW");}
+    if(regionId){
+      // Observe the outside update that re-arms this exact entry before W.
+      await page.waitForFunction(regionId=>{
+        const p=window.storyProbe,r=p.regions,region=r.regions.find(region=>region.id===regionId);
+        if(!region)throw Error(`Missing published cargo region: ${regionId}`);
+        const position=p.lifecycle.getController().actorRoot.position.asArray();
+        const inside=position.every((value,axis)=>value>=region.min[axis]&&value<=region.max[axis]);
+        return r.controller.status==="idle"&&!inside&&!r.inside.has(regionId);
+      },regionId,{timeout:15_000});
+    }else await page.waitForTimeout(250);
+    await page.locator("#renderCanvas").focus();await page.keyboard.down("KeyW");try{await page.waitForFunction(()=>["line","options"].includes(window.storyProbe.regions.controller.status)||window.storyProbe.sceneErrors.length,null,{timeout:15_000});}finally{await page.keyboard.up("KeyW");}
   };
   if(!initial.character.storyFlags[flag("afternoon")]){
     if(new Date((await saved()).character.storyTimeMs).getUTCHours()<14){await idle();await page.locator("#story-wait-button").click();await page.getByRole("option",{name:"Wait until 2 p.m.",exact:true}).click();await page.getByRole("button",{name:"Wait until 2 p.m.",exact:true}).click();}
-    // A saved checkpoint may already be inside the loading volume. Other
-    // valid saves require walking in from elsewhere after the wait.
-    await page.getByText("Four more crates for Warehouse No. 3 will finish today's quota of eight. Yada-san pays after the shift.",{exact:true}).waitFor({timeout:4_000}).catch(()=>{});
-    if(!await page.getByText("Four more crates for Warehouse No. 3 will finish today's quota of eight. Yada-san pays after the shift.",{exact:true}).isVisible())await approach([-20,0,117],-Math.PI/2);
-    await page.getByText("Four more crates for Warehouse No. 3 will finish today's quota of eight. Yada-san pays after the shift.",{exact:true}).waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();
-    await approach([-20,0,117],-Math.PI/2);
-    await page.getByText("Four more crates for Warehouse No. 3 will finish today's quota of eight. Yada-san pays after the shift.",{exact:true}).waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Start the deliveries",exact:true}).click();
+    const {default:routes}=await import("../../tools/scripting/story-investigation.json",{with:{type:"json"}});
+    const route=routes.routes.find(route=>route.id==="workday-two-afternoon"),briefing=route.authoredText.briefing;
+    const current=await check(false),clock=current.worldState.gameTimeMs;
+    expect(current.character.playMode).toBe("story");expect(current.character.openingCompleted).toBe(true);
+    expect(Number.isFinite(clock)).toBe(true);
+    const hour=new Date(clock).getUTCHours()+new Date(clock).getUTCMinutes()/60;
+    expect(hour).toBeGreaterThanOrEqual(route.hours[0]);expect(hour).toBeLessThan(route.hours[1]);
+    // Waiting until 14:00 or loading this earned checkpoint can enable the
+    // published trigger around the stationary actor. Four seconds of missing
+    // text does not prove an outside approach or an idle handoff is needed.
+    const handoff=await page.evaluate(regionId=>{
+      const p=window.storyProbe,r=p.regions,l=p.lifecycle;
+      const region=r.regions.find(region=>region.id===regionId);
+      if(!region)throw Error(`Missing published afternoon cargo region: ${regionId}`);
+      const position=l.getController().actorRoot.position.asArray();
+      return {world:l.worldRuntime.activeWorld.id,ready:l.worldRuntime.ready,position,
+        regionId,min:region.min,max:region.max,
+        inside:position.every((value,axis)=>value>=region.min[axis]&&value<=region.max[axis]),
+        status:r.controller.status,script:r.controller.active?.scriptIdentity?.scriptSlug};
+    },route.bounds);
+    expect(handoff.world).toBe("mfsy");expect(handoff.ready).toBe(true);
+    await testInfo.attach("workday-two-afternoon-handoff",{body:JSON.stringify(handoff),contentType:"application/json"});
+    console.info("Second workday afternoon handoff:",JSON.stringify(handoff));
+    if(!handoff.inside&&handoff.status==="idle")await approach([-20,0,117],-Math.PI/2,route.bounds);
+    await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.active?.scriptIdentity?.scriptSlug),{timeout:45_000}).toBe("story-s1-workday-two-afternoon");
+    await page.getByText(briefing,{exact:true}).waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Leave it for now",exact:true}).click();await idle();
+    expect((await check(false)).character.storyFlags[flag("afternoon")]).not.toBe(true);
+    await approach([-20,0,117],-Math.PI/2,route.bounds);
+    await page.getByText(briefing,{exact:true}).waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Start the deliveries",exact:true}).click();
     await page.waitForFunction(()=>window.storyProbe.delivery?.active?.entered||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check(false);await page.waitForTimeout(1800);await page.locator("#renderCanvas").focus();
     await driveObservedDeliveries(page,testInfo,4,"workday-two-afternoon");await page.getByText("All eight crates are delivered. The quota is finished.",{exact:true}).waitFor();await check(false);await page.keyboard.press("Space");await expect.poll(async()=>(await saved()).character.storyFlags[flag("afternoon")]).toBe(true);
   }
   if(!(await saved()).character.storyFlags[flag("attack")]){
+    // Yarn retries the failed wave in place. Keep that actual UI recovery,
+    // bounded to three attempts, instead of treating one ordinary defeat as
+    // a broken progression route or replaying an already-won first wave.
+    const betweenWaves="The first five have backed off, but four more are coming. Catch my breath and face them.";
+    const afterFight="They said the Mad Angels meet behind Warehouse No. 17. The shift is over; collect my wages, then look for Mark there.";
+    const attemptTokens=new Set();
+    const fightWave=async(wave,actorCount,firstScreenshot,successText)=>{
+      const id=`s1.mfsy.workday-two-wave-${wave}`,retry=page.getByRole("button",{name:"Try again",exact:true}),win=page.getByText(successText,{exact:true});
+      for(let attempt=1;attempt<=3;attempt++){
+        await page.waitForFunction(id=>{
+          const p=window.storyProbe,v=p.combatRuntime?.active?.view;
+          return (v?.ready&&v.id===id)||p.sceneErrors.length;
+        },id,{timeout:45_000});await check(false);
+        const start=await page.evaluate(()=>window.storyProbe.combatRuntime.active.view);
+        expect(start.id).toBe(id);expect(start.actors.length).toBe(actorCount);
+        expect(start.actors[0].health).toBe(start.actors[0].maxHealth);
+        expect(typeof start.token).toBe("string");expect(start.token.length>0).toBe(true);
+        expect(attemptTokens.has(start.token),"each ordinary retry creates a fresh combat attempt").toBe(false);attemptTokens.add(start.token);
+        const prefix=`second-workday-wave-${wave}-attempt-${attempt}`;
+        await page.screenshot({path:testInfo.outputPath(attempt===1?firstScreenshot:`${prefix}-start.png`)});
+        await fightStoryAmbush(page,testInfo,{nextButton:null,artifactPrefix:prefix});
+        await page.waitForFunction(()=>!window.storyProbe.combatRuntime?.active,null,{timeout:20_000});
+        await page.waitForFunction(()=>["line","options"].includes(window.storyProbe.regions.controller.status)||window.storyProbe.sceneErrors.length,null,{timeout:15_000});
+        await expect.poll(async()=>(await retry.isVisible())||(await win.isVisible()),{timeout:15_000}).toBe(true);
+        const pending=await check(false);expect(pending.character.storyFlags[flag("afternoon")]).toBe(true);
+        expect(pending.character.storyFlags[flag("attack")]).not.toBe(true);
+        const result=await page.evaluate(()=>window.storyProbe.lastCombatView),lost=await retry.isVisible();
+        const evidence={wave,attempt,id:result.id,lost,defeated:result.defeated,remainingMs:result.remainingMs,playerHealth:result.actors[0].health};
+        await testInfo.attach(`${prefix}-outcome`,{body:JSON.stringify(evidence),contentType:"application/json"});
+        console.info("Second workday combat attempt:",JSON.stringify(evidence));
+        expect(result.id).toBe(id);
+        if(!lost){expect(result.defeated).toBe(actorCount-1);expect(result.actors[0].health).toBeGreaterThan(0);return;}
+        expect(attempt,`Wave ${wave} exhausted three ordinary keyboard attempts`).toBeLessThan(3);
+        await retry.click();
+      }
+    };
     // The saved quota returns inside the same trigger, including on reconnect.
     // Await dispatch rather than racing its first idle networking snapshot.
     await page.getByText("The Mad Angels are blocking my work again. Five of them are waiting for a fight.",{exact:true}).waitFor();await page.keyboard.press("Space");await page.getByRole("button",{name:"Face the attackers",exact:true}).click();
-    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check(false);
-    expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.actors.length)).toBe(6);await page.screenshot({path:testInfo.outputPath("second-workday-five-attackers.png")});await fightWithKeyboard(page,()=>page.evaluate(()=>!window.storyProbe.combatRuntime?.active));
-    await page.getByText("The first five have backed off, but four more are coming. Catch my breath and face them.",{exact:true}).waitFor();expect((await check(false)).character.storyFlags[flag("attack")]).not.toBe(true);await page.keyboard.press("Space");
-    await page.waitForFunction(()=>window.storyProbe.combatRuntime?.active?.view?.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await check(false);
-    const second=await page.evaluate(()=>window.storyProbe.combatRuntime.active.view);expect(second.actors.length).toBe(5);expect(second.actors[0].health).toBe(second.actors[0].maxHealth);
-    await page.screenshot({path:testInfo.outputPath("second-workday-four-attackers-fresh-health.png")});await fightWithKeyboard(page,()=>page.evaluate(()=>!window.storyProbe.combatRuntime?.active));
-    await page.getByText("They said the Mad Angels meet behind Warehouse No. 17. The shift is over; collect my wages, then look for Mark there.",{exact:true}).waitFor();expect((await check(false)).character.storyFlags[flag("attack")]).not.toBe(true);await page.keyboard.press("Space");await idle();
+    await fightWave("one",6,"second-workday-five-attackers.png",betweenWaves);
+    await page.getByText(betweenWaves,{exact:true}).waitFor();expect((await check(false)).character.storyFlags[flag("attack")]).not.toBe(true);await page.keyboard.press("Space");
+    await fightWave("two",5,"second-workday-four-attackers-fresh-health.png",afterFight);
+    await page.getByText(afterFight,{exact:true}).waitFor();expect((await check(false)).character.storyFlags[flag("attack")]).not.toBe(true);await page.keyboard.press("Space");await idle();
     const s=await check(false);expect(s.character.storyFlags["notebook.s1.warehouse-seventeen-hangout"]).toBe(true);expect(new Date(s.character.storyTimeMs).getUTCHours()).toBe(17);
   }
   if(!(await saved()).character.storyFlags[flag("payday")]){
