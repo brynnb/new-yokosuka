@@ -6,7 +6,7 @@ import {verifyFamilyMirrorLead,verifyBunkadoHandguard,verifyGuiZhangEncounter,ve
 import {verifyBasementMirrorSearch} from "./story-basement.js";
 import {verifyMirrorReturn} from "./story-mirror-return.js";
 import {verifyHomeTicketPreparation,verifyAgencyQuotesAndFunds,verifyBoatTicketJourney,verifyTicketActorReplacement} from "./story-home-ticket.js";
-import {verifyJimmyMorningCall,verifyChaiArcade,verifyChaiRecoveryReload} from "./story-arcade-ticket.js";
+import {verifyJimmyMorningCall,verifyChaiArcade,verifyChaiRecoveryBody,verifyChaiRecoveryReload} from "./story-arcade-ticket.js";
 import {verifyJimmyChase} from "./story-jimmy-chase.js";
 import {verifyHarborHiring,verifyGoroLeadNatural} from "./story-harbor-hiring.js";
 import {verifyForkliftTraining} from "./story-forklift-training.js";
@@ -1721,6 +1721,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       test.setTimeout(480_000);
       await verifyChaiArcade(page,testInfo,character,enterInteriorDoor,{fightStoryAmbush});
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_CHAI_BODY_E2E === "true") {
+      await verifyChaiRecoveryBody(page, testInfo, character);
+      expect(errors).toEqual([]);
+      return;
     }
     if(process.env.NEW_YOKOSUKA_CHAI_RECOVERY_RELOAD_E2E === "true"){
       await verifyChaiRecoveryReload(page,character);

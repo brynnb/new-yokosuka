@@ -572,6 +572,27 @@ reuses those exact original assets, camera, timing and the existing character
 faces. The bedroom trigger and pending receipt are authored; this does not
 establish every original situation that could invoke A0173.
 
+At `0x609a6` the Disc 2 room owner switches AKIR to `YKD_M` sleepwear
+before selecting slot 16 at `0x60ae4`. The recovery package uses the
+`YKD_M.CHRM` in `JOMO/COMMON02.PKS` and its eight named textures from
+`COMMON02.PKF`. The Disc 2 YKD face and table match the existing YKD TALK
+poses. Fuku uses his existing `FUK_M` home body and `FUK` facial assets.
+The normal player model regains its original position and visibility when
+the film completes or is cancelled. In the same film, original callback
+`0x60c50` saves the position of the resident `FUT2` cover, retains its X/Z
+and lowers it to Y = −10 at `0x60cbc`. At `0x60f8c` it restores the saved
+position. The scene leases that bedroom mesh for the same interval and
+restores its live transform on exit. A connected bedside check confirmed the
+original YKD body, cancellation, retry, natural completion, and restoration
+of Ryo and the resident cover. On the four-second camera, a separate pale
+strip is visible even in the November 13 capture. Rays through that strip
+hit mesh node `0x28b0`, material `mt5_mat_0`. The matching original JOMO
+asset is `COMMON01.PKS/FUTS301G.CHRM`, the other resident cover, `FUT1`.
+Its original deformed pose during A0173 is still unknown. The source and
+renderer checks are in `tests/ChaiRecoveryCostume.test.js`.
+
+Two more original callers are now identified. An outcome of the Dobuita drunkard encounter (E1005) and an outcome of Mai, Rena and Yumiko's harbor encounter (E1036) both enter JOMO with entry code 19. This selects the same 600-frame film on all three discs. Their optional QTEs still need playable Story routes. The [native transition evidence](../../tools/evidence/forced-rest-native.json) records both callers. The [Dobuita encounter evidence](../../tools/evidence/dobuita-drunkard-native.json) identifies the actor placements, motions, camera splines and unresolved input records.
+
 Only newly acknowledged losses set the pending receipt, so old completed loss
 saves cannot unexpectedly play the scene or advance another day. Cancellation
 or a failed load leaves the receipt and same-day clock intact for retry. The

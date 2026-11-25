@@ -151,6 +151,69 @@ export async function verifyChaiArcade(page,testInfo,character,enterInteriorDoor
 }
 
 // Reload the actual loss checkpoint; never re-inject its outcome or clock.
+export async function verifyChaiRecoveryBody(page, testInfo, character) {
+  const state = () => page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
+  const before = await state(), done = "story.s1.chai-recovery.completed", pending = "story.s1.chai-recovery.pending";
+  expect(before.character.storyFlags[pending]).toBe(true);
+  const waitForBody = () => page.waitForFunction(() => {
+    const pack = window.storyProbe.director?.activeCutscene?.packageRuntime;
+    const root = pack?.packageActors?.records.get("AKIR")?.root;
+    if (!root || pack.packageActors.variantRecords.get("AKIR")?.get("YKD_M")?.root !== root) return false;
+    window.recoveryBody = root;
+    return root.isEnabled() && root.getChildMeshes(false).some(m=>m.isEnabled() && m.isVisible && m.getTotalVertices()>0);
+  }, null, {timeout:30_000});
+  const futon = () => page.evaluate(() => {
+    const rows = window.storyProbe.lifecycle.sceneState.currentMeshes;
+    return ["FUT1","FUT2"].map(tag => rows.find(r=>r._runtimePlacementRecord?.runtime?.objectTag===tag)?.position.asArray());
+  });
+  await waitForBody();
+  expect(await futon()).toEqual([[-19.188601,.608,4.379],[-18.995001,-10,4.391]]);
+  await page.evaluate(()=>window.storyProbe.regions.controller.cancel("sleepwear-cancel"));
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.status==="idle" && !window.storyProbe.lifecycle.getController().movementLocked);
+  expect(await page.evaluate(()=>window.recoveryBody.isDisposed() || !window.recoveryBody.isEnabled())).toBe(true);
+  expect(await futon()).toEqual([[-19.188601,.608,4.379],[-18.995001,.551,4.391]]);
+  expect((await state()).character.storyFlags[done]).not.toBe(true);
+  for (const position of [[-14,0,4.1], [-17.6,0,4.1]]) {
+    await page.evaluate(position=>{
+      const l=window.storyProbe.lifecycle;
+      l.resetPlayer(l.vectorFromArray(position),0,{persist:false});
+    },position);
+    await page.waitForTimeout(600);
+  }
+  await waitForBody();
+  expect(await futon()).toEqual([[-19.188601,.608,4.379],[-18.995001,-10,4.391]]);
+  await page.waitForTimeout(4000);
+  await page.screenshot({path:testInfo.outputPath("chai-original-sleepwear.png")});
+  if (process.env.NEW_YOKOSUKA_4S_PICK === "true") {
+    console.info("A0173 per-pixel surface review", await page.evaluate(() => {
+      const l=window.storyProbe.lifecycle,scene=l.scene,w=l.engine.getRenderWidth(),h=l.engine.getRenderHeight();
+      return [[.92,.41],[.85,.43],[.70,.45],[.8,.50],[.8,.35]].map(([x,y])=>{
+        const hits=scene.multiPick(x*w,y*h,m=>m.isVisible&&m.isEnabled()&&m.getTotalVertices()>0,scene.activeCamera) || [];
+        return {x,y,hits:hits.filter(hit=>hit.hit).sort((a,b)=>a.distance-b.distance).slice(0,2).map(hit=>{
+          if(x>.9 && hit===hits.filter(h=>h.hit).sort((a,b)=>a.distance-b.distance)[0])window.coverDiagMesh=hit.pickedMesh;
+          let m=hit.pickedMesh;const chain=[];
+          while(m){chain.push([m.name,m._filename,m._runtimePlacementRecord?.runtime?.objectTag]);m=m.parent;}
+          return {d:hit.distance,mat:hit.pickedMesh.material?.name,chain};
+        })};
+      })
+    }).then(JSON.stringify));
+    await page.evaluate(()=>{window.coverDiagMesh.setEnabled(false);});
+    await page.screenshot({path:testInfo.outputPath("chai-identify-ribbon.png")});
+    await page.evaluate(()=>{window.coverDiagMesh.setEnabled(true);});
+
+  }
+  await expect.poll(async()=>(await state()).character.storyFlags[done],{timeout:90_000}).toBe(true);
+  expect((await state()).character.storyFlags[pending]).not.toBe(true);
+  await verifyChaiRecoveryReload(page,character);
+  const after = await state();
+  expect(after.character.yen).toBe(before.character.yen);
+  expect(after.inventory).toEqual(before.inventory);
+  expect(after.character.avatarId).toBe("ryo");
+  expect(await futon()).toEqual([[-19.188601,.608,4.379],[-18.995001,.551,4.391]]);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().actorRoot.getChildMeshes(false)
+    .some(m=>m.isEnabled() && m.isVisible && m.getTotalVertices()>0))).toBe(true);
+}
+
 export async function verifyChaiRecoveryReload(page,character){
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const before=await saved();

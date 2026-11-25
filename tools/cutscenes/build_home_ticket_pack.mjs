@@ -191,6 +191,68 @@ for(const p of selectedProfiles){
   ];
   const props={},outputMembers=[],textureSources=[];let generatedAssets=[],authoredAttachedObjects;
   const packageActors=Object.fromEntries(Object.entries(characters).filter(([tag])=>p.actors.includes(tag)).map(([tag,[label,code]])=>[tag,actor(label,code)]));
+  let recoveryFace, recoveryBedding;
+  if (p.id === "chai-home-recovery") {
+    // The original owner switches AKIR to YKD_M at 0x609a6, before slot 16.
+    const map = fs.readFileSync(mapSource);
+    if (sha256(map) !== mapHash || map.toString("ascii",0x9978c,0x99791) !== "YKD_M") {
+      throw Error("Changed original A0173 Ryo model request");
+    }
+    // The original callback saves FUT2, moves its Y to -10, then restores it.
+    // The resident bedroom placement already supplies its unchanged X/Z and orientation.
+    const placement = JSON.parse(fs.readFileSync(path.join(root,"play/data/jomo-runtime-placements.json"))).placements
+      .filter(item => item.runtime?.objectTag === "FUT2");
+    if (placement.length !== 1 || map.toString("ascii",0x60cf0,0x60cf4) !== "FUT2" || map.readFloatLE(0x60cf4) !== -10) {
+      throw Error("Changed A0173 bedroom cover placement or source callback");
+    }
+    const cover = placement[0];
+    props.FUT2 = {model:"FUTS302G",objectTag:"FUT2",browserFilename:cover.model,lifecycle:{kind:"room-script-persistent"},
+      initialPresentation:{position:[-cover.position[0],map.readFloatLE(0x60cf4),cover.position[2]],
+        rotationDegrees:[cover.rotationDegrees[0],-cover.rotationDegrees[1],-cover.rotationDegrees[2]],scale:cover.scale},
+      sourceBinding:{callback:"0x60c50",savePosition:"0x60c70",setPosition:"0x60cbc",restorePosition:"0x60f8c"}};
+    recoveryBedding = [{actorTag:"FUT2",presented:true}];
+    const archive = parseIpacActivityArchive(fs.readFileSync(common));
+    const body = archive.members.find(member => member.name === "YKD_M.CHRM");
+    const table = archive.members.find(member => member.name === "YKD_FTBL.BIN");
+    const facePath = path.join(source,"MODEL/FACE/YKD_F.MT5");
+    const faceBytes = fs.readFileSync(facePath);
+    const poseSource = "play/assets/introduction/op00-dream/ykd-talk-poses.generated.json";
+    const poseBytes = fs.readFileSync(path.join(root,poseSource));
+    const poses = JSON.parse(poseBytes).actors.AKI_;
+    if (sha256(body.bytes) !== "082f0d23f82c418961811590d2331e769e470c2a25c822b854aa16f5c7241b02"
+      || poses.faceCode !== "YKD" || poses.tableSha256 !== sha256(table.bytes)
+      || sha256(faceBytes) !== "9d90eee53400ab16c63f45584559ae7288cea2ef1b7a3b7a5f9b471106fc9aea") {
+      throw Error("Changed original YKD recovery body or facial assets");
+    }
+    for (const member of [body,table]) {
+      members.push({name:member.name,sourcePath:common,sourceManifestPath:discPath+"/JOMO/COMMON02.PKS",
+        sourceSha256:commonHash,archiveMember:member.name,byteLength:member.bytes.length,sha256:sha256(member.bytes)});
+      outputMembers.push(member.name);
+    }
+    // The archive HRCM's NAME table refers to eight specific COMMON02.PKF
+    // entries. Their image IDs also exist in the global model but those payloads differ.
+    const textureFile = fs.readFileSync(path.join(source,"JOMO/COMMON02.PKF"));
+    if (sha256(textureFile) !== "46f81a1f67b471c19481edc3092ed43be443e35d4c437c4fc594658d8866927b") throw Error("Changed original recovery texture bank");
+    const nativeTextures = extractNativeTexnPack(textureFile,"JOMO/COMMON02.PKF").entries;
+    const texd = body.bytes.readUInt32LE(4), names = texd + body.bytes.readUInt32LE(texd+4);
+    if (body.bytes.toString("ascii",texd,texd+4) !== "TEXD" || body.bytes.toString("ascii",names,names+4) !== "NAME"
+      || body.bytes.readUInt32LE(texd+8) !== 8 || body.bytes.readUInt32LE(names+4) !== 72) throw Error("Changed recovery body texture references");
+    const bodyTextures = Array.from({length:8},(_,i)=>{
+      const id = body.bytes.subarray(names+8+i*8,names+16+i*8).toString("hex");
+      const matches = nativeTextures.filter(entry => entry.id === id);
+      if (matches.length !== 1) throw Error("Ambiguous recovery body texture "+id);
+      return matches[0].bytes;
+    });
+    const record = (name,bytes) => ({path:prefix+"/"+name,byteLength:bytes.length,sha256:sha256(bytes)});
+    const modelPath = prefix+"/YKD_F.MT5", posePath = prefix+"/ykd-talk-poses.generated.json";
+    generatedAssets.push({assetPath:prefix+"/YKD_textures.bin",bytes:Buffer.concat(bodyTextures)},
+      {assetPath:modelPath,bytes:faceBytes,source:{path:discPath+"/MODEL/FACE/YKD_F.MT5"}},
+      {assetPath:posePath,bytes:poseBytes,source:{path:poseSource}});
+    packageActors.AKIR = {label:"Ryo Hazuki",modelCode:"YKD_M",browserFilename:body.name,assetFormat:"MT5",characterScale:1,
+      assetPath:prefix+"/"+body.name,textureAssetPath:prefix+"/YKD_textures.bin"};
+    recoveryFace = {actorTag:"AKIR",bodyModelCode:"YKD_M",faceCode:"YKD",attachmentRenderKey:-67,faceRootRenderKey:3,eyeRenderKeys:[77,78],
+      model:record("YKD_F.MT5",faceBytes),table:record(table.name,table.bytes),poses:{...record("ykd-talk-poses.generated.json",poseBytes),actorTag:"AKI_"}};
+  }
   if(p.id.startsWith("friends-visit-")){
     // JOMO's scene-specific HOUMON archive contains the same two bodies used
     // by the scheduled characters. Verify byte identity rather than assuming
@@ -305,10 +367,12 @@ for(const p of selectedProfiles){
     sourceMembers:members,expectedMembers:members,bindingEvidence:p.evidence||evidence,
     selectionRule:`Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector.${homeCallbacks[p.id]?` Original owner ${homeCallbacks[p.id].owner} selects native slot ${homeCallbacks[p.id].slot} with callback ${homeCallbacks[p.id].callback}; hands, FACE expressions and prop grips/hinges use that callback. FACE gaze and LKPT tracking remain omitted.`:""}`,
     ...callbackResources,
+    ...(recoveryFace ? {facialAssets:{AKIR:recoveryFace}} : {}),
     outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),audioManifest:`${audioPrefix}/manifest.json`,
     motionBanks:[{bank:p.bank,member:p.motion,parseOptions:{sequenceIndexBase:p.base}}],
     activities:[{slot:0,binding:{kind:"map-embedded-slot"},file:`${p.resource}.AUTH`,actors:p.actors,durationFrames:p.frames,
       ...callbackCues,
+      ...(recoveryBedding ? {nativeSceneObjectStates:recoveryBedding} : {}),
       ...(p.stage?{browserMapVisibility:[],browserIsolatedStage:true,browserLightingPresetIndex:0,nativeSceneObjectStates:stageStates}:{})}],
     packageActors,
     ...(Object.keys(props).length?{sceneObjects:props}:{}),
