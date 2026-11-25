@@ -3389,3 +3389,30 @@ sign and arrival were reviewed; inventory and money were unchanged. Test
 positioning shortened travel, so this is not an unseeded full playthrough.
 Voice files are locally generated runtime assets and must be published and
 verified with their manifest before a future authorized deployment.
+
+### Show Yamagishi the Phoenix Mirror
+
+On Disc 2, talk to Shigeo Yamagishi in Sakuragaoka park while carrying the
+Phoenix Mirror. His normal resident schedule brings him to the park. The source
+talk owner checks YAMA, park bounds, 08:30–19:00 (end exclusive), an eligible
+STEP, and clear flag 817. Imported native saves can supply item bit 290 and
+the original progression flags. Older Story saves use the held mirror and
+authored progression milestones. Accepting the confirmation plays the original
+film. Declining or cancelling leaves it available. Completing it retains the
+mirror and records both native bit 817 and the named Story completion flag.
+
+Disc 2 JD00 `INYO.PKS` supplies `SEQDATA7.AUTH` and `M_01INY.MOTN`.
+The 2,742-frame film uses all 22 English voice clips from `01INY.AFS`, its
+original camera, body motion, tea cup and Phoenix Mirror. JD00 MAPINFO callback
+`0x5cd04` attaches the mirror to Ryo at frame 556, Yamagishi at 678 and Ryo
+again at 2336. The same script hides it at 2642. Its wrist offsets are static
+MAPINFO vectors. The generator also recovers Yamagishi's original hand models,
+skeleton and textures. Native gaze tracking remains unverified.
+
+A Radeon Story run selected the actual resident, played all 22 voices, and
+measured the mirror 0.155 m from Ryo's wrist, 0.142 m from Yamagishi's, and
+0.155 m from Ryo's after the return. The prop disappeared after the source
+hide cue. Decline, cancel, replay, natural completion, retained item, native bit
+817 and reload also passed. Rebuild with
+`node tools/cutscenes/build_yamagishi_mirror_pack.mjs`. Focused checks are in
+`tests/YamagishiMirror.test.js` and server `internal/scriptevent/yamagishi_mirror_test.go`.

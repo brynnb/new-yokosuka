@@ -417,9 +417,18 @@ export function extractNativeAseqCallbackObjectPresentation({
   const nativeActorLookPointCues = [];
   for (const { block, action } of operations) {
     if (action.semanticId === "resolved-object-fixo-attachment-install") {
-      const vector = pointer => frameVectorMode === "activity-timeline"
-        ? activityTimelineWords(bytes, callbackFunction, nativeFunction, pointer, action)
-        : frameWords(nativeFunction, block, pointer, action);
+      const vector = pointer => {
+        // INYO stores its signed-turn and float XYZ grip vectors as three
+        // consecutive MAPINFO words. Other owners construct them on the stack.
+        if (pointer?.kind === "static-pointer") {
+          if (!Number.isSafeInteger(pointer.value) || pointer.value < 0 || pointer.value + 12 > bytes.length)
+            throw Error(`Invalid static FIXO vector at ${action.callFileOffset}`);
+          return [0, 4, 8].map(offset => bytes.readUInt32LE(pointer.value + offset));
+        }
+        return frameVectorMode === "activity-timeline"
+          ? activityTimelineWords(bytes, callbackFunction, nativeFunction, pointer, action)
+          : frameWords(nativeFunction, block, pointer, action);
+      };
       const translation = vector(action.arguments[3])
         .map(float32);
       const rotationRaw = vector(action.arguments[4])

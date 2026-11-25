@@ -51,18 +51,28 @@ function playbackKind(name) {
 }
 
 /** Exact parser for the node-oriented MOTN stream consumed by the TMNM route. */
-export function parseTmnmMotion(input) {
+export function parseTmnmMotion(input, { sequenceIndices } = {}) {
   const view = viewOf(input);
   const indexOffset = uint32(view, 0, "index offset");
   const namesOffset = uint32(view, 4, "name-table offset");
   const dataOffset = uint32(view, 8, "data offset");
-  const sequenceCount = view.getUint8(12) - 1;
+  // Mixed banks can encode a native resource ID in the attributes word.
+  // A contiguous name-pointer table gives its actual length in that case.
+  const firstName = uint32(view, namesOffset, "first name");
+  const nameCount = (firstName - namesOffset) / 4;
+  const sequenceCount = Number.isInteger(nameCount) && nameCount > 0
+    && firstName <= dataOffset && indexOffset + nameCount * 8 <= namesOffset
+    ? nameCount : view.getUint8(12) - 1;
   const declaredSize = uint32(view, 16, "declared size");
   if (sequenceCount <= 0 || declaredSize !== view.byteLength) {
     throw new Error("TMNM header is invalid");
   }
   const sequences = [];
-  for (let index = 0; index < sequenceCount; index += 1) {
+  const indices = sequenceIndices ?? Array.from({length:sequenceCount}, (_, index) => index);
+  if (!Array.isArray(indices) || indices.some(index => !Number.isInteger(index) || index < 0 || index >= sequenceCount)) {
+    throw new RangeError("TMNM sequence index is outside its bank");
+  }
+  for (const index of indices) {
     const sequenceOffset = dataOffset + uint32(view, indexOffset + index * 8, "sequence offset");
     const name = stringAt(view, uint32(view, namesOffset + index * 4, "name offset"));
     const durationFrames = view.getUint16(sequenceOffset, true);

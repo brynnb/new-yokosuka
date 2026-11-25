@@ -1,0 +1,243 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_goro_guard_pack.mjs",
+  "source": {
+    "disc": 2,
+    "path": "disc2/SCENE/02/MFSY/GKYU.PKS",
+    "sha256": "03694e6a4fbbe42d3f20679361c695665be0d92c4fb90e14905ed334cc66a2b0",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "M_01GAR.MOTN",
+        "byteLength": 122428,
+        "sha256": "9f8d60b61eac2644d3e0a804976153f2919cb14d38613785d432515ee26d2d96"
+      },
+      {
+        "name": "M_GKYU.MOTN",
+        "byteLength": 11272,
+        "sha256": "8c014986961defc6ee92a6b4d070217398a1aee2aa22539cc93834b9779f6a61"
+      },
+      {
+        "name": "SEQDATA2.AUTH",
+        "byteLength": 8808,
+        "sha256": "40e9c9e4f423f170f913399e50d7833c49d9188cf49502aaec28c3d17c2a4191"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-goro-guard.md",
+    "resourceName": "GKYU",
+    "variant": "",
+    "selectionRule": "Original MFSY 0x6d164 plays the E1081 conversation and calls 0x6c114 with slot 0 to run the GKYU archive film."
+  },
+  "audioManifest": "public/audio/world/goro-guard-distraction/manifest.json",
+  "packageActors": {
+    "GORO": {
+      "label": "Goro Mihashi",
+      "modelCode": "KMB_L",
+      "characterScale": 1,
+      "assetFormat": "MT5",
+      "browserFilename": "KMB_L.CHRM",
+      "assetPath": "play/assets/characters/KMB_L.CHRM",
+      "textureAssetPath": "play/assets/characters/KMB_textures.bin"
+    },
+    "NGSM": {
+      "label": "Nagashima",
+      "modelCode": "YAB_L",
+      "characterScale": 1,
+      "assetFormat": "MT5",
+      "browserFilename": "YAB_L.CHRM",
+      "assetPath": "play/assets/characters/YAB_L.CHRM",
+      "textureAssetPath": "play/assets/characters/YAB_textures.bin"
+    },
+    "KEBJ": {
+      "label": "Harbor guard",
+      "modelCode": "KVJ_L",
+      "characterScale": 1,
+      "assetFormat": "MT5",
+      "browserFilename": "KVJ_L.CHRM",
+      "assetPath": "play/assets/characters/KVJ_L.CHRM",
+      "textureAssetPath": "play/assets/characters/KVJ_textures.bin"
+    },
+    "KEBK": {
+      "label": "Harbor guard",
+      "modelCode": "KVK_L",
+      "characterScale": 1,
+      "assetFormat": "MT5",
+      "browserFilename": "KVK_L.CHRM",
+      "assetPath": "play/assets/characters/KVK_L.CHRM",
+      "textureAssetPath": "play/assets/characters/KVK_textures.bin"
+    }
+  },
+  "facialAssets": {
+    "GORO": {
+      "actorTag": "GORO",
+      "faceCode": "KMB",
+      "bodyModelCode": "KMB_L",
+      "attachmentRenderKey": -67,
+      "faceRootRenderKey": 3,
+      "eyeRenderKeys": [
+        77,
+        78
+      ],
+      "model": {
+        "path": "play/assets/harbor/goro-guard-distraction/KMB_F.MT5",
+        "sourcePath": "disc2/SCENE/02/MODEL/FACE/KMB_F.MT5",
+        "sha256": "f42e297d0dc3ac1b07a9d918f11ae9bf0cf0396cf95d843df440be548b871606",
+        "byteLength": 81364
+      },
+      "table": {
+        "path": "play/assets/harbor/goro-guard-distraction/KMB_FTBL.BIN",
+        "sourcePath": "disc2/SCENE/02/MODEL/FACE/KMB_FTBL.BIN",
+        "sha256": "3e7ee20e4bc9dda2868de6265176e892682a0561f587625bae1035a0a6084cb8",
+        "byteLength": 6768
+      },
+      "poses": {
+        "actorTag": "GORO",
+        "path": "play/assets/harbor/goro-guard-distraction/goro-talk-poses.generated.json",
+        "sha256": "a12f3d24ad63fa711113eb54bfcca7c03e15addff302f39343678c049f933331",
+        "byteLength": 296006,
+        "generatedBy": "tools/animation/extract_native_face_poses.py"
+      }
+    }
+  },
+  "actorTags": [
+    "KEBJ",
+    "AKIR",
+    "KEBK",
+    "GORO",
+    "NGSM"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/goro-guard-distraction/M_01GAR.MOTN",
+      "byteLength": 122428,
+      "sha256": "9f8d60b61eac2644d3e0a804976153f2919cb14d38613785d432515ee26d2d96"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/goro-guard-distraction/M_01GAR.MOTN",
+      "byteLength": 122428,
+      "sha256": "9f8d60b61eac2644d3e0a804976153f2919cb14d38613785d432515ee26d2d96"
+    },
+    {
+      "path": "play/assets/harbor/goro-guard-distraction/SEQDATA2.AUTH",
+      "byteLength": 8808,
+      "sha256": "40e9c9e4f423f170f913399e50d7833c49d9188cf49502aaec28c3d17c2a4191"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "GKYU/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 8808,
+      "sha256": "40e9c9e4f423f170f913399e50d7833c49d9188cf49502aaec28c3d17c2a4191",
+      "durationFrames": 930,
+      "durationSeconds": 31.016666412353516,
+      "frameCount": 39,
+      "commandCounts": {
+        "camera": 1,
+        "move": 5,
+        "motion": 9,
+        "sound": 25,
+        "voice": 8
+      },
+      "actors": [
+        "KEBJ",
+        "AKIR",
+        "KEBK",
+        "GORO",
+        "NGSM"
+      ],
+      "motions": [
+        {
+          "actorTag": "KEBJ",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "YKI_GDA_AT1_KOMARU_SOUKOSINNYU_0100",
+          "startFrame": 127,
+          "endFrame": 1100
+        },
+        {
+          "actorTag": "KEBK",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "YKI_GDB_AT1_NAYAMU_SOUKOSINNYU_0100",
+          "startFrame": 1,
+          "endFrame": 455
+        },
+        {
+          "actorTag": "GORO",
+          "frame": 50,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "OTH_GOR_AT1_ITYAMON_TUKERU_SOUKOSINNYU_0100",
+          "startFrame": 55,
+          "endFrame": 460
+        },
+        {
+          "actorTag": "NGSM",
+          "frame": 75,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "YKI_TKA_AT1_OTOSIMAE_TUKERO_SOUKOSINNYU_0100",
+          "startFrame": 1,
+          "endFrame": 380
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 450,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "AKI_AT1_SIGHN_HAIRU_SOUKOSINNYU_0100",
+          "startFrame": 1,
+          "endFrame": 280
+        },
+        {
+          "actorTag": "KEBK",
+          "frame": 456,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "YKI_GDB_AT1_NAYAMU_SOUKOSINNYU_0100",
+          "startFrame": 411,
+          "endFrame": 985
+        },
+        {
+          "actorTag": "GORO",
+          "frame": 456,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "OTH_GOR_AT1_ITYAMON_TUKERU_SOUKOSINNYU_0100",
+          "startFrame": 391,
+          "endFrame": 983
+        },
+        {
+          "actorTag": "NGSM",
+          "frame": 456,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "YKI_TKA_AT1_OTOSIMAE_TUKERO_SOUKOSINNYU_0100",
+          "startFrame": 298,
+          "endFrame": 821
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 711,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "AKI_AT1_SIGHN_HAIRU_SOUKOSINNYU_0100",
+          "startFrame": 250,
+          "endFrame": 337
+        }
+      ]
+    }
+  ]
+}

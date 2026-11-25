@@ -51,6 +51,22 @@ function harness() {
   return { runtime, transaction, scene, calls,root, deferPrepare: fn => { prepare = fn; } };
 }
 
+test("room-camera staging borrows the camera and releases it with the saved inspect pose", async () => {
+  const h = harness();
+  delete h.scene.camera;
+  h.scene.useGameplayCamera = true;
+  const updates = [];
+  h.runtime.updateGameplayCamera = (delta, entering) => updates.push({ delta, entering });
+  h.runtime.camera.apply = () => assert.fail("unexpected authored shot");
+  await h.runtime.play({ kind: "scene-staging-start", scene: h.scene }, h.transaction);
+  h.runtime.update(h.transaction, 0.2);
+  assert.deepEqual(updates, [{ delta: 0, entering: true }, { delta: 0.2, entering: false }]);
+  assert.equal(h.runtime.cancel(h.transaction), true);
+  assert.equal(h.calls.filter(call => call === "camera-begin").length, 1);
+  assert.equal(h.calls.filter(call => call === "camera-end").length, 1);
+  assert.ok(h.calls.some(call => call?.cameraYaw === 4));
+});
+
 test("standalone tableau props reuse scene-object presentation and dispose on release",async()=>{
   const h=harness(),calls=[];h.scene.sceneObjects={BIK1:{model:"bike"}};
   h.runtime.createSceneObjects=definitions=>{
@@ -517,6 +533,38 @@ test("a staged wrist overlay loads and plays over locomotion until the next full
   h.runtime.cancel(h.transaction);
 });
 
+test("Goro's shipped introduction starts, plays the four voices and respects the source run rate", async () => {
+  const {runtime,transaction}=harness();
+  const scene=JSON.parse(readFileSync("play/data/story-goro-guard.generated.json")).scenes[0];
+  transaction.area=scene.area;
+  runtime.createActorSet=()=>({load:async()=>{},actors:runtime.actors,clear(){}});
+  const motions=[];
+  runtime.motionRuntime.applyNamed=(_model,selection,elapsed)=>{motions.push({name:selection.name,elapsed});return true};
+  assert.equal(await runtime.play({kind:"scene-staging-start",scene},transaction),true);
+  const advanceTo=seconds=>runtime.update(transaction,seconds-runtime.active.elapsed);
+  for(const {atSeconds} of scene.dialogueCues){
+    if(atSeconds>6.5&&runtime.active.elapsed<5.9){
+      advanceTo(5.9);
+      assert.equal(motions.at(-1).name,"AKI_AKI_RUN_LP");
+      assert.ok(Math.abs(motions.at(-1).elapsed-(5.9-170/30)*0.75)<1e-10);
+    }
+    advanceTo(atSeconds);
+    assert.equal(await runtime.play({kind:"scene-staging-dialogue-cue",scene,atSeconds},transaction),true);
+  }
+  advanceTo(scene.durationSeconds);
+  assert.equal(await runtime.play({kind:"scene-staging-finish",scene},transaction),true);
+});
+
+test("an original first-frame voice cue is available as soon as its scene starts", async () => {
+  const {runtime,transaction,scene}=harness();
+  Object.assign(scene,{durationSeconds:2,waitForMotionCompletion:false,
+    dialogueCues:[{voiceId:"E1081B001",atSeconds:0}]});
+  await runtime.play({kind:"scene-staging-start",scene},transaction);
+  assert.equal(await runtime.play({kind:"scene-staging-dialogue-cue",scene,atSeconds:0},transaction),true);
+  assert.equal(await runtime.play({kind:"scene-staging-dialogue-cue",scene},transaction),false);
+  runtime.cancel(transaction);
+});
+
 test("timed scroll dialogue joins the same staged performance and releases a pending cue on cancel", async () => {
   const {runtime,transaction,scene}=harness();
   Object.assign(scene,{durationSeconds:8,waitForMotionCompletion:false,playThroughFinish:true,
@@ -534,4 +582,22 @@ test("timed scroll dialogue joins the same staged performance and releases a pen
   runtime.cancel(transaction);
   await assert.rejects(second,/released/);
   assert.equal(runtime.active,null);
+});
+
+test("the shipped upstairs office stages the three original actors and moves camera 1106", async () => {
+  const {runtime,transaction}=harness();
+  const scene=scenes.scenes.find(scene=>scene.id==="s1.ms8s.warehouse-eight-office");
+  transaction.area=scene.area;
+  runtime.createActorSet=()=>({load:async()=>{},actors:runtime.actors,clear(){}});
+  const motions=new Set(),cameras=[];
+  runtime.motionRuntime.applyNamed=(_model,motion)=>{motions.add(motion.name);return true;};
+  runtime.camera.apply=(...args)=>{cameras.push(args);return true;};
+  assert.equal(await runtime.play({kind:"scene-staging-start",scene},transaction),true);
+  runtime.update(transaction,1.5);
+  runtime.update(transaction,scene.durationSeconds-1.5);
+  assert.deepEqual(scene.actors.map(actor=>actor.tag),["AKIR","TMHN","TKSA"]);
+  assert.deepEqual([...motions].sort(),["AKI_KIKU_HANASI_TATIGIKI_F_0100","OTH_MAN_TALK_AGOTE_LP","OTH_MAN_TALK_ATAMAKAKI_LP"]);
+  assert.ok(cameras.length>=3);
+  assert.notDeepEqual(cameras.at(0),cameras.at(-1));
+  assert.equal(await runtime.play({kind:"scene-staging-finish",scene},transaction),true);
 });

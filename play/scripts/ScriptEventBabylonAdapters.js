@@ -232,8 +232,18 @@ export class ScriptEventBabylonAdapters {
     return this.restoreActorFacing(transaction, actor.instanceId);
   }
 
+  acquireStoryMusic(packageId, transaction, startImmediately = false) {
+    if (!packageId || transaction.releasePackageMusic || typeof this.retainPackageMusic !== "function") throw Error("Invalid Story music lease");
+    const release = this.retainPackageMusic(packageId, transaction, startImmediately);
+    if (typeof release !== "function") throw Error("Story music lease was not acquired");
+    transaction.releasePackageMusic = release;
+  }
+
   playSequence(sequence, transaction) {
     if (sequence.kind === "scene-staging-start" || sequence.kind === "scene-staging-transition" || sequence.kind === "scene-staging-finish" || sequence.kind === "scene-staging-dialogue-cue") {
+      if (sequence.kind === "scene-staging-start" && sequence.scene?.musicPackageId) {
+        this.acquireStoryMusic(sequence.scene.musicPackageId, transaction, true);
+      }
       const played=this.sceneStagingRuntime?.play(sequence, transaction) ?? false;
       if(!this.storyFrameHandoff?.pendingFor(transaction))return played;
       return Promise.resolve(played).then(async accepted=>{
@@ -288,10 +298,7 @@ export class ScriptEventBabylonAdapters {
     let accepted;
     try {
       if(activity.retainPackageMusic){
-        if(transaction.releasePackageMusic||typeof this.retainPackageMusic!=="function"||!activity.cutscene?.packageId)throw Error("Invalid Story music lease");
-        const release=this.retainPackageMusic(activity.cutscene.packageId,transaction);
-        if(typeof release!=="function")throw Error("Story music lease was not acquired");
-        transaction.releasePackageMusic=release;
+        this.acquireStoryMusic(activity.cutscene?.packageId, transaction);
         acquiredMusic=true;
       }
       if(activity.cutscene?.handoffSequence){

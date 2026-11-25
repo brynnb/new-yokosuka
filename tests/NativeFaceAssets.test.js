@@ -1,3 +1,4 @@
+import goroGuard from "../play/assets/harbor/goro-guard-distraction/manifest.json" with { type: "json" };
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import fs from "node:fs";
@@ -86,6 +87,7 @@ test("Story faces fit their exact prepared bodies and restore the body on releas
       ["JIMY", manifest.facialAssets.JIMY, "play/assets/characters/JIM_M.CHRM", "public/audio/world/jimmy-caught/manifest.json"],
       ["HORS", manifest.facialAssets.HORS, "play/assets/characters/TAT_M.CHRM", "public/audio/world/tattoo-introduction/manifest.json"],
       ["HRSK", manifest.facialVariants.NZM_M, "play/assets/harbor/nozomi-home/NZM_M.CHRM", "public/audio/world/nozomi-home/manifest.json"],
+      ["GORO", goroGuard.facialAssets.GORO, goroGuard.packageActors.GORO.assetPath, "public/audio/world/goro-guard-distraction/manifest.json"],
     ]) {
       const scene = new BABYLON.Scene(engine);
       try {

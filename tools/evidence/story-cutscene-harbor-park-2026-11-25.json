@@ -1,0 +1,1073 @@
+{
+  "schema": "new-yokosuka-connected-cutscene-checks-v1",
+  "date": "2026-11-25",
+  "localReportRoot": "/mnt/data6tb/Projects/New Yokosuka/ny-more-native-cinematics-qLxNhv/browser",
+  "environment": "Headful Chromium, Radeon RX 9070 XT, ANGLE Vulkan/RADV GFX1201, isolated local Go server and PostgreSQL 18, new disposable guest per pass.",
+  "coverage": "Tests enter ordinary Story interactions, allow native presentations to run to completion, check saves and reload. Fixture setup supplies specified earlier milestones and shortens walks. HTML reports include the independent WebGL preflight.",
+  "runs": [
+    {
+      "case": "mark-long-zha",
+      "report": "rerun-mark-long-zha-20261125-105209-html/index.html",
+      "durationSeconds": 78.94,
+      "observations": {
+        "voices": [
+          "01MKJB001",
+          "01MKJA001",
+          "01MKJB002",
+          "01MKJA002",
+          "01MKJB003",
+          "01MKJB004",
+          "01MKJA003"
+        ],
+        "actors": [
+          "AKIR",
+          "MARK"
+        ],
+        "firstSampledFrame": 40,
+        "lastSampledFrame": 984
+      },
+      "fixture": "Earlier fourth wages seeded. The conversation and notebook entry were earned."
+    },
+    {
+      "case": "goro-mai-marriage",
+      "report": "rerun-goro-mai-marriage-20261125-105332-html/index.html",
+      "durationSeconds": 74.14,
+      "observations": {
+        "voices": [
+          "01GHOB001",
+          "01GHOA001",
+          "01GHOB002",
+          "01GHOB003",
+          "01GHOA002",
+          "01GHOA003",
+          "01GHOC001",
+          "01GHOA004",
+          "01GHOC002",
+          "01GHOC003",
+          "01GHOA005",
+          "01GHOB004"
+        ],
+        "actors": [
+          "HINA",
+          "AKIR",
+          "GORO"
+        ],
+        "firstSampledFrame": 40,
+        "lastSampledFrame": 1231
+      },
+      "fixture": "Earlier fifth-day morning completion seeded. The announcement and notebook entry were earned."
+    },
+    {
+      "case": "yamagishi-mirror",
+      "report": "rerun-yamagishi-mirror-20261125-105959-html/index.html",
+      "durationSeconds": 121.71,
+      "observations": {
+        "voices": [
+          "01INYA001",
+          "01INYB001",
+          "01INYA002",
+          "01INYB002",
+          "01INYA003",
+          "01INYB003",
+          "01INYA004",
+          "01INYB004",
+          "01INYA005",
+          "01INYB005",
+          "01INYA006",
+          "01INYB006",
+          "01INYB007",
+          "01INYA007",
+          "01INYB008",
+          "01INYB009",
+          "01INYA008",
+          "01INYB010",
+          "01INYB011",
+          "01INYB012",
+          "01INYA009",
+          "01INYA010"
+        ],
+        "actors": [
+          "AKIR",
+          "YAMA"
+        ],
+        "objects": [
+          "COP_",
+          "PNXM"
+        ],
+        "grips": [
+          {
+            "frame": 565,
+            "visible": true,
+            "distance": 0.1547274199700008
+          },
+          {
+            "frame": 700,
+            "visible": true,
+            "distance": 0.14189066833255162
+          },
+          {
+            "frame": 2345,
+            "visible": true,
+            "distance": 0.15472717695124868
+          },
+          {
+            "frame": 2655,
+            "visible": false
+          }
+        ],
+        "firstSampledFrame": 40,
+        "lastSampledFrame": 2705
+      },
+      "fixture": "Sakuragaoka at 13:30 with Phoenix Mirror and prior mirror milestone seeded; resident, offer and film used live."
+    },
+    {
+      "case": "poetry",
+      "report": "rerun-poetry-20261125-111020-html/index.html",
+      "durationSeconds": 166.58,
+      "observations": {
+        "discovery": {
+          "voices": [
+            "E1011A006",
+            "E1011A102"
+          ],
+          "stages": [
+            {
+              "name": "s1.jhd0.mysterious-scroll-reveal-stool",
+              "actors": [
+                "AKIR"
+              ],
+              "hands": [],
+              "objects": [
+                "HAKO"
+              ],
+              "lastFrame": 59
+            },
+            {
+              "name": "s1.jhd0.mysterious-scroll-reveal",
+              "actors": [
+                "AKIR"
+              ],
+              "hands": [],
+              "objects": [
+                "GART",
+                "HAKO"
+              ],
+              "lastFrame": 807
+            }
+          ],
+          "soundCues": [],
+          "propStates": [
+            {
+              "frame": 0,
+              "signature": "|HAKO"
+            },
+            {
+              "frame": 34,
+              "signature": "HAKO/AKIR/12|"
+            },
+            {
+              "frame": 1,
+              "signature": "|"
+            },
+            {
+              "frame": 170,
+              "signature": "|MKCS"
+            },
+            {
+              "frame": 350,
+              "signature": "MKCS/AKIR/18|"
+            },
+            {
+              "frame": 480,
+              "signature": "|"
+            }
+          ],
+          "stool": [
+            {
+              "frame": 0,
+              "phase": "floor",
+              "onScreen": true,
+              "position": [
+                9.899999618530273,
+                0.9599999785423279,
+                -17.700000762939453
+              ]
+            },
+            {
+              "frame": 34,
+              "phase": "wrist",
+              "onScreen": true,
+              "position": [
+                9.614614486694336,
+                1.1300846338272095,
+                -17.762941360473633
+              ]
+            }
+          ],
+          "stoolCamera": [
+            {
+              "frame": 0,
+              "phase": "floor",
+              "visible": true,
+              "camera": "third_person_camera",
+              "viewport": [
+                1000,
+                720
+              ],
+              "eye": [
+                6.36,
+                2.84,
+                -19.358
+              ],
+              "target": [
+                9.139,
+                2.079,
+                -17.968
+              ],
+              "prop": [
+                9.9,
+                0.96,
+                -17.7
+              ],
+              "screen": [
+                520.241,
+                540.033,
+                0.995
+              ],
+              "meshCenter": [
+                520.499,
+                497.915,
+                0.995
+              ]
+            },
+            {
+              "frame": 7,
+              "phase": "floor",
+              "visible": true,
+              "camera": "third_person_camera",
+              "viewport": [
+                1000,
+                720
+              ],
+              "eye": [
+                6.36,
+                2.84,
+                -19.358
+              ],
+              "target": [
+                9.139,
+                2.079,
+                -17.968
+              ],
+              "prop": [
+                9.9,
+                0.96,
+                -17.7
+              ],
+              "screen": [
+                520.241,
+                540.033,
+                0.995
+              ],
+              "meshCenter": [
+                520.499,
+                497.915,
+                0.995
+              ]
+            },
+            {
+              "frame": 14,
+              "phase": "floor",
+              "visible": true,
+              "camera": "third_person_camera",
+              "viewport": [
+                1000,
+                720
+              ],
+              "eye": [
+                6.36,
+                2.84,
+                -19.358
+              ],
+              "target": [
+                9.139,
+                2.079,
+                -17.968
+              ],
+              "prop": [
+                9.9,
+                0.96,
+                -17.7
+              ],
+              "screen": [
+                520.241,
+                540.033,
+                0.995
+              ],
+              "meshCenter": [
+                520.499,
+                497.915,
+                0.995
+              ]
+            },
+            {
+              "frame": 21,
+              "phase": "floor",
+              "visible": true,
+              "camera": "third_person_camera",
+              "viewport": [
+                1000,
+                720
+              ],
+              "eye": [
+                6.36,
+                2.84,
+                -19.358
+              ],
+              "target": [
+                9.139,
+                2.079,
+                -17.968
+              ],
+              "prop": [
+                9.9,
+                0.96,
+                -17.7
+              ],
+              "screen": [
+                520.241,
+                540.033,
+                0.995
+              ],
+              "meshCenter": [
+                520.499,
+                497.915,
+                0.995
+              ]
+            },
+            {
+              "frame": 28,
+              "phase": "floor",
+              "visible": true,
+              "camera": "third_person_camera",
+              "viewport": [
+                1000,
+                720
+              ],
+              "eye": [
+                6.36,
+                2.84,
+                -19.358
+              ],
+              "target": [
+                9.139,
+                2.079,
+                -17.968
+              ],
+              "prop": [
+                9.9,
+                0.96,
+                -17.7
+              ],
+              "screen": [
+                520.241,
+                540.033,
+                0.995
+              ],
+              "meshCenter": [
+                520.499,
+                497.915,
+                0.995
+              ]
+            },
+            {
+              "frame": 34,
+              "phase": "wrist",
+              "visible": true,
+              "camera": "third_person_camera",
+              "viewport": [
+                1000,
+                720
+              ],
+              "eye": [
+                6.36,
+                2.84,
+                -19.358
+              ],
+              "target": [
+                9.139,
+                2.079,
+                -17.968
+              ],
+              "prop": [
+                9.615,
+                1.13,
+                -17.763
+              ],
+              "screen": [
+                506.391,
+                533.291,
+                0.995
+              ],
+              "meshCenter": [
+                504.111,
+                485.528,
+                0.995
+              ]
+            },
+            {
+              "frame": 41,
+              "phase": "wrist",
+              "visible": true,
+              "camera": "third_person_camera",
+              "viewport": [
+                1000,
+                720
+              ],
+              "eye": [
+                6.36,
+                2.84,
+                -19.358
+              ],
+              "target": [
+                9.139,
+                2.079,
+                -17.968
+              ],
+              "prop": [
+                9.621,
+                1.399,
+                -17.755
+              ],
+              "screen": [
+                505.533,
+                477.862,
+                0.995
+              ],
+              "meshCenter": [
+                504.016,
+                430.793,
+                0.995
+              ]
+            },
+            {
+              "frame": 48,
+              "phase": "wrist",
+              "visible": true,
+              "camera": "third_person_camera",
+              "viewport": [
+                1000,
+                720
+              ],
+              "eye": [
+                6.36,
+                2.84,
+                -19.358
+              ],
+              "target": [
+                9.139,
+                2.079,
+                -17.968
+              ],
+              "prop": [
+                9.584,
+                1.772,
+                -17.698
+              ],
+              "screen": [
+                490.434,
+                399.517,
+                0.995
+              ],
+              "meshCenter": [
+                490.315,
+                351.749,
+                0.995
+              ]
+            },
+            {
+              "frame": 55,
+              "phase": "wrist",
+              "visible": true,
+              "camera": "third_person_camera",
+              "viewport": [
+                1000,
+                720
+              ],
+              "eye": [
+                6.36,
+                2.84,
+                -19.358
+              ],
+              "target": [
+                9.139,
+                2.079,
+                -17.968
+              ],
+              "prop": [
+                9.528,
+                1.884,
+                -17.675
+              ],
+              "screen": [
+                479.911,
+                377.503,
+                0.995
+              ],
+              "meshCenter": [
+                480.998,
+                327.934,
+                0.995
+              ]
+            }
+          ],
+          "plaque": [
+            {
+              "phase": "resident",
+              "frame": 1,
+              "position": [
+                6.7998,
+                3.484,
+                -16.5422
+              ],
+              "verticalAxis": 1
+            },
+            {
+              "phase": "wall",
+              "frame": 98,
+              "position": [
+                6.799799919128418,
+                3.4839999675750732,
+                -16.579999923706055
+              ],
+              "verticalAxis": 1
+            },
+            {
+              "phase": "removed",
+              "frame": 280,
+              "position": [
+                6.243647575378418,
+                1.9547030925750732,
+                -16.52491569519043
+              ],
+              "verticalAxis": -0.0393773689866066
+            },
+            {
+              "phase": "replaced",
+              "frame": 658,
+              "position": [
+                6.7998,
+                3.484,
+                -16.5422
+              ],
+              "verticalAxis": 1
+            }
+          ]
+        },
+        "reading": {
+          "voices": [
+            "SA1109A001",
+            "SA1109B001",
+            "SA1109A002",
+            "SA1109B002",
+            "SA1109B003",
+            "SA1109B004",
+            "SA1109B005",
+            "SA1109B006",
+            "SA1109B007",
+            "SA1109B008",
+            "SA1109B009",
+            "SA1109B010",
+            "SA1109A003",
+            "SA1109B011",
+            "SA1109B012",
+            "SA1109B013",
+            "SA1109A004",
+            "SA1109B014",
+            "SA1109B015",
+            "SA1109A005",
+            "SA1109B016",
+            "SA1109B017",
+            "SA1109A006"
+          ],
+          "stages": [
+            {
+              "name": "s1.ms08.poetry-reading",
+              "actors": [
+                "AKIR",
+                "KISY"
+              ],
+              "hands": [],
+              "objects": [
+                "STAG"
+              ],
+              "lastFrame": 2601
+            }
+          ],
+          "soundCues": [],
+          "propStates": [
+            {
+              "frame": 6,
+              "signature": "|"
+            },
+            {
+              "frame": 160,
+              "signature": "MKC4/AKIR/18|"
+            },
+            {
+              "frame": 272,
+              "signature": "MKC5/KISY/12|"
+            },
+            {
+              "frame": 415,
+              "signature": "MKI4/KISY/12|"
+            },
+            {
+              "frame": 1661,
+              "signature": "MKC5/KISY/12|"
+            },
+            {
+              "frame": 1787,
+              "signature": "MKC4/AKIR/18|"
+            },
+            {
+              "frame": 2485,
+              "signature": "|"
+            }
+          ]
+        }
+      },
+      "fixture": "Earlier dojo and warehouse meetings seeded. The pickup, physical stool, plaque, scroll, warehouse reading and both settlements were earned.",
+      "earlierPlaqueOnlyReport": "rerun-poetry-20261125-105710-html/index.html"
+    },
+    {
+      "case": "goro-guard-day-after",
+      "report": "rerun-goro-guard-day-after-20261125-112304-html/index.html",
+      "durationSeconds": 139.86,
+      "observations": {
+        "film": {
+          "voices": [
+            "01GARB001",
+            "01GARB004",
+            "01GARB002",
+            "01GARC001",
+            "01GARD001",
+            "01GARE001",
+            "01GARD002",
+            "01GARB003"
+          ],
+          "actors": [
+            "KEBJ",
+            "KEBK",
+            "GORO",
+            "NGSM",
+            "AKIR"
+          ],
+          "objects": [],
+          "grips": [],
+          "firstSampledFrame": 40,
+          "lastSampledFrame": 901
+        },
+        "spoken": [
+          {
+            "id": "E1081B001",
+            "text": "Hey Bro, What's up?",
+            "speaker": "Goro Mihashi",
+            "stage": "s1.mfsy.goro-guard-intro"
+          },
+          {
+            "id": "E1081A001",
+            "text": "Not much, Goro...not much.",
+            "speaker": "Ryo Hazuki",
+            "stage": "s1.mfsy.goro-guard-intro"
+          },
+          {
+            "id": "E1081B002",
+            "text": "If anything's bothering you, just tell your old pal Goro!",
+            "speaker": "Goro Mihashi",
+            "stage": "s1.mfsy.goro-guard-intro"
+          },
+          {
+            "id": "E1081A002",
+            "text": "Well, I got a question for you.",
+            "speaker": "Ryo Hazuki",
+            "stage": "s1.mfsy.goro-guard-intro"
+          },
+          {
+            "id": "E1009BA013",
+            "text": "I hear voices. Is someone there?",
+            "speaker": "Ryo Hazuki",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BB001",
+            "text": "Would ya' look at this invoice... The address is wrong.",
+            "speaker": "Tomohito Niizato",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BC001",
+            "text": "So it is.",
+            "speaker": "Tsukasa Takagi",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BB002",
+            "text": "I've asked them a million times to get it right.",
+            "speaker": "Tomohito Niizato",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BC002",
+            "text": "Yeah, it says right here... Old Warehouse District.",
+            "speaker": "Tsukasa Takagi",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BC003",
+            "text": "What are they thinking?",
+            "speaker": "Tsukasa Takagi",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BB003",
+            "text": "Can you call over to the Old Warehouse No. 8?",
+            "speaker": "Tomohito Niizato",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BC004",
+            "text": "OK, got it.",
+            "speaker": "Tsukasa Takagi",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BA014",
+            "text": "So there's another Warehouse No. 8?",
+            "speaker": "Ryo Hazuki",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BA017",
+            "text": "I'll need to find the Old Warehouse District.",
+            "speaker": "Ryo Hazuki",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          }
+        ]
+      },
+      "fixture": "Earlier Goro harbor meeting seeded. Front refusal, next morning, guard diversion and entry earned during this run."
+    },
+    {
+      "case": "goro-guard-native",
+      "report": "rerun-goro-guard-native-20261125-113741-html/index.html",
+      "durationSeconds": 130.12,
+      "observations": {
+        "film": {
+          "voices": [
+            "01GARB001",
+            "01GARB004",
+            "01GARB002",
+            "01GARC001",
+            "01GARD001",
+            "01GARE001",
+            "01GARD002",
+            "01GARB003"
+          ],
+          "actors": [
+            "KEBJ",
+            "KEBK",
+            "GORO",
+            "NGSM",
+            "AKIR"
+          ],
+          "objects": [],
+          "grips": [],
+          "face": {
+            "actor": "GORO",
+            "code": "KMB",
+            "neutralFrame": 0,
+            "attached": true,
+            "vertexCount": 335,
+            "speaking": {
+              "frame": 81,
+              "voice": "01GARB001",
+              "mouthDelta": 0.004150390625,
+              "meshDelta": 0.003051765263080597
+            }
+          },
+          "firstSampledFrame": 40,
+          "lastSampledFrame": 902
+        },
+        "spoken": [
+          {
+            "id": "E1081B001",
+            "text": "Hey Bro, What's up?",
+            "speaker": "Goro Mihashi",
+            "stage": "s1.mfsy.goro-guard-intro"
+          },
+          {
+            "id": "E1081A001",
+            "text": "Not much, Goro...not much.",
+            "speaker": "Ryo Hazuki",
+            "stage": "s1.mfsy.goro-guard-intro"
+          },
+          {
+            "id": "E1081B002",
+            "text": "If anything's bothering you, just tell your old pal Goro!",
+            "speaker": "Goro Mihashi",
+            "stage": "s1.mfsy.goro-guard-intro"
+          },
+          {
+            "id": "E1081A002",
+            "text": "Well, I got a question for you.",
+            "speaker": "Ryo Hazuki",
+            "stage": "s1.mfsy.goro-guard-intro"
+          },
+          {
+            "id": "E1009BA013",
+            "text": "I hear voices. Is someone there?",
+            "speaker": "Ryo Hazuki",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BB001",
+            "text": "Would ya' look at this invoice... The address is wrong.",
+            "speaker": "Tomohito Niizato",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BC001",
+            "text": "So it is.",
+            "speaker": "Tsukasa Takagi",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BB002",
+            "text": "I've asked them a million times to get it right.",
+            "speaker": "Tomohito Niizato",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BC002",
+            "text": "Yeah, it says right here... Old Warehouse District.",
+            "speaker": "Tsukasa Takagi",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BC003",
+            "text": "What are they thinking?",
+            "speaker": "Tsukasa Takagi",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BB003",
+            "text": "Can you call over to the Old Warehouse No. 8?",
+            "speaker": "Tomohito Niizato",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BC004",
+            "text": "OK, got it.",
+            "speaker": "Tsukasa Takagi",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BA014",
+            "text": "So there's another Warehouse No. 8?",
+            "speaker": "Ryo Hazuki",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          },
+          {
+            "id": "E1009BA017",
+            "text": "I'll need to find the Old Warehouse District.",
+            "speaker": "Ryo Hazuki",
+            "stage": "s1.ms8s.warehouse-eight-office"
+          }
+        ],
+        "office": [
+          {
+            "frame": 2,
+            "actors": [
+              {
+                "tag": "AKIR",
+                "drawable": true,
+                "position": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "motion": "AKI_KIKU_HANASI_TATIGIKI_F_0100",
+                "wrist": [
+                  0.293,
+                  0.94,
+                  0.042
+                ]
+              },
+              {
+                "tag": "TMHN",
+                "drawable": true,
+                "position": [
+                  -15.56,
+                  4.275,
+                  131.09
+                ],
+                "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                "wrist": [
+                  0.119,
+                  1.784,
+                  0.068
+                ]
+              },
+              {
+                "tag": "TKSA",
+                "drawable": true,
+                "position": [
+                  -16.779,
+                  4.275,
+                  132.35
+                ],
+                "motion": "OTH_MAN_TALK_AGOTE_LP",
+                "wrist": [
+                  0.064,
+                  1.446,
+                  -0.213
+                ]
+              }
+            ],
+            "eye": [
+              -15.738,
+              6.004,
+              135.12
+            ],
+            "target": [
+              -16.114,
+              5.876,
+              135.124
+            ]
+          },
+          {
+            "frame": 35,
+            "actors": [
+              {
+                "tag": "AKIR",
+                "drawable": true,
+                "position": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "motion": "AKI_KIKU_HANASI_TATIGIKI_F_0100",
+                "wrist": [
+                  0.172,
+                  0.994,
+                  -1.141
+                ]
+              },
+              {
+                "tag": "TMHN",
+                "drawable": true,
+                "position": [
+                  -15.56,
+                  4.275,
+                  131.09
+                ],
+                "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                "wrist": [
+                  0.06,
+                  1.786,
+                  0.058
+                ]
+              },
+              {
+                "tag": "TKSA",
+                "drawable": true,
+                "position": [
+                  -16.779,
+                  4.275,
+                  132.35
+                ],
+                "motion": "OTH_MAN_TALK_AGOTE_LP",
+                "wrist": [
+                  0.074,
+                  1.405,
+                  -0.187
+                ]
+              }
+            ],
+            "eye": [
+              -15.787,
+              5.993,
+              135.444
+            ],
+            "target": [
+              -16.111,
+              5.854,
+              135.128
+            ]
+          },
+          {
+            "frame": 100,
+            "actors": [
+              {
+                "tag": "AKIR",
+                "drawable": true,
+                "position": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "motion": "AKI_KIKU_HANASI_TATIGIKI_F_0100",
+                "wrist": [
+                  0.281,
+                  0.946,
+                  -2.67
+                ]
+              },
+              {
+                "tag": "TMHN",
+                "drawable": true,
+                "position": [
+                  -15.56,
+                  4.275,
+                  131.09
+                ],
+                "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                "wrist": [
+                  0.11,
+                  1.768,
+                  0.02
+                ]
+              },
+              {
+                "tag": "TKSA",
+                "drawable": true,
+                "position": [
+                  -16.779,
+                  4.275,
+                  132.35
+                ],
+                "motion": "OTH_MAN_TALK_AGOTE_LP",
+                "wrist": [
+                  0.106,
+                  1.451,
+                  -0.21
+                ]
+              }
+            ],
+            "eye": [
+              -15.976,
+              5.872,
+              135.923
+            ],
+            "target": [
+              -16.036,
+              5.75,
+              135.146
+            ]
+          }
+        ]
+      },
+      "fixture": "Original 230 and 813 seeded in an otherwise early harbor character; earlier refusal has no named receipt."
+    }
+  ]
+}

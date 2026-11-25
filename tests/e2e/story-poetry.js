@@ -92,10 +92,33 @@ export async function verifyPoetryReading(page, testInfo, character, enterStoryW
   await expect.poll(async()=>(await state()).scrolls,{timeout:60_000}).toBe(1);
   await idle();
   const discovery=await page.evaluate(()=>window.stopOriginalDialogue());
+  console.info("Dojo stool camera",JSON.stringify(discovery.stoolCamera));
   expect(discovery.lines.map(line=>line.id)).toEqual(pickupIds);
-  expect(discovery.stages[0].actors).toContain("AKIR");
-  expect(discovery.stages[0].objects).toEqual(expect.arrayContaining(["GART","HAKO"]));
-  expect(discovery.stages[0].lastFrame).toBeGreaterThanOrEqual(800);
+  expect(discovery.stages.map(stage=>stage.name)).toEqual([reveal+"-stool",reveal]);
+  const [stoolStage,discoveryStage]=discovery.stages;
+  expect(stoolStage.actors).toContain("AKIR");
+  expect(discovery.stool.map(sample=>sample.phase)).toEqual(["floor","wrist"]);
+  expect(discovery.stool[1].frame).toBeGreaterThanOrEqual(34);
+  expect(discovery.stool[1].frame).toBeLessThan(60);
+  expect(discovery.stool.every(sample=>sample.onScreen)).toBe(true);
+  expect(discovery.stoolCamera.filter(sample=>sample.phase==="wrist").every(sample=>sample.visible)).toBe(true);
+  for(const [axis,value] of [9.9,.96,-17.7].entries()){
+    expect(discovery.stool[0].position[axis]).toBeCloseTo(value,3);
+  }
+  expect(discoveryStage.actors).toContain("AKIR");
+  expect(discoveryStage.objects).toEqual(expect.arrayContaining(["GART","HAKO"]));
+  expect(discoveryStage.lastFrame).toBeGreaterThanOrEqual(800);
+  const phases=Object.fromEntries(discovery.plaque.map(sample=>[sample.phase,sample]));
+  for(const phase of ["resident","wall","removed","replaced"])expect(phases[phase]).toBeTruthy();
+  for(const phase of ["resident","replaced"]){
+    expect(phases[phase].position[2]).toBeCloseTo(-16.5422,3);
+    expect(phases[phase].verticalAxis).toBeCloseTo(1,3);
+  }
+  expect(phases.wall.position[2]).toBeCloseTo(-16.58,3);
+  for(const [axis,value] of [6.24365,1.95470,-16.52492].entries()){
+    expect(phases.removed.position[axis]).toBeCloseTo(value,3);
+  }
+  expect(Math.abs(phases.removed.verticalAxis)).toBeLessThan(.05);
   expect(discovery.props.some(p=>p.signature.includes("MKCS/AKIR/18") && p.frame>=350)).toBe(true);
   const inventory=await check(1,0);
   await warehouse();

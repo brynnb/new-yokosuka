@@ -1,6 +1,9 @@
 import {verifyDobuitaDrunkard} from "./story-dobuita-drunkard.js";
 import {verifyMaiAlley} from "./story-mai-alley.js";
 import {verifyHisaka} from "./story-hisaka.js";
+import {verifyYamagishiMirror} from "./story-yamagishi-mirror.js";
+import {verifyGoroGuard} from "./story-goro-guard.js";
+import {verifyHarborConversation} from "./story-harbor-conversations.js";
 import {verifyFukuReturn} from "./story-fuku-return.js";
 import {verifyPoetryReading} from "./story-poetry.js";
 import {verifyScrollTranslation} from "./story-scroll-translation.js";
@@ -1743,6 +1746,24 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     if (process.env.NEW_YOKOSUKA_HISAKA_E2E) {
       test.setTimeout(300_000);
       await verifyHisaka(page, testInfo, character, enterStoryWorld, process.env.NEW_YOKOSUKA_HISAKA_E2E);
+      expect(errors).toEqual([]);
+      return;
+    }
+    if (process.env.NEW_YOKOSUKA_YAMAGISHI_MIRROR_E2E) {
+      test.setTimeout(400_000);
+      await verifyYamagishiMirror(page,testInfo,character,enterStoryWorld,residentClickPoint);
+      expect(errors).toEqual([]);
+      return;
+    }
+    if (process.env.NEW_YOKOSUKA_GORO_GUARD_E2E) {
+      test.setTimeout(440_000);
+      await verifyGoroGuard(page,testInfo,character,enterStoryWorld,process.env.NEW_YOKOSUKA_GORO_GUARD_E2E);
+      expect(errors).toEqual([]);
+      return;
+    }
+    if (process.env.NEW_YOKOSUKA_HARBOR_CONVERSATION_E2E) {
+      test.setTimeout(300_000);
+      await verifyHarborConversation(page,testInfo,character,enterStoryWorld,process.env.NEW_YOKOSUKA_HARBOR_CONVERSATION_E2E);
       expect(errors).toEqual([]);
       return;
     }

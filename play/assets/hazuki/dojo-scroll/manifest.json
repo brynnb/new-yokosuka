@@ -2,6 +2,68 @@
   "schema": "dojo-scroll-native-assets-v1",
   "generatedBy": "tools/scripting/build_dojo_scroll_staging.mjs",
   "mapSha256": "e3987fabdb4f66562d8274c26ee4e219a3d12046e1d3e3200cacdcf289cea0ca",
+  "objectMotionSource": {
+    "motionBank": {
+      "member": "M_01137E.MOTN",
+      "sha256": "7f20bf96097e8e098868794b2e490a308a9b99e638d5d5d91f3b8b0c790599b8"
+    },
+    "stool": {
+      "sourceFunction": "0x36990",
+      "roomCameraModeSelect": "0x36a36",
+      "actorResource": 7025,
+      "sequence": "AKI_MOTU_DAI_TIKATANSAKU_0100",
+      "sourceStartFrame": 60,
+      "sourceEndFrame": 120,
+      "chrtPositionOffset": 6596,
+      "attachment": {
+        "call": "0x36c16",
+        "sourceFrame": 94,
+        "object": "HAKO",
+        "parent": "AKIR",
+        "control": 12
+      },
+      "sceneTransitionCalls": [
+        "0x368dc",
+        "0x36946"
+      ]
+    },
+    "plaque": {
+      "sourceFunction": "0x36ca6",
+      "model": "GART201G.CHRM",
+      "rigidRootOffset": 1392,
+      "clips": [
+        {
+          "call": "0x37072",
+          "resource": 7055,
+          "sequence": "TMN_GART_01",
+          "firstFrame": 120,
+          "length": 144
+        },
+        {
+          "call": "0x375c2",
+          "resource": 7056,
+          "sequence": "TMN_GART_02",
+          "firstFrame": 560,
+          "length": 85
+        }
+      ],
+      "placementFrames": {
+        "wall": 90,
+        "resetMotion": 645,
+        "resident": 646
+      },
+      "resident": [
+        -6.7998,
+        3.484,
+        -16.5422
+      ],
+      "wall": [
+        -6.799799919128418,
+        3.4839999675750732,
+        -16.579999923706055
+      ]
+    }
+  },
   "outputs": [
     {
       "path": "play/assets/hazuki/dojo-scroll/GART201G.CHRM",

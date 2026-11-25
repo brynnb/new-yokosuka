@@ -189,6 +189,19 @@ export function createScriptEventAssembly({
     onIntent:(action,token,intent)=>controller?.drivingResponse(action,token,intent),
   });
   const sceneStagingRuntime = new AuthoredSceneStagingRuntime({
+        updateGameplayCamera: (delta, entering) => {
+          const controller = getController();
+          if (entering) {
+            // The inspectable can be selected in first person. The original
+            // switches to room camera mode 0 before Ryo starts his pickup.
+            controller.setFirstPerson(false, { resetThirdPersonView: false });
+            const forward = controller.actorRoot.forward;
+            controller.cameraYaw = Math.atan2(forward.x, forward.z) + Math.PI;
+            controller.cameraPitch = controller.options.cameraPitch;
+            controller.cameraDistance = controller.options.cameraDistance;
+          }
+          controller.updateCamera(entering ? 1 : delta);
+        },
         dialogueAudio,
         actors: createNativeAseqBabylonActors({ getPlayerModel, syncPlayerTransform,
           scheduledActors, motionRuntime, preservePlayerOnComplete: false, playerYawOffsetRadians: Math.PI }),
@@ -217,7 +230,7 @@ export function createScriptEventAssembly({
       vehicleChallengeRuntime,
       sceneStagingRuntime,
       storyFrameHandoff,
-      retainPackageMusic:(packageId,owner)=>cutsceneDirector.retainPackageMusic(packageId,owner),
+      retainPackageMusic:(packageId,owner,startImmediately)=>cutsceneDirector.retainPackageMusic(packageId,owner,startImmediately),
       playerMotionRuntime,
       playerXmptRuntime,
       scheduledActors,

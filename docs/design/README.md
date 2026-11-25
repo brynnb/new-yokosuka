@@ -14,6 +14,7 @@ original-game event count.
   policy, personal story context, and intentional departures from the original.
 - [Storyline gameplay integration](storyline-gameplay.md): current ownership,
   retained research and verification for personal story events.
+- [Goro’s Warehouse No. 8 distraction](story-goro-guard.md) covers the alternate harbor entrance, its native film and the upstairs invoice.
 - [Story event template](story-event-template.md): a reusable authored event
   specification, connected progression checklist and authored opening
   investigation, with explicit approximations.

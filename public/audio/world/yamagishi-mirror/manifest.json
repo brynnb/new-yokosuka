@@ -1,0 +1,2182 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_yamagishi_mirror_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01INY.AFS",
+      "sha256": "9dccb5c49b4c0e1fdba2d1540ade26dae9d4c6099fd48a96a50bcb769495d7e7"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_INYOU.SND",
+      "sha256": "ce80bc4eeeae2c147d86bc13b2968b353fce9e21990e8d1502ee35d25ad940ad"
+    },
+    "authManifest": "play/assets/sakuragaoka/yamagishi-mirror/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/yamagishi-mirror-callback-ir.json"
+  },
+  "voices": [
+    {
+      "voiceId": "01INYA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYA001.aiff",
+      "nativeMember": "01INYA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 6144,
+      "nativeSha256": "d21e3af9af88591247a83e527d5a6af36b0560686d15cdb198882c60f752ecd5",
+      "speakerId": "AKIR",
+      "sourceText": "Excuse me=@",
+      "displayText": "Excuse me...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYA001.wav",
+      "byteLength": 24364,
+      "sha256": "c2b1bf21cbbd1c0d35d8fa304d8ed4277858877f105943d57af13bdba19b277e"
+    },
+    {
+      "voiceId": "01INYA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYA002.aiff",
+      "nativeMember": "01INYA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 8192,
+      "nativeSha256": "8a737e61a66019e020f0a1c21affeb08a8f90b43e9337f6fe15c0504eb00fecd",
+      "speakerId": "AKIR",
+      "sourceText": "Is this a good time?",
+      "displayText": "Is this a good time?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYA002.wav",
+      "byteLength": 32556,
+      "sha256": "ec448c09450aaec8429c6413c3682337c738fd17c5306326fb5925282af5955d"
+    },
+    {
+      "voiceId": "01INYA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYA003.aiff",
+      "nativeMember": "01INYA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 10240,
+      "nativeSha256": "fab1f8a35b5b42d80966e872dccf140b1be714558fc9cdf0cd815aaa8f220519",
+      "speakerId": "AKIR",
+      "sourceText": "I want to show you something.",
+      "displayText": "I want to show you something.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYA003.wav",
+      "byteLength": 40748,
+      "sha256": "576403f385e6672a4010123dd82d02afc6e3f2a92dd95cd9160e519d205c913e"
+    },
+    {
+      "voiceId": "01INYA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYA004.aiff",
+      "nativeMember": "01INYA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 12288,
+      "nativeSha256": "75fa21697d896e20b68338dcacdb4be368ad9ead1dc37b9d6fc89668522024eb",
+      "speakerId": "AKIR",
+      "sourceText": "Umm=@ This.",
+      "displayText": "Umm... This.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 52
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYA004.wav",
+      "byteLength": 48940,
+      "sha256": "ea32e95f3571a6d275ae1832c9555d71fcd0ae16d6bf2deb60918c8f0241d8c5"
+    },
+    {
+      "voiceId": "01INYA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYA005.aiff",
+      "nativeMember": "01INYA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 18432,
+      "nativeSha256": "10dac2e4e65eb1eb42d48574da1fda422340caa0909d3a3eaf8b48e5b3a055c1",
+      "speakerId": "AKIR",
+      "sourceText": "Apparently it is called the Phoenix Mirror.",
+      "displayText": "Apparently it is called the Phoenix Mirror.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYA005.wav",
+      "byteLength": 73516,
+      "sha256": "64f10a1e40893b890552d26dac02518085947e297e5f2dd2d2d509601e948bf4"
+    },
+    {
+      "voiceId": "01INYA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYA006.aiff",
+      "nativeMember": "01INYA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 16384,
+      "nativeSha256": "796c397aeee74b4702a7a17997741cf0ed34cec96de0fc4fb3753f79b90a32ee",
+      "speakerId": "AKIR",
+      "sourceText": "Is there anything special about this mirror?",
+      "displayText": "Is there anything special about this mirror?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYA006.wav",
+      "byteLength": 65324,
+      "sha256": "3c038b96e231affc26eb09183f5348ef9d4b72d22e44e825d3f94af682a3d1e2"
+    },
+    {
+      "voiceId": "01INYA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYA007.aiff",
+      "nativeMember": "01INYA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 6144,
+      "nativeSha256": "c2ae55eaa170848fab3ea73fa81b3d3cbadf74881b08c948ac7be89f5edf173a",
+      "speakerId": "AKIR",
+      "sourceText": "Ominous?",
+      "displayText": "Ominous?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 19
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYA007.wav",
+      "byteLength": 24364,
+      "sha256": "5d7520be2c13b32bedea12282acc5de061a6af6349d50e14e23eb3a64c3507ff"
+    },
+    {
+      "voiceId": "01INYA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYA008.aiff",
+      "nativeMember": "01INYA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 12288,
+      "nativeSha256": "c504e2f7c07bdba88ea46c91432400fa7b8e12bda50290086687d048b29420e4",
+      "speakerId": "AKIR",
+      "sourceText": "{The Secret of Yin and Yang?}",
+      "displayText": "{The Secret of Yin and Yang?}",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 16
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYA008.wav",
+      "byteLength": 48940,
+      "sha256": "ffa6e8e7c0299696c97e24b1ff68ee8537a147027abfb90366c5b508a71a035a"
+    },
+    {
+      "voiceId": "01INYA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYA009.aiff",
+      "nativeMember": "01INYA009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 6144,
+      "nativeSha256": "756c4221a971e7ce2a681a6792b930c811a650f46eacb1b049d1e7313fd08f3e",
+      "speakerId": "AKIR",
+      "sourceText": "I see.",
+      "displayText": "I see.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYA009.wav",
+      "byteLength": 24364,
+      "sha256": "166b414cd9ed69d7c0b02a3547024d1bb2578855133a0cfe9ada9326e0f9fd6a"
+    },
+    {
+      "voiceId": "01INYA010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYA010.aiff",
+      "nativeMember": "01INYA010.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 10240,
+      "nativeSha256": "1869be83f11bca60473b4c3ccb62bfcca65650de672a2945602394ce081f7eb5",
+      "speakerId": "AKIR",
+      "sourceText": "Thank you very much.",
+      "displayText": "Thank you very much.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYA010.wav",
+      "byteLength": 40748,
+      "sha256": "3198f422b32f89a7d764d32e5f8ddf77ad0c3358a6e51b72438d8cb48f449681"
+    },
+    {
+      "voiceId": "01INYB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYB001.aiff",
+      "nativeMember": "01INYB001.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 12288,
+      "nativeSha256": "2e745360b37272d9cd6c3954e3b7d3ebe405993586e92f0ed3c8a72e6a596bbd",
+      "speakerId": "YAMA",
+      "sourceText": "Oh, Ryo.",
+      "displayText": "Oh, Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYB001.wav",
+      "byteLength": 48940,
+      "sha256": "3aaf0a4623588107e6dc65425874f8c4925950ed00776fe2a80c565fa66d06ed"
+    },
+    {
+      "voiceId": "01INYB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYB002.aiff",
+      "nativeMember": "01INYB002.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 10240,
+      "nativeSha256": "981f8c4defb0f2475ec91b390e0cf5813aa58c17de6ccfdf82fd63b6667d3d91",
+      "speakerId": "YAMA",
+      "sourceText": "What's on your mind.",
+      "displayText": "What's on your mind.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYB002.wav",
+      "byteLength": 40748,
+      "sha256": "c371a93ac8814d471ba6cf51d5f426706ed916048bf5583cf193f782f7ae1781"
+    },
+    {
+      "voiceId": "01INYB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYB003.aiff",
+      "nativeMember": "01INYB003.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 6144,
+      "nativeSha256": "646a007d9044e3c28762165a591c83dccd815ac6dec13e1b5cea0666d7b6079b",
+      "speakerId": "YAMA",
+      "sourceText": "What is it?",
+      "displayText": "What is it?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYB003.wav",
+      "byteLength": 24364,
+      "sha256": "24fa8436be55a7542ccc8d36d2693a2ac771af633f1b81e4ad798a3451230078"
+    },
+    {
+      "voiceId": "01INYB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYB004.aiff",
+      "nativeMember": "01INYB004.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 18432,
+      "nativeSha256": "f5d715b30b32f4126598c6279fc40a28250c53625a735e7a445bf0e2990c0483",
+      "speakerId": "YAMA",
+      "sourceText": "What an unusual stone mirror.",
+      "displayText": "What an unusual stone mirror.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 24
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYB004.wav",
+      "byteLength": 73516,
+      "sha256": "a5ebadfed75a6ac88ef5578a195d225631c457662e278102d84c9c095a56daea"
+    },
+    {
+      "voiceId": "01INYB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYB005.aiff",
+      "nativeMember": "01INYB005.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 28672,
+      "nativeSha256": "2bd7e4baf7073907e8b5167df592d97dd92126ee78001616dcb582f488972a8e",
+      "speakerId": "YAMA",
+      "sourceText": "I see=@there is a Phoenix carved into it.",
+      "displayText": "I see...there is a Phoenix carved into it.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 32
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYB005.wav",
+      "byteLength": 114476,
+      "sha256": "cea00f471a08dec32036ad3f84e2732f64f19ddfe3ececfe20c53eb47aae9834"
+    },
+    {
+      "voiceId": "01INYB006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYB006.aiff",
+      "nativeMember": "01INYB006.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 32768,
+      "nativeSha256": "39e8fa9aa2538bb03378220c35dd2ca600d0dec2983c2bc6c6e237f2aba16d5a",
+      "speakerId": "YAMA",
+      "sourceText": "Hmm=@well, the Phoenix is＆a sacred bird of legend.",
+      "displayText": "Hmm...well, the Phoenix is\na sacred bird of legend.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 36
+          },
+          {
+            "shape": 0,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 22
+          },
+          {
+            "shape": 2,
+            "durationTicks": 21
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 17
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 18
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYB006.wav",
+      "byteLength": 130860,
+      "sha256": "93e9e4fe23ada86ba4f167df962a2eba2838cc5e3302ca32786cec41bcee54c9"
+    },
+    {
+      "voiceId": "01INYB007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYB007.aiff",
+      "nativeMember": "01INYB007.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 24576,
+      "nativeSha256": "fc51a717db83fcb3b96e58061d64829f18e6e0bf8a0db1e18b71cfe22425c7dc",
+      "speakerId": "YAMA",
+      "sourceText": "But this has an ominous feel=@",
+      "displayText": "But this has an ominous feel...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 16
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYB007.wav",
+      "byteLength": 98092,
+      "sha256": "6acee983f8e8a2cb57533b5ccf1b8d46bb57dbc5fcb459e2560f027f9c1df814"
+    },
+    {
+      "voiceId": "01INYB008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYB008.aiff",
+      "nativeMember": "01INYB008.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 45056,
+      "nativeSha256": "31d6f8e69604be1d28c3c6fca437439438930db8f9e406dd29d4ede84f2dfad0",
+      "speakerId": "YAMA",
+      "sourceText": "In China there are many treasures＆that contain both good and bad fortune.",
+      "displayText": "In China there are many treasures\nthat contain both good and bad fortune.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 19
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 16
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYB008.wav",
+      "byteLength": 180012,
+      "sha256": "3be8c9c090f2a20f82d0e642950819d1f76c5c265778e4388e9ec666e5f5f673"
+    },
+    {
+      "voiceId": "01INYB009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYB009.aiff",
+      "nativeMember": "01INYB009.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 26624,
+      "nativeSha256": "23ceada1b8833ff5e24fdeec8ecff56cbac40ffcae2f00472d435887ef268825",
+      "speakerId": "YAMA",
+      "sourceText": "This is called＆{The Secret of Yin and Yang.}",
+      "displayText": "This is called\n{The Secret of Yin and Yang.}",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 22
+          },
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 24
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 15
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYB009.wav",
+      "byteLength": 106284,
+      "sha256": "4237e49e880d062e5c475da7c978e8e9f78540768149f42e92121fc7194769d0"
+    },
+    {
+      "voiceId": "01INYB010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYB010.aiff",
+      "nativeMember": "01INYB010.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 14336,
+      "nativeSha256": "b0c65f9f75f5f7f08ccdc2fa034dc25a2412fe722dfbb5c62754f6d1eaf27e15",
+      "speakerId": "YAMA",
+      "sourceText": "You'd best be careful.",
+      "displayText": "You'd best be careful.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 18
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYB010.wav",
+      "byteLength": 57132,
+      "sha256": "804c37d4c91bfa4da99ededd234faaf166b2ad4722ae95d5ebcd9b261dcc8f6e"
+    },
+    {
+      "voiceId": "01INYB011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYB011.aiff",
+      "nativeMember": "01INYB011.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 32768,
+      "nativeSha256": "d0b2adc6184610bbd67dd89ea69b262ea042b01e4a7091c51320b069ffa847de",
+      "speakerId": "YAMA",
+      "sourceText": "This may have something to do with your＆father's unfortunate death.",
+      "displayText": "This may have something to do with your\nfather's unfortunate death.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 12
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYB011.wav",
+      "byteLength": 130860,
+      "sha256": "dc92996539dce77b893b097c72413d0d37bef55bd1820e868526727037835bf4"
+    },
+    {
+      "voiceId": "01INYB012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SOUND/01INYB012.aiff",
+      "nativeMember": "01INYB012.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 38912,
+      "nativeSha256": "a049ed951083f862a48ab3e5d638f1ea16001c4d9be1694093fb1a2610672a57",
+      "speakerId": "YAMA",
+      "sourceText": "I don't know if this information helps,＆but that's all I can tell you.",
+      "displayText": "I don't know if this information helps,\nbut that's all I can tell you.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 13
+          },
+          {
+            "shape": 1,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 20
+          },
+          {
+            "shape": 0,
+            "durationTicks": 48
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 20
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 10
+          }
+        ]
+      },
+      "asset": "public/audio/world/yamagishi-mirror/voice/01INYB012.wav",
+      "byteLength": 155436,
+      "sha256": "37828c2c47ac50614bf8babfa5f7edcc78c566acb13ec8d9e4b8e1ca883bc0c5"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SE/cloths2/cloths02.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yamagishi-mirror/sfx/a9040000.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SE/cloths2/friction4.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yamagishi-mirror/sfx/a9040100.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yamagishi-mirror/sfx/a9040200.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01INY/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/yamagishi-mirror/sfx/a9040300.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    }
+  ]
+}

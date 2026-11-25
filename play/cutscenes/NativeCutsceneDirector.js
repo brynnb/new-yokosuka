@@ -133,12 +133,20 @@ export class NativeCutsceneDirector {
     return this.registry.actorDefinitionsForWorld(worldId);
   }
 
-  retainPackageMusic(packageId, owner) {
+  retainPackageMusic(packageId, owner, startImmediately = false) {
     const definition=this.registry.resolve(packageId);
     if(this.disposed||!owner||!definition||definition.worldId!==this.worldContext?.worldId){
       throw new Error("Story music package is not available in the active world");
     }
-    return this.#runtimeFor(definition).music.retain(owner);
+    const music = this.#runtimeFor(definition).music;
+    const release = music.retain(owner);
+    try {
+      if (startImmediately) music.beginActivity();
+      return release;
+    } catch (error) {
+      release();
+      throw error;
+    }
   }
 
   actorTags() {

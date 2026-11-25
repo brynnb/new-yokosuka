@@ -221,6 +221,8 @@ import guiZhangIntroductionAudio from "../../public/audio/world/gui-zhang/introd
 import guiZhangBodyguardAudio from "../../public/audio/world/gui-zhang/bodyguard/manifest.json";
 import nozomiFlowersManifest from "../assets/hazuki/nozomi-flowers/manifest.json";
 import nozomiFlowersAudio from "../../public/audio/world/nozomi-flowers/manifest.json";
+import goroGuardManifest from "../assets/harbor/goro-guard-distraction/manifest.json";
+import goroGuardAudio from "../../public/audio/world/goro-guard-distraction/manifest.json";
 import hisakaStandManifest from "../assets/harbor/hisaka-stand/manifest.json";
 import hisakaStandAudio from "../../public/audio/world/hisaka-stand/manifest.json";
 import badEndingManifest from "../assets/hazuki/bad-ending/manifest.json";
@@ -239,6 +241,8 @@ import kittenRecoveryManifest from "../assets/yamanose/kitten-recovery/manifest.
 import kittenRecoveryAudio from "../../public/audio/world/kitten-recovery/manifest.json";
 import kittenRoofManifest from "../assets/yamanose/kitten-roof/manifest.json";
 import kittenRoofAudio from "../../public/audio/world/kitten-roof/manifest.json";
+import yamagishiMirrorManifest from "../assets/sakuragaoka/yamagishi-mirror/manifest.json";
+import yamagishiMirrorAudio from "../../public/audio/world/yamagishi-mirror/manifest.json";
 import kittenNozomiManifest from "../assets/yamanose/kitten-nozomi/manifest.json";
 import kittenNozomiAudio from "../../public/audio/world/kitten-nozomi/manifest.json";
 import evsnActivityManifest from "../assets/sakuragaoka/evsn/manifest.json";
@@ -462,8 +466,10 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["nozomi-photo-intro",nozomiPhotoIntroManifest,nozomiPhotoIntroAudio,"mfsy"],
     ["kitten-recovery",kittenRecoveryManifest,kittenRecoveryAudio,"yamanose"],
     ["kitten-roof",kittenRoofManifest,kittenRoofAudio,"yamanose"],
+    ["yamagishi-mirror",yamagishiMirrorManifest,yamagishiMirrorAudio,"sakuragaoka",Object.freeze({cues:[{startActivity:true,trackId:"bgm052",loop:true}],gain:1}),{YAMA:nativeFaceManifest.facialAssets.YAMA}],
     ["kitten-nozomi",kittenNozomiManifest,kittenNozomiAudio,"yamanose",Object.freeze({cues:[{startActivity:true,trackId:"bgm018",loop:true}],gain:1}),{HRSK:nativeFaceManifest.facialVariants.NZM_M}],
     ["nozomi-flowers",nozomiFlowersManifest,nozomiFlowersAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm070",loop:true}],gain:1}),{INE_:nativeFaceManifest.facialAssets.INE_}],
+    ["goro-guard-distraction",goroGuardManifest,goroGuardAudio,"mfsy",Object.freeze({cues:[{startActivity:true,trackId:"bgm090",loop:true}],gain:1}),goroGuardManifest.facialAssets],
     ["hisaka-stand",hisakaStandManifest,hisakaStandAudio,"mfsy",Object.freeze({cues:[{startActivity:true,trackId:"bgm117",loop:true}],gain:1})],
     ["bad-ending",badEndingManifest,badEndingAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm127",loop:true}],gain:1}),
       {AKIR:{...nativeFaceManifest.facialAssets.AKIR, bodyModelCode:"YKB_M"},FUKU:{...nativeFaceManifest.facialAssets.FUKU, bodyModelCode:"FUB_M"},SORY:op00AssetInventory.facialAssets.SORY},
@@ -502,6 +508,8 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     assets:Object.freeze({...Object.fromEntries([...manifest.outputs.map(asset=>asset.path),...(manifest.motionBanks||[]).map(bank=>bank.path)].map(path=>[path,runtimeAssetUrl(path)])),
       ...Object.fromEntries(Object.values(manifest.packageActors||{}).flatMap(actor=>[actor.assetPath,actor.textureAssetPath].filter(Boolean)).map(path=>[path,runtimeAssetUrl(path)])),
       ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,
+      ...Object.fromEntries(Object.values(manifest.facialAssets || {}).flatMap(face =>
+        [face.model, face.table, face.poses].map(asset => [asset.path, runtimeAssetUrl(asset.path)]))),
       ...(manifest.handAssets?op00HandAssets:{})}),
     presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR,...extraFaces}),
       ...(manifest.clothTracks?{clothTracks:manifest.clothTracks}:{}),
@@ -510,7 +518,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
       ...(manifest.mapGeometryMasks?{mapGeometryMasks:manifest.mapGeometryMasks}:{}),
       ...(manifest.attachedObjects?{attachedObjects:manifest.attachedObjects}:{}),
       ...(manifest.activities.some(activity=>activity.browserIsolatedStage)?{isolatedStage:true}:{}),
-      ...(["boat-ticket-collection","jimmy-interrogation"].includes(id)?{suppressScheduledActors:["ETKO"]}:id==="tattoo-aftermath"?{suppressScheduledActors:["HORS","TONY","SMTH"]}:id==="kitten-nozomi"?{suppressScheduledActors:["MEGM"]}:{})}),
+      ...(["boat-ticket-collection","jimmy-interrogation"].includes(id)?{suppressScheduledActors:["ETKO"]}:id==="tattoo-aftermath"?{suppressScheduledActors:["HORS","TONY","SMTH"]}:id==="yamagishi-mirror"?{suppressScheduledActors:["YAMA"]}:id==="kitten-nozomi"?{suppressScheduledActors:["MEGM"]}:{})}),
     playback:Object.freeze({manifest,audioManifest}),
     ...(music?{music}:{}),
   })),

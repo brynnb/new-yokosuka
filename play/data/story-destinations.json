@@ -1,6 +1,8 @@
 {
   "schema": "new-yokosuka-story-travel-v1",
   "destinations": [
+    {"id":"s1.harbor.warehouse-eight-office-exit","worldId":"mfsy","scene":2,"area":"MFSY","entry":5,"position":[-18.5,3.5999999046325684,153.60000610351562],"yaw":-3.9269908169872414,"provenance":"MS8S invoice director 0x2815e returns to MFSY entry 5. Original CHRS AKIR 0xb30e0 supplies position and facing."},
+    {"id":"s1.harbor.warehouse-eight-guard-entry","worldId":"ms8s","scene":2,"area":"MS8S","entry":1,"position":[-8.3100004196167,0,135.75999450683594],"yaw":-3.9269908169872414,"provenance":"MS8S CHRS AKIR entry 1 XYZ at 0x2df84 and yaw 225 degrees at 0x2df98. MFSY owner 0x6d8b8 enters MS8S/1."},
     {"id":"s1.home.encounter-bedside","worldId":"interior","scene":1,"area":"JOMO","entry":19,"position":[-17.600000381469727,0,4.099999904632568],"yaw":2.783643872003905,"provenance":"Disc 2 D000 and MFSY pass JOMO entry 19, which selects A0173. JOMO has no CHRS placement 19. Story uses its established bedroom position and facing to stage the encounter in the shared residence world."},
     {"id":"s1.home.drunkard-curfew","worldId":"interior","scene":1,"area":"JOMO","entry":4,"position":[-18,0.18199999630451202,5],"yaw":-4.71238898038469,"provenance":"Original D000 E1005 stalled grapple after 23:30 returns directly to JOMO entry 4. Position and yaw from Disc 2 JOMO CHRS entry 4; local world uses scene 1."},
     {"id":"s1.home.friends-visit","worldId":"interior","scene":1,"area":"JOMO","entry":null,"position":[-16.9,0,1.2],"yaw":0,"provenance":"Authored reachable home hallway arrival after the original SA1018 bar lead; the native DBYO controller transitions to JOMO but its precise arrival was not recovered."},

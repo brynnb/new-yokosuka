@@ -1,0 +1,27 @@
+<<if native_value("2:230") == 0 && !flag_set("story.s1.warehouse-eight-refusal.completed")>>
+<<pass_trigger>>
+<<endif>>
+<<if native_value("2:813") == 0 && !flag_set("story.s1.warehouse-eight-refusal.completed")>>
+<<pass_trigger>>
+<<endif>>
+-> Ask Goro for help
+    <<jump DistractGuards>>
+-> Not now
+    <<complete>>
+===
+title: DistractGuards
+---
+<<play_sequence "{{staging}}.start">>
+<<play_sequence "s1.mfsy.goro-guard-intro.cue-e1081b001">>
+{{voice:E1081B001}}
+<<play_sequence "s1.mfsy.goro-guard-intro.cue-e1081a001">>
+{{voice:E1081A001}}
+<<play_sequence "s1.mfsy.goro-guard-intro.cue-e1081b002">>
+{{voice:E1081B002}}
+<<play_sequence "s1.mfsy.goro-guard-intro.cue-e1081a002">>
+{{voice:E1081A002}}
+<<play_sequence "{{staging}}.finish">>
+<<start_activity "s1.mfsy.goro-guard-distraction.scene">>
+<<travel_story "s1.harbor.warehouse-eight-guard-entry">>
+{{effects}}
+<<complete>>

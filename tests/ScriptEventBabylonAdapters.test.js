@@ -337,6 +337,18 @@ for(const ending of ["commit","rollback"])test(`Story music lease survives multi
   assert.deepEqual(calls.map(call=>call[0]),["retain","release"]);assert.equal(h.movementLocked(),false);
 });
 
+for (const ending of ["commit","rollback"]) test("the Goro prelude starts the film score and releases it on "+ending, async () => {
+  const leases=[];
+  const h=harness({sceneStagingRuntime:{play:()=>true,cancel:()=>true},
+    retainPackageMusic:(id,owner,start)=>{leases.push({id,owner,start});return ()=>leases.push("released");}});
+  const tx=h.adapters.begin({area:"D000"});
+  assert.equal(await h.adapters.playSequence({kind:"scene-staging-start",scene:{musicPackageId:"goro-guard-distraction"}},tx),true);
+  if(ending==="commit") await h.adapters.startActivity({cutscene:{packageId:"goro-guard-distraction"}},tx);
+  assert.deepEqual(leases,[{id:"goro-guard-distraction",owner:tx,start:true}]);
+  h.adapters[ending](tx);
+  assert.equal(leases.at(-1),"released");
+});
+
 test("rollback during a retained activity releases its music only once",async()=>{
   let releases=0;const h=harness({retainPackageMusic:()=>()=>releases++});h.deferActivity();
   const tx=h.adapters.begin({area:"D000"}),running=h.adapters.startActivity({retainPackageMusic:true,cutscene:{packageId:"cata1"}},tx);

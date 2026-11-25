@@ -38,6 +38,8 @@ export function evaluateAuthCurve(curve, time) {
   const duration = end - start;
   if (!(duration > 0)) return values[upper];
   const t = (time - start) / duration;
+  // Recorded TMNM samples interpolate linearly at fractional source frames.
+  if (curve.interpolation === "linear") return values[lower] + (values[upper] - values[lower]) * t;
   const t2 = t * t;
   const t3 = t2 * t;
   const h00 = 2 * t3 - 3 * t2 + 1;

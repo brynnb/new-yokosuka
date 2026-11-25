@@ -1,0 +1,15 @@
+<<play_sequence "{{staging}}.start">>
+{{voice:E1009BA013}}
+{{voice:E1009BB001}}
+{{voice:E1009BC001}}
+{{voice:E1009BB002}}
+{{voice:E1009BC002}}
+{{voice:E1009BC003}}
+{{voice:E1009BB003}}
+{{voice:E1009BC004}}
+{{voice:E1009BA014}}
+{{voice:E1009BA017}}
+<<play_sequence "{{staging}}.finish">>
+<<travel_story "{{destination}}">>
+{{effects}}
+<<complete>>
