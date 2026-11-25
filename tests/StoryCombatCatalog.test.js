@@ -3,7 +3,7 @@ import test from "node:test";
 import catalog from "../play/data/story-combat.json" with { type: "json" };
 import markRescue from "../play/assets/harbor/mark-after-work-intro/manifest.json" with {type:"json"};
 import authoredScenes from "../play/scripts/AuthoredSceneCatalog.js";
-import {composeScheduledActorDefinitions} from "../src/ScheduledActorDefinitionCollection.js";
+import {createServer} from "vite";
 import challenges from "../play/data/story-challenges.json" with {type:"json"};
 import {MARTIAL_ARTS_MOVES, MARTIAL_ARTS_FOLLOWUP_STAGES} from "../src/MartialArtsCombat.js";
 import {storyCombatContract} from "../src/StoryCombatContract.js";
@@ -36,11 +36,26 @@ test("Mark's rescue fight shares the original film's source-qualified actor mode
   assert.ok(definition.actors.every(a=>a.y===0));
 });
 
-test("each world's authored scenes and fights compose without competing supplemental actors",()=>{
-  for(const world of new Set(catalog.encounters.map(e=>e.worldId))){
-    const scenes=authoredScenes.scenes.filter(s=>s.worldId===world).flatMap(s=>s.actorDefinitions);
-    const fights=catalog.encounters.filter(e=>e.worldId===world).flatMap(e=>e.actorDefinitions);
-    assert.doesNotThrow(()=>composeScheduledActorDefinitions([scenes,fights]),world);
+test("each combat world composes its scheduled residents, native packages, staged scenes and fights",async t=>{
+  const vite=await createServer({server:{middlewareMode:true,watch:{ignored:()=>true},ws:false,hmr:false},
+    appType:"custom",logLevel:"error"});
+  t.after(()=>vite.close());
+  const {PlayCharacterAssembly}=await vite.ssrLoadModule("/play/characters/PlayCharacterAssembly.js");
+  const assembly=new PlayCharacterAssembly({renderMatrixByKey:new Map()});
+  for(const worldId of new Set(catalog.encounters.map(e=>e.worldId))){
+    const definitions=await assembly.definitionsForWorld({id:worldId});
+    const actors=new Set(definitions.map(actor=>actor.actorCode));
+    const events=[...authoredScenes.scenes,...catalog.encounters].filter(event=>event.worldId===worldId);
+    for(const event of events)for(const actor of event.actorDefinitions){
+      assert.ok(actors.has(actor.actorCode),worldId+" is missing "+actor.actorCode+" for "+event.id);
+    }
+    if(worldId==="mfsy"){
+      const goro=definitions.filter(actor=>actor.actorCode==="GORO");
+      assert.equal(goro.length,1);
+      assert.equal(goro[0].instanceId,"GORO:ae44a9e417c9");
+      assert.equal(goro[0].modelCode,"KMB_L");
+      assert.notEqual(goro[0].activityOnly,true);
+    }
   }
 });
 

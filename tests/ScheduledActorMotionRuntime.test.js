@@ -229,7 +229,7 @@ test("a moving carrier reuses the ordinary native walking clip", async () => {
       characterRuntime,
       fetchArrayBuffer: async (url) => fileArrayBuffer(
         url === "MOTION.BIN"
-          ? "dist/motion/MOTION.BIN"
+          ? ".disc-work/runtime-motion/MOTION.BIN"
           : "play/assets/scheduled-actors/M_MOBJ.BIN"
       ),
       bankUrls: {

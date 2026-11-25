@@ -10,6 +10,7 @@ function runtimeWithEntries(entries) {
   runtime.entries = entries;
   runtime.dialogueFacingTargets = new Map();
   runtime.activityActorOwners = new Map();
+  runtime.activityActorSuppressions = new Map();
   return runtime;
 }
 
@@ -83,11 +84,18 @@ test("scripted activities own exact scheduled actors and restore their transform
     definition: { actorCode: "SMTH", instanceId: "smith-d000" },
     defaultModel: model,
     models: new Map(),
+    modelRoots: new Map([["SMTH", root]]),
     motionKey: "ordinary-motion",
     motionElapsedSeconds: 4,
   };
   const runtime = runtimeWithEntries([entry]);
   const owner = {};
+  const releaseReplacement = runtime.acquireActivityActorSuppression({}, ["SMTH"]);
+  assert.throws(() => runtime.beginActivityActors(owner, ["SMTH"]), /replaced by a cinematic body/);
+  assert.equal(root.enabled, false);
+  assert.equal(runtime.activityActorOwners.size, 0);
+  assert.equal(releaseReplacement(), true);
+  assert.equal(root.enabled, true);
   assert.deepEqual(runtime.beginActivityActors(owner, ["SMTH"]), [{
     actorCode: "SMTH",
     instanceId: "smith-d000",

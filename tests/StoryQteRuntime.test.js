@@ -11,11 +11,21 @@ function harness() {
   return {runtime,views,sounds,results,step,timers,setNow:n=>{now=n;}};
 }
 test("every registered QTE runs locally to one result; training is not a QTE",()=>{
-  for(const def of catalog.challenges.filter(d=>d.buttons)) {
-    const h=harness();h.runtime.start(def);
-    for(const button of def.buttons){h.step(1500);h.runtime.press(button);h.runtime.release(button);}
-    assert.deepEqual(h.results,["success"],def.id);h.step(5000);assert.equal(h.results.length,1);
-    assert.equal(h.sounds.filter(s=>s==="prompt").length,def.buttons.length);
+  for (const def of catalog.challenges.filter(def => def.steps || def.buttons)) {
+    const h = harness();
+    h.runtime.start(def);
+    const steps = def.steps ?? def.buttons.map(button => ({buttons: [button], windowMs: def.windowMs}));
+    for (const [index, step] of steps.entries()) {
+      const prompt = h.views.at(-1);
+      assert.deepEqual(prompt, {index, count: steps.length, ...step}, def.id);
+      h.step(prompt.windowMs / 2);
+      for (const button of prompt.buttons) assert.equal(h.runtime.press(button), true, def.id);
+      for (const button of prompt.buttons) h.runtime.release(button);
+    }
+    assert.deepEqual(h.results, ["success"], def.id);
+    h.step(5000);
+    assert.equal(h.results.length, 1);
+    assert.equal(h.sounds.filter(sound => sound === "prompt").length, steps.length);
   }
   const lessons=catalog.challenges.filter(d=>d.kind==="training");
   assert.ok(lessons.length>0);

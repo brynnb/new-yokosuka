@@ -130,11 +130,12 @@ test("generated activity previews are ordinary canonical interpreter programs", 
     previewPack.schema,
     "new-yokosuka-native-activity-preview-program-pack-v1",
   );
-  assert.equal(
-    previewPack.programs.length,
-    declaredCutscenes.filter(item => item.program?.entryFunction?.startsWith("$activity"))
-      .length,
-  );
+  // Story and the public menu can enter the same canonical wrapper through
+  // different IDs. Check each declared entry and every generated wrapper.
+  const selections = declaredCutscenes.filter(item => item.program?.entryFunction?.startsWith("$activity"));
+  const wrappers = new Map(previewPack.programs.map(wrapper => [wrapper.id, wrapper]));
+  assert.equal(wrappers.size, previewPack.programs.length, "duplicate activity program ID");
+  assert.deepEqual(new Set(selections.map(selection => selection.program.programId)), new Set(wrappers.keys()));
   const program = previewPack.programs.find(
     item => item.selector.cutsceneId === "S1-DRAUTH-01",
   );
@@ -165,11 +166,8 @@ test("generated activity previews are ordinary canonical interpreter programs", 
     worldId: program.preview.worldId,
   });
   assert.equal(cutscene.activity, undefined);
-  for (const wrapper of previewPack.programs) {
-    const selection = declaredCutscenes.find(
-      item => item.id === wrapper.selector.cutsceneId,
-    );
-    assert.ok(selection, wrapper.selector.cutsceneId);
+  for (const selection of selections) {
+    const wrapper = wrappers.get(selection.program.programId);
     assert.equal(selection.activity, undefined);
     assert.deepEqual(selection.program, {
       programId: wrapper.id,
@@ -177,6 +175,12 @@ test("generated activity previews are ordinary canonical interpreter programs", 
       area: wrapper.area,
       worldId: wrapper.preview.worldId,
     });
+  }
+  for (const wrapper of wrappers.values()) {
+    const routed = selections.some(selection => selection.id === wrapper.selector.cutsceneId
+      && selection.program.programId === wrapper.id);
+    // The private bad-ending selector uses its canonical program ID directly.
+    assert.ok(routed || wrapper.selector.cutsceneId === wrapper.id, wrapper.selector.cutsceneId);
     assert.equal(
       runtimePack.programs.filter(item => item.id === wrapper.id).length,
       1,

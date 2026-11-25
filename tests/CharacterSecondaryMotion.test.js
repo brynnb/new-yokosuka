@@ -57,12 +57,16 @@ function assertBodyJoins(model, cloth) {
   return checked;
 }
 
-test("scheduled cloth and all 13 ordinary NPC OSAG models advance from real walking poses", { skip: !hasAssets }, async t => {
+test("scheduled walking keeps cloth seams attached and advances ordinary point and angular OSAG chains", { skip: !hasAssets }, async t => {
   const { runtime, create } = await setup(t);
   const motion = new ScheduledActorMotionRuntime({ renderMatrixByKey: runtime.renderMatrixByKey, characterRuntime: runtime, fetchArrayBuffer: async path => read(path), bankUrls: { mobj: mobjPath } });
   const profiles = Object.values(JSON.parse(fs.readFileSync("play/data/scheduled-actor-motions.json")).movementProfiles);
-  const codes = ["AME_L", "FRO_L", "GKB_L", "HPX_L", "HPY_L", "HSB_L", "JOJ_L", "KAO_L", "KHY_L", "MIB_L", "OBA_L", "SIA_L", "YYI_L", "HPD_L", "HOS_L", "INE_M"];
-  let animatedChains = 0, joins = 0;
+  // These families are present in the original CHRM node tables, including
+  // HOS's angular-only 0x79 and the mixed 0x78/0x79 models.
+  const pointCodes = ["AME_L", "FRO_L", "GKB_L", "HPX_L", "HPY_L", "HSB_L", "JOJ_L", "KAO_L", "KHY_L", "MIB_L", "OBA_L", "SIA_L", "YYI_L"];
+  const angularCodes = ["GKB_L", "HPY_L", "HSB_L", "KHY_L", "MIB_L", "HOS_L"];
+  const codes = [...pointCodes, "HPD_L", "HOS_L", "INE_M"];
+  let joins = 0;
   for (const code of codes) {
     const family = npcControllerFamilyForModel(code);
     const profile = profiles.find(row => row.controllerFamilyIndex === family.index && row.name.includes("WALK"));
@@ -70,25 +74,44 @@ test("scheduled cloth and all 13 ordinary NPC OSAG models advance from real walk
     const selection = { bank: profile.bank, name: profile.name, loop: true, movement: true };
     await motion.loadNamedSelections([selection]);
     const { root, presentationModel: model } = await create(code);
+    const secondary = nativeSecondaryMotionStateForModel(model);
+    const angular = secondary.chains.filter(chain => chain.profile.behavior === "angular-inertia");
+    const pointChains = secondary.chains.filter(chain => chain.profile.behavior === "chain");
+    assert.equal(pointChains.length > 0, pointCodes.includes(code), code + " point-chain coverage");
+    assert.equal(angular.length > 0, angularCodes.includes(code), code + " angular coverage");
+    assert.equal(angular.length + pointChains.length, secondary.chains.length, code);
+    const bent = new Set();
     for (let frame = 0; frame <= 60; frame++) {
       assert.equal(motion.applyNamed(model, selection, frame / 60), true);
       root.position.x = frame * 0.002;
       runtime.updateSecondaryMotion(root, frame === 0 ? 0 : 1 / 60);
       if (frame > 0) joins += assertBodyJoins(model, nativeClothStateForModel(model));
-    }
-    const secondary = nativeSecondaryMotionStateForModel(model);
-    if (secondary.active) {
-      animatedChains++;
-      for (const chain of secondary.chains) {
-        assert.equal(chain.solver.frame, 30, `${code}: one native step per 1/30 second`);
-        assert.ok(chain.solver.points.every(point => point.asArray().every(Number.isFinite)));
+      if (frame > 0 && frame % 2 === 0 && angular.length) {
+        // Compare the actual GPU bone to the walking animation at this same
+        // instant. Each angular chain must bend while remaining on its joint.
+        const walkingPose = secondary.baseMatrices();
+        const bones = model.renderRoot._mt5CharacterGpuRig.boneByNodeAddress;
+        for (const chain of angular) {
+          const address = chain.nodes[0].addr;
+          const base = walkingPose.get(address);
+          const posed = bones.get(address).getLocalMatrix().asArray();
+          assert.ok(posed.every(Number.isFinite), code);
+          for (const index of [12, 13, 14]) {
+            assert.ok(Math.abs(posed[index] - base[index]) < 1e-5, code + ": detached OSAG root");
+          }
+          if ([0, 1, 2, 4, 5, 6, 8, 9, 10].some(i => Math.abs(posed[i] - base[i]) > 1e-4)) bent.add(chain);
+        }
       }
+    }
+    assert.equal(bent.size, angular.length, code + ": each articulated root bends during the walk");
+    for (const chain of pointChains) {
+      assert.equal(chain.solver.frame, 30, `${code}: one native step per 1/30 second`);
+      assert.ok(chain.solver.points.every(point => point.asArray().every(Number.isFinite)));
     }
     releaseNativeCharacterSecondaryMotion(model);
     root.dispose(false, true);
     motion.clips.clear();
   }
-  assert.equal(animatedChains, 13);
   assert.ok(joins > 1000);
 });
 
