@@ -78,7 +78,7 @@ test("internal cutscene catalog preserves the curated scene order", () => {
     ]),
     ["S1-DNOZ-01", "Nozomi's Confession"],
     ["S1-DNOZ-02", "Nozomi's Tears"],
-    ["S1-TGMA-01", "Fuku-san's Letter"],
+    ["S1-TGMA-01", "Fuku-san — The Chinese Letter"],
     ...Array.from({ length: 8 }, (_, index) => [
       `S1-JHW0-${String(index + 1).padStart(2, "0")}`,
       `Fuku-san's Move Training — Sequence ${index + 1}`,
