@@ -1,15 +1,24 @@
 <<play_sequence "{{staging}}.start">>
+<<play_sequence "{{staging}}.cue-e1009ba013">>
 {{voice:E1009BA013}}
+<<play_sequence "{{staging}}.lean.start">>
+<<play_sequence "{{staging}}.lean.cue-e1009bb001">>
+<<play_sequence "{{staging}}.staff.start">>
 {{voice:E1009BB001}}
 {{voice:E1009BC001}}
 {{voice:E1009BB002}}
 {{voice:E1009BC002}}
 {{voice:E1009BC003}}
+<<play_sequence "{{staging}}.staff-hold.start">>
 {{voice:E1009BB003}}
 {{voice:E1009BC004}}
+<<play_sequence "{{staging}}.listen-out.start">>
+<<play_sequence "{{staging}}.listen-out.cue-e1009ba014">>
+<<play_sequence "{{staging}}.reaction.start">>
 {{voice:E1009BA014}}
+<<play_sequence "{{staging}}.departure.start">>
 {{voice:E1009BA017}}
-<<play_sequence "{{staging}}.finish">>
+<<play_sequence "{{staging}}.departure.finish">>
 <<travel_story "{{destination}}">>
 {{effects}}
 <<complete>>

@@ -583,7 +583,7 @@ accepted continuation.
 | Telephone directory / Amihama | Real TBK1 use, original successful 01TEL camera/body/voices, visibly textured open book, cancellation/re-entry, natural completion, saved Amihama page, restored book/player/controls, reload and repeat decline verified. The later continuation on the same fresh character earns the directory after opening through phone, using the travel menu from home to Dobuita then physical street/counter walking. Compiler/database proximity, stale acknowledgement, once-only settlement, personal isolation and legacy candidate-chain checks pass. Book hand binding/swap timing are explicit adaptations. |
 | Bus / first harbor arrival | Protected real-GPU continuations verify normal walking from the tobacco counter around original collision boundaries to the bus, real picking, stay/cancel/retry, natural boarding, atomic harbor/pending save, arrival-film cancellation/reload/retry, natural original YBUSFLY D ending and completed reload. The later run uses the same fresh character 5 after opening through phone was earned, then earns the directory and covers the actual 2.14-metre first CMAL leg and the bus approach. HP/yen/inventory and control/actor cleanup pass. Earlier isolated predecessors were seeded; the fresh continuation uses the travel menu from home to Dobuita, and earlier helpers may shorten approaches or skip scenes. Whole-route completion is not claimed. Timetable, fare, original variant choice, one worker motion binding and the exploration spawn remain adapted or omitted. |
 | Goro's first harbor encounter | Connected approach, original voiced cast, cancellation/re-entry, wrong input/retry, actual Left/A/B success, original winning motion, directions/notebook, controls and saved reload verified. Real compiler/database tests cover earned arrival gate, accepted bounds, stale input, cancellation after winning, once-only effects and personal isolation. Placement/cameras/held challenge poses are authored. |
-| New Warehouse No. 8: refusal → rear window → overheard clue | Connected rendered approach, original voiced guard, cancellation/re-entry, climb decline/retry, correctly aligned original entering-window motion, exact office arrival, cancelled conversation/reload, saved Old Warehouse District notebook and restored controls verified. Real compiler/database tests cover bounds, stale acknowledgement, cancelled/declined climb without travel, atomic original arrival, once-only effects and personal isolation. Crate physics and walkway search are condensed. |
+| New Warehouse No. 8, rear-window and Goro entrances | The refusal and climb retain their original guard audio, decline/retry and climbing motion. The window opens onto the upper floor. Goro lets Ryo enter at ground level and walk upstairs. Both entrances allow optional inspections of two original envelopes and use the same upstairs listening point, ten voices, six source cameras and exit to MFSY/5. Cancellation keeps the earned entrance available. Crate physics, approach speed and dialogue pacing are adapted. |
 | Old Warehouse District daytime gate / nighttime entry | Optional original voiced guard, cancellation/re-entry, waiting in the same area until 19:00, failed Right QTE/retry, original head-bump/catch motion, saved original inside-district arrival, ground support, the automatic ready-stealth handoff and reload verified. Compiler/database tests prove personal-hour boundaries, cancelled successful input without travel, exact atomic arrival and no fabricated stealth/Chen success. Shot, held prompt and flashlight binding are authored. |
 | Old Warehouse District guard avoidance | Connected original-geometry movement, patrols, cover and actual door use; rendered cancellation/reload, capture/next-morning recovery, re-entry, success and saved MS08 arrival verified. Real compiler/database tests cover interrupted input, real detection, atomic recovery and character isolation. Routes, vision/balance and framing are authored, not recovered guard AI. |
 | Master Chen's first meeting | Connected four-segment original presentation, plate confirmation and atomic notebook/next-morning home return verified. Real compiler/database checks cover prerequisites, decline, cancellation at every segment and stale acknowledgements. Rendered approach, decline, live cancellation, natural completion, original Chen/Gui Zhang/body/camera presentation, saved home return and reload pass. |
@@ -2333,19 +2333,19 @@ not assessed. Assets/imports remain local, not published or deployed.
 
 ## New Warehouse No. 8: refusal, window and invoice
 
-Three ordinary official Yarn imports continue Goro's directions. They use the
-existing scene player and atomic travel/flag settlement, not a warehouse engine.
+The official Story routes cover both entrances, the optional desk inspections and the shared office conversation.
 
 | Event | Trigger and result |
 | --- | --- |
-| `story-s1-warehouse-eight-refusal` | Approach original `OTC8` front shutter after Goro. Original Shozo Kuga (`KEBG/KVG_L`) and five SA1035 voice lines turn Ryo away; save the alternative-entrance notebook page. |
-| `story-s1-warehouse-eight-window` | Approach the rear after the refusal. Original E1009BA001 thought, then choose climb or leave. Leaving/cancellation saves no entrance or destination. Completing original MBUI entering-window motion atomically saves the entrance milestone and original `MS8S` arrival. |
-| `story-s1-warehouse-eight-overheard` | Automatically continue after earned office entry. Nine original E1009B lines discuss the wrongly addressed invoice and second Warehouse No. 8. Save the Old Warehouse District clue only after that conversation finishes. |
+| `story-s1-warehouse-eight-refusal` | Approach the original `OTC8` shutter after Goro's directions. Shozo Kuga (`KEBG/KVG_L`) turns Ryo away in five SA1035 lines. Completing the conversation saves the alternative-entrance notebook page. |
+| `story-s1-warehouse-eight-window` | Approach the rear after the refusal. Ryo voices E1009BA001 and can leave or climb. The MBUI climbing motion leads to the original upstairs `MS8S/0` arrival. |
+| `story-s1-warehouse-invoice-address` and `story-s1-warehouse-invoice-label` | Pick either original FUT envelope on the office desks. Completing the FUT0 address line changes Ryo's response to FUT1 for the rest of this visit. |
+| `story-s1-warehouse-eight-overheard` and `story-s1-warehouse-eight-office` | Walk to the upper corridor listening point from the rear window or Goro's ground-floor entrance. The ten-line workers' exchange ends with the shared clue, native bit 242 and travel to `MFSY/5`. |
 
 The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf)
 (printed pages 31–33) establishes refusal → rear crates/window → overheard
 conversation. SA1035's original speaker tag identifies the refusing guard;
-E1009B identifies offscreen workers `TMHN` and `TKSA`. Neither requires copying
+E1009B identifies workers `TMHN` and `TKSA`. Neither requires copying
 their ambient schedules into a new story controller.
 
 `build:harbor-story-assets` verifies the original MBUI archive/member hashes
@@ -2357,26 +2357,9 @@ mistake; the corrected capture shows Ryo climbing through the actual window.
 The destination is the original MS8S default CHRS player placement at
 `[-17,4.275,152.24]`, already used by the ordinary exploration door route.
 
-Cameras and held conversation poses are authored. The climb choice replaces
-pushable-crate/incremental-climbing mechanics; Ryo is aligned onto the existing
-platform for the entering animation. The invoice conversation starts at the
-upper arrival rather than requiring the original walkway search. Staff voices
-are offscreen. Environment, personal date/time, currency, inventory and HP are
-preserved; no guessed native flag or reward is added.
+The rear-entry choice condenses the original crate mechanics. Once inside, Ryo can walk to the office, open the door and inspect either desk. The listening scene starts at the native upstairs position and bearing. The six source cameras follow Ryo and both workers through their original motions. The approach takes two seconds and players control dialogue advance. The native notes and remaining presentation gaps are in the [warehouse reconstruction](story-goro-guard.md#upstairs-office-from-either-entrance).
 
-Each unfinished event remains retryable; stale acknowledgements cannot settle
-a new run, and completed events decline. The real compiler/PostgreSQL test
-earns all three outcomes from one earlier Goro prerequisite, proving cancelled
-or declined entry never moves the player and that office travel/milestone settle
-together. The other character receives no clue.
-
-`NEW_YOKOSUKA_WAREHOUSE_E2E=true` resumes the genuinely earned Goro checkpoint.
-It positions Ryo near and walks into each authored approach, cancels/retries the guard, declines/retries
-the window, waits for the original motion and actual office load, cancels the
-overheard conversation and reloads its saved office continuation, then earns
-the notebook clue with restored controls/economy. Inspected captures confirm
-the guard, aligned climb, upper walkway and notebook. Audio starts in-browser;
-listening fidelity was not assessed. No assets or scripts are deployed publicly.
+The real Yarn compiler and Go event tests exercise both entrance receipts, the spatial gate, cancellation, all ten lines, the shared clue and the terminal travel. The Radeon runs exercise the original climb, keyboard movement, mesh picks, room reset, Goro's film, worker poses and cameras, and the saved harbor exit after both routes. See the [warehouse browser evidence](../../tools/evidence/story-cutscene-warehouse-invoices-2026-11-25.json).
 
 ## Old Warehouse District: daytime warning and nighttime access
 

@@ -46,6 +46,16 @@ for(const field of ["position","target"]){
   }
   y.values=y.values.map(v=>v+1.6);
 }
+// Both original faces are acquired before E1081: AKIR at 0x6d29e/0x6d2fa
+// and GORO at 0x6d5dc/0x6d5f0. Disc 2 reuses the prepared original YKC face.
+const guardPackage=JSON.parse(fs.readFileSync(path.join(root,prefix,"manifest.json"),"utf8"));
+const faceCatalog=JSON.parse(fs.readFileSync(path.join(root,"play/assets/cutscenes/native-faces/manifest.generated.json"),"utf8"));
+const facialAssets={AKIR:faceCatalog.facialAssets.AKIR,GORO:guardPackage.facialAssets.GORO};
+if(facialAssets.GORO.bodyModelCode!==body.modelCode)throw Error("Unexpected Goro face binding");
+for(const resource of [facialAssets.AKIR.model,facialAssets.AKIR.table]){
+  const original=path.join(area,"../MODEL/FACE",path.basename(resource.path));
+  if(sha256(fs.readFileSync(original))!==resource.sha256)throw Error("Changed Disc 2 Ryo face "+original);
+}
 const duration=440;
 // The original director sets a new origin on frame 170. Hold his old
 // position through the preceding frame without spline drift.
@@ -53,7 +63,7 @@ const movement={channels:Object.fromEntries(Object.keys(goro).map(key=>[key,{
   interpolation:"linear",times:[0,170/30,170/30,duration/30],values:[goro[key],goro[key],run[key],run[key]],
 }]))};
 const scene={id,area:"MFSY",worldId:"mfsy",musicPackageId:"goro-guard-distraction",durationSeconds:duration/30,playThroughFinish:true,waitForMotionCompletion:false,
-  isolateScheduledActors:true,actorDefinitions:[{actorCode:"GORO",...body,activityOnly:true}],packageActors:{GORO:body},
+  facialAssets,isolateScheduledActors:true,actorDefinitions:[{actorCode:"GORO",...body,activityOnly:true}],packageActors:{GORO:body},
   actors:[{tag:"AKIR",pose:ryo,motion:free("AKI_AKI_STAND_LP",true)},
     {tag:"GORO",pose:goro,motion:clip(0,false),movement,
       motionCues:[{atSeconds:170/30,playbackRate:0.75,motion:free("AKI_AKI_RUN_LP",true)},{atSeconds:183/30,playbackRate:0.75,motion:free("AKI_AKI_RUN_EN",false)},

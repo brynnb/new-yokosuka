@@ -1,0 +1,2349 @@
+{
+  "schema": "new-yokosuka-connected-cutscene-checks-v1",
+  "date": "2026-11-25",
+  "localReportRoot": "/mnt/data6tb/Projects/New Yokosuka/ny-warehouse-invoice-ko7wOy/browser",
+  "environment": "Headful Chromium with Radeon RX 9070 XT (ANGLE Vulkan/RADV GFX1201), disposable local Go/PostgreSQL 18 story server and a new private guest for each case.",
+  "runs": [
+    {
+      "case": "invoice",
+      "details": "Original FUT0/FUT1 selection, canceled address read, repeated reads and fresh room load. A past harbor entry and basic progression were seeded; each paper click selected the original drawable mesh.",
+      "privateCharacterId": 3,
+      "report": "rerun-invoice-20261125-131441-html/index.html",
+      "durationSeconds": 45.34,
+      "observed": {
+        "characterId": 3,
+        "models": [
+          {
+            "tag": "FUT0",
+            "position": [
+              -24.010000228881836,
+              5.039999961853027,
+              137.2100067138672
+            ],
+            "size": [
+              0.10999999940395355,
+              0.010683000087738037,
+              0.25
+            ],
+            "model": "S2_MS8S_FUTS5K9G.MT5",
+            "vertices": 54
+          },
+          {
+            "tag": "FUT1",
+            "position": [
+              -27.329999923706055,
+              5.0320000648498535,
+              139.11000061035156
+            ],
+            "size": [
+              0.4082420388461827,
+              0.010398999962490052,
+              0.3920958362566296
+            ],
+            "model": "S2_MS8S_FUTS5D8G.MT5",
+            "vertices": 24
+          }
+        ],
+        "reads": [
+          {
+            "tag": "FUT1",
+            "id": "E1009BA019",
+            "text": "An invoice for Warehouse No. 8... This must be the right place.",
+            "screen": [
+              780.0042602716126,
+              363.8656012807946
+            ],
+            "cancelled": false
+          },
+          {
+            "tag": "FUT0",
+            "id": "E1009BA020",
+            "text": "This is addressed to old Warehouse No. 8? What's going on?",
+            "screen": [
+              780.0040532220703,
+              362.9068603316847
+            ],
+            "cancelled": true
+          },
+          {
+            "tag": "FUT1",
+            "id": "E1009BA019",
+            "text": "An invoice for Warehouse No. 8... This must be the right place.",
+            "screen": [
+              780.0042602716126,
+              363.8656012807946
+            ],
+            "cancelled": false
+          },
+          {
+            "tag": "FUT0",
+            "id": "E1009BA020",
+            "text": "This is addressed to old Warehouse No. 8? What's going on?",
+            "screen": [
+              780.0040532220703,
+              362.9068603316847
+            ],
+            "cancelled": false
+          },
+          {
+            "tag": "FUT0",
+            "id": "E1009BA020",
+            "text": "This is addressed to old Warehouse No. 8? What's going on?",
+            "screen": [
+              780.0040532220703,
+              362.9068603316847
+            ],
+            "cancelled": false
+          },
+          {
+            "tag": "FUT1",
+            "id": "E1009BA009",
+            "text": "Anything about Master Chen?",
+            "screen": [
+              780.0042602716126,
+              363.8656012807946
+            ],
+            "cancelled": false
+          },
+          {
+            "tag": "FUT1",
+            "id": "E1009BA009",
+            "text": "Anything about Master Chen?",
+            "screen": [
+              780.0042602716126,
+              363.8656012807946
+            ],
+            "cancelled": false
+          },
+          {
+            "tag": "FUT1",
+            "id": "E1009BA019",
+            "text": "An invoice for Warehouse No. 8... This must be the right place.",
+            "screen": [
+              780.0042602716126,
+              363.8656012807946
+            ],
+            "cancelled": false
+          }
+        ],
+        "bits": {
+          "192": 1,
+          "230": 1,
+          "240": 1,
+          "242": 0
+        }
+      }
+    },
+    {
+      "case": "office-window",
+      "details": "The refusal was seeded. The player declined and then accepted the genuine rear-window climb, used the original upper door, inspected both envelopes and entered the listening radius during normal play, then completed the director and reloaded.",
+      "privateCharacterId": 8,
+      "report": "rerun-office-window-20261125-133324-html/index.html",
+      "durationSeconds": 134.99,
+      "observed": {
+        "entry": {
+          "world": "ms8s",
+          "position": [
+            -17,
+            4.275000095367432,
+            152.24000549316406
+          ],
+          "bits": {
+            "192": 0,
+            "230": 1,
+            "240": 1,
+            "242": 0
+          }
+        },
+        "desk": {
+          "walked": [
+            [
+              -24.74180645076435,
+              4.275000095367432,
+              144.36086282123023
+            ],
+            [
+              -25.962080083245944,
+              4.282999157905579,
+              143.14707992736572
+            ],
+            [
+              -27.13157710137575,
+              4.282999157905579,
+              141.33362942501816
+            ],
+            [
+              -26.80651900619409,
+              4.282999157905579,
+              140.19753651217914
+            ],
+            [
+              -25.68496932780589,
+              4.282999157905579,
+              138.72680766505243
+            ],
+            [
+              -26.60798140992522,
+              4.282999157905579,
+              139.83022368742604
+            ],
+            [
+              -27.158616014289258,
+              4.282999157905579,
+              140.96214497281818
+            ],
+            [
+              -26.225705722963713,
+              4.282999157905579,
+              142.78662388671108
+            ],
+            [
+              -25.03036040900662,
+              4.275000095367432,
+              144.06042689419024
+            ]
+          ],
+          "reads": [
+            {
+              "tag": "FUT1",
+              "id": "E1009BA019",
+              "text": "An invoice for Warehouse No. 8... This must be the right place.",
+              "screen": [
+                780.0019032320298,
+                360.00486414439524
+              ],
+              "cancelled": false
+            },
+            {
+              "tag": "FUT0",
+              "id": "E1009BA020",
+              "text": "This is addressed to old Warehouse No. 8? What's going on?",
+              "screen": [
+                779.9952382270039,
+                360.0015972989597
+              ],
+              "cancelled": false
+            },
+            {
+              "tag": "FUT1",
+              "id": "E1009BA009",
+              "text": "Anything about Master Chen?",
+              "screen": [
+                779.9928011032189,
+                359.9983697195525
+              ],
+              "cancelled": false
+            }
+          ],
+          "models": [
+            {
+              "tag": "FUT0",
+              "position": [
+                -24.010000228881836,
+                5.039999961853027,
+                137.2100067138672
+              ],
+              "size": [
+                0.10999999940395355,
+                0.010683000087738037,
+                0.25
+              ],
+              "model": "S2_MS8S_FUTS5K9G.MT5",
+              "vertices": 54
+            },
+            {
+              "tag": "FUT1",
+              "position": [
+                -27.329999923706055,
+                5.0320000648498535,
+                139.11000061035156
+              ],
+              "size": [
+                0.4082420388461827,
+                0.010398999962490052,
+                0.3920958362566296
+              ],
+              "model": "S2_MS8S_FUTS5D8G.MT5",
+              "vertices": 24
+            }
+          ]
+        },
+        "office": {
+          "voices": [
+            "E1009BA013",
+            "E1009BB001",
+            "E1009BC001",
+            "E1009BB002",
+            "E1009BC002",
+            "E1009BC003",
+            "E1009BB003",
+            "E1009BC004",
+            "E1009BA014",
+            "E1009BA017"
+          ],
+          "phases": {
+            "approach": {
+              "cameras": [
+                {
+                  "frame": 2,
+                  "eye": [
+                    -21.526,
+                    7.201,
+                    140.06
+                  ],
+                  "target": [
+                    -19.683,
+                    5.396,
+                    138.182
+                  ]
+                },
+                {
+                  "frame": 35,
+                  "eye": [
+                    -17.924,
+                    6.259,
+                    137.485
+                  ],
+                  "target": [
+                    -17.197,
+                    5.645,
+                    136.197
+                  ]
+                },
+                {
+                  "frame": 100,
+                  "eye": [
+                    -15.796,
+                    5.991,
+                    135.504
+                  ],
+                  "target": [
+                    -16.11,
+                    5.85,
+                    135.129
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_AKI_WALK_LP",
+                  "from": [
+                    -19.572,
+                    4.275,
+                    138.087
+                  ],
+                  "to": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "wristStart": [
+                    0.255,
+                    0.955,
+                    -0.209
+                  ],
+                  "wristEnd": [
+                    0.242,
+                    0.925,
+                    0.008
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.123,
+                    1.782,
+                    0.069
+                  ],
+                  "wristEnd": [
+                    0.123,
+                    1.782,
+                    0.069
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.065,
+                    1.447,
+                    -0.215
+                  ],
+                  "wristEnd": [
+                    0.065,
+                    1.447,
+                    -0.215
+                  ]
+                }
+              }
+            },
+            "lean": {
+              "cameras": [
+                {
+                  "frame": 2,
+                  "eye": [
+                    -15.827,
+                    5.984,
+                    135.713
+                  ],
+                  "target": [
+                    -16.108,
+                    5.837,
+                    135.132
+                  ]
+                },
+                {
+                  "frame": 112,
+                  "eye": [
+                    -16.114,
+                    5.767,
+                    136.093
+                  ],
+                  "target": [
+                    -15.968,
+                    5.669,
+                    135.159
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_KIKU_HANASI_TATIGIKI_F_0100",
+                  "from": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "to": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "wristStart": [
+                    0.185,
+                    1.018,
+                    -1.358
+                  ],
+                  "wristEnd": [
+                    0.024,
+                    0.923,
+                    -3.286
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.123,
+                    1.782,
+                    0.069
+                  ],
+                  "wristEnd": [
+                    0.123,
+                    1.782,
+                    0.069
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.065,
+                    1.447,
+                    -0.215
+                  ],
+                  "wristEnd": [
+                    0.065,
+                    1.447,
+                    -0.215
+                  ]
+                }
+              }
+            },
+            "staff": {
+              "cameras": [
+                {
+                  "frame": 2,
+                  "eye": [
+                    -14.097,
+                    5.66,
+                    134.127
+                  ],
+                  "target": [
+                    -16.188,
+                    6.033,
+                    131.409
+                  ]
+                },
+                {
+                  "frame": 160,
+                  "eye": [
+                    -14.506,
+                    5.867,
+                    133.911
+                  ],
+                  "target": [
+                    -15.733,
+                    5.922,
+                    131.228
+                  ]
+                },
+                {
+                  "frame": 350,
+                  "eye": [
+                    -14.428,
+                    5.775,
+                    132.929
+                  ],
+                  "target": [
+                    -16.335,
+                    5.794,
+                    132.047
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_KIKU_HANASI_TATIGIKI_F_0100",
+                  "from": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "to": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "wristStart": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ],
+                  "wristEnd": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.12,
+                    1.784,
+                    0.068
+                  ],
+                  "wristEnd": [
+                    0.163,
+                    1.745,
+                    -0.008
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.065,
+                    1.447,
+                    -0.215
+                  ],
+                  "wristEnd": [
+                    0.071,
+                    1.419,
+                    -0.18
+                  ]
+                }
+              }
+            },
+            "staff-hold": {
+              "cameras": [
+                {
+                  "frame": 2,
+                  "eye": [
+                    -14.428,
+                    5.778,
+                    132.928
+                  ],
+                  "target": [
+                    -16.334,
+                    5.793,
+                    132.081
+                  ]
+                },
+                {
+                  "frame": 30,
+                  "eye": [
+                    -14.428,
+                    5.788,
+                    132.925
+                  ],
+                  "target": [
+                    -16.33,
+                    5.789,
+                    132.182
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_KIKU_HANASI_TATIGIKI_F_0100",
+                  "from": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "to": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "wristStart": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ],
+                  "wristEnd": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.166,
+                    1.733,
+                    0.022
+                  ],
+                  "wristEnd": [
+                    0.139,
+                    1.778,
+                    0.034
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.058,
+                    1.417,
+                    -0.186
+                  ],
+                  "wristEnd": [
+                    0.058,
+                    1.417,
+                    -0.186
+                  ]
+                }
+              }
+            },
+            "listen-out": {
+              "cameras": [
+                {
+                  "frame": 2,
+                  "eye": [
+                    -14.426,
+                    5.85,
+                    132.908
+                  ],
+                  "target": [
+                    -16.305,
+                    5.766,
+                    132.786
+                  ]
+                },
+                {
+                  "frame": 24,
+                  "eye": [
+                    -14.425,
+                    5.868,
+                    132.903
+                  ],
+                  "target": [
+                    -16.298,
+                    5.759,
+                    132.966
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_KIKU_HANASI_TATIGIKI_F_0100",
+                  "from": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "to": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "wristStart": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ],
+                  "wristEnd": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.081,
+                    1.764,
+                    0.049
+                  ],
+                  "wristEnd": [
+                    0.098,
+                    1.765,
+                    0.038
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.058,
+                    1.417,
+                    -0.186
+                  ],
+                  "wristEnd": [
+                    0.058,
+                    1.417,
+                    -0.186
+                  ]
+                }
+              }
+            },
+            "reaction": {
+              "cameras": [
+                {
+                  "frame": 2,
+                  "eye": [
+                    -14.425,
+                    5.874,
+                    132.902
+                  ],
+                  "target": [
+                    -16.295,
+                    5.757,
+                    133.022
+                  ]
+                },
+                {
+                  "frame": 35,
+                  "eye": [
+                    -14.466,
+                    5.859,
+                    132.949
+                  ],
+                  "target": [
+                    -16.303,
+                    5.821,
+                    133.108
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_KIKU_HANASI_TATIGIKI_F_0100",
+                  "from": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "to": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "wristStart": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ],
+                  "wristEnd": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.112,
+                    1.768,
+                    0.017
+                  ],
+                  "wristEnd": [
+                    0.153,
+                    1.748,
+                    -0.032
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.058,
+                    1.417,
+                    -0.186
+                  ],
+                  "wristEnd": [
+                    0.058,
+                    1.417,
+                    -0.186
+                  ]
+                }
+              }
+            },
+            "departure": {
+              "cameras": [
+                {
+                  "frame": 3,
+                  "eye": [
+                    -18.021,
+                    5.71,
+                    151.933
+                  ],
+                  "target": [
+                    -17.233,
+                    5.765,
+                    152.333
+                  ]
+                },
+                {
+                  "frame": 35,
+                  "eye": [
+                    -17.976,
+                    5.684,
+                    151.812
+                  ],
+                  "target": [
+                    -17.233,
+                    5.765,
+                    152.333
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_AKI_STAND_LP",
+                  "from": [
+                    -17.25,
+                    4.275,
+                    152.25
+                  ],
+                  "to": [
+                    -17.25,
+                    4.275,
+                    152.25
+                  ],
+                  "wristStart": [
+                    0.242,
+                    0.925,
+                    0.008
+                  ],
+                  "wristEnd": [
+                    0.242,
+                    0.925,
+                    0.008
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.123,
+                    1.782,
+                    0.069
+                  ],
+                  "wristEnd": [
+                    0.055,
+                    1.791,
+                    0.061
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.058,
+                    1.419,
+                    -0.187
+                  ],
+                  "wristEnd": [
+                    0.057,
+                    1.423,
+                    -0.188
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "finalWorld": "mfsy",
+        "finalBits": {
+          "192": 0,
+          "230": 1,
+          "240": 1,
+          "242": 1
+        },
+        "foreground": {
+          "curves": [
+            {
+              "stage": "s1.ms8s.warehouse-eight-office.reaction",
+              "from": 0,
+              "to": 255,
+              "duration": 30,
+              "sampledFrames": 30,
+              "durationMs": 1003,
+              "frameRange": [
+                0,
+                29
+              ],
+              "observedAlphaBytes": [
+                {
+                  "frame": 0,
+                  "alpha": 0
+                },
+                {
+                  "frame": 15,
+                  "alpha": 127
+                },
+                {
+                  "frame": 29,
+                  "alpha": 246
+                }
+              ]
+            },
+            {
+              "stage": "s1.ms8s.warehouse-eight-office.departure",
+              "from": 255,
+              "to": 0,
+              "duration": 30,
+              "sampledFrames": 30,
+              "durationMs": 983,
+              "frameRange": [
+                0,
+                29
+              ],
+              "observedAlphaBytes": [
+                {
+                  "frame": 0,
+                  "alpha": 255
+                },
+                {
+                  "frame": 15,
+                  "alpha": 127
+                },
+                {
+                  "frame": 29,
+                  "alpha": 8
+                }
+              ]
+            },
+            {
+              "stage": "s1.ms8s.warehouse-eight-office.departure",
+              "from": 0,
+              "to": 255,
+              "duration": 60,
+              "sampledFrames": 60,
+              "durationMs": 1989,
+              "frameRange": [
+                0,
+                59
+              ],
+              "observedAlphaBytes": [
+                {
+                  "frame": 0,
+                  "alpha": 0
+                },
+                {
+                  "frame": 30,
+                  "alpha": 127
+                },
+                {
+                  "frame": 59,
+                  "alpha": 250
+                }
+              ]
+            }
+          ],
+          "windowPose": {
+            "alpha": 1,
+            "at": 1795642525628,
+            "position": [
+              -17.25,
+              4.275000095367432,
+              152.25
+            ]
+          },
+          "finalVoice": {
+            "alpha": 0,
+            "at": 1795642526678,
+            "stage": "s1.ms8s.warehouse-eight-office.departure"
+          },
+          "handoff": {
+            "at": 1795642530813,
+            "world": "ms8s",
+            "loadingCovered": true,
+            "switching": false,
+            "ready": true
+          },
+          "returned": {
+            "hidden": true,
+            "opacity": 1,
+            "owned": false,
+            "world": "mfsy",
+            "locked": false
+          },
+          "pixels": {
+            "count": 336,
+            "baseline": {
+              "count": 75,
+              "minP90": 145.33,
+              "maxP90": 167.33,
+              "darkest": {
+                "at": 1795642523688,
+                "mean": 115.73,
+                "p90": 160.67
+              }
+            },
+            "cover": {
+              "count": 36,
+              "minP90": 0,
+              "maxP90": 164.67,
+              "darkest": {
+                "at": 1795642525656,
+                "mean": 0,
+                "p90": 0
+              }
+            },
+            "reveal": {
+              "count": 31,
+              "minP90": 0,
+              "maxP90": 96.33,
+              "darkest": {
+                "at": 1795642525656,
+                "mean": 0,
+                "p90": 0
+              }
+            },
+            "clear": {
+              "count": 64,
+              "minP90": 94.67,
+              "maxP90": 110,
+              "darkest": {
+                "at": 1795642528445,
+                "mean": 67.15,
+                "p90": 94.67
+              }
+            },
+            "exit": {
+              "count": 61,
+              "minP90": 1,
+              "maxP90": 97,
+              "darkest": {
+                "at": 1795642530821,
+                "mean": 0.7,
+                "p90": 1
+              }
+            }
+          }
+        }
+      },
+      "earlierReportWithoutFades": "rerun-office-window-20261125-131533-html/index.html"
+    },
+    {
+      "case": "warehouse-legacy",
+      "details": "Earlier Goro harbor introduction was seeded with no refusal, entry or office completion. The existing harbor regression physically earned front refusal, declined and then took the window, canceled office playback and reloaded, retried and earned the exterior exit and notebook.",
+      "privateCharacterId": 7,
+      "report": "rerun-warehouse-legacy-20261125-132313-html/index.html",
+      "durationSeconds": 102.42,
+      "observed": {
+        "characterId": 7,
+        "world": "mfsy",
+        "position": [
+          -18.5,
+          3.5999999046325684,
+          153.60000610351562
+        ],
+        "bits": {
+          "192": 0,
+          "230": 1,
+          "240": 1,
+          "242": 1
+        },
+        "notebook": true
+      }
+    },
+    {
+      "case": "goro-audio",
+      "details": "Native 230 and 813 seeded with no refusal receipt or 240. Goro\u2019s physical harbor trigger, canceled prelude, canceled following AUTH film, final movie, guarded warehouse entry and office were earned. The legacy fixture shortens approach walks and checks cancellation, rerun and reload.",
+      "privateCharacterId": 9,
+      "report": "rerun-goro-audio-20261125-133544-html/index.html",
+      "durationSeconds": 168.34,
+      "observed": {
+        "openingVoices": [
+          "E1081B001",
+          "E1081A001",
+          "E1081B002",
+          "E1081A002"
+        ],
+        "gkyu": {
+          "voices": [
+            "01GARB001",
+            "01GARB004",
+            "01GARB002",
+            "01GARC001",
+            "01GARD001",
+            "01GARE001",
+            "01GARD002",
+            "01GARB003"
+          ],
+          "actors": [
+            "KEBJ",
+            "KEBK",
+            "GORO",
+            "NGSM",
+            "AKIR"
+          ],
+          "face": {
+            "actor": "GORO",
+            "code": "KMB",
+            "neutralFrame": 0,
+            "attached": true,
+            "vertexCount": 335,
+            "speaking": {
+              "frame": 82,
+              "voice": "01GARB001",
+              "mouthDelta": 0.004150390625,
+              "meshDelta": 0.003051765263080597
+            }
+          }
+        },
+        "office": {
+          "voices": [
+            "E1009BA013",
+            "E1009BB001",
+            "E1009BC001",
+            "E1009BB002",
+            "E1009BC002",
+            "E1009BC003",
+            "E1009BB003",
+            "E1009BC004",
+            "E1009BA014",
+            "E1009BA017"
+          ],
+          "phases": {
+            "approach": {
+              "cameras": [
+                {
+                  "frame": 2,
+                  "eye": [
+                    -23.059,
+                    6.162,
+                    137.156
+                  ],
+                  "target": [
+                    -19.966,
+                    5.405,
+                    137.15
+                  ]
+                },
+                {
+                  "frame": 35,
+                  "eye": [
+                    -18.47,
+                    5.892,
+                    136.459
+                  ],
+                  "target": [
+                    -17.3,
+                    5.648,
+                    135.833
+                  ]
+                },
+                {
+                  "frame": 100,
+                  "eye": [
+                    -15.796,
+                    5.991,
+                    135.504
+                  ],
+                  "target": [
+                    -16.11,
+                    5.85,
+                    135.129
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_AKI_WALK_LP",
+                  "from": [
+                    -19.825,
+                    4.283,
+                    137.078
+                  ],
+                  "to": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "wristStart": [
+                    0.256,
+                    0.953,
+                    -0.196
+                  ],
+                  "wristEnd": [
+                    0.242,
+                    0.925,
+                    0.008
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.123,
+                    1.782,
+                    0.069
+                  ],
+                  "wristEnd": [
+                    0.123,
+                    1.782,
+                    0.069
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.065,
+                    1.447,
+                    -0.215
+                  ],
+                  "wristEnd": [
+                    0.065,
+                    1.447,
+                    -0.215
+                  ]
+                }
+              }
+            },
+            "lean": {
+              "cameras": [
+                {
+                  "frame": 2,
+                  "eye": [
+                    -15.827,
+                    5.984,
+                    135.713
+                  ],
+                  "target": [
+                    -16.108,
+                    5.837,
+                    135.132
+                  ]
+                },
+                {
+                  "frame": 112,
+                  "eye": [
+                    -16.114,
+                    5.767,
+                    136.093
+                  ],
+                  "target": [
+                    -15.968,
+                    5.669,
+                    135.159
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_KIKU_HANASI_TATIGIKI_F_0100",
+                  "from": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "to": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "wristStart": [
+                    0.185,
+                    1.018,
+                    -1.358
+                  ],
+                  "wristEnd": [
+                    0.024,
+                    0.923,
+                    -3.286
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.123,
+                    1.782,
+                    0.069
+                  ],
+                  "wristEnd": [
+                    0.123,
+                    1.782,
+                    0.069
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.065,
+                    1.447,
+                    -0.215
+                  ],
+                  "wristEnd": [
+                    0.065,
+                    1.447,
+                    -0.215
+                  ]
+                }
+              }
+            },
+            "staff": {
+              "cameras": [
+                {
+                  "frame": 3,
+                  "eye": [
+                    -14.098,
+                    5.66,
+                    134.127
+                  ],
+                  "target": [
+                    -16.187,
+                    6.033,
+                    131.409
+                  ]
+                },
+                {
+                  "frame": 160,
+                  "eye": [
+                    -14.506,
+                    5.867,
+                    133.914
+                  ],
+                  "target": [
+                    -15.732,
+                    5.923,
+                    131.226
+                  ]
+                },
+                {
+                  "frame": 350,
+                  "eye": [
+                    -14.428,
+                    5.775,
+                    132.929
+                  ],
+                  "target": [
+                    -16.335,
+                    5.794,
+                    132.047
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_KIKU_HANASI_TATIGIKI_F_0100",
+                  "from": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "to": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "wristStart": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ],
+                  "wristEnd": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.118,
+                    1.783,
+                    0.068
+                  ],
+                  "wristEnd": [
+                    0.163,
+                    1.746,
+                    -0.011
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.064,
+                    1.447,
+                    -0.214
+                  ],
+                  "wristEnd": [
+                    0.071,
+                    1.418,
+                    -0.179
+                  ]
+                }
+              }
+            },
+            "staff-hold": {
+              "cameras": [
+                {
+                  "frame": 2,
+                  "eye": [
+                    -14.428,
+                    5.778,
+                    132.928
+                  ],
+                  "target": [
+                    -16.334,
+                    5.792,
+                    132.084
+                  ]
+                },
+                {
+                  "frame": 30,
+                  "eye": [
+                    -14.428,
+                    5.789,
+                    132.925
+                  ],
+                  "target": [
+                    -16.33,
+                    5.788,
+                    132.188
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_KIKU_HANASI_TATIGIKI_F_0100",
+                  "from": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "to": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "wristStart": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ],
+                  "wristEnd": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.166,
+                    1.733,
+                    0.019
+                  ],
+                  "wristEnd": [
+                    0.138,
+                    1.778,
+                    0.036
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.058,
+                    1.416,
+                    -0.185
+                  ],
+                  "wristEnd": [
+                    0.058,
+                    1.416,
+                    -0.185
+                  ]
+                }
+              }
+            },
+            "listen-out": {
+              "cameras": [
+                {
+                  "frame": 2,
+                  "eye": [
+                    -14.425,
+                    5.852,
+                    132.908
+                  ],
+                  "target": [
+                    -16.304,
+                    5.765,
+                    132.805
+                  ]
+                },
+                {
+                  "frame": 24,
+                  "eye": [
+                    -14.425,
+                    5.871,
+                    132.902
+                  ],
+                  "target": [
+                    -16.296,
+                    5.758,
+                    132.995
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_KIKU_HANASI_TATIGIKI_F_0100",
+                  "from": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "to": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "wristStart": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ],
+                  "wristEnd": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.081,
+                    1.765,
+                    0.051
+                  ],
+                  "wristEnd": [
+                    0.103,
+                    1.766,
+                    0.03
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.058,
+                    1.416,
+                    -0.185
+                  ],
+                  "wristEnd": [
+                    0.058,
+                    1.416,
+                    -0.185
+                  ]
+                }
+              }
+            },
+            "reaction": {
+              "cameras": [
+                {
+                  "frame": 2,
+                  "eye": [
+                    -14.425,
+                    5.876,
+                    132.901
+                  ],
+                  "target": [
+                    -16.294,
+                    5.756,
+                    133.046
+                  ]
+                },
+                {
+                  "frame": 35,
+                  "eye": [
+                    -14.465,
+                    5.862,
+                    132.947
+                  ],
+                  "target": [
+                    -16.302,
+                    5.818,
+                    133.126
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_KIKU_HANASI_TATIGIKI_F_0100",
+                  "from": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "to": [
+                    -16.15,
+                    4.275,
+                    135.18
+                  ],
+                  "wristStart": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ],
+                  "wristEnd": [
+                    0.033,
+                    0.921,
+                    -3.276
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.116,
+                    1.769,
+                    0.011
+                  ],
+                  "wristEnd": [
+                    0.158,
+                    1.747,
+                    -0.023
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.058,
+                    1.416,
+                    -0.185
+                  ],
+                  "wristEnd": [
+                    0.058,
+                    1.416,
+                    -0.185
+                  ]
+                }
+              }
+            },
+            "departure": {
+              "cameras": [
+                {
+                  "frame": 2,
+                  "eye": [
+                    -18.021,
+                    5.71,
+                    151.934
+                  ],
+                  "target": [
+                    -17.233,
+                    5.765,
+                    152.333
+                  ]
+                },
+                {
+                  "frame": 35,
+                  "eye": [
+                    -17.975,
+                    5.683,
+                    151.809
+                  ],
+                  "target": [
+                    -17.233,
+                    5.765,
+                    152.333
+                  ]
+                }
+              ],
+              "actors": {
+                "AKIR": {
+                  "drawn": true,
+                  "motion": "AKI_AKI_STAND_LP",
+                  "from": [
+                    -17.25,
+                    4.275,
+                    152.25
+                  ],
+                  "to": [
+                    -17.25,
+                    4.275,
+                    152.25
+                  ],
+                  "wristStart": [
+                    0.242,
+                    0.925,
+                    0.008
+                  ],
+                  "wristEnd": [
+                    0.242,
+                    0.925,
+                    0.008
+                  ]
+                },
+                "TMHN": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_ATAMAKAKI_LP",
+                  "from": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "to": [
+                    -15.56,
+                    4.275,
+                    131.09
+                  ],
+                  "wristStart": [
+                    0.12,
+                    1.784,
+                    0.069
+                  ],
+                  "wristEnd": [
+                    0.06,
+                    1.785,
+                    0.058
+                  ]
+                },
+                "TKSA": {
+                  "drawn": true,
+                  "motion": "OTH_MAN_TALK_AGOTE_LP",
+                  "from": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "to": [
+                    -16.779,
+                    4.275,
+                    132.35
+                  ],
+                  "wristStart": [
+                    0.058,
+                    1.418,
+                    -0.186
+                  ],
+                  "wristEnd": [
+                    0.058,
+                    1.419,
+                    -0.185
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "goro-prelude-face": {
+          "voices": {
+            "E1081B001": {
+              "AKIR": {
+                "code": "YKC",
+                "vertexCount": 311,
+                "attached": true,
+                "sameHead": true,
+                "voiceMoving": false,
+                "drawable": true,
+                "mouthDelta": 0,
+                "meshDelta": 0
+              },
+              "GORO": {
+                "code": "KMB",
+                "vertexCount": 335,
+                "attached": true,
+                "sameHead": true,
+                "voiceMoving": true,
+                "drawable": true,
+                "mouthDelta": 0.00286865234375,
+                "meshDelta": 0.00286865234375
+              }
+            },
+            "E1081A001": {
+              "AKIR": {
+                "code": "YKC",
+                "vertexCount": 311,
+                "attached": true,
+                "sameHead": true,
+                "voiceMoving": true,
+                "drawable": true,
+                "mouthDelta": 0.0023201117292046547,
+                "meshDelta": 0.0069141387939453125
+              },
+              "GORO": {
+                "code": "KMB",
+                "vertexCount": 335,
+                "attached": true,
+                "sameHead": true,
+                "voiceMoving": false,
+                "drawable": true,
+                "mouthDelta": 0,
+                "meshDelta": 0
+              }
+            },
+            "E1081B002": {
+              "AKIR": {
+                "code": "YKC",
+                "vertexCount": 311,
+                "attached": true,
+                "sameHead": true,
+                "voiceMoving": false,
+                "drawable": true,
+                "mouthDelta": 0,
+                "meshDelta": 0
+              },
+              "GORO": {
+                "code": "KMB",
+                "vertexCount": 335,
+                "attached": true,
+                "sameHead": true,
+                "voiceMoving": true,
+                "drawable": true,
+                "mouthDelta": 0.003278729971498251,
+                "meshDelta": 0.0032787304371595383
+              }
+            },
+            "E1081A002": {
+              "AKIR": {
+                "code": "YKC",
+                "vertexCount": 311,
+                "attached": true,
+                "sameHead": true,
+                "voiceMoving": true,
+                "drawable": true,
+                "mouthDelta": 0.0036550089716911316,
+                "meshDelta": 0.0069141387939453125
+              },
+              "GORO": {
+                "code": "KMB",
+                "vertexCount": 335,
+                "attached": true,
+                "sameHead": true,
+                "voiceMoving": false,
+                "drawable": false,
+                "mouthDelta": 0,
+                "meshDelta": 0
+              }
+            }
+          },
+          "released": true
+        },
+        "goro-prelude-cancel": {
+          "voices": {
+            "E1081B001": {
+              "AKIR": {
+                "code": "YKC",
+                "vertexCount": 311,
+                "attached": true,
+                "sameHead": true,
+                "voiceMoving": false,
+                "drawable": false,
+                "mouthDelta": 0,
+                "meshDelta": 0
+              },
+              "GORO": {
+                "code": "KMB",
+                "vertexCount": 335,
+                "attached": true,
+                "sameHead": true,
+                "voiceMoving": true,
+                "drawable": true,
+                "mouthDelta": 0,
+                "meshDelta": 0
+              }
+            }
+          },
+          "released": true
+        },
+        "foreground": {
+          "curves": [
+            {
+              "stage": "s1.ms8s.warehouse-eight-office.reaction",
+              "from": 0,
+              "to": 255,
+              "duration": 30,
+              "sampledFrames": 30,
+              "durationMs": 995,
+              "frameRange": [
+                0,
+                29
+              ],
+              "observedAlphaBytes": [
+                {
+                  "frame": 0,
+                  "alpha": 0
+                },
+                {
+                  "frame": 15,
+                  "alpha": 127
+                },
+                {
+                  "frame": 29,
+                  "alpha": 246
+                }
+              ]
+            },
+            {
+              "stage": "s1.ms8s.warehouse-eight-office.departure",
+              "from": 255,
+              "to": 0,
+              "duration": 30,
+              "sampledFrames": 30,
+              "durationMs": 985,
+              "frameRange": [
+                0,
+                29
+              ],
+              "observedAlphaBytes": [
+                {
+                  "frame": 0,
+                  "alpha": 255
+                },
+                {
+                  "frame": 15,
+                  "alpha": 127
+                },
+                {
+                  "frame": 29,
+                  "alpha": 8
+                }
+              ]
+            },
+            {
+              "stage": "s1.ms8s.warehouse-eight-office.departure",
+              "from": 0,
+              "to": 255,
+              "duration": 60,
+              "sampledFrames": 60,
+              "durationMs": 2012,
+              "frameRange": [
+                0,
+                59
+              ],
+              "observedAlphaBytes": [
+                {
+                  "frame": 0,
+                  "alpha": 0
+                },
+                {
+                  "frame": 30,
+                  "alpha": 127
+                },
+                {
+                  "frame": 59,
+                  "alpha": 250
+                }
+              ]
+            }
+          ],
+          "windowPose": {
+            "alpha": 1,
+            "at": 1795642695052,
+            "position": [
+              -17.25,
+              4.275000095367432,
+              152.25
+            ]
+          },
+          "finalVoice": {
+            "alpha": 0,
+            "at": 1795642696154,
+            "stage": "s1.ms8s.warehouse-eight-office.departure"
+          },
+          "handoff": {
+            "at": 1795642700338,
+            "world": "ms8s",
+            "loadingCovered": true,
+            "switching": false,
+            "ready": true
+          },
+          "returned": {
+            "hidden": true,
+            "opacity": 1,
+            "owned": false,
+            "world": "mfsy",
+            "locked": false
+          },
+          "pixels": {
+            "count": 339,
+            "baseline": {
+              "count": 75,
+              "minP90": 145.67,
+              "maxP90": 167.67,
+              "darkest": {
+                "at": 1795642692999,
+                "mean": 115.76,
+                "p90": 156.67
+              }
+            },
+            "cover": {
+              "count": 35,
+              "minP90": 0,
+              "maxP90": 165,
+              "darkest": {
+                "at": 1795642695083,
+                "mean": 0,
+                "p90": 0
+              }
+            },
+            "reveal": {
+              "count": 32,
+              "minP90": 0,
+              "maxP90": 96.33,
+              "darkest": {
+                "at": 1795642695083,
+                "mean": 0,
+                "p90": 0
+              }
+            },
+            "clear": {
+              "count": 65,
+              "minP90": 94.67,
+              "maxP90": 110.67,
+              "darkest": {
+                "at": 1795642697881,
+                "mean": 67.16,
+                "p90": 95
+              }
+            },
+            "exit": {
+              "count": 62,
+              "minP90": 1,
+              "maxP90": 96.67,
+              "darkest": {
+                "at": 1795642700347,
+                "mean": 0.7,
+                "p90": 1
+              }
+            }
+          }
+        },
+        "midFadeCancellation": {
+          "interrupted": 0.266667,
+          "final": {
+            "hidden": true,
+            "opacity": 0.266667,
+            "owned": false,
+            "world": "ms8s",
+            "locked": false
+          }
+        }
+      },
+      "earlierReportWithoutFades": "rerun-goro-audio-20261125-131758-html/index.html"
+    }
+  ]
+}

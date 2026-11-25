@@ -180,7 +180,7 @@ export async function verifyOldDistrictEntry(page,testInfo,character){
     // Leave that live event before selecting an earlier-time fixture approach.
     await page.evaluate(async()=>{
       await window.storyProbe.regions.controller.cancel("test-prepare-gate-continuation");
-      const l=window.storyProbe.lifecycle;await l.travelToWorld("mfsy");
+      const l=window.storyProbe.lifecycle;if(l.worldRuntime.activeWorld.id!=="mfsy")await l.travelToWorld("mfsy");
       l.resetPlayer(l.vectorFromArray([130,0,-12]),0,{persist:false});
     });
     await idle();await expect(page.locator("#loading")).toBeHidden({timeout:90_000});

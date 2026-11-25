@@ -218,6 +218,14 @@ h1 {
   touch-action: none;
 }
 
+.story-screen-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: #000;
+}
+
 .transition-frame {
   position: absolute;
   inset: 0;

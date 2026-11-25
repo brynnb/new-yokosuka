@@ -1,6 +1,9 @@
+import {captureOfficeFadePixels,cancelOfficeDuringFade,verifyOfficeFades} from "./warehouse-office-fades.js";
 import {expect} from "@playwright/test";
 import {readFileSync} from "node:fs";
+import {checkWarehouseDirector} from "./story-warehouse-invoice.js";
 import {observeNativeFilm, originalFilm} from "./native-film-observer.js";
+import {observeStagedGoroFace,verifyStagedGoroFace} from "./staged-goro-face.js";
 import {observeOriginalDialogue} from "./original-dialogue-observer.js";
 
 export async function verifyGoroGuard(page,testInfo,character,enterStoryWorld,mode) {
@@ -105,22 +108,39 @@ export async function verifyGoroGuard(page,testInfo,character,enterStoryWorld,mo
     expect(initial.bits[230]).toBe(1);expect(initial.bits[813]).toBe(1);
   }
   expect(initial.bits[192]).toBe(0);expect(initial.bits[240]).toBe(0);
-  const begin=async()=>{
+  const startIntro=async()=>{
     await approach();await expect(button).toBeVisible({timeout:40_000});
     await observeOriginalDialogue(page,[...intro,...officeLines],"s1.");
     await observeNativeFilm(page,{scene,actors:activity.actors,watchFace:"GORO"});
+    await observeStagedGoroFace(page);
     await button.click();
+  };
+  const begin=async()=>{
+    await startIntro();
     await page.waitForFunction(()=>window.storyFilm.voices.length>=2||window.storyProbe.sceneErrors.length,null,{timeout:90_000});
     expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   };
   await approach();await expect(button).toBeVisible({timeout:40_000});
   await page.getByRole("button",{name:"Not now",exact:true}).click();await idle();
+  if(mode==="native"){
+    await startIntro();
+    await page.waitForFunction(()=>window.stagedGoroFace.voices.E1081B001?.GORO?.voiceMoving);
+    await page.evaluate(()=>window.storyProbe.regions.controller.cancel("goro-intro-face-cancel"));
+    await idle();
+    await page.waitForFunction(()=>window.stagedGoroFace.released);
+    const introCancel=await saved();
+    expect(introCancel.bits).toEqual(initial.bits);
+    expect(introCancel.character.storyFlags).toEqual(initial.character.storyFlags);
+    await testInfo.attach("goro-prelude-cancel",{contentType:"application/json",
+      body:JSON.stringify(await page.evaluate(()=>window.stagedGoroFace))});
+  }
   await begin();
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel("goro-guard-review-cancel"));await idle();
   const cancelled=await saved();
   expect(cancelled.bits).toEqual(initial.bits);expect(cancelled.character.storyFlags).toEqual(initial.character.storyFlags);
   expect(cancelled.character.worldId).toBe("mfsy");
   await begin();
+  await verifyStagedGoroFace(page,testInfo);
   await page.screenshot({path:testInfo.outputPath("goro-lures-guards.png")});
   await expect.poll(async()=>(await saved()).character.storyFlags[flag],{timeout:110_000}).toBe(true);
   const inside=await saved();
@@ -152,24 +172,29 @@ export async function verifyGoroGuard(page,testInfo,character,enterStoryWorld,mo
     } finally {await page.keyboard.up("KeyW");}
     expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   };
+  let fadeCancel=null;
   if(mode!=="day-after")await enterOffice();
   if(mode==="native"){
-    await page.waitForFunction(()=>window.originalDialogue.lines.some(line=>line.id==="E1009BB001"));
-    await page.evaluate(()=>window.storyProbe.regions.controller.cancel("office-timeline-cancel"));
+    fadeCancel=await cancelOfficeDuringFade(page);
+    await testInfo.attach("warehouse-office-fade-cancel",{body:JSON.stringify(fadeCancel),contentType:"application/json"});
     await idle();
     const abandoned=await saved();
     expect(abandoned.bits[242]).toBe(0);expect(abandoned.character.storyFlags[office]).not.toBe(true);
     expect(abandoned.character.worldId).toBe("ms8s");expect(abandoned.bits[240]).toBe(1);
     await page.evaluate(()=>{window.originalDialogue.lines=window.originalDialogue.lines.filter(line=>
-      !line.id.startsWith("E1009B"));window.originalDialogue.office=[];});
+      !line.id.startsWith("E1009B"));window.originalDialogue.office=[];window.originalDialogue.officePhases={};});
     await enterOffice();
   }
   expect((await saved()).character.storyFlags[office]).not.toBe(true);
+  const finishFades=await captureOfficeFadePixels(page);
   await expect.poll(async()=>(await saved()).character.storyFlags[office],{timeout:110_000}).toBe(true);
   await idle();
-  const observed=await page.evaluate(()=>{clearInterval(window.storyFilmTimer);const y=window.stopOriginalDialogue();return {film:window.storyFilm,spoken:y.lines,office:y.office};});
+  const observed=await page.evaluate(()=>{clearInterval(window.storyFilmTimer);const y=window.stopOriginalDialogue();return {film:window.storyFilm,spoken:y.lines,office:y.office,officePhases:y.officePhases};});
+  observed.fades=await verifyOfficeFades(testInfo,finishFades);
+  observed.fadeCancel=fadeCancel;
   observed.warehouseWalk=walked;
   console.info("Goro opens Warehouse No. 8",mode,JSON.stringify(observed));
+  checkWarehouseDirector(observed.officePhases,observed.spoken.filter(l=>l.id.startsWith("E1009B")));
   expect(observed.office).toHaveLength(3);
   expect(observed.office[0].actors.filter(a=>a.drawable).map(a=>a.tag).sort()).toEqual(["AKIR","TKSA","TMHN"]);
   expect(observed.office.at(-1).eye).not.toEqual(observed.office[0].eye);

@@ -2,6 +2,7 @@ import {verifyDobuitaDrunkard} from "./story-dobuita-drunkard.js";
 import {verifyMaiAlley} from "./story-mai-alley.js";
 import {verifyHisaka} from "./story-hisaka.js";
 import {verifyYamagishiMirror} from "./story-yamagishi-mirror.js";
+import {approachWarehouseOffice,verifyWarehouseInvoice} from "./story-warehouse-invoice.js";
 import {verifyGoroGuard} from "./story-goro-guard.js";
 import {verifyHarborConversation} from "./story-harbor-conversations.js";
 import {verifyFukuReturn} from "./story-fuku-return.js";
@@ -1755,6 +1756,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       test.setTimeout(400_000);
       await verifyYamagishiMirror(page,testInfo,character,enterStoryWorld,residentClickPoint);
       expect(errors).toEqual([]);
+      return;
+    }
+    if(process.env.NEW_YOKOSUKA_INVOICE_E2E){
+      test.setTimeout(360_000);
+      await verifyWarehouseInvoice(page,testInfo,character,enterStoryWorld,process.env.NEW_YOKOSUKA_INVOICE_E2E);
       return;
     }
     if (process.env.NEW_YOKOSUKA_GORO_GUARD_E2E) {
@@ -4243,7 +4249,11 @@ async function verifyWarehouseEight(page,testInfo,character) {
   expect(character.storyFlags['story.s1.warehouse-eight-refusal.completed']).not.toBe(true);
   const saved=()=>page.request.get(`/api/characters/${character.id}/state`).then(r=>r.json());
   const noErrors=async()=>expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
-  const idle=async()=>{await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe('idle');expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);};
+  const idle=()=>page.waitForFunction(()=>{
+    const p=window.storyProbe;
+    return p.regions.controller.status==="idle"&&p.lifecycle.worldRuntime.ready&&!p.lifecycle.worldRuntime.switching
+      &&!p.lifecycle.getController().movementLocked;
+  },null,{timeout:90_000});
   const advanceUntil=async(flag)=>{for(let i=0;i<35&&!await page.evaluate(flag=>window.storyProbe.regions.getCharacter()?.storyFlags?.[flag]||window.storyProbe.sceneErrors.length,flag);i++){await page.keyboard.press('Space');await page.waitForTimeout(150);}await noErrors();await expect.poll(()=>page.evaluate(flag=>window.storyProbe.regions.getCharacter()?.storyFlags?.[flag],flag)).toBe(true);await idle();};
   const approach=async(position,yaw,slug)=>{
     await page.evaluate(({position,yaw})=>{const l=window.storyProbe.lifecycle;l.resetPlayer(l.vectorFromArray(position),yaw,{persist:false});l.getController().setFirstPerson(false);},{position,yaw});
@@ -4263,16 +4273,22 @@ async function verifyWarehouseEight(page,testInfo,character) {
   await windowChoice();await page.getByRole('button',{name:'Climb through the rear window',exact:true}).click();
   await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==='s1.mfsy.warehouse-eight-climb'||window.storyProbe.sceneErrors.length);await noErrors();
   await page.waitForTimeout(3_000);await page.screenshot({path:testInfo.outputPath('warehouse-original-window-motion.png')});
-  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==='s1.ms8s.warehouse-eight-overheard'||window.storyProbe.sceneErrors.length,null,{timeout:90_000});await noErrors();
+  await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="ms8s" && window.storyProbe.lifecycle.worldRuntime.ready && !window.storyProbe.lifecycle.worldRuntime.switching);
+  await approachWarehouseOffice(page);await noErrors();
   await expect(page.locator('#loading')).toBeHidden({timeout:90_000});
   await page.screenshot({path:testInfo.outputPath('warehouse-overheard-office.png')});
   expect((await saved()).character.worldId).toBe('ms8s');
   expect((await saved()).character.storyFlags['notebook.s1.old-warehouse-eight']).not.toBe(true);
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel('test-cancel-overheard'));await idle();
   await page.reload();await page.keyboard.press('Enter');await page.locator('.account-entry-actions button').filter({hasText:'Quick Play'}).click();await page.locator('.character-slot-button:not(:disabled)').filter({hasText:character.name}).click();await page.locator('button').filter({hasText:/^Enter World$/}).click();
-  await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==='s1.ms8s.warehouse-eight-overheard'||window.storyProbe.sceneErrors.length,null,{timeout:90_000});await noErrors();
-  await advanceUntil('notebook.s1.old-warehouse-eight');
-  const final=await saved();expect(final.character.yen).toBe(character.yen);expect(final.character.currentHp).toBe(character.currentHp);expect(final.character.worldId).toBe('ms8s');
+  await approachWarehouseOffice(page);await noErrors();
+  await expect.poll(async()=>(await saved()).character.storyFlags['notebook.s1.old-warehouse-eight'],{timeout:150_000}).toBe(true);
+  await idle();const final=await saved();expect(final.character.yen).toBe(character.yen);expect(final.character.currentHp).toBe(character.currentHp);expect(final.character.worldId).toBe('mfsy');
+  const dialogue=await (await page.request.get("/api/characters/"+character.id+"/dialogue")).json();
+  const bank=Buffer.from(dialogue.state.banks["2"],"base64"),bits=Object.fromEntries([192,230,240,242].map(i=>[i,(bank[i>>3]>>(i%8))&1]));
+  expect(bits).toEqual({192:0,230:1,240:1,242:1});
+  console.info("Original harbor notebook checkpoint",JSON.stringify({characterId:character.id,world:final.character.worldId,
+    position:[final.character.x,final.character.y,final.character.z],bits,notebook:final.character.storyFlags["notebook.s1.old-warehouse-eight"]}));
   await page.locator('button').filter({hasText:/^Notebook$/}).click();for(let i=0;i<80&&await page.locator('#journal-next').isEnabled();i++)await page.locator('#journal-next').click();
   await expect(page.getByText(/There are two Warehouse No. 8s/)).toBeVisible();await page.screenshot({path:testInfo.outputPath('warehouse-old-district-notebook.png')});await page.locator('#journal-close').click();
 }

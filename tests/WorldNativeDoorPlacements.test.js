@@ -59,7 +59,7 @@ test("confirmed non-Dobuita interiors use native maps, spawns, and collision are
     assert.equal(world.prefix, prefix);
     assert.equal(world.interior, true);
     assert.deepEqual(world.spawn.asArray(), spawn);
-    assert.equal(world.placements.length, worldId === "ms8s" ? 3 : 1);
+    assert.equal(world.placements.filter(p => p.runtime.nativeInteriorDoor).length, worldId === "ms8s" ? 3 : 1);
     assert.equal(world.placements[0].runtime.nativeInteriorDoor, true);
   }
   assert.equal(WORLDS.mkyu.placements[0].runtime.nativeStaticTransition, true);
@@ -135,7 +135,7 @@ test("recovered Dobuita interiors use canonical map names", () => {
 });
 
 test("Warehouse No. 8 restores three physical upper hinges with one harbor exit", () => {
-  const doors = WORLDS.ms8s.placements;
+  const doors = WORLDS.ms8s.placements.filter(p => p.runtime.nativeInteriorDoor);
   assert.deepEqual(doors.map(door => door.runtime.staticDoorIndex), [0,1,2]);
   assert.deepEqual(doors.map(door => door.runtime.objectTag), ["MS8S_DOOR", null, null]);
   assert.deepEqual(doors.map(door => door.runtime.staticDoorResourceName), Array(3).fill("MS8S_DOOR"));
@@ -145,5 +145,20 @@ test("Warehouse No. 8 restores three physical upper hinges with one harbor exit"
   for (const door of doors) {
     assert.equal(door.model, "S2_MS8S_DR02_026.MT5");
     assert.equal(jomoObjectBehavior(door.model, door.runtime.objectTag, door.runtime).kind, "d000-door");
+  }
+});
+
+
+test("Warehouse No. 8 places both original invoice envelopes above the upstairs desk", () => {
+  const props = WORLDS.ms8s.placements.filter(p => p.runtime.authoredStoryProp);
+  assert.deepEqual(props.map(p => p.runtime.objectTag), ["FUT0", "FUT1"]);
+  for (const [placement, model, position, rotation] of [
+    [props[0], "S2_MS8S_FUTS5K9G.MT5", [-24.01, 5.04, 137.21], [90, 180, 0]],
+    [props[1], "S2_MS8S_FUTS5D8G.MT5", [-27.33, 5.032, 139.11], [0, 299.99817, 0]],
+  ]) {
+    assert.equal(placement.model, model);
+    assert.equal(placement.runtime.initiallyEnabled, true);
+    placement.position.forEach((value, index) => assert.ok(Math.abs(value - position[index]) < 0.00001));
+    placement.rotationDegrees.forEach((value, index) => assert.ok(Math.abs(value - rotation[index]) < 0.00001));
   }
 });

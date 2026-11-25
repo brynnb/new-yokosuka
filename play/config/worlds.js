@@ -478,7 +478,7 @@ function additionalShenmue1InteriorWorlds() {
             return Object.freeze({ ...placement, runtime: Object.freeze({
               ...placement.runtime, nativeInteriorDoor: true,
             }) });
-          }))
+          }).concat(authoredStoryObjects.placements.filter(placement => placement.area === "MS8S")))
           : Object.freeze([returnDoor]),
         evidence: Object.freeze({
           source: nativeMapTransitionData.generatedFrom,

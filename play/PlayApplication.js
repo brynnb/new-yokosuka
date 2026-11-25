@@ -914,6 +914,11 @@ function createPlayRuntime() {
   });
   const scriptEvents = createScriptEventAssembly({
     storyFrameHandoff,
+    screenFadeAdapters: {
+      present: (owner,alpha) => loadingScreen.presentStoryFade(owner,alpha),
+      clear: owner => loadingScreen.cancelStoryFade(owner),
+      handoff: owner => loadingScreen.takeStoryCover(owner),
+    },
     acquireEnvironmentIsolation: () => worldEnvironment.acquireIsolatedStage(),
     getCharacter: () => accountSession.character,
     menuSounds,

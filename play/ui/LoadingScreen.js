@@ -22,6 +22,8 @@ export class LoadingScreen {
     this.error = null;
     this.presentation = null;
     this.frameOwner = null;
+    this.storyFadeOwner = null;
+    this.storyCoverOwner = null;
   }
 
   render() {
@@ -80,6 +82,7 @@ export class LoadingScreen {
   }
 
   replaceOperation(signal) {
+    this.storyCoverOwner = null;
     this.operation?.abort();
     const controller = new AbortController();
     this.operation = controller;
@@ -100,6 +103,41 @@ export class LoadingScreen {
         : this.timers.setTimeout(done, ms);
       signal?.addEventListener("abort", done, { once: true });
     });
+  }
+
+  presentStoryFade(owner, alpha) {
+    if (!owner || !this.canRender || (this.storyFadeOwner && this.storyFadeOwner !== owner)) {
+      throw new Error("Story screen fade lost its viewport");
+    }
+    this.storyFadeOwner = owner;
+    this.storyFadeAlpha = alpha;
+    this.dom.storyScreenFade.style.opacity = String(alpha / 255);
+    this.dom.storyScreenFade.hidden = alpha === 0;
+  }
+
+  takeStoryCover(owner) {
+    if (this.storyFadeOwner !== owner || this.storyFadeAlpha !== 255 || !this.canRender) {
+      throw new Error("Story travel requires a fully covered viewport");
+    }
+    this.replaceOperation();
+    this.setPhase("covered");
+    this.storyCoverOwner = owner;
+    this.clearStoryOverlay(owner);
+  }
+
+  clearStoryOverlay(owner) {
+    if (this.storyFadeOwner !== owner) return;
+    this.storyFadeOwner = null;
+    this.storyFadeAlpha = 0;
+    this.dom.storyScreenFade.hidden = true;
+  }
+
+  cancelStoryFade(owner) {
+    this.clearStoryOverlay(owner);
+    if (this.storyCoverOwner === owner) {
+      this.storyCoverOwner = null;
+      if (this.phase === "covered") this.setPhase("hidden");
+    }
   }
 
   captureFrame(owner = null) {
@@ -199,6 +237,8 @@ export class LoadingScreen {
   dispose() {
     this.disposed = true;
     this.operation?.abort();
+    if (this.storyFadeOwner) this.clearStoryOverlay(this.storyFadeOwner);
+    this.storyCoverOwner = null;
     this.releaseFrame();
   }
 }

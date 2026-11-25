@@ -6,6 +6,7 @@ import catalog from "../data/story-regions.json" with { type: "json" };
 export function matchesEncounterApproach(approach, position, playerYaw) {
   if (!approach) return true;
   const [x, y, z] = [-position[0], position[1], position[2]].map(Math.fround);
+  if (approach.minYExclusive != null && y <= approach.minYExclusive) return false;
   const [cx, cy, cz] = approach.center.map(Math.fround);
   const dx = Math.fround(x - cx);
   const dy = Math.fround(y - cy);

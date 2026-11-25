@@ -400,3 +400,15 @@ test("Fuku’s hall offers accept named and native milestones and respect both e
     assert.equal(enter(), false);
   }
 });
+
+
+test("both Warehouse No. 8 listening entrances require a native height above four metres", () => {
+  for (const id of ["s1.ms8s.warehouse-eight-office", "s1.ms8s.warehouse-eight-overheard"]) {
+    const region = storyRegions.regions.find(region => region.id === id);
+    for (const [height, expected] of [[3.5, false], [4, false], [4 + 2 ** -23, false],
+      [4 + 2 ** -21, true], [4.275, true]]) {
+      assert.equal(matchesEncounterApproach(region.nativeApproach, [-19.1, height, 137.16], 0),
+        expected, id + " at " + height);
+    }
+  }
+});

@@ -28,6 +28,7 @@ export function queryPlayDom(root = document) {
   inspectionCloseKey: root.getElementById("inspection-close-key"),
   loading: root.getElementById("loading"),
   loadingPlaceJapanese: root.getElementById("loading-place-japanese"),
+  storyScreenFade: root.getElementById("story-screen-fade"),
   transitionFrame: root.getElementById("transition-frame"),
   loadingPlaceEnglish: root.getElementById("loading-place-english"),
   loadingTime: root.getElementById("loading-time"),

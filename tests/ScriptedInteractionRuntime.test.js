@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { NativeRoomScriptRuntime } from "../play/events/NativeRoomScriptRuntime.js";
 import { ScriptedInteractionRuntime } from "../play/interactions/ScriptedInteractionRuntime.js";
 
 function createHarness({ result, error, presentationOwned = false, playMode = "free_roam",area="D000" } = {}) {
@@ -134,4 +135,35 @@ for (const [playMode, actorCode] of [["free_roam", "HRSK"], ["story", "HATO"]]) 
   h.runtime.startNativeNpc = h.fallback;
   await h.runtime.startNpc({ actorCode, id: "actor" });
   assert.equal(h.fallbackCount(), 1);
+});
+
+
+test("the two warehouse envelopes share the original inspection byte only for this room visit", async () => {
+  const h = createHarness({ playMode: "story", area: "MS8S" });
+  const room = new NativeRoomScriptRuntime();
+  room.activateArea("MS8S");
+  h.runtime.nativeRoomScriptRuntime = room;
+  let request;
+  h.runtime.scriptEventController.start = async (selector, context) => {
+    request = { selector, context };
+    return { outcome: "started" };
+  };
+  async function use(tag) {
+    await h.runtime.startObject({ objectSelector: tag, objectTag: tag, root: {}, fallback: h.fallback });
+    return request;
+  }
+  assert.equal((await use("FUT1")).selector.object, "FUT1");
+  let address = await use("FUT0");
+  address.context.onStoryComplete({ scriptSlug: "unrelated" });
+  assert.equal((await use("FUT1")).selector.object, "FUT1");
+  address = await use("FUT0");
+  assert.equal(address.selector.object, "FUT0");
+  address.context.onStoryComplete({ scriptSlug: "story-s1-warehouse-invoice-address" });
+  assert.equal(room.eventContext().readSceneField({ offset: 0x20c, width: 1 }), 0xff);
+  assert.equal((await use("FUT1")).selector.object, "FUT1.read");
+  assert.equal((await use("FUT0")).selector.object, "FUT0");
+  room.deactivateArea("MS8S");
+  room.activateArea("MS8S");
+  assert.equal((await use("FUT1")).selector.object, "FUT1");
+  assert.equal(h.fallbackCount(), 0);
 });

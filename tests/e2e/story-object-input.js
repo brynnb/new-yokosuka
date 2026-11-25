@@ -4,7 +4,8 @@ export async function openStoryRoomDoor(page,{tag,staticDoorIndex,position}) {
   await page.evaluate(({tag,staticDoorIndex,position})=>{
     const l=window.storyProbe.lifecycle,d=l.doorInteractions.entries.find(d=>staticDoorIndex==null?d.objectTag===tag:d.root._runtimePlacementRecord?.runtime?.staticDoorIndex===staticDoorIndex);
     if(!d)throw Error(`Missing physical room door ${tag??staticDoorIndex}`);
-    l.resetPlayer(l.vectorFromArray(position),0,{persist:false});
+    if(position)l.resetPlayer(l.vectorFromArray(position),0,{persist:false});
+    else position=l.getController().collider.position.asArray();
     const b=d.root.getHierarchyBoundingVectors(true),p=b.min.add(b.max).scale(.5),c=l.getController();
     c.setFirstPerson(true);c.cameraYaw=Math.atan2(position[0]-p.x,position[2]-p.z);
     c.cameraPitch=Math.atan2(position[1]+c.options.firstPersonHeadHeight-p.y,Math.hypot(p.x-position[0],p.z-position[2]));c.updateCamera(1);
@@ -90,4 +91,5 @@ export async function useStoryInspectable(page,{world,tag,position,expectedChoic
   console.info('Story object pick',point);
   expect(point.tag).toBe(tag);await page.mouse.click(point.x,point.y);
   if(expectedChoice)await expect(page.getByRole('button',{name:expectedChoice,exact:true})).toBeVisible();
+  return point;
 }

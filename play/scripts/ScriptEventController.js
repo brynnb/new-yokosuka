@@ -351,8 +351,10 @@ export class ScriptEventController {
       active.controller.abort(new DOMException(event.type, "AbortError"));
       this.dialogue.hide();
       if (active.presentationStarted) {
-        if (event.type === "complete") this.presentation.commit();
-        else this.presentation.rollback(event.type);
+        if (event.type === "complete") {
+          this.presentation.commit();
+          active.context.onStoryComplete?.(active.scriptIdentity);
+        } else this.presentation.rollback(event.type);
       }
       active.releaseState?.();
       this.active = null;

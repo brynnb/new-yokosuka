@@ -464,3 +464,24 @@ test("world interruption unblocks the next session and ignores the old presentat
   assert.equal(h.controller.active.requestId, "request-2");
   assert.deepEqual(h.errors, []);
 });
+
+
+test("object inspection applies room effects on the confirmed completion only", async () => {
+  for (const terminal of ["complete", "cancelled"]) {
+    const h = harness();
+    const receipts = [];
+    const slug = "story-s1-warehouse-invoice-address";
+    const started = h.controller.start({kind: "use", object: "FUT0"}, {
+      area: "MS8S", objectTag: "FUT0", onStoryComplete: identity => receipts.push(identity.scriptSlug),
+    });
+    await h.controller.handleYield(yieldMessage("request-1", {type: "line", sequence: 1}, {
+      scriptSlug: slug, line: {id: "address", text: "This is addressed to old Warehouse No. 8?"},
+    }));
+    await started;
+    assert.deepEqual(receipts, []);
+    if (terminal === "complete") h.controller.advanceLine();
+    else h.controller.cancel();
+    await h.controller.handleYield(yieldMessage("request-2", {type: terminal, sequence: 2}));
+    assert.deepEqual(receipts, terminal === "complete" ? [slug] : []);
+  }
+});

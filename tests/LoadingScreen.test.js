@@ -17,6 +17,7 @@ function fixture() {
       remove: name => classes.delete(name),
     }, style: { setProperty() {} } },
     canvas: { width: 1280, height: 720 },
+    storyScreenFade: {hidden:true,style:{}},
     transitionFrame: { hidden: true, getContext: () => ({ drawImage: () => events.push("snapshot") }) },
     loadingWord: {}, loadingProgress: {}, loadingError: {}, loadingCount: {},
     loadingPlaceJapanese: {}, loadingPlaceEnglish: {},
@@ -167,4 +168,44 @@ test("errors remain covered; disposal cancels callbacks and releases the capture
   assert.equal(f.tasks.size, 0);
   assert.equal(f.dom.transitionFrame.hidden, true);
   assert.equal(f.events.includes("finished"), false);
+});
+
+test("native black transfers to world loading without revealing a gameplay frame", async () => {
+  const f=fixture(), owner={}, late={};
+  f.screen.setPhase("hidden");
+  f.screen.presentStoryFade(owner,127);
+  assert.equal(f.dom.storyScreenFade.style.opacity,String(127/255));
+  assert.equal(f.dom.storyScreenFade.hidden,false);
+  assert.throws(()=>f.screen.takeStoryCover(owner),/fully covered/);
+  f.screen.cancelStoryFade(late);
+  assert.equal(f.dom.storyScreenFade.hidden,false);
+  f.screen.presentStoryFade(owner,255);
+  f.screen.takeStoryCover(owner);
+  assert.equal(f.dom.storyScreenFade.hidden,true);
+  assert.equal(f.screen.phase,"covered");
+  f.screen.cancelStoryFade(owner);
+  assert.equal(f.screen.phase,"hidden");
+  f.screen.presentStoryFade(owner,255);
+  f.screen.takeStoryCover(owner);
+  const load=f.screen.begin(world);
+  f.screen.cancelStoryFade(owner); // The destination already owns the screen.
+  await flush();
+  assert.equal(f.screen.phase,"loading");
+  assert.ok(!f.events.includes("snapshot"));
+  await f.tick("frame");await f.tick("frame");
+  assert.equal(await load,true);
+});
+
+test("cancellation releases intermediate Story opacity without disturbing a successor",()=>{
+  const f=fixture(), first={},next={};
+  f.screen.setPhase("hidden");
+  f.screen.presentStoryFade(first,200);
+  f.screen.cancelStoryFade(first);
+  assert.equal(f.dom.storyScreenFade.hidden,true);
+  f.screen.presentStoryFade(next,15);
+  f.screen.cancelStoryFade(first);
+  assert.equal(f.dom.storyScreenFade.hidden,false);
+  f.screen.presentStoryFade(next,0);
+  assert.equal(f.dom.storyScreenFade.hidden,true);
+  f.screen.dispose();
 });

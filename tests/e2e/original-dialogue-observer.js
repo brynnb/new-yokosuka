@@ -6,7 +6,7 @@ export async function observeOriginalDialogue(page, ids, stagePrefix) {
     const probe = window.storyProbe;
     const presenter = probe.regions.controller.dialogue;
     const urls = new Map(await Promise.all(ids.map(async id => [await presenter.voiceManifest.urlFor(id), id])));
-    const observations = {lines:[], stages:[], handovers:[], props:[], sounds:[], plaque:[], stool:[], stoolCamera:[], office:[]};
+    const observations = {lines:[], stages:[], handovers:[], props:[], sounds:[], plaque:[], stool:[], stoolCamera:[], office:[], officePhases:{}};
     const {Vector3,Matrix} = await import("/node_modules/@babylonjs/core/Maths/math.vector.js");
     const playedSounds = new WeakSet();
     window.originalDialogue = observations;
@@ -22,8 +22,12 @@ export async function observeOriginalDialogue(page, ids, stagePrefix) {
           observations.sounds.push({stage:name,frame:Math.floor(owner.elapsed*30),asset:audio.src.split("/").at(-1)});
         }
         const first = observations.stages.at(-1)?.name !== name;
-        if(name==="s1.ms8s.warehouse-eight-office"){
-          const frame=Math.floor(owner.elapsed*30), threshold=[2,35,100][observations.office.length];
+        if(name?.startsWith("s1.ms8s.warehouse-eight-office")){
+          const phase=name==="s1.ms8s.warehouse-eight-office"?"approach":name.split(".").at(-1);
+          const phaseFrames={approach:[2,35,100],lean:[2,112],staff:[2,160,350],
+            "staff-hold":[2,30],"listen-out":[2,24],reaction:[2,35],departure:[2,35]};
+          const samples=observations.officePhases[phase]??=[];
+          const frame=Math.floor(owner.elapsed*30),threshold=phaseFrames[phase]?.[samples.length];
           if(threshold!==undefined && frame>=threshold){
             const camera=probe.lifecycle.scene.activeCamera;
             const q=v=>v.asArray().map(n=>Math.round(n*1000)/1000);
@@ -34,7 +38,9 @@ export async function observeOriginalDialogue(page, ids, stagePrefix) {
               return {tag:spec.tag,drawable:drawable(actor?.root),position:actor?.root?q(actor.root.getAbsolutePosition()):null,
                 motion:spec.motion.name,wrist:matrix?Array.from(matrix.slice(12,15)).map(n=>Math.round(n*1000)/1000):null};
             });
-            observations.office.push({frame,actors,eye:q(camera.globalPosition),target:q(camera.getTarget())});
+            const shot={frame,actors,eye:q(camera.globalPosition),target:q(camera.getTarget())};
+            samples.push(shot);
+            if(phase==="approach")observations.office.push(shot);
           }
         }
         const stoolPickup = name==="s1.jhd0.mysterious-scroll-reveal-stool";

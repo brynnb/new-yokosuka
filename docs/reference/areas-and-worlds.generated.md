@@ -5,7 +5,7 @@
 This is the exhaustive union of four-character areas in the current Shenmue I
 MAPINFO transition extraction, exact transition destinations, map CSV, schedule
 catalog, and configured browser worlds. It contains 156 codes:
-147 with an evidence-backed display label and 9
+148 with an evidence-backed display label and 8
 remaining `unresolved`. Browser-only Shenmue II worlds are included because
 they are current project destinations; their presence does not make them part
 of the Shenmue I MAPINFO corpus.
@@ -16,8 +16,8 @@ Input SHA-256:
 - `tools/evidence/map-transition-catalog.json`: `ae3e4be08900b4cc1879c425673f24f9511e84c5e109ab30e21b01dd9c12d94d`
 - `tools/evidence/player-portal-inventory.json`: `3dd54ae4f3d00ba5d2f024621db5e7f54c66ae07004d45a3f99dd2e9f3eebadb`
 - `play/data/shenmue1-schedule-catalog.json`: `8099ec865c6546f1dcd1a4e2e9234be4ea819c97f9c92835ce79f6a098ea7002`
-- `play/config/worlds.js`: `d7229bec980ba30396e52e0ba04229cee91332a1007e1c90e0b17aa26a0c9d21`
-- `play/data/native-map-transitions.json`: `edc364c35074d8673ada62b12909f608fb2b28643aba4a5d6199bc2516e794e8`
+- `play/config/worlds.js`: `63508c8986104e4113eb9b63513f4951087cf7cc5d15e742b11386fc6e183f2b`
+- `play/data/native-map-transitions.json`: `82e3ff3dc8673dc2faca3a5ce6d7560a44095a815a936adce1214b83a702f128`
 - `play/data/shenmue2-boundary-transitions.json`: `778c37d5351895434f7d94f6093b9d3b76909dcd796d130687ff1e892aea1d6f`
 
 Regenerate with `node tools/reference/generate_identifier_area_reference.mjs`; add
@@ -69,7 +69,7 @@ original native location name.
 | `DHQB` | Heartbeats Bar | Dobuita | — | — | 1 | 1 / 3 | 0 / 0 | 0 | MAPINFO 1; maps.csv | `confirmed` |
 | `DJAZ` | MJQ Jazz Bar | Dobuita | `djaz` | interior | 3 | 3 / 3 | 3 / 1 | 6 | MAPINFO 3; maps.csv; schedule 6; worlds.js | `confirmed` |
 | `DKPA` | Nana's Karaoke Bar | Dobuita | `dkpa` | interior | 3 | 3 / 3 | 3 / 0 | 3 | MAPINFO 3; maps.csv; schedule 3; worlds.js | `confirmed` |
-| `DKTY` | Antique Shop | Dobuita | `dkty` | interior | 3 | 3 / 3 | 3 / 1 | 8 | MAPINFO 3; maps.csv; schedule 8; worlds.js | `confirmed` |
+| `DKTY` | Antique Shop; Bunkado Antiques | Dobuita | `dkty` | interior | 3 | 3 / 3 | 3 / 1 | 8 | MAPINFO 3; maps.csv; schedule 8; worlds.js | `confirmed` |
 | `DMAJ` | Daisangen Mahjong Parlor | Dobuita | — | — | 3 | 3 / 3 | 0 / 0 | 4 | MAPINFO 3; maps.csv; schedule 4 | `confirmed` |
 | `DNOZ` | Sakuragaoka; Sakuragaoka — Nozomi Scenes | Sakuragaoka | `dnoz` | exterior | 2 | 2 / 3 | 0 / 0 | 0 | MAPINFO 2; maps.csv; worlds.js | `confirmed` |
 | `DOOR` | unresolved | — | — | — | 1 | 0 / 0 | 0 / 0 | 0 | MAPINFO 1 | `unresolved` |
@@ -107,7 +107,7 @@ original native location name.
 | `MB9Q` | UNKNOWN (Cutscene?) | Unknown | — | — | 1 | 1 / 1 | 0 / 0 | 0 | MAPINFO 1; maps.csv | `confirmed` |
 | `MBQC` | UNKNOWN (Cutscene?) | Unknown | — | — | 1 | 0 / 0 | 0 / 0 | 0 | MAPINFO 1; maps.csv | `confirmed` |
 | `MC5Q` | Harbor - Shadow Step Cutscene; UNKNOWN (Cutscene?) | Harbor; Unknown | — | — | 1 | 0 / 0 | 0 / 0 | 0 | MAPINFO 1; maps.csv | `confirmed` |
-| `MEND` | Harbor (Fight Scene With Chai + Ending) | Harbor | — | — | 1 | 1 / 2 | 0 / 0 | 0 | MAPINFO 1; maps.csv | `confirmed` |
+| `MEND` | Harbor (Fight Scene With Chai + Ending); Harbor Departure; Voyage to Hong Kong | Harbor | `mend`; `s1-voyage` | exterior | 1 | 1 / 2 | 0 / 0 | 0 | MAPINFO 1; maps.csv; worlds.js | `confirmed` |
 | `MF99` | unresolved | — | — | — | 1 | 0 / 0 | 0 / 0 | 0 | MAPINFO 1 | `unresolved` |
 | `MFBT` | Combat Practice; Harbor - (70 Man Battle Area) | Harbor | `mfbt` | exterior | 1 | 1 / 1 | 0 / 0 | 0 | MAPINFO 1; maps.csv; worlds.js | `confirmed` |
 | `MFSY` | Harbor (Main Playable Area); New Yokosuka Harbor | Harbor | `mfsy` | exterior | 2 | 10 / 14 | 0 / 2 | 111 | MAPINFO 2; maps.csv; schedule 111; worlds.js | `confirmed` |
@@ -120,7 +120,7 @@ original native location name.
 | `MS8A` | Warehouse No. 8 | Harbor | — | — | 1 | 1 / 2 | 0 / 0 | 0 | MAPINFO 1; maps.csv | `confirmed` |
 | `MS8S` | Warehouse No. 8 | Harbor | `ms8s` | interior | 1 | 1 / 2 | 1 / 0 | 0 | MAPINFO 1; maps.csv; worlds.js | `confirmed` |
 | `MSBS` | Hazuki Residence Exterior | Yamanose | — | — | 1 | 1 / 3 | 0 / 0 | 0 | MAPINFO 1; maps.csv | `confirmed` |
-| `NBIK` | unresolved | — | — | — | 1 | 0 / 1 | 0 / 0 | 0 | MAPINFO 1 | `unresolved` |
+| `NBIK` | Motorcycle Route; Nozomi's Ride Home | — | `nbik`; `nbik-home` | exterior | 1 | 0 / 1 | 0 / 0 | 0 | MAPINFO 1; worlds.js | `confirmed` |
 | `OP00` | Hazuki Residence - Intro cutscenes; Introduction — Iwao's Murder | Cutscene | `op00` | interior | 1 | 1 / 0 | 0 / 0 | 0 | MAPINFO 1; maps.csv; worlds.js | `confirmed` |
 | `OP02` | Opening Vision — Shenhua and the Hawk | — | `op02` | exterior | 1 | 0 / 0 | 0 / 0 | 0 | MAPINFO 1; worlds.js | `confirmed` |
 | `Q100` | Thousand White Quarter | — | `s2d3q100`; `s2d4q100` | exterior | 0 | 0 / 0 | 0 / 0 | 0 | worlds.js | `confirmed` |
@@ -159,7 +159,7 @@ original native location name.
 | `QTB3` | Thunder House | — | `s2d3qtb3` | exterior | 0 | 0 / 0 | 0 / 0 | 0 | worlds.js | `confirmed` |
 | `QTB4` | Fighting Place | — | `s2d3qtb4` | exterior | 0 | 0 / 0 | 0 / 0 | 0 | worlds.js | `confirmed` |
 | `TATQ` | Tattoo Parlor | Dobuita | `tatq` | interior | 3 | 3 / 3 | 3 / 1 | 1 | MAPINFO 3; maps.csv; schedule 1; worlds.js | `confirmed` |
-| `TERY` | New Yokosuka Harbor | Harbor | — | — | 1 | 1 / 0 | 0 / 0 | 0 | MAPINFO 1; maps.csv | `confirmed` |
+| `TERY` | Mad Angels Warehouse; New Yokosuka Harbor | Harbor | `tery` | interior | 1 | 1 / 0 | 0 / 0 | 0 | MAPINFO 1; maps.csv; worlds.js | `confirmed` |
 | `TOFB` | Unidentified scene TOFB | — | `s2d2tofb` | exterior | 0 | 0 / 0 | 0 / 0 | 0 | worlds.js | `confirmed` |
 | `TOKI` | Russiya China Shop | Dobuita | — | — | 2 | 2 / 6 | 0 / 0 | 0 | MAPINFO 2; maps.csv | `confirmed` |
 | `WB00` | Scarlet Hills | — | `s2d2wb00`; `s2wb00` | exterior | 0 | 0 / 0 | 0 / 0 | 0 | worlds.js | `confirmed` |
@@ -186,7 +186,7 @@ original native location name.
 | `WTA0` | Da Yuan Apartments | — | `s2d2wta0`; `s2wta0` | exterior; interior | 0 | 0 / 0 | 0 / 0 | 0 | worlds.js | `confirmed` |
 | `YD01` | Iwao Trains Young Ryo | — | `yd01` | exterior | 1 | 1 / 1 | 0 / 0 | 0 | MAPINFO 1; worlds.js | `confirmed` |
 | `YD8S` | unresolved | — | — | — | 1 | 0 / 0 | 0 / 0 | 0 | MAPINFO 1 | `unresolved` |
-| `YDB1` | Hazuki Residence Basement | Hazuki Residence | — | — | 2 | 4 / 6 | 0 / 0 | 0 | MAPINFO 2; maps.csv | `confirmed` |
+| `YDB1` | Hazuki Residence Basement | Hazuki Residence | `ydb1` | interior | 2 | 4 / 6 | 0 / 0 | 0 | MAPINFO 2; maps.csv; worlds.js | `confirmed` |
 | `YDMA` | Hazuki Residence Exterior | Yamanose | — | — | 1 | 2 / 4 | 0 / 0 | 0 | MAPINFO 1; maps.csv | `confirmed` |
 | `YMQB` | Unidentified scene YMQB | — | `s2d2ymqb` | exterior | 0 | 0 / 0 | 0 / 0 | 0 | worlds.js | `confirmed` |
 | `YQ14` | Heartbeats Bar Exterior Alley QTE | Dobuita | `yq14` | exterior | 1 | 0 / 0 | 0 / 0 | 0 | MAPINFO 1; maps.csv; worlds.js | `confirmed` |

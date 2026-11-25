@@ -3,8 +3,8 @@ import { nativeFacialAssetForBody } from "../cutscenes/NativeCutsceneFacialAsset
 
 /** Voice-owned adapter for conversations; deformation stays in the shared renderer. */
 export class NativeVoiceFacialPresentation {
-  constructor({ scene, getActor, catalog, loadAsset, createPresentation = createNativeAseqFacialPresentation }) {
-    Object.assign(this, { scene, getActor, catalog, loadAsset, createPresentation });
+  constructor({ scene, getActor, catalog, loadAsset, speakWithStagedFace, createPresentation = createNativeAseqFacialPresentation }) {
+    Object.assign(this, { scene, getActor, catalog, loadAsset, speakWithStagedFace, createPresentation });
     this.cache = new Map();
     this.active = null;
   }
@@ -15,6 +15,11 @@ export class NativeVoiceFacialPresentation {
     const actor = this.getActor(tag);
     if (!message.lipSync || !actor?.model) return false; // Includes off-stage telephone voices.
     const model = actor.model;
+    const releaseStagedVoice=this.speakWithStagedFace?.(tag,model,message.lipSync,audio);
+    if(releaseStagedVoice){
+      this.active={releaseStagedVoice};
+      return true;
+    }
     const definition = nativeFacialAssetForBody(tag, model.modelCode, this.catalog);
     const key = `${tag}:${model.modelCode || "embedded"}`;
     let faces = this.cache.get(key);
@@ -63,6 +68,7 @@ export class NativeVoiceFacialPresentation {
   stop() {
     const owner = this.active;
     this.active = null;
+    owner?.releaseStagedVoice?.();
     if (owner?.ready) {
       owner.faces.end(owner);
       owner.faces.reset();

@@ -1,0 +1,375 @@
+{
+  "schema": "new-yokosuka-unavailable-voice-source-audit-v1",
+  "scope": "Exact case-insensitive source IDs in all named AFS members and IDX0 voice keys in the three extracted US Dreamcast discs. An absent ID does not identify a replacement recording or establish intended silence.",
+  "discs": [
+    {
+      "disc": 1,
+      "afsArchives": 110,
+      "afsMembers": 16296,
+      "unnamedMembers": 0,
+      "idx0Tables": 107,
+      "idx0VoiceEntries": 15279,
+      "nonVoiceIndexPaths": [
+        "data/SCENE/01/STREAM/HUMANS.IDX"
+      ],
+      "directorySha256": "233710aef6108b00b059432d516e527c9e62e8e0bacd2758ac067e56297adf43"
+    },
+    {
+      "disc": 2,
+      "afsArchives": 125,
+      "afsMembers": 13615,
+      "unnamedMembers": 0,
+      "idx0Tables": 124,
+      "idx0VoiceEntries": 12566,
+      "nonVoiceIndexPaths": [
+        "data/SCENE/02/STREAM/HUMANS.IDX"
+      ],
+      "directorySha256": "699b56ec763ac4b4b098d41532421d3fcf671027bf3415b56135b7a5bf8fd921"
+    },
+    {
+      "disc": 3,
+      "afsArchives": 142,
+      "afsMembers": 13571,
+      "unnamedMembers": 0,
+      "idx0Tables": 140,
+      "idx0VoiceEntries": 12379,
+      "nonVoiceIndexPaths": [
+        "data/SCENE/03/MFBT/BATTLE70.IDX",
+        "data/SCENE/03/STREAM/HUMANS.IDX"
+      ],
+      "directorySha256": "9b8d8b6a682e25f5cbf8f312cc47a60f2b909a383951ef104dc7c40e2e030623"
+    }
+  ],
+  "voices": [
+    {
+      "id": "01BEDBA004",
+      "requests": [
+        {
+          "package": "bebf",
+          "sourcePath": "/p16/prj16m5/AUTH01/01BEDB/SOUND/01BEDBA004.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01CTSA001",
+      "requests": [
+        {
+          "package": "sailor-chase-intro",
+          "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SOUND/01CTSA001.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01CTSB003",
+      "requests": [
+        {
+          "package": "sailor-chase-intro",
+          "sourcePath": "/p16/prj16m5/AUTH01/01CTS/SOUND/01CTSB003.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01CTSBB001",
+      "requests": [
+        {
+          "package": "sailor-chase-smith",
+          "sourcePath": "/p16/prj16m5/AUTH01/01CTSA/SOUND/01CTSBB001.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01JIMB001",
+      "requests": [
+        {
+          "package": "jimmy-caught",
+          "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMB001.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01JIMBA004",
+      "requests": [
+        {
+          "package": "jimmy-knock",
+          "sourcePath": "/p16/prj16m5/AUTH01/01JIM/SOUND/01JIMBA004.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01JUCEAA026",
+      "requests": [
+        {
+          "package": "djhn",
+          "sourcePath": "/p16/prj16m5/AUTH01/01JUCE/SOUND/01JUCEAA026.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01M046000038",
+      "requests": [
+        {
+          "package": "final-chai-intro",
+          "sourcePath": "/p16/prj16m5/AUTH01/0184/SOUND/01m046000038.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01MIRA006",
+      "requests": [
+        {
+          "package": "family-ine",
+          "sourcePath": "/p16/prj16m5/AUTH01/01MIR/SOUND/01MIRA006.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01MKBD003",
+      "requests": [
+        {
+          "package": "mark-after-work-intro",
+          "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD003.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01MKBD004",
+      "requests": [
+        {
+          "package": "mark-after-work-intro",
+          "sourcePath": "/p16/prj16m5/AUTH01/01MKB/SOUND/01MKBD004.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01NVEA007",
+      "requests": [
+        {
+          "package": "evsn",
+          "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVEA007.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01NVED007",
+      "requests": [
+        {
+          "package": "evsn",
+          "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVED007.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01NVED008",
+      "requests": [
+        {
+          "package": "evsn",
+          "sourcePath": "/p16/prj16m5/AUTH01/01NVE/SOUND/01NVED008.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01TAPC026",
+      "requests": [
+        {
+          "package": "nozomi-rescue",
+          "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPC026.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01TAPH001",
+      "requests": [
+        {
+          "package": "nozomi-rescue",
+          "sourcePath": "/p16/prj16m5/AUTH01/01TAP/SOUND/01TAPH001.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01TLYB007",
+      "requests": [
+        {
+          "package": "terry-final-success",
+          "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SOUND/01TLYB007.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01TLYB008",
+      "requests": [
+        {
+          "package": "terry-final-success",
+          "sourcePath": "/p16/prj16m5/AUTH01/01TLY/SOUND/01TLYB008.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01TLYCA004",
+      "requests": [
+        {
+          "package": "final-encirclement",
+          "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SOUND/01TLYCA004.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01TLYCC001",
+      "requests": [
+        {
+          "package": "final-encirclement",
+          "sourcePath": "/p16/prj16m5/AUTH01/01TLYC/SOUND/01TLYCC001.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "01TOMBB013",
+      "requests": [
+        {
+          "package": "tom-farewell",
+          "sourcePath": "/p16/prj16m5/AUTH01/01TOM/SOUND/01TOMBB013.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "A0114A015",
+      "requests": [
+        {
+          "package": "op00-opening",
+          "sourcePath": "/p16/prj16m5/AUTH01/0114/SOUND/A0114A015.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "A0114A027",
+      "requests": [
+        {
+          "package": "op00-opening",
+          "sourcePath": "/p16/prj16m5/AUTH01/0114/SOUND/A0114A027.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "A0114D014",
+      "requests": [
+        {
+          "package": "op00-opening",
+          "sourcePath": "/p16/prj16m5/AUTH01/0114/SOUND/A0114D014.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "A0159A005",
+      "requests": [
+        {
+          "package": "mirror-meeting",
+          "sourcePath": "/p16/prj16m5/AUTH01/0159/SOUND/A0159A005.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "A0159A010",
+      "requests": [
+        {
+          "package": "mirror-meeting",
+          "sourcePath": "/p16/prj16m5/AUTH01/0159/SOUND/A0159A010.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "A0159A026",
+      "requests": [
+        {
+          "package": "mirror-meeting",
+          "sourcePath": "/p16/prj16m5/AUTH01/0159/SOUND/A0159A026.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "A0159C003",
+      "requests": [
+        {
+          "package": "mirror-meeting",
+          "sourcePath": "/p16/prj16m5/AUTH01/0159/SOUND/A0159C003.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "A0165A008",
+      "requests": [
+        {
+          "package": "boat-ticket-collection",
+          "sourcePath": "/p16/prj16m5/AUTH01/0165/SOUND/A0165A008.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    },
+    {
+      "id": "A0165A009",
+      "requests": [
+        {
+          "package": "boat-ticket-collection",
+          "sourcePath": "/p16/prj16m5/AUTH01/0165/SOUND/A0165A009.aiff"
+        }
+      ],
+      "afsMembers": [],
+      "idxEntries": []
+    }
+  ]
+}

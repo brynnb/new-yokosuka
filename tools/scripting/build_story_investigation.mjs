@@ -109,9 +109,10 @@ for (const route of spec.routes) {
   // Ambient talks cannot settle effects. An explicitly authored repeatable
   // template owns its transactional choices itself (for example, consuming a
   // held item); it must not also declare an unconditional generated reward.
-  const ambientTalk=route.repeatable&&!route.destination&&!route.shop&&route.voiceIds.length>0&&!route.yarnTemplate&&!route.trigger;
+  const ambientDialogue=route.repeatable&&!route.destination&&!route.shop&&route.voiceIds.length>0&&!route.yarnTemplate
+    && (!route.trigger || (route.trigger==="use" && route.object && route.bounds));
   const repeatableTemplate=route.repeatable&&!!route.yarnTemplate&&!route.destination&&!route.shop;
-  if (route.repeatable && ((!route.destination && !route.shop && !ambientTalk && !repeatableTemplate) || route.items?.length || route.grantYen || route.spendYen || route.recordMinutes?.length || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length || ((ambientTalk||repeatableTemplate)&&route.effects.length))) throw Error(`Unsafe repeatable route ${route.id}`);
+  if (route.repeatable && ((!route.destination && !route.shop && !ambientDialogue && !repeatableTemplate) || route.items?.length || route.grantYen || route.spendYen || route.recordMinutes?.length || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length || ((ambientDialogue||repeatableTemplate)&&route.effects.length))) throw Error(`Unsafe repeatable route ${route.id}`);
   if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw Error(`Invalid Story destination ${route.id}`);
   const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...(route.excludedFlags||[]).map(flag=>`flag_set("${flag}")`), ...requiredItems.map(({key,quantity,nativeOwnership})=>nativeOwnership ? `(!has_item("${key}", ${quantity}) && native_value("${nativeOwnership}") == 0)` : `!has_item("${key}", ${quantity})`), ...(route.repeatable ? [] : [`flag_set("${route.completedFlag}")`])];
   for (const address of route.excludedNativeFlags || []) {
@@ -164,7 +165,7 @@ for (const route of spec.routes) {
       if(!/^[a-z][a-z0-9_]*$/.test(key)||!Number.isSafeInteger(quantity)||quantity<1)throw new Error(`Invalid inventory effect in ${route.id}`);
       return `<<give_item "${key}" ${quantity}>>`;
     }),
-    ...(ambientTalk||repeatableTemplate?[]:[route.completedFlag,...route.effects].map(flag=>`<<set_flag "${flag}">>`))];
+    ...(ambientDialogue||repeatableTemplate?[]:[route.completedFlag,...route.effects].map(flag=>`<<set_flag "${flag}">>`))];
   let body;
   if (route.shop) {
     if(!route.repeatable||!route.nativeSources?.length||!route.shop.length)throw Error(`Invalid scroll shop ${route.id}`);

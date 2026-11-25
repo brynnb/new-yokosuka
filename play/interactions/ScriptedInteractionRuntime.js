@@ -246,12 +246,23 @@ export class ScriptedInteractionRuntime {
     this.getMultiplayerClient()?.forcePresence();
     const serverOwnedStoryObject = this.accountSession.character?.playMode === "story"
       && SERVER_OWNED_STORY_OBJECTS.has(`${this.getWorld().nativeArea}:${objectSelector}`);
-    const context = {
-      area: this.getWorld().nativeArea,
-      objectTag,
-      sceneObject: { objectTag, root },
-      nativeContext: this.nativeRoomScriptRuntime.eventContext(),
-    };
+    const area = this.getWorld().nativeArea;
+    const nativeContext = this.nativeRoomScriptRuntime.eventContext();
+    const context = { area, objectTag, sceneObject: { objectTag, root }, nativeContext };
+    // MS8S 0x246ac selects the second envelope's comment from room memory.
+    // The address is forgotten by the native room runtime on unload.
+    if (serverOwnedStoryObject && area === "MS8S") {
+      const field = { offset: 0x20c, width: 1 };
+      if (objectSelector === "FUT1" && (nativeContext.readSceneField(field) & 0x40)) {
+        objectSelector = "FUT1.read";
+      } else if (objectSelector === "FUT0") {
+        context.onStoryComplete = identity => {
+          if (identity.scriptSlug === "story-s1-warehouse-invoice-address" && this.getWorld().nativeArea === area) {
+            nativeContext.writeSceneField({ ...field, value: 0xff });
+          }
+        };
+      }
+    }
     try {
       const result = await this.scriptEventController.start({
         kind: "use",

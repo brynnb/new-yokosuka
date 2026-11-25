@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { NativeStoryScreenFade } from "../play/scripts/NativeStoryScreenFade.js";
 import { AuthoredSceneStagingRuntime } from "../play/scripts/AuthoredSceneStagingRuntime.js";
 import { existsSync, readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -538,9 +539,33 @@ test("Goro's shipped introduction starts, plays the four voices and respects the
   const scene=JSON.parse(readFileSync("play/data/story-goro-guard.generated.json")).scenes[0];
   transaction.area=scene.area;
   runtime.createActorSet=()=>({load:async()=>{},actors:runtime.actors,clear(){}});
+  const goroModel={modelCode:"KMB_L"},ryoModel={modelCode:"YKC_M"};
+  runtime.actors.activeActor=tag=>({model:tag==="GORO"?goroModel:ryoModel});
+  const faceCalls=[];
+  runtime.createFaces=(definitions,actors,signal)=>{
+    assert.equal(definitions.GORO.bodyModelCode,goroModel.modelCode);
+    assert.equal(actors,runtime.actors);
+    assert.equal(signal.aborted,false);
+    return {prepare:async({actors})=>faceCalls.push(["prepare",...actors]),
+      begin:(_owner,tags)=>faceCalls.push(["begin",...tags]),clear:()=>{faceCalls.push(["clear"]);},
+      apply:(_owner,{frame,voiceCues})=>{faceCalls.push(["frame",frame,voiceCues.get("GORO")?.positionSeconds]);return true;}};
+  };
   const motions=[];
   runtime.motionRuntime.applyNamed=(_model,selection,elapsed)=>{motions.push({name:selection.name,elapsed});return true};
   assert.equal(await runtime.play({kind:"scene-staging-start",scene},transaction),true);
+  assert.deepEqual(faceCalls.slice(0,2),[["prepare","AKIR","GORO"],["begin","AKIR","GORO"]]);
+  const audio={currentTime:.25};
+  assert.equal(runtime.speakWithStagedFace("AKIR",goroModel,{},audio),null);
+  assert.equal(runtime.speakWithStagedFace("GORO",{}, {},audio),null);
+  const releaseVoice=runtime.speakWithStagedFace("GORO",goroModel,{},audio);
+  runtime.update(transaction,0);
+  assert.deepEqual(faceCalls.at(-1),["frame",0,.25]);
+  audio.currentTime=.35;
+  runtime.update(transaction,0);
+  assert.deepEqual(faceCalls.at(-1),["frame",0,.35]);
+  releaseVoice();
+  runtime.update(transaction,0);
+  assert.deepEqual(faceCalls.at(-1),["frame",0,undefined]);
   const advanceTo=seconds=>runtime.update(transaction,seconds-runtime.active.elapsed);
   for(const {atSeconds} of scene.dialogueCues){
     if(atSeconds>6.5&&runtime.active.elapsed<5.9){
@@ -553,6 +578,25 @@ test("Goro's shipped introduction starts, plays the four voices and respects the
   }
   advanceTo(scene.durationSeconds);
   assert.equal(await runtime.play({kind:"scene-staging-finish",scene},transaction),true);
+  assert.deepEqual(faceCalls.at(-1),["clear"]);
+});
+
+test("cancelling a stage while its face loads prevents late head acquisition",async()=>{
+  const {runtime,transaction,scene}=harness();
+  scene.facialAssets={AKIR:{bodyModelCode:"AKI_L"}};
+  let enter,finish;
+  const preparing=new Promise(resolve=>{enter=resolve;});
+  const loaded=new Promise(resolve=>{finish=resolve;});
+  const calls=[];
+  runtime.createFaces=()=>({prepare:()=>{enter();return loaded;},
+    begin:()=>calls.push("begin"),clear:()=>{calls.push("clear");}});
+  const started=runtime.play({kind:"scene-staging-start",scene},transaction);
+  await preparing;
+  runtime.cancel(transaction);
+  finish();
+  await assert.rejects(started,/released/);
+  assert.deepEqual(calls,["clear"]);
+  assert.equal(runtime.active,null);
 });
 
 test("an original first-frame voice cue is available as soon as its scene starts", async () => {
@@ -584,20 +628,128 @@ test("timed scroll dialogue joins the same staged performance and releases a pen
   assert.equal(runtime.active,null);
 });
 
-test("the shipped upstairs office stages the three original actors and moves camera 1106", async () => {
-  const {runtime,transaction}=harness();
-  const scene=scenes.scenes.find(scene=>scene.id==="s1.ms8s.warehouse-eight-office");
-  transaction.area=scene.area;
-  runtime.createActorSet=()=>({load:async()=>{},actors:runtime.actors,clear(){}});
-  const motions=new Set(),cameras=[];
-  runtime.motionRuntime.applyNamed=(_model,motion)=>{motions.add(motion.name);return true;};
-  runtime.camera.apply=(...args)=>{cameras.push(args);return true;};
-  assert.equal(await runtime.play({kind:"scene-staging-start",scene},transaction),true);
-  runtime.update(transaction,1.5);
-  runtime.update(transaction,scene.durationSeconds-1.5);
-  assert.deepEqual(scene.actors.map(actor=>actor.tag),["AKIR","TMHN","TKSA"]);
-  assert.deepEqual([...motions].sort(),["AKI_KIKU_HANASI_TATIGIKI_F_0100","OTH_MAN_TALK_AGOTE_LP","OTH_MAN_TALK_ATAMAKAKI_LP"]);
-  assert.ok(cameras.length>=3);
-  assert.notDeepEqual(cameras.at(0),cameras.at(-1));
-  assert.equal(await runtime.play({kind:"scene-staging-finish",scene},transaction),true);
+test("the warehouse director follows the incoming camera, seven stages and the native staff clock", async () => {
+  const {runtime,transaction,calls}=harness();
+  const id="s1.ms8s.warehouse-eight-office";
+  transaction.area="MS8S";
+  const stages=new Map(scenes.scenes.filter(s=>s.continuationGroup===id).map(s=>[s.id,s]));
+  const models=Object.fromEntries(["AKIR","TMHN","TKSA"].map(tag=>[tag,{tag}]));
+  const placements={},samples={};
+  runtime.actors.activeActor=tag=>({model:models[tag]});
+  runtime.actors.applyTransform=(_owner,tag,pose)=>{placements[tag]=pose;return true;};
+  runtime.motionRuntime.applyNamed=(actor,motion,time)=>{samples[actor.tag]={motion:motion.name,time};return true;};
+  const initial={positionX:20,positionY:6,positionZ:140,targetX:18,targetY:5.5,targetZ:137,roll:0,perspective:70};
+  let view;
+  runtime.camera.currentPose=()=>initial;
+  runtime.camera.apply=(_owner,pose)=>{view=pose;return true;};
+  runtime.capturePlayerState=()=>({position:[-19.5,4.275,137.75]});
+  const start=async suffix=>{
+    const scene=stages.get(suffix?id+"."+suffix:id);
+    assert.equal(await runtime.play({kind:suffix?"scene-staging-transition":"scene-staging-start",scene},transaction),true);
+  };
+  const tick=seconds=>runtime.update(transaction,seconds);
+  await start("");
+  assert.deepEqual(view,initial);
+  assert.equal(placements.AKIR.x,19.5);
+  tick(2);
+  assert.ok(Math.abs(placements.AKIR.x-16.15)<0.00001);
+  assert.ok(view.positionX>15&&view.positionX<16);
+  await start("lean");
+  assert.equal(samples.AKIR.time,40/30);
+  tick(4);
+  assert.ok(Math.abs(samples.AKIR.time-160/30)<1e-8);
+  await start("staff");
+  assert.equal(samples.AKIR.time,160/30);
+  tick(350/30);
+  assert.ok(Math.abs(view.positionX-14.43)<0.02);
+  assert.equal(samples.TKSA.time,175/30);
+  const staffAtHold=samples.TKSA.time, tomohito=samples.TMHN.time;
+  await start("staff-hold");
+  const before={...view};
+  tick(2);
+  assert.notDeepEqual(view,before);
+  assert.equal(samples.TKSA.time,staffAtHold);
+  assert.equal(samples.TMHN.time,tomohito+2);
+  await start("listen-out");
+  tick(1);
+  const lastStaff={...view};
+  await start("reaction");
+  assert.equal(view.positionX,lastStaff.positionX);
+  assert.equal(view.targetZ,lastStaff.targetZ);
+  tick(5);
+  assert.ok(Math.abs(view.positionX-14.72)<0.02);
+  let alpha,travelCover=false;
+  runtime.screenFade=new NativeStoryScreenFade({present:(_owner,value)=>{alpha=value;},
+    clear:()=>{alpha=0;},handoff:()=>{assert.equal(alpha,255);travelCover=true;}});
+  const departure=start("departure");
+  assert.equal(alpha,0);
+  tick(29/30);
+  assert.equal(runtime.active.scene.id,id+".reaction");
+  assert.equal(alpha,246);
+  tick(1/30);assert.equal(alpha,255);
+  await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(runtime.active.scene.id,id+".departure");
+  assert.equal(alpha,255);
+  tick(29/30);assert.equal(alpha,8);
+  tick(1/30);
+  await departure;assert.equal(alpha,0);
+  assert.deepEqual([placements.AKIR.x,placements.AKIR.z,placements.AKIR.rotationY],[17.25,152.25,225]);
+  assert.ok(view.positionZ>150&&view.positionY>5);
+  const finish=runtime.play({kind:"scene-staging-finish",scene:stages.get(id+".departure")},transaction);
+  tick(59/30);
+  assert.equal(alpha,250);assert.equal(travelCover,false);
+  tick(1/30);
+  assert.equal(await finish,true);assert.equal(travelCover,true);
+  assert.equal(calls.filter(c=>c==="actors-begin").length,1);
+  assert.equal(calls.filter(c=>c==="camera-end").length,1);
+});
+
+test("cancelling before or after covered reposition releases the foreground and the original actor lease",async()=>{
+  for (const afterReposition of [false,true]) {
+    const {runtime,scene,transaction,calls}=harness();
+    scene.continuationGroup="fade-test";
+    let visibleAlpha=0, transfers=0;
+    runtime.screenFade=new NativeStoryScreenFade({
+      present:(_tx,alpha)=>{visibleAlpha=alpha;},clear:()=>{visibleAlpha=0;},handoff:()=>transfers++,
+    });
+    await runtime.play({kind:"scene-staging-start",scene},transaction);
+    const departure={...scene,id:"departure",screenFades:{
+      beforeReposition:{durationFrames:30,fromAlpha:0,toAlpha:255},
+      afterReposition:{durationFrames:30,fromAlpha:255,toAlpha:0},
+    }};
+    const entering=runtime.play({kind:"scene-staging-transition",scene:departure},transaction);
+    if(afterReposition) {
+      runtime.update(transaction,1);
+      await new Promise(resolve=>setImmediate(resolve));
+    }
+    runtime.update(transaction,0.5);
+    assert.equal(visibleAlpha,127);
+    assert.equal(runtime.active.scene.id,afterReposition?"departure":scene.id);
+    const rejected=assert.rejects(entering,{name:"AbortError"});
+    assert.equal(runtime.cancel(transaction),true);
+    await rejected;
+    assert.equal(visibleAlpha,0);
+    assert.equal(runtime.active,null);
+    assert.equal(transfers,0);
+    assert.equal(calls.filter(value=>value==="camera-end").length,1);
+  }
+});
+
+test("an unavailable departure motion under full black releases the failed scene",async()=>{
+  const {runtime,scene,transaction,calls}=harness();
+  scene.continuationGroup="fade-test";
+  let alpha=0;
+  runtime.screenFade=new NativeStoryScreenFade({present:(_tx,a)=>{alpha=a;},clear:()=>{alpha=0;},
+    handoff:()=>assert.fail("a failed reposition must not transfer")});
+  await runtime.play({kind:"scene-staging-start",scene},transaction);
+  runtime.motionRuntime.loadNamedSelections=async()=>{throw Error("missing departure motion");};
+  const entering=runtime.play({kind:"scene-staging-transition",scene:{...scene,id:"departure",screenFades:{
+    beforeReposition:{durationFrames:30,fromAlpha:0,toAlpha:255},
+    afterReposition:{durationFrames:30,fromAlpha:255,toAlpha:0},
+  }}},transaction);
+  const rejected=assert.rejects(entering,/missing departure motion/);
+  runtime.update(transaction,1);assert.equal(alpha,255);
+  await rejected;
+  assert.equal(alpha,0);assert.equal(runtime.active,null);
+  assert.equal(calls.filter(value=>value==="camera-end").length,1);
 });

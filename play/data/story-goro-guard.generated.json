@@ -13,6 +13,68 @@
       "durationSeconds": 14.666666666666666,
       "playThroughFinish": true,
       "waitForMotionCompletion": false,
+      "facialAssets": {
+        "AKIR": {
+          "actorTag": "AKIR",
+          "bodyModelCode": "YKC_M",
+          "faceCode": "YKC",
+          "attachmentRenderKey": -67,
+          "faceRootRenderKey": 3,
+          "eyeRenderKeys": [
+            77,
+            78
+          ],
+          "model": {
+            "path": "play/assets/introduction/op00/faces/YKC_F.MT5",
+            "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/YKC_F.MT5",
+            "byteLength": 150664,
+            "sha256": "839c307a88fadb82877a7a68c3545b7ea90c6a2b4af3b6a48b6b62eec39af0b6"
+          },
+          "table": {
+            "path": "play/assets/introduction/op00/faces/YKC_FTBL.BIN",
+            "sourcePath": "extracted_files/data/SCENE/01/MODEL/FACE/YKC_FTBL.BIN",
+            "byteLength": 5916,
+            "sha256": "1b0f9d6317bcda987476eb99043e203575eed68920c93a0adf91482d918abd67"
+          },
+          "poses": {
+            "path": "play/assets/cutscenes/native-faces/native-talk-poses.generated.json",
+            "byteLength": 2656134,
+            "sha256": "60091887074feb56e1b22d9a482a62936270018c2899b16fe2661e7a25a840bb",
+            "generatedBy": "tools/animation/extract_native_face_poses.py",
+            "actorTag": "AKIR"
+          }
+        },
+        "GORO": {
+          "actorTag": "GORO",
+          "faceCode": "KMB",
+          "bodyModelCode": "KMB_L",
+          "attachmentRenderKey": -67,
+          "faceRootRenderKey": 3,
+          "eyeRenderKeys": [
+            77,
+            78
+          ],
+          "model": {
+            "path": "play/assets/harbor/goro-guard-distraction/KMB_F.MT5",
+            "sourcePath": "disc2/SCENE/02/MODEL/FACE/KMB_F.MT5",
+            "sha256": "f42e297d0dc3ac1b07a9d918f11ae9bf0cf0396cf95d843df440be548b871606",
+            "byteLength": 81364
+          },
+          "table": {
+            "path": "play/assets/harbor/goro-guard-distraction/KMB_FTBL.BIN",
+            "sourcePath": "disc2/SCENE/02/MODEL/FACE/KMB_FTBL.BIN",
+            "sha256": "3e7ee20e4bc9dda2868de6265176e892682a0561f587625bae1035a0a6084cb8",
+            "byteLength": 6768
+          },
+          "poses": {
+            "actorTag": "GORO",
+            "path": "play/assets/harbor/goro-guard-distraction/goro-talk-poses.generated.json",
+            "sha256": "a12f3d24ad63fa711113eb54bfcca7c03e15addff302f39343678c049f933331",
+            "byteLength": 296006,
+            "generatedBy": "tools/animation/extract_native_face_poses.py"
+          }
+        }
+      },
       "isolateScheduledActors": true,
       "actorDefinitions": [
         {

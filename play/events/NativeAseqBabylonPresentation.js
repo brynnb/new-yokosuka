@@ -967,6 +967,14 @@ export class NativeAseqBabylonCamera {
     return true;
   }
 
+  currentPose() {
+    const eye = this.camera.position;
+    const target = this.camera.getTarget();
+    return {positionX:-eye.x,positionY:eye.y,positionZ:eye.z,
+      targetX:-target.x,targetY:target.y,targetZ:target.z,
+      roll:0,perspective:this.camera.fov*180/Math.PI};
+  }
+
   apply(owner, pose) {
     if (this.active?.owner !== owner) return false;
     const frame = nativeEventCameraBrowserFrame({

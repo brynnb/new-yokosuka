@@ -28,10 +28,23 @@ function validateTrack(track,fields,duration,label){
   }
 }
 
+// A native camera or approach can start at the live frame. Keep its captured
+// keys on this lease so cancellation and a second entry get independent tracks.
+function seedStartingKeys(track, values) {
+  const channels = {...track.channels};
+  for (const [key,value] of Object.entries(values)) {
+    const curve = channels[key];
+    if (!curve || !Number.isFinite(value)) throw Error("Invalid starting key " + key);
+    channels[key] = {...curve, values:[value,...curve.values.slice(1)]};
+  }
+  return {channels};
+}
+
 export class AuthoredSceneStagingRuntime {
-  constructor({ actors, camera, updateGameplayCamera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, createSceneObjects, createActorSet, createTelephoneReceiver, dialogueAudio, currentMeshes, acquireEnvironmentIsolation, acquireActorIsolation }) {
+  constructor({ actors, camera, screenFade, updateGameplayCamera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, createSceneObjects, createActorSet, createFaces, createTelephoneReceiver, dialogueAudio, currentMeshes, acquireEnvironmentIsolation, acquireActorIsolation }) {
     this.actors = actors;
     this.camera = camera;
+    this.screenFade = screenFade;
     this.updateGameplayCamera = updateGameplayCamera;
     this.motionRuntime = motionRuntime;
     this.capturePlayerState = capturePlayerState;
@@ -39,6 +52,7 @@ export class AuthoredSceneStagingRuntime {
     this.createAttachedObjects = createAttachedObjects;
     this.createSceneObjects = createSceneObjects;
     this.createActorSet = createActorSet;
+    this.createFaces = createFaces;
     this.createTelephoneReceiver = createTelephoneReceiver;
     this.dialogueAudio = dialogueAudio;
     this.cameraPools = new StagedCameraPool();
@@ -61,7 +75,19 @@ export class AuthoredSceneStagingRuntime {
         owner.resolveAt = end;
         await new Promise((resolve, reject) => { owner.resolve = resolve; owner.reject = reject; });
       }
-      return this.active === owner && (dialogueCue || this.release(transaction));
+      if (this.active !== owner) return false;
+      if (dialogueCue) return true;
+      const exit = owner.scene.screenFades?.beforeTravel;
+      if (!exit) return this.release(transaction);
+      try {
+        await this.playScreenFade(owner,exit);
+        owner.controller.signal.throwIfAborted();
+        this.screenFade.handoff(transaction);
+        return this.release(transaction,true);
+      } catch (error) {
+        this.cancel(transaction);
+        throw error;
+      }
     }
     const continuing=sequence.kind==="scene-staging-transition";
     if ((!continuing&&sequence.kind!=="scene-staging-start")||(!continuing&&this.active)) return false;
@@ -73,10 +99,13 @@ export class AuthoredSceneStagingRuntime {
       || scene.actors.some(actor => !/^[A-Z0-9_]{4}$/.test(actor.tag)
         || (actor.presented !== undefined && typeof actor.presented !== "boolean")
         || !actor.motion?.bank || !actor.motion?.name
+        || (actor.playbackRate != null && (!Number.isFinite(actor.playbackRate) || actor.playbackRate < 0))
+        || (actor.continueMotion && (!continuing || actor.motionStartSeconds != null))
+        || (actor.movementFromPlayer && (actor.tag !== "AKIR" || !actor.movement || !actor.pose || continuing))
         || (actor.baseMotion != null && (!actor.baseMotion.bank || !actor.baseMotion.name))
         || (actor.motionStartSeconds != null && (!Number.isFinite(actor.motionStartSeconds) || actor.motionStartSeconds < 0))
         || (actor.pose && ["x", "y", "z", "rotationX", "rotationY", "rotationZ"].some(key => !Number.isFinite(actor.pose[key]))))
-      || (scene.useGameplayCamera ? !this.updateGameplayCamera || scene.camera || scene.cameraTrack || scene.cameraPool
+      || (scene.continueCamera ? (!continuing || scene.camera || scene.cameraTrack || scene.cameraPool || scene.useGameplayCamera) : scene.useGameplayCamera ? !this.updateGameplayCamera || scene.camera || scene.cameraTrack || scene.cameraPool
         : ["positionX", "positionY", "positionZ", "targetX", "targetY", "targetZ", "roll", "perspective"].some(key => !Number.isFinite(scene.camera?.[key])))) {
       throw new Error(`Invalid authored scene staging ${scene.id}`);
     }
@@ -125,6 +154,11 @@ export class AuthoredSceneStagingRuntime {
       validateTrack(actor.movement,POSE_FIELDS,scene.durationSeconds,`${scene.id}/${actor.tag}`);
       if(actor.endMotion&&(!Number.isFinite(scene.durationSeconds)||!actor.endMotion.bank||!actor.endMotion.name))throw Error(`Invalid staged end motion ${scene.id}/${actor.tag}`);
     }
+    if (scene.cameraFromCurrent && (!scene.cameraTrack || scene.continueCamera
+      || !Array.isArray(scene.cameraFromCurrent) || !scene.cameraFromCurrent.length
+      || scene.cameraFromCurrent.some(field => !CAMERA_FIELDS.includes(field)))) {
+      throw Error(`Invalid live camera keys for ${scene.id}`);
+    }
     validateTrack(scene.cameraTrack,CAMERA_FIELDS,scene.durationSeconds,`${scene.id}/camera`);
     if (scene.cameraPool) {
       const pool=scene.cameraPool;
@@ -149,6 +183,7 @@ export class AuthoredSceneStagingRuntime {
       ||scene.continuationGroup!==this.active.scene.continuationGroup
       ||JSON.stringify(scene.actors.map(a=>a.tag))!==JSON.stringify(this.active.scene.actors.map(a=>a.tag))
       ||JSON.stringify(scene.packageActors)!==JSON.stringify(this.active.scene.packageActors)
+      ||JSON.stringify(scene.facialAssets)!==JSON.stringify(this.active.scene.facialAssets)
       ||JSON.stringify(scene.sceneObjects)!==JSON.stringify(this.active.scene.sceneObjects)
       ||Boolean(scene.isolateResidentWorld)!==Boolean(this.active.scene.isolateResidentWorld)
       ||Boolean(scene.isolateScheduledActors)!==Boolean(this.active.scene.isolateScheduledActors)
@@ -160,6 +195,11 @@ export class AuthoredSceneStagingRuntime {
     this.active = owner;
     const { signal } = owner.controller;
     try {
+      if (scene.screenFades) {
+        if (!continuing || !this.screenFade) throw new Error("Story screen fade requires a continuous staged owner");
+        await this.playScreenFade(owner,scene.screenFades.beforeReposition);
+        signal.throwIfAborted();
+      }
       if(!continuing&&scene.packageActors){
         if(!this.createActorSet)throw Error(`No package actor loader for ${scene.id}`);
         owner.actorSet=this.createActorSet(scene.packageActors,signal);
@@ -172,12 +212,46 @@ export class AuthoredSceneStagingRuntime {
       signal.throwIfAborted();
       await this.motionRuntime.loadNamedSelections(scene.actors.flatMap(actor => [actor.motion,...(actor.baseMotion?[actor.baseMotion]:[]),...(actor.motionCues || []).map(cue=>cue.motion),...(actor.endMotion?[actor.endMotion]:[])]));
       signal.throwIfAborted();
+      if(!continuing && scene.facialAssets){
+        const tags=Object.keys(scene.facialAssets);
+        if(!this.createFaces || !tags.length || tags.some(tag=>!scene.actors.some(actor=>actor.tag===tag)))
+          throw Error(`Invalid staged face binding for ${scene.id}`);
+        owner.faces=this.createFaces(scene.facialAssets,owner.actors,signal);
+        await owner.faces.prepare({actors:tags});
+        signal.throwIfAborted();
+      }
       if(this.active!==owner)return false;
       for (const audio of owner.soundCueAudio || []) this.dialogueAudio.stopOneShot(audio);
       owner.soundCueAudio = [];
       owner.nextSoundCue = 0;
       owner.scene=scene;owner.elapsed=0;owner.voiceCuePlayed=false;
-      owner.shot=scene.cameraPool ? this.cameraPools.select(scene.cameraPool,transaction) : scene;
+      if (!scene.continueCamera) {
+        owner.shot = scene.cameraPool ? this.cameraPools.select(scene.cameraPool,transaction) : scene;
+        owner.cameraElapsed = 0;
+        if (scene.cameraFromCurrent) {
+          const current = continuing ? owner.lastCameraPose : this.camera.currentPose();
+          const initial = Object.fromEntries(scene.cameraFromCurrent.map(key=>[key,current[key]]));
+          owner.shot = {...owner.shot,cameraTrack:seedStartingKeys(owner.shot.cameraTrack,initial)};
+        }
+      }
+      owner.movement = new Map();
+      owner.startOffsets = new Map();
+      for (const actor of scene.actors) {
+        if (actor.movementFromPlayer) {
+          const [x,y,z] = owner.snapshot.position;
+          const heading = Math.atan2(actor.pose.x + x, actor.pose.z - z) * 180 / Math.PI;
+          // Keep interpolation on the short arc when the approach crosses north.
+          const turn = ((heading - actor.pose.rotationY + 540) % 360) - 180;
+          const initial = {x: -x, y, z, rotationY: actor.pose.rotationY + turn};
+          owner.movement.set(actor.tag, seedStartingKeys(actor.movement, initial));
+        }
+        if (actor.continueMotion) {
+          const last = owner.lastSamples?.get(actor.tag);
+          if (!last || last.motion.bank!==actor.motion.bank || last.motion.name!==actor.motion.name) throw Error("Unavailable continued motion " + actor.tag);
+          owner.startOffsets.set(actor.tag,last.elapsed);
+        }
+      }
+      owner.lastSamples = scene.continuationGroup ? new Map(scene.actors.map(actor=>[actor.tag,{}])) : null;
       owner.durationSeconds = scene.waitForMotions
         ? Math.max(...scene.actors.map(actor => this.motionRuntime.namedDurationSeconds(actor.motion)))
         : scene.durationSeconds;
@@ -218,6 +292,11 @@ export class AuthoredSceneStagingRuntime {
       if(!continuing){
         owner.actors.begin(owner, scene.actors.map(actor => actor.tag));
         owner.actorsBegun = true;
+        if(owner.faces){
+          owner.faces.begin(owner,Object.keys(scene.facialAssets));
+          owner.faceSeconds=0;
+          owner.faceVoices=new Map();
+        }
         this.camera.begin(owner);
         owner.cameraBegun = true;
         if(scene.telephoneReceiver){
@@ -235,6 +314,10 @@ export class AuthoredSceneStagingRuntime {
       }
       owner.objects?.beginActivity({activityId:scene.id,actors:scene.actors.map(a=>a.tag)});
       if (!this.update(transaction, 0)) throw new Error(`Cannot present scene ${scene.id}`);
+      if (scene.screenFades) {
+        await this.playScreenFade(owner,scene.screenFades.afterReposition);
+        signal.throwIfAborted();
+      }
       owner.resolveAt = scene.waitForMotionCompletion !== false ? owner.durationSeconds : scene.voiceCue?.dialogueAtSeconds;
       if(owner.resolveAt)await new Promise((resolve,reject)=>{owner.resolve=resolve;owner.reject=reject;});
       return true;
@@ -248,22 +331,47 @@ export class AuthoredSceneStagingRuntime {
     }
   }
 
+  playScreenFade(owner,cue) {
+    return this.screenFade.play(owner.transaction,cue,owner.controller.signal);
+  }
+
+  speakWithStagedFace(tag, model, lipSync, audio) {
+    const owner=this.active;
+    if(!owner?.faceVoices || !Object.hasOwn(owner.scene.facialAssets,tag)
+      || owner.actors.activeActor(tag)?.model!==model)return null;
+    const cue={command:{audio:{lipSync}}, get positionSeconds(){return Math.max(0,audio.currentTime||0);}};
+    owner.faceVoices.set(tag,cue);
+    return ()=>{
+      if(owner.faceVoices.get(tag)===cue)owner.faceVoices.delete(tag);
+    };
+  }
+
   update(transaction, deltaSeconds) {
     const owner = this.active;
     if (!owner || owner.transaction !== transaction || !owner.actorsBegun) return true;
+    this.screenFade?.update(transaction,deltaSeconds);
     owner.elapsed += Math.max(0, deltaSeconds);
+    owner.cameraElapsed += Math.max(0, deltaSeconds);
     for (const actor of owner.scene.actors) {
       const model = owner.actors.activeActor(actor.tag)?.model;
-      if(actor.movement&&!owner.actors.applyTransform(owner,actor.tag,evaluateAuthActor(actor.movement,owner.elapsed)))return false;
+      const movement = owner.movement.get(actor.tag) ?? actor.movement;
+      if(movement&&!owner.actors.applyTransform(owner,actor.tag,evaluateAuthActor(movement,owner.elapsed)))return false;
       const ended=actor.endMotion&&owner.elapsed>=owner.durationSeconds;
       const cue = actor.motionCues?.findLast(cue => cue.atSeconds <= owner.elapsed);
       const activeMotion = ended ? actor.endMotion : cue?.motion ?? actor.motion;
       const clipStart = ended ? owner.durationSeconds : cue?.atSeconds ?? 0;
-      const offset = ended ? 0 : cue ? cue.startSeconds ?? 0 : actor.motionStartSeconds ?? 0;
+      const startSeconds = owner.startOffsets.get(actor.tag) ?? actor.motionStartSeconds ?? 0;
+      const offset = ended ? 0 : cue ? cue.startSeconds ?? 0 : startSeconds;
       // A carried prop can hold the upper body while the native walk drives the legs.
       const layers = !ended && !cue && actor.baseMotion
         ? {baseSelection:actor.baseMotion, baseProvidesTimeline:true} : undefined;
-      const elapsed = (owner.elapsed - clipStart) * (ended ? 1 : cue?.playbackRate ?? 1) + offset;
+      const rate = ended ? 1 : cue?.playbackRate ?? actor.playbackRate ?? 1;
+      const elapsed = (owner.elapsed - clipStart) * rate + offset;
+      if (owner.lastSamples) {
+        const sample=owner.lastSamples.get(actor.tag);
+        sample.motion=activeMotion;
+        sample.elapsed=elapsed;
+      }
       if (!this.motionRuntime.applyNamed(model, activeMotion, elapsed, layers)) return false;
       // Gameplay skips its post-pose pass while a story presentation owns the
       // actor. Reuse that pass here, or acquired cloth stays at the old pose.
@@ -279,8 +387,16 @@ export class AuthoredSceneStagingRuntime {
       }else if(!owner.telephoneReceiver.update(JOMO_TELEPHONE_RECEIVER,owner))return false;
     }
     if(owner.objects?.update(Math.floor(owner.elapsed*30))===false)return false;
+    if(owner.faces){
+      owner.faceSeconds+=Math.max(0,deltaSeconds);
+      if(!owner.faces.apply(owner,{frame:Math.floor(owner.faceSeconds*30),voiceCues:owner.faceVoices}))return false;
+    }
     if(owner.scene.useGameplayCamera)this.updateGameplayCamera(deltaSeconds, owner.elapsed === 0);
-    else if(!this.camera.apply(owner, owner.shot.cameraTrack?evaluateAuthCamera(owner.shot.cameraTrack,owner.elapsed):owner.shot.camera))return false;
+    else {
+      const pose = owner.shot.cameraTrack ? evaluateAuthCamera(owner.shot.cameraTrack,owner.cameraElapsed) : owner.shot.camera;
+      if (!this.camera.apply(owner,pose)) return false;
+      owner.lastCameraPose = pose;
+    }
     const sounds = owner.scene.soundCues || [];
     while (owner.nextSoundCue < sounds.length && sounds[owner.nextSoundCue].atSeconds <= owner.elapsed) {
       const sound = sounds[owner.nextSoundCue++];
@@ -297,7 +413,7 @@ export class AuthoredSceneStagingRuntime {
     return true;
   }
 
-  release(transaction) {
+  release(transaction, keepTravelCover = false) {
     const owner = this.active;
     if (!owner || owner.transaction !== transaction) return false;
     this.active = null;
@@ -309,6 +425,7 @@ export class AuthoredSceneStagingRuntime {
     // cancel instead of acknowledging an incomplete restoration.
     const errors = [];
     for (const [enabled, cleanup] of [
+      [!keepTravelCover && !!this.screenFade, () => this.screenFade.cancel(transaction)],
       ...(owner.soundCueAudio || []).map(audio => [true, () => this.dialogueAudio.stopOneShot(audio)]),
       [!!owner.voiceAudio, () => this.dialogueAudio.stopOneShot(owner.voiceAudio)],
       [!!owner.restoreObjects, () => owner.restoreObjects()],
@@ -317,6 +434,7 @@ export class AuthoredSceneStagingRuntime {
       [!!owner.receiverAttached,()=>owner.telephoneReceiver.detach(JOMO_TELEPHONE_RECEIVER,owner)],
       [!!owner.residentIsolation,()=>owner.residentIsolation.restore()],
       [owner.cameraBegun, () => this.camera.end(owner)],
+      [!!owner.faces, () => owner.faces.clear()],
       [owner.actorsBegun, () => owner.actors.end(owner, "stopped")],
       [!!owner.releaseActors,()=>owner.releaseActors()],
       [!!owner.actorSet, () => owner.actorSet.clear()],
@@ -330,5 +448,9 @@ export class AuthoredSceneStagingRuntime {
     return true;
   }
 
-  cancel(transaction) { return this.release(transaction); }
+  cancel(transaction) {
+    if (this.active?.transaction === transaction) return this.release(transaction);
+    this.screenFade?.cancel(transaction);
+    return false;
+  }
 }

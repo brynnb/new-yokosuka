@@ -1142,6 +1142,16 @@ Nozomi's `NZM_L` body is not automatically applied to `NZM_M`. Newly bound
 model, FTBL and TALK resources are added to the package's asset dependencies.
 Unknown pairs remain unbound rather than borrowing a visually similar face.
 
+The independent [original voice-directory check](../../tools/evidence/unavailable-cutscene-voice-sources.json) compared the 30 unavailable AUTH voice IDs with all 43,482 named members in 377 US Dreamcast AFS archives. It also checked all 40,224 logical voice entries in 371 native IDX0 tables, including keys that point across streams. There were zero exact matches. Each affected package keeps its original cue position. The IDs alone do not establish whether an author omitted a recording, renamed it, or intended silence.
+
+To reproduce on an extracted three-disc checkout, generate the presentation audit below, then run:
+
+```sh
+python3 -m tools.cutscenes.audit_unavailable_voice_sources \
+  --presentation-audit tests/reports/cutscene-presentation.json \
+  --output tools/evidence/unavailable-cutscene-voice-sources.json
+```
+
 Run `node scripts/testing/run-tests.mjs script tools/cutscenes/audit_cutscene_presentation.mjs` to audit all packages,
 including Story-only scenes. Its ignored report under `tests/reports/` separates
 on-stage and remote speakers, detailed face bindings, missing local assets,

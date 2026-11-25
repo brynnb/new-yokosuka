@@ -34,6 +34,7 @@ import {StoryNavigationRuntime} from "./StoryNavigationRuntime.js";
 import {StoryDrivingRuntime} from "./StoryDrivingRuntime.js";
 import {StoryForkliftChallengeRuntime} from "./StoryForkliftChallengeRuntime.js";
 import {NativeAseqSceneObjectRuntime} from "../events/NativeAseqSceneObjectRuntime.js";
+import { NativeStoryScreenFade } from "./NativeStoryScreenFade.js";
 import {NativeAseqPackageActorRuntime} from "../events/NativeAseqPackageActorRuntime.js";
 import { createNativeAseqBabylonActors, createNativeAseqBabylonCamera } from "../events/NativeAseqBabylonPresentation.js";
 import { NativeAseqAttachedObjectRuntime } from "../events/NativeAseqAttachedObjectRuntime.js";
@@ -41,11 +42,13 @@ import { createNativeCutsceneSceneObjectLoader } from "../cutscenes/NativeCutsce
 import { createNativeCutsceneCharacterLoader } from "../cutscenes/NativeCutsceneCharacterLoader.js";
 import { fetchAssetBuffer } from "../../src/AssetCache.js";
 import { runtimeAssetUrl } from "../../src/RuntimeAssets.js";
+import { createNativeAseqFacialPresentation } from "../events/NativeAseqFacialPresentation.js";
 import { NativeVoiceFacialPresentation } from "../dialogue/NativeVoiceFacialPresentation.js";
 import nativeFaceCatalog from "../assets/cutscenes/native-faces/manifest.generated.json" with { type: "json" };
 
 export function createScriptEventAssembly({
   storyFrameHandoff,
+  screenFadeAdapters,
   acquireEnvironmentIsolation,
   nativeRuntime,
   cutsceneDirector,
@@ -189,6 +192,7 @@ export function createScriptEventAssembly({
     onIntent:(action,token,intent)=>controller?.drivingResponse(action,token,intent),
   });
   const sceneStagingRuntime = new AuthoredSceneStagingRuntime({
+        screenFade: screenFadeAdapters && new NativeStoryScreenFade(screenFadeAdapters),
         updateGameplayCamera: (delta, entering) => {
           const controller = getController();
           if (entering) {
@@ -210,6 +214,9 @@ export function createScriptEventAssembly({
         createAttachedObjects,
         createSceneObjects,
         createActorSet,
+        createFaces:(definitions,actors,signal)=>createNativeAseqFacialPresentation({
+          scene, actors, definitions, loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal}),
+        }),
         createTelephoneReceiver: resolveActor => createTelephoneReceiverBabylonAdapter({
           resolveObjectRoot: resolveTelephoneRoot,
           resolveActorControl: ({actorCode,renderKey}) => {
@@ -257,6 +264,7 @@ export function createScriptEventAssembly({
     resolveSpeaker: tag => resolveScriptEventSpeaker(tag, sceneStagingRuntime.active?.scene),
     facialPresentation: new NativeVoiceFacialPresentation({
       scene, catalog: nativeFaceCatalog,
+      speakWithStagedFace:(...args)=>sceneStagingRuntime.speakWithStagedFace(...args),
       loadAsset: path => fetchAssetBuffer(runtimeAssetUrl(path)),
       getActor: tag => {
         const model = tag === "AKIR" ? getPlayerModel()

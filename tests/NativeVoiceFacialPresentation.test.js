@@ -87,3 +87,18 @@ test("preparation errors remain observable and can be retried; off-stage voices 
   assert.equal(await presentation.start(message, {}), false);
   assert.equal(calls.length, count);
 });
+
+
+test("a staged speaker retains the source head across the other speaker's reply",async()=>{
+  const actor={model:{modelCode:"KMB_L"}};
+  const calls=[];
+  const voice=new NativeVoiceFacialPresentation({scene:{},catalog:{},getActor:()=>actor,
+    speakWithStagedFace:(tag,model,lipSync,audio)=>{
+      assert.equal(tag,"GORO");assert.equal(model,actor.model);assert.equal(lipSync,message.lipSync);
+      calls.push(audio);return ()=>calls.push("release voice");
+    },createPresentation:()=>assert.fail("a second facial owner would hide the first head")});
+  const audio={currentTime:0};
+  assert.equal(await voice.start({...message,speakerCode:"GORO"},audio),true);
+  voice.stop();voice.clear();
+  assert.deepEqual(calls,[audio,"release voice"]);
+});
