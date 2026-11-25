@@ -387,14 +387,21 @@ python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area D000 
 node tools/cutscenes/build_buss_activity_pack.mjs
 ```
 
-The same callback extractor handles FIXO initialization before the first ASEQ
-start and resets on its completed exit path. Both require a unique control-flow
-path; an unresolved conditional/timed call is not assigned frame zero. EVSN's
-aftermath uses this for the child's toy airplane:
+In the Nozomi Rescue aftermath shared by both EVSN routes, the original JD00
+callback attaches the toy airplane (AIRO) to KKEN before playback. Its FIXO
+reset at `0x72ee2` releases the plane when the callback counter reaches 1060
+or the activity ends, whichever comes first. At the original 1080-frame
+duration the hand is free for the final 20 frames. The extractor follows the
+counter initialization, one-tick updates, equality test and both paths into
+the reset. In both Radeon runs the original plane remained attached at frame
+1059 and released at frame 1060. The [rendered samples](../../tools/evidence/evsn-airplane-release-hardware-2026-11-25.json)
+include vertex counts and replay results. Rebuild the original callback and
+its player package with these commands.
 
 ```sh
 python3 -m tools.cutscenes.extract_native_aseq_callback_ir --disc 1 --area JD00 --map-entry 0x76b90 --callback 0x729e0 --output tools/evidence/evsn-aftermath-native-callback-ir.json
 node tools/cutscenes/build_evsn_activity_pack.mjs
+node tools/runtime-assets.mjs update play/assets/sakuragaoka/evsn/manifest.json
 python3 -m tools.cutscenes.build_native_activity_preview_programs
 npm run build:native-event-program-pack
 ```

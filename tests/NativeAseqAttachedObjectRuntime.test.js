@@ -597,3 +597,43 @@ test("standalone placement data rejects missing scope, invalid intervals and amb
   assert.throws(()=>make([{...pose,position:[1,NaN,3]}]),/finite/);
   assert.throws(()=>make([pose,pose]),/duplicate/);
 });
+
+test("EVSN keeps the original scene airplane on Kyosuke's wrist through 1059 and releases it on 1060", async t => {
+  const {readFileSync} = await import("node:fs");
+  const pack = new URL("../play/assets/sakuragaoka/evsn/", import.meta.url);
+  const manifest = JSON.parse(readFileSync(new URL("manifest.json",pack)));
+  const activity = manifest.activities.find(entry => entry.activityId === "EVSN/SEQDATA3.AUTH");
+  const engine = new BABYLON.NullEngine(), scene = new BABYLON.Scene(engine);
+  t.after(() => { scene.dispose(); engine.dispose(); });
+  const loader = new Mt5Loader(scene);
+  loader.readTextures = () => {};
+  const bytes = readFileSync(new URL("OMHT201G.CHRM",pack));
+  const meshes = await loader.load(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength));
+  assert.ok(scene.meshes.some(mesh => mesh.getTotalVertices() > 0));
+  const plane = new BABYLON.TransformNode("AIRO",scene);
+  plane._filename = manifest.attachedObjects.AIRO.browserFilename;
+  for (const mesh of meshes) if (!mesh.parent) mesh.parent = plane;
+  const body = new BABYLON.TransformNode("KKEN",scene);
+  const runtime = new NativeAseqAttachedObjectRuntime({
+    definitions:manifest.attachedObjects,
+    resolveSceneObject:tag => tag==="AIRO" ? {root:plane} : null,
+    resolveActor:tag => tag==="KKEN" ? {root:body,model:{renderRoot:body,
+      latestControllerFamily:{nodes:[{type:12,index:0}]},
+      latestControllerMatrices:[BABYLON.Matrix.Identity().asArray()]}} : null,
+    instantiateAsset:() => {throw new Error("the existing airplane should be borrowed");},
+  });
+  await runtime.load(meshes);
+  runtime.beginActivity(activity);
+  runtime.update(1058);
+  const before = plane.position.x;
+  body.position.x += 3;
+  assert.equal(runtime.update(1059),true);
+  assert.ok(plane.isEnabled() && Math.abs(plane.position.x-before-3)<1e-4);
+  const attached = plane.position.clone();
+  body.position.x += 3;
+  assert.equal(runtime.update(1060),true);
+  assert.equal(plane.isEnabled(),false);
+  assert.deepEqual(plane.position.asArray(),attached.asArray());
+  assert.equal(runtime.update(activity.durationFrames),true);
+  assert.equal(plane.isEnabled(),false);
+});

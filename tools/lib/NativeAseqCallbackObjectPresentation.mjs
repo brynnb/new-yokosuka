@@ -30,6 +30,106 @@ function float32(word) {
   return new DataView(bytes).getFloat32(0, true);
 }
 
+// Some callbacks release an object on either natural activity completion or
+// an earlier local-frame check. Prove both routes and the once-per-tick clock.
+function countedCleanupFrame(nativeFunction, operation, durationFrames) {
+  if (operation.semanticId !== "resolved-object-fixo-reset" || !Number.isSafeInteger(durationFrames)
+    || durationFrames < 0 || !nativeFunction) return null;
+  const blocks = new Map(nativeFunction.blocks.map(block => [block.id, block]));
+  const entries = blockActions(nativeFunction);
+  const target = entries.find(({ action }) => action === operation)?.block;
+  const controls = entries.filter(({ action }) => action.operationId === 0x50);
+  const poll = controls.find(({ action }) => action.arguments[0]?.value === 0xffffffff);
+  const comparison = poll?.action.resultComparison;
+  if (!target || controls.length !== 2 || comparison?.comparison !== "equal"
+    || comparison.constant !== 0 || !comparison.resolvedBranch) return null;
+  const {comparisonTrueSuccessor: finished, comparisonFalseSuccessor: playing} = comparison.resolvedBranch;
+  const aliases = blocks.get(playing)?.actions.filter(action => action.kind === "frameFieldExpressionWrite"
+    && action.width === 4 && action.expression?.kind === "frame-field" && action.expression.width === 4);
+  if (aliases?.length !== 1) return null;
+  const { offset: alias, expression: { offset: clock } } = aliases[0];
+  const overlaps = (offset, width, targetOffset) => Number.isSafeInteger(offset)
+    && Number.isSafeInteger(width) && offset < targetOffset + 4 && offset + width > targetOffset;
+  const writes = offset => entries.filter(({ action }) => overlaps(action.offset, action.width, offset));
+  if (entries.some(({ action }) => action.arguments?.some(argument => argument.kind === "frame-address"
+    && [alias, clock].some(offset => overlaps(argument.offset, 4, offset))))) return null;
+  const branchBlock = nativeFunction.blocks.find(block =>
+    Number(block.id) <= Number(comparison.compareFileOffset)
+    && Number(comparison.compareFileOffset) < Number(block.endFileOffsetExclusive));
+  if (poll.block.successors.length !== 1 || poll.block.successors[0] !== branchBlock?.id
+    || branchBlock.successors.length !== 2 || finished === playing
+    || !branchBlock.successors.includes(finished) || !branchBlock.successors.includes(playing)) return null;
+  const clockWrites = writes(clock);
+  const zero = clockWrites.find(({ action }) => action.kind === "frameFieldWrite" && action.offset === clock && action.width === 4 && action.value === 0);
+  const step = clockWrites.find(({ action }) => action.kind === "frameFieldExpressionWrite" && action.offset === clock && action.width === 4
+    && action.expression?.kind === "add" && action.expression.left?.kind === "frame-field"
+    && action.expression.left.offset === clock && action.expression.left.width === 4
+    && action.expression.right?.kind === "constant" && action.expression.right.value === 1);
+  const timers = entries.filter(({ action }) => action.semanticId === "native-scheduler-countdown");
+  const timer = timers[0], delay = timer?.action.runtimeDispatch?.arguments?.[0];
+  if (writes(alias).length !== 1 || clockWrites.length !== 2 || !zero || !step || timers.length !== 1
+    || step.block !== timer.block || step.block.actions.indexOf(step.action) >= step.block.actions.indexOf(timer.action)
+    || delay?.kind !== "constant" || delay.value !== 1) return null;
+
+  const start = controls.find(entry => entry !== poll);
+  const selection = start.action.arguments[0];
+  if (!(selection?.kind === "frame-field" || (selection?.kind === "constant" && selection.value < 0x80000000))) return null;
+  const prefix = [];
+  for (let id = nativeFunction.entryBlock; id !== poll.block.id;) {
+    const block = blocks.get(id);
+    if (!block || block.successors.length !== 1 || prefix.includes(block) || block === timer.block || block === target) return null;
+    prefix.push(block);
+    id = block.successors[0];
+  }
+  if (!prefix.includes(zero.block) || prefix.indexOf(start.block) < prefix.indexOf(zero.block)
+    || (start.block === zero.block && start.block.actions.indexOf(start.action) < start.block.actions.indexOf(zero.action))) return null;
+
+  // Every possible successor must reach the specified stop before another
+  // scheduler tick, poll or reset. Unknown paths and cycles are inconclusive.
+  const allReach = (from, to, next = block => block.successors) => {
+    const memo = new Map();
+    const visit = id => {
+      const block = blocks.get(id);
+      if (!block) return false;
+      if (block === to) return true;
+      if (block === poll.block || block === timer.block || block === target) return false;
+      if (memo.has(id)) return memo.get(id);
+      memo.set(id, false);
+      const successors = next(block);
+      const reached = successors.length > 0 && successors.every(visit);
+      memo.set(id, reached);
+      return reached;
+    };
+    return visit(from);
+  };
+  if (!allReach(finished, target) || !timer.block.successors.length
+    || !timer.block.successors.every(id => allReach(id, poll.block))) return null;
+  const equality = block => {
+    const [test, ...others] = block.frameFieldComparisons || [];
+    const branch = test?.resolvedBranch;
+    if (others.length || test?.comparison !== "cmp/eq" || test.fieldOffset !== alias || test.loadWidth !== 4
+      || !Number.isSafeInteger(test.constant) || test.constant < 0 || !branch || block.successors.length !== 2
+      || !block.successors.includes(branch.comparisonTrueSuccessor) || !block.successors.includes(branch.comparisonFalseSuccessor)
+      || branch.comparisonTrueSuccessor === branch.comparisonFalseSuccessor) return null;
+    return test;
+  };
+  for (const guard of nativeFunction.blocks) {
+    const test = equality(guard);
+    if (!test || !allReach(test.resolvedBranch.comparisonTrueSuccessor, target)) continue;
+    const frame = test.constant;
+    const atFrame = block => {
+      const check = equality(block);
+      if (!check) return block.successors;
+      return [check.constant === frame ? check.resolvedBranch.comparisonTrueSuccessor : check.resolvedBranch.comparisonFalseSuccessor];
+    };
+    // At this frame every live branch resets. At all other frames even
+    // unknown secondary conditions must return to the same one-tick wait.
+    if (allReach(playing, target, atFrame) && allReach(playing, timer.block, block => block === guard
+      ? [test.resolvedBranch.comparisonFalseSuccessor] : block.successors)) return Math.min(frame, durationFrames);
+  }
+  return null;
+}
+
 function operationFrame(bytes, callbackFunction, operation, nativeFunction = null, durationFrames = null, functions = []) {
   try {
     return nativeAseqGoverningActivityFrame(
@@ -71,6 +171,8 @@ function operationFrame(bytes, callbackFunction, operation, nativeFunction = nul
     // to the terminal boundary, not an invented early detach frame.
     if (Number.isSafeInteger(durationFrames)
       && isNativeAseqTerminalCall(nativeFunction, operation.callFileOffset)) return durationFrames;
+    const counted = countedCleanupFrame(nativeFunction, operation, durationFrames);
+    if (counted !== null) return counted;
     throw error;
   }
 }

@@ -56,7 +56,7 @@ test("EVSN's repeat belongs to the interstitial loop, not the linear cinematic r
   }
 });
 
-test("EVSN binds the existing airplane to the child's hand before aftermath playback and releases at its end", () => {
+test("EVSN binds the existing airplane to the child's hand before aftermath playback and releases on the native counter or earlier completion", () => {
   const ir = JSON.parse(readFileSync("tools/evidence/evsn-aftermath-native-callback-ir.json"));
   const args = {
     bytes: readFileSync("extracted_files/data/SCENE/01/JD00/MAPINFO.BIN"),
@@ -64,13 +64,29 @@ test("EVSN binds the existing airplane to the child's hand before aftermath play
     durationFrames: 1080, activitySlot: 2, objectTags: ["AIRO"],
   };
   const cues = extractNativeAseqCallbackObjectPresentation(args).attachedObjectCues;
-  assert.deepEqual(cues.map(c => [c.frame, c.action]), [[0, "attach"], [1080, "detach"]]);
+  assert.deepEqual(cues.map(c => [c.frame, c.action]), [[0, "attach"], [1060, "detach"]]);
   assert.deepEqual(cues[0].rotationRaw, [35503, 29309, 48241]);
   const prop = manifest.attachedObjects.AIRO;
   assert.equal(prop.sceneObject, true);
   assert.deepEqual(prop.attachments.map(c => [c.activityId, c.frame, c.parentActorTag, c.controlId]), [
-    ["EVSN/SEQDATA3.AUTH", 0, "KKEN", 12], ["EVSN/SEQDATA3.AUTH", 1080, undefined, undefined],
+    ["EVSN/SEQDATA3.AUTH", 0, "KKEN", 12], ["EVSN/SEQDATA3.AUTH", 1060, undefined, undefined],
   ]);
+  // The same FIXO reset is reached either by the finished poll or by the
+  // active callback when its zero-based one-tick counter reaches 1060.
+  const extract = overrides => extractNativeAseqCallbackObjectPresentation({...args,...overrides}).attachedObjectCues;
+  assert.equal(extract({durationFrames:900})[1].frame,900);
+  const moved = structuredClone(ir.function);
+  moved.blocks.find(b=>b.id==="0x72e68").frameFieldComparisons[0].constant=1043;
+  assert.equal(extract({nativeFunction:moved})[1].frame,1043);
+  for (const invalidate of [
+    fn=>{fn.blocks.find(b=>b.id==="0x72e9c").actions[0].expression.right.value=2;},
+    fn=>{fn.blocks.find(b=>b.id==="0x72bac").frameFieldComparisons[0].constant=1060;},
+    fn=>{fn.blocks.find(b=>b.id==="0x72c44").successors.push("unresolved-path");},
+  ]) {
+    const invalid=structuredClone(ir.function);
+    invalidate(invalid);
+    assert.throws(()=>extract({nativeFunction:invalid}),/no governing ASEQ frame/);
+  }
   const changed = structuredClone(ir.function);
   changed.blocks[0].successors.push("unknown-conditional-path");
   assert.throws(() => extractNativeAseqCallbackObjectPresentation({ ...args, nativeFunction: changed }), /no governing ASEQ frame/);

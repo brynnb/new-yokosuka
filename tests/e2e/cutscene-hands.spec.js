@@ -130,6 +130,40 @@ for (const [id, leadSlot] of [["S1-EVSN-01", 0], ["S1-EVSN-02", 3]]) {
           await page.screenshot({ path: testInfo.outputPath(`hands-${slot}-${sampleFrame}.png`),
             style: "#dialogue-overlay, #dialogue-controls-hud { visibility: hidden !important; }" });
         }
+        const aftermath=evsn.activities.find(activity=>activity.slot===2);
+        await page.waitForFunction(id=>window.__cutsceneBrowserProbe.activity.id===id
+          && window.__cutsceneBrowserProbe.activity.frame>=1030,aftermath.activityId,{timeout:completionTimeout});
+        report.airplaneRelease=await page.evaluate(id=>new Promise((resolve,reject)=>{
+          const samples=[];
+          function sample(){
+            const activity=window.__cutsceneBrowserProbe.activity;
+            if(activity.id!==id){reject(new Error("EVSN aftermath ended before airplane sampling"));return;}
+            if(activity.frame>=1057 && activity.frame!==samples.at(-1)?.frame){
+              const plane=window.__readCutscenePropPresentation().find(prop=>prop.actorTag==="AIRO");
+              samples.push({frame:activity.frame,root:plane.rootId,originalRoot:plane.sceneRootId,
+                enabled:plane.enabled,visibleVertices:plane.meshes.filter(mesh=>mesh.enabled && mesh.visible)
+                  .reduce((total,mesh)=>total+mesh.vertices,0),
+                parent:plane.attachment?.binding.parentActorTag??null,
+                wrist:plane.attachment?.binding.controlId??null,position:plane.position});
+            }
+            if(activity.frame>=1062){resolve(samples);return;}
+            requestAnimationFrame(sample);
+          }
+          sample();
+        }),aftermath.activityId);
+        // A local-original-media fixture can expose its decoded playback
+        // clocks here, keeping its diagnostics entirely within the page.
+        const ambient = await page.evaluate(() => window.__evsnVerifiedAmbientPlayback);
+        if (ambient) report.verifiedAmbientPlayback = ambient;
+        await testInfo.attach("evsn-airplane-release",{body:JSON.stringify(report.airplaneRelease),contentType:"application/json"});
+        console.info("EVSN original airplane release",id,JSON.stringify(report.airplaneRelease));
+        const held=report.airplaneRelease.find(sample=>sample.frame===1059);
+        const released=report.airplaneRelease.find(sample=>sample.frame>=1060);
+        expect(held).toMatchObject({parent:"KKEN",wrist:12,enabled:true});
+        expect(held.visibleVertices).toBeGreaterThan(0);
+        expect(held.originalRoot).toBe(held.root);
+        expect(released).toMatchObject({frame:1060,parent:null,wrist:null,enabled:false,visibleVertices:0,
+          root:held.root,originalRoot:held.root});
       },
     });
     const expected = [leadSlot, 1, 2].flatMap(slot => ordered(evsn.activities.find(a => a.slot === slot)))
