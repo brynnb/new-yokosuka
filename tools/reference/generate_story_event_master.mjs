@@ -73,10 +73,14 @@ for (const [alias, target] of Object.entries(inventory.routeAliases)) {
   assert(assigned.has(target), `alias target is not an inventoried route: ${target}`);
 }
 for (const id of Object.keys(inventory.routeAdapters)) assign(id);
+// Keep the stable ID of an original event when its first Story route is connected.
+for (const event of inventory.events) {
+  if (event.route) assign(event.route);
+  add(event.route ? {...event, binding: `route:${event.route}`} : event);
+}
 assert.deepEqual(routeList.map(route => route.id).filter(id => !assigned.has(id)), [],
   "new Story routes need an explicit inventory entry, alias or adapter classification");
 for (const id of Object.keys(inventory.splits)) assert(assigned.has(id), `unbound split ${id}`);
-for (const event of inventory.events) add(event);
 
 // Lessons and scrolls use the authoritative content list, not a copied list
 // that can silently omit the next optional lesson. Their original locations

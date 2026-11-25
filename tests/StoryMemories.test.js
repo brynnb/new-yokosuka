@@ -109,3 +109,31 @@ test("the kitten and Nozomi shrine film uses its own original sequence and audio
   assert.equal(scene.durableEffects,"forbidden");assert.equal(scene.returnPlayerState,true);
   assert.equal(scene.cutscene.worldId,"yamanose");
 });
+
+test("the altar film uses the Disc 2 lilies, their two textures and the Ryo/Ine-san voice bank", () => {
+  const manifest = read("play/assets/hazuki/nozomi-flowers/manifest.json");
+  const audio = read("public/audio/world/nozomi-flowers/manifest.json");
+  const [activity] = manifest.activities;
+  assert.equal(activity.activityId, "01BTU/FLOWERS.AUTH");
+  assert.equal(activity.binding.nativeSlot, 36);
+  assert.equal(activity.durationFrames, 1248);
+  assert.deepEqual(activity.actors, ["AKIR", "HANA", "INE_"]);
+  assert.deepEqual(activity.nativeFaceControllerCues.map(cue => cue.frame), [30, 48, 51, 55]);
+  assert.equal(manifest.sceneObjects.HANA.model, "BUTM409G");
+  assert.equal(manifest.sceneObjects.BASE.model, "BUTM408G");
+  assert.equal(manifest.sceneObjects.BASE.objectTag, "HANA");
+  const textures = fs.readFileSync(new URL(`../${manifest.sceneObjects.HANA.textureAssetPath}`, import.meta.url));
+  const textureIds = [];
+  for (let offset = 0; offset < textures.length; offset += 12 + textures.readUInt32LE(offset + 8)) {
+    textureIds.push(textures.subarray(offset, offset + 8).toString("hex"));
+  }
+  assert.deepEqual(textureIds.sort(), ["af89b3616464365f", "eca9c861ab38365f"]);
+  assert.deepEqual(audio.voices.map(v => v.speakerId), ["AKIR", "AKIR", "INE_", "INE_", "INE_"]);
+  assert.ok(audio.voices.every(v => v.displayText && v.lipSync));
+  assert.equal(audio.sounds.length, 10);
+  for (const entry of [...manifest.outputs, ...audio.voices, ...audio.sounds]) {
+    const bytes = fs.readFileSync(new URL(`../${entry.path || entry.asset}`, import.meta.url));
+    assert.equal(bytes.length, entry.byteLength);
+    assert.equal(createHash("sha256").update(bytes).digest("hex"), entry.sha256);
+  }
+});

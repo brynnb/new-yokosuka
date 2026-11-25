@@ -37,6 +37,7 @@ import {verifyKittenNozomi} from "./story-kitten-nozomi.js";
 import {verifyKittenSearch} from "./story-kitten-search.js";
 import {verifyYamanoseFootball} from "./story-yamanose-football.js";
 import {verifyNozomiParkConfession} from "./story-nozomi-park-confession.js";
+import {verifyNozomiFlowers} from "./story-nozomi-flowers.js";
 import {verifyNozomiParkTears} from "./story-nozomi-park-tears.js";
 import {verifyEriNozomiPark} from "./story-eri-nozomi-park.js";
 import {verifyFriendsVisit} from "./story-friends-visit.js";
@@ -1767,6 +1768,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     if(process.env.NEW_YOKOSUKA_DOJO_ITEMS_E2E === "true"){
       await verifyDojoItems(page,testInfo,character);
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_NOZOMI_FLOWERS_E2E === "true") {
+      test.setTimeout(420_000);
+      await verifyNozomiFlowers(page, testInfo, character, enterStoryWorld);
+      expect(errors).toEqual([]);
+      return;
     }
     if(process.env.NEW_YOKOSUKA_HANDGUARD_FAMILY_E2E === "true"){
       await verifyHandguardFamily(page,testInfo,character);

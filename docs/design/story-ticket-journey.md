@@ -329,6 +329,32 @@ natural ending restored the avatar, camera and controls without altering the
 isolated save. This does not rerun the payment/progression chain or establish
 all body gestures and props. See the [shared facial implementation](../implementation/cutscenes.md#character-faces).
 
+## Nozomi's flowers for Iwao
+
+After Jimmy promises the ticket at Asia Travel, Ryo can visit the family altar
+on the same personal Story day. Walk along the corridor toward the altar room.
+Ryo notices the new flowers and Ine-san explains who brought them. The visit
+is optional. The snow dream, morning call and ticket storyline proceed independently.
+The original visit and its day window are documented in the
+[recorded altar encounter](https://www.phantomriverstone.com/2018/11/the-hazuki-family-altar-part-one.html).
+
+Disc 2 JOMO function `0x41a72` checks Ryo inside the rectangle, sets bank bit
+`2:924` and dispatches room command 32. The browser uses the original XZ bounds
+and restricts height to the ground floor. Yarn checks the saved day of Jimmy's
+promise and the two original exclusion bits, `2:924` and `2:380`. It commits
+the scene receipt and `2:924` together after completion or explicit skip.
+Cancellation leaves both available for a retry. Bit `2:924` also has another
+writer later in the game, so the named receipt records this particular visit.
+
+The room selects native slot 36. The 1,248-frame film uses the original
+Ryo and Ine-san motion, camera, five English lines with lip cues, ten distinct
+sound effects and BGM070. The animated `BUTM409G` lilies carry both original
+textures. During playback the scene hides the everyday `BUTM408G` arrangement,
+then restores the room when control returns. Two gaze requests lack verified
+timing. The exact native stage effects and persistence of the bouquet after
+the encounter remain open. The existing audio and asset tools rebuild the
+private package with `npm run build:nozomi-flowers`.
+
 ## The snow dream and Jimmy's morning call
 
 Official imports: `jimmy-night-dream`, `jimmy-morning-call`.

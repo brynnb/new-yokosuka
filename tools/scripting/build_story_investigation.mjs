@@ -110,6 +110,10 @@ for (const route of spec.routes) {
   if (route.repeatable && ((!route.destination && !route.shop && !ambientTalk && !repeatableTemplate) || route.items?.length || route.grantYen || route.spendYen || route.recordMinutes?.length || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length || ((ambientTalk||repeatableTemplate)&&route.effects.length))) throw Error(`Unsafe repeatable route ${route.id}`);
   if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw Error(`Invalid Story destination ${route.id}`);
   const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...(route.excludedFlags||[]).map(flag=>`flag_set("${flag}")`), ...requiredItems.map(({key,quantity})=>`!has_item("${key}", ${quantity})`), ...(route.repeatable ? [] : [`flag_set("${route.completedFlag}")`])];
+  for (const address of route.excludedNativeFlags || []) {
+    if (!/^2:\d+$/.test(address) || !route.nativeSources?.length) throw Error(`Invalid native flag exclusion in ${route.id}`);
+    gates.push(`native_value("${address}") != 0`);
+  }
   for(const pending of route.blockedWhilePending||[]){
     if(![pending.started,pending.finished].every(flag=>/^story\.s1\.[a-z0-9.-]+$/.test(flag)))throw Error(`Invalid pending Story gate in ${route.id}`);
     gates.push(`(flag_set("${pending.started}") && !flag_set("${pending.finished}"))`);

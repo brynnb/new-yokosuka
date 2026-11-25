@@ -6,7 +6,7 @@ This is the central inventory of events that interrupt ordinary Shenmue I explor
 
 **365 main-list entries; all 12 former expansion groups now have detailed records.** The expansions contain 134 source-backed topics/responses, 40 encounter-specific review cases and 7 links to already-listed events. A separate [conversation appendix](shenmue1-story-conversations.generated.md) enumerates 4173 native conversation entries, including 21 holiday-related branches. These overlapping categories must not be added into a claimed unique-event total.
 
-All 196 current authored investigation routes and all 17 taught/scroll moves are accounted for. This is still not a certified census of every original-game event: exact native triggers, unassigned resources, semantic overlaps and original failure presentations remain open below.
+All 197 current authored investigation routes and all 17 taught/scroll moves are accounted for. This is still not a certified census of every original-game event: exact native triggers, unassigned resources, semantic overlaps and original failure presentations remain open below.
 
 ## Counting and scope
 
@@ -23,7 +23,7 @@ Status has separate implementation, rendered presentation, and connected Story-p
 
 **Binding recorded; not classified** means a project route, package, move or item reference exists but has not yet been assigned an explicit implementation status. **Not classified** does not mean a check failed or was never performed: earlier evidence may already appear in the event note and still needs structured review. **Unmapped** means no binding has been established in this inventory, not proof the feature is absent. **Gap** names a known omission; **Expanded** links to family details without implying implementation.
 
-Structured status has been reviewed for 172 of 377 main-list rows (including 12 family rows). The rest still require classification against their evidence; do not treat their default labels as an audit result.
+Structured status has been reviewed for 173 of 377 main-list rows (including 12 family rows). The rest still require classification against their evidence; do not treat their default labels as an audit result.
 
 Every row starts with presentation **unreviewed** unless a specific result is recorded. Check these independently before marking an event complete: actors; mouths/faces; objects and handovers; body/hand motion; cameras; voice/music/effects; input/QTE/combat; durable outcome; skip/cancel/retry/restoration. Use **not applicable** only after checking the event. Playing to completion or saving a notebook entry does not clear the presentation checks.
 
@@ -399,7 +399,7 @@ The route links retain native resource locators, hashes, voices and adaptation n
 | `optional.mai-report` | Report back to Hisaka | Conversation — Hokuhoku stand | [walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404) | Implementation: Unmapped<br>Presentation: Not classified<br>Progression: Not classified |
 | `optional.mai-lunches` | Deliver lunches and overhear guard staffing | Interaction — Old district | [gamespot](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf) | Implementation: Unmapped<br>Presentation: Not classified<br>Progression: Not classified |
 | `optional.shozo-introduction` | Shozo and the homeless-person dispute | Encounter — Harbor | [walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404) | Implementation: Unmapped<br>Presentation: Not classified<br>Progression: Not classified |
-| `optional.nozomi-flowers` | Nozomi's flowers for Iwao | Cutscene — Home; 01BTU | [afs-guide](https://shenmuesubs.sourceforge.net/howto/shenmue1/addons/S1_JPG_083.pdf) | Implementation: Unmapped<br>Presentation: Not classified<br>Progression: Not classified |
+| `optional.nozomi-flowers` | Nozomi's flowers for Iwao | Cutscene — Hazuki family altar on the day Jimmy promises the ticket | [routes](../../tools/scripting/story-investigation.json), [packages](../../play/cutscenes/nativeCutscenePackages.js), [walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404), [hazuki-altar](https://www.phantomriverstone.com/2018/11/the-hazuki-family-altar-part-one.html); `route:nozomi-flowers` | Implementation: Implemented<br>Presentation: Rendered (partial)<br>Progression: Connected (partial)<br>Evidence: An isolated Radeon browser run with Jimmy's promise and day seeded crossed the original JOMO corridor bounds, cancelled, retried, played the entire 01BTU film and reloaded the once-only result. Reviewed natural shots show the white lilies at the altar and Ine-san speaking with Ryo. The native completion bit and named receipt settle without changing money or inventory. Original gaze timing and post-film flower persistence remain unverified. |
 | `optional.nozomi-prayer` | Nozomi prays at Yamanose | Conversation — 01JIN | [afs-guide](https://shenmuesubs.sourceforge.net/howto/shenmue1/addons/S1_JPG_083.pdf) | Implementation: Unmapped<br>Presentation: Not classified<br>Progression: Not classified |
 | `optional.nozomi-phone-farewell` | Final optional telephone conversation with Nozomi | Phone call — After rescuing Nozomi | [secrets](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/15626) | Implementation: Unmapped<br>Presentation: Not classified<br>Progression: Not classified |
 | `optional.nozomi-day-farewell` | Optional final town conversation with Nozomi | Conversation — Last free time | [secrets](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/15626) | Implementation: Unmapped<br>Presentation: Not classified<br>Progression: Not classified |
@@ -892,6 +892,7 @@ Source priority: original data and captures; retained source-backed project evid
 - [corpus](shenmue1-scripted-scene-inventory.generated.md) — All-disc native scripted-scene inventory. extracted source inventory, not an event count.
 - [areas](../../public/data/maps.csv) — Maintained original area labels. readable location labels; not original event gates.
 - [secrets](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/15626) — Julian McKenzie, Secrets Guide, 2003. firsthand external guide.
+- [hazuki-altar](https://www.phantomriverstone.com/2018/11/the-hazuki-family-altar-part-one.html) — Phantom River Stone, The Hazuki Family Altar, Part One. description and footage of the original altar encounter.
 - [walkthrough](https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404) — Shotgunnova, Guide and Walkthrough. external guide; exact gates still require original-data verification.
 - [passport](https://www.shenmuemaster.com/shenmue-i/shenmue-passport/) — Shenmue Master, original Passport theater and gameplay records. transcribed original-game menus and event labels.
 - [gamespot](https://www.digitpress.com/library/manuals/dreamcast/shenmue_guide.pdf) — GameSpot Game Guide, 2000. contemporary walkthrough.

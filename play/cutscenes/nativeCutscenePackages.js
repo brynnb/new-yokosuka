@@ -215,6 +215,8 @@ import bunkadoHandguardAudio from "../../public/audio/world/bunkado-handguard/ma
 import guiZhangManifest from "../assets/sakuragaoka/gui-zhang/manifest.json";
 import guiZhangIntroductionAudio from "../../public/audio/world/gui-zhang/introduction/manifest.json";
 import guiZhangBodyguardAudio from "../../public/audio/world/gui-zhang/bodyguard/manifest.json";
+import nozomiFlowersManifest from "../assets/hazuki/nozomi-flowers/manifest.json";
+import nozomiFlowersAudio from "../../public/audio/world/nozomi-flowers/manifest.json";
 import familyCrestManifest from "../assets/hazuki/family-crest/manifest.json";
 import familyCrestAudio from "../../public/audio/world/family-crest/manifest.json";
 import kkyaActivityManifest from "../assets/hazuki/kkya/manifest.json";
@@ -451,6 +453,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["kitten-recovery",kittenRecoveryManifest,kittenRecoveryAudio,"yamanose"],
     ["kitten-roof",kittenRoofManifest,kittenRoofAudio,"yamanose"],
     ["kitten-nozomi",kittenNozomiManifest,kittenNozomiAudio,"yamanose",Object.freeze({cues:[{startActivity:true,trackId:"bgm018",loop:true}],gain:1}),{HRSK:nativeFaceManifest.facialVariants.NZM_M}],
+    ["nozomi-flowers",nozomiFlowersManifest,nozomiFlowersAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm070",loop:true}],gain:1}),{INE_:nativeFaceManifest.facialAssets.INE_}],
     ["childhood-meal",childhoodMealManifest,childhoodMealAudio,"interior",undefined,{IWAO:nativeFaceManifest.facialAssets.IWAO,JAKR:nativeFaceManifest.facialVariants.JKB},undefined,{requirePlayer:false,preservePlayerOnComplete:false}],
     ["cherry-memory",cherryMemoryManifest,sakrAudioManifest,"exterior",nativeSilentActivityMusic("SAKR"),{IWAO:nativeFaceManifest.facialAssets.IWAO,JAKR:nativeFaceManifest.facialVariants.JKB},undefined,{requirePlayer:false,preservePlayerOnComplete:false}],
     ["nozomi-photo-ending-together",nozomiPhotoEndingManifest,nozomiPhotoEndingAudio,"mfsy"],

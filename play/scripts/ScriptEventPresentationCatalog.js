@@ -164,6 +164,11 @@ const ACTIVITIES = new Map([
     cutscene:{id:"story-s1-fuku-phoenix-mirror",packageId:"houo",worldId:"exterior",storyPresentation:true,
       activity:{slot:9,binding:{primaryPointer:394211,secondaryPointer:394224}}},
   }],
+  ["s1.jomo.nozomi-flowers.scene",{
+    kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-nozomi-flowers",packageId:"nozomi-flowers",worldId:"interior",storyPresentation:true,
+      activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"01BTU/FLOWERS.AUTH"}}},
+  }],
   ["s1.jomo.ine-family-crest.scene",{
     kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-ine-family-crest",packageId:"family-crest",worldId:"interior",storyPresentation:true,
