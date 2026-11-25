@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { readFileSync, statSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { registerNativeAseqMusic } from "../tools/lib/NativeAseqAudioPack.mjs";
 import test from "node:test";
 
 const manifest = JSON.parse(
@@ -97,6 +100,8 @@ test("music assets match their provenance manifest", () => {
     "op00-open2",
     "bgm120",
     "op00-dream-tsm006",
+    "nozomi-home",
+    "closing-credits-rim004",
   ]);
   for (const [trackId, track] of Object.entries(manifest.tracks)) {
     if (track.url.startsWith("/")) {
@@ -116,13 +121,40 @@ test("music assets match their provenance manifest", () => {
     if (track.source.kind === "provided-audio-file") {
       assert.match(track.source.file, /\.(?:mp3|ogg|webm)$/);
       assert.match(track.source.sha256, /^[a-f0-9]{64}$/);
+    } else if (track.source.format === "CDDA") {
+      assert.equal(track.source.disc, 3);
+      assert.equal(track.source.track, 5);
+      assert.equal(track.durationSeconds, track.source.byteLength / (track.source.sampleRate * track.source.channels * 2));
+      assert.match(track.source.sha256, /^[a-f0-9]{64}$/);
     } else if (track.source.file.endsWith(".SND")) {
-      assert.equal(track.durationSeconds, 180);
+      assert.equal(track.durationSeconds, trackId === "closing-credits-rim004" ? 560 : 180);
       assert.match(track.source.file, /\.SND$/);
     } else {
       assert.match(track.source.file, /\.AFS#.+\.str$/i);
     }
   }
+});
+
+test("registering another cinematic preserves the shared track's one-shot default and content hash", t => {
+  const root = mkdtempSync(path.join(os.tmpdir(), "ny-aseq-music-"));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const musicDir = path.join(root, "public/music");
+  mkdirSync(musicDir, { recursive: true });
+  const bytes = Buffer.from("rendered test music");
+  const source = { id: "test-source", bankSha256: "test-bank", file: "BGM120.SND", group: 0, track: 0 };
+  const definition = { id: "bgm120", sourceId: source.id, bankHash: source.bankSha256, label: "Opening" };
+  const manifestPath = path.join(musicDir, "manifest.json");
+  writeFileSync(path.join(musicDir, "test.ogg"), bytes);
+  writeFileSync(path.join(musicDir, "asset-viewer-manifest.json"), JSON.stringify({
+    tracks: { [source.id]: { source, ogg_url: "/music/test.ogg", durationSeconds: 180 } },
+  }));
+  writeFileSync(manifestPath, JSON.stringify({ tracks: {} }));
+  registerNativeAseqMusic(root, { ...definition, loop: false });
+  registerNativeAseqMusic(root, { ...definition, label: "Battle" });
+  const registered = JSON.parse(readFileSync(manifestPath)).tracks.bgm120;
+  assert.equal(registered.loop, false);
+  assert.equal(registered.label, "Opening");
+  assert.equal(registered.sha256, createHash("sha256").update(bytes).digest("hex"));
 });
 
 test("selector 18 ships its exact one-shot BGM013 render", () => {

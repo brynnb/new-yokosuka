@@ -63,7 +63,8 @@ const finalCast=[
   {path:"play/assets/harbor/nozomi-rescue/manifest.json",sha256:"e5ead3f29e62608ab03873c5c3d419ae10924b8d4122a029bd29c175f573d9e0"},
 ];
 const finalMusic={id:"bgm013",sourceId:"1e01b7d3dc308c6255896489d098cb59df125f959872de96f79000cb99c18b4e",bankHash:"0c5250def8570bef8982a1634d3eef79781960a4b8a2c745d56593a314d07cb0",label:"The final confrontation"};
-const battleMusic={id:"bgm120",sourceId:"6f6feae07377adcf7a511b69ae27bb46bd4b93a8a23f60eff32750d44cdd1264",bankHash:"6930abc0fa5b1a90b97ca0c8491623decba6a7217d865e0660097047fef122bc",label:"The seventy-man battle"};
+// The opening plays this recording once. Combat owns its own looping playback.
+const battleMusic={id:"bgm120",loop:false,sourceId:"6f6feae07377adcf7a511b69ae27bb46bd4b93a8a23f60eff32750d44cdd1264",bankHash:"6930abc0fa5b1a90b97ca0c8491623decba6a7217d865e0660097047fef122bc",label:"The seventy-man battle"};
 const alphaRoom={archive:"ALPHA",member:"MAPALP.MAPD",model:"MAPALP",textureHash:"8c8f0a6b1ba88e96ebc453d12826aaea74a85dad57ade4893df7c3daaf530612",textureFilename:"alpha-textures.bin"};
 const aftermathSelection="Walkthrough-guided post-battle sequence. Yarn independently owns the A challenge, acknowledged interrogation, pier discussion and home return; these original films cannot award those outcomes themselves.";
 const finalChaiMusic={id:"bgm032",sourceId:"49ca27343179e9c1a44e4c94f73ae245be375bff5104118f4479b99bfb8b38e7",bankHash:"3d9b68d62783125f66668619105522c127f35aed31d34ae8d0ca87830ef1e244",label:"Chai's final encounter"};

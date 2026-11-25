@@ -152,7 +152,7 @@ if(process.argv.includes("--audio")){
   // output too so rebuilding the same disc audio preserves its immutable hash.
   execFileSync("ffmpeg",["-hide_banner","-loglevel","error","-y","-fflags","+bitexact","-skip_initial_bytes","352800","-f","s16le","-ar","44100","-ac","2","-i",trackPath,"-map_metadata","-1","-c:a","libvorbis","-q:a","4","-flags:a","+bitexact","-threads","2","-fflags","+bitexact",path.join(root,file)]);
   const musicFile=path.join(root,"public/music/manifest.json"),music=JSON.parse(fs.readFileSync(musicFile));
-  music.tracks["nozomi-home"]={url:"/music/shenmue1/nozomi-home-cdda05.ogg",label:"Nozomi's ride home",durationSeconds:pcm.length/176400,loop:false,
+  music.tracks["nozomi-home"]={url:"/music/shenmue1/nozomi-home-cdda05.ogg",label:"Nozomi's ride home",durationSeconds:pcm.length/176400,loop:false,sha256:sha256(fs.readFileSync(path.join(root,file))),
     source:{format:"CDDA",disc:3,track:5,lba:180906,sectorBytes:2352,offset:352800,byteLength:pcm.length,sha256:sha256(pcm),trackSha256:sha256(bytes),sampleRate:44100,channels:2,sampleFormat:"s16le",
       adaptation:"Original124.79-second CD audio paired with124.27-second riding montage after the dialogue; the playlist order was observed in two original runs. CDDA cue timing is inferred from durations."}};
   fs.writeFileSync(musicFile,JSON.stringify(music,null,2)+"\n");runtimePaths.push(file,"public/music/manifest.json");

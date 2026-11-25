@@ -1,7 +1,6 @@
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import {
-  accessSync,
   copyFileSync,
   mkdirSync,
   mkdtempSync,
@@ -31,12 +30,20 @@ export function registerNativeAseqMusic(root, definition) {
   const viewer=JSON.parse(readFileSync(path.join(root,"public/music/asset-viewer-manifest.json")));
   const track=viewer.tracks[sourceId];
   if(!track||track.source.bankSha256!==bankHash||track.source.file!==`${id.toUpperCase()}.SND`||track.source.group!==0||track.source.track!==0)throw Error(`Changed original music for ${id}`);
-  accessSync(path.join(root,"public",track.ogg_url));
+  const digest = sha256(readFileSync(path.join(root, "public", track.ogg_url)));
   const existing=music.tracks[id];
   if(existing&&(existing.url!==track.ogg_url||existing.source?.id!==sourceId||existing.source.bankSha256!==bankHash))throw Error(`Conflicting shared music identity ${id}`);
   // One original recording can score multiple scenes. Registering another
   // consumer must not rename the already published shared track each time.
-  music.tracks[id]={url:track.ogg_url,label:existing?.label||label,durationSeconds:track.durationSeconds,loop:true,source:track.source};
+  music.tracks[id] = {
+    ...existing,
+    url: track.ogg_url,
+    label: existing?.label || label,
+    durationSeconds: track.durationSeconds,
+    loop: definition.loop ?? existing?.loop ?? true,
+    sha256: digest,
+    source: track.source,
+  };
   writeFileSync(filename,JSON.stringify(music,null,2)+"\n");
   return ["public/music/manifest.json",`public${track.ogg_url}`];
 }
