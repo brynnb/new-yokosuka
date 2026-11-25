@@ -57,6 +57,7 @@ export class PlayPresentationRuntime {
     deltaSeconds,
     wallDeltaSeconds,
     animationDeltaSeconds,
+    gameplayDeltaSeconds = deltaSeconds,
     fixedStepAlpha,
   }) {
     const {
@@ -119,15 +120,16 @@ export class PlayPresentationRuntime {
         story.cutsceneDirector.transportState(),
       );
       story.runtime.updateScriptedEvents(deltaSeconds);
+      // Geometry can be ready before travel / avatar arrival has finished.
+      const roomRunning = !world.runtime.activeWorld.cutsceneOnly
+        && !world.runtime.switching && !player.runtime.characterSwitching;
       story.runtime.updateAutomatic({
         world: world.runtime.activeWorld,
-        enabled: !world.runtime.activeWorld.cutsceneOnly
-          // Geometry can be ready while the travel session still finalizes
-          // arrival/avatar state. Don't consume a once-per-entry dispatch yet.
-          && !world.runtime.switching && !player.runtime.characterSwitching
-          && !story.scriptedEvents.busy,
+        roomRunning,
+        enabled: roomRunning && !story.scriptedEvents.busy,
         playerPosition: player.actorRoot.position,
         playerYaw: player.actorRoot.rotation.y,
+        deltaSeconds: gameplayDeltaSeconds,
       });
 
       const movement = player.simulation.lastMovement;

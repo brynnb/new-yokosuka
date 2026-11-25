@@ -55,6 +55,7 @@ export function createGameplayActionMaps(getKeyBinding = () => null) {
       runModifier: action("button", [
         binding("gamepad", "runModifier"),
       ]),
+      nativePadActivity: action("button", [binding("gamepad", "nativePadActivity")]),
     }),
     [INPUT_CONTEXTS.FORKLIFT]: Object.freeze({
       throttle: movement.moveY,

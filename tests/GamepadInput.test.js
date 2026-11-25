@@ -106,6 +106,29 @@ test("active gamepad input ignores stick and trigger drift", () => {
   assert.equal(gamepadHasActiveInput(pad({ pressed: [0] }), state), true);
 });
 
+test("source activity slot samples both triggers, every D-pad direction and the native left-stick byte bounds", () => {
+  let current = pad();
+  const actions = new InputActionSystem();
+  const input = new GamepadInput({preferences: preferences(), getGamepads: () => [current], actions});
+  let time = 0;
+  const sample = options => {
+    current = pad(options);
+    input.update(time += 16);
+    return actions.snapshot(INPUT_CONTEXTS.EXPLORATION).held("nativePadActivity");
+  };
+  sample();
+  sample();
+  for (const index of [12, 13, 14, 15]) assert.equal(sample({pressed: [index]}), true);
+  for (const index of [6, 7]) assert.equal(sample({values: {[index]: 1 / 255}}), true);
+  assert.equal(sample({axes: [0, 0, 1, -1], pressed: [0, 1, 2, 3]}), false);
+  const axis = byte => (byte - 128) / (byte < 128 ? 128 : 127);
+  assert.equal(sample({axes: [axis(126), axis(130)]}), false);
+  assert.equal(sample({axes: [axis(125), 0]}), true);
+  assert.equal(sample({axes: [0, axis(131)]}), true);
+  assert.equal(sample(), false);
+  input.dispose();
+});
+
 test("gamepad selection prefers a real standard controller over passthrough input", () => {
   const passthrough = {
     ...pad(),

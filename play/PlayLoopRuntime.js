@@ -223,9 +223,11 @@ export class PlayLoopRuntime {
         (now - this.previousRenderTime) / 1000,
       );
       this.previousRenderTime = now;
-      this.fixedStepAccumulator += (
-        now - this.previousInterpolationTime
-      ) / 1000;
+      const visibleSeconds = Math.max(0, (now - this.previousInterpolationTime) / 1000);
+      this.fixedStepAccumulator += visibleSeconds;
+      // Visibility changes reset interpolation time while cosmetic wall time
+      // intentionally includes the suspension. Room clocks use visible time.
+      this.pendingRenderTiming.gameplayDeltaSeconds = Math.min(this.pendingRenderTiming.deltaSeconds, visibleSeconds);
       this.previousInterpolationTime = now;
       // An opaque HTML loading screen owns presentation during world assembly.
       // Drawing incomplete worlds repeatedly compiles shaders and traverses all

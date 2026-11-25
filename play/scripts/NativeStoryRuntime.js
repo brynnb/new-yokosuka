@@ -107,11 +107,15 @@ export class NativeStoryRuntime {
   updateCutscenes(deltaSeconds) { this.cutscenes.update(deltaSeconds); }
   updateScriptedEvents(deltaSeconds) { this.scriptedEvents.update(deltaSeconds); }
 
-  updateAutomatic({ world, enabled, playerPosition, playerYaw }) {
+  updateAutomatic({ world, enabled, roomRunning = enabled, playerPosition, playerYaw, deltaSeconds }) {
     // An owned tableau may temporarily expose a recess. Reapply durable
     // presentation after cleanup, never over an in-flight preview.
     if (!this.presentationActive) this.storyObjects?.update();
-    this.storyRegions?.update({ area: world.nativeArea, worldId: world.id, enabled: enabled && !this.isStartupPresentationActive(), playerPosition, playerYaw });
+    const startupActive = this.isStartupPresentationActive();
+    this.storyRegions?.update({
+      area: world.nativeArea, worldId: world.id, playerPosition, playerYaw, deltaSeconds,
+      enabled: enabled && !startupActive, roomRunning: roomRunning && !startupActive,
+    });
     const gameplayState = this.getGameplayState();
     this.automaticEvents.update({
       area: world.nativeArea,

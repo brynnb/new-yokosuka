@@ -1,0 +1,2556 @@
+{
+  "schema": "ny-warehouse-native-timer-gpu-v1",
+  "date": "2026-11-25",
+  "localReportRoot": "/mnt/data6tb/Projects/New Yokosuka/ny-warehouse-timer-lj878jh0/browser",
+  "fixture": "Private PostgreSQL and Go API on localhost, offline assets, one browser worker. Each character starts at the MS8S entrance on the chosen floor with the earned-window or Goro receipt and supporting native flags pre-seeded. The full downstairs visit drives movement with KeyW and steers the camera between nearby floor points; it leaves both clocks untouched. For shorter runs, Playwright sets the residual timers and lets normal gameplay dispatch and the server select the scene. The priority test additionally sets the collider inside the original physical corridor. Completion, cancellation, speech and render observations use the real client, server and GPU.",
+  "runs": [
+    {
+      "case": "warehouse-timer-downstairs",
+      "fullPrimary": false,
+      "durationSeconds": 26.19,
+      "report": "rerun-timer-downstairs-20261125-150833-html/index.html",
+      "screenshots": {
+        "original-downstairs-light-shot": "rerun-timer-downstairs-20261125-150833-html/data/d7dfb9bdd7ff84d89460f00e80d101d5600261e3.png"
+      },
+      "renderer": "ANGLE (AMD, Vulkan 1.4.335 (AMD Radeon RX 9070 XT (RADV GFX1201) (0x00007550)), radv)",
+      "observed": {
+        "character": 8,
+        "full": false,
+        "count": {
+          "start": {
+            "primary": 14400,
+            "deadline": 28798,
+            "position": [
+              -8.31,
+              0.003000000026077032,
+              135.76
+            ]
+          },
+          "idle": {
+            "primary": 14400,
+            "deadline": 28780,
+            "position": [
+              -8.31,
+              0.003000000026077032,
+              135.76
+            ]
+          },
+          "active": {
+            "primary": 14382,
+            "deadline": 28762,
+            "position": [
+              -8.31,
+              0.003000000026077032,
+              136.6847937883648
+            ]
+          }
+        },
+        "fresh": {
+          "start": {
+            "primary": 14400,
+            "deadline": 28798,
+            "position": [
+              -8.31,
+              0.003000000026077032,
+              136.78754865373867
+            ]
+          },
+          "idle": {
+            "primary": 14400,
+            "deadline": 28780,
+            "position": [
+              -8.31,
+              0.003000000026077032,
+              136.78754865373867
+            ]
+          },
+          "active": {
+            "primary": 14382,
+            "deadline": 28762,
+            "position": [
+              -8.31,
+              0.003000000026077032,
+              137.71234244210348
+            ]
+          }
+        },
+        "canceled": {
+          "stages": [
+            {
+              "id": "s1.ms8s.warehouse-light-hint",
+              "slug": "story-s1-warehouse-eight-light-timeout",
+              "first": {
+                "frame": 0,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -8.31,
+                  1.884,
+                  133.677
+                ],
+                "target": [
+                  -8.31,
+                  1.123,
+                  136.786
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "last": {
+                "frame": 33,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -14.77,
+                  1.355,
+                  145.41
+                ],
+                "target": [
+                  -14.709,
+                  1.573,
+                  144.528
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "uncovered": {
+                "frame": 29,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -14.77,
+                  1.355,
+                  145.41
+                ],
+                "target": [
+                  -14.709,
+                  1.573,
+                  144.528
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "voiced": {
+                "frame": 33,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -14.77,
+                  1.355,
+                  145.41
+                ],
+                "target": [
+                  -14.709,
+                  1.573,
+                  144.528
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              }
+            }
+          ],
+          "lines": [
+            {
+              "id": "E1009BA018",
+              "text": "The light's on. Maybe somebody's there.",
+              "speaker": "Ryo Hazuki",
+              "stage": "s1.ms8s.warehouse-light-hint"
+            }
+          ]
+        },
+        "hint": {
+          "stages": [
+            {
+              "id": "s1.ms8s.warehouse-light-hint",
+              "slug": "story-s1-warehouse-eight-light-timeout",
+              "first": {
+                "frame": 0,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -8.31,
+                  1.884,
+                  134.706
+                ],
+                "target": [
+                  -8.31,
+                  1.123,
+                  137.815
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "last": {
+                "frame": 117,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -14.77,
+                  1.355,
+                  145.41
+                ],
+                "target": [
+                  -14.709,
+                  1.573,
+                  144.528
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "uncovered": {
+                "frame": 30,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -14.77,
+                  1.355,
+                  145.41
+                ],
+                "target": [
+                  -14.709,
+                  1.573,
+                  144.528
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "voiced": {
+                "frame": 33,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -14.77,
+                  1.355,
+                  145.41
+                ],
+                "target": [
+                  -14.709,
+                  1.573,
+                  144.528
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              }
+            }
+          ],
+          "lines": [
+            {
+              "id": "E1009BA018",
+              "text": "The light's on. Maybe somebody's there.",
+              "speaker": "Ryo Hazuki",
+              "stage": "s1.ms8s.warehouse-light-hint"
+            }
+          ]
+        },
+        "postHint": {
+          "primary": -1,
+          "deadline": 28599,
+          "position": [
+            -14.5,
+            0.004000000189989805,
+            144.5
+          ]
+        },
+        "deadline": {
+          "stages": [
+            {
+              "id": "s1.ms8s.warehouse-eight-office.timed",
+              "slug": "story-s1-warehouse-eight-office-deadline",
+              "first": {
+                "frame": 1,
+                "ryo": [
+                  -17.69,
+                  4.275,
+                  136.69
+                ],
+                "eye": [
+                  -16.919,
+                  5.71,
+                  137.006
+                ],
+                "target": [
+                  -17.707,
+                  5.765,
+                  136.607
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "last": {
+                "frame": 13,
+                "ryo": [
+                  -17.69,
+                  4.275,
+                  136.69
+                ],
+                "eye": [
+                  -16.919,
+                  5.71,
+                  137.006
+                ],
+                "target": [
+                  -17.707,
+                  5.765,
+                  136.607
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              }
+            },
+            {
+              "id": "s1.ms8s.warehouse-eight-office.timed-approach",
+              "slug": "story-s1-warehouse-eight-office-deadline",
+              "first": {
+                "frame": 0,
+                "ryo": [
+                  -17.671,
+                  4.275,
+                  136.672
+                ],
+                "eye": [
+                  -16.918,
+                  5.71,
+                  137.005
+                ],
+                "target": [
+                  -17.707,
+                  5.765,
+                  136.606
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "last": {
+                "frame": 62,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -15.738,
+                  6.004,
+                  135.12
+                ],
+                "target": [
+                  -16.114,
+                  5.876,
+                  135.124
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              },
+              "reveal": {
+                "frame": 2,
+                "ryo": [
+                  -17.626,
+                  4.275,
+                  136.627
+                ],
+                "eye": [
+                  -16.914,
+                  5.71,
+                  137.001
+                ],
+                "target": [
+                  -17.698,
+                  5.765,
+                  136.6
+                ],
+                "alpha": 0.964706,
+                "covered": true,
+                "drawn": true
+              },
+              "uncovered": {
+                "frame": 31,
+                "ryo": [
+                  -16.882,
+                  4.275,
+                  135.897
+                ],
+                "eye": [
+                  -16.401,
+                  5.728,
+                  136.507
+                ],
+                "target": [
+                  -16.703,
+                  5.774,
+                  135.803
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "beforeCut": {
+                "frame": 45,
+                "ryo": [
+                  -16.522,
+                  4.275,
+                  135.545
+                ],
+                "eye": [
+                  -16.098,
+                  5.739,
+                  136.214
+                ],
+                "target": [
+                  -16.114,
+                  5.779,
+                  135.332
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "afterCut": {
+                "frame": 61,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -15.738,
+                  6.004,
+                  135.118
+                ],
+                "target": [
+                  -16.114,
+                  5.876,
+                  135.124
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "voiced": {
+                "frame": 62,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -15.738,
+                  6.004,
+                  135.12
+                ],
+                "target": [
+                  -16.114,
+                  5.876,
+                  135.124
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              }
+            }
+          ],
+          "lines": [
+            {
+              "id": "E1009BA013",
+              "text": "I hear voices. Is someone there?",
+              "speaker": "Ryo Hazuki",
+              "stage": "s1.ms8s.warehouse-eight-office.timed-approach"
+            }
+          ]
+        },
+        "after": {
+          "world": "ms8s",
+          "location": [
+            -8.31,
+            0.003000000026077032,
+            137.81509730747734
+          ],
+          "yen": 2000,
+          "hp": 100,
+          "inventory": [],
+          "bit242": 0,
+          "clue": false,
+          "completed": false
+        }
+      }
+    },
+    {
+      "case": "warehouse-timer-downstairs",
+      "fullPrimary": true,
+      "durationSeconds": 506.6,
+      "report": "rerun-timer-downstairs-20261125-145833-html/index.html",
+      "screenshots": {
+        "original-downstairs-light-shot": "rerun-timer-downstairs-20261125-145833-html/data/2612744d7c698ca446e746b8a42cab1fe49ed668.png"
+      },
+      "renderer": "ANGLE (AMD, Vulkan 1.4.335 (AMD Radeon RX 9070 XT (RADV GFX1201) (0x00007550)), radv)",
+      "observed": {
+        "character": 5,
+        "full": true,
+        "count": {
+          "start": {
+            "primary": 14400,
+            "deadline": 28795,
+            "position": [
+              -8.31,
+              0.003000000026077032,
+              135.76
+            ]
+          },
+          "idle": {
+            "primary": 14400,
+            "deadline": 28777,
+            "position": [
+              -8.31,
+              0.003000000026077032,
+              135.76
+            ]
+          },
+          "active": {
+            "primary": 14382,
+            "deadline": 28759,
+            "position": [
+              -8.31,
+              0.003000000026077032,
+              136.71048250470827
+            ]
+          }
+        },
+        "fresh": {
+          "start": {
+            "primary": 14400,
+            "deadline": 28798,
+            "position": [
+              -8.31,
+              0.003000000026077032,
+              136.78754865373867
+            ]
+          },
+          "idle": {
+            "primary": 14400,
+            "deadline": 28780,
+            "position": [
+              -8.31,
+              0.003000000026077032,
+              136.78754865373867
+            ]
+          },
+          "active": {
+            "primary": 14382,
+            "deadline": 28762,
+            "position": [
+              -8.31,
+              0.003000000026077032,
+              137.71234244210348
+            ]
+          }
+        },
+        "natural": {
+          "start": {
+            "primary": 14382,
+            "deadline": 28760,
+            "position": [
+              -8.31,
+              0.003000000026077032,
+              137.71234244210348
+            ]
+          },
+          "atDispatch": {
+            "primary": -1,
+            "deadline": 14377,
+            "position": [
+              -8.308180070736217,
+              0.003000000026077032,
+              138.00197975835982
+            ]
+          },
+          "input": "KeyW",
+          "elapsedSeconds": 479.746,
+          "turns": 707,
+          "minY": 0.003000000026077032,
+          "maxY": 0.003000000026077032
+        },
+        "canceled": {
+          "stages": [
+            {
+              "id": "s1.ms8s.warehouse-light-hint",
+              "slug": "story-s1-warehouse-eight-light-timeout",
+              "first": {
+                "frame": 0,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -8.31,
+                  1.884,
+                  133.679
+                ],
+                "target": [
+                  -8.31,
+                  1.123,
+                  136.787
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "last": {
+                "frame": 37,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -14.77,
+                  1.355,
+                  145.41
+                ],
+                "target": [
+                  -14.709,
+                  1.573,
+                  144.528
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "uncovered": {
+                "frame": 29,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -14.77,
+                  1.355,
+                  145.41
+                ],
+                "target": [
+                  -14.709,
+                  1.573,
+                  144.528
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "voiced": {
+                "frame": 35,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -14.77,
+                  1.355,
+                  145.41
+                ],
+                "target": [
+                  -14.709,
+                  1.573,
+                  144.528
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              }
+            }
+          ],
+          "lines": [
+            {
+              "id": "E1009BA018",
+              "text": "The light's on. Maybe somebody's there.",
+              "speaker": "Ryo Hazuki",
+              "stage": "s1.ms8s.warehouse-light-hint"
+            }
+          ]
+        },
+        "hint": {
+          "stages": [
+            {
+              "id": "s1.ms8s.warehouse-light-hint",
+              "slug": "story-s1-warehouse-eight-light-timeout",
+              "first": {
+                "frame": 0,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -8.289,
+                  1.884,
+                  141.113
+                ],
+                "target": [
+                  -8.308,
+                  1.123,
+                  138.005
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "last": {
+                "frame": 115,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -14.77,
+                  1.355,
+                  145.41
+                ],
+                "target": [
+                  -14.709,
+                  1.573,
+                  144.528
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "uncovered": {
+                "frame": 30,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -14.77,
+                  1.355,
+                  145.41
+                ],
+                "target": [
+                  -14.709,
+                  1.573,
+                  144.528
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "voiced": {
+                "frame": 32,
+                "ryo": [
+                  -14.5,
+                  0,
+                  144.5
+                ],
+                "eye": [
+                  -14.77,
+                  1.355,
+                  145.41
+                ],
+                "target": [
+                  -14.709,
+                  1.573,
+                  144.528
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              }
+            }
+          ],
+          "lines": [
+            {
+              "id": "E1009BA018",
+              "text": "The light's on. Maybe somebody's there.",
+              "speaker": "Ryo Hazuki",
+              "stage": "s1.ms8s.warehouse-light-hint"
+            }
+          ]
+        },
+        "postHint": {
+          "primary": -1,
+          "deadline": 14376,
+          "position": [
+            -14.5,
+            0.004000000189989805,
+            144.5
+          ]
+        },
+        "deadline": {
+          "stages": [
+            {
+              "id": "s1.ms8s.warehouse-eight-office.timed",
+              "slug": "story-s1-warehouse-eight-office-deadline",
+              "first": {
+                "frame": 1,
+                "ryo": [
+                  -17.69,
+                  4.275,
+                  136.69
+                ],
+                "eye": [
+                  -16.919,
+                  5.71,
+                  137.006
+                ],
+                "target": [
+                  -17.707,
+                  5.765,
+                  136.607
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "last": {
+                "frame": 12,
+                "ryo": [
+                  -17.69,
+                  4.275,
+                  136.69
+                ],
+                "eye": [
+                  -16.919,
+                  5.71,
+                  137.006
+                ],
+                "target": [
+                  -17.707,
+                  5.765,
+                  136.607
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              }
+            },
+            {
+              "id": "s1.ms8s.warehouse-eight-office.timed-approach",
+              "slug": "story-s1-warehouse-eight-office-deadline",
+              "first": {
+                "frame": 1,
+                "ryo": [
+                  -17.653,
+                  4.275,
+                  136.653
+                ],
+                "eye": [
+                  -16.917,
+                  5.71,
+                  137.004
+                ],
+                "target": [
+                  -17.704,
+                  5.765,
+                  136.605
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "last": {
+                "frame": 61,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -15.738,
+                  6.004,
+                  135.119
+                ],
+                "target": [
+                  -16.114,
+                  5.876,
+                  135.124
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              },
+              "uncovered": {
+                "frame": 31,
+                "ryo": [
+                  -16.894,
+                  4.275,
+                  135.91
+                ],
+                "eye": [
+                  -16.413,
+                  5.728,
+                  136.518
+                ],
+                "target": [
+                  -16.727,
+                  5.773,
+                  135.822
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "voiced": {
+                "frame": 61,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -15.738,
+                  6.004,
+                  135.119
+                ],
+                "target": [
+                  -16.114,
+                  5.876,
+                  135.124
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              }
+            }
+          ],
+          "lines": [
+            {
+              "id": "E1009BA013",
+              "text": "I hear voices. Is someone there?",
+              "speaker": "Ryo Hazuki",
+              "stage": "s1.ms8s.warehouse-eight-office.timed-approach"
+            }
+          ]
+        },
+        "after": {
+          "world": "ms8s",
+          "location": [
+            -8.308180070736217,
+            0.003000000026077032,
+            138.00197975835982
+          ],
+          "yen": 2000,
+          "hp": 100,
+          "inventory": [],
+          "bit242": 0,
+          "clue": false,
+          "completed": false
+        }
+      }
+    },
+    {
+      "case": "warehouse-timer-priority",
+      "fullPrimary": false,
+      "durationSeconds": 8.79,
+      "report": "rerun-timer-priority-20261125-150802-html/index.html",
+      "screenshots": {},
+      "renderer": "ANGLE (AMD, Vulkan 1.4.335 (AMD Radeon RX 9070 XT (RADV GFX1201) (0x00007550)), radv)",
+      "observed": {
+        "character": 7,
+        "priority": {
+          "stages": [
+            {
+              "id": "s1.ms8s.warehouse-eight-office",
+              "slug": "story-s1-warehouse-eight-overheard",
+              "first": {
+                "frame": 1,
+                "ryo": [
+                  -19.619,
+                  4.275,
+                  138.13
+                ],
+                "eye": [
+                  -19.698,
+                  5.558,
+                  137.535
+                ],
+                "target": [
+                  -19.697,
+                  5.396,
+                  138.198
+                ],
+                "alpha": 1,
+                "covered": false,
+                "drawn": true
+              },
+              "last": {
+                "frame": 3,
+                "ryo": [
+                  -19.504,
+                  4.275,
+                  138.033
+                ],
+                "eye": [
+                  -19.67,
+                  5.559,
+                  137.524
+                ],
+                "target": [
+                  -19.669,
+                  5.399,
+                  138.175
+                ],
+                "alpha": 1,
+                "covered": false,
+                "drawn": true
+              },
+              "uncovered": {
+                "frame": 1,
+                "ryo": [
+                  -19.619,
+                  4.275,
+                  138.13
+                ],
+                "eye": [
+                  -19.698,
+                  5.558,
+                  137.535
+                ],
+                "target": [
+                  -19.697,
+                  5.396,
+                  138.198
+                ],
+                "alpha": 1,
+                "covered": false,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              }
+            },
+            {
+              "id": "s1.ms8s.warehouse-eight-office.timed",
+              "slug": "story-s1-warehouse-eight-office-timeout",
+              "first": {
+                "frame": 0,
+                "ryo": [
+                  -17.69,
+                  4.275,
+                  136.69
+                ],
+                "eye": [
+                  -19.704,
+                  5.558,
+                  137.538
+                ],
+                "target": [
+                  -19.704,
+                  5.395,
+                  138.203
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "last": {
+                "frame": 3,
+                "ryo": [
+                  -17.69,
+                  4.275,
+                  136.69
+                ],
+                "eye": [
+                  -16.919,
+                  5.71,
+                  137.006
+                ],
+                "target": [
+                  -17.707,
+                  5.765,
+                  136.607
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              }
+            }
+          ],
+          "lines": []
+        },
+        "after": {
+          "world": "ms8s",
+          "location": [
+            -19.704,
+            4.275000095367432,
+            138.203
+          ],
+          "yen": 2000,
+          "hp": 100,
+          "inventory": [],
+          "bit242": 0,
+          "clue": false,
+          "completed": false
+        }
+      }
+    },
+    {
+      "case": "warehouse-timer-upstairs",
+      "fullPrimary": false,
+      "durationSeconds": 54.7,
+      "report": "rerun-timer-upstairs-20261125-150705-html/index.html",
+      "screenshots": {
+        "timed-approach-e1009ba013": "rerun-timer-upstairs-20261125-150705-html/data/146469fb9614275bf3f30a9cda51c3a24aef746c.png"
+      },
+      "renderer": "ANGLE (AMD, Vulkan 1.4.335 (AMD Radeon RX 9070 XT (RADV GFX1201) (0x00007550)), radv)",
+      "observed": {
+        "character": 6,
+        "count": {
+          "start": {
+            "primary": 14400,
+            "deadline": 28798,
+            "position": [
+              -17,
+              4.275000095367432,
+              152.24000549316406
+            ]
+          },
+          "idle": {
+            "primary": 14400,
+            "deadline": 28780,
+            "position": [
+              -17,
+              4.275000095367432,
+              152.24000549316406
+            ]
+          },
+          "active": {
+            "primary": 14382,
+            "deadline": 28762,
+            "position": [
+              -17,
+              4.275000095367432,
+              153.03635569981154
+            ]
+          }
+        },
+        "film": {
+          "stages": [
+            {
+              "id": "s1.ms8s.warehouse-eight-office.timed",
+              "slug": "story-s1-warehouse-eight-office-timeout",
+              "first": {
+                "frame": 1,
+                "ryo": [
+                  -17.69,
+                  4.275,
+                  136.69
+                ],
+                "eye": [
+                  -16.919,
+                  5.71,
+                  137.006
+                ],
+                "target": [
+                  -17.707,
+                  5.765,
+                  136.607
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "last": {
+                "frame": 12,
+                "ryo": [
+                  -17.69,
+                  4.275,
+                  136.69
+                ],
+                "eye": [
+                  -16.919,
+                  5.71,
+                  137.006
+                ],
+                "target": [
+                  -17.707,
+                  5.765,
+                  136.607
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              }
+            },
+            {
+              "id": "s1.ms8s.warehouse-eight-office.timed-approach",
+              "slug": "story-s1-warehouse-eight-office-timeout",
+              "first": {
+                "frame": 0,
+                "ryo": [
+                  -17.664,
+                  4.275,
+                  136.665
+                ],
+                "eye": [
+                  -16.918,
+                  5.71,
+                  137.005
+                ],
+                "target": [
+                  -17.706,
+                  5.765,
+                  136.606
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "last": {
+                "frame": 118,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -15.825,
+                  5.984,
+                  135.699
+                ],
+                "target": [
+                  -16.108,
+                  5.838,
+                  135.132
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              },
+              "reveal": {
+                "frame": 2,
+                "ryo": [
+                  -17.626,
+                  4.275,
+                  136.627
+                ],
+                "eye": [
+                  -16.914,
+                  5.71,
+                  137.001
+                ],
+                "target": [
+                  -17.698,
+                  5.765,
+                  136.6
+                ],
+                "alpha": 0.964706,
+                "covered": true,
+                "drawn": true
+              },
+              "uncovered": {
+                "frame": 31,
+                "ryo": [
+                  -16.882,
+                  4.275,
+                  135.897
+                ],
+                "eye": [
+                  -16.401,
+                  5.728,
+                  136.507
+                ],
+                "target": [
+                  -16.703,
+                  5.774,
+                  135.803
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "beforeCut": {
+                "frame": 45,
+                "ryo": [
+                  -16.522,
+                  4.275,
+                  135.545
+                ],
+                "eye": [
+                  -16.098,
+                  5.739,
+                  136.214
+                ],
+                "target": [
+                  -16.114,
+                  5.779,
+                  135.332
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "afterCut": {
+                "frame": 61,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -15.738,
+                  6.004,
+                  135.118
+                ],
+                "target": [
+                  -16.114,
+                  5.876,
+                  135.124
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "voiced": {
+                "frame": 61,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -15.738,
+                  6.004,
+                  135.119
+                ],
+                "target": [
+                  -16.114,
+                  5.876,
+                  135.124
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              }
+            },
+            {
+              "id": "s1.ms8s.warehouse-eight-office.lean",
+              "slug": "story-s1-warehouse-eight-office-timeout",
+              "first": {
+                "frame": 1,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -15.826,
+                  5.984,
+                  135.709
+                ],
+                "target": [
+                  -16.108,
+                  5.837,
+                  135.132
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "last": {
+                "frame": 120,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -16.114,
+                  5.767,
+                  136.093
+                ],
+                "target": [
+                  -15.968,
+                  5.669,
+                  135.159
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "uncovered": {
+                "frame": 1,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -15.826,
+                  5.984,
+                  135.709
+                ],
+                "target": [
+                  -16.108,
+                  5.837,
+                  135.132
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.000936470740468493,
+                      -0.01396242096306743
+                    ],
+                    [
+                      0.0009166412156975114,
+                      -0.004071440674513139
+                    ]
+                  ],
+                  "ticks": 58
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "directed": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              }
+            },
+            {
+              "id": "s1.ms8s.warehouse-eight-office.staff",
+              "slug": "story-s1-warehouse-eight-office-timeout",
+              "first": {
+                "frame": 1,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.097,
+                  5.66,
+                  134.127
+                ],
+                "target": [
+                  -16.188,
+                  6.033,
+                  131.41
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "last": {
+                "frame": 372,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.428,
+                  5.777,
+                  132.928
+                ],
+                "target": [
+                  -16.334,
+                  5.793,
+                  132.073
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "uncovered": {
+                "frame": 1,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.097,
+                  5.66,
+                  134.127
+                ],
+                "target": [
+                  -16.188,
+                  6.033,
+                  131.41
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "directed": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              },
+              "voiced": {
+                "frame": 2,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.097,
+                  5.66,
+                  134.127
+                ],
+                "target": [
+                  -16.188,
+                  6.033,
+                  131.409
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              }
+            },
+            {
+              "id": "s1.ms8s.warehouse-eight-office.staff-hold",
+              "slug": "story-s1-warehouse-eight-office-timeout",
+              "first": {
+                "frame": 1,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.428,
+                  5.778,
+                  132.928
+                ],
+                "target": [
+                  -16.334,
+                  5.793,
+                  132.077
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "last": {
+                "frame": 114,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.426,
+                  5.847,
+                  132.909
+                ],
+                "target": [
+                  -16.306,
+                  5.767,
+                  132.753
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "uncovered": {
+                "frame": 1,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.428,
+                  5.778,
+                  132.928
+                ],
+                "target": [
+                  -16.334,
+                  5.793,
+                  132.077
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "directed": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              },
+              "voiced": {
+                "frame": 2,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.428,
+                  5.778,
+                  132.928
+                ],
+                "target": [
+                  -16.334,
+                  5.793,
+                  132.079
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              }
+            },
+            {
+              "id": "s1.ms8s.warehouse-eight-office.listen-out",
+              "slug": "story-s1-warehouse-eight-office-timeout",
+              "first": {
+                "frame": 1,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.426,
+                  5.848,
+                  132.909
+                ],
+                "target": [
+                  -16.306,
+                  5.767,
+                  132.762
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "last": {
+                "frame": 31,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.425,
+                  5.873,
+                  132.902
+                ],
+                "target": [
+                  -16.296,
+                  5.757,
+                  133.013
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "uncovered": {
+                "frame": 1,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.426,
+                  5.848,
+                  132.909
+                ],
+                "target": [
+                  -16.306,
+                  5.767,
+                  132.762
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "directed": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              }
+            },
+            {
+              "id": "s1.ms8s.warehouse-eight-office.reaction",
+              "slug": "story-s1-warehouse-eight-office-timeout",
+              "first": {
+                "frame": 1,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.425,
+                  5.873,
+                  132.902
+                ],
+                "target": [
+                  -16.296,
+                  5.757,
+                  133.013
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "last": {
+                "frame": 105,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.657,
+                  5.792,
+                  133.167
+                ],
+                "target": [
+                  -16.339,
+                  6.113,
+                  133.501
+                ],
+                "alpha": 0.964706,
+                "covered": true,
+                "drawn": true
+              },
+              "uncovered": {
+                "frame": 1,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.425,
+                  5.873,
+                  132.902
+                ],
+                "target": [
+                  -16.296,
+                  5.757,
+                  133.013
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 12,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 12,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                },
+                "directed": {
+                  "head": "YKC",
+                  "base": 12,
+                  "target": [
+                    -16.63,
+                    5.6,
+                    131.87
+                  ],
+                  "angles": [
+                    [
+                      0.20938837754639003,
+                      -0.41887262889202287
+                    ],
+                    [
+                      0.20938837754639003,
+                      -0.12214322023539417
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              },
+              "voiced": {
+                "frame": 2,
+                "ryo": [
+                  -16.15,
+                  4.275,
+                  135.18
+                ],
+                "eye": [
+                  -14.425,
+                  5.873,
+                  132.902
+                ],
+                "target": [
+                  -16.296,
+                  5.758,
+                  133.013
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              }
+            },
+            {
+              "id": "s1.ms8s.warehouse-eight-office.departure",
+              "slug": "story-s1-warehouse-eight-office-timeout",
+              "first": {
+                "frame": 0,
+                "ryo": [
+                  -17.25,
+                  4.275,
+                  152.25
+                ],
+                "eye": [
+                  -14.658,
+                  5.792,
+                  133.168
+                ],
+                "target": [
+                  -16.34,
+                  6.114,
+                  133.504
+                ],
+                "alpha": 1,
+                "covered": true,
+                "drawn": true
+              },
+              "last": {
+                "frame": 154,
+                "ryo": [
+                  -17.25,
+                  4.275,
+                  152.25
+                ],
+                "eye": [
+                  -17.464,
+                  5.385,
+                  150.429
+                ],
+                "target": [
+                  -17.233,
+                  5.765,
+                  152.333
+                ],
+                "alpha": 0.980392,
+                "covered": true,
+                "drawn": true
+              },
+              "face": {
+                "first": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0.19630160394974067,
+                      -0.3926930895862714
+                    ],
+                    [
+                      0.19630160394974067,
+                      -0.11450926897068203
+                    ]
+                  ],
+                  "ticks": 15
+                },
+                "last": {
+                  "head": "YKC",
+                  "base": 0,
+                  "target": null,
+                  "angles": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0,
+                      0
+                    ]
+                  ],
+                  "ticks": 0
+                }
+              },
+              "uncovered": {
+                "frame": 30,
+                "ryo": [
+                  -17.25,
+                  4.275,
+                  152.25
+                ],
+                "eye": [
+                  -17.987,
+                  5.69,
+                  151.843
+                ],
+                "target": [
+                  -17.233,
+                  5.765,
+                  152.333
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              },
+              "voiced": {
+                "frame": 31,
+                "ryo": [
+                  -17.25,
+                  4.275,
+                  152.25
+                ],
+                "eye": [
+                  -17.985,
+                  5.689,
+                  151.837
+                ],
+                "target": [
+                  -17.233,
+                  5.765,
+                  152.333
+                ],
+                "alpha": 0,
+                "covered": false,
+                "drawn": true
+              }
+            }
+          ],
+          "lines": [
+            {
+              "id": "E1009BA013",
+              "text": "I hear voices. Is someone there?",
+              "speaker": "Ryo Hazuki",
+              "stage": "s1.ms8s.warehouse-eight-office.timed-approach"
+            },
+            {
+              "id": "E1009BB001",
+              "text": "Would ya' look at this invoice... The address is wrong.",
+              "speaker": "Tomohito Niizato",
+              "stage": "s1.ms8s.warehouse-eight-office.staff"
+            },
+            {
+              "id": "E1009BC001",
+              "text": "So it is.",
+              "speaker": "Tsukasa Takagi",
+              "stage": "s1.ms8s.warehouse-eight-office.staff"
+            },
+            {
+              "id": "E1009BB002",
+              "text": "I've asked them a million times to get it right.",
+              "speaker": "Tomohito Niizato",
+              "stage": "s1.ms8s.warehouse-eight-office.staff"
+            },
+            {
+              "id": "E1009BC002",
+              "text": "Yeah, it says right here... Old Warehouse District.",
+              "speaker": "Tsukasa Takagi",
+              "stage": "s1.ms8s.warehouse-eight-office.staff"
+            },
+            {
+              "id": "E1009BC003",
+              "text": "What are they thinking?",
+              "speaker": "Tsukasa Takagi",
+              "stage": "s1.ms8s.warehouse-eight-office.staff"
+            },
+            {
+              "id": "E1009BB003",
+              "text": "Can you call over to the Old Warehouse No. 8?",
+              "speaker": "Tomohito Niizato",
+              "stage": "s1.ms8s.warehouse-eight-office.staff-hold"
+            },
+            {
+              "id": "E1009BC004",
+              "text": "OK, got it.",
+              "speaker": "Tsukasa Takagi",
+              "stage": "s1.ms8s.warehouse-eight-office.staff-hold"
+            },
+            {
+              "id": "E1009BA014",
+              "text": "So there's another Warehouse No. 8?",
+              "speaker": "Ryo Hazuki",
+              "stage": "s1.ms8s.warehouse-eight-office.reaction"
+            },
+            {
+              "id": "E1009BA017",
+              "text": "I'll need to find the Old Warehouse District.",
+              "speaker": "Ryo Hazuki",
+              "stage": "s1.ms8s.warehouse-eight-office.departure"
+            }
+          ]
+        },
+        "after": {
+          "world": "mfsy",
+          "location": [
+            -18.5,
+            3.5999999046325684,
+            153.60000610351562
+          ],
+          "yen": 2000,
+          "hp": 100,
+          "inventory": [],
+          "bit242": 1,
+          "clue": true,
+          "completed": true
+        },
+        "restored": {
+          "world": "mfsy",
+          "location": [
+            -18.5,
+            3.5999999046325684,
+            153.60000610351562
+          ],
+          "yen": 2000,
+          "hp": 100,
+          "inventory": [],
+          "bit242": 1,
+          "clue": true,
+          "completed": true
+        }
+      }
+    }
+  ]
+}

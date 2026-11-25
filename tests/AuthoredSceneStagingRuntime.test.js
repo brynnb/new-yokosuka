@@ -28,6 +28,10 @@ function harness() {
   const root={enabled:true,setEnabled(value){this.enabled=value;}};
   let prepare = async () => {};
   const runtime = new AuthoredSceneStagingRuntime({
+    createFaces: () => ({
+      prepare: async () => {}, begin: () => true, apply: () => true, clear: () => {},
+      play: (_owner, command) => { calls.push(command); return true; },
+    }),
     actors: {
       prepare: (...args) => prepare(...args),
       begin: () => calls.push("actors-begin"),
@@ -655,6 +659,9 @@ test("the warehouse director follows the incoming camera, seven stages and the n
   assert.ok(Math.abs(placements.AKIR.x-16.15)<0.00001);
   assert.ok(view.positionX>15&&view.positionX<16);
   await start("lean");
+  const gaze = calls.at(-1);
+  assert.deepEqual(gaze, {name:"face-gaze",actorTag:"AKIR",mode:2,durationNativeTicks:60,
+    target:{kind:"world-point",position:[16.6299991607666,5.599999904632568,131.8699951171875]},callFileOffset:"0x27762"});
   assert.equal(samples.AKIR.time,40/30);
   tick(4);
   assert.ok(Math.abs(samples.AKIR.time-160/30)<1e-8);
@@ -752,4 +759,73 @@ test("an unavailable departure motion under full black releases the failed scene
   await rejected;
   assert.equal(alpha,0);assert.equal(runtime.active,null);
   assert.equal(calls.filter(value=>value==="camera-end").length,1);
+});
+
+test("a timed warehouse occurrence covers the gameplay camera before moving Ryo or the staff",async()=>{
+  const id="s1.ms8s.warehouse-eight-office.timed";
+  const timed=scenes.scenes.find(scene=>scene.id===id);
+  const {runtime,transaction,calls}=harness();
+  transaction.area=timed.area;
+  let alpha=0, view;
+  runtime.screenFade=new NativeStoryScreenFade({
+    present:(_owner,value)=>{alpha=value;},clear:()=>{alpha=0;},handoff:()=>assert.fail("unexpected travel"),
+  });
+  const placements={};
+  runtime.actors.applyTransform=(_owner,tag,pose)=>{placements[tag]=pose;return true;};
+  runtime.camera.apply=(_owner,pose)=>{view=pose;return true;};
+  const start=runtime.play({kind:"scene-staging-start",scene:timed},transaction);
+  runtime.update(transaction,29/30);
+  assert.equal(alpha,246);
+  assert.deepEqual(placements,{});
+  assert.equal(calls.includes("camera-begin"),false);
+  runtime.update(transaction,1/30);
+  await start;
+  assert.equal(alpha,255);
+  assert.equal(placements.AKIR.rotationY,45);
+  assert.ok(Math.abs(placements.AKIR.x-17.69)<1e-5);
+  assert.deepEqual(view,timed.camera);
+  const wait=runtime.play({kind:"scene-staging-dialogue-cue",scene:timed,atSeconds:12/30},transaction);
+  runtime.update(transaction,11/30);
+  assert.equal(typeof runtime.active.resolve,"function");
+  runtime.update(transaction,1/30);
+  assert.equal(await wait,true);
+  const walking=scenes.scenes.find(scene=>scene.id===id+"-approach");
+  const approach=runtime.play({kind:"scene-staging-transition",scene:walking},transaction);
+  await new Promise(resolve=>setImmediate(resolve));
+  const first=view;
+  runtime.update(transaction,1/30);
+  assert.equal(alpha,255,"native one-frame wait before the reveal");
+  runtime.update(transaction,29/30);
+  assert.equal(alpha,8);
+  runtime.update(transaction,1/30);
+  assert.equal(await approach,true);
+  assert.equal(alpha,0);
+  assert.ok(placements.AKIR.x<timed.actors[0].pose.x);
+  assert.equal(first.positionX,timed.camera.positionX);
+  runtime.update(transaction,29/30);
+  assert.ok(Math.abs(placements.AKIR.x-16.15)<1e-4);
+  runtime.cancel(transaction);
+  assert.equal(alpha,0);
+});
+
+test("the downstairs hint keeps its final position and rendered heading only on authoritative completion",async()=>{
+  const hint=scenes.scenes.find(scene=>scene.id==="s1.ms8s.warehouse-light-hint");
+  assert.equal(hint.finishAtPlayerPose,true);
+  assert.equal(hint.actors[0].tag,"AKIR");
+  const heading=0.0534,position=[-14.5,0,144.5];
+  for(const complete of [false,true]){
+    const {runtime,scene,transaction,root,calls}=harness();
+    scene.finishAtPlayerPose=true;
+    root.rotationQuaternion={x:0,y:Math.sin(heading/2),z:0,w:Math.cos(heading/2)};
+    await runtime.play({kind:"scene-staging-start",scene},transaction);
+    runtime.capturePlayerState=()=>({position,yaw:0,cameraYaw:10});
+    assert.equal(await runtime.play({kind:"scene-staging-finish",scene},transaction),true);
+    assert.equal(runtime.active.awaitingCommit,true);
+    assert.equal(complete?runtime.commitPlayerPose(transaction):runtime.cancel(transaction),true);
+    assert.equal(runtime.active,null);
+    const restored=calls.at(-1);
+    assert.deepEqual(restored.position,complete?position:[1,2,3]);
+    assert.equal(restored.cameraYaw,4);
+    if(complete) assert.ok(Math.abs(restored.yaw-heading)<1e-10);
+  }
 });

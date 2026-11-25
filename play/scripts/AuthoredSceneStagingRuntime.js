@@ -1,6 +1,7 @@
 // A scene tableau belongs to an existing Yarn presentation transaction. It
 // borrows the shared cinematic actors/camera; it never saves story state or
 // interprets a challenge. This is intentionally authored, not decoded AUTH.
+import {applyNativeActorLookPresentation,restoreNativeActorLookPresentation} from "../characters/NativeActorLookPresentation.js";
 import { updateNativeCharacterSecondaryMotion } from "../characters/NativeCharacterSecondaryMotion.js";
 import {StagedCameraPool} from "./StagedCameraPool.js";
 import {applyStoryObjectTransforms} from "./StoryObjectPresentation.js";
@@ -70,7 +71,7 @@ export class AuthoredSceneStagingRuntime {
       const dialogueCue = sequence.kind === "scene-staging-dialogue-cue";
       const end = dialogueCue ? (sequence.atSeconds ?? owner.scene.dialogueCueSeconds) : owner.scene.playThroughFinish ? owner.durationSeconds : 0;
       if (dialogueCue && (!Number.isFinite(end) || end < 0)) return false;
-      if (owner.elapsed < end) {
+      if (owner.elapsed + 1e-8 < end) {
         if (owner.resolve) return false;
         owner.resolveAt = end;
         await new Promise((resolve, reject) => { owner.resolve = resolve; owner.reject = reject; });
@@ -78,7 +79,13 @@ export class AuthoredSceneStagingRuntime {
       if (this.active !== owner) return false;
       if (dialogueCue) return true;
       const exit = owner.scene.screenFades?.beforeTravel;
-      if (!exit) return this.release(transaction);
+      if (!exit) {
+        if (!owner.scene.finishAtPlayerPose) return this.release(transaction);
+        // The real player stays staged until the server commits. A cancel or
+        // disconnected terminal acknowledgement still restores the entry pose.
+        owner.awaitingCommit = true;
+        return true;
+      }
       try {
         await this.playScreenFade(owner,exit);
         owner.controller.signal.throwIfAborted();
@@ -195,8 +202,8 @@ export class AuthoredSceneStagingRuntime {
     this.active = owner;
     const { signal } = owner.controller;
     try {
-      if (scene.screenFades) {
-        if (!continuing || !this.screenFade) throw new Error("Story screen fade requires a continuous staged owner");
+      if (scene.screenFades && !this.screenFade) throw new Error("Story screen fade requires a foreground presentation");
+      if (scene.screenFades?.beforeReposition) {
         await this.playScreenFade(owner,scene.screenFades.beforeReposition);
         signal.throwIfAborted();
       }
@@ -313,8 +320,13 @@ export class AuthoredSceneStagingRuntime {
         if(actor.presented!=null)owner.actors.activeActor(actor.tag).root.setEnabled(actor.presented);
       }
       owner.objects?.beginActivity({activityId:scene.id,actors:scene.actors.map(a=>a.tag)});
+      for (const command of scene.faceCommands ?? []) {
+        if (!Object.hasOwn(scene.facialAssets ?? {}, command.actorTag) || !owner.faces?.play(owner, command)) {
+          throw new Error(`Cannot apply ${command.name} to ${command.actorTag} in ${scene.id}`);
+        }
+      }
       if (!this.update(transaction, 0)) throw new Error(`Cannot present scene ${scene.id}`);
-      if (scene.screenFades) {
+      if (scene.screenFades?.afterReposition) {
         await this.playScreenFade(owner,scene.screenFades.afterReposition);
         signal.throwIfAborted();
       }
@@ -348,8 +360,9 @@ export class AuthoredSceneStagingRuntime {
 
   update(transaction, deltaSeconds) {
     const owner = this.active;
-    if (!owner || owner.transaction !== transaction || !owner.actorsBegun) return true;
+    if (!owner || owner.transaction !== transaction) return true;
     this.screenFade?.update(transaction,deltaSeconds);
+    if (!owner.actorsBegun) return true;
     owner.elapsed += Math.max(0, deltaSeconds);
     owner.cameraElapsed += Math.max(0, deltaSeconds);
     for (const actor of owner.scene.actors) {
@@ -376,6 +389,11 @@ export class AuthoredSceneStagingRuntime {
       // Gameplay skips its post-pose pass while a story presentation owns the
       // actor. Reuse that pass here, or acquired cloth stays at the old pose.
       updateNativeCharacterSecondaryMotion(model, deltaSeconds);
+      if (actor.lookAt) {
+        owner.looks ??= new Map();
+        if (!owner.looks.has(model)) owner.looks.set(model,{});
+        applyNativeActorLookPresentation(model,actor.lookAt,owner.looks.get(model));
+      }
     }
     for(const [tag,track] of Object.entries(owner.scene.sceneObjectTracks||{})){
       if(!owner.sceneObjects?.applyTransform(owner,tag,evaluateAuthActor(track,owner.elapsed)))return false;
@@ -409,11 +427,23 @@ export class AuthoredSceneStagingRuntime {
       owner.voiceCuePlayed = true;
       if (owner.elapsed < cue.dialogueAtSeconds) owner.voiceAudio = this.dialogueAudio.playOneShot(cue.asset);
     }
-    if(owner.resolve&&owner.elapsed>=owner.resolveAt){owner.resolve(true);owner.resolve=null;}
+    if(owner.resolve&&owner.elapsed+1e-8>=owner.resolveAt){owner.resolve(true);owner.resolve=null;}
     return true;
   }
 
-  release(transaction, keepTravelCover = false) {
+  commitPlayerPose(transaction) {
+    const owner = this.active;
+    if (!owner?.awaitingCommit || owner.transaction !== transaction) return false;
+    const current = this.capturePlayerState();
+    // Staged MT5 actors use a quaternion; their Euler fields are cleared.
+    const q = owner.actors.activeActor("AKIR")?.root?.rotationQuaternion;
+    const yaw = q
+      ? Math.atan2(2 * (q.w * q.y + q.x * q.z), 1 - 2 * (q.x * q.x + q.y * q.y))
+      : current.yaw;
+    return this.release(transaction, false, {...owner.snapshot, position: current.position, yaw});
+  }
+
+  release(transaction, keepTravelCover = false, returnPose = this.active?.snapshot) {
     const owner = this.active;
     if (!owner || owner.transaction !== transaction) return false;
     this.active = null;
@@ -425,6 +455,7 @@ export class AuthoredSceneStagingRuntime {
     // cancel instead of acknowledging an incomplete restoration.
     const errors = [];
     for (const [enabled, cleanup] of [
+      ...[...(owner.looks || [])].map(([model,state]) => [true, () => restoreNativeActorLookPresentation(model,state)]),
       [!keepTravelCover && !!this.screenFade, () => this.screenFade.cancel(transaction)],
       ...(owner.soundCueAudio || []).map(audio => [true, () => this.dialogueAudio.stopOneShot(audio)]),
       [!!owner.voiceAudio, () => this.dialogueAudio.stopOneShot(owner.voiceAudio)],
@@ -439,7 +470,7 @@ export class AuthoredSceneStagingRuntime {
       [!!owner.releaseActors,()=>owner.releaseActors()],
       [!!owner.actorSet, () => owner.actorSet.clear()],
       [!!owner.releaseEnvironment,()=>owner.releaseEnvironment()],
-      [true, () => this.restorePlayerState(owner.snapshot)],
+      [true, () => this.restorePlayerState(errors.length ? owner.snapshot : returnPose)],
     ]) if (enabled) {
       try { if (cleanup() === false) throw new Error("Story scene cleanup rejected"); }
       catch (error) { errors.push(error); }

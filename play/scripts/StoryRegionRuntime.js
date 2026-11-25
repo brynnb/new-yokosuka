@@ -1,3 +1,4 @@
+import { WarehouseVisitClock } from "./WarehouseVisitClock.js";
 import { storyWeatherClassAt } from "../world/StoryWeatherClass.js";
 import catalog from "../data/story-regions.json" with { type: "json" };
 
@@ -31,12 +32,14 @@ export function matchesEncounterApproach(approach, position, playerYaw) {
  * eligibility. No native-room fallback is permitted for this dispatch family.
  */
 export class StoryRegionRuntime {
-  constructor({ controller, getCharacter, getGameDate = () => null, hasNativeFlag = () => false, publishPresence, acquireMovementLock = () => () => {}, onError = console.error, regions = catalog.regions }) {
+  constructor({ controller, getCharacter, getGameDate = () => null, hasNativeFlag = () => false, publishPresence, warehouseControls = () => ({}), acquireMovementLock = () => () => {}, onError = console.error, regions = catalog.regions }) {
     this.controller = controller;
     this.getCharacter = getCharacter;
     this.getGameDate = getGameDate;
     this.hasNativeFlag = hasNativeFlag;
     this.publishPresence = publishPresence;
+    this.warehouseControls = warehouseControls;
+    this.warehouseClock = null;
     this.acquireMovementLock = acquireMovementLock;
     this.onError = onError;
     this.regions = regions;
@@ -47,8 +50,8 @@ export class StoryRegionRuntime {
     this.calendarDay = null;
     this.generation = 0;
   }
-  reset() { this.generation++; this.inside.clear(); this.contextKey = null; this.calendarDay = null; }
-  update({ area, worldId, playerPosition, playerYaw, enabled }) {
+  reset() { this.warehouseClock = null; this.generation++; this.inside.clear(); this.contextKey = null; this.calendarDay = null; }
+  update({ area, worldId, playerPosition, playerYaw, enabled, roomRunning = enabled, deltaSeconds = 0 }) {
     const position = Array.isArray(playerPosition) ? playerPosition
       : playerPosition ? [playerPosition.x, playerPosition.y, playerPosition.z] : null;
     const character = this.getCharacter();
@@ -57,14 +60,28 @@ export class StoryRegionRuntime {
       ? Math.floor(date.getTime() / 86_400_000) : "unknown";
     const key = character ? `${character.id}:${character.modeRevision}:${worldId || ""}:${area}` : null;
     if (key !== this.contextKey) { this.reset(); this.contextKey = key; }
-    if (!character || character.playMode !== "story" || !character.openingCompleted || !enabled
+    if (!character || character.playMode !== "story" || !character.openingCompleted || !roomRunning
       || !position || position.length !== 3 || !position.every(Number.isFinite)) return false;
     // Cinematics/combat temporarily move the render actor away from the
     // gameplay approach. Updating occupancy from those poses manufactured an
     // exit/re-entry and immediately replayed a cancelled encounter. Preserve
     // the entry latch until gameplay ownership returns; context changes above
     // still reset it on world, character or mode changes.
-    if(this.controller.status!=="idle")return false;
+    let clock = null;
+    let warehouseReady = false;
+    const storyFlags = character.storyFlags || {};
+    if (area === "MS8S" && worldId === "ms8s"
+      && (storyFlags["story.s1.warehouse-eight-window.completed"] || storyFlags["story.s1.goro-guard-distraction.completed"])
+      && !storyFlags["story.s1.warehouse-eight-overheard.completed"] && !this.hasNativeFlag(242)) {
+      clock = this.warehouseClock ??= new WarehouseVisitClock();
+      const {paused, occupied, input, freeConversation, schedulerSlot} = this.warehouseControls();
+      if (!paused) {
+        const controlsOwned = Boolean(occupied) || !enabled || this.controller.status !== "idle";
+        clock.update(deltaSeconds, Boolean(input), Boolean(freeConversation), controlsOwned);
+      }
+      warehouseReady = !paused && !occupied && (schedulerSlot == null || (schedulerSlot | 0) === -1);
+    }
+    if (!enabled || this.controller.status !== "idle") return false;
     // Re-arm date-gated appointments, not every region: an ordinary overnight
     // opening-hours window stays occupied across midnight. Yarn still decides
     // whether a saved appointment is eligible on the new personal day.
@@ -108,7 +125,9 @@ export class StoryRegionRuntime {
       if (region.excludedNativeFlags?.some(index => this.hasNativeFlag(index))) continue;
       entered.push(region.id);
     }
-    if(!entered.length)return false;
+    // The native director checks the physically approached scene before either timeout.
+    const timedObject = !entered.length && warehouseReady ? clock.selector(position[1]) : null;
+    if (!entered.length && !timedObject) return false;
     // All overlapping bounds share one server-arbitrated "enter" selector.
     // Latching only the first would issue another offer as soon as the chosen
     // scene returned, even though the player had never left the same approach.
@@ -124,7 +143,21 @@ export class StoryRegionRuntime {
     for(const id of entered)this.inside.add(id);
     const generation = this.generation;
     try {
-      void this.controller.start({ kind: "enter" }, { area }).then(result => {
+      let selector = {kind: "enter"};
+      const context = {area};
+      if (timedObject) {
+        selector = {kind: "use", object: timedObject};
+        clock.attempted = timedObject;
+        if (timedObject === "MS8S.light-timeout") {
+          context.onStoryComplete = identity => {
+            if (generation === this.generation && identity.scriptSlug === "story-s1-warehouse-eight-light-timeout") {
+              clock.lightingSeen = true;
+              clock.attempted = null;
+            }
+          };
+        }
+      }
+      void this.controller.start(selector, context).then(result => {
         if (generation === this.generation && result?.outcome === "rejected") this.onError(result.error);
       }).catch(error => { if (generation === this.generation) this.onError(error); }).finally(releaseMovement);
     } catch(error) {

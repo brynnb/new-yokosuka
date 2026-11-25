@@ -45,7 +45,7 @@ const temp = fs.mkdtempSync(path.join(os.tmpdir(), "ny-warehouse-office-"));
 let cameras;
 try {
   const out = path.join(temp,"cameras.json");
-  const numbers = [1102,1103,1104,1105,1106,1300];
+  const numbers = [1000,1101,1102,1103,1104,1105,1106,1300];
   execFileSync("python3",["-m","tools.scripting.extract_event_camera_catalog",mapFile,"--out",out,
     ...numbers.flatMap(number=>["--camera",String(number)])],{cwd:root,stdio:"pipe"});
   cameras = new Map(JSON.parse(fs.readFileSync(out)).records.map(record=>[record.cameraNumber,record]));
@@ -71,10 +71,18 @@ const heldRyo={...lean,motionStartSeconds:160/30,playbackRate:0};
 const actorsAtExit=[{...ryo,pose:byWindow},{...tomohito,continueMotion:true},{...tsukasa,continueMotion:true}];
 const fields=["positionX","positionY","positionZ","targetX","targetY","targetZ"];
 const shot=(number,frames)=>composeEventCameraShots(cameras,[{frame:0,cameraNumber:number}],frames);
+const faceCatalog = JSON.parse(fs.readFileSync(path.join(root, "play/assets/cutscenes/native-faces/manifest.generated.json")));
+const ryoFace = faceCatalog.facialAssets.AKIR;
+for (const source of [ryoFace.model, ryoFace.table]) {
+  const original = path.join(area, "../MODEL/FACE", path.basename(source.path));
+  if (sha256(fs.readFileSync(original)) !== source.sha256) throw Error("Changed Disc 2 Ryo FACE resource " + original);
+}
+// The MS8S director supplies an absolute target and a duration to FACE mode 2.
+const gazePoint = [0, 4, 8].map(offset => map.readFloatLE(0x2bec4 + offset));
 const phase=(suffix,frames,actors,extra)=>({
   id:suffix?group+"."+suffix:group,area:"MS8S",worldId:"ms8s",continuationGroup:group,
   ...(suffix?{continuesPrevious:true}:{}),durationSeconds:frames/30,
-  waitForMotionCompletion:false,actorDefinitions:staff,isolateScheduledActors:true,actors,...extra,
+  waitForMotionCompletion:false,actorDefinitions:staff,facialAssets:{AKIR:ryoFace},isolateScheduledActors:true,actors,...extra,
 });
 
 // 1103 starts from the live 1102 endpoint after exactly 350 scheduler frames.
@@ -86,18 +94,29 @@ for (const field of [...fields,"perspective"]) {
   curve.values[0]=cameras.get(1102).curves[field].values.at(-1);
 }
 // At 0x27ec6 both anchors for 1300 are Ryo, whose new source pose was just written.
-const camera1300=cameras.get(1300);
-const angle=byWindow.rotationY*Math.PI/180;
-for(const field of ["position","target"]){
-  const x=camera1300.curves[field+"X"],y=camera1300.curves[field+"Y"],z=camera1300.curves[field+"Z"];
-  if(JSON.stringify(x.times)!==JSON.stringify(z.times)) throw Error("Changed relative camera keys");
-  for(const key of ["values","slopes"]){
-    const xs=x[key].slice(),zs=z[key].slice(),translate=key==="values";
-    x[key]=xs.map((v,i)=>Math.cos(angle)*v+Math.sin(angle)*zs[i]+(translate?byWindow.x:0));
-    z[key]=xs.map((v,i)=>-Math.sin(angle)*v+Math.cos(angle)*zs[i]+(translate?byWindow.z:0));
+function anchorCamera(number, anchor) {
+  const relativeCamera = cameras.get(number);
+  const angle = anchor.rotationY * Math.PI / 180;
+  for (const field of ["position","target"]) {
+    const x = relativeCamera.curves[field+"X"];
+    const y = relativeCamera.curves[field+"Y"];
+    const z = relativeCamera.curves[field+"Z"];
+    if (JSON.stringify(x.times) !== JSON.stringify(z.times)) throw Error("Changed relative camera keys");
+    for (const key of ["values","slopes"]) {
+      const xs = x[key].slice(), zs = z[key].slice();
+      const translate = key === "values";
+      x[key] = xs.map((v,i) => Math.cos(angle)*v + Math.sin(angle)*zs[i] + (translate ? anchor.x : 0));
+      z[key] = xs.map((v,i) => -Math.sin(angle)*v + Math.cos(angle)*zs[i] + (translate ? anchor.z : 0));
+    }
+    y.values = y.values.map(value => value + anchor.y);
   }
-  y.values=y.values.map(value=>value+byWindow.y);
 }
+const timedStart=staticPose(0x2be94,8192);
+anchorCamera(1300,byWindow);
+anchorCamera(1101,timedStart);
+const lightPoint=staticPose(0x2bf58,0);
+const downstairs=staticPose(0x2bf4c,0);
+downstairs.rotationY=Math.atan2(lightPoint.x-downstairs.x,lightPoint.z-downstairs.z)*180/Math.PI;
 const approachFrames=60,firstFrames=190;
 const approach={channels:Object.fromEntries(Object.entries(atWall).map(([key,end])=>[
   key,{times:[0,approachFrames/30,firstFrames/30],values:[end,end,end],interpolation:"linear"}]))};
@@ -116,7 +135,9 @@ const scenes=[
     ...composeEventCameraShots(cameras,[{frame:0,cameraNumber:1105},{frame:approachFrames,cameraNumber:1106}],firstFrames),
     cameraFromCurrent:[...fields,"perspective"],dialogueCues:[{voiceId:"E1009BA013",atSeconds:approachFrames/30}],
     provenance:"Native physical approach mode 0 issues XMPT to 0x2bea0, takes 1105 then 1106 and plays A013. Story fits the approach from the actual player position to the two-second 1105 move."}),
-  phase("lean",121,[lean,...heldStaff],{continueCamera:true,dialogueCues:[{voiceId:"E1009BB001",atSeconds:120/30}],
+  phase("lean",121,[lean,...heldStaff],{continueCamera:true,
+    faceCommands:[{name:"face-gaze",actorTag:"AKIR",mode:2,durationNativeTicks:60,target:{kind:"world-point",position:gazePoint},callFileOffset:"0x27762"}],
+    dialogueCues:[{voiceId:"E1009BB001",atSeconds:120/30}],
     provenance:"0x2772a starts the dedicated listening motion at frame 40. The director waits for frame 160 before starting the staff exchange."}),
   phase("staff",675,[heldRyo,tomohito,{...tsukasa,playbackRate:0.5}],{
     ...composeEventCameraShots(cameras,[{frame:0,cameraNumber:1102},{frame:350,cameraNumber:1103}],675),
@@ -127,8 +148,13 @@ const scenes=[
     continueCamera:true,dialogueCues:[{voiceId:"E1009BA014",atSeconds:1}],
     provenance:"0x27bd8 waits 30 frames after the final worker line before Ryo reacts."}),
   phase("reaction",150,[heldRyo,{...tomohito,continueMotion:true},{...tsukasa,continueMotion:true,playbackRate:0}],{
+    faceCommands:[{name:"face-clip",actorTag:"AKIR",clipGroup:2,selector:0,durationNativeTicks:60,callFileOffset:"0x27c28"}],
     ...shot(1104,150),cameraFromCurrent:[...fields,"roll"],provenance:"At 0x27c0c ECAM 1104 picks up the current staff camera and turns to Ryo for A014."}),
   phase("departure",250,actorsAtExit,{...shot(1300,250),
+    faceCommands:[
+      {name:"face-clip",actorTag:"AKIR",clipGroup:0,selector:0,durationNativeTicks:1,callFileOffset:"0x27df2"},
+      {name:"face-gaze",actorTag:"AKIR",mode:0,durationNativeTicks:16,callFileOffset:"0x27e06"},
+    ],
     screenFades:{
       beforeReposition:blackFade(0x27cec,0x27cdc,0x27d0c),
       afterReposition:blackFade(0x27fa2,0x27f92,0x27fcc,true),
@@ -136,9 +162,37 @@ const scenes=[
     },
     provenance:"0x27e50 places Ryo back beside the window facing 0xa000. The Ryo-relative ECAM 1300 plays for the Old Warehouse District line A017 before MFSY/5."}),
 ];
+// The alternate director covers the actual gameplay view, then positions Ryo at
+// 0x2be94 and selects his relative ECAM 1101. Its two one-tick waits and a
+// ten-tick hold at 0x274c0 precede the XMPT approach and ECAM 1105.
+scenes.push({
+  ...phase("timed",13,[{...ryo,pose:timedStart},...heldStaff],{
+    ...shot(1101,13),
+    screenFades:{beforeReposition:blackFade(0x272fe,0x272ee,0x27320)},
+    dialogueCues:[{voiceId:"E1009BA013",atSeconds:12/30}],
+    provenance:"MS8S mode 1 covers the gameplay frame before moving AKIR to 0x2be94, facing 0x2000, and selecting ECAM 1101 at 0x273d6."}),
+  continuesPrevious:false,
+});
+const timedMovement={channels:Object.fromEntries(Object.keys(atWall).map(key=>[
+  key,{...approach.channels[key],values:[timedStart[key],atWall[key],atWall[key]]}]))};
+scenes.push(phase("timed-approach",firstFrames,[{...ryo,motion:walk,movement:timedMovement,
+  motionCues:[{atSeconds:approachFrames/30,motion:idle}]},...heldStaff],{
+  ...composeEventCameraShots(cameras,[{frame:0,cameraNumber:1105},{frame:approachFrames,cameraNumber:1106}],firstFrames),
+  cameraFromCurrent:[...fields,"perspective"],
+  screenFades:{afterReposition:{...blackFade(0x27596,0x27586,0x275b8,true),holdFrames:map.readInt8(0x2751e)}},
+  dialogueCues:[{voiceId:"E1009BA013",atSeconds:approachFrames/30}],
+  provenance:"0x27500 begins the common XMPT. In mode 1 the director reveals the 1105 approach over 30 frames, then switches to 1106 for A013."}));
+const lightId="s1.ms8s.warehouse-light-hint";
+scenes.push({id:lightId,area:"MS8S",worldId:"ms8s",actorDefinitions:[],durationSeconds:60/30,
+  actors:[{tag:"AKIR",pose:downstairs,motion:idle,lookAt:[-lightPoint.x,lightPoint.y,lightPoint.z]}],
+  ...shot(1000,60),waitForMotionCompletion:false,
+  screenFades:{beforeReposition:blackFade(0x281dc,0x281cc,0x28208),
+    afterReposition:blackFade(0x28302,0x282f2,0x28344,true)},
+  finishAtPlayerPose:true,
+  provenance:"MS8S 0x28198 relocates AKIR to 0x2bf4c, faces the light at 0x2bf58, selects standing motion 0x387 and full look-point control 6, and reveals ECAM 1000. A018 ends back in MS8S at that location."});
 // These are compact rows in a larger hand-maintained catalog. Retain its other rows.
 const lines=catalogText.split("\n");
-const belongs=line=>line.trimStart().startsWith('{"id":"'+group+'"')||line.trimStart().startsWith('{"id":"'+group+'.');
+const belongs=line=>line.trimStart().startsWith('{"id":"'+lightId+'"')||line.trimStart().startsWith('{"id":"'+group+'"')||line.trimStart().startsWith('{"id":"'+group+'.');
 const first=lines.findIndex(belongs);
 if(first<0)throw Error("Missing office scene entry");
 const outside=lines.filter(line=>!belongs(line));

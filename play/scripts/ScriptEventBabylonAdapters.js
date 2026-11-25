@@ -385,7 +385,8 @@ export class ScriptEventBabylonAdapters {
     }
     this.telephoneRuntime?.assertSettled(transaction);
     this.motionCueRuntime?.assertSettled(transaction);
-    if (this.sceneStagingRuntime?.active?.transaction === transaction) {
+    if (this.sceneStagingRuntime?.active?.transaction === transaction
+      && !this.sceneStagingRuntime.commitPlayerPose?.(transaction)) {
       throw new Error("script presentation committed before scene staging cleanup");
     }
     try {

@@ -115,6 +115,12 @@ for (const route of spec.routes) {
   if (route.repeatable && ((!route.destination && !route.shop && !ambientDialogue && !repeatableTemplate) || route.items?.length || route.grantYen || route.spendYen || route.recordMinutes?.length || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length || ((ambientDialogue||repeatableTemplate)&&route.effects.length))) throw Error(`Unsafe repeatable route ${route.id}`);
   if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw Error(`Invalid Story destination ${route.id}`);
   const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...(route.excludedFlags||[]).map(flag=>`flag_set("${flag}")`), ...requiredItems.map(({key,quantity,nativeOwnership})=>nativeOwnership ? `(!has_item("${key}", ${quantity}) && native_value("${nativeOwnership}") == 0)` : `!has_item("${key}", ${quantity})`), ...(route.repeatable ? [] : [`flag_set("${route.completedFlag}")`])];
+  if (route.requiredAnyFlags) {
+    if (!route.requiredAnyFlags.length || !route.requiredAnyFlags.every(flag=>/^story\.s1\.[a-z0-9.-]+$/.test(flag))) {
+      throw Error("Invalid alternative entrance flags in "+route.id);
+    }
+    gates.push("("+route.requiredAnyFlags.map(flag=>`!flag_set("${flag}")`).join(" && ")+")");
+  }
   for (const address of route.excludedNativeFlags || []) {
     if (!/^2:\d+$/.test(address) || !route.nativeSources?.length) throw Error(`Invalid native flag exclusion in ${route.id}`);
     gates.push(`native_value("${address}") != 0`);
@@ -186,6 +192,12 @@ for (const route of spec.routes) {
         const text=route.authoredText?.[key];
         if(typeof text!=="string"||!text.trim()||/[\n\r<>#\[\]{}]/.test(text))throw Error(`Missing or unsafe authored text ${route.id}/${key}`);
         return text;
+      })
+      .replace(/\{\{openingSequences\}\}/g, () => {
+        if (!route.openingSequences?.length || !route.openingSequences.every(id=>/^s1\.[a-z0-9.-]+$/.test(id))) {
+          throw Error("Missing or invalid opening sequence in "+route.id);
+        }
+        return route.openingSequences.map(id=>`<<play_sequence "${id}">>`).join("\n");
       })
       .replaceAll("{{staging}}", route.staging)
       .replaceAll("{{challenge}}", route.challenge || "{{challenge}}")
@@ -279,7 +291,7 @@ for (const route of spec.routes) {
     SourceText: sourceText, Triggers: [{ nodeId: "Start", kind: route.trigger || "talk", area: route.area, ...(route.object ? {object:route.object} : route.trigger ? {} : { actor: route.actor }), priority: route.priority ?? 200 }],
     TestFixtures: [{ Name: "Eligible personal investigation", StartNode: "Start", Fixture: {
       playMode: "story", openingCompleted: true, scene: route.area, gameHour: route.hours ? Math.max(10,route.hours[0]) : 10,
-      flags: Object.fromEntries([...route.requiredFlags, ...(route.testFlags || [])].map(flag => [flag, true])),
+      flags: Object.fromEntries([...route.requiredFlags, ...(route.requiredAnyFlags || []).slice(0,1), ...(route.testFlags || [])].map(flag => [flag, true])),
       ...(requiredItems.length?{inventory:Object.fromEntries(requiredItems.map(({key,quantity})=>[key,quantity]))}:{}),
       actorPresence: Object.fromEntries((route.presentActors || participants).map(actor => [actor, true])),
       ...((route.earliestDate||route.recordDays?.length||route.recordMinutes?.length||route.minuteAfter||route.combat||route.dayAfter||route.dayAfterIfKnown||route.sameDayAs||route.timeTransition)?{gameDate:route.earliestDate||"1986-12-04"}:{}),

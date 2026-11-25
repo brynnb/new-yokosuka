@@ -81,7 +81,13 @@ test("play loop preserves fixed, post-fixed, render, and disposal boundaries", (
     worldReady = true;
     beforeStep.fire();
     afterStep.fire();
+    runtime.previousRenderTime = performance.now() - 60_000;
+    listeners.get("visibilitychange")();
+    const visibleSince = runtime.previousInterpolationTime;
     renderLoop();
+    assert.equal(runtime.pendingRenderTiming.deltaSeconds, 0.25);
+    assert.equal(runtime.pendingRenderTiming.gameplayDeltaSeconds, Math.min(0.25, (runtime.previousRenderTime - visibleSince) / 1000),
+      "a suspended minute cannot advance room clocks on return");
     beforeRender.fire();
     runtime.dispose();
     runtime.dispose();

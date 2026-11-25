@@ -20,6 +20,17 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.ms8s.warehouse-light-timeout","description":"Warehouse No. 8 — the upstairs light source floor check."},
+    {"kind":"bounds","identifier":"s1.ms8s.warehouse-office-timeout","description":"Warehouse No. 8 — timed office conversation source floor check."},
+    {"kind":"bounds","identifier":"s1.ms8s.warehouse-office-deadline","description":"Warehouse No. 8 — timed office conversation source floor check."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-office.timed.start","description":"Native timed warehouse office approach, timed.start."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-office.timed.finish","description":"Native timed warehouse office approach, timed.finish."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-office.timed.cue-e1009ba013","description":"Native timed warehouse office approach, timed.cue-e1009ba013."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-office.timed-approach.start","description":"Native timed warehouse office approach, timed-approach.start."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-office.timed-approach.finish","description":"Native timed warehouse office approach, timed-approach.finish."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-office.timed-approach.cue-e1009ba013","description":"Native timed warehouse office approach, timed-approach.cue-e1009ba013."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-light-hint.start","description":"Native warehouse lighting hint, start."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-light-hint.finish","description":"Native warehouse lighting hint, finish."},
     {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-office.lean.finish","description":"Release the staged warehouse lean phase."},
     {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-office.staff.finish","description":"Release the staged warehouse staff phase."},
     {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-office.staff-hold.finish","description":"Release the staged warehouse staff-hold phase."},

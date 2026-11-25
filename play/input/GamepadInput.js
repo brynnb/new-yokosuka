@@ -413,6 +413,17 @@ export class GamepadInput {
     );
     const leftTrigger = buttonValue(gamepad, 6);
     const rightTrigger = buttonValue(gamepad, 7);
+    // 1ST_READ 0x0c0c9776 reads the original pad independently of locomotion:
+    // either trigger, any D-pad direction, or a left-stick byte outside [126,130].
+    const stickActive = [0, 1].some(axis => {
+      const value = gamepad.axes?.[axis] || 0;
+      const byte = 128 + Math.round(value * (value < 0 ? 128 : 127));
+      return byte < 126 || byte > 130;
+    });
+    const directionHeld = [12, 13, 14, 15].some(index => buttonPressed(gamepad, index));
+    this.actions?.setButton("gamepad", "nativePadActivity", !mounted && (
+      stickActive || directionHeld || Math.round(255 * Math.max(leftTrigger, rightTrigger)) > 0
+    ));
     this.actions?.setValue("gamepad", "moveX", horizontal);
     this.actions?.setValue(
       "gamepad",

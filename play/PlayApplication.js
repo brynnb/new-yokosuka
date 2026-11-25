@@ -981,6 +981,24 @@ function createPlayRuntime() {
   const nativeStoryRuntime = new NativeStoryRuntime({
     storyObjects: new StoryObjectPresentation({getCharacter: () => accountSession.character}),
     storyRegions: new StoryRegionRuntime({ controller: scriptEventController,
+      warehouseControls: () => {
+        const input = playInput.currentSnapshot;
+        const sceneState = nativeRoomScriptRuntime.sceneState;
+        const byte = offset => sceneState.readNativeField({offset, width: 1});
+        // 1ST_READ 0x0c0c983a: slot 0 requires an enabled controller, no
+        // 0x0194 suspension and either held controls or the FREE talk flag.
+        const activityEnabled = byte(0x0c224e2d) !== 0 && !byte(0x0c2178c3);
+        return {
+          paused: document.hidden || !controller || playUi.lockOwners.size > 0,
+          occupied: controller?.movementLocked || nativeStoryRuntime.presentationActive || nativeScriptedEventRuntime.busy,
+          input: activityEnabled && input && (
+            input.value("turn") || input.value("moveX") || input.value("moveY")
+            || input.held("run") || input.held("nativePadActivity")
+          ),
+          freeConversation: activityEnabled && byte(0x0c20bfd9) === 1,
+          schedulerSlot: sceneState.readNativeField({offset: 0x1b8, width: 4}),
+        };
+      },
       hasNativeFlag: index => nativeDialoguePersistence.sessionOptions()?.dialogueState.read(2, index) === 1,
       getCharacter: () => accountSession.character,
       acquireMovementLock: () => controller.acquireMovementLock(),

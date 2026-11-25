@@ -76,7 +76,9 @@ the workers from the corridor without opening either door.
 
 MS8S routine `0x27284` stages the workers' conversation. In the physically triggered mode 0, camera 1105 starts at the player's camera while Ryo walks from his actual position to native (16.15, 4.275, 135.18). The approach lasts two seconds in Story. Camera 1106 then moves into the listening shot. Ryo leans against the wall with the original `AKI_KIKU_HANASI_TATIGIKI_F_0100` motion from bank M_0153, beginning at frame 40 and holding at frame 160.
 
-Cameras 1102 and 1103 cover the workers, with the cut at frame 350. Tsukasa Takagi (SGK_L) gestures at half speed, then holds his pose during the later exchange. Tomohito Niizato (KWA_L) continues his own gesture across that change. Both room models and both motions come from the MS8S package. Camera 1104 starts from the active workers' shot for Ryo's reaction. He then moves to the source window position for the actor-relative camera 1300. Dialogue advances at the player's pace. The timed mode-1 entrance uses an additional camera. During Ryo’s lean, MS8S dispatches sound command `0x000705a9` at motion frames 46, 63, 88, 110 and 139. In the Disc 2 location bank `F1NEW8SO.SND`, group `A905` track 7 contains only the sequence `C0 A0 00 80 FF` (event 0, value 128). It identifies no sample, and the effect of that event in the original sound driver remains unverified.
+Cameras 1102 and 1103 cover the workers, with the cut at frame 350. Tsukasa Takagi (SGK_L) gestures at half speed, then holds his pose during the later exchange. Tomohito Niizato (KWA_L) continues his own gesture across that change. Both room models and both motions come from the MS8S package. Camera 1104 starts from the active workers' shot for Ryo's reaction. He then moves to the source window position for the actor-relative camera 1300. Dialogue advances at the player's pace. The timed mode-1 entrance first covers the current gameplay view, places Ryo beside the wall at (−17.69, 4.275, 136.69) and holds actor-relative camera 1101. Camera 1105 starts from that view for the covered walk to the wall, followed by camera 1106 and the same ten-line exchange. During the lean Ryo follows the original FACE target at (−16.63, 5.60, 131.87) over 60 ticks. His reaction uses facial clip group 2 for 60 ticks, and the departure restores neutral gaze.
+
+MS8S dispatches sound command `0x000705a9` at lean motion frames 46, 63, 88, 110 and 139. In the Disc 2 location bank `F1NEW8SO.SND`, group `A905` track 7 contains `C0 A0 00 80 FF`. The original AM2/AICA v1.74a driver places `0xa0000080` in its internal command queue at `0x2814`. The selector chain through `0x424c` and `0x4350` ends at `0x4410`, which immediately returns. Replaying the command produced 132,300 silent stereo frames, identical to an empty command queue. Tracks 0x11 and 0x12 from the same bank played audible samples under the same setup. The [source and driver replay tests](../../tests/test_warehouse_office_sound.py) cover all five callbacks.
 
 After A014, the original director writes a 30-frame fade to black at `0x27cec`, then waits at `0x27cfc` before moving Ryo. At the window it uncovers camera 1300 over 30 frames (`0x27fa2/0x27fb2`) before A017. Finishing A017 covers the warehouse over 60 frames (`0x280da/0x280ea`), then leaves it covered for the map transfer. The browser advances the original 8-bit alpha and hands the fully black frame to the destination loader. The Dreamcast updater `0x0c173b68` packs alpha into the high byte of the vertex color. Its draw callback `0x0c173b12` covers the 640 by 480 viewport and the primitive writer at `0x0c17dae4` applies that color to all four vertices.
 
@@ -116,16 +118,44 @@ timeout calls the listening scene in mode 1. At or below four metres,
 a fade the hint places Ryo at world (−14.5, 0, 144.5) facing (−15.0296,
 4.275, 134.5931), requests motion 0x387 and camera 1000, and plays A018,
 “The light's on. Maybe somebody's there.” It returns control in MS8S.
-The live Story region system currently lacks the native activity timer and
-scheduler-slot condition for this fallback.
+The hint preserves its placement only after the Story transaction completes.
+Cancellation restores the entering pose. The two latch bytes are local to
+the room visit. The independent scheduler coroutine at `0x25b68` subtracts
+one from `0x218` per yield (starting at 28,800). Once negative, the office
+deadline can select mode 1 on either floor, including after the hint.
+The server uses separate room selectors for the lower hint, upper trigger
+and either-floor deadline, gates each on an earned warehouse entrance and
+shares the listening scene's terminal effects across all three office entries.
 
-Rebuild the staging with `node tools/scripting/build_warehouse_office_staging.mjs`. To regenerate the three invoice recordings in a prepared checkout, set `NEW_YOKOSUKA_SERVER_DIR` and `VGMSTREAM_CLI` and run the following command.
+The pad reader at `0x0c136dda–0x0c136e4a` maps the directional pad and
+both analog triggers into the input mask. The activity reader at `0x0c0c9776`
+also checks whether either left-stick byte falls outside 126–130 and reads the
+FREE conversation manager flag. Story accepts movement and run on keyboard
+and touch. A standard gamepad uses the original stick threshold, D-pad and
+trigger pressure, including when Ryo is standing against a wall. Looking
+around with the mouse or right stick alone leaves the active timer unchanged.
+Story reads the original FREE-conversation byte when the native runtime
+provides it. General Story dialogue does not expose that byte.
+
+The room clock advances through unpaused gameplay and staged interactions.
+A modal menu or hidden tab pauses simulation, and returning to the tab does
+not charge the time spent away. Dispatch waits until control is available.
+When the player reaches the listening position on the same tick as a timer,
+the physical approach wins. Cancelling that scene preserves an independently
+expired timer. Cancelling the timed scene itself requires fresh exploration
+input before the same offer can reopen. These cancellation rules support
+Story's reversible transactions. Four [Radeon runs](../../tools/evidence/warehouse-timed-director-hardware-2026-11-25.json)
+cover the full-length downstairs timer, the idle secondary deadline, the
+alternate office entrance and the physically triggered scene taking priority.
+
+Rebuild the staging with `node tools/scripting/build_warehouse_office_staging.mjs`. To regenerate the three invoice recordings and downstairs hint in a prepared checkout, set `NEW_YOKOSUKA_SERVER_DIR` and `VGMSTREAM_CLI` and run the following command.
 
 ```sh
 node tools/scripting/build_story_investigation.mjs --voices \
   --voice-route warehouse-invoice-address \
   --voice-route warehouse-invoice-label \
-  --voice-route warehouse-invoice-label-read
+  --voice-route warehouse-invoice-label-read \
+  --voice-route warehouse-eight-light-timeout
 ```
 
 The [staging tests](../../tests/AuthoredSceneStagingRuntime.test.js) exercise the six cameras, actor motion, foreground fades and cancellation. The server's `internal/scriptevent/warehouse_office_test.go` covers the spatial gate, both entrance receipts, all ten voice IDs and the exit. The [Radeon runs](../../tools/evidence/story-cutscene-warehouse-invoices-2026-11-25.json) cover both player routes and the physical desk interactions.
