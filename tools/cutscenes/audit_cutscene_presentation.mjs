@@ -58,7 +58,7 @@ if (args.length && (args.length !== 2 || args[0] !== "--output")) {
   throw new Error("Usage: audit_cutscene_presentation.mjs [--models] [--output file]");
 }
 const output = path.resolve(root, args[1] || "tests/reports/cutscene-presentation.json");
-const vite = await createServer({ root, server: { middlewareMode: true, watch: null }, appType: "custom", logLevel: "error" });
+const vite = await createServer({ root, server: { middlewareMode: true, watch: null, ws: false }, appType: "custom", logLevel: "error" });
 const engine = inspectModels ? new NullEngine() : null;
 const modelBindings = new Map();
 async function inspectBody(pkg, tag) {

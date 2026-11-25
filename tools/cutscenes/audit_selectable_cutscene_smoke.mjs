@@ -766,7 +766,7 @@ async function auditScene({ cutscene, definition, program, musicManifest }) {
 export async function buildSelectableCutsceneSmokeReport() {
   const vite = await createServer({
     root: ROOT,
-    server: { middlewareMode: true },
+    server: { middlewareMode: true, watch: null, ws: false },
     appType: "custom",
     logLevel: "error",
   });
