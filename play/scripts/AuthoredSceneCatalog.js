@@ -1,3 +1,4 @@
+import drunkard from "../data/story-dobuita-drunkard.generated.json" with {type:"json"};
 import base from "../data/authored-story-scenes.json" with {type:"json"};
 import jimmy from "../data/story-jimmy-chase.generated.json" with {type:"json"};
 import harbor from "../data/story-harbor-scenes.generated.json" with {type:"json"};
@@ -13,10 +14,11 @@ import kittenSearch from "../data/story-kitten-search.generated.json" with {type
 import yamamoto from "../data/story-yamamoto-scenes.generated.json" with {type:"json"};
 import football from "../data/story-yamanose-football.generated.json" with {type:"json"};
 import eri from "../data/story-nozomi-eri.generated.json" with {type:"json"};
+import maiAlley from "../data/story-mai-alley.generated.json" with {type:"json"};
 import friendsBar from "../data/story-friends-bar.generated.json" with {type:"json"};
 
 // One read-only catalog feeds scene presentation, private cast assembly and
 // authoring tools. Chapter generation must not create a second actor registry.
-const chapters=[base,jimmy,harbor,biker,goro,sailors,nozomi,finalDay,finalBattle,heartbeats,kitten,kittenSearch,yamamoto,football,eri,friendsBar],scenes=chapters.flatMap(c=>c.scenes);
+const chapters=[base,drunkard,jimmy,harbor,biker,goro,sailors,nozomi,finalDay,finalBattle,heartbeats,kitten,kittenSearch,yamamoto,football,eri,friendsBar,maiAlley],scenes=chapters.flatMap(c=>c.scenes);
 if(chapters.some(c=>c.schema!==base.schema)||new Set(scenes.map(s=>s.id)).size!==scenes.length)throw Error("Invalid or duplicate authored story scene");
 export default Object.freeze({...base,motionBanks:Object.assign({},...chapters.map(c=>c.motionBanks)),scenes});

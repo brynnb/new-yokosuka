@@ -1,3 +1,7 @@
+import {verifyDobuitaDrunkard} from "./story-dobuita-drunkard.js";
+import {verifyMaiAlley} from "./story-mai-alley.js";
+import {verifyHisaka} from "./story-hisaka.js";
+import {verifyScrollTranslation} from "./story-scroll-translation.js";
 import { expect, test } from "@playwright/test";
 import { randomUUID } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -1721,6 +1725,30 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       test.setTimeout(480_000);
       await verifyChaiArcade(page,testInfo,character,enterInteriorDoor,{fightStoryAmbush});
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_DRUNKARD_E2E) {
+      test.setTimeout(300_000);
+      await verifyDobuitaDrunkard(page, testInfo, character, enterStoryWorld, process.env.NEW_YOKOSUKA_DRUNKARD_E2E);
+      expect(errors).toEqual([]);
+      return;
+    }
+    if (process.env.NEW_YOKOSUKA_MAI_ALLEY_E2E) {
+      test.setTimeout(480_000);
+      await verifyMaiAlley(page, testInfo, character, enterStoryWorld, process.env.NEW_YOKOSUKA_MAI_ALLEY_E2E);
+      expect(errors).toEqual([]);
+      return;
+    }
+    if (process.env.NEW_YOKOSUKA_HISAKA_E2E) {
+      test.setTimeout(300_000);
+      await verifyHisaka(page, testInfo, character, enterStoryWorld, process.env.NEW_YOKOSUKA_HISAKA_E2E);
+      expect(errors).toEqual([]);
+      return;
+    }
+    if (process.env.NEW_YOKOSUKA_STAB_TRANSLATION_E2E === "true") {
+      test.setTimeout(300_000);
+      await verifyScrollTranslation(page, testInfo, character, enterStoryWorld);
+      expect(errors).toEqual([]);
+      return;
     }
     if (process.env.NEW_YOKOSUKA_CHAI_BODY_E2E === "true") {
       await verifyChaiRecoveryBody(page, testInfo, character);

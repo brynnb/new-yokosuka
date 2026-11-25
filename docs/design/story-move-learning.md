@@ -19,7 +19,7 @@ expert-animation balancing are unchanged.
 | Swallow Flip | Existing Master Chen departure lesson |
 | Twin Blades | Scroll pickup in Fuku-san's room |
 | Shadow Reaper | Scroll pickup near Iwao's room/passage |
-| Stab Armor | Scroll in the hidden basement; take it to Master Chen for translation |
+| Stab Armor | Scroll in the hidden basement; take it to Gui Zhang for the original voiced SA1108 translation |
 | Rising Flash | Bunkado Antiques, ¥500 |
 | Mud Spider, Crawl Cyclone, Twin Swallow Leap | Bunkado Antiques, ¥1,000 each |
 | Tiger Storm | Bunkado Antiques, ¥2,000 |
@@ -109,3 +109,12 @@ Story/Free roam round trip pass. The tests reposition near the objects and seed
 an earlier notebook clue; they do not prove a fresh full-story route or basket
 opening choreography. The earlier October 23 home continuation exercised the
 older approach-based implementation.
+
+
+### Gui Zhang reads Stab Armor
+
+After the first Master Chen meeting, enter Warehouse No. 8 with the untranslated basement scroll. The optional offer is followed by the full 14-line SA1108 exchange when accepted. The Disc 2 MK80 room table at 0x5394–0x542d gives the spoken order across Ryo and Gui Zhang. The English SA1108 archive supplies the original voices, speaker IDs, subtitles and mouth cues. SA1109 is a separate reading of the mysterious poem. The camera and standing poses for this warehouse conversation are adapted.
+
+Declining or cancelling keeps the scroll untranslated. Completing the conversation records the translation, retains the scroll and enables the separate inventory **Read** action. Reading teaches the move. Existing learned and translated scrolls retain their saved status.
+
+A connected browser run with a test character carrying the untranslated scroll covered cancellation, re-entry, all fourteen original voice and subtitle pairs in order, then learning the move from inventory and reloading. The scroll remains in inventory after learning. Earlier campaign prerequisites were supplied in that character’s checkpoint.

@@ -588,10 +588,10 @@ of Ryo and the resident cover. On the four-second camera, a separate pale
 strip is visible even in the November 13 capture. Rays through that strip
 hit mesh node `0x28b0`, material `mt5_mat_0`. The matching original JOMO
 asset is `COMMON01.PKS/FUTS301G.CHRM`, the other resident cover, `FUT1`.
-Its original deformed pose during A0173 is still unknown. The source and
+All nine node transforms and the complete vertex arrays match the source model in the original running film. Native PowerVR captures across the shots contain zero draws using its resident texture. Suppressing the mesh in a control replay also produced a pixel-identical original four-second frame. The browser now suppresses FUT1 only while A0173 owns the bedroom, then restores it. See [native bedding captures](../../tools/evidence/a0173-native-bedding.json). The source and
 renderer checks are in `tests/ChaiRecoveryCostume.test.js`.
 
-Two more original callers are now identified. An outcome of the Dobuita drunkard encounter (E1005) and an outcome of Mai, Rena and Yumiko's harbor encounter (E1036) both enter JOMO with entry code 19. This selects the same 600-frame film on all three discs. Their optional QTEs still need playable Story routes. The [native transition evidence](../../tools/evidence/forced-rest-native.json) records both callers. The [Dobuita encounter evidence](../../tools/evidence/dobuita-drunkard-native.json) identifies the actor placements, motions, camera splines and unresolved input records.
+The Dobuita bottle knockout (E1005) and both Mai alley knockouts (E1036) enter JOMO with entry code 19. This selects the same 600-frame film on all three discs. Story now carries that entry code and starts the shared recovery from its bedside spawn, since the original room has no typed placement for entry 19. The [native transition evidence](../../tools/evidence/forced-rest-native.json) records both callers. The [Dobuita encounter](#the-dobuita-drunkard) and [Hisaka and Mai](story-harbor-work.md#hisaka-and-mai) describe their playable routes.
 
 Only newly acknowledged losses set the pending receipt, so old completed loss
 saves cannot unexpectedly play the scene or advance another day. Cancellation
@@ -696,3 +696,13 @@ cancelled capture, office arrival, interrogation, saved notebook and reload.
 The earlier story was not played in this run. Raw door assets are ignored and
 must be published before deployment. Exact hand contact, every camera shot,
 and original chase obstacles remain unverified or approximated.
+
+## The Dobuita drunkard
+
+On the Disc 2 Dobuita street, Ryo can meet Dick Philips after 19:00. Personal Story places this optional encounter between the warehouse phone call and Jimmy’s chase. Entry also checks the original flags, accepted position and facing. The original street controller has separate distance and approach tests. Story applies both to the accepted walking pose.
+
+A dodges the first attack. If Ryo misses, B breaks the grapple and he gets another B after a failed escape. A missed B from 23:31 sends Ryo directly home through entry 4. Each grapple draws two original lines from Dick’s four recorded taunts. The second starts at source tick 100 when the first line has cleared. Reaching the bottle attack gives Ryo a Left prompt. Dodging the bottle records the original success flag and ends the encounter. Missing it sends him home to Fuku-san’s bedside film through entry 19. The drunkard can appear again after this knockout while Ryo remains eligible.
+
+The original control tables, DYQB motions, actor, bottle, camera and voice evidence are recorded in [the Dobuita evidence](../../tools/evidence/dobuita-drunkard-native.json). The timed button windows are 600 ms for A and B and 667 ms for Left. The grapple and curfew share a visual start but have different saved outcomes.
+
+A Radeon run missed B once and observed cameras 8502 and 8515 and all four distinct taunts with the matching spoken audio and subtitle before the two prompts. The second B escaped the grapple, Left avoided the bottle, and the victory persisted after reload. The tests supplied the earlier warehouse milestone and used the normal street approach.

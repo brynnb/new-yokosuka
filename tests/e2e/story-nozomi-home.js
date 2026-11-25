@@ -57,9 +57,54 @@ export async function verifyNozomiHome(page,testInfo,character,{musicResponses})
     console.info("Nozomi home: supported explicit program skip");await page.keyboard.press("KeyX");
   }else{
   console.info("Nozomi home: natural23-clip sequence and original CD audio");
+  // Observe the actual model-owned surface immediately after the renderer
+  // applies the captured native coordinate, even when a display refresh spans
+  // several AUTH frames. The original checkpoint fixes this reference sample.
+  await page.evaluate(() => {
+    const activity = window.storyProbe.director.activeCutscene.packageRuntime.activityRuntime;
+    const cloth = activity.presentation.cloth;
+    const apply = cloth.apply;
+    cloth.apply = function(owner, detail) {
+      const result = apply.call(this, owner, detail);
+      if (detail?.frame !== 180 || window.rideSkirtFrame) return result;
+      const state = this.active?.states.find(value => value.capturedActivitySlot === 4);
+      if (!state) return result;
+      const group = state.groups.find(value => value.group.controlType === -70);
+      const sample = state.capturedTrack.frameAt(4, 180);
+      const meshes = group.outputs.flatMap(output => output.meshes);
+      const edge = (positions, a, b) => Math.hypot(...[0,1,2].map(axis =>
+        positions[a * 3 + axis] - positions[b * 3 + axis]));
+      let maximumEdge = 0, maximumStretch = 0, triangleCount = 0;
+      for (const {mesh,positions:rest} of meshes) {
+        const indices = mesh.getIndices(), current = mesh.getVerticesData("position");
+        triangleCount += indices.length / 3;
+        for (let i = 0; i < indices.length; i += 3) {
+          for (let j = 0; j < 3; j++) {
+            const a = indices[i + j], b = indices[i + ((j + 1) % 3)];
+            const length = edge(current, a, b), initial = edge(rest, a, b);
+            maximumEdge = Math.max(maximumEdge, length);
+            if (initial > .02) maximumStretch = Math.max(maximumStretch, length / initial);
+          }
+        }
+      }
+      window.rideSkirtFrame = {slot:4, frame:180, ownerMode:state.runtimeMode,
+        trackFrames:state.capturedTrack.frameCount, triangleCount, maximumEdge, maximumStretch,
+        nativeFirstControl:Array.from(sample.slice(0,6), value => Math.round(value * 8192))};
+      return result;
+    };
+  });
   await slot(1);
   await expect.poll(()=>page.evaluate(()=>{const m=window.storyMusic?.director,a=m?.current?.audio;return m?.current?.trackId==="nozomi-home"&&!a.paused&&a.currentTime>1&&a.volume>0;}),{timeout:15_000}).toBe(true);
-  await slot(4);await page.waitForTimeout(6000);await page.screenshot({path:testInfo.outputPath("nozomi-home-original-paired-riding.png")});
+  await slot(4);
+  await page.waitForFunction(() => window.rideSkirtFrame, null, {timeout:40000});
+  const garment = await page.evaluate(() => window.rideSkirtFrame);
+  expect(garment).toMatchObject({slot:4,frame:180,ownerMode:7,trackFrames:4406,
+    nativeFirstControl:[815,-634,-667,3807,2685,-6739]});
+  expect(garment.triangleCount).toBeGreaterThan(0);
+  expect(Number.isFinite(garment.maximumStretch) && garment.maximumStretch > 0).toBe(true);
+  console.info("NBIK original skirt frame", JSON.stringify(garment));
+  await testInfo.attach("nozomi-home-native-skirt", {body:JSON.stringify(garment,null,2),contentType:"application/json"});
+  await page.screenshot({path:testInfo.outputPath("nozomi-home-original-paired-riding.png")});
   await slot(19);await page.waitForTimeout(1000);await page.screenshot({path:testInfo.outputPath("nozomi-home-original-embrace.png")});
   }
   await expect.poll(async()=>(await saved()).character.storyFlags[flag("nozomi-home")],{timeout:100_000}).toBe(true);

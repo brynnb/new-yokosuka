@@ -233,7 +233,7 @@ export class ScriptEventBabylonAdapters {
   }
 
   playSequence(sequence, transaction) {
-    if (sequence.kind === "scene-staging-start" || sequence.kind === "scene-staging-transition" || sequence.kind === "scene-staging-finish") {
+    if (sequence.kind === "scene-staging-start" || sequence.kind === "scene-staging-transition" || sequence.kind === "scene-staging-finish" || sequence.kind === "scene-staging-dialogue-cue") {
       const played=this.sceneStagingRuntime?.play(sequence, transaction) ?? false;
       if(!this.storyFrameHandoff?.pendingFor(transaction))return played;
       return Promise.resolve(played).then(async accepted=>{

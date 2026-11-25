@@ -267,6 +267,7 @@ function compileActivity(config, expectation, memberByName, packages) {
       ? { browserLightingOverride: expectation.browserLightingOverride } : {}),
     ...(expectation.browserStagePrecipitation !== undefined
       ? { browserStagePrecipitation: expectation.browserStagePrecipitation } : {}),
+    ...(expectation.programPresentationCues ? {programPresentationCues:expectation.programPresentationCues} : {}),
     ...(expectation.nativeStageSetup ? { nativeStageSetup: expectation.nativeStageSetup } : {}),
     ...(expectation.nativeSoundCommandCues
       ? { nativeSoundCommandCues: expectation.nativeSoundCommandCues }
@@ -473,6 +474,7 @@ export function buildNativeAseqActivityPack(config) {
     ...(config.sceneObjects ? { sceneObjects: config.sceneObjects } : {}),
     ...(config.mapLayers ? { mapLayers: config.mapLayers } : {}),
     ...(config.mapGeometryMasks ? { mapGeometryMasks: config.mapGeometryMasks } : {}),
+    ...(config.clothTracks ? { clothTracks: config.clothTracks } : {}),
     ...(config.packageActors ? { packageActors: config.packageActors } : {}),
     ...(config.attachedObjects ? {
       attachedObjects: compileNativeAseqAttachedObjects(config.attachedObjects, activities),
@@ -496,6 +498,7 @@ export function buildNativeAseqActivityPack(config) {
         sha256: sha256(source.bytes),
         ...(definition.parseOptions?.sequenceIndexBase !== undefined
           ? { sequenceIndexBase: definition.parseOptions.sequenceIndexBase } : {}),
+        ...(definition.parseOptions?.sourceSequenceBase ? {sourceSequenceBase:definition.parseOptions.sourceSequenceBase} : {}),
         ...(definition.source ? { source: definition.source } : {}),
       };
     }),

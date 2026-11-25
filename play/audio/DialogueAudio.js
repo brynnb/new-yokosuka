@@ -144,9 +144,9 @@ export class DialogueAudio {
     return audio;
   }
 
-  stopOneShot() {
+  stopOneShot(expectedAudio) {
     const owner = this.oneShot;
-    if (!owner) return;
+    if (!owner || (expectedAudio && owner.audio !== expectedAudio)) return;
     this.oneShot = null;
     owner.audio.removeEventListener("ended", owner.release);
     owner.audio.removeEventListener("error", owner.release);

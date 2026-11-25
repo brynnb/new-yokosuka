@@ -2,6 +2,7 @@
 // borrows the shared cinematic actors/camera; it never saves story state or
 // interprets a challenge. This is intentionally authored, not decoded AUTH.
 import { updateNativeCharacterSecondaryMotion } from "../characters/NativeCharacterSecondaryMotion.js";
+import {StagedCameraPool} from "./StagedCameraPool.js";
 import {applyStoryObjectTransforms} from "./StoryObjectPresentation.js";
 import {evaluateAuthActor} from "../../src/AuthMovement.js";
 import {evaluateAuthCamera} from "../../src/AuthCamera.js";
@@ -23,7 +24,7 @@ function validateTrack(track,fields,duration,label){
 }
 
 export class AuthoredSceneStagingRuntime {
-  constructor({ actors, camera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, createSceneObjects, createActorSet, createTelephoneReceiver, currentMeshes, acquireEnvironmentIsolation, acquireActorIsolation }) {
+  constructor({ actors, camera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, createSceneObjects, createActorSet, createTelephoneReceiver, dialogueAudio, currentMeshes, acquireEnvironmentIsolation, acquireActorIsolation }) {
     this.actors = actors;
     this.camera = camera;
     this.motionRuntime = motionRuntime;
@@ -33,6 +34,8 @@ export class AuthoredSceneStagingRuntime {
     this.createSceneObjects = createSceneObjects;
     this.createActorSet = createActorSet;
     this.createTelephoneReceiver = createTelephoneReceiver;
+    this.dialogueAudio = dialogueAudio;
+    this.cameraPools = new StagedCameraPool();
     this.currentMeshes = currentMeshes;
     this.acquireEnvironmentIsolation = acquireEnvironmentIsolation;
     this.acquireActorIsolation = acquireActorIsolation;
@@ -40,9 +43,19 @@ export class AuthoredSceneStagingRuntime {
   }
 
   async play(sequence, transaction) {
-    if (sequence.kind === "scene-staging-finish") {
-      if (this.active?.transaction !== transaction || this.active.scene.id !== sequence.scene.id) return false;
-      return this.release(transaction);
+    if (sequence.kind === "scene-staging-finish" || sequence.kind === "scene-staging-dialogue-cue") {
+      const owner = this.active;
+      if (!owner || owner.transaction !== transaction || owner.scene.id !== sequence.scene.id) return false;
+      // Dialogue can end before the original reaction, camera cut or prop handover.
+      const dialogueCue = sequence.kind === "scene-staging-dialogue-cue";
+      const end = dialogueCue ? owner.scene.dialogueCueSeconds : owner.scene.playThroughFinish ? owner.durationSeconds : 0;
+      if (dialogueCue && !end) return false;
+      if (owner.elapsed < end) {
+        if (owner.resolve) return false;
+        owner.resolveAt = end;
+        await new Promise((resolve, reject) => { owner.resolve = resolve; owner.reject = reject; });
+      }
+      return this.active === owner && (dialogueCue || this.release(transaction));
     }
     const continuing=sequence.kind==="scene-staging-transition";
     if ((!continuing&&sequence.kind!=="scene-staging-start")||(!continuing&&this.active)) return false;
@@ -54,6 +67,7 @@ export class AuthoredSceneStagingRuntime {
       || scene.actors.some(actor => !/^[A-Z0-9_]{4}$/.test(actor.tag)
         || (actor.presented !== undefined && typeof actor.presented !== "boolean")
         || !actor.motion?.bank || !actor.motion?.name
+        || (actor.motionStartSeconds != null && (!Number.isFinite(actor.motionStartSeconds) || actor.motionStartSeconds < 0))
         || (actor.pose && ["x", "y", "z", "rotationX", "rotationY", "rotationZ"].some(key => !Number.isFinite(actor.pose[key]))))
       || ["positionX", "positionY", "positionZ", "targetX", "targetY", "targetZ", "roll", "perspective"].some(key => !Number.isFinite(scene.camera?.[key]))) {
       throw new Error(`Invalid authored scene staging ${scene.id}`);
@@ -68,6 +82,21 @@ export class AuthoredSceneStagingRuntime {
         || (scene.waitForMotionCompletion === false && scene.durationSeconds == null && !scene.waitForMotions))) {
       throw new Error(`Invalid motion completion option ${scene.id}`);
     }
+    if (scene.dialogueCueSeconds != null && (!Number.isFinite(scene.dialogueCueSeconds)
+      || !(scene.dialogueCueSeconds > 0 && scene.dialogueCueSeconds < scene.durationSeconds))) {
+      throw new Error(`Invalid staged dialogue time for ${scene.id}`);
+    }
+    if (scene.playThroughFinish != null && (typeof scene.playThroughFinish !== "boolean" || !scene.durationSeconds)) {
+      throw new Error(`Invalid finish duration for ${scene.id}`);
+    }
+    if (scene.voiceCue && (!/^public\/audio\/world\/[a-z0-9-]+\/[A-Z0-9]+\.wav$/.test(scene.voiceCue.asset)
+      || !this.dialogueAudio || !Number.isFinite(scene.voiceCue.atSeconds)
+      || scene.voiceCue.atSeconds < 0 || !(scene.voiceCue.atSeconds < scene.voiceCue.dialogueAtSeconds)
+      || !(scene.voiceCue.dialogueAtSeconds <= scene.durationSeconds))) throw Error(`Invalid staged voice cue ${scene.id}`);
+    if (scene.soundCues && (!Array.isArray(scene.soundCues) || !this.dialogueAudio || scene.soundCues.some((cue, index) =>
+      !/^public\/audio\/world\/[a-z0-9-]+\/[A-Z0-9]+\.wav$/.test(cue.asset)
+      || !Number.isFinite(cue.atSeconds) || cue.atSeconds < 0 || !(cue.atSeconds < scene.durationSeconds)
+      || (index && cue.atSeconds < scene.soundCues[index-1].atSeconds)))) throw Error(`Invalid staged sound cues ${scene.id}`);
     if(scene.isolateResidentWorld!=null&&typeof scene.isolateResidentWorld!=="boolean")throw Error(`Invalid stage isolation ${scene.id}`);
     if(scene.isolateScheduledActors!=null&&typeof scene.isolateScheduledActors!=="boolean")throw Error(`Invalid actor isolation ${scene.id}`);
     if(scene.telephoneReceiver!=null && scene.telephoneReceiver!=="JOMO_TEL_")throw Error(`Invalid telephone receiver ${scene.id}`);
@@ -76,10 +105,23 @@ export class AuthoredSceneStagingRuntime {
     }
     for(const actor of scene.actors){
       if(actor.presented!=null&&typeof actor.presented!=="boolean")throw Error(`Invalid staged visibility ${scene.id}/${actor.tag}`);
+      if (actor.motionCues && (!Array.isArray(actor.motionCues) || actor.motionCues.some((cue, index) =>
+        !cue.motion?.bank || !cue.motion?.name || !Number.isFinite(cue.atSeconds) || cue.atSeconds < 0
+        || !(cue.atSeconds < scene.durationSeconds) || (cue.startSeconds != null && (!Number.isFinite(cue.startSeconds) || cue.startSeconds < 0))
+        || (index && cue.atSeconds <= actor.motionCues[index-1].atSeconds)))) throw Error(`Invalid staged motion cues ${scene.id}/${actor.tag}`);
       validateTrack(actor.movement,POSE_FIELDS,scene.durationSeconds,`${scene.id}/${actor.tag}`);
       if(actor.endMotion&&(!Number.isFinite(scene.durationSeconds)||!actor.endMotion.bank||!actor.endMotion.name))throw Error(`Invalid staged end motion ${scene.id}/${actor.tag}`);
     }
     validateTrack(scene.cameraTrack,CAMERA_FIELDS,scene.durationSeconds,`${scene.id}/camera`);
+    if (scene.cameraPool) {
+      const pool=scene.cameraPool;
+      if (!pool.id || typeof pool.advance!=="boolean" || !Array.isArray(pool.angles) || pool.angles.length<2
+        || new Set(pool.angles.map(angle=>angle.cameraNumber)).size!==pool.angles.length) throw Error(`Invalid staged camera pool ${scene.id}`);
+      for (const angle of pool.angles) {
+        if (!Number.isInteger(angle.cameraNumber) || CAMERA_FIELDS.some(key=>!Number.isFinite(angle.camera?.[key]))) throw Error(`Invalid staged camera angle ${scene.id}`);
+        validateTrack(angle.cameraTrack,CAMERA_FIELDS,scene.durationSeconds,`${scene.id}/camera/${angle.cameraNumber}`);
+      }
+    }
     if(scene.sceneObjectTracks){
       if(!scene.sceneObjects||Array.isArray(scene.sceneObjectTracks)||typeof scene.sceneObjectTracks!=="object"
         ||Object.keys(scene.sceneObjectTracks).length===0)throw Error(`Invalid staged object tracks ${scene.id}`);
@@ -115,10 +157,14 @@ export class AuthoredSceneStagingRuntime {
       }
       if(!continuing)await owner.actors.prepare(scene.actors.map(actor => actor.tag), { signal });
       signal.throwIfAborted();
-      await this.motionRuntime.loadNamedSelections(scene.actors.flatMap(actor => [actor.motion,...(actor.endMotion?[actor.endMotion]:[])]));
+      await this.motionRuntime.loadNamedSelections(scene.actors.flatMap(actor => [actor.motion,...(actor.motionCues || []).map(cue=>cue.motion),...(actor.endMotion?[actor.endMotion]:[])]));
       signal.throwIfAborted();
       if(this.active!==owner)return false;
-      owner.scene=scene;owner.elapsed=0;
+      for (const audio of owner.soundCueAudio || []) this.dialogueAudio.stopOneShot(audio);
+      owner.soundCueAudio = [];
+      owner.nextSoundCue = 0;
+      owner.scene=scene;owner.elapsed=0;owner.voiceCuePlayed=false;
+      owner.shot=scene.cameraPool ? this.cameraPools.select(scene.cameraPool,transaction) : scene;
       owner.durationSeconds = scene.waitForMotions
         ? Math.max(...scene.actors.map(actor => this.motionRuntime.namedDurationSeconds(actor.motion)))
         : scene.durationSeconds;
@@ -176,7 +222,8 @@ export class AuthoredSceneStagingRuntime {
       }
       owner.objects?.beginActivity({activityId:scene.id,actors:scene.actors.map(a=>a.tag)});
       if (!this.update(transaction, 0)) throw new Error(`Cannot present scene ${scene.id}`);
-      if(owner.durationSeconds && scene.waitForMotionCompletion !== false)await new Promise((resolve,reject)=>{owner.resolve=resolve;owner.reject=reject;});
+      owner.resolveAt = scene.waitForMotionCompletion !== false ? owner.durationSeconds : scene.voiceCue?.dialogueAtSeconds;
+      if(owner.resolveAt)await new Promise((resolve,reject)=>{owner.resolve=resolve;owner.reject=reject;});
       return true;
     } catch (error) {
       if (this.active === owner) this.release(transaction);
@@ -196,7 +243,11 @@ export class AuthoredSceneStagingRuntime {
       const model = owner.actors.activeActor(actor.tag)?.model;
       if(actor.movement&&!owner.actors.applyTransform(owner,actor.tag,evaluateAuthActor(actor.movement,owner.elapsed)))return false;
       const ended=actor.endMotion&&owner.elapsed>=owner.durationSeconds;
-      if (!this.motionRuntime.applyNamed(model, ended?actor.endMotion:actor.motion, ended?owner.elapsed-owner.durationSeconds:owner.elapsed)) return false;
+      const cue = actor.motionCues?.findLast(cue => cue.atSeconds <= owner.elapsed);
+      const activeMotion = ended ? actor.endMotion : cue?.motion ?? actor.motion;
+      const clipStart = ended ? owner.durationSeconds : cue?.atSeconds ?? 0;
+      const offset = ended ? 0 : cue ? cue.startSeconds ?? 0 : actor.motionStartSeconds ?? 0;
+      if (!this.motionRuntime.applyNamed(model, activeMotion, owner.elapsed - clipStart + offset)) return false;
       // Gameplay skips its post-pose pass while a story presentation owns the
       // actor. Reuse that pass here, or acquired cloth stays at the old pose.
       updateNativeCharacterSecondaryMotion(model, deltaSeconds);
@@ -211,8 +262,20 @@ export class AuthoredSceneStagingRuntime {
       }else if(!owner.telephoneReceiver.update(JOMO_TELEPHONE_RECEIVER,owner))return false;
     }
     if(owner.objects?.update(Math.floor(owner.elapsed*30))===false)return false;
-    if(!this.camera.apply(owner, owner.scene.cameraTrack?evaluateAuthCamera(owner.scene.cameraTrack,owner.elapsed):owner.scene.camera))return false;
-    if(owner.resolve&&owner.elapsed>=owner.durationSeconds){owner.resolve(true);owner.resolve=null;}
+    if(!this.camera.apply(owner, owner.shot.cameraTrack?evaluateAuthCamera(owner.shot.cameraTrack,owner.elapsed):owner.shot.camera))return false;
+    const sounds = owner.scene.soundCues || [];
+    while (owner.nextSoundCue < sounds.length && sounds[owner.nextSoundCue].atSeconds <= owner.elapsed) {
+      const sound = sounds[owner.nextSoundCue++];
+      if (owner.elapsed >= owner.durationSeconds) continue;
+      const audio = this.dialogueAudio.playOneShot(sound.asset);
+      if (audio) owner.soundCueAudio.push(audio);
+    }
+    const cue = owner.scene.voiceCue;
+    if (cue && !owner.voiceCuePlayed && owner.elapsed >= cue.atSeconds) {
+      owner.voiceCuePlayed = true;
+      if (owner.elapsed < cue.dialogueAtSeconds) owner.voiceAudio = this.dialogueAudio.playOneShot(cue.asset);
+    }
+    if(owner.resolve&&owner.elapsed>=owner.resolveAt){owner.resolve(true);owner.resolve=null;}
     return true;
   }
 
@@ -228,6 +291,8 @@ export class AuthoredSceneStagingRuntime {
     // cancel instead of acknowledging an incomplete restoration.
     const errors = [];
     for (const [enabled, cleanup] of [
+      ...(owner.soundCueAudio || []).map(audio => [true, () => this.dialogueAudio.stopOneShot(audio)]),
+      [!!owner.voiceAudio, () => this.dialogueAudio.stopOneShot(owner.voiceAudio)],
       [!!owner.restoreObjects, () => owner.restoreObjects()],
       [!!owner.objects,()=>owner.objects.clear()],
       [!!owner.sceneObjects,()=>owner.sceneObjects.clear()],

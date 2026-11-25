@@ -1,0 +1,145 @@
+<<if native_value("2:248") == 0>>
+<<pass_trigger>>
+<<endif>>
+<<play_sequence "s1.mfsy.mai-alley.intro.start">>
+{{voice:E1036A002}}
+{{voice:E1036B002}}
+{{voice:E1036A001}}
+{{voice:E1036C001}}
+{{voice:E1036D001}}
+{{voice:E1036C002}}
+<<play_sequence "s1.mfsy.mai-alley.intro.finish">>
+<<play_sequence "s1.mfsy.mai-alley.first-prompt.start">>
+<<start_challenge "s1.mfsy.mai-alley.first">>
+<<play_sequence "s1.mfsy.mai-alley.first-prompt.finish">>
+<<if challenge_result("s1.mfsy.mai-alley.first") == "success">>
+<<jump FirstPass>>
+<<else>>
+<<jump FirstMiss>>
+<<endif>>
+===
+title: FirstPass
+---
+<<play_sequence "s1.mfsy.mai-alley.first-pass.start">>
+{{voice:E1036A003}}
+{{voice:E1036C003}}
+<<play_sequence "s1.mfsy.mai-alley.first-pass.finish">>
+<<jump Second>>
+===
+title: FirstMiss
+---
+<<play_sequence "s1.mfsy.mai-alley.first-miss.start">>
+{{voice:E1036C003}}
+<<play_sequence "s1.mfsy.mai-alley.first-miss.finish">>
+<<jump Second>>
+===
+title: Second
+---
+<<play_sequence "s1.mfsy.mai-alley.second-prompt.start">>
+<<start_challenge "s1.mfsy.mai-alley.second">>
+<<play_sequence "s1.mfsy.mai-alley.second-prompt.finish">>
+<<if challenge_result("s1.mfsy.mai-alley.second") == "success">>
+<<jump SecondPass>>
+<<else>>
+<<jump SecondMiss>>
+<<endif>>
+===
+title: SecondMiss
+---
+<<play_sequence "s1.mfsy.mai-alley.second-miss.start">>
+{{voice:E1036C004}}
+<<play_sequence "s1.mfsy.mai-alley.second-miss.finish">>
+<<play_sequence "s1.mfsy.mai-alley.second-retry-prompt.start">>
+<<start_challenge "s1.mfsy.mai-alley.second-retry">>
+<<play_sequence "s1.mfsy.mai-alley.second-retry-prompt.finish">>
+<<if challenge_result("s1.mfsy.mai-alley.second-retry") == "success">>
+<<jump SecondPass>>
+<<else>>
+<<jump LoseRazor>>
+<<endif>>
+===
+title: SecondPass
+---
+<<play_sequence "s1.mfsy.mai-alley.second-pass.start">>
+{{voice:E1036D002}}
+<<play_sequence "s1.mfsy.mai-alley.second-pass.finish">>
+<<play_sequence "s1.mfsy.mai-alley.final-prompt.start">>
+<<start_challenge "s1.mfsy.mai-alley.final">>
+<<play_sequence "s1.mfsy.mai-alley.final-prompt.finish">>
+<<if challenge_result("s1.mfsy.mai-alley.final") == "success">>
+<<jump Win>>
+<<else>>
+<<jump FinalMiss>>
+<<endif>>
+===
+title: FinalMiss
+---
+<<play_sequence "s1.mfsy.mai-alley.final-miss.start">>
+<<play_sequence "s1.mfsy.mai-alley.final-miss.finish">>
+<<play_sequence "s1.mfsy.mai-alley.final-retry-prompt.start">>
+<<start_challenge "s1.mfsy.mai-alley.final-retry">>
+<<play_sequence "s1.mfsy.mai-alley.final-retry-prompt.finish">>
+<<if challenge_result("s1.mfsy.mai-alley.final-retry") == "success">>
+<<jump Win>>
+<<else>>
+<<jump RetryMiss>>
+<<endif>>
+===
+title: RetryMiss
+---
+<<play_sequence "s1.mfsy.mai-alley.final-retry-miss.start">>
+<<play_sequence "s1.mfsy.mai-alley.final-retry-miss.finish">>
+<<play_sequence "s1.mfsy.mai-alley.final-last-prompt.start">>
+<<start_challenge "s1.mfsy.mai-alley.final-last">>
+<<play_sequence "s1.mfsy.mai-alley.final-last-prompt.finish">>
+<<if challenge_result("s1.mfsy.mai-alley.final-last") == "success">>
+<<jump Win>>
+<<else>>
+<<jump Lose>>
+<<endif>>
+===
+title: Win
+---
+<<play_sequence "s1.mfsy.mai-alley.win.start">>
+{{voice:E1036D003}}
+{{voice:E1036A004}}
+<<play_sequence "s1.mfsy.mai-alley.win.finish">>
+<<play_sequence "s1.mfsy.mai-alley.win-conversation.start">>
+{{voice:E1036B002}}
+{{voice:E1036A005}}
+{{voice:E1036A006}}
+{{voice:E1036A007}}
+{{voice:E1036B001}}
+<<play_sequence "s1.mfsy.mai-alley.win-conversation.finish">>
+<<set_native_value "2:183" 1>>
+<<set_native_value "2:249" 1>>
+{{effects}}
+<<complete>>
+===
+title: LoseRazor
+---
+<<play_sequence "s1.mfsy.mai-alley.lose-razor.start">>
+{{voice:E1036D005}}
+{{voice:E1036D006}}
+{{voice:E1036B001}}
+<<play_sequence "s1.mfsy.mai-alley.lose-razor.finish">>
+<<jump GoHome>>
+===
+title: Lose
+---
+<<play_sequence "s1.mfsy.mai-alley.lose.start">>
+{{voice:E1036D008}}
+{{voice:E1036C005}}
+{{voice:E1036D006}}
+{{voice:E1036B001}}
+<<play_sequence "s1.mfsy.mai-alley.lose.finish">>
+<<jump GoHome>>
+===
+title: GoHome
+---
+<<set_native_value "2:249" 1>>
+<<set_native_value "2:824" 1>>
+<<set_flag "story.s1.encounter-recovery.pending">>
+<<travel_story "s1.home.encounter-bedside">>
+{{effects}}
+<<complete>>

@@ -200,17 +200,24 @@ for(const p of selectedProfiles){
     }
     // The original callback saves FUT2, moves its Y to -10, then restores it.
     // The resident bedroom placement already supplies its unchanged X/Z and orientation.
-    const placement = JSON.parse(fs.readFileSync(path.join(root,"play/data/jomo-runtime-placements.json"))).placements
-      .filter(item => item.runtime?.objectTag === "FUT2");
-    if (placement.length !== 1 || map.toString("ascii",0x60cf0,0x60cf4) !== "FUT2" || map.readFloatLE(0x60cf4) !== -10) {
-      throw Error("Changed A0173 bedroom cover placement or source callback");
+    const placements = JSON.parse(fs.readFileSync(path.join(root,"play/data/jomo-runtime-placements.json"))).placements;
+    if (map.toString("ascii",0x60cf0,0x60cf4) !== "FUT2" || map.readFloatLE(0x60cf4) !== -10) {
+      throw Error("Changed A0173 source callback");
     }
-    const cover = placement[0];
-    props.FUT2 = {model:"FUTS302G",objectTag:"FUT2",browserFilename:cover.model,lifecycle:{kind:"room-script-persistent"},
-      initialPresentation:{position:[-cover.position[0],map.readFloatLE(0x60cf4),cover.position[2]],
-        rotationDegrees:[cover.rotationDegrees[0],-cover.rotationDegrees[1],-cover.rotationDegrees[2]],scale:cover.scale},
-      sourceBinding:{callback:"0x60c50",savePosition:"0x60c70",setPosition:"0x60cbc",restorePosition:"0x60f8c"}};
-    recoveryBedding = [{actorTag:"FUT2",presented:true}];
+    // Native GPU snapshots across all camera cuts omit FUT1's resident texture.
+    // Keep the normal bedroom placement when this cutscene releases the prop.
+    for (const [tag, model] of [["FUT1","FUTS301G"], ["FUT2","FUTS302G"]]) {
+      const matches = placements.filter(item => item.runtime?.objectTag === tag);
+      if (matches.length !== 1) throw Error(`Invalid A0173 bedroom cover placement: ${tag}`);
+      const cover = matches[0];
+      const y = tag === "FUT2" ? map.readFloatLE(0x60cf4) : cover.position[1];
+      props[tag] = {model,objectTag:tag,browserFilename:cover.model,lifecycle:{kind:"room-script-persistent"},
+        initialPresentation:{position:[-cover.position[0],y,cover.position[2]],
+          rotationDegrees:[cover.rotationDegrees[0],-cover.rotationDegrees[1],-cover.rotationDegrees[2]],scale:cover.scale},
+        sourceBinding:tag === "FUT1" ? {evidence:"tools/evidence/a0173-native-bedding.json"} :
+          {callback:"0x60c50",savePosition:"0x60c70",setPosition:"0x60cbc",restorePosition:"0x60f8c"}};
+    }
+    recoveryBedding = [{actorTag:"FUT1",presented:false},{actorTag:"FUT2",presented:true}];
     const archive = parseIpacActivityArchive(fs.readFileSync(common));
     const body = archive.members.find(member => member.name === "YKD_M.CHRM");
     const table = archive.members.find(member => member.name === "YKD_FTBL.BIN");

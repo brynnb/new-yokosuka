@@ -1,0 +1,2286 @@
+{
+  "schema": "new-yokosuka-aseq-audio-pack-v2",
+  "generatedBy": "tools/cutscenes/build_hisaka_stand_pack.mjs",
+  "sources": {
+    "stream": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/STREAM/01HIS.AFS",
+      "sha256": "aab94360f22687657d2e3b2910333604198231e52fd03a742688bfab297012dd"
+    },
+    "soundBank": {
+      "disc": 2,
+      "path": "disc2/SCENE/02/SOUND/A1_HISAK.SND",
+      "sha256": "5ff3537dc0f5d6cb18182015a50bb2087498008b257881024bb6afc557fbc1d2"
+    },
+    "authManifest": "play/assets/harbor/hisaka-stand/manifest.json",
+    "resourceBindingEvidence": "tools/evidence/hisaka-harbor-native.json"
+  },
+  "voices": [
+    {
+      "voiceId": "01HISA001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISA001.aiff",
+      "nativeMember": "01HISA001.str",
+      "nativeIndex": 0,
+      "nativeByteLength": 6144,
+      "nativeSha256": "f8283f4448b2b1c3f844412c523653a7bcaeff9661858957b8d28b7a275dbea4",
+      "speakerId": "AKIR",
+      "sourceText": "Hisaka-san.",
+      "displayText": "Hisaka-san.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISA001.wav",
+      "byteLength": 24364,
+      "sha256": "378049bfe9316cef4d0fcc70e7e5a610b39bfdb09997d6f8aaee0e78f9d4b69c"
+    },
+    {
+      "voiceId": "01HISA002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISA002.aiff",
+      "nativeMember": "01HISA002.str",
+      "nativeIndex": 1,
+      "nativeByteLength": 4096,
+      "nativeSha256": "11732405c3e817332276315d3fdb4d7778a046ea2272141b4cd434bd25856bd1",
+      "speakerId": "AKIR",
+      "sourceText": "What's wrong?",
+      "displayText": "What's wrong?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISA002.wav",
+      "byteLength": 16172,
+      "sha256": "df8243ce1b78f2090d8fbfeb7cbb20d04bdd239aa3cff424b52d2c807aec2e15"
+    },
+    {
+      "voiceId": "01HISA003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISA003.aiff",
+      "nativeMember": "01HISA003.str",
+      "nativeIndex": 2,
+      "nativeByteLength": 4096,
+      "nativeSha256": "e9f60f62022929d961eda39c65dd52b6df2cccb23a15a84827011f8e1402d5cc",
+      "speakerId": "AKIR",
+      "sourceText": "Really=@",
+      "displayText": "Really...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISA003.wav",
+      "byteLength": 16172,
+      "sha256": "f6d53bceb9a4bc8ecb4774b310dd5e8a177c05c2d0bfd9ee4209de6954e0a247"
+    },
+    {
+      "voiceId": "01HISA004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISA004.aiff",
+      "nativeMember": "01HISA004.str",
+      "nativeIndex": 3,
+      "nativeByteLength": 4096,
+      "nativeSha256": "6d0bd68c928003ef235892bb1cb7e1fc351ab9ede02d4c6ed256f48a7e51a26c",
+      "speakerId": "AKIR",
+      "sourceText": "Me?",
+      "displayText": "Me?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISA004.wav",
+      "byteLength": 16172,
+      "sha256": "a89e6193ac07f04d034932fc20a2612dbce80d0a26bfcbb75939feeea12c7a42"
+    },
+    {
+      "voiceId": "01HISA005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISA005.aiff",
+      "nativeMember": "01HISA005.str",
+      "nativeIndex": 4,
+      "nativeByteLength": 8192,
+      "nativeSha256": "b115278f85f90964b3e16ae8ca2e8132542c9d9ac6670f15332cc9ef3cd7125d",
+      "speakerId": "AKIR",
+      "sourceText": "I'm sorry, but=@",
+      "displayText": "I'm sorry, but...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISA005.wav",
+      "byteLength": 32556,
+      "sha256": "0b0435b86ed2b0382301d9e733ca27c9b7128631c00b73a12bad158b6c3366cb"
+    },
+    {
+      "voiceId": "01HISA006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISA006.aiff",
+      "nativeMember": "01HISA006.str",
+      "nativeIndex": 5,
+      "nativeByteLength": 6144,
+      "nativeSha256": "82f70a39c0edd41feda14c8cb51235fa8d2ecb3b29474acef31fba8b10f9a6eb",
+      "speakerId": "AKIR",
+      "sourceText": "I'll try.",
+      "displayText": "I'll try.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISA006.wav",
+      "byteLength": 24364,
+      "sha256": "bb1699493ed70f3c8b4293f8580ba4d2ca817dae5b86e9c05f0178a37c1ca0de"
+    },
+    {
+      "voiceId": "01HISA007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISA007.aiff",
+      "nativeMember": "01HISA007.str",
+      "nativeIndex": 6,
+      "nativeByteLength": 4096,
+      "nativeSha256": "5bf1c5f839a7871c4f8b12f15ad8b24894aab86b756dcf102337ba945bd9ec7a",
+      "speakerId": "AKIR",
+      "sourceText": "OK=@",
+      "displayText": "OK...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 14
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISA007.wav",
+      "byteLength": 16172,
+      "sha256": "45f4405c30ef100efbd6a77908ebf44f39ab4f4eab8d9ed77da51958397fa5e3"
+    },
+    {
+      "voiceId": "01HISA008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISA008.aiff",
+      "nativeMember": "01HISA008.str",
+      "nativeIndex": 7,
+      "nativeByteLength": 4096,
+      "nativeSha256": "799911cea1fbf6382274fb5c0ff466b84a0cfb53e9cdc515d28ee80d94b3d28c",
+      "speakerId": "AKIR",
+      "sourceText": "I'll go check.",
+      "displayText": "I'll go check.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISA008.wav",
+      "byteLength": 16172,
+      "sha256": "dc2a3d9cde0f874ba76ca5e13c72db046f2da73c109aa1fb2d5f2cf6ae621f1f"
+    },
+    {
+      "voiceId": "01HISA009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISA009.aiff",
+      "nativeMember": "01HISA009.str",
+      "nativeIndex": 8,
+      "nativeByteLength": 8192,
+      "nativeSha256": "24496cb5010afaa4618afa48d538d32f4076fffc144c3364dcb083459dec77bf",
+      "speakerId": "AKIR",
+      "sourceText": "Not sure but=@",
+      "displayText": "Not sure but...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISA009.wav",
+      "byteLength": 32556,
+      "sha256": "022bda0baed452318c778e6452e481353c8a2f5579ffe1caad460f4d68ec4f52"
+    },
+    {
+      "voiceId": "01HISA010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISA010.aiff",
+      "nativeMember": "01HISA010.str",
+      "nativeIndex": 9,
+      "nativeByteLength": 6144,
+      "nativeSha256": "47a9136875da94acd9209ec84acb3fc57f522a362589a07b25fd91e242cabcb6",
+      "speakerId": "AKIR",
+      "sourceText": "It's her decision.",
+      "displayText": "It's her decision.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISA010.wav",
+      "byteLength": 24364,
+      "sha256": "aa933f17f0b8e107658865f4e863b45fde0b40a2d3d28056725ecdde9febb9e7"
+    },
+    {
+      "voiceId": "01HISB001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISB001.aiff",
+      "nativeMember": "01HISB001.str",
+      "nativeIndex": 10,
+      "nativeByteLength": 6144,
+      "nativeSha256": "adafee7c87aff6d6995ac6af8a4a8038a5eb23380f5d91a8a5f123cf8b2cc9db",
+      "speakerId": "HINA",
+      "sourceText": "Big sis!",
+      "displayText": "Big sis!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 19
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISB001.wav",
+      "byteLength": 24364,
+      "sha256": "a8eac54a40be768e882bf8d2236cc86af7794a44b100fce3b06c6d609eed9f55"
+    },
+    {
+      "voiceId": "01HISB002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISB002.aiff",
+      "nativeMember": "01HISB002.str",
+      "nativeIndex": 11,
+      "nativeByteLength": 8192,
+      "nativeSha256": "47d305ed3918d8bad4bdba4ab86e44db895c80bb00b764e3c60091fb4cb9cf2e",
+      "speakerId": "HINA",
+      "sourceText": "Lend me some money?",
+      "displayText": "Lend me some money?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISB002.wav",
+      "byteLength": 32556,
+      "sha256": "5f54b0814d39ea8246da7934c0509ffeb00a3baab6033711be3ca96de782c302"
+    },
+    {
+      "voiceId": "01HISB003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISB003.aiff",
+      "nativeMember": "01HISB003.str",
+      "nativeIndex": 12,
+      "nativeByteLength": 20480,
+      "nativeSha256": "d927e31783e2b04fa3d340a0350594352ed1322eed6c8dfde059a91d179c3a74",
+      "speakerId": "HINA",
+      "sourceText": "Why not?! Come on, lend me some=@",
+      "displayText": "Why not?! Come on, lend me some...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 3
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 24
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 18
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 2
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISB003.wav",
+      "byteLength": 81708,
+      "sha256": "4d0c531c231225cc51671ecb2c5748f6395e3fcfd253f9afeb4f367e0d0a21e9"
+    },
+    {
+      "voiceId": "01HISB004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISB004.aiff",
+      "nativeMember": "01HISB004.str",
+      "nativeIndex": 13,
+      "nativeByteLength": 6144,
+      "nativeSha256": "f6adf074f6bf8e23f75e45c19c3ac12dd8786991f48e7aefc9b259520f0a1160",
+      "speakerId": "HINA",
+      "sourceText": "Prude!",
+      "displayText": "Prude!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISB004.wav",
+      "byteLength": 24364,
+      "sha256": "bda4578172917efde1a9ecc1194759d0ca1fe11815e6df48647b53051b0f8dd8"
+    },
+    {
+      "voiceId": "01HISB005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISB005.aiff",
+      "nativeMember": "01HISB005.str",
+      "nativeIndex": 14,
+      "nativeByteLength": 12288,
+      "nativeSha256": "d6b941358232d1e809fe6b8550f17315c8677c1f21b1b0d1f4b9511b1b339f6b",
+      "speakerId": "HINA",
+      "sourceText": "See if I ask you anymore!",
+      "displayText": "See if I ask you anymore!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 15
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISB005.wav",
+      "byteLength": 48940,
+      "sha256": "5a0b0e441f0b6d1bfb2e8d215e3a7179a11c81ebe6dc6aeca57b0a8023ca34ba"
+    },
+    {
+      "voiceId": "01HISC001",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC001.aiff",
+      "nativeMember": "01HISC001.str",
+      "nativeIndex": 15,
+      "nativeByteLength": 6144,
+      "nativeSha256": "9f9b3efbbfcc5945e5531143d08d8171304b95fba561e59132f7aead3e68c95d",
+      "speakerId": "HISA",
+      "sourceText": "Hi Mai=@",
+      "displayText": "Hi Mai...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC001.wav",
+      "byteLength": 24364,
+      "sha256": "52588e4f4e889a4439e52692c19a12f106bba9b893440e66b977f9d9e722ddcd"
+    },
+    {
+      "voiceId": "01HISC002",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC002.aiff",
+      "nativeMember": "01HISC002.str",
+      "nativeIndex": 16,
+      "nativeByteLength": 6144,
+      "nativeSha256": "c8f140288ad902f22922bf92974518f6aeca9aac92cdbba5b10066dcc46611c8",
+      "speakerId": "HISA",
+      "sourceText": "What is it?",
+      "displayText": "What is it?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC002.wav",
+      "byteLength": 24364,
+      "sha256": "93e168eb04a9af1234c998523e40f4d5e5c85336b6f84e793323b319361a336f"
+    },
+    {
+      "voiceId": "01HISC003",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC003.aiff",
+      "nativeMember": "01HISC003.str",
+      "nativeIndex": 17,
+      "nativeByteLength": 8192,
+      "nativeSha256": "5495ec75babd2095c5dea8fac7c3ef8b464ac7ddbdd8302081dd959cbad95fe0",
+      "speakerId": "HISA",
+      "sourceText": "No way.",
+      "displayText": "No way.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 11
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC003.wav",
+      "byteLength": 32556,
+      "sha256": "e3a00a889d04638c7580224c7479ca6ecfa73c035d6f1300c4e94bc6d37dd23b"
+    },
+    {
+      "voiceId": "01HISC004",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC004.aiff",
+      "nativeMember": "01HISC004.str",
+      "nativeIndex": 18,
+      "nativeByteLength": 8192,
+      "nativeSha256": "5d674000e9e38eb12ed4559805df4dc617b8f040897864eaec8445413e11c384",
+      "speakerId": "HISA",
+      "sourceText": "I said {No.}",
+      "displayText": "I said {No.}",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 12
+          },
+          {
+            "shape": 3,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 2
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC004.wav",
+      "byteLength": 32556,
+      "sha256": "4745fa1e7bb3e4d491eb5eadcc988cdd3ac58b7c40faa751542bdcb9f1af7127"
+    },
+    {
+      "voiceId": "01HISC005",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC005.aiff",
+      "nativeMember": "01HISC005.str",
+      "nativeIndex": 19,
+      "nativeByteLength": 10240,
+      "nativeSha256": "d796bffafccb96940122e2e968c8304dfc4cbd0dca96305abce9075c521bfb53",
+      "speakerId": "HISA",
+      "sourceText": "I know you'd only waste it.",
+      "displayText": "I know you'd only waste it.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 1
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC005.wav",
+      "byteLength": 40748,
+      "sha256": "895d8865bd36dcf69092f6586201089b79bc6186b2109eac4a42a6823102a443"
+    },
+    {
+      "voiceId": "01HISC006",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC006.aiff",
+      "nativeMember": "01HISC006.str",
+      "nativeIndex": 20,
+      "nativeByteLength": 6144,
+      "nativeSha256": "cbc1c7d1b8d4aa5c285abc4c193e4e70896afea8727798ba5d3202734fd18f57",
+      "speakerId": "HISA",
+      "sourceText": "Mai!",
+      "displayText": "Mai!",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC006.wav",
+      "byteLength": 24364,
+      "sha256": "f8b2b23145a12c3a1cd7bdd63418ecc31ae474697a5b9b7dac41aab461cf09f6"
+    },
+    {
+      "voiceId": "01HISC007",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC007.aiff",
+      "nativeMember": "01HISC007.str",
+      "nativeIndex": 21,
+      "nativeByteLength": 8192,
+      "nativeSha256": "5b268e4ce9bbd6be833bd838c370d18df08c23490a29aedca5b98152b2e53057",
+      "speakerId": "HISA",
+      "sourceText": "",
+      "displayText": "",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 18
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 13
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC007.wav",
+      "byteLength": 32556,
+      "sha256": "d86a0529fb6d179741843cb7fc90fbe26f9d6611551c8a13870da603c92ebef3"
+    },
+    {
+      "voiceId": "01HISC008",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC008.aiff",
+      "nativeMember": "01HISC008.str",
+      "nativeIndex": 22,
+      "nativeByteLength": 6144,
+      "nativeSha256": "cedb50d45f7c2a8632c15a8689b0024afc0a1b5c3ed56b23f2d5a55cb96e0575",
+      "speakerId": "HISA",
+      "sourceText": "Hi, Ryo.",
+      "displayText": "Hi, Ryo.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC008.wav",
+      "byteLength": 24364,
+      "sha256": "e6c4f7c287a21da3cdc4fd7111fbae4de1a3ef6352cad345201df770547085c7"
+    },
+    {
+      "voiceId": "01HISC009",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC009.aiff",
+      "nativeMember": "01HISC009.str",
+      "nativeIndex": 23,
+      "nativeByteLength": 24576,
+      "nativeSha256": "d1a8826f8f7a07f93f5d1ba123480fda55a7bcbc258bf83d9da5d9fccf7df3e1",
+      "speakerId": "HISA",
+      "sourceText": "Mai's hanging with a bad crowd＆and treating our family bad.",
+      "displayText": "Mai's hanging with a bad crowd\nand treating our family bad.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 5,
+            "durationTicks": 21
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 10
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC009.wav",
+      "byteLength": 98092,
+      "sha256": "36e5f958046ed809a60d633423a56eeee944365397a189c3457506c8eeb67197"
+    },
+    {
+      "voiceId": "01HISC010",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC010.aiff",
+      "nativeMember": "01HISC010.str",
+      "nativeIndex": 24,
+      "nativeByteLength": 12288,
+      "nativeSha256": "6dcba4530de1a1f186c3cb06e8bacc0d291b22b6aaff3ff886c93dbd06685d4a",
+      "speakerId": "HISA",
+      "sourceText": "She wasn't like that before=@",
+      "displayText": "She wasn't like that before...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 11
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 4
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC010.wav",
+      "byteLength": 48940,
+      "sha256": "dc96aee8074734ecd865a7a6cda08ee87d3198821d508405a51aae49482fa5be"
+    },
+    {
+      "voiceId": "01HISC011",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC011.aiff",
+      "nativeMember": "01HISC011.str",
+      "nativeIndex": 25,
+      "nativeByteLength": 12288,
+      "nativeSha256": "8e71f48cdb2cbc7255422a5c6511ed185f3f84635eeac309b9339ca80594fb7f",
+      "speakerId": "HISA",
+      "sourceText": "Ryo, could you talk to her?",
+      "displayText": "Ryo, could you talk to her?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 3
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC011.wav",
+      "byteLength": 48940,
+      "sha256": "e0a2d8f6a227c35ed6548c17f50c5a58ebdb52d17c5a2facd15705516d65ed0d"
+    },
+    {
+      "voiceId": "01HISC012",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC012.aiff",
+      "nativeMember": "01HISC012.str",
+      "nativeIndex": 26,
+      "nativeByteLength": 16384,
+      "nativeSha256": "f5bf2143ae97e6c9456e47301bc184a91f61fa8acbf5bb2888213d51f49d56f0",
+      "speakerId": "HISA",
+      "sourceText": "She won't listen to me at all=@",
+      "displayText": "She won't listen to me at all...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 27
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC012.wav",
+      "byteLength": 65324,
+      "sha256": "527b15b9ee9c4491aa7004296b0f16f2c6fd0fa8646e493bb773a3bc46376058"
+    },
+    {
+      "voiceId": "01HISC013",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC013.aiff",
+      "nativeMember": "01HISC013.str",
+      "nativeIndex": 27,
+      "nativeByteLength": 20480,
+      "nativeSha256": "696b4bf52dd2f4c4742a7679bc8dcaaab1fe89fad5ddb33f8e09d23164334f22",
+      "speakerId": "HISA",
+      "sourceText": "Yes. Considering you've known＆her since she was young=@",
+      "displayText": "Yes. Considering you've known\nher since she was young...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 15
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 3,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 9
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 8
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 6
+          },
+          {
+            "shape": 3,
+            "durationTicks": 11
+          },
+          {
+            "shape": 1,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC013.wav",
+      "byteLength": 81708,
+      "sha256": "c0c3908ae1ead08def306cce645d2ada1ad243d7f98069ede7d87217b8996ae8"
+    },
+    {
+      "voiceId": "01HISC014",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC014.aiff",
+      "nativeMember": "01HISC014.str",
+      "nativeIndex": 28,
+      "nativeByteLength": 12288,
+      "nativeSha256": "1f1d3ef6d9c074c3ed84fc2fb86b32f68ec69310701d8f681acabe72ccca6abb",
+      "speakerId": "HISA",
+      "sourceText": "Please, talk to her.",
+      "displayText": "Please, talk to her.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 2
+          },
+          {
+            "shape": 1,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 20
+          },
+          {
+            "shape": 0,
+            "durationTicks": 11
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC014.wav",
+      "byteLength": 48940,
+      "sha256": "1f4960028a202733b9f6e6f911d586f190fd395caeff07f88e8081cbae4842e9"
+    },
+    {
+      "voiceId": "01HISC015",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC015.aiff",
+      "nativeMember": "01HISC015.str",
+      "nativeIndex": 29,
+      "nativeByteLength": 10240,
+      "nativeSha256": "b311814ce157af759d73d39f93f1be1b2fcd2b430c88ca7e2866f02771b4fb87",
+      "speakerId": "HISA",
+      "sourceText": "That's OK=@",
+      "displayText": "That's OK...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 12
+          },
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 3
+          },
+          {
+            "shape": 4,
+            "durationTicks": 13
+          },
+          {
+            "shape": 5,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 8
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC015.wav",
+      "byteLength": 40748,
+      "sha256": "0853fb9852564def78295bccea274f6b9f606aaeafaa0cbbc12864a7ac2ce0a1"
+    },
+    {
+      "voiceId": "01HISC016",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC016.aiff",
+      "nativeMember": "01HISC016.str",
+      "nativeIndex": 30,
+      "nativeByteLength": 6144,
+      "nativeSha256": "4419b5ffffde48a52469260fe94263bdb403033e5374d99c2762cf6894256a32",
+      "speakerId": "HISA",
+      "sourceText": "Really?",
+      "displayText": "Really?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 1,
+            "durationTicks": 6
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC016.wav",
+      "byteLength": 24364,
+      "sha256": "250a365e3860b9705d106595be30b0b56e28fd853aa68891a45ceb34284630e1"
+    },
+    {
+      "voiceId": "01HISC017",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC017.aiff",
+      "nativeMember": "01HISC017.str",
+      "nativeIndex": 31,
+      "nativeByteLength": 8192,
+      "nativeSha256": "83e3680553b61ae2fefd614030b66e3c87698db49d1c2286476b05490f00034f",
+      "speakerId": "HISA",
+      "sourceText": "It'd help me out.",
+      "displayText": "It'd help me out.",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 4,
+            "durationTicks": 21
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 3,
+            "durationTicks": 6
+          },
+          {
+            "shape": 5,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC017.wav",
+      "byteLength": 32556,
+      "sha256": "d2a74c43c6afade980a386ee3f00047f35f47b749892f0a459da7b9f1ff1004c"
+    },
+    {
+      "voiceId": "01HISC018",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC018.aiff",
+      "nativeMember": "01HISC018.str",
+      "nativeIndex": 32,
+      "nativeByteLength": 18432,
+      "nativeSha256": "58ea3c8790d241e35106249b162618a605a92b4b19decc6ceaeac1dca380761c",
+      "speakerId": "HISA",
+      "sourceText": "She's somewhere in the harbor,＆behind the warehouses=@",
+      "displayText": "She's somewhere in the harbor,\nbehind the warehouses...",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 2,
+            "durationTicks": 10
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 20
+          },
+          {
+            "shape": 1,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 13
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 5,
+            "durationTicks": 9
+          },
+          {
+            "shape": 4,
+            "durationTicks": 4
+          },
+          {
+            "shape": 1,
+            "durationTicks": 5
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 5,
+            "durationTicks": 10
+          },
+          {
+            "shape": 3,
+            "durationTicks": 4
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 4,
+            "durationTicks": 7
+          },
+          {
+            "shape": 2,
+            "durationTicks": 6
+          },
+          {
+            "shape": 0,
+            "durationTicks": 9
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC018.wav",
+      "byteLength": 73516,
+      "sha256": "b3f1c3c24a5f2d03592524d81f48d33e0f3349ca2d8593b83eebc5654cfc75b3"
+    },
+    {
+      "voiceId": "01HISC019",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SOUND/01HISC019.aiff",
+      "nativeMember": "01HISC019.str",
+      "nativeIndex": 33,
+      "nativeByteLength": 10240,
+      "nativeSha256": "caace2b9e117545370d4fc8a8cde05d73ed7a9d7e8a8600e5083dcad91e1bb7a",
+      "speakerId": "HISA",
+      "sourceText": "How did it go, Ryo?",
+      "displayText": "How did it go, Ryo?",
+      "lipSync": {
+        "format": "shenmue-srf-mouth-cues-v1",
+        "tickRate": 60,
+        "cues": [
+          {
+            "shape": 0,
+            "durationTicks": 1
+          },
+          {
+            "shape": 4,
+            "durationTicks": 17
+          },
+          {
+            "shape": 5,
+            "durationTicks": 7
+          },
+          {
+            "shape": 4,
+            "durationTicks": 5
+          },
+          {
+            "shape": 2,
+            "durationTicks": 7
+          },
+          {
+            "shape": 0,
+            "durationTicks": 5
+          },
+          {
+            "shape": 5,
+            "durationTicks": 4
+          },
+          {
+            "shape": 3,
+            "durationTicks": 10
+          },
+          {
+            "shape": 4,
+            "durationTicks": 14
+          },
+          {
+            "shape": 3,
+            "durationTicks": 9
+          },
+          {
+            "shape": 2,
+            "durationTicks": 4
+          },
+          {
+            "shape": 0,
+            "durationTicks": 1
+          }
+        ]
+      },
+      "asset": "public/audio/world/hisaka-stand/voice/01HISC019.wav",
+      "byteLength": 40748,
+      "sha256": "f928e26123ae4a698acd9564610258cb675d70f6ac75ab9bd85c16a530e55020"
+    }
+  ],
+  "sounds": [
+    {
+      "commandHex": "a9040000",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SE/foot/Akirafoot1a.aiff",
+      "playbackId": 0,
+      "sampleId": 0,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/hisaka-stand/sfx/a9040000.wav",
+      "byteLength": 6332,
+      "sha256": "12d3c82be1f203dfeb45486c68f0e90c394c223d8c5b3c2af35b7f1ee3d62502"
+    },
+    {
+      "commandHex": "a9040100",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SE/foot/Akirafoot1b.aiff",
+      "playbackId": 1,
+      "sampleId": 1,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/hisaka-stand/sfx/a9040100.wav",
+      "byteLength": 5924,
+      "sha256": "34fe02b4798ace396cdc96d0449776f5b9dcf29adf5dc7bec9858faf0c8b43f4"
+    },
+    {
+      "commandHex": "a9040200",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SE/cloths2/cloths02.aiff",
+      "playbackId": 2,
+      "sampleId": 2,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/hisaka-stand/sfx/a9040200.wav",
+      "byteLength": 18260,
+      "sha256": "6eb5936ad7d4db5d50b4e6cbe7b0d3e66b430fef83e3a8dd6158e7f29c85480b"
+    },
+    {
+      "commandHex": "a9040300",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SE/cloths2/friction4.aiff",
+      "playbackId": 3,
+      "sampleId": 3,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/hisaka-stand/sfx/a9040300.wav",
+      "byteLength": 21196,
+      "sha256": "6a0ab91f63d03c06bc87254496e0b876c1c1cdab2a6be24229a8d33f1f668e54"
+    },
+    {
+      "commandHex": "a9040400",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SE/cloths2/furimuki_n01.aiff",
+      "playbackId": 4,
+      "sampleId": 4,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/hisaka-stand/sfx/a9040400.wav",
+      "byteLength": 17972,
+      "sha256": "7e3109e5ca8449a10278769a817f10d0d631273483ece7f614dd2c8606abea14"
+    },
+    {
+      "commandHex": "a9040500",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SE/cloths2/furimuki_s01.aiff",
+      "playbackId": 5,
+      "sampleId": 5,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/hisaka-stand/sfx/a9040500.wav",
+      "byteLength": 17972,
+      "sha256": "31aa9a2c0ea7ce0599327b73e4cd15734afb0c4783411b36efbfb5697b58508c"
+    },
+    {
+      "commandHex": "a9040600",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SE/foot2/RENASHI3.aiff",
+      "playbackId": 6,
+      "sampleId": 6,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/hisaka-stand/sfx/a9040600.wav",
+      "byteLength": 8308,
+      "sha256": "28cf9affb218ff0d6fe1d0f1af0a3a3aa71a1b5664a8a2e3c1f4a432304279d0"
+    },
+    {
+      "commandHex": "a9040700",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SE/foot2/RENASHI5.aiff",
+      "playbackId": 7,
+      "sampleId": 7,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/hisaka-stand/sfx/a9040700.wav",
+      "byteLength": 9660,
+      "sha256": "01ec54feb09b49896b0ecca448cf55e4532b6bfc1631d60bb01d95547cfac42f"
+    },
+    {
+      "commandHex": "a9040800",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SE/foot2/RYOASHIKONKURI_5.aiff",
+      "playbackId": 8,
+      "sampleId": 8,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/hisaka-stand/sfx/a9040800.wav",
+      "byteLength": 6516,
+      "sha256": "9efcbf7b3476daeb906cb5fa74438e110eff8ee5f6a5f90e5d4cc6cc574d3327"
+    },
+    {
+      "commandHex": "a9040900",
+      "sourcePath": "/p16/prj16m5/AUTH01/01HIS/SE/foot2/RYOASHIKONKURI_6.aiff",
+      "playbackId": 9,
+      "sampleId": 9,
+      "sampleRate": 16000,
+      "asset": "public/audio/world/hisaka-stand/sfx/a9040900.wav",
+      "byteLength": 5924,
+      "sha256": "c2fab05fb98c983e07332f9060e9da2d8148f67fd4f33293cd64b73fa81a3fd2"
+    }
+  ]
+}

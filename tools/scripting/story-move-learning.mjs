@@ -80,14 +80,21 @@ for(const [id,area,worldId,position,requires,object] of [
   const m=move(id),route=routeBase(`${m.slug}-scroll`,area,worldId,requires);
   Object.assign(route,{priority:optionalEntryPriority+moveLearningRoutes.length,title:`${m.location} — move scroll`,items:[{key:m.itemKey,quantity:1}],
     yarnTemplate:'story-scroll-pickup.yarn',authoredText:{prompt:`There is a move scroll here in ${m.location}.`,
-      receipt:id==='stabArmor'?'This scroll is in Chinese. I should ask Master Chen to translate it.':`The ${m.name} scroll. I can read it in my inventory to learn the move.`}});
+      receipt:id==='stabArmor'?'This scroll is in Chinese. I should ask Gui Zhang to translate it.':`The ${m.name} scroll. I can read it in my inventory to learn the move.`}});
   if(object)Object.assign(route,{trigger:'use',object,objectLabel:id==='shadowReaper'?'Basket':`${m.name} scroll`,
     provenance:`${provenance} Object ${object} and its position are original JOMO placements; the correspondence to this scroll is inferred from its model and location, not a recovered native selection callback.`});
   region(route,worldId,position,object?1.5:.9);moveLearningRoutes.push(route);
 }
 const translation=routeBase('stab-armor-translation','MS08','ms08',['story.s1.master-chen.completed']);
-Object.assign(translation,{title:'Master Chen — translate Stab Armor',priority:640,trigger:'automatic',
-  requiredItems:[{key:move('stabArmor').itemKey,quantity:1}],effects:[move('stabArmor').requiredFlag],yarnTemplate:'story-scroll-translation.yarn'});
+Object.assign(translation,{
+  title:'Gui Zhang — translate Stab Armor', priority:640, trigger:'automatic', disc:2,
+  participants:['KISY'], staging:'s1.ms08.stab-armor-reading',
+  requiredItems:[{key:move('stabArmor').itemKey,quantity:1}],
+  effects:[move('stabArmor').requiredFlag], yarnTemplate:'story-scroll-translation.yarn',
+  dialogueArchive:{path:'data/SCENE/02/STREAM/SA1108.AFS',sha256:'c7af7a97889b807a41b42acc48dbda1fc38d4966d46989cd311b95e9d67eaab6'},
+  nativeSources:[{role:'native-stab-armor-dialogue-owner',locator:'disc2/SCENE/02/MK80/MAPINFO.BIN#0x2e4e,0x5394-0x542d',sha256:'a7199bfad279dc3737acb90bfc9bd7579f674fc5257a747b4e0fc402e612ba59'}],
+  provenance:'Original SA1108 lines, actors, voice and lip cues in the warehouse room controller order. The warehouse approach and standing camera use adapted staging.',
+});
 moveLearningRoutes.push(translation);
 moveLearningRoutes.push({...routeBase('bunkado-move-scrolls','DKTY','dkty'),actor:'OISI',trigger:undefined,priority:650,
   title:'Bunkado Antiques — move scrolls',repeatable:true,shop:learning.moves.filter(m=>m.price),yarnTemplate:undefined});

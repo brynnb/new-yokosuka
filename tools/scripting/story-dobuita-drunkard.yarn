@@ -1,0 +1,144 @@
+<<if native_value("2:280") == 1 && native_value("2:285") == 0>>
+<<pass_trigger>>
+<<endif>>
+<<play_sequence "s1.d000.drunkard.intro.start">>
+{{voice:E1005B002}}
+<<play_sequence "s1.d000.drunkard.intro.finish">>
+<<play_sequence "s1.d000.drunkard.front-lead.start">>
+<<play_sequence "s1.d000.drunkard.front-lead.finish">>
+<<play_sequence "s1.d000.drunkard.front-prompt.start">>
+<<start_challenge "s1.d000.drunkard.front">>
+<<play_sequence "s1.d000.drunkard.front-prompt.finish">>
+<<if challenge_result("s1.d000.drunkard.front") == "success">>
+<<play_sequence "s1.d000.drunkard.front-pass.start">>
+{{voice:E1005A002}}
+{{voice:E1005B007}}
+{{voice:E1005B008}}
+<<play_sequence "s1.d000.drunkard.front-pass.finish">>
+<<jump Rear>>
+<<else>>
+<<play_sequence "s1.d000.drunkard.front-miss.start">>
+<<play_sequence "s1.d000.drunkard.front-miss.finish">>
+<<set $lastGrappleVoice = -1>>
+<<set $voicesLeft = 0>>
+<<jump Grapple>>
+<<endif>>
+===
+title: Grapple
+---
+<<play_sequence "s1.d000.drunkard.grapple-lead.start">>
+<<set $secondBeat = false>>
+<<if $voicesLeft == 0>>
+    <<set $voicesLeft = 4>>
+    <<set $used0 = false>>
+    <<set $used1 = false>>
+    <<set $used2 = false>>
+    <<set $used3 = false>>
+<<endif>>
+<<jump GrappleVoice>>
+===
+title: GrappleVoice
+---
+// Native D000 draws two unused lines per grapple. The previous pair's
+// last line stays excluded across a reset of the four-line pool.
+<<set $eligible = 0>>
+<<set $can0 = !$used0 && $lastGrappleVoice != 0>>
+<<if $can0>>
+    <<set $eligible = $eligible + 1>>
+<<endif>>
+<<set $can1 = !$used1 && $lastGrappleVoice != 1>>
+<<if $can1>>
+    <<set $eligible = $eligible + 1>>
+<<endif>>
+<<set $can2 = !$used2 && $lastGrappleVoice != 2>>
+<<if $can2>>
+    <<set $eligible = $eligible + 1>>
+<<endif>>
+<<set $can3 = !$used3 && $lastGrappleVoice != 3>>
+<<if $can3>>
+    <<set $eligible = $eligible + 1>>
+<<endif>>
+<<set $choice = random_integer(1, $eligible)>>
+<<if $can0>>
+    <<set $choice = $choice - 1>>
+    <<if $choice == 0>>
+        <<set $used0 = true>>
+        <<set $selected = 0>>
+        {{voice:E1005B003}}
+    <<endif>>
+<<endif>>
+<<if $can1>>
+    <<set $choice = $choice - 1>>
+    <<if $choice == 0>>
+        <<set $used1 = true>>
+        <<set $selected = 1>>
+        {{voice:E1005B004}}
+    <<endif>>
+<<endif>>
+<<if $can2>>
+    <<set $choice = $choice - 1>>
+    <<if $choice == 0>>
+        <<set $used2 = true>>
+        <<set $selected = 2>>
+        {{voice:E1005B005}}
+    <<endif>>
+<<endif>>
+<<if $can3>>
+    <<set $choice = $choice - 1>>
+    <<if $choice == 0>>
+        <<set $used3 = true>>
+        <<set $selected = 3>>
+        {{voice:E1005B006}}
+    <<endif>>
+<<endif>>
+<<set $voicesLeft = $voicesLeft - 1>>
+<<if !$secondBeat>>
+    <<set $secondBeat = true>>
+    <<play_sequence "s1.d000.drunkard.grapple-lead.dialogue-cue">>
+    <<jump GrappleVoice>>
+<<endif>>
+<<set $lastGrappleVoice = $selected>>
+<<play_sequence "s1.d000.drunkard.grapple-lead.finish">>
+<<play_sequence "s1.d000.drunkard.grapple-prompt.start">>
+<<start_challenge "s1.d000.drunkard.grapple">>
+<<play_sequence "s1.d000.drunkard.grapple-prompt.finish">>
+<<if challenge_result("s1.d000.drunkard.grapple") == "success">>
+<<play_sequence "s1.d000.drunkard.grapple-pass.start">>
+{{voice:E1005A001}}
+{{voice:E1005B007}}
+{{voice:E1005B008}}
+<<play_sequence "s1.d000.drunkard.grapple-pass.finish">>
+<<jump Rear>>
+<<else>>
+<<play_sequence "s1.d000.drunkard.grapple-miss.start">>
+<<play_sequence "s1.d000.drunkard.grapple-miss.finish">>
+<<if game_hour() >= 23.516666666666666>>
+<<travel_story "s1.home.drunkard-curfew">>
+<<complete>>
+<<else>>
+<<jump Grapple>>
+<<endif>>
+<<endif>>
+===
+title: Rear
+---
+<<play_sequence "s1.d000.drunkard.rear-prompt.start">>
+<<start_challenge "s1.d000.drunkard.rear">>
+<<play_sequence "s1.d000.drunkard.rear-prompt.finish">>
+<<if challenge_result("s1.d000.drunkard.rear") == "success">>
+<<play_sequence "s1.d000.drunkard.rear-pass.start">>
+{{voice:E1005A004}}
+{{voice:E1005B012}}
+{{voice:E1005B014}}
+<<play_sequence "s1.d000.drunkard.rear-pass.finish">>
+<<set_native_value "2:199" 1>>
+{{effects}}
+<<else>>
+<<play_sequence "s1.d000.drunkard.rear-miss.start">>
+{{voice:E1005B009}}
+{{voice:E1005B010}}
+<<play_sequence "s1.d000.drunkard.rear-miss.finish">>
+<<set_flag "story.s1.encounter-recovery.pending">>
+<<travel_story "s1.home.encounter-bedside">>
+<<endif>>
+<<complete>>

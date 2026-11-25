@@ -95,6 +95,7 @@ export class NativeAseqActivityCatalog {
       if (this.motionBanks.has(bank)) throw new Error(`duplicate AUTH motion bank ${bank}`);
       this.motionBanks.set(bank, { ...output,
         sequenceIndexBase: requireInteger(record.sequenceIndexBase ?? 0, "motion sequence index base"),
+        sourceSequenceBase: requireInteger(record.sourceSequenceBase ?? 0, "motion source sequence base"),
       });
     }
 
@@ -465,6 +466,7 @@ export class NativeAseqActivityRuntime {
         .map(command => command.sequenceIndex);
       motionPackages.set(bank, MotnLoader.parse(await this.loadExact(output, { signal }), {
         sequenceIndexBase: output.sequenceIndexBase,
+        sourceSequenceBase: output.sourceSequenceBase,
         sequenceIndices: [...new Set(indices)],
       }));
     }

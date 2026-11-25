@@ -1,0 +1,331 @@
+{
+  "disc": 2,
+  "area": "MFSY",
+  "mapSha256": "53ccad493265183650bb00aae9189be66bd2564808dfc96483dcf1944f39d988",
+  "resource": "01HIS",
+  "pkSha256": "c6bde6ab7f26c6025d6c6c7d981fcb29d47c9f865446a496f2f238fb296f81da",
+  "standNative": [
+    2,
+    0,
+    103.8
+  ],
+  "flagBank": 2,
+  "weatherSchedule": {
+    "stand": "The original time descriptor at 0x95e84 ends with mask 0x10, which skips class filtering at 0x24c88.",
+    "alley": "Descriptor [8,30,23,29,11] admits clear, cloud and snow. MFSY samples the personal date and minute at 0x7452a, stores the result at room +0x275, and excludes rain. Original 1ST_READ 0x0c1728f2 classifies snow, then rain, then cloud, then clear."
+  },
+  "prerequisite": "SA1039 old-district daytime guard 0x54d70 sets bit 245 at 0x54e2e.",
+  "request": {
+    "dispatcher": "0x2444e\u20130x24516",
+    "required": [
+      245
+    ],
+    "excluded": [
+      248,
+      600,
+      260
+    ],
+    "owner": "0x25d28",
+    "range": 8,
+    "standVector": "0x95e78",
+    "choice": "Interface 4 at 0x26098 returns one of 2/3. Value 2 runs slot 1 and sets 248; other result runs slot 2 and sets 600.",
+    "approach": {
+      "operation": "0x000b",
+      "arguments": [
+        "stand vector",
+        8,
+        8192,
+        16384,
+        "player room vector +0x23c"
+      ],
+      "bearingFromStand": 8192,
+      "bearingTolerance": 16384,
+      "playerYawTest": false
+    },
+    "clock": {
+      "static": "0x95e84",
+      "bytes": [
+        8,
+        30,
+        19,
+        0,
+        16
+      ],
+      "inclusive": true
+    }
+  },
+  "report": {
+    "dispatcher": "0x2468a\u20130x24776",
+    "required": [
+      249
+    ],
+    "excluded": [
+      824,
+      913,
+      798,
+      260
+    ],
+    "owner": "0x266e0",
+    "range": 5,
+    "standVector": "0x95f30",
+    "completionBit": 799,
+    "approach": {
+      "operation": "0x000b",
+      "arguments": [
+        "stand vector",
+        5,
+        8192,
+        16384,
+        "player room vector +0x23c"
+      ],
+      "bearingFromStand": 8192,
+      "bearingTolerance": 16384,
+      "playerYawTest": false
+    },
+    "latest": [
+      19,
+      0
+    ]
+  },
+  "alley": {
+    "resource": "E1036",
+    "dispatcher": "0x2455a\u20130x24646",
+    "required": [
+      248
+    ],
+    "excluded": [
+      249,
+      600,
+      260,
+      824
+    ],
+    "approachVectors": [
+      [
+        126.78,
+        0,
+        42.44
+      ],
+      [
+        122.48,
+        0,
+        14.34
+      ]
+    ],
+    "tableOffset": "0x99fac",
+    "qteRows": [
+      [
+        64,
+        20,
+        20,
+        4,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        3,
+        5
+      ],
+      [
+        256,
+        20,
+        20,
+        4,
+        1,
+        -1,
+        -1,
+        -1,
+        7,
+        -1,
+        9,
+        11
+      ],
+      [
+        64,
+        20,
+        20,
+        4,
+        1,
+        -1,
+        -1,
+        -1,
+        13,
+        -1,
+        15,
+        17
+      ],
+      [
+        64,
+        20,
+        20,
+        4,
+        1,
+        -1,
+        -1,
+        -1,
+        19,
+        -1,
+        21,
+        23
+      ],
+      [
+        64,
+        20,
+        20,
+        4,
+        1,
+        -1,
+        -1,
+        -1,
+        25,
+        -1,
+        27,
+        29
+      ]
+    ],
+    "recordConsumer": "0x797a0 multiplies the requested row by 12 words; 0x7991a\u20130x79992 pass cols 0\u20133 to the prompt worker 0x79f28.",
+    "winBits": [
+      183,
+      249
+    ],
+    "loseBits": [
+      249,
+      824
+    ],
+    "lossTransfer": "JOMO entry 19, shared A0173 recovery.",
+    "clockAndWeather": {
+      "static": "0x95f28",
+      "bytes": [
+        8,
+        30,
+        23,
+        29,
+        11
+      ],
+      "weatherCodes": [
+        0,
+        1,
+        3
+      ]
+    },
+    "castStarts": [
+      {
+        "actor": "HINA",
+        "positionXZ": [
+          135,
+          55.1
+        ],
+        "yawDegrees": 325
+      },
+      {
+        "actor": "ISYM",
+        "positionXZ": [
+          136.2,
+          56.3
+        ],
+        "yawDegrees": 355
+      },
+      {
+        "actor": "NMNO",
+        "positionXZ": [
+          137.4,
+          55.5
+        ],
+        "yawDegrees": 30
+      }
+    ],
+    "nativeMasks": {
+      "64": "Left",
+      "256": "A"
+    },
+    "rowCalls": {
+      "0": [
+        "0x7fc3e"
+      ],
+      "1": [
+        "0x80034",
+        "0x80234"
+      ],
+      "2": [
+        "0x808ac"
+      ],
+      "3": [
+        "0x80a5c"
+      ],
+      "4": [
+        "0x80c10"
+      ]
+    },
+    "music": "BGM067",
+    "inputEligibility": "The native common 0x0188 prompt worker (E1036 at 0x79f7a) admits input for (column 2 + column 3) / 30 seconds; all five rows use 24/30.",
+    "controlFlow": {
+      "owner": "0x7efe8",
+      "main": "0x7f898",
+      "actorMotions": "0x7b8ec command 1..30",
+      "result": "Scene +0x610: zero selects the miss branch at each of the six call sites.",
+      "first": "Row 0 always advances to row 1 after one hit/miss reaction.",
+      "second": "Row 1 permits one retry via 0x80234; second miss writes terminal 20 at 0x80494.",
+      "final": "Misses on row 2 or 3 select the next Left attempt; a third miss writes 20 at 0x80d68. Success on any final row calls 0x81710 during the win sequence.",
+      "lossVariant": "0x7d974 writes phase into +0x754. Miss at A retry sets 11 (0x802c6) \u2192 0x82cfc; final Left miss sets 20 (0x80ca2) \u2192 0x83444."
+    },
+    "props": {
+      "SORI": "BUKS701G through hand control 18 on ISYM, 0x8188e; alternate grip control 12 at 0x8196a.",
+      "KAKU": "MKZ0201G: NMNO hand 18 at 0x816d8, transfers to AKIR hand 18 at 0x817b2."
+    },
+    "voiceSource": {
+      "archive": "STREAM/E1036.AFS",
+      "sha256": "fbaa25c6345c95d40c6d64ad2bd077b7ca72c5c60fc966afc85f4ca0a8986aaf",
+      "selector": "0x7e454, index 0\u201311 A001\u2013A012, 12\u201313 B001\u2013B002, 14\u201318 C001\u2013C005, 19\u201327 D001\u2013D009, 28 E001.",
+      "nonverbal": [
+        "E1036A008",
+        "E1036A009",
+        "E1036D004"
+      ]
+    },
+    "staging": "The interactive scenes reuse original MSQB body motions, MFSY ECAM tracks and their scene anchor, prop bindings, voice source and recovered four-character placements. The Story presenter adapts phase boundaries and dialogue pacing; secondary movement/look toggles and the native particles are not fully reproduced."
+  },
+  "activities": [
+    {
+      "slot": 0,
+      "durationFrames": 1650,
+      "owner": "0x617b0",
+      "primaryPointer": 614074,
+      "secondaryPointer": 614087,
+      "purpose": "Full opening and request"
+    },
+    {
+      "slot": 1,
+      "durationFrames": 330,
+      "owner": "0x62990",
+      "primaryPointer": 614092,
+      "secondaryPointer": 614105,
+      "purpose": "Accept"
+    },
+    {
+      "slot": 2,
+      "durationFrames": 170,
+      "owner": "0x62c6c",
+      "primaryPointer": 614110,
+      "secondaryPointer": 614123,
+      "purpose": "Decline"
+    },
+    {
+      "slot": 3,
+      "durationFrames": 260,
+      "owner": "0x62e28",
+      "primaryPointer": 614247,
+      "secondaryPointer": 614260,
+      "purpose": "Report after successful alley encounter"
+    },
+    {
+      "slot": 4,
+      "durationFrames": 10,
+      "owner": null,
+      "primaryPointer": 614128,
+      "secondaryPointer": 614141,
+      "purpose": "Loaded Hisaka-only held pose, not a separate Story outcome"
+    }
+  ],
+  "expiry": "Disc 2 MS08 E1010 owner 0x281a4 writes bit 260 at 0x2872e, then returns home via JOMO 4/5. Corresponds to story.s1.master-chen.completed."
+}

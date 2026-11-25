@@ -91,3 +91,25 @@ test("all 23 ride-home shots own the original cinematic Ryo and release both rid
     await vite.close();
   }
 });
+
+test("the ride installs original cloth modes and replays observed mutations across 23 shots", async () => {
+  const {parseNativeClothTrack}=await import("../play/characters/NativeClothTrack.js");
+  const capture=read("tools/evidence/nbik-nozomi-cloth.json").originalCapture;
+  const record=manifest.clothTracks.HRSK;
+  const data=fs.readFileSync(record.path);
+  assert.equal(createHash("sha256").update(data).digest("hex"),capture.sha256);
+  assert.equal(capture.repeat.sha256,capture.sha256);
+  assert.equal(manifest.packageActors.HRSK.nativeClothRuntimeMode,7);
+  assert.equal(manifest.packageActors.AKIR.nativeClothRuntimeMode,8);
+  assert.equal(manifest.packageActors.HRSK.nativeSecondaryMotionFlags,8);
+  assert.deepEqual(manifest.activities[1].programPresentationCues.before,[{kind:"secondary-motion-global-float",mode:3,word:0x3e4ccccd}]);
+  const track=parseNativeClothTrack(data.buffer.slice(data.byteOffset,data.byteOffset+data.byteLength));
+  assert.equal(track.vertexCount,40);
+  assert.equal(track.frameCount,4406);
+  assert.equal(track.activityOrder.length,23);
+  assert.equal(track.frameAt(0,1),null);
+  assert.deepEqual(track.frameAt(4,60),track.frameAt(3,252));
+  assert.deepEqual(track.frameAt(4,100),track.frameAt(4,60));
+  assert.notDeepEqual(track.frameAt(4,123),track.frameAt(4,100));
+  assert.deepEqual(track.frameAt(20,100),track.frameAt(20,160));
+});

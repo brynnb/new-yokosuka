@@ -1,6 +1,8 @@
 {
   "schema": "new-yokosuka-story-travel-v1",
   "destinations": [
+    {"id":"s1.home.encounter-bedside","worldId":"interior","scene":1,"area":"JOMO","entry":19,"position":[-17.600000381469727,0,4.099999904632568],"yaw":2.783643872003905,"provenance":"Disc 2 D000 and MFSY pass JOMO entry 19, which selects A0173. JOMO has no CHRS placement 19. Story uses its established bedroom position and facing to stage the encounter in the shared residence world."},
+    {"id":"s1.home.drunkard-curfew","worldId":"interior","scene":1,"area":"JOMO","entry":4,"position":[-18,0.18199999630451202,5],"yaw":-4.71238898038469,"provenance":"Original D000 E1005 stalled grapple after 23:30 returns directly to JOMO entry 4. Position and yaw from Disc 2 JOMO CHRS entry 4; local world uses scene 1."},
     {"id":"s1.home.friends-visit","worldId":"interior","scene":1,"area":"JOMO","entry":null,"position":[-16.9,0,1.2],"yaw":0,"provenance":"Authored reachable home hallway arrival after the original SA1018 bar lead; the native DBYO controller transitions to JOMO but its precise arrival was not recovered."},
     {"id":"s1.yamamoto.house","worldId":"sakuragaoka","scene":1,"area":"JD00","entry":null,"position":[-11.5,0,1.5],"yaw":-1.5707963267948966,"provenance":"Authored walkable street-side arrival opposite the original Yamamoto nameplate. It follows the personal escort; no native arrival controller is claimed."},
     {"id":"s1.yamanose.kitten-reunion","worldId":"yamanose","scene":1,"area":"JU00","entry":null,"position":[35.987,2.6,42.576],"yaw":3.6,"provenance":"Authored return to the previously reviewed CATA1 shrine approach after finding the kitten; the original pickup and route are not reconstructed."},

@@ -2,11 +2,9 @@ import {
   gameDateFromWorldState,
   timeOfDayBlendForDate,
 } from "../../src/WorldTime.js";
-import nativeWeatherCatalog from "../data/shenmue1-native-weather.json" with { type: "json" };
-import { NativeWeatherSchedule } from "./NativeWeatherSchedule.js";
+import { storyWeatherSchedule } from "./StoryWeatherClass.js";
 import { nativeClockRecordFromGameDate } from "../events/NativeClockRecordRuntime.js";
 
-const storyWeatherSchedule = new NativeWeatherSchedule(nativeWeatherCatalog);
 
 // Browser approximation, not a decoded WAIR intensity: a small neutral
 // indirect fill keeps original MT5 colors readable at night. Reviewed against

@@ -1,4 +1,30 @@
+import { storyWeatherClassAt } from "../world/StoryWeatherClass.js";
 import catalog from "../data/story-regions.json" with { type: "json" };
+
+// Region boxes use browser coordinates. The recovered encounter tests below
+// use native coordinates and 16-bit turn angles at the accepted player pose.
+export function matchesEncounterApproach(approach, position, playerYaw) {
+  if (!approach) return true;
+  const [x, y, z] = [-position[0], position[1], position[2]].map(Math.fround);
+  const [cx, cy, cz] = approach.center.map(Math.fround);
+  const dx = Math.fround(x - cx);
+  const dy = Math.fround(y - cy);
+  const dz = Math.fround(z - cz);
+  if (Math.fround(Math.hypot(dx, dy, dz)) > approach.radius) return false;
+
+  const turnUnits = 65536 / (2 * Math.PI);
+  const bearing = Math.trunc(Math.atan2(dx, dz) * turnUnits);
+  const difference = ((bearing - approach.bearing + 32768) & 65535) - 32768;
+  if (Math.abs(difference) >= approach.tolerance) return false;
+  if (approach.facing) {
+    if (!Number.isFinite(playerYaw)) return false;
+    const yaw = Math.trunc(-playerYaw * turnUnits) & 65535;
+    if (yaw <= approach.facing[0] || yaw >= approach.facing[1]) return false;
+  }
+  if (!approach.plane) return true;
+  const [slope, intercept] = approach.plane.map(Math.fround);
+  return z > Math.fround(Math.fround(slope * x) + intercept);
+}
 
 /** Poll small authored areas; the server independently validates position and
  * eligibility. No native-room fallback is permitted for this dispatch family.
@@ -20,7 +46,7 @@ export class StoryRegionRuntime {
     this.generation = 0;
   }
   reset() { this.generation++; this.inside.clear(); this.contextKey = null; this.calendarDay = null; }
-  update({ area, worldId, playerPosition, enabled }) {
+  update({ area, worldId, playerPosition, playerYaw, enabled }) {
     const position = Array.isArray(playerPosition) ? playerPosition
       : playerPosition ? [playerPosition.x, playerPosition.y, playerPosition.z] : null;
     const character = this.getCharacter();
@@ -62,7 +88,12 @@ export class StoryRegionRuntime {
         // This is dispatch only; Yarn independently checks the personal clock.
         if(!eligible){this.inside.delete(region.id);continue;}
       }
-      const inside = position.every((value, axis) => value >= region.min[axis] && value <= region.max[axis]);
+      if (region.nativeWeatherMask != null && (!(date instanceof Date) || !Number.isFinite(date.getTime()) || !(region.nativeWeatherMask & (1 << storyWeatherClassAt(date))))) {
+        this.inside.delete(region.id);
+        continue;
+      }
+      const inside = position.every((value, axis) => (axis === 1 && region.horizontalOnly) || (value >= region.min[axis] && value <= region.max[axis]))
+        && matchesEncounterApproach(region.nativeApproach, position, playerYaw);
       if (!inside) { this.inside.delete(region.id); continue; }
       if (this.inside.has(region.id) || (!region.repeatable && character.storyFlags?.[region.completedFlag])
         || (region.requiredFlags || []).some(flag => character.storyFlags?.[flag] !== true)

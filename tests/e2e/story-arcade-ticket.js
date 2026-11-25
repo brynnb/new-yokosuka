@@ -164,14 +164,17 @@ export async function verifyChaiRecoveryBody(page, testInfo, character) {
   }, null, {timeout:30_000});
   const futon = () => page.evaluate(() => {
     const rows = window.storyProbe.lifecycle.sceneState.currentMeshes;
-    return ["FUT1","FUT2"].map(tag => rows.find(r=>r._runtimePlacementRecord?.runtime?.objectTag===tag)?.position.asArray());
+    return ["FUT1","FUT2"].map(tag => {
+      const root = rows.find(r=>r._runtimePlacementRecord?.runtime?.objectTag===tag);
+      return root ? [root.isEnabled(false), ...root.position.asArray()] : null;
+    });
   });
   await waitForBody();
-  expect(await futon()).toEqual([[-19.188601,.608,4.379],[-18.995001,-10,4.391]]);
+  expect(await futon()).toEqual([[false,-19.188601,.608,4.379],[true,-18.995001,-10,4.391]]);
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel("sleepwear-cancel"));
   await page.waitForFunction(()=>window.storyProbe.regions.controller.status==="idle" && !window.storyProbe.lifecycle.getController().movementLocked);
   expect(await page.evaluate(()=>window.recoveryBody.isDisposed() || !window.recoveryBody.isEnabled())).toBe(true);
-  expect(await futon()).toEqual([[-19.188601,.608,4.379],[-18.995001,.551,4.391]]);
+  expect(await futon()).toEqual([[true,-19.188601,.608,4.379],[true,-18.995001,.551,4.391]]);
   expect((await state()).character.storyFlags[done]).not.toBe(true);
   for (const position of [[-14,0,4.1], [-17.6,0,4.1]]) {
     await page.evaluate(position=>{
@@ -181,7 +184,7 @@ export async function verifyChaiRecoveryBody(page, testInfo, character) {
     await page.waitForTimeout(600);
   }
   await waitForBody();
-  expect(await futon()).toEqual([[-19.188601,.608,4.379],[-18.995001,-10,4.391]]);
+  expect(await futon()).toEqual([[false,-19.188601,.608,4.379],[true,-18.995001,-10,4.391]]);
   await page.waitForTimeout(4000);
   await page.screenshot({path:testInfo.outputPath("chai-original-sleepwear.png")});
   await expect.poll(async()=>(await state()).character.storyFlags[done],{timeout:90_000}).toBe(true);
@@ -191,7 +194,7 @@ export async function verifyChaiRecoveryBody(page, testInfo, character) {
   expect(after.character.yen).toBe(before.character.yen);
   expect(after.inventory).toEqual(before.inventory);
   expect(after.character.avatarId).toBe("ryo");
-  expect(await futon()).toEqual([[-19.188601,.608,4.379],[-18.995001,.551,4.391]]);
+  expect(await futon()).toEqual([[true,-19.188601,.608,4.379],[true,-18.995001,.551,4.391]]);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().actorRoot.getChildMeshes(false)
     .some(m=>m.isEnabled() && m.isVisible && m.getTotalVertices()>0))).toBe(true);
 }

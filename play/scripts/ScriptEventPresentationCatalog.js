@@ -172,6 +172,14 @@ const ACTIVITIES = new Map([
     cutscene:{id:"story-s1-shenhua-warning",packageId:"bebf",worldId:"interior",storyPresentation:true,
       program:{programId:"preview-s1-bebf-01",entryFunction:"$activity-sequence",area:"JOMO",worldId:"interior"}},
   }],
+  ...[
+    ["request",0,614074,614087], ["accept",1,614092,614105],
+    ["decline",2,614110,614123], ["report",3,614247,614260],
+  ].map(([part,slot,primaryPointer,secondaryPointer]) => [`s1.mfsy.hisaka-${part}.scene`, {
+    kind:"native-cutscene", area:"MFSY", durableEffects:"forbidden", returnPlayerState:true,
+    cutscene:{id:`story-s1-hisaka-${part}`,packageId:"hisaka-stand",worldId:"mfsy",storyPresentation:true,
+      activity:{slot,binding:{primaryPointer,secondaryPointer}}},
+  }]),
   ["s1.jomo.bad-ending.scene",{
     kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-bad-ending",packageId:"bad-ending",worldId:"interior",storyPresentation:true,
@@ -359,6 +367,7 @@ const SEQUENCES = new Map([
   ...authoredScenes.scenes.flatMap(scene => [
     [`${scene.id}.start`, { kind: scene.continuesPrevious?"scene-staging-transition":"scene-staging-start", area: scene.area, scene, executable: true }],
     [`${scene.id}.finish`, { kind: "scene-staging-finish", area: scene.area, scene, executable: true }],
+    ...(scene.dialogueCueSeconds ? [[`${scene.id}.dialogue-cue`, { kind: "scene-staging-dialogue-cue", area: scene.area, scene, executable: true }]] : []),
   ]),
   ["d000.door.1.closed-check.start", {
     kind: "actor-motion-cue-start",

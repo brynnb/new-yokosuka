@@ -108,9 +108,9 @@ for (const move of moves) {
   }
 }
 add({id:"scroll.stabArmor.translate",chapter:"learning",name:"Have Stab Armor translated",
-  kind:"Conversation",where:"Warehouse No. 8; original translator disputed",
+  kind:"Conversation",where:"Warehouse No. 8; Gui Zhang reads the scroll",
   sources:["moves","move-guide","afs-guide"],binding:"story.s1.stab-armor.translated",
-  note:"Current adaptation uses Master Chen; the annotated SA1108 source names Gui Zhang. Verify original actor."});
+  note:"The 14 original SA1108 lines identify Ryo and Gui Zhang. SA1109 is the separate poetry reading."});
 
 assert.equal(new Set(events.map(event => event.id)).size, events.length, "duplicate event ID");
 for (const id of Object.keys(inventory.verification || {})) {

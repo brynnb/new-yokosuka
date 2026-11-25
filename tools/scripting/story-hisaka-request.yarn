@@ -1,0 +1,16 @@
+<<if (!flag_set("story.s1.old-district-day-gate.completed") && native_value("2:245") == 0) || native_value("2:248") != 0 || native_value("2:600") != 0 || native_value("2:260") != 0>>
+<<pass_trigger>>
+<<endif>>
+<<start_activity "s1.mfsy.hisaka-request.scene">>
+-> I'll try.
+    <<start_activity "s1.mfsy.hisaka-accept.scene">>
+    <<set_native_value "2:248" 1>>
+    <<set_flag "story.s1.hisaka-request.accepted">>
+    {{effects}}
+    <<complete>>
+-> I'm sorry, but...
+    <<start_activity "s1.mfsy.hisaka-decline.scene">>
+    <<set_native_value "2:600" 1>>
+    <<set_flag "story.s1.hisaka-request.declined">>
+    {{effects}}
+    <<complete>>

@@ -1,0 +1,433 @@
+{
+  "schema": "new-yokosuka-nbik-native-cloth-track-v1",
+  "map": "disc3/SCENE/03/NBIK/MAPINFO.BIN",
+  "mapSha256": "9acf1bacb3ac4f5533d00b709482dfc8848d9c39fcdfa23ce45e1900f0d06e31",
+  "controller": {
+    "format": "SCN3 compact stack bytecode",
+    "entryFileOffset": "0x15ec",
+    "scriptBaseFileOffset": "0x8",
+    "moviePaths": [
+      "0x169a and 0x174a call 0x62b",
+      "0x178b calls 0x4a3"
+    ],
+    "castSetup": "0x57f and 0x707 call setup 0x1209 prior to slot playback in both movie paths.",
+    "operations": [
+      {
+        "offset": "0x12ed",
+        "operation": "0x0025",
+        "args": [
+          "HRSK",
+          8,
+          1
+        ]
+      },
+      {
+        "offset": "0x12fa",
+        "operation": "0x0025",
+        "args": [
+          "AKIR",
+          8,
+          1
+        ]
+      },
+      {
+        "offset": "0x1305",
+        "operation": "0x0142",
+        "args": [
+          "AKIR",
+          8
+        ]
+      },
+      {
+        "offset": "0x1311",
+        "operation": "0x0142",
+        "args": [
+          "HRSK",
+          7
+        ]
+      }
+    ],
+    "global": "After slot 0, callback 0x1031 is launched at 0x79a. At 0x1069 it writes op 0x0164 mode 3, float word 0x3e4ccccd (0.2).",
+    "handler": "0x0c0adf6c resolves the actor; 0x0c0adfa8 updates owner byte +6 and branches to CLTH initializer 0x0c0ae002."
+  },
+  "originalCapture": {
+    "source": "Disc 3 original Dreamcast program on Flycast, TERY entry NBIK 0, captured immediately after CLTH converted garment vertices to model coordinates.",
+    "postConversionPC": "0x0c0aea38",
+    "closeup": {
+      "slot": 4,
+      "frame": 180,
+      "resource": "0xc3e4c64",
+      "groups": [
+        {
+          "group": "0xc781c60",
+          "owner": "0xc7819a4",
+          "ownerMode": 7,
+          "ownerProfile": 81,
+          "groupFlags": 0,
+          "rows": 4,
+          "columns": 10,
+          "controlType": 65466,
+          "collisionMask": 65535,
+          "vertexCount": 40,
+          "bodyCollisions": 10,
+          "renderCount": 40
+        }
+      ]
+    },
+    "frameRate": 30,
+    "trackVersion": 2,
+    "unitScale": 0.0001220703125,
+    "sha256": "6153aba720ccc988feb7549278ec1147eca8f2d0b57f84ba3e69c57b48be699c",
+    "byteLength": 2150168,
+    "modelCode": "NZM",
+    "controlType": -70,
+    "rows": 4,
+    "columns": 10,
+    "frameCount": 4406,
+    "vertexCount": 40,
+    "coverage": [
+      {
+        "slot": 0,
+        "first": 2,
+        "last": 933,
+        "count": 932
+      },
+      {
+        "slot": 1,
+        "first": 1,
+        "last": 385,
+        "count": 385
+      },
+      {
+        "slot": 2,
+        "first": 1,
+        "last": 133,
+        "count": 133
+      },
+      {
+        "slot": 3,
+        "first": 1,
+        "last": 252,
+        "count": 252
+      },
+      {
+        "slot": 4,
+        "first": 123,
+        "last": 599,
+        "count": 477
+      },
+      {
+        "slot": 5,
+        "first": 1,
+        "last": 135,
+        "count": 135
+      },
+      {
+        "slot": 6,
+        "first": 1,
+        "last": 110,
+        "count": 110
+      },
+      {
+        "slot": 7,
+        "first": 1,
+        "last": 115,
+        "count": 115
+      },
+      {
+        "slot": 8,
+        "first": 1,
+        "last": 29,
+        "count": 29
+      },
+      {
+        "slot": 9,
+        "first": 1,
+        "last": 70,
+        "count": 70
+      },
+      {
+        "slot": 10,
+        "first": 1,
+        "last": 151,
+        "count": 151
+      },
+      {
+        "slot": 11,
+        "first": 1,
+        "last": 230,
+        "count": 230
+      },
+      {
+        "slot": 12,
+        "first": 1,
+        "last": 40,
+        "count": 40
+      },
+      {
+        "slot": 13,
+        "first": 1,
+        "last": 34,
+        "count": 34
+      },
+      {
+        "slot": 14,
+        "first": 1,
+        "last": 21,
+        "count": 21
+      },
+      {
+        "slot": 15,
+        "first": 1,
+        "last": 61,
+        "count": 61
+      },
+      {
+        "slot": 16,
+        "first": 1,
+        "last": 48,
+        "count": 48
+      },
+      {
+        "slot": 17,
+        "first": 1,
+        "last": 42,
+        "count": 42
+      },
+      {
+        "slot": 18,
+        "first": 1,
+        "last": 98,
+        "count": 98
+      },
+      {
+        "slot": 19,
+        "first": 1,
+        "last": 131,
+        "count": 131
+      },
+      {
+        "slot": 20,
+        "first": 1,
+        "last": 59,
+        "count": 59
+      },
+      {
+        "slot": 21,
+        "first": 1,
+        "last": 464,
+        "count": 464
+      },
+      {
+        "slot": 22,
+        "first": 1,
+        "last": 389,
+        "count": 389
+      }
+    ],
+    "missingOutput": "No NZM output was recorded before slot 0 frame 2, slot 4 frame 123, or after the final observed frame in a slot. Playback retains the preceding model-local output until the next native mutation.",
+    "repeat": {
+      "frameCount": 4406,
+      "sha256": "6153aba720ccc988feb7549278ec1147eca8f2d0b57f84ba3e69c57b48be699c",
+      "identical": true
+    },
+    "idleCheckpoints": [
+      {
+        "slot": 4,
+        "frame": 60,
+        "mode": 7,
+        "control": "bb08e024dfba680b",
+        "render": "fa5bf9ffa678df17"
+      },
+      {
+        "slot": 4,
+        "frame": 100,
+        "mode": 7,
+        "control": "bb08e024dfba680b",
+        "render": "fa5bf9ffa678df17"
+      },
+      {
+        "slot": 4,
+        "frame": 124,
+        "mode": 7,
+        "control": "d9bf2dc7e3953831",
+        "render": "f02b5fe5f84960ca"
+      },
+      {
+        "slot": 4,
+        "frame": 180,
+        "mode": 7,
+        "control": "304c5767b98f27c5",
+        "render": "6d165e0dbba2b9c5"
+      },
+      {
+        "slot": 20,
+        "frame": 58,
+        "mode": 7,
+        "control": "d317ca28848ecd31",
+        "render": "cb65233fa67efc54"
+      },
+      {
+        "slot": 20,
+        "frame": 100,
+        "mode": 7,
+        "control": "880221e24554c5b8",
+        "render": "88f8115783201ea6"
+      },
+      {
+        "slot": 20,
+        "frame": 160,
+        "mode": 7,
+        "control": "880221e24554c5b8",
+        "render": "88f8115783201ea6"
+      }
+    ]
+  },
+  "surfaceAudit": {
+    "command": "node tools/animation/audit_nbik_cloth.mjs",
+    "units": "metres; maxStretch uses triangle edges longer than .02m at rest",
+    "originalFloatCheckpoint": "tools/evidence/nbik-nozomi-frame180.json",
+    "measurements": {
+      "slot": 4,
+      "former": [
+        {
+          "frame": 123,
+          "maxTriangleEdge": 0.2753926896115983,
+          "maxStretch": 2.0305365708914165,
+          "surfaces": [
+            {
+              "side": "exterior",
+              "emitted": 60,
+              "distinctNativeVertices": 30,
+              "maxError": 0.39489717937633667
+            },
+            {
+              "side": "lining",
+              "emitted": 60,
+              "distinctNativeVertices": 30,
+              "maxError": 0.39489717937633667
+            }
+          ]
+        },
+        {
+          "frame": 180,
+          "maxTriangleEdge": 0.2770207745073615,
+          "maxStretch": 2.0500167164375678,
+          "surfaces": [
+            {
+              "side": "exterior",
+              "emitted": 60,
+              "distinctNativeVertices": 30,
+              "maxError": 0.39957997929715205
+            },
+            {
+              "side": "lining",
+              "emitted": 60,
+              "distinctNativeVertices": 30,
+              "maxError": 0.39957997929715205
+            }
+          ]
+        }
+      ],
+      "correctedMode": [
+        {
+          "frame": 123,
+          "maxTriangleEdge": 0.28299903015467043,
+          "maxStretch": 2.108824137645082,
+          "surfaces": [
+            {
+              "side": "exterior",
+              "emitted": 60,
+              "distinctNativeVertices": 30,
+              "maxError": 0.3935014613418566
+            },
+            {
+              "side": "lining",
+              "emitted": 60,
+              "distinctNativeVertices": 30,
+              "maxError": 0.3935014613418566
+            }
+          ]
+        },
+        {
+          "frame": 180,
+          "maxTriangleEdge": 0.28600322777714854,
+          "maxStretch": 2.0820988552247632,
+          "surfaces": [
+            {
+              "side": "exterior",
+              "emitted": 60,
+              "distinctNativeVertices": 30,
+              "maxError": 0.39801370693388766
+            },
+            {
+              "side": "lining",
+              "emitted": 60,
+              "distinctNativeVertices": 30,
+              "maxError": 0.39801370693388766
+            }
+          ]
+        }
+      ],
+      "originalTrack": [
+        {
+          "frame": 123,
+          "maxTriangleEdge": 0.20070101150165431,
+          "maxStretch": 1.3548917891739176,
+          "surfaces": [
+            {
+              "side": "exterior",
+              "emitted": 60,
+              "distinctNativeVertices": 30,
+              "maxError": 4.05732896398941e-06
+            },
+            {
+              "side": "lining",
+              "emitted": 60,
+              "distinctNativeVertices": 30,
+              "maxError": 4.05732896398941e-06
+            }
+          ]
+        },
+        {
+          "frame": 180,
+          "maxTriangleEdge": 0.20772627029259869,
+          "maxStretch": 1.4486212706270962,
+          "surfaces": [
+            {
+              "side": "exterior",
+              "emitted": 60,
+              "distinctNativeVertices": 30,
+              "maxError": 9.449512779301679e-05
+            },
+            {
+              "side": "lining",
+              "emitted": 60,
+              "distinctNativeVertices": 30,
+              "maxError": 9.449512779301679e-05
+            }
+          ]
+        }
+      ]
+    },
+    "hardwareBrowser": {
+      "gpu": "AMD Radeon RX 9070 XT",
+      "test": "tests/e2e/story-nozomi-home.js",
+      "slot": 4,
+      "frame": 180,
+      "maxTriangleEdge": 0.2077262703,
+      "maxStretch": 1.4486212706,
+      "sampledNativeWords": [
+        815,
+        -634,
+        -667,
+        3807,
+        2685,
+        -6739
+      ],
+      "all23SlotsInOrder": true,
+      "homeArrival": "05:56",
+      "independentWake": "07:30"
+    }
+  }
+}

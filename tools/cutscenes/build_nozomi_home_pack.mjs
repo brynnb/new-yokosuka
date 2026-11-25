@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Original embedded TRCK films, not a reconstruction of the NBIK controller.
+// The original Dreamcast controller played these 23 embedded TRCK films in this order in both verified NBIK runs.
 // The existing exact-activity sequence compiler/player owns the playlist.
 import fs from "node:fs";
 import path from "node:path";
@@ -7,6 +7,7 @@ import {execFileSync} from "node:child_process";
 import {buildNativeAseqActivityPack,parseIpacActivityArchive,sha256} from "../lib/NativeAseqActivityPack.mjs";
 import {buildNativeAseqAudioPack} from "../lib/NativeAseqAudioPack.mjs";
 import {extractNativeTexnPack} from "../lib/NativeTexnPack.mjs";
+import {parseNativeClothTrack} from "../../play/characters/NativeClothTrack.js";
 import {parseAuthSequence} from "../../src/AuthSequence.js";
 import {parseChrtSceneObjectBindings} from "../lib/chrt_scene_object_bindings.js";
 
@@ -89,10 +90,42 @@ const ryoTextures = Buffer.concat(extractNativeTexnPack(ryoBytes, ryoName).entri
 generatedAssets.push({ assetPath: prefix + "/YKB_textures.bin", bytes: ryoTextures });
 packageActors.AKIR = { label: "Ryo Hazuki", modelCode: "YKB_M", browserFilename: ryoName, assetFormat: "MT5", characterScale: 1,
   assetPath: prefix + "/" + ryoName, textureAssetPath: prefix + "/YKB_textures.bin" };
+// NBIK contains compact SCN3 code. Both original movie owners call this
+// setup before playing the first AUTH slot. The 0x0142 engine function
+// writes CLTH owner byte +6 and immediately runs its collision initializer.
+const clothEvidencePath = "tools/evidence/nbik-nozomi-cloth.json";
+const clothEvidence = JSON.parse(fs.readFileSync(path.join(root,clothEvidencePath)));
+const capture = clothEvidence.originalCapture;
+function exactCode(offset, expected) {
+  if (map.subarray(offset,offset+expected.length/2).toString("hex")!==expected) throw Error("Changed NBIK setup at "+offset.toString(16));
+}
+exactCode(0x57f,"3101120000");
+exactCode(0x707,"3101120000");
+exactCode(0x12e4,"50015008704852534b1b25130c5001500870414b49521b25130c500870414b49522b420113085007704852534b2b42011308");
+exactCode(0x1062,"70cdcc4c3e50032b64011308");
+const clothPath = prefix+"/NZM_CLOTH_TRACK.bin";
+const sourceTrack = process.env.NBIK_CLOTH_TRACK || path.join(root,clothPath);
+const clothBytes = fs.readFileSync(sourceTrack);
+if (clothBytes.length!==capture.byteLength || sha256(clothBytes)!==capture.sha256) throw Error("Changed NBIK original NZM cloth recording");
+const track=parseNativeClothTrack(clothBytes.buffer.slice(clothBytes.byteOffset,clothBytes.byteOffset+clothBytes.byteLength));
+if(track.modelCode!=="NZM" || track.controlType!==-70 || track.vertexCount!==40 || track.frameCount!==capture.frameCount ||
+  track.activityRanges.size!==activities.length || capture.coverage.some(({slot,first,last,count})=>{
+    const range=track.activityRanges.get(slot);
+    return !range || range.end-range.start+1!==count || track.coordinates[range.start].frame!==first || track.coordinates[range.end].frame!==last;
+  })) throw Error("Changed NBIK native cloth coverage");
+generatedAssets.push({assetPath:clothPath,bytes:clothBytes});
+const first=track.coordinates[0], last=track.coordinates.at(-1);
+const clothTracks={HRSK:{path:clothPath,modelCode:"NZM_M",controlType:-70,frameRate:30,frameCount:track.frameCount,
+  firstCoordinate:[first.slot,first.frame],lastCoordinate:[last.slot,last.frame],
+  activityOrder:track.activityOrder,byteLength:clothBytes.length,sha256:capture.sha256,evidence:clothEvidencePath}};
+for (const [tag,mode] of [["HRSK",7],["AKIR",8]]) {
+  Object.assign(packageActors[tag],{nativeClothRuntimeMode:mode,nativeSecondaryMotionRuntimeMode:mode,nativeSecondaryMotionFlags:8});
+}
+activities[1].programPresentationCues={before:[{kind:"secondary-motion-global-float",mode:3,word:0x3e4ccccd}]};
 const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:"NBIK",disc:3,sourceMembers,expectedMembers:sourceMembers,bindingEvidence:evidence,
-  selectionRule:"Authored adjacent-file order of all 23 original ride-home TRCK resources, not recovered NBIK controller selection. The original 31.1-second conversation precedes 124.27 seconds of riding shots.",
+  selectionRule:"Two independent original Dreamcast controller runs played all 23 adjacent ride-home TRCK resources in package order. The opening 31.1-second conversation precedes 124.27 seconds of riding shots.",
   outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),audioManifest:`${audioPrefix}/manifest.json`,
-  motionBanks:[{bank:16,member:"M_01BIKE.BIN"}],activities,sceneObjects,packageActors,outputMembers,generatedAssets});
+  motionBanks:[{bank:16,member:"M_01BIKE.BIN"}],activities,sceneObjects,packageActors,outputMembers,generatedAssets,clothTracks});
 const routeFile=path.join(root,"tools/data/native-activity-preview-routes.json"),routes=JSON.parse(fs.readFileSync(routeFile));
 const route={cutsceneId:"story-s1-nozomi-home",programId:"story-s1-nozomi-home",packageId:"nozomi-home",worldId:"nbik-home",area:"NBIK",manifest:`${prefix}/manifest.json`,activities:activities.map(a=>({slot:a.slot}))};
 const existingRoute = routes.routes.findIndex(row => row.programId === route.programId);
@@ -121,7 +154,7 @@ if(process.argv.includes("--audio")){
   const musicFile=path.join(root,"public/music/manifest.json"),music=JSON.parse(fs.readFileSync(musicFile));
   music.tracks["nozomi-home"]={url:"/music/shenmue1/nozomi-home-cdda05.ogg",label:"Nozomi's ride home",durationSeconds:pcm.length/176400,loop:false,
     source:{format:"CDDA",disc:3,track:5,lba:180906,sectorBytes:2352,offset:352800,byteLength:pcm.length,sha256:sha256(pcm),trackSha256:sha256(bytes),sampleRate:44100,channels:2,sampleFormat:"s16le",
-      adaptation:"Original124.79-second CD audio paired with124.27-second riding montage after the dialogue; cue/playlist order authored, not recovered CDDA-controller execution."}};
+      adaptation:"Original124.79-second CD audio paired with124.27-second riding montage after the dialogue; the playlist order was observed in two original runs. CDDA cue timing is inferred from durations."}};
   fs.writeFileSync(musicFile,JSON.stringify(music,null,2)+"\n");runtimePaths.push(file,"public/music/manifest.json");
 }
 execFileSync(process.execPath,["tools/runtime-assets.mjs","update",...runtimePaths],{cwd:root,stdio:"inherit"});

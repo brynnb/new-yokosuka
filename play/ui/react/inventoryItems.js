@@ -27,7 +27,7 @@ export function inventoryWithScrollActions(state) {
     const learned=flags[scroll.flag]===true;
     const reason=state.character?.playMode!=='story'?'Read in Story mode':
       !state.character?.openingCompleted?'Finish the opening first':
-      scroll.requiredFlag&&flags[scroll.requiredFlag]!==true?'Ask Master Chen to translate':null;
+      scroll.requiredFlag&&flags[scroll.requiredFlag]!==true?'Ask Gui Zhang to translate':null;
     return {...item,scrollLearned:learned,scrollReadable:!learned&&!reason,scrollReadReason:reason};
   });
 }

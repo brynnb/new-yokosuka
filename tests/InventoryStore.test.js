@@ -110,7 +110,7 @@ test('changing inventory views aborts the old request and ignores its late posse
 test('scroll actions respect Story, translation and saved learned flags',()=>{
   const inventory=[{key:'scroll_stab_armor',name:'Stab Armor Scroll',category:'move_scroll',quantity:1}];
   const state={inventory,character:{playMode:'story',openingCompleted:true,storyFlags:{}}};
-  assert.match(inventoryWithScrollActions(state)[0].scrollReadReason,/translate/);
+  assert.equal(inventoryWithScrollActions(state)[0].scrollReadReason,'Ask Gui Zhang to translate');
   state.character.storyFlags['story.s1.stab-armor.translated']=true;
   assert.equal(inventoryWithScrollActions(state)[0].scrollReadable,true);
   state.character.storyFlags['story.s1.stab-armor.learned']=true;

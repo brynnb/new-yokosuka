@@ -217,6 +217,8 @@ import guiZhangIntroductionAudio from "../../public/audio/world/gui-zhang/introd
 import guiZhangBodyguardAudio from "../../public/audio/world/gui-zhang/bodyguard/manifest.json";
 import nozomiFlowersManifest from "../assets/hazuki/nozomi-flowers/manifest.json";
 import nozomiFlowersAudio from "../../public/audio/world/nozomi-flowers/manifest.json";
+import hisakaStandManifest from "../assets/harbor/hisaka-stand/manifest.json";
+import hisakaStandAudio from "../../public/audio/world/hisaka-stand/manifest.json";
 import badEndingManifest from "../assets/hazuki/bad-ending/manifest.json";
 import badEndingAudio from "../../public/audio/world/bad-ending/manifest.json";
 import familyCrestManifest from "../assets/hazuki/family-crest/manifest.json";
@@ -458,6 +460,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
     ["kitten-roof",kittenRoofManifest,kittenRoofAudio,"yamanose"],
     ["kitten-nozomi",kittenNozomiManifest,kittenNozomiAudio,"yamanose",Object.freeze({cues:[{startActivity:true,trackId:"bgm018",loop:true}],gain:1}),{HRSK:nativeFaceManifest.facialVariants.NZM_M}],
     ["nozomi-flowers",nozomiFlowersManifest,nozomiFlowersAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm070",loop:true}],gain:1}),{INE_:nativeFaceManifest.facialAssets.INE_}],
+    ["hisaka-stand",hisakaStandManifest,hisakaStandAudio,"mfsy",Object.freeze({cues:[{startActivity:true,trackId:"bgm117",loop:true}],gain:1})],
     ["bad-ending",badEndingManifest,badEndingAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm127",loop:true}],gain:1}),
       {AKIR:{...nativeFaceManifest.facialAssets.AKIR, bodyModelCode:"YKB_M"},FUKU:{...nativeFaceManifest.facialAssets.FUKU, bodyModelCode:"FUB_M"},SORY:op00AssetInventory.facialAssets.SORY},
       undefined,{playerActorCode:null,requirePlayer:false,preservePlayerOnComplete:false}],
@@ -495,6 +498,7 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
       ...sourceAssetMap(bundledNativeFacialAssets),...op00FaceAssets,
       ...(manifest.handAssets?op00HandAssets:{})}),
     presentation:Object.freeze({facialAssets:Object.freeze({AKIR:nativeFaceManifest.facialAssets.AKIR,...extraFaces}),
+      ...(manifest.clothTracks?{clothTracks:manifest.clothTracks}:{}),
       ...(manifest.handAssets?{handAssets:{AKIR:op00AssetInventory.handAssets.AKIR,...manifest.handAssets}}:{})}),
     environment:Object.freeze({packageActors:manifest.packageActors,...(manifest.sceneObjects?{sceneObjects:sceneObjectOverrides||manifest.sceneObjects}:{}),
       ...(manifest.mapGeometryMasks?{mapGeometryMasks:manifest.mapGeometryMasks}:{}),

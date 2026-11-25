@@ -102,7 +102,7 @@ test("the recovery film animates the leased YKD body and restores the ordinary R
 });
 
 
-test("the native FUT2 callback lowers only the resident cover and restores the original placement", async () => {
+test("A0173 lowers FUT2, suppresses the native-undrawn FUT1, and restores both on exit", async () => {
   const engine = new NullEngine();
   const scene = new Scene(engine);
   try {
@@ -117,11 +117,12 @@ test("the native FUT2 callback lowers only the resident cover and restores the o
     }));
     const start = Object.fromEntries(Object.entries(roots).map(([tag,root])=>[tag,root.position.asArray()]));
     const stage = new NativeAseqSceneObjectRuntime({definitions:manifest.sceneObjects});
-    assert.equal(await stage.load(Object.values(roots)),1);
+    assert.equal(await stage.load(Object.values(roots)),2);
     for (let run=0;run<2;run++) {
       assert.equal(stage.prepareActivity(manifest.activities[0]),true);
       assert.deepEqual(roots.FUT2.position.asArray(),[start.FUT2[0],-10,start.FUT2[2]]);
       assert.deepEqual(roots.FUT1.position.asArray(),start.FUT1);
+      assert.equal(roots.FUT1.isEnabled(),false);
       assert.equal(stage.releaseStandaloneObjects(),true);
       for (const [tag,root] of Object.entries(roots)) {
         assert.deepEqual(root.position.asArray(),start[tag]);

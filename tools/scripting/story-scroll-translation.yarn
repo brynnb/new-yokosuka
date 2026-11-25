@@ -1,11 +1,25 @@
-Ryo Hazuki: This scroll is written in Chinese. Master Chen can translate it for me. #speaker:AKIR
--> Ask Master Chen to translate the scroll
+-> Ask Gui Zhang to translate the scroll
     <<jump Translate>>
 -> Not now
     <<complete>>
 ===
 title: Translate
 ---
-Ryo Hazuki: Stab Armor. Now I can read the instructions in my inventory. #speaker:AKIR
+<<play_sequence "{{staging}}.start">>
+{{voice:SA1108A001}}
+{{voice:SA1108B001}}
+{{voice:SA1108A002}}
+{{voice:SA1108B002}}
+{{voice:SA1108B003}}
+{{voice:SA1108B004}}
+{{voice:SA1108B005}}
+{{voice:SA1108B006}}
+{{voice:SA1108B007}}
+{{voice:SA1108B008}}
+{{voice:SA1108B009}}
+{{voice:SA1108A003}}
+{{voice:SA1108B010}}
+{{voice:SA1108A004}}
+<<play_sequence "{{staging}}.finish">>
 {{effects}}
 <<complete>>

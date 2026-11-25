@@ -326,10 +326,16 @@ export class MotnLoader {
         if (!Number.isInteger(sequenceIndexBase) || sequenceIndexBase < 0 || sequenceIndexBase > 65535) {
             throw new RangeError("MOTN sequence index base must be an unsigned word");
         }
-        for (let i = 0; i < header.sequenceCount; i++) {
+        const sourceSequenceBase = options.sourceSequenceBase ?? 0;
+        if (!Number.isInteger(sourceSequenceBase) || sourceSequenceBase < 0 || (sourceSequenceBase > 0 && sourceSequenceBase >= header.sequenceCount)) {
+            throw new RangeError("MOTN source sequence base must address an existing sequence.");
+        }
+        // An AUTH bank can address a 256-row window of the global MOTION.BIN.
+        for (let i = sourceSequenceBase; i < header.sequenceCount; i++) {
+            const logicalIndex = i - sourceSequenceBase + sequenceIndexBase;
             if (
                 (requestedNames || requestedIndices)
-                && !requestedIndices?.has(i + sequenceIndexBase)
+                && !requestedIndices?.has(logicalIndex)
                 && !requestedNames?.has(this.parseName(header, i).name)
             ) {
                 continue;
@@ -342,8 +348,8 @@ export class MotnLoader {
             );
             // Some scene packages contain only a declared window of a native
             // motion bank. Keep physical source indices separate from AUTH IDs.
-            sequences.push(sequenceIndexBase === 0 ? sequence : {
-                ...sequence, sourceIndex: i, index: i + sequenceIndexBase,
+            sequences.push(logicalIndex === i ? sequence : {
+                ...sequence, sourceIndex: i, index: logicalIndex,
             });
         }
 

@@ -1,0 +1,7 @@
+<<if native_value("2:249") == 0 || native_value("2:824") != 0 || native_value("2:913") != 0 || native_value("2:798") != 0 || native_value("2:260") != 0>>
+<<pass_trigger>>
+<<endif>>
+<<start_activity "s1.mfsy.hisaka-report.scene">>
+<<set_native_value "2:799" 1>>
+{{effects}}
+<<complete>>

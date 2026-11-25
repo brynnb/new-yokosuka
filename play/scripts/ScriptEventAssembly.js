@@ -189,6 +189,7 @@ export function createScriptEventAssembly({
     onIntent:(action,token,intent)=>controller?.drivingResponse(action,token,intent),
   });
   const sceneStagingRuntime = new AuthoredSceneStagingRuntime({
+        dialogueAudio,
         actors: createNativeAseqBabylonActors({ getPlayerModel, syncPlayerTransform,
           scheduledActors, motionRuntime, preservePlayerOnComplete: false, playerYawOffsetRadians: Math.PI }),
         camera: createNativeAseqBabylonCamera(camera), motionRuntime,

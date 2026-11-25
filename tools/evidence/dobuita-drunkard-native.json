@@ -6,7 +6,8 @@
   "admission": {
     "dispatcher": "0x62908 passes a one-byte local selector at 0x62df4 to 0x61268. Selector 18 is tested at 0x615e2.",
     "spatialGate": "0x615f8–0x6167a requires room float +0xdc > (-2.4 × room float +0xd4 - 178.651) and room dword +0xe4 strictly between 35589 and 57435.",
-    "entry": "0x616a2 calls 0x8a528, which marks the encounter active and calls 0x8a834 at 0x8a53c. The selector's full date, hour and prior-event eligibility remain unjoined."
+    "entry": "0x616a2 calls 0x8a528, marks the encounter active and calls 0x8a834 at 0x8a53c.",
+    "selector": "0x6276e accepts selector 18 via 0x61100. Requires 2:199=0 and 2:370=0, excludes (2:280=1 and 2:285=0), requires hour >=19. Native operation 0x000b has center [-115.480003,0.1,98.703003], radius 3, bearing 0 and tolerance 32768 before the plane and yaw checks."
   },
   "staging": {
     "originalActors": {
@@ -58,10 +59,12 @@
       "details": "tools/evidence/npc-motion-bank-inventory.json has all 14 names, including paired front-swat and rear-beer success and failure motions for AKI and OTH_DRN."
     },
     "camera": {
-      "source": "D000 MAPINFO ECAM at 0x9bb94. tools/scripting/extract_event_camera_catalog.py decodes all 15 spline records numbered 8500 through 8514.",
+      "source": "D000 MAPINFO ECAM at 0x9bb94. tools/scripting/extract_event_camera_catalog.py decodes all 17 records numbered 8500 through 8516.",
       "intro": "0x8a69e requests 8500 (source record 0xa7b74). The 0x875ee wrapper schedules 0x8762c, which dispatches event-camera operation 0x0011.",
-      "examples": "0x8836a requests 8507. 0x88466 requests 8509 at a 60-tick offset. 0x88c7e and 0x88c96 request 8503 and 8504 at offsets 215 and 290."
-    }
+      "examples": "0x8836a requests 8507. 0x88466 requests 8509 at a 60-tick offset. 0x88c7e and 0x88c96 request 8503 and 8504 at offsets 215 and 290.",
+      "variants": "0x885ba initializes room+0xad4 to 0. At each B attempt 0x89b2c reads the current index and immediately applies 8502 anchored to DUM0, 8515 in absolute coordinates, or 8516 anchored to DUM0. Then 0x89c18..0x89c92 rejection-samples from 0..2 for the next attempt, excluding its active index. The browser retains that selection across the input and result, continues the absolute 8515 spline from tick 149 as B opens, and resets on a new encounter transaction. 0x88742 switches a successful grapple to 8509 on DUM1 at tick 30."
+    },
+    "model": "Disc 2 MODEL/CHARA/GIA_L.MT5 is Dick Philips (GIA). DYQB.PKF CHRT binds BEER to BINS501G and BEEW to BINS500G. Actor DICK attaches BEER to control 18 at 0x8b762 and 0x8b85a. The staged grip uses both original transforms."
   },
   "audio": {
     "voice": "0x8ab1c makes E1005 resident. The 0x87098 dialogue dispatcher binds 18 original IDs (A001–A004, B001–B014) via operation 0x006d. The source IDX has all 18 named entries.",
@@ -72,12 +75,104 @@
       "tsm002.snd",
       "e1yoppar.snd",
       "qtebat.snd"
-    ]
+    ],
+    "timedNonverbal": {
+      "intro": [
+        "E1005B001",
+        80
+      ],
+      "rearPass": [
+        "E1005B011",
+        22
+      ],
+      "rearMiss": [
+        "E1005A003",
+        14
+      ]
+    },
+    "voicedBranches": {
+      "frontPass": [
+        "E1005A002",
+        "E1005B007",
+        "E1005B008"
+      ],
+      "grapplePass": [
+        "E1005A001",
+        "E1005B007",
+        "E1005B008"
+      ],
+      "rearPass": [
+        "E1005A004",
+        "E1005B012",
+        "E1005B014"
+      ],
+      "rearMiss": [
+        "E1005B009",
+        "E1005B010"
+      ]
+    },
+    "grappleVariants": "0x8858e and 0x88a7c invoke 0x89ca4, which schedules voice indices 6..9 (B003..B006). The original helper draws twice from four voices, marks them used, resets after all four, and excludes the previous pair’s final pick (room +0xadc). Each dispatch passes the loop index times 100 as its delay. Story joins the second line at tick 100 of the 149-tick grapple lead and reopens B after the lead and current speech finish."
   },
   "outcomes": {
     "sequence": "0x8ad54 starts controller 0x87b24(AKIR, 0), which starts the 151-block choreography at 0x882f8. This controller requests actor motions and spline cameras directly. DYQB.PKS contains no AUTH member.",
     "states": "0x88f44 writes terminal state 10 to room offset 0xa54. The parent routes this to JOMO entry 19 and A0173. An alternate terminal write at 0x88f70 sets -1. An independent branch requests JOMO entry 4 at 0x889f4; entry 4 must not be treated as the A0173 arrival.",
-    "dependencies": "The choreography dispatches shared control records through 0x84e50 and 0x84d44, and uses random selectors in 0x89ca4 (range 4) and 0x89b2c (range 3). The three calls to 0x84e50 pass selectors 0, 1 and 2; they are internal state-machine indices, not independently identified controller buttons."
+    "dependencies": "A success skips the grapple. A miss offers B. B success goes to rear Left. B miss samples the clock at 0x88848; 0x8885a and 0x8886a require hour==23 and minute>30 for JOMO entry 4 (0x889f4); otherwise B repeats. Rear miss writes terminal 10 (0x88f44), then travels to JOMO 19 at 0x87e72. Rear success writes -1 at 0x88f70; the street branch sets 2:199=1 at 0x87fec. Neither home outcome writes it."
   },
-  "next": "Reconstruct the consumer of the room control arrays 0xa28, 0xa30, 0x9fc and 0xa04 written by 0x84d44. Join the exact controller edges and branch timeouts to the choreography and its motions, then exercise both terminal outcomes. Assigning a fixed button sequence or treating these independent actor/voice/camera assets as a linear AUTH film would lose the program's interactive branches."
+  "next": "Remaining presentation differences include exact overlapped speech scheduling, the intro camera approach, transition movement and incidental effects. The 12 segments use native props, paired motions, all three grapple camera alternatives, and authored bindings for the original shots.",
+  "controls": {
+    "mapOffset": "0x9aebc",
+    "rows": [
+      [
+        256,
+        20,
+        14,
+        4,
+        3,
+        -1,
+        47,
+        -1,
+        1,
+        -1,
+        3,
+        5
+      ],
+      [
+        512,
+        20,
+        14,
+        4,
+        4,
+        -1,
+        149,
+        -1,
+        7,
+        -1,
+        9,
+        11
+      ],
+      [
+        64,
+        20,
+        16,
+        4,
+        0,
+        -1,
+        0,
+        -1,
+        13,
+        -1,
+        15,
+        17
+      ]
+    ],
+    "bindings": [
+      "A",
+      "B",
+      "Left"
+    ],
+    "installation": "Both AKIR (0x8b160 -> 0x8b1d2) and DICK (0x8b44c -> 0x8b4be) install this 3 x 12 signed-word table through 0x8480c. Controller row selections 0,1,2 translate into their first-column masks.",
+    "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "mapping": "Retail 1ST_READ: 0x0c136dda..de8 byte-swaps the Maple state. Pressed edges at 0x0c180f54..5a use the port record at 0x0c18035c. 0x0c143c64..c9c translates swapped A=0x400 and B=0x200 to masks 0x100 and 0x200. The direction nibble table at 0x0c278440 maps Left (entry 4) to 0x40.",
+    "timing": "At 30 ticks/second: pre-prompt wait (0x84a28) uses column 6 = 47/149/0 ticks. Input selector 2 at 0x85164 receives column 2 + column 3 = 18/18/20 ticks. HUD duration = column 1 + column 3 = 24 ticks. Result polling at 0x85192 lasts the HUD duration + 4 ticks."
+  }
 }

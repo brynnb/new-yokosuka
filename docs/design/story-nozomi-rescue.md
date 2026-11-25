@@ -323,7 +323,7 @@ Story settlement path; the ride is a presentation, not another driving win.
 | --- | --- |
 | Eligibility / entry | After the independently saved rescue, **Take Nozomi home** / **Leave it for now** confirms reward-free travel from the tested warehouse to `nbik-home`. Original first-film AKIR pose is native `[133.347809,0,26.650837]`, mirrored once into browser X. This is a cinematic arrival, not a recovered default Entry. |
 | World / cast / props | Original NBIK harbor and road geometry in a separate cinematic world; the controllable `nbik` world retains MAP17-only loading. Original CHRS binds the motorcycle, six moving cars and moon. Original speed/headlight reference planes remain references, not recreated glow effects. NBIK's original CHRS binds HRSK to `NZM_M` and AKIR to `YKB_M`. The film uses Nozomi's exact TER2 body and Ryo's Disc 3 cinematic jacket. The ordinary Story avatar stays in its saved position while the film owns both riders. |
-| Sequence / timing / camera | All 23 adjacent original TRCK clips, 4,661 frames / 155.37 seconds, original cameras/movement and M_01BIKE bank16. The existing exact-activity sequence compiler/player keeps one actor/camera/music owner across the shots. Adjacent-file playlist order is authored, not a recovered native controller branch/order. No new cutscene interpreter or story engine. |
+| Sequence / timing / camera | All 23 adjacent original TRCK clips, 4,661 frames / 155.37 seconds, original cameras/movement and M_01BIKE bank16. The existing exact-activity sequence compiler/player keeps one actor/camera/music owner across the shots. Two independent original retail runs played slots 0 through 22 in this order. |
 | Dialogue / effects | Both original English 01BIKEB voices/subtitles and both original A1_NBIKE engine-effect tracks resolve. The opening conversation is 31.1 seconds; the remaining paired riding/embrace shots total 124.27 seconds. No invented dialogue, alias or skipped unavailable voice. |
 | Music | Original Disc3 CDDA track5 is 124.79 seconds. Start it at the second clip and retain it through uncued shots with the existing music owner. Duration correspondence supports this pairing; exact CDDA control/cue execution is not recovered. The original PCM is decoded locally, not replaced with another recording. |
 | Time / weather | Preserve the personal weather/calendar during presentation. Harbor layer choices are an authored adaptation of the existing day/evening scheme; MAP17 road remains always loaded, not swapped out as a harbor night layer. After acknowledgement, choose the next 05:56 occurrence, avoiding both calendar rewind and permanent late-save lockout. |
@@ -414,15 +414,33 @@ registered bodies in Babylon, checks which body owns each of the 23 shots,
 and verifies that completion and cancellation hide both riders, restore the
 exploration avatar's visibility and preserve its position.
 
-The riding close-up still shows horizontal spikes in Nozomi's skirt. The
-first 66,076 bytes of the TER2 body, including all HRCM geometry before the
-first texture chunk, match Disc 3's original `MODEL/CHARA/NZM_M.MT5`.
-The renderer recognizes a 4-by-10 closed skirt and runs its cloth solver.
-With the original actor transform and paired riding motion in slot 4,
-frame 180, the longest rendered skirt-triangle edge measured 0.277 m, and
-the largest edge-to-rest-length ratio was 2.05 among edges over 0.02 m at
-rest. Slot 0, frame 35, measured 0.153 m and 1.24 by the same method.
-These are isolated 30 Hz renderer samples. The original NBIK cloth-owner
-mode and per-frame cloth vertices still need a native capture to establish
-whether the difference comes from the solver, riding-specific inputs, or
-both.
+The Disc 3 NBIK compact script initializes Nozomi's cloth owner in mode 7 and
+Ryo's in mode 8. The two movie entry paths invoke the same cast setup at
+file offset 0x1209. The 0x0025 writes enable flag 8 for both characters,
+then the 0x0142 calls at 0x1305 and 0x1311 install their modes. After the
+first shot the original callback also sets global 0x0164 mode 3 to 0.2.
+
+The ride package replays the original 4-by-10 skirt geometry from two
+independent, byte-identical runs of all 23 shots. The recorded stream contains
+4,406 post-CLTH samples and preserves the last geometry over the intervals
+when the game leaves the garment unchanged. Original snapshots confirm the
+unchanged intervals in shots 4 and 20. The stream begins at shot 0, frame 2,
+and ends at shot 22, frame 389.
+
+At shot 4, frame 180, the former simulation reproduced a longest edge of
+0.277 m and a maximum edge-to-rest ratio of 2.05. Selecting mode 7 alone
+gave 0.286 m and 2.08. Replaying the original vertices gave 0.208 m and 1.45.
+The maximum position error against an independent full-precision Dreamcast
+checkpoint was 0.095 mm across all 120 cloth-controlled vertex instances
+on the visible exterior and lining. The first fresh cloth sample in this
+shot appears at frame 123 (4.10 seconds), where playback reduces the longest
+edge from 0.275 m to 0.201 m. A full Radeon RX 9070 XT browser playthrough
+measured 0.207726 m and 1.448621 at frame 180, played all 23 shots in order,
+then reached the separate 05:56 arrival and 07:30 wake.
+
+Run `node tools/animation/audit_nbik_cloth.mjs` to reproduce the comparison
+from the registered body, exact riding clip, AUTH actor transform and recorded
+native vertices. The package builder accepts `NBIK_CLOTH_TRACK` to supply an
+original capture; otherwise it verifies the package's own retained binary by
+SHA-256. The sampler coordinate ranges, reproducibility hash, sparse-interval
+checkpoints and measurements are in `tools/evidence/nbik-nozomi-cloth.json`.

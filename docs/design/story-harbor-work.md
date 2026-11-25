@@ -1703,5 +1703,20 @@ ending. Captures show Gui Zhang and Chen in their original shots. Saved reload
 preserves notebook, fifth-day completion and personal finish day 6207 without
 replay, extra pay or inventory changes. Currency remains ¥22,836. All 45 new
 local asset records (3,642,792 bytes) match their hashes/sizes; none were uploaded.
-The connected [late-night call](story-nozomi-rescue.md) follows; transport,
-rescue challenges and finale remain unimplemented.
+The [Nozomi rescue chapter](story-nozomi-rescue.md) follows the late-night call through the ride, warehouse battles and return home.
+
+## Hisaka and Mai
+
+Before the first Master Chen meeting, the daytime old-district guard conversation enables Hisaka’s request. Approach the Hokuhoku stand between 08:30 and 19:00 inclusive. Mai’s request for money is part of the opening film. Ryo’s reply selects a separate original acceptance or refusal film. A refusal closes this encounter. Accepting enables the Warehouse 17 alley between 08:30 and 23:29 in clear, cloudy or snowy weather. The native weather controller excludes rain.
+
+| Alley input | On success | On a miss |
+| --- | --- | --- |
+| First Left | Ryo evades and taunts his attacker, then faces A | The alternate attack plays, then Ryo still faces A |
+| A | Ryo faces the pipe attack | A second A is available. Missing it plays the razor knockout |
+| Left against the pipe | Ryo disarms his attacker, speaks with Mai and can report back to Hisaka | Up to two more Left attempts. Missing all three plays the pipe knockout |
+
+Each prompt accepts one input during the original configured 24 ticks at 30 Hz. Ryo’s first successful final Left ends the encounter. The source transitions from weapons to conversation by moving the pipe to Ryo’s hand. Both knockouts close the alley, prevent the report and send Ryo to the Hazuki Residence for Fuku-san’s bedside film. Finishing that film advances the personal calendar once. The shared recovery has its own pending flag so a harbor loss can never award Chai’s arcade outcome.
+
+The stand uses the four original HISA activities and the alley uses the E1036 controller, voices, actors, weapons, cameras and MSQB motions. Source coordinates, flag owners and QTE rows are in [the harbor evidence](../../tools/evidence/hisaka-harbor-native.json). The authored runtime reproduces the branch order and uses staged motion and camera intervals. The server commits each completed route’s outcome atomically.
+
+The Radeon browser checks started at Hisaka with a test character who had already qualified through the warehouse guard. On separate characters, accepting and winning led back to the original report, while the razor and pipe losses each led to the appropriate knockout film, Fuku-san and a saved new morning. Declining played its own response. The win run observed the disarm after ten seconds and the separate conversation before the report. A second pipe-loss run observed the native JOMO entry 19 transition and exactly one A0173 start across recovery and reload. The test shortened walking distances and exercised real Story admission and button inputs. The local run index is `ny-a0173-original-HWTvP7/browser/connected-receipt.json`.

@@ -1,0 +1,3093 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_hisaka_stand_pack.mjs",
+  "source": {
+    "disc": 2,
+    "path": "disc2/SCENE/02/MFSY/HISA.PKS",
+    "sha256": "c6bde6ab7f26c6025d6c6c7d981fcb29d47c9f865446a496f2f238fb296f81da",
+    "archiveFormat": "PAKS/IPAC",
+    "members": [
+      {
+        "name": "M_01HIS.MOTN",
+        "byteLength": 99944,
+        "sha256": "0284535a5620816c5975d88b5bcaa00c499d00b6bed6b9657bd591f58af7ad1d"
+      },
+      {
+        "name": "SEQDATA0.AUTH",
+        "byteLength": 25208,
+        "sha256": "312dd8157aabb916a7b5b829aa8e375bc3e821c0bd1e6cc9c3655cd85021430b"
+      },
+      {
+        "name": "SEQDATA1.AUTH",
+        "byteLength": 3124,
+        "sha256": "6f09c72d5afee8b44c3f6f576707574ee2bbbd527c8f78479d3fdb5d5f0b2f9c"
+      },
+      {
+        "name": "SEQDATA2.AUTH",
+        "byteLength": 1908,
+        "sha256": "d861706e312115007607d18b00fd255ace0f2ec5fa181af97dc93ad2c558f7cb"
+      },
+      {
+        "name": "SEQDATA3.AUTH",
+        "byteLength": 2324,
+        "sha256": "eaf24bf8d97e7965df600fae3bb784d9419b6849429e081654cc104d84c77323"
+      },
+      {
+        "name": "SEQDATA4.AUTH",
+        "byteLength": 1356,
+        "sha256": "a02a9b143dcacbfc3aba24dbd6d3ebcad58fab308c6796dc2740b19fb14c4ffe"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "tools/evidence/hisaka-harbor-native.json",
+    "resourceName": "HISA",
+    "variant": "",
+    "selectionRule": "MFSY loads slots 0,1,2,4 for the request; choice selects 1 or 2. Reporting uses slot 3."
+  },
+  "audioManifest": "public/audio/world/hisaka-stand/manifest.json",
+  "packageActors": {
+    "HINA": {
+      "label": "Mai Sawano",
+      "modelCode": "MIB_L",
+      "characterScale": 1,
+      "assetFormat": "MT5",
+      "browserFilename": "MIB_L.CHRM",
+      "assetPath": "play/assets/characters/MIB_L.CHRM",
+      "textureAssetPath": "play/assets/characters/MIB_textures.bin"
+    },
+    "HISA": {
+      "label": "Hisaka Sawano",
+      "modelCode": "FRO_L",
+      "characterScale": 1,
+      "assetFormat": "MT5",
+      "browserFilename": "FRO_L.CHRM",
+      "assetPath": "play/assets/characters/FRO_L.CHRM",
+      "textureAssetPath": "play/assets/characters/FRO_textures.bin"
+    },
+    "ISYM": {
+      "label": "Rena Isayama",
+      "modelCode": "SHY_L",
+      "characterScale": 1,
+      "assetFormat": "MT5",
+      "browserFilename": "SHY_L.CHRM",
+      "assetPath": "play/assets/characters/SHY_L.CHRM",
+      "textureAssetPath": "play/assets/characters/SHY_textures.bin"
+    },
+    "NMNO": {
+      "label": "Yumiko Minamino",
+      "modelCode": "SHX_L",
+      "characterScale": 1,
+      "assetFormat": "MT5",
+      "browserFilename": "SHX_L.CHRM",
+      "assetPath": "play/assets/characters/SHX_L.CHRM",
+      "textureAssetPath": "play/assets/characters/SHX_textures.bin"
+    },
+    "MIHO": {
+      "label": "Miho Sagawa",
+      "modelCode": "MIH_L",
+      "characterScale": 1,
+      "assetFormat": "MT5",
+      "browserFilename": "MIH_L.CHRM",
+      "assetPath": "play/assets/characters/MIH_L.CHRM",
+      "textureAssetPath": "play/assets/characters/MIH_textures.bin"
+    },
+    "JOE_": {
+      "label": "Jo Higuchi",
+      "modelCode": "JOE_L",
+      "characterScale": 1,
+      "assetFormat": "MT5",
+      "browserFilename": "JOE_L.CHRM",
+      "assetPath": "play/assets/characters/JOE_L.CHRM",
+      "textureAssetPath": "play/assets/characters/JOE_textures.bin"
+    }
+  },
+  "actorTags": [
+    "NMNO",
+    "HINA",
+    "ISYM",
+    "AKIR",
+    "JOE_",
+    "HISA",
+    "MIHO"
+  ],
+  "motionBanks": [
+    {
+      "bank": 16,
+      "path": "play/assets/harbor/hisaka-stand/M_01HIS.MOTN",
+      "byteLength": 99944,
+      "sha256": "0284535a5620816c5975d88b5bcaa00c499d00b6bed6b9657bd591f58af7ad1d"
+    },
+    {
+      "bank": 5,
+      "path": "play/assets/harbor/hisaka-stand/M_GLOBAL.BIN",
+      "byteLength": 1826800,
+      "sha256": "512abe68b26a2a8bf78c8011b54faf01f9c3e0ce3e4d0b56491161eec3565dec",
+      "sourceSequenceBase": 1280
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/harbor/hisaka-stand/M_01HIS.MOTN",
+      "byteLength": 99944,
+      "sha256": "0284535a5620816c5975d88b5bcaa00c499d00b6bed6b9657bd591f58af7ad1d"
+    },
+    {
+      "path": "play/assets/harbor/hisaka-stand/M_GLOBAL.BIN",
+      "byteLength": 1826800,
+      "sha256": "512abe68b26a2a8bf78c8011b54faf01f9c3e0ce3e4d0b56491161eec3565dec"
+    },
+    {
+      "path": "play/assets/harbor/hisaka-stand/SEQDATA0.AUTH",
+      "byteLength": 25208,
+      "sha256": "312dd8157aabb916a7b5b829aa8e375bc3e821c0bd1e6cc9c3655cd85021430b"
+    },
+    {
+      "path": "play/assets/harbor/hisaka-stand/SEQDATA1.AUTH",
+      "byteLength": 3124,
+      "sha256": "6f09c72d5afee8b44c3f6f576707574ee2bbbd527c8f78479d3fdb5d5f0b2f9c"
+    },
+    {
+      "path": "play/assets/harbor/hisaka-stand/SEQDATA2.AUTH",
+      "byteLength": 1908,
+      "sha256": "d861706e312115007607d18b00fd255ace0f2ec5fa181af97dc93ad2c558f7cb"
+    },
+    {
+      "path": "play/assets/harbor/hisaka-stand/SEQDATA3.AUTH",
+      "byteLength": 2324,
+      "sha256": "eaf24bf8d97e7965df600fae3bb784d9419b6849429e081654cc104d84c77323"
+    },
+    {
+      "path": "play/assets/harbor/hisaka-stand/SEQDATA4.AUTH",
+      "byteLength": 1356,
+      "sha256": "a02a9b143dcacbfc3aba24dbd6d3ebcad58fab308c6796dc2740b19fb14c4ffe"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "primaryPointer": 614074,
+      "secondaryPointer": 614087,
+      "activityId": "HISA/SEQDATA0.AUTH",
+      "archiveMember": "SEQDATA0.AUTH",
+      "byteLength": 25208,
+      "sha256": "312dd8157aabb916a7b5b829aa8e375bc3e821c0bd1e6cc9c3655cd85021430b",
+      "durationFrames": 1650,
+      "durationSeconds": 55.016666412353516,
+      "frameCount": 329,
+      "commandCounts": {
+        "camera": 1,
+        "move": 7,
+        "motion": 295,
+        "voice": 23,
+        "sound": 33
+      },
+      "actors": [
+        "NMNO",
+        "HINA",
+        "ISYM",
+        "AKIR",
+        "JOE_",
+        "HISA",
+        "MIHO"
+      ],
+      "motions": [
+        {
+          "actorTag": "HINA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "SIN_MAI_AT1_KOTOWARARERU_OKANE_HISAKANOTANOMI_0100",
+          "startFrame": 51,
+          "endFrame": 130
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 5,
+          "motionName": "SYP_HSK_AT1_KOTOWARU_OKANE_HISAKANOTANOMI_0100",
+          "startFrame": 291,
+          "endFrame": 950
+        },
+        {
+          "actorTag": "HINA",
+          "frame": 81,
+          "motionBank": 16,
+          "sequenceIndex": 4,
+          "motionName": "SIN_MAI_AT1_KOTOWARARERU_OKANE_HISAKANOTANOMI_0100",
+          "startFrame": 72,
+          "endFrame": 618
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 661,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "HINA",
+          "frame": 661,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "SIN_SIN_WALK2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "ISYM",
+          "frame": 661,
+          "motionBank": 16,
+          "sequenceIndex": 15,
+          "motionName": "SYP_ARI_TALK_B_LP_F",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 661,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "SYP_HSK_AT2_TANOMARERU_SETTOKU_HISAKANOTANOMI_0100",
+          "startFrame": 491,
+          "endFrame": 1566
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 662,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 663,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 664,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 665,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 666,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 667,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 668,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 669,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 670,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 671,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 672,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 673,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 674,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 675,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 676,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 677,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 678,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 679,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 680,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 681,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 682,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 683,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 684,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 685,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 686,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 687,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 688,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 689,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 690,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 691,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 692,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 693,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 694,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 695,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 696,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 697,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "HINA",
+          "frame": 697,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "SIN_SIN_WALK2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 698,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 699,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 700,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 701,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 702,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 703,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 704,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 705,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 706,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 707,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 708,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 709,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 710,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 711,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 712,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 713,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 714,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 715,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 716,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 717,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 718,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 719,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 720,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 721,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 722,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 723,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 724,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 725,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 726,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 727,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 728,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 729,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 730,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 731,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 732,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 733,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "HINA",
+          "frame": 733,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "SIN_SIN_WALK2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 734,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 735,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 736,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 737,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 738,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 739,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 740,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 741,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 742,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 743,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 744,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 745,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 746,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 747,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 748,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 749,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 750,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 751,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 751,
+          "motionBank": 16,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT2_TANOMARERU_SETTOKU_HISAKANOTANOMI_0100",
+          "startFrame": 1,
+          "endFrame": 817
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 752,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 753,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 754,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 755,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 756,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 757,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 758,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 759,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 760,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 761,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 762,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 763,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 764,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 765,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 766,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 767,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 768,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 769,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "HINA",
+          "frame": 769,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "SIN_SIN_WALK2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 770,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 771,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 772,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 773,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 774,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 775,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 776,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 777,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 778,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 779,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 780,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 781,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 782,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 783,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 784,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 785,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 786,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 787,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 788,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 789,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 790,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 791,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 792,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 793,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 794,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 795,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 796,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 797,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 798,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 799,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 800,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 801,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 802,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 803,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 804,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 805,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "HINA",
+          "frame": 805,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "SIN_SIN_WALK2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 806,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 807,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 808,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 809,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 810,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 811,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 812,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 813,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 814,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 815,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 816,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 817,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 818,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 819,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 820,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 821,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 822,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 823,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 824,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 825,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 826,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 827,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 828,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 829,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 830,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 831,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 832,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 833,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 834,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 835,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 836,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 837,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 838,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 839,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 840,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 841,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "HINA",
+          "frame": 841,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "SIN_SIN_WALK2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 842,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 843,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 844,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 845,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 846,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 847,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 848,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 849,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 850,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 851,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 852,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 853,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 854,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 855,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 856,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 857,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 858,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 859,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 860,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 861,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 862,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 863,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 864,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 865,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 866,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 867,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 868,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 869,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 870,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 871,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 872,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 873,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 874,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 875,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 876,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 877,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "HINA",
+          "frame": 877,
+          "motionBank": 16,
+          "sequenceIndex": 10,
+          "motionName": "SIN_SIN_WALK2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 878,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 879,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 880,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 881,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 882,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 883,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 884,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 885,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 886,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 887,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 888,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 889,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 890,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 891,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 892,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 893,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 894,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 895,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 896,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 897,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 898,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 899,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 900,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 901,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "HINA",
+          "frame": 901,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "SIN_MAI_AT1_RR_MITUKERU_SIGOTO_GOROARUBAITO_0100",
+          "startFrame": 1850,
+          "endFrame": 1925
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 902,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 903,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 904,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 905,
+          "motionBank": 16,
+          "sequenceIndex": 16,
+          "motionName": "SYP_CHJ_ICHIBETU",
+          "startFrame": 1,
+          "endFrame": 1
+        },
+        {
+          "actorTag": "NMNO",
+          "frame": 906,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "SIN_MAI_AT1_RR_MITUKERU_SIGOTO_GOROARUBAITO_0100",
+          "startFrame": 1850,
+          "endFrame": 1925
+        },
+        {
+          "actorTag": "ISYM",
+          "frame": 911,
+          "motionBank": 16,
+          "sequenceIndex": 11,
+          "motionName": "SIN_MAI_AT1_RR_MITUKERU_SIGOTO_GOROARUBAITO_0100",
+          "startFrame": 1850,
+          "endFrame": 1925
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 986,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 986,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1022,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1033,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1058,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1080,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1094,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1127,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1130,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1166,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1174,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1202,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1221,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1238,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1268,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1274,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1310,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1315,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1346,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1362,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1382,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1409,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1418,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1454,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1456,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1490,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1503,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1526,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1550,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1562,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1597,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1598,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "JOE_",
+          "frame": 1634,
+          "motionBank": 5,
+          "sequenceIndex": 93,
+          "motionName": "AKI_AKI_WALK_SP2_LP",
+          "startFrame": 1,
+          "endFrame": 36
+        },
+        {
+          "actorTag": "MIHO",
+          "frame": 1644,
+          "motionBank": 16,
+          "sequenceIndex": 18,
+          "motionName": "SYP_SEXY_WALK_LP_F",
+          "startFrame": 1,
+          "endFrame": 47
+        }
+      ]
+    },
+    {
+      "slot": 1,
+      "primaryPointer": 614092,
+      "secondaryPointer": 614105,
+      "activityId": "HISA/SEQDATA1.AUTH",
+      "archiveMember": "SEQDATA1.AUTH",
+      "byteLength": 3124,
+      "sha256": "6f09c72d5afee8b44c3f6f576707574ee2bbbd527c8f78479d3fdb5d5f0b2f9c",
+      "durationFrames": 330,
+      "durationSeconds": 11.016666412353516,
+      "frameCount": 9,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2,
+        "voice": 6,
+        "sound": 2
+      },
+      "actors": [
+        "AKIR",
+        "HISA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 1,
+          "motionName": "AKI_AT3A_HIKIUKERU_HISAKANOTANOMI_0100",
+          "startFrame": 151,
+          "endFrame": 555
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 7,
+          "motionName": "SYP_HSK_AT3A_HIKIUKERU_HISAKANOTANOMI_0100",
+          "startFrame": 171,
+          "endFrame": 555
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "primaryPointer": 614110,
+      "secondaryPointer": 614123,
+      "activityId": "HISA/SEQDATA2.AUTH",
+      "archiveMember": "SEQDATA2.AUTH",
+      "byteLength": 1908,
+      "sha256": "d861706e312115007607d18b00fd255ace0f2ec5fa181af97dc93ad2c558f7cb",
+      "durationFrames": 170,
+      "durationSeconds": 5.683332920074463,
+      "frameCount": 3,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2,
+        "voice": 2
+      },
+      "actors": [
+        "AKIR",
+        "HISA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 2,
+          "motionName": "AKI_AT3B_KOTOWARU_HISAKANOTANOMI_0100",
+          "startFrame": 171,
+          "endFrame": 433
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 8,
+          "motionName": "SYP_HSK_AT3B_KOTOWARU_HISAKANOTANOMI_0100",
+          "startFrame": 171,
+          "endFrame": 433
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "primaryPointer": 614247,
+      "secondaryPointer": 614260,
+      "activityId": "HISA/SEQDATA3.AUTH",
+      "archiveMember": "SEQDATA3.AUTH",
+      "byteLength": 2324,
+      "sha256": "eaf24bf8d97e7965df600fae3bb784d9419b6849429e081654cc104d84c77323",
+      "durationFrames": 260,
+      "durationSeconds": 8.683333396911621,
+      "frameCount": 10,
+      "commandCounts": {
+        "camera": 1,
+        "move": 2,
+        "motion": 2,
+        "sound": 6,
+        "voice": 3
+      },
+      "actors": [
+        "AKIR",
+        "HISA"
+      ],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 3,
+          "motionName": "AKI_AT4_HOUKOKUSURU_HISAKANOTANOMI_0100",
+          "startFrame": 1,
+          "endFrame": 381
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 9,
+          "motionName": "SYP_HSK_AT4_HOUKOKUSURU_HISAKANOTANOMI_0100",
+          "startFrame": 1,
+          "endFrame": 386
+        }
+      ]
+    },
+    {
+      "slot": 4,
+      "primaryPointer": 614128,
+      "secondaryPointer": 614141,
+      "activityId": "HISA/SEQDATA4.AUTH",
+      "archiveMember": "SEQDATA4.AUTH",
+      "byteLength": 1356,
+      "sha256": "a02a9b143dcacbfc3aba24dbd6d3ebcad58fab308c6796dc2740b19fb14c4ffe",
+      "durationFrames": 10,
+      "durationSeconds": 0.3499999940395355,
+      "frameCount": 10,
+      "commandCounts": {
+        "camera": 1,
+        "move": 1,
+        "motion": 10
+      },
+      "actors": [
+        "HISA"
+      ],
+      "motions": [
+        {
+          "actorTag": "HISA",
+          "frame": 1,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "SYP_HSK_AT2_TANOMARERU_SETTOKU_HISAKANOTANOMI_0100",
+          "startFrame": 1480,
+          "endFrame": 1480
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 2,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "SYP_HSK_AT2_TANOMARERU_SETTOKU_HISAKANOTANOMI_0100",
+          "startFrame": 1480,
+          "endFrame": 1480
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 3,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "SYP_HSK_AT2_TANOMARERU_SETTOKU_HISAKANOTANOMI_0100",
+          "startFrame": 1480,
+          "endFrame": 1480
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 4,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "SYP_HSK_AT2_TANOMARERU_SETTOKU_HISAKANOTANOMI_0100",
+          "startFrame": 1480,
+          "endFrame": 1480
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 5,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "SYP_HSK_AT2_TANOMARERU_SETTOKU_HISAKANOTANOMI_0100",
+          "startFrame": 1480,
+          "endFrame": 1480
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 6,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "SYP_HSK_AT2_TANOMARERU_SETTOKU_HISAKANOTANOMI_0100",
+          "startFrame": 1480,
+          "endFrame": 1480
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 7,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "SYP_HSK_AT2_TANOMARERU_SETTOKU_HISAKANOTANOMI_0100",
+          "startFrame": 1480,
+          "endFrame": 1480
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 8,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "SYP_HSK_AT2_TANOMARERU_SETTOKU_HISAKANOTANOMI_0100",
+          "startFrame": 1480,
+          "endFrame": 1480
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 9,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "SYP_HSK_AT2_TANOMARERU_SETTOKU_HISAKANOTANOMI_0100",
+          "startFrame": 1480,
+          "endFrame": 1480
+        },
+        {
+          "actorTag": "HISA",
+          "frame": 10,
+          "motionBank": 16,
+          "sequenceIndex": 6,
+          "motionName": "SYP_HSK_AT2_TANOMARERU_SETTOKU_HISAKANOTANOMI_0100",
+          "startFrame": 1480,
+          "endFrame": 1480
+        }
+      ]
+    }
+  ]
+}

@@ -47,6 +47,34 @@
   },
   "audioManifest": "public/audio/world/chai-home-recovery/manifest.json",
   "sceneObjects": {
+    "FUT1": {
+      "model": "FUTS301G",
+      "objectTag": "FUT1",
+      "browserFilename": "S1_JOMO_FUTS301G.MT5",
+      "lifecycle": {
+        "kind": "room-script-persistent"
+      },
+      "initialPresentation": {
+        "position": [
+          19.188601,
+          0.608,
+          4.379
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "sourceBinding": {
+        "evidence": "tools/evidence/a0173-native-bedding.json"
+      }
+    },
     "FUT2": {
       "model": "FUTS302G",
       "objectTag": "FUT2",
@@ -209,6 +237,10 @@
         "FUKU"
       ],
       "nativeSceneObjectStates": [
+        {
+          "actorTag": "FUT1",
+          "presented": false
+        },
         {
           "actorTag": "FUT2",
           "presented": true

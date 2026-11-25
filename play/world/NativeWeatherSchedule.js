@@ -48,7 +48,10 @@ export class NativeWeatherSchedule {
   }
 
   sample(record) {
-    const packedDate = nativeWeatherDateKey(record);
+    return this.samplePacked(nativeWeatherDateKey(record));
+  }
+
+  samplePacked(packedDate) {
     const result = { packedDate };
     for (const [tag, channel] of [["CLUD", "cloud"], ["RAIN", "rain"], ["SNOW", "snow"], ["AUX", "auxiliary"]]) {
       const words = this.curves[tag];

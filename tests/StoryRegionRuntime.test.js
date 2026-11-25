@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { StoryRegionRuntime } from "../play/scripts/StoryRegionRuntime.js";
+import { StoryRegionRuntime, matchesEncounterApproach } from "../play/scripts/StoryRegionRuntime.js";
 import storyRegions from "../play/data/story-regions.json" with {type:"json"};
 import {moveLearningRoutes} from "../tools/scripting/story-move-learning.mjs";
 import investigation from "../tools/scripting/story-investigation.json" with {type:"json"};
@@ -342,4 +342,33 @@ test("owned actor staging cannot create a fake exit and replay after cancellatio
   assert.equal(runtime.update(frame),true);assert.equal(starts,2);
   controller.status="running";character.modeRevision++;
   runtime.update(frame);assert.equal(runtime.inside.size,0); // Real context changes still fence ownership.
+});
+
+test("optional encounter regions use the original three-dimensional distance, bearing and separate player-facing gate", () => {
+  const stand = {center:[2,0,103.8],radius:8,bearing:8192,tolerance:16384};
+  assert.equal(matchesEncounterApproach(stand, [-3,0,105], 0), true);
+  assert.equal(matchesEncounterApproach(stand, [-3,0,105], Math.PI), true);
+  assert.equal(matchesEncounterApproach(stand, [0,0,102], 0), false);
+  assert.equal(matchesEncounterApproach(stand, [-3,9,105], 0), false);
+  const bar = {center:[-115.480003,.1,98.703003],radius:3,bearing:0,tolerance:32768,
+    facing:[35589,57435],plane:[-2.4,-178.651]};
+  assert.equal(matchesEncounterApproach(bar, [115.48,.1,100.05], -4), true);
+  assert.equal(matchesEncounterApproach(bar, [115.48,.1,100.05], 0), false);
+  assert.equal(matchesEncounterApproach(bar, [116,.1,98.7], -4), false);
+  assert.equal(matchesEncounterApproach(bar, [115.48,4,100.05], -4), false);
+});
+
+test("Mai's alley uses both horizontal coordinates even on sloped ground", () => {
+  const region = storyRegions.regions.find(item => item.id === "s1.mfsy.mai-alley");
+  const runtime = new StoryRegionRuntime({
+    controller: { status: "idle", start: async () => {} },
+    getCharacter: () => ({ id: 1, playMode: "story", openingCompleted: true }),
+    getGameDate: () => new Date("1986-12-04T12:00:00Z"),
+    publishPresence: () => true,
+    regions: [region],
+  });
+  const enter = (x, y, z) => runtime.update({ area: "MFSY", worldId: "mfsy", enabled: true, playerPosition: [x, y, z] });
+  assert.equal(enter(-127, 0, 20), false);
+  assert.equal(enter(-125, 0, 43), false);
+  assert.equal(enter(-125, 7, 20), true);
 });

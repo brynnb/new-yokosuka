@@ -392,3 +392,108 @@ test("a motion-timed scene waits for its longest loaded clip, not a guessed shor
   h.scene.actors[0].motion.loop=true;
   await assert.rejects(h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction),/non-looping motions/);
 });
+
+test("unsubtitled stage sounds follow native cue times and release only their own playback", async () => {
+  const h = harness(), played = [], stopped = [];
+  h.scene = {...h.scene, durationSeconds: 4, waitForMotionCompletion: false, soundCues: [
+    {asset:"public/audio/world/mai-alley/E1036A009.wav", atSeconds:.5},
+    {asset:"public/audio/world/mai-alley/E1036A008.wav", atSeconds:2},
+  ]};
+  h.runtime.dialogueAudio = {
+    playOneShot(asset) { const audio = {asset}; played.push(audio); return audio; },
+    stopOneShot(audio) { stopped.push(audio); },
+  };
+  await h.runtime.play({kind:"scene-staging-start", scene:h.scene},h.transaction);
+  h.runtime.update(h.transaction,.49);
+  assert.deepEqual(played,[]);
+  h.runtime.update(h.transaction,.01);
+  h.runtime.update(h.transaction,1.5);
+  h.runtime.update(h.transaction,.01);
+  assert.deepEqual(played.map(a=>a.asset),h.scene.soundCues.map(c=>c.asset));
+  h.runtime.cancel(h.transaction);
+  assert.deepEqual(stopped,played);
+  h.scene.soundCues.reverse();
+  await assert.rejects(h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction),/Invalid staged sound cues/);
+});
+
+test("native motion changes preload each clip, use authored offsets and retain the last pose", async () => {
+  const h=harness(), selections=[], poses=[];
+  const walk={bank:"maiAlley",name:"walk",loop:false};
+  h.scene={...movingScene(h.scene),waitForMotionCompletion:false};
+  delete h.scene.actors[0].endMotion;
+  h.scene.actors[0].motionCues=[{atSeconds:.25,startSeconds:.5,motion:walk}];
+  h.runtime.motionRuntime.loadNamedSelections=async clips=>selections.push(...clips);
+  h.runtime.motionRuntime.applyNamed=(_model,clip,seconds)=>(poses.push([clip.name,seconds]),true);
+  assert.equal(await h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction),true);
+  assert.deepEqual(selections.map(x=>x.name),["stand","walk"]);
+  h.runtime.update(h.transaction,.25);
+  assert.deepEqual(poses.at(-1),["walk",.5]);
+  h.runtime.update(h.transaction,.75);
+  assert.deepEqual(poses.at(-1),["walk",1.25]);
+  h.runtime.cancel(h.transaction);
+  h.scene.actors[0].motionCues.push({atSeconds:.2,motion:walk});
+  await assert.rejects(h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction),/Invalid staged motion cues/);
+});
+
+test("a voiced film can retain its last shot after dialogue and release on cancellation", async () => {
+  for (const cancel of [false, true]) {
+    const h = harness();
+    const scene = { ...movingScene(h.scene), waitForMotionCompletion: false, playThroughFinish: true };
+    await h.runtime.play({ kind: "scene-staging-start", scene }, h.transaction);
+    h.runtime.update(h.transaction, 0.25);
+    const finish = h.runtime.play({ kind: "scene-staging-finish", scene }, h.transaction);
+    assert.ok(h.runtime.active);
+    if (cancel) {
+      h.runtime.release(h.transaction);
+      await assert.rejects(finish, { name: "AbortError" });
+    } else {
+      h.runtime.update(h.transaction, 0.75);
+      assert.equal(await finish, true);
+    }
+    assert.equal(h.runtime.active, null);
+  }
+});
+
+test("motion offsets and nonverbal lead use the active shot clock and release only its audio", async () => {
+  const h=harness(), played=[], times=[], released=[];
+  h.runtime.dialogueAudio={playOneShot:path=>(played.push(path),{path}),stopOneShot:audio=>released.push(audio.path)};
+  h.runtime.motionRuntime.applyNamed=(_model,_motion,time)=>(times.push(time),true);
+  h.scene.actors[0].motionStartSeconds=10/30;
+  h.scene.durationSeconds=4;
+  h.scene.waitForMotionCompletion=false;
+  const asset="public/audio/world/dobuita-drunkard/E1005B011.wav";
+  h.scene.voiceCue={asset,atSeconds:22/30,dialogueAtSeconds:87/30};
+  let returned=false;
+  const start=h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction).then(value=>(returned=true,value));
+  await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(times[0],10/30);
+  h.runtime.update(h.transaction,.6);
+  assert.deepEqual(played,[]);
+  h.runtime.update(h.transaction,.2);
+  assert.deepEqual(played,[asset]);
+  assert.equal(returned,false);
+  h.runtime.update(h.transaction,2.2);
+  assert.equal(await start,true);
+  assert.deepEqual(played,[asset]);
+  assert.equal(h.runtime.cancel(h.transaction),true);
+  assert.deepEqual(released,[asset]);
+  assert.equal(h.runtime.active,null);
+});
+
+test("the next voiced line can join a running motion at its authored time", async () => {
+  const h = harness();
+  const scene = { ...movingScene(h.scene), waitForMotionCompletion: false, playThroughFinish: true, dialogueCueSeconds: 0.6 };
+  await h.runtime.play({ kind: "scene-staging-start", scene }, h.transaction);
+  const owner = h.runtime.active;
+  const cue = h.runtime.play({ kind: "scene-staging-dialogue-cue", scene }, h.transaction);
+  h.runtime.update(h.transaction, 0.59);
+  assert.equal(owner.resolveAt, 0.6);
+  assert.ok(owner.resolve);
+  h.runtime.update(h.transaction, 0.02);
+  assert.equal(await cue, true);
+  assert.equal(h.runtime.active, owner);
+  const finish = h.runtime.play({kind:"scene-staging-finish",scene},h.transaction);
+  h.runtime.update(h.transaction, 0.4);
+  assert.equal(await finish, true);
+  assert.equal(h.runtime.active, null);
+});

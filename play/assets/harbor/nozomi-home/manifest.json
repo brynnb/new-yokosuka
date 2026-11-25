@@ -273,7 +273,7 @@
     "evidence": "docs/design/story-nozomi-rescue.md#ride-home-and-rest",
     "resourceName": "NBIK",
     "variant": "",
-    "selectionRule": "Authored adjacent-file order of all 23 original ride-home TRCK resources, not recovered NBIK controller selection. The original 31.1-second conversation precedes 124.27 seconds of riding shots."
+    "selectionRule": "Two independent original Dreamcast controller runs played all 23 adjacent ride-home TRCK resources in package order. The opening 31.1-second conversation precedes 124.27 seconds of riding shots."
   },
   "audioManifest": "public/audio/world/nozomi-home/manifest.json",
   "sceneObjects": {
@@ -376,6 +376,51 @@
       }
     }
   },
+  "clothTracks": {
+    "HRSK": {
+      "path": "play/assets/harbor/nozomi-home/NZM_CLOTH_TRACK.bin",
+      "modelCode": "NZM_M",
+      "controlType": -70,
+      "frameRate": 30,
+      "frameCount": 4406,
+      "firstCoordinate": [
+        0,
+        2
+      ],
+      "lastCoordinate": [
+        22,
+        389
+      ],
+      "activityOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "byteLength": 2150168,
+      "sha256": "6153aba720ccc988feb7549278ec1147eca8f2d0b57f84ba3e69c57b48be699c",
+      "evidence": "tools/evidence/nbik-nozomi-cloth.json"
+    }
+  },
   "packageActors": {
     "HRSK": {
       "label": "Nozomi Harasaki",
@@ -384,7 +429,10 @@
       "assetFormat": "MT5",
       "characterScale": 1,
       "assetPath": "play/assets/harbor/nozomi-home/NZM_M.CHRM",
-      "textureAssetPath": "play/assets/harbor/nozomi-rescue/TER2-textures.bin"
+      "textureAssetPath": "play/assets/harbor/nozomi-rescue/TER2-textures.bin",
+      "nativeClothRuntimeMode": 7,
+      "nativeSecondaryMotionRuntimeMode": 7,
+      "nativeSecondaryMotionFlags": 8
     },
     "AKIR": {
       "label": "Ryo Hazuki",
@@ -393,7 +441,10 @@
       "assetFormat": "MT5",
       "characterScale": 1,
       "assetPath": "play/assets/harbor/nozomi-home/YKB_M.MT5",
-      "textureAssetPath": "play/assets/harbor/nozomi-home/YKB_textures.bin"
+      "textureAssetPath": "play/assets/harbor/nozomi-home/YKB_textures.bin",
+      "nativeClothRuntimeMode": 8,
+      "nativeSecondaryMotionRuntimeMode": 8,
+      "nativeSecondaryMotionFlags": 8
     }
   },
   "actorTags": [
@@ -598,6 +649,11 @@
       "path": "play/assets/harbor/nozomi-home/YKB_textures.bin",
       "byteLength": 158972,
       "sha256": "03c8d72671ac78ed6be8bc97b2185365510d90dc3a0b60a6535c5e51bd213e8a"
+    },
+    {
+      "path": "play/assets/harbor/nozomi-home/NZM_CLOTH_TRACK.bin",
+      "byteLength": 2150168,
+      "sha256": "6153aba720ccc988feb7549278ec1147eca8f2d0b57f84ba3e69c57b48be699c"
     }
   ],
   "activities": [
@@ -719,6 +775,15 @@
         "AKIR",
         "HRSK"
       ],
+      "programPresentationCues": {
+        "before": [
+          {
+            "kind": "secondary-motion-global-float",
+            "mode": 3,
+            "word": 1045220557
+          }
+        ]
+      },
       "motions": [
         {
           "actorTag": "AKIR",

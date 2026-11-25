@@ -649,7 +649,7 @@ export class NativeCutscenePackageRuntime {
           actorAvailable: Boolean(this.actors.programActor(actorTag)),
           recordAvailable: true,
           modeByte06: definition.nativeSecondaryMotionRuntimeMode,
-          flagsByte00: 0,
+          flagsByte00: definition.nativeSecondaryMotionFlags ?? 0,
           initialized: true,
         });
       }

@@ -1,0 +1,138 @@
+{
+  "source": "Original USA Disc 2 JOMO A0173, entered through the native room transition for entry 19 in isolated Flycast from MFSY. Frame age is measured from the original callback lowering FUT2.",
+  "model": "FUTS301G.CHRM",
+  "nativePose": "All nine live node rotations, scales, positions and complete vertex arrays equal the source model during the film.",
+  "textureId": "d8a6d3926233425f",
+  "textureSize": [
+    128,
+    128
+  ],
+  "textureSha256": "dbf7272f54afca7d15f3ea7af484a92b2da438cc404d3de53b0326a3bb114506",
+  "nativeCapture": "Each capture matched the complete 32,768-byte texture in VRAM exactly once. Counts below include every textured polygon from the three PVR draw lists.",
+  "columns": [
+    "vblanksAfterFut2Lowered",
+    "texturedPolygons",
+    "polygonsUsingFut1Texture"
+  ],
+  "samples": [
+    [
+      3,
+      2408,
+      0
+    ],
+    [
+      30,
+      2489,
+      0
+    ],
+    [
+      90,
+      2565,
+      0
+    ],
+    [
+      150,
+      2636,
+      0
+    ],
+    [
+      210,
+      2705,
+      0
+    ],
+    [
+      270,
+      2685,
+      0
+    ],
+    [
+      330,
+      2691,
+      0
+    ],
+    [
+      390,
+      2873,
+      0
+    ],
+    [
+      450,
+      1054,
+      0
+    ],
+    [
+      510,
+      1074,
+      0
+    ],
+    [
+      570,
+      1016,
+      0
+    ],
+    [
+      630,
+      1002,
+      0
+    ],
+    [
+      690,
+      1021,
+      0
+    ],
+    [
+      750,
+      1938,
+      0
+    ],
+    [
+      810,
+      1934,
+      0
+    ],
+    [
+      870,
+      1930,
+      0
+    ],
+    [
+      930,
+      1932,
+      0
+    ],
+    [
+      990,
+      1949,
+      0
+    ],
+    [
+      1050,
+      1981,
+      0
+    ],
+    [
+      1110,
+      1978,
+      0
+    ],
+    [
+      1170,
+      1977,
+      0
+    ],
+    [
+      1230,
+      1216,
+      0
+    ],
+    [
+      1290,
+      1415,
+      0
+    ]
+  ],
+  "control": "At 240 vblanks, suppressing all nine FUT1 mesh pointers gave a pixel-identical 640 by 480 framebuffer to the unmodified replay. The browser's previous visible strip was picked on FUT1 node 0x28b0.",
+  "frameRgbSha256": "167a0f67fd3437a519d8eaab837eb2f4c9e22f8839b459e2566c4fa95d1f1389",
+  "captureDirectory": "/mnt/data6tb/Projects/New Yokosuka/ny-a0173-original-HWTvP7",
+  "browser": "Only this film suppresses FUT1. The resident explored-bedroom prop is restored on exit."
+}
