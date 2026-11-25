@@ -1,0 +1,60 @@
+{
+  "event": "failure.forced-rest",
+  "resource": "A0173",
+  "package": "chai-home-recovery",
+  "result": "The optional Dobuita drunkard and harbor Mai QTEs can both send Ryo to the same original bedside film. They have independent encounter outcomes but share the film already used by Story after the Chai knockout.",
+  "arrival": {
+    "operation": "0x0030(scene,area,entry)",
+    "readback": "0x0026 returns the unchanged native entry. See tools/evidence/dialogue-predicate-values.json, nativeArrivalState.",
+    "room": "JOMO",
+    "initialize": "0x89090 queries the entry and writes it to room offset 0 at 0x89098.",
+    "dispatch": "0x8bd7c copies room offset 0 to local offset 4 at 0x8beba–0x8bebc. Case 19 at 0x8ce48–0x8ce54 selects the only direct call to 0x6090c, at 0x8ce62."
+  },
+  "film": {
+    "owner": "0x6090c",
+    "musicLoad": "0x609c6, bgm101.snd",
+    "effectsLoad": "0x609e6, a1_fukan.snd",
+    "residentVoice": "0x609fe, A0173",
+    "shotCallback": "0x60aa4 launches 0x60c50",
+    "activitySelect": "0x60ae4, operation 0x0050(16)",
+    "scExSlot": 16,
+    "mapOffsets": {
+      "disc1": "0xa7a2c",
+      "disc2": "0xb3634",
+      "disc3": "0xa1cac"
+    },
+    "authSha256": "345482a8010ea23f04e26016f3fe65a2bac701559a7f951446af75940b6779e8",
+    "lengthBytes": 3628,
+    "frames": 600,
+    "actors": [
+      "AKIR",
+      "FUKU"
+    ]
+  },
+  "verifiedTransitionProducers": [
+    {
+      "disc": 2,
+      "area": "D000",
+      "mapSha256": "58f1bc5d5bf8eedd2641544944e33bb25c20999945de52775ff679e87f98a884",
+      "resource": "E1005",
+      "encounter": "Dobuita drunkard",
+      "masterEvent": "optional.drunkard",
+      "owner": "0x8a834 loads e1yoppar.snd, qtebat.snd and E1005 and launches 0x87b24 at 0x8ad54. The encounter references DICK and BEER.",
+      "outcome": "When signed room field 0xa54 is at least 10 at 0x87ca4, the branch at 0x87cac proceeds through a fade to 0x87e72: 0x0030(2, JOMO, 19)."
+    },
+    {
+      "disc": 2,
+      "area": "MFSY",
+      "mapSha256": "53ccad493265183650bb00aae9189be66bd2564808dfc96483dcf1944f39d988",
+      "resource": "E1036",
+      "encounter": "Mai and her companions at the harbor",
+      "masterEvents": [
+        "optional.mai-alley",
+        "failure.mai"
+      ],
+      "owner": "0x8398c loads E1036, e1skeqte.snd and qtebat.snd, and launches 0x7efe8 at 0x84110. It binds HINA (Mai Sawano), ISYM (Rena Isayama), and NMNO (Yumiko Minamino); see docs/reference/actor-identities.generated.md.",
+      "outcome": "When signed room field 0x61c is at least 12 at 0x7f13c, the branch at 0x7f144 proceeds through a fade to 0x7f3ee: 0x0030(2, JOMO, 19)."
+    }
+  ],
+  "scope": "Searched direct literal 0x0030 transitions in the canonical .disc-work/dialogue/native-event-ir.json (sha256 9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0), and original executable instructions and SCEX records within the source MAPINFO.BIN files. Other computed or indirectly dispatched transitions may exist. The numeric outcome fields are native QTE states, not a count of missed inputs. The two optional admissions, their full QTE input logic, and connected player-state settlement have not been implemented or playtested. The existing Chai recovery is a separately playtested, authored trigger."
+}
