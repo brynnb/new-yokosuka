@@ -1,6 +1,13 @@
-import { WarehouseVisitClock } from "./WarehouseVisitClock.js";
+import { warehouseInvestigationActive, WarehouseVisitClock } from "./WarehouseVisitClock.js";
 import { storyWeatherClassAt } from "../world/StoryWeatherClass.js";
 import catalog from "../data/story-regions.json" with { type: "json" };
+
+// Order of 0x26b84 modes 1, 2 and 3 in the MS8S room director.
+const warehouseInspectionSlugs = new Map([
+  ["MS8S.empty-floor", "story-s1-warehouse-eight-empty-floor"],
+  ["MS8S.office-door", "story-s1-warehouse-eight-office-door"],
+  ["MS8S.inner-office", "story-s1-warehouse-eight-inner-office"],
+]);
 
 // Region boxes use browser coordinates. The recovered encounter tests below
 // use native coordinates and 16-bit turn angles at the accepted player pose.
@@ -28,6 +35,13 @@ export function matchesEncounterApproach(approach, position, playerYaw) {
   return z > Math.fround(Math.fround(slope * x) + intercept);
 }
 
+function containsPlayer(region, position, playerYaw) {
+  const coordinates = region.nativeFloatBounds ? position.map(Math.fround) : position;
+  return coordinates.every((value, axis) => (axis === 1 && region.horizontalOnly)
+    || (value >= region.min[axis] && value <= region.max[axis]))
+    && matchesEncounterApproach(region.nativeApproach, position, playerYaw);
+}
+
 /** Poll small authored areas; the server independently validates position and
  * eligibility. No native-room fallback is permitted for this dispatch family.
  */
@@ -43,6 +57,9 @@ export class StoryRegionRuntime {
     this.acquireMovementLock = acquireMovementLock;
     this.onError = onError;
     this.regions = regions;
+    this.warehouseInspections = [...warehouseInspectionSlugs.keys()].map(object =>
+      regions.find(region => region.area === "MS8S" && region.trigger === "use" && region.object === object)
+    ).filter(Boolean);
     for(const region of regions)if(region.hours&&(!Array.isArray(region.hours)||region.hours.length!==2
       ||region.hours.some(hour=>!Number.isFinite(hour)||hour<0||hour>24)||region.hours[0]===24||region.hours[0]===region.hours[1]))throw new Error(`Invalid story region hours: ${region.id}`);
     this.inside = new Set();
@@ -51,6 +68,20 @@ export class StoryRegionRuntime {
     this.generation = 0;
   }
   reset() { this.warehouseClock = null; this.generation++; this.inside.clear(); this.contextKey = null; this.calendarDay = null; }
+  warehouseInspectionAt(clock, position, playerYaw) {
+    let selected = null;
+    for (const region of this.warehouseInspections) {
+      if (!containsPlayer(region, position, playerYaw)) {
+        this.inside.delete(region.id);
+        continue;
+      }
+      if (selected || this.inside.has(region.id) || clock.completedInspections.has(region.object)) continue;
+      // The light hint sets both 0x208 and 0x209. The floor inspection sets only 0x209.
+      if (region.object === "MS8S.empty-floor" && clock.lightingSeen) continue;
+      selected = region;
+    }
+    return selected;
+  }
   update({ area, worldId, playerPosition, playerYaw, enabled, roomRunning = enabled, deltaSeconds = 0 }) {
     const position = Array.isArray(playerPosition) ? playerPosition
       : playerPosition ? [playerPosition.x, playerPosition.y, playerPosition.z] : null;
@@ -68,20 +99,20 @@ export class StoryRegionRuntime {
     // the entry latch until gameplay ownership returns; context changes above
     // still reset it on world, character or mode changes.
     let clock = null;
-    let warehouseReady = false;
-    const storyFlags = character.storyFlags || {};
+    let warehouseIdle = false;
+    let timerReady = false;
     if (area === "MS8S" && worldId === "ms8s"
-      && (storyFlags["story.s1.warehouse-eight-window.completed"] || storyFlags["story.s1.goro-guard-distraction.completed"])
-      && !storyFlags["story.s1.warehouse-eight-overheard.completed"] && !this.hasNativeFlag(242)) {
+      && warehouseInvestigationActive(character) && !this.hasNativeFlag(242)) {
       clock = this.warehouseClock ??= new WarehouseVisitClock();
-      const {paused, occupied, input, freeConversation, schedulerSlot} = this.warehouseControls();
+      const {paused, occupied, input, freeConversation, schedulerSlot, directorAvailable} = this.warehouseControls();
       if (!paused) {
         const controlsOwned = Boolean(occupied) || !enabled || this.controller.status !== "idle";
         clock.update(deltaSeconds, Boolean(input), Boolean(freeConversation), controlsOwned);
       }
-      warehouseReady = !paused && !occupied && (schedulerSlot == null || (schedulerSlot | 0) === -1);
+      warehouseIdle = !paused && !occupied && directorAvailable !== false;
+      timerReady = warehouseIdle && (schedulerSlot == null || (schedulerSlot | 0) === -1);
     }
-    if (!enabled || this.controller.status !== "idle") return false;
+    if (!enabled || this.controller.status !== "idle" || (clock && !warehouseIdle)) return false;
     // Re-arm date-gated appointments, not every region: an ordinary overnight
     // opening-hours window stays occupied across midnight. Yarn still decides
     // whether a saved appointment is eligible on the new personal day.
@@ -111,8 +142,7 @@ export class StoryRegionRuntime {
         this.inside.delete(region.id);
         continue;
       }
-      const inside = position.every((value, axis) => (axis === 1 && region.horizontalOnly) || (value >= region.min[axis] && value <= region.max[axis]))
-        && matchesEncounterApproach(region.nativeApproach, position, playerYaw);
+      const inside = containsPlayer(region, position, playerYaw);
       if (!inside) { this.inside.delete(region.id); continue; }
       if (this.inside.has(region.id) || (!region.repeatable && character.storyFlags?.[region.completedFlag])
         || (region.requiredFlags || []).some(flag => character.storyFlags?.[flag] !== true)
@@ -125,9 +155,11 @@ export class StoryRegionRuntime {
       if (region.excludedNativeFlags?.some(index => this.hasNativeFlag(index))) continue;
       entered.push(region.id);
     }
-    // The native director checks the physically approached scene before either timeout.
-    const timedObject = !entered.length && warehouseReady ? clock.selector(position[1]) : null;
-    if (!entered.length && !timedObject) return false;
+    // Within MS8S the listening approach and both timers precede the three inspection comments.
+    const inspection = warehouseIdle ? this.warehouseInspectionAt(clock, position, playerYaw) : null;
+    const timedObject = !entered.length && timerReady ? clock.selector(position[1]) : null;
+    const offeredInspection = !entered.length && !timedObject ? inspection : null;
+    if (!entered.length && !timedObject && !offeredInspection) return false;
     // All overlapping bounds share one server-arbitrated "enter" selector.
     // Latching only the first would issue another offer as soon as the chosen
     // scene returned, even though the player had never left the same approach.
@@ -145,7 +177,18 @@ export class StoryRegionRuntime {
     try {
       let selector = {kind: "enter"};
       const context = {area};
-      if (timedObject) {
+      if (offeredInspection) {
+        const {object, id} = offeredInspection;
+        selector = {kind: "use", object};
+        // On cancellation the player can leave and approach again. Successful
+        // comments stay consumed until the native room is loaded afresh.
+        this.inside.add(id);
+        context.onStoryComplete = identity => {
+          if (generation === this.generation && identity.scriptSlug === warehouseInspectionSlugs.get(object)) {
+            clock.completedInspections.add(object);
+          }
+        };
+      } else if (timedObject) {
         selector = {kind: "use", object: timedObject};
         clock.attempted = timedObject;
         if (timedObject === "MS8S.light-timeout") {

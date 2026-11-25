@@ -1,3 +1,4 @@
+import { warehouseInvestigationActive } from "../scripts/WarehouseVisitClock.js";
 import { hasNativeDialogueSelector } from "../dialogue/NativeDialogueSelector.js";
 import { isWithinDialogueRange } from "../dialogue/DialogueProximity.js";
 import { playerWorldInteractionAllowed } from "./PlayerWorldInteractionPolicy.js";
@@ -294,6 +295,14 @@ export class ScriptedInteractionRuntime {
         this.transientNotice.show("This interaction is unavailable right now.");
       }
     }
+  }
+
+  useWarehouseHinge(door) {
+    if (door?.objectTag !== "MS8S_DOOR") return false;
+    const world = this.getWorld();
+    return world?.id === "ms8s" && world.nativeArea === "MS8S"
+      && warehouseInvestigationActive(this.accountSession.character)
+      && this.nativeDialoguePersistence.sessionOptions()?.dialogueState.read(2, 242) !== 1;
   }
 
   startMapTransition({ transition, root }) {

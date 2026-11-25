@@ -20,6 +20,15 @@
     {"kind":"activity","policy":"closed"}
   ],
   "capabilities": [
+    {"kind":"bounds","identifier":"s1.ms8s.warehouse-eight-empty-floor","description":"The original room director checks an inclusive downstairs rectangle and sets visit byte 0x209. Ryo pauses, stands and comments on the empty space."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-empty-floor.start","description":"Nothing on the warehouse floor, start."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-empty-floor.finish","description":"Nothing on the warehouse floor, finish."},
+    {"kind":"bounds","identifier":"s1.ms8s.warehouse-eight-office-door","description":"The original upper-floor proximity test sets visit byte 0x20a. Ryo stands and comments that there probably are no clues here."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-office-door.start","description":"The upstairs office door, start."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-office-door.finish","description":"The upstairs office door, finish."},
+    {"kind":"bounds","identifier":"s1.ms8s.warehouse-eight-inner-office","description":"The original upper-floor proximity test sets visit byte 0x20b. Ryo stands and recognizes the office."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-inner-office.start","description":"The inner office, start."},
+    {"kind":"sequence","identifier":"s1.ms8s.warehouse-eight-inner-office.finish","description":"The inner office, finish."},
     {"kind":"bounds","identifier":"s1.ms8s.warehouse-light-timeout","description":"Warehouse No. 8 — the upstairs light source floor check."},
     {"kind":"bounds","identifier":"s1.ms8s.warehouse-office-timeout","description":"Warehouse No. 8 — timed office conversation source floor check."},
     {"kind":"bounds","identifier":"s1.ms8s.warehouse-office-deadline","description":"Warehouse No. 8 — timed office conversation source floor check."},

@@ -38,7 +38,7 @@ async function observeStages(page) {
   await page.evaluate(() => {
     window.endTimedStages?.();
     const p=window.storyProbe, stages=[], round=v=>v.asArray().map(x=>Math.round(x*1000)/1000);
-    let raf=0;
+    let raf=0, motionRuntime, applyMotion;
     function sample() {
       const owner=p.authoredScene?.active, id=owner?.scene?.id;
       if(id?.startsWith("s1.ms8s.") && owner.actorsBegun) {
@@ -50,6 +50,20 @@ async function observeStages(page) {
         let s=stages.at(-1);
         if(s?.id!==id) {s={id,slug:p.regions.controller.active?.scriptIdentity?.scriptSlug,first:now,last:now};stages.push(s);}
         s.last=now;
+        if(!motionRuntime){
+          motionRuntime=p.authoredScene.motionRuntime;
+          applyMotion=motionRuntime.applyNamed;
+          motionRuntime.applyNamed=function(model,motion,elapsed,...args){
+            const ok=applyMotion.call(this,model,motion,elapsed,...args);
+            const active=p.authoredScene.active, stage=stages.at(-1);
+            if(ok && stage?.id===active?.scene.id && active.actors.activeActor("AKIR")?.model===model){
+              const clips=(stage.appliedMotions??=[]), previous=clips.at(-1);
+              if(previous?.name!==motion.name)clips.push({name:motion.name,bank:motion.bank,loop:motion.loop,firstFrame:Math.floor(active.elapsed*30),lastFrame:Math.floor(active.elapsed*30)});
+              else previous.lastFrame=Math.floor(active.elapsed*30);
+            }
+            return ok;
+          };
+        }
         if(id.endsWith(".timed-approach")) {
           if(!s.reveal && now.alpha>0 && now.alpha<1)s.reveal=now;
           if(!s.beforeCut && now.frame>=45 && now.frame<60)s.beforeCut=now;
@@ -72,7 +86,7 @@ async function observeStages(page) {
       raf=requestAnimationFrame(sample);
     }
     sample();
-    window.endTimedStages=()=>{cancelAnimationFrame(raf);return stages;};
+    window.endTimedStages=()=>{cancelAnimationFrame(raf);if(motionRuntime)motionRuntime.applyNamed=applyMotion;return stages;};
   });
 }
 
@@ -191,7 +205,11 @@ async function downstairs(page,testInfo,character,enterStoryWorld,full) {
   await ready(page);
   const hint=await observed(page), after=await checkpoint(page,character.id), postHint=await timing(page);
   expect(hint.lines.map(l=>l.id)).toEqual(["E1009BA018"]);
-  const shot=hint.stages.find(s=>s.id===light)?.voiced;
+  const hintStage=hint.stages.find(s=>s.id===light);
+  expect(hintStage.appliedMotions).toEqual(expect.arrayContaining([
+    expect.objectContaining({name:"AKI_AKI_TATI_IWA_L",bank:"free",loop:false}),
+  ]));
+  const shot=hintStage.voiced;
   expect(shot?.drawn).toBe(true);expect(shot.covered).toBe(false);
   expect(shot.ryo).toEqual([-14.5,0,144.5]);
   expect(shot.eye[0]).toBeCloseTo(-14.77,1);expect(shot.eye[1]).toBeCloseTo(1.35,1);expect(shot.eye[2]).toBeCloseTo(145.41,1);
@@ -261,6 +279,11 @@ async function upstairs(page,testInfo,character,enterStoryWorld) {
   expect(approach.afterCut?.frame).toBeGreaterThanOrEqual(61);
   expect(Math.hypot(...approach.afterCut.eye.map((value,i)=>value-approach.beforeCut.eye[i]))).toBeGreaterThan(.1);
   expect(approach.voiced?.covered).toBe(false);
+  for(const index of [0,film.stages.length-1]){
+    expect(film.stages[index].appliedMotions).toEqual(expect.arrayContaining([
+      expect.objectContaining({name:"AKI_AKI_TATI_IWA_L", bank:"free", loop:false}),
+    ]));
+  }
   const faceAt=suffix=>film.stages.find(stage=>stage.id===office+"."+suffix).face;
   const directed=faceAt("lean").directed;
   expect(directed.head).toBe("YKC");expect(directed.target).toEqual([-16.63,5.6,131.87]);
@@ -276,7 +299,13 @@ async function upstairs(page,testInfo,character,enterStoryWorld) {
   await testInfo.attach("warehouse-timer-upstairs",{body:JSON.stringify({character:character.id,count,film,after,restored}),contentType:"application/json"});
 }
 
+export {ready, checkpoint, unchanged, shorten, pressUntilStage};
+
 export async function verifyWarehouseTimer(page,testInfo,character,enterStoryWorld,mode) {
+  if(mode.startsWith("inspection-")) {
+    const {verifyWarehouseInspections}=await import("./story-warehouse-inspections.js");
+    return verifyWarehouseInspections(page,testInfo,character,enterStoryWorld,mode);
+  }
   if(mode==="timer-downstairs")await downstairs(page,testInfo,character,enterStoryWorld,process.env.NEW_YOKOSUKA_WAREHOUSE_TIMER_FULL==="true");
   else if(mode==="timer-priority")await physicalPriority(page,testInfo,character);
   else if(mode==="timer-upstairs")await upstairs(page,testInfo,character,enterStoryWorld);

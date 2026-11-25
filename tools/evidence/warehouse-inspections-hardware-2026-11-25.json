@@ -1,0 +1,1203 @@
+{
+  "schema": "ny-warehouse-inspections-gpu-v1",
+  "date": "2026-11-25",
+  "localReportRoot": "/mnt/data6tb/Projects/New Yokosuka/ny-warehouse-timer-lj878jh0/browser",
+  "fixture": "Isolated Go server with a private PostgreSQL database and headful Radeon Chromium. Each character begins at the original MS8S entrance on the chosen floor; its earned warehouse-entry flags are seeded. Approach, speech, motion, camera and completion use the normal client and server. W drives movement and camera yaw steers. The A018 checks shorten the per-visit primary countdown.",
+  "runs": [
+    {
+      "case": "inspection-floor",
+      "durationSeconds": 52.92,
+      "report": "rerun-inspection-floor-20261125-153454-html/index.html",
+      "renderer": "ANGLE (AMD, Vulkan 1.4.335 (AMD Radeon RX 9070 XT (RADV GFX1201) (0x00007550)), radv)",
+      "screenshots": {
+        "E1009BA006-inspection": "rerun-inspection-floor-20261125-153454-html/data/51498e6fe05f31487dc72fd71781592542e197de.png",
+        "E1009BA018-inspection": "rerun-inspection-floor-20261125-153454-html/data/334d7b6217327ca0dd79e5d4c5c3429ba5831291.png"
+      },
+      "observed": {
+        "character": 16,
+        "storyProgress": {
+          "before": {
+            "flags": {
+              "story.s1.first-allowance.completed": true,
+              "story.s1.goro-guard-distraction.completed": true
+            },
+            "nativeFlagBankHash": "59f5528e6c4f2f78623e12171c90b4281bb611515992f14d98b88a2af3428b4e"
+          },
+          "after": {
+            "flags": {
+              "story.s1.first-allowance.completed": true,
+              "story.s1.goro-guard-distraction.completed": true
+            },
+            "nativeFlagBankHash": "59f5528e6c4f2f78623e12171c90b4281bb611515992f14d98b88a2af3428b4e"
+          }
+        },
+        "start": {
+          "inspected": [],
+          "light": false,
+          "position": [
+            -8.31,
+            0.003000000026077032,
+            135.76
+          ]
+        },
+        "cancelled": {
+          "route": {
+            "initial": [
+              -8.31,
+              0.003000000026077032,
+              135.76
+            ],
+            "travel": 4.290015629358976,
+            "done": true,
+            "end": [
+              -8.31,
+              0.003000000026077032,
+              140.05001562935897
+            ],
+            "remaining": 0.9499843706410331,
+            "script": true,
+            "stalled": false
+          },
+          "render": {
+            "camera": "third_person_camera",
+            "cameraId": 36,
+            "motions": [
+              {
+                "name": "AKI_AKI_TATI_IWA_L",
+                "bank": "free",
+                "loop": false,
+                "firstFrame": 29,
+                "lastFrame": 45
+              }
+            ],
+            "entry": {
+              "frame": 0,
+              "drawn": true,
+              "position": [
+                -8.31,
+                0.003,
+                140.05
+              ],
+              "yaw": -2.4492935982947054e-16,
+              "actor": [
+                -8.31,
+                0.003,
+                140.05
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -8.31,
+                1.884,
+                136.942
+              ],
+              "target": [
+                -8.31,
+                1.123,
+                140.05
+              ],
+              "fade": false,
+              "voiced": false
+            },
+            "last": {
+              "frame": 45,
+              "drawn": true,
+              "position": [
+                -8.31,
+                0.003,
+                140.05
+              ],
+              "yaw": -2.4492935982947054e-16,
+              "actor": [
+                -8.31,
+                0.003,
+                140.05
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -8.31,
+                1.884,
+                136.942
+              ],
+              "target": [
+                -8.31,
+                1.123,
+                140.05
+              ],
+              "fade": false,
+              "voiced": true
+            },
+            "voiced": {
+              "frame": 44,
+              "drawn": true,
+              "position": [
+                -8.31,
+                0.003,
+                140.05
+              ],
+              "yaw": -2.4492935982947054e-16,
+              "actor": [
+                -8.31,
+                0.003,
+                140.05
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -8.31,
+                1.884,
+                136.942
+              ],
+              "target": [
+                -8.31,
+                1.123,
+                140.05
+              ],
+              "fade": false,
+              "voiced": true
+            },
+            "lines": [
+              {
+                "id": "E1009BA006",
+                "text": "There's nothing here.",
+                "speaker": "Ryo Hazuki",
+                "stage": "s1.ms8s.warehouse-eight-empty-floor"
+              }
+            ]
+          }
+        },
+        "floor": {
+          "route": {
+            "initial": [
+              -8.309999227887339,
+              0.003000000026077032,
+              138.61144751412667
+            ],
+            "travel": 1.4106748710161283,
+            "done": true,
+            "end": [
+              -8.27524070164153,
+              0.003000000026077032,
+              140.01379791613167
+            ],
+            "remaining": 0.9868144501620453,
+            "script": true,
+            "stalled": false
+          },
+          "render": {
+            "camera": "third_person_camera",
+            "cameraId": 36,
+            "motions": [
+              {
+                "name": "AKI_AKI_TATI_IWA_L",
+                "bank": "free",
+                "loop": false,
+                "firstFrame": 29,
+                "lastFrame": 68
+              }
+            ],
+            "entry": {
+              "frame": 0,
+              "drawn": true,
+              "position": [
+                -8.275,
+                0.003,
+                140.014
+              ],
+              "yaw": -0.035121108162924415,
+              "actor": [
+                -8.275,
+                0.003,
+                140.014
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -8.166,
+                1.884,
+                136.907
+              ],
+              "target": [
+                -8.275,
+                1.123,
+                140.014
+              ],
+              "fade": false,
+              "voiced": false
+            },
+            "last": {
+              "frame": 68,
+              "drawn": true,
+              "position": [
+                -8.275,
+                0.003,
+                140.014
+              ],
+              "yaw": -0.035121108162924415,
+              "actor": [
+                -8.275,
+                0.003,
+                140.014
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -8.166,
+                1.884,
+                136.907
+              ],
+              "target": [
+                -8.275,
+                1.123,
+                140.014
+              ],
+              "fade": false,
+              "voiced": true
+            },
+            "voiced": {
+              "frame": 30,
+              "drawn": true,
+              "position": [
+                -8.275,
+                0.003,
+                140.014
+              ],
+              "yaw": -0.035121108162924415,
+              "actor": [
+                -8.275,
+                0.003,
+                140.014
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -8.166,
+                1.884,
+                136.907
+              ],
+              "target": [
+                -8.275,
+                1.123,
+                140.014
+              ],
+              "fade": false,
+              "voiced": true
+            },
+            "lines": [
+              {
+                "id": "E1009BA006",
+                "text": "There's nothing here.",
+                "speaker": "Ryo Hazuki",
+                "stage": "s1.ms8s.warehouse-eight-empty-floor"
+              }
+            ]
+          }
+        },
+        "noRepeat": {
+          "initial": [
+            -8.307441380406779,
+            0.003000000026077032,
+            138.70406916191942
+          ],
+          "travel": 2.1835408891941026,
+          "done": true,
+          "end": [
+            -8.309874749452495,
+            0.003000000026077032,
+            140.88760869522255
+          ],
+          "remaining": 0.11239137456796462,
+          "script": false,
+          "stalled": false
+        },
+        "lightAfterFloor": {
+          "route": null,
+          "render": {
+            "camera": "third_person_camera",
+            "cameraId": 36,
+            "motions": [
+              {
+                "name": "AKI_AKI_TATI_IWA_L",
+                "bank": "free",
+                "loop": false,
+                "firstFrame": 0,
+                "lastFrame": 127
+              }
+            ],
+            "entry": {
+              "frame": 0,
+              "drawn": true,
+              "position": [
+                -14.5,
+                0,
+                144.5
+              ],
+              "yaw": 0,
+              "actor": [
+                -14.5,
+                0,
+                144.5
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -8.307,
+                1.884,
+                137.87
+              ],
+              "target": [
+                -8.31,
+                1.123,
+                140.979
+              ],
+              "fade": true,
+              "voiced": false
+            },
+            "last": {
+              "frame": 127,
+              "drawn": true,
+              "position": [
+                -14.5,
+                0,
+                144.5
+              ],
+              "yaw": 0,
+              "actor": [
+                -14.5,
+                0,
+                144.5
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -14.77,
+                1.355,
+                145.41
+              ],
+              "target": [
+                -14.709,
+                1.573,
+                144.528
+              ],
+              "fade": false,
+              "voiced": false
+            },
+            "voiced": {
+              "frame": 46,
+              "drawn": true,
+              "position": [
+                -14.5,
+                0,
+                144.5
+              ],
+              "yaw": 0,
+              "actor": [
+                -14.5,
+                0,
+                144.5
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -14.77,
+                1.355,
+                145.41
+              ],
+              "target": [
+                -14.709,
+                1.573,
+                144.528
+              ],
+              "fade": false,
+              "voiced": true
+            },
+            "lines": [
+              {
+                "id": "E1009BA018",
+                "text": "The light's on. Maybe somebody's there.",
+                "speaker": "Ryo Hazuki",
+                "stage": "s1.ms8s.warehouse-light-hint"
+              }
+            ]
+          }
+        },
+        "fresh": {
+          "inspected": [],
+          "light": false,
+          "position": [
+            -14.5,
+            0.003000000026077032,
+            138.69435010637648
+          ]
+        },
+        "lightFirst": {
+          "route": null,
+          "render": {
+            "camera": "third_person_camera",
+            "cameraId": 36,
+            "motions": [
+              {
+                "name": "AKI_AKI_TATI_IWA_L",
+                "bank": "free",
+                "loop": false,
+                "firstFrame": 0,
+                "lastFrame": 111
+              }
+            ],
+            "entry": {
+              "frame": 0,
+              "drawn": true,
+              "position": [
+                -14.5,
+                0,
+                144.5
+              ],
+              "yaw": 0,
+              "actor": [
+                -14.5,
+                0,
+                144.5
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -14.5,
+                1.884,
+                141.738
+              ],
+              "target": [
+                -14.5,
+                1.123,
+                138.629
+              ],
+              "fade": true,
+              "voiced": false
+            },
+            "last": {
+              "frame": 111,
+              "drawn": true,
+              "position": [
+                -14.5,
+                0,
+                144.5
+              ],
+              "yaw": 0,
+              "actor": [
+                -14.5,
+                0,
+                144.5
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -14.77,
+                1.355,
+                145.41
+              ],
+              "target": [
+                -14.709,
+                1.573,
+                144.528
+              ],
+              "fade": false,
+              "voiced": true
+            },
+            "voiced": {
+              "frame": 31,
+              "drawn": true,
+              "position": [
+                -14.5,
+                0,
+                144.5
+              ],
+              "yaw": 0,
+              "actor": [
+                -14.5,
+                0,
+                144.5
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -14.77,
+                1.355,
+                145.41
+              ],
+              "target": [
+                -14.709,
+                1.573,
+                144.528
+              ],
+              "fade": false,
+              "voiced": true
+            },
+            "lines": [
+              {
+                "id": "E1009BA018",
+                "text": "The light's on. Maybe somebody's there.",
+                "speaker": "Ryo Hazuki",
+                "stage": "s1.ms8s.warehouse-light-hint"
+              }
+            ]
+          }
+        },
+        "suppressed": {
+          "initial": [
+            -14.5,
+            0.003000000026077032,
+            138.69435010637648
+          ],
+          "travel": 2.2092296055381553,
+          "done": true,
+          "end": [
+            -14.5,
+            0.003000000026077032,
+            140.90357971191463
+          ],
+          "remaining": 0.09642028808536907,
+          "script": false,
+          "stalled": false
+        },
+        "final": {
+          "inspected": [],
+          "light": true,
+          "position": [
+            -14.5,
+            0.003000000026077032,
+            140.90357971191463
+          ]
+        },
+        "after": {
+          "world": "ms8s",
+          "location": [
+            -14.5,
+            0.003000000026077032,
+            140.67238126482343
+          ],
+          "yen": 2000,
+          "hp": 100,
+          "inventory": [],
+          "bit242": 0,
+          "clue": false,
+          "completed": false
+        }
+      }
+    },
+    {
+      "case": "inspection-upper",
+      "durationSeconds": 48.51,
+      "report": "rerun-inspection-upper-20261125-153403-html/index.html",
+      "renderer": "ANGLE (AMD, Vulkan 1.4.335 (AMD Radeon RX 9070 XT (RADV GFX1201) (0x00007550)), radv)",
+      "screenshots": {
+        "E1009BA003-inspection": "rerun-inspection-upper-20261125-153403-html/data/8322e735df2f705348933556f430cca494431dfc.png",
+        "E1009BA028-inspection": "rerun-inspection-upper-20261125-153403-html/data/4a0b22d26dfb53d65b44f609107b5ab5c9db732f.png"
+      },
+      "observed": {
+        "character": 15,
+        "storyProgress": {
+          "before": {
+            "flags": {
+              "story.s1.first-allowance.completed": true,
+              "story.s1.warehouse-eight-window.completed": true
+            },
+            "nativeFlagBankHash": "5a0de7d753f30d5d51feee523d0b618f0820fbd8e88738ac085d3b9d88b88760"
+          },
+          "after": {
+            "flags": {
+              "story.s1.first-allowance.completed": true,
+              "story.s1.warehouse-eight-window.completed": true
+            },
+            "nativeFlagBankHash": "5a0de7d753f30d5d51feee523d0b618f0820fbd8e88738ac085d3b9d88b88760"
+          }
+        },
+        "start": {
+          "inspected": [],
+          "light": false,
+          "position": [
+            -17,
+            4.275000095367432,
+            152.24000549316406
+          ]
+        },
+        "approach": {
+          "initial": [
+            -17,
+            4.275000095367432,
+            152.24000549316406
+          ],
+          "travel": 11.148867583751938,
+          "done": true,
+          "end": [
+            -24.81379665203829,
+            4.275000095367432,
+            144.28758196765503
+          ],
+          "remaining": 0.1087470089050639,
+          "script": false,
+          "stalled": false
+        },
+        "panel": {
+          "staticDoorIndex": 0,
+          "center": [
+            -21.85273540321799,
+            5.330000162124634,
+            139.59219723543322
+          ]
+        },
+        "door": {
+          "route": {
+            "initial": [
+              -21.867354141607702,
+              4.275000095367432,
+              140.154522071358
+            ],
+            "travel": 0.743336108522675,
+            "done": true,
+            "end": [
+              -22.15331320639835,
+              4.282999157905579,
+              139.4690397512016
+            ],
+            "remaining": 0.2987009480702505,
+            "script": true,
+            "stalled": false
+          },
+          "render": {
+            "camera": "third_person_camera",
+            "cameraId": 36,
+            "motions": [
+              {
+                "name": "AKI_AKI_TATI_IWA_L",
+                "bank": "free",
+                "loop": false,
+                "firstFrame": 1,
+                "lastFrame": 85
+              }
+            ],
+            "entry": {
+              "frame": 0,
+              "drawn": true,
+              "position": [
+                -22.153,
+                4.283,
+                139.469
+              ],
+              "yaw": 3.5459745918431858,
+              "actor": [
+                -22.153,
+                4.283,
+                139.469
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -20.93,
+                6.164,
+                142.327
+              ],
+              "target": [
+                -22.153,
+                5.403,
+                139.469
+              ],
+              "fade": false,
+              "voiced": false
+            },
+            "last": {
+              "frame": 85,
+              "drawn": true,
+              "position": [
+                -22.153,
+                4.283,
+                139.469
+              ],
+              "yaw": 3.5459745918431858,
+              "actor": [
+                -22.153,
+                4.283,
+                139.469
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -20.93,
+                6.164,
+                142.327
+              ],
+              "target": [
+                -22.153,
+                5.403,
+                139.469
+              ],
+              "fade": false,
+              "voiced": true
+            },
+            "voiced": {
+              "frame": 30,
+              "drawn": true,
+              "position": [
+                -22.153,
+                4.283,
+                139.469
+              ],
+              "yaw": 3.5459745918431858,
+              "actor": [
+                -22.153,
+                4.283,
+                139.469
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -20.93,
+                6.164,
+                142.327
+              ],
+              "target": [
+                -22.153,
+                5.403,
+                139.469
+              ],
+              "fade": false,
+              "voiced": true
+            },
+            "lines": [
+              {
+                "id": "E1009BA028",
+                "text": "There probably aren't any clues here.",
+                "speaker": "Ryo Hazuki",
+                "stage": "s1.ms8s.warehouse-eight-office-door"
+              }
+            ]
+          }
+        },
+        "away": {
+          "initial": [
+            -25.90423002550543,
+            4.282999157905579,
+            143.19825575912984
+          ],
+          "travel": 0.9761711850670792,
+          "done": true,
+          "end": [
+            -26.615651980752897,
+            4.282999157905579,
+            142.52983312277118
+          ],
+          "remaining": 0.1020014362739139,
+          "script": false,
+          "stalled": false
+        },
+        "once": {
+          "initial": [
+            -26.615651980752897,
+            4.282999157905579,
+            142.52983312277118
+          ],
+          "travel": 0.5650899862004621,
+          "done": true,
+          "end": [
+            -26.198374458469488,
+            4.282999157905579,
+            142.91079484078452
+          ],
+          "remaining": 0.11314447397891934,
+          "script": false,
+          "stalled": false
+        },
+        "inner": {
+          "route": {
+            "initial": [
+              -24.81379665203829,
+              4.275000095367432,
+              144.28758196765503
+            ],
+            "travel": 1.5413229806081554,
+            "done": true,
+            "end": [
+              -25.90423002550543,
+              4.282999157905579,
+              143.19825575912984
+            ],
+            "remaining": 0.2982051645170293,
+            "script": true,
+            "stalled": false
+          },
+          "render": {
+            "camera": "third_person_camera",
+            "cameraId": 36,
+            "motions": [
+              {
+                "name": "AKI_AKI_TATI_IWA_L",
+                "bank": "free",
+                "loop": false,
+                "firstFrame": 0,
+                "lastFrame": 78
+              }
+            ],
+            "entry": {
+              "frame": 0,
+              "drawn": true,
+              "position": [
+                -25.904,
+                4.283,
+                143.198
+              ],
+              "yaw": 3.9274987562359756,
+              "actor": [
+                -25.904,
+                4.283,
+                143.198
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -23.705,
+                6.164,
+                145.395
+              ],
+              "target": [
+                -25.904,
+                5.403,
+                143.198
+              ],
+              "fade": false,
+              "voiced": false
+            },
+            "last": {
+              "frame": 78,
+              "drawn": true,
+              "position": [
+                -25.904,
+                4.283,
+                143.198
+              ],
+              "yaw": 3.9274987562359756,
+              "actor": [
+                -25.904,
+                4.283,
+                143.198
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -23.705,
+                6.164,
+                145.395
+              ],
+              "target": [
+                -25.904,
+                5.403,
+                143.198
+              ],
+              "fade": false,
+              "voiced": true
+            },
+            "voiced": {
+              "frame": 32,
+              "drawn": true,
+              "position": [
+                -25.904,
+                4.283,
+                143.198
+              ],
+              "yaw": 3.9274987562359756,
+              "actor": [
+                -25.904,
+                4.283,
+                143.198
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -23.705,
+                6.164,
+                145.395
+              ],
+              "target": [
+                -25.904,
+                5.403,
+                143.198
+              ],
+              "fade": false,
+              "voiced": true
+            },
+            "lines": [
+              {
+                "id": "E1009BA003",
+                "text": "This looks like an office.",
+                "speaker": "Ryo Hazuki",
+                "stage": "s1.ms8s.warehouse-eight-inner-office"
+              }
+            ]
+          }
+        },
+        "inspected": {
+          "inspected": [
+            "MS8S.inner-office",
+            "MS8S.office-door"
+          ],
+          "light": false,
+          "position": [
+            -22.15331320639835,
+            4.282999157905579,
+            139.4690397512016
+          ]
+        },
+        "fresh": {
+          "inspected": [],
+          "light": false,
+          "position": [
+            -22.660085922790454,
+            4.282999157905579,
+            138.85474742213685
+          ]
+        },
+        "cancelled": {
+          "route": {
+            "initial": [
+              -22.660085922790454,
+              4.282999157905579,
+              138.85474742213685
+            ],
+            "travel": 0.33202293499536595,
+            "done": true,
+            "end": [
+              -22.390242886047016,
+              4.282999157905579,
+              139.03892650404796
+            ],
+            "remaining": 0.196015250721879,
+            "script": true,
+            "stalled": false
+          },
+          "render": {
+            "camera": "third_person_camera",
+            "cameraId": 36,
+            "motions": [
+              {
+                "name": "AKI_AKI_TATI_IWA_L",
+                "bank": "free",
+                "loop": false,
+                "firstFrame": 0,
+                "lastFrame": 32
+              }
+            ],
+            "entry": {
+              "frame": 0,
+              "drawn": true,
+              "position": [
+                -22.39,
+                4.283,
+                139.039
+              ],
+              "yaw": 1.014664712445494,
+              "actor": [
+                -22.39,
+                4.283,
+                139.039
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -25.03,
+                6.164,
+                137.398
+              ],
+              "target": [
+                -22.39,
+                5.403,
+                139.039
+              ],
+              "fade": false,
+              "voiced": false
+            },
+            "last": {
+              "frame": 32,
+              "drawn": true,
+              "position": [
+                -22.39,
+                4.283,
+                139.039
+              ],
+              "yaw": 1.014664712445494,
+              "actor": [
+                -22.39,
+                4.283,
+                139.039
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -25.03,
+                6.164,
+                137.398
+              ],
+              "target": [
+                -22.39,
+                5.403,
+                139.039
+              ],
+              "fade": false,
+              "voiced": true
+            },
+            "voiced": {
+              "frame": 32,
+              "drawn": true,
+              "position": [
+                -22.39,
+                4.283,
+                139.039
+              ],
+              "yaw": 1.014664712445494,
+              "actor": [
+                -22.39,
+                4.283,
+                139.039
+              ],
+              "camera": "third_person_camera",
+              "cameraId": 36,
+              "eye": [
+                -25.03,
+                6.164,
+                137.398
+              ],
+              "target": [
+                -22.39,
+                5.403,
+                139.039
+              ],
+              "fade": false,
+              "voiced": true
+            },
+            "lines": [
+              {
+                "id": "E1009BA028",
+                "text": "There probably aren't any clues here.",
+                "speaker": "Ryo Hazuki",
+                "stage": "s1.ms8s.warehouse-eight-office-door"
+              }
+            ]
+          }
+        },
+        "after": {
+          "world": "ms8s",
+          "location": [
+            -22.390242886047016,
+            4.282999157905579,
+            139.03892650404796
+          ],
+          "yen": 2000,
+          "hp": 100,
+          "inventory": [],
+          "bit242": 0,
+          "clue": false,
+          "completed": false
+        }
+      },
+      "doorPicks": [
+        {
+          "door": "desk office",
+          "nativeHinge": 616,
+          "staticIndex": 1,
+          "positionAfterApproach": [
+            -25.90423002550543,
+            4.282999157905579,
+            143.19825575912984
+          ],
+          "verifiedBy": "openStoryRoomDoor matched the actual interactiveDoor object on a canvas ray pick, clicked it and waited for open state. No player teleport."
+        },
+        {
+          "door": "named office door",
+          "nativeHinge": 960,
+          "staticIndex": 0,
+          "positionAfterApproach": [
+            -22.15331320639835,
+            4.282999157905579,
+            139.4690397512016
+          ],
+          "verifiedBy": "openStoryRoomDoor matched the actual interactiveDoor object on a canvas ray pick, clicked it and waited for open state. No player teleport."
+        }
+      ]
+    },
+    {
+      "case": "warehouse-timer-downstairs",
+      "durationSeconds": 25.04,
+      "report": "rerun-timer-downstairs-20261125-153224-html/index.html",
+      "renderer": "ANGLE (AMD, Vulkan 1.4.335 (AMD Radeon RX 9070 XT (RADV GFX1201) (0x00007550)), radv)",
+      "character": 13,
+      "floorHint": {
+        "voice": "E1009BA018",
+        "motions": [
+          {
+            "name": "AKI_AKI_TATI_IWA_L",
+            "bank": "free",
+            "loop": false,
+            "firstFrame": 0,
+            "lastFrame": 110
+          }
+        ],
+        "originalCamera": [
+          -14.77,
+          1.355,
+          145.41
+        ],
+        "native242After": 0,
+        "notebookAfter": false,
+        "finalPosition": [
+          -14.5,
+          0.004000000189989805,
+          144.5
+        ]
+      }
+    },
+    {
+      "case": "warehouse-timer-upstairs",
+      "durationSeconds": 68.77,
+      "report": "rerun-timer-upstairs-20261125-153251-html/index.html",
+      "renderer": "ANGLE (AMD, Vulkan 1.4.335 (AMD Radeon RX 9070 XT (RADV GFX1201) (0x00007550)), radv)",
+      "character": 14,
+      "office": {
+        "voiceCount": 10,
+        "arrivalMotions": [
+          {
+            "name": "AKI_AKI_TATI_IWA_L",
+            "bank": "free",
+            "loop": false,
+            "firstFrame": 2,
+            "lastFrame": 12
+          }
+        ],
+        "departureMotions": [
+          {
+            "name": "AKI_AKI_TATI_IWA_L",
+            "bank": "free",
+            "loop": false,
+            "firstFrame": 7,
+            "lastFrame": 156
+          }
+        ],
+        "departureFace": {
+          "head": "YKC",
+          "base": 0,
+          "target": null,
+          "angles": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "ticks": 0
+        },
+        "worldAfterReload": "mfsy",
+        "native242AfterReload": 1,
+        "notebookAfterReload": true
+      }
+    }
+  ]
+}

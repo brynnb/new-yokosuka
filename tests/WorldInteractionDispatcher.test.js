@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import * as BABYLON from "@babylonjs/core";
+import { ScriptedInteractionRuntime } from "../play/interactions/ScriptedInteractionRuntime.js";
+import { WORLDS } from "../play/config/worlds.js";
+import { mapTransitionForDoor } from "../src/MapTransitions.js";
 import { WorldInteractionDispatcher } from "../play/interactions/WorldInteractionDispatcher.js";
 
 function createHarness() {
@@ -174,4 +177,41 @@ test("not-ready worlds ignore pointer interactions", () => {
   harness.setReady(false);
   harness.dispatcher.handle(harness.pointerInfo(null));
   assert.deepEqual(harness.calls, []);
+});
+
+test("a picked warehouse hinge remains indoors while the personal investigation is active",()=>{
+  const window="story.s1.warehouse-eight-window.completed";
+  const goro="story.s1.goro-guard-distraction.completed";
+  const heard="story.s1.warehouse-eight-overheard.completed";
+  const placements=WORLDS.ms8s.placements.filter(p=>p.runtime.nativeInteriorDoor);
+  for (const [mode,opening,flags,bit,leaf,result] of [
+    ["story",true,[window],0,0,"door"],
+    ["story",true,[goro],0,0,"door"],
+    ["open",true,[window],0,0,"travel-door"],
+    ["story",true,[],0,0,"travel-door"],
+    ["story",false,[goro],0,0,"travel-door"],
+    ["story",true,[goro,heard],0,0,"travel-door"],
+    ["story",true,[window],1,0,"travel-door"],
+    ["story",true,[goro],0,1,"door"],
+    ["story",true,[goro],0,2,"door"],
+  ]) {
+    const h=createHarness(),placement=placements[leaf];
+    const world={id:"ms8s",nativeArea:"MS8S"};
+    const character={playMode:mode,openingCompleted:opening,storyFlags:Object.fromEntries(flags.map(flag=>[flag,true]))};
+    const policy=new ScriptedInteractionRuntime({
+      getWorld:()=>world,accountSession:{character},
+      nativeDialoguePersistence:{sessionOptions:()=>({dialogueState:{read:(type,index)=>{
+        assert.deepEqual([type,index],[2,242]);return bit;
+      }}})},
+    });
+    h.dispatcher.getWorld=()=>world;
+    h.dispatcher.scriptedInteractions.useWarehouseHinge=door=>policy.useWarehouseHinge(door);
+    const root={_filename:placement.model,position:{x:0,y:4.275,z:0}};
+    const door={root,objectTag:placement.runtime.objectTag,doorSelector:placement.runtime.doorSelector};
+    const transition=mapTransitionForDoor({worldId:world.id,model:placement.model,...placement.runtime});
+    const mesh={metadata:{interactiveDoor:door,...(transition?{interactiveMapTransition:{transition,root}}:{})}};
+    h.candidates.push(mesh);
+    h.dispatcher.handle(h.pointerInfo(mesh));
+    assert.deepEqual(h.calls,result==="door"?[["door",door]]:[["travel-door",door,transition]]);
+  }
 });

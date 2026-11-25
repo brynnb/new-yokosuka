@@ -160,6 +160,7 @@ import {
   createScriptEventAssembly,
 } from "./scripts/ScriptEventAssembly.js";
 import { StoryRegionRuntime } from "./scripts/StoryRegionRuntime.js";
+import { warehouseDirectorAvailable } from "./scripts/WarehouseVisitClock.js";
 import { StoryFrameHandoff } from "./scripts/StoryFrameHandoff.js";
 import {StoryObjectPresentation} from "./scripts/StoryObjectPresentation.js";
 import { NativeStoryRuntime } from "./scripts/NativeStoryRuntime.js";
@@ -990,6 +991,7 @@ function createPlayRuntime() {
         const activityEnabled = byte(0x0c224e2d) !== 0 && !byte(0x0c2178c3);
         return {
           paused: document.hidden || !controller || playUi.lockOwners.size > 0,
+          directorAvailable: warehouseDirectorAvailable(sceneState, activityEnabled),
           occupied: controller?.movementLocked || nativeStoryRuntime.presentationActive || nativeScriptedEventRuntime.busy,
           input: activityEnabled && input && (
             input.value("turn") || input.value("moveX") || input.value("moveY")

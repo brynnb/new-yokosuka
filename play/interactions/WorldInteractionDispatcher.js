@@ -318,6 +318,12 @@ export class WorldInteractionDispatcher {
     const position = root.getAbsolutePosition?.() || root.position;
     if (horizontalDistance(this.getActorPosition(), position)
       > INTERACTION_DISTANCE) return;
+    // MS8S names an upper-floor hinge with the same tag used for its sole
+    // catalogued exit. During the investigation it opens onto an indoor clue.
+    if (targets.door && this.scriptedInteractions.useWarehouseHinge?.(targets.door)) {
+      this.interactions.door.toggle(targets.door);
+      return;
+    }
     if (targets.mapTransition) {
       if (this.scriptedInteractions.startMapTransition?.(targets.mapTransition)) return;
       if (targets.door) {

@@ -63,16 +63,36 @@ doors closed. The listening scene started at (-19.704, 4.275, 138.203).
 Cancelling there left bit 242 clear. Across 157 shipped collision variants,
 only MS8S gains this floor and stair handoff.
 
-The upper floor has three code-100 hinged thresholds (0001 records 960,
-616 and 644). Each hinge opens and closes its own collision segment. Near
-960 the room director calls `0x26b84` with mode 2 for inspection line A028.
-Near 616 it uses mode 3 for A003. These are independent indoor inspections.
-The only recovered MS8S script transfer to MFSY entry 5 occurs at the end
-of the invoice director. The generated map catalog associates the room's
-named door with that destination because it is the room's sole outgoing
-destination. In the browser, using handle 960 opens its leaf and then
-travels outside. The 616 hinge opens into an interior office. Ryo can hear
-the workers from the corridor without opening either door.
+The MS8S director automatically plays three short inspections while normal
+interaction is available. Each inspection retains the current player placement
+and gameplay camera. The room checks these after the listening and lighting
+branches each tick. The earlier lighting hint sets byte `0x209` and suppresses
+the downstairs inspection for that visit. Completing the downstairs inspection
+first leaves the timed light hint available.
+
+| Director mode | Position in browser world coordinates | Original line | Visit latch |
+| --- | --- | --- | --- |
+| 1, empty floor | X −23.125 to −4.4257002 and Z 140 to 146.300003, including the edges, Y strictly below 4 | A006, “There's nothing here.” | `0x209` |
+| 2, office door | Within 0.3 m of (−22.271000, 4.275, 139.194504), Y strictly above 4 | A028, “There probably aren't any clues here.” | `0x20a` |
+| 3, inner office | Within 0.3 m of (−26.115200, 4.275, 142.987503), Y strictly above 4 | A003, “This looks like an office.” | `0x20b` |
+
+The upstairs tests use native operation `0x000b` with reference bearing zero
+and strict tolerance 32768. All three branches wait 30 native ticks before
+speaking and return to exploration after the line finishes. Mode 1 retains the
+incoming pose during the wait, then requests `AKI_AKI_TATI_IWA_L`. Modes 2 and
+3 request the same motion before waiting. It is registered motion `0x387`,
+index 902 in the original MOTION.BIN. Each visit latch lives on the client.
+The server rechecks the room, earned entrance and native position for each
+request. These lines award no notebook entry or travel.
+
+The upper-floor collision data contains three code-100 hinges (records 960,
+616 and 644). The two office inspection locations are near 960 and 616.
+Each hinge operates its collision segment. In Story, after either earned
+entrance and before Ryo overhears the conversation, clicking 960 opens
+or closes that leaf so Ryo can reach A028. Open mode and completed Story
+visits retain the catalogued harbor exit at 960. The only original MS8S
+script transfer to MFSY entry 5 is at the end of the upstairs listening scene. Ryo can hear the workers from the corridor without
+opening either door.
 
 MS8S routine `0x27284` stages the workers' conversation. In the physically triggered mode 0, camera 1105 starts at the player's camera while Ryo walks from his actual position to native (16.15, 4.275, 135.18). The approach lasts two seconds in Story. Camera 1106 then moves into the listening shot. Ryo leans against the wall with the original `AKI_KIKU_HANASI_TATIGIKI_F_0100` motion from bank M_0153, beginning at frame 40 and holding at frame 160.
 
@@ -148,14 +168,17 @@ Story's reversible transactions. Four [Radeon runs](../../tools/evidence/warehou
 cover the full-length downstairs timer, the idle secondary deadline, the
 alternate office entrance and the physically triggered scene taking priority.
 
-Rebuild the staging with `node tools/scripting/build_warehouse_office_staging.mjs`. To regenerate the three invoice recordings and downstairs hint in a prepared checkout, set `NEW_YOKOSUKA_SERVER_DIR` and `VGMSTREAM_CLI` and run the following command.
+Rebuild the staging with `node tools/scripting/build_warehouse_office_staging.mjs`. To regenerate the three invoice recordings and four warehouse inspection and hint lines in a prepared checkout, set `NEW_YOKOSUKA_SERVER_DIR` and `VGMSTREAM_CLI` and run the following command.
 
 ```sh
 node tools/scripting/build_story_investigation.mjs --voices \
   --voice-route warehouse-invoice-address \
   --voice-route warehouse-invoice-label \
   --voice-route warehouse-invoice-label-read \
-  --voice-route warehouse-eight-light-timeout
+  --voice-route warehouse-eight-light-timeout \
+  --voice-route warehouse-eight-empty-floor \
+  --voice-route warehouse-eight-office-door \
+  --voice-route warehouse-eight-inner-office
 ```
 
 The [staging tests](../../tests/AuthoredSceneStagingRuntime.test.js) exercise the six cameras, actor motion, foreground fades and cancellation. The server's `internal/scriptevent/warehouse_office_test.go` covers the spatial gate, both entrance receipts, all ten voice IDs and the exit. The [Radeon runs](../../tools/evidence/story-cutscene-warehouse-invoices-2026-11-25.json) cover both player routes and the physical desk interactions.

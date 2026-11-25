@@ -106,6 +106,8 @@ export class AuthoredSceneStagingRuntime {
       || scene.actors.some(actor => !/^[A-Z0-9_]{4}$/.test(actor.tag)
         || (actor.presented !== undefined && typeof actor.presented !== "boolean")
         || !actor.motion?.bank || !actor.motion?.name
+        || (actor.motionAtSeconds != null && (!Number.isFinite(actor.motionAtSeconds)
+          || actor.motionAtSeconds < 0 || !(actor.motionAtSeconds <= scene.durationSeconds)))
         || (actor.playbackRate != null && (!Number.isFinite(actor.playbackRate) || actor.playbackRate < 0))
         || (actor.continueMotion && (!continuing || actor.motionStartSeconds != null))
         || (actor.movementFromPlayer && (actor.tag !== "AKIR" || !actor.movement || !actor.pose || continuing))
@@ -366,13 +368,15 @@ export class AuthoredSceneStagingRuntime {
     owner.elapsed += Math.max(0, deltaSeconds);
     owner.cameraElapsed += Math.max(0, deltaSeconds);
     for (const actor of owner.scene.actors) {
+      // Some directors hold the current gameplay pose before requesting their first motion.
+      if (owner.elapsed + 1e-8 < (actor.motionAtSeconds ?? 0)) continue;
       const model = owner.actors.activeActor(actor.tag)?.model;
       const movement = owner.movement.get(actor.tag) ?? actor.movement;
       if(movement&&!owner.actors.applyTransform(owner,actor.tag,evaluateAuthActor(movement,owner.elapsed)))return false;
       const ended=actor.endMotion&&owner.elapsed>=owner.durationSeconds;
       const cue = actor.motionCues?.findLast(cue => cue.atSeconds <= owner.elapsed);
       const activeMotion = ended ? actor.endMotion : cue?.motion ?? actor.motion;
-      const clipStart = ended ? owner.durationSeconds : cue?.atSeconds ?? 0;
+      const clipStart = ended ? owner.durationSeconds : cue?.atSeconds ?? actor.motionAtSeconds ?? 0;
       const startSeconds = owner.startOffsets.get(actor.tag) ?? actor.motionStartSeconds ?? 0;
       const offset = ended ? 0 : cue ? cue.startSeconds ?? 0 : startSeconds;
       // A carried prop can hold the upper body while the native walk drives the legs.

@@ -829,3 +829,32 @@ test("the downstairs hint keeps its final position and rendered heading only on 
     if(complete) assert.ok(Math.abs(restored.yaw-heading)<1e-10);
   }
 });
+
+test("the three MS8S inspections preserve the gameplay pose and speak after the source 30-tick lead",async()=>{
+  for(const slug of ["empty-floor","office-door","inner-office"]){
+    const {runtime,transaction,calls}=harness();
+    transaction.area="MS8S";
+    const scene=scenes.scenes.find(s=>s.id==="s1.ms8s.warehouse-eight-"+slug);
+    const samples=[], camera=[];
+    runtime.updateGameplayCamera=(dt,entering)=>camera.push([dt,entering]);
+    runtime.camera.apply=()=>assert.fail("inspection must keep the map camera");
+    runtime.actors.applyTransform=()=>assert.fail("inspection must retain the player transform");
+    runtime.motionRuntime.applyNamed=(_model,clip,time)=>{
+      assert.equal(clip.bank,"free");assert.equal(clip.name,"AKI_AKI_TATI_IWA_L");assert.equal(clip.loop,false);
+      samples.push(time);return true;
+    };
+    let started=false;
+    const start=runtime.play({kind:"scene-staging-start",scene},transaction).then(result=>{started=true;return result;});
+    await new Promise(resolve=>setImmediate(resolve));
+    runtime.update(transaction,29/30);
+    await Promise.resolve();
+    assert.equal(started,false);
+    assert.equal(samples.length>0,slug!=="empty-floor");
+    runtime.update(transaction,1/30);
+    assert.equal(await start,true);
+    assert.equal(samples.at(-1),slug==="empty-floor"?0:1);
+    assert.ok(camera.some(([,entering])=>entering));
+    assert.equal(await runtime.play({kind:"scene-staging-finish",scene},transaction),true);
+    assert.deepEqual(calls.at(-1),{position:[1,2,3],cameraYaw:4});
+  }
+});

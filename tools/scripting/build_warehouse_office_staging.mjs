@@ -60,6 +60,15 @@ const atWall=staticPose(0x2bea0,8192);
 const byWindow=staticPose(0x27f30,map.readUInt32LE(0x27f3c));
 const talker=pose(15.5600004196167,4.275000095367432,131.08999633789062,40413);
 const listener=pose(16.779199600219727,4.275000095367432,132.35000610351562,7094);
+// MOTION.BIN uses one-based request IDs. Slot 902 is the original
+// 0x387 standing motion used here and in the downstairs light director.
+const standingBank=fs.readFileSync(path.resolve(area,"../../../MOTION/MOTION.BIN"));
+const inspectionName="AKI_AKI_TATI_IWA_L";
+const [standing]=MotnLoader.parse(standingBank,{sequenceNames:[inspectionName]}).sequences;
+if (!standing?.valid || !standing.valueData?.complete || standing.index+1!==0x387) {
+  throw Error("The original MS8S standing request no longer resolves to its MOTION.BIN clip");
+}
+const registeredStand={bank:"free",name:standing.name,loop:false};
 const idle={bank:"free",name:"AKI_AKI_STAND_LP",loop:true};
 const walk={bank:"free",name:"AKI_AKI_WALK_LP",loop:true};
 const ryo={tag:"AKIR",pose:atWall,motion:idle};
@@ -68,7 +77,7 @@ const tsukasa={tag:"TKSA",pose:listener,motion:workers(0,true)};
 const heldStaff=[{...tomohito,playbackRate:0},{...tsukasa,playbackRate:0}];
 const lean={...ryo,motion:listen(1,false),motionStartSeconds:40/30};
 const heldRyo={...lean,motionStartSeconds:160/30,playbackRate:0};
-const actorsAtExit=[{...ryo,pose:byWindow},{...tomohito,continueMotion:true},{...tsukasa,continueMotion:true}];
+const actorsAtExit=[{...ryo,pose:byWindow,motion:registeredStand},{...tomohito,continueMotion:true},{...tsukasa,continueMotion:true}];
 const fields=["positionX","positionY","positionZ","targetX","targetY","targetZ"];
 const shot=(number,frames)=>composeEventCameraShots(cameras,[{frame:0,cameraNumber:number}],frames);
 const faceCatalog = JSON.parse(fs.readFileSync(path.join(root, "play/assets/cutscenes/native-faces/manifest.generated.json")));
@@ -166,7 +175,7 @@ const scenes=[
 // 0x2be94 and selects his relative ECAM 1101. Its two one-tick waits and a
 // ten-tick hold at 0x274c0 precede the XMPT approach and ECAM 1105.
 scenes.push({
-  ...phase("timed",13,[{...ryo,pose:timedStart},...heldStaff],{
+  ...phase("timed",13,[{...ryo,pose:timedStart,motion:registeredStand},...heldStaff],{
     ...shot(1101,13),
     screenFades:{beforeReposition:blackFade(0x272fe,0x272ee,0x27320)},
     dialogueCues:[{voiceId:"E1009BA013",atSeconds:12/30}],
@@ -182,9 +191,22 @@ scenes.push(phase("timed-approach",firstFrames,[{...ryo,motion:walk,movement:tim
   screenFades:{afterReposition:{...blackFade(0x27596,0x27586,0x275b8,true),holdFrames:map.readInt8(0x2751e)}},
   dialogueCues:[{voiceId:"E1009BA013",atSeconds:approachFrames/30}],
   provenance:"0x27500 begins the common XMPT. In mode 1 the director reveals the 1105 approach over 30 frames, then switches to 1106 for A013."}));
+const inspectionStages=[
+  {slug:"empty-floor",wait:0x26bcc,motionAfterWait:true},
+  {slug:"office-door",wait:0x26cd8,motionAfterWait:false},
+  {slug:"inner-office",wait:0x26dbc,motionAfterWait:false},
+].map(({slug,wait,motionAfterWait})=>{
+  if(map.readUInt16LE(wait)!==0xe41e)throw Error("Changed MS8S inspection lead");
+  const durationSeconds=map.readInt8(wait)/30;
+  return {id:"s1.ms8s.warehouse-eight-"+slug,area:"MS8S",worldId:"ms8s",actorDefinitions:[],
+    durationSeconds,useGameplayCamera:true,actors:[{tag:"AKIR",motion:registeredStand,
+      ...(motionAfterWait?{motionAtSeconds:durationSeconds}:{})}],
+    provenance:"Room director 0x26b84 retains Ryo's placement and view, requests motion 0x387 and waits 30 source ticks before speaking. Its shared return at 0x28528 restores player controls."};
+});
+scenes.push(...inspectionStages);
 const lightId="s1.ms8s.warehouse-light-hint";
 scenes.push({id:lightId,area:"MS8S",worldId:"ms8s",actorDefinitions:[],durationSeconds:60/30,
-  actors:[{tag:"AKIR",pose:downstairs,motion:idle,lookAt:[-lightPoint.x,lightPoint.y,lightPoint.z]}],
+  actors:[{tag:"AKIR",pose:downstairs,motion:registeredStand,lookAt:[-lightPoint.x,lightPoint.y,lightPoint.z]}],
   ...shot(1000,60),waitForMotionCompletion:false,
   screenFades:{beforeReposition:blackFade(0x281dc,0x281cc,0x28208),
     afterReposition:blackFade(0x28302,0x282f2,0x28344,true)},
@@ -192,7 +214,7 @@ scenes.push({id:lightId,area:"MS8S",worldId:"ms8s",actorDefinitions:[],durationS
   provenance:"MS8S 0x28198 relocates AKIR to 0x2bf4c, faces the light at 0x2bf58, selects standing motion 0x387 and full look-point control 6, and reveals ECAM 1000. A018 ends back in MS8S at that location."});
 // These are compact rows in a larger hand-maintained catalog. Retain its other rows.
 const lines=catalogText.split("\n");
-const belongs=line=>line.trimStart().startsWith('{"id":"'+lightId+'"')||line.trimStart().startsWith('{"id":"'+group+'"')||line.trimStart().startsWith('{"id":"'+group+'.');
+const belongs=line=>inspectionStages.some(scene=>line.trimStart().startsWith('{"id":"'+scene.id+'"'))||line.trimStart().startsWith('{"id":"'+lightId+'"')||line.trimStart().startsWith('{"id":"'+group+'"')||line.trimStart().startsWith('{"id":"'+group+'.');
 const first=lines.findIndex(belongs);
 if(first<0)throw Error("Missing office scene entry");
 const outside=lines.filter(line=>!belongs(line));
