@@ -40,7 +40,7 @@ import {
     RECOVERY_REPEAT_WINDOW_MS,
     recoveryVolumeClear,
 } from "./PlayerRecoveryCollision.js";
-import { nativeStairFieldAtPosition } from "./NativeCollisionFieldHandoffs.js";
+import { nativeAlternateFieldAtPosition } from "./NativeCollisionFieldHandoffs.js";
 
 // Shenmue collision boundaries and some extracted visual meshes contain
 // opposite-winding copies of the same face. Have Babylon choose the face
@@ -511,13 +511,13 @@ export class ThirdPersonController {
                 ?.metadata.nativeCollisionHandoffs || [];
     }
 
-    collisionCandidates(start, end = start, padding = this.options.playerRadius) {
+    collisionCandidates(start, end = start, padding = this.options.playerRadius, footY = start.y) {
         const candidates = this.raycastIndex
             ? this.raycastIndex.collisionCandidates(start, end, padding)
             : this.scene?.meshes || [];
         if (!this.nativeCollisionHandoffs?.length) return candidates;
-        const field = nativeStairFieldAtPosition(
-            this.nativeCollisionHandoffs, start, this.options.playerRadius,
+        const field = nativeAlternateFieldAtPosition(
+            this.nativeCollisionHandoffs, start, this.options.playerRadius, footY,
         ) ? "alternate" : "base";
         return candidates.filter(mesh => !mesh.metadata?.nativeCollisionFieldRole
             || mesh.metadata.nativeCollisionFieldRole === field);
@@ -535,8 +535,9 @@ export class ThirdPersonController {
                 + BABYLON.AbstractEngine.CollisionsEpsilon * 10)
                 * Math.max(radius.x, radius.y, radius.z)
                 + Math.max(radius.x, radius.z);
-            const center = collider.getAbsolutePosition().add(collider.ellipsoidOffset);
-            collider.surroundingMeshes = this.collisionCandidates(center, center, reach);
+            const feet = collider.getAbsolutePosition();
+            const center = feet.add(collider.ellipsoidOffset);
+            collider.surroundingMeshes = this.collisionCandidates(center, center, reach, feet.y);
         }
         try {
             collider.moveWithCollisions(displacement);

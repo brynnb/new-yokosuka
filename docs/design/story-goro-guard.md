@@ -15,6 +15,8 @@ On the day after the harbor guards turn Ryo away, approach Goro near Warehouse N
 
 The Goro route gives the two original flags and a personal completion receipt. The rear climb also sets 240. Declining or cancelling the distraction preserves the choice of entrance. After the distraction, climb the stairs and approach the office. A two-unit, three-dimensional native position and facing check starts the invoice conversation. The two office staff and Ryo have ten recorded lines in this branch. It writes flag 242, adds the Old Warehouse District clue to the notebook and returns Ryo to the harbor through MFSY entry 5. The window route keeps its existing arrival sequence.
 
+The upstairs MS8S collision field contains three hinged doors. MAPINFO names the same CHRT image `MS8S_DOOR` three times at `0x2b4dc`, then places three instances starting at `0x2b52c`. The image resolves to `DR02_026.MT5`. Instance 0 meets upper collision segment 960 and retains its harbor return. Instances 1 and 2 meet segments 616 and 644 and open within the warehouse. Ryo can approach the office listening point from the corridor with those doors closed.
+
 ## Voices, staging and film
 
 The four prelude voices play at native frames 0, 100, 230 and 360. Cameras 8250, 8251, 8252 and 8253 cut at frames 0, 110, 170 and 200. The prelude uses the source actors' marks and Goro's motions from M_GKYU.MOTN. His two run clips play at the native three-quarter speed. Camera 8251 uses a fixed 1.6-unit head-height approximation for its Ryo-relative position and target. The original director waits until frame 440 before its fade. The original BGM090 cue starts during the prelude and continues across the handover to the native film. Cancellation releases it with the rest of the presentation.
@@ -39,9 +41,37 @@ The asset and staging builders check source hashes before rebuilding. The origin
 Entry 1 places Ryo on the ground floor at world (-8.31, 0, 135.76). Goro's
 receipt enables the upstairs listening scene. MS8S director `0x25bd8` tests
 the native point (18.01, 4.275, 137.16) at `0x25f8e` using a 2 m sphere and
-bearing 8192 ± 16384 in 16-bit turns. Server and client run the same test. From
-the upper walkway, approach world (-18.01, 4.275, 137.16) from the negative-X
-side. Standing directly underneath cannot start the conversation.
+bearing 8192 ± 16384 in 16-bit turns. Server and client run the same test. Walk along the upper corridor to world (-19.5, 4.275, 137.75) to
+hear the workers through the office wall. Standing directly underneath cannot start the conversation.
+
+Both native MS8S collision fields mark the ends of this 6 m stair flight.
+In field 0000 the lower and upper entrance records are 44 and 844. In field
+0001 they are 536 and 508. A code-0 L-shaped barrier (record 72) crosses the
+flight on the ground-floor field. The upper field supplies two boundary rails
+(records 700 and 816). Between the two gate midpoints, world (-8.376,
+151.397) and (-12.621, 155.637), the browser selects the upper rails across
+the original width of 1.799 m. The room director also reads Ryo's base
+position at `0x2608e` and distinguishes the upper floor with Y > 4 m at
+`0x260aa`. Story uses this source floor classification to select 0001 over
+the rest of the upper level, including window entry 0 at y=4.275. This
+collision selection is an adaptation of the director's floor test. Below that
+threshold and outside the stair flight, 0000 governs the warehouse, including
+Goro's entry 1 at y=0. A Radeon keyboard run walked from his actual doorway
+around the crates, up the full flight and along the upper corridor with the
+doors closed. The listening scene started at (-19.704, 4.275, 138.203).
+Cancelling there left bit 242 clear. Across 157 shipped collision variants,
+only MS8S gains this floor and stair handoff.
+
+The upper floor has three code-100 hinged thresholds (0001 records 960,
+616 and 644). Each hinge opens and closes its own collision segment. Near
+960 the room director calls `0x26b84` with mode 2 for inspection line A028.
+Near 616 it uses mode 3 for A003. These are independent indoor inspections.
+The only recovered MS8S script transfer to MFSY entry 5 occurs at the end
+of the invoice director. The generated map catalog associates the room's
+named door with that destination because it is the room's sole outgoing
+destination. In the browser, using handle 960 opens its leaf and then
+travels outside. The 616 hinge opens into an interior office. Ryo can hear
+the workers from the corridor without opening either door.
 
 The original invoice owner is `0x27284`. Ryo moves to native (16.15, 4.275,
 135.18) and listens at the office. The package stages the original

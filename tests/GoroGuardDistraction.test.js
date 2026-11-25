@@ -66,7 +66,7 @@ test("the distraction has its own harbor approach and enters the original lower 
 });
 
 test("the GKYU package resolves all original Goro face assets at its playback entry point", async () => {
-  const vite=await createServer({server:{middlewareMode:true,watch:null,hmr:false},appType:"custom",logLevel:"error"});
+  const vite=await createServer({server:{middlewareMode:true,watch:{ignored:()=>true},ws:false,hmr:false},appType:"custom",logLevel:"error"});
   try {
     const {NATIVE_CUTSCENE_PACKAGES}=await vite.ssrLoadModule("/play/cutscenes/nativeCutscenePackages.js");
     const pack=NATIVE_CUTSCENE_PACKAGES.find(candidate=>candidate.id==="goro-guard-distraction");

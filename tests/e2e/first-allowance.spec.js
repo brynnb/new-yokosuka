@@ -301,7 +301,9 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     ["scripts/NativeStoryRuntime", `const probeStoryAutomatic = NativeStoryRuntime.prototype.updateAutomatic;
       NativeStoryRuntime.prototype.updateAutomatic = function(...args) { window.storyProbe.nativeAutomatic = {enabled:args[0].enabled,status:this.scriptedEvents.status,busy:this.scriptedEvents.busy,startup:this.isStartupPresentationActive()}; return probeStoryAutomatic.apply(this,args); };`],
   ]) await page.route(`**/play/${file}.js*`, async route => {
-    const response = await route.fetch();
+    const response = await route.fetch({
+      maxRetries: route.request().method() === "GET" ? 2 : 0,
+    });
     await route.fulfill({ response, body: (await response.text()) + "\n" + hook });
   });
   await page.route("**/play/play.js*", route => route.fulfill({ contentType: "application/javascript", body: `

@@ -24,8 +24,36 @@ const coversSegment = (longer, shorter) => {
   });
 };
 
-export function discoverNativeStairFieldHandoffs(base, alternate, segmentsForGeometry) {
+// Disc 2 Warehouse No. 8 has an L-shaped lower-floor barrier halfway up its
+// flight. The upstairs COLS perimeter uses both code 9 and code 0 for its
+// side rails. Its paired gate endpoints are up to 1.6 cm apart.
+const MS8S_MAP_SHA256 = "0f0914b81f40fb73e87b073d955a1b9f5c46e4b094efeabf1215e3ea16e947c2";
+function warehouseOfficeStairs(base, alternate, segmentsForGeometry) {
+  const byOffset = field => new Map(records(field).map(record => [record.recordOffset, record]));
+  const lower = byOffset(base), upper = byOffset(alternate);
+  const barrier = lower.get(72);
+  if (barrier?.code !== 0 || barrier.geometry?.vertices?.length !== 3
+    || upper.get(700)?.code !== 9 || upper.get(816)?.code !== 0) return [];
+  const gates = [];
+  for (const [lowerOffset, upperOffset] of [[44, 536], [844, 508]]) {
+    const a = lower.get(lowerOffset), b = upper.get(upperOffset);
+    if (a?.code !== 10 || b?.code !== 10 || a.geometry?.kind !== "segment" || b.geometry?.kind !== "segment") return [];
+    const [gate] = segmentsForGeometry(a.geometry), [paired] = segmentsForGeometry(b.geometry);
+    if (!gate || !paired || gate.some((point, i) => distance(point, paired[i]) > .02)) return [];
+    gates.push(gate);
+  }
+  return [{start: midpoint(gates[0]), end: midpoint(gates[1]),
+    width: Math.min(...gates.map(length)), sourceRecordOffset: barrier.recordOffset,
+    // MS8S reads AKIR's base Y at 0x2608e and classifies the upper floor
+    // with Y > 4 at 0x260aa. Entry 0 and the office are both at 4.275 m.
+    upperFloorAboveY: 4}];
+}
+
+export function discoverNativeStairFieldHandoffs(base, alternate, segmentsForGeometry, source) {
   if (!base || !alternate || typeof segmentsForGeometry !== "function") return [];
+  if (source?.mapinfoSha256 === MS8S_MAP_SHA256 && base.id === "0000" && alternate.id === "0001") {
+    return warehouseOfficeStairs(base, alternate, segmentsForGeometry);
+  }
   const baseRecords = records(base), alternateRecords = records(alternate);
   const alternateSides = alternateRecords.filter(record => record.code === 9)
     .flatMap(record => segmentsForGeometry(record.geometry));
@@ -78,4 +106,10 @@ export function nativeStairFieldAtPosition(handoffs, position, radius = 0) {
     const along = (x * dx + z * dz) / extent, lateral = Math.abs(x * -dz + z * dx) / extent;
     return along >= -radius && along <= extent + radius && lateral <= width / 2 + radius;
   });
+}
+
+export function nativeAlternateFieldAtPosition(handoffs, position, radius, footY) {
+  if (Number.isFinite(footY) && handoffs?.some(handoff =>
+    Number.isFinite(handoff.upperFloorAboveY) && footY > handoff.upperFloorAboveY)) return true;
+  return nativeStairFieldAtPosition(handoffs, position, radius);
 }

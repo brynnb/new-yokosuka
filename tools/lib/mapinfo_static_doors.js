@@ -11,25 +11,26 @@ function signedAngleDegrees(raw) {
   return signed * 360 / 0x10000;
 }
 
-function doorNameRun(bytes, offset) {
+function doorNameRun(bytes, offset, imageModels) {
   const names = [];
   let cursor = offset;
   while (cursor + 10 <= bytes.length) {
     const end = bytes.indexOf(0, cursor);
-    if (end < 0 || end - cursor !== 8) break;
+    if (end < 0 || end - cursor > 32 || end === cursor) break;
     const name = bytes.toString("ascii", cursor, end);
-    if (!DOOR_NAME_PATTERN.test(name)) break;
+    if (!DOOR_NAME_PATTERN.test(name) && !Object.hasOwn(imageModels, name)) break;
     names.push(name);
     cursor = end + 1;
   }
   return { names, end: cursor };
 }
 
-export function extractMapinfoStaticDoors(bytes, prefix = "") {
+export function extractMapinfoStaticDoors(bytes, prefix = "", imageModels = {}) {
+  const firstBytes = new Set(["D", ...Object.keys(imageModels)].map(name => name.charCodeAt(0)));
   let best = { names: [], offset: -1, end: -1 };
   for (let offset = 0; offset + 10 <= bytes.length; offset += 1) {
-    if (bytes[offset] !== 0x44 || bytes[offset + 1] !== 0x52) continue;
-    const run = doorNameRun(bytes, offset);
+    if (!firstBytes.has(bytes[offset])) continue;
+    const run = doorNameRun(bytes, offset, imageModels);
     if (run.names.length > best.names.length) {
       best = { ...run, offset };
     }
@@ -68,7 +69,7 @@ export function extractMapinfoStaticDoors(bytes, prefix = "") {
     const sourceYaw = signedAngleDegrees(bytes.readUInt32LE(offset + 0x20));
     placements.push({
       id: `static-door-${index}`,
-      model: `${prefix}${best.names[modelIndex]}.MT5`,
+      model: `${prefix}${imageModels[best.names[modelIndex]] || best.names[modelIndex]}.MT5`,
       position: [
         -sourcePosition[0],
         sourcePosition[1],
@@ -79,6 +80,7 @@ export function extractMapinfoStaticDoors(bytes, prefix = "") {
       runtime: {
         objectTag: null,
         staticDoorIndex: index,
+        ...(Object.hasOwn(imageModels, best.names[modelIndex]) ? {staticDoorResourceName: best.names[modelIndex]} : {}),
         staticDoorType: type,
         staticDoorModelIndex: modelIndex,
         staticSourceOffset: `0x${offset.toString(16)}`,

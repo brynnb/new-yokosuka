@@ -1,4 +1,5 @@
 import * as BABYLON from "@babylonjs/core";
+import ms8sDoors from "../data/ms8s-static-doors.json" with { type: "json" };
 import shenmue2Exploration from '../data/shenmue2-exploration-worlds.json' with { type: 'json' };
 import storyDestinations from "../data/story-destinations.json" with {type: "json"};
 import authoredStoryObjects from "../data/authored-story-objects.json" with {type: "json"};
@@ -465,7 +466,20 @@ function additionalShenmue1InteriorWorlds() {
             "i",
           ).test(filename)
         ),
-        placements: Object.freeze([returnDoor]),
+        placements: definition.area === "MS8S"
+          ? Object.freeze(ms8sDoors.placements.map(placement => {
+            // Only instance 0 owns the authored harbor return. The other two
+            // share its model and image but open into this same room.
+            if (placement.runtime.staticDoorIndex === 0) {
+              return Object.freeze({ ...placement, ...returnDoor, runtime: Object.freeze({
+                ...placement.runtime, ...returnDoor.runtime,
+              }) });
+            }
+            return Object.freeze({ ...placement, runtime: Object.freeze({
+              ...placement.runtime, nativeInteriorDoor: true,
+            }) });
+          }))
+          : Object.freeze([returnDoor]),
         evidence: Object.freeze({
           source: nativeMapTransitionData.generatedFrom,
           hiddenFromTravelMenu: true,

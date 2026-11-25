@@ -29,37 +29,62 @@ export async function verifyGoroGuard(page,testInfo,character,enterStoryWorld,mo
   },null,{timeout:65_000});
   const button=page.getByRole("button",{name:"Ask Goro for help",exact:true});
   const approach=async()=>{await place([125,0,108.45]);await place([114.5,0,108.45]);};
-  const walkTo=async(x,z)=>{
+  const walked=[];
+  const walkTo=async(x,z,stopAtOffice=false)=>{
     await page.locator("#renderCanvas").focus();
-    const goal={x,z};
+    const goal={x,z,stopAtOffice};
     await page.evaluate(({x,z})=>{
       const c=window.storyProbe.lifecycle.getController(), p=c.collider.position;
       c.setFirstPerson(false);c.cameraYaw=Math.atan2(x-p.x,z-p.z)+Math.PI;
     },goal);
     await page.keyboard.down("KeyW");
     try {
-      await page.waitForFunction(({x,z})=>{
+      await page.waitForFunction(({x,z,stopAtOffice})=>{
         const c=window.storyProbe.lifecycle.getController(),p=c.collider.position;
         c.cameraYaw=Math.atan2(x-p.x,z-p.z)+Math.PI;
-        return Math.hypot(p.x-x,p.z-z)<.32;
-      },goal,{timeout:14_000});
+        return (stopAtOffice && window.storyProbe.regions.controller.active?.scriptIdentity?.scriptSlug==="story-s1-warehouse-eight-office") || Math.hypot(p.x-x,p.z-z)<.32;
+      },goal,{timeout:30_000});
     } finally {
       await page.keyboard.up("KeyW");
-      console.info("Warehouse walk waypoint",JSON.stringify({goal,at:await page.evaluate(()=>
-        window.storyProbe.lifecycle.getController().collider.position.asArray())}));
+      const at=await page.evaluate(()=>window.storyProbe.lifecycle.getController().collider.position.asArray());
+      walked.push({goal,at});
+      console.info("Warehouse walk waypoint",JSON.stringify({goal,at}));
     }
   };
-  if(mode==="survey"){
+  const walkWarehouseStairs=async()=>{
     await walkTo(-12.2,143.0);
     await walkTo(-11.7,145.8);
     await walkTo(-7.67,150.69);
-    await walkTo(-12.84,155.86);
-    await walkTo(-26.6,142.1);
-    await walkTo(-23.8,139.1);
-    await walkTo(-21.5,137.16);
-    return;
+    expect(walked.at(-1).at[1]).toBeLessThan(.1);
+    await walkTo(-13.30,156.32);
+    expect(walked.at(-1).at[1]).toBeGreaterThan(4);
+    await walkTo(-24.56,144.08);
+    await walkTo(-24.56,143.35);
+    await walkTo(-20.5,139.0);
+    await walkTo(-19.36,137.85,true);
+    await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.ms8s.warehouse-eight-office"
+      ||window.storyProbe.sceneErrors.length,null,{timeout:30_000});
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+    expect(walked.at(-1).at[1]).toBeCloseTo(4.275,1);
+  };
+  if(mode==="stairs"){
+    await walkWarehouseStairs();
+    await page.evaluate(()=>window.storyProbe.regions.controller.cancel("keyboard-staircase-check"));
+    await idle();expect((await saved()).bits[242]).toBe(0);return;
   }
   let initial=await saved();
+  if(mode==="cold"){
+    expect(initial.character.worldId).toBe("mfsy");
+    expect(initial.character.x).toBeCloseTo(-18.5,1);expect(initial.character.z).toBeCloseTo(153.6,1);
+    expect([initial.bits[192],initial.bits[230],initial.bits[240],initial.bits[242]]).toEqual([1,1,1,1]);
+    expect(initial.character.storyFlags[flag]).toBe(true);expect(initial.character.storyFlags[office]).toBe(true);
+    expect(initial.character.storyFlags["notebook.s1.old-warehouse-eight"]).toBe(true);
+    expect(initial.character.storyFlags[windowFlag]).not.toBe(true);
+    expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+    console.info("Cold-reopened guard save",JSON.stringify({characterId:character.id,world:initial.character.worldId,
+      position:[initial.character.x,initial.character.y,initial.character.z],bits:initial.bits}));
+    return;
+  }
   if(mode==="day-after") {
     expect(initial.character.storyFlags[refusal]).not.toBe(true);
     await place([-6,0,128]);await place([-6,0,132]);
@@ -111,9 +136,12 @@ export async function verifyGoroGuard(page,testInfo,character,enterStoryWorld,mo
   expect(inside.character.storyFlags[windowFlag]).not.toBe(true);
   await idle();
   expect(inside.character.storyFlags[office]).not.toBe(true);
-  await place([-18.01,0,137.16]);
-  await idle();
-  expect((await saved()).character.storyFlags[office]).not.toBe(true);
+  if(mode==="day-after")await walkWarehouseStairs();
+  else {
+    await place([-18.01,0,137.16]);
+    await idle();
+    expect((await saved()).character.storyFlags[office]).not.toBe(true);
+  }
   const enterOffice=async()=>{
     await place([-21.5,4.275,137.16],Math.PI/2);
     await page.locator("#renderCanvas").focus();
@@ -124,7 +152,7 @@ export async function verifyGoroGuard(page,testInfo,character,enterStoryWorld,mo
     } finally {await page.keyboard.up("KeyW");}
     expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   };
-  await enterOffice();
+  if(mode!=="day-after")await enterOffice();
   if(mode==="native"){
     await page.waitForFunction(()=>window.originalDialogue.lines.some(line=>line.id==="E1009BB001"));
     await page.evaluate(()=>window.storyProbe.regions.controller.cancel("office-timeline-cancel"));
@@ -140,6 +168,7 @@ export async function verifyGoroGuard(page,testInfo,character,enterStoryWorld,mo
   await expect.poll(async()=>(await saved()).character.storyFlags[office],{timeout:110_000}).toBe(true);
   await idle();
   const observed=await page.evaluate(()=>{clearInterval(window.storyFilmTimer);const y=window.stopOriginalDialogue();return {film:window.storyFilm,spoken:y.lines,office:y.office};});
+  observed.warehouseWalk=walked;
   console.info("Goro opens Warehouse No. 8",mode,JSON.stringify(observed));
   expect(observed.office).toHaveLength(3);
   expect(observed.office[0].actors.filter(a=>a.drawable).map(a=>a.tag).sort()).toEqual(["AKIR","TKSA","TMHN"]);

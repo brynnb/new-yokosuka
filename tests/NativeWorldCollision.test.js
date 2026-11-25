@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
 import * as BABYLON from "@babylonjs/core";
+import {ThirdPersonController} from "../src/ThirdPersonController.js";
 import { WORLDS } from "../play/config/worlds.js";
 import {
   parseNativeCollisionResponse,
@@ -814,4 +815,95 @@ test("generated native walls stop Babylon ellipsoid traversal from both sides", 
   assert.ok(actor.position.x > 0.49);
   scene.dispose();
   engine.dispose();
+});
+
+test("Warehouse No. 8 switches collision fields only inside the original office stair flight", () => {
+  const data=JSON.parse(fs.readFileSync(new URL("../public/data/native-collisions/MS8S.json",import.meta.url)));
+  const definition=nativeCollisionDefinitionForWorld({nativeArea:"MS8S",prefix:"S2_MS8S"},data);
+  const alternate=definition.variantFields.find(field=>field.id==="0001");
+  const detect=(field,source)=>discoverNativeStairFieldHandoffs(definition.field,field,nativeCollisionSegments,source);
+  assert.deepEqual(detect(alternate,{}),[],"another source cannot opt into MS8S-specific records");
+  for(const missing of [508,536,700,816]){
+    const copy=structuredClone(alternate);
+    for(const section of copy.sections)section.records=section.records.filter(r=>r.recordOffset!==missing);
+    assert.deepEqual(detect(copy,definition.source),[],"missing source record "+missing);
+  }
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  try {
+    const meshes=createNativeWorldCollision({scene,currentMeshes:[],definition});
+    const base=meshes.find(mesh=>mesh.metadata.nativeCollisionFieldRole==="base"&&mesh.metadata.nativeCollisionRecordOffsets.includes(72));
+    assert.ok(base,"lower-floor barrier still exists");
+    const upper=meshes.filter(mesh=>mesh.metadata.nativeCollisionFieldRole==="alternate");
+    assert.ok(upper.some(mesh=>mesh.metadata.nativeCollisionRecordOffsets.includes(700)));
+    assert.ok(upper.some(mesh=>mesh.metadata.nativeCollisionRecordOffsets.includes(816)));
+    const handoffs=base.metadata.nativeCollisionHandoffs;
+    const controller=Object.assign(Object.create(ThirdPersonController.prototype),{
+      options:{playerRadius:.24},nativeCollisionHandoffs:handoffs,scene:{meshes},
+    });
+    // Descending uses the same real rails. Once Ryo clears the lower marker,
+    // the controller restores the base room and its L-shaped barrier.
+    for(const [x,y,z,role] of [
+      [-13.19,4.275,156.20,"alternate"],[-12.63,4.275,155.65,"alternate"],
+      [-10.23,1.8,153.02,"alternate"],[-8.38,0,151.4,"alternate"],[-7.81,0,150.83,"base"],
+    ]){
+      const candidates=controller.collisionCandidates(new BABYLON.Vector3(x,y,z));
+      assert.deepEqual(new Set(candidates.map(mesh=>mesh.metadata.nativeCollisionFieldRole)),new Set([role]));
+      assert.equal(candidates.includes(base),role==="base");
+    }
+    // Goro's original doorway (entry 1), the window (entry 0), and two
+    // vertically overlapping points across the floor-0 obstacle.
+    for(const [x,y,z,role] of [
+      [-8.31,0,135.76,"base"],[-17,4.275,152.24,"alternate"],
+      [-13.994,0,155.23,"base"],[-13.994,4.275,155.23,"alternate"],
+      [-18.01,4.0,137.16,"base"],[-18.01,4.275,137.16,"alternate"],
+    ]){
+      const feet=new BABYLON.Vector3(x,y,z);
+      const center=feet.add(new BABYLON.Vector3(0,.9,0));
+      assert.deepEqual(controller.collisionCandidates(center,center,1,feet.y),controller.collisionCandidates(feet));
+      assert.equal(controller.collisionCandidates(feet).includes(base),role==="base");
+    }
+    // Run the actual Babylon movement wrapper as well. The collider center
+    // is above 4 m while Ryo's feet remain below the upper-floor cutoff.
+    controller.raycastIndex={collisionCandidates:()=>meshes};
+    controller.collider={
+      getAbsolutePosition:()=>new BABYLON.Vector3(-13.994,3.5,155.23),
+      ellipsoid:new BABYLON.Vector3(.24,.9,.24),ellipsoidOffset:new BABYLON.Vector3(0,.9,0),
+      moveWithCollisions(){assert.ok(this.surroundingMeshes.includes(base));}
+    };
+    controller.moveColliderWithCollisions(new BABYLON.Vector3(.1,0,0));
+    assert.equal(controller.collider.surroundingMeshes,undefined);
+    assert.equal(handoffs.length,1);
+    assert.ok(Math.abs(handoffs[0].width-1.7993)<.001);
+    for(const [x,z] of [[-8.376,151.397],[-10.230,153.022],[-12.621,155.637]]){
+      assert.equal(nativeStairFieldAtPosition(handoffs,{x,z},.24),true);
+    }
+    for(const [x,z] of [[-8.31,135.76],[-10.23,150],[-12.621,158],[-18.01,137.16]]){
+      assert.equal(nativeStairFieldAtPosition(handoffs,{x,z},.24),false);
+    }
+  } finally {engine.dispose();}
+});
+
+test("each Warehouse No. 8 upper hinge opens its own source threshold and closes again",()=>{
+  const data=JSON.parse(fs.readFileSync(new URL("../public/data/native-collisions/MS8S.json",import.meta.url)));
+  const definition=nativeCollisionDefinitionForWorld({nativeArea:"MS8S",prefix:"S2_MS8S"},data);
+  const engine=new BABYLON.NullEngine(),scene=new BABYLON.Scene(engine);
+  try {
+    const meshes=createNativeWorldCollision({scene,currentMeshes:[],definition});
+    const doors=meshes.filter(mesh=>mesh.metadata.nativeCollisionCode===100);
+    const originalPlacements=[
+      [960,-22.16502,139.93974],[616,-25.9834,143.7581],[644,-13.343,131.1305],
+    ];
+    assert.equal(doors.length,4,"one lower and three upper native thresholds");
+    for(const [record,x,z] of originalPlacements){
+      const hinge={state:"open",type:"swing",root:{getAbsolutePosition:()=>new BABYLON.Vector3(x,4.28,z)}};
+      applyNativeDoorCollisionStates(meshes,[hinge]);
+      const opened=doors.filter(mesh=>!mesh.checkCollisions);
+      assert.equal(opened.length,1);
+      assert.equal(opened[0].metadata.nativeCollisionFieldRole,"alternate");
+      assert.deepEqual(opened[0].metadata.nativeCollisionRecordOffsets,[record]);
+      hinge.state="closed";
+      applyNativeDoorCollisionStates(meshes,[hinge]);
+      assert.ok(doors.every(mesh=>mesh.checkCollisions));
+    }
+  } finally {engine.dispose();}
 });

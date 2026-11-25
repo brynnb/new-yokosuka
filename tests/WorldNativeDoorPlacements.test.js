@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import {mapTransitionForDoor} from "../src/MapTransitions.js";
+import {jomoObjectBehavior} from "../src/JomoObjectRegistry.js";
 
 import {
   WORLDS,
@@ -35,7 +37,7 @@ test("all 25 reverse-backed Shenmue I interiors contain one exact return door", 
   assert.equal(interiors.length, 25);
   for (const world of interiors) {
     const returnDoors = world.placements.filter(
-      (placement) => placement.runtime.nativeInteriorDoor,
+      placement => placement.runtime.nativeInteriorDoor && placement.runtime.nativeRecordFileOffset,
     );
     assert.equal(returnDoors.length, 1, world.id);
   }
@@ -57,7 +59,7 @@ test("confirmed non-Dobuita interiors use native maps, spawns, and collision are
     assert.equal(world.prefix, prefix);
     assert.equal(world.interior, true);
     assert.deepEqual(world.spawn.asArray(), spawn);
-    assert.equal(world.placements.length, 1);
+    assert.equal(world.placements.length, worldId === "ms8s" ? 3 : 1);
     assert.equal(world.placements[0].runtime.nativeInteriorDoor, true);
   }
   assert.equal(WORLDS.mkyu.placements[0].runtime.nativeStaticTransition, true);
@@ -129,5 +131,19 @@ test("recovered Dobuita interiors use canonical map names", () => {
   ) {
     assert.notEqual(world.label, world.nativeArea);
     assert.notEqual(world.japaneseLabel, world.label);
+  }
+});
+
+test("Warehouse No. 8 restores three physical upper hinges with one harbor exit", () => {
+  const doors = WORLDS.ms8s.placements;
+  assert.deepEqual(doors.map(door => door.runtime.staticDoorIndex), [0,1,2]);
+  assert.deepEqual(doors.map(door => door.runtime.objectTag), ["MS8S_DOOR", null, null]);
+  assert.deepEqual(doors.map(door => door.runtime.staticDoorResourceName), Array(3).fill("MS8S_DOOR"));
+  assert.deepEqual(doors.map(door=>Boolean(mapTransitionForDoor({
+    worldId:"ms8s", model:door.model, ...door.runtime,
+  }))), [true,false,false]);
+  for (const door of doors) {
+    assert.equal(door.model, "S2_MS8S_DR02_026.MT5");
+    assert.equal(jomoObjectBehavior(door.model, door.runtime.objectTag, door.runtime).kind, "d000-door");
   }
 });

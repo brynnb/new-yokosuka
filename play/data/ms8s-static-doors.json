@@ -1,0 +1,99 @@
+{
+  "schema": "shenmue-mapinfo-static-door-placements-v1",
+  "source": "extracted_disc2_v2/data/SCENE/02/MS8S/MAPINFO.BIN",
+  "nameTableOffset": "0x2b4dc",
+  "descriptorsOffset": "0x2b4fc",
+  "recordsOffset": "0x2b52c",
+  "modelNames": [
+    "MS8S_DOOR",
+    "MS8S_DOOR",
+    "MS8S_DOOR"
+  ],
+  "placementCount": 3,
+  "placements": [
+    {
+      "id": "static-door-0",
+      "model": "S2_MS8S_DR02_026.MT5",
+      "position": [
+        -22.165022,
+        4.28,
+        139.939743
+      ],
+      "rotationDegrees": [
+        0,
+        44.994507,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": null,
+        "staticDoorIndex": 0,
+        "staticDoorResourceName": "MS8S_DOOR",
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 0,
+        "staticSourceOffset": "0x2b52c",
+        "placementSource": "mapinfo-static-door-table"
+      }
+    },
+    {
+      "id": "static-door-1",
+      "model": "S2_MS8S_DR02_026.MT5",
+      "position": [
+        -25.98341,
+        4.28,
+        143.758133
+      ],
+      "rotationDegrees": [
+        0,
+        44.994507,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": null,
+        "staticDoorIndex": 1,
+        "staticDoorResourceName": "MS8S_DOOR",
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 1,
+        "staticSourceOffset": "0x2b550",
+        "placementSource": "mapinfo-static-door-table"
+      }
+    },
+    {
+      "id": "static-door-2",
+      "model": "S2_MS8S_DR02_026.MT5",
+      "position": [
+        -13.343,
+        4.28,
+        131.130524
+      ],
+      "rotationDegrees": [
+        0,
+        45,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "runtime": {
+        "objectTag": null,
+        "staticDoorIndex": 2,
+        "staticDoorResourceName": "MS8S_DOOR",
+        "staticDoorType": 2,
+        "staticDoorModelIndex": 2,
+        "staticSourceOffset": "0x2b574",
+        "placementSource": "mapinfo-static-door-table"
+      }
+    }
+  ]
+}

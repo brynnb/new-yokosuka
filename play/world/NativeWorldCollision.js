@@ -526,7 +526,7 @@ export function createNativeWorldCollision({
   }
   const alternate = definition.fieldId === "0000"
     ? definition.variantFields?.find(field => field.id === "0001") : null;
-  const handoffs = discoverNativeStairFieldHandoffs(definition.field, alternate, nativeCollisionSegments);
+  const handoffs = discoverNativeStairFieldHandoffs(definition.field, alternate, nativeCollisionSegments, definition.source);
   const meshes = [];
   for (const group of collisionGroups(definition)) {
     const positions = [];
