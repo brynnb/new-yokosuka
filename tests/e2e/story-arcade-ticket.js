@@ -184,24 +184,6 @@ export async function verifyChaiRecoveryBody(page, testInfo, character) {
   expect(await futon()).toEqual([[-19.188601,.608,4.379],[-18.995001,-10,4.391]]);
   await page.waitForTimeout(4000);
   await page.screenshot({path:testInfo.outputPath("chai-original-sleepwear.png")});
-  if (process.env.NEW_YOKOSUKA_4S_PICK === "true") {
-    console.info("A0173 per-pixel surface review", await page.evaluate(() => {
-      const l=window.storyProbe.lifecycle,scene=l.scene,w=l.engine.getRenderWidth(),h=l.engine.getRenderHeight();
-      return [[.92,.41],[.85,.43],[.70,.45],[.8,.50],[.8,.35]].map(([x,y])=>{
-        const hits=scene.multiPick(x*w,y*h,m=>m.isVisible&&m.isEnabled()&&m.getTotalVertices()>0,scene.activeCamera) || [];
-        return {x,y,hits:hits.filter(hit=>hit.hit).sort((a,b)=>a.distance-b.distance).slice(0,2).map(hit=>{
-          if(x>.9 && hit===hits.filter(h=>h.hit).sort((a,b)=>a.distance-b.distance)[0])window.coverDiagMesh=hit.pickedMesh;
-          let m=hit.pickedMesh;const chain=[];
-          while(m){chain.push([m.name,m._filename,m._runtimePlacementRecord?.runtime?.objectTag]);m=m.parent;}
-          return {d:hit.distance,mat:hit.pickedMesh.material?.name,chain};
-        })};
-      })
-    }).then(JSON.stringify));
-    await page.evaluate(()=>{window.coverDiagMesh.setEnabled(false);});
-    await page.screenshot({path:testInfo.outputPath("chai-identify-ribbon.png")});
-    await page.evaluate(()=>{window.coverDiagMesh.setEnabled(true);});
-
-  }
   await expect.poll(async()=>(await state()).character.storyFlags[done],{timeout:90_000}).toBe(true);
   expect((await state()).character.storyFlags[pending]).not.toBe(true);
   await verifyChaiRecoveryReload(page,character);
