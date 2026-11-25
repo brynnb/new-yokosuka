@@ -1,6 +1,5 @@
 import {expect} from "@playwright/test";
 import {useStoryInspectable} from "./story-object-input.js";
-import {declineBasementScrollOffer} from "./story-basement.js";
 import mksgPlacements from "../../play/data/mksg-runtime-placements.json" with {type:"json"};
 
 // Continue the genuinely earned mirror save. Pose resets shorten approaches;
@@ -58,7 +57,6 @@ export async function verifyMirrorReturn(page,testInfo,character){
 
   if(!initial.character.storyFlags["story.s1.fuku-phoenix-mirror.completed"]){
     if(initial.character.worldId==="ydb1"){
-      await declineBasementScrollOffer(page,testInfo,character,"mirror-return-optional-scroll-offer");
       await walkInto([-.758,-.005110997706651688,6],Math.PI,()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.ydb1.basement-return");
       await options();await page.getByRole("button",{name:"Return to the dojo",exact:true}).click();await arrived("exterior");
     }else if(initial.character.worldId!=="exterior"){await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld("exterior"));await arrived("exterior");}

@@ -372,3 +372,31 @@ test("Mai's alley uses both horizontal coordinates even on sloped ground", () =>
   assert.equal(enter(-125, 0, 43), false);
   assert.equal(enter(-125, 7, 20), true);
 });
+
+test("Fuku’s hall offers accept named and native milestones and respect both expiry flags", () => {
+  const offers = [
+    ["s1.jomo.fuku-translated-letter", [155, 180], "story.s1.fuku-letter-gate.completed", 190],
+    ["s1.jomo.fuku-after-jimmy", [400], "story.s1.jimmy-interrogation.completed", 410],
+  ];
+  for (const [id, bits, receipt, expiry] of offers) {
+    const region = storyRegions.regions.find(entry => entry.id === id);
+    const flags = {}, native = new Set();
+    const runtime = new StoryRegionRuntime({
+      regions: [region], controller: { status: "idle", start: async () => true },
+      getCharacter: () => ({id: 10, playMode: "story", openingCompleted: true, storyFlags: flags}),
+      getGameDate: () => new Date("1986-12-04T20:00:00Z"),
+      hasNativeFlag: bit => native.has(bit), publishPresence: () => true,
+    });
+    const enter = () => runtime.update({ area: "JOMO", worldId: "interior", playerPosition: [-15, 0, 2], enabled: true });
+    assert.equal(enter(), false);
+    for (const bit of bits) native.add(bit);
+    assert.equal(enter(), true);
+    runtime.reset();
+    native.delete(bits[0]);
+    flags[receipt] = true;
+    assert.equal(enter(), true);
+    runtime.reset();
+    native.add(expiry);
+    assert.equal(enter(), false);
+  }
+});

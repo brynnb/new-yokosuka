@@ -1,6 +1,8 @@
 import {verifyDobuitaDrunkard} from "./story-dobuita-drunkard.js";
 import {verifyMaiAlley} from "./story-mai-alley.js";
 import {verifyHisaka} from "./story-hisaka.js";
+import {verifyFukuReturn} from "./story-fuku-return.js";
+import {verifyPoetryReading} from "./story-poetry.js";
 import {verifyScrollTranslation} from "./story-scroll-translation.js";
 import { expect, test } from "@playwright/test";
 import { randomUUID } from "node:crypto";
@@ -1741,6 +1743,18 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     if (process.env.NEW_YOKOSUKA_HISAKA_E2E) {
       test.setTimeout(300_000);
       await verifyHisaka(page, testInfo, character, enterStoryWorld, process.env.NEW_YOKOSUKA_HISAKA_E2E);
+      expect(errors).toEqual([]);
+      return;
+    }
+    if (process.env.NEW_YOKOSUKA_FUKU_RETURN_E2E) {
+      test.setTimeout(360_000);
+      await verifyFukuReturn(page, testInfo, character, enterStoryWorld, process.env.NEW_YOKOSUKA_FUKU_RETURN_E2E);
+      expect(errors).toEqual([]);
+      return;
+    }
+    if (process.env.NEW_YOKOSUKA_MYSTERIOUS_SCROLL_E2E === "true") {
+      test.setTimeout(540_000);
+      await verifyPoetryReading(page, testInfo, character, enterStoryWorld);
       expect(errors).toEqual([]);
       return;
     }

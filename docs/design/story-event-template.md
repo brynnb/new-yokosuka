@@ -274,10 +274,10 @@ flag, unchanged inventory and money, and restored controls. A separate real
 Yarn check verifies all six voice IDs and their order. The test repositions
 near the desk and is not a full natural walk from the opening.
 
-The `01MEM` recordings listed elsewhere as a farewell-letter conversation
-actually mention Zhu, the mirror and Master Chen: they concern the later
-Chinese letter, not this desk letter. Do not use those lines as a fabricated
-follow-up to the farewell.
+The separate 01MEM visit plays after Xia translates Zhu’s letter. Return to the
+Hazuki home before the Master Chen phone call to show Fuku the memo. The
+[home conversation notes](story-fuku-home-conversations.md) cover this film
+and the evening visit after Jimmy.
 
 ## Fuku-san: the first dojo visit
 
@@ -504,7 +504,7 @@ These staged checks make no home, measured-walking or full-route acceptance
 claim; both earlier attempts retain their failed results.
 
 NOZOMI_HOME verifies December 16 arrival at 05:56 and immediate wake at
-07:30–07:31; late-start next-day branches remain untested. That run reproduced a skirt spike with the original model and paired motions. A later retail capture recovered the garment vertices throughout the ride. At shot 4, frame 180, the browser’s longest skirt triangle edge now matches the captured 0.208 m. The [native cloth evidence](../../tools/evidence/nbik-nozomi-cloth.json) records the comparison.
+07:30–07:31. A later connected test began the ride on December 31 and arrived on January 1 at 05:56, then woke at 07:30. A separate December 31 evening bedside run also woke on January 1. That run reproduced a skirt spike with the original model and paired motions. A later retail capture recovered the garment vertices throughout the ride. At shot 4, frame 180, the browser’s longest skirt triangle edge now matches the captured 0.208 m. The [native cloth evidence](../../tools/evidence/nbik-nozomi-cloth.json) records the comparison.
 
 The separate opening baseline naturally completes all four films and the first
 allowance, including notebook and saved reload. That original whole test later

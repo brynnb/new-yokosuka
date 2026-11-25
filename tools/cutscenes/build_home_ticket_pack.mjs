@@ -19,6 +19,8 @@ const evidence="docs/design/story-ticket-journey.md";
 // Native slots include empty TRCK records. Package-local slot zero remains
 // separate from these original owner/callback identities.
 const homeCallbacks={
+  "fuku-after-jimmy":{owner:"0x78b50",callback:"0x7b0e4",slot:41,evidence:"fuku-after-jimmy-callback-ir.json"},
+  "fuku-translated-letter":{owner:"0x6ce90",callback:"0x6d3a4",slot:34,evidence:"fuku-translated-letter-callback-ir.json"},
   "post-chen-home":{owner:"0x706a0",callback:"0x70b18",slot:19},
   "bank-savings":{owner:"0x70d24",callback:"0x71190",slot:10},
   "travel-family":{owner:"0x730dc",callback:"0x7353c",slot:17},
@@ -85,6 +87,16 @@ const actor=(label,code)=>{
     assetPath:`${prefix}/${code}.CHRM`,textureAssetPath:`${prefix}/${code.slice(0,3)}_textures.bin`};
 };
 const profiles=[
+  {id:"fuku-translated-letter",disc:1,evidence:"docs/design/story-fuku-home-conversations.md",resource:"01MEM",offset:0xb22f8,size:19932,hash:"cf859cd3450e3c6e18b965bcc39850b32e209dd96f6815a5a4683880b6b0a099",frames:1051,
+    mapHash:"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",commonHash:"4b117711c45ca0a94690ce14b8896ddb5feacfde0ba5c7f2a13ae5310201ba22",
+    motion:"M_01MEM.MOTN",motionSize:34340,motionHash:"50793ec787eba203456827f1be0dfc9339f8a5a6425d656c77cc31f112a5ba24",bank:28,base:0,actors:["AKIR","FUKU","MEMO"],
+    propModels:{MEMO:{file:"MMA0201G.MT5",size:68396,sha256:"6546356630e649eb7e89f89a1150ef7cedab58e02179abf11bb83dbed0a5c578"}},
+    music:{id:"tym001",sourceId:"4112e0bde97510fb01552b1aff964c7da0e1f5aa37f937dcea8e8aaf941c2af7",bankHash:"690eb1ddf1dea95217d0b40166694cc92c760315852cf68f846078501e488b99",label:"Fuku and the translated letter"},
+    stream:"01MEM",streamHash:"a1aef898788f89c4c1d1bfa51924bb0a465a85b17e699470686dfde35d2eef48",sound:"A1_HUKUM.SND",soundHash:"311e2a0cb8d6f169e8176f29970f5bb07cf81049d671c11e88523ae102f2c227"},
+  {id:"fuku-after-jimmy",disc:3,evidence:"docs/design/story-fuku-home-conversations.md",resource:"01JIB",offset:0xaa6fc,size:8312,hash:"e9659c20bd2071610d89a7425681161b92c713f5c04803fa4d5398cc3cb90273",frames:1150,
+    mapHash:"43c613a944cc021e26793193826cf6e7dde57cd5f55ce1bfa9c1e41ce33c9c89",commonHash:"4df506b3994e111f1bc105a4485a22b19abcdf9cb6a1a02b2e0fab3f049cf136",
+    motion:"M_01JIB.MOTN",motionSize:29664,motionHash:"0d0cf326c380fe86ee17a963cb59ad5508b8486990456780e164e205051bea12",bank:28,base:192,actors:["AKIR","FUKU","dor0"],
+    stream:"01JIB",streamHash:"6205208ec21bb607a291d6cd4282ad2864d29a0c97d888e26d503275bb14170e",sound:"A1_JIBUN.SND",soundHash:"6fe7d08dd803357be04f84d8360a6c5b814e79ba92bc2e147f2a343a5a458273"},
   {id:"friends-visit-arrival",resource:"01FRE",offset:0xbd138,size:5644,hash:"b55709205608fb9e20494d0511250ebc5402e57aed7976a7090e06afe4a21f4b",frames:1030,
     motion:"M_01FRE.MOTN",motionSize:104568,motionHash:"4edd6ff2f64c2f519140b0af46bc3fd446899c669631b68949459d0febe773ca",bank:26,base:0,actors:["AKIR","ITOH","SKRD"],
     stream:"01FRE",streamHash:"7b43d75d3065e0b7770b00a06cb5c5f2b9093a0e2a4b783961d1f3b8c1fcf1da",sound:"A1_ITO.SND",soundHash:"82f25b1f26360cfccdf57c8c134588d0cd37690e9b3e098dfc09b9d285da6134"},
@@ -321,6 +333,11 @@ for(const p of selectedProfiles){
     // JOMO's existing TEL_ placement owns this phone. Borrow and restore it;
     // adding another model would put two phones at the same original pose.
     props.TEL_={model:"TELS514G",browserFilename:"S1_JOMO_TELS514G.MT5",objectTag:"TEL_"};
+  }
+  if(p.id==="fuku-after-jimmy"){
+    // The owner temporarily assigns dor0 to descriptor 11, static record 7.
+    // In normal room play that same physical object is registered as dor7.
+    props.dor0={model:"DR01_015",browserFilename:"S1_JOMO_DR01_015.MT5",objectTag:"dor7"};
   }
   const prop=(tag,file,size,hash,archive=null)=>{
     members.push({name:file,sourcePath:path.join(source,area,archive||file),sourceManifestPath:`${discPath}/${area}/${archive||file}`,

@@ -1,0 +1,14 @@
+<<play_sequence "{{staging}}.start">>
+{{voice:E1012A299}}
+{{voice:E1012A300}}
+-> Take the scroll
+    <<jump Take>>
+-> Leave it
+    <<play_sequence "{{staging}}.finish">>
+    <<complete>>
+===
+title: Take
+---
+<<play_sequence "{{staging}}.finish">>
+{{effects}}
+<<complete>>

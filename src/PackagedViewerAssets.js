@@ -1,6 +1,7 @@
 // Shared by browser asset resolution and offline geometry processing. These
 // catalog names refer to packaged native assets, not public/models/*.MT5.
 export const PACKAGED_VIEWER_ASSETS = Object.freeze({
+  "S2_YDB1_MKIS3C3G.MT5": "play/assets/basement/mirror-search/MKIS3C3G.CHRM",
   "G_VENDING_JIHS5KNG.MT5": "play/assets/vending/JIHS5KNG.CHRM",
   "G_VENDING_textures.bin": "play/assets/vending/VEND_textures.bin",
   "S1_OP00_OMO.MT5": "play/assets/introduction/op00/models/OMO.MAPM",

@@ -14,6 +14,7 @@ const archive = fs.readFileSync(path.join(source, "MPK00.PKS"));
 if (sha256(archive) !== "494c0fe00feebe7797e7b663bc62f989cffab2e8f83d18969bc755113909657c") throw Error("Changed original YDB1 archive");
 const members = parseIpacActivityArchive(archive).members;
 const hashes = {
+  "MKIS3C3G.CHRM": "6ed2db0b7aa397a00786b164297df5868b42cf83638908eb5bb430795603f289",
   "M_0138.MOTN": "b87b57426d1d3e7dafb340b3086c381e85862d401008f14902bbd822d3ed327e",
   "ONOS500G.CHRM": "c4cc7dca0e7194d3734bda8f34bd0b771f84fd342a32c82d611c3d3feddac147",
   "PNX02M1G.CHRM": "b8abb8ddad33c16097a60085f91f40fb82f5a175132cabc0101104ae54c81bb0",
@@ -30,7 +31,7 @@ const selections = [
 // A different, unused sequence in this bank is not decoded by our parser.
 // Validate the actual named selections, just as the runtime loads them, rather
 // than requiring reconstruction of every unrelated original controller.
-const bank = MotnLoader.parse(outputs[0].bytes, {sequenceIndices: selections.map(([index]) => index)});
+const bank = MotnLoader.parse(outputs.find(file => file.name === "M_0138.MOTN").bytes, {sequenceIndices: selections.map(([index]) => index)});
 const sequences = selections.map(([index, name]) => {
   const clip = bank.sequences.find(clip => clip.name === name);
   if (!clip || clip.valueData?.complete !== true) throw Error(`Incomplete basement clip ${index}/${name}`);

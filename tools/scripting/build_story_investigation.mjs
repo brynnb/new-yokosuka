@@ -101,9 +101,10 @@ for (const route of spec.routes) {
   const lines = dialogueLines(route.voiceIds);
   const leadIn = dialogueLines(route.leadInVoiceIds || []);
   const questions=(route.victoryChoices || []).map(choice=>({label:choice.label,lines:dialogueLines(choice.voiceIds)}));
-  const requiredItems = (route.requiredItems || []).map(({key,quantity}) => {
+  const requiredItems = (route.requiredItems || []).map(({key,quantity,nativeOwnership}) => {
     if(!/^[a-z][a-z0-9_]*$/.test(key)||!Number.isSafeInteger(quantity)||quantity<1)throw new Error(`Invalid inventory prerequisite in ${route.id}`);
-    return {key,quantity};
+    if (nativeOwnership && (!/^2:\d+$/.test(nativeOwnership) || !route.nativeSources?.length)) throw Error(`Invalid native ownership in ${route.id}`);
+    return {key,quantity,nativeOwnership};
   });
   // Ambient talks cannot settle effects. An explicitly authored repeatable
   // template owns its transactional choices itself (for example, consuming a
@@ -112,7 +113,7 @@ for (const route of spec.routes) {
   const repeatableTemplate=route.repeatable&&!!route.yarnTemplate&&!route.destination&&!route.shop;
   if (route.repeatable && ((!route.destination && !route.shop && !ambientTalk && !repeatableTemplate) || route.items?.length || route.grantYen || route.spendYen || route.recordMinutes?.length || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length || ((ambientTalk||repeatableTemplate)&&route.effects.length))) throw Error(`Unsafe repeatable route ${route.id}`);
   if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw Error(`Invalid Story destination ${route.id}`);
-  const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...(route.excludedFlags||[]).map(flag=>`flag_set("${flag}")`), ...requiredItems.map(({key,quantity})=>`!has_item("${key}", ${quantity})`), ...(route.repeatable ? [] : [`flag_set("${route.completedFlag}")`])];
+  const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...(route.excludedFlags||[]).map(flag=>`flag_set("${flag}")`), ...requiredItems.map(({key,quantity,nativeOwnership})=>nativeOwnership ? `(!has_item("${key}", ${quantity}) && native_value("${nativeOwnership}") == 0)` : `!has_item("${key}", ${quantity})`), ...(route.repeatable ? [] : [`flag_set("${route.completedFlag}")`])];
   for (const address of route.excludedNativeFlags || []) {
     if (!/^2:\d+$/.test(address) || !route.nativeSources?.length) throw Error(`Invalid native flag exclusion in ${route.id}`);
     gates.push(`native_value("${address}") != 0`);
@@ -277,7 +278,7 @@ for (const route of spec.routes) {
     SourceText: sourceText, Triggers: [{ nodeId: "Start", kind: route.trigger || "talk", area: route.area, ...(route.object ? {object:route.object} : route.trigger ? {} : { actor: route.actor }), priority: route.priority ?? 200 }],
     TestFixtures: [{ Name: "Eligible personal investigation", StartNode: "Start", Fixture: {
       playMode: "story", openingCompleted: true, scene: route.area, gameHour: route.hours ? Math.max(10,route.hours[0]) : 10,
-      flags: Object.fromEntries(route.requiredFlags.map(flag => [flag, true])),
+      flags: Object.fromEntries([...route.requiredFlags, ...(route.testFlags || [])].map(flag => [flag, true])),
       ...(requiredItems.length?{inventory:Object.fromEntries(requiredItems.map(({key,quantity})=>[key,quantity]))}:{}),
       actorPresence: Object.fromEntries((route.presentActors || participants).map(actor => [actor, true])),
       ...((route.earliestDate||route.recordDays?.length||route.recordMinutes?.length||route.minuteAfter||route.combat||route.dayAfter||route.dayAfterIfKnown||route.sameDayAs||route.timeTransition)?{gameDate:route.earliestDate||"1986-12-04"}:{}),

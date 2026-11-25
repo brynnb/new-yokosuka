@@ -125,7 +125,7 @@ const ACTIVITIES = new Map([
     cutscene:{id:`story-s1-${part}`,packageId:part,worldId:"arcade",storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:`${resource}/${resource}.AUTH`}}},
   }]),
-  ...[["friends-visit-arrival","01FRE","JOMO","interior"],["friends-visit-departure","01FRE","JOMO","interior"],["nozomi-park-call","01SKIA","JOMO","interior"],["nozomi-night-call","01GET","JOMO","interior"],["jimmy-morning-call","A0169","JOMO","interior"],["chai-home-recovery","A0173","JOMO","interior"],["post-chen-home","A0160","JOMO","interior"],["bank-savings","01BNK","JOMO","interior"],["travel-family","01EAR","JOMO","interior"],
+  ...[["friends-visit-arrival","01FRE","JOMO","interior"],["fuku-translated-letter","01MEM","JOMO","interior"],["fuku-after-jimmy","01JIB","JOMO","interior"],["friends-visit-departure","01FRE","JOMO","interior"],["nozomi-park-call","01SKIA","JOMO","interior"],["nozomi-night-call","01GET","JOMO","interior"],["jimmy-morning-call","A0169","JOMO","interior"],["chai-home-recovery","A0173","JOMO","interior"],["post-chen-home","A0160","JOMO","interior"],["bank-savings","01BNK","JOMO","interior"],["travel-family","01EAR","JOMO","interior"],
     ["fuku-travel-funds","01MON","JOMO","interior"],["global-airfare","01MIT","DSKI","dski"],["asia-airfare","01ETU","DAZA","daza"],
     ["global-boat","01MIT","DSKI","dski"],["boat-ticket-purchase","01ETU","DAZA","daza"],["boat-ticket-collection","A0165","DAZA","daza"]].map(([part,resource,area,worldId])=>[`s1.${area.toLowerCase()}.${part}.scene`,{
     kind:"native-cutscene",area,durableEffects:"forbidden",returnPlayerState:true,
@@ -367,6 +367,9 @@ const SEQUENCES = new Map([
   ...authoredScenes.scenes.flatMap(scene => [
     [`${scene.id}.start`, { kind: scene.continuesPrevious?"scene-staging-transition":"scene-staging-start", area: scene.area, scene, executable: true }],
     [`${scene.id}.finish`, { kind: "scene-staging-finish", area: scene.area, scene, executable: true }],
+    ...(scene.dialogueCues || []).map(cue=>[
+      `${scene.id}.cue-${cue.voiceId.toLowerCase()}`, {kind:"scene-staging-dialogue-cue",area:scene.area,scene,atSeconds:cue.atSeconds,executable:true},
+    ]),
     ...(scene.dialogueCueSeconds ? [[`${scene.id}.dialogue-cue`, { kind: "scene-staging-dialogue-cue", area: scene.area, scene, executable: true }]] : []),
   ]),
   ["d000.door.1.closed-check.start", {

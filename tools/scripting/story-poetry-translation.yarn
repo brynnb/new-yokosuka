@@ -1,0 +1,63 @@
+-> Ask Gui Zhang to read the mysterious scroll
+    <<jump ReadPoem>>
+-> Not now
+    <<complete>>
+===
+title: ReadPoem
+---
+<<play_sequence "{{staging}}.start">>
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109a001">>
+{{voice:SA1109A001}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b001">>
+{{voice:SA1109B001}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109a002">>
+{{voice:SA1109A002}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b002">>
+{{voice:SA1109B002}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b003">>
+{{voice:SA1109B003}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b004">>
+{{voice:SA1109B004}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b005">>
+{{voice:SA1109B005}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b006">>
+{{voice:SA1109B006}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b007">>
+{{voice:SA1109B007}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b008">>
+{{voice:SA1109B008}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b009">>
+{{voice:SA1109B009}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b010">>
+{{voice:SA1109B010}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109a003">>
+{{voice:SA1109A003}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b011">>
+{{voice:SA1109B011}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b012">>
+{{voice:SA1109B012}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b013">>
+{{voice:SA1109B013}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109a004">>
+{{voice:SA1109A004}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b014">>
+{{voice:SA1109B014}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b015">>
+{{voice:SA1109B015}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109a005">>
+{{voice:SA1109A005}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b016">>
+{{voice:SA1109B016}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109b017">>
+{{voice:SA1109B017}}
+<<play_sequence "s1.ms08.poetry-reading.cue-sa1109a006">>
+{{voice:SA1109A006}}
+<<play_sequence "{{staging}}.finish">>
+// Existing Story inventory and imported native possession converge on this receipt.
+<<if !has_item("mysterious_scroll", 1)>>
+    <<give_item "mysterious_scroll" 1>>
+<<endif>>
+<<set_native_value "2:548" 1>>
+{{effects}}
+<<travel_story "{{destination}}">>
+<<complete>>

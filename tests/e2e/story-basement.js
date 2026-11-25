@@ -1,46 +1,5 @@
 import {expect} from "@playwright/test";
 
-// Decline only the genuine optional Stab Armor offer. The basement search and
-// its saved return checkpoint can both enter this region with the full catalog.
-export async function declineBasementScrollOffer(page, testInfo, character, evidenceName = "basement-optional-scroll-offer") {
-  const saved = () => page.request.get(`/api/characters/${character.id}/state`).then(r => r.json());
-  const idle = async () => {
-    await expect.poll(() => page.evaluate(() => window.storyProbe.regions.controller.status)).toBe("idle");
-    expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
-    expect(await page.evaluate(() => window.storyProbe.sceneErrors)).toEqual([]);
-  };
-  // The full catalog offers this optional scroll on the floor/shelf approach.
-  // Let the actual region dispatch settle, then decline its own UI before
-  // picking the required object. Do not cancel arbitrary Story interactions.
-  await page.waitForFunction(() => {
-    const p = window.storyProbe, r = p.regions;
-    const region = r.regions.find(region => region.id === "s1.ydb1.stab-armor-scroll");
-    if (!region) throw Error("Missing published Stab Armor scroll region");
-    const position = p.lifecycle.getController().collider.position.asArray();
-    const inside = position.every((value, axis) => value >= region.min[axis] && value <= region.max[axis]);
-    return !inside || r.getCharacter().storyFlags?.[region.completedFlag] || r.inside.has(region.id);
-  });
-  await page.waitForFunction(() => ["idle", "line", "options"].includes(window.storyProbe.regions.controller.status));
-  const slug = await page.evaluate(() => window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug);
-  if (slug === "story-s1-stab-armor-scroll") {
-    const prior = await saved();
-    if (await page.evaluate(() => window.storyProbe.regions.controller.status === "line")) await page.keyboard.press("Space");
-    await expect(page.getByRole("button", {name: "Take the move scroll", exact: true})).toBeVisible();
-    await page.screenshot({path: testInfo.outputPath(`${evidenceName}.png`)});
-    await page.getByRole("button", {name: "Leave it here", exact: true}).click();
-    await idle();
-    const after = await saved();
-    expect(after.inventory).toEqual(prior.inventory);
-    expect(after.character.yen).toBe(prior.character.yen);
-    expect(after.character.currentHp).toBe(prior.character.currentHp);
-    expect(after.character.storyFlags["story.s1.stab-armor-scroll.completed"])
-      .toBe(prior.character.storyFlags["story.s1.stab-armor-scroll.completed"]);
-    console.info("Basement optional Stab Armor scroll declined without a grant");
-  }
-  await idle();
-
-}
-
 // Continue the earned descent save through real mouse picks and the normal
 // WebSocket/Yarn transaction. Resetting the test pose shortens walking only;
 // no future flag, reward, controller outcome or runtime event is fabricated.
@@ -56,10 +15,7 @@ export async function verifyBasementMirrorSearch(page, testInfo, character) {
     expect(await page.evaluate(() => window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
     await noErrors();
   };
-  let scrollChecks = 0;
-  const declineOptionalScroll = () => declineBasementScrollOffer(page, testInfo, character,
-    `basement-optional-scroll-offer-${++scrollChecks}`);
-  await declineOptionalScroll();
+  await idle();
   const objectState = tag => page.evaluate(tag => {
     const root = window.storyProbe.lifecycle.scene.meshes.find(m => m.metadata?.runtimeObject?.objectTag === tag)?.metadata.runtimeObject.root;
     if (!root) throw Error(`Missing basement prop ${tag}`);
@@ -120,7 +76,7 @@ export async function verifyBasementMirrorSearch(page, testInfo, character) {
       return {x: rect.x + s.x * rect.width / l.engine.getRenderWidth(), y: rect.y + s.y * rect.height / l.engine.getRenderHeight()};
     }, {tag, position, surfacePoint});
     await page.waitForTimeout(350);
-    await declineOptionalScroll();
+    await idle();
     const actualPick=await page.evaluate(({point,tag})=>{
       const d=window.storyProbe.interactions,l=window.storyProbe.lifecycle,rect=l.engine.getRenderingCanvas().getBoundingClientRect();
       const pick=l.scene.pick(point.x-rect.x,point.y-rect.y,m=>d.isInteractiveMesh(m),false,l.scene.activeCamera);

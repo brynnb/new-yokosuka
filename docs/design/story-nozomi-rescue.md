@@ -331,6 +331,15 @@ Story settlement path; the ride is a presentation, not another driving win.
 | Rest / wake | At the existing tested bedside approach, choose **Sleep until 7:30 a.m.** or **Stay awake**. Sleep independently saves the next 07:30, bedside arrival and rest receipt. The sleeping/waking film is condensed; no unrelated nightmare is substituted. A later personal save targets the following date instead of rewinding. The dojo meditation remains a subsequent event. |
 | Cancellation / reload / skip | The shared program releases original actors, camera, audio and inputs on abort/failure; cancelled presentation remains retryable at its saved cinematic start. Saved rescue is retained. Completed home/rest reload cannot replay the ride or grant future progression. Broad cinematic bounds cover transient shot poses without inventing a new recovery system. |
 
+Connected browser checks on an isolated character also cover the year boundary.
+From a saved Dec 31, 1986 nighttime rescue, the natural 23-shot ride began at
+22:46:54 and saved the Jan 1, 1987 home arrival at 05:56. Sleeping at home
+then saved 07:30 on Jan 1, and reloading kept that morning. A second character
+already at home declined rest at night and reloaded. Choosing sleep at 22:49
+on Dec 31 advanced to 07:30 on Jan 1 and reloaded at 07:32. Both tests used
+a Radeon RX 9070 XT browser, the normal Story scripts and PostgreSQL. The
+fixtures supplied the preceding rescue or home milestone and the late clock.
+
 ### Ride-home source identities
 
 AUTH files contain `TRCK` headers; `AUTH` is their filename extension, not a

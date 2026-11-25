@@ -434,6 +434,10 @@ test("AUTH FIXO presentation and articulated nodes seek from authored state", as
       pos: { x: 0, y: 0, z: 0 },
       rot: { x: 0, y: 0, z: 0 },
     }];
+    // Retail returns the first node with a matching key in model traversal order.
+    const innerFold = new BABYLON.TransformNode("nested fold with repeated key", scene);
+    innerFold.parent = hinge;
+    letter._mt5Nodes.push({ ...letter._mt5Nodes[0], mesh: innerFold });
     const parentRoot = new BABYLON.TransformNode("ryo", scene);
     const runtime = new NativeAseqAttachedObjectRuntime({
       definitions: {
@@ -478,7 +482,8 @@ test("AUTH FIXO presentation and articulated nodes seek from authored state", as
     assert.equal(letter.isEnabled(), false);
     runtime.update(350);
     assert.equal(letter.isEnabled(), true);
-    runtime.update(423);
+    assert.equal(runtime.update(423), true);
+    assert.equal(innerFold.rotationQuaternion, null);
     const openRotation = hinge.rotationQuaternion.clone();
     runtime.update(775);
     assert.ok(Math.abs(hinge.rotationQuaternion.z) < 0.001);

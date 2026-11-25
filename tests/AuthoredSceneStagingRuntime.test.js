@@ -497,3 +497,41 @@ test("the next voiced line can join a running motion at its authored time", asyn
   assert.equal(await finish, true);
   assert.equal(h.runtime.active, null);
 });
+
+test("a staged wrist overlay loads and plays over locomotion until the next full-body cue",async()=>{
+  const h=harness(),baseMotion={bank:"free",name:"walk",loop:true,movement:true};
+  const a=h.scene.actors[0],cueMotion={bank:"bent",name:"set-down"};
+  a.baseMotion=baseMotion;
+  a.motionCues=[{atSeconds:1,motion:cueMotion}];
+  h.scene.durationSeconds=2;
+  h.scene.waitForMotionCompletion=false;
+  let selections;
+  const applied=[];
+  h.runtime.motionRuntime.loadNamedSelections=async value=>{selections=value};
+  h.runtime.motionRuntime.applyNamed=(_model,motion,_elapsed,layers)=>{applied.push({motion,layers});return true};
+  await h.runtime.play({kind:"scene-staging-start",scene:h.scene},h.transaction);
+  assert.deepEqual(selections,[a.motion,baseMotion,cueMotion]);
+  assert.deepEqual(applied.at(-1),{motion:a.motion,layers:{baseSelection:baseMotion,baseProvidesTimeline:true}});
+  h.runtime.update(h.transaction,1.2);
+  assert.deepEqual(applied.at(-1),{motion:cueMotion,layers:undefined});
+  h.runtime.cancel(h.transaction);
+});
+
+test("timed scroll dialogue joins the same staged performance and releases a pending cue on cancel", async () => {
+  const {runtime,transaction,scene}=harness();
+  Object.assign(scene,{durationSeconds:8,waitForMotionCompletion:false,playThroughFinish:true,
+    dialogueCues:[{voiceId:"SA1109A001",atSeconds:1},{voiceId:"SA1109B001",atSeconds:3}]});
+  await runtime.play({kind:"scene-staging-start",scene},transaction);
+  const waitAt=atSeconds=>runtime.play({kind:"scene-staging-dialogue-cue",scene,atSeconds},transaction);
+  const first=waitAt(1);
+  runtime.update(transaction,.9);
+  assert.ok(runtime.active.resolve);
+  runtime.update(transaction,.1);
+  assert.equal(await first,true);
+  const second=waitAt(3);
+  runtime.update(transaction,1.9);
+  assert.ok(runtime.active.resolve);
+  runtime.cancel(transaction);
+  await assert.rejects(second,/released/);
+  assert.equal(runtime.active,null);
+});

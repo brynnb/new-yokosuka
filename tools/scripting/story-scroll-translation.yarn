@@ -6,20 +6,40 @@
 title: Translate
 ---
 <<play_sequence "{{staging}}.start">>
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108a001">>
 {{voice:SA1108A001}}
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108b001">>
 {{voice:SA1108B001}}
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108a002">>
 {{voice:SA1108A002}}
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108b002">>
 {{voice:SA1108B002}}
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108b003">>
 {{voice:SA1108B003}}
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108b004">>
 {{voice:SA1108B004}}
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108b005">>
 {{voice:SA1108B005}}
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108b006">>
 {{voice:SA1108B006}}
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108b007">>
 {{voice:SA1108B007}}
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108b008">>
 {{voice:SA1108B008}}
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108b009">>
 {{voice:SA1108B009}}
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108a003">>
 {{voice:SA1108A003}}
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108b010">>
 {{voice:SA1108B010}}
+<<play_sequence "s1.ms08.stab-armor-reading.cue-sa1108a004">>
 {{voice:SA1108A004}}
 <<play_sequence "{{staging}}.finish">>
+// Existing Story inventory and imported native possession converge on this receipt.
+<<if !has_item("scroll_stab_armor", 1)>>
+    <<give_item "scroll_stab_armor" 1>>
+<<endif>>
+<<set_native_value "2:969" 1>>
 {{effects}}
+<<travel_story "{{destination}}">>
 <<complete>>

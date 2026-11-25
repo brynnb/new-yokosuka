@@ -1,0 +1,13 @@
+<<if (native_value("2:180") == 0 && !flag_set("story.s1.xia-letter-translation.completed")) || (native_value("2:155") == 0 && !flag_set("story.s1.fuku-letter-gate.completed"))>>
+<<pass_trigger>>
+<<endif>>
+-> Show Fuku-san the translated letter
+    <<jump ShowLetter>>
+-> Not now
+    <<complete>>
+===
+title: ShowLetter
+---
+<<start_activity "s1.jomo.fuku-translated-letter.scene">>
+{{effects}}
+<<complete>>

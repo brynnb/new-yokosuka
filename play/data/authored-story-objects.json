@@ -1,6 +1,7 @@
 {
   "schema":"new-yokosuka-authored-story-objects-v1",
   "placements": [
+    {"area":"YDB1","model":"S2_YDB1_MKIS3C3G.MT5","position":[-2.802999973297119,1.0019999742507935,7.407800197601318],"rotationDegrees":[270,-180,-180],"runtime":{"objectTag":"BOOK","authoredStoryProp":true,"initiallyEnabled":true},"provenance":"Disc 2 YDB1 MPK00/CHARA.CHRT record 0x1520 binds BOOK to MKIS3C3G. Native X, yaw and roll are reflected into browser coordinates."},
     {"area":"YDB1","model":"S2_YDB1_TANR0B4G.MT5","position":[-7,0,2],"rotationDegrees":[0,90,0],"runtime":{"objectTag":"SHEF","authoredStoryProp":true,"initiallyEnabled":true},"provenance":"Original cabinet-sized TANR0B4G model; authored movable-shelf identity, west-wall position and angle. Not a recovered native shelf placement."},
     {"area":"YDB1","model":"S2_YDB1_ONOS500G.MT5","position":[-2.8,0.11,4.8],"rotationDegrees":[0,0,0],"runtime":{"objectTag":"AXE_","authoredStoryProp":true,"initiallyEnabled":true},"provenance":"Original ONOS500G axe; authored accessible near-entrance position, on the room side of the original partition. Guide p40 supplies near-entrance location, not exact coordinates."},
     {"area":"YDB1","model":"S2_YDB1_ANAR001G.MT5","position":[-7.995,0.8,2],"rotationDegrees":[0,90,0],"runtime":{"objectTag":"KABE","authoredStoryProp":true,"initiallyEnabled":false},"provenance":"Original KABE-to-ANAR001G binding; authored wall-hole overlay just inside the original west face at x=-8 (rendered geometry pick). Detailed debris and wall removal are condensed."},
@@ -14,6 +15,8 @@
     {"area":"YDB1","object":"WALL","models":["S2_YDB1_MAP.MT5"],"min":[-8.05,0.1,1.3],"max":[-7.95,1.65,2.7],"requiredFlags":["story.s1.basement-shelf.completed"],"excludedFlags":["story.s1.basement-wall.completed"],"provenance":"Authored usable patch of actual original west-wall face at x=-8, verified by a rendered geometry pick. Revealed after moving the shelf; server requires the owned axe. No invisible prop at origin or client-side reward."}
   ],
   "rules":[
+    {"area":"YDB1","flag":"story.s1.stab-armor-scroll.completed","transforms":[{"object":"BOOK","visible":false}],"provenance":"YDB1 0x6c1e checks ownership bit 969, then 0x6c4a hides the original BOOK."},
+    {"area":"JHD0","flag":"story.s1.mysterious-scroll-pickup.completed","transforms":[{"object":"MKCS","visible":false}]},
     {"area":"JU00","flag":"story.s1.kitten-adopted.completed","transforms":[{"object":"CATM","visible":false}],"provenance":"After Megumi adopts the kitten, hide the original shrine kitten only for this Story character; leave the box and Free roam unchanged."},
     {"area":"JU00","flag":"story.s1.kitten-missing.completed","excludedFlags":["story.s1.kitten-found.completed","story.s1.kitten-adopted.completed"],"transforms":[{"object":"CATM","offset":[-4.170799255371094,-1.705000009536743,34.28040008544922]}],"provenance":"Move the original kitten only for this Story player while she is missing. The lower stairs and nearby laundry follow a walkthrough; exact placement is authored and visually checked."},
     {"area":"JOMO","flag":"story.s1.twin-blades-scroll.completed","transforms":[{"object":"imk1","visible":false}],"provenance":"Hide the inferred original Fuku-room scroll only for its Story owner after pickup."},

@@ -1,0 +1,496 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 1,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "01MEM.AUTH",
+        "path": "disc1/SCENE/01/JOMO/MAPINFO.BIN",
+        "sourceOffset": 729848,
+        "sourceSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+        "byteLength": 19932,
+        "sha256": "cf859cd3450e3c6e18b965bcc39850b32e209dd96f6815a5a4683880b6b0a099"
+      },
+      {
+        "name": "M_01MEM.MOTN",
+        "path": "disc1/SCENE/01/JOMO/COMMON01.PKS",
+        "sourceSha256": "4b117711c45ca0a94690ce14b8896ddb5feacfde0ba5c7f2a13ae5310201ba22",
+        "archiveMember": "M_01MEM.MOTN",
+        "byteLength": 34340,
+        "sha256": "50793ec787eba203456827f1be0dfc9339f8a5a6425d656c77cc31f112a5ba24"
+      },
+      {
+        "name": "MMA0201G.MT5",
+        "path": "disc1/SCENE/01/JOMO/MMA0201G.MT5",
+        "byteLength": 68396,
+        "sha256": "6546356630e649eb7e89f89a1150ef7cedab58e02179abf11bb83dbed0a5c578"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-fuku-home-conversations.md",
+    "resourceName": "01MEM",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector. Original owner 0x6ce90 selects native slot 34 with callback 0x6d3a4; hands, FACE expressions and prop grips/hinges use that callback. FACE gaze and LKPT tracking remain omitted."
+  },
+  "audioManifest": "public/audio/world/fuku-translated-letter/manifest.json",
+  "sceneObjects": {
+    "MEMO": {
+      "model": "MMA0201G.MT5",
+      "browserFilename": "MMA0201G.MT5",
+      "assetPath": "play/assets/hazuki/fuku-translated-letter/MMA0201G.MT5",
+      "textureAssetPath": "play/assets/hazuki/fuku-translated-letter/textures.bin"
+    }
+  },
+  "packageActors": {
+    "FUKU": {
+      "label": "Masayuki Fukuhara",
+      "modelCode": "FUK_M",
+      "browserFilename": "FUK_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/FUK_M.CHRM",
+      "textureAssetPath": "play/assets/characters/FUK_textures.bin"
+    }
+  },
+  "attachedObjects": {
+    "MEMO": {
+      "model": "MMA0201G.MT5",
+      "browserFilename": "MMA0201G.MT5",
+      "assetPath": "play/assets/hazuki/fuku-translated-letter/MMA0201G.MT5",
+      "textureAssetPath": "play/assets/hazuki/fuku-translated-letter/textures.bin",
+      "sceneObject": true,
+      "attachments": [
+        {
+          "objectTag": "MEMO",
+          "activitySlot": 0,
+          "frame": 273,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.11599999666213989,
+            0.012000000104308128,
+            -0.035999998450279236
+          ],
+          "rotationRaw": [
+            45003,
+            65427,
+            30081
+          ],
+          "callFileOffset": "0x6d81a",
+          "activityId": "01MEM/01MEM.AUTH"
+        },
+        {
+          "objectTag": "MEMO",
+          "activitySlot": 0,
+          "frame": 390,
+          "action": "attach",
+          "parentActorTag": "AKIR",
+          "controlId": 18,
+          "translation": [
+            0.1469999998807907,
+            0.006000000052154064,
+            -0.027000000700354576
+          ],
+          "rotationRaw": [
+            39360,
+            64700,
+            31173
+          ],
+          "callFileOffset": "0x6d8ea",
+          "activityId": "01MEM/01MEM.AUTH"
+        },
+        {
+          "objectTag": "MEMO",
+          "activitySlot": 0,
+          "frame": 548,
+          "action": "detach",
+          "callFileOffset": "0x6d94a",
+          "activityId": "01MEM/01MEM.AUTH"
+        }
+      ],
+      "nodeTransforms": [
+        {
+          "objectTag": "MEMO",
+          "activitySlot": 0,
+          "frame": 0,
+          "nodeKey": 3,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            30601
+          ],
+          "callFileOffset": "0x6db90",
+          "activityId": "01MEM/01MEM.AUTH"
+        },
+        {
+          "objectTag": "MEMO",
+          "activitySlot": 0,
+          "frame": 0,
+          "nodeKey": 14,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            30492
+          ],
+          "callFileOffset": "0x6dbb2",
+          "activityId": "01MEM/01MEM.AUTH"
+        },
+        {
+          "objectTag": "MEMO",
+          "activitySlot": 0,
+          "frame": 548,
+          "nodeKey": 3,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x6dc28",
+          "activityId": "01MEM/01MEM.AUTH"
+        },
+        {
+          "objectTag": "MEMO",
+          "activitySlot": 0,
+          "frame": 548,
+          "nodeKey": 14,
+          "mode": "set",
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x6dc4a",
+          "activityId": "01MEM/01MEM.AUTH"
+        }
+      ]
+    }
+  },
+  "handAssets": {
+    "AKIR": {
+      "actorTag": "AKIR",
+      "bodyModelCode": "YKC_M",
+      "handCode": "YKB",
+      "bodyHandRenderKeys": {
+        "left": -66,
+        "right": -65
+      },
+      "left": {
+        "rootRenderKey": 10,
+        "model": {
+          "path": "play/assets/introduction/op00/hands/YKB_TL.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YKB_TL.MT5",
+          "byteLength": 40704,
+          "sha256": "517a3423b4cb2c7f96f9cb71475e3f34bc6891af1a0fe892b85c8810826936ec"
+        }
+      },
+      "right": {
+        "rootRenderKey": 5,
+        "model": {
+          "path": "play/assets/introduction/op00/hands/YKB_TR.MT5",
+          "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YKB_TR.MT5",
+          "byteLength": 40760,
+          "sha256": "1564720156a4967703256cf4e1070e69c660cd57296bdf3b8ea13bffc46dccb8"
+        }
+      },
+      "rig": {
+        "path": "play/assets/introduction/op00/hands/YKB_HM.BIN",
+        "sourcePath": "extracted_files/data/SCENE/01/MODEL/HAND/YKB_HM.BIN",
+        "byteLength": 9264,
+        "sha256": "bd81f3033c0be237e5f52aa1976166e1376dd1c8c2b3ec66948f25d08fbc9729",
+        "transformNodeCount": 71,
+        "vertexCount": 306,
+        "pointerOffsets": [
+          24,
+          168,
+          8952,
+          5848,
+          6472,
+          9264
+        ]
+      },
+      "presentation": {
+        "attachment": "body-hand-node-world-matrix",
+        "initialPose": "hm-bind-pose",
+        "deformationAssetRetained": true,
+        "nativePoseOperation": "0x005e"
+      }
+    }
+  },
+  "nativeHandPoseTables": {
+    "0x96ec0": {
+      "sourceMapinfoOffset": "0x96ec0",
+      "vectors": [
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          -3640
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "actorTags": [
+    "AKIR",
+    "FUKU",
+    "MEMO"
+  ],
+  "motionBanks": [
+    {
+      "bank": 28,
+      "path": "play/assets/hazuki/fuku-translated-letter/M_01MEM.MOTN",
+      "byteLength": 34340,
+      "sha256": "50793ec787eba203456827f1be0dfc9339f8a5a6425d656c77cc31f112a5ba24",
+      "sequenceIndexBase": 0
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/fuku-translated-letter/M_01MEM.MOTN",
+      "byteLength": 34340,
+      "sha256": "50793ec787eba203456827f1be0dfc9339f8a5a6425d656c77cc31f112a5ba24"
+    },
+    {
+      "path": "play/assets/hazuki/fuku-translated-letter/01MEM.AUTH",
+      "byteLength": 19932,
+      "sha256": "cf859cd3450e3c6e18b965bcc39850b32e209dd96f6815a5a4683880b6b0a099"
+    },
+    {
+      "path": "play/assets/hazuki/fuku-translated-letter/MMA0201G.MT5",
+      "byteLength": 68396,
+      "sha256": "6546356630e649eb7e89f89a1150ef7cedab58e02179abf11bb83dbed0a5c578"
+    },
+    {
+      "path": "play/assets/hazuki/fuku-translated-letter/textures.bin",
+      "byteLength": 58080,
+      "sha256": "2a04a976f6b181c5040cc0e9189c54246e7de8b3258d3af592875f808051873c"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "01MEM/01MEM.AUTH",
+      "archiveMember": "01MEM.AUTH",
+      "byteLength": 19932,
+      "sha256": "cf859cd3450e3c6e18b965bcc39850b32e209dd96f6815a5a4683880b6b0a099",
+      "durationFrames": 1051,
+      "durationSeconds": 35.04999923706055,
+      "frameCount": 38,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 5,
+        "sound": 25,
+        "voice": 11
+      },
+      "actors": [
+        "AKIR",
+        "FUKU",
+        "MEMO"
+      ],
+      "nativeHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 295,
+          "actorTag": "AKIR",
+          "side": "right",
+          "poseTableOffset": "0x96ec0",
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x6d5d6",
+          "sourceOrder": 0
+        }
+      ],
+      "nativeBodyHandPoseCues": [
+        {
+          "activitySlot": 0,
+          "frame": 555,
+          "actorTag": "AKIR",
+          "channel": 0,
+          "targetIndex": 8,
+          "durationNativeTicks": 16,
+          "callFileOffset": "0x6d712",
+          "sourceOrder": 3
+        }
+      ],
+      "nativeHandComponentCues": [
+        {
+          "activitySlot": 0,
+          "frame": 295,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            0,
+            0,
+            0
+          ],
+          "callFileOffset": "0x6d61a",
+          "sourceOrder": 1
+        },
+        {
+          "activitySlot": 0,
+          "frame": 390,
+          "actorTag": "AKIR",
+          "side": "right",
+          "componentMask": 21,
+          "rotationRaw": [
+            4733,
+            910,
+            -2001
+          ],
+          "callFileOffset": "0x6d69a",
+          "sourceOrder": 2
+        }
+      ],
+      "nativeFaceClipCues": [],
+      "nativeFaceControllerCues": [],
+      "nativeFaceGazeCues": [],
+      "nativeDetailedHandDefaults": [],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 28,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_MISERU_TETYOU_FUKUHARAMEMO_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 1,
+          "motionBank": 28,
+          "sequenceIndex": 1,
+          "motionName": "OTH_FUK_AT1_MISERU_TETYOU_FUKUHARAMEMO_0100",
+          "startFrame": 1,
+          "endFrame": 2
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 76,
+          "motionBank": 28,
+          "sequenceIndex": 0,
+          "motionName": "AKI_AT1_MISERU_TETYOU_FUKUHARAMEMO_0100",
+          "startFrame": 116,
+          "endFrame": 1021
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 76,
+          "motionBank": 28,
+          "sequenceIndex": 1,
+          "motionName": "OTH_FUK_AT1_MISERU_TETYOU_FUKUHARAMEMO_0100",
+          "startFrame": 116,
+          "endFrame": 913
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 874,
+          "motionBank": 28,
+          "sequenceIndex": 1,
+          "motionName": "OTH_FUK_AT1_MISERU_TETYOU_FUKUHARAMEMO_0100",
+          "startFrame": 844,
+          "endFrame": 1021
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "schema": "new-yokosuka-aseq-activity-pack-v1",
+  "generatedBy": "tools/cutscenes/build_home_ticket_pack.mjs",
+  "source": {
+    "disc": 3,
+    "format": "loose-files",
+    "members": [
+      {
+        "name": "01JIB.AUTH",
+        "path": "disc3/SCENE/03/JOMO/MAPINFO.BIN",
+        "sourceOffset": 698108,
+        "sourceSha256": "43c613a944cc021e26793193826cf6e7dde57cd5f55ce1bfa9c1e41ce33c9c89",
+        "byteLength": 8312,
+        "sha256": "e9659c20bd2071610d89a7425681161b92c713f5c04803fa4d5398cc3cb90273"
+      },
+      {
+        "name": "M_01JIB.MOTN",
+        "path": "disc3/SCENE/03/JOMO/COMMON03.PKS",
+        "sourceSha256": "4df506b3994e111f1bc105a4485a22b19abcdf9cb6a1a02b2e0fab3f049cf136",
+        "archiveMember": "M_01JIB.MOTN",
+        "byteLength": 29664,
+        "sha256": "0d0cf326c380fe86ee17a963cb59ad5508b8486990456780e164e205051bea12"
+      }
+    ]
+  },
+  "nativeBinding": {
+    "evidence": "docs/design/story-fuku-home-conversations.md",
+    "resourceName": "01JIB",
+    "variant": "",
+    "selectionRule": "Exact embedded AUTH selected by authored chapter order. Slot 0 is a package-local handle, not a recovered native story selector. Original owner 0x78b50 selects native slot 41 with callback 0x7b0e4; hands, FACE expressions and prop grips/hinges use that callback. FACE gaze and LKPT tracking remain omitted."
+  },
+  "audioManifest": "public/audio/world/fuku-after-jimmy/manifest.json",
+  "sceneObjects": {
+    "dor0": {
+      "model": "DR01_015",
+      "browserFilename": "S1_JOMO_DR01_015.MT5",
+      "objectTag": "dor7"
+    }
+  },
+  "packageActors": {
+    "FUKU": {
+      "label": "Masayuki Fukuhara",
+      "modelCode": "FUK_M",
+      "browserFilename": "FUK_M.CHRM",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/characters/FUK_M.CHRM",
+      "textureAssetPath": "play/assets/characters/FUK_textures.bin"
+    }
+  },
+  "attachedObjects": {},
+  "nativeHandPoseTables": {},
+  "actorTags": [
+    "AKIR",
+    "FUKU",
+    "dor0"
+  ],
+  "motionBanks": [
+    {
+      "bank": 28,
+      "path": "play/assets/hazuki/fuku-after-jimmy/M_01JIB.MOTN",
+      "byteLength": 29664,
+      "sha256": "0d0cf326c380fe86ee17a963cb59ad5508b8486990456780e164e205051bea12",
+      "sequenceIndexBase": 192
+    }
+  ],
+  "outputs": [
+    {
+      "path": "play/assets/hazuki/fuku-after-jimmy/M_01JIB.MOTN",
+      "byteLength": 29664,
+      "sha256": "0d0cf326c380fe86ee17a963cb59ad5508b8486990456780e164e205051bea12"
+    },
+    {
+      "path": "play/assets/hazuki/fuku-after-jimmy/01JIB.AUTH",
+      "byteLength": 8312,
+      "sha256": "e9659c20bd2071610d89a7425681161b92c713f5c04803fa4d5398cc3cb90273"
+    }
+  ],
+  "activities": [
+    {
+      "slot": 0,
+      "binding": {
+        "kind": "map-embedded-slot"
+      },
+      "activityId": "01JIB/01JIB.AUTH",
+      "archiveMember": "01JIB.AUTH",
+      "byteLength": 8312,
+      "sha256": "e9659c20bd2071610d89a7425681161b92c713f5c04803fa4d5398cc3cb90273",
+      "durationFrames": 1150,
+      "durationSeconds": 38.349998474121094,
+      "frameCount": 37,
+      "commandCounts": {
+        "camera": 1,
+        "move": 3,
+        "motion": 5,
+        "sound": 24,
+        "voice": 9
+      },
+      "actors": [
+        "AKIR",
+        "FUKU",
+        "dor0"
+      ],
+      "nativeHandPoseCues": [],
+      "nativeBodyHandPoseCues": [],
+      "nativeHandComponentCues": [],
+      "nativeFaceClipCues": [
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "FUKU",
+          "clipGroup": 3,
+          "selector": 0,
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x7b15a"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 0,
+          "actorTag": "AKIR",
+          "clipGroup": 0,
+          "selector": 0,
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x7b296"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 400,
+          "actorTag": "AKIR",
+          "clipGroup": 3,
+          "selector": 0,
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x7b2e6"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 555,
+          "actorTag": "AKIR",
+          "clipGroup": 7,
+          "selector": 0,
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x7b336"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 650,
+          "actorTag": "AKIR",
+          "clipGroup": 0,
+          "selector": 0,
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x7b386"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 720,
+          "actorTag": "FUKU",
+          "clipGroup": 5,
+          "selector": 0,
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x7b1aa"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 830,
+          "actorTag": "AKIR",
+          "clipGroup": 1,
+          "selector": 0,
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x7b3d6"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 900,
+          "actorTag": "FUKU",
+          "clipGroup": 7,
+          "selector": 0,
+          "durationNativeTicks": 1,
+          "callFileOffset": "0x7b1fa"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 965,
+          "actorTag": "AKIR",
+          "clipGroup": 0,
+          "selector": 0,
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x7b426"
+        },
+        {
+          "activitySlot": 0,
+          "frame": 1060,
+          "actorTag": "FUKU",
+          "clipGroup": 3,
+          "selector": 0,
+          "durationNativeTicks": 10,
+          "callFileOffset": "0x7b24a"
+        }
+      ],
+      "nativeFaceControllerCues": [],
+      "nativeFaceGazeCues": [],
+      "nativeDetailedHandDefaults": [],
+      "motions": [
+        {
+          "actorTag": "AKIR",
+          "frame": 1,
+          "motionBank": 28,
+          "sequenceIndex": 193,
+          "motionName": "AKI_AT1_JIBUNNIHARAGATATU_0100",
+          "startFrame": 1,
+          "endFrame": 698
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 1,
+          "motionBank": 28,
+          "sequenceIndex": 192,
+          "motionName": "IWA_FUK_AT1_JIBUNNIHARAGATATU_0100",
+          "startFrame": 51,
+          "endFrame": 483
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 434,
+          "motionBank": 28,
+          "sequenceIndex": 192,
+          "motionName": "IWA_FUK_AT1_JIBUNNIHARAGATATU_0100",
+          "startFrame": 432,
+          "endFrame": 829
+        },
+        {
+          "actorTag": "AKIR",
+          "frame": 699,
+          "motionBank": 28,
+          "sequenceIndex": 193,
+          "motionName": "AKI_AT1_JIBUNNIHARAGATATU_0100",
+          "startFrame": 596,
+          "endFrame": 1043
+        },
+        {
+          "actorTag": "FUKU",
+          "frame": 832,
+          "motionBank": 28,
+          "sequenceIndex": 192,
+          "motionName": "IWA_FUK_AT1_JIBUNNIHARAGATATU_0100",
+          "startFrame": 760,
+          "endFrame": 1078
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,42 @@
 <<if native_value("2:249") == 0 || native_value("2:824") != 0 || native_value("2:913") != 0 || native_value("2:798") != 0 || native_value("2:260") != 0>>
 <<pass_trigger>>
 <<endif>>
+// Older Story saves may have already played the stand report and saved 799.
+<<if !flag_set("story.s1.hisaka-report.completed") || native_value("2:799") == 0>>
 <<start_activity "s1.mfsy.hisaka-report.scene">>
+<<endif>>
+<<play_sequence "s1.mfsy.hisaka-lunch.approach.start">>
+<<play_sequence "s1.mfsy.hisaka-lunch.approach.finish">>
+<<play_sequence "s1.mfsy.hisaka-lunch.delivery.start">>
+{{voice:E1061A001}}
+{{voice:E1061B001}}
+{{voice:E1061A002}}
+{{voice:E1061B002}}
+{{voice:E1061A003}}
+<<play_sequence "s1.mfsy.hisaka-lunch.delivery.finish">>
+<<play_sequence "s1.mfsy.hisaka-lunch.handover.start">>
+<<play_sequence "s1.mfsy.hisaka-lunch.handover.finish">>
+<<play_sequence "s1.mfsy.hisaka-lunch.overhear.start">>
+{{voice:E1061C001}}
+{{voice:E1061D001}}
+{{voice:E1061C002}}
+{{voice:E1061C003}}
+<<play_sequence "s1.mfsy.hisaka-lunch.overhear.finish">>
+<<play_sequence "s1.mfsy.hisaka-lunch.leave.start">>
+{{voice:E1061B003}}
+{{voice:E1061A004}}
+{{voice:E1061A005}}
+<<play_sequence "s1.mfsy.hisaka-lunch.leave.finish">>
+<<play_sequence "s1.mfsy.hisaka-lunch.return.start">>
+{{voice:E1061A006}}
+{{voice:E1061E001}}
+{{voice:E1061A007}}
+{{voice:E1061E002}}
+{{voice:E1061E003}}
+{{voice:E1061A008}}
+<<play_sequence "s1.mfsy.hisaka-lunch.return.finish">>
+<<set_native_value "2:798" 1>>
 <<set_native_value "2:799" 1>>
+<<set_flag "story.s1.hisaka-report.completed">>
 {{effects}}
 <<complete>>

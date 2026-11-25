@@ -764,9 +764,10 @@ async function auditScene({ cutscene, definition, program, musicManifest }) {
 }
 
 export async function buildSelectableCutsceneSmokeReport() {
+  // This one-shot audit needs no file notifications from the extracted discs.
   const vite = await createServer({
     root: ROOT,
-    server: { middlewareMode: true, watch: null, ws: false },
+    server: { middlewareMode: true, watch: { ignored: () => true }, ws: false },
     appType: "custom",
     logLevel: "error",
   });

@@ -118,7 +118,7 @@ function restoreRoot(root, snapshot) {
 
 function restoreObjectNodes(record, nodeKeys = null) {
   for (const [node, snapshot] of record.nodeSnapshots || []) {
-    if (!node?.mesh || (nodeKeys && !nodeKeys.has(signedRenderKey(node)))) continue;
+    if (!node?.mesh || (nodeKeys && !nodeKeys.delete(signedRenderKey(node)))) continue;
     node.mesh.position.set(-snapshot.position[0], snapshot.position[1], snapshot.position[2]);
     setSourceOrderRotation(node.mesh, [
       snapshot.rotation[0],
@@ -564,14 +564,14 @@ export class NativeAseqAttachedObjectRuntime {
       const actorTag = key.slice(0, separator);
       const nodeKey = Number(key.slice(separator + 1));
       const record = this.objects.get(actorTag);
-      const matches = (record?.root?._mt5Nodes || []).filter(
-        node => signedRenderKey(node) === nodeKey,
-      );
-      if (matches.length !== 1) {
+      // Retail 0x0c0924a0 returns the first signed key in root, child,
+      // sibling order. Mt5Loader.readNode preserves that traversal order.
+      // The 01MEM folded letter has five nested nodes with key 14.
+      const node = record?.root?._mt5Nodes?.find(node => signedRenderKey(node) === nodeKey);
+      if (!node?.mesh) {
         record?.root.setEnabled(false);
         return false;
       }
-      const node = matches[0];
       const initial = record.nodeSnapshots.get(node);
       const position = evaluateNodeChannel(initial.position, operations, frame, "position");
       const rotation = evaluateNodeChannel(initial.rotation, operations, frame, "rotation");

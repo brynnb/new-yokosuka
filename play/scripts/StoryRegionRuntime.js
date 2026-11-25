@@ -30,10 +30,11 @@ export function matchesEncounterApproach(approach, position, playerYaw) {
  * eligibility. No native-room fallback is permitted for this dispatch family.
  */
 export class StoryRegionRuntime {
-  constructor({ controller, getCharacter, getGameDate = () => null, publishPresence, acquireMovementLock = () => () => {}, onError = console.error, regions = catalog.regions }) {
+  constructor({ controller, getCharacter, getGameDate = () => null, hasNativeFlag = () => false, publishPresence, acquireMovementLock = () => () => {}, onError = console.error, regions = catalog.regions }) {
     this.controller = controller;
     this.getCharacter = getCharacter;
     this.getGameDate = getGameDate;
+    this.hasNativeFlag = hasNativeFlag;
     this.publishPresence = publishPresence;
     this.acquireMovementLock = acquireMovementLock;
     this.onError = onError;
@@ -98,6 +99,12 @@ export class StoryRegionRuntime {
       if (this.inside.has(region.id) || (!region.repeatable && character.storyFlags?.[region.completedFlag])
         || (region.requiredFlags || []).some(flag => character.storyFlags?.[flag] !== true)
         || (region.excludedFlags || []).some(flag => character.storyFlags?.[flag] === true)) continue;
+      // New saves and imported native saves may encode the same earned
+      // milestone differently. Suppress ineligible foyer visits locally
+      // before acquiring the movement lock or publishing an enter request.
+      if (region.requiredMilestones?.some(({flag, nativeFlag}) =>
+        character.storyFlags?.[flag] !== true && !this.hasNativeFlag(nativeFlag))) continue;
+      if (region.excludedNativeFlags?.some(index => this.hasNativeFlag(index))) continue;
       entered.push(region.id);
     }
     if(!entered.length)return false;

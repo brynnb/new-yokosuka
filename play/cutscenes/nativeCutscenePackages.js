@@ -108,6 +108,10 @@ import masterChenManifest from "../assets/harbor/master-chen/manifest.json";
 import masterChenAudio from "../../public/audio/world/master-chen/manifest.json";
 import mirrorMeetingManifest from "../assets/harbor/mirror-meeting/manifest.json";
 import mirrorMeetingAudio from "../../public/audio/world/mirror-meeting/manifest.json";
+import fukuLetterManifest from "../assets/hazuki/fuku-translated-letter/manifest.json";
+import fukuLetterAudio from "../../public/audio/world/fuku-translated-letter/manifest.json";
+import fukuJimmyManifest from "../assets/hazuki/fuku-after-jimmy/manifest.json";
+import fukuJimmyAudio from "../../public/audio/world/fuku-after-jimmy/manifest.json";
 import postChenHomeManifest from "../assets/hazuki/post-chen-home/manifest.json";
 import postChenHomeAudio from "../../public/audio/world/post-chen-home/manifest.json";
 import bankSavingsManifest from "../assets/hazuki/bank-savings/manifest.json";
@@ -480,6 +484,8 @@ const SOURCE_CUTSCENE_PACKAGES = Object.freeze([
       {playerActorCode:null,requirePlayer:false,preservePlayerOnComplete:false}],
     ["jimmy-morning-call",jimmyCallManifest,jimmyCallAudio,"interior"],["post-chen-home",postChenHomeManifest,postChenHomeAudio,"interior"],["bank-savings",bankSavingsManifest,bankSavingsAudio,"interior"],["travel-family",travelFamilyManifest,travelFamilyAudio,"interior"],
     ["nozomi-night-call",nozomiCallManifest,nozomiCallAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm063",loop:true}],gain:1})],
+    ["fuku-translated-letter",fukuLetterManifest,fukuLetterAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"tym001",loop:true}],gain:1}),{FUKU:nativeFaceManifest.facialAssets.FUKU}],
+    ["fuku-after-jimmy",fukuJimmyManifest,fukuJimmyAudio,"interior",Object.freeze({cues:[{startActivity:true,trackId:"bgm085",loop:true}],gain:1}),{FUKU:nativeFaceManifest.facialAssets.FUKU}],
     ["nozomi-park-call",nozomiParkCallManifest,nozomiParkCallAudio,"interior"],
     ["friends-visit-arrival",friendsVisitArrivalManifest,friendsVisitArrivalAudio,"interior"],
     ["friends-visit-departure",friendsVisitDepartureManifest,friendsVisitDepartureAudio,"interior"],

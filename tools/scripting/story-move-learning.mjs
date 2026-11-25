@@ -70,30 +70,44 @@ export const moveLearningRoutes=lessons.map((lesson,index)=>{
 // passage scroll sits inside a closed basket. Use the scroll or its basket
 // instead of interrupting every approach to an approximate room volume
 // (which also covered Iwao's unrelated desk).
-// The basement scroll remains an authored approach until its native object is
-// identified; do not invent a model association there.
 for(const [id,area,worldId,position,requires,object] of [
   ['twinBlades','JOMO','interior',[-23.46,0,-4.275],[],'imk1'],
   ['shadowReaper','JOMO','interior',[-5.98,0,2.6],[],'bkgu'],
-  ['stabArmor','YDB1','ydb1',[-6.2,0,3],['story.s1.basement-visited'],null],
 ]){
   const m=move(id),route=routeBase(`${m.slug}-scroll`,area,worldId,requires);
   Object.assign(route,{priority:optionalEntryPriority+moveLearningRoutes.length,title:`${m.location} — move scroll`,items:[{key:m.itemKey,quantity:1}],
     yarnTemplate:'story-scroll-pickup.yarn',authoredText:{prompt:`There is a move scroll here in ${m.location}.`,
-      receipt:id==='stabArmor'?'This scroll is in Chinese. I should ask Gui Zhang to translate it.':`The ${m.name} scroll. I can read it in my inventory to learn the move.`}});
+      receipt:`The ${m.name} scroll. I can read it in my inventory to learn the move.`}});
   if(object)Object.assign(route,{trigger:'use',object,objectLabel:id==='shadowReaper'?'Basket':`${m.name} scroll`,
     provenance:`${provenance} Object ${object} and its position are original JOMO placements; the correspondence to this scroll is inferred from its model and location, not a recovered native selection callback.`});
   region(route,worldId,position,object?1.5:.9);moveLearningRoutes.push(route);
 }
+// BOOK mode 1 inspects the original title; mode 2 takes it and sets 2:969.
+const book=routeBase('stab-armor-scroll','YDB1','ydb1',['story.s1.basement-visited']);
+Object.assign(book,{
+  disc:2,trigger:'use',object:'BOOK',objectLabel:'Martial arts book',priority:optionalEntryPriority+moveLearningRoutes.length,
+  title:'Stab Armor in the basement',items:[{key:move('stabArmor').itemKey,quantity:1}],
+  yarnTemplate:'story-basement-stab-armor.yarn',staging:'s1.ydb1.stab-armor-inspect',
+  nativeEffects:[{address:'2:969',value:1}],excludedNativeFlags:['2:969'],
+  dialogueArchive:{path:'data/SCENE/02/STREAM/E1012.AFS',sha256:'fd632f02c074aa6918f51f3ea71176816f29d809702cfb9d2409dcee9c5b60b9'},
+  nativeSources:[{role:'basement-book-owner',locator:'disc2/SCENE/02/YDB1/MAPINFO.BIN#0x6c1e,0xf940-0xfa7e,0x23c16',sha256:'3c954c79cf22327bc736c0ef07f95126468880074c55247cf04085c51ebbf0f1'},
+    {role:'basement-book-placement',locator:'disc2/SCENE/02/YDB1/MPK00.PKF#CHARA.CHRT/BOOK@0x1520',sha256:'45f0e55e465e8e9ff1eeb72827d77b0a1b355b273fac22cec091722459d3b981'}],
+  summary:'Examine the original basement martial arts book, then take it to Gui Zhang.',
+  provenance:'Original YDB1 BOOK placement, two inspection lines and possession write. The inspection camera, reach and take/leave labels adapt the original inspect/take modes to Story.',
+});
+region(book,'ydb1',[-2.803,0,7.4078],1.5);
+regions.at(-1).provenance='Authored reachable volume around the native MPK00/CHARA.CHRT BOOK at browser [-2.803,1.002,7.4078].';
+moveLearningRoutes.push(book);
 const translation=routeBase('stab-armor-translation','MS08','ms08',['story.s1.master-chen.completed']);
 Object.assign(translation,{
   title:'Gui Zhang — translate Stab Armor', priority:640, trigger:'automatic', disc:2,
   participants:['KISY'], staging:'s1.ms08.stab-armor-reading',
-  requiredItems:[{key:move('stabArmor').itemKey,quantity:1}],
+  requiredItems:[{key:move('stabArmor').itemKey,quantity:1,nativeOwnership:'2:969'}],
+  excludedNativeFlags:['2:549'],nativeEffects:[{address:'2:549',value:1}],destination:'s1.harbor.old-district-gate',
   effects:[move('stabArmor').requiredFlag], yarnTemplate:'story-scroll-translation.yarn',
   dialogueArchive:{path:'data/SCENE/02/STREAM/SA1108.AFS',sha256:'c7af7a97889b807a41b42acc48dbda1fc38d4966d46989cd311b95e9d67eaab6'},
   nativeSources:[{role:'native-stab-armor-dialogue-owner',locator:'disc2/SCENE/02/MK80/MAPINFO.BIN#0x2e4e,0x5394-0x542d',sha256:'a7199bfad279dc3737acb90bfc9bd7579f674fc5257a747b4e0fc402e612ba59'}],
-  provenance:'Original SA1108 lines, actors, voice and lip cues in the warehouse room controller order. The warehouse approach and standing camera use adapted staging.',
+  provenance:'Original SA1108 lines, actors, voice and lip cues in the warehouse room controller order. The player invitation uses adapted staging. Native branch settlement returns to MFSY entry 1.',
 });
 moveLearningRoutes.push(translation);
 moveLearningRoutes.push({...routeBase('bunkado-move-scrolls','DKTY','dkty'),actor:'OISI',trigger:undefined,priority:650,

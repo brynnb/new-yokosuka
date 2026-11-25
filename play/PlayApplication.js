@@ -976,6 +976,7 @@ function createPlayRuntime() {
   const nativeStoryRuntime = new NativeStoryRuntime({
     storyObjects: new StoryObjectPresentation({getCharacter: () => accountSession.character}),
     storyRegions: new StoryRegionRuntime({ controller: scriptEventController,
+      hasNativeFlag: index => nativeDialoguePersistence.sessionOptions()?.dialogueState.read(2, index) === 1,
       getCharacter: () => accountSession.character,
       acquireMovementLock: () => controller.acquireMovementLock(),
       getGameDate: currentServerGameDate,

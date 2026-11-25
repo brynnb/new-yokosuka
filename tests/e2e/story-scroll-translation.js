@@ -1,4 +1,5 @@
 import {expect} from "@playwright/test";
+import {verifyBasementScroll} from "./story-basement-scroll.js";
 
 const lines = [
   ["Mind if I ask you something?", "SA1108A001"],
@@ -28,6 +29,7 @@ export async function verifyScrollTranslation(page, testInfo, character, enterSt
     await enterStoryWorld(page,character.name);
     await page.waitForFunction(() => window.storyProbe?.ready && window.storyProbe.regions?.getCharacter()?.id, null, {timeout:120000});
   };
+  if(process.env.NEW_YOKOSUKA_STAB_FROM_BASEMENT==="true")await verifyBasementScroll(page,testInfo,character);
   const before = await state();
   expect(before.character.worldId).toBe("ms08");
   expect(before.inventory.filter(item=>item.key==="scroll_stab_armor")).toHaveLength(1);
@@ -77,6 +79,7 @@ export async function verifyScrollTranslation(page, testInfo, character, enterSt
   expect(trace.voices).toEqual(lines.map(row=>row[1]));
   const after=await state();
   expect(after.character.storyFlags[completed]).toBe(true);
+  expect(after.character.worldId).toBe("mfsy");
   expect(after.character.storyFlags[learned]).not.toBe(true);
   expect(after.character.yen).toBe(before.character.yen);
   expect(after.inventory).toEqual(before.inventory);
@@ -85,6 +88,9 @@ export async function verifyScrollTranslation(page, testInfo, character, enterSt
   await expect.poll(async()=>(await state()).character.storyFlags[learned]).toBe(true);
   await page.getByRole("button",{name:"Close inventory",exact:true}).click();
   await reload();
+  await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld("ms08"));
+  await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="ms08"
+    && window.storyProbe.lifecycle.worldRuntime.ready);
   await page.waitForFunction(()=>window.storyProbe.automatic?.attempted && !window.storyProbe.automatic.pending);
   expect(await offer.count()).toBe(0);
   expect((await state()).character.storyFlags[learned]).toBe(true);

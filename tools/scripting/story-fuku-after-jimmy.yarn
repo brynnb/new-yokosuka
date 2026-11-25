@@ -1,0 +1,13 @@
+<<if native_value("2:400") == 0 && !flag_set("story.s1.jimmy-interrogation.completed")>>
+<<pass_trigger>>
+<<endif>>
+-> Talk to Fuku-san about the trip
+    <<jump TalkToFuku>>
+-> Not now
+    <<complete>>
+===
+title: TalkToFuku
+---
+<<start_activity "s1.jomo.fuku-after-jimmy.scene">>
+{{effects}}
+<<complete>>

@@ -1,0 +1,335 @@
+{
+  "schema": "new-yokosuka-story-connected-review-v1",
+  "date": "2026-11-25",
+  "environment": {
+    "renderer": "Radeon RX 9070 XT, ANGLE Vulkan, RADV GFX1201",
+    "server": "Isolated Go API and PostgreSQL 18",
+    "client": "Chromium + Vite",
+    "save": "Fresh disposable Story-mode guest for each run; preceding milestones explicitly seeded."
+  },
+  "localArchive": "/mnt/data6tb/Projects/New Yokosuka/ny-cutscene-followup-DXfeO7/browser",
+  "evidence": "Playwright report paths are relative to localArchive. Raw observations and screenshot paths are in connected-receipt.json alongside the individual run logs.",
+  "runs": [
+    {
+      "fixture": "December 31 at night, with rescue already complete",
+      "report": "rerun-ride-home-20261125-091640-html/index.html",
+      "durationSeconds": 223.03,
+      "checks": [
+        "Natural 23-shot NBIK ride after a canceled attempt, next 05:56 arrival, separate 07:30 bedside rest and persisted date after reload."
+      ],
+      "reproduceInLocalArchive": "bash rerun.sh ride-home",
+      "calendarUTC": {
+        "rideStart": "1986-12-31T22:46:54.184Z",
+        "arrival": "1987-01-01T05:56:00.000Z",
+        "restStart": "1987-01-01T06:00:33.744Z",
+        "wake": "1987-01-01T07:30:00.000Z",
+        "reloaded": "1987-01-01T07:32:20.023Z"
+      }
+    },
+    {
+      "fixture": "December 31 at night, already at home after the ride",
+      "report": "rerun-late-wake-20261125-091540-html/index.html",
+      "durationSeconds": 39.74,
+      "checks": [
+        "Decline rest, reload, choose sleep, advance to January 1 and retain the new morning on reload."
+      ],
+      "reproduceInLocalArchive": "bash rerun.sh late-wake",
+      "calendarUTC": {
+        "restStart": "1986-12-31T22:49:21.102Z",
+        "wake": "1987-01-01T07:30:01.925Z",
+        "reloaded": "1987-01-01T07:32:32.311Z"
+      }
+    },
+    {
+      "fixture": "Prior harbor gate only; acceptance, alley victory and delivery earned in play",
+      "report": "rerun-alley-win-20261125-092922-html/index.html",
+      "durationSeconds": 189.94,
+      "checks": [
+        "Accept Hisaka’s request, win Mai’s alley QTE, return to Hisaka. Exercise original report slot 3, cancel during delivery, retry, resolve all six scenes with the 18 subtitles matching the playing voices, set 798 and 799, reload, and check no replay. The test shortens walking and uses supported film skips for the short report setup."
+      ],
+      "reproduceInLocalArchive": "bash rerun.sh alley-win",
+      "nativeVoicesPlayed": 18,
+      "handovers": [
+        {
+          "frame": 3,
+          "signature": "BNT1,BNT2|"
+        },
+        {
+          "frame": 155,
+          "signature": "BNT2|BNT1"
+        },
+        {
+          "frame": 237,
+          "signature": "|BNT1,BNT2"
+        }
+      ]
+    },
+    {
+      "fixture": "Previously completed shortened Hisaka report and bit 799; bit 798 and delivery missing",
+      "report": "rerun-hisaka-legacy-20261125-094529-html/index.html",
+      "durationSeconds": 119.18,
+      "checks": [
+        "Recover delivery on a genuine stand approach; cancellation preserves 799 and the prior receipt, natural completion earns 798 and the new receipt, and the previously watched report never replays."
+      ],
+      "reproduceInLocalArchive": "bash rerun.sh hisaka-legacy",
+      "nativeVoicesPlayed": 18,
+      "handovers": [
+        {
+          "frame": 3,
+          "signature": "BNT1,BNT2|"
+        },
+        {
+          "frame": 155,
+          "signature": "BNT2|BNT1"
+        },
+        {
+          "frame": 236,
+          "signature": "|BNT1,BNT2"
+        }
+      ],
+      "soundEffectsPlayed": [
+        {
+          "stage": "s1.mfsy.hisaka-lunch.handover",
+          "frame": 150,
+          "asset": "BENTOTABLE.wav"
+        },
+        {
+          "stage": "s1.mfsy.hisaka-lunch.handover",
+          "frame": 230,
+          "asset": "BENTOTABLE.wav"
+        }
+      ]
+    },
+    {
+      "fixture": "Earlier Chen and first-dojo meetings and friendship flashback; scroll and poem receipts absent",
+      "report": "rerun-poetry-20261125-093955-html/index.html",
+      "durationSeconds": 168.03,
+      "checks": [
+        "Click GART, decline and cancel without collecting, replay original dojo discovery, collect one mysterious scroll and bits 548/903, and retain possession. Enter MS08, decline and cancel, play all 23 lines, receive bit 547, return to MFSY, reload and check no repeat. Travel between locations is shortened."
+      ],
+      "reproduceInLocalArchive": "bash rerun.sh poetry",
+      "discovery": {
+        "nativeVoicesPlayed": 2,
+        "lastObservedFrame": 807,
+        "propTransitions": [
+          {
+            "frame": 1,
+            "signature": "|"
+          },
+          {
+            "frame": 170,
+            "signature": "|MKCS"
+          },
+          {
+            "frame": 350,
+            "signature": "MKCS/AKIR/18|"
+          },
+          {
+            "frame": 480,
+            "signature": "|"
+          }
+        ]
+      },
+      "warehouse": {
+        "nativeVoicesPlayed": 23,
+        "lastObservedFrame": 2601,
+        "propTransitions": [
+          {
+            "frame": 6,
+            "signature": "|"
+          },
+          {
+            "frame": 160,
+            "signature": "MKC4/AKIR/18|"
+          },
+          {
+            "frame": 272,
+            "signature": "MKC5/KISY/12|"
+          },
+          {
+            "frame": 415,
+            "signature": "MKI4/KISY/12|"
+          },
+          {
+            "frame": 1661,
+            "signature": "MKC5/KISY/12|"
+          },
+          {
+            "frame": 1787,
+            "signature": "MKC4/AKIR/18|"
+          },
+          {
+            "frame": 2485,
+            "signature": "|"
+          }
+        ]
+      }
+    },
+    {
+      "fixture": "Earlier Chen meeting with an unread Stab Armor scroll",
+      "report": "rerun-translation-20261125-093824-html/index.html",
+      "durationSeconds": 84.56,
+      "checks": [
+        "Decline and cancel, then watch 14 recorded lines, receive translation independently of learning, return to MFSY, read the item in inventory, reload and check MS08 re-entry."
+      ],
+      "reproduceInLocalArchive": "bash rerun.sh translation"
+    },
+    {
+      "fixture": "Earlier Chen meeting and a visited basement, before obtaining Stab Armor",
+      "report": "rerun-basement-scroll-20261125-094754-html/index.html",
+      "durationSeconds": 99.14,
+      "checks": [
+        "Inspect physical BOOK, decline and cancel with possession bit 969 clear, collect through both original pickup voices, check BOOK disappears, and finish the ordinary 14-line warehouse translation and inventory learning route."
+      ],
+      "reproduceInLocalArchive": "bash rerun-basement.sh basement-scroll",
+      "pickupVoicesPlayed": [
+        "E1012A299",
+        "E1012A300"
+      ]
+    },
+    {
+      "fixture": "Earlier translated letter plus Fuku letter gate, before the Chen phone call",
+      "report": "rerun-fuku-translated-letter-20261125-095329-html/index.html",
+      "durationSeconds": 67.51,
+      "checks": [
+        "Choose the foyer conversation, see the original MEMO and both characters, cancel with native 751 clear, retry through all 11 recorded lines, verify paper cleanup, currency, inventory and reload without replay."
+      ],
+      "previousPassingReports": [
+        "rerun-fuku-translated-letter-20261125-094247-html/index.html"
+      ],
+      "entryReview": "Replayed from an eligible saved checkpoint after adding the client prerequisite filter at the home foyer.",
+      "reproduceInLocalArchive": "bash rerun.sh fuku-translated-letter",
+      "voicesPlayed": [
+        "01MEMB001",
+        "01MEMA001",
+        "01MEMB002",
+        "01MEMA002",
+        "01MEMB005",
+        "01MEMB003",
+        "01MEMA003",
+        "01MEMB006",
+        "01MEMA005",
+        "01MEMB008",
+        "01MEMA006"
+      ],
+      "visibleActors": [
+        "FUKU",
+        "AKIR"
+      ]
+    },
+    {
+      "fixture": "20:00, earlier Jimmy interrogation and before Goro’s job lead",
+      "report": "rerun-fuku-after-jimmy-20261125-095440-html/index.html",
+      "durationSeconds": 77.81,
+      "checks": [
+        "Choose the foyer conversation, cancel with native 780 clear, retry through all nine original voices, watch authored dor0 drive physical dor7, verify restored pose, pickability and collision, reload without replay."
+      ],
+      "previousPassingReports": [
+        "rerun-fuku-after-jimmy-20261125-094405-html/index.html"
+      ],
+      "entryReview": "Replayed from an eligible saved checkpoint after adding the client prerequisite filter at the home foyer.",
+      "reproduceInLocalArchive": "bash rerun.sh fuku-after-jimmy",
+      "voicesPlayed": [
+        "01JIBB001",
+        "01JIBA001",
+        "01JIBB002",
+        "01JIBA002",
+        "01JIBB003",
+        "01JIBB004",
+        "01JIBB005",
+        "01JIBA003",
+        "01JIBB006"
+      ],
+      "visibleActors": [
+        "AKIR",
+        "FUKU"
+      ],
+      "residentDoorSamples": [
+        {
+          "frame": 989,
+          "orientation": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "position": [
+            -16.299999237060547,
+            0,
+            1.7999999523162842
+          ]
+        },
+        {
+          "frame": 1028,
+          "orientation": [
+            0.32444775104522705,
+            -0.9459035992622375,
+            0.9459035992622375,
+            0.32444775104522705
+          ],
+          "position": [
+            -16.299999237060547,
+            0,
+            1.7999999523162842
+          ]
+        },
+        {
+          "frame": 1057,
+          "orientation": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "position": [
+            -16.299999237060547,
+            0,
+            1.7999999523162842
+          ]
+        }
+      ]
+    }
+  ],
+  "voiceArchiveCrossCheck": {
+    "scope": "Disc 1, 2 and 3 English SCENE/0n/STREAM directories on Kraft",
+    "method": "Read the AFS offset tables and aligned 48-byte filename records. Compare exact .STR filenames, case-insensitively, to the unavailable cue IDs from audit_cutscene_presentation.mjs.",
+    "archives": 374,
+    "namedStrMembers": 40224,
+    "archivesWithoutStr": [
+      "BTT00.AFS and HUMANS.AFS on each disc"
+    ],
+    "unavailableCueIds": [
+      "01BEDBA004",
+      "01CTSA001",
+      "01CTSB003",
+      "01CTSBB001",
+      "01JIMB001",
+      "01JIMBA004",
+      "01JUCEAA026",
+      "01M046000038",
+      "01MIRA006",
+      "01MKBD003",
+      "01MKBD004",
+      "01NVEA007",
+      "01NVED007",
+      "01NVED008",
+      "01TAPC026",
+      "01TAPH001",
+      "01TLYB007",
+      "01TLYB008",
+      "01TLYCA004",
+      "01TLYCC001",
+      "01TOMBB013",
+      "A0114A015",
+      "A0114A027",
+      "A0114D014",
+      "A0159A005",
+      "A0159A010",
+      "A0159A026",
+      "A0159C003",
+      "A0165A008",
+      "A0165A009"
+    ],
+    "exactMatches": []
+  }
+}

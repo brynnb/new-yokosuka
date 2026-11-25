@@ -48,7 +48,7 @@ export class AuthoredSceneStagingRuntime {
       if (!owner || owner.transaction !== transaction || owner.scene.id !== sequence.scene.id) return false;
       // Dialogue can end before the original reaction, camera cut or prop handover.
       const dialogueCue = sequence.kind === "scene-staging-dialogue-cue";
-      const end = dialogueCue ? owner.scene.dialogueCueSeconds : owner.scene.playThroughFinish ? owner.durationSeconds : 0;
+      const end = dialogueCue ? (sequence.atSeconds ?? owner.scene.dialogueCueSeconds) : owner.scene.playThroughFinish ? owner.durationSeconds : 0;
       if (dialogueCue && !end) return false;
       if (owner.elapsed < end) {
         if (owner.resolve) return false;
@@ -67,6 +67,7 @@ export class AuthoredSceneStagingRuntime {
       || scene.actors.some(actor => !/^[A-Z0-9_]{4}$/.test(actor.tag)
         || (actor.presented !== undefined && typeof actor.presented !== "boolean")
         || !actor.motion?.bank || !actor.motion?.name
+        || (actor.baseMotion != null && (!actor.baseMotion.bank || !actor.baseMotion.name))
         || (actor.motionStartSeconds != null && (!Number.isFinite(actor.motionStartSeconds) || actor.motionStartSeconds < 0))
         || (actor.pose && ["x", "y", "z", "rotationX", "rotationY", "rotationZ"].some(key => !Number.isFinite(actor.pose[key]))))
       || ["positionX", "positionY", "positionZ", "targetX", "targetY", "targetZ", "roll", "perspective"].some(key => !Number.isFinite(scene.camera?.[key]))) {
@@ -89,6 +90,10 @@ export class AuthoredSceneStagingRuntime {
     if (scene.playThroughFinish != null && (typeof scene.playThroughFinish !== "boolean" || !scene.durationSeconds)) {
       throw new Error(`Invalid finish duration for ${scene.id}`);
     }
+    if (scene.dialogueCues && (!Array.isArray(scene.dialogueCues) || scene.dialogueCues.some((cue,i)=>
+      !/^[A-Z0-9]+$/.test(cue.voiceId) || !Number.isFinite(cue.atSeconds) || !(cue.atSeconds > 0 && cue.atSeconds < scene.durationSeconds)
+      || (i && cue.atSeconds <= scene.dialogueCues[i-1].atSeconds))
+      || new Set(scene.dialogueCues.map(cue=>cue.voiceId)).size !== scene.dialogueCues.length)) throw Error(`Invalid staged dialogue cues ${scene.id}`);
     if (scene.voiceCue && (!/^public\/audio\/world\/[a-z0-9-]+\/[A-Z0-9]+\.wav$/.test(scene.voiceCue.asset)
       || !this.dialogueAudio || !Number.isFinite(scene.voiceCue.atSeconds)
       || scene.voiceCue.atSeconds < 0 || !(scene.voiceCue.atSeconds < scene.voiceCue.dialogueAtSeconds)
@@ -157,7 +162,7 @@ export class AuthoredSceneStagingRuntime {
       }
       if(!continuing)await owner.actors.prepare(scene.actors.map(actor => actor.tag), { signal });
       signal.throwIfAborted();
-      await this.motionRuntime.loadNamedSelections(scene.actors.flatMap(actor => [actor.motion,...(actor.motionCues || []).map(cue=>cue.motion),...(actor.endMotion?[actor.endMotion]:[])]));
+      await this.motionRuntime.loadNamedSelections(scene.actors.flatMap(actor => [actor.motion,...(actor.baseMotion?[actor.baseMotion]:[]),...(actor.motionCues || []).map(cue=>cue.motion),...(actor.endMotion?[actor.endMotion]:[])]));
       signal.throwIfAborted();
       if(this.active!==owner)return false;
       for (const audio of owner.soundCueAudio || []) this.dialogueAudio.stopOneShot(audio);
@@ -247,7 +252,10 @@ export class AuthoredSceneStagingRuntime {
       const activeMotion = ended ? actor.endMotion : cue?.motion ?? actor.motion;
       const clipStart = ended ? owner.durationSeconds : cue?.atSeconds ?? 0;
       const offset = ended ? 0 : cue ? cue.startSeconds ?? 0 : actor.motionStartSeconds ?? 0;
-      if (!this.motionRuntime.applyNamed(model, activeMotion, owner.elapsed - clipStart + offset)) return false;
+      // A carried prop can hold the upper body while the native walk drives the legs.
+      const layers = !ended && !cue && actor.baseMotion
+        ? {baseSelection:actor.baseMotion, baseProvidesTimeline:true} : undefined;
+      if (!this.motionRuntime.applyNamed(model, activeMotion, owner.elapsed - clipStart + offset, layers)) return false;
       // Gameplay skips its post-pose pass while a story presentation owns the
       // actor. Reuse that pass here, or acquired cloth stays at the old pose.
       updateNativeCharacterSecondaryMotion(model, deltaSeconds);
