@@ -73,11 +73,18 @@ export async function verifyShipDeparture(page,testInfo,character,{musicResponse
   await page.waitForTimeout(6000);await page.screenshot({path:testInfo.outputPath("ship-original-horizon-before-settlement.png")});await pending();
   }
   await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:60_000}).toBe(true);
-  await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.ready&&window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="s1-voyage",null,{timeout:100_000});await idle();
+  await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.ready&&window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="s1-voyage",null,{timeout:100_000});
+  // The departure itself is already saved. Exercise an independent credits
+  // completion before checking the earned ship's ordinary movement and reload.
+  const skipCredits = page.getByRole("button",{name:"Skip credits",exact:true});
+  await expect(skipCredits).toBeVisible({timeout:45_000});
+  await skipCredits.click();
+  await expect.poll(async()=>(await saved()).character.storyFlags["story.s1.closing-credits.completed"]).toBe(true);
+  await idle();
   const earned=await check();expect(earned.character.storyFlags["notebook.s1.departure"]).toBe(true);expect(earned.character.worldId).toBe("s1-voyage");
   expect(Math.abs(earned.character.y-6.277686675037195)).toBeLessThan(.15);
   expect(new Date(earned.character.storyTimeMs).toISOString().slice(0,10)).toBe(new Date(initial.character.storyTimeMs).toISOString().slice(0,10));
-  expect(Object.keys(earned.character.storyFlags).filter(k=>!Object.hasOwn(initial.character.storyFlags,k)).sort()).toEqual(["notebook.s1.departure",done].sort());
+  expect(Object.keys(earned.character.storyFlags).filter(k=>!Object.hasOwn(initial.character.storyFlags,k)).sort()).toEqual(["notebook.s1.departure",done,"story.s1.closing-credits.completed"].sort());
   await page.waitForTimeout(3000);expect(Math.abs((await saved()).character.y-earned.character.y)).toBeLessThan(.15);
   await page.screenshot({path:testInfo.outputPath("ship-earned-real-deck-and-controls.png")});
   // The earned yaw-0 ship spawn faces +Z. The original ship mesh has deck

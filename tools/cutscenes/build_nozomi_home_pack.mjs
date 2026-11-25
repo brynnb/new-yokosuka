@@ -72,13 +72,33 @@ sourceMembers.push({name:nozomi.name,sourcePath:original,sourceManifestPath:"dis
 outputMembers.push(nozomi.name);
 packageActors.HRSK={label:"Nozomi Harasaki",modelCode:"NZM_M",browserFilename:nozomi.name,assetFormat:"MT5",characterScale:1,
   assetPath:`${prefix}/${nozomi.name}`,textureAssetPath:"play/assets/harbor/nozomi-rescue/TER2-textures.bin"};
+// NBIK requests the cinematic YKB body for AKIR; read Disc 3 directly so
+// this 23-shot program can be rebuilt without any other cutscene package.
+const ryoName = "YKB_M.MT5";
+const ryoPath = path.join(source, "MODEL/CHARA", ryoName);
+const ryoBytes = fs.readFileSync(ryoPath);
+const ryoDigest = sha256(ryoBytes);
+if (bindings.find(row => row.actorTag === "AKIR")?.model !== "YKB_M"
+  || ryoDigest !== "c9a1eaf2fbcbd2ca4a02ddecd26971cb8704c73a1a3b2900b8eae8679434879f") {
+  throw Error("Changed original NBIK Ryo body");
+}
+sourceMembers.push({ name: ryoName, sourcePath: ryoPath, sourceManifestPath: "disc3/SCENE/03/MODEL/CHARA/" + ryoName,
+  sourceSha256: ryoDigest, byteLength: ryoBytes.length, sha256: ryoDigest });
+outputMembers.push(ryoName);
+const ryoTextures = Buffer.concat(extractNativeTexnPack(ryoBytes, ryoName).entries.map(entry => entry.bytes));
+generatedAssets.push({ assetPath: prefix + "/YKB_textures.bin", bytes: ryoTextures });
+packageActors.AKIR = { label: "Ryo Hazuki", modelCode: "YKB_M", browserFilename: ryoName, assetFormat: "MT5", characterScale: 1,
+  assetPath: prefix + "/" + ryoName, textureAssetPath: prefix + "/YKB_textures.bin" };
 const manifest=buildNativeAseqActivityPack({generatedBy,resourceName:"NBIK",disc:3,sourceMembers,expectedMembers:sourceMembers,bindingEvidence:evidence,
   selectionRule:"Authored adjacent-file order of all 23 original ride-home TRCK resources, not recovered NBIK controller selection. The original 31.1-second conversation precedes 124.27 seconds of riding shots.",
   outputDirectory:path.join(root,prefix),outputAssetPrefix:prefix,manifestPath:path.join(root,prefix,"manifest.json"),audioManifest:`${audioPrefix}/manifest.json`,
   motionBanks:[{bank:16,member:"M_01BIKE.BIN"}],activities,sceneObjects,packageActors,outputMembers,generatedAssets});
 const routeFile=path.join(root,"tools/data/native-activity-preview-routes.json"),routes=JSON.parse(fs.readFileSync(routeFile));
 const route={cutsceneId:"story-s1-nozomi-home",programId:"story-s1-nozomi-home",packageId:"nozomi-home",worldId:"nbik-home",area:"NBIK",manifest:`${prefix}/manifest.json`,activities:activities.map(a=>({slot:a.slot}))};
-routes.routes=routes.routes.filter(r=>r.programId!==route.programId);routes.routes.push(route);fs.writeFileSync(routeFile,JSON.stringify(routes,null,2)+"\n");
+const existingRoute = routes.routes.findIndex(row => row.programId === route.programId);
+if (existingRoute < 0) routes.routes.push(route);
+else routes.routes[existingRoute] = route;
+fs.writeFileSync(routeFile,JSON.stringify(routes,null,2)+"\n");
 const runtimePaths=[`${prefix}/manifest.json`,...manifest.outputs.map(o=>o.path)];
 if(process.argv.includes("--audio")){
   const audio=buildNativeAseqAudioPack({generatedBy,disc:3,authDirectory:path.join(root,prefix),authFiles:activities.map(a=>a.file),authManifest:`${prefix}/manifest.json`,resourceBindingEvidence:evidence,

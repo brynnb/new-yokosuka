@@ -47,6 +47,24 @@ function optionsElement() {
   };
 }
 
+test("the ending card accepts the return choice and clears before the next prompt", () => {
+  const selected = [];
+  const root = element(), speaker = element(), options = optionsElement();
+  const presenter = createScriptEventDialoguePresenter({
+    root, speaker, sourceText: element(), japaneseText: element(), options, onSelect: id => selected.push(id),
+  });
+  presenter.showOptions([{id: 8, isAvailable: true, line: {text: "Return to bedroom", metadata: ["presentation:game-over"]}}]);
+  assert.equal(root.attributes.get("data-presentation"), "game-over");
+  assert.equal(speaker.textContent, "Game Over");
+  options.children[0].listeners.click();
+  assert.deepEqual(selected, [8]);
+  presenter.hide();
+  assert.equal(root.attributes.get("data-presentation"), "dialogue");
+  presenter.showOptions([{id: 9, isAvailable: true, line: {text: "Sleep"}}]);
+  assert.equal(root.attributes.get("data-presentation"), "options");
+  assert.equal(speaker.textContent, "Your response");
+});
+
 test("challenge prompts own their tokens, touch buttons and timeout lifetime", async () => {
   const calls=[];
   const presenter=createScriptEventDialoguePresenter({root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options:optionsElement(),

@@ -11,6 +11,8 @@ import {verifyJimmyChase} from "./story-jimmy-chase.js";
 import {verifyHarborHiring,verifyGoroLeadNatural} from "./story-harbor-hiring.js";
 import {verifyForkliftTraining} from "./story-forklift-training.js";
 import {verifyChickenRace} from "./story-chicken-race.js";
+import {verifyClosingCredits} from "./story-closing-credits.js";
+import {verifyCalendarDeadline} from "./story-calendar-deadline.js";
 import {verifyPersonalCalendar} from "./story-calendar.js";
 import {verifyMorningRace,verifyMorningRaceSaved,verifyMorningRaceFromEvening} from "./story-morning-race.js";
 import {verifyMorningCargo,verifyMarkLunch,verifyFirstAfternoon} from "./story-workday-one.js";
@@ -1768,6 +1770,18 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     if(process.env.NEW_YOKOSUKA_DOJO_ITEMS_E2E === "true"){
       await verifyDojoItems(page,testInfo,character);
       expect(errors).toEqual([]);expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_CREDITS_E2E) {
+      test.setTimeout(1_100_000);
+      await verifyClosingCredits(page, testInfo, character, enterStoryWorld, process.env.NEW_YOKOSUKA_CREDITS_E2E);
+      expect(errors).toEqual([]);
+      return;
+    }
+    if (process.env.NEW_YOKOSUKA_DEADLINE_E2E) {
+      test.setTimeout(540_000);
+      await verifyCalendarDeadline(page, testInfo, character, enterStoryWorld, process.env.NEW_YOKOSUKA_DEADLINE_E2E);
+      expect(errors).toEqual([]);
+      return;
     }
     if (process.env.NEW_YOKOSUKA_NOZOMI_FLOWERS_E2E === "true") {
       test.setTimeout(420_000);

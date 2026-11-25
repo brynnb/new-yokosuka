@@ -31,6 +31,9 @@ for (const route of spec.routes) {
   }
   if(![1,2,3].includes(disc))throw Error(`Invalid Shenmue I source disc in ${route.id}`);
   const region=storyRegions.find(r=>r.id===route.bounds);
+  if (route.latestDate && (region?.earliestDate !== route.earliestDate || region?.latestDate !== route.latestDate)) {
+    throw Error(`Client dispatch and authoritative date window disagree in ${route.id}`);
+  }
   if(region?.hours&&JSON.stringify(region.hours)!==JSON.stringify(route.hours))throw Error(`Client dispatch and authoritative Yarn hours disagree in ${route.id}`);
   // The server rejects equal-priority candidates before running their gates.
   // Distinct bounds/flags do not disambiguate an otherwise identical selector.
@@ -122,11 +125,16 @@ for (const route of spec.routes) {
     ? `(game_hour() < ${route.hours[0]} || game_hour() >= ${route.hours[1]})`
     : `(game_hour() < ${route.hours[0]} && game_hour() >= ${route.hours[1]})`);
   if(route.bounds)gates.push(`!actor_in_bounds("AKIR", "${route.bounds}")`);
-  if(route.earliestDate){
-    if(!/^\d{4}-\d{2}-\d{2}$/.test(route.earliestDate))throw Error(`Invalid earliest Story date in ${route.id}`);
-    const milliseconds=Date.parse(`${route.earliestDate}T00:00:00Z`);
-    if(!Number.isFinite(milliseconds)||new Date(milliseconds).toISOString().slice(0,10)!==route.earliestDate)throw Error(`Invalid earliest Story date in ${route.id}`);
-    gates.push(`game_day() < ${milliseconds/86400000}`);
+  if (route.latestDate && (!route.earliestDate || route.latestDate < route.earliestDate)) {
+    throw Error(`Invalid Story date window in ${route.id}`);
+  }
+  for (const [date, comparison] of [[route.earliestDate, "<"], [route.latestDate, ">"]]) {
+    if (!date) continue;
+    const milliseconds = Date.parse(`${date}T00:00:00Z`);
+    if (!Number.isFinite(milliseconds) || new Date(milliseconds).toISOString().slice(0,10) !== date) {
+      throw Error(`Invalid Story date in ${route.id}`);
+    }
+    gates.push(`game_day() ${comparison} ${milliseconds / 86400000}`);
   }
   if(route.sameDayAs)gates.push(`game_day() != progress_value("${route.sameDayAs}")`);
   if(route.dayAfter && !route.legacyDateNotice)gates.push(`progress_value("${route.dayAfter}") == 0 || game_day() <= progress_value("${route.dayAfter}")`);

@@ -1539,6 +1539,54 @@
           }
         ]
       }
+    },
+    "bgm127": {
+      "url": "/music/shenmue1/bgm127-de1d8a6a83c1e4ef-180s.ogg",
+      "label": "Lan Di returns",
+      "durationSeconds": 180,
+      "loop": true,
+      "source": {
+        "id": "de1d8a6a83c1e4efc3862d7bc80763a9c9645dc47e26386847b6df2983fca66c",
+        "file": "BGM127.SND",
+        "container": "DTPK",
+        "bankSha256": "6c7a7a2fe49ff216c404e99cf8bf2030232793f253e8227a666813b5d5ed6f79",
+        "offset": 0,
+        "group": 0,
+        "track": 0,
+        "groupCommand": "A83F0000",
+        "driverSha256": "3f88553a52a6d1af0b988ea3f41800178988350721bd7422a570dc3e4e369915",
+        "copies": [
+          {
+            "disc": 1,
+            "path": "SCENE/01/SOUND/BGM127.SND",
+            "sha256": "6c7a7a2fe49ff216c404e99cf8bf2030232793f253e8227a666813b5d5ed6f79"
+          },
+          {
+            "disc": 2,
+            "path": "SCENE/02/SOUND/BGM127.SND",
+            "sha256": "6c7a7a2fe49ff216c404e99cf8bf2030232793f253e8227a666813b5d5ed6f79"
+          },
+          {
+            "disc": 3,
+            "path": "SCENE/03/SOUND/BGM127.SND",
+            "sha256": "6c7a7a2fe49ff216c404e99cf8bf2030232793f253e8227a666813b5d5ed6f79"
+          }
+        ]
+      }
+    },
+    "closing-credits-rim004": {
+      "label": "Closing credits",
+      "url": "/music/shenmue1/closing-credits-rim004.ogg",
+      "loop": false,
+      "durationSeconds": 560,
+      "sha256": "6dc7c7266ab30792e11a13c4ed7dbd57f43d24dac9156ae094268f7ab69fc5b2",
+      "source": {
+        "file": "RIM004.SND",
+        "bankSha256": "b462a368b2761709768d06e748a55bec515fec75b7b52f49c48d3e570f4fe2ff",
+        "driverSha256": "3f88553a52a6d1af0b988ea3f41800178988350721bd7422a570dc3e4e369915",
+        "group": 0,
+        "track": 0
+      }
     }
   },
   "worlds": {

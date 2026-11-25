@@ -1,3 +1,4 @@
+import { createClosingCreditsPlayback } from "./ClosingCreditsPlayback.js";
 import {
   createNativeScriptActivityRunner,
 } from "./NativeScriptActivityRunner.js";
@@ -89,6 +90,7 @@ export function createScriptEventAssembly({
   localDebug = false,
 }) {
   const activityRunner = createNativeScriptActivityRunner({
+    createClosingCredits: () => createClosingCreditsPlayback({musicControls}),
     nativeRuntime,
     cutsceneDirector,
     getArea,

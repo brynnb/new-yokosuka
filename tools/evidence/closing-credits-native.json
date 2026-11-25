@@ -1,0 +1,46 @@
+{
+  "source": "Shenmue I, Disc 3. Offsets refer to file positions in the extracted 1ST_READ.BIN.",
+  "executableSha256": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+  "resources": {
+    "art": {
+      "file": "SPRITE/STAFF_S.GZ",
+      "sha256": "5f55ab9c27c49e496462c81faf2b53fd7a7dec371a6f4fc74f2c4cf7bd54b619",
+      "load": "0x16e4f2–0x16e4fa",
+      "layout": "0x16e500–0x16e534 saves the first TEXN separately, then advances to the first numbered page.",
+      "first": "PRESENT, 512 × 64",
+      "pages": "61 numbered TEXN records, 512 × 512 each"
+    },
+    "music": {
+      "file": "SCENE/03/SOUND/RIM004.SND",
+      "bankSha256": "b462a368b2761709768d06e748a55bec515fec75b7b52f49c48d3e570f4fe2ff",
+      "driverSha256": "3f88553a52a6d1af0b988ea3f41800178988350721bd7422a570dc3e4e369915",
+      "load": "0x16e53c–0x16e540",
+      "start": "0x16e546–0x16e54a sends 0x09a8.",
+      "render": "Original AICA bank and driver, group 0, track 0, rendered for 560 seconds. With ffmpeg silencedetect at -52 dB and a 2-second minimum interval, the terminal silence starts at 533.233 seconds."
+    }
+  },
+  "scroll": {
+    "framebuffer": [
+      640,
+      480
+    ],
+    "background": "#080820",
+    "firstPageAnchor": [
+      64,
+      480
+    ],
+    "logic": "0x16e126 moves each strip upward and holds the final page at y = 0. 0x16e3ac–0x16e468 advances by two pixels per tick and emits a strip after every 512 pixels.",
+    "firstPageTick": 90,
+    "ticksBetweenPages": 256,
+    "lastPageTick": 15450,
+    "finalPageAtTopTick": 15690,
+    "lastPageHold": "0x16e44e–0x16e452 waits 406 ticks from the emission of the last page, followed by the transition at 0x16e342.",
+    "logoTick": 15888,
+    "logo": "0x16e31e–0x16e32c draws PRESENT with the bottom-right anchor (752, 456). The terminal states at 0x16e276 and 0x16e254 count 90 and 32 ticks.",
+    "outroTick": 16010,
+    "endTick": 16040,
+    "ticksPerSecond": 30,
+    "durationSeconds": 534.667
+  },
+  "implementation": "The web player reproduces the numbered sheet sequence, final card, scrolling, score and phase counters. The natural musical ending independently corroborates the 30 Hz presentation rate. Subframe timing and transition opacity have not been compared to a frame capture from retail hardware. Ending the web presentation returns control to the earned voyage deck."
+}

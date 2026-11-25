@@ -43,6 +43,7 @@ export class StoryRegionRuntime {
     if(calendarDay!==this.calendarDay){
       for(const region of this.regions)if(region.recheckOnDayChange)this.inside.delete(region.id);
       this.calendarDay=calendarDay;
+      this.dateKey = calendarDay === "unknown" ? null : date.toISOString().slice(0,10);
     }
     const entered=[];
     for (const region of this.regions) {
@@ -50,6 +51,8 @@ export class StoryRegionRuntime {
       // walking nearby must not start its interaction or consume entry dispatch.
       if (region.trigger === "use") continue;
       if (region.area !== area || (region.worldId && region.worldId !== worldId)) continue;
+      if (region.earliestDate && (!this.dateKey || this.dateKey < region.earliestDate)) continue;
+      if (region.latestDate && (!this.dateKey || this.dateKey > region.latestDate)) continue;
       if (region.hours) {
         const hour=date instanceof Date ? date.getUTCHours()+date.getUTCMinutes()/60+date.getUTCSeconds()/3600 : NaN;
         const [start,end]=region.hours;

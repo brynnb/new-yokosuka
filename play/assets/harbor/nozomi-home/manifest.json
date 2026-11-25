@@ -259,6 +259,13 @@
         "archiveMember": "NZM_M.CHRM",
         "byteLength": 67364,
         "sha256": "2e688fd24ef19f7612f55f75dc5eb67c60d980529f60d5de1e84aba52bb72e7d"
+      },
+      {
+        "name": "YKB_M.MT5",
+        "path": "disc3/SCENE/03/MODEL/CHARA/YKB_M.MT5",
+        "sourceSha256": "c9a1eaf2fbcbd2ca4a02ddecd26971cb8704c73a1a3b2900b8eae8679434879f",
+        "byteLength": 214272,
+        "sha256": "c9a1eaf2fbcbd2ca4a02ddecd26971cb8704c73a1a3b2900b8eae8679434879f"
       }
     ]
   },
@@ -378,6 +385,15 @@
       "characterScale": 1,
       "assetPath": "play/assets/harbor/nozomi-home/NZM_M.CHRM",
       "textureAssetPath": "play/assets/harbor/nozomi-rescue/TER2-textures.bin"
+    },
+    "AKIR": {
+      "label": "Ryo Hazuki",
+      "modelCode": "YKB_M",
+      "browserFilename": "YKB_M.MT5",
+      "assetFormat": "MT5",
+      "characterScale": 1,
+      "assetPath": "play/assets/harbor/nozomi-home/YKB_M.MT5",
+      "textureAssetPath": "play/assets/harbor/nozomi-home/YKB_textures.bin"
     }
   },
   "actorTags": [
@@ -569,9 +585,19 @@
       "sha256": "2e688fd24ef19f7612f55f75dc5eb67c60d980529f60d5de1e84aba52bb72e7d"
     },
     {
+      "path": "play/assets/harbor/nozomi-home/YKB_M.MT5",
+      "byteLength": 214272,
+      "sha256": "c9a1eaf2fbcbd2ca4a02ddecd26971cb8704c73a1a3b2900b8eae8679434879f"
+    },
+    {
       "path": "play/assets/harbor/nozomi-home/textures.bin",
       "byteLength": 179672,
       "sha256": "37a6034ee754f1665778994637dcbd1313821297565cc75c9c5dc3a09a2327fe"
+    },
+    {
+      "path": "play/assets/harbor/nozomi-home/YKB_textures.bin",
+      "byteLength": 158972,
+      "sha256": "03c8d72671ac78ed6be8bc97b2185365510d90dc3a0b60a6535c5e51bd213e8a"
     }
   ],
   "activities": [

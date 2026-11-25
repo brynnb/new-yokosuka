@@ -724,3 +724,17 @@ remain goal work; this does not claim exhaustive optional-content coverage.
 No future outcome should be inserted into an earned checkpoint. Plane mesh
 visibility, exact collapse staging and tighter hand/pipe choreography remain
 presentation review items, not proof of missing or completed battle outcomes.
+
+## The March warning and April deadline
+
+At the Hazuki bedside on March 31, choose **Sleep** to see Shenhua's dream. The original JOMO sleep routine selects the three 01BEDB shots at slots 60, 61 and 62. Completing the dream records native flag 2:181 and starts April 1 at 08:30. English voice A004 is absent from the source bank. The other five voices and BGM129 are available. See [the native branch evidence](../../tools/evidence/bebf-native-lifecycle.json).
+
+The same bedside interaction on April 14 through 29 leads to Lan Di's return if Ryo has yet to depart. The original checks the date *after* sleep advances it. The 01BEDA film uses three shots and a private BETD courtyard at 16:00. Its Ryo, Fuku-san, Lan Di and henchman use scene assets. In this adaptation, **Return to bedroom** on the Game Over card records the outcome and resumes the existing character on the pre-sleep date. **Stay awake** or cancellation before accepting the ending leaves it available. See [the courtyard and scene bindings](../../tools/evidence/bad-ending-source.json).
+
+Both cases passed real-time browser playback on Kraft in isolated saves started near the relevant date. The warning test declined sleep, cancelled, retried and reloaded the following morning. The ending test verified the original courtyard, the explicit Game Over choice and preservation of the player's HP, money and inventory after returning. Browser logs are in `ny-connected-20261124-d1i2uB/warning-warm.log` and `ny-connected-20261124-d1i2uB/ending-stage.log` under the project's local evidence archive.
+
+## Staff roll on the ship
+
+The sailing scene saves Ryo's departure before the ship-deck arrival starts the credits. Arrival checks the earned departure flag, ship world and deck bounds. The dock and ship share an area code, so the world distinction matters. An earlier save on the ship with no credits receipt can also trigger the roll at the deck arrival point.
+
+Disc 3's English staff archive contains 61 distinct staff pages and the final PRESENT image. The renderer uses the original two-pixel scroll and page interval with the nonlooping RIM004 score. The roll lasts 16,040 ticks at 30 Hz (8 minutes 54.67 seconds). **Skip credits** accepts the roll immediately. **Escape** cancels and retains eligibility on the next arrival. Both natural completion and an explicit skip return control to the ship. See [the original archive, timing and score evidence](../../tools/evidence/closing-credits-native.json).

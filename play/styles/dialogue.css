@@ -64,6 +64,41 @@
   pointer-events: none;
 }
 
+/* A response is still required when the player disables subtitles. */
+.dialogue-captions-disabled .dialogue-overlay[data-presentation="options"],
+.dialogue-overlay[data-presentation="game-over"] {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.dialogue-overlay[data-presentation="game-over"] {
+  position: fixed;
+  inset: 0;
+  place-items: center;
+  background: #080808;
+}
+
+.dialogue-overlay[data-presentation="game-over"] .dialogue-panel {
+  width: min(360px, 85vw);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.dialogue-overlay[data-presentation="game-over"] .dialogue-speaker {
+  margin-bottom: 32px;
+  color: #eee;
+  font-family: Georgia, serif;
+  font-size: clamp(32px, 6vw, 58px);
+  font-weight: normal;
+}
+
+.dialogue-overlay[data-presentation="game-over"] .dialogue-option {
+  text-align: center;
+}
+
 .dialogue-panel {
   width: min(760px, 100%);
   padding: 15px 22px 17px;

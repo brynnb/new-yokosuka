@@ -155,6 +155,7 @@ export class ScriptEventDialoguePresenter {
     this.clearOptions();
     const requestId = ++this.requestId;
     this.active = true;
+    this.dom.root.setAttribute("data-presentation", "dialogue");
     this.dom.speaker.textContent = detail.speakerLabel;
     this.dom.speaker.setAttribute("data-dialogue-speaker", detail.speakerStyle);
     this.dom.sourceText.textContent = detail.text;
@@ -300,6 +301,8 @@ export class ScriptEventDialoguePresenter {
     if (!Array.isArray(options) || options.length === 0) {
       throw new Error("script event has no presented options");
     }
+    const gameOver = options.length === 1
+      && options[0]?.line?.metadata?.includes("presentation:game-over");
     const presented = options.map(optionPresentation);
     if (!presented.some(option => option.isAvailable)) {
       throw new Error("script event has no available options");
@@ -311,8 +314,9 @@ export class ScriptEventDialoguePresenter {
     this.requestId += 1;
     this.clearOptions();
     this.active = true;
-    this.dom.speaker.textContent = "Your response";
-    this.dom.speaker.setAttribute("data-dialogue-speaker", "ryo");
+    this.dom.root.setAttribute("data-presentation", gameOver ? "game-over" : "options");
+    this.dom.speaker.textContent = gameOver ? "Game Over" : "Your response";
+    this.dom.speaker.setAttribute("data-dialogue-speaker", gameOver ? "system" : "ryo");
     this.dom.sourceText.textContent = "";
     this.dom.japaneseText.textContent = "";
     this.dom.japaneseText.hidden = true;

@@ -99,6 +99,29 @@ test("race-grid dispatch is scoped to its world even though practice shares MA00
   assert.equal(calls.length,1);
 });
 
+test("the bedroom only dispatches a deadline film on its personal date and during sleeping hours", () => {
+  const ids = ["s1.jomo.shenhua-warning", "s1.jomo.bad-ending"];
+  const regions = storyRegions.regions.filter(region => ids.includes(region.id));
+  assert.equal(regions.length, 2);
+  let date;
+  const runtime = new StoryRegionRuntime({
+    regions, getGameDate: () => date, publishPresence: () => true,
+    controller: {status: "idle", start: async () => ({outcome: "declined"})},
+    getCharacter: () => ({id: 1, playMode: "story", openingCompleted: true}),
+  });
+  for (const [when, id] of [
+    ["1987-03-30T21:00:00Z", null], ["1987-03-31T19:59:00Z", null],
+    ["1987-03-31T20:00:00Z", ids[0]], ["1987-04-01T20:00:00Z", null],
+    ["1987-04-13T20:00:00Z", null], ["1987-04-14T20:00:00Z", ids[1]],
+    ["1987-04-22T20:00:00Z", ids[1]], ["1987-04-30T20:00:00Z", null],
+  ]) {
+    date = new Date(when);
+    const sent = runtime.update({area: "JOMO", worldId: "interior", playerPosition: [-18,0,4], enabled: true});
+    assert.equal(sent, Boolean(id), when);
+    assert.deepEqual([...runtime.inside], id ? [id] : [], when);
+  }
+});
+
 test("a saved-day appointment re-arms after midnight without fabricating eligibility",()=>{
   let date=new Date("1986-12-23T20:00:00Z");const calls=[];
   const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{}};

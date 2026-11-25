@@ -35,6 +35,7 @@ export class NativeScriptActivityRunner {
     restorePlayerState = null,
     selectedObjectActionController = null,
     cutsceneDirector = null,
+    createClosingCredits = null,
   } = {}) {
     if (
       typeof nativeRuntime?.startObjectInteraction !== "function"
@@ -63,11 +64,13 @@ export class NativeScriptActivityRunner {
     this.restorePlayerState=restorePlayerState;
     this.selectedObjectActionController = selectedObjectActionController;
     this.cutsceneDirector = cutsceneDirector;
+    this.createClosingCredits = createClosingCredits;
     this.active = null;
   }
 
   async start(activity, context = {}) {
     if (this.active) throw new Error("a specialized script activity is already active");
+    if (activity?.kind === "closing-credits") return this.startClosingCredits(activity, context);
     if (activity?.kind === "native-cutscene") return this.startCutscene(activity, context);
     if (
       activity?.kind !== "native-object-interaction"
@@ -153,6 +156,7 @@ export class NativeScriptActivityRunner {
   cancel(reason = "script-activity-cancelled") {
     const owner = this.active;
     if (!owner) return false;
+    if (owner.activity.kind === "closing-credits") return owner.playback.stop(false);
     if (owner.activity.kind === "native-cutscene") return this.cutsceneDirector.stop(reason);
     if (this.nativeRuntime.cancel(reason) !== true && this.active === owner) {
       this.finish(owner, false, { status: "cancelled", reason });
@@ -199,6 +203,30 @@ export class NativeScriptActivityRunner {
     owner.unsubscribe?.();
     owner.settle({ accepted, result });
     return true;
+  }
+
+  async startClosingCredits(activity, context) {
+    if (!this.createClosingCredits || activity.area !== this.getArea() || context.area !== activity.area) {
+      throw new Error("Closing credits are unavailable in the active area");
+    }
+    const clientState = this.captureClientState();
+    const playerState = activity.returnPlayerState ? this.capturePlayerState() : null;
+    const playback = this.createClosingCredits();
+    let settle;
+    const settled = new Promise(resolve => { settle = resolve; });
+    const owner = { activity, clientState, playerState, playback, settle, restoreClientStateRequired: true };
+    this.active = owner;
+    try {
+      const accepted = await playback.finished;
+      this.finish(owner, accepted, { status: accepted ? "completed" : "cancelled" });
+    } catch (error) {
+      this.finish(owner, false, { status: "stopped", reason: error.message });
+    }
+    const result = await settled;
+    if (!result.accepted && result.result.status !== "cancelled") {
+      throw new Error("Closing credits stopped: " + nativeFailureDetail(result.result));
+    }
+    return result.accepted;
   }
 
   async startCutscene(activity, context) {

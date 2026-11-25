@@ -322,7 +322,7 @@ Story settlement path; the ride is a presentation, not another driving win.
 | Field | Implementation |
 | --- | --- |
 | Eligibility / entry | After the independently saved rescue, **Take Nozomi home** / **Leave it for now** confirms reward-free travel from the tested warehouse to `nbik-home`. Original first-film AKIR pose is native `[133.347809,0,26.650837]`, mirrored once into browser X. This is a cinematic arrival, not a recovered default Entry. |
-| World / cast / props | Original NBIK harbor and road geometry in a separate cinematic world; the controllable `nbik` world retains MAP17-only loading. Original CHRS binds the motorcycle, six moving cars and moon. Original speed/headlight reference planes remain references, not recreated glow effects. NBIK requests Nozomi's `NZM_M`; reuse that exact full body from TER2 and its existing textures, not a renamed donor. Ryo remains the owned Story avatar. |
+| World / cast / props | Original NBIK harbor and road geometry in a separate cinematic world; the controllable `nbik` world retains MAP17-only loading. Original CHRS binds the motorcycle, six moving cars and moon. Original speed/headlight reference planes remain references, not recreated glow effects. NBIK's original CHRS binds HRSK to `NZM_M` and AKIR to `YKB_M`. The film uses Nozomi's exact TER2 body and Ryo's Disc 3 cinematic jacket. The ordinary Story avatar stays in its saved position while the film owns both riders. |
 | Sequence / timing / camera | All 23 adjacent original TRCK clips, 4,661 frames / 155.37 seconds, original cameras/movement and M_01BIKE bank16. The existing exact-activity sequence compiler/player keeps one actor/camera/music owner across the shots. Adjacent-file playlist order is authored, not a recovered native controller branch/order. No new cutscene interpreter or story engine. |
 | Dialogue / effects | Both original English 01BIKEB voices/subtitles and both original A1_NBIKE engine-effect tracks resolve. The opening conversation is 31.1 seconds; the remaining paired riding/embrace shots total 124.27 seconds. No invented dialogue, alias or skipped unavailable voice. |
 | Music | Original Disc3 CDDA track5 is 124.79 seconds. Start it at the second clip and retain it through uncued shots with the existing music owner. Duration correspondence supports this pairing; exact CDDA control/cue execution is not recovered. The original PCM is decoded locally, not replaced with another recording. |
@@ -405,10 +405,24 @@ supported explicit program skip. Every check uses the isolated local database
 and a genuinely earned rescue checkpoint, not inserted home/finale outcomes.
 The earned final-morning database backup is retained. No assets were uploaded.
 
-Rendered fidelity is not complete: Nozomi's riding skirt forms conspicuous
-horizontal spikes in a close-up, despite the exact `NZM_M` body and original
-paired motions. Standing/dialogue framing is correct. No guessed cloth runtime
-mode, donor body or hand-edited source motion was introduced to hide it. The
-shared cloth presentation needs a separately bounded investigation; this is a
-visible limitation, not a missing story outcome or justification for native
-controller reconstruction.
+The NBIK CHRS identity for Ryo is `YKB_M`. Disc 3's loose body SHA-256 is
+`c9a1eaf2fbcbd2ca4a02ddecd26971cb8704c73a1a3b2900b8eae8679434879f`.
+His source `YKB_F.MT5` and `YKB_FTBL.BIN` are byte-identical to the shared
+detailed face and facial table. The ride builder reads its own Disc 3 body
+and embedded textures. `tests/NozomiHomeAssets.test.js` instantiates the
+registered bodies in Babylon, checks which body owns each of the 23 shots,
+and verifies that completion and cancellation hide both riders, restore the
+exploration avatar's visibility and preserve its position.
+
+The riding close-up still shows horizontal spikes in Nozomi's skirt. The
+first 66,076 bytes of the TER2 body, including all HRCM geometry before the
+first texture chunk, match Disc 3's original `MODEL/CHARA/NZM_M.MT5`.
+The renderer recognizes a 4-by-10 closed skirt and runs its cloth solver.
+With the original actor transform and paired riding motion in slot 4,
+frame 180, the longest rendered skirt-triangle edge measured 0.277 m, and
+the largest edge-to-rest-length ratio was 2.05 among edges over 0.02 m at
+rest. Slot 0, frame 35, measured 0.153 m and 1.24 by the same method.
+These are isolated 30 Hz renderer samples. The original NBIK cloth-owner
+mode and per-frame cloth vertices still need a native capture to establish
+whether the difference comes from the solver, riding-specific inputs, or
+both.

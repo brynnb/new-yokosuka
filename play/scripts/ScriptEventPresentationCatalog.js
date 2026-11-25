@@ -42,6 +42,9 @@ const ACTIVITIES = new Map([
       cutscene:{id:`story-s1-nozomi-park-${part}-${slot+1}`,packageId:`nozomi-park-${part}`,worldId,storyPresentation:true,
         activity:{slot,binding:{kind:"map-embedded-slot",activityId:`DNOZ/SEQDATA${file}.AUTH`}}}},
   ])),
+  ["s1.voyage.closing-credits.scene",{
+    kind:"closing-credits",area:"MEND",worldId:"s1-voyage",durableEffects:"forbidden",returnPlayerState:true,
+  }],
   ["s1.mend.ship-sailing.scene",{kind:"native-cutscene",area:"MEND",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-ship-sailing",packageId:"ship-sailing",worldId:"mend",storyPresentation:true,
       program:{programId:"story-s1-ship-sailing",entryFunction:"$activity-sequence",area:"MEND",worldId:"mend"}}}],
@@ -163,6 +166,16 @@ const ACTIVITIES = new Map([
     kind:"native-cutscene",area:"JHD0",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-fuku-phoenix-mirror",packageId:"houo",worldId:"exterior",storyPresentation:true,
       activity:{slot:9,binding:{primaryPointer:394211,secondaryPointer:394224}}},
+  }],
+  ["s1.jomo.shenhua-warning.scene",{
+    kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-shenhua-warning",packageId:"bebf",worldId:"interior",storyPresentation:true,
+      program:{programId:"preview-s1-bebf-01",entryFunction:"$activity-sequence",area:"JOMO",worldId:"interior"}},
+  }],
+  ["s1.jomo.bad-ending.scene",{
+    kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,
+    cutscene:{id:"story-s1-bad-ending",packageId:"bad-ending",worldId:"interior",storyPresentation:true,
+      program:{programId:"story-s1-jomo-bad-ending",entryFunction:"$activity-sequence",area:"JOMO",worldId:"interior"}},
   }],
   ["s1.jomo.nozomi-flowers.scene",{
     kind:"native-cutscene",area:"JOMO",durableEffects:"forbidden",returnPlayerState:true,

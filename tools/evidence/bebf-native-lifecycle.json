@@ -18,13 +18,15 @@
       { "slot": 62, "callFileOffset": "0x4c12e", "primaryPointer": "0x965fb", "secondaryPointer": "0x96608", "activity": "SEQDATA2.AUTH" },
       { "slot": 63, "callFileOffset": "0x4c152", "primaryPointer": "0x9660d", "secondaryPointer": "0x9661a", "activity": "SEQDATA3.AUTH" }
     ],
-    "playbackOrder": [
-      { "slot": 60, "callFileOffset": "0x4c244" },
-      { "slot": 61, "callFileOffset": "0x4c27a" },
-      { "slot": 62, "callFileOffset": "0x4c2b0" },
-      { "slot": 60, "callFileOffset": "0x4c30e" },
-      { "slot": 63, "callFileOffset": "0x4c344" },
-      { "slot": 62, "callFileOffset": "0x4c37a" }
+    "bedtimeGate": {
+      "clockRead": "0x4fa04", "dayEquals31": "0x4fa14", "monthEquals3": "0x4fa24",
+      "flag": 181, "readIfZero": "0x4fa4a", "callWithInputZero": "0x4fa72", "writeOne": "0x4fa8a",
+      "discs": [1, 2, 3], "gateRange": ["0x4f9f8", "0x4fa8e"],
+      "gateSha256": "182939ca4ec6edee66e015b00c8e86032d959f65e313a4062203027a4355cfe4"
+    },
+    "playbackBranches": [
+      { "input": 0, "slots": [60, 61, 62], "callFileOffsets": ["0x4c244", "0x4c27a", "0x4c2b0"], "trigger": "March 31 bedtime, when flag 181 is clear" },
+      { "input": 1, "slots": [60, 63, 62], "callFileOffsets": ["0x4c30e", "0x4c344", "0x4c37a"], "trigger": null }
     ]
   },
   "nativeLifecycle": {
@@ -34,7 +36,7 @@
       "make named voice resource 01BEDB resident",
       "load BGM129.SND and A1_BADME.SND"
     ],
-    "activity": "run slots 60, 61, 62, 60, 63, 62 through helper 0x4b4f8 in exact owner order",
+    "activity": "the March 31 caller passes zero, so helper 0x4b4f8 runs slots 60, 61, 62. The owner also contains an alternate input-one branch using 60, 63, 62. No separate date has been established for that branch.",
     "exit": [
       "restore SINF actor state",
       "release named resource 01BEDB",
@@ -63,7 +65,7 @@
     }
   },
   "runtimePolicy": {
-    "sequence": "execute the canonical compiled owner program and sublease its exact repeated activity calls; do not expose four independent selector entries",
+    "sequence": "use the shared compiled preview-s1-bebf-01 program to call slots 60, 61, 62 once under one package lease for the March 31 warning",
     "assets": "reuse canonical JOMO world and Shenhua assets; package only exact activity-local AUTH and motion data",
     "audio": "play the exact 01BEDB voices and A1_BADME effects, preserving the absent A004 cue as unavailable",
     "exit": "release camera, actor, facial, audio, music, and activity ownership exactly once"
@@ -75,5 +77,5 @@
     "tools/evidence/native-audio-bank-inventory.json"
   ],
   "availability": "production",
-  "productionGate": "Satisfied by the canonical owner program's exact six activity calls, package-declared AKID player/FACE aliases, SH-4-evaluated SINF TALK poses, generated exact BGM129 command, voice/SFX assets, and shared ownership cleanup runtimes."
+  "productionGate": "The three-shot input-zero warning is available with package-declared AKID player/FACE aliases, SH-4-evaluated SINF TALK poses, generated exact BGM129 command, voice/SFX assets, and shared ownership cleanup runtimes."
 }

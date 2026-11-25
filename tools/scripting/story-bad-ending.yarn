@@ -1,0 +1,11 @@
+-> Sleep
+    <<jump Ending>>
+-> Stay awake
+    <<complete>>
+===
+title: Ending
+---
+<<start_activity "s1.jomo.bad-ending.scene">>
+-> Return to bedroom #presentation:game-over
+    {{effects}}
+    <<complete>>

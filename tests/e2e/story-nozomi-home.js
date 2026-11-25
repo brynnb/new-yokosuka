@@ -31,10 +31,25 @@ export async function verifyNozomiHome(page,testInfo,character,{musicResponses})
     await choose("Leave it for now");expect((await economy()).character.storyFlags[flag("nozomi-home")]).not.toBe(true);
     await reload();await choose("Take Nozomi home");
   }
-  await slot(0);await page.waitForTimeout(3000);await page.screenshot({path:testInfo.outputPath("nozomi-home-original-conversation.png")});
+  await slot(0);
+  const riders = await page.evaluate(() => {
+    const actors = window.storyProbe.director.activeCutscene.packageRuntime.packageActors;
+    window.rideHomeRoots = ["AKIR","HRSK"].map(tag => actors.records.get(tag)?.root);
+    return [["AKIR","YKB_M"],["HRSK","NZM_M"]].map(([tag, model]) => {
+      const root = actors.records.get(tag)?.root;
+      return {
+        original: !!root && actors.variantRecords.get(tag)?.get(model)?.root === root,
+        drawable: !!root && root.isEnabled() && root.getChildMeshes(false).some(m =>
+          m.isEnabled() && m.isVisible && m.getTotalVertices() > 0),
+      };
+    });
+  });
+  expect(riders).toEqual([{original:true,drawable:true},{original:true,drawable:true}]);
+  await page.waitForTimeout(3000);await page.screenshot({path:testInfo.outputPath("nozomi-home-original-conversation.png")});
   console.info("Nozomi home: cancel original program, saved cinematic-world reload/retry");
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel("ride-home-cancel"));
   expect((await economy()).character.storyFlags[flag("nozomi-home")]).not.toBe(true);
+  await expect.poll(() => page.evaluate(() => window.rideHomeRoots.every(root => root.isDisposed() || !root.isEnabled()))).toBe(true);
   await reload();await slot(0);
   const expectedHomeDate=nextDateAt((await economy()).worldState,5,56);
   const skip=process.env.NEW_YOKOSUKA_NOZOMI_HOME_SKIP_E2E==="true";
@@ -68,5 +83,9 @@ export async function verifyNozomiHome(page,testInfo,character,{musicResponses})
   await reload();await page.waitForTimeout(2500);await economy();
   expect(await page.evaluate(()=>window.storyProbe.starts)).toEqual([]);
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  expect(wake.character.avatarId).toBe("ryo");
+  const gameplayBody = await page.evaluate(() => window.storyProbe.lifecycle.getController().actorRoot.getChildMeshes(false)
+    .some(m => m.isEnabled() && m.isVisible && m.getTotalVertices() > 0));
+  expect(gameplayBody).toBe(true);
   await page.screenshot({path:testInfo.outputPath("nozomi-home-saved-final-morning.png")});
 }
