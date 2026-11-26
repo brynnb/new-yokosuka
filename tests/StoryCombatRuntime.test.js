@@ -363,6 +363,18 @@ test('touch chord and held guard complete the same optional lessons without gran
   }
 });
 
+test("Dobuita revenge waits for a fight outcome and can still be interrupted",async()=>{
+  const h=harness("s1.d000.enoki-revenge");
+  await h.ready();
+  assert.equal(h.definition.timeoutMs,null);
+  h.runtime.active.elapsed=60*60;
+  h.step();
+  assert.equal(h.runtime.active.outcome,null);
+  assert.equal(h.runtime.active.view.remainingMs,null);
+  h.runtime.finish(h.transaction);
+  assert.equal(h.runtime.active,null);
+});
+
 test("Story preserves recovery, ally animation role, timeout and ownership on failure", async () => {
   const h=harness("s1.mfbt.seventy-man");await h.ready();const e=h.runtime.encounter;
   for(const entry of e.enemies)entry.ai=null;
@@ -405,4 +417,30 @@ test("70-man fight owns ten waves, 67 ordinary opponents, three bosses and an un
   }
   assert.equal(defeated,70);assert.deepEqual(bosses,["MRSK","PEDR","STSI"]);
   assert.equal(h.runtime.active.outcome,"success");h.runtime.finish(h.transaction);
+});
+
+test("Nozomi fights on Ryo's side and her knockout leaves the two-opponent fight playable",async()=>{
+  const h=harness("s1.jd00.nozomi-park-rescue-ally");
+  await h.ready();
+  const e=h.runtime.encounter,ally=e.enemies.find(entry=>entry.id==="HRSK");
+  assert.equal(ally.combatant.team,e.player.team);
+  assert.equal(ally.combatant.maxHealth,150);
+  assert.equal(ally.combatant.minimumHealth,0);
+  assert.deepEqual(e.opponents.map(a=>a.id),["ENKI","NGSM"]);
+  assert.ok(e.opponents.some(a=>a.id===e.player.targetId));
+  const selected=[];
+  const decide=ally.ai.decide.bind(ally.ai);
+  ally.ai.decide=(self,target)=>{selected.push(target.id);return decide(self,target);};
+  h.runtime.active.intro=0;
+  for(let i=0;i<30;i++)h.step();
+  assert.ok(selected.some(id=>id==="ENKI"||id==="NGSM"));
+  assert.equal(selected.includes("AKIR"),false);
+  for(const entry of e.enemies)entry.ai=null;
+  const decisive={...MARTIAL_ARTS_MOVES.tigerKnuckle,damage:10000};
+  applyCombatHit(e.enemy,ally.combatant,decisive);
+  assert.equal(ally.combatant.defeated,true);
+  h.step();assert.equal(h.runtime.active.outcome,null);
+  for(const entry of e.opponents)applyCombatHit(e.player,entry.combatant,decisive);
+  h.step();assert.equal(h.runtime.active.outcome,"success");
+  h.runtime.finish(h.transaction);
 });

@@ -17,7 +17,7 @@ test("every registered QTE runs locally to one result; training is not a QTE",()
     const steps = def.steps ?? def.buttons.map(button => ({buttons: [button], windowMs: def.windowMs}));
     for (const [index, step] of steps.entries()) {
       const prompt = h.views.at(-1);
-      assert.deepEqual(prompt, {index, count: steps.length, ...step}, def.id);
+      assert.deepEqual(prompt, {index, count: steps.length, buttons: step.buttons, windowMs: step.windowMs}, def.id);
       h.step(prompt.windowMs / 2);
       for (const button of prompt.buttons) assert.equal(h.runtime.press(button), true, def.id);
       for (const button of prompt.buttons) h.runtime.release(button);
@@ -75,5 +75,30 @@ test("chicken race's guide-informed approximation allows a win with two correct 
     const h=harness();h.runtime.start(definition);
     definition.buttons.forEach((button,index)=>h.runtime.press(index<hits?button:"X"));
     assert.deepEqual(h.results,[expected]);
+  }
+});
+
+test("DEQB only offers one recovery per stage and changes the last input to A",()=>{
+  const definition=catalog.challenges.find(row=>row.id==="s1.d000.enoki-street");
+  const h=harness();
+  h.runtime.start(definition);
+  for(const [index,step] of definition.steps.entries()){
+    const stale=[...h.timers.values()][0].fn;
+    if(index===0)h.step(step.windowMs);
+    else h.runtime.press("Right");
+    assert.deepEqual(h.views.at(-1),{index,count:3,buttons:[step.recoveryButton],windowMs:step.windowMs});
+    stale();
+    assert.deepEqual(h.results,[]);
+    h.step(step.windowMs-1);
+    assert.equal(h.runtime.press(step.recoveryButton),true);
+  }
+  assert.deepEqual(h.results,["success"]);
+  for(const missedStage of [0,1,2]){
+    const attempt=harness();
+    attempt.runtime.start(definition);
+    for(const step of definition.steps.slice(0,missedStage))attempt.runtime.press(step.buttons[0]);
+    attempt.step(definition.steps[missedStage].windowMs);
+    attempt.step(definition.steps[missedStage].windowMs);
+    assert.deepEqual(attempt.results,["failure"]);
   }
 });

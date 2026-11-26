@@ -61,6 +61,24 @@ test("finishing Fuku's hall conversation does not offer sleep until Ryo approach
   assert.equal(starts,2);
 });
 
+test("Tomato checkout rearms only after physically leaving its entrance",()=>{
+  const region=storyRegions.regions.find(row=>row.id==="s1.dcbn.kitten-food-shop");
+  const character={id:9,playMode:"story",openingCompleted:true,modeRevision:0,
+    storyFlags:{"story.s1.first-kitten.completed":true, [region.completedFlag]:true}};
+  const offers=[];
+  const controller={status:"idle",start:async selector=>{offers.push(selector);}};
+  const runtime=new StoryRegionRuntime({controller,getCharacter:()=>character,publishPresence:()=>true,regions:[region]});
+  const frame={area:"DCBN",worldId:"dcbn",enabled:true,playerPosition:[1.58,0,0.87]};
+  assert.equal(runtime.update(frame),true);
+  for(const status of ["options","idle","idle"]) {
+    controller.status=status;
+    assert.equal(runtime.update(frame),false);
+  }
+  assert.equal(runtime.update({...frame,playerPosition:[1.55,0,-0.45]}),false);
+  assert.equal(runtime.update(frame),true);
+  assert.equal(offers.length,2);
+});
+
 test("overlapping entry bounds share one offer but later eligibility and real re-entry still work",()=>{
   const character={id:1,modeRevision:0,playMode:"story",openingCompleted:true,storyFlags:{}};
   const controller={status:"idle",start:async()=>{controller.status="options";starts++;}};

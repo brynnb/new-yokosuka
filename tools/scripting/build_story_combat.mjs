@@ -15,6 +15,9 @@ const nativeActors = JSON.parse(fs.readFileSync(path.join(root,"play/data/events
 const music=JSON.parse(fs.readFileSync(path.join(root,"public/music/manifest.json"))).tracks;
 const scenes=authoredScenes.scenes;
 const encounters = spec.encounters.map(input => {
+  if (input.timeoutMs !== null && (!Number.isSafeInteger(input.timeoutMs) || input.timeoutMs < (input.training ? 0 : 1))) {
+    throw Error("Invalid combat timeout for " + input.id);
+  }
   if(input.musicTrack&&!music[input.musicTrack])throw Error(`Missing reviewed combat music ${input.id}/${input.musicTrack}`);
   if(input.sourceTime && !["start","end"].includes(input.sourceTime))throw new Error(`Invalid staging time ${input.id}`);
   let poses,definitions;
@@ -23,8 +26,8 @@ const encounters = spec.encounters.map(input => {
     if(input.sourceScene || input.sourceActivity || input.authoredActors || !/^[a-f0-9]{64}$/.test(room.sha256)) {
       throw Error(`Invalid native room combat staging ${input.id}`);
     }
-    poses=room.placements.map(({tag,position:[x,y,z]})=>({tag,x:Math.fround(x),y:Math.fround(y),z:Math.fround(z)}));
-    definitions=nativeActors[input.worldId];
+    poses=room.placements.map(({tag,position:[x,y,z],heading})=>({tag,x:Math.fround(x),y:Math.fround(y),z:Math.fround(z),heading}));
+    definitions=input.actorDefinitions || nativeActors[input.worldId];
   }else if(input.authoredActors){
     if(input.sourceScene||input.sourceActivity)throw Error(`Ambiguous authored staging ${input.id}`);
     poses=input.authoredActors.map(({tag,position:[x,y,z]})=>({tag,x:-x,y,z}));
@@ -69,7 +72,10 @@ const encounters = spec.encounters.map(input => {
   if(poses.length!==Object.keys(input.health).length||poses[0]?.tag!=="AKIR")throw new Error(`Incomplete combat cast ${input.id}`);
   const actors = poses.map(pose => {
     if(!input.health[pose.tag]||![pose.x,pose.y,pose.z].every(Number.isFinite))throw new Error(`Invalid placement ${pose.tag}`);
+    const floor=input.minimumHealth?.[pose.tag];
+    if(floor!==undefined && (!Number.isFinite(floor) || floor<0 || floor>input.health[pose.tag]))throw Error(`Invalid health floor for ${pose.tag}`);
     return {tag:pose.tag,x:-pose.x,y:pose.y,z:pose.z,health:input.health[pose.tag],
+      ...(pose.heading!==undefined?{yaw:-Math.fround(pose.heading)*Math.PI/180}:{}),...(floor!==undefined?{minimumHealth:floor}:{}),
       ...(input.teams?.[pose.tag]?{team:input.teams[pose.tag]}:{}),...(input.damageScales?.[pose.tag]?{damageScale:input.damageScales[pose.tag]}:{})};
   });
   if(input.formation){

@@ -2,6 +2,90 @@
   "schema": "new-yokosuka-authored-story-combat-v1",
   "encounters": [
     {
+      "id": "s1.d000.enoki-revenge",
+      "label": "Enoki's revenge",
+      "area": "D000",
+      "worldId": "dobuita",
+      "provenance": "0x64338 places BASE at native X 10, Z 64. Helper 0x638b0 sets Y to 5.25. The fight poses at 0x65c44–0x65cc4 use that base. Five actor records enter operation 0x0035 at 0x65f18, 0x65fc0, 0x660bc, 0x661b8 and 0x6630c; the word at +0x10 specifies health. Models match the paired original HUMANS entries for each participant. The room waits for the fight result without a countdown. Speeds and AI use shared Story combat.",
+      "roomFight": {
+        "source": "disc1/SCENE/01/D000/MAPINFO.BIN",
+        "sha256": "7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e",
+        "function": "0x65a2c"
+      },
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -47.5,
+          "y": 5.25,
+          "z": 87.19999694824219,
+          "health": 200
+        },
+        {
+          "tag": "NGSM",
+          "x": -50.099998474121094,
+          "y": 5.25,
+          "z": 89,
+          "health": 60
+        },
+        {
+          "tag": "ENKI",
+          "x": -51.599998474121094,
+          "y": 5.25,
+          "z": 90.5,
+          "health": 160
+        },
+        {
+          "tag": "TMNY",
+          "x": -48.20000076293945,
+          "y": 5.25,
+          "z": 89.80000305175781,
+          "health": 40
+        },
+        {
+          "tag": "MYTY",
+          "x": -50.099998474121094,
+          "y": 5.25,
+          "z": 86.69999694824219,
+          "health": 40
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "NGSM",
+          "label": "Tetsuya Nagashima",
+          "modelCode": "YAB_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "ENKI",
+          "label": "Akio Enoki",
+          "modelCode": "YAA_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "TMNY",
+          "modelCode": "YAC_L",
+          "label": "Enoki's friend"
+        },
+        {
+          "actorCode": "MYTY",
+          "modelCode": "YAE_L",
+          "label": "Enoki's friend"
+        }
+      ],
+      "bounds": {
+        "minX": -53.599998474121094,
+        "maxX": -45.5,
+        "minZ": 84.69999694824219,
+        "maxZ": 92.5
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": null,
+      "musicTrack": "bgm013"
+    },
+    {
       "id": "s1.mfsy.tornado-kick",
       "label": "Learn the Tornado Kick",
       "area": "MFSY",
@@ -184,6 +268,7 @@
           "y": 0,
           "z": 65.8,
           "health": 100,
+          "minimumHealth": 1,
           "team": "ally"
         },
         {
@@ -2968,7 +3053,7 @@
       "label": "Protect Nozomi and Kyosuke",
       "area": "JD00",
       "worldId": "sakuragaoka",
-      "provenance": "JD00 fight director 0x74960 registers AKIR, ENKI and NGSM when room byte 0x4f4 has its normal zero value. Positions come from its calls to 0x73b44. Browser health uses the unscaled values at offset 0x10 from its three 0x0035 records. The room loads bgm013.snd in slot 2 at 0x74bcc and selects A8250000 at 0x74c14. Shared martial arts moves, opponent AI, speeds, rectangle and timeout are gameplay adaptations. The hidden input variant adds HRSK and changes enemy stats.",
+      "provenance": "JD00 fight director 0x74960 registers AKIR, ENKI and NGSM when room byte 0x4f4 has its normal zero value. Positions come from its calls to 0x73b44. Browser health uses the unscaled values at offset 0x10 from its three 0x0035 records. The room loads bgm013.snd in slot 2 at 0x74bcc and selects A8250000 at 0x74c14. It waits on battle status at 0x7559e with a one-tick yield at 0x755fc until 0x7562a reads Ryo. Shared martial arts moves, opponent AI, speeds and the rectangle are gameplay adaptations. The hidden input variant adds HRSK and changes enemy stats.",
       "roomFight": {
         "source": "disc1/SCENE/01/JD00/MAPINFO.BIN",
         "sha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
@@ -2980,21 +3065,24 @@
           "x": -21.899999618530273,
           "y": 0.800000011920929,
           "z": -6.900000095367432,
-          "health": 200
+          "health": 200,
+          "yaw": -5.991715109043645
         },
         {
           "tag": "ENKI",
           "x": -23.600000381469727,
           "y": 0.800000011920929,
           "z": -8.399999618530273,
-          "health": 140
+          "health": 140,
+          "yaw": -2.499311435592658
         },
         {
           "tag": "NGSM",
           "x": -21.700000762939453,
           "y": 0.800000011920929,
           "z": -9.100000381469727,
-          "health": 40
+          "health": 40,
+          "yaw": -3.234095157208714
         }
       ],
       "actorDefinitions": [
@@ -3020,7 +3108,85 @@
       "playerSpeed": 2.4,
       "enemySpeed": 2.2,
       "maxAttackers": 2,
-      "timeoutMs": 180000,
+      "timeoutMs": null,
+      "musicTrack": "bgm013"
+    },
+    {
+      "id": "s1.jd00.nozomi-park-rescue-ally",
+      "label": "Fight alongside Nozomi",
+      "area": "JD00",
+      "worldId": "sakuragaoka",
+      "provenance": "JD00 0x74960 registers AKIR, HRSK, ENKI and NGSM at 0x75342, 0x753ea, 0x75492 and 0x75556 when the prior intro sets room byte 0x4f4. Each health value comes from record offset 0x10. HRSK moves to the player side at 0x74f1e. The same room-owned BGM013 plays. The room polls battle status at 0x7559e with a single-tick yield at 0x755fc and reads Ryo at 0x7562a. Shared movement, attack AI, knockout behavior and arena limits are gameplay adaptations.",
+      "roomFight": {
+        "source": "disc1/SCENE/01/JD00/MAPINFO.BIN",
+        "sha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+        "function": "0x74960"
+      },
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -21.899999618530273,
+          "y": 0.800000011920929,
+          "z": -6.900000095367432,
+          "health": 200,
+          "yaw": -5.991715109043645
+        },
+        {
+          "tag": "HRSK",
+          "x": -22.899999618530273,
+          "y": 0.800000011920929,
+          "z": -6.900000095367432,
+          "health": 150,
+          "yaw": -5.991715109043645,
+          "team": "ally"
+        },
+        {
+          "tag": "ENKI",
+          "x": -23.600000381469727,
+          "y": 0.800000011920929,
+          "z": -8.399999618530273,
+          "health": 600,
+          "yaw": -2.499311435592658
+        },
+        {
+          "tag": "NGSM",
+          "x": -21.700000762939453,
+          "y": 0.800000011920929,
+          "z": -9.100000381469727,
+          "health": 400,
+          "yaw": -3.234095157208714
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "HRSK",
+          "label": "Nozomi Harasaki",
+          "modelCode": "NZM_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "ENKI",
+          "label": "Akio Enoki",
+          "modelCode": "YAA_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NGSM",
+          "label": "Tetsuya Nagashima",
+          "modelCode": "YAB_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -25.600000381469727,
+        "maxX": -19.700000762939453,
+        "minZ": -11.100000381469727,
+        "maxZ": -4.900000095367432
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": null,
       "musicTrack": "bgm013"
     },
     {

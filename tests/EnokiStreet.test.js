@@ -31,8 +31,9 @@ test("the original street strip only dispatches at the eligible STEP, time and p
   assert.equal(runtime.update(frame),false);
 });
 test("the street encounter uses the three recovered inputs, original bank and both native casts",()=>{
-  const keys=challenges.challenges.find(row=>row.id===id).buttons;
-  assert.deepEqual(keys,["Left","A","B"]);
+  const steps=challenges.challenges.find(row=>row.id===id).steps;
+  assert.deepEqual(steps.map(step=>step.buttons),[["Left"],["A"],["B"]]);
+  assert.deepEqual(steps.map(step=>step.recoveryButton),["Left","A","A"]);
   assert.equal(scenes.motionBanks.enokiStreet,"play/assets/dobuita/enoki-street/M_DEQB.MOTN");
   for (const phase of ["intro","win","miss"]){
     const s=scenes.scenes.find(row=>row.id===id+"-"+phase);
@@ -46,7 +47,7 @@ test("the street encounter uses the three recovered inputs, original bank and bo
 });
 
 const map = new URL("../extracted_files/data/SCENE/01/D000/MAPINFO.BIN",import.meta.url);
-test("D000 selector literals and the DEQB input table agree with the street admission and clean path",{skip:!existsSync(map)},()=>{
+test("D000 selector literals and the DEQB input table agree with the street admission, clean and recovery inputs",{skip:!existsSync(map)},()=>{
   const source=readFileSync(map);
   const region=catalog.regions.find(row=>row.id===id);
   assert.deepEqual([0x77abc,0x77b1c,0x77b20,0x77b80,0x77b84].map(offset=>source.readFloatLE(offset)),region.nativeStreetStrip);
@@ -56,4 +57,30 @@ test("D000 selector literals and the DEQB input table agree with the street admi
   for (const [i, mask] of [0x40,0x100,0x200,0x100].entries()) {
     assert.deepEqual([0,4,8,12].map(offset=>source.readUInt32LE(0xb1db4+48*i+offset)),[mask,20,16,4]);
   }
+
+  const steps=challenges.challenges.find(row=>row.id===id).steps;
+  const buttonsByMask=new Map([[0x40,"Left"],[0x100,"A"],[0x200,"B"]]);
+  const promptSites=[[0x95bda,0x95d8c],[0x961ba,0x96324],[0x968c2,0x96a8c]];
+  for(const [i,pair] of promptSites.entries()){
+    const buttons=pair.map(site=>{
+      const load=source.readUInt16LE(site-2);
+      assert.equal(load>>>8,0xd1); // mov.l @(disp,pc),r1
+      assert.equal(source.readUInt16LE(site),0x0103); // bsrf r1
+      const targetLiteral=((site+2)&~3)+(load&255)*4;
+      assert.equal(site+4+source.readInt32LE(targetLiteral),0x9191c);
+      const rowInstruction=source.readUInt16LE(site-14);
+      assert.equal(rowInstruction>>>8,0xe6); // mov #row,r6
+      const record=0xb1db4+48*(rowInstruction&255);
+      const inputFrames=source.readUInt32LE(record+8)+source.readUInt32LE(record+12);
+      assert.equal(steps[i].windowMs,Math.round(1000*inputFrames/30));
+      return buttonsByMask.get(source.readUInt32LE(record));
+    });
+    assert.deepEqual(buttons,[steps[i].buttons[0],steps[i].recoveryButton]);
+  }
+  // The prompt reads input duration separately from the icon duration.
+  assert.equal(source.readUInt32LE(0x9160c)+0x1338,0x91b58);
+  assert.equal(source.subarray(0x91b64,0x91b6c).toString("hex"),"e555e7566c355224");
+  assert.equal(source.subarray(0x91b72,0x91b7a).toString("hex"),"e655e7566c355224");
+  assert.equal(source.readUInt16LE(0x91c1a),0x54e0); // input ticks from local word 0
+  assert.equal(source.readUInt16LE(0x91c1e),0x55e4); // input mask from argument 0
 });

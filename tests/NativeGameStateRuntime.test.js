@@ -100,7 +100,8 @@ test("game-state mode 42 registers its executable-proven special codes once", as
 
 test("game-state selector 44 reads its exact signed 16-bit field", async () => {
   const scene = createNativeSceneGameplayState();
-  scene.writeNativeField({ offset: 0x0c220d14, width: 2, value: 0xffff });
+  scene.writeNativeField({ offset: 0x0c220d14, width: 2, value: 500 });
+  scene.writeNativeField({ offset: 0x0c220a56, width: 2, value: 0xffff });
   const execute = createNativeEventOperationExecutor({
     handlers: createNativeGameStateSemanticHandlers(),
   });

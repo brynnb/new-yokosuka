@@ -100,12 +100,12 @@ export class CombatEncounterRuntime {
       .map(entry => ({ ...entry, combatant: this.combat.add(createCombatant({
         id: entry.id, team: entry.team || "enemy", ...entry.combatOptions,
       })) }));
-    if (!this.enemies.length) throw new Error("Combat encounter needs an opponent");
+    if (!this.opponents.length) throw new Error("Combat encounter needs an opponent");
     this.actors = new Map([
       [this.player.id, playerActor],
       ...this.enemies.map(entry => [entry.id, entry.actor]),
     ]);
-    this.player.targetId = this.enemies[0].id;
+    this.player.targetId = this.opponents[0].id;
     this.active = false;
     this.aiAccumulator = 0;
     this.enemyOffenseUnlocked = false;

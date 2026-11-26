@@ -1,0 +1,22 @@
+<<jump Basket>>
+===
+title: Basket
+---
+-> Sliced Fish — ¥500 <<if yen() >= 500 && !has_item("kitten_sliced_fish", 255)>>
+    <<spend_yen 500 "Tomato Convenience Store">>
+    <<give_item "kitten_sliced_fish" 1>>
+    <<jump Basket>>
+-> Canned Tuna — ¥180 <<if yen() >= 180 && !has_item("kitten_canned_tuna", 255)>>
+    <<spend_yen 180 "Tomato Convenience Store">>
+    <<give_item "kitten_canned_tuna" 1>>
+    <<jump Basket>>
+-> Milk — ¥100 <<if yen() >= 100 && !has_item("kitten_milk", 255)>>
+    <<spend_yen 100 "Tomato Convenience Store">>
+    <<give_item "kitten_milk" 1>>
+    <<jump Basket>>
+-> Dried Fish — ¥300 <<if yen() >= 300 && !has_item("kitten_dried_fish", 255)>>
+    <<spend_yen 300 "Tomato Convenience Store">>
+    <<give_item "kitten_dried_fish" 1>>
+    <<jump Basket>>
+-> Finish shopping
+    <<complete>>

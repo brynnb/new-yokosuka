@@ -42,6 +42,7 @@ const MAIN_MODEL_FILES = new Set([
 const STORY_ENCOUNTER_MODEL_FILES = new Set([
   "BIK_L.CHRM", "KAZ_L.CHRM", "KMD_L.CHRM", "OKA_L.CHRM", "PPL_L.CHRM",
   "BIS_L.CHRM", "BIS_F.CHRM",
+  "YAC_L.CHRM", "YAE_L.CHRM",
 ]);
 const CATEGORY_BY_FAMILY = new Map([
   [0, "men"],

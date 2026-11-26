@@ -180,12 +180,18 @@ def verify_executable(data: bytes) -> dict[str, Any]:
     }
     if targets != EXPECTED_JUMP_TARGETS:
         raise ValueError("game-state byte-control jump targets changed")
+    # The signed-word load is the delay slot of the selector's final branch.
+    # Its short displacement is encoded in words in the instruction itself.
+    word_load = u16(data, 0x0C151968)
+    if word_load & 0xfff0 != 0x85e0:
+        raise ValueError("selector 44 no longer reads a word through r14")
+
     literals = {
         "incrementedByteOffset": u16(data, 0x0C151984),
         "registeredCodeCapacity": u16(data, 0x0C1515AE),
         "registeredCodeCountAddress": u32(data, 0x0C1515B8),
         "registeredCodeArrayAddress": u32(data, 0x0C1515BC),
-        "signedWord44Offset": u16(data, 0x0C15196A),
+        "signedWord44Offset": (word_load & 0x000f) * 2,
         "pairTableOffset": u16(data, 0x0C151A72),
         "fixedByte57Offset": 0x0004,
         "indexedByteOffset": u16(data, 0x0C151B7A),
@@ -197,7 +203,7 @@ def verify_executable(data: bytes) -> dict[str, Any]:
         "registeredCodeCapacity": 0x0200,
         "registeredCodeCountAddress": 0x0C22220C,
         "registeredCodeArrayAddress": 0x0C221E0C,
-        "signedWord44Offset": 0x02C0,
+        "signedWord44Offset": 2,
         "pairTableOffset": 0x0184,
         "fixedByte57Offset": 0x0004,
         "indexedByteOffset": 0x0E78,
@@ -308,7 +314,7 @@ def build_report(data: bytes, event_ir: dict[str, Any]) -> dict[str, Any]:
                 {
                     "readMode": 44,
                     "kind": "signed-word",
-                    "address": "0x0c220d14",
+                    "address": "0x0c220a56",
                 },
                 {
                     "writeMode": 14,
@@ -378,7 +384,7 @@ def build_report(data: bytes, event_ir: dict[str, Any]) -> dict[str, Any]:
             "Selector 42's saturating increment, indexed address, and seven special code-registration lists are executable-proven.",
             "Fixed addresses, widths, indexed address arithmetic, byte clamping, and read results are executable-proven.",
             "The selector-55/56 pair-record allocator remains a mandatory neutral adapter.",
-            "The fields' gameplay names and persistence owner remain unknown.",
+            "JU00 uses the signed word for kitten care. The remaining unnamed fields retain their numerical meanings.",
             "No other operation-0x01af selector is promoted by this evidence.",
         ],
     }

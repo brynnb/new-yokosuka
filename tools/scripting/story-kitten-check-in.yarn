@@ -1,0 +1,9 @@
+{{routeDialogue}}
+<<if !flag_set("story.s1.kitten-adopted.completed") && (!flag_set("story.s1.kitten-missing.completed") || flag_set("story.s1.kitten-found.completed"))>>
+-> Say goodbye
+    <<complete>>
+-> Pet the kitten
+    {{voice:E1041A140}}
+    <<increment_progress "story.s1.kitten-care.points" 1>>
+<<endif>>
+<<complete>>

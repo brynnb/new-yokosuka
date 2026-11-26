@@ -73,6 +73,12 @@ for (const route of spec.routes) {
         return { ...record, voiceId };
       }));
     }
+    if (route.includeActorDialogue) {
+      const actorModule = pathToFileURL(path.join(root, "play/data/dialogue/messages", route.actor + ".generated.js"));
+      const { NATIVE_DIALOGUE_MESSAGE_RESOURCE: actorDialogue } = await import(actorModule);
+      archiveSources.push(actorDialogue.generatedFrom);
+      messages.push(...actorDialogue.messages);
+    }
     source={generatedFrom:archiveSources[0],archiveSources,messages};
   } else if ((route.activities || route.completionActivities || route.yarnTemplate || route.shop) && !route.voiceIds.length && !route.leadInVoiceIds?.length && !templateHasVoice && route.nativeSources?.length) {
     // Silent presentation and explicitly authored text carry their reviewed
@@ -87,7 +93,11 @@ for (const route of spec.routes) {
     // Telephone SRF records omit the remote participant. A reviewed neutral
     // presentation role may label those voices, never replace a known actor.
     const speakerId = line?.speakerId || route.unidentifiedVoiceSpeaker;
-    if (!line?.displayText || !["AKIR", ...participants, ...(route.unidentifiedVoiceSpeaker ? [route.unidentifiedVoiceSpeaker] : [])].includes(speakerId)
+    // Some source recordings are physical exertions with an explicitly empty
+    // subtitle. A speaker-only Yarn line preserves the original voice and lips.
+    const unsubtitled = route.dialogueArchive && route.unsubtitledVoiceIds?.includes(id)
+      && line?.displayText === "" && streamVoices.has(id);
+    if ((!line?.displayText && !unsubtitled) || !["AKIR", ...participants, ...(route.unidentifiedVoiceSpeaker ? [route.unidentifiedVoiceSpeaker] : [])].includes(speakerId)
       || matches.some(other => other.displayText !== line.displayText || other.speakerId !== line.speakerId)) throw new Error(`Missing or ambiguous source line ${id}`);
     if (/[<>#\[\]{}]/.test(line.displayText)) throw new Error(`Needs reviewed Yarn escaping: ${id}`);
     voices.add(id);
@@ -201,7 +211,7 @@ for (const route of spec.routes) {
     // references inside its source instead of inventing a second node engine.
     // Activity/combat-only templates do not need a dummy pose scene. Require
     // staging only when the template actually references that presentation.
-    if (!/^story-[a-z0-9-]+\.yarn$/.test(route.yarnTemplate) || lines.length || (template.includes("{{staging}}")&&!route.staging)) throw new Error(`Invalid authored Yarn template ${route.id}`);
+    if (!/^story-[a-z0-9-]+\.yarn$/.test(route.yarnTemplate) || (lines.length && !template.includes("{{routeDialogue}}")) || (template.includes("{{staging}}")&&!route.staging)) throw new Error(`Invalid authored Yarn template ${route.id}`);
     body = template
       .replace(/\{\{voice:([A-Z0-9]+)\}\}/g, (_, id) => dialogueLines([id])[0])
       .replace(/\{\{text:([a-z]+)\}\}/g, (_, key) => {
@@ -215,6 +225,7 @@ for (const route of spec.routes) {
         }
         return route.openingSequences.map(id=>`<<play_sequence "${id}">>`).join("\n");
       })
+      .replaceAll("{{routeDialogue}}", lines.join("\n"))
       .replaceAll("{{staging}}", route.staging)
       .replaceAll("{{challenge}}", route.challenge || "{{challenge}}")
       .replaceAll("{{firstCombat}}", route.firstCombat || "{{firstCombat}}")

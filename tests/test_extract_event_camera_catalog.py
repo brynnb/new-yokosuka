@@ -71,10 +71,11 @@ class EventCameraCatalogTest(unittest.TestCase):
         )
         chunk = b"ECAM" + struct.pack("<I", 8 + len(records)) + records
         from tempfile import TemporaryDirectory
-        with TemporaryDirectory() as directory:
+        with TemporaryDirectory(dir=Path(__file__).resolve().parent) as directory:
             path = Path(directory) / "MAPINFO.BIN"
             path.write_bytes(chunk)
             report = build_report(path, {3032})
+            self.assertEqual(report["source"], path.relative_to(Path(__file__).resolve().parents[1]).as_posix())
             self.assertEqual(
                 [record["cameraNumber"] for record in report["records"]],
                 [3032],

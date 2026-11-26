@@ -6,7 +6,7 @@ import { updateNativeCharacterSecondaryMotion } from "../characters/NativeCharac
 import {StagedCameraPool} from "./StagedCameraPool.js";
 import {applyStoryObjectTransforms} from "./StoryObjectPresentation.js";
 import {evaluateAuthActor} from "../../src/AuthMovement.js";
-import {evaluateAuthCamera} from "../../src/AuthCamera.js";
+import {evaluateAuthCamera, evaluateAuthCameraCuts} from "../../src/AuthCamera.js";
 import {acquireResidentStageIsolation} from "../events/ResidentStageIsolation.js";
 import { JOMO_TELEPHONE_RECEIVER } from "./TelephoneReceiverBindings.js";
 
@@ -181,6 +181,25 @@ export class AuthoredSceneStagingRuntime {
       || !Array.isArray(scene.cameraFromCurrent) || !scene.cameraFromCurrent.length
       || scene.cameraFromCurrent.some(field => !CAMERA_FIELDS.includes(field)))) {
       throw Error(`Invalid live camera keys for ${scene.id}`);
+    }
+    if (scene.cameraCuts) {
+      const cuts = scene.cameraCuts;
+      if (scene.cameraTrack || scene.cameraPool || scene.continueCamera || scene.useGameplayCamera
+        || !Number.isFinite(scene.durationSeconds) || !Array.isArray(cuts) || !cuts.length || cuts[0].atSeconds !== 0) {
+        throw Error(`Invalid timed camera cuts for ${scene.id}`);
+      }
+      for (const [index, cut] of cuts.entries()) {
+        if (!Number.isFinite(cut.atSeconds) || cut.atSeconds >= scene.durationSeconds
+          || (index && cut.atSeconds <= cuts[index - 1].atSeconds)) throw Error(`Invalid camera cut time in ${scene.id}`);
+        for (const field of CAMERA_FIELDS) {
+          const c = cut.channels?.[field];
+          if (!Array.isArray(c?.times) || !c.times.length || c.times[0] !== 0
+            || !Array.isArray(c.values) || !Array.isArray(c.tangents)
+            || c.values.length !== c.times.length || c.tangents.length !== c.times.length
+            || ![...c.times,...c.values,...c.tangents].every(Number.isFinite)
+            || c.times.some((t,j) => j > 0 && t < c.times[j-1])) throw Error(`Invalid ECAM ${field} in ${scene.id}`);
+        }
+      }
     }
     validateTrack(scene.cameraTrack,CAMERA_FIELDS,scene.durationSeconds,`${scene.id}/camera`);
     if (scene.cameraPool) {
@@ -447,7 +466,8 @@ export class AuthoredSceneStagingRuntime {
     }
     if(owner.scene.useGameplayCamera)this.updateGameplayCamera(deltaSeconds, owner.elapsed === 0);
     else {
-      const pose = owner.shot.cameraTrack ? evaluateAuthCamera(owner.shot.cameraTrack,owner.cameraElapsed) : owner.shot.camera;
+      const pose = owner.shot.cameraCuts ? evaluateAuthCameraCuts(owner.shot.cameraCuts, owner.cameraElapsed)
+        : owner.shot.cameraTrack ? evaluateAuthCamera(owner.shot.cameraTrack, owner.cameraElapsed) : owner.shot.camera;
       if (!this.camera.apply(owner,pose)) return false;
       owner.lastCameraPose = pose;
     }

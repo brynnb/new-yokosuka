@@ -176,14 +176,14 @@ export class StoryCombatRuntime {
       record.animation.reset();
       if (owner.wave === 0 || tag !== "AKIR") {
         record.root.position.set(spawn.x, spawn.y, spawn.z);
-        record.actor.setYaw(0);
+        record.actor.setYaw(spawn.yaw ?? 0);
       }
     }
     const player = owner.records.get("AKIR");
     const enemies = spawns.filter(s => s.tag !== "AKIR").map(spawn => ({
       id: spawn.tag, name: def.actorDefinitions.find(a => a.actorCode === spawn.tag).label,
       actor: owner.records.get(spawn.tag).actor, team: spawn.team === "ally" ? "player" : "enemy",
-      combatOptions: { maxHealth: spawn.health, minimumHealth: def.training || def.practiceDurationMs || spawn.team === "ally" ? 1 : 0, damageScale: spawn.damageScale ?? 1 },
+      combatOptions: { maxHealth: spawn.health, minimumHealth: def.training || def.practiceDurationMs ? 1 : (spawn.minimumHealth ?? 0), damageScale: spawn.damageScale ?? 1 },
       ai: def.training ? new CombatTrainingCoach(def.training) : new MartialArtsEnemyAI(), speedScale: def.enemySpeed / 3,
     }));
     owner.encounter = new CombatEncounterRuntime({ input: owner.input, playerActor: player.actor, enemies,
@@ -243,9 +243,10 @@ export class StoryCombatRuntime {
     const owner = this.active;
     if (!owner?.encounter) return;
     const { definition: def, encounter: e } = owner;
+    const durationMs = def.practiceDurationMs ?? def.timeoutMs;
     owner.view = { id: def.id, token: owner.token, label: def.label, ready: owner.serverView.ready,
       training: def.training ? trainingInstructions(def.training, owner.input.getBindings()) : null,
-      practice: Boolean(def.practiceDurationMs), remainingMs: Math.max(0, (def.practiceDurationMs || def.timeoutMs) - owner.elapsed * 1000),
+      practice: Boolean(def.practiceDurationMs), remainingMs: durationMs == null ? null : Math.max(0, durationMs - owner.elapsed * 1000),
       wave: owner.wave + 1, waveCount: def.waves?.length || 1, waveLabel: def.waves?.[owner.wave].label,
       bossTag: def.waves?.[owner.wave].bossTag, intro: owner.intro > 0,
       defeated: owner.defeated + e.opponents.filter(a => a.combatant.defeated).length,
@@ -313,7 +314,7 @@ export class StoryCombatRuntime {
       }
       if (e.player.defeated) owner.outcome = "defeated";
       else if (def.practiceDurationMs && owner.elapsed * 1000 >= def.practiceDurationMs) owner.outcome = "practiced";
-      else if (!def.training && owner.elapsed * 1000 >= def.timeoutMs) owner.outcome = "failure";
+      else if (!def.training && def.timeoutMs != null && owner.elapsed * 1000 >= def.timeoutMs) owner.outcome = "failure";
       else if (e.enemiesDefeated && !e.playerMovementLocked) {
         if (!def.waves || owner.wave === def.waves.length - 1) owner.outcome = "success";
         else {

@@ -6848,7 +6848,7 @@
           ]
         }
       ],
-      "provenBehavior": "Reads and sign-extends the exact 16-bit word at native game-state base 0x0c220a54 plus offset 0x02c0 (address 0x0c220d14). Field meaning and persistence ownership remain unknown.",
+      "provenBehavior": "Reads and sign-extends the exact 16-bit word at native game-state base 0x0c220a54 plus the two-byte displacement encoded by 0x85e1 (address 0x0c220a56). JU00 increments this word during kitten care and JD00 reads it for the park fight.",
       "sources": [
         "tools/scripting/operations/extract_game_state_byte_control_evidence.py",
         "tools/evidence/game-state-byte-control-evidence.json"

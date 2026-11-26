@@ -1,0 +1,130 @@
+{
+  "schema": "new-yokosuka-nozomi-park-ally-native-v1",
+  "disc": 1,
+  "sha256": {
+    "executable": "ca98879a97df87b668836bbfa597d38c6f9efc3fd45160208b8d5d866325f32c",
+    "JU00": "3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d",
+    "DCBN": "2af6d72477e1bd9026fbf3e551dc7550857e0ae0e68191164c203b2297dce8ee",
+    "JOMO": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+    "JD00": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b"
+  },
+  "care": {
+    "signedAddress": "0xc220a56",
+    "writerMode": 43,
+    "readerMode": 44,
+    "JU00Adder": "0x36fa2",
+    "foods": {
+      "Milk": {
+        "item": 59,
+        "points": 25,
+        "call": "0x27d96"
+      },
+      "Dried Fish": {
+        "item": 60,
+        "points": 15,
+        "call": "0x27f32"
+      },
+      "Salami": {
+        "item": 62,
+        "points": 3,
+        "call": "0x28092"
+      },
+      "Canned Tuna": {
+        "item": 61,
+        "points": 45,
+        "call": "0x281f2"
+      },
+      "Sliced Fish": {
+        "item": 58,
+        "points": 120,
+        "call": "0x28352"
+      },
+      "Squid Legs": {
+        "item": 57,
+        "points": 3,
+        "call": "0x284b2"
+      }
+    },
+    "otherJU00Calls": [
+      {
+        "call": "0x2b3c6",
+        "points": 10
+      },
+      {
+        "call": "0x2c8f0",
+        "points": 1
+      },
+      {
+        "call": "0x2d064",
+        "points": 1
+      }
+    ]
+  },
+  "TomatoDCBN": {
+    "checkoutStock": [
+      {
+        "tag": "cntk",
+        "item": 61,
+        "label": "Canned Tuna",
+        "yen": 180,
+        "productRow": "0x2a5a0",
+        "priceRow": "0x2aa9c"
+      },
+      {
+        "tag": "cnnp",
+        "item": 60,
+        "label": "Dried Fish",
+        "yen": 300,
+        "productRow": "0x2a5c0",
+        "priceRow": "0x2aaa4"
+      },
+      {
+        "tag": "cnmp",
+        "item": 58,
+        "label": "Sliced Fish",
+        "yen": 500,
+        "productRow": "0x2a5e0",
+        "priceRow": "0x2aaac"
+      },
+      {
+        "tag": "cnmk",
+        "item": 59,
+        "label": "Milk",
+        "yen": 100,
+        "productRow": "0x2a600",
+        "priceRow": "0x2aab4"
+      }
+    ],
+    "giveOneCall": "0x1b61a"
+  },
+  "HazukiKitchenJOMO": {
+    "driedFishItem": 60,
+    "quantity": 3,
+    "grantCall": "0x86d36"
+  },
+  "park": {
+    "approachGateCalls": [
+      "0x7620c",
+      "0x7692e"
+    ],
+    "minimumCare": 500,
+    "child": "0x75d54",
+    "data": "0x81468",
+    "rawInputTable": [
+      2,
+      2,
+      512,
+      4,
+      1024,
+      1024,
+      1024,
+      -1
+    ],
+    "unfinishedTimeoutAfterTicks": 5,
+    "roomFlag": "0x4f4"
+  },
+  "controls": {
+    "heldCache": "0x0c21d9bc",
+    "physicalInputEvidence": "nozomi-park-ally-controller-2026-11-25.json"
+  }
+}

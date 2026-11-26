@@ -30,7 +30,7 @@ test("generated playable catalog excludes main and non-playable room actors", ()
     "ACS_M", "BLA_M", "BLB_M", "CHA_M", "FUK_M", "GIB_M", "GIJ_M",
     "IWA_M", "JIM_M", "JKA_M", "KIS_M", "KOK_M", "SYU_M",
   ];
-  const encounterFiles = ["BIK_L", "KAZ_L", "KMD_L", "OKA_L", "PPL_L", "BIS_L", "BIS_F"];
+  const encounterFiles = ["BIK_L", "KAZ_L", "KMD_L", "OKA_L", "PPL_L", "BIS_L", "BIS_F", "YAC_L", "YAE_L"];
   const excluded = new Set([
     ...mainFiles, ...encounterFiles, ...nativeRoomActors.modelCodes,
     ...Object.values(nativeActivityActors.worlds).flat()

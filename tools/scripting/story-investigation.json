@@ -2,6 +2,7 @@
   "schema": "new-yokosuka-authored-talk-routes-v1",
   "provenance": "Original HUMANS.AFS English messages and voice IDs; authored ordering and condensed conversations guided by https://gamefaqs.gamespot.com/dreamcast/198621-shenmue/faqs/72404. Not reconstructed native selectors.",
   "routes": [
+    {"id":"enoki-revenge","disc":1,"participants":["ENKI","NGSM","TMNY","MYTY"],"title":"Enoki's revenge in Dobuita","actor":"AKIR","presentActors":[],"area":"D000","trigger":"enter","priority":671,"nativeStep":[61,102],"hours":[19,23],"bounds":"s1.d000.enoki-revenge","requiredFlags":[],"excludedNativeFlags":["2:851"],"completedFlag":"story.s1.enoki-revenge.completed","effects":[],"nativeEffects":[{"address":"2:851","value":1}],"nativeSources":[{"role":"revenge-selector-and-director","locator":"disc1/SCENE/01/D000/MAPINFO.BIN#0x77bb8,0x63e84,0x65a2c,0x67508,0x646fa","sha256":"7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"},{"role":"revenge-motion-bank","locator":"disc1/SCENE/01/D000/DEFB.PKS#M_DEFB.MOTN","sha256":"54c0cafcff9046420e559cd2dc76826a3dbeb9ddec33ba14480ed70330a3fd8a"}],"voiceIds":[],"yarnTemplate":"story-enoki-revenge.yarn","unsubtitledVoiceIds":["E1065B003","E1065B005"],"dialogueArchive":{"path":"data/SCENE/01/STREAM/E1065.AFS","sha256":"feaa300e72f0a466c937655ec6341613d47bc1bae446a3192b242a849ca63648"},"provenance":"The D000 selector accepts STEP 61 through 102, the completed Sakuragaoka rescue and a clear bank-2 bit 851. The DEFB owner plays the confrontation, four-opponent fight and victory conversation. On defeat 0x67508 plays a separate exchange and calls the introduction again. Terminal cleanup sets bit 851 at 0x646fa."},
     {"id":"enoki-street","participants":["ENKI","NGSM"],"title":"Enoki and Nagashima in Dobuita","actor":"AKIR","presentActors":[],"area":"D000","trigger":"enter","priority":670,"nativeStep":[21,33],"hours":[11,15],"bounds":"s1.d000.enoki-street","requiredFlags":[],"excludedNativeFlags":["2:852"],"completedFlag":"story.s1.enoki-street.completed","effects":[],"nativeEffects":[{"address":"2:852","value":1}],"nativeSources":[{"role":"street-director","locator":"disc1/SCENE/01/D000/MAPINFO.BIN#0x779fc,0x98a80,0x95860,0x99020,0xb1db4","sha256":"7712f3ae8c9e154b3831bc8d8af31ebc135f35d930ae50c503a65e3af34e9b7e"},{"role":"street-motion-bank","locator":"disc1/SCENE/01/D000/DEQB.PKS#M_DEQB.MOTN","sha256":"77c1b75bed243d89965cf2a30ee03dc94d8c7d3d6353114cce0edc4f4f076f76"}],"challenge":"s1.d000.enoki-street","staging":"s1.d000.enoki-street-intro","yarnTemplate":"story-enoki-street.yarn","activityResults":{"s1.d000.enoki-street":"success"},"voiceIds":[],"dialogueArchive":{"path":"data/SCENE/01/STREAM/E1064.AFS","sha256":"f68becfd4db9c6b11b0e5c2584532e4e473ccfc4ac9a4ae1feed82dd30fc4c5f"},"provenance":"D000 selector 0x779fc checks native STEP 2.1\u20133.3 and the late-morning street strip. DEQB 0x993ec selects the input table at 0xb1db4. The clean Dreamcast path is Left/A/B. The original director reaches its 852 setter at 0x95860 after the winning exchange. Story condenses camera placement, mode timing, motions and miss/retry. The miss uses original loss dialogue and Story retry choices. The fourth native input row and the original clock/position reset remain outside this staging."},
     {"id":"nozomi-park-rescue","disc":1,"actor":"AKIR","presentActors":[],"area":"JD00","trigger":"enter","priority":238,"title":"Nozomi and Kyosuke at Sakuragaoka Park","hours":[8.5,19],"requiredFlags":[],"excludedNativeFlags":["2:801"],"nativeStep":[40,59],"completedFlag":"story.s1.nozomi-park-rescue.completed","effects":[],"nativeEffects":[{"address":"2:801","value":1}],"voiceIds":[],"yarnTemplate":"story-nozomi-park-rescue.yarn","nativeSources":[{"role":"park-selector-and-director","locator":"disc1/SCENE/01/JD00/MAPINFO.BIN#0x5aef8,0x73de4,0x74960,0x74672","sha256":"8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b"},{"role":"original-films","locator":"disc1/SCENE/01/JD00/EVSN.PKS#SEQDATA1-4.AUTH","sha256":"a940f2b2b624638fc7a27364eb6045a88fa10e7717a185ebac2f0cbd1c35275a"}],"provenance":"Original JD00 park rescue. Native approach 10 or 11 selects the opening. Ryo fights Enoki and Nagashima after the confrontation. Defeat replays the confrontation. The aftermath and its terminal cleanup follow victory."},
     {"id":"warehouse-office-document-left","disc":2,"actor":"AKIR","area":"MS8S","presentActors":[],"trigger":"use","object":"SHO0","objectLabel":"Warehouse documents","bounds":"s1.ms8s.warehouse-office-document-left","repeatable":true,"priority":225,"title":"Inspect the warehouse desk documents","requiredFlags":[],"effects":[],"voiceIds":["E1009BA034"],"dialogueArchive":{"path":"data/SCENE/02/STREAM/E1009B.AFS","sha256":"8ea1d64e2c5ee20f563d2203cb7ca506480c0de845674f7a23771ffff47b9e6a"},"nativeSources":[{"role":"inspect-warehouse-documents","locator":"disc2/SCENE/02/MS8S/MAPINFO.BIN#0x23fd8,0x246ac,0x24d04,0x257a8","sha256":"0f0914b81f40fb73e87b073d955a1b9f5c46e4b094efeabf1215e3ea16e947c2"}],"provenance":"MS8S 0x257a8 checks SHO0, brackets inspection with primary state 0/1, and calls 0x246ac mode 3. The native room-wide roll at 0x246b4 rejects its previous index. Index 0 dispatches E1009BA034; no durable flag, travel or item."},
@@ -225,9 +226,12 @@
       "title":"Megumi — visit the kitten","hours":[8.5,19],"bounds":"s1.ju00.first-kitten.shrine",
       "requiredFlags":["story.s1.first-kitten.completed","story.s1.kitten-healed.completed"],"repeatable":true,
       "completedFlag":"story.s1.kitten-after-recovery.unused","effects":[],
+      "yarnTemplate":"story-kitten-check-in.yarn","includeActorDialogue":true,
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/E1041.AFS","sha256":"03e62416e5263752f58e43c91aba5bce17736a8dc4be51c674ef21509f276355"},
       "voiceIds":["F1120B082","F1120B083","F1120A045","F1120B085","F1120A047","F1120B086","F1120A048","F1120B087"],
       "summary":"An original-voiced, reward-free conversation with Megumi after the kitten's recovery.",
-      "provenance":"Original F1120 dialogue and subtitles. Selection as a repeatable post-recovery check-in is authored; it does not imply adoption or any further native outcome."
+      "nativeSources":[{"role":"original-kitten-petting","locator":"disc1/SCENE/01/JU00/MAPINFO.BIN#0x2c8ea,0x2cace,0x2d05e","sha256":"3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d"}],
+      "provenance":"Original F1120 dialogue and subtitles. The recurring post-recovery conversation is authored. When the kitten is present, an acknowledged petting interaction earns one of its original care points."
     },
     {
       "id":"kitten-recovery","disc":2,"actor":"MEGM","presentActors":[],"area":"JU00","priority":270,
@@ -238,23 +242,24 @@
       "summary":"After two separate days of care, revisit the shrine the next day to see the original recovery scene.",
       "provenance":"Original CATA2 film and voices. Two daily feedings, the following-day wait and Megumi click are an authored approximation; native health and trigger predicates remain unverified. Only completed presentation saves recovery."
     },
+    {"id":"kitten-food-shop","disc":1,"actor":"AKIR","presentActors":[],"area":"DCBN","trigger":"enter","priority":265,"title":"Tomato Convenience Store — kitten food","bounds":"s1.dcbn.kitten-food-shop","requiredFlags":["story.s1.first-kitten.completed"],"effects":[],"repeatable":true,"completedFlag":"story.s1.kitten-food-shop.unused","voiceIds":[],"yarnTemplate":"story-kitten-food-shop.yarn","nativeSources":[{"role":"original-tomato-food-shelves-and-prices","locator":"disc1/SCENE/01/DCBN/MAPINFO.BIN#0x2a5a0-0x2a61f,0x2aa9c-0x2aabb","sha256":"2af6d72477e1bd9026fbf3e551dc7550857e0ae0e68191164c203b2297dce8ee"}],"summary":"Buy kitten food at Tomato Convenience Store. Choose an item again to add another, then finish shopping to pay.","provenance":"DCBN maps each shelf tag to its original item and yen price. The entry-area menu adapts shopping to the connected room. Each selected unit reserves its price in this transaction; finishing commits the purchase. Cancellation discards the basket."},
     {
       "id":"kitten-feed","disc":1,"actor":"MEGM","presentActors":[],"area":"JU00","priority":260,
       "title":"Care for the kitten","hours":[8.5,19],"bounds":"s1.ju00.first-kitten.shrine",
-      "requiredFlags":["story.s1.first-kitten.completed"],"excludedFlags":["story.s1.kitten-healed.completed"],"repeatable":true,
+      "requiredFlags":["story.s1.first-kitten.completed"],"excludedFlags":["story.s1.kitten-adopted.completed"],"repeatable":true,
       "completedFlag":"story.s1.kitten-feed.unused","effects":[],"voiceIds":[],"yarnTemplate":"story-kitten-feed.yarn",
-      "nativeSources":[{"role":"original-kitchen-objects","locator":"disc1/SCENE/01/JOMO/MAPINFO.BIN","sha256":"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"}],
-      "summary":"Offer owned kitchen food to the kitten once per personal day.",
-      "provenance":"Original kitchen food and kitten-care subject; the direct conversation, once-daily care rule, lines, tracked count and food consumption are authored. Acknowledgement atomically consumes only the chosen item and records care."
+      "nativeSources":[{"role":"original-kitchen-objects","locator":"disc1/SCENE/01/JOMO/MAPINFO.BIN","sha256":"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"},{"role":"original-food-care-arithmetic","locator":"disc1/SCENE/01/JU00/MAPINFO.BIN#0x27d72-0x284b2,0x36fa2-0x37004","sha256":"3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d"}],
+      "summary":"Offer food from the kitchen or Tomato store to the kitten once per personal day.",
+      "provenance":"Original kitchen food and kitten-care subject; the direct conversation, once-daily care rule, lines, tracked count and food consumption are authored. Acknowledgement atomically consumes the chosen item and records its native care value: 15 for dried fish, 25 for milk, 45 for canned tuna or 120 for sliced fish."
     },
     {
       "id":"kitten-fish","disc":1,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"use","object":"knib","objectLabel":"Dried fish","priority":250,
       "title":"Kitchen — dried fish for the kitten","bounds":"s1.jomo.kitten-fish",
       "requiredFlags":["story.s1.first-kitten.completed"],"completedFlag":"story.s1.kitten-fish.completed","effects":[],
-      "items":[{"key":"kitten_dried_fish","quantity":1}],"voiceIds":[],"yarnTemplate":"story-kitten-food-pickup.yarn",
+      "items":[{"key":"kitten_dried_fish","quantity":3}],"voiceIds":[],"yarnTemplate":"story-kitten-food-pickup.yarn",
       "authoredText":{"prompt":"There is some dried fish here. I could give it to the kitten.","confirm":"Take the dried fish","receipt":"I'll bring this to the kitten."},
       "nativeSources":[{"role":"original-kitchen-objects","locator":"disc1/SCENE/01/JOMO/MAPINFO.BIN","sha256":"4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9"}],
-      "provenance":"Original knib kitchen placement and NIPK302G model; the choice, reusable inventory and once-only receipt are authored. No feeding or recovery is implied by pickup."
+      "provenance":"Original knib kitchen placement and NIPK302G model. JOMO 0x86d36 grants three portions of original item 60 and sets flag 932. The pickup choice and Story receipt are authored."
     },
     {
       "id":"kitten-milk","disc":1,"actor":"AKIR","presentActors":[],"area":"JOMO","trigger":"use","object":"kmil","objectLabel":"Milk","priority":250,
@@ -270,9 +275,12 @@
       "title":"Megumi — check on the kitten","hours":[8.5,19],"bounds":"s1.ju00.first-kitten.shrine",
       "requiredFlags":["story.s1.first-kitten.completed"],"excludedFlags":["story.s1.kitten-healed.completed"],
       "repeatable":true,"completedFlag":"story.s1.kitten-check-in.unused","effects":[],
+      "yarnTemplate":"story-kitten-check-in.yarn","includeActorDialogue":true,
+      "dialogueArchive":{"path":"data/SCENE/01/STREAM/E1041.AFS","sha256":"03e62416e5263752f58e43c91aba5bce17736a8dc4be51c674ef21509f276355"},
       "voiceIds":["F1120A001","F1120B001","F1120B002","F1120A002","F1120B003"],
-      "summary":"A short original-voiced check-in with Megumi while the kitten is recovering. Repeatable and reward-free.",
-      "provenance":"Original F1120 voices and subtitles. An authored repeatable fallback gives the personal shrine resident a conversation before or after naming; it does not feed the kitten, advance recovery or establish original selection predicates. The separately implemented naming route takes priority when eligible."
+      "summary":"A short original-voiced check-in with Megumi while the kitten is recovering. Ryo can also pet the kitten after speaking.",
+      "nativeSources":[{"role":"original-kitten-petting","locator":"disc1/SCENE/01/JU00/MAPINFO.BIN#0x2c8ea,0x2cace,0x2d05e","sha256":"3887bbf6e00eb152f7cca34d23841cc743ee7345a2db6b7d27e8303f6274924d"}],
+      "provenance":"Original F1120 voices and subtitles. An authored repeatable fallback gives the personal shrine resident a conversation before or after naming; it does not feed the kitten, advance recovery or establish original selection predicates. Petting uses original E1041A140 and the +1 care helper in JU00; the separately implemented naming route takes priority when eligible."
     },
     {
       "id":"kitten-name","disc":1,"actor":"MEGM","presentActors":[],"area":"JU00","priority":250,

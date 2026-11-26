@@ -418,18 +418,29 @@ and below `1.06868*x+120.85`. Client and server use the original single-
 precision coefficients and operations. The normal trigger has no facing check.
 
 The D000 owner `0x98a80` loads DEQB and the English recording bank E1064.
-Its four 48-byte input records begin at `0xb1db4`. The first three masks
-are `0x40`, `0x100` and `0x200`, corresponding to Left, A and B on the
-clean Dreamcast path. The alternate sequence at `0x96a8c` activates a fourth
-record with mask `0x100`. Story presents the clean path using a one-second
-window for each button and provides retry or leave after a miss. Its shot,
-condensed motion choices and retry flow are adaptations. The entrance and
+The four 48-byte input records at `0xb1db4` contain the Left, A, B and A
+masks. Each of the three stages allows one recovery. After a missed Left
+or A, the director repeats that button at `0x95d8c` or `0x96324`.
+After a missed B, the director selects the fourth record, A, at `0x96a8c`.
+Recovering continues the same attempt. A second miss in the same stage
+writes 15 to scene field `0xa40` and plays the losing ending. Completing
+the last stage writes -1 and plays the winning ending.
+
+The DEQB prompt worker at `0x91b58` computes two durations. Instructions
+at `0x91b72` sum record words 2 and 3 for the timed input wait at `0x91c30`.
+All four inputs allow 16 + 4 ticks at 30 Hz, or 667 milliseconds rounded.
+The original icon command at `0x91baa` receives words 1 and 3, or 24 ticks.
+Story displays each prompt during its input window. Its camera, condensed
+motions, transitions between prompts and retry/leave menu after the losing
+ending are adapted. The entrance and
 both endings use sixteen of the original voiced lines, with their subtitles
 and native lip data. Their dispatch owners are `0x96eb0`, `0x97598` and
 `0x97ff8`. The winning director calls the cleanup at `0x95860`, which writes
 bank 2 bit 852 at `0x99020`. Story commits that bit after the winning ending.
 Missing the sequence or cancelling before that settlement leaves the bit
-clear. The original DEQB motions rebuild with
+clear. The [Radeon recovery run](../../tools/evidence/enoki-street-recovery-hardware-2026-11-25.json)
+records a double miss and a subsequent win through all three recovery prompts.
+The original DEQB motions rebuild with
 `node tools/cutscenes/build_enoki_street_assets.mjs`.
 
 The same JD00 callbacks control which characters appear during the rescue.
@@ -491,20 +502,36 @@ it settles leaves the rescue available. The fight uses the original cast, starti
 positions, health parameters and BGM013 with the project's shared fighting
 controls and opponent AI.
 
-The original also has a hidden Nozomi ally fight. Each approach director reads
-signed game-state word `0x0c220d14` through `0x01af(44)` and requires a value
-of at least 500 before launching child `0x75d54` at `0x76250` (slot 0) or
-`0x7696c` (slot 3). Each director stops its own child after the corresponding
-approach film, at `0x763fa` or `0x76b4a`. The child polls `0x0031(0)` against
-the signed 32-bit table at `0x81468`: 2, 2, 512, 4, 1024, 1024, 1024, then
-the −1 terminator. It handles repeated values and clears unfinished progress
-when its internal counter exceeds five ticks. On a match it sets room byte
-`0x4f4`. The special branch moves Nozomi beside Ryo at native position
-(22.9, 0.8, −6.9) and heading 343.3° (`0x74f1e`). It registers Ryo,
-Nozomi, Enoki and Nagashima at `0x75342/0x753ea/0x75492/0x75556`, with
-health values 200, 150, 600 and 400 respectively. The meaning of the
-500 threshold and the mapping of raw values to player controls are
-unverified. This ally branch is not yet playable in Story.
+Nozomi can fight alongside Ryo in either Sakuragaoka Park approach. The retail
+director reads signed kitten-care points at `0x0c220a56` with `0x01af(44)`.
+At 500 or more it starts child `0x75d54` for the 230-frame main approach
+or the 220-frame alternate. During that film enter **Y, Y, B, X, A, A, A**.
+On keyboard these are **Y, Y, Shift, J, Enter, Enter, Enter**. Release repeated
+buttons between presses. Each next press must register within the routine's
+five-tick grace period. Additional disjoint input before the approach ends
+clears a completed match. The buttons were measured on the retail game's
+controller path. The server evaluates the held-mask changes against the
+approach's actual frame count before selecting the encounter.
+
+Story characters earn the score through acknowledged kitten care in Yamanose.
+Dried fish adds 15, milk 25, canned tuna 45 and sliced fish 120. A completed
+petting interaction adds one. Both food acquisition and feeding persist on
+the character. The original source registers Nozomi beside Ryo at
+(22.9, 0.8, −6.9), heading 343.3°. The retail director, retail checkout,
+kitten helper and controller evidence are recorded in the
+[native verification](../../tools/evidence/nozomi-park-ally-native.json) and
+[controller capture](../../tools/evidence/nozomi-park-ally-controller-2026-11-25.json).
+
+The special fight uses Nozomi's original HRSK/NZM_L actor. Registration
+word +8 distinguishes Ryo from the three AI fighters. Word +12 puts Ryo
+and Nozomi on team 0 and the two opponents on team 1. The Story combat
+runtime accordingly targets the opposing side. Nozomi can take damage
+and be knocked down to zero. Ryo can finish the fight after she falls.
+Both park fights wait for a battle result. JD00 polls operation `0x0089`
+at `0x7559e`, yields one native tick at `0x755fc` while active and
+reads Ryo's outcome at `0x7562a`. The browser applies no elapsed-time
+defeat. A defeat replays the confrontation with the same lineup, whereas
+cancelling the encounter discards its code and grants no rescue flag.
 
 The EVSN package
 retains three timing cues whose recordings have no match in the extracted
@@ -523,6 +550,33 @@ frames into the aftermath preserved the earlier save. Finishing it on the
 next attempt added only the rescue bit and the Story completion flag, and
 both survived reload. The [14-case hardware record](../../tools/evidence/nozomi-park-rescue-story-2026-11-25.json)
 also records weather, time, STEP, actor visibility and street grounding checks.
+
+#### Enoki’s evening revenge in Dobuita
+
+Disc 1 D000 has a separate DEFB encounter after the park rescue. Selector
+`0x77bb8` checks bank-2 bit 801, clear bit 851, STEP 61–102, and the
+evening clock from 19:00 through 22:59. The allowed weather classes are
+clear and cloudy. Its three-dimensional approach has native center
+(44.11, 5, 81.86) and radius 3. Charlie’s victorious tattoo-parlor
+aftermath is an ordinary route into that progression window.
+
+The director at `0x63e84` stages Ryo, Enoki, Nagashima, TMNY and MYTY.
+The HUMANS index supplies the two additional original character models and
+their paired texture archives. Actor placement and camera shots use the room’s
+BASE translation of (10, 0, 64) and the actor ground height 5.25. The
+intro, defeat and victory use original ECAM tracks, MOTN requests and sixteen
+E1065 voice cues. Two of Enoki’s recordings have empty subtitle records and
+play without invented text. Victory reuses the room’s prone motion for the
+three opponents whose poses the native director carries over from the fight.
+The Story renderer reconstructs authored marks, rotations and camera cuts.
+The complete native movement and combat-to-film pose handoff remain partial.
+
+A defeat runs its own scene and replays the introduction before a new fight.
+Victory runs the confrontation’s closing scene before setting bank-2 bit 851.
+The camera and actor timelines use 30 original ticks per second. Each voice
+has a Story cue at the director’s request time, and the final shot can finish
+after dialogue. The [original presentation calls](../../tools/evidence/d000-enoki-revenge-director.json)
+record their offsets and arguments.
 
 The shared frame decoder also accepts immediate-indexed word/long clocks, as
 used by the first allowance's JOMO callback. It keeps the same exact comparison

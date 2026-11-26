@@ -1,3 +1,5 @@
+import { NozomiParkInputCapture, isNozomiParkApproach } from "../events/NozomiParkSecretInput.js";
+
 export function nativeFailureDetail(result) {
   const details = [];
   const visited = new Set();
@@ -241,20 +243,28 @@ export class NativeScriptActivityRunner {
       if(!this.capturePlayerState||!this.restorePlayerState)throw new Error("Scene player return hooks are unavailable");
       owner.playerState=this.capturePlayerState();
     }
+    const capture = isNozomiParkApproach(activity.cutscene.id) ? new NozomiParkInputCapture() : null;
     owner.unsubscribe = this.cutsceneDirector.onSettled(({ cutscene, outcome, reason }) => {
       if (this.active !== owner || cutscene.id !== activity.cutscene.id) return;
       this.finish(owner, outcome === "completed" || reason === "user-cancelled", { status: outcome, reason });
     });
     this.active = owner;
     try {
-      const started = await this.cutsceneDirector.start(activity.cutscene);
+      const started = await this.cutsceneDirector.start(activity.cutscene, {
+        onActivityFrame: capture ? frame => capture.sample(frame) : null,
+      });
       if (!started && this.active === owner) this.finish(owner, false, { status: "cancelled" });
     } catch (error) {
       this.finish(owner, false, { status: "stopped", reason: error.message });
+      capture?.dispose();
       throw error;
     }
     const result = await settled;
+    capture?.dispose();
     if (!result.accepted) throw new Error(`story cutscene did not complete: ${nativeFailureDetail(result.result)}`);
+    if (capture && result.result?.status === "completed" && result.result?.reason !== "user-cancelled" && capture.samples.length) {
+      return { parkInputs: capture.samples };
+    }
     return true;
   }
 }

@@ -398,3 +398,18 @@ test("the flashlight clock starts on ready and keeps accepting Right after a wro
   assert.deepEqual(responses.at(-1),["challenge_result",retry.token,"failure"]);
   presenter.hide();
 });
+
+test("a first-stage DEQB recovery retains its original challenge clock",()=>{
+  const clocks=[];
+  const presenter=createScriptEventDialoguePresenter({
+    root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options:optionsElement(),
+    qteOptions:{now:()=>0,schedule:()=>1,cancel:()=>{}},
+    onChallengeStart:id=>clocks.push(id),
+  });
+  const id="s1.d000.enoki-street";
+  presenter.showChallenge({id,label:"Street encounter",token:"a".repeat(32),ready:true});
+  presenter.qte.press("Right");
+  assert.equal(presenter.qte.active.recovering,true);
+  assert.deepEqual(clocks,[id]);
+  presenter.hide();
+});

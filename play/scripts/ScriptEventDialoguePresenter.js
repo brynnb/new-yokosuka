@@ -364,7 +364,7 @@ export class ScriptEventDialoguePresenter {
     const buttons=[];
     this.qte=new StoryQteRuntime({...this.qteOptions, sound:this.qteSound,
       present:step=>{
-        if (step.index === 0) {
+        if (step.index === 0 && !this.qte.active.recovering) {
           const qte = this.qte;
           const openedAt = qte.active.deadline - step.windowMs;
           this.onChallengeStart(prompt.id, () => Math.max(0,(qte.now()-openedAt)/1000));

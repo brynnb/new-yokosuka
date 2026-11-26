@@ -1,0 +1,181 @@
+{
+  "schema": "new-yokosuka/enoki-street-recovery-hardware-v1",
+  "date": "2026-11-25",
+  "renderer": "ANGLE (AMD, Vulkan 1.4.335 (AMD Radeon RX 9070 XT (RADV GFX1201) (0x00007550)), radv)",
+  "durationSeconds": 88.981,
+  "privateReport": "rerun-park-street-20261125-205539",
+  "setup": "Disposable character starting at the Liu checkpoint, with the original street and park bits clear.",
+  "result": "passed",
+  "inputFramesAt30Hz": 20,
+  "windowMs": 667,
+  "witness": "The first two presses missed the initial stage twice. Leaving after the losing dialogue preserved the entire native bank. Returning to the street and recovering all three inputs produced the winning dialogue and the saved completion.",
+  "keyboardInputs": [
+    {
+      "button": "Left",
+      "index": 0,
+      "recovery": false,
+      "key": "ArrowRight"
+    },
+    {
+      "button": "Left",
+      "index": 0,
+      "recovery": true,
+      "key": "ArrowRight"
+    },
+    {
+      "button": "Left",
+      "index": 0,
+      "recovery": false,
+      "key": "ArrowRight"
+    },
+    {
+      "button": "Left",
+      "index": 0,
+      "recovery": true,
+      "key": "ArrowLeft"
+    },
+    {
+      "button": "A",
+      "index": 1,
+      "recovery": false,
+      "key": "ArrowRight"
+    },
+    {
+      "button": "A",
+      "index": 1,
+      "recovery": true,
+      "key": "Enter"
+    },
+    {
+      "button": "B",
+      "index": 2,
+      "recovery": false,
+      "key": "ArrowRight"
+    },
+    {
+      "button": "A",
+      "index": 2,
+      "recovery": true,
+      "key": "Enter"
+    }
+  ],
+  "native852": true,
+  "native801": false,
+  "storyCompleted": true,
+  "voicesPlayed": [
+    "E1064B019",
+    "E1064B020",
+    "E1064C016",
+    "E1064B021",
+    "E1064A009",
+    "E1064B022",
+    "E1064C008",
+    "E1064B007",
+    "E1064B008",
+    "E1064C022",
+    "E1064B023",
+    "E1064A010",
+    "E1064C019",
+    "E1064A011",
+    "E1064C020",
+    "E1064B024"
+  ],
+  "cast": {
+    "s1.d000.enoki-street-intro": [
+      {
+        "tag": "AKIR",
+        "position": [
+          65,
+          0.07240000367164612,
+          46.5
+        ],
+        "floor": 0.07240000367164617,
+        "vertices": 1597
+      },
+      {
+        "tag": "ENKI",
+        "position": [
+          65,
+          0.07240000367164612,
+          48.099998474121094
+        ],
+        "floor": 0.07240000367164612,
+        "vertices": 949
+      },
+      {
+        "tag": "NGSM",
+        "position": [
+          63.900001525878906,
+          0.07240000367164612,
+          48.150001525878906
+        ],
+        "floor": 0.07240000367164612,
+        "vertices": 924
+      }
+    ],
+    "s1.d000.enoki-street-miss": [
+      {
+        "tag": "AKIR",
+        "position": [
+          65,
+          0.07240000367164612,
+          46.5
+        ],
+        "floor": 0.07240000367164617,
+        "vertices": 1597
+      },
+      {
+        "tag": "ENKI",
+        "position": [
+          65,
+          0.07240000367164612,
+          48.099998474121094
+        ],
+        "floor": 0.07240000367164612,
+        "vertices": 949
+      },
+      {
+        "tag": "NGSM",
+        "position": [
+          63.900001525878906,
+          0.07240000367164612,
+          48.150001525878906
+        ],
+        "floor": 0.07240000367164612,
+        "vertices": 924
+      }
+    ],
+    "s1.d000.enoki-street-win": [
+      {
+        "tag": "AKIR",
+        "position": [
+          65,
+          0.07240000367164612,
+          46.5
+        ],
+        "floor": 0.07240000367164617,
+        "vertices": 1597
+      },
+      {
+        "tag": "ENKI",
+        "position": [
+          65,
+          0.07240000367164612,
+          48.099998474121094
+        ],
+        "floor": 0.07240000367164612,
+        "vertices": 949
+      },
+      {
+        "tag": "NGSM",
+        "position": [
+          63.900001525878906,
+          0.07240000367164612,
+          48.150001525878906
+        ],
+        "floor": 0.07240000367164612,
+        "vertices": 924
+      }
+    ]
+  }
+}

@@ -485,3 +485,13 @@ test("object inspection applies room effects on the confirmed completion only", 
     assert.deepEqual(receipts, terminal === "complete" ? [slug] : []);
   }
 });
+
+test("a settled park activity carries its sampled inputs on the matching continue",async()=>{
+  const h=harness(),parkInputs=[{frame:2,mask:2},{frame:4,mask:0}];
+  h.presentation.execute=async()=>({parkInputs});
+  const started=h.controller.start({kind:"enter",area:"JD00"},{area:"JD00"});
+  await h.controller.handleYield(yieldMessage("request-1",{type:"command",name:"start_activity",sequence:1}));
+  await started;
+  assert.equal(h.sent.at(-1).action,"continue");
+  assert.deepEqual(h.sent.at(-1).parkInputs,parkInputs);
+});

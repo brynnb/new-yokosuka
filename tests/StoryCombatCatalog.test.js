@@ -123,3 +123,37 @@ test("Disc 1 JD00 stages the default rescue fighters using these source position
     assert.equal(map.toString("ascii",0x81428,0x81432), "bgm013.snd");
     assert.equal(map.readUInt32LE(0x74e64), 0x25a8);
   });
+
+test("JD00's four special records stage Nozomi beside Ryo using the separate ally health values",
+  {skip:!existsSync(parkRoom) && "requires extracted JD00"},()=>{
+    const fight=catalog.encounters.find(e=>e.id===parkFight.id+"-ally");
+    const map=readFileSync(parkRoom);
+    const positions=[
+      [0x74e74,0x74eb4,0x74ea0,0x74eb0,0x74eac,0x755bc,0x75342],
+      [0x74fd0,0x74fe0,0x74fdc,0x74fd8,0x74fd4,0x755c4,0x753ea],
+      [0x74e7c,0x74ec4,0x74ea0,0x74ec0,0x74ebc,0x755cc,0x75492],
+      [0x74e80,0x74ed4,0x74ea0,0x74ed0,0x74ecc,0x755e0,0x75556],
+    ];
+    for (const [i,[tag,x,y,z,heading,hp,call]] of positions.entries()){
+      const actor=fight.actors[i];
+      assert.deepEqual([actor.tag,actor.x,actor.y,actor.z,actor.yaw,actor.health],[
+        map.toString("ascii",tag,tag+4),-map.readFloatLE(x),map.readFloatLE(y),map.readFloatLE(z),
+        -map.readFloatLE(heading)*Math.PI/180,map.readUInt32LE(hp)]);
+      assert.equal(map.readUInt16LE(call),0x400b);
+    }
+    // Registration +8 selects player/AI control and +12 distinguishes the two sides.
+    const healthLoads=[0x752dc,0x75384,0x7542c,0x754f0];
+    assert.deepEqual(healthLoads.map(o=>map.readUInt16LE(o-28)),[0xe500,0xe501,0xe501,0xe501]);
+    assert.deepEqual(healthLoads.map(o=>map.readUInt16LE(o-14)),[0xe500,0xe500,0xe501,0xe501]);
+    assert.equal(fight.actors[1].team,"ally");
+    assert.equal(fight.actorDefinitions.find(a=>a.actorCode==="HRSK").modelCode,"NZM_L");
+    // Status poll → single scheduler tick → status poll, then Ryo's result query.
+    assert.equal(parkFight.timeoutMs,null);
+    assert.equal(fight.timeoutMs,null);
+    assert.equal(map.readUInt16LE(0x7559e),0x400b);
+    assert.equal(map.readUInt16LE(0x755f0),0xe401);
+    assert.equal(map.readUInt16LE(0x755fc),0x400b);
+    assert.equal(map.readUInt16LE(0x7562a),0x400b);
+    assert.equal(fight.musicTrack,parkFight.musicTrack);
+    assert.deepEqual(storyCombatContract(catalog).encounters.find(e=>e.id===fight.id).outcomes,["success","defeated","failure"]);
+});

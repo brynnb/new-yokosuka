@@ -397,8 +397,9 @@ export class ScriptEventController {
     }
     if(active.challengePrompt){this.dialogue.hide();active.challengePrompt=null;active.challengeInputPending=false;}
     if (event.type === "command") {
-      if (!await this.present(active, () => this.presentation.execute(event))) return false;
-      return this.sendAdvance("continue");
+      let result;
+      if (!await this.present(active, async () => { result = await this.presentation.execute(event); })) return false;
+      return this.sendAdvance("continue", result?.parkInputs ? {parkInputs: result.parkInputs} : {});
     }
     if (event.type === "line") {
       if (!message.line) throw new Error("script line content is unavailable");

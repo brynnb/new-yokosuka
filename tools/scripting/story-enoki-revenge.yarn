@@ -1,0 +1,52 @@
+<<if native_value("2:801") == 0>>
+<<pass_trigger>>
+<<endif>>
+<<jump Confrontation>>
+===
+title: Confrontation
+---
+<<play_sequence "s1.d000.enoki-revenge-intro.start">>
+<<play_sequence "s1.d000.enoki-revenge-intro.cue-e1065b001">>
+{{voice:E1065B001}}
+<<play_sequence "s1.d000.enoki-revenge-intro.cue-e1065a001">>
+{{voice:E1065A001}}
+<<play_sequence "s1.d000.enoki-revenge-intro.cue-e1065c001">>
+{{voice:E1065C001}}
+<<play_sequence "s1.d000.enoki-revenge-intro.cue-e1065a002">>
+{{voice:E1065A002}}
+<<play_sequence "s1.d000.enoki-revenge-intro.cue-e1065c002">>
+{{voice:E1065C002}}
+<<play_sequence "s1.d000.enoki-revenge-intro.cue-e1065b002">>
+{{voice:E1065B002}}
+<<play_sequence "s1.d000.enoki-revenge-intro.finish">>
+<<start_combat "s1.d000.enoki-revenge">>
+<<if combat_result("s1.d000.enoki-revenge") == "defeated">>
+<<play_sequence "s1.d000.enoki-revenge-defeat.start">>
+<<play_sequence "s1.d000.enoki-revenge-defeat.cue-e1065c003">>
+{{voice:E1065C003}}
+<<play_sequence "s1.d000.enoki-revenge-defeat.cue-e1065b008">>
+{{voice:E1065B008}}
+<<play_sequence "s1.d000.enoki-revenge-defeat.cue-e1065c004">>
+{{voice:E1065C004}}
+<<play_sequence "s1.d000.enoki-revenge-defeat.finish">>
+<<jump Confrontation>>
+<<elseif combat_result("s1.d000.enoki-revenge") == "success">>
+<<play_sequence "s1.d000.enoki-revenge-win.start">>
+<<play_sequence "s1.d000.enoki-revenge-win.cue-e1065b004">>
+{{voice:E1065B004}}
+<<play_sequence "s1.d000.enoki-revenge-win.cue-e1065b003">>
+{{voice:E1065B003}}
+<<play_sequence "s1.d000.enoki-revenge-win.cue-e1065a003">>
+{{voice:E1065A003}}
+<<play_sequence "s1.d000.enoki-revenge-win.cue-e1065b006">>
+{{voice:E1065B006}}
+<<play_sequence "s1.d000.enoki-revenge-win.cue-e1065b005">>
+{{voice:E1065B005}}
+<<play_sequence "s1.d000.enoki-revenge-win.cue-e1065a004">>
+{{voice:E1065A004}}
+<<play_sequence "s1.d000.enoki-revenge-win.cue-e1065b007">>
+{{voice:E1065B007}}
+<<play_sequence "s1.d000.enoki-revenge-win.finish">>
+{{effects}}
+<<endif>>
+<<complete>>

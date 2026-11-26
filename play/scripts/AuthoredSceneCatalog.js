@@ -1,3 +1,4 @@
+import enokiRevenge from "../data/story-enoki-revenge.generated.json" with {type:"json"};
 import drunkard from "../data/story-dobuita-drunkard.generated.json" with {type:"json"};
 import dojoScroll from "../data/story-dojo-scroll.generated.json" with {type:"json"};
 import warehouseScrolls from "../data/story-warehouse-scrolls.generated.json" with {type:"json"};
@@ -23,6 +24,6 @@ import friendsBar from "../data/story-friends-bar.generated.json" with {type:"js
 
 // One read-only catalog feeds scene presentation, private cast assembly and
 // authoring tools. Chapter generation must not create a second actor registry.
-const chapters=[base,dojoScroll,warehouseScrolls,drunkard,jimmy,harbor,biker,goro,sailors,nozomi,finalDay,finalBattle,heartbeats,kitten,kittenSearch,yamamoto,football,eri,friendsBar,maiAlley,hisakaLunch,goroGuardIntro],scenes=chapters.flatMap(c=>c.scenes);
+const chapters=[base,enokiRevenge,dojoScroll,warehouseScrolls,drunkard,jimmy,harbor,biker,goro,sailors,nozomi,finalDay,finalBattle,heartbeats,kitten,kittenSearch,yamamoto,football,eri,friendsBar,maiAlley,hisakaLunch,goroGuardIntro],scenes=chapters.flatMap(c=>c.scenes);
 if(chapters.some(c=>c.schema!==base.schema)||new Set(scenes.map(s=>s.id)).size!==scenes.length)throw Error("Invalid or duplicate authored story scene");
 export default Object.freeze({...base,motionBanks:Object.assign({},...chapters.map(c=>c.motionBanks)),scenes});

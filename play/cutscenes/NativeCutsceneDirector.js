@@ -160,7 +160,7 @@ export class NativeCutsceneDirector {
       : [];
   }
 
-  async start(cutscene, { signal: callerSignal = null } = {}) {
+  async start(cutscene, { signal: callerSignal = null, onActivityFrame = null } = {}) {
     if (this.disposed) throw new Error("native cutscene director is disposed");
     if (this.activeCutscene || this.directActivityRuntime) {
       throw new Error("another native cutscene is already active");
@@ -207,7 +207,7 @@ export class NativeCutsceneDirector {
       if (typeof releaseGameplay !== "function") {
         throw new Error("native cutscene gameplay ownership was not acquired");
       }
-      active = { cutscene, kind, packageRuntime, runtime, releaseGameplay, controller };
+      active = { cutscene, kind, packageRuntime, runtime, releaseGameplay, controller, onActivityFrame };
       this.activeCutscene = active;
       this.pendingStart = null;
       // A cancelled start can settle its caller before asynchronous adapters
@@ -256,7 +256,12 @@ export class NativeCutsceneDirector {
   }
 
   update(deltaSeconds) {
-    this.activeCutscene?.runtime.update(deltaSeconds);
+    const active = this.activeCutscene;
+    if (active?.onActivityFrame && !active.ending) {
+      const frame = active.packageRuntime.activityRuntime.active?.currentFrame;
+      if (Number.isInteger(frame)) active.onActivityFrame(frame);
+    }
+    active?.runtime.update(deltaSeconds);
   }
 
   async end(reason = "user-cancelled") {

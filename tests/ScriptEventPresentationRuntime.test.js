@@ -720,3 +720,14 @@ test("runtime rejects dynamic and unknown identifiers", async () => {
   );
   runtime.rollback();
 });
+
+test("only native park lead-ins can return a film input trace",async()=>{
+  const {runtime}=harness();
+  runtime.begin({area:"JD00"});
+  const parkInputs=[{frame:5,mask:2},{frame:7,mask:0}];
+  runtime.adapters.startActivity=async()=>({parkInputs});
+  for(const name of ["main","alternate"]){
+    assert.deepEqual(await runtime.execute(command("start_activity","s1.jd00.nozomi-park-rescue-"+name+".scene")),{parkInputs});
+  }
+  await assert.rejects(runtime.execute(command("start_activity","s1.jd00.nozomi-park-rescue-aftermath.scene")),/rejected/);
+});

@@ -106,3 +106,11 @@ export function evaluateAuthCamera(camera, time) {
     ]),
   );
 }
+
+
+// Event cameras can be replaced at an exact director tick while their native
+// Hermite curves continue to run on a local clock within each shot.
+export function evaluateAuthCameraCuts(shots, seconds) {
+  const shot = shots.findLast(candidate => candidate.atSeconds <= seconds) ?? shots[0];
+  return evaluateAuthCamera(shot, Math.max(0, seconds - shot.atSeconds));
+}

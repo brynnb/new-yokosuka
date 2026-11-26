@@ -109,10 +109,12 @@ export class ScriptEventPresentationRuntime {
       const id = requireStringArgument(args, 0, event.name);
       const activity = this.catalog.activity(id);
       if (!activity) throw new Error(`unknown specialized activity ${id}`);
-      return this.requireAccepted(
-        await this.adapters.startActivity(activity, this.transaction),
-        `activity ${id}`,
-      );
+      const result = await this.adapters.startActivity(activity, this.transaction);
+      if (Array.isArray(result?.parkInputs) && (
+        id === "s1.jd00.nozomi-park-rescue-main.scene" ||
+        id === "s1.jd00.nozomi-park-rescue-alternate.scene"
+      )) return {parkInputs: result.parkInputs};
+      return this.requireAccepted(result, `activity ${id}`);
     }
     default:
       throw new Error(`unsupported presentation command ${event?.name}`);

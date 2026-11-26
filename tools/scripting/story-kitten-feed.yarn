@@ -1,14 +1,24 @@
 // Personal, repeatable care: no food, a second visit on the same day, and
 // cancellation must all pass without consuming an item or recording care.
-<<if (!has_item("kitten_dried_fish", 1) && !has_item("kitten_milk", 1)) || progress_value("story.s1.kitten-care.last-day") == game_day()>>
+<<if (flag_set("story.s1.kitten-missing.completed") && !flag_set("story.s1.kitten-found.completed")) || (!has_item("kitten_dried_fish", 1) && !has_item("kitten_milk", 1) && !has_item("kitten_sliced_fish", 1) && !has_item("kitten_canned_tuna", 1)) || progress_value("story.s1.kitten-care.last-day") == game_day()>>
     <<pass_trigger>>
 <<endif>>
 Ryo Hazuki: I brought something for the kitten. #speaker:AKIR
 -> Give her the dried fish <<if has_item("kitten_dried_fish", 1)>>
     <<remove_item "kitten_dried_fish" 1>>
+    <<increment_progress "story.s1.kitten-care.points" 15>>
     <<jump Fed>>
 -> Give her the milk <<if has_item("kitten_milk", 1)>>
     <<remove_item "kitten_milk" 1>>
+    <<increment_progress "story.s1.kitten-care.points" 25>>
+    <<jump Fed>>
+-> Give her the sliced fish <<if has_item("kitten_sliced_fish", 1)>>
+    <<remove_item "kitten_sliced_fish" 1>>
+    <<increment_progress "story.s1.kitten-care.points" 120>>
+    <<jump Fed>>
+-> Give her the canned tuna <<if has_item("kitten_canned_tuna", 1)>>
+    <<remove_item "kitten_canned_tuna" 1>>
+    <<increment_progress "story.s1.kitten-care.points" 45>>
     <<jump Fed>>
 -> Leave it for now
     <<complete>>

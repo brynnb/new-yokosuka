@@ -2,7 +2,7 @@
   "schema": "new-yokosuka-story-challenges-v1",
   "buttonCodes": ["A","B","X","Left","Right","Up","Down"],
   "challenges": [
-    {"id":"s1.d000.enoki-street","label":"Dodge and counter Enoki and Nagashima","buttons":["Left","A","B"],"windowMs":1000,"provenance":"Clean DEQB path at 0xb1db4, 0xb1de4, 0xb1e14. Story uses one second per input."},
+    {"id":"s1.d000.enoki-street","label":"Dodge and counter Enoki and Nagashima","provenance":"D000 DEQB clean prompt calls 0x95bda, 0x961ba, 0x968c2; on a miss 0x95d8c, 0x96324, 0x96a8c. Each recovery returns to the original success path or resolves the failed ending. Worker 0x91b58 uses row words 2+3 for input (16+4 at 30 Hz, rounded to 667 milliseconds).","steps":[{"buttons":["Left"],"recoveryButton":"Left","windowMs":667},{"buttons":["A"],"recoveryButton":"A","windowMs":667},{"buttons":["B"],"recoveryButton":"A","windowMs":667}]},
     {"id":"s1.mfsy.mai-alley.first","label":"Dodge to the left","buttons":["Left"],"windowMs":800,"provenance":"E1036 command table and original shared input helper: (20+4)/30 seconds."},
     {"id":"s1.mfsy.mai-alley.second","label":"Evade the attack","buttons":["A"],"windowMs":800,"provenance":"E1036 command table and original shared input helper: (20+4)/30 seconds."},
     {"id":"s1.mfsy.mai-alley.second-retry","label":"Try to evade again","buttons":["A"],"windowMs":800,"provenance":"E1036 command table and original shared input helper: (20+4)/30 seconds."},

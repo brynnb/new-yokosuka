@@ -11,6 +11,7 @@ export class StoryQteRuntime {
     this.stop();
     const steps = definition.steps || definition.buttons?.map(button => ({ buttons: [button], windowMs: definition.windowMs }));
     if (!steps?.length || steps.some(s => !s.buttons?.length || new Set(s.buttons).size !== s.buttons.length
+      || (s.recoveryButton !== undefined && (typeof s.recoveryButton !== "string" || !s.recoveryButton.length))
       || !s.buttons.every(b => typeof b === "string") || !Number.isFinite(s.windowMs) || s.windowMs <= 0)) {
       throw new Error(`Invalid QTE steps: ${definition.id}`);
     }
@@ -23,15 +24,19 @@ export class StoryQteRuntime {
     this.next();
   }
 
-  next() {
+  next(recovering = false) {
     const owner = this.active, step = owner.steps[owner.index];
     this.cancel(this.timer);
     owner.held.clear();
     owner.deadline = this.now() + step.windowMs;
-    this.present({ index: owner.index, count: owner.steps.length, buttons: step.buttons, windowMs: step.windowMs });
+    const buttons = recovering ? [step.recoveryButton] : step.buttons;
+    const prompt = { index: owner.index, count: owner.steps.length, buttons, windowMs: step.windowMs };
+    owner.prompt = prompt;
+    owner.recovering = recovering;
+    this.present(prompt);
     this.sound("prompt");
     this.timer = this.schedule(() => {
-      if (this.active === owner && !owner.outcome) this.miss();
+      if (this.active === owner && owner.prompt === prompt && !owner.outcome) this.miss();
     }, step.windowMs);
   }
 
@@ -39,13 +44,13 @@ export class StoryQteRuntime {
     const owner = this.active;
     if (!owner || owner.outcome) return false;
     if (this.now() >= owner.deadline) { this.miss(); return false; }
-    const step = owner.steps[owner.index];
-    if (!step.buttons.includes(button)) {
+    const {buttons} = owner.prompt;
+    if (!buttons.includes(button)) {
       if (!owner.ignoreWrongButtons) this.miss();
       return false;
     }
     owner.held.add(button);
-    if (!step.buttons.every(b => owner.held.has(b))) return true;
+    if (!buttons.every(b => owner.held.has(b))) return true;
     this.sound("correct");
     owner.hits++;
     this.advance();
@@ -56,6 +61,10 @@ export class StoryQteRuntime {
     const owner=this.active;
     if(!owner || owner.outcome)return;
     this.sound("wrong");
+    if (owner.steps[owner.index].recoveryButton && !owner.recovering) {
+      this.next(true);
+      return;
+    }
     if(!owner.scoring){this.complete("failure");return;}
     this.advance();
   }

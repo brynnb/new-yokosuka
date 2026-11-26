@@ -13,11 +13,25 @@
 title: Confrontation
 ---
 <<start_activity "s1.jd00.nozomi-park-rescue-confrontation.scene">>
+<<if challenge_result("s1.jd00.nozomi-park-rescue-code") == "success">>
+<<start_combat "s1.jd00.nozomi-park-rescue-ally">>
+<<if combat_result("s1.jd00.nozomi-park-rescue-ally") == "defeated">>
+<<jump Confrontation>>
+<<elseif combat_result("s1.jd00.nozomi-park-rescue-ally") == "success">>
+<<jump Aftermath>>
+<<endif>>
+<<else>>
 <<start_combat "s1.jd00.nozomi-park-rescue">>
 <<if combat_result("s1.jd00.nozomi-park-rescue") == "defeated">>
 <<jump Confrontation>>
 <<elseif combat_result("s1.jd00.nozomi-park-rescue") == "success">>
+<<jump Aftermath>>
+<<endif>>
+<<endif>>
+<<complete>>
+===
+title: Aftermath
+---
 <<start_activity "s1.jd00.nozomi-park-rescue-aftermath.scene">>
 {{effects}}
-<<endif>>
 <<complete>>

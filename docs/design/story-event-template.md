@@ -3214,21 +3214,24 @@ without a first-visit date also passed. Real-Yarn checks cover all four
 suggestions and the rejection, date, mode, bounds and cancellation gates.
 The first visit also unlocks the original `knib` dried-fish and `kmil` milk
 models in the Hazuki kitchen as personal, one-time pickups. The normal
-inventory transaction saves one of each only after the choice is acknowledged;
-the original prop hides for that Story character and restores for other
-characters and Free roam. The milk is behind the original refrigerator door.
-On a later visit, talking to Megumi offers whichever food is held, consumes only
-the acknowledged choice and records one feeding on that personal day. A
-second same-day visit falls back to ordinary voiced conversation.
+inventory transaction grants three portions of dried fish or one milk after
+acknowledgment. The original prop hides for that Story character and restores
+for other characters and Free roam. The milk is behind the refrigerator door.
+On entering the Dobuita Tomato store, a Story character who met the kitten can
+buy sliced fish (¥500), canned tuna (¥180), milk (¥100) or dried fish (¥300).
+The prices and stock IDs come from DCBN's retail checkout. The entrance basket
+is an authored interaction. Finish shopping settles the basket. Cancellation
+discards it, and leaving the entrance and returning opens another basket.
 
-After two feedings on separate personal days, visiting Megumi the following day
-offers the original recovery film. Only its acknowledged ending saves healing;
-leaving or cancelling remains retryable. Afterward, a repeatable voiced
-conversation keeps Megumi usable without asserting adoption. The two available
-foods, once-per-day rule, two-feeding threshold, next-day wait, confirmation
-and Megumi trigger are intentionally simple authored approximations, not
-recovered native health or trigger rules. There is no hand-to-kitten feeding
-animation, food shop or refill yet. The newly extracted
+Talking to Megumi offers whichever food is held and records one feeding per
+personal day after the last line. Sliced fish, canned tuna, milk and dried fish
+earn 120, 45, 25 and 15 kitten-care points respectively. Two feedings on
+separate days make the recovery film eligible on the following day. Care can
+continue after recovery while the kitten is present. A player may also pet
+the kitten through the voiced check-in and earn one point. The once-per-day
+feeding, recovery schedule and Megumi interaction are authored. The care
+amounts are recovered from JU00. At 500 signed points, the optional input
+sequence becomes available during Nozomi’s Sakuragaoka Park approach. The newly extracted
 post-recovery voices and the recovery-film assets are local runtime assets and
 must be verified and published before any future deployment of this branch.
 
