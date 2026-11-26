@@ -24,7 +24,20 @@ test("generated playable catalog excludes main and non-playable room actors", ()
     "../play/assets/characters",
     import.meta.url,
   )).filter((filename) => filename.endsWith(".CHRM"));
-  assert.equal(allModels.length, 241);
+  const modelFiles = new Set(allModels);
+  const playableFiles = new Set(catalog.avatars.map(({ modelFile }) => modelFile));
+  const mainFiles = [
+    "ACS_M", "BLA_M", "BLB_M", "CHA_M", "FUK_M", "GIB_M", "GIJ_M",
+    "IWA_M", "JIM_M", "JKA_M", "KIS_M", "KOK_M", "SYU_M",
+  ];
+  const encounterFiles = ["BIK_L", "KAZ_L", "KMD_L", "OKA_L", "PPL_L", "BIS_L", "BIS_F"];
+  const excluded = new Set([
+    ...mainFiles, ...encounterFiles, ...nativeRoomActors.modelCodes,
+    ...Object.values(nativeActivityActors.worlds).flat()
+      .filter(({ activityOnly }) => activityOnly)
+      .map(({ modelCode }) => modelCode),
+  ].map((code) => code + ".CHRM"));
+  assert.deepEqual(new Set([...modelFiles].filter((file) => !playableFiles.has(file))), excluded);
   assert.equal(catalog.avatars.length, 217);
   assert.equal(new Set(catalog.avatars.map(({ id }) => id)).size, 217);
   assert.equal(new Set(catalog.avatars.map(({ modelFile }) => modelFile)).size, 217);

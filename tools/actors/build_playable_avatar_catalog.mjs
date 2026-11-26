@@ -37,6 +37,12 @@ const MAIN_MODEL_FILES = new Set([
   "KOK_M.CHRM",
   "SYU_M.CHRM",
 ]);
+// These encounter packages supply models in the shared character directory.
+// The Gao and tattoo-parlor asset builders verify each original source member.
+const STORY_ENCOUNTER_MODEL_FILES = new Set([
+  "BIK_L.CHRM", "KAZ_L.CHRM", "KMD_L.CHRM", "OKA_L.CHRM", "PPL_L.CHRM",
+  "BIS_L.CHRM", "BIS_F.CHRM",
+]);
 const CATEGORY_BY_FAMILY = new Map([
   [0, "men"],
   [3, "men"],
@@ -78,6 +84,7 @@ for (const actor of scheduledActors.actors) {
 const avatars = fs.readdirSync(characterDirectory)
   .filter((filename) => filename.endsWith(".CHRM"))
   .filter((filename) => !MAIN_MODEL_FILES.has(filename))
+  .filter((filename) => !STORY_ENCOUNTER_MODEL_FILES.has(filename))
   .filter((filename) => !ACTIVITY_ONLY_MODELS.has(
     filename.slice(0, -".CHRM".length),
   ))
