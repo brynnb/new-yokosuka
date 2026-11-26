@@ -361,3 +361,40 @@ test("presenter renders exact runtime options and selects an available option", 
 test("Yarn substitutions leave out-of-range markers intact", () => {
   assert.equal(expandYarnSubstitutions("Hello {0} {2}", ["Ryo"]), "Hello Ryo {2}");
 });
+
+test("the flashlight clock starts on ready and keeps accepting Right after a wrong direction",async()=>{
+  let now=0,timeout;
+  const clocks=[],responses=[];
+  const presenter=createScriptEventDialoguePresenter({
+    root:element(),speaker:element(),sourceText:element(),japaneseText:element(),options:optionsElement(),
+    qteOptions:{now:()=>now,schedule:fn=>(timeout=fn),cancel:()=>{}},
+    onChallengeStart:(id,elapsed)=>clocks.push({id,elapsed}),onChallengeResponse:(...args)=>responses.push(args),
+  });
+  const id="s1.mfsy.old-district-flashlight";
+  const prompt={id,label:"Catch the flashlight quietly",token:"a".repeat(32),ready:false};
+  presenter.showChallenge(prompt);
+  await Promise.resolve();
+  now=3500;
+  assert.equal(clocks.length,0);
+  presenter.showChallenge({...prompt,ready:true});
+  assert.equal(clocks[0].id,id);assert.equal(clocks[0].elapsed(),0);
+  presenter.showChallenge({...prompt,ready:true});
+  assert.equal(clocks.length,1);
+  now+=110;presenter.qte.press("Left");
+  assert.deepEqual(responses,[["challenge_ready",prompt.token]]);
+  assert.equal(presenter.dom.options.hidden,false);
+  now+=889;assert.equal(clocks[0].elapsed(),.999);
+  presenter.qte.press("Right");
+  const oldTimer=timeout;
+  assert.deepEqual(responses.at(-1),["challenge_result",prompt.token,"success"]);
+  presenter.hide();
+  now+=500;assert.equal(clocks[0].elapsed(),1.499);
+  const retry={...prompt,ready:true,token:"b".repeat(32)};
+  presenter.showChallenge(retry);
+  assert.equal(clocks.length,2);assert.equal(clocks[1].elapsed(),0);
+  oldTimer();presenter.qte.press("Left");
+  assert.equal(responses.length,2);
+  now+=1000;timeout();
+  assert.deepEqual(responses.at(-1),["challenge_result",retry.token,"failure"]);
+  presenter.hide();
+});

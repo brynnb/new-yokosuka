@@ -858,3 +858,33 @@ test("the three MS8S inspections preserve the gameplay pose and speak after the 
     assert.deepEqual(calls.at(-1),{position:[1,2,3],cameraYaw:4});
   }
 });
+
+test("staged effects ring across a retained cut and release on normal finish or cancellation",async t=>{
+  for(const exit of ["finish","cancel"]) await t.test(exit,async()=>{
+    const h=harness(),played=[],stopped=[],reminders=[];
+    const group="test-sounds";
+    const effect=(id,atSeconds)=>({kind:"effect",asset:"public/audio/world/e1kaiqte/"+id+".wav",atSeconds});
+    const reminder={asset:"public/audio/world/mai-alley/E1036A009.wav",atSeconds:.5};
+    const first={...h.scene,id:"throw",continuationGroup:group,holdEndPose:true,retainOnFinish:true,
+      durationSeconds:1,waitForMotionCompletion:false,soundCues:[effect("A9040100",0),reminder,effect("A9040200",.8)]};
+    const next={...h.scene,id:"catch",continuationGroup:group,durationSeconds:2,waitForMotionCompletion:false,
+      soundCues:[effect("A9040400",0),effect("A9040500",.4)]};
+    h.runtime.worldSounds={playAsset:(asset,{signal})=>{
+      played.push(asset);signal.addEventListener("abort",()=>stopped.push(asset),{once:true});return true;
+    }};
+    h.runtime.dialogueAudio={playOneShot:asset=>({asset}),stopOneShot:audio=>reminders.push(audio.asset)};
+    const play=(scene,op)=>h.runtime.play({kind:"scene-staging-"+op,scene},h.transaction);
+    assert.equal(await play(first,"start"),true);
+    h.runtime.update(h.transaction,.6);
+    h.runtime.update(h.transaction,.5); // Final source cue crossed on the last update.
+    assert.equal(await play(first,"finish"),true);
+    assert.equal(await play(next,"transition"),true);
+    h.runtime.update(h.transaction,.4);h.runtime.update(h.transaction,0);
+    assert.deepEqual(reminders,[reminder.asset]);
+    assert.deepEqual(played,[first.soundCues[0].asset,first.soundCues[2].asset,...next.soundCues.map(c=>c.asset)]);
+    assert.deepEqual(stopped,[]);
+    if(exit==="cancel") assert.equal(h.runtime.cancel(h.transaction),true);
+    else assert.equal(await play(next,"finish"),true);
+    assert.deepEqual(stopped,played);
+  });
+});

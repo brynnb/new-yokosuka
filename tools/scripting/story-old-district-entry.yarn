@@ -14,11 +14,15 @@ title: Catch
 <<start_challenge "s1.mfsy.old-district-flashlight">>
 <<play_sequence "s1.mfsy.old-district-prompt.finish">>
 <<if challenge_result("s1.mfsy.old-district-flashlight") != "success">>
+<<play_sequence "s1.mfsy.old-district-miss.start">>
+<<play_sequence "s1.mfsy.old-district-miss.finish">>
 -> Try again
     <<jump Catch>>
 -> Leave it for now
     <<complete>>
 <<else>>
+<<play_sequence "s1.mfsy.old-district-reach.start">>
+<<play_sequence "s1.mfsy.old-district-reach.finish">>
 <<play_sequence "s1.mfsy.old-district-catch.start">>
 <<play_sequence "s1.mfsy.old-district-catch.finish">>
 <<jump Enter>>

@@ -566,3 +566,45 @@ test("D000 phone-book AUTH commands have exact bank-scoped assets", () => {
     )));
   }
 });
+
+test("owned world sounds overlap, follow the effects mixer, and stop only live voices from their owner",async()=>{
+  const players=[];
+  let preferenceChanged;
+  const state={overallVolume:.8,effectsVolume:.5,masterMuted:false,effectsMuted:false};
+  const sounds=new WorldSounds({
+    preferences:{getState:()=>state,subscribe:fn=>{preferenceChanged=fn;}},
+    audioFactory:source=>{
+      const player=Object.assign(new EventTarget(),{source,stops:0,
+        play(){return source.endsWith("bad.wav")?Promise.reject(new Error("decode failed")):Promise.resolve();},
+        pause(){this.stops++;}});
+      players.push(player);return player;
+    },
+  });
+  const owner=new AbortController(),options={signal:owner.signal};
+  const base="public/audio/world/e1kaiqte/";
+  assert.equal(sounds.playCommand("abcd0000"),true);
+  for(const name of ["A9040100","A9040200","A9040300","bad"]){
+    assert.equal(sounds.playAsset(base+name+".wav",options),true);
+  }
+  await Promise.resolve();
+  assert.deepEqual(players.slice(1,4).map(p=>p.source),["A9040100","A9040200","A9040300"].map(id=>"/audio/world/e1kaiqte/"+id+".wav"));
+  assert.ok(players.every(p=>p.volume===.8*.5*.35));
+  state.masterMuted=true;preferenceChanged(state);
+  assert.ok(players.slice(0,4).every(p=>p.muted));
+  state.masterMuted=false;state.effectsMuted=true;preferenceChanged(state);
+  assert.equal(sounds.playAsset(base+"A9040400.wav",options),false);
+  state.effectsMuted=false;state.effectsVolume=.25;preferenceChanged(state);
+  assert.ok(players.slice(0,4).every(p=>!p.muted&&p.volume===.8*.25*.35));
+  players[1].dispatchEvent(new Event("ended"));
+  players[2].dispatchEvent(new Event("error"));
+  owner.abort();
+  assert.deepEqual(players.map(p=>p.stops),[0,0,0,1,0]);
+  assert.equal(sounds.playAsset(base+"A9040500.wav",options),false);
+  sounds.reset();
+  assert.deepEqual(players.map(p=>p.stops),[1,0,0,1,0]);
+  sounds.audioFactory=()=>Object.assign(new EventTarget(),{
+    play(){throw new Error("unavailable player");},pause(){assert.fail("released clip retained");},
+  });
+  assert.equal(sounds.playAsset(base+"A9040100.wav"),false);
+  sounds.reset();
+});

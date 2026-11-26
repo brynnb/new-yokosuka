@@ -123,6 +123,10 @@ inspections test bit 0x40 and play Ryo’s question about Master Chen (A009 at
 `0x2548e`). The two objects can be inspected repeatedly. Cancelling the address
 line leaves the byte untouched, and entering the room again resets it. Each
 line uses the original English audio, subtitle and lip data from E1009B.AFS.
+The nearby documents are separately selectable. CHARA.CHRT binds SHO0 and SHO1 to SHO0G00G. The initializer places SHO0 at world (−24.40, 5.032, 137.48) at `0x24246` and SHO1 at (−27.96, 5.032, 139.79) at `0x24262`. Picking either calls `0x246ac` in mode 3 at `0x257ea`. Ryo reads A034, A029 or A030 in his current view and pose. The interaction gives him no item or notebook entry.
+
+The native inspection routine draws an integer in 0–2 before dispatching *any* object mode. At `0x246ee` it rejects a draw equal to room byte `0x4a0`. An accepted draw is stored at `0x24718`, before speech. The executable clears the runtime workspace at `0x0c0bb13c–0x0c0bb140` and installs the scene field base at `0x0c0bb16a`. A new visit therefore starts with previous index zero. Story samples equally from the remaining indices and commits the draw when the server accepts the pick. Cancelling the ensuing line preserves that draw. The two envelopes advance the same index silently and keep their separate `0x20c` address behavior. A [Radeon run](../../tools/evidence/warehouse-office-documents-hardware-2026-11-25.json) clicked both document models, played all three English recordings and checked that interrupting a spoken line still excludes its index on the next pick. Completing the address envelope continued to change FUT1 to A009; a fresh room visit restored its original line.
+
 The upstairs listening scene alone awards the district clue and sets bit 242.
 The light upstairs is a separate timed hint. The map seeds scene dword
 `0x214` with 14,400, then `0x25b20` arms slot zero of engine operation
@@ -168,10 +172,13 @@ Story's reversible transactions. Four [Radeon runs](../../tools/evidence/warehou
 cover the full-length downstairs timer, the idle secondary deadline, the
 alternate office entrance and the physically triggered scene taking priority.
 
-Rebuild the staging with `node tools/scripting/build_warehouse_office_staging.mjs`. To regenerate the three invoice recordings and four warehouse inspection and hint lines in a prepared checkout, set `NEW_YOKOSUKA_SERVER_DIR` and `VGMSTREAM_CLI` and run the following command.
+Rebuild the staging with `node tools/scripting/build_warehouse_office_staging.mjs`. To regenerate the three invoice recordings, three document replies and four warehouse inspection and hint lines in a prepared checkout, set `NEW_YOKOSUKA_SERVER_DIR` and `VGMSTREAM_CLI` and run the following command.
 
 ```sh
 node tools/scripting/build_story_investigation.mjs --voices \
+  --voice-route warehouse-office-document-left \
+  --voice-route warehouse-office-document-left-reply-1 \
+  --voice-route warehouse-office-document-left-reply-2 \
   --voice-route warehouse-invoice-address \
   --voice-route warehouse-invoice-label \
   --voice-route warehouse-invoice-label-read \

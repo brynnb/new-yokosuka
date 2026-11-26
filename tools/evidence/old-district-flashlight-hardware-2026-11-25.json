@@ -1,0 +1,4850 @@
+{
+  "schema": "new-yokosuka-story-cutscene-evidence-v1",
+  "date": "2026-11-25",
+  "renderer": "AMD Radeon RX 9070 XT (RADV GFX1201), ANGLE Vulkan",
+  "fixture": "Private PostgreSQL characters with an earned warehouse invoice clue. Each run uses nearby checkpoints for approaching the daytime compound gate, then the actual 7 p.m. wait, QTE, prop presentation and saved state. Initial approach/setting is authored at the harbor.",
+  "beforeHarborAlignment": {
+    "privateReport": "/mnt/data6tb/Projects/New Yokosuka/ny-warehouse-timer-lj878jh0/browser/rerun-flashlight-20261125-162443-html/index.html",
+    "transition": {
+      "worldFrame": 14,
+      "attachedFrame": 0,
+      "world": {
+        "center": [
+          115.73838,
+          0.61843,
+          -11.60904
+        ],
+        "screen": [
+          282.4533,
+          388.18486,
+          0.99622
+        ],
+        "viewport": [
+          1000,
+          720
+        ],
+        "position": [
+          115.68401,
+          0.69398,
+          -11.60472
+        ],
+        "rotation": [
+          0.95045,
+          0.30506,
+          0.04542,
+          -0.03898
+        ],
+        "drawable": 3,
+        "inFrustum": true,
+        "root": 22505,
+        "vertices": 106
+      },
+      "attached": {
+        "center": [
+          116.18909,
+          0.67266,
+          -11.86493
+        ],
+        "screen": [
+          294.86389,
+          394.1273,
+          0.99586
+        ],
+        "viewport": [
+          1000,
+          720
+        ],
+        "position": [
+          116.15491,
+          0.75925,
+          -11.86873
+        ],
+        "rotation": [
+          0.73461,
+          0.12594,
+          -0.65194,
+          0.13948
+        ],
+        "drawable": 3,
+        "inFrustum": true,
+        "root": 22516,
+        "vertices": 106
+      },
+      "binding": {
+        "tag": "AKIR",
+        "id": 18,
+        "parented": true
+      },
+      "rootDistance": 0.5437906426190136,
+      "centerDistance": 0.5211142764307916,
+      "screenDistancePx": 13.75991777961264
+    }
+  },
+  "runs": [
+    {
+      "purpose": "Wrong alone expires; retry with Left followed by early Right, catch, complete, reload.",
+      "privateReport": "/mnt/data6tb/Projects/New Yokosuka/ny-warehouse-timer-lj878jh0/browser/rerun-flashlight-20261125-165134-html/index.html",
+      "durationSeconds": 58.65,
+      "handoff": {
+        "world": "mksg",
+        "script": "story-s1-old-district-stealth",
+        "controllerStatus": "running",
+        "movementLocked": true,
+        "navigationReady": true,
+        "actors": [
+          "AKIR",
+          "KEBB",
+          "KEBC",
+          "KEBD"
+        ]
+      },
+      "reloadedHandoff": {
+        "world": "mksg",
+        "script": "story-s1-old-district-stealth",
+        "controllerStatus": "running",
+        "movementLocked": true,
+        "navigationReady": true,
+        "actors": [
+          "AKIR",
+          "KEBB",
+          "KEBC",
+          "KEBD"
+        ]
+      },
+      "observed": {
+        "voice": {
+          "id": "E1008A010",
+          "text": "No one's here...Go!",
+          "seconds": 0.015737
+        },
+        "effects": [
+          {
+            "id": "A9040100",
+            "scene": "s1.mfsy.old-district-head-bump",
+            "frame": 227,
+            "playedFrames": 43,
+            "seconds": 0.42029,
+            "muted": false,
+            "volume": 0.175,
+            "error": null,
+            "ended": true,
+            "src": "/audio/world/e1kaiqte/A9040100.wav",
+            "activeAfterRelease": false,
+            "pausedAfterRelease": true
+          },
+          {
+            "id": "A9040200",
+            "scene": "s1.mfsy.old-district-head-bump",
+            "frame": 247,
+            "playedFrames": 83,
+            "seconds": 1.07673,
+            "muted": false,
+            "volume": 0.175,
+            "error": null,
+            "ended": true,
+            "src": "/audio/world/e1kaiqte/A9040200.wav",
+            "activeAfterRelease": false,
+            "pausedAfterRelease": true
+          },
+          {
+            "id": "A9040300",
+            "scene": "s1.mfsy.old-district-miss",
+            "frame": 15,
+            "playedFrames": 98,
+            "seconds": 1.32215,
+            "muted": false,
+            "volume": 0.175,
+            "error": null,
+            "ended": true,
+            "src": "/audio/world/e1kaiqte/A9040300.wav",
+            "activeAfterRelease": false,
+            "pausedAfterRelease": true
+          },
+          {
+            "id": "A9040400",
+            "scene": "s1.mfsy.old-district-catch",
+            "frame": 0,
+            "playedFrames": 66,
+            "seconds": 0.77757,
+            "muted": false,
+            "volume": 0.175,
+            "error": null,
+            "ended": true,
+            "src": "/audio/world/e1kaiqte/A9040400.wav",
+            "activeAfterRelease": false,
+            "pausedAfterRelease": true
+          },
+          {
+            "id": "A9040500",
+            "scene": "s1.mfsy.old-district-catch",
+            "frame": 12,
+            "playedFrames": 93,
+            "seconds": 1.21154,
+            "muted": false,
+            "volume": 0.175,
+            "error": null,
+            "ended": true,
+            "src": "/audio/world/e1kaiqte/A9040500.wav",
+            "activeAfterRelease": false,
+            "pausedAfterRelease": true
+          }
+        ],
+        "stages": [
+          {
+            "id": "s1.mfsy.old-district-night-approach",
+            "motions": [
+              {
+                "name": "AKI_KANGAETEIRU_STAND_LP_0132",
+                "clipTime": 0,
+                "frame": 0
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 8,
+            "samples": [
+              {
+                "frame": 0,
+                "world": null,
+                "held": null,
+                "wrist": null
+              },
+              {
+                "frame": 6,
+                "world": null,
+                "held": null,
+                "wrist": null
+              },
+              {
+                "frame": 8,
+                "world": null,
+                "held": null,
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-head-bump",
+            "motions": [
+              {
+                "name": "AKI_ATAMABUTUKERU1_0153",
+                "clipTime": 4.433333333333334,
+                "frame": 0
+              }
+            ],
+            "firstFrame": 1,
+            "lastFrame": 261,
+            "samples": [
+              {
+                "frame": 1,
+                "world": {
+                  "center": [
+                    116.11599,
+                    0.99318,
+                    -12.11492
+                  ],
+                  "screen": [
+                    204.19139,
+                    281.94112,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11599,
+                    0.9,
+                    -12.11428
+                  ],
+                  "rotation": [
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.11599,
+                    0.99318,
+                    -12.11492
+                  ],
+                  "screen": [
+                    204.19139,
+                    281.94112,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11599,
+                    0.9,
+                    -12.11428
+                  ],
+                  "rotation": [
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 243,
+                "world": {
+                  "center": [
+                    116.11599,
+                    0.99318,
+                    -12.11492
+                  ],
+                  "screen": [
+                    204.19139,
+                    281.94112,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11599,
+                    0.9,
+                    -12.11428
+                  ],
+                  "rotation": [
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.11599,
+                    0.99318,
+                    -12.11492
+                  ],
+                  "screen": [
+                    204.19139,
+                    281.94112,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11599,
+                    0.9,
+                    -12.11428
+                  ],
+                  "rotation": [
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 245,
+                "world": {
+                  "center": [
+                    116.11599,
+                    0.99318,
+                    -12.11492
+                  ],
+                  "screen": [
+                    204.19139,
+                    281.94112,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11599,
+                    0.9,
+                    -12.11428
+                  ],
+                  "rotation": [
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.11599,
+                    0.99318,
+                    -12.11492
+                  ],
+                  "screen": [
+                    204.19139,
+                    281.94112,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11599,
+                    0.9,
+                    -12.11428
+                  ],
+                  "rotation": [
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 247,
+                "world": {
+                  "center": [
+                    116.11587,
+                    0.99434,
+                    -12.11516
+                  ],
+                  "screen": [
+                    204.14985,
+                    281.80507,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11597,
+                    0.90117,
+                    -12.11453
+                  ],
+                  "rotation": [
+                    -0.00057,
+                    1,
+                    0,
+                    0.0005
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.11587,
+                    0.99434,
+                    -12.11516
+                  ],
+                  "screen": [
+                    204.14985,
+                    281.80507,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11597,
+                    0.90117,
+                    -12.11453
+                  ],
+                  "rotation": [
+                    -0.00057,
+                    1,
+                    0,
+                    0.0005
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 249,
+                "world": {
+                  "center": [
+                    116.11535,
+                    1.00032,
+                    -12.11626
+                  ],
+                  "screen": [
+                    203.95708,
+                    281.10687,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11594,
+                    0.90715,
+                    -12.11568
+                  ],
+                  "rotation": [
+                    -0.00314,
+                    0.99999,
+                    1e-05,
+                    0.00279
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.11535,
+                    1.00032,
+                    -12.11626
+                  ],
+                  "screen": [
+                    203.95708,
+                    281.10687,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11594,
+                    0.90715,
+                    -12.11568
+                  ],
+                  "rotation": [
+                    -0.00314,
+                    0.99999,
+                    1e-05,
+                    0.00279
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 261,
+                "world": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    224.08001,
+                    288.57898,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    224.08001,
+                    288.57898,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-prompt",
+            "motions": [
+              {
+                "name": "AKI_ATAMABUTUKERU1_0153",
+                "clipTime": 13.133333333333333,
+                "frame": 0
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 30,
+            "samples": [
+              {
+                "frame": 0,
+                "world": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    224.08001,
+                    288.57898,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    224.08001,
+                    288.57898,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 16,
+                "world": {
+                  "center": [
+                    116.26123,
+                    0.97189,
+                    -11.98519
+                  ],
+                  "screen": [
+                    228.46939,
+                    283.94922,
+                    0.99569
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.17695,
+                    0.93713,
+                    -12.00445
+                  ],
+                  "rotation": [
+                    0.54577,
+                    0.74608,
+                    -0.12509,
+                    0.36035
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26123,
+                    0.97189,
+                    -11.98519
+                  ],
+                  "screen": [
+                    228.46939,
+                    283.94922,
+                    0.99569
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.17695,
+                    0.93713,
+                    -12.00445
+                  ],
+                  "rotation": [
+                    0.54577,
+                    0.74608,
+                    -0.12509,
+                    0.36035
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 30,
+                "world": {
+                  "center": [
+                    116.26637,
+                    0.91382,
+                    -11.94205
+                  ],
+                  "screen": [
+                    233.34587,
+                    290.11372,
+                    0.99573
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.1815,
+                    0.93967,
+                    -11.97053
+                  ],
+                  "rotation": [
+                    0.16042,
+                    -0.07295,
+                    -0.78295,
+                    0.5966
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26637,
+                    0.91382,
+                    -11.94205
+                  ],
+                  "screen": [
+                    233.34587,
+                    290.11372,
+                    0.99573
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.1815,
+                    0.93967,
+                    -11.97053
+                  ],
+                  "rotation": [
+                    0.16042,
+                    -0.07295,
+                    -0.78295,
+                    0.5966
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-miss",
+            "motions": [
+              {
+                "name": "AKI_TENOBASISIPPAI1_0153",
+                "clipTime": 2,
+                "frame": 0
+              },
+              {
+                "name": "AKI_SIPPAINIGERU1_0153",
+                "clipTime": 1.3398133333524052,
+                "frame": 60
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 118,
+            "samples": [
+              {
+                "frame": 0,
+                "world": {
+                  "center": [
+                    116.26772,
+                    0.91766,
+                    -11.93859
+                  ],
+                  "screen": [
+                    233.7579,
+                    289.6241,
+                    0.99573
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.18157,
+                    0.93863,
+                    -11.96724
+                  ],
+                  "rotation": [
+                    0.1063,
+                    -0.11441,
+                    -0.77539,
+                    0.61187
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26772,
+                    0.91766,
+                    -11.93859
+                  ],
+                  "screen": [
+                    233.7579,
+                    289.6241,
+                    0.99573
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.18157,
+                    0.93863,
+                    -11.96724
+                  ],
+                  "rotation": [
+                    0.1063,
+                    -0.11441,
+                    -0.77539,
+                    0.61187
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 58,
+                "world": {
+                  "center": [
+                    116.06758,
+                    0.05518,
+                    -11.39978
+                  ],
+                  "screen": [
+                    336.01668,
+                    459.38704,
+                    0.99628
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08253,
+                    0.02212,
+                    -11.31396
+                  ],
+                  "rotation": [
+                    0.08696,
+                    0.77968,
+                    -0.56126,
+                    -0.26368
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.06758,
+                    0.05518,
+                    -11.39978
+                  ],
+                  "screen": [
+                    336.01668,
+                    459.38704,
+                    0.99628
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08253,
+                    0.02212,
+                    -11.31396
+                  ],
+                  "rotation": [
+                    0.08696,
+                    0.77968,
+                    -0.56126,
+                    -0.26368
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 60,
+                "world": {
+                  "center": [
+                    116.07023,
+                    0.05687,
+                    -11.3966
+                  ],
+                  "screen": [
+                    336.55428,
+                    459.13206,
+                    0.99628
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08221,
+                    0.02246,
+                    -11.31084
+                  ],
+                  "rotation": [
+                    0.11014,
+                    0.78113,
+                    -0.55065,
+                    -0.27292
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.07023,
+                    0.05687,
+                    -11.3966
+                  ],
+                  "screen": [
+                    336.55428,
+                    459.13206,
+                    0.99628
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08221,
+                    0.02246,
+                    -11.31084
+                  ],
+                  "rotation": [
+                    0.11014,
+                    0.78113,
+                    -0.55065,
+                    -0.27292
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 62,
+                "world": {
+                  "center": [
+                    116.07026,
+                    0.05826,
+                    -11.39299
+                  ],
+                  "screen": [
+                    336.89724,
+                    458.84182,
+                    0.99629
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08137,
+                    0.02359,
+                    -11.30721
+                  ],
+                  "rotation": [
+                    0.11847,
+                    0.78034,
+                    -0.54766,
+                    -0.27769
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.07026,
+                    0.05826,
+                    -11.39299
+                  ],
+                  "screen": [
+                    336.89724,
+                    458.84182,
+                    0.99629
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08137,
+                    0.02359,
+                    -11.30721
+                  ],
+                  "rotation": [
+                    0.11847,
+                    0.78034,
+                    -0.54766,
+                    -0.27769
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 118,
+                "world": {
+                  "center": [
+                    116.06704,
+                    0.0561,
+                    -11.39398
+                  ],
+                  "screen": [
+                    336.52159,
+                    459.07165,
+                    0.99629
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08507,
+                    0.02688,
+                    -11.30736
+                  ],
+                  "rotation": [
+                    0.07179,
+                    0.7672,
+                    -0.58142,
+                    -0.26115
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.06704,
+                    0.0561,
+                    -11.39398
+                  ],
+                  "screen": [
+                    336.52159,
+                    459.07165,
+                    0.99629
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08507,
+                    0.02688,
+                    -11.30736
+                  ],
+                  "rotation": [
+                    0.07179,
+                    0.7672,
+                    -0.58142,
+                    -0.26115
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-prompt",
+            "motions": [
+              {
+                "name": "AKI_ATAMABUTUKERU1_0153",
+                "clipTime": 13.133333333333333,
+                "frame": 0
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 30,
+            "samples": [
+              {
+                "frame": 0,
+                "world": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    280.09973,
+                    360.72372,
+                    0.99566
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    280.09973,
+                    360.72372,
+                    0.99566
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 16,
+                "world": {
+                  "center": [
+                    116.26273,
+                    0.96824,
+                    -11.98651
+                  ],
+                  "screen": [
+                    285.60379,
+                    355.51936,
+                    0.99569
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.17678,
+                    0.93749,
+                    -12.00518
+                  ],
+                  "rotation": [
+                    0.5656,
+                    0.74192,
+                    -0.12295,
+                    0.33842
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26273,
+                    0.96824,
+                    -11.98651
+                  ],
+                  "screen": [
+                    285.60379,
+                    355.51936,
+                    0.99569
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.17678,
+                    0.93749,
+                    -12.00518
+                  ],
+                  "rotation": [
+                    0.5656,
+                    0.74192,
+                    -0.12295,
+                    0.33842
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 30,
+                "world": {
+                  "center": [
+                    116.26637,
+                    0.91382,
+                    -11.94205
+                  ],
+                  "screen": [
+                    291.68205,
+                    362.64215,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1815,
+                    0.93967,
+                    -11.97053
+                  ],
+                  "rotation": [
+                    0.16042,
+                    -0.07295,
+                    -0.78295,
+                    0.5966
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26637,
+                    0.91382,
+                    -11.94205
+                  ],
+                  "screen": [
+                    291.68205,
+                    362.64215,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1815,
+                    0.93967,
+                    -11.97053
+                  ],
+                  "rotation": [
+                    0.16042,
+                    -0.07295,
+                    -0.78295,
+                    0.5966
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-reach",
+            "motions": [
+              {
+                "name": "AKI_KAITYUUDENTOUTORU1_0153",
+                "clipTime": 2.2,
+                "frame": 0
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 14,
+            "samples": [
+              {
+                "frame": 0,
+                "world": {
+                  "center": [
+                    116.26786,
+                    0.91807,
+                    -11.93825
+                  ],
+                  "screen": [
+                    292.24825,
+                    361.96432,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.18158,
+                    0.93851,
+                    -11.96688
+                  ],
+                  "rotation": [
+                    0.10042,
+                    -0.11891,
+                    -0.77434,
+                    0.61333
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26786,
+                    0.91807,
+                    -11.93825
+                  ],
+                  "screen": [
+                    292.24825,
+                    361.96432,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.18158,
+                    0.93851,
+                    -11.96688
+                  ],
+                  "rotation": [
+                    0.10042,
+                    -0.11891,
+                    -0.77434,
+                    0.61333
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 7,
+                "world": {
+                  "center": [
+                    116.1409,
+                    0.96048,
+                    -11.89455
+                  ],
+                  "screen": [
+                    284.75059,
+                    353.33891,
+                    0.99582
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.17754,
+                    0.88026,
+                    -11.9246
+                  ],
+                  "rotation": [
+                    0.25978,
+                    -0.63082,
+                    0.04487,
+                    0.72977
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.1409,
+                    0.96048,
+                    -11.89455
+                  ],
+                  "screen": [
+                    284.75059,
+                    353.33891,
+                    0.99582
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.17754,
+                    0.88026,
+                    -11.9246
+                  ],
+                  "rotation": [
+                    0.25978,
+                    -0.63082,
+                    0.04487,
+                    0.72977
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 14,
+                "world": {
+                  "center": [
+                    116.21437,
+                    0.61843,
+                    -11.87332
+                  ],
+                  "screen": [
+                    296.71229,
+                    402.38777,
+                    0.99585
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.16,
+                    0.69398,
+                    -11.869
+                  ],
+                  "rotation": [
+                    0.95045,
+                    0.30506,
+                    0.04542,
+                    -0.03898
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.21437,
+                    0.61843,
+                    -11.87332
+                  ],
+                  "screen": [
+                    296.71229,
+                    402.38777,
+                    0.99585
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.16,
+                    0.69398,
+                    -11.869
+                  ],
+                  "rotation": [
+                    0.95045,
+                    0.30506,
+                    0.04542,
+                    -0.03898
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-catch",
+            "motions": [
+              {
+                "name": "AKI_KAITYUUDENTOUTORU1_0153",
+                "clipTime": 2.6666666666666665,
+                "frame": 0
+              },
+              {
+                "name": "AKI_SEIKOUNIGE1_0153",
+                "clipTime": 2.3492333333690936,
+                "frame": 60
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 212,
+            "samples": [
+              {
+                "frame": 0,
+                "world": {
+                  "center": [
+                    116.19576,
+                    0.67305,
+                    -11.86507
+                  ],
+                  "screen": [
+                    295.48578,
+                    394.18812,
+                    0.99586
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1616,
+                    0.75966,
+                    -11.8688
+                  ],
+                  "rotation": [
+                    0.73469,
+                    0.12606,
+                    -0.65191,
+                    0.13913
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.19576,
+                    0.67305,
+                    -11.86507
+                  ],
+                  "screen": [
+                    295.48578,
+                    394.18812,
+                    0.99586
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1616,
+                    0.75966,
+                    -11.8688
+                  ],
+                  "rotation": [
+                    0.73469,
+                    0.12606,
+                    -0.65191,
+                    0.13913
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": {
+                  "tag": "AKIR",
+                  "id": 18,
+                  "sameRoot": true,
+                  "position": [
+                    116.16159989364033,
+                    0.7596589168974275,
+                    -11.86880237132907
+                  ],
+                  "distance": 1.7147216054320395e-06
+                }
+              },
+              {
+                "frame": 106,
+                "world": {
+                  "center": [
+                    117.47352,
+                    0.11331,
+                    -11.94494
+                  ],
+                  "screen": [
+                    432.0978,
+                    512.93585,
+                    0.99519
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    117.42241,
+                    0.18917,
+                    -11.96269
+                  ],
+                  "rotation": [
+                    0.70428,
+                    0.14566,
+                    -0.64114,
+                    0.2678
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    117.47352,
+                    0.11331,
+                    -11.94494
+                  ],
+                  "screen": [
+                    432.0978,
+                    512.93585,
+                    0.99519
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    117.42241,
+                    0.18917,
+                    -11.96269
+                  ],
+                  "rotation": [
+                    0.70428,
+                    0.14566,
+                    -0.64114,
+                    0.2678
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": {
+                  "tag": "AKIR",
+                  "id": 18,
+                  "sameRoot": true,
+                  "position": [
+                    117.42240780574402,
+                    0.18917048695026278,
+                    -11.962687090430451
+                  ],
+                  "distance": 1.3148391567786942e-06
+                }
+              },
+              {
+                "frame": 212,
+                "world": {
+                  "center": [
+                    115.50292,
+                    0.41618,
+                    -11.82269
+                  ],
+                  "screen": [
+                    240.71657,
+                    415.40501,
+                    0.99622
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    115.48006,
+                    0.37864,
+                    -11.90485
+                  ],
+                  "rotation": [
+                    0.54393,
+                    0.14636,
+                    -0.05225,
+                    0.82462
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    115.50292,
+                    0.41618,
+                    -11.82269
+                  ],
+                  "screen": [
+                    240.71657,
+                    415.40501,
+                    0.99622
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    115.48006,
+                    0.37864,
+                    -11.90485
+                  ],
+                  "rotation": [
+                    0.54393,
+                    0.14636,
+                    -0.05225,
+                    0.82462
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22473,
+                  "vertices": 106
+                },
+                "wrist": {
+                  "tag": "AKIR",
+                  "id": 18,
+                  "sameRoot": true,
+                  "position": [
+                    115.48005958295161,
+                    0.378644768595771,
+                    -11.904855046291729
+                  ],
+                  "distance": 2.833327951457528e-06
+                }
+              }
+            ]
+          }
+        ],
+        "transition": {
+          "worldFrame": 14,
+          "attachedFrame": 0,
+          "world": {
+            "center": [
+              116.21437,
+              0.61843,
+              -11.87332
+            ],
+            "screen": [
+              296.71229,
+              402.38777,
+              0.99585
+            ],
+            "viewport": [
+              1000,
+              720
+            ],
+            "position": [
+              116.16,
+              0.69398,
+              -11.869
+            ],
+            "rotation": [
+              0.95045,
+              0.30506,
+              0.04542,
+              -0.03898
+            ],
+            "drawable": 3,
+            "inFrustum": true,
+            "root": 22473,
+            "vertices": 106
+          },
+          "attached": {
+            "center": [
+              116.19576,
+              0.67305,
+              -11.86507
+            ],
+            "screen": [
+              295.48578,
+              394.18812,
+              0.99586
+            ],
+            "viewport": [
+              1000,
+              720
+            ],
+            "position": [
+              116.1616,
+              0.75966,
+              -11.8688
+            ],
+            "rotation": [
+              0.73469,
+              0.12606,
+              -0.65191,
+              0.13913
+            ],
+            "drawable": 3,
+            "inFrustum": true,
+            "root": 22473,
+            "vertices": 106
+          },
+          "binding": {
+            "tag": "AKIR",
+            "id": 18,
+            "sameRoot": true,
+            "position": [
+              116.16159989364033,
+              0.7596589168974275,
+              -11.86880237132907
+            ],
+            "distance": 1.7147216054320395e-06
+          },
+          "rootDistance": 0.06569978995400234,
+          "centerDistance": 0.058290127809088155,
+          "screenDistancePx": 8.290873711654244
+        }
+      },
+      "responseDelay": {
+        "injectedMs": 320,
+        "method": "Actual server yields held at the client receive boundary. Frames are collected after the Babylon scene render.",
+        "observed": {
+          "frames": 1505,
+          "gaps": [],
+          "phases": [
+            {
+              "stage": "head-bump",
+              "frame": 1
+            },
+            {
+              "stage": "prompt",
+              "frame": 539
+            },
+            {
+              "stage": "miss",
+              "frame": 645
+            },
+            {
+              "stage": "prompt",
+              "frame": 929
+            },
+            {
+              "stage": "reach",
+              "frame": 1031
+            },
+            {
+              "stage": "catch",
+              "frame": 1079
+            }
+          ],
+          "delays": [
+            {
+              "from": "head-bump",
+              "to": "prompt",
+              "frames": 20,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "last": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "durationMs": 327.5
+            },
+            {
+              "from": "prompt",
+              "to": "challenge-ready",
+              "frames": 21,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "last": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "durationMs": 346.7
+            },
+            {
+              "from": "prompt",
+              "to": "miss",
+              "frames": 21,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.1815,
+                0.93967,
+                -11.97053
+              ],
+              "last": [
+                116.1815,
+                0.93967,
+                -11.97053
+              ],
+              "durationMs": 347.7
+            },
+            {
+              "from": "miss",
+              "to": "prompt",
+              "frames": 20,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.08507,
+                0.02688,
+                -11.30736
+              ],
+              "last": [
+                116.08507,
+                0.02688,
+                -11.30736
+              ],
+              "durationMs": 333
+            },
+            {
+              "from": "prompt",
+              "to": "challenge-ready",
+              "frames": 20,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "last": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "durationMs": 320
+            },
+            {
+              "from": "prompt",
+              "to": "reach",
+              "frames": 19,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.1815,
+                0.93967,
+                -11.97053
+              ],
+              "last": [
+                116.1815,
+                0.93967,
+                -11.97053
+              ],
+              "durationMs": 320.6
+            },
+            {
+              "from": "reach",
+              "to": "catch",
+              "frames": 21,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.16,
+                0.69398,
+                -11.869
+              ],
+              "last": [
+                116.16,
+                0.69398,
+                -11.869
+              ],
+              "durationMs": 349.5
+            }
+          ],
+          "inputs": [
+            {
+              "attempt": 1,
+              "button": "ArrowLeft",
+              "windowMs": 1000,
+              "elapsedMs": 205
+            },
+            {
+              "attempt": 2,
+              "button": "ArrowLeft",
+              "windowMs": 1000,
+              "elapsedMs": 67
+            },
+            {
+              "attempt": 2,
+              "button": "ArrowRight",
+              "windowMs": 1000,
+              "elapsedMs": 166.2
+            }
+          ],
+          "attempts": [
+            {
+              "openedAtMs": 29839.299999952316,
+              "windowMs": 1000,
+              "outcome": "failure",
+              "resultAtMs": 1007.3
+            },
+            {
+              "openedAtMs": 36316.299999952316,
+              "windowMs": 1000,
+              "outcome": "success",
+              "resultAtMs": 166.3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "purpose": "Wrong alone expires; retry with zero input, retry with Left followed by late Right, catch, cancel while the fifth original effect plays.",
+      "privateReport": "/mnt/data6tb/Projects/New Yokosuka/ny-warehouse-timer-lj878jh0/browser/rerun-flashlight-20261125-165239-html/index.html",
+      "durationSeconds": 44.299,
+      "stateAfterCancel": {
+        "world": "mfsy",
+        "entry": false,
+        "caught": false,
+        "notebook": false,
+        "cleaned": {
+          "staged": false,
+          "locked": false,
+          "status": "idle",
+          "id": "mfsy"
+        }
+      },
+      "observed": {
+        "voice": {
+          "id": "E1008A010",
+          "text": "No one's here...Go!",
+          "seconds": 0.012446
+        },
+        "effects": [
+          {
+            "id": "A9040100",
+            "scene": "s1.mfsy.old-district-head-bump",
+            "frame": 227,
+            "playedFrames": 43,
+            "seconds": 0.42029,
+            "muted": false,
+            "volume": 0.175,
+            "error": null,
+            "ended": true,
+            "src": "/audio/world/e1kaiqte/A9040100.wav",
+            "activeAfterRelease": false,
+            "pausedAfterRelease": true
+          },
+          {
+            "id": "A9040200",
+            "scene": "s1.mfsy.old-district-head-bump",
+            "frame": 247,
+            "playedFrames": 79,
+            "seconds": 1.07673,
+            "muted": false,
+            "volume": 0.175,
+            "error": null,
+            "ended": true,
+            "src": "/audio/world/e1kaiqte/A9040200.wav",
+            "activeAfterRelease": false,
+            "pausedAfterRelease": true
+          },
+          {
+            "id": "A9040300",
+            "scene": "s1.mfsy.old-district-miss",
+            "frame": 15,
+            "playedFrames": 97,
+            "seconds": 1.31739,
+            "muted": false,
+            "volume": 0.175,
+            "error": null,
+            "ended": true,
+            "src": "/audio/world/e1kaiqte/A9040300.wav",
+            "activeAfterRelease": false,
+            "pausedAfterRelease": true
+          },
+          {
+            "id": "A9040300",
+            "scene": "s1.mfsy.old-district-miss",
+            "frame": 15,
+            "playedFrames": 97,
+            "seconds": 1.32215,
+            "muted": false,
+            "volume": 0.175,
+            "error": null,
+            "ended": true,
+            "src": "/audio/world/e1kaiqte/A9040300.wav",
+            "activeAfterRelease": false,
+            "pausedAfterRelease": true
+          },
+          {
+            "id": "A9040400",
+            "scene": "s1.mfsy.old-district-catch",
+            "frame": 0,
+            "playedFrames": 44,
+            "seconds": 0.43974,
+            "muted": false,
+            "volume": 0.175,
+            "error": null,
+            "ended": false,
+            "src": "/audio/world/e1kaiqte/A9040400.wav",
+            "activeAfterRelease": false,
+            "pausedAfterRelease": true
+          },
+          {
+            "id": "A9040500",
+            "scene": "s1.mfsy.old-district-catch",
+            "frame": 12,
+            "playedFrames": 22,
+            "seconds": 0.07984,
+            "muted": false,
+            "volume": 0.175,
+            "error": null,
+            "ended": false,
+            "src": "/audio/world/e1kaiqte/A9040500.wav",
+            "activeAfterRelease": false,
+            "pausedAfterRelease": true
+          }
+        ],
+        "stages": [
+          {
+            "id": "s1.mfsy.old-district-night-approach",
+            "motions": [
+              {
+                "name": "AKI_KANGAETEIRU_STAND_LP_0132",
+                "clipTime": 0,
+                "frame": 0
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 7,
+            "samples": [
+              {
+                "frame": 0,
+                "world": null,
+                "held": null,
+                "wrist": null
+              },
+              {
+                "frame": 5,
+                "world": null,
+                "held": null,
+                "wrist": null
+              },
+              {
+                "frame": 7,
+                "world": null,
+                "held": null,
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-head-bump",
+            "motions": [
+              {
+                "name": "AKI_ATAMABUTUKERU1_0153",
+                "clipTime": 4.433333333333334,
+                "frame": 0
+              }
+            ],
+            "firstFrame": 1,
+            "lastFrame": 261,
+            "samples": [
+              {
+                "frame": 1,
+                "world": {
+                  "center": [
+                    116.11599,
+                    0.99318,
+                    -12.11492
+                  ],
+                  "screen": [
+                    204.19139,
+                    281.94112,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11599,
+                    0.9,
+                    -12.11428
+                  ],
+                  "rotation": [
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.11599,
+                    0.99318,
+                    -12.11492
+                  ],
+                  "screen": [
+                    204.19139,
+                    281.94112,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11599,
+                    0.9,
+                    -12.11428
+                  ],
+                  "rotation": [
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 243,
+                "world": {
+                  "center": [
+                    116.11599,
+                    0.99318,
+                    -12.11492
+                  ],
+                  "screen": [
+                    204.19139,
+                    281.94112,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11599,
+                    0.9,
+                    -12.11428
+                  ],
+                  "rotation": [
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.11599,
+                    0.99318,
+                    -12.11492
+                  ],
+                  "screen": [
+                    204.19139,
+                    281.94112,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11599,
+                    0.9,
+                    -12.11428
+                  ],
+                  "rotation": [
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 245,
+                "world": {
+                  "center": [
+                    116.11599,
+                    0.99318,
+                    -12.11492
+                  ],
+                  "screen": [
+                    204.19139,
+                    281.94112,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11599,
+                    0.9,
+                    -12.11428
+                  ],
+                  "rotation": [
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.11599,
+                    0.99318,
+                    -12.11492
+                  ],
+                  "screen": [
+                    204.19139,
+                    281.94112,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11599,
+                    0.9,
+                    -12.11428
+                  ],
+                  "rotation": [
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 247,
+                "world": {
+                  "center": [
+                    116.11594,
+                    0.9936,
+                    -12.11501
+                  ],
+                  "screen": [
+                    204.17626,
+                    281.89201,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11598,
+                    0.90042,
+                    -12.11437
+                  ],
+                  "rotation": [
+                    -0.00021,
+                    1,
+                    0,
+                    0.00018
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.11594,
+                    0.9936,
+                    -12.11501
+                  ],
+                  "screen": [
+                    204.17626,
+                    281.89201,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11598,
+                    0.90042,
+                    -12.11437
+                  ],
+                  "rotation": [
+                    -0.00021,
+                    1,
+                    0,
+                    0.00018
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 249,
+                "world": {
+                  "center": [
+                    116.11534,
+                    1.00059,
+                    -12.11629
+                  ],
+                  "screen": [
+                    203.9509,
+                    281.07612,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11594,
+                    0.90741,
+                    -12.11572
+                  ],
+                  "rotation": [
+                    -0.00321,
+                    0.99999,
+                    1e-05,
+                    0.00285
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.11534,
+                    1.00059,
+                    -12.11629
+                  ],
+                  "screen": [
+                    203.9509,
+                    281.07612,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.11594,
+                    0.90741,
+                    -12.11572
+                  ],
+                  "rotation": [
+                    -0.00321,
+                    0.99999,
+                    1e-05,
+                    0.00285
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 261,
+                "world": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    224.08001,
+                    288.57898,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    224.08001,
+                    288.57898,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-prompt",
+            "motions": [
+              {
+                "name": "AKI_ATAMABUTUKERU1_0153",
+                "clipTime": 13.133333333333333,
+                "frame": 0
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 30,
+            "samples": [
+              {
+                "frame": 0,
+                "world": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    224.08001,
+                    288.57898,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    224.08001,
+                    288.57898,
+                    0.99566
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 16,
+                "world": {
+                  "center": [
+                    116.2626,
+                    0.96857,
+                    -11.98638
+                  ],
+                  "screen": [
+                    228.48319,
+                    284.37234,
+                    0.99569
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.1768,
+                    0.93746,
+                    -12.00511
+                  ],
+                  "rotation": [
+                    0.56379,
+                    0.74233,
+                    -0.12317,
+                    0.34046
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.2626,
+                    0.96857,
+                    -11.98638
+                  ],
+                  "screen": [
+                    228.48319,
+                    284.37234,
+                    0.99569
+                  ],
+                  "viewport": [
+                    800,
+                    576
+                  ],
+                  "position": [
+                    116.1768,
+                    0.93746,
+                    -12.00511
+                  ],
+                  "rotation": [
+                    0.56379,
+                    0.74233,
+                    -0.12317,
+                    0.34046
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 30,
+                "world": {
+                  "center": [
+                    116.26637,
+                    0.91382,
+                    -11.94205
+                  ],
+                  "screen": [
+                    291.68205,
+                    362.64215,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1815,
+                    0.93967,
+                    -11.97053
+                  ],
+                  "rotation": [
+                    0.16042,
+                    -0.07295,
+                    -0.78295,
+                    0.5966
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26637,
+                    0.91382,
+                    -11.94205
+                  ],
+                  "screen": [
+                    291.68205,
+                    362.64215,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1815,
+                    0.93967,
+                    -11.97053
+                  ],
+                  "rotation": [
+                    0.16042,
+                    -0.07295,
+                    -0.78295,
+                    0.5966
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-miss",
+            "motions": [
+              {
+                "name": "AKI_TENOBASISIPPAI1_0153",
+                "clipTime": 2,
+                "frame": 0
+              },
+              {
+                "name": "AKI_SIPPAINIGERU1_0153",
+                "clipTime": 1.3338133333047217,
+                "frame": 60
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 118,
+            "samples": [
+              {
+                "frame": 0,
+                "world": {
+                  "center": [
+                    116.26771,
+                    0.91762,
+                    -11.93862
+                  ],
+                  "screen": [
+                    292.19262,
+                    362.03587,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.18157,
+                    0.93864,
+                    -11.96727
+                  ],
+                  "rotation": [
+                    0.10681,
+                    -0.11401,
+                    -0.77548,
+                    0.61174
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26771,
+                    0.91762,
+                    -11.93862
+                  ],
+                  "screen": [
+                    292.19262,
+                    362.03587,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.18157,
+                    0.93864,
+                    -11.96727
+                  ],
+                  "rotation": [
+                    0.10681,
+                    -0.11401,
+                    -0.77548,
+                    0.61174
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 58,
+                "world": {
+                  "center": [
+                    116.06665,
+                    0.05459,
+                    -11.40079
+                  ],
+                  "screen": [
+                    335.83889,
+                    459.47303,
+                    0.99628
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.0826,
+                    0.02205,
+                    -11.31495
+                  ],
+                  "rotation": [
+                    0.07902,
+                    0.77897,
+                    -0.56491,
+                    -0.26047
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.06665,
+                    0.05459,
+                    -11.40079
+                  ],
+                  "screen": [
+                    335.83889,
+                    459.47303,
+                    0.99628
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.0826,
+                    0.02205,
+                    -11.31495
+                  ],
+                  "rotation": [
+                    0.07902,
+                    0.77897,
+                    -0.56491,
+                    -0.26047
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 60,
+                "world": {
+                  "center": [
+                    116.07016,
+                    0.05668,
+                    -11.397
+                  ],
+                  "screen": [
+                    336.50955,
+                    459.16637,
+                    0.99628
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08229,
+                    0.02233,
+                    -11.31124
+                  ],
+                  "rotation": [
+                    0.10872,
+                    0.78118,
+                    -0.55121,
+                    -0.27221
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.07016,
+                    0.05668,
+                    -11.397
+                  ],
+                  "screen": [
+                    336.50955,
+                    459.16637,
+                    0.99628
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08229,
+                    0.02233,
+                    -11.31124
+                  ],
+                  "rotation": [
+                    0.10872,
+                    0.78118,
+                    -0.55121,
+                    -0.27221
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 62,
+                "world": {
+                  "center": [
+                    116.0707,
+                    0.05828,
+                    -11.39337
+                  ],
+                  "screen": [
+                    336.89999,
+                    458.86143,
+                    0.99629
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08148,
+                    0.02348,
+                    -11.30761
+                  ],
+                  "rotation": [
+                    0.12068,
+                    0.78059,
+                    -0.54653,
+                    -0.27824
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.0707,
+                    0.05828,
+                    -11.39337
+                  ],
+                  "screen": [
+                    336.89999,
+                    458.86143,
+                    0.99629
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08148,
+                    0.02348,
+                    -11.30761
+                  ],
+                  "rotation": [
+                    0.12068,
+                    0.78059,
+                    -0.54653,
+                    -0.27824
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 118,
+                "world": {
+                  "center": [
+                    116.06704,
+                    0.0561,
+                    -11.39398
+                  ],
+                  "screen": [
+                    336.52159,
+                    459.07165,
+                    0.99629
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08507,
+                    0.02688,
+                    -11.30736
+                  ],
+                  "rotation": [
+                    0.07179,
+                    0.7672,
+                    -0.58142,
+                    -0.26115
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.06704,
+                    0.0561,
+                    -11.39398
+                  ],
+                  "screen": [
+                    336.52159,
+                    459.07165,
+                    0.99629
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08507,
+                    0.02688,
+                    -11.30736
+                  ],
+                  "rotation": [
+                    0.07179,
+                    0.7672,
+                    -0.58142,
+                    -0.26115
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-prompt",
+            "motions": [
+              {
+                "name": "AKI_ATAMABUTUKERU1_0153",
+                "clipTime": 13.133333333333333,
+                "frame": 0
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 30,
+            "samples": [
+              {
+                "frame": 0,
+                "world": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    280.09973,
+                    360.72372,
+                    0.99566
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    280.09973,
+                    360.72372,
+                    0.99566
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 16,
+                "world": {
+                  "center": [
+                    116.26244,
+                    0.96898,
+                    -11.98623
+                  ],
+                  "screen": [
+                    285.60287,
+                    355.40064,
+                    0.99569
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.17681,
+                    0.93742,
+                    -12.00503
+                  ],
+                  "rotation": [
+                    0.56161,
+                    0.74282,
+                    -0.12343,
+                    0.34291
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26244,
+                    0.96898,
+                    -11.98623
+                  ],
+                  "screen": [
+                    285.60287,
+                    355.40064,
+                    0.99569
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.17681,
+                    0.93742,
+                    -12.00503
+                  ],
+                  "rotation": [
+                    0.56161,
+                    0.74282,
+                    -0.12343,
+                    0.34291
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 30,
+                "world": {
+                  "center": [
+                    116.26637,
+                    0.91382,
+                    -11.94205
+                  ],
+                  "screen": [
+                    291.68205,
+                    362.64215,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1815,
+                    0.93967,
+                    -11.97053
+                  ],
+                  "rotation": [
+                    0.16042,
+                    -0.07295,
+                    -0.78295,
+                    0.5966
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26637,
+                    0.91382,
+                    -11.94205
+                  ],
+                  "screen": [
+                    291.68205,
+                    362.64215,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1815,
+                    0.93967,
+                    -11.97053
+                  ],
+                  "rotation": [
+                    0.16042,
+                    -0.07295,
+                    -0.78295,
+                    0.5966
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-miss",
+            "motions": [
+              {
+                "name": "AKI_TENOBASISIPPAI1_0153",
+                "clipTime": 2,
+                "frame": 0
+              },
+              {
+                "name": "AKI_SIPPAINIGERU1_0153",
+                "clipTime": 1.3451733333428675,
+                "frame": 60
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 118,
+            "samples": [
+              {
+                "frame": 0,
+                "world": {
+                  "center": [
+                    116.26809,
+                    0.91876,
+                    -11.9377
+                  ],
+                  "screen": [
+                    292.33115,
+                    361.856,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.18159,
+                    0.93833,
+                    -11.96629
+                  ],
+                  "rotation": [
+                    0.0907,
+                    -0.12636,
+                    -0.7725,
+                    0.61567
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26809,
+                    0.91876,
+                    -11.9377
+                  ],
+                  "screen": [
+                    292.33115,
+                    361.856,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.18159,
+                    0.93833,
+                    -11.96629
+                  ],
+                  "rotation": [
+                    0.0907,
+                    -0.12636,
+                    -0.7725,
+                    0.61567
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 58,
+                "world": {
+                  "center": [
+                    116.06739,
+                    0.05506,
+                    -11.39999
+                  ],
+                  "screen": [
+                    335.98061,
+                    459.40415,
+                    0.99628
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08254,
+                    0.0221,
+                    -11.31416
+                  ],
+                  "rotation": [
+                    0.08535,
+                    0.77954,
+                    -0.562,
+                    -0.26303
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.06739,
+                    0.05506,
+                    -11.39999
+                  ],
+                  "screen": [
+                    335.98061,
+                    459.40415,
+                    0.99628
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08254,
+                    0.0221,
+                    -11.31416
+                  ],
+                  "rotation": [
+                    0.08535,
+                    0.77954,
+                    -0.562,
+                    -0.26303
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 60,
+                "world": {
+                  "center": [
+                    116.07029,
+                    0.05703,
+                    -11.39624
+                  ],
+                  "screen": [
+                    336.59342,
+                    459.10131,
+                    0.99628
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08212,
+                    0.02257,
+                    -11.31048
+                  ],
+                  "rotation": [
+                    0.11141,
+                    0.78109,
+                    -0.55015,
+                    -0.27355
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.07029,
+                    0.05703,
+                    -11.39624
+                  ],
+                  "screen": [
+                    336.59342,
+                    459.10131,
+                    0.99628
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08212,
+                    0.02257,
+                    -11.31048
+                  ],
+                  "rotation": [
+                    0.11141,
+                    0.78109,
+                    -0.55015,
+                    -0.27355
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 62,
+                "world": {
+                  "center": [
+                    116.07002,
+                    0.05825,
+                    -11.39278
+                  ],
+                  "screen": [
+                    336.8957,
+                    458.83156,
+                    0.99629
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08131,
+                    0.02365,
+                    -11.307
+                  ],
+                  "rotation": [
+                    0.11731,
+                    0.7802,
+                    -0.54825,
+                    -0.2774
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.07002,
+                    0.05825,
+                    -11.39278
+                  ],
+                  "screen": [
+                    336.8957,
+                    458.83156,
+                    0.99629
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08131,
+                    0.02365,
+                    -11.307
+                  ],
+                  "rotation": [
+                    0.11731,
+                    0.7802,
+                    -0.54825,
+                    -0.2774
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 118,
+                "world": {
+                  "center": [
+                    116.06704,
+                    0.0561,
+                    -11.39398
+                  ],
+                  "screen": [
+                    336.52159,
+                    459.07165,
+                    0.99629
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08507,
+                    0.02688,
+                    -11.30736
+                  ],
+                  "rotation": [
+                    0.07179,
+                    0.7672,
+                    -0.58142,
+                    -0.26115
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.06704,
+                    0.0561,
+                    -11.39398
+                  ],
+                  "screen": [
+                    336.52159,
+                    459.07165,
+                    0.99629
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.08507,
+                    0.02688,
+                    -11.30736
+                  ],
+                  "rotation": [
+                    0.07179,
+                    0.7672,
+                    -0.58142,
+                    -0.26115
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-prompt",
+            "motions": [
+              {
+                "name": "AKI_ATAMABUTUKERU1_0153",
+                "clipTime": 13.133333333333333,
+                "frame": 0
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 30,
+            "samples": [
+              {
+                "frame": 0,
+                "world": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    280.09973,
+                    360.72372,
+                    0.99566
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26596,
+                    0.94006,
+                    -12.03617
+                  ],
+                  "screen": [
+                    280.09973,
+                    360.72372,
+                    0.99566
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1737,
+                    0.94216,
+                    -12.04905
+                  ],
+                  "rotation": [
+                    0.64762,
+                    0.6681,
+                    0.30305,
+                    -0.2059
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 16,
+                "world": {
+                  "center": [
+                    116.26275,
+                    0.9682,
+                    -11.98652
+                  ],
+                  "screen": [
+                    285.60394,
+                    355.52478,
+                    0.99569
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.17678,
+                    0.93749,
+                    -12.00519
+                  ],
+                  "rotation": [
+                    0.56578,
+                    0.74188,
+                    -0.12293,
+                    0.33822
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26275,
+                    0.9682,
+                    -11.98652
+                  ],
+                  "screen": [
+                    285.60394,
+                    355.52478,
+                    0.99569
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.17678,
+                    0.93749,
+                    -12.00519
+                  ],
+                  "rotation": [
+                    0.56578,
+                    0.74188,
+                    -0.12293,
+                    0.33822
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 30,
+                "world": {
+                  "center": [
+                    116.26637,
+                    0.91382,
+                    -11.94205
+                  ],
+                  "screen": [
+                    291.68205,
+                    362.64215,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1815,
+                    0.93967,
+                    -11.97053
+                  ],
+                  "rotation": [
+                    0.16042,
+                    -0.07295,
+                    -0.78295,
+                    0.5966
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26637,
+                    0.91382,
+                    -11.94205
+                  ],
+                  "screen": [
+                    291.68205,
+                    362.64215,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1815,
+                    0.93967,
+                    -11.97053
+                  ],
+                  "rotation": [
+                    0.16042,
+                    -0.07295,
+                    -0.78295,
+                    0.5966
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-reach",
+            "motions": [
+              {
+                "name": "AKI_KAITYUUDENTOUTORU1_0153",
+                "clipTime": 2.2,
+                "frame": 0
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 14,
+            "samples": [
+              {
+                "frame": 0,
+                "world": {
+                  "center": [
+                    116.26766,
+                    0.91746,
+                    -11.93875
+                  ],
+                  "screen": [
+                    292.17265,
+                    362.0617,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.18157,
+                    0.93868,
+                    -11.96741
+                  ],
+                  "rotation": [
+                    0.10911,
+                    -0.11225,
+                    -0.77588,
+                    0.61115
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.26766,
+                    0.91746,
+                    -11.93875
+                  ],
+                  "screen": [
+                    292.17265,
+                    362.0617,
+                    0.99573
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.18157,
+                    0.93868,
+                    -11.96741
+                  ],
+                  "rotation": [
+                    0.10911,
+                    -0.11225,
+                    -0.77588,
+                    0.61115
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 7,
+                "world": {
+                  "center": [
+                    116.10092,
+                    0.91836,
+                    -11.89097
+                  ],
+                  "screen": [
+                    281.67494,
+                    358.75944,
+                    0.99585
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1758,
+                    0.87187,
+                    -11.9212
+                  ],
+                  "rotation": [
+                    0.4455,
+                    -0.56667,
+                    0.22823,
+                    0.65446
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.10092,
+                    0.91836,
+                    -11.89097
+                  ],
+                  "screen": [
+                    281.67494,
+                    358.75944,
+                    0.99585
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.1758,
+                    0.87187,
+                    -11.9212
+                  ],
+                  "rotation": [
+                    0.4455,
+                    -0.56667,
+                    0.22823,
+                    0.65446
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              },
+              {
+                "frame": 14,
+                "world": {
+                  "center": [
+                    116.21437,
+                    0.61843,
+                    -11.87332
+                  ],
+                  "screen": [
+                    296.71229,
+                    402.38777,
+                    0.99585
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.16,
+                    0.69398,
+                    -11.869
+                  ],
+                  "rotation": [
+                    0.95045,
+                    0.30506,
+                    0.04542,
+                    -0.03898
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.21437,
+                    0.61843,
+                    -11.87332
+                  ],
+                  "screen": [
+                    296.71229,
+                    402.38777,
+                    0.99585
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.16,
+                    0.69398,
+                    -11.869
+                  ],
+                  "rotation": [
+                    0.95045,
+                    0.30506,
+                    0.04542,
+                    -0.03898
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": null
+              }
+            ]
+          },
+          {
+            "id": "s1.mfsy.old-district-catch",
+            "motions": [
+              {
+                "name": "AKI_KAITYUUDENTOUTORU1_0153",
+                "clipTime": 2.6666666666666665,
+                "frame": 0
+              }
+            ],
+            "firstFrame": 0,
+            "lastFrame": 22,
+            "samples": [
+              {
+                "frame": 0,
+                "world": {
+                  "center": [
+                    116.21258,
+                    0.67405,
+                    -11.86541
+                  ],
+                  "screen": [
+                    297.05924,
+                    394.34208,
+                    0.99585
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.17848,
+                    0.76069,
+                    -11.86899
+                  ],
+                  "rotation": [
+                    0.73487,
+                    0.12638,
+                    -0.65184,
+                    0.13823
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    116.21258,
+                    0.67405,
+                    -11.86541
+                  ],
+                  "screen": [
+                    297.05924,
+                    394.34208,
+                    0.99585
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    116.17848,
+                    0.76069,
+                    -11.86899
+                  ],
+                  "rotation": [
+                    0.73487,
+                    0.12638,
+                    -0.65184,
+                    0.13823
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": {
+                  "tag": "AKIR",
+                  "id": 18,
+                  "sameRoot": true,
+                  "position": [
+                    116.17848505228403,
+                    0.7606877665321787,
+                    -11.868988695894368
+                  ],
+                  "distance": 3.01109526019892e-06
+                }
+              },
+              {
+                "frame": 12,
+                "world": {
+                  "center": [
+                    115.62307,
+                    0.22458,
+                    -11.98145
+                  ],
+                  "screen": [
+                    233.98266,
+                    447.15396,
+                    0.99609
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    115.60042,
+                    0.31492,
+                    -11.98419
+                  ],
+                  "rotation": [
+                    0.87207,
+                    0.10056,
+                    -0.47358,
+                    0.07149
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    115.62307,
+                    0.22458,
+                    -11.98145
+                  ],
+                  "screen": [
+                    233.98266,
+                    447.15396,
+                    0.99609
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    115.60042,
+                    0.31492,
+                    -11.98419
+                  ],
+                  "rotation": [
+                    0.87207,
+                    0.10056,
+                    -0.47358,
+                    0.07149
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": {
+                  "tag": "AKIR",
+                  "id": 18,
+                  "sameRoot": true,
+                  "position": [
+                    115.60041456091828,
+                    0.3149178943434969,
+                    -11.98419480755374
+                  ],
+                  "distance": 3.5302856571118035e-06
+                }
+              },
+              {
+                "frame": 22,
+                "world": {
+                  "center": [
+                    115.3808,
+                    0.15141,
+                    -12.02344
+                  ],
+                  "screen": [
+                    209.82532,
+                    452.70911,
+                    0.99618
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    115.33237,
+                    0.22427,
+                    -11.99137
+                  ],
+                  "rotation": [
+                    0.81633,
+                    0.32966,
+                    -0.47387,
+                    -0.0194
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "held": {
+                  "center": [
+                    115.3808,
+                    0.15141,
+                    -12.02344
+                  ],
+                  "screen": [
+                    209.82532,
+                    452.70911,
+                    0.99618
+                  ],
+                  "viewport": [
+                    1000,
+                    720
+                  ],
+                  "position": [
+                    115.33237,
+                    0.22427,
+                    -11.99137
+                  ],
+                  "rotation": [
+                    0.81633,
+                    0.32966,
+                    -0.47387,
+                    -0.0194
+                  ],
+                  "drawable": 3,
+                  "inFrustum": true,
+                  "root": 22444,
+                  "vertices": 106
+                },
+                "wrist": {
+                  "tag": "AKIR",
+                  "id": 18,
+                  "sameRoot": true,
+                  "position": [
+                    115.33236967619197,
+                    0.22426839758320335,
+                    -11.991373866966887
+                  ],
+                  "distance": 2.736897797876377e-06
+                }
+              }
+            ]
+          }
+        ],
+        "transition": {
+          "worldFrame": 14,
+          "attachedFrame": 0,
+          "world": {
+            "center": [
+              116.21437,
+              0.61843,
+              -11.87332
+            ],
+            "screen": [
+              296.71229,
+              402.38777,
+              0.99585
+            ],
+            "viewport": [
+              1000,
+              720
+            ],
+            "position": [
+              116.16,
+              0.69398,
+              -11.869
+            ],
+            "rotation": [
+              0.95045,
+              0.30506,
+              0.04542,
+              -0.03898
+            ],
+            "drawable": 3,
+            "inFrustum": true,
+            "root": 22444,
+            "vertices": 106
+          },
+          "attached": {
+            "center": [
+              116.21258,
+              0.67405,
+              -11.86541
+            ],
+            "screen": [
+              297.05924,
+              394.34208,
+              0.99585
+            ],
+            "viewport": [
+              1000,
+              720
+            ],
+            "position": [
+              116.17848,
+              0.76069,
+              -11.86899
+            ],
+            "rotation": [
+              0.73487,
+              0.12638,
+              -0.65184,
+              0.13823
+            ],
+            "drawable": 3,
+            "inFrustum": true,
+            "root": 22444,
+            "vertices": 106
+          },
+          "binding": {
+            "tag": "AKIR",
+            "id": 18,
+            "sameRoot": true,
+            "position": [
+              116.17848505228403,
+              0.7606877665321787,
+              -11.868988695894368
+            ],
+            "distance": 3.01109526019892e-06
+          },
+          "rootDistance": 0.06922235621531436,
+          "centerDistance": 0.056208154212711726,
+          "screenDistancePx": 8.053167195495178
+        }
+      },
+      "responseDelay": {
+        "injectedMs": 320,
+        "method": "Actual server yields held at the client receive boundary. Frames are collected after the Babylon scene render.",
+        "observed": {
+          "frames": 1517,
+          "gaps": [],
+          "phases": [
+            {
+              "stage": "head-bump",
+              "frame": 1
+            },
+            {
+              "stage": "prompt",
+              "frame": 539
+            },
+            {
+              "stage": "miss",
+              "frame": 642
+            },
+            {
+              "stage": "prompt",
+              "frame": 931
+            },
+            {
+              "stage": "miss",
+              "frame": 1035
+            },
+            {
+              "stage": "prompt",
+              "frame": 1319
+            },
+            {
+              "stage": "reach",
+              "frame": 1422
+            },
+            {
+              "stage": "catch",
+              "frame": 1471
+            }
+          ],
+          "delays": [
+            {
+              "from": "head-bump",
+              "to": "prompt",
+              "frames": 20,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "last": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "durationMs": 330
+            },
+            {
+              "from": "prompt",
+              "to": "challenge-ready",
+              "frames": 18,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "last": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "durationMs": 345
+            },
+            {
+              "from": "prompt",
+              "to": "miss",
+              "frames": 20,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.1815,
+                0.93967,
+                -11.97053
+              ],
+              "last": [
+                116.1815,
+                0.93967,
+                -11.97053
+              ],
+              "durationMs": 329.4
+            },
+            {
+              "from": "miss",
+              "to": "prompt",
+              "frames": 20,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.08507,
+                0.02688,
+                -11.30736
+              ],
+              "last": [
+                116.08507,
+                0.02688,
+                -11.30736
+              ],
+              "durationMs": 330.8
+            },
+            {
+              "from": "prompt",
+              "to": "challenge-ready",
+              "frames": 20,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "last": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "durationMs": 321.4
+            },
+            {
+              "from": "prompt",
+              "to": "miss",
+              "frames": 20,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.1815,
+                0.93967,
+                -11.97053
+              ],
+              "last": [
+                116.1815,
+                0.93967,
+                -11.97053
+              ],
+              "durationMs": 339.1
+            },
+            {
+              "from": "miss",
+              "to": "prompt",
+              "frames": 20,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.08507,
+                0.02688,
+                -11.30736
+              ],
+              "last": [
+                116.08507,
+                0.02688,
+                -11.30736
+              ],
+              "durationMs": 331.3
+            },
+            {
+              "from": "prompt",
+              "to": "challenge-ready",
+              "frames": 20,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "last": [
+                116.1737,
+                0.94216,
+                -12.04905
+              ],
+              "durationMs": 320
+            },
+            {
+              "from": "prompt",
+              "to": "reach",
+              "frames": 20,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.1815,
+                0.93967,
+                -11.97053
+              ],
+              "last": [
+                116.1815,
+                0.93967,
+                -11.97053
+              ],
+              "durationMs": 329.2
+            },
+            {
+              "from": "reach",
+              "to": "catch",
+              "frames": 20,
+              "badFrames": 0,
+              "activeInputFrames": 0,
+              "maxDisplacement": 0,
+              "first": [
+                116.16,
+                0.69398,
+                -11.869
+              ],
+              "last": [
+                116.16,
+                0.69398,
+                -11.869
+              ],
+              "durationMs": 330.9
+            }
+          ],
+          "inputs": [
+            {
+              "attempt": 1,
+              "button": "ArrowLeft",
+              "windowMs": 1000,
+              "elapsedMs": 193.9
+            },
+            {
+              "attempt": 3,
+              "button": "ArrowLeft",
+              "windowMs": 1000,
+              "elapsedMs": 107
+            },
+            {
+              "attempt": 3,
+              "button": "ArrowRight",
+              "windowMs": 1000,
+              "elapsedMs": 666.4
+            }
+          ],
+          "attempts": [
+            {
+              "openedAtMs": 27660,
+              "windowMs": 1000,
+              "outcome": "failure",
+              "resultAtMs": 1013.6
+            },
+            {
+              "openedAtMs": 34237.69999998808,
+              "windowMs": 1000,
+              "outcome": "failure",
+              "resultAtMs": 1000.3
+            },
+            {
+              "openedAtMs": 40689.80000001192,
+              "windowMs": 1000,
+              "outcome": "success",
+              "resultAtMs": 666.6
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

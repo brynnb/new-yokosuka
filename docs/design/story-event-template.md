@@ -584,7 +584,7 @@ accepted continuation.
 | Bus / first harbor arrival | Protected real-GPU continuations verify normal walking from the tobacco counter around original collision boundaries to the bus, real picking, stay/cancel/retry, natural boarding, atomic harbor/pending save, arrival-film cancellation/reload/retry, natural original YBUSFLY D ending and completed reload. The later run uses the same fresh character 5 after opening through phone was earned, then earns the directory and covers the actual 2.14-metre first CMAL leg and the bus approach. HP/yen/inventory and control/actor cleanup pass. Earlier isolated predecessors were seeded; the fresh continuation uses the travel menu from home to Dobuita, and earlier helpers may shorten approaches or skip scenes. Whole-route completion is not claimed. Timetable, fare, original variant choice, one worker motion binding and the exploration spawn remain adapted or omitted. |
 | Goro's first harbor encounter | Connected approach, original voiced cast, cancellation/re-entry, wrong input/retry, actual Left/A/B success, original winning motion, directions/notebook, controls and saved reload verified. Real compiler/database tests cover earned arrival gate, accepted bounds, stale input, cancellation after winning, once-only effects and personal isolation. Placement/cameras/held challenge poses are authored. |
 | New Warehouse No. 8, rear-window and Goro entrances | The refusal and climb retain their original guard audio, decline/retry and climbing motion. The window opens onto the upper floor. Goro lets Ryo enter at ground level and walk upstairs. Both entrances allow optional inspections of two original envelopes and use the same upstairs listening point, ten voices, six source cameras and exit to MFSY/5. Cancellation keeps the earned entrance available. Crate physics, approach speed and dialogue pacing are adapted. |
-| Old Warehouse District daytime gate / nighttime entry | Optional original voiced guard, cancellation/re-entry, waiting in the same area until 19:00, failed Right QTE/retry, original head-bump/catch motion, saved original inside-district arrival, ground support, the automatic ready-stealth handoff and reload verified. Compiler/database tests prove personal-hour boundaries, cancelled successful input without travel, exact atomic arrival and no fabricated stealth/Chen success. Shot, held prompt and flashlight binding are authored. |
+| Old Warehouse District daytime gate / nighttime entry | Optional original voiced guard, cancellation/re-entry, waiting in the same area until 19:00, failed Right QTE/retry, original head-bump/catch motion, saved original inside-district arrival, ground support, the automatic ready-stealth handoff and reload verified. Compiler/database tests prove personal-hour boundaries, cancelled successful input without travel, exact atomic arrival and no fabricated stealth/Chen success. The room supplies the one-second prompt, falling prop, wrist attachment and both outcomes. The camera and harbor gate staging are authored. |
 | Old Warehouse District guard avoidance | Connected original-geometry movement, patrols, cover and actual door use; rendered cancellation/reload, capture/next-morning recovery, re-entry, success and saved MS08 arrival verified. Real compiler/database tests cover interrupted input, real detection, atomic recovery and character isolation. Routes, vision/balance and framing are authored, not recovered guard AI. |
 | Master Chen's first meeting | Connected four-segment original presentation, plate confirmation and atomic notebook/next-morning home return verified. Real compiler/database checks cover prerequisites, decline, cancellation at every segment and stale acknowledgements. Rendered approach, decline, live cancellation, natural completion, original Chen/Gui Zhang/body/camera presentation, saved home return and reload pass. |
 | Family lead to the antique shop | Connected optional original-voiced Ine-san hint and original SORA/INEK sequence. Compiler/database cancellation and atomic-clue checks pass. Rendered hint/approach, live cancellation/retry, natural completion, saved clue, restored movement and reload without replay pass. |
@@ -2379,8 +2379,9 @@ The [GameSpot guide](https://www.digitpress.com/library/manuals/dreamcast/shenmu
 (printed pages 33–34) establishes the nighttime head-bump/flashlight Right QTE
 before guard avoidance. The event reuses original E1008A010, complete MKSG
 `M_0153.MOTN` head-bump and flashlight-taking clips, original `KAIS500G.CHRM`
-and EVENT textures. Wrong/late input allows retry or leaving without travel.
-Genuine Right success must still finish the catch presentation before the
+and EVENT textures. If the window expires without a Right input, Ryo misses
+and the player can retry or leave.
+Right input within the window must still finish the catch presentation before the
 ordinary Yarn transaction saves entry, notebook and destination together.
 Cancelling after winning therefore cannot move the player or save arrival.
 
@@ -2392,11 +2393,46 @@ compound exit. That legitimate source entry is not the right authored starting
 point. Choosing the original interior CHRS placement is an adaptation, not a
 claim that the native flashlight owner's exact travel was reconstructed.
 
-The harbor-gate close-up, held final head-bump pose, two-second input window,
-right-hand flashlight attachment/appearance cue and omission of its falling
-trajectory are authored. The original guard-station choreography is not
-recreated. Personal environment/calendar are retained; this does not change
-the project's 21:00 lighting policy. Currency, inventory and HP are unchanged.
+The original MKSG director starts Ryo’s head-bump motion at source frame 133
+and releases the flashlight at frame 380. Its coroutine `0x209dc` reads KCDT
+from `EVENT.PKS/DYNAMICS.DYNM`. Each of its six channels has 81 keys over
+frames 0–160. The original engine samples between keys, converts angles to
+fixed turns and the room scales the position deltas by ten. The Right prompt
+opens fourteen ticks after release. The room reads the input mask at
+`0x2256e`, remembers Right at `0x225c8`, and checks for that press at tick
+30 at `0x225d4`. An earlier press in another direction leaves time to
+correct it. The client times the window and the server settles the result.
+
+On success, the light continues in world space during Ryo’s reaching motion.
+Fourteen ticks later, it transfers to his right wrist, control 18, using the
+translation and three fixed-turn angles from the original FIXO call at
+`0x215ea`. Ryo then plays the successful escape. When the window
+expires without a Right press, the light finishes its fall near the floor. Ryo reaches,
+misses and plays the original failed escape before the Story retry choices.
+
+MKSG loads `E1KAIQTE.SND` in sound slot 4 at `0x3dd34`. Ryo plays track 1
+at head-bump frame 360. The prop plays track 2 when released at frame 380.
+A missed reach plays track 3 at its frame 75. A successful reach plays track
+4 at the wrist handoff and track 5 at catch frame 92. The browser plays these
+five renders on the Effects channel. They come from the Disc 2 AICA driver
+running the original sequence commands. Rebuild them with
+`npm run build:old-district-flashlight-audio`. The gate motions and prop
+curves rebuild with `npm run build:harbor-story-assets`.
+
+Story places this choreography at its existing harbor gate and uses the
+authored close-up there. The flight carries one horizontal stage offset to
+meet the player rig’s grip. Its sampled height and six motion curves come
+from the original. The first alignment check put the rendered mesh centres
+52 centimetres apart at the handoff. The two final Radeon runs measured 5.8
+and 5.6 centimetres. The runs delayed selected server responses by 320 ms
+and retained the staged camera and one visible flashlight through all 3,022
+rendered frames. The first played all five world effects through their
+natural ends, saved entry and reloaded the four-person patrol. The second
+timed out with no input, retried, accepted a late Right after a wrong press,
+and cancelled with the light in Ryo’s hand. Both active catch effects
+stopped and the player regained control in the harbor. The source guard-station set, guard actions and full camera
+and sound direction remain separate presentation work. See the
+[flashlight hardware runs](../../tools/evidence/old-district-flashlight-hardware-2026-11-25.json).
 
 Shared region dispatch now observes the actual personal game date, not the
 debug lighting clock. An ineligible region does not consume its entry latch:

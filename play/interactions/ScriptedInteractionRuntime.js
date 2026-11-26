@@ -8,6 +8,9 @@ import {containerInteractionAllowed} from "../../src/JomoContainerOwnership.js";
 const SERVER_OWNED_STORY_TALKS = new Set(authoredStoryTalks.talks.map(talk => `${talk.area}:${talk.actor}`));
 const SERVER_OWNED_STORY_OBJECTS = new Set(authoredStoryTalks.objects.map(object => `${object.area}:${object.object}`));
 
+const warehouseDeskTags = new Set(["FUT0", "FUT1", "SHO0", "SHO1"]);
+const warehouseReplyField = { offset: 0x4a0, width: 1 };
+
 const FALLBACK_SCRIPT_CODES = new Set([
   "no_script",
   "unavailable",
@@ -250,15 +253,22 @@ export class ScriptedInteractionRuntime {
     const area = this.getWorld().nativeArea;
     const nativeContext = this.nativeRoomScriptRuntime.eventContext();
     const context = { area, objectTag, sceneObject: { objectTag, root }, nativeContext };
-    // MS8S 0x246ac selects the second envelope's comment from room memory.
-    // The address is forgotten by the native room runtime on unload.
-    if (serverOwnedStoryObject && area === "MS8S") {
+    let deskReply;
+    const stillInRoom = () => this.getWorld()?.nativeArea === area && !root?.isDisposed?.();
+    if (serverOwnedStoryObject && area === "MS8S" && warehouseDeskTags.has(objectSelector)) {
+      // 0x246b4 draws from three choices until the index differs from the
+      // room byte, even for the envelopes whose spoken line ignores the draw.
+      const previous = nativeContext.readSceneField(warehouseReplyField) ?? 0;
+      const available = [0, 1, 2].filter(index => index !== previous);
+      deskReply = available[Math.floor(Math.random() * available.length)];
       const field = { offset: 0x20c, width: 1 };
-      if (objectSelector === "FUT1" && (nativeContext.readSceneField(field) & 0x40)) {
+      if ((objectSelector === "SHO0" || objectSelector === "SHO1") && deskReply !== 0) {
+        objectSelector += "." + deskReply;
+      } else if (objectSelector === "FUT1" && (nativeContext.readSceneField(field) & 0x40)) {
         objectSelector = "FUT1.read";
       } else if (objectSelector === "FUT0") {
         context.onStoryComplete = identity => {
-          if (identity.scriptSlug === "story-s1-warehouse-invoice-address" && this.getWorld().nativeArea === area) {
+          if (identity.scriptSlug === "story-s1-warehouse-invoice-address" && stillInRoom()) {
             nativeContext.writeSceneField({ ...field, value: 0xff });
           }
         };
@@ -269,6 +279,11 @@ export class ScriptedInteractionRuntime {
         kind: "use",
         object: objectSelector,
       }, context);
+      // The director stores the accepted index before speaking. Cancelling a
+      // spoken line keeps that draw; a refused use has never run the director.
+      if (deskReply !== undefined && result.outcome === "started" && stillInRoom()) {
+        nativeContext.writeSceneField({ ...warehouseReplyField, value: deskReply });
+      }
       if (!this.canStart()) return;
       if (
         result.outcome === "declined"

@@ -11,6 +11,7 @@ const notebook="notebook.s1.old-warehouse-eight";
 const officeLines=["E1009BA013","E1009BB001","E1009BC001","E1009BB002","E1009BC002",
   "E1009BC003","E1009BB003","E1009BC004","E1009BA014","E1009BA017"];
 const paperLines=["E1009BA019","E1009BA020","E1009BA009"];
+const documentLines=["E1009BA034","E1009BA029","E1009BA030"];
 
 async function snapshot(page,id){
   const [state,dialogue]=await Promise.all(["state","dialogue"].map(async endpoint=>{
@@ -18,7 +19,7 @@ async function snapshot(page,id){
     expect(response.ok()).toBe(true);return response.json();
   }));
   const bank=Buffer.from(dialogue.state.banks["2"],"base64");
-  return {character:state.character,inventory:state.inventory,bits:Object.fromEntries([192,230,240,242]
+  return {character:state.character,inventory:state.inventory,nativeBanks:dialogue.state.banks,bits:Object.fromEntries([192,230,240,242]
     .map(i=>[i,(bank[i>>3]>>(i%8))&1]))};
 }
 
@@ -72,16 +73,19 @@ export async function approachWarehouseOffice(page){
   expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
 }
 
-async function readPaper(page,tag,id,{cancel=false,position}={}){
-  await observeOriginalDialogue(page,paperLines,"s1.ms8s.");
+async function readPaper(page,tag,expected,{cancel=false,position}={}){
+  const allowed=Array.isArray(expected)?expected:[expected];
+  await observeOriginalDialogue(page,allowed,"s1.ms8s.");
   const pick=await useStoryInspectable(page,{world:"ms8s",tag,position,reposition:Boolean(position),expectedChoice:null});
   await page.waitForFunction(()=>window.originalDialogue.lines.length||window.storyProbe.sceneErrors.length,null,{timeout:15_000});
   expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   if(cancel)await page.evaluate(()=>window.storyProbe.regions.controller.cancel("invoice-before-acknowledgement"));
   await idle(page);
   const observed=await page.evaluate(()=>window.stopOriginalDialogue());
-  expect(observed.lines.map(line=>line.id)).toEqual([id]);expect(observed.lines[0].text.length).toBeGreaterThan(0);
-  return {tag,id,text:observed.lines[0].text,screen:[pick.x,pick.y],cancelled:cancel};
+  expect(observed.lines).toHaveLength(1);
+  const {id,text,speaker}=observed.lines[0];
+  expect(allowed).toContain(id); expect(text.length).toBeGreaterThan(0);
+  return {tag,id,text,speaker,screen:[pick.x,pick.y],cancelled:cancel};
 }
 
 async function paperModels(page){
@@ -221,7 +225,47 @@ async function verifyWindowOffice(page,testInfo,character,enterStoryWorld){
   await testInfo.attach("window-office-and-invoices",{body:JSON.stringify(proof),contentType:"application/json"});
 }
 
+async function verifyDocuments(page,testInfo,character,enterStoryWorld){
+  const before=await snapshot(page,character.id);
+  const models=await page.evaluate(()=>["SHO0","SHO1"].map(tag=>{
+    const l=window.storyProbe.lifecycle;
+    const scene=l.scene.meshes.map(m=>m.metadata?.interactiveInspectable).find(o=>o?.objectTag===tag);
+    if(!scene?.root)return null;
+    const root=scene.root;
+    return {tag,model:root._runtimePlacementRecord?.model||root.name,position:root.getAbsolutePosition().asArray(),
+      vertices:root.getChildMeshes(false).filter(m=>m.isEnabled()&&m.isVisible).reduce((n,m)=>n+m.getTotalVertices(),0)};
+  }));
+  for(const [i,expected] of [[0,[-24.4,5.032,137.48]],[1,[-27.96,5.032,139.79]]]){
+    expect(models[i].model).toContain("SHO0G00G");
+    expect(models[i].vertices).toBeGreaterThan(0);
+    expected.forEach((v,j)=>expect(models[i].position[j]).toBeCloseTo(v,2));
+  }
+  const marks={SHO0:[-25.5,4.275,138.5],SHO1:[-26.75,4.275,140]};
+  const reads=[],invoices=[];
+  for(const [i,tag] of ["SHO0","SHO1","SHO1","SHO0","SHO1","SHO0"].entries()){
+    const line=await readPaper(page,tag,documentLines,{position:marks[tag],cancel:i===1});
+    if(reads.length)expect(line.id).not.toBe(reads.at(-1).id);
+    reads.push(line);
+  }
+  invoices.push(await readPaper(page,"FUT1",paperLines[0],{position:marks.SHO1}));
+  invoices.push(await readPaper(page,"FUT0",paperLines[1],{position:marks.SHO0}));
+  const afterInvoice=await readPaper(page,"SHO1",documentLines,{position:marks.SHO1});
+  invoices.push(await readPaper(page,"FUT1",paperLines[2],{position:marks.SHO1}));
+  await page.screenshot({path:testInfo.outputPath("warehouse-documents.png")});
+  const after=await snapshot(page,character.id);unchanged(before,after);
+  expect(after.nativeBanks).toEqual(before.nativeBanks);
+  await page.reload();await enterStoryWorld(page,character.name);await idle(page);
+  const reload=await readPaper(page,"FUT1",paperLines[0],{position:marks.SHO1});
+  const final=await snapshot(page,character.id);unchanged(before,final);
+  expect(final.nativeBanks).toEqual(before.nativeBanks);
+  await testInfo.attach("warehouse-office-documents",{body:JSON.stringify({
+    character:character.id,models,reads,invoices,afterInvoice,reload,
+    sameNativeBanks:true,sameStoryFlags:true
+  }),contentType:"application/json"});
+}
+
 export async function verifyWarehouseInvoice(page,testInfo,character,enterStoryWorld,mode){
+  if(mode==="documents"){await verifyDocuments(page,testInfo,character,enterStoryWorld);return;}
   if(mode==="invoice"){await verifyPapers(page,testInfo,character,enterStoryWorld);return;}
   if(mode==="office-window"){
     await verifyWindowOffice(page,testInfo,character,enterStoryWorld);return;

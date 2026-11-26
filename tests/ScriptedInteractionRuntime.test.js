@@ -167,3 +167,46 @@ test("the two warehouse envelopes share the original inspection byte only for th
   assert.equal((await use("FUT1")).selector.object, "FUT1");
   assert.equal(h.fallbackCount(), 0);
 });
+
+test("warehouse documents share one room-local nonrepeating reply with the envelopes", async t => {
+  const h = createHarness({playMode:"story", area:"MS8S"});
+  const room = new NativeRoomScriptRuntime();
+  room.activateArea("MS8S");
+  h.runtime.nativeRoomScriptRuntime = room;
+  let roll = 0, selected, outcome = "started";
+  t.mock.method(Math, "random", () => roll);
+  h.runtime.scriptEventController.start = async selector => {
+    selected = selector.object;
+    return {outcome};
+  };
+  const replyField = {offset:0x4a0, width:1};
+  const current = () => room.eventContext().readSceneField(replyField);
+  async function pick(tag, root = {}) {
+    await h.runtime.startObject({objectSelector:tag, objectTag:tag, root, fallback:h.fallback});
+    return selected;
+  }
+  assert.equal(await pick("SHO0"), "SHO0.1");
+  assert.equal(current(), 1);
+  assert.equal(await pick("SHO1"), "SHO1");  // Accepting a line consumes its roll even without completion.
+  assert.equal(current(), 0);
+  roll = 0.999;
+  assert.equal(await pick("SHO1"), "SHO1.2");
+  assert.equal(current(), 2);
+  outcome = "declined";
+  assert.equal(await pick("SHO0"), "SHO0.1");
+  assert.equal(current(), 2);
+  outcome = "started";
+  assert.equal(await pick("SHO0", {isDisposed: () => true}), "SHO0.1");
+  assert.equal(current(), 2);
+  assert.equal(await pick("FUT1"), "FUT1");
+  assert.equal(current(), 1);
+  assert.equal(await pick("FUT0"), "FUT0");
+  assert.equal(current(), 2);
+  assert.equal(await pick("FUT1"), "FUT1");
+  assert.equal(current(), 1);
+  room.deactivateArea("MS8S");
+  room.activateArea("MS8S");
+  roll = 0;
+  assert.equal(await pick("SHO1"), "SHO1.1");
+  assert.equal(h.fallbackCount(), 0);
+});

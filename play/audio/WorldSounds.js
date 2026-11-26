@@ -3,10 +3,7 @@ import {
   audioPreferences,
   effectiveEffectsVolume,
 } from "./AudioPreferences.js";
-import {
-  applyMediaElementAudio,
-  setMediaElementMuted,
-} from "./MediaElementAudio.js";
+import { applyMediaElementAudio } from "./MediaElementAudio.js";
 import {
   nativeFootstepSurfaceIndexAt,
 } from "./NativeFootstepSurfaceResolver.js";
@@ -54,13 +51,11 @@ export class WorldSounds {
     this.surfaceIndexForTerrain = surfaceIndexForTerrain;
     this.surfaceIndexAt = surfaceIndexAt;
     this.movement = null;
-    this.activeAudio = new Set();
-    this.persistentAudio = new Set();
-    this.unsubscribe = preferences.subscribe?.((state) => {
-      const muted = state.masterMuted || state.effectsMuted;
-      for (const audio of this.activeAudio) setMediaElementMuted(audio, muted);
-      for (const audio of this.persistentAudio) {
-        setMediaElementMuted(audio, muted);
+    this.activeAudio = new Map();
+    this.persistentAudio = new Map();
+    this.unsubscribe = preferences.subscribe?.(state => {
+      for (const collection of [this.activeAudio, this.persistentAudio]) {
+        for (const [audio, voice] of collection) this.applyMix(audio, state, voice.gain);
       }
     }) || null;
   }
@@ -199,44 +194,62 @@ export class WorldSounds {
   } = {}) {
     if (!commandHex) return false;
     if (extension !== "webm" && extension !== "wav") return false;
-    const state = this.preferences.getState();
-    if (state.masterMuted || state.effectsMuted) return false;
     const gain = this.spatialGain(position, {
       referenceDistance,
       maxDistance,
     });
-    if (gain <= 0) return false;
     const directory = bank
       ? `/audio/world/${bank.toLowerCase()}`
       : "/audio/world";
-    const audio = this.audioFactory(
-      `${directory}/${commandHex.toLowerCase()}.${extension}`,
-    );
-    applyMediaElementAudio(audio, {
-      muted: false,
-      volume: effectiveEffectsVolume(state)
-        * (state.overallVolume ?? 1)
-        * gain,
+    return this.playAsset(`${directory}/${commandHex.toLowerCase()}.${extension}`, {
+      gain, persistAcrossWorld,
     });
-    const collection = persistAcrossWorld
-      ? this.persistentAudio
-      : this.activeAudio;
-    collection.add(audio);
-    const release = () => collection.delete(audio);
-    audio.addEventListener?.("ended", release, { once: true });
-    audio.addEventListener?.("error", release, { once: true });
-    const playback = audio.play();
-    playback?.catch?.(release);
+  }
+
+  applyMix(audio, state, gain) {
+    applyMediaElementAudio(audio, {
+      muted: state.masterMuted || state.effectsMuted,
+      volume: effectiveEffectsVolume(state) * (state.overallVolume ?? 1) * gain,
+    });
+  }
+
+  // Each clip has its own media player and cancellation listener. A retained
+  // scene passes the same signal across cuts, so an effect can ring into the
+  // next shot while another cue plays.
+  playAsset(source, { gain = 1, persistAcrossWorld = false, signal } = {}) {
+    const state = this.preferences.getState();
+    if (signal?.aborted || state.masterMuted || state.effectsMuted || gain <= 0) return false;
+    const audio = this.audioFactory(source.replace(/^public\//, "/"));
+    this.applyMix(audio, state, gain);
+    const collection = persistAcrossWorld ? this.persistentAudio : this.activeAudio;
+    const release = () => {
+      collection.delete(audio);
+      signal?.removeEventListener("abort", stop);
+      audio.removeEventListener?.("ended", release);
+      audio.removeEventListener?.("error", release);
+    };
+    const stop = () => {
+      release();
+      audio.pause?.();
+    };
+    collection.set(audio, { gain, stop });
+    audio.addEventListener?.("ended", release);
+    audio.addEventListener?.("error", release);
+    signal?.addEventListener("abort", stop, { once: true });
+    try {
+      audio.play()?.catch?.(release);
+    } catch {
+      release();
+      return false;
+    }
     return true;
   }
 
   reset({ stopPersistent = false } = {}) {
     this.movement = null;
-    for (const audio of this.activeAudio) audio.pause?.();
-    this.activeAudio.clear();
+    for (const voice of this.activeAudio.values()) voice.stop();
     if (stopPersistent) {
-      for (const audio of this.persistentAudio) audio.pause?.();
-      this.persistentAudio.clear();
+      for (const voice of this.persistentAudio.values()) voice.stop();
     }
   }
 }

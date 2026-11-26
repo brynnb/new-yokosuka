@@ -1,0 +1,80 @@
+{
+  "schema": "new-yokosuka-mksg-flashlight-audio-v1",
+  "sources": {
+    "map": {
+      "path": "disc2/SCENE/02/MKSG/MAPINFO.BIN",
+      "sha256": "8c26c6de22132f8b42a450b31fb3ad4f0a954948e794419319528ac63ce790ae"
+    },
+    "bank": {
+      "path": "disc2/SCENE/02/SOUND/E1KAIQTE.SND",
+      "sha256": "29d862fe6e0d7e3fcf4e3a518d378e4d0e4cb8535c2aad1fc16f0eebb3dec3f4"
+    },
+    "driver": {
+      "path": "disc2/SOUND/AICADRV.BIN",
+      "sha256": "3f88553a52a6d1af0b988ea3f41800178988350721bd7422a570dc3e4e369915"
+    }
+  },
+  "sampleRate": 44100,
+  "sounds": [
+    {
+      "command": "A9040100",
+      "literalOffset": 136340,
+      "track": 1,
+      "scoreHex": "c0df017f80ff",
+      "sampleId": 6,
+      "fullRenderPcmSha256": "c8be904f38f0a632b160205091cf85f3b7265634e19edf23476223538bda7de9",
+      "trimmedBootFrames": 2618,
+      "frames": 18535,
+      "asset": "public/audio/world/e1kaiqte/A9040100.wav",
+      "sha256": "eb35a0b577d5ac3b228e8244eec3d5e796ddd0c3ebbe6470fc3f14f3fddf2da7"
+    },
+    {
+      "command": "A9040200",
+      "literalOffset": 133892,
+      "track": 2,
+      "scoreHex": "c0df027f80ff",
+      "sampleId": 3,
+      "fullRenderPcmSha256": "6c72f79b6106c2d1fae1d576d74bd025ce1d87323b1da2dc1f94f0baa49b7eec",
+      "trimmedBootFrames": 2618,
+      "frames": 47484,
+      "asset": "public/audio/world/e1kaiqte/A9040200.wav",
+      "sha256": "fe0128ec3b3d5a47805e907e500bee6df3347ba66ded638e64da7df15e9ea4d9"
+    },
+    {
+      "command": "A9040300",
+      "literalOffset": 137632,
+      "track": 3,
+      "scoreHex": "c0df037f80ff",
+      "sampleId": 2,
+      "fullRenderPcmSha256": "6e447b8c95ddcfb1361bcded70ec43fa73bf109bc9070618f8fddb20cb60f77c",
+      "trimmedBootFrames": 2618,
+      "frames": 58307,
+      "asset": "public/audio/world/e1kaiqte/A9040300.wav",
+      "sha256": "f179ccec2b44315747678ed1fa1f22fec39a5354f5038b968af701e1d3cd2568"
+    },
+    {
+      "command": "A9040400",
+      "literalOffset": 137056,
+      "track": 4,
+      "scoreHex": "c0df047f80ff",
+      "sampleId": 1,
+      "fullRenderPcmSha256": "566676c6185d1fb4c90ff2a4af19082b3cb9764525f08c505e2e488e7c05ca70",
+      "trimmedBootFrames": 2618,
+      "frames": 34291,
+      "asset": "public/audio/world/e1kaiqte/A9040400.wav",
+      "sha256": "bed715a44e98eddc303017690c29f29e484f08b35e5babe90c8a30966493182a"
+    },
+    {
+      "command": "A9040500",
+      "literalOffset": 137104,
+      "track": 5,
+      "scoreHex": "c0df057f80ff",
+      "sampleId": 0,
+      "fullRenderPcmSha256": "4e47339c7a1e290dbd57f58028e954447aa46f4902b8642f2af74ec512ac40e0",
+      "trimmedBootFrames": 2618,
+      "frames": 53429,
+      "asset": "public/audio/world/e1kaiqte/A9040500.wav",
+      "sha256": "544ed47153e52f34ea75cf68800b06b12bb95864c34fbabd3407ae627d235d40"
+    }
+  ]
+}

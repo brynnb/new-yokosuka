@@ -112,6 +112,7 @@ export class ScriptEventDialoguePresenter {
     facialPresentation = null,
     onAdvance = () => {},
     onSelect = () => {},
+    onChallengeStart = () => {},
     onChallengeResponse = () => {},
     qteSound = () => {},
     qteOptions = {},
@@ -132,6 +133,7 @@ export class ScriptEventDialoguePresenter {
     this.facialPresentation = facialPresentation;
     this.onAdvance = onAdvance;
     this.onSelect = onSelect;
+    this.onChallengeStart = onChallengeStart;
     this.onChallengeResponse = onChallengeResponse;
     this.qteSound = qteSound;
     this.qteOptions = qteOptions;
@@ -362,10 +364,15 @@ export class ScriptEventDialoguePresenter {
     const buttons=[];
     this.qte=new StoryQteRuntime({...this.qteOptions, sound:this.qteSound,
       present:step=>{
+        if (step.index === 0) {
+          const qte = this.qte;
+          const openedAt = qte.active.deadline - step.windowMs;
+          this.onChallengeStart(prompt.id, () => Math.max(0,(qte.now()-openedAt)/1000));
+        }
         this.dom.sourceText.textContent=`Press ${step.buttons.map(b=>`${b} (${CHALLENGE_KEYS[b]})`).join(" + ")} · ${step.index+1} / ${step.count}`;
         // A QTE is a cue, not a dialogue-choice menu. Retain the same touch
         // nodes (and pointer capture) across steps, showing only this cue.
-        // Keyboard routing still accepts every code so a wrong input fails.
+        // Keyboard routing still accepts every code during the open window.
         for(const button of buttons)button.hidden=!step.buttons.includes(button.dataset.challengeButton);
         this.dom.options.hidden=false;
       },

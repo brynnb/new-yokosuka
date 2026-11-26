@@ -1,0 +1,160 @@
+{
+  "schema": "new-yokosuka-story-inspection-evidence-v1",
+  "date": "2026-11-25",
+  "privateReport": "/mnt/data6tb/Projects/New Yokosuka/ny-warehouse-timer-lj878jh0/browser/rerun-documents-20261125-161948-html/index.html",
+  "renderer": "AMD Radeon RX 9070 XT (RADV GFX1201), ANGLE Vulkan",
+  "fixture": "One private character seeded with earned window entry. The test places Ryo within normal reach of each desk and uses screen-space mesh picks. It reads actual media playback and subtitles via the ordinary presenter; server dialogue banks, story flags, inventory and yen were checked across completion, cancellation and reload.",
+  "durationSeconds": 44.169,
+  "observed": {
+    "character": 18,
+    "models": [
+      {
+        "tag": "SHO0",
+        "model": "S2_MS8S_SHO0G00G.MT5",
+        "position": [
+          -24.399999618530273,
+          5.0320000648498535,
+          137.47999572753906
+        ],
+        "vertices": 32
+      },
+      {
+        "tag": "SHO1",
+        "model": "S2_MS8S_SHO0G00G.MT5",
+        "position": [
+          -27.959999084472656,
+          5.0320000648498535,
+          139.7899932861328
+        ],
+        "vertices": 32
+      }
+    ],
+    "reads": [
+      {
+        "tag": "SHO0",
+        "id": "E1009BA029",
+        "text": "I'd better not mess with this.",
+        "speaker": "Ryo Hazuki",
+        "screen": [
+          780.0077073162082,
+          363.4238386692445
+        ],
+        "cancelled": false
+      },
+      {
+        "tag": "SHO1",
+        "id": "E1009BA034",
+        "text": "This looks difficult to read.",
+        "speaker": "Ryo Hazuki",
+        "screen": [
+          779.9984239714946,
+          363.7395797372067
+        ],
+        "cancelled": true
+      },
+      {
+        "tag": "SHO1",
+        "id": "E1009BA029",
+        "text": "I'd better not mess with this.",
+        "speaker": "Ryo Hazuki",
+        "screen": [
+          779.9984239714946,
+          363.7395797372067
+        ],
+        "cancelled": false
+      },
+      {
+        "tag": "SHO0",
+        "id": "E1009BA030",
+        "text": "I shouldn't touch them.",
+        "speaker": "Ryo Hazuki",
+        "screen": [
+          780.0077073162082,
+          363.4238386692445
+        ],
+        "cancelled": false
+      },
+      {
+        "tag": "SHO1",
+        "id": "E1009BA034",
+        "text": "This looks difficult to read.",
+        "speaker": "Ryo Hazuki",
+        "screen": [
+          779.9984239714946,
+          363.7395797372067
+        ],
+        "cancelled": false
+      },
+      {
+        "tag": "SHO0",
+        "id": "E1009BA029",
+        "text": "I'd better not mess with this.",
+        "speaker": "Ryo Hazuki",
+        "screen": [
+          780.0077073162082,
+          363.4238386692445
+        ],
+        "cancelled": false
+      }
+    ],
+    "invoices": [
+      {
+        "tag": "FUT1",
+        "id": "E1009BA019",
+        "text": "An invoice for Warehouse No. 8... This must be the right place.",
+        "speaker": "Ryo Hazuki",
+        "screen": [
+          780.0042602716126,
+          363.8656012807946
+        ],
+        "cancelled": false
+      },
+      {
+        "tag": "FUT0",
+        "id": "E1009BA020",
+        "text": "This is addressed to old Warehouse No. 8? What's going on?",
+        "speaker": "Ryo Hazuki",
+        "screen": [
+          780.0040532220703,
+          362.9068603316847
+        ],
+        "cancelled": false
+      },
+      {
+        "tag": "FUT1",
+        "id": "E1009BA009",
+        "text": "Anything about Master Chen?",
+        "speaker": "Ryo Hazuki",
+        "screen": [
+          780.0042602716126,
+          363.8656012807946
+        ],
+        "cancelled": false
+      }
+    ],
+    "afterInvoice": {
+      "tag": "SHO1",
+      "id": "E1009BA029",
+      "text": "I'd better not mess with this.",
+      "speaker": "Ryo Hazuki",
+      "screen": [
+        779.9984239714946,
+        363.7395797372067
+      ],
+      "cancelled": false
+    },
+    "reload": {
+      "tag": "FUT1",
+      "id": "E1009BA019",
+      "text": "An invoice for Warehouse No. 8... This must be the right place.",
+      "speaker": "Ryo Hazuki",
+      "screen": [
+        780.0042602716126,
+        363.8656012807946
+      ],
+      "cancelled": false
+    },
+    "sameNativeBanks": true,
+    "sameStoryFlags": true
+  }
+}

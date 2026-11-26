@@ -42,7 +42,7 @@ function seedStartingKeys(track, values) {
 }
 
 export class AuthoredSceneStagingRuntime {
-  constructor({ actors, camera, screenFade, updateGameplayCamera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, createSceneObjects, createActorSet, createFaces, createTelephoneReceiver, dialogueAudio, currentMeshes, acquireEnvironmentIsolation, acquireActorIsolation }) {
+  constructor({ actors, camera, screenFade, updateGameplayCamera, motionRuntime, capturePlayerState, restorePlayerState, createAttachedObjects, createSceneObjects, createActorSet, createFaces, createTelephoneReceiver, dialogueAudio, worldSounds, currentMeshes, acquireEnvironmentIsolation, acquireActorIsolation }) {
     this.actors = actors;
     this.camera = camera;
     this.screenFade = screenFade;
@@ -56,6 +56,7 @@ export class AuthoredSceneStagingRuntime {
     this.createFaces = createFaces;
     this.createTelephoneReceiver = createTelephoneReceiver;
     this.dialogueAudio = dialogueAudio;
+    this.worldSounds = worldSounds;
     this.cameraPools = new StagedCameraPool();
     this.currentMeshes = currentMeshes;
     this.acquireEnvironmentIsolation = acquireEnvironmentIsolation;
@@ -78,6 +79,10 @@ export class AuthoredSceneStagingRuntime {
       }
       if (this.active !== owner) return false;
       if (dialogueCue) return true;
+      if (owner.scene.retainOnFinish) {
+        owner.finishedForContinuation = true;
+        return true;
+      }
       const exit = owner.scene.screenFades?.beforeTravel;
       if (!exit) {
         if (!owner.scene.finishAtPlayerPose) return this.release(transaction);
@@ -101,6 +106,13 @@ export class AuthoredSceneStagingRuntime {
     const scene = sequence.scene;
     if (scene.area !== transaction.area) return false;
     if(scene.durationSeconds!=null&&(!Number.isFinite(scene.durationSeconds)||scene.durationSeconds<=0||scene.durationSeconds>120))throw new Error(`Invalid staged duration ${scene.id}`);
+    if ((scene.holdEndPose && !scene.durationSeconds)
+      || (scene.retainOnFinish && (!scene.continuationGroup || !scene.holdEndPose))
+      || (scene.releaseOnCommit && !scene.retainOnFinish)
+      || (scene.waitForChallenge && (typeof scene.waitForChallenge !== "string" || !scene.holdEndPose
+        || scene.waitForMotionCompletion !== false || !scene.playThroughFinish))) {
+      throw new Error(`Invalid staged continuation timing for ${scene.id}`);
+    }
     if (!Array.isArray(scene.actors) || scene.actors.length === 0
       || new Set(scene.actors.map(actor => actor.tag)).size !== scene.actors.length
       || scene.actors.some(actor => !/^[A-Z0-9_]{4}$/.test(actor.tag)
@@ -143,8 +155,10 @@ export class AuthoredSceneStagingRuntime {
       || !this.dialogueAudio || !Number.isFinite(scene.voiceCue.atSeconds)
       || scene.voiceCue.atSeconds < 0 || !(scene.voiceCue.atSeconds < scene.voiceCue.dialogueAtSeconds)
       || !(scene.voiceCue.dialogueAtSeconds <= scene.durationSeconds))) throw Error(`Invalid staged voice cue ${scene.id}`);
-    if (scene.soundCues && (!Array.isArray(scene.soundCues) || !this.dialogueAudio || scene.soundCues.some((cue, index) =>
-      !/^public\/audio\/world\/[a-z0-9-]+\/[A-Z0-9]+\.wav$/.test(cue.asset)
+    if (scene.soundCues && (!Array.isArray(scene.soundCues) || scene.soundCues.some((cue, index) =>
+      (cue.kind === "effect"
+        ? typeof this.worldSounds?.playAsset !== "function" || !/^public\/audio\/world\/[a-z0-9-]+\/[a-zA-Z0-9_-]+\.wav$/.test(cue.asset)
+        : cue.kind != null || !this.dialogueAudio || !/^public\/audio\/world\/[a-z0-9-]+\/[A-Z0-9]+\.wav$/.test(cue.asset))
       || !Number.isFinite(cue.atSeconds) || cue.atSeconds < 0 || !(cue.atSeconds < scene.durationSeconds)
       || (index && cue.atSeconds < scene.soundCues[index-1].atSeconds)))) throw Error(`Invalid staged sound cues ${scene.id}`);
     if(scene.isolateResidentWorld!=null&&typeof scene.isolateResidentWorld!=="boolean")throw Error(`Invalid stage isolation ${scene.id}`);
@@ -197,8 +211,10 @@ export class AuthoredSceneStagingRuntime {
       ||Boolean(scene.isolateResidentWorld)!==Boolean(this.active.scene.isolateResidentWorld)
       ||Boolean(scene.isolateScheduledActors)!==Boolean(this.active.scene.isolateScheduledActors)
       ||scene.telephoneReceiver!==this.active.scene.telephoneReceiver
-      ||JSON.stringify(Object.keys(scene.sceneObjectTracks||{}))!==JSON.stringify(Object.keys(this.active.scene.sceneObjectTracks||{}))
-      ||scene.attachedObjects||scene.objectTransforms||this.active.objects||this.active.restoreObjects))return false;
+      ||Object.keys(scene.sceneObjectTracks||{}).some(tag=>!this.active.trackedObjectTags?.includes(tag))
+      ||JSON.stringify(scene.attachedObjects)!==JSON.stringify(this.active.scene.attachedObjects)
+      ||Object.values(scene.attachedObjects || {}).some(definition=>!definition.sceneObject)
+      ||scene.objectTransforms||this.active.restoreObjects))return false;
     const owner = continuing?this.active:{ transaction, scene, controller: new AbortController(), elapsed: 0, actors:this.actors,
       actorsBegun: false, cameraBegun: false, snapshot: this.capturePlayerState() };
     this.active = owner;
@@ -234,6 +250,8 @@ export class AuthoredSceneStagingRuntime {
       owner.soundCueAudio = [];
       owner.nextSoundCue = 0;
       owner.scene=scene;owner.elapsed=0;owner.voiceCuePlayed=false;
+      owner.finishedForContinuation = false;
+      owner.challengeElapsed = null;
       if (!scene.continueCamera) {
         owner.shot = scene.cameraPool ? this.cameraPools.select(scene.cameraPool,transaction) : scene;
         owner.cameraElapsed = 0;
@@ -275,11 +293,13 @@ export class AuthoredSceneStagingRuntime {
         signal.throwIfAborted();
         if(this.active!==owner)return false;
         owner.sceneObjects.prepareActivity({activityId:scene.id,nativeSceneObjectStates:Object.keys(scene.sceneObjects).map(actorTag=>({actorTag,presented:true}))});
-        if(scene.sceneObjectTracks)owner.sceneObjects.begin(owner,Object.keys(scene.sceneObjectTracks));
+        owner.trackedObjectTags = Object.keys(scene.sceneObjectTracks || {});
+        if(owner.trackedObjectTags.length)owner.sceneObjects.begin(owner,owner.trackedObjectTags);
       }
-      if(scene.attachedObjects){
+      if(scene.attachedObjects && !continuing){
         if(!this.createAttachedObjects)throw new Error(`No authored prop loader for ${scene.id}`);
-        owner.objects=this.createAttachedObjects(scene.attachedObjects,tag=>owner.actors.activeActor(tag),signal);
+        owner.objects=this.createAttachedObjects(scene.attachedObjects,tag=>owner.actors.activeActor(tag),signal,
+          tag=>owner.sceneObjects?.objects.get(tag));
         owner.loadingProps=true;
         try{await owner.objects.load([]);}finally{owner.loadingProps=false;}
         signal.throwIfAborted();
@@ -321,7 +341,7 @@ export class AuthoredSceneStagingRuntime {
         // explicit visibility cues override the actor's captured state.
         if(actor.presented!=null)owner.actors.activeActor(actor.tag).root.setEnabled(actor.presented);
       }
-      owner.objects?.beginActivity({activityId:scene.id,actors:scene.actors.map(a=>a.tag)});
+      owner.objects?.beginActivity({activityId:scene.id,actors:[...scene.actors.map(a=>a.tag),...Object.keys(scene.sceneObjectTracks||{})]});
       for (const command of scene.faceCommands ?? []) {
         if (!Object.hasOwn(scene.facialAssets ?? {}, command.actorTag) || !owner.faces?.play(owner, command)) {
           throw new Error(`Cannot apply ${command.name} to ${command.actorTag} in ${scene.id}`);
@@ -360,12 +380,24 @@ export class AuthoredSceneStagingRuntime {
     };
   }
 
+  startChallengeClock(id, elapsedSeconds) {
+    const owner = this.active;
+    if (!owner || owner.scene.waitForChallenge !== id || owner.challengeElapsed) return false;
+    owner.challengeElapsed = elapsedSeconds;
+    return true;
+  }
+
   update(transaction, deltaSeconds) {
     const owner = this.active;
     if (!owner || owner.transaction !== transaction) return true;
     this.screenFade?.update(transaction,deltaSeconds);
     if (!owner.actorsBegun) return true;
-    owner.elapsed += Math.max(0, deltaSeconds);
+    // A ready acknowledgement can arrive seconds after the staged prompt.
+    // Use the overlay's local clock for that scene, holding its first frame
+    // until the input window actually opens.
+    const elapsed = owner.scene.waitForChallenge
+      ? owner.challengeElapsed?.() ?? 0 : owner.elapsed + Math.max(0, deltaSeconds);
+    owner.elapsed = owner.scene.holdEndPose ? Math.min(owner.durationSeconds, elapsed) : elapsed;
     owner.cameraElapsed += Math.max(0, deltaSeconds);
     for (const actor of owner.scene.actors) {
       // Some directors hold the current gameplay pose before requesting their first motion.
@@ -422,9 +454,12 @@ export class AuthoredSceneStagingRuntime {
     const sounds = owner.scene.soundCues || [];
     while (owner.nextSoundCue < sounds.length && sounds[owner.nextSoundCue].atSeconds <= owner.elapsed) {
       const sound = sounds[owner.nextSoundCue++];
-      if (owner.elapsed >= owner.durationSeconds) continue;
-      const audio = this.dialogueAudio.playOneShot(sound.asset);
-      if (audio) owner.soundCueAudio.push(audio);
+      if (sound.kind === "effect") {
+        this.worldSounds.playAsset(sound.asset, { signal: owner.controller.signal });
+      } else if (owner.elapsed < owner.durationSeconds) {
+        const audio = this.dialogueAudio.playOneShot(sound.asset);
+        if (audio) owner.soundCueAudio.push(audio);
+      }
     }
     const cue = owner.scene.voiceCue;
     if (cue && !owner.voiceCuePlayed && owner.elapsed >= cue.atSeconds) {
@@ -437,7 +472,10 @@ export class AuthoredSceneStagingRuntime {
 
   commitPlayerPose(transaction) {
     const owner = this.active;
-    if (!owner?.awaitingCommit || owner.transaction !== transaction) return false;
+    if (!owner || owner.transaction !== transaction) return false;
+    // A completed retry choice can leave without loading another scene.
+    if (owner.finishedForContinuation && owner.scene.releaseOnCommit) return this.release(transaction);
+    if (!owner.awaitingCommit) return false;
     const current = this.capturePlayerState();
     // Staged MT5 actors use a quaternion; their Euler fields are cleared.
     const q = owner.actors.activeActor("AKIR")?.root?.rotationQuaternion;

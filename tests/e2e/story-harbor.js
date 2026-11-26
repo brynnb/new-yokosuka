@@ -1,3 +1,5 @@
+import {observeFlashlight,verifyFlashlightPresentation,verifyFlashlightEffects} from "./old-district-flashlight-observer.js";
+import {observeFlashlightContinuity,verifyFlashlightContinuity} from "./old-district-flashlight-continuity.js";
 import {expect} from "@playwright/test";
 
 export async function verifyFirstChenMeeting(page,testInfo,character){
@@ -200,6 +202,8 @@ export async function verifyOldDistrictEntry(page,testInfo,character){
     await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.old-district-night"])).toBe(true);await idle();
     // Stay in the gate volume. Waiting must change eligibility without needing
     // a new approach, even if the daytime region already consumed its dispatch.
+    await observeFlashlight(page);
+    await observeFlashlightContinuity(page);
     await waitUntil("Wait until 7 p.m.");
     await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug==="story-s1-old-district-night-entry"||window.storyProbe.sceneErrors.length,null,{timeout:30_000});await noErrors();
     await page.waitForFunction(()=>window.storyProbe.dialogue?.audio?.currentTime>0||window.storyProbe.sceneErrors.length);await noErrors();
@@ -207,21 +211,57 @@ export async function verifyOldDistrictEntry(page,testInfo,character){
     await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.mfsy.old-district-head-bump"||window.storyProbe.sceneErrors.length);await noErrors();
     await page.waitForTimeout(500);await page.screenshot({path:testInfo.outputPath("old-district-original-head-bump.png")});
     await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready||window.storyProbe.sceneErrors.length,null,{timeout:45_000});await noErrors();
-    await page.screenshot({path:testInfo.outputPath("old-district-right-prompt.png")});
-    await page.keyboard.press("ArrowLeft");await expect(page.getByRole("button",{name:"Try again",exact:true})).toBeVisible();
+    const retry=page.getByRole("button",{name:"Try again",exact:true});
+    await expect(retry).toBeVisible({timeout:25_000});
     expect((await saved()).character.storyFlags["story.s1.old-district-entry.completed"]).not.toBe(true);expect((await saved()).character.worldId).toBe("mfsy");
-    await page.getByRole("button",{name:"Try again",exact:true}).click();
-    await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready);expect(await page.evaluate(()=>window.storyProbe.regions.controller.dialogue.qte?.active?.steps[window.storyProbe.regions.controller.dialogue.qte.active.index]?.buttons[0])).toBe("Right");
-    await page.keyboard.press("ArrowRight");
+    if(process.env.NEW_YOKOSUKA_FLASHLIGHT_CANCEL_E2E==="true"){
+      await retry.click();
+      await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready);
+      const advertised=await page.evaluate(()=>{
+        const qte=window.storyProbe.regions.controller.dialogue.qte.active;
+        return qte.steps[qte.index].windowMs;
+      });
+      expect(advertised).toBe(1000);
+      await page.screenshot({path:testInfo.outputPath("old-district-right-prompt.png")});
+      await expect(retry).toBeVisible({timeout:25_000});
+      expect((await saved()).character.storyFlags["story.s1.old-district-entry.completed"]).not.toBe(true);
+    }
+    await retry.click();
     await page.waitForFunction(()=>window.storyProbe.authoredScene?.active?.scene.id==="s1.mfsy.old-district-catch"||window.storyProbe.sceneErrors.length);await noErrors();
-    await page.waitForTimeout(5_000);await page.screenshot({path:testInfo.outputPath("old-district-original-flashlight-catch.png")});
+    await page.waitForFunction(()=>window.storyProbe.authoredScene.active?.objects?.objects?.get("KAIS")?.root.isEnabled(),null,{timeout:30_000});
+    if(process.env.NEW_YOKOSUKA_FLASHLIGHT_CANCEL_E2E!=="true")await page.screenshot({path:testInfo.outputPath("old-district-original-flashlight-catch.png")});
     const flashlight=await page.evaluate(()=>{
-      const root=window.storyProbe.authoredScene.active.objects.objects.get("FLAS").root;
+      const root=window.storyProbe.authoredScene.active.objects.objects.get("KAIS").root;
       const box=root.getHierarchyBoundingVectors();
       return {enabled:root.isEnabled(),min:box.min.asArray(),max:box.max.asArray()};
     });
     expect(flashlight.enabled).toBe(true);
     console.info("Original flashlight presentation:",JSON.stringify(flashlight));
+    if(process.env.NEW_YOKOSUKA_FLASHLIGHT_CANCEL_E2E==="true"){
+      await page.waitForFunction(()=>window.flashlightFinalEffectPlaying(),null,{timeout:5000});
+      await page.evaluate(()=>window.storyProbe.regions.controller.cancel("test-flashlight-before-travel"));
+      await idle();
+      const stopped=await saved();
+      expect(stopped.character.worldId).toBe("mfsy");
+      for(const key of ["story.s1.old-district-entry.completed","story.s1.old-district-flashlight.caught","notebook.s1.old-district-patrols"]) {
+        expect(stopped.character.storyFlags[key]).not.toBe(true);
+      }
+      const cleaned=await page.evaluate(()=>{
+        const p=window.storyProbe;
+        return {staged:Boolean(p.authoredScene.active),locked:p.lifecycle.getController().movementLocked,
+          status:p.regions.controller.status,id:p.lifecycle.worldRuntime.activeWorld.id};
+      });
+      expect(cleaned).toEqual({staged:false,locked:false,status:"idle",id:"mfsy"});
+      await verifyFlashlightContinuity(page,testInfo,true);
+      const presentation=await page.evaluate(()=>window.finishFlashlightRun());
+      await testInfo.attach("flashlight-cancelled-after-right",{body:JSON.stringify({world:stopped.character.worldId,
+        entry:!!stopped.character.storyFlags["story.s1.old-district-entry.completed"],
+        caught:!!stopped.character.storyFlags["story.s1.old-district-flashlight.caught"],
+        notebook:!!stopped.character.storyFlags["notebook.s1.old-district-patrols"],
+        cleaned,presentation}),contentType:"application/json"});
+      verifyFlashlightEffects(presentation,true);
+      return;
+    }
   }
   await page.waitForFunction(()=>window.storyProbe.lifecycle.worldRuntime.activeWorld.id==="mksg"||window.storyProbe.sceneErrors.length,null,{timeout:90_000});await noErrors();
   await expect(page.locator("#loading")).toBeHidden({timeout:90_000});await handoff("old-district-entry-handoff");
@@ -230,6 +270,10 @@ export async function verifyOldDistrictEntry(page,testInfo,character){
   expect(position[1]).toBeGreaterThan(-.5);expect(position[1]).toBeLessThan(1);
   await page.screenshot({path:testInfo.outputPath("old-district-earned-compound-arrival.png")});
   await checkpoint();
+  if(!character.storyFlags["story.s1.old-district-entry.completed"]){
+    await verifyFlashlightContinuity(page,testInfo,false);
+    verifyFlashlightEffects(await verifyFlashlightPresentation(page,testInfo),false);
+  }
   await page.reload();await page.keyboard.press("Enter");await page.locator(".account-entry-actions button").filter({hasText:"Quick Play"}).click();await page.locator(".character-slot-button:not(.empty)").first().click();await page.locator("button").filter({hasText:/^Enter World$/}).click();
   await page.waitForFunction(()=>window.storyProbe.ready,null,{timeout:90_000});await expect(page.locator("#loading")).toBeHidden({timeout:90_000});await page.waitForTimeout(1_000);await noErrors();
   expect(await page.evaluate(()=>window.storyProbe.starts.includes("story-s1-old-district-night-entry"))).toBe(false);

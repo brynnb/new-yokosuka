@@ -19,7 +19,7 @@ export class StoryQteRuntime {
       || scoring.partialAt < 1 || scoring.successAt <= scoring.partialAt || scoring.successAt > steps.length)) {
       throw new Error(`Invalid QTE scoring: ${definition.id}`);
     }
-    this.active = { steps, scoring, hits: 0, index: 0, held: new Set(), outcome: null };
+    this.active = { steps, scoring, ignoreWrongButtons: definition.ignoreWrongButtons === true, hits: 0, index: 0, held: new Set(), outcome: null };
     this.next();
   }
 
@@ -40,7 +40,10 @@ export class StoryQteRuntime {
     if (!owner || owner.outcome) return false;
     if (this.now() >= owner.deadline) { this.miss(); return false; }
     const step = owner.steps[owner.index];
-    if (!step.buttons.includes(button)) { this.miss(); return false; }
+    if (!step.buttons.includes(button)) {
+      if (!owner.ignoreWrongButtons) this.miss();
+      return false;
+    }
     owner.held.add(button);
     if (!step.buttons.every(b => owner.held.has(b))) return true;
     this.sound("correct");

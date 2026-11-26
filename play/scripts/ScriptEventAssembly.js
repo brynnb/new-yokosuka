@@ -150,7 +150,7 @@ export function createScriptEventAssembly({
     playSound,
   });
   let controller;
-  const createAttachedObjects=(definitions,resolveActor,signal)=>new NativeAseqAttachedObjectRuntime({definitions,resolveActor,
+  const createAttachedObjects=(definitions,resolveActor,signal,resolveSceneObject)=>new NativeAseqAttachedObjectRuntime({definitions,resolveActor,resolveSceneObject,
     instantiateAsset:createNativeCutsceneSceneObjectLoader({scene,loadAsset:path=>fetchAssetBuffer(runtimeAssetUrl(path),{signal})}),
   });
   const createSceneObjects=(definitions,signal)=>new NativeAseqSceneObjectRuntime({definitions,
@@ -206,7 +206,7 @@ export function createScriptEventAssembly({
           }
           controller.updateCamera(entering ? 1 : delta);
         },
-        dialogueAudio,
+        dialogueAudio, worldSounds,
         actors: createNativeAseqBabylonActors({ getPlayerModel, syncPlayerTransform,
           scheduledActors, motionRuntime, preservePlayerOnComplete: false, playerYawOffsetRadians: Math.PI }),
         camera: createNativeAseqBabylonCamera(camera), motionRuntime,
@@ -277,6 +277,7 @@ export function createScriptEventAssembly({
     }),
     onAdvance: () => controller?.advanceLine(),
     onSelect: optionId => controller?.selectOption(optionId),
+    onChallengeStart: (id,elapsedSeconds) => sceneStagingRuntime.startChallengeClock(id,elapsedSeconds),
     onChallengeResponse: (action,token,outcome) => controller?.challengeResponse(action,token,outcome),
     // Existing interface cues provide immediate local feedback. These are an
     // explicit adaptation, not an identified original Dreamcast QTE sound bank.

@@ -149,12 +149,15 @@ test("Warehouse No. 8 restores three physical upper hinges with one harbor exit"
 });
 
 
-test("Warehouse No. 8 places both original invoice envelopes above the upstairs desk", () => {
+test("Warehouse No. 8 places both invoice envelopes and both documents on the original desks", () => {
   const props = WORLDS.ms8s.placements.filter(p => p.runtime.authoredStoryProp);
-  assert.deepEqual(props.map(p => p.runtime.objectTag), ["FUT0", "FUT1"]);
+  const byTag = new Map(props.map(p => [p.runtime.objectTag, p]));
+  assert.deepEqual([...byTag.keys()].sort(), ["FUT0", "FUT1", "SHO0", "SHO1"]);
   for (const [placement, model, position, rotation] of [
-    [props[0], "S2_MS8S_FUTS5K9G.MT5", [-24.01, 5.04, 137.21], [90, 180, 0]],
-    [props[1], "S2_MS8S_FUTS5D8G.MT5", [-27.33, 5.032, 139.11], [0, 299.99817, 0]],
+    [byTag.get("FUT0"), "S2_MS8S_FUTS5K9G.MT5", [-24.01, 5.04, 137.21], [90, 180, 0]],
+    [byTag.get("FUT1"), "S2_MS8S_FUTS5D8G.MT5", [-27.33, 5.032, 139.11], [0, 299.99817, 0]],
+    [byTag.get("SHO0"), "S2_MS8S_SHO0G00G.MT5", [-24.4, 5.032, 137.48], [0, 25486 * 360 / 65536, 0]],
+    [byTag.get("SHO1"), "S2_MS8S_SHO0G00G.MT5", [-27.96, 5.032, 139.79], [0, 61895 * 360 / 65536, 0]],
   ]) {
     assert.equal(placement.model, model);
     assert.equal(placement.runtime.initiallyEnabled, true);

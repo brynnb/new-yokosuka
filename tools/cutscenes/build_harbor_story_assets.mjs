@@ -20,12 +20,13 @@ const definitions=[{
 },{
   folder:"old-district-entry",archive:"MKSG/EVENT.PKS",sha256:"278572918f746220750e700c65b42a57c9872c3bc68baec95e41d61938d617a3",
   motion:"M_0153.MOTN",motionSha256:"34c93d4ed46449c91fe8ed522f4e25d99303badecfdd4b73f2667e883358d406",
-  sequences:[[0,"AKI_ATAMABUTUKERU1_0153"],[10,"AKI_KAITYUUDENTOUTORU1_0153"],[12,"AKI_KANGAETEIRU_STAND_LP_0132"],[19,"AKI_OIDASU_SOUKOGAI_F"],[36,"AKI_UZUKUMARU_BOX_0153"],[38,"GRD_KAIWA_STAND_LP_0132"],[39,"GRD_STAND_LP_0132"]],
+  sequences:[[0,"AKI_ATAMABUTUKERU1_0153"],[10,"AKI_KAITYUUDENTOUTORU1_0153"],[12,"AKI_KANGAETEIRU_STAND_LP_0132"],[19,"AKI_OIDASU_SOUKOGAI_F"],[25,"AKI_SEIKOUNIGE1_0153"],[26,"AKI_SIPPAINIGERU1_0153"],[29,"AKI_TENOBASISIPPAI1_0153"],[36,"AKI_UZUKUMARU_BOX_0153"],[38,"GRD_KAIWA_STAND_LP_0132"],[39,"GRD_STAND_LP_0132"]],
   models:[{name:"KAIS500G.CHRM",sha256:"3163fd040eb7538b1bb7c230f18051a9d3202b2e4e45c1877e92b4dfc8df2d47"}],
   textures:{path:"MKSG/EVENT.PKF",sha256:"6f9938cb2d140e66046887b50d7a8501b8de5f889d87242aca42b294d8efbcf8"},
-  adaptation:"Original head-bump/flashlight-catch bank and prop. Authored close-up at the harbor gate, held QTE pose and right-hand binding/cue. Right is server validated before original compound arrival; this does not complete stealth. Original room-controller, falling trajectory and guard-station choreography are not reconstructed.",
+  adaptation:"MKSG supplies the original motions, six-channel KCDT flashlight trajectory and right-wrist grip. Story stages them at the harbor gate with an authored camera. The client times the Right input. The server saves the compound arrival after the successful escape, and the patrol has a separate outcome.",
 }];
 
+const generatedAssets = new Map();
 for(const def of definitions){
   const archive=fs.readFileSync(path.join(sourceRoot,"data/SCENE/02",def.archive));
   if(sha256(archive)!==def.sha256)throw Error(`Changed original ${def.archive}`);
@@ -57,5 +58,13 @@ for(const def of definitions){
     outputs:outputs.map(file=>({path:`${prefix}/${file.name}`,byteLength:file.bytes.length,sha256:sha256(file.bytes)})),
     sequences,adaptation:def.adaptation,
   },null,2)+"\n");
+  for (const {name,bytes} of outputs) generatedAssets.set(prefix+"/"+name, bytes);
+  generatedAssets.set(prefix+"/manifest.json", fs.readFileSync(path.join(output,"manifest.json")));
   console.log(`Built original harbor Story assets: ${def.folder}`);
 }
+
+// Keep the served asset digests in sync when the registered motion list changes.
+const registryPath=path.join(root,"src/runtime-assets.generated.json");
+const registry=JSON.parse(fs.readFileSync(registryPath));
+for (const [asset,bytes] of generatedAssets) registry.assets[asset]={...registry.assets[asset],sha256:sha256(bytes),size:bytes.length};
+fs.writeFileSync(registryPath,JSON.stringify(registry,null,2)+"\n");
