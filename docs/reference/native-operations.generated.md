@@ -7,7 +7,7 @@ This index contains every operation in the current reviewed semantic registry:
 that registry, not for the engine's entire dispatcher. Missing operations and
 unconstrained modes remain numeric and unresolved.
 
-Source: `tools/evidence/native-operation-semantics.json` (SHA-256 `0f428557930a3332efe0f6576be7878a2b2636a352ce135dad8be05c78b15ade`). Regenerate with
+Source: `tools/evidence/native-operation-semantics.json` (SHA-256 `63637be53f336f579fa85b35fa9724dd0f10d7c57604ee6cde0f8081ef53e93b`). Regenerate with
 `node tools/reference/generate_identifier_operation_references.mjs`; add `--check`
 to validate freshness.
 

@@ -11,7 +11,7 @@ a guessed row.
 
 Input SHA-256:
 
-- `tools/evidence/dialogue-predicate-values.json`: `411981acd70c6d3dcdfc9241f2e9cadf5485cc27fe9701e12b7810cf14acdc50`
+- `tools/evidence/dialogue-predicate-values.json`: `8635b90ec352cc8469621b9f6b965800ca825acada44c4e0060487dd6a720e6c`
 - `tools/evidence/scripted-world-state-inventory.json`: `f02915dc11f5d039403bf87b05f7acd5b6cb3d2f48e3acb0438f03ab4bf358f7`
 - `docs/reference/researched-flags.json`: `6880d3084be9bc34a2846e0be8a6e62237ca9cb9de9a64445478c3086fc27f4e`
 

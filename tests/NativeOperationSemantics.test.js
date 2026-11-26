@@ -1776,7 +1776,16 @@ test("operation 0x018a retains four exact controller-owner routes", () => {
     "native-operation-018a-primary-slot-conditional-mark",
   ]);
   assert.ok(entries.every(entry => entry.handlerAddress === "0x0c16b150"));
-  assert.match(entries[0].provenBehavior, /sixteen 44-byte slots/);
+  const evidence = JSON.parse(fs.readFileSync("tools/evidence/operation-018a-evidence.json", "utf8"));
+  const { allocationTag, allocationBytes, slotCount, slotBytes } = evidence.roomPool;
+  assert.deepEqual({ allocationTag, allocationBytes, slotCount, slotBytes }, {
+    allocationTag: "AMB1", allocationBytes: 704, slotCount: 16, slotBytes: 44,
+  });
+  assert.equal(evidence.operation.handlerAddress, entries[0].handlerAddress);
+  assert.deepEqual(evidence.allDiscInventory.modeCounts, { 0: 56, 1: 28, 2: 24, 3: 3 });
+  assert.match(entries[0].provenBehavior, /activates the preallocated AMB1 pool/);
+  assert.match(entries[0].provenBehavior, /clears only record words \+32\/\+36\/\+40/);
+  assert.match(entries[1].provenBehavior, /registers controller three for slots three through one/);
   assert.match(entries[2].provenBehavior, /descending order/);
   assert.match(entries[3].provenBehavior, /offset \+8/);
 });

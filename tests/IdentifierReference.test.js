@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import fs from "node:fs";
 import test from "node:test";
 
@@ -264,6 +265,14 @@ test("complete generated area index is exhaustive and current", () => {
 
 test("complete generated persistent-state index covers every bank entry and is current", () => {
   const generated = read("docs/reference/state-banks-and-flags.generated.md");
+  for (const path of [
+    "tools/evidence/dialogue-predicate-values.json",
+    "tools/evidence/scripted-world-state-inventory.json",
+    "docs/reference/researched-flags.json",
+  ]) {
+    const digest = createHash("sha256").update(fs.readFileSync(path)).digest("hex");
+    assert.ok(generated.includes(`- \`${path}\`: \`${digest}\``), `Stale source digest for ${path}`);
+  }
   const entries = [...generated.matchAll(/^\| ([234]) \| (\d+) \|/gm)]
     .map((match) => `${match[1]}:${match[2]}`);
   assert.equal(entries.length, 1120);
