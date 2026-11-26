@@ -23,7 +23,11 @@ class NativeActivityOwnerCandidateSourcesTest(unittest.TestCase):
         reviewed, outside = reviewed_activity_functions(
             {
                 "schema": "new-yokosuka-native-event-program-pack-v1",
-                "programs": [program("reviewed"), program("canonical-extra")],
+                "programs": [
+                    program("reviewed"),
+                    program("canonical-extra"),
+                    {**program("preview-only"), "preview": True},
+                ],
             },
             {
                 "schema": "new-yokosuka-native-event-program-routes-v1",
@@ -38,6 +42,19 @@ class NativeActivityOwnerCandidateSourcesTest(unittest.TestCase):
             {(1, "TEST", "0x20"): ["reviewed"]},
         )
         self.assertEqual(outside, ["canonical-extra"])
+
+    def test_preview_cannot_satisfy_a_reviewed_owner_route(self):
+        with self.assertRaisesRegex(ValueError, "resolves to a preview"):
+            reviewed_activity_functions(
+                {
+                    "schema": "new-yokosuka-native-event-program-pack-v1",
+                    "programs": [{**program("preview-only"), "preview": True}],
+                },
+                {
+                    "schema": "new-yokosuka-native-event-program-routes-v1",
+                    "routes": [{"id": "preview-only"}],
+                },
+            )
 
     def test_route_without_a_compiled_program_is_rejected(self):
         with self.assertRaisesRegex(

@@ -4,7 +4,7 @@
   "generatedFrom": {
     "nativeEventIr": {
       "path": ".disc-work/dialogue/native-event-ir.json",
-      "sha256": "991c94d2fac6aafa4f4cf2cb6534f95c6be284b9e240012f6e44e69d6069d177"
+      "sha256": "9a5db90da0403def6269c9968061216a06c831cb43f71a08554065c320481dc0"
     },
     "scriptedSceneInventory": {
       "path": "tools/evidence/shenmue1-scripted-scene-inventory.json",
@@ -16,11 +16,11 @@
     },
     "nativeEventProgramRoutes": {
       "path": "tools/data/native-event-program-routes.json",
-      "sha256": "5aec4e8e65b99531722a422c8a8da96f72da5b4ad4d3c9c16beb737fe46ecb88"
+      "sha256": "7060041a5b81575c89df47588e3cb4c24b4eff94a436125cd85756190f26ad61"
     },
     "nativeEventProgramPack": {
       "path": "play/data/events/nativeEventPrograms.generated.json",
-      "sha256": "4584c1a5c0ad42c582a8a98acb60c98a8bb6e33f823184e89f1e725322ec782e"
+      "sha256": "7da3075c1125ac21263b54efe0e6c911966b50682c6e95385f969d24723e10a0"
     },
     "nativeActivityOwnerDispositions": {
       "path": "tools/data/native-activity-owner-dispositions.json",
@@ -29,7 +29,7 @@
     "nativeLifecycleAudioEvidence": [
       {
         "path": "tools/evidence/bebf-native-lifecycle.json",
-        "sha256": "f3cf2d881cf75367864b36abb6ca683d0b2b7fa10aa22016eb19cadd75123fa5",
+        "sha256": "feeaed638ecda32e30304eba53f07f2ecfcd87e8615494ce400537338b0761bd",
         "resource": "BEBF",
         "soundBank": "extracted_files/data/SCENE/01/SOUND/A1_BADME.SND"
       },
@@ -41,7 +41,7 @@
       },
       {
         "path": "tools/evidence/cata1-native-lifecycle.json",
-        "sha256": "50d4ebbcbcea5509b6f9f8ae51dfe4f43af6dea5e6ebb37f64c38e9e1df267f5",
+        "sha256": "94c4b091a08bdd7502516b126491cd369c6689b958dd73b5fa95f52adb057c68",
         "resource": "CATA1",
         "soundBank": "A1_NEKO1.SND"
       },
@@ -53,7 +53,7 @@
       },
       {
         "path": "tools/evidence/evsn-native-lifecycle.json",
-        "sha256": "f1e2ca8ab3d7596c677f177e2e73b1333299607ecaf8067cd228e6731611456d",
+        "sha256": "cdeea8bdb11dc71587fe09091c56ccaa39d4cc2fd7537543ec3ed01dead6c15b",
         "resource": "EVSN",
         "soundBank": "A1_NZMVS.SND"
       },
@@ -94,8 +94,8 @@
     "Only explicit native-event route definitions confer reviewed activity-owner status; compiled programs outside that route inventory remain valid canonical programs but do not classify operation-0x013e installer candidates."
   ],
   "sourceAlignment": {
-    "compiledProgramCount": 19,
-    "activityOwnerRouteCount": 17,
+    "compiledProgramCount": 20,
+    "activityOwnerRouteCount": 18,
     "programsOutsideActivityOwnerRoutes": [
       "S1-OP00-A0114",
       "S1-OP02-00"
@@ -104,7 +104,7 @@
   "summary": {
     "installerFunctionCount": 31,
     "staticInstallCount": 87,
-    "reviewedRouteCount": 20,
+    "reviewedRouteCount": 21,
     "reviewedNonCutsceneCount": 4,
     "exactAuthSelectionCount": 73,
     "unresolvedAuthSelectionCount": 14
@@ -2669,13 +2669,134 @@
       "promotionState": "reviewed-route"
     },
     {
+      "id": "d1:JOMO:installer:0x4a1f2",
+      "disc": 1,
+      "area": "JOMO",
+      "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
+      "installerFunction": "0x4a1f2",
+      "reviewedRouteIds": [
+        "disc1-jomo-room-initialization-0x88b70"
+      ],
+      "incomingDirectCalls": [
+        {
+          "callerFunction": "0x4f758",
+          "callFileOffset": "0x4fbec"
+        },
+        {
+          "callerFunction": "0x4f758",
+          "callFileOffset": "0x4fd4c"
+        },
+        {
+          "callerFunction": "0x4f758",
+          "callFileOffset": "0x4feac"
+        },
+        {
+          "callerFunction": "0x4f758",
+          "callFileOffset": "0x50018"
+        },
+        {
+          "callerFunction": "0x4f758",
+          "callFileOffset": "0x50174"
+        },
+        {
+          "callerFunction": "0x4f758",
+          "callFileOffset": "0x502d0"
+        }
+      ],
+      "releaseSlotsInFunction": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "resourceNames": [
+        "KKYA",
+        "KKYB",
+        "KKYC",
+        "KKYD",
+        "KKYE",
+        "KKYF"
+      ],
+      "actorTags": [],
+      "unknownActorOrObjectTags": [],
+      "installs": [
+        {
+          "callFileOffset": "0x4a31a",
+          "slot": 50,
+          "primaryPointer": 614163,
+          "secondaryPointer": 614176,
+          "primaryResource": "seqdata0.bin",
+          "secondaryResource": "KKYA",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x4a46a",
+          "slot": 51,
+          "primaryPointer": 614200,
+          "secondaryPointer": 614213,
+          "primaryResource": "seqdata1.bin",
+          "secondaryResource": "KKYB",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x4a5ba",
+          "slot": 52,
+          "primaryPointer": 614237,
+          "secondaryPointer": 614250,
+          "primaryResource": "seqdata2.bin",
+          "secondaryResource": "KKYC",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x4a70a",
+          "slot": 53,
+          "primaryPointer": 614274,
+          "secondaryPointer": 614287,
+          "primaryResource": "seqdata3.bin",
+          "secondaryResource": "KKYD",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x4a85a",
+          "slot": 54,
+          "primaryPointer": 614311,
+          "secondaryPointer": 614324,
+          "primaryResource": "seqdata4.bin",
+          "secondaryResource": "KKYE",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        },
+        {
+          "callFileOffset": "0x4a9aa",
+          "slot": 55,
+          "primaryPointer": 614348,
+          "secondaryPointer": 614361,
+          "primaryResource": "seqdata5.bin",
+          "secondaryResource": "KKYF",
+          "selectionRule": "exact-auth-member-name",
+          "authResources": []
+        }
+      ],
+      "blockers": [
+        "exact-auth-resource-selection-unresolved"
+      ],
+      "promotionState": "reviewed-route"
+    },
+    {
       "id": "d1:JOMO:installer:0x4bf5c",
       "disc": 1,
       "area": "JOMO",
       "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
       "installerFunction": "0x4bf5c",
       "reviewedRouteIds": [
-        "disc1-jomo-bebf-nightmare-owner-0x4bf5c"
+        "disc1-jomo-bebf-nightmare-owner-0x4bf5c",
+        "disc1-jomo-room-initialization-0x88b70"
       ],
       "incomingDirectCalls": [
         {
@@ -3216,125 +3337,6 @@
           "secondaryPointer": 394224,
           "primaryResource": "seqdataD.bin",
           "secondaryResource": "scene/01/JHD0",
-          "selectionRule": "exact-auth-member-name",
-          "authResources": []
-        }
-      ],
-      "blockers": [
-        "exact-auth-resource-selection-unresolved",
-        "player-facing-lifecycle-owner-unreviewed"
-      ],
-      "promotionState": "owner-review-required"
-    },
-    {
-      "id": "d1:JOMO:installer:0x4a1f2",
-      "disc": 1,
-      "area": "JOMO",
-      "mapinfoSha256": "4af865fbb62a06e917d6625149f4bcf77fa6a6bba19b08b8433440f96712a2b9",
-      "installerFunction": "0x4a1f2",
-      "reviewedRouteIds": [],
-      "incomingDirectCalls": [
-        {
-          "callerFunction": "0x4f758",
-          "callFileOffset": "0x4fbec"
-        },
-        {
-          "callerFunction": "0x4f758",
-          "callFileOffset": "0x4fd4c"
-        },
-        {
-          "callerFunction": "0x4f758",
-          "callFileOffset": "0x4feac"
-        },
-        {
-          "callerFunction": "0x4f758",
-          "callFileOffset": "0x50018"
-        },
-        {
-          "callerFunction": "0x4f758",
-          "callFileOffset": "0x50174"
-        },
-        {
-          "callerFunction": "0x4f758",
-          "callFileOffset": "0x502d0"
-        }
-      ],
-      "releaseSlotsInFunction": [
-        50,
-        51,
-        52,
-        53,
-        54,
-        55
-      ],
-      "resourceNames": [
-        "KKYA",
-        "KKYB",
-        "KKYC",
-        "KKYD",
-        "KKYE",
-        "KKYF"
-      ],
-      "actorTags": [],
-      "unknownActorOrObjectTags": [],
-      "installs": [
-        {
-          "callFileOffset": "0x4a31a",
-          "slot": 50,
-          "primaryPointer": 614163,
-          "secondaryPointer": 614176,
-          "primaryResource": "seqdata0.bin",
-          "secondaryResource": "KKYA",
-          "selectionRule": "exact-auth-member-name",
-          "authResources": []
-        },
-        {
-          "callFileOffset": "0x4a46a",
-          "slot": 51,
-          "primaryPointer": 614200,
-          "secondaryPointer": 614213,
-          "primaryResource": "seqdata1.bin",
-          "secondaryResource": "KKYB",
-          "selectionRule": "exact-auth-member-name",
-          "authResources": []
-        },
-        {
-          "callFileOffset": "0x4a5ba",
-          "slot": 52,
-          "primaryPointer": 614237,
-          "secondaryPointer": 614250,
-          "primaryResource": "seqdata2.bin",
-          "secondaryResource": "KKYC",
-          "selectionRule": "exact-auth-member-name",
-          "authResources": []
-        },
-        {
-          "callFileOffset": "0x4a70a",
-          "slot": 53,
-          "primaryPointer": 614274,
-          "secondaryPointer": 614287,
-          "primaryResource": "seqdata3.bin",
-          "secondaryResource": "KKYD",
-          "selectionRule": "exact-auth-member-name",
-          "authResources": []
-        },
-        {
-          "callFileOffset": "0x4a85a",
-          "slot": 54,
-          "primaryPointer": 614311,
-          "secondaryPointer": 614324,
-          "primaryResource": "seqdata4.bin",
-          "secondaryResource": "KKYE",
-          "selectionRule": "exact-auth-member-name",
-          "authResources": []
-        },
-        {
-          "callFileOffset": "0x4a9aa",
-          "slot": 55,
-          "primaryPointer": 614348,
-          "secondaryPointer": 614361,
-          "primaryResource": "seqdata5.bin",
-          "secondaryResource": "KKYF",
           "selectionRule": "exact-auth-member-name",
           "authResources": []
         }

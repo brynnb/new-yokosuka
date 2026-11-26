@@ -15,6 +15,11 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
+if __package__:
+    from .extract_native_aseq_callback_ir import iter_native_maps
+else:
+    from extract_native_aseq_callback_ir import iter_native_maps
+
 
 ROOT = Path(__file__).resolve().parents[2]
 IR_PATH = ROOT / ".disc-work/dialogue/native-event-ir.json"
@@ -31,7 +36,8 @@ OUTPUT_PATH = ROOT / "tools/evidence/native-activity-owner-candidates.json"
 
 
 def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    with path.open("rb") as source:
+        return hashlib.file_digest(source, "sha256").hexdigest()
 
 
 def cstring(data: bytes, offset: int) -> str:
@@ -164,6 +170,8 @@ def reviewed_activity_functions(
             raise ValueError(f"native event program route {route_id} is duplicated")
         routed_ids.add(route_id)
         program = program_by_id.get(route_id)
+        if program is not None and program.get("preview"):
+            raise ValueError(f"native event program route {route_id} resolves to a preview")
         if program is None:
             raise ValueError(
                 f"native event program route {route_id} has no compiled program"
@@ -191,7 +199,8 @@ def reviewed_activity_functions(
         for function_id in selected_ids:
             reviewed[(program["disc"], program["area"], function_id)].append(route_id)
 
-    return reviewed, sorted(set(program_by_id) - routed_ids)
+    canonical_ids = {key for key, program in program_by_id.items() if not program.get("preview")}
+    return reviewed, sorted(canonical_ids - routed_ids)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -203,7 +212,6 @@ def main(argv: list[str] | None = None) -> int:
         help=f"output JSON path (default: {OUTPUT_PATH.relative_to(ROOT)})",
     )
     args = parser.parse_args(argv)
-    ir = json.loads(IR_PATH.read_text())
     inventory = json.loads(SCENE_INVENTORY_PATH.read_text())
     actor_catalog = json.loads(ACTOR_CATALOG_PATH.read_text())
     audio_evidence = json.loads(AUDIO_EVIDENCE_PATH.read_text())
@@ -262,21 +270,20 @@ def main(argv: list[str] | None = None) -> int:
         program_pack, routes
     )
 
-    incoming: dict[tuple[int, str, str], list[dict[str, str]]] = defaultdict(list)
-    for map_record in ir["maps"]:
+    candidates = []
+    for map_record in iter_native_maps(IR_PATH):
+        incoming: dict[str, list[dict[str, str]]] = defaultdict(list)
         for function in map_record["functions"]:
             for action in function_actions(function):
                 if action.get("kind") != "directCall":
                     continue
                 target = action.get("targetFileOffset")
                 if target:
-                    incoming[(map_record["disc"], map_record["area"], target)].append({
+                    incoming[target].append({
                         "callerFunction": function["id"],
                         "callFileOffset": action["callFileOffset"],
                     })
 
-    candidates = []
-    for map_record in ir["maps"]:
         map_path = source_map_path(map_record["disc"], map_record["area"])
         if not map_path.exists():
             continue
@@ -371,9 +378,7 @@ def main(argv: list[str] | None = None) -> int:
                 "mapinfoSha256": map_record["mapinfoSha256"],
                 "installerFunction": function["id"],
                 "reviewedRouteIds": route_ids,
-                "incomingDirectCalls": incoming.get((
-                    map_record["disc"], map_record["area"], function["id"],
-                ), []),
+                "incomingDirectCalls": incoming.get(function["id"], []),
                 "releaseSlotsInFunction": release_slots,
                 "resourceNames": resource_names,
                 "actorTags": actor_tags,
@@ -437,7 +442,7 @@ def main(argv: list[str] | None = None) -> int:
             "Only explicit native-event route definitions confer reviewed activity-owner status; compiled programs outside that route inventory remain valid canonical programs but do not classify operation-0x013e installer candidates.",
         ],
         "sourceAlignment": {
-            "compiledProgramCount": len(program_pack["programs"]),
+            "compiledProgramCount": len(routes["routes"]) + len(programs_outside_owner_routes),
             "activityOwnerRouteCount": len(routes["routes"]),
             "programsOutsideActivityOwnerRoutes": programs_outside_owner_routes,
         },
