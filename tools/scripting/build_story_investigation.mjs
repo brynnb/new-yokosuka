@@ -115,6 +115,14 @@ for (const route of spec.routes) {
   if (route.repeatable && ((!route.destination && !route.shop && !ambientDialogue && !repeatableTemplate) || route.items?.length || route.grantYen || route.spendYen || route.recordMinutes?.length || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length || ((ambientDialogue||repeatableTemplate)&&route.effects.length))) throw Error(`Unsafe repeatable route ${route.id}`);
   if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw Error(`Invalid Story destination ${route.id}`);
   const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...(route.excludedFlags||[]).map(flag=>`flag_set("${flag}")`), ...requiredItems.map(({key,quantity,nativeOwnership})=>nativeOwnership ? `(!has_item("${key}", ${quantity}) && native_value("${nativeOwnership}") == 0)` : `!has_item("${key}", ${quantity})`), ...(route.repeatable ? [] : [`flag_set("${route.completedFlag}")`])];
+  if (route.nativeStep) {
+    const [first, last] = route.nativeStep;
+    if (!route.nativeSources?.length || route.nativeStep.length !== 2
+      || !Number.isInteger(first) || !Number.isInteger(last) || first < 1 || last < first || last > 979) {
+      throw Error("Invalid native STEP range in " + route.id);
+    }
+    gates.push(`(native_story_step() < ${first} || native_story_step() > ${last})`);
+  }
   if (route.requiredAnyFlags) {
     if (!route.requiredAnyFlags.length || !route.requiredAnyFlags.every(flag=>/^story\.s1\.[a-z0-9.-]+$/.test(flag))) {
       throw Error("Invalid alternative entrance flags in "+route.id);
@@ -158,6 +166,14 @@ for (const route of spec.routes) {
     if (!/^2:\d+$/.test(effect.address) || ![0, 1].includes(effect.value) || !route.nativeSources?.length) throw new Error(`Unreviewed native effect in ${route.id}`);
     return `<<set_native_value "${effect.address}" ${effect.value}>>`;
   });
+  if (route.nativeEffectsWhen) {
+    const predicates = Object.entries(route.nativeEffectsWhen);
+    if (!nativeEffects.length || !predicates.length || predicates.some(([address,value]) =>
+      !/^2:\d+$/.test(address) || ![0,1].includes(value))) throw Error(`Invalid native effect guard in ${route.id}`);
+    const condition = predicates.map(([address,value]) => `native_value("${address}") == ${value}`).join(" && ");
+    nativeEffects.unshift(`<<if ${condition}>>`);
+    nativeEffects.push("<<endif>>");
+  }
   const yenEffects=[];
   if(route.grantYen && route.spendYen)throw Error(`Conflicting yen effects in ${route.id}`);
   if(route.grantYen || route.spendYen){

@@ -126,3 +126,20 @@ test("EVSN binds the existing airplane to the child's hand before aftermath play
   changed.blocks[0].successors.push("unknown-conditional-path");
   assert.throws(() => extractNativeAseqCallbackObjectPresentation({ ...args, nativeFunction: changed }), /no governing ASEQ frame/);
 });
+
+test("the two Story park entrances use the four original JD00 XZ corners and facing words", () => {
+  const bytes = readFileSync("extracted_files/data/SCENE/01/JD00/MAPINFO.BIN");
+  const regions = JSON.parse(readFileSync("play/data/story-regions.json")).regions;
+  for (const [part, cornerA, cornerB, yawA, yawB] of [
+    ["main", 0x5b0dc, 0x5b0e8, 0x5b188, 0x5b184],
+    ["alternate", 0x5b0f4, 0x5b100, 0x5b208, 0x5b204],
+  ]) {
+    const region = regions.find(row => row.id === "s1.jd00.nozomi-park-rescue-"+part);
+    const xs = [cornerA,cornerB].map(offset => -bytes.readFloatLE(offset));
+    const zs = [cornerA,cornerB].map(offset => bytes.readFloatLE(offset+4));
+    assert.equal(region.horizontalOnly, true);
+    assert.deepEqual([region.min[0],region.min[2]], [Math.min(...xs), Math.min(...zs)]);
+    assert.deepEqual([region.max[0],region.max[2]], [Math.max(...xs), Math.max(...zs)]);
+    assert.deepEqual(region.nativeFacingRange, [bytes.readUInt32LE(yawA),bytes.readUInt32LE(yawB)]);
+  }
+});

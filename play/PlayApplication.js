@@ -160,6 +160,7 @@ import {
   createScriptEventAssembly,
 } from "./scripts/ScriptEventAssembly.js";
 import { StoryRegionRuntime } from "./scripts/StoryRegionRuntime.js";
+import {nativePrimaryStateOneAvailable} from "./events/NativePrimaryRuntimeState.js";
 import { warehouseDirectorAvailable } from "./scripts/WarehouseVisitClock.js";
 import { StoryFrameHandoff } from "./scripts/StoryFrameHandoff.js";
 import {StoryObjectPresentation} from "./scripts/StoryObjectPresentation.js";
@@ -982,6 +983,7 @@ function createPlayRuntime() {
   const nativeStoryRuntime = new NativeStoryRuntime({
     storyObjects: new StoryObjectPresentation({getCharacter: () => accountSession.character}),
     storyRegions: new StoryRegionRuntime({ controller: scriptEventController,
+      hasPrimaryControl: () => nativePrimaryStateOneAvailable(nativeRoomScriptRuntime.sceneState.readPrimaryRuntimeState()),
       warehouseControls: () => {
         const input = playInput.currentSnapshot;
         const sceneState = nativeRoomScriptRuntime.sceneState;

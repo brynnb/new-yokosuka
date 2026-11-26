@@ -14,8 +14,9 @@ const actor = (actorCode,label,modelCode) => ({actorCode,label,modelCode,activit
 const fuku=actor('FUKU','Masayuki Fukuhara','FUK_M');
 const yama=actor('YAMA','Shigeo Yamagishi','YMG_L');
 const shozo=actor('SYZU','Shozo Mizuki','KOG_L');
-const guizhang=scenes.scenes.filter(s=>s.worldId==='mfsy').flatMap(s=>s.actorDefinitions).find(a=>a.actorCode==='KISY')
-  || scenes.scenes.flatMap(s=>s.actorDefinitions).find(a=>a.actorCode==='KISY');
+// Reuse the teacher from his documented Swallow lesson, independent of scene ordering.
+const guizhang=scenes.scenes.find(scene=>scene.id==='s1.mend.swallow-ready')
+  ?.actorDefinitions.find(actor=>actor.actorCode==='KISY');
 if(!guizhang)throw Error('Missing source-qualified Gui Zhang model');
 
 // Browser coordinates. Source anchors: KAKG dojo spar, YAMA park route endpoint,

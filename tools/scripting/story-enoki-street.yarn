@@ -1,0 +1,37 @@
+<<play_sequence "s1.d000.enoki-street-intro.start">>
+{{voice:E1064B019}}
+{{voice:E1064B020}}
+{{voice:E1064C016}}
+{{voice:E1064B021}}
+{{voice:E1064A009}}
+{{voice:E1064B022}}
+<<jump Attempt>>
+===
+title: Attempt
+---
+<<start_challenge "s1.d000.enoki-street">>
+<<play_sequence "s1.d000.enoki-street-intro.finish">>
+<<if challenge_result("s1.d000.enoki-street") == "success">>
+<<play_sequence "s1.d000.enoki-street-win.start">>
+{{voice:E1064B023}}
+{{voice:E1064A010}}
+{{voice:E1064C019}}
+{{voice:E1064A011}}
+{{voice:E1064C020}}
+{{voice:E1064B024}}
+<<play_sequence "s1.d000.enoki-street-win.finish">>
+{{effects}}
+<<complete>>
+<<else>>
+<<play_sequence "s1.d000.enoki-street-miss.start">>
+{{voice:E1064C008}}
+{{voice:E1064B007}}
+{{voice:E1064B008}}
+{{voice:E1064C022}}
+<<play_sequence "s1.d000.enoki-street-miss.finish">>
+-> Try again
+    <<play_sequence "s1.d000.enoki-street-intro.start">>
+    <<jump Attempt>>
+-> Leave
+    <<complete>>
+<<endif>>

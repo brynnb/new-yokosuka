@@ -169,6 +169,7 @@ test("standalone attached objects use the accepted AUTH frame and reject failed 
 function programRuntimeWith({
   calls,
   actors = null,
+  recordedActivity = null,
 }) {
   const vector = () => ({
     x: 0,
@@ -188,11 +189,12 @@ function programRuntimeWith({
       id: "composite-package",
       worldId: "street",
       actorDefinitions: [],
-      actorTags: ["AKIR"],
+      actorTags: recordedActivity?.manifest.actorTags || ["AKIR"],
       assets: {},
       actors: { requirePlayer: false },
       playback: {
-        manifest: activityManifest,
+        manifest: recordedActivity?.manifest || activityManifest,
+        audioManifest: recordedActivity?.audioManifest,
       },
     },
     scene: {},
@@ -239,7 +241,7 @@ function programRuntimeWith({
     onStopped() {},
   });
   Object.assign(runtime, {
-    activityRuntime: null,
+    activityRuntime: recordedActivity ? runtime.activityRuntime : null,
     activeCutsceneId: null,
     programLease: null,
     compositeProgramPresentation: null,
@@ -257,7 +259,7 @@ function programRuntimeWith({
         return true;
       },
     }),
-    playback: { active: false },
+    playback: recordedActivity ? runtime.playback : { active: false },
     presentation: {
       active: false,
       beginProgram(owner, options) {
@@ -878,4 +880,80 @@ test("program context exposes FACE-table state only for owned facial actors", ()
     refreshCount: 1,
   });
   assert.equal(context.queryNativeFaceActorActivity({ actorTag: "AKID", actor }), 1);
+});
+
+test("an individual EVSN Story confrontation owns the original visibility and hand callbacks and releases them on cancellation and replay", async () => {
+  const manifest = JSON.parse(readFileSync("play/assets/sakuragaoka/evsn/manifest.json"));
+  const audioManifest = JSON.parse(readFileSync("public/audio/world/evsn/manifest.json"));
+  const calls = [], handFrames = [];
+  const runtime = programRuntimeWith({calls, recordedActivity:{manifest,audioManifest}});
+  const cast = manifest.actorTags.map(actorCode => ({actorCode,root:{}}));
+  runtime.actors.programActors = () => cast;
+  runtime.actors.programActor = runtime.actors.activeActor = tag => cast.find(actor=>actor.actorCode===tag);
+  runtime.mapLayers = runtime.attachedObjects = null;
+  runtime.music.beginActivity = () => {};
+  runtime.activityRuntime.loadAsset = asset => readFileSync(asset);
+  runtime.activityRuntime.presentation = {
+    beginActivity: () => ({}),
+    advanceActivity({frames}) {
+      for (const frame of frames) {
+        for (const cue of frame.commands) {
+          if (cue.name === "hand-pose") handFrames.push([frame.frame,cue.actorTag,cue.side]);
+        }
+      }
+      return true;
+    },
+    endActivity: () => true,
+  };
+  const slot = manifest.activities.find(activity=>activity.slot===1);
+  const cutscene = {id:"park-story-confrontation",activityProgramPresentation:true,
+    activity:{slot:slot.slot,binding:{primaryPointer:slot.primaryPointer,secondaryPointer:slot.secondaryPointer}}};
+  await runtime.start(cutscene);
+  const first = runtime.programSceneState;
+  assert.ok(first);
+  assert.equal(first.readObjectPresentationFlag("AKIR"),false);
+  assert.equal(first.readObjectPresentationFlag("HRSK"),true);
+  for (let frame=1;frame<=1400;frame++) runtime.update(1/30);
+  assert.equal(first.readObjectPresentationFlag("AKIR"),true);
+  assert.equal(first.readObjectPresentationFlag("HRSK"),false);
+  assert.ok(handFrames.some(([frame,tag,side])=>frame===944 && tag==="ENKI" && side==="right"));
+  runtime.stop("cancelled");
+  assert.equal(runtime.programLease,null);
+  assert.equal(runtime.standaloneProgramLease,null);
+  await runtime.start(cutscene);
+  assert.notEqual(runtime.programSceneState,first);
+  assert.equal(runtime.programSceneState.readObjectPresentationFlag("AKIR"),false);
+  for (let frame=0;frame<=slot.durationFrames;frame++) runtime.update(1/30);
+  assert.equal(runtime.programLease,null);
+  assert.equal(runtime.activeCutsceneId,null);
+  assert.equal(calls.filter(([operation])=>operation==="actors:begin").length,2);
+  assert.equal(calls.filter(([operation])=>operation==="actors:end").length,2);
+
+  // Cancelling after a nested AUTH borrowed its actors but before its async
+  // begin resolves must release the outer cast only after the inner rollback.
+  const entered = deferred(), resume = deferred();
+  runtime.activityRuntime.presentation.beginActivity = async () => {
+    runtime.presentation.active = true;
+    entered.resolve();
+    await resume.promise;
+    return {};
+  };
+  runtime.activityRuntime.presentation.endActivity = () => {
+    runtime.presentation.active = false;
+    return true;
+  };
+  const pending = runtime.start(cutscene);
+  await entered.promise;
+  assert.equal(runtime.stop("cancel-during-prepare"),true);
+  assert.ok(runtime.programLease);
+  resume.resolve();
+  await assert.rejects(pending, {name:"AbortError"});
+  assert.equal(runtime.programLease,null);
+  assert.equal(runtime.standaloneProgramLease,null);
+  assert.equal(runtime.activeCutsceneId,null);
+
+  runtime.activityRuntime.presentation.beginActivity = async () => {throw Error("failed AUTH setup");};
+  await assert.rejects(runtime.start(cutscene), /failed AUTH setup/);
+  assert.equal(runtime.programLease,null);
+  assert.equal(calls.filter(([operation])=>operation==="actors:end").length,4);
 });

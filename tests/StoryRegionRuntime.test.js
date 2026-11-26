@@ -412,3 +412,43 @@ test("both Warehouse No. 8 listening entrances require a native height above fou
     }
   }
 });
+
+test("the two park entrances check original heading, STEP, street encounter, weather and player control", () => {
+  for (const [variant, position, start, end] of [
+    ["main",[-18,0,4],0x0e38,0x71c7],
+    ["alternate",[-11,0,11],0xc71c,0x2aaa],
+  ]) {
+    const region = storyRegions.regions.find(entry => entry.id === "s1.jd00.nozomi-park-rescue-"+variant);
+    const bits = new Set([100,852]);
+    const legacyFlags = {};
+    let day = 4, ready = true;
+    const runtime = new StoryRegionRuntime({
+      regions:[region], controller:{status:"idle",start:async()=>true},
+      getCharacter:()=>({id:1,playMode:"story",openingCompleted:true,storyFlags:legacyFlags}),
+      getGameDate:()=>new Date(Date.UTC(1986,11,day,12)),
+      hasPrimaryControl:()=>ready, hasNativeFlag:bit=>bits.has(bit), publishPresence:()=>true,
+    });
+    const enter = turn => runtime.update({area:"JD00",worldId:"sakuragaoka",playerPosition:position,
+      playerYaw:-(turn+.25)*2*Math.PI/65536,enabled:true});
+    for (const [turn, allowed] of [[start-1,false],[start,true],[end,true],[end+1,false],[0,start>end]]) {
+      runtime.reset();
+      assert.equal(enter(turn),allowed,variant+" raw yaw "+turn);
+    }
+    runtime.reset(); ready=false; assert.equal(enter(start),false);
+    ready=true; bits.delete(852); assert.equal(enter(start),false);
+    bits.add(852); bits.delete(100); bits.add(90); assert.equal(enter(start),false);
+    bits.add(100); bits.add(801); assert.equal(enter(start),false);
+    bits.delete(801); day=8; assert.equal(enter(start),false);
+    day=11; assert.equal(enter(start),true);
+    bits.delete(100);
+    legacyFlags["story.s1.parking-lot-ambush.completed"] = true;
+    runtime.reset(); assert.equal(enter(start), true, "legacy ambush admits the park");
+    for (const receipt of ["story.s1.charlie-tattoo-confrontation.completed", "story.s1.chinese-letter.completed"]) {
+      legacyFlags[receipt] = true;
+      runtime.reset(); assert.equal(enter(start), false, "later saved event closes the park");
+      delete legacyFlags[receipt];
+    }
+    bits.add(155);
+    runtime.reset(); assert.equal(enter(start), false, "later native STEP outranks the ambush receipt");
+  }
+});

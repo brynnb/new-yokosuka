@@ -53,6 +53,7 @@ import {verifyNozomiParkConfession} from "./story-nozomi-park-confession.js";
 import {verifyNozomiFlowers} from "./story-nozomi-flowers.js";
 import {verifyNozomiParkTears} from "./story-nozomi-park-tears.js";
 import {verifyEriNozomiPark} from "./story-eri-nozomi-park.js";
+import {verifyParkRescue} from "./story-park-rescue.js";
 import {verifyFriendsVisit} from "./story-friends-visit.js";
 import {verifyFriendsBar} from "./story-friends-bar.js";
 import {verifyHarborArrivalFilm} from "./story-harbor-arrival-film.js";
@@ -848,6 +849,18 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       test.setTimeout(720_000);
       expect(character.storyFlags["notebook.s1.charlie-jackets"]).toBe(true);
       expect(character.storyFlags["notebook.s1.charlie-evening"]).not.toBe(true);
+      if(process.env.NEW_YOKOSUKA_PARK_RESCUE_MODE==="park-jackets"){
+        // The park campaign can finish the earlier witnesses after the shop closes.
+        const hour=async()=>new Date((await (await page.request.get(`/api/characters/${character.id}/state`)).json()).worldState.gameTimeMs).getUTCHours();
+        const current=await hour();
+        for(const [label,target] of (current>=18 ? [["Wait until tomorrow morning",8],["Wait until 10 a.m.",10]] : current<10 ? [["Wait until 10 a.m.",10]] : [])){
+          await page.locator("#story-wait-button").click();
+          await page.getByRole("option",{name:label,exact:true}).click();
+          await page.getByRole("button",{name:label,exact:true}).click();
+          await expect.poll(hour,{timeout:30_000}).toBe(target);
+          await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
+        }
+      }
       await page.waitForFunction(()=>window.storyProbe.lifecycle.scheduledActors.dialogueActor("TURU"),null,{timeout:60_000});
       console.info("Tsuruoka at earned checkpoint:",JSON.stringify(await page.evaluate(()=>({player:window.storyProbe.lifecycle.getController().collider.position.asArray(),actor:window.storyProbe.lifecycle.scheduledActors.dialogueActor("TURU").position}))));
       const path=[[119,84],[118,82],[117,80],[115,77],[113,74],[111,71],[111,70],[110,70],[109,70],[108.5,70],
@@ -1487,6 +1500,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     }
     if (process.env.NEW_YOKOSUKA_NOZOMI_TEARS_E2E === "true") {
       test.setTimeout(480_000);await verifyNozomiParkTears(page,testInfo,character,enterStoryWorld);expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_PARK_RESCUE_E2E === "true") {
+      test.setTimeout(900_000);
+      await verifyParkRescue(page, testInfo, character, enterStoryWorld);
+      expect(errors).toEqual([]);return;
     }
     if (process.env.NEW_YOKOSUKA_ERI_NOZOMI_E2E === "true") {
       test.setTimeout(600_000);await verifyEriNozomiPark(page,testInfo,character,enterStoryWorld);

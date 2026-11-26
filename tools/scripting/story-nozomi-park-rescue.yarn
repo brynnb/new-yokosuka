@@ -1,0 +1,23 @@
+<<if native_value("2:852") == 0>>
+<<pass_trigger>>
+<<endif>>
+<<if actor_in_bounds("AKIR", "s1.jd00.nozomi-park-rescue-main")>>
+<<start_activity "s1.jd00.nozomi-park-rescue-main.scene">>
+<<elseif actor_in_bounds("AKIR", "s1.jd00.nozomi-park-rescue-alternate")>>
+<<start_activity "s1.jd00.nozomi-park-rescue-alternate.scene">>
+<<else>>
+<<pass_trigger>>
+<<endif>>
+<<jump Confrontation>>
+===
+title: Confrontation
+---
+<<start_activity "s1.jd00.nozomi-park-rescue-confrontation.scene">>
+<<start_combat "s1.jd00.nozomi-park-rescue">>
+<<if combat_result("s1.jd00.nozomi-park-rescue") == "defeated">>
+<<jump Confrontation>>
+<<elseif combat_result("s1.jd00.nozomi-park-rescue") == "success">>
+<<start_activity "s1.jd00.nozomi-park-rescue-aftermath.scene">>
+{{effects}}
+<<endif>>
+<<complete>>

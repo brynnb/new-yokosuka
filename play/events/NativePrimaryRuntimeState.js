@@ -58,6 +58,12 @@ function requireResult(value, mode) {
   return value;
 }
 
+// The caller supplies event presence. Story room selectors run in their own director.
+export function nativePrimaryStateOneAvailable(state) {
+  return Boolean(state?.available && (state.gateByte === 0 || state.gateByte === 1)
+    && state.stateDword1f8 === 1);
+}
+
 export class NativePrimaryRuntimeState {
   constructor() {
     this.state = undefined;
@@ -151,9 +157,7 @@ export class NativePrimaryRuntimeState {
     return {
       result: Boolean(
         state.currentEventPresent
-        && state.available
-        && (state.gateByte === 0 || state.gateByte === 1)
-        && state.stateDword1f8 === 1
+        && nativePrimaryStateOneAvailable(state)
       ),
       currentEventPresent: state.currentEventPresent,
       objectAvailable: state.available,

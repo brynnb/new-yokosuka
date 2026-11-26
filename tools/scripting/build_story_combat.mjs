@@ -18,7 +18,14 @@ const encounters = spec.encounters.map(input => {
   if(input.musicTrack&&!music[input.musicTrack])throw Error(`Missing reviewed combat music ${input.id}/${input.musicTrack}`);
   if(input.sourceTime && !["start","end"].includes(input.sourceTime))throw new Error(`Invalid staging time ${input.id}`);
   let poses,definitions;
-  if(input.authoredActors){
+  if(input.roomFight){
+    const room = input.roomFight;
+    if(input.sourceScene || input.sourceActivity || input.authoredActors || !/^[a-f0-9]{64}$/.test(room.sha256)) {
+      throw Error(`Invalid native room combat staging ${input.id}`);
+    }
+    poses=room.placements.map(({tag,position:[x,y,z]})=>({tag,x:Math.fround(x),y:Math.fround(y),z:Math.fround(z)}));
+    definitions=nativeActors[input.worldId];
+  }else if(input.authoredActors){
     if(input.sourceScene||input.sourceActivity)throw Error(`Ambiguous authored staging ${input.id}`);
     poses=input.authoredActors.map(({tag,position:[x,y,z]})=>({tag,x:-x,y,z}));
     definitions=input.actorDefinitions;
@@ -89,7 +96,7 @@ const encounters = spec.encounters.map(input => {
   return {id:input.id,label:input.label,area:input.area,worldId:input.worldId,provenance:input.provenance,
     ...(sceneObjects?{sceneObjects}:{}),
     ...(input.placement?{placement:input.placement}:{}),...(input.formation?{formation:input.formation}:{}),...(input.actorWorldId?{actorWorldId:input.actorWorldId}:{}),
-    ...(input.authoredActors?{authoredStaging:true}:input.sourceScene?{sourceScene:input.sourceScene}:{sourceActivity:input.sourceActivity,sha256:input.sha256}),...(input.sourcePackage?{sourcePackage:input.sourcePackage}:{}),actors,
+    ...(input.roomFight?{roomFight:{source:input.roomFight.source,sha256:input.roomFight.sha256,function:input.roomFight.function}}:input.authoredActors?{authoredStaging:true}:input.sourceScene?{sourceScene:input.sourceScene}:{sourceActivity:input.sourceActivity,sha256:input.sha256}),...(input.sourcePackage?{sourcePackage:input.sourcePackage}:{}),actors,
     actorDefinitions:actors.filter(a=>a.tag!=="AKIR").map(actor=>{
       const def=definitions?.find(def=>def.actorCode===actor.tag);
       if(!def)throw new Error(`No reviewed actor model ${actor.tag}`);return def;

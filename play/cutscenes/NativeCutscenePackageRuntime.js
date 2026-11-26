@@ -1,6 +1,7 @@
 import {
   createNativeAseqActivityRuntime,
 } from "../events/NativeAseqActivityRuntime.js";
+import { createNativeSceneGameplayState } from "../events/NativeSceneGameplayState.js";
 import { WorldWeatherRuntime } from "../world/WorldWeatherRuntime.js";
 import {
   createNativeAseqActorLookPointPresentation,
@@ -151,6 +152,8 @@ export class NativeCutscenePackageRuntime {
     this.onStopped = onStopped;
     this.activeCutsceneId = null;
     this.programLease = null;
+    this.standaloneProgramLease = null;
+    this.pendingStandaloneStop = null;
     this.completedActivity = null;
     this.programSceneState = null;
     this.programPresentationBegun = false;
@@ -402,7 +405,14 @@ export class NativeCutscenePackageRuntime {
       // Standalone AUTHs have no room-program lease to initialize their SCRL
       // slots. Use the same control state/renderer without borrowing or mutating
       // the world's script state. Program-owned slots retain their own lifetime.
-      if (this.scrollSprites && this.scrollSprites.begin(this, {
+      if (cutscene.activityProgramPresentation) {
+        // A Story director may play one AUTH from a room program and pause for
+        // gameplay. Its callbacks still need a cast lease and private room state.
+        this.standaloneProgramLease = this.beginProgram({
+          program: {id:cutscene.id},
+          sceneState:createNativeSceneGameplayState(),
+        });
+      } else if (this.scrollSprites && this.scrollSprites.begin(this, {
         scrollSpriteControlState: createNativeScrollSpriteControlState(),
       }) !== true) throw new Error(`cutscene package ${this.id} rejected standalone scroll sprites`);
       await this.playback.start({
@@ -413,8 +423,14 @@ export class NativeCutscenePackageRuntime {
       this.music.beginActivity(cutscene.activity);
       return true;
     } catch (error) {
-      this.activeCutsceneId = null;
-      this.#cleanupPresentation();
+      if (this.pendingStandaloneStop !== null) {
+        const reason = this.pendingStandaloneStop;
+        this.pendingStandaloneStop = null;
+        this.#finish(false, reason, cutscene.id);
+      } else {
+        this.activeCutsceneId = null;
+        this.#releaseStandalonePresentation("start-failed");
+      }
       throw error;
     }
   }
@@ -436,6 +452,12 @@ export class NativeCutscenePackageRuntime {
   }
 
   stop(reason = "stopped") {
+    if (this.standaloneProgramLease && this.playback.pendingStart) {
+      // The nested AUTH can be acquiring its actors asynchronously. Its abort
+      // unwinds that acquisition before start() releases the outer cast lease.
+      this.pendingStandaloneStop = reason;
+      return this.playback.stop(reason);
+    }
     const stopped = this.playback.stop(reason);
     if (this.activityRuntime?.active) {
       this.activityRuntime.rollbackActivity(reason);
@@ -515,7 +537,7 @@ export class NativeCutscenePackageRuntime {
     signal?.throwIfAborted();
     // Native owners can reference actors outside the selected AUTH's tags.
     // Prepare that declared ownership set without warming other world NPCs.
-    if (cutscene.program && this.presentation.prepareActors) {
+    if ((cutscene.program || cutscene.activityProgramPresentation) && this.presentation.prepareActors) {
       await this.presentation.prepareActors({ actors: this.definition.actorTags }, { signal });
       signal?.throwIfAborted();
     }
@@ -1016,9 +1038,16 @@ export class NativeCutscenePackageRuntime {
   #finish(completed, reason, cutsceneId = this.activeCutsceneId) {
     if (!this.activeCutsceneId || cutsceneId !== this.activeCutsceneId) return;
     this.activeCutsceneId = null;
-    this.#cleanupPresentation();
+    this.#releaseStandalonePresentation(reason);
     if (completed) this.onComplete(cutsceneId);
     else this.onStopped(reason, cutsceneId);
+  }
+
+  #releaseStandalonePresentation(reason) {
+    const owner = this.standaloneProgramLease;
+    this.standaloneProgramLease = null;
+    if (owner && this.programLease === owner) this.#endProgram(owner, reason);
+    else this.#cleanupPresentation();
   }
 
   #cleanupPresentation({ completedActivity = false } = {}) {

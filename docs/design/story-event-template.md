@@ -1167,7 +1167,7 @@ the investigation content catalog into ordinary Yarn, not a new quest system.
 | Sequence / dialogue | Original `E1030` welcome, sailors question, mockery and confrontation; then a real defensive QTE; only after winning, Hato names Charlie and describes his motorcycle, clothes and tattoo. The 25 selected original voice/subtitle lines are condensed into authored order. |
 | Camera / timing / audio | One authored room shot; original voices advance on their audio ending or supported Space input. The scene remains owned across the challenge. No invented music identity or exact native fight timing. Preserve existing room sound, weather and lighting. |
 | Challenge | Four client-timed inputs, B/A/B/A, through the same prompt system as the alley. Shift/Enter, onscreen buttons or standard gamepad B/A. The server accepts one result for the owned, ready attempt; old tokens, movie completion and Continue cannot win. Two seconds per input and strict restart are adaptations. |
-| Effects | Atomically set `story.s1.heartbeats-bar.completed` and `notebook.s1.charlie` after successful input and completed clue dialogue. No currency, item, HP or speculative native-bit effect. |
+| Effects | Atomically set `story.s1.heartbeats-bar.completed` and `notebook.s1.charlie` after successful input and completed clue dialogue. The original DHQB E1030 director reads bank 2 bits 70 and 100 at `0x9414/0x942c`. If 70 is set and 100 is clear, settlement also writes 100 and 90 at `0x94ce/0x94e6`, opening STEP 41. Other native states still earn the ordinary Story clue. |
 | Exit / retry / skip | Restore the exact prior room position, avatar visibility, camera mode and controls. Stay inside Heartbeats; the original forced ejection is not implemented. Space may advance voice lines but not prompts. Wrong/late input offers retry or leaving without progress. X/cancellation, failed preparation or disconnect settle no clue. Re-enter a cancelled event to retry; a completed event does not replay. |
 
 ### Sources and verification
@@ -1394,6 +1394,8 @@ verify that failed actor cleanup still releases the event's input token.
 
 Event ID: `story-s1-parking-lot-ambush`, official import `parking-lot-ambush`.
 
+Older Story saves predate the native milestone writes. For regional eligibility, the client and server apply the original STEP priority order to the saved bank and any earned ambush (bit 110), Charlie tattoo confrontation (140), or Chinese letter (150) completion. A later milestone closes the park window even when the earlier ambush receipt remains. Reading these receipts leaves the saved bank intact.
+
 | Field | Implemented adaptation |
 | --- | --- |
 | Location and trigger | Dobuita (`D000`), approach to You Arcade from the Suzume Park side. Cross authored region `s1.d000.arcade-ambush`, centred on the original introduction's Ryo arrival. The server checks accepted presence, not coordinates supplied in the trigger request. |
@@ -1401,7 +1403,7 @@ Event ID: `story-s1-parking-lot-ambush`, official import `parking-lot-ambush`.
 | Introduction / trap | Original DRAUTH `SEQDATA1.AUTH` and `SEQDATA2.AUTH`, packaged through the existing native cutscene player. Explicit X-skip advances these noninteractive introductions; it does not win the fight. Original cast, voices, motion, camera timeline and available BGM013 cue are reused. |
 | Fight | Ryo against Smith Bradley (`SMTH`), Harry Thompson (`HARY`), Tony Abrams (`TONY`), Takeshi Sera (`SERA`) and Jones Henders (`JONZ`). Start from the trap's decoded final AMOV positions. Shared punch, kick, throw and guard controls with earned Story moves; at most two attackers act simultaneously in this adaptation. |
 | Victory dialogue | Stage Ryo and Tony in the lot; choose Charlie or the tattoo, then play the selected original E1068 voice/subtitle lines. Both choices converge on a tattoo parlor in Yokosuka, with its location still unknown. |
-| Completion | After interrogation cleanup, atomically record the personal fight day, `story.s1.parking-lot-ambush.completed` and `notebook.s1.tattoo-parlor`. No yen, item, persistent HP or experience reward/change. |
+| Completion | After interrogation cleanup, atomically record the personal fight day, `story.s1.parking-lot-ambush.completed`, `notebook.s1.tattoo-parlor` and native bank 2 bit 110 (STEP 51). Original Disc 1 D000 function `0x84b60` runs DRAUTH and the fight at `0x8546e/0x85476`, releases the five opponents, then writes the bit at `0x8561a`. No yen, item, persistent HP or experience reward/change. |
 | Exit | Restore the pre-introduction approach position, facing and camera; release private actor/input ownership and resume the personal clock. This deliberately differs from the original parking-lot exit. |
 | Failure / cancellation | Health defeat or heartbeat/time limit offers retry or leave; retry restarts only the fight. Cancelled preparation, fight or unfinished interrogation settles no clue. Completed encounters do not replay. Reconnect reads committed progress; an uncommitted fight restarts rather than persisting every punch. |
 

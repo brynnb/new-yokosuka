@@ -106,7 +106,7 @@ export class NativeCutsceneDirector {
   ownsProgramActor(actorTag) {
     const active = this.activeCutscene;
     return Boolean(
-      active?.kind === "program"
+      (active?.kind === "program" || active?.cutscene?.activityProgramPresentation)
       && active.packageRuntime.ownsProgramActor(actorTag),
     );
   }

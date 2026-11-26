@@ -2964,6 +2964,66 @@
       "practiceDurationMs": 30000
     },
     {
+      "id": "s1.jd00.nozomi-park-rescue",
+      "label": "Protect Nozomi and Kyosuke",
+      "area": "JD00",
+      "worldId": "sakuragaoka",
+      "provenance": "JD00 fight director 0x74960 registers AKIR, ENKI and NGSM when room byte 0x4f4 has its normal zero value. Positions come from its calls to 0x73b44. Browser health uses the unscaled values at offset 0x10 from its three 0x0035 records. The room loads bgm013.snd in slot 2 at 0x74bcc and selects A8250000 at 0x74c14. Shared martial arts moves, opponent AI, speeds, rectangle and timeout are gameplay adaptations. The hidden input variant adds HRSK and changes enemy stats.",
+      "roomFight": {
+        "source": "disc1/SCENE/01/JD00/MAPINFO.BIN",
+        "sha256": "8582ed57e13593d7622d24216ef8f93e5393b13fffd2132f70500f9e6ce2a43b",
+        "function": "0x74960"
+      },
+      "actors": [
+        {
+          "tag": "AKIR",
+          "x": -21.899999618530273,
+          "y": 0.800000011920929,
+          "z": -6.900000095367432,
+          "health": 200
+        },
+        {
+          "tag": "ENKI",
+          "x": -23.600000381469727,
+          "y": 0.800000011920929,
+          "z": -8.399999618530273,
+          "health": 140
+        },
+        {
+          "tag": "NGSM",
+          "x": -21.700000762939453,
+          "y": 0.800000011920929,
+          "z": -9.100000381469727,
+          "health": 40
+        }
+      ],
+      "actorDefinitions": [
+        {
+          "actorCode": "ENKI",
+          "label": "Akio Enoki",
+          "modelCode": "YAA_L",
+          "activityOnly": true
+        },
+        {
+          "actorCode": "NGSM",
+          "label": "Tetsuya Nagashima",
+          "modelCode": "YAB_L",
+          "activityOnly": true
+        }
+      ],
+      "bounds": {
+        "minX": -25.600000381469727,
+        "maxX": -19.700000762939453,
+        "minZ": -11.100000381469727,
+        "maxZ": -4.900000095367432
+      },
+      "playerSpeed": 2.4,
+      "enemySpeed": 2.2,
+      "maxAttackers": 2,
+      "timeoutMs": 180000,
+      "musicTrack": "bgm013"
+    },
+    {
       "id": "s1.jd00.gao-rescue",
       "label": "Save Gao Wen",
       "area": "JD00",

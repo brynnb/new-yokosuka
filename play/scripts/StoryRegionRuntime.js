@@ -1,5 +1,6 @@
 import { warehouseInvestigationActive, WarehouseVisitClock } from "./WarehouseVisitClock.js";
 import { storyWeatherClassAt } from "../world/StoryWeatherClass.js";
+import {NATIVE_DIALOGUE_PREDICATE_DATA} from "../data/dialogue/nativePredicateValues.generated.js";
 import catalog from "../data/story-regions.json" with { type: "json" };
 
 // Order of 0x26b84 modes 1, 2 and 3 in the MS8S room director.
@@ -36,6 +37,19 @@ export function matchesEncounterApproach(approach, position, playerYaw) {
 }
 
 function containsPlayer(region, position, playerYaw) {
+  if (region.nativeStreetStrip) {
+    const [maximumZ, lowerSlope, lowerIntercept, upperSlope, upperIntercept] = region.nativeStreetStrip;
+    const x = Math.fround(-position[0]), z = Math.fround(position[2]);
+    const height = (slope, intercept) => Math.fround(Math.fround(x * slope) + intercept);
+    return z < maximumZ && z > height(lowerSlope, lowerIntercept) && z < height(upperSlope, upperIntercept);
+  }
+  if (region.nativeFacingRange) {
+    if (!Number.isFinite(playerYaw)) return false;
+    const yaw = Math.trunc(-playerYaw / (2 * Math.PI) * 65536) & 65535;
+    const [start, end] = region.nativeFacingRange;
+    const matches = start <= end ? yaw >= start && yaw <= end : yaw >= start || yaw <= end;
+    if (!matches) return false;
+  }
   const coordinates = region.nativeFloatBounds ? position.map(Math.fround) : position;
   return coordinates.every((value, axis) => (axis === 1 && region.horizontalOnly)
     || (value >= region.min[axis] && value <= region.max[axis]))
@@ -46,12 +60,13 @@ function containsPlayer(region, position, playerYaw) {
  * eligibility. No native-room fallback is permitted for this dispatch family.
  */
 export class StoryRegionRuntime {
-  constructor({ controller, getCharacter, getGameDate = () => null, hasNativeFlag = () => false, publishPresence, warehouseControls = () => ({}), acquireMovementLock = () => () => {}, onError = console.error, regions = catalog.regions }) {
+  constructor({ controller, getCharacter, getGameDate = () => null, hasNativeFlag = () => false, publishPresence, hasPrimaryControl = () => false, warehouseControls = () => ({}), acquireMovementLock = () => () => {}, onError = console.error, regions = catalog.regions }) {
     this.controller = controller;
     this.getCharacter = getCharacter;
     this.getGameDate = getGameDate;
     this.hasNativeFlag = hasNativeFlag;
     this.publishPresence = publishPresence;
+    this.hasPrimaryControl = hasPrimaryControl;
     this.warehouseControls = warehouseControls;
     this.warehouseClock = null;
     this.acquireMovementLock = acquireMovementLock;
@@ -121,6 +136,7 @@ export class StoryRegionRuntime {
       this.calendarDay=calendarDay;
       this.dateKey = calendarDay === "unknown" ? null : date.toISOString().slice(0,10);
     }
+    let nativeStep;
     const entered=[];
     for (const region of this.regions) {
       // Use-only bounds authorize a selected world object on the server; merely
@@ -138,12 +154,26 @@ export class StoryRegionRuntime {
         // This is dispatch only; Yarn independently checks the personal clock.
         if(!eligible){this.inside.delete(region.id);continue;}
       }
+      const inside = containsPlayer(region, position, playerYaw);
+      if (!inside) { this.inside.delete(region.id); continue; }
+      if (region.requiresPrimaryControl && !this.hasPrimaryControl()) {
+        this.inside.delete(region.id);
+        continue;
+      }
       if (region.nativeWeatherMask != null && (!(date instanceof Date) || !Number.isFinite(date.getTime()) || !(region.nativeWeatherMask & (1 << storyWeatherClassAt(date))))) {
         this.inside.delete(region.id);
         continue;
       }
-      const inside = containsPlayer(region, position, playerYaw);
-      if (!inside) { this.inside.delete(region.id); continue; }
+      if (region.nativeStep) {
+        nativeStep ??= NATIVE_DIALOGUE_PREDICATE_DATA.storyStep.records.find(({bank2Bit}) => {
+          const receipt = catalog.nativeStepReceipts[bank2Bit];
+          return this.hasNativeFlag(bank2Bit) || (receipt && character.storyFlags?.[receipt] === true);
+        })?.step ?? 0;
+        if (nativeStep < region.nativeStep[0] || nativeStep > region.nativeStep[1]) {
+          this.inside.delete(region.id);
+          continue;
+        }
+      }
       if (this.inside.has(region.id) || (!region.repeatable && character.storyFlags?.[region.completedFlag])
         || (region.requiredFlags || []).some(flag => character.storyFlags?.[flag] !== true)
         || (region.excludedFlags || []).some(flag => character.storyFlags?.[flag] === true)) continue;
@@ -152,6 +182,7 @@ export class StoryRegionRuntime {
       // before acquiring the movement lock or publishing an enter request.
       if (region.requiredMilestones?.some(({flag, nativeFlag}) =>
         character.storyFlags?.[flag] !== true && !this.hasNativeFlag(nativeFlag))) continue;
+      if (region.requiredNativeFlags?.some(index => !this.hasNativeFlag(index))) continue;
       if (region.excludedNativeFlags?.some(index => this.hasNativeFlag(index))) continue;
       entered.push(region.id);
     }

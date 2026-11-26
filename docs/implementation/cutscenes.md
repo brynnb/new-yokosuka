@@ -406,6 +406,32 @@ python3 -m tools.cutscenes.build_native_activity_preview_programs
 npm run build:native-event-program-pack
 ```
 
+In ordinary Story play, Enoki and Nagashima first confront Ryo in Dobuita.
+At Disc 1 D000 `0xa2104`, the room combines the quotient and remainder of
+the native STEP as `100 * quotient + remainder`. Selector `0x779fc` accepts
+201–303, equivalent to native STEP 21–33, when bit 852 in bank 2 is clear.
+The native STEP priority table comes from `1ST_READ.BIN` at `0x0c2780b8`.
+The existing Liu barber conversation sets bit 65 and selects STEP 24.
+The street selector also requires 11:00–14:59 and a position strictly between
+two sloping lines. In native XZ, Z must be below 60, above `1.66*x+149.708`,
+and below `1.06868*x+120.85`. Client and server use the original single-
+precision coefficients and operations. The normal trigger has no facing check.
+
+The D000 owner `0x98a80` loads DEQB and the English recording bank E1064.
+Its four 48-byte input records begin at `0xb1db4`. The first three masks
+are `0x40`, `0x100` and `0x200`, corresponding to Left, A and B on the
+clean Dreamcast path. The alternate sequence at `0x96a8c` activates a fourth
+record with mask `0x100`. Story presents the clean path using a one-second
+window for each button and provides retry or leave after a miss. Its shot,
+condensed motion choices and retry flow are adaptations. The entrance and
+both endings use sixteen of the original voiced lines, with their subtitles
+and native lip data. Their dispatch owners are `0x96eb0`, `0x97598` and
+`0x97ff8`. The winning director calls the cleanup at `0x95860`, which writes
+bank 2 bit 852 at `0x99020`. Story commits that bit after the winning ending.
+Missing the sequence or cancelling before that settlement leaves the bit
+clear. The original DEQB motions rebuild with
+`node tools/cutscenes/build_enoki_street_assets.mjs`.
+
 The same JD00 callbacks control which characters appear during the rescue.
 Before each activity, helper `0x72ef4` restores its cast. The confrontation
 then hides Ryo before the first frame. At frame 1274 he reappears. Nozomi and
@@ -420,28 +446,83 @@ sequence finishes or is cancelled. Both variants and their replays were
 checked on the real actor roots and drawable descendants on either side of
 each change. See the [Radeon visibility samples](../../tools/evidence/evsn-actor-visibility-hardware-2026-11-25.json).
 
-Automatic Story admission for this optional Sakuragaoka Park encounter is
-still open. JD00 selector `0x5aef8` requires bank-2 bit 852 set, bit 801
-clear, STEP quotient 4 or 5, time in the 08:30–18:59 window and the primary
-runtime check `0x002d(2)`. The clock-dependent `0x0176(10, …)` result must
-differ from 2. The executable at `0x0c17296a–0x0c17298a` returns 3 for
-snow, 2 for rain, 1 for cloud, and 0 otherwise, in that order. The existing
-Story weather classifier reproduces those thresholds. The current official
-Story routes do not set bit 852. The original maps contain three writes of 1
-to that bit: Disc 1 D000 at `0x99020`, Disc 2 MFSY at `0x6132e`, and
-Disc 3 MFSY at `0x6b836`. A connected route needs a reachable prerequisite
-alongside the park fight.
+Winning the street QTE records the encounter with Enoki. The story also
+needs to reach the park's later progression window. The Heartbeats bar can
+open it at STEP 41 when native bank-2 bit 70 is already set and bit 100 is
+clear. Its original DHQB cleanup then sets bits 100 and 90 at `0x94ce` and
+`0x94e6`. The parking-lot route also works without bit 70. D000's parking-lot
+director `0x84b60` writes bank-2 bit 110 at `0x8561a` after its five-person
+fight and clue. Completing that same Story encounter earns native STEP 51,
+which falls inside the park window. The Disc 1 MAPINFO write inventory and
+dialogue effect catalog contain no resolved writer for bit 70. Liu Senior's
+park schedule checks that bit, but his sailor conversation does not establish
+when the original game sets it.
 
-Two park approaches select the lead-in. The native XZ rectangle between
-(17.3, 1.6) and (18.9, 7.2) accepts heading 0x0e38–0x71c7 inclusive and
-returns selector 10. The rectangle between (9.1, 9.8) and (13.3, 12.3)
-accepts headings up to 0x2aaa or from 0xc71c and returns 11. The room
-director passes 1 or 0 respectively to `0x73de4`. After the confrontation,
-interactive routine `0x74960` registers the original participants and has
-a conditional replay back into the fight. Cleanup `0x74672` writes bit 801.
-A connected Story encounter needs that playable fight and its branch
-outcomes before awarding the bit. Both selectable films retain the preview
-route through the aftermath.
+Two later Disc 1 events close the park window in normal Story play. Charlie's
+TATQ director at `0x1d8d8` calls the winning aftermath (slot 2) at `0x1e416`,
+then sets bank 2 bit 140 at `0x1e42e`, selecting STEP 61. Ine-san's JOMO
+letter director at `0x69ce8` loads A01124, uses the MAIL prop and sets bank 2
+bit 150 at `0x6a05c`, selecting STEP 62. Both writes settle alongside their
+respective completed scenes.
+Older saves use the corresponding completed Story receipts to determine
+eligibility. This calculation preserves the native save bank.
+
+The optional encounter has a connected Story director at Sakuragaoka Park.
+JD00 selector `0x5aef8` requires bank-2 bit 852, clear bit 801, and a STEP
+quotient of 4 or 5 (raw STEP 40–59). The native clock allows 08:30 through
+18:59. Weather operation `0x0176(10, …)` excludes class 2, rain. Snow, cloud
+and clear weather remain eligible. The local director also checks primary
+gameplay control, using the original `0x002d` state and gate byte. The server
+checks the character's own clock, forecast, flags, STEP, and last accepted
+position and facing before yielding a film.
+
+| Native park selector | Original world X/Z rectangle | Native heading, inclusive | Opening film |
+| --- | --- | --- | --- |
+| 10 | (17.3, 1.6) to (18.9, 7.2) | `0x0e38`–`0x71c7` | EVSN slot 0 |
+| 11 | (9.1, 9.8) to (13.3, 12.3) | `0xc71c` through zero to `0x2aaa` | EVSN slot 3 |
+
+The room passes 1 or 0 respectively to `0x73de4`. Both leads go to EVSN
+slot 1 and a playable fight against Enoki and Nagashima. A defeat replays
+slot 1 before launching a fresh fight. Victory plays slot 2. When that
+activity finishes, the Story transaction can award bit 801, corresponding
+to room cleanup at `0x74672`. The standard film skip also finishes an
+activity. Interrupting the fight or cancelling the Story transaction before
+it settles leaves the rescue available. The fight uses the original cast, starting
+positions, health parameters and BGM013 with the project's shared fighting
+controls and opponent AI.
+
+The original also has a hidden Nozomi ally fight. Each approach director reads
+signed game-state word `0x0c220d14` through `0x01af(44)` and requires a value
+of at least 500 before launching child `0x75d54` at `0x76250` (slot 0) or
+`0x7696c` (slot 3). Each director stops its own child after the corresponding
+approach film, at `0x763fa` or `0x76b4a`. The child polls `0x0031(0)` against
+the signed 32-bit table at `0x81468`: 2, 2, 512, 4, 1024, 1024, 1024, then
+the −1 terminator. It handles repeated values and clears unfinished progress
+when its internal counter exceeds five ticks. On a match it sets room byte
+`0x4f4`. The special branch moves Nozomi beside Ryo at native position
+(22.9, 0.8, −6.9) and heading 343.3° (`0x74f1e`). It registers Ryo,
+Nozomi, Enoki and Nagashima at `0x75342/0x753ea/0x75492/0x75556`, with
+health values 200, 150, 600 and 400 respectively. The meaning of the
+500 threshold and the mapping of raw values to player controls are
+unverified. This ally branch is not yet playable in Story.
+
+The EVSN package
+retains three timing cues whose recordings have no match in the extracted
+retail voice directories: `01NVEA007`, `01NVED007` and `01NVED008`.
+Ryo and Nozomi have detailed face bindings. Enoki and Nagashima currently
+use their original body models and hands in these films.
+
+A Radeon RX 9070 XT rendered both original lead-ins (230 and 220 frames),
+the 1,671-frame confrontation and the 1,080-frame aftermath. One disposable
+character played from the Liu checkpoint through the street QTE, Heartbeats,
+the jacket inquiries, the parking-lot ambush and the alternate park entrance.
+The fixture supplied the initial checkpoint, two notebook leads, time and
+starting positions. Gameplay awarded bits 852, 110 and 801. A genuine defeat
+restarted the confrontation with both opponents at full health. Reloading two
+frames into the aftermath preserved the earlier save. Finishing it on the
+next attempt added only the rescue bit and the Story completion flag, and
+both survived reload. The [14-case hardware record](../../tools/evidence/nozomi-park-rescue-story-2026-11-25.json)
+also records weather, time, STEP, actor visibility and street grounding checks.
 
 The shared frame decoder also accepts immediate-indexed word/long clocks, as
 used by the first allowance's JOMO callback. It keeps the same exact comparison

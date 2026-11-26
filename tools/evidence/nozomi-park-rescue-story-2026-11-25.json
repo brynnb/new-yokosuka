@@ -1,0 +1,1151 @@
+{
+  "schema": "new-yokosuka/enoki-street-nozomi-park-hardware-v1",
+  "date": "2026-11-25",
+  "renderer": "ANGLE (AMD, Vulkan 1.4.335 (AMD Radeon RX 9070 XT (RADV GFX1201) (0x00007550)), radv)",
+  "storage": "Isolated PostgreSQL with disposable accounts. Private Playwright report basenames identify the original source on Kraft.",
+  "campaignCharacter": 38,
+  "campaignOrder": [
+    "park-street",
+    "park-alley",
+    "park-bar",
+    "park-ono",
+    "park-jackets",
+    "park-ambush",
+    "park-alternate"
+  ],
+  "sourceSlots": {
+    "selector10": "EVSN/SEQDATA1.AUTH (native slot 0)",
+    "selector11": "EVSN/SEQDATA4.AUTH (native slot 3)",
+    "confrontation": "EVSN/SEQDATA2.AUTH (native slot 1)",
+    "aftermath": "EVSN/SEQDATA3.AUTH (native slot 2)"
+  },
+  "scope": "Dobuita uses an authored street camera and staging with source voice, inputs, and outcome flags. JD00 uses the original four EVSN films and the shared interactive combat implementation. Campaign setup supplied the early Liu native checkpoint (65), two notebook leads, time and positioning as recorded below. No native park admission or completion flags were inserted for campaign character after the initial 65. The independent main park test seeded native 100 (STEP 41) and 852.",
+  "nativeState": "Native checks reference bank 2. In the park the final assertion compares the complete persistent bank with exactly bit 801 set in addition to its admitted contents. A loss, cancellation, or interrupted aftermath must leave the original bank intact.",
+  "cases": {
+    "park-street": {
+      "privateReport": "rerun-park-street-20261125-172414",
+      "character": 38,
+      "durationSeconds": 89.581,
+      "result": "passed",
+      "procedure": "Physical keyboard approach from [65,0,40.8] facing +Z. Wrong input reached the voiced miss, Leave preserved the save, then Left/A/B reached the final win line and set native 852.",
+      "postStreetSaveFromNextSession": {
+        "character": 38,
+        "world": "dobuita",
+        "time": "1986-12-04T12:12:03.977Z",
+        "nativeSetAmong65_100_110_801_852": [
+          65,
+          852
+        ],
+        "namedCompletion": true
+      },
+      "heard": [
+        "E1064B019",
+        "E1064B020",
+        "E1064C016",
+        "E1064B021",
+        "E1064A009",
+        "E1064B022",
+        "E1064C008",
+        "E1064B007",
+        "E1064B008",
+        "E1064C022",
+        "E1064B023",
+        "E1064A010",
+        "E1064C019",
+        "E1064A011",
+        "E1064C020",
+        "E1064B024"
+      ],
+      "inputs": [
+        {
+          "button": "Left",
+          "index": 0
+        },
+        {
+          "button": "Left",
+          "index": 0
+        },
+        {
+          "button": "A",
+          "index": 1
+        },
+        {
+          "button": "B",
+          "index": 2
+        }
+      ],
+      "completed": true,
+      "native852": true,
+      "native801": false
+    },
+    "park-alley": {
+      "privateReport": "rerun-park-alley-20261125-172634",
+      "character": 38,
+      "durationSeconds": 70.738,
+      "result": "passed",
+      "procedure": "Moved Ryo to the start of the physical approach at evening and supplied sailors and Heartbeats notebook leads. Walked to the alley, then played the QTE.",
+      "admitted": {
+        "world": "dobuita",
+        "time": "1986-12-04T19:10:00.000Z",
+        "nativeSetAmong65_100_110_801_852": [
+          65,
+          852
+        ]
+      },
+      "fixtureAdded": {
+        "native": [],
+        "flags": [
+          "notebook.s1.sailors",
+          "notebook.s1.heartbeats"
+        ]
+      },
+      "earned": {
+        "native": [],
+        "flags": [
+          "story.s1.heartbeats-alley.completed"
+        ],
+        "world": "dobuita",
+        "time": "1986-12-04T19:20:02.173Z"
+      }
+    },
+    "park-bar": {
+      "privateReport": "rerun-park-bar-20261125-172917",
+      "character": 38,
+      "durationSeconds": 81.544,
+      "result": "passed",
+      "procedure": "Walked into Heartbeats via the ordinary door. Played the bar QTE and earned the Charlie clue.",
+      "admitted": {
+        "world": "dobuita",
+        "time": "1986-12-04T19:20:02.173Z",
+        "nativeSetAmong65_100_110_801_852": [
+          65,
+          852
+        ]
+      },
+      "fixtureAdded": {
+        "native": [],
+        "flags": []
+      },
+      "earned": {
+        "native": [],
+        "flags": [
+          "story.s1.heartbeats-bar.completed",
+          "notebook.s1.charlie"
+        ],
+        "world": "dbhb",
+        "time": "1986-12-04T19:23:32.254Z"
+      }
+    },
+    "park-ono": {
+      "privateReport": "rerun-park-ono-20261125-173053",
+      "character": 38,
+      "durationSeconds": 61.873,
+      "result": "passed",
+      "procedure": "Used the ordinary door and conversation with Ono-san to earn the jacket inquiry.",
+      "admitted": {
+        "world": "dbhb",
+        "time": "1986-12-04T19:23:32.254Z",
+        "nativeSetAmong65_100_110_801_852": [
+          65,
+          852
+        ]
+      },
+      "fixtureAdded": {
+        "native": [],
+        "flags": []
+      },
+      "earned": {
+        "native": [],
+        "flags": [
+          "notebook.s1.charlie-jackets"
+        ],
+        "world": "dobuita",
+        "time": "1986-12-04T19:31:39.360Z"
+      }
+    },
+    "park-jackets": {
+      "privateReport": "rerun-park-jackets-20261125-173646",
+      "character": 38,
+      "durationSeconds": 156.223,
+      "result": "passed",
+      "procedure": "Used the wait menu until next morning and until 10:00 to meet Tsuruoka during shop hours, then asked about Charlie.",
+      "admitted": {
+        "world": "dobuita",
+        "time": "1986-12-05T08:37:42.188Z",
+        "nativeSetAmong65_100_110_801_852": [
+          65,
+          852
+        ]
+      },
+      "fixtureAdded": {
+        "native": [],
+        "flags": []
+      },
+      "earned": {
+        "native": [],
+        "flags": [
+          "notebook.s1.charlie-evening"
+        ],
+        "world": "dobuita",
+        "time": "1986-12-05T10:25:38.835Z"
+      }
+    },
+    "park-ambush": {
+      "privateReport": "rerun-park-ambush-20261125-174104",
+      "character": 38,
+      "durationSeconds": 131.4,
+      "result": "passed",
+      "procedure": "Crossed the Dobuita parking-lot gate, played the encounter, and completed the interrogation.",
+      "admitted": {
+        "world": "dobuita",
+        "time": "1986-12-05T10:25:38.835Z",
+        "nativeSetAmong65_100_110_801_852": [
+          65,
+          852
+        ]
+      },
+      "fixtureAdded": {
+        "native": [],
+        "flags": []
+      },
+      "earned": {
+        "native": [
+          110
+        ],
+        "flags": [
+          "story.s1.parking-lot-ambush.completed"
+        ],
+        "world": "dobuita",
+        "time": "1986-12-05T19:01:26.576Z"
+      }
+    },
+    "park-alternate": {
+      "privateReport": "rerun-park-alternate-20261125-174319",
+      "character": 38,
+      "durationSeconds": 469.49,
+      "result": "passed",
+      "procedure": "Preserved the same earned character. Fixture relocated Ryo to the outside of the alternate approach in the daytime. Controller cancel tested introduction; physical X canceled combat. No-input loss replayed the confrontation. A real win led to the aftermath, where page reload interrupted the pending transaction. Reentered, won, watched the aftermath to completion, and confirmed the saved result after another reload.",
+      "admitted": {
+        "world": "sakuragaoka",
+        "time": "1986-12-06T12:10:00.000Z",
+        "nativeSetAmong65_100_110_801_852": [
+          65,
+          110,
+          852
+        ]
+      },
+      "fixtureAdded": {
+        "native": [],
+        "flags": []
+      },
+      "earned": {
+        "native": [
+          801
+        ],
+        "flags": [
+          "story.s1.nozomi-park-rescue.completed"
+        ],
+        "world": "sakuragaoka",
+        "time": "1986-12-06T12:13:33.200Z"
+      },
+      "interrupted": {
+        "visits": [
+          {
+            "id": "EVSN/SEQDATA4.AUTH",
+            "duration": 220,
+            "first": 1,
+            "last": 13,
+            "frames": 21,
+            "visibleSample": {
+              "frame": 1,
+              "actors": {
+                "HRSK": 1986,
+                "ENKI": 949,
+                "NGSM": 24
+              }
+            }
+          },
+          {
+            "id": "EVSN/SEQDATA4.AUTH",
+            "duration": 220,
+            "first": 0,
+            "last": 0,
+            "frames": 2,
+            "visibleSample": {
+              "frame": 0,
+              "actors": {
+                "HRSK": 1986,
+                "ENKI": 949,
+                "NGSM": 24
+              }
+            }
+          },
+          {
+            "id": "EVSN/SEQDATA2.AUTH",
+            "duration": 1671,
+            "first": 1,
+            "last": 2,
+            "frames": 4,
+            "visibleSample": {
+              "frame": 1,
+              "actors": {
+                "HRSK": 980,
+                "ENKI": 845,
+                "NGSM": 924
+              }
+            }
+          },
+          {
+            "type": "fight",
+            "id": "s1.jd00.nozomi-park-rescue",
+            "actors": [
+              "AKIR",
+              "ENKI",
+              "NGSM"
+            ],
+            "initialHealth": [
+              200,
+              140,
+              40
+            ],
+            "health": [
+              200,
+              140,
+              40
+            ],
+            "frames": 5
+          },
+          {
+            "id": "EVSN/SEQDATA4.AUTH",
+            "duration": 220,
+            "first": 0,
+            "last": 220,
+            "frames": 443,
+            "visibleSample": {
+              "frame": 0,
+              "actors": {
+                "HRSK": 1986,
+                "ENKI": 949,
+                "NGSM": 24
+              }
+            }
+          },
+          {
+            "id": "EVSN/SEQDATA2.AUTH",
+            "duration": 1671,
+            "first": 0,
+            "last": 1671,
+            "frames": 3345,
+            "visibleSample": {
+              "frame": 160,
+              "actors": {
+                "HRSK": 2755,
+                "KKEN": 817,
+                "ENKI": 949,
+                "NGSM": 1697
+              }
+            }
+          },
+          {
+            "type": "fight",
+            "id": "s1.jd00.nozomi-park-rescue",
+            "actors": [
+              "AKIR",
+              "ENKI",
+              "NGSM"
+            ],
+            "initialHealth": [
+              200,
+              140,
+              40
+            ],
+            "health": [
+              0,
+              140,
+              40
+            ],
+            "frames": 3554
+          },
+          {
+            "id": "EVSN/SEQDATA2.AUTH",
+            "duration": 1671,
+            "first": 0,
+            "last": 1,
+            "frames": 3,
+            "visibleSample": {
+              "frame": 0,
+              "actors": {
+                "HRSK": 980,
+                "ENKI": 845,
+                "NGSM": 1310
+              }
+            }
+          },
+          {
+            "type": "fight",
+            "id": "s1.jd00.nozomi-park-rescue",
+            "actors": [
+              "AKIR",
+              "ENKI",
+              "NGSM"
+            ],
+            "initialHealth": [
+              200,
+              140,
+              40
+            ],
+            "health": [
+              86,
+              0,
+              0
+            ],
+            "frames": 10473
+          },
+          {
+            "id": "EVSN/SEQDATA3.AUTH",
+            "duration": 1080,
+            "first": 1,
+            "last": 2,
+            "frames": 4,
+            "visibleSample": {
+              "frame": 1,
+              "actors": {
+                "HRSK": 1390,
+                "KKEN": 817,
+                "ENKI": 949,
+                "NGSM": 1697
+              }
+            }
+          }
+        ],
+        "outcomes": [
+          {
+            "outcome": "defeated",
+            "health": [
+              {
+                "tag": "AKIR",
+                "hp": 0
+              },
+              {
+                "tag": "ENKI",
+                "hp": 140
+              },
+              {
+                "tag": "NGSM",
+                "hp": 40
+              }
+            ]
+          },
+          {
+            "outcome": "success",
+            "health": [
+              {
+                "tag": "AKIR",
+                "hp": 86
+              },
+              {
+                "tag": "ENKI",
+                "hp": 0
+              },
+              {
+                "tag": "NGSM",
+                "hp": 0
+              }
+            ]
+          }
+        ],
+        "approaches": [
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -11.2,
+              9.999999974197316e-07,
+              9.2
+            ],
+            "yaw": 0
+          },
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -11.2,
+              9.999999974197316e-07,
+              9.2
+            ],
+            "yaw": 0
+          },
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -11.2,
+              9.999999974197316e-07,
+              9.2
+            ],
+            "yaw": 0
+          }
+        ],
+        "errors": [],
+        "status": "running"
+      },
+      "run": {
+        "visits": [
+          {
+            "id": "EVSN/SEQDATA4.AUTH",
+            "duration": 220,
+            "first": 1,
+            "last": 3,
+            "frames": 6,
+            "visibleSample": {
+              "frame": 1,
+              "actors": {
+                "HRSK": 1986,
+                "ENKI": 949,
+                "NGSM": 24
+              }
+            }
+          },
+          {
+            "id": "EVSN/SEQDATA2.AUTH",
+            "duration": 1671,
+            "first": 1,
+            "last": 2,
+            "frames": 3,
+            "visibleSample": {
+              "frame": 1,
+              "actors": {
+                "HRSK": 980,
+                "ENKI": 845,
+                "NGSM": 924
+              }
+            }
+          },
+          {
+            "type": "fight",
+            "id": "s1.jd00.nozomi-park-rescue",
+            "actors": [
+              "AKIR",
+              "ENKI",
+              "NGSM"
+            ],
+            "initialHealth": [
+              200,
+              140,
+              40
+            ],
+            "health": [
+              50,
+              0,
+              0
+            ],
+            "frames": 6642
+          },
+          {
+            "id": "EVSN/SEQDATA3.AUTH",
+            "duration": 1080,
+            "first": 1,
+            "last": 1080,
+            "frames": 2162,
+            "visibleSample": {
+              "frame": 1,
+              "actors": {
+                "HRSK": 1746,
+                "KKEN": 817,
+                "ENKI": 949,
+                "NGSM": 1697
+              }
+            }
+          }
+        ],
+        "outcomes": [
+          {
+            "outcome": "success",
+            "health": [
+              {
+                "tag": "AKIR",
+                "hp": 50
+              },
+              {
+                "tag": "ENKI",
+                "hp": 0
+              },
+              {
+                "tag": "NGSM",
+                "hp": 0
+              }
+            ]
+          }
+        ],
+        "approaches": [
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -11.2,
+              9.999999974197316e-07,
+              9.2
+            ],
+            "yaw": 0
+          }
+        ],
+        "errors": [],
+        "status": "idle"
+      },
+      "reload": {
+        "visits": [],
+        "outcomes": [],
+        "approaches": [
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -11.2,
+              9.999999974197316e-07,
+              9.2
+            ],
+            "yaw": 0
+          }
+        ],
+        "errors": [],
+        "status": "idle"
+      }
+    },
+    "park-main": {
+      "privateReport": "rerun-park-main-20261125-171740",
+      "character": 36,
+      "durationSeconds": 243.561,
+      "result": "passed",
+      "procedure": "Private daylight/checkpoint setup. Controller cancellation during introduction and fight left the save unchanged. Normal complete primary route reached the final frame of the aftermath. Reload and approach did not replay it.",
+      "run": {
+        "visits": [
+          {
+            "id": "EVSN/SEQDATA1.AUTH",
+            "duration": 230,
+            "first": 1,
+            "last": 8,
+            "frames": 12
+          },
+          {
+            "id": "EVSN/SEQDATA1.AUTH",
+            "duration": 230,
+            "first": 0,
+            "last": 1,
+            "frames": 2
+          },
+          {
+            "id": "EVSN/SEQDATA2.AUTH",
+            "duration": 1671,
+            "first": 1,
+            "last": 2,
+            "frames": 4
+          },
+          {
+            "type": "fight",
+            "id": "s1.jd00.nozomi-park-rescue",
+            "actors": [
+              "AKIR",
+              "ENKI",
+              "NGSM"
+            ],
+            "initialHealth": [
+              200,
+              140,
+              40
+            ],
+            "health": [
+              200,
+              140,
+              40
+            ],
+            "frames": 3
+          },
+          {
+            "id": "EVSN/SEQDATA1.AUTH",
+            "duration": 230,
+            "first": 1,
+            "last": 230,
+            "frames": 457
+          },
+          {
+            "id": "EVSN/SEQDATA2.AUTH",
+            "duration": 1671,
+            "first": 1,
+            "last": 1671,
+            "frames": 3340
+          },
+          {
+            "type": "fight",
+            "id": "s1.jd00.nozomi-park-rescue",
+            "actors": [
+              "AKIR",
+              "ENKI",
+              "NGSM"
+            ],
+            "initialHealth": [
+              200,
+              140,
+              40
+            ],
+            "health": [
+              33,
+              0,
+              0
+            ],
+            "frames": 7638
+          },
+          {
+            "id": "EVSN/SEQDATA3.AUTH",
+            "duration": 1080,
+            "first": 1,
+            "last": 1080,
+            "frames": 2161
+          }
+        ],
+        "outcomes": [],
+        "approaches": [
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -16.7,
+              0.0013406101079496135,
+              4.4
+            ],
+            "yaw": -1.5707963267948966
+          },
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -16.7,
+              0.0013406101079496135,
+              4.4
+            ],
+            "yaw": -1.5707963267948966
+          },
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -16.7,
+              0.0013406101079496135,
+              4.4
+            ],
+            "yaw": -1.5707963267948966
+          }
+        ],
+        "errors": [],
+        "status": "idle"
+      },
+      "reload": {
+        "visits": [],
+        "outcomes": [],
+        "approaches": [
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -16.7,
+              0.0013406101079496135,
+              4.4
+            ],
+            "yaw": -1.5707963267948966
+          }
+        ],
+        "errors": [],
+        "status": "idle"
+      }
+    },
+    "park-visual": {
+      "privateReport": "rerun-park-visual-20261125-173201",
+      "character": 41,
+      "durationSeconds": 8.303,
+      "result": "passed",
+      "procedure": "Independent main-entry visual check using active, visible mesh geometry inside the playing camera. Controller cancellation released the scene.",
+      "admitted": {
+        "world": "sakuragaoka",
+        "time": "1986-12-06T12:10:00.000Z",
+        "nativeSetAmong65_100_110_801_852": [
+          100,
+          852
+        ]
+      },
+      "fixtureAdded": {
+        "native": [
+          100,
+          852
+        ],
+        "flags": []
+      },
+      "earned": {
+        "native": [],
+        "flags": [],
+        "world": "sakuragaoka",
+        "time": "1986-12-06T12:11:09.936Z"
+      },
+      "run": {
+        "visits": [
+          {
+            "id": "EVSN/SEQDATA1.AUTH",
+            "duration": 230,
+            "first": 1,
+            "last": 11,
+            "frames": 16,
+            "visibleSample": {
+              "frame": 1,
+              "actors": {
+                "HRSK": 1986,
+                "ENKI": 949,
+                "NGSM": 24
+              }
+            }
+          }
+        ],
+        "outcomes": [],
+        "approaches": [
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -16.7,
+              0.0013406101079496135,
+              4.4
+            ],
+            "yaw": -1.5707963267948966
+          }
+        ],
+        "errors": [],
+        "status": "idle"
+      }
+    },
+    "park-street-rendered": {
+      "privateReport": "rerun-park-street-20261125-173928",
+      "character": 44,
+      "durationSeconds": 90.485,
+      "result": "passed",
+      "procedure": "Independent repeat with camera-frustum visibility and measured terrain assertions for all three actors during introduction, miss, and win.",
+      "admitted": {
+        "world": "dobuita",
+        "time": "1986-12-04T12:10:00.000Z",
+        "nativeSetAmong65_100_110_801_852": [
+          65
+        ]
+      },
+      "fixtureAdded": {
+        "native": [
+          65
+        ],
+        "flags": []
+      },
+      "earned": {
+        "native": [
+          852
+        ],
+        "flags": [
+          "story.s1.enoki-street.completed"
+        ],
+        "world": "dobuita",
+        "time": "1986-12-04T12:11:57.102Z"
+      },
+      "heard": [
+        "E1064B019",
+        "E1064B020",
+        "E1064C016",
+        "E1064B021",
+        "E1064A009",
+        "E1064B022",
+        "E1064C008",
+        "E1064B007",
+        "E1064B008",
+        "E1064C022",
+        "E1064B023",
+        "E1064A010",
+        "E1064C019",
+        "E1064A011",
+        "E1064C020",
+        "E1064B024"
+      ],
+      "inputs": [
+        {
+          "button": "Left",
+          "index": 0
+        },
+        {
+          "button": "Left",
+          "index": 0
+        },
+        {
+          "button": "A",
+          "index": 1
+        },
+        {
+          "button": "B",
+          "index": 2
+        }
+      ],
+      "shots": {
+        "s1.d000.enoki-street-intro": [
+          {
+            "tag": "AKIR",
+            "position": [
+              65,
+              0.07240000367164612,
+              46.5
+            ],
+            "floor": 0.07240000367164617,
+            "vertices": 1597
+          },
+          {
+            "tag": "ENKI",
+            "position": [
+              65,
+              0.07240000367164612,
+              48.099998474121094
+            ],
+            "floor": 0.07240000367164612,
+            "vertices": 949
+          },
+          {
+            "tag": "NGSM",
+            "position": [
+              63.900001525878906,
+              0.07240000367164612,
+              48.150001525878906
+            ],
+            "floor": 0.07240000367164612,
+            "vertices": 924
+          }
+        ],
+        "s1.d000.enoki-street-miss": [
+          {
+            "tag": "AKIR",
+            "position": [
+              65,
+              0.07240000367164612,
+              46.5
+            ],
+            "floor": 0.07240000367164617,
+            "vertices": 1597
+          },
+          {
+            "tag": "ENKI",
+            "position": [
+              65,
+              0.07240000367164612,
+              48.099998474121094
+            ],
+            "floor": 0.07240000367164612,
+            "vertices": 949
+          },
+          {
+            "tag": "NGSM",
+            "position": [
+              63.900001525878906,
+              0.07240000367164612,
+              48.150001525878906
+            ],
+            "floor": 0.07240000367164612,
+            "vertices": 924
+          }
+        ],
+        "s1.d000.enoki-street-win": [
+          {
+            "tag": "AKIR",
+            "position": [
+              65,
+              0.07240000367164612,
+              46.5
+            ],
+            "floor": 0.07240000367164617,
+            "vertices": 1597
+          },
+          {
+            "tag": "ENKI",
+            "position": [
+              65,
+              0.07240000367164612,
+              48.099998474121094
+            ],
+            "floor": 0.07240000367164612,
+            "vertices": 949
+          },
+          {
+            "tag": "NGSM",
+            "position": [
+              63.900001525878906,
+              0.07240000367164612,
+              48.150001525878906
+            ],
+            "floor": 0.07240000367164612,
+            "vertices": 924
+          }
+        ]
+      },
+      "completed": true,
+      "native852": true,
+      "native801": false
+    },
+    "park-blocked": {
+      "privateReport": "rerun-park-blocked-20261125-171648",
+      "character": 33,
+      "durationSeconds": 8.079,
+      "result": "passed",
+      "procedure": "Missing native 852. Crossed both original regions with native primary control.",
+      "run": {
+        "visits": [],
+        "outcomes": [],
+        "approaches": [
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -16.7,
+              0.0013406101079496135,
+              4.4
+            ],
+            "yaw": -1.5707963267948966
+          },
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -11.2,
+              9.999999974197316e-07,
+              9.2
+            ],
+            "yaw": 0
+          }
+        ],
+        "errors": [],
+        "status": "idle"
+      }
+    },
+    "park-early-step": {
+      "privateReport": "rerun-park-early-step-20261125-173214",
+      "character": 42,
+      "durationSeconds": 8.58,
+      "result": "passed",
+      "procedure": "852 present at early native STEP 24 (bit 65). Crossed both original regions.",
+      "admitted": {
+        "world": "sakuragaoka",
+        "time": "1986-12-06T12:10:00.000Z",
+        "nativeSetAmong65_100_110_801_852": [
+          65,
+          852
+        ]
+      },
+      "fixtureAdded": {
+        "native": [
+          65,
+          852
+        ],
+        "flags": []
+      },
+      "earned": {
+        "native": [],
+        "flags": [],
+        "world": "sakuragaoka",
+        "time": "1986-12-06T12:11:26.879Z"
+      },
+      "run": {
+        "visits": [],
+        "outcomes": [],
+        "approaches": [
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -16.7,
+              0.0013406101079496135,
+              4.4
+            ],
+            "yaw": -1.5707963267948966
+          },
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -11.2,
+              9.999999974197316e-07,
+              9.2
+            ],
+            "yaw": 0
+          }
+        ],
+        "errors": [],
+        "status": "idle"
+      }
+    },
+    "park-rain": {
+      "privateReport": "rerun-park-rain-20261125-171715",
+      "character": 34,
+      "durationSeconds": 8.163,
+      "result": "passed",
+      "procedure": "Rain on 1986-12-05 at 12:10. Crossed both original regions with 852 and STEP 41.",
+      "run": {
+        "visits": [],
+        "outcomes": [],
+        "approaches": [
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -16.7,
+              0.0013406101079496135,
+              4.4
+            ],
+            "yaw": -1.5707963267948966
+          },
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -11.2,
+              9.999999974197316e-07,
+              9.2
+            ],
+            "yaw": 0
+          }
+        ],
+        "errors": [],
+        "status": "idle"
+      }
+    },
+    "park-night": {
+      "privateReport": "rerun-park-night-20261125-171727",
+      "character": 35,
+      "durationSeconds": 8.025,
+      "result": "passed",
+      "procedure": "Outside hours at 19:10. Crossed both original regions with 852 and STEP 41.",
+      "run": {
+        "visits": [],
+        "outcomes": [],
+        "approaches": [
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -16.7,
+              0.0013406101079496135,
+              4.4
+            ],
+            "yaw": -1.5707963267948966
+          },
+          {
+            "primary": true,
+            "position": "sakuragaoka",
+            "before": [
+              -11.2,
+              9.999999974197316e-07,
+              9.2
+            ],
+            "yaw": 0
+          }
+        ],
+        "errors": [],
+        "status": "idle"
+      }
+    }
+  }
+}

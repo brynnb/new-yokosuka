@@ -1,3 +1,5 @@
+import {nativePrimaryStateOneAvailable} from "../events/NativePrimaryRuntimeState.js";
+
 export function warehouseInvestigationActive(character) {
   const flags = character?.storyFlags;
   return character?.playMode === "story" && character.openingCompleted === true
@@ -10,8 +12,7 @@ export function warehouseInvestigationActive(character) {
 // native interpreter's transient currentEventPresent bit describes its own VM.
 export function warehouseDirectorAvailable(sceneState, activityEnabled) {
   const primary = sceneState.readPrimaryRuntimeState();
-  if (!activityEnabled || !primary?.available || primary.stateDword1f8 !== 1
-    || (primary.gateByte !== 0 && primary.gateByte !== 1)) return false;
+  if (!activityEnabled || !nativePrimaryStateOneAvailable(primary)) return false;
   const read = (offset, width = 4) => sceneState.readNativeField({offset, width});
   // Global controller 0x0c173f44 selectors 6 and 3; the native manager may
   // not have been initialized at all in the browser's current room.

@@ -34,6 +34,13 @@ const PLAYER_MOTIONS = new Map([
 ]);
 
 const ACTIVITIES = new Map([
+  ...[["main",0x81492],["confrontation",0x814a2],["aftermath",0x814c2],["alternate",0x814d2]].map(([part,primaryPointer],slot) => [
+    `s1.jd00.nozomi-park-rescue-${part}.scene`, {
+      kind:"native-cutscene", area:"JD00", durableEffects:"forbidden", returnPlayerState:true,
+      cutscene:{id:`story-s1-nozomi-park-rescue-${part}`, packageId:"evsn", worldId:"sakuragaoka", storyPresentation:true, activityProgramPresentation:true,
+        activity:{slot,binding:{primaryPointer,secondaryPointer:primaryPointer+5}}},
+    },
+  ]),
   ["s1.mfsy.harbor-bus-arrival.scene",{kind:"native-cutscene",area:"MFSY",durableEffects:"forbidden",returnPlayerState:true,
     cutscene:{id:"story-s1-harbor-bus-arrival",packageId:"harbor-bus-arrival",worldId:"mfsy",storyPresentation:true,
       activity:{slot:0,binding:{kind:"map-embedded-slot",activityId:"YBUSFLY/SEQDATAD.AUTH"}}}}],
