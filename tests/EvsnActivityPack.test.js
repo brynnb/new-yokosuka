@@ -2,9 +2,44 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import { extractNativeAseqCallbackObjectPresentation } from "../tools/lib/NativeAseqCallbackObjectPresentation.mjs";
+import { extractNativeAseqActorVisibility } from "../tools/lib/NativeAseqCallbackActorVisibility.mjs";
 import { extractNativeAseqCallbackHandPresentation } from "../tools/lib/NativeAseqCallbackPresentation.mjs";
 
 const manifest = JSON.parse(readFileSync("play/assets/sakuragaoka/evsn/manifest.json"));
+
+test("EVSN reinitializes the active cast, then hides and reveals actors at the original callback counters", () => {
+  const evidence = JSON.parse(readFileSync("tools/evidence/evsn-hand-native-callback-ir.json"));
+  const functions = [evidence.function, ...evidence.supportingFunctions];
+  const bytes = readFileSync("extracted_files/data/SCENE/01/JD00/MAPINFO.BIN");
+  const initializer = functions.find(fn => fn.id === "0x72ef4");
+  const callbacks = ["0x721f8", "0x72300", "0x729e0", "0x721f8"];
+  const cast = ["AKIR", "HRSK", "KKEN", "NGSM", "ENKI"];
+  const changes = [
+    [],
+    [[0,"AKIR",false,"0x72456","0x724b2"],[1274,"AKIR",true,"0x72662","0x72686"],
+      [1400,"HRSK",false,"0x7271a","0x72776"],[1400,"KKEN",false,"0x727a6","0x72802"]],
+    [[248,"NGSM",false,"0x72bf6","0x72c52"],[332,"ENKI",false,"0x72d52","0x72dae"]],
+    [],
+  ];
+  for (const activity of manifest.activities) {
+    const callback = functions.find(fn => fn.id === callbacks[activity.slot]);
+    const frames = extractNativeAseqActorVisibility({bytes, callback, initializer, functions, actors:activity.actors});
+    assert.deepEqual(activity.programPresentationCues.frames, frames);
+    const cues = frames.flatMap(({frame,cues}) => cues.map(cue => ({frame, ...cue})));
+    assert.deepEqual(cues.filter(cue => cue.source.callbackFunction === initializer.id)
+      .map(cue => [cue.frame, cue.actorTag, cue.enabled]),
+      cast.filter(tag => activity.actors.includes(tag)).map(tag => [0, tag, true]));
+    assert.deepEqual(cues.filter(cue => cue.source.callbackFunction === callback.id)
+      .map(cue => [cue.frame, cue.actorTag, cue.enabled, cue.source.rootCallFileOffset, cue.source.callFileOffset]),
+      changes[activity.slot]);
+  }
+  // Flipping the literal at the real NGSM hide makes both alternative root
+  // operations inactive. The binary can no longer justify hiding that actor.
+  const altered = Buffer.from(bytes);
+  altered.writeUInt16LE(0xe400, 0x72bd4);
+  assert.throws(() => extractNativeAseqActorVisibility({bytes:altered,callback:functions.find(fn => fn.id === callbacks[2]),
+    initializer,functions,actors:manifest.activities[2].actors}), /root and associated presentation differ/);
+});
 
 test("EVSN keeps source-ordered hand setup and changes for each selected activity", () => {
   const evidence = JSON.parse(readFileSync("tools/evidence/evsn-hand-native-callback-ir.json"));

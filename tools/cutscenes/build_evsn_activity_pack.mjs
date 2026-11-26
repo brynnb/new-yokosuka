@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 
 import { buildNativeAseqActivityPack, sha256 } from "../lib/NativeAseqActivityPack.mjs";
 import { extractNativeAseqCallbackObjectPresentation } from "../lib/NativeAseqCallbackObjectPresentation.mjs";
+import { extractNativeAseqActorVisibility } from "../lib/NativeAseqCallbackActorVisibility.mjs";
 import { extractNativeAseqCallbackHandPresentation } from "../lib/NativeAseqCallbackPresentation.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -41,7 +42,7 @@ for (const ownerId of lifecycle.owner.activityOwners) {
   callbackBySlot.set(calls[0].arguments[0].value, handFunctions.find(fn => fn.id === calls[0].targetFileOffset));
 }
 const nativeHandPoseTables = {};
-const handCues = (slot, actors) => {
+const actorCues = (slot, actors) => {
   const nativeFunction = callbackBySlot.get(slot);
   if (!nativeFunction) throw new Error(`EVSN slot ${slot} has no hand callback`);
   const result = extractNativeAseqCallbackHandPresentation({ bytes: mapinfo, nativeFunction,
@@ -55,7 +56,9 @@ const handCues = (slot, actors) => {
     if (cue.frame !== 0) throw new Error(`EVSN slot ${slot} has a timed hand cue for absent ${cue.actorTag}`);
     return false;
   };
-  return { nativeHandPoseCues: result.nativeHandPoseCues.filter(active),
+  const frames = extractNativeAseqActorVisibility({bytes:mapinfo,callback:nativeFunction,
+    initializer:handFunctions.find(fn=>fn.id==="0x72ef4"),functions:handFunctions,actors});
+  return { programPresentationCues:{frames}, nativeHandPoseCues: result.nativeHandPoseCues.filter(active),
     nativeBodyHandPoseCues: result.nativeBodyHandPoseCues.filter(active) };
 };
 const handResources = [
@@ -181,7 +184,7 @@ buildNativeAseqActivityPack({
     secondaryPointer: 0x81497,
     file: "SEQDATA1.AUTH",
     actors: ["AKIR", "ENKI", "HRSK"],
-    ...handCues(0, ["AKIR", "ENKI", "HRSK"]),
+    ...actorCues(0, ["AKIR", "ENKI", "HRSK"]),
     durationFrames: 230,
     frameCount: 9,
     commandCounts: { camera: 1, move: 3, motion: 1, voice: 3, sound: 5 },
@@ -191,7 +194,7 @@ buildNativeAseqActivityPack({
     secondaryPointer: 0x814a7,
     file: "SEQDATA2.AUTH",
     actors: ["NGSM", "HRSK", "AKIR", "ENKI", "AIRO", "KKEN"],
-    ...handCues(1, ["NGSM", "HRSK", "AKIR", "ENKI", "AIRO", "KKEN"]),
+    ...actorCues(1, ["NGSM", "HRSK", "AKIR", "ENKI", "AIRO", "KKEN"]),
     durationFrames: 1671,
     frameCount: 77,
     commandCounts: { camera: 1, move: 6, motion: 8, effect: 9, voice: 19, sound: 47 },
@@ -201,7 +204,7 @@ buildNativeAseqActivityPack({
     secondaryPointer: 0x814c7,
     file: "SEQDATA3.AUTH",
     actors: ["NGSM", "HRSK", "AKIR", "ENKI", "KKEN"],
-    ...handCues(2, ["NGSM", "HRSK", "AKIR", "ENKI", "KKEN"]),
+    ...actorCues(2, ["NGSM", "HRSK", "AKIR", "ENKI", "KKEN"]),
     durationFrames: 1080,
     frameCount: 47,
     commandCounts: { camera: 1, move: 5, motion: 6, effect: 13, voice: 12, sound: 21 },
@@ -211,7 +214,7 @@ buildNativeAseqActivityPack({
     secondaryPointer: 0x814d7,
     file: "SEQDATA4.AUTH",
     actors: ["AKIR", "ENKI", "HRSK"],
-    ...handCues(3, ["AKIR", "ENKI", "HRSK"]),
+    ...actorCues(3, ["AKIR", "ENKI", "HRSK"]),
     durationFrames: 220,
     frameCount: 9,
     commandCounts: { camera: 1, move: 3, motion: 1, voice: 3, sound: 5 },

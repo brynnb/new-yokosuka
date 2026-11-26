@@ -586,6 +586,45 @@
         "ENKI",
         "HRSK"
       ],
+      "programPresentationCues": {
+        "frames": [
+          {
+            "frame": 0,
+            "cues": [
+              {
+                "kind": "actor-visibility",
+                "actorTag": "AKIR",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x72fba",
+                  "callFileOffset": "0x72fde"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "HRSK",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x73046",
+                  "callFileOffset": "0x7306a"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "ENKI",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x731ea",
+                  "callFileOffset": "0x7320e"
+                }
+              }
+            ]
+          }
+        ]
+      },
       "nativeHandPoseCues": [
         {
           "activitySlot": 0,
@@ -763,6 +802,115 @@
         "AIRO",
         "KKEN"
       ],
+      "programPresentationCues": {
+        "frames": [
+          {
+            "frame": 0,
+            "cues": [
+              {
+                "kind": "actor-visibility",
+                "actorTag": "AKIR",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x72fba",
+                  "callFileOffset": "0x72fde"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "HRSK",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x73046",
+                  "callFileOffset": "0x7306a"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "KKEN",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x730d2",
+                  "callFileOffset": "0x730f6"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "NGSM",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x7315e",
+                  "callFileOffset": "0x73182"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "ENKI",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x731ea",
+                  "callFileOffset": "0x7320e"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "AKIR",
+                "enabled": false,
+                "source": {
+                  "callbackFunction": "0x72300",
+                  "rootCallFileOffset": "0x72456",
+                  "callFileOffset": "0x724b2"
+                }
+              }
+            ]
+          },
+          {
+            "frame": 1274,
+            "cues": [
+              {
+                "kind": "actor-visibility",
+                "actorTag": "AKIR",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72300",
+                  "rootCallFileOffset": "0x72662",
+                  "callFileOffset": "0x72686"
+                }
+              }
+            ]
+          },
+          {
+            "frame": 1400,
+            "cues": [
+              {
+                "kind": "actor-visibility",
+                "actorTag": "HRSK",
+                "enabled": false,
+                "source": {
+                  "callbackFunction": "0x72300",
+                  "rootCallFileOffset": "0x7271a",
+                  "callFileOffset": "0x72776"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "KKEN",
+                "enabled": false,
+                "source": {
+                  "callbackFunction": "0x72300",
+                  "rootCallFileOffset": "0x727a6",
+                  "callFileOffset": "0x72802"
+                }
+              }
+            ]
+          }
+        ]
+      },
       "nativeHandPoseCues": [
         {
           "activitySlot": 1,
@@ -1188,6 +1336,95 @@
         "ENKI",
         "KKEN"
       ],
+      "programPresentationCues": {
+        "frames": [
+          {
+            "frame": 0,
+            "cues": [
+              {
+                "kind": "actor-visibility",
+                "actorTag": "AKIR",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x72fba",
+                  "callFileOffset": "0x72fde"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "HRSK",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x73046",
+                  "callFileOffset": "0x7306a"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "KKEN",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x730d2",
+                  "callFileOffset": "0x730f6"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "NGSM",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x7315e",
+                  "callFileOffset": "0x73182"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "ENKI",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x731ea",
+                  "callFileOffset": "0x7320e"
+                }
+              }
+            ]
+          },
+          {
+            "frame": 248,
+            "cues": [
+              {
+                "kind": "actor-visibility",
+                "actorTag": "NGSM",
+                "enabled": false,
+                "source": {
+                  "callbackFunction": "0x729e0",
+                  "rootCallFileOffset": "0x72bf6",
+                  "callFileOffset": "0x72c52"
+                }
+              }
+            ]
+          },
+          {
+            "frame": 332,
+            "cues": [
+              {
+                "kind": "actor-visibility",
+                "actorTag": "ENKI",
+                "enabled": false,
+                "source": {
+                  "callbackFunction": "0x729e0",
+                  "rootCallFileOffset": "0x72d52",
+                  "callFileOffset": "0x72dae"
+                }
+              }
+            ]
+          }
+        ]
+      },
       "nativeHandPoseCues": [
         {
           "activitySlot": 2,
@@ -1637,6 +1874,45 @@
         "ENKI",
         "HRSK"
       ],
+      "programPresentationCues": {
+        "frames": [
+          {
+            "frame": 0,
+            "cues": [
+              {
+                "kind": "actor-visibility",
+                "actorTag": "AKIR",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x72fba",
+                  "callFileOffset": "0x72fde"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "HRSK",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x73046",
+                  "callFileOffset": "0x7306a"
+                }
+              },
+              {
+                "kind": "actor-visibility",
+                "actorTag": "ENKI",
+                "enabled": true,
+                "source": {
+                  "callbackFunction": "0x72ef4",
+                  "rootCallFileOffset": "0x731ea",
+                  "callFileOffset": "0x7320e"
+                }
+              }
+            ]
+          }
+        ]
+      },
       "nativeHandPoseCues": [
         {
           "activitySlot": 3,

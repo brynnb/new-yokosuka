@@ -969,6 +969,13 @@ export class NativeCutscenePackageRuntime {
         this.programSceneState.nativeSecondaryMotionControlState.writeGlobalFloat(cue.mode, cue.word);
         continue;
       }
+      if (cue?.kind === "actor-visibility") {
+        if (!this.actors.activeActor(cue.actorTag)) throw new Error("Unknown AUTH visibility actor " + cue.actorTag);
+        this.programSceneState.writeObjectRuntimeFlag(cue.actorTag, cue.enabled);
+        this.programSceneState.writeObjectPresentationFlag(cue.actorTag, cue.enabled);
+        this.updateProgramPresentation();
+        continue;
+      }
       if (cue?.kind === "scene-object-state") {
         if (this.sceneObjects?.applyStateCue(cue) !== true) throw new Error("AUTH scene-object state cue was rejected");
         continue;

@@ -406,6 +406,43 @@ python3 -m tools.cutscenes.build_native_activity_preview_programs
 npm run build:native-event-program-pack
 ```
 
+The same JD00 callbacks control which characters appear during the rescue.
+Before each activity, helper `0x72ef4` restores its cast. The confrontation
+then hides Ryo before the first frame. At frame 1274 he reappears. Nozomi and
+Kyosuke disappear at frame 1400. The aftermath starts with the cast visible,
+then removes Nagashima at frame 248 and Enoki at frame 332. The compiler emits
+two alternative `0x001f` root operations followed by one `0x00a8` presentation
+write. The builder reads the original constant branch, verifies that the
+selected root operation agrees with the presentation write, and records both
+call offsets. Both selectable rescue variants apply those changes through the
+composite presentation owner, which restores its actors when the
+sequence finishes or is cancelled. Both variants and their replays were
+checked on the real actor roots and drawable descendants on either side of
+each change. See the [Radeon visibility samples](../../tools/evidence/evsn-actor-visibility-hardware-2026-11-25.json).
+
+Automatic Story admission for this optional Sakuragaoka Park encounter is
+still open. JD00 selector `0x5aef8` requires bank-2 bit 852 set, bit 801
+clear, STEP quotient 4 or 5, time in the 08:30–18:59 window and the primary
+runtime check `0x002d(2)`. The clock-dependent `0x0176(10, …)` result must
+differ from 2. The executable at `0x0c17296a–0x0c17298a` returns 3 for
+snow, 2 for rain, 1 for cloud, and 0 otherwise, in that order. The existing
+Story weather classifier reproduces those thresholds. The current official
+Story routes do not set bit 852. The original maps contain three writes of 1
+to that bit: Disc 1 D000 at `0x99020`, Disc 2 MFSY at `0x6132e`, and
+Disc 3 MFSY at `0x6b836`. A connected route needs a reachable prerequisite
+alongside the park fight.
+
+Two park approaches select the lead-in. The native XZ rectangle between
+(17.3, 1.6) and (18.9, 7.2) accepts heading 0x0e38–0x71c7 inclusive and
+returns selector 10. The rectangle between (9.1, 9.8) and (13.3, 12.3)
+accepts headings up to 0x2aaa or from 0xc71c and returns 11. The room
+director passes 1 or 0 respectively to `0x73de4`. After the confrontation,
+interactive routine `0x74960` registers the original participants and has
+a conditional replay back into the fight. Cleanup `0x74672` writes bit 801.
+A connected Story encounter needs that playable fight and its branch
+outcomes before awarding the bit. Both selectable films retain the preview
+route through the aftermath.
+
 The shared frame decoder also accepts immediate-indexed word/long clocks, as
 used by the first allowance's JOMO callback. It keeps the same exact comparison
 and branch checks; no per-scene frame override is needed. Callback visibility

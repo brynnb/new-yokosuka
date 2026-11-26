@@ -108,6 +108,35 @@ for (const [id, leadSlot] of [["S1-EVSN-01", 0], ["S1-EVSN-02", 3]]) {
       page, cutscene: availableCutscene(id), completionTimeout, testInfo, verifyReplay: true,
       inspectPlayback: async ({ page, report }) => {
         report.handSamples = [];
+        const confrontation = evsn.activities.find(activity => activity.slot === 1).activityId;
+        const aftermathId = evsn.activities.find(activity => activity.slot === 2).activityId;
+        const visibilityEdges = [
+          {id:confrontation, frame:1274, tag:"AKIR", after:true},
+          {id:confrontation, frame:1400, tag:"HRSK", after:false},
+          {id:confrontation, frame:1400, tag:"KKEN", after:false},
+          {id:aftermathId, frame:248, tag:"NGSM", after:false},
+          {id:aftermathId, frame:332, tag:"ENKI", after:false},
+        ];
+        await page.evaluate(({edges,aftermathId}) => {
+          const proof = window.__rescueActorVisibility = {edges:edges.map(edge=>({...edge})),reset:null};
+          function sample() {
+            const {id,frame}=window.__cutsceneBrowserProbe.activity;
+            if (id===aftermathId && frame<100 && !proof.reset) {
+              const actors=window.__sampleCutsceneActors(["AKIR","HRSK","KKEN","NGSM","ENKI"]);
+              if(Object.keys(actors).length===5 && Object.values(actors).every(Boolean))
+                proof.reset={frame,actors};
+            }
+            for(const edge of proof.edges) {
+              if(id!==edge.id || frame<edge.frame-8 || edge.observedAfter)continue;
+              const actor=window.__sampleCutsceneActors([edge.tag])[edge.tag];
+              if (!actor)continue;
+              if(frame<edge.frame)edge.observedBefore={frame,...actor};
+              else edge.observedAfter={frame,...actor};
+            }
+            if (!proof.reset || proof.edges.some(edge=>!edge.observedAfter))requestAnimationFrame(sample);
+          }
+          requestAnimationFrame(sample);
+        },{edges:visibilityEdges,aftermathId});
         for (const [slot, sampleFrame] of [[leadSlot, 35], [1, 975], [1, 1210], [1, 1245], [1, 1335], [1, 1600], [2, 40], [2, 330], [2, 435], [2, 550]]) {
           const activity = evsn.activities.find(a => a.slot === slot);
           await page.waitForFunction(({ id, frame }) => window.__cutsceneBrowserProbe.activity.id === id
@@ -122,7 +151,11 @@ for (const [id, leadSlot] of [["S1-EVSN-01", 0], ["S1-EVSN-02", 3]]) {
             const latest = cues.filter(cue => cue.poseTableOffset || cue.releaseDetailed).at(-1);
             const detailed = Boolean(latest?.poseTableOffset);
             expect(hand.detailed, `${slot}/${sampleFrame} ${hand.actorTag}/${hand.side}`).toBe(detailed);
-            expect(hand.enabled).toBe(detailed);
+            expect(hand.ownEnabled).toBe(detailed);
+            const actorHidden = slot===1 && ((hand.actorTag==="AKIR" && sampleFrame<1274)
+              || (["HRSK","KKEN"].includes(hand.actorTag) && sampleFrame>=1400))
+              || slot===2 && ((hand.actorTag==="NGSM" && sampleFrame>=248) || (hand.actorTag==="ENKI" && sampleFrame>=332));
+            expect(hand.enabled).toBe(detailed && !actorHidden);
             if (detailed) expect(hand.pose).toEqual(Array.from(nativeHandPoseTarget(evsn.nativeHandPoseTables[latest.poseTableOffset].vectors)));
             expect(hand.bodyPose).toEqual(nativeMhndTargetWords(8, hand.side === "right" ? 0 : 1).map(signedNativeMhndWord));
           }
@@ -151,6 +184,17 @@ for (const [id, leadSlot] of [["S1-EVSN-01", 0], ["S1-EVSN-02", 3]]) {
           }
           sample();
         }),aftermath.activityId);
+        report.actorVisibility=await page.evaluate(()=>window.__rescueActorVisibility);
+        await testInfo.attach("evsn-actor-visibility",{body:JSON.stringify(report.actorVisibility),contentType:"application/json"});
+        expect(report.actorVisibility.reset.frame).toBeLessThan(100);
+        for(const actor of Object.values(report.actorVisibility.reset.actors))expect(actor.vertices).toBeGreaterThan(0);
+        for(const edge of report.actorVisibility.edges) {
+          expect(edge.observedBefore.frame).toBeGreaterThanOrEqual(edge.frame-4);
+          expect(edge.observedAfter.frame).toBeLessThanOrEqual(edge.frame+3);
+          expect(edge.observedAfter.root).toBe(edge.observedBefore.root);
+          expect(edge.observedBefore.vertices>0).toBe(!edge.after);
+          expect(edge.observedAfter.vertices>0).toBe(edge.after);
+        }
         // A local-original-media fixture can expose its decoded playback
         // clocks here, keeping its diagnostics entirely within the page.
         const ambient = await page.evaluate(() => window.__evsnVerifiedAmbientPlayback);

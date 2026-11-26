@@ -180,6 +180,7 @@ export async function runCutscenePreview({
       window.__readCutsceneHands = () => [...(activeHands?.active?.hands || [])].flatMap(([actorTag, hand]) =>
         Object.entries(hand.sides).map(([side, value]) => ({
           actorTag, side, detailed: value.detailedActive, enabled: value.side.root?.isEnabled() || false,
+          ownEnabled: value.side.root?.isEnabled(false) || false,
           nonzeroPoseWords: Array.from(value.side.pose.current).filter(value => value !== 0).length,
           pose: Array.from(value.side.pose.current),
           componentRotationRaw: value.side.componentRotationRaw || [0, 0, 0],
@@ -435,6 +436,19 @@ export async function runCutscenePreview({
         window.__cutsceneSurfaceFrames = 0;
         restoreSurfaceCamera = frameCutsceneSurface(runtime, kind, actorTag, sideName,
           () => { window.__cutsceneSurfaceFrames += 1; });
+      };
+      window.__sampleCutsceneActors = actorTags => {
+        const runtime = [...(currentDirector?.runtimes.values() || [])].find(candidate => candidate.presentation?.active);
+        if (!runtime) return {};
+        return Object.fromEntries(actorTags.map(tag => {
+          const actor = runtime.actors.activeActor(tag);
+          if (!actor?.root) return [tag, null];
+          const meshes = actor.model?.renderMeshes || actor.root.getChildMeshes(false);
+          const drawable = meshes.filter(mesh => mesh.isEnabled() && mesh.isVisible && mesh.visibility > 0
+            && mesh.getTotalVertices() > 0);
+          return [tag, {root:actor.root.uniqueId, enabled:actor.root.isEnabled(),
+            bodyMeshes:drawable.length, vertices:drawable.reduce((n,mesh) => n + mesh.getTotalVertices(),0)}];
+        }));
       };
       window.__readCutsceneLookPoints = () => [...(currentDirector?.runtimes.values() || [])]
         .flatMap(runtime => [...(runtime.presentation?.actorLookPoints?.targets || [])].map(([actorTag, record]) => {
