@@ -53,11 +53,12 @@ export async function verifyKittenMarket(page, testInfo, character, residentClic
   await page.screenshot({path:testInfo.outputPath("kitten-market-checkout.png")});
   await page.evaluate(()=>window.storyProbe.lifecycle.travelToWorld("yamanose"));
   await ready("yamanose");
-  const talk = async () => {
+  const talk = async expectedStatus => {
     const point=await residentClickPoint(page,"MEGM");
     expect(point.pickedActor).toBe("MEGM");
+    await page.waitForFunction(({x,y}) => document.elementFromPoint(x,y) === window.storyProbe.lifecycle.engine.getRenderingCanvas(), point);
     await page.mouse.click(point.x,point.y);
-    await page.waitForFunction(()=>window.storyProbe.dialogue?.active || window.storyProbe.sceneErrors.length,null,{timeout:30_000});
+    await expect.poll(status,{timeout:30_000}).toBe(expectedStatus);
   };
   for(let day=1;day<=5;day++){
     if(day>1){
@@ -65,13 +66,15 @@ export async function verifyKittenMarket(page, testInfo, character, residentClic
       await page.locator("#story-wait-button").click();
       await page.getByRole("option",{name:"Wait until tomorrow morning",exact:true}).click();
       await button("Wait until tomorrow morning").click();
-      await expect.poll(async()=>(await saved()).worldState.gameTimeMs).toBeGreaterThan(before);
+      const date = ms => new Date(ms).toISOString().slice(0,10);
+      await expect.poll(async()=>date((await saved()).worldState.gameTimeMs)).toBe(date(before+86_400_000));
+      await idle();
     }
-    await talk();
+    await talk(day===3 ? "options" : "line");
     if(day===3){
       await button("Check on the kitten").click({timeout:20_000});
       await expect.poll(async()=>(await saved()).character.storyFlags["story.s1.kitten-healed.completed"],{timeout:120_000}).toBe(true);
-      await idle();await talk();
+      await idle();await talk("line");
     }
     await page.keyboard.press("Space");
     await button("Give her the sliced fish").click({timeout:20_000});
