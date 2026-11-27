@@ -257,6 +257,8 @@ export async function loadMt5Scene(state, prefix, options = {}) {
   }
   if (!cancelled()) {
     options.prepareRoots?.(state.currentMeshes);
+    if (options.appendSceneRoots) await options.appendSceneRoots(cancelled);
+    if (cancelled()) return false;
     // Keeping inactive variants resident must not make them visible. Apply
     // the same composition rules used by live season/time updates now, even
     // when the environment hasn't changed since the previous world load.

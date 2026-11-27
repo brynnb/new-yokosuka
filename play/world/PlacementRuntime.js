@@ -1,22 +1,15 @@
-import * as BABYLON from "@babylonjs/core";
-import {
-  fetchAsset,
-  getStandaloneTexturePack,
-  getTexturePack,
-} from "../../src/assetLoader.js";
 import { jomoObjectBehavior } from "../../src/JomoObjectRegistry.js";
 import {
   mapTransitionForDoor,
   mapTransitionForObject,
 } from "../../src/MapTransitions.js";
-import { Mt5Loader } from "../../src/Mt5Loader.js";
 import {
   auditRuntimePlacementRoots,
   summarizeRuntimePlacementAudit,
 } from "../../src/RuntimePlacementAudit.js";
-import {
-  configureMt5TexturePack,
-} from "../assets/configureMt5TexturePack.js";
+import { readPlacementModelAssets, createPlacementModelLoader,
+  groupWorldPlacements, preparePlacementRoots, placementInitiallyEnabled,
+} from "../../src/rendering/WorldPlacementAssets.js";
 
 function freezePlacedRoot(root, freezeWorldMatrices = true) {
   for (const node of [root, ...root.getDescendants(false)]) {
@@ -28,20 +21,7 @@ function freezePlacedRoot(root, freezeWorldMatrices = true) {
   }
 }
 
-// The offline scenery compiler uses the same source coordinate conversion as
-// gameplay, without installing gameplay callbacks on its disposable scene.
-export function applyPlacementTransform(root, placement) {
-  root._filename = placement.model;
-  root._runtimePlacement = true;
-  root._runtimePlacementRecord = placement;
-  root.position.set(...placement.position);
-  if (placement.rotationDegrees) {
-    root.rotationQuaternion = Mt5Loader.sourceOrderQuaternion(
-      ...placement.rotationDegrees.map(BABYLON.Tools.ToRadians),
-    );
-  }
-  if (placement.scale) root.scaling.set(...placement.scale);
-}
+export { applyPlacementTransform } from "../../src/rendering/WorldPlacementAssets.js";
 
 export class PlacementRuntime {
   constructor({
@@ -80,14 +60,7 @@ export class PlacementRuntime {
     if (!placements?.length) return;
     const placedRoots = [];
     const placementAuditRecords = [];
-    const placementsByModel = new Map();
-    for (const placement of placements) {
-      const modelPlacements = placementsByModel.get(placement.model) || [];
-      modelPlacements.push(placement);
-      placementsByModel.set(placement.model, modelPlacements);
-    }
-
-    const groups = [...placementsByModel];
+    const groups = groupWorldPlacements(placements);
     let nextGroup = 0;
     const loadNextGroup = async () => {
       while (nextGroup < groups.length) {
@@ -142,36 +115,10 @@ export class PlacementRuntime {
   }
 
   async readModelAssets(model, modelPlacements, signal) {
-    const assetFile = modelPlacements[0]?.assetFile;
-    const texturePackFile = modelPlacements[0]?.texturePackFile;
-    const modelUrl = assetFile
-      ? this.bundledModels[`play/assets/dobuita/${assetFile}`]
-      : null;
-    const texturePackUrl = texturePackFile
-      ? this.bundledTextures[`play/assets/dobuita/${texturePackFile}`]
-      : null;
-    if (assetFile && !modelUrl) {
-      throw new Error(`Missing bundled Dobuita asset ${assetFile}.`);
-    }
-    if (texturePackFile && !texturePackUrl) {
-      throw new Error(
-        `Missing bundled Dobuita texture pack ${texturePackFile}.`,
-      );
-    }
-    const [modelBuffer, primaryTexturePack] = await Promise.all([
-      modelUrl ? this.fetchArrayBuffer(modelUrl, {signal})
-        : fetchAsset(model).then(response => response.arrayBuffer()),
-      texturePackUrl
-        ? this.fetchArrayBuffer(texturePackUrl, {signal})
-        : getTexturePack(modelPlacements[0]?.texturePackModel || model),
-    ]);
-    const texturePack = await getStandaloneTexturePack(
-      model,
-      modelBuffer,
-      primaryTexturePack,
-    );
-    signal?.throwIfAborted();
-    return {modelBuffer, texturePack};
+    return readPlacementModelAssets(model, modelPlacements, signal, {
+      bundledModels: this.bundledModels, bundledTextures: this.bundledTextures,
+      fetchArrayBuffer: this.fetchArrayBuffer,
+    });
   }
 
   async loadModelGroup({model, modelPlacements, worldId, placedRoots, placementAuditRecords, signal, preparedModels}) {
@@ -179,8 +126,7 @@ export class PlacementRuntime {
     let modelBuffer, texturePack, placementLoader;
     if (!prepared) {
       ({modelBuffer, texturePack} = await this.readModelAssets(model, modelPlacements, signal));
-      placementLoader = new Mt5Loader(this.scene);
-      configureMt5TexturePack(placementLoader, texturePack);
+      placementLoader = createPlacementModelLoader(this.scene, texturePack);
     }
 
     for (const [index, placement] of modelPlacements.entries()) {
@@ -188,12 +134,10 @@ export class PlacementRuntime {
       const roots = prepared ? preparedModels.instantiate(model) : await placementLoader.load(modelBuffer, texturePack);
       // Track ownership before registration so failed/cancelled assembly is
       // included in the normal world teardown too.
-      this.state.currentMeshes.push(...roots);
+      preparePlacementRoots(roots, placement, index, this.state);
       signal?.throwIfAborted();
       const configuredRoots = [];
       for (const root of roots) {
-        root.name = `${root.name}_${model}_${index}`;
-        applyPlacementTransform(root, placement);
         placedRoots.push(root);
         this.setMetadata(root, "runtimeObject", {
           root,
@@ -267,7 +211,7 @@ export class PlacementRuntime {
         // A world travel target remains available during exploration even if
         // its model also participates in an authored cutscene (the harbor bus).
         // Cutscene-only props still follow their native initial visibility.
-        if (behavior.initiallyEnabled === false && !objectTransition) root.setEnabled(false);
+        if (!placementInitiallyEnabled(placement, worldId, behavior)) root.setEnabled(false);
         freezePlacedRoot(
           root,
           (
