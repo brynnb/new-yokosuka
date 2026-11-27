@@ -888,7 +888,13 @@ test("operation 0x01af retains fourteen exact byte-state selectors", () => {
   );
   for (const entry of entries) {
     assert.equal(entry.handlerAddress, "0x0c16b64e");
-    assert.match(entry.provenBehavior, /unknown/);
+    if (entry.argumentConstraints[0].values.includes(44)) {
+      assert.match(entry.provenBehavior, /sign-extends the exact 16-bit word/);
+      assert.match(entry.provenBehavior, /0x0c220a56/);
+      assert.match(entry.provenBehavior, /JU00 increments.*kitten care.*JD00 reads.*park fight/);
+    } else {
+      assert.match(entry.provenBehavior, /unknown/);
+    }
   }
 });
 

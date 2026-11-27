@@ -436,11 +436,19 @@ test("Nozomi fights on Ryo's side and her knockout leaves the two-opponent fight
   assert.ok(selected.some(id=>id==="ENKI"||id==="NGSM"));
   assert.equal(selected.includes("AKIR"),false);
   for(const entry of e.enemies)entry.ai=null;
-  const decisive={...MARTIAL_ARTS_MOVES.tigerKnuckle,damage:10000};
-  applyCombatHit(e.enemy,ally.combatant,decisive);
-  assert.equal(ally.combatant.defeated,true);
-  h.step();assert.equal(h.runtime.active.outcome,null);
-  for(const entry of e.opponents)applyCombatHit(e.player,entry.combatant,decisive);
-  h.step();assert.equal(h.runtime.active.outcome,"success");
+  // The preceding AI decisions can leave an actor guarding. A throw delivers
+  // the intended knockout in either stance through the ordinary damage path.
+  const knockout = { ...MARTIAL_ARTS_MOVES.shoulderBuster, damage: 10000 };
+  assert.equal(applyCombatHit(e.enemy, ally.combatant, knockout).defeated, true);
+  h.step();
+  assert.equal(h.runtime.active.outcome, null);
+  const [enoki, nagashima] = e.opponents;
+  assert.equal(applyCombatHit(e.player, enoki.combatant, knockout).defeated, true);
+  h.step();
+  assert.equal(h.runtime.active.outcome, null);
+  assert.equal(applyCombatHit(e.player, nagashima.combatant, knockout).defeated, true);
+  // A hit reaction on Ryo must finish before the director leaves combat.
+  for (let frame = 0; frame < 100 && !h.runtime.active.outcome; frame++) h.step();
+  assert.equal(h.runtime.active.outcome, "success");
   h.runtime.finish(h.transaction);
 });
