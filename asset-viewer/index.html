@@ -904,6 +904,43 @@
       border-color: var(--accent);
     }
 
+    #export-fab:disabled {
+      opacity: 0.65;
+      cursor: progress;
+      transform: none;
+    }
+
+    #export-progress {
+      position: absolute;
+      bottom: 70px;
+      left: 20px;
+      z-index: 150;
+      width: min(290px, calc(100% - 40px));
+      box-sizing: border-box;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      background: rgba(22, 22, 29, 0.95);
+      color: white;
+      font-size: 0.8rem;
+    }
+
+    #export-progress-percent {
+      float: right;
+      margin-left: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    #export-progress-bar {
+      display: block;
+      width: 100%;
+      height: 8px;
+      margin-top: 8px;
+      accent-color: var(--accent);
+    }
+
+    #export-progress-bar[hidden] { display: none; }
+
     #export-options-modal {
       position: absolute;
       bottom: 70px;
@@ -1225,6 +1262,12 @@
 
     <!-- Export Menu -->
     <button id="export-fab"><span>📥</span> Export Model</button>
+
+    <div id="export-progress" hidden>
+      <span id="export-progress-percent" aria-hidden="true"></span>
+      <span id="export-progress-label" role="status"></span>
+      <progress id="export-progress-bar" max="100" aria-label="GLB export progress"></progress>
+    </div>
 
     <div id="export-options-modal" class="hidden">
       <div style="
