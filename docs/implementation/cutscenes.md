@@ -533,6 +533,15 @@ reads Ryo's outcome at `0x7562a`. The browser applies no elapsed-time
 defeat. A defeat replays the confrontation with the same lineup, whereas
 cancelling the encounter discards its code and grants no rescue flag.
 
+On a Radeon RX 9070 XT, entering the code with 499 care points and
+entering an incorrect code with 500 points each selected the usual
+three fighters. The correct sequence at 500 selected four, including
+1,630 visible vertices on Nozomi's model. Ryo finished with 50 HP
+after Nozomi fell. The original aftermath completed before bank-2
+bit 801 appeared in the save. These two disposable characters began
+with the stated care and park prerequisites.
+See the [park fight hardware evidence](../../tools/evidence/nozomi-park-ally-hardware-2026-11-25.json).
+
 The EVSN package
 retains three timing cues whose recordings have no match in the extracted
 retail voice directories: `01NVEA007`, `01NVED007` and `01NVED008`.

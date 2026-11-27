@@ -43,6 +43,7 @@ import {verifyFinalAftermath} from "./story-final-aftermath.js";
 import {verifyFamilyDeparture} from "./story-family-departure.js";
 import {verifySwallowFlip,verifySwallowPresentation,verifyFinalChai,verifyFinalChaiPresentation,verifyIntroductionLetter,verifyEarnedIntroductionLetter,verifyNozomiAmulet,verifyShipDeparture} from "./story-final-departure.js";
 import {useStoryInspectable} from "./story-object-input.js";
+import {verifyKittenMarket} from "./story-kitten-market.js";
 import {verifyKittenCare} from "./story-kitten-care.js";
 import {verifyKittenRoof} from "./story-kitten-roof.js";
 import {verifyKittenAdoption} from "./story-kitten-adoption.js";
@@ -54,6 +55,7 @@ import {verifyNozomiFlowers} from "./story-nozomi-flowers.js";
 import {verifyNozomiParkTears} from "./story-nozomi-park-tears.js";
 import {verifyEriNozomiPark} from "./story-eri-nozomi-park.js";
 import {verifyParkRescue} from "./story-park-rescue.js";
+import {verifyEnokiRevenge} from "./story-enoki-revenge.js";
 import {verifyFriendsVisit} from "./story-friends-visit.js";
 import {verifyFriendsBar} from "./story-friends-bar.js";
 import {verifyHarborArrivalFilm} from "./story-harbor-arrival-film.js";
@@ -78,6 +80,35 @@ test.skip(process.env.NEW_YOKOSUKA_STORY_E2E !== "true", "requires the isolated 
 
 const resumeId = Number(process.env.NEW_YOKOSUKA_STORY_RESUME_ID || 0);
 const naturalOpening = process.env.NEW_YOKOSUKA_NATURAL_OPENING_E2E === "true";
+async function finishCharlieConfrontation(page, testInfo, character) {
+  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-tattoo-introduction"||window.storyProbe.sceneErrors.length,null,{timeout:90_000});
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime?.activityRuntime.active?.currentFrame>=200,null,{timeout:60_000});
+  await page.screenshot({path:testInfo.outputPath("earned-charlie-introduction.png")});
+  // Play the original introduction without seeking; answer only the real
+  // prompts, then allow the complete aftermath to finish naturally.
+  await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready||window.storyProbe.sceneErrors.length,null,{timeout:180_000});
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  for(const [index,button,key]of [[0,"Left","ArrowLeft"],[1,"A","Enter"]]){
+    await page.waitForFunction(({index,button})=>{const q=window.storyProbe.regions.controller.dialogue.qte?.active;
+      return window.storyProbe.regions.controller.active?.challengePrompt?.ready&&q?.index===index&&q.steps[q.index]?.buttons[0]===button;},{index,button},{timeout:15_000});
+    await page.keyboard.press(key);
+  }
+  await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-tattoo-aftermath"||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
+  expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
+  await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime?.activityRuntime.active?.currentFrame>=150,null,{timeout:60_000});
+  await page.screenshot({path:testInfo.outputPath("earned-charlie-aftermath.png")});
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie-cartel-appointment"]),{timeout:180_000}).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  const saved=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
+  expect(saved.storyFlags["story.s1.charlie-tattoo-confrontation.completed"]).toBe(true);expect(saved.yen).toBe(character.yen);expect(saved.currentHp).toBe(character.currentHp);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
+  await page.reload();await enterStoryWorld(page,character.name);
+  await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
+  expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.charlie-cartel-appointment"])).toBe(true);
+  expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+}
+
 async function enterStoryWorld(page, characterName) {
   await expect(page.getByLabel("Open the New Yokosuka menu")).toBeVisible({ timeout: process.env.NEW_YOKOSUKA_FOOTBALL_E2E === "true" ? 30_000 : 120_000 });
   await page.keyboard.press("Enter");
@@ -105,7 +136,10 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     page.on("requestfailed", request => console.info("Photo test request failed:", request.url(), request.failure()?.errorText));
   }
   page.on("response", response => { if(/bgm119|bgm063|bgm064|bgm032|bgm067|bgm070|bgm095|bgm200|bgm084|bgm013|bgm120|bgm106|bgm107|nozomi-home-cdda05/.test(response.url())) musicResponses.push({url:response.url(),status:response.status()}); });
-  page.on("pageerror", error => {errors.push(error.message);console.info("Story page error:",error.message);});
+  page.on("pageerror", error => {
+    errors.push(error.message);
+    console.info("Story page error:", (error.stack || error.message).split("\n").slice(0, 5).join("\n"));
+  });
   if(process.env.NEW_YOKOSUKA_SECOND_MORNING_E2E==="true"||process.env.NEW_YOKOSUKA_THIRD_WORKDAY_E2E==="true")page.on("pageerror",error=>console.info("Working morning page error:",error.message));
   if(process.env.NEW_YOKOSUKA_FORKLIFT_TRAINING_E2E==="true"||process.env.NEW_YOKOSUKA_MORNING_CARGO_E2E==="true"||process.env.NEW_YOKOSUKA_MARK_LUNCH_E2E==="true"||process.env.NEW_YOKOSUKA_FIRST_AFTERNOON_E2E==="true"){
     page.on("pageerror",error=>console.info("Story page error:",error.message));
@@ -653,32 +687,7 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       await walkToLandmark(page,testInfo,{world:"dobuita",label:"Charlie return upstairs",arrivalRadius:.45,targets:[[101.8,99.4],
         [102.8,100.65],[104.2,102.45],[104.2,103.35],[103.25,103.35],[102.5,102.3],[101.5,101],[100.4,99.9]]});
       await enterInteriorDoor(page,{world:"tatq",doorSelector:46,fromWorld:"dobuita",reposition:false});
-      await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-tattoo-introduction"||window.storyProbe.sceneErrors.length,null,{timeout:90_000});
-      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
-      await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime?.activityRuntime.active?.currentFrame>=200,null,{timeout:60_000});
-      await page.screenshot({path:testInfo.outputPath("earned-charlie-introduction.png")});
-      // Play the original introduction without seeking; answer only the real
-      // prompts, then allow the complete aftermath to finish naturally.
-      await page.waitForFunction(()=>window.storyProbe.regions.controller.active?.challengePrompt?.ready||window.storyProbe.sceneErrors.length,null,{timeout:180_000});
-      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
-      for(const [index,button,key]of [[0,"Left","ArrowLeft"],[1,"A","Enter"]]){
-        await page.waitForFunction(({index,button})=>{const q=window.storyProbe.regions.controller.dialogue.qte?.active;
-          return window.storyProbe.regions.controller.active?.challengePrompt?.ready&&q?.index===index&&q.steps[q.index]?.buttons[0]===button;},{index,button},{timeout:15_000});
-        await page.keyboard.press(key);
-      }
-      await page.waitForFunction(()=>window.storyProbe.director?.activeCutscene?.cutscene.id==="story-s1-tattoo-aftermath"||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
-      expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
-      await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime?.activityRuntime.active?.currentFrame>=150,null,{timeout:60_000});
-      await page.screenshot({path:testInfo.outputPath("earned-charlie-aftermath.png")});
-      await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.getCharacter()?.storyFlags?.["notebook.s1.charlie-cartel-appointment"]),{timeout:180_000}).toBe(true);
-      await expect.poll(()=>page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
-      const saved=(await(await page.request.get(`/api/characters/${character.id}/state`)).json()).character;
-      expect(saved.storyFlags["story.s1.charlie-tattoo-confrontation.completed"]).toBe(true);expect(saved.yen).toBe(character.yen);expect(saved.currentHp).toBe(character.currentHp);
-      expect(await page.evaluate(()=>window.storyProbe.lifecycle.scheduledActors.activityActorOwners.size)).toBe(0);
-      await page.reload();await enterStoryWorld(page,character.name);
-      await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.regions?.getCharacter()?.id,null,{timeout:120_000});
-      expect(await page.evaluate(()=>window.storyProbe.regions.getCharacter().storyFlags?.["notebook.s1.charlie-cartel-appointment"])).toBe(true);
-      expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+      await finishCharlieConfrontation(page, testInfo, character);
       expect(errors).toEqual([]);return;
     }
     if(process.env.NEW_YOKOSUKA_STAIR_ROUNDTRIP_E2E === "true"){
@@ -721,6 +730,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       expect(upstairs[1]).toBeGreaterThan(2.5);
       await observeStoryDialogueFace(page,"HORS");
       await enterInteriorDoor(page,{world:"tatq",doorSelector:46,fromWorld:"dobuita",reposition:false});
+      if (process.env.NEW_YOKOSUKA_ENOKI_REVENGE === "revenge-visit") {
+        await finishCharlieConfrontation(page, testInfo, character);
+        expect(errors).toEqual([]);
+        return;
+      }
       await page.waitForFunction(()=>window.storyProbe.dialogue?.active||window.storyProbe.sceneErrors.length,null,{timeout:60_000});
       expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
       expect(await page.evaluate(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug)).toBe("story-s1-first-tattoo-visit");
@@ -1397,6 +1411,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
       await verifyDailyAllowance(page,testInfo,character,enterStoryWorld);
       expect(errors).toEqual([]);return;
     }
+    if(process.env.NEW_YOKOSUKA_KITTEN_MARKET_E2E==="true"){
+      test.setTimeout(540_000);
+      await verifyKittenMarket(page,testInfo,character,residentClickPoint,enterStoryWorld);
+      expect(errors).toEqual([]);return;
+    }
     if(process.env.NEW_YOKOSUKA_KITTEN_CARE_E2E === "true"){
       test.setTimeout(480_000);
       await verifyKittenCare(page,testInfo,character,residentClickPoint,enterStoryWorld);
@@ -1412,7 +1431,11 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
         expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
         await page.waitForFunction(()=>{const a=window.storyProbe.dialogue?.audio;return a&&!a.paused&&a.currentTime>0;},null,{timeout:20_000});
         expect(await page.getByRole("button",{name:"Tama",exact:true}).isVisible()).toBe(false);
-        for(let i=0;i<15&&await page.evaluate(()=>window.storyProbe.regions.controller.status!=="idle");i++){await page.keyboard.press("Space");await page.waitForTimeout(250);}
+        for(let i=0;i<18&&await page.evaluate(()=>window.storyProbe.regions.controller.status!=="idle");i++){
+          const option=page.getByRole("button",{name:attempt===0?"Say goodbye":"Pet the kitten",exact:true});
+          if(await option.isVisible()) await option.click(); else await page.keyboard.press("Space");
+          await page.waitForTimeout(250);
+        }
         await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
       }
       const after=await saved();expect(after.character.storyFlags).toEqual(before.character.storyFlags);
@@ -1500,6 +1523,12 @@ for (const [ending, freshOpening] of variants) test(resumeId ? "investigation co
     }
     if (process.env.NEW_YOKOSUKA_NOZOMI_TEARS_E2E === "true") {
       test.setTimeout(480_000);await verifyNozomiParkTears(page,testInfo,character,enterStoryWorld);expect(errors).toEqual([]);return;
+    }
+    if (process.env.NEW_YOKOSUKA_ENOKI_REVENGE) {
+      test.setTimeout(1_200_000);
+      await verifyEnokiRevenge(page, testInfo, character, enterStoryWorld);
+      expect(errors).toEqual([]);
+      return;
     }
     if (process.env.NEW_YOKOSUKA_PARK_RESCUE_E2E === "true") {
       test.setTimeout(900_000);

@@ -1,0 +1,518 @@
+{
+  "schema": "new-yokosuka/nozomi-park-ally-hardware-v1",
+  "date": "2026-11-25",
+  "renderer": "ANGLE (AMD, Vulkan 1.4.335 (AMD Radeon RX 9070 XT (RADV GFX1201) (0x00007550)), radv)",
+  "setup": "Separate disposable Story characters with native park prerequisites 100/852, initial time and position supplied. The two care values were seeded to isolate the original signed halfword threshold. Physical keyboard input, normal Story dispatch, combat and the winning film ran on Kraft.",
+  "cases": {
+    "park-ally-low": {
+      "privateReport": "rerun-park-ally-low-20261125-212514",
+      "durationSeconds": 14.873,
+      "score": 499,
+      "physicalKeyboard": [
+        [
+          "KeyY",
+          "KeyY",
+          "ShiftLeft",
+          "KeyJ",
+          "Enter",
+          "Enter",
+          "Enter"
+        ]
+      ],
+      "originalHeldMasksByFrame": [
+        [
+          {
+            "frame": 6,
+            "mask": 2
+          },
+          {
+            "frame": 7,
+            "mask": 0
+          },
+          {
+            "frame": 8,
+            "mask": 2
+          },
+          {
+            "frame": 9,
+            "mask": 0
+          },
+          {
+            "frame": 10,
+            "mask": 512
+          },
+          {
+            "frame": 11,
+            "mask": 0
+          },
+          {
+            "frame": 12,
+            "mask": 4
+          },
+          {
+            "frame": 13,
+            "mask": 0
+          },
+          {
+            "frame": 14,
+            "mask": 1024
+          },
+          {
+            "frame": 15,
+            "mask": 0
+          },
+          {
+            "frame": 16,
+            "mask": 1024
+          },
+          {
+            "frame": 17,
+            "mask": 0
+          },
+          {
+            "frame": 18,
+            "mask": 1024
+          },
+          {
+            "frame": 19,
+            "mask": 0
+          }
+        ]
+      ],
+      "visits": [
+        {
+          "type": "film",
+          "id": "EVSN/SEQDATA1.AUTH",
+          "duration": 230,
+          "last": 230,
+          "frames": 457
+        },
+        {
+          "type": "film",
+          "id": "EVSN/SEQDATA2.AUTH",
+          "duration": 1671,
+          "last": 2,
+          "frames": 4
+        },
+        {
+          "type": "fight",
+          "id": "s1.jd00.nozomi-park-rescue",
+          "actors": [
+            "AKIR",
+            "ENKI",
+            "NGSM"
+          ],
+          "initialHealth": [
+            200,
+            140,
+            40
+          ],
+          "frames": 4,
+          "health": [
+            200,
+            140,
+            40
+          ],
+          "renderHealthSamples": [
+            {
+              "renderTick": 1,
+              "health": [
+                200,
+                140,
+                40
+              ]
+            }
+          ]
+        }
+      ],
+      "outcomes": null,
+      "saved801": false
+    },
+    "park-ally": {
+      "privateReport": "rerun-park-ally-20261125-214129",
+      "durationSeconds": 572.154,
+      "score": 500,
+      "physicalKeyboard": [
+        [
+          "KeyY",
+          "KeyY",
+          "ShiftLeft",
+          "KeyJ",
+          "Enter",
+          "KeyJ",
+          "Enter"
+        ],
+        [
+          "KeyY",
+          "KeyY",
+          "ShiftLeft",
+          "KeyJ",
+          "Enter",
+          "Enter",
+          "Enter"
+        ]
+      ],
+      "originalHeldMasksByFrame": [
+        [
+          {
+            "frame": 12,
+            "mask": 2
+          },
+          {
+            "frame": 14,
+            "mask": 0
+          },
+          {
+            "frame": 15,
+            "mask": 2
+          },
+          {
+            "frame": 16,
+            "mask": 0
+          },
+          {
+            "frame": 17,
+            "mask": 512
+          },
+          {
+            "frame": 18,
+            "mask": 0
+          },
+          {
+            "frame": 19,
+            "mask": 4
+          },
+          {
+            "frame": 20,
+            "mask": 0
+          },
+          {
+            "frame": 21,
+            "mask": 1024
+          },
+          {
+            "frame": 22,
+            "mask": 0
+          },
+          {
+            "frame": 23,
+            "mask": 4
+          },
+          {
+            "frame": 24,
+            "mask": 0
+          },
+          {
+            "frame": 25,
+            "mask": 1024
+          },
+          {
+            "frame": 26,
+            "mask": 0
+          }
+        ],
+        [
+          {
+            "frame": 12,
+            "mask": 2
+          },
+          {
+            "frame": 14,
+            "mask": 0
+          },
+          {
+            "frame": 15,
+            "mask": 2
+          },
+          {
+            "frame": 16,
+            "mask": 0
+          },
+          {
+            "frame": 17,
+            "mask": 512
+          },
+          {
+            "frame": 18,
+            "mask": 0
+          },
+          {
+            "frame": 19,
+            "mask": 4
+          },
+          {
+            "frame": 20,
+            "mask": 0
+          },
+          {
+            "frame": 21,
+            "mask": 1024
+          },
+          {
+            "frame": 22,
+            "mask": 0
+          },
+          {
+            "frame": 23,
+            "mask": 1024
+          },
+          {
+            "frame": 24,
+            "mask": 0
+          },
+          {
+            "frame": 25,
+            "mask": 1024
+          },
+          {
+            "frame": 26,
+            "mask": 0
+          }
+        ]
+      ],
+      "visits": [
+        {
+          "type": "film",
+          "id": "EVSN/SEQDATA1.AUTH",
+          "duration": 230,
+          "last": 230,
+          "frames": 453
+        },
+        {
+          "type": "film",
+          "id": "EVSN/SEQDATA2.AUTH",
+          "duration": 1671,
+          "last": 3,
+          "frames": 4
+        },
+        {
+          "type": "fight",
+          "id": "s1.jd00.nozomi-park-rescue",
+          "actors": [
+            "AKIR",
+            "ENKI",
+            "NGSM"
+          ],
+          "initialHealth": [
+            200,
+            140,
+            40
+          ],
+          "frames": 4,
+          "health": [
+            200,
+            140,
+            40
+          ],
+          "renderHealthSamples": [
+            {
+              "renderTick": 1,
+              "health": [
+                200,
+                140,
+                40
+              ]
+            }
+          ]
+        },
+        {
+          "type": "film",
+          "id": "EVSN/SEQDATA1.AUTH",
+          "duration": 230,
+          "last": 230,
+          "frames": 461
+        },
+        {
+          "type": "film",
+          "id": "EVSN/SEQDATA2.AUTH",
+          "duration": 1671,
+          "last": 1,
+          "frames": 2
+        },
+        {
+          "type": "fight",
+          "id": "s1.jd00.nozomi-park-rescue-ally",
+          "actors": [
+            "AKIR",
+            "HRSK",
+            "ENKI",
+            "NGSM"
+          ],
+          "initialHealth": [
+            200,
+            150,
+            600,
+            400
+          ],
+          "frames": 30675,
+          "health": [
+            50,
+            0,
+            0,
+            0
+          ],
+          "allyVisibleVertices": 1630,
+          "renderHealthSamples": [
+            {
+              "renderTick": 1,
+              "health": [
+                200,
+                150,
+                600,
+                400
+              ]
+            },
+            {
+              "renderTick": 3001,
+              "health": [
+                108,
+                72,
+                523,
+                284
+              ]
+            },
+            {
+              "renderTick": 6001,
+              "health": [
+                62,
+                26,
+                412,
+                159
+              ]
+            },
+            {
+              "renderTick": 7201,
+              "health": [
+                36,
+                0,
+                400,
+                114
+              ]
+            },
+            {
+              "renderTick": 9001,
+              "health": [
+                26,
+                0,
+                394,
+                102
+              ]
+            },
+            {
+              "renderTick": 12001,
+              "health": [
+                29,
+                0,
+                394,
+                72
+              ]
+            },
+            {
+              "renderTick": 15001,
+              "health": [
+                23,
+                0,
+                364,
+                12
+              ]
+            },
+            {
+              "renderTick": 17701,
+              "health": [
+                84,
+                0,
+                358,
+                0
+              ]
+            },
+            {
+              "renderTick": 18001,
+              "health": [
+                73,
+                0,
+                352,
+                0
+              ]
+            },
+            {
+              "renderTick": 21001,
+              "health": [
+                65,
+                0,
+                274,
+                0
+              ]
+            },
+            {
+              "renderTick": 24001,
+              "health": [
+                54,
+                0,
+                178,
+                0
+              ]
+            },
+            {
+              "renderTick": 27001,
+              "health": [
+                28,
+                0,
+                76,
+                0
+              ]
+            },
+            {
+              "renderTick": 30001,
+              "health": [
+                39,
+                0,
+                34,
+                0
+              ]
+            },
+            {
+              "renderTick": 30601,
+              "health": [
+                56,
+                0,
+                4,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "type": "film",
+          "id": "EVSN/SEQDATA3.AUTH",
+          "duration": 1080,
+          "last": 1080,
+          "frames": 2162
+        }
+      ],
+      "outcomes": [
+        {
+          "outcome": "success",
+          "health": [
+            {
+              "tag": "AKIR",
+              "hp": 50
+            },
+            {
+              "tag": "HRSK",
+              "hp": 0
+            },
+            {
+              "tag": "ENKI",
+              "hp": 0
+            },
+            {
+              "tag": "NGSM",
+              "hp": 0
+            }
+          ]
+        }
+      ],
+      "saved801": true
+    }
+  }
+}
