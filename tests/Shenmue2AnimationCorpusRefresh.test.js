@@ -4,8 +4,9 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
-const repository = path.resolve(new URL("..", import.meta.url).pathname);
+const repository = fileURLToPath(new URL("..", import.meta.url));
 
 test("failed S2 corpus refresh leaves every published artifact unchanged", () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "ny-s2-refresh-test-"));
@@ -41,6 +42,7 @@ test("failed S2 corpus refresh leaves every published artifact unchanged", () =>
       "--report", report,
     ], { cwd: repository, encoding: "utf8" });
 
+    assert.ifError(result.error);
     assert.notEqual(result.status, 0);
     assert.equal(
       fs.readFileSync(path.join(fixtures, "sentinel.json"), "utf8"),

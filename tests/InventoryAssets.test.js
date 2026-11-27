@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile, stat } from "node:fs/promises";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 import catalog from "../artwork/inventory/catalog.json" with { type: "json" };
 import { INVENTORY_ITEMS, inventoryArtworkFor } from "../play/ui/react/inventoryItems.js";
 
@@ -40,7 +41,7 @@ test("Vite emits the active icon files without reserve artwork", async () => {
       minify: false,
       assetsInlineLimit: 0,
       rollupOptions: {
-        input: new URL("../play/ui/react/inventoryItems.js", import.meta.url).pathname,
+        input: fileURLToPath(new URL("../play/ui/react/inventoryItems.js", import.meta.url)),
         preserveEntrySignatures: "strict",
       },
     },

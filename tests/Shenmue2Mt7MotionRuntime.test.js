@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 import * as BABYLON from "@babylonjs/core";
 import { parseMt7 } from "../src/Mt7Parser.js";
 import {
@@ -444,15 +445,15 @@ const ok1Path = new URL(
 );
 
 test("every bundled S2 character resolves every authored compact-MOT node", () => {
-  const directory = new URL(
+  const directory = fileURLToPath(new URL(
     "../play/assets/shenmue2-characters/",
     import.meta.url,
-  );
+  ));
   for (const filename of fs.readdirSync(directory).filter(
     (name) => name.endsWith(".CHRM"),
   )) {
     const selected = scheduledMt7HumanoidMotionNodes({
-      _mt7Nodes: sourceEntries(path.join(directory.pathname, filename)),
+      _mt7Nodes: sourceEntries(path.join(directory, filename)),
     });
     const controlled = selected.filter(
       ({ motionNodeIndex }) => Number.isInteger(motionNodeIndex),

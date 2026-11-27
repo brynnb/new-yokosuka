@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 import {
   conformanceFailures,
   nativePoseMetrics,
@@ -8,6 +9,7 @@ import {
   validateShenmue2AnimationFixture,
 } from "../tools/lib/Shenmue2AnimationConformance.js";
 
+const repositoryRoot = fileURLToPath(new URL("..", import.meta.url));
 const fixtureUrl = new URL(
   "./fixtures/shenmue2-animation/f086-jn5-native.json",
   import.meta.url,
@@ -120,7 +122,7 @@ test("reduced S2 renderer fixtures retain native intermediate arm matrices", () 
     );
   }
   const report = runShenmue2AnimationConformance(reducedFixture, {
-    repositoryRoot: new URL("..", import.meta.url).pathname,
+    repositoryRoot,
   });
   assert.deepEqual(conformanceFailures(report), []);
   const intermediatePointErrors = report.frames.flatMap(({ pointErrors }) => (
@@ -147,7 +149,7 @@ test("S2 foundation comparison removes only native slot-zero X/Z residue", () =>
     import.meta.url,
   ), "utf8"));
   const report = runShenmue2AnimationConformance(xhoFixture, {
-    repositoryRoot: new URL("..", import.meta.url).pathname,
+    repositoryRoot,
   });
   const relocatedCapture = report.frames.find(({ sourceFrame }) => (
     sourceFrame === 10
@@ -175,7 +177,7 @@ test("S2 foundation comparison removes only native slot-zero X/Z residue", () =>
 
 test("S2 conformance runs the browser pose implementation at native frames", () => {
   const report = runShenmue2AnimationConformance(fixture, {
-    repositoryRoot: new URL("..", import.meta.url).pathname,
+    repositoryRoot,
   });
   assert.equal(report.frameCount, fixture.frames.length);
   assert.ok(report.frames.some(({ sourceFrame }) => sourceFrame === 8));
@@ -251,7 +253,7 @@ test("S2 conformance runs the browser pose implementation at native frames", () 
 test("S2 conformance applies the exact captured SYB rest-rig binding", () => {
   validateShenmue2AnimationFixture(shortRigFixture);
   const report = runShenmue2AnimationConformance(shortRigFixture, {
-    repositoryRoot: new URL("..", import.meta.url).pathname,
+    repositoryRoot,
   });
   assert.equal(report.frameCount, shortRigFixture.frames.length);
   const exactFrame = report.frames.find(({ sourceFrame }) => sourceFrame === 21);
@@ -304,7 +306,7 @@ test("S2 conformance rejects mixed-phase KMN callback captures", () => {
   assert.equal(kmnFixture.provenance.modelBinding.actorCode, "06H_");
   assert.equal(kmnFixture.provenance.modelBinding.modelCode, "BA7_L");
   const report = runShenmue2AnimationConformance(kmnFixture, {
-    repositoryRoot: new URL("..", import.meta.url).pathname,
+    repositoryRoot,
   });
   assert.equal(report.frameCount, kmnFixture.frames.length);
   assert.ok(report.frameCount >= 6);
@@ -332,7 +334,7 @@ test("S2 conformance covers an exact LLY native action with live curve state", (
     (frame) => frame.nativeSolverInputs.curveAffines.length > 0,
   ));
   const report = runShenmue2AnimationConformance(llyActionFixture, {
-    repositoryRoot: new URL("..", import.meta.url).pathname,
+    repositoryRoot,
   });
   assert.equal(report.frameCount, 5);
   assert.ok(report.summary.maximumPointError < 0.0002);
@@ -348,10 +350,10 @@ test("S2 raw MOT decoding independently reproduces captured curve evaluation", (
     blendedAriFixture,
   ]) {
     const captured = runShenmue2AnimationConformance(nativeFixture, {
-      repositoryRoot: new URL("..", import.meta.url).pathname,
+      repositoryRoot,
     });
     const decoded = runShenmue2AnimationConformance(nativeFixture, {
-      repositoryRoot: new URL("..", import.meta.url).pathname,
+      repositoryRoot,
       useCapturedEvaluatedCurveValues: false,
     });
     assert.equal(captured.curveInputMode, "captured-evaluated-values");
@@ -394,7 +396,7 @@ test("S2 pelvis callback evidence proves production controller 0", () => {
       ));
   }));
   const report = runShenmue2AnimationConformance(blendedAriFixture, {
-    repositoryRoot: new URL("..", import.meta.url).pathname,
+    repositoryRoot,
   });
   assert.ok(report.summary.maximumPelvisOrientationErrorDegrees < 0.00001);
   assert.ok(report.summary.maximumDecodedPelvisOrientationErrorDegrees < 0.024);
@@ -457,7 +459,7 @@ test("S2 Ryo conformance consumes native terrain-adjusted foot targets", () => {
     frame.nativeSolverInputs.headMiddleCallback?.blendAmount === 1
   )));
   const report = runShenmue2AnimationConformance(ryoTerrainFixture, {
-    repositoryRoot: new URL("..", import.meta.url).pathname,
+    repositoryRoot,
   });
   const bodyOrientationErrors = report.frames.flatMap(
     ({ orientationErrors }) => Object.entries(orientationErrors)
