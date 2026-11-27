@@ -96,10 +96,12 @@ export class ScheduledSceneObjectRuntime {
         onModelLoaded?.();
       }
     };
-    await Promise.all(Array.from(
+    const results = await Promise.allSettled(Array.from(
       { length: Math.min(MAX_PARALLEL_LOADS, definitions.length) },
       () => loadNext(),
     ));
+    const failed = results.find(result => result.status === "rejected");
+    if (failed) throw failed.reason;
   }
 
   async loadDefinition(definition, signal) {

@@ -43,11 +43,10 @@ import {
   syncAudioGameFromUrl,
 } from "../asset-viewer/audio/audioViewer.js";
 import { resolveSceneComposition } from "./SceneCompositions.js";
+import { viewerMt5ScenePlan, viewerMt7AreaRecords } from "./ViewerWorldPlan.js";
+import { appendViewerWorldPlacements } from "./rendering/ViewerWorldPlacements.js";
 import { ASSET_VIEWER_MAIN_VIEWS, shenmueInteriorViews } from "./AssetViewerMainViews.js";
-// Preserve the asset viewer's original, self-contained Hazuki exterior scene.
-// The playable world uses JHD0; BETD is the viewer scene whose seasonal layers
-// are authored to work with the generic Summer/Winter variant filtering.
-const DEFAULT_MAIN_VIEW_PREFIX = "S1_BETD";
+const DEFAULT_MAIN_VIEW_PREFIX = "S1_JHD0";
 const mapRegions = {};
 function applyTimeOfDay(presetIndex) {
   applySceneTimeOfDay(presetIndex);
@@ -203,7 +202,7 @@ async function loadMetadata() {
 // Catalog adapters own selection, camera fitting and UI; all asset construction
 // and resource ownership are in the shared renderer.
 async function finishViewerScene(record = null) {
-  const size = fitCameraToMeshes(state.currentMeshes);
+  const size = fitCameraToMeshes(state.currentMeshes.filter(root => root.isEnabled()));
   updateViewerCameraControls();
   state.isInteriorScene = detectInteriorScene(size);
   updateCameraSpeed(size);
@@ -216,21 +215,28 @@ async function finishViewerScene(record = null) {
 
 export async function loadScene(prefix, options = {}) {
   currentInteriorViewpoint = null;
-  const loaded = await loadMt5Scene(state, prefix, {
+  const plan = viewerMt5ScenePlan(prefix, state.allFiles, viewerCompositionContext(), options);
+  const task = loadMt5Scene(state, prefix, {
     ...options,
+    ...plan,
     onStatus: options.suppressStatus ? undefined : setStatus,
+    appendSceneRoots: cancelled => state.currentMeshes.length && appendViewerWorldPlacements(state, plan.world, cancelled,
+      (done, total) => setStatus(`Placing objects (${done}/${total})...`, true)),
   });
-  if (loaded && state.currentMeshes.length) {
-    const id = state.currentLoadId;
-    try {
-      await finishViewerScene();
-    } catch (error) {
-      if (id !== state.currentLoadId) return false;
-      throw error;
+  const id = state.currentLoadId;
+  try {
+    const loaded = await task;
+    if (loaded && id === state.currentLoadId && state.currentMeshes.length) await finishViewerScene();
+    return loaded && id === state.currentLoadId;
+  } catch (error) {
+    if (id === state.currentLoadId) {
+      clearWorldSceneAssets(state);
+      updateViewerCameraControls();
+      setStatus(`Error: ${error.message}`);
+      console.error("Failed to assemble viewer area", error);
     }
-    if (id !== state.currentLoadId) return false;
+    return false;
   }
-  return loaded;
 }
 
 export async function loadModelFromUrl(filename, element) {
@@ -263,6 +269,7 @@ async function loadShenmue2Model(record, element) {
 }
 
 export async function loadShenmue2Group(records, label, options = {}) {
+  if (options.area) records = viewerMt7AreaRecords(records, state.mt7Models);
   if (!records.length) return;
   currentInteriorViewpoint = null;
   if (!options.singleModel) document.querySelectorAll(".model-item.active").forEach(item => item.classList.remove("active"));
@@ -319,7 +326,7 @@ export async function loadShenmue2Catalog() {
       button.addEventListener("click", () => {
         resetAssetViewerTimeToDay();
         document.querySelectorAll(".main-view-button").forEach(item => item.classList.toggle("active", item === button));
-        void loadShenmue2Group(view.records, view.label);
+        void loadShenmue2Group(view.records, view.label, {area: true});
         collapseAssetViewerSidebarOnMobile();
       });
       parent.append(button);
@@ -365,6 +372,7 @@ export async function loadShenmue2Catalog() {
         void loadShenmue2Group(
           mainAreaRecords || recordsInZone,
           mainAreaRecords ? `${area.label} main area` : area.label,
+          {area: Boolean(mainAreaRecords)},
         );
         collapseAssetViewerSidebarOnMobile();
       });
@@ -409,7 +417,7 @@ export async function loadShenmue2Catalog() {
           event.stopPropagation();
           document.querySelectorAll(".main-view-button.active").forEach(button => button.classList.remove("active"));
           resetAssetViewerTimeToDay();
-          void loadShenmue2Group(recordsInGroup, `${zone}/${label}`);
+          void loadShenmue2Group(recordsInGroup, `${zone}/${label}`, {area: recordsInGroup.some(record => record.kind === "MAPM")});
           collapseAssetViewerSidebarOnMobile();
         });
         groupHeader.appendChild(loadAllButton);
@@ -846,7 +854,7 @@ export async function loadCatalog() {
     setStatus(`Ready`);
 
     // Auto-load the Hazuki Residence Grounds on startup.
-    await loadScene(DEFAULT_MAIN_VIEW_PREFIX);
+    if (files.some(file => file.startsWith(DEFAULT_MAIN_VIEW_PREFIX + "_"))) await loadScene(DEFAULT_MAIN_VIEW_PREFIX);
 
     // Override camera to a closer default view for the initial load
     if (state.scene && state.scene.activeCamera && state.currentMeshes.length > 0) {
@@ -880,7 +888,7 @@ export async function loadCatalog() {
 // Initialize sky/time and season toggle buttons
 export function initToggleButtons() {
   document.getElementById("overview-view-btn").addEventListener("click", () => {
-    if (state.currentMeshes.length) updateCameraSpeed(fitCameraToMeshes(state.currentMeshes));
+    if (state.currentMeshes.length) updateCameraSpeed(fitCameraToMeshes(state.currentMeshes.filter(root => root.isEnabled())));
   });
   document.getElementById("interior-view-btn").addEventListener("click", showInteriorView);
   document.getElementById("shenmue-game-btn")?.addEventListener("click", () => {

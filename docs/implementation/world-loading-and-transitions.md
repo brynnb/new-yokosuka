@@ -102,6 +102,28 @@ connects those owners.
 shared MT5/MT7 scene loader in `src/rendering/SceneAssets.js`.
 `src/catalog.js` is the asset viewer's catalog and camera/UI adapter.
 
+### Asset viewer area assembly
+
+Full MT5 area views resolve the same reviewed world definitions and
+environment compositions as gameplay, through `src/ViewerWorldPlan.js`.
+They use the shared placement asset/transform helpers in
+`src/rendering/WorldPlacementAssets.js` and append the placed geometry
+within the scene-load transaction, before camera framing. The viewer does
+not register gameplay interactions, actors, physics or scripts. Its four
+time presets sample the scheduled scene-object state at noon, 17:00,
+19:00 and 23:00 on December 3, 1986, using the default schedule variants.
+Initial cutscene-only and inactive roots are excluded from the visible
+scene and from model exports. Individual asset inspection still uses the
+native standalone transform and does not load the area.
+
+The normal Hazuki grounds view uses the playable JHD0 layout; BETD
+remains available as an explicit archive variant. Full MT7 views use
+the gameplay scene records when the selected archive matches a known
+world, retaining native MAPM/PROP hierarchies. Other archives remain
+browseable; without verified object placement data the viewer shows
+the authored environment rather than inventing positions for loose props.
+
+
 The normal cross-world sequence is:
 
 1. Leave the current multiplayer room, clear remote players, and lock the world

@@ -53,6 +53,7 @@ export function clearWorldSceneAssets(state) {
     root.dispose(false, false);
   }
   state.currentMeshes = [];
+  state.viewerPlacementAudit = null;
   const preparedSceneryResources = state.preparedSceneryResources;
   state.preparedSceneryResources = null;
   // This cleanup also handles a cancelled single-actor/model load. Materials

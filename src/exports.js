@@ -3,6 +3,7 @@ import { GLTF2Export } from "@babylonjs/serializers/glTF";
 import { GLTFExporter } from "@babylonjs/serializers/glTF/2.0/glTFExporter.js";
 import { ASSET_VIEWER_MAIN_VIEWS } from "./AssetViewerMainViews.js";
 import { STLExport } from "@babylonjs/serializers/stl";
+import { viewerExportNodes } from "./ViewerExportSelection.js";
 import { prepareViewerObjDownload } from "./ViewerObjDownload.js";
 import state from "./state.js";
 import { setStatus } from "./ui.js";
@@ -20,23 +21,10 @@ GLTFExporter.RegisterExtension("ViewerExportProgress", (exporter) => ({
   },
 }));
 
-function shouldExportNode(node) {
-  const name = node.name.toLowerCase();
-  return !name.includes("sky") && !name.includes("light") && !name.includes("camera");
-}
-
 function getExportMeshes(includeInstances = false) {
-  const meshes = new Set();
-  function add(mesh) {
-    if (mesh instanceof BABYLON.Mesh || (includeInstances && mesh instanceof BABYLON.InstancedMesh)) {
-      if (shouldExportNode(mesh)) meshes.add(mesh);
-    }
-  }
-  for (const root of state.currentMeshes) {
-    add(root);
-    for (const mesh of root.getChildMeshes()) add(mesh);
-  }
-  return [...meshes];
+  return [...viewerExportNodes(state.currentMeshes)].filter(mesh =>
+    mesh.getTotalVertices?.() > 0 &&
+    (mesh instanceof BABYLON.Mesh || (includeInstances && mesh instanceof BABYLON.InstancedMesh)));
 }
 
 function objExportName() {
@@ -111,15 +99,20 @@ export function initExportHandlers() {
     e.stopPropagation();
     if (exportFab.disabled) return;
     exportModal.classList.add("hidden");
-    if (state.currentMeshes.length === 0) {
+    const loadId = state.currentLoadId;
+    exportFab.disabled = true;
+    showProgress("Preparing export");
+    await state.sceneLoadTask;
+    if (loadId !== state.currentLoadId || !state.currentMeshes.length) {
       showExportError("Select a model before exporting.");
+      exportFab.disabled = false;
       return;
     }
 
-    const filename = state.currentMeshes[0]._filename || "model";
-    const exportName = filename.split("/").pop().replace(/\.mt5$/i, "") + ".glb";
+    const exportName = objExportName() + ".glb";
     const scene = state.scene;
-    const loadId = state.currentLoadId;
+    const exportNodes = viewerExportNodes(state.currentMeshes);
+    const shouldExportNode = node => exportNodes.has(node);
     const originalMaterials = new Map();
     const swappedMeshes = new Map();
     const meshCount = scene.meshes.filter(mesh => mesh.subMeshes?.length && shouldExportNode(mesh)).length;
@@ -148,7 +141,8 @@ export function initExportHandlers() {
       await exportPass(1, "Preparing geometry and textures");
       if (state.currentLoadId !== loadId) throw new Error("The selected model changed. Start the export again.");
       // Temporarily use unlit PBR materials for the downloadable pass.
-      scene.materials.forEach((mat) => {
+      const exportMaterials = new Set([...exportNodes].map(node => node.material).filter(Boolean));
+      exportMaterials.forEach((mat) => {
         if (mat instanceof BABYLON.StandardMaterial) {
           const pbr = new BABYLON.PBRMaterial(mat.name + "_export", scene);
           pbr.albedoTexture = mat.diffuseTexture;
@@ -181,7 +175,7 @@ export function initExportHandlers() {
       });
 
       // Temporarily apply PBR materials to meshes
-      scene.meshes.forEach((mesh) => {
+      scene.meshes.filter(shouldExportNode).forEach((mesh) => {
         if (mesh.material && originalMaterials.has(mesh.material)) {
           swappedMeshes.set(mesh, mesh.material);
           mesh.material = originalMaterials.get(mesh.material);

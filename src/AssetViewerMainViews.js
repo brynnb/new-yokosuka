@@ -1,3 +1,5 @@
+import { viewerInteriorPrefix } from "./ViewerWorldPlan.js";
+
 // Curated destination IDs from public/data/maps.csv, not inferred from model
 // filenames. Alternate/cutscene copies stay in the detailed source folders.
 const INTERIOR_IDS = new Set([
@@ -16,7 +18,10 @@ export function shenmueInteriorViews(files, mapNames) {
     if (!INTERIOR_IDS.has(area) || !mapNames[area] || byArea.has(area)) continue;
     byArea.set(area, {prefix: `${scenario}_${area}`, label: mapNames[area], interior: true});
   }
-  return [...byArea.values()].sort((a, b) => a.label.localeCompare(b.label));
+  const prefixes = new Set(files.filter(file => /\.mt5$/i.test(file)).map(file => file.split("_").slice(0, 2).join("_")));
+  return [...byArea.entries()].map(([area, view]) => ({
+    ...view, prefix: viewerInteriorPrefix(area, prefixes) || view.prefix,
+  })).sort((a, b) => a.label.localeCompare(b.label));
 }
 
 export const ASSET_VIEWER_MAIN_VIEWS = Object.freeze([
@@ -27,7 +32,7 @@ export const ASSET_VIEWER_MAIN_VIEWS = Object.freeze([
   }),
   Object.freeze({
     label: "Hazuki Residence Grounds",
-    prefix: "S1_BETD",
+    prefix: "S1_JHD0",
   }),
   Object.freeze({
     label: "OP00 Introduction Stage",
@@ -62,6 +67,8 @@ export const ASSET_VIEWER_MAIN_VIEWS = Object.freeze([
     label: "Old Warehouse District",
     prefix: "S2_MKSG",
   }),
+  Object.freeze({ label: "Hazuki Grounds — BETD archive", prefix: "S1_BETD", composition: "BETD" }),
+  Object.freeze({ label: "Forklift Races", prefix: "S3_MA00", mapOnly: true }),
   Object.freeze({
     label: "Motorcycle Route",
     prefix: "S3_NBIK",
