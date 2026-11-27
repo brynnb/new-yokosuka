@@ -11,17 +11,18 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-if __package__:
-    from .extract_native_aseq_callback_ir import iter_native_maps
-else:
-    from extract_native_aseq_callback_ir import iter_native_maps
-
-
 ROOT = Path(__file__).resolve().parents[2]
+if not __package__:
+    sys.path.insert(0, str(ROOT))
+
+from tools.cutscenes.extract_native_aseq_callback_ir import iter_native_maps
+
+
 IR_PATH = ROOT / ".disc-work/dialogue/native-event-ir.json"
 SCENE_INVENTORY_PATH = (
     ROOT / "tools/evidence/shenmue1-scripted-scene-inventory.json"
