@@ -23,7 +23,7 @@ async function observePark(page) {
     if (!controller.parkCombatObserved) {
       const respond=controller.combatResponse.bind(controller);
       controller.combatResponse = (action,token,intent) => {
-        if (intent?.outcome && p.combatRuntime?.active?.view?.id==="s1.jd00.nozomi-park-rescue") {
+        if (intent?.outcome && p.combatRuntime?.active?.view?.id?.startsWith("s1.jd00.nozomi-park-rescue")) {
           (window.parkCapture.outcomes ||= []).push({outcome:intent.outcome,
             health:p.combatRuntime.active.view.actors.map(a=>({tag:a.tag,hp:a.health}))});
         }
@@ -57,7 +57,7 @@ async function observePark(page) {
         }
       } else lastFilm = undefined;
       const fight = p.combatRuntime?.active;
-      if (fight?.view?.id === "s1.jd00.nozomi-park-rescue" && fight.view.ready) {
+      if (fight?.view?.id?.startsWith("s1.jd00.nozomi-park-rescue") && fight.view.ready) {
         const view = fight.view;
         if (fight !== lastFight) {
           lastFight = fight;
@@ -65,6 +65,12 @@ async function observePark(page) {
         }
         const record = visits.at(-1);
         record.health = view.actors.map(a=>a.health);
+        if (view.id.endsWith("-ally") && !record.allyVisibleVertices) {
+          const root=fight.records.get("HRSK")?.root;
+          record.allyVisibleVertices=(root?.getChildMeshes(false) || [])
+            .filter(m=>m.isEnabled() && m.isVisible && m.visibility>0 && scene.isActiveMesh(m) && scene.activeCamera.isInFrustum(m))
+            .reduce((n,m)=>n+m.getTotalVertices(),0);
+        }
         record.frames++;
         if(record.frames%300===1) (record.samples ||= []).push(view.actors.map(a=>({tag:a.tag,x:a.x,z:a.z,hp:a.health})));
       } else lastFight = undefined;
@@ -122,27 +128,33 @@ async function earnStreetPrerequisite(page, testInfo, character) {
   const check = async () => expect(await page.evaluate(()=>window.storyProbe.sceneErrors)).toEqual([]);
   const active = () => page.waitForFunction(()=>window.storyProbe.regions.controller.active?.scriptIdentity.scriptSlug==="story-s1-enoki-street"||window.storyProbe.sceneErrors.length,null,{timeout:30_000});
   const enter = () => walkFrom(page,[65,0,40.8],0,active);
-  const waitCue = async (button,index) => {
-    await page.waitForFunction(({id,button,index})=>{
+  const pressCue = async (index, button, key, recovery = false) => {
+    await page.waitForFunction(({id,button,index,recovery})=>{
       const p=window.storyProbe, controller=p.regions.controller,prompt=controller.active?.challengePrompt,qte=controller.dialogue.qte?.active;
-      return p.sceneErrors.length || (prompt?.id===id && prompt.ready && qte?.index===index && !qte.outcome && qte.steps[index].buttons[0]===button);
-    },{id,button,index},{timeout:90_000});
+      return p.sceneErrors.length || (prompt?.id===id && prompt.ready && qte?.index===index
+        && !qte.outcome && qte.recovering===recovery && qte.prompt.buttons[0]===button);
+    },{id,button,index,recovery},{timeout:90_000});
     await check();
-    events.push({button,index});
+    events.push({button,index,recovery,key});
+    await page.keyboard.press(key);
   };
   await enter();
   await page.waitForFunction(()=>window.parkStreetShots["s1.d000.enoki-street-intro"],null,{timeout:15_000});
   await page.screenshot({path:testInfo.outputPath("enoki-street-first-approach.png")});
-  await waitCue("Left",0);await page.keyboard.press("ArrowRight");
+  await pressCue(0,"Left","ArrowRight");
+  await pressCue(0,"Left","ArrowRight",true);
   const leave=page.getByRole("button",{name:/leave/i});
   await leave.waitFor({timeout:90_000});
   await leave.click();
   await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("idle");
   expect(await nativeBank(page,character.id)).toEqual(before);
   await enter();
-  for (const [index,button,key] of [[0,"Left","ArrowLeft"],[1,"A","Enter"],[2,"B","ShiftLeft"]]) {
-    await waitCue(button,index);await page.keyboard.press(key);
-  }
+  await pressCue(0,"Left","ArrowRight");
+  await pressCue(0,"Left","ArrowLeft",true);
+  await pressCue(1,"A","ArrowRight");
+  await pressCue(1,"A","Enter",true);
+  await pressCue(2,"B","ArrowRight");
+  await pressCue(2,"A","Enter",true);
   await expect.poll(async()=>(await saved()).character.storyFlags[done],{timeout:90_000}).toBe(true);
   const after=await saved(), bank=await nativeBank(page,character.id);
   expect(bit(bank,852)).toBe(true);expect(bit(bank,801)).toBe(false);
@@ -194,11 +206,13 @@ export async function verifyParkRescue(page, testInfo, character, enterStoryWorl
     await checkErrors();
     console.info("Park rescue film", slotId(slot), "visit", count);
   };
+  let expectedFight = fightId;
   const fight = async count => {
-    await page.waitForFunction(({id,count})=>window.storyProbe.sceneErrors.length || (window.storyProbe.combatRuntime?.active?.view?.id===id && window.parkCapture.visits.filter(v=>v.type==="fight").length>=count),{id:fightId,count},{timeout:150_000});
+    await page.waitForFunction(count=>window.storyProbe.sceneErrors.length || (window.storyProbe.combatRuntime?.active?.view?.id?.startsWith("s1.jd00.nozomi-park-rescue") && window.parkCapture.visits.filter(v=>v.type==="fight").length>=count),count,{timeout:150_000});
+    expect(await page.evaluate(()=>window.storyProbe.combatRuntime.active.view.id)).toBe(expectedFight);
     await checkErrors();
     const cast=await page.evaluate(()=> window.storyProbe.combatRuntime.active.view.actors.map(a=>a.tag));
-    expect(cast.sort()).toEqual(["AKIR","ENKI","NGSM"]);
+    expect(cast.sort()).toEqual(expectedFight===fightId?["AKIR","ENKI","NGSM"]:["AKIR","ENKI","HRSK","NGSM"]);
     console.info("Park rescue playable fight",count,cast.join(", "));
   };
   const cancel = async (physical=false) => {
@@ -232,17 +246,25 @@ export async function verifyParkRescue(page, testInfo, character, enterStoryWorl
         };
       }, slotId(entry.lead));
 
-      await fightWithKeyboard(page, () => page.evaluate(() => {
-        const fight = window.storyProbe.combatRuntime?.active;
-        return !fight || Boolean(fight.outcome);
-      }));
+      let nextHealthSample=0;
+      await fightWithKeyboard(page,async()=>{
+        if(expectedFight!==fightId && Date.now()>=nextHealthSample){
+          nextHealthSample=Date.now()+30_000;
+          const health=await page.evaluate(()=>window.storyProbe.combatRuntime?.active?.view?.actors.map(a=>[a.tag,a.health]));
+          console.info("Park allied combat health",JSON.stringify(health));
+        }
+        return page.evaluate(()=>{
+          const fight=window.storyProbe.combatRuntime?.active;
+          return !fight || Boolean(fight.outcome);
+        });
+      });
       await page.waitForFunction(
         count => (window.parkCapture.outcomes?.length || 0) > count,
         prior.outcomes, {timeout: 15_000},
       );
       const result = await page.evaluate(() => window.parkCapture.outcomes.at(-1));
       if (result.outcome === "success") {
-        const opponents = result.health.filter(actor => actor.tag !== "AKIR");
+        const opponents = result.health.filter(actor => ["ENKI","NGSM"].includes(actor.tag));
         expect(opponents.every(actor => actor.hp === 0)).toBe(true);
         return;
       }
@@ -264,6 +286,96 @@ export async function verifyParkRescue(page, testInfo, character, enterStoryWorl
     throw Error("Three playable attempts ended before both opponents were defeated");
   }
   try {
+    if (mode==="park-ally" || mode==="park-ally-low" || mode==="park-ally-earned") {
+      const eligible=mode==="park-ally";
+      const inputs=[];
+      await page.evaluate(()=>{
+        const client=window.storyProbe.regions.controller.client;
+        const advance=client.advanceScriptEvent.bind(client);
+        window.parkSent=[];
+        client.advanceScriptEvent=(run,action,options)=>{
+          if(options?.parkInputs)window.parkSent.push(options.parkInputs);
+          return advance(run,action,options);
+        };
+      });
+      const enterCode=async(correct,count)=>{
+        await approach(count);
+        await page.locator("#renderCanvas").focus();
+        const keys=["KeyY","KeyY","ShiftLeft","KeyJ","Enter",correct?"Enter":"KeyJ","Enter"];
+        await page.waitForFunction(()=>window.storyProbe.director.activeCutscene?.packageRuntime.activityRuntime.active?.currentFrame>=12);
+        // Wait for the real film sampler to observe each physical transition.
+        // Normal rendering may advance its activity frame earlier in the same tick.
+        await page.evaluate(()=>{
+          const active=window.storyProbe.director.activeCutscene;
+          const original=active.onActivityFrame;
+          const currentFrame=active.packageRuntime.activityRuntime.active.currentFrame;
+          const witness=window.parkKeys={version:0,sampled:-1,lastFrame:currentFrame};
+          const event=e=>{witness.version++;witness.key=e.code;witness.down=e.type==="keydown";};
+          window.addEventListener("keydown",event,true);
+          window.addEventListener("keyup",event,true);
+          active.onActivityFrame=frame=>{
+            original(frame);
+            if(frame!==witness.lastFrame){witness.lastFrame=frame;witness.sampled=witness.version;}
+          };
+          window.clearParkKeys=()=>{
+            active.onActivityFrame=original;
+            window.removeEventListener("keydown",event,true);
+            window.removeEventListener("keyup",event,true);
+          };
+        });
+        const sampled=(key,down)=>page.waitForFunction(({key,down})=>{
+          const w=window.parkKeys;return w.key===key && w.down===down && w.sampled===w.version;
+        },{key,down},{timeout:3000});
+        try{
+          for(const key of keys){
+            await page.keyboard.down(key);
+            try{await sampled(key,true);}finally{await page.keyboard.up(key);}
+            await sampled(key,false);
+          }
+        }finally{await page.evaluate(()=>window.clearParkKeys());}
+        inputs.push(keys);await film(2,count);
+        const sent=await page.evaluate(()=>window.parkSent.at(-1));
+        console.info("Physical park input transitions",JSON.stringify(sent));
+        await skip();await fight(count);
+      };
+      if(mode==="park-ally-earned"){
+        expectedFight=fightId+"-ally";
+        await enterCode(true,1);
+        await page.waitForFunction(() => window.parkCapture.visits.some(visit => visit.allyVisibleVertices > 0));
+        const observedFight = await page.evaluate(() => window.parkCapture.visits.find(visit => visit.allyVisibleVertices > 0));
+        expect(observedFight.initialHealth).toEqual([200,150,600,400]);
+        await cancel(true);
+        const trace=await page.evaluate(()=>window.parkSent.at(-1));
+        expect(trace.map(sample => sample.mask)).toEqual([2,0,2,0,512,0,4,0,1024,0,1024,0,1024,0]);
+        await testInfo.attach("park-ally-earned",{contentType:"application/json",body:JSON.stringify({trace,observed:await capture()})});
+        return;
+      }
+      await enterCode(!eligible,1);
+      await cancel(true);
+      if (eligible){
+        expectedFight=fightId+"-ally";
+        await enterCode(true,2);
+        await page.screenshot({path:testInfo.outputPath("park-nozomi-ally-fight.png")});
+        await win();
+        await film(3);await unchanged();
+        await expect.poll(async()=>bit(await nativeBank(page,character.id),801),{timeout:120_000}).toBe(true);
+        await idle();
+        const end=await saved();
+        expect(end.character.storyFlags[rescueDone]).toBe(true);
+        expect(end.character.currentHp).toBe(state.character.currentHp);
+      }
+      const observed=await capture();const transitions=await page.evaluate(()=>window.parkSent);
+      expect(transitions).toHaveLength(inputs.length);
+      if (eligible){
+        const special=observed.visits.find(v=>v.id===fightId+"-ally");
+        expect(special.allyVisibleVertices).toBeGreaterThan(0);
+        expect(special.initialHealth).toEqual([200,150,600,400]);
+      }
+      const expected=[2,0,2,0,512,0,4,0,1024,0,1024,0,1024,0];
+      expect(transitions.at(-1).map(row=>row.mask)).toEqual(expected);
+      await testInfo.attach("park-ally-story",{contentType:"application/json",body:JSON.stringify({points:eligible?500:499,inputs,transitions,observed,completed:bit(await nativeBank(page,character.id),801)})});
+      return;
+    }
     if (blocked) {
       for (const route of [
         {start:[-16.7,0,4.4],yaw:-Math.PI/2,x:[-18.9,-17.3],z:[1.6,7.2]},

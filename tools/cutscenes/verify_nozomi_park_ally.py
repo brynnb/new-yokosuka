@@ -74,6 +74,17 @@ def verify():
     assert ju[0x36FEC:0x36FF4] == bytes.fromhex("e0 55 e3 56 6c 35 52 24")
     other = [{"call": hex(pos+6), "points": care_call(ju, pos)} for pos in (0x2B3C0, 0x2C8EA, 0x2D05E)]
 
+    pet_voices = []
+    # Retail's four-way petting voice choice at JU00 0x2cace uses SCN3-relative strings.
+    for load, suffix in ((0x2CABC, 139), (0x2CAB6, 140), (0x2CAB0, 141), (0x2CAAA, 142)):
+        instruction = word(ju, load)
+        assert instruction >> 8 == 0xD1
+        literal = (load & ~3) + 4 + 4*(instruction & 255)
+        pointer = 0x4D754 + struct.unpack_from("<I", ju, literal)[0]
+        voice = ju[pointer:ju.index(b"\0", pointer)].decode("ascii")
+        assert voice == "E1041A" + str(suffix)
+        pet_voices.append(voice)
+
     # Each supermarket checkout row stores its retail item ID in the seventh
     # 32-bit word. Prices are keyed by that same four-byte product tag.
     shop = data["DCBN"]
@@ -109,7 +120,7 @@ def verify():
         "schema": "new-yokosuka-nozomi-park-ally-native-v1",
         "disc": 1, "sha256": {key:value[1] for key,value in SOURCES.items()},
         "care": {"signedAddress": hex(address), "writerMode": 43, "readerMode": 44,
-                 "JU00Adder":"0x36fa2", "foods": foods, "otherJU00Calls":other},
+                 "JU00Adder":"0x36fa2", "petVoiceChoiceAt":"0x2cace", "petVoiceChoices":pet_voices, "foods": foods, "otherJU00Calls":other},
         "TomatoDCBN": {"checkoutStock": checkout, "giveOneCall":"0x1b61a"},
         "HazukiKitchenJOMO": {"driedFishItem":60, "quantity":3, "grantCall":"0x86d36"},
         "park": {"approachGateCalls":["0x7620c","0x7692e"], "minimumCare":500,

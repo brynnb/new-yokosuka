@@ -37,7 +37,7 @@ export async function verifyKittenCare(page, testInfo, character, residentClickP
     await click();await page.getByRole("button",{name:entry.choice,exact:true}).click();
     await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("line");
     await page.waitForTimeout(250);await page.keyboard.press("Space");await idle();
-    const after=await saved();expect(after.inventory.find(i=>i.key===entry.item)?.quantity).toBe(1);
+    const after=await saved();expect(after.inventory.find(i=>i.key===entry.item)?.quantity).toBe(entry.tag==="knib"?3:1);
     expect(after.character.storyFlags[entry.flag]).toBe(true);
     expect(await page.evaluate(tag=>window.storyProbe.lifecycle.scene.meshes.find(m=>m.metadata?.runtimeObject?.objectTag===tag)?.metadata.runtimeObject.root.isEnabled(false),entry.tag)).toBe(false);
   }
@@ -66,7 +66,7 @@ export async function verifyKittenCare(page, testInfo, character, residentClickP
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel("kitten-feed-check"));await idle();
   expect((await saved()).inventory.some(i=>i.key==="kitten_dried_fish")).toBe(true);
   await chooseFeed("Give her the dried fish");await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("line");await page.waitForTimeout(250);await page.keyboard.press("Space");await idle();
-  expect((await saved()).inventory.some(i=>i.key==="kitten_dried_fish")).toBe(false);
+  expect((await saved()).inventory.find(i=>i.key==="kitten_dried_fish")?.quantity).toBe(2);
   await talk();
   await page.waitForFunction(()=>{const a=window.storyProbe.dialogue?.audio;return a&&!a.paused&&a.currentTime>0;},null,{timeout:20_000});
   expect(await page.getByRole("button",{name:"Give her the milk",exact:true}).isVisible()).toBe(false);
@@ -95,8 +95,12 @@ export async function verifyKittenCare(page, testInfo, character, residentClickP
   await idle();await page.reload();await enterStoryWorld(page,character.name);
   await page.waitForFunction(()=>window.storyProbe?.ready&&window.storyProbe.lifecycle.worldRuntime.ready,null,{timeout:120_000});
   const after=await saved();expect(after.character.storyFlags["story.s1.kitten-healed.completed"]).toBe(true);
-  expect(after.inventory.some(i=>i.key.startsWith("kitten_"))).toBe(false);
+  expect(after.inventory.find(i=>i.key==="kitten_dried_fish")?.quantity).toBe(2);
   expect(await page.evaluate(()=>window.storyProbe.lifecycle.getController().movementLocked)).toBe(false);
+  await chooseFeed("Give her the dried fish");
+  await expect.poll(()=>page.evaluate(()=>window.storyProbe.regions.controller.status)).toBe("line");
+  await page.waitForTimeout(250);await page.keyboard.press("Space");await idle();
+  expect((await saved()).inventory.find(i=>i.key==="kitten_dried_fish")?.quantity).toBe(1);
   await talk();
   await page.waitForFunction(()=>{const a=window.storyProbe.dialogue?.audio;return a&&!a.paused&&a.currentTime>0;},null,{timeout:20_000});
   await page.evaluate(()=>window.storyProbe.regions.controller.cancel("kitten-post-recovery-check"));await idle();

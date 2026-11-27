@@ -20,6 +20,16 @@ if (spec.schema !== "new-yokosuka-authored-talk-routes-v1") throw new Error("Uns
 const voices = new Set(), streamVoices = new Map(), imports = [];
 const voiceRouteIds = process.argv.flatMap((value,index)=>value === "--voice-route" ? [process.argv[index+1]] : []);
 if (voiceRouteIds.some(id=>!spec.routes.some(route=>route.id===id))) throw new Error("Unknown --voice-route");
+// Revisiting a destination may reassert the same permanent arrival bits as the
+// first trip. Repeatable interactions must never reset bits or grant new ones.
+function repeatsArrivalMilestones(route) {
+  if (!route.destination) return false;
+  return spec.routes.some(firstVisit =>
+    !firstVisit.repeatable && firstVisit.destination === route.destination && !firstVisit.nativeEffectsWhen &&
+    route.nativeEffects.every(effect => effect.value === 1 && firstVisit.nativeEffects?.some(
+      arrival => arrival.address === effect.address && arrival.value === 1)));
+}
+
 const exportedVoices = new Set();
 const triggerPriorities = new Map();
 const storyRegions=JSON.parse(fs.readFileSync(path.join(server,"internal/scriptevent/story_regions.json"))).regions;
@@ -122,7 +132,7 @@ for (const route of spec.routes) {
   const ambientDialogue=route.repeatable&&!route.destination&&!route.shop&&route.voiceIds.length>0&&!route.yarnTemplate
     && (!route.trigger || (route.trigger==="use" && route.object && route.bounds));
   const repeatableTemplate=route.repeatable&&!!route.yarnTemplate&&!route.destination&&!route.shop;
-  if (route.repeatable && ((!route.destination && !route.shop && !ambientDialogue && !repeatableTemplate) || route.items?.length || route.grantYen || route.spendYen || route.recordMinutes?.length || route.recordDays?.length || route.timeTransition || route.nativeEffects?.length || ((ambientDialogue||repeatableTemplate)&&route.effects.length))) throw Error(`Unsafe repeatable route ${route.id}`);
+  if (route.repeatable && ((!route.destination && !route.shop && !ambientDialogue && !repeatableTemplate) || route.items?.length || route.grantYen || route.spendYen || route.recordMinutes?.length || route.recordDays?.length || route.timeTransition || (route.nativeEffects?.length && !repeatsArrivalMilestones(route)) || ((ambientDialogue||repeatableTemplate)&&route.effects.length))) throw Error(`Unsafe repeatable route ${route.id}`);
   if (route.destination && !/^s1\.[a-z0-9.-]+$/.test(route.destination)) throw Error(`Invalid Story destination ${route.id}`);
   const gates = ['play_mode() != "story"', '!opening_completed()', ...(route.presentActors || participants).map(actor => `!actor_present("${actor}")`), ...route.requiredFlags.map(flag => `!flag_set("${flag}")`), ...(route.excludedFlags||[]).map(flag=>`flag_set("${flag}")`), ...requiredItems.map(({key,quantity,nativeOwnership})=>nativeOwnership ? `(!has_item("${key}", ${quantity}) && native_value("${nativeOwnership}") == 0)` : `!has_item("${key}", ${quantity})`), ...(route.repeatable ? [] : [`flag_set("${route.completedFlag}")`])];
   if (route.nativeStep) {
