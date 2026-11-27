@@ -1,8 +1,9 @@
 import * as BABYLON from "@babylonjs/core";
 import { GLTF2Export } from "@babylonjs/serializers/glTF";
 import { GLTFExporter } from "@babylonjs/serializers/glTF/2.0/glTFExporter.js";
-import { OBJExport } from "@babylonjs/serializers/OBJ";
+import { ASSET_VIEWER_MAIN_VIEWS } from "./AssetViewerMainViews.js";
 import { STLExport } from "@babylonjs/serializers/stl";
+import { prepareViewerObjDownload } from "./ViewerObjDownload.js";
 import state from "./state.js";
 import { setStatus } from "./ui.js";
 
@@ -24,30 +25,45 @@ function shouldExportNode(node) {
   return !name.includes("sky") && !name.includes("light") && !name.includes("camera");
 }
 
-const getExportMeshes = () => {
-  const meshesToExport = [];
-  state.currentMeshes.forEach((node) => {
-    if (node instanceof BABYLON.Mesh) {
-      meshesToExport.push(node);
+function getExportMeshes(includeInstances = false) {
+  const meshes = new Set();
+  function add(mesh) {
+    if (mesh instanceof BABYLON.Mesh || (includeInstances && mesh instanceof BABYLON.InstancedMesh)) {
+      if (shouldExportNode(mesh)) meshes.add(mesh);
     }
-    node.getChildMeshes().forEach((child) => {
-      if (child instanceof BABYLON.Mesh) meshesToExport.push(child);
-    });
-  });
-  return [...new Set(meshesToExport)].filter(shouldExportNode);
-};
+  }
+  for (const root of state.currentMeshes) {
+    add(root);
+    for (const mesh of root.getChildMeshes()) add(mesh);
+  }
+  return [...meshes];
+}
 
-const downloadFile = (content, filename) => {
-  const b = new Blob([content], { type: "text/plain" });
-  const u = URL.createObjectURL(b);
-  const l = document.createElement("a");
-  l.href = u;
-  l.download = filename;
-  document.body.appendChild(l);
-  l.click();
-  document.body.removeChild(l);
-  setTimeout(() => URL.revokeObjectURL(u), 100);
-};
+function objExportName() {
+  const prefix = state.currentScenePrefix;
+  const view = prefix && ASSET_VIEWER_MAIN_VIEWS.find(view => view.prefix === prefix);
+  const sceneName = view?.label || (prefix && (state.mapNames[prefix.split("_")[1]] || prefix));
+  const file = state.currentMeshes[0]?._filename?.split("/").pop()?.replace(/\.(?:mt[57]|mapm|chrm)$/i, "");
+  const name = sceneName || (!state.singleModelMode && state.currentZone) || file || "model";
+  // OBJ importers disagree on quoting filenames. Use a portable single token for mtllib.
+  const base = name.normalize("NFC").replace(/[^\p{L}\p{N}_.-]+/gu, "_").replace(/^[._-]+|[._-]+$/g, "") || "model";
+  return /^(con|prn|aux|nul|com[1-9]|lpt[1-9])(\.|$)/i.test(base) ? "_" + base : base;
+}
+
+function downloadFile(content, filename) {
+  const blob = content instanceof Blob ? content : new Blob([content], {type: "text/plain"});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  try {
+    link.click();
+  } finally {
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+}
 
 export function initExportHandlers() {
   const exportModal = document.getElementById("export-options-modal");
@@ -193,135 +209,38 @@ export function initExportHandlers() {
     }
   };
 
-  document.getElementById("export-full-obj-btn").onclick = (e) => {
-    e.stopPropagation();
+  async function exportObj(event, format) {
+    event.stopPropagation();
+    if (exportFab.disabled) return;
     exportModal.classList.add("hidden");
-    if (state.currentMeshes.length === 0) {
-      setStatus("Error: No model loaded to export");
-      return;
-    }
-
-    const filename = state.currentMeshes[0]._filename || "model.obj";
-    const exportBase = filename
-      .split("/")
-      .pop()
-      .replace(".MT5", "")
-      .replace(".mt5", "");
-
-    setStatus(`Exporting ${exportBase} (Full)...`, true);
+    exportFab.disabled = true;
+    const loadId = state.currentLoadId;
+    const assertSelection = () => {
+      if (state.currentLoadId !== loadId) throw new Error("The selected model changed. Start the export again.");
+    };
     try {
-      const uniqueMeshes = getExportMeshes();
-      if (uniqueMeshes.length === 0) {
-        setStatus("Error: No exportable geometry found");
-        return;
-      }
-
-      // 1. Export OBJ
-      const objContent = OBJExport.OBJ(
-        uniqueMeshes,
-        true,
-        exportBase + ".mtl",
-        true,
-      );
-      downloadFile(objContent, exportBase + ".obj");
-
-      // 2. Export MTL
-      let mtlContent = "";
-      const processedMaterials = new Set();
-      uniqueMeshes.forEach((m) => {
-        if (m.material && !processedMaterials.has(m.material)) {
-          mtlContent += OBJExport.MTL(m) + "\n";
-          processedMaterials.add(m.material);
-        }
+      showProgress("Preparing export");
+      await state.sceneLoadTask;
+      assertSelection();
+      if (!state.currentMeshes.length) throw new Error("Select a model before exporting.");
+      const download = await prepareViewerObjDownload(getExportMeshes(true), objExportName(), format, (label, percent) => {
+        assertSelection();
+        showProgress(label, percent);
       });
-
-      if (mtlContent) {
-        downloadFile(mtlContent, exportBase + ".mtl");
-      }
-
-      setStatus(`Exported ${exportBase} OBJ + MTL`);
+      assertSelection();
+      downloadFile(download.blob, download.filename);
+      showProgress(download.filename + " download started", 100);
     } catch (err) {
-      console.error("Full OBJ Export failed", err);
-      setStatus("Export Error: " + err.message);
+      console.error("Wavefront export failed", err);
+      showExportError("Export failed. " + (err?.message || String(err)));
+    } finally {
+      exportFab.disabled = false;
     }
-  };
+  }
 
-  document.getElementById("export-obj-btn").onclick = (e) => {
-    e.stopPropagation();
-    exportModal.classList.add("hidden");
-    if (state.currentMeshes.length === 0) {
-      setStatus("Error: No model loaded to export");
-      return;
-    }
-
-    const filename = state.currentMeshes[0]._filename || "model.obj";
-    const exportBase = filename
-      .split("/")
-      .pop()
-      .replace(".MT5", "")
-      .replace(".mt5", "");
-
-    setStatus(`Exporting ${exportBase}.obj...`, true);
-    try {
-      const uniqueMeshes = getExportMeshes();
-      if (uniqueMeshes.length === 0) {
-        setStatus("Error: No exportable geometry found");
-        return;
-      }
-
-      const objContent = OBJExport.OBJ(
-        uniqueMeshes,
-        true,
-        exportBase + ".mtl",
-        true,
-      );
-      downloadFile(objContent, exportBase + ".obj");
-      setStatus(`Exported ${exportBase}.obj`);
-    } catch (err) {
-      console.error("OBJ Export failed", err);
-      setStatus("Export Error: " + err.message);
-    }
-  };
-
-  document.getElementById("export-mtl-btn").onclick = (e) => {
-    e.stopPropagation();
-    exportModal.classList.add("hidden");
-    if (state.currentMeshes.length === 0) {
-      setStatus("Error: No model loaded to export");
-      return;
-    }
-
-    const filename = state.currentMeshes[0]._filename || "model.mtl";
-    const exportBase = filename
-      .split("/")
-      .pop()
-      .replace(".MT5", "")
-      .replace(".mt5", "");
-
-    setStatus(`Exporting ${exportBase}.mtl...`, true);
-    try {
-      const uniqueMeshes = getExportMeshes();
-      let mtlContent = "";
-      const processedMaterials = new Set();
-      uniqueMeshes.forEach((m) => {
-        if (m.material && !processedMaterials.has(m.material)) {
-          mtlContent += OBJExport.MTL(m) + "\n";
-          processedMaterials.add(m.material);
-        }
-      });
-
-      if (!mtlContent) {
-        setStatus("Error: No materials found to export");
-        return;
-      }
-
-      downloadFile(mtlContent, exportBase + ".mtl");
-      setStatus(`Exported ${exportBase}.mtl`);
-    } catch (err) {
-      console.error("MTL Export failed", err);
-      setStatus("Export Error: " + err.message);
-    }
-  };
+  document.getElementById("export-full-obj-btn").onclick = event => exportObj(event, "zip");
+  document.getElementById("export-obj-btn").onclick = event => exportObj(event, "obj");
+  document.getElementById("export-mtl-btn").onclick = event => exportObj(event, "mtl");
 
   document.getElementById("export-stl-btn").onclick = (e) => {
     e.stopPropagation();
